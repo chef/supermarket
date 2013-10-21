@@ -1,0 +1,11 @@
+development:
+  adapter: postgresql
+  database: supermarket_development
+
+test:
+  adapter: postgresql
+  database: supermarket_test
+
+production:
+  adapter: postgresql
+  database: supermarket_production
