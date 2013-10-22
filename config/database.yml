@@ -1,10 +1,12 @@
 development:
   adapter: postgresql
   database: supermarket_development
+  host: localhost
 
 test:
   adapter: postgresql
   database: supermarket_test
+  host: localhost
 
 production:
   adapter: postgresql
