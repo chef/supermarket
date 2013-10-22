@@ -16,3 +16,10 @@
 .ruby-version
 .rbenv-version
 .rvmrc
+
+# Ignore Vagrant-specific things
+.vagrant/
+
+# Ignore Test Kitchen
+.kitchen/
+.kitchen.local.yml
