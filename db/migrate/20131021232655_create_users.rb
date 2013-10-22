@@ -6,11 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :middle_name
       t.string :last_name
       t.string :suffix
-
       t.string :phone
-
-      # Store when the user signed the CLA
-      t.datetime   :icla_signed_at
 
       t.timestamps
     end
