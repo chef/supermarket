@@ -5,7 +5,8 @@ gem 'rails', '4.0.0'
 
 gem 'grape', '~> 0.6'
 gem 'pg',    '~> 0.17'
-gem 'puma',  '~> 2.6'
+gem 'unicorn'
+gem 'unicorn-rails'
 
 gem 'jquery-rails', '~> 3.0'
 gem 'sass-rails',   '~> 4.0.0'
