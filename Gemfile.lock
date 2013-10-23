@@ -40,6 +40,8 @@ GEM
     equalizer (0.0.7)
     erubis (2.7.0)
     execjs (2.0.2)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
     grape (0.6.1)
       activesupport
       builder
@@ -105,6 +107,8 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
+    shoulda-matchers (2.4.0)
+      activesupport (>= 3.0.0)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -143,12 +147,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  factory_girl
   grape (~> 0.6)
   jquery-rails (~> 3.0)
   pg (~> 0.17)
   rails (= 4.0.0)
   rspec-rails
   sass-rails (~> 4.0.0)
+  shoulda-matchers
   uglifier (~> 2.2)
   unicorn
   unicorn-rails

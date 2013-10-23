@@ -12,9 +12,22 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
+# Load factories from FactoryGirl
+FactoryGirl.find_definitions
+
 RSpec.configure do |config|
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  # Include FactoryGirl mixin for syntax
+  config.include FactoryGirl::Syntax::Methods
+
+  # Prohibit using the should syntax
+  config.expect_with :rspec do |spec|
+    spec.syntax = :expect
+  end
+
+  # Allow tests to isolate a specific test using +focus: true+. If nothing
+  # is focused, then all tests are executed.
+  config.filter_run focus: true
+  config.run_all_when_everything_filtered = true
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

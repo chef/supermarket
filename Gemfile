@@ -3,6 +3,7 @@ ruby '2.0.0'
 
 gem 'rails', '4.0.0'
 
+gem 'factory_girl'
 gem 'grape', '~> 0.6'
 gem 'pg',    '~> 0.17'
 gem 'unicorn'
@@ -18,4 +19,5 @@ end
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
 end
