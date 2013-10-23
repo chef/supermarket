@@ -9,9 +9,8 @@ gem 'pg',    '~> 0.17'
 gem 'unicorn'
 gem 'unicorn-rails'
 
-gem 'jquery-rails', '~> 3.0'
-gem 'sass-rails',   '~> 4.0.0'
-gem 'uglifier',     '~> 2.2'
+gem 'half-pipe', '~> 0.3.0.alpha' # use half-pipe for asset management
+gem 'sass-css-importer-load-paths'
 
 group :doc do
   gem 'yard', '~> 0.8', require: false

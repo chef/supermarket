@@ -1,0 +1,7 @@
+{
+  "name": "supermarket",
+  "dependencies": {
+    "requirejs": "~2.1.9"
+  }
+}
+

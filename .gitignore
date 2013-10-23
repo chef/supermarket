@@ -23,3 +23,8 @@
 # Ignore Test Kitchen
 .kitchen/
 .kitchen.local.yml
+
+# Front-end items
+node_modules
+bower_components
+public/assets
