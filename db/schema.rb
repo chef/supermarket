@@ -42,8 +42,7 @@ ActiveRecord::Schema.define(version: 20131022165718) do
   create_table "emails", force: true do |t|
     t.integer  "user_id"
     t.string   "email"
-    t.boolean  "primary",           default: false
-    t.string   "confirmation_code"
+    t.string   "confirmation_token"
     t.datetime "confirmed_at"
   end
 
@@ -63,7 +62,7 @@ ActiveRecord::Schema.define(version: 20131022165718) do
     t.string   "last_name"
     t.string   "suffix"
     t.string   "phone"
-    t.datetime "icla_signed_at"
+    t.integer  "primary_email_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
