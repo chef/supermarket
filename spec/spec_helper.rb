@@ -19,6 +19,9 @@ RSpec.configure do |config|
   # Include FactoryGirl mixin for syntax
   config.include FactoryGirl::Syntax::Methods
 
+  # Custom helper modules and extensions
+  config.include RequestHelpers
+
   # Prohibit using the should syntax
   config.expect_with :rspec do |spec|
     spec.syntax = :expect

@@ -6,5 +6,7 @@ FactoryGirl.define do
     last_name   'Doe'
     suffix      'Sr.'
     phone       '1234567890'
+
+    sequence(:username) { |n| "johndoe_#{n}" }
   end
 end
