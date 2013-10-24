@@ -9,7 +9,10 @@ class User < ActiveRecord::Base
 
   # Validations
   # --------------------
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :username
+  validates_uniqueness_of :username
+  validates_presence_of :first_name
+  validates_presence_of :last_name
 
   # Callbacks
   # --------------------
@@ -26,6 +29,10 @@ class User < ActiveRecord::Base
   #
   def signed_icla?
     !icla_signatures.empty?
+  end
+
+  def name
+    [first_name, last_name].join(' ')
   end
 
   private

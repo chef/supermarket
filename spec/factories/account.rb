@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :account do
     association   :user
-    uid           'uid'
-    username      'johndoe'
-    oauth_token   'oauth_token'
-    oauth_secret  'oauth_secret'
+    uid           { SecureRandom.hex(10) }
+    username      { user.username }
+    oauth_token   { SecureRandom.hex(15) }
+    oauth_secret  { SecureRandom.hex(20) }
     oauth_expires { 10.days.from_now }
   end
 end
