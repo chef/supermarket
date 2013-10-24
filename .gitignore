@@ -25,6 +25,6 @@
 .kitchen.local.yml
 
 # Front-end items
-node_modules
-bower_components
-public/assets
+bower_components/
+node_modules/
+public/assets/

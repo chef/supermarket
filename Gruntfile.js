@@ -13,7 +13,7 @@ module.exports = function(grunt) {
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
     dirs: grunt.file.readJSON('config/half-pipe.json'),
-    bowerOpts: grunt.file.readJSON('.bowerrc'),
+    bowerOpts: require('bower').config,
     sass: config("sass"),
     cssmin: config("cssmin"),
     requirejs: config("requirejs"),
