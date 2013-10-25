@@ -6,6 +6,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if logged_in? %>
+    <p align="center">Logged in as <%= current_user.name %> | <%= link_to 'Logout', logout_path, method: :delete %><p>
+  <% end %>
 
   <%= yield %>
 

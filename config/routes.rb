@@ -8,4 +8,6 @@ Supermarket::Application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   get 'auth/:provider/callback' => 'sessions#create', as: :auth_callback
   get 'auth/failure' => 'sessions#failure', as: :auth_failure
+
+  root 'sessions#new'
 end
