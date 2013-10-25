@@ -28,6 +28,7 @@ group :test do
 end
 
 group :test, :development do
+  gem 'quiet_assets'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
 end
