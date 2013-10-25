@@ -4,5 +4,8 @@ Supermarket::Application.routes.draw do
     resources :users
   end
 
-  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'login' => 'sessions#new'
+  delete 'logout' => 'sessions#destroy'
+  get 'auth/:provider/callback' => 'sessions#create', as: :auth_callback
+  get 'auth/failure' => 'sessions#failure', as: :auth_failure
 end
