@@ -22,17 +22,15 @@ describe User do
     end
   end
 
-  context 'instance methods' do
-    describe '#signed_icla?' do
-      it 'is true when there is an icla signature' do
-        user = build(:user, icla_signatures: [build(:icla_signature)])
-        expect(user.signed_icla?).to be_true
-      end
+  describe '#signed_icla?' do
+    it 'is true when there is an icla signature' do
+      user = build(:user, icla_signatures: [build(:icla_signature)])
+      expect(user.signed_icla?).to be_true
+    end
 
-      it 'is false when there is not an icla signature' do
-        user = build(:user, icla_signatures: [])
-        expect(user.signed_icla?).to be_false
-      end
+    it 'is false when there is not an icla signature' do
+      user = build(:user, icla_signatures: [])
+      expect(user.signed_icla?).to be_false
     end
   end
 end

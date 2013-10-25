@@ -22,17 +22,15 @@ describe Email do
     end
   end
 
-  context 'instance methods' do
-    describe '#confirmed?' do
-      it 'is true when the email is confirmed' do
-        email = build(:email)
-        expect(email.confirmed?).to be_true
-      end
+  describe '#confirmed?' do
+    it 'is true when the email is confirmed' do
+      email = build(:email)
+      expect(email.confirmed?).to be_true
+    end
 
-      it 'is false when the email is not confirmed' do
-        email = build(:email, confirmed_at: nil)
-        expect(email.confirmed?).to be_false
-      end
+    it 'is false when the email is not confirmed' do
+      email = build(:email, confirmed_at: nil)
+      expect(email.confirmed?).to be_false
     end
   end
 end
