@@ -24,4 +24,5 @@
 .kitchen/
 .kitchen.local.yml
 
+# Ignore Node modules used by the JS test runner
 node_modules/
