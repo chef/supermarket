@@ -10,6 +10,10 @@ class Account < ActiveRecord::Base
   validates_presence_of :provider
   validates_presence_of :oauth_token
 
+  # Scope
+  # --------------------
+  scope :for, ->(id) { where(provider: id) }
+
   # Callbacks
   # --------------------
 

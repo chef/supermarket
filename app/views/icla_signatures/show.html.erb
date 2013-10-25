@@ -1,0 +1,28 @@
+<p>
+  <strong>Number</strong>
+  <%= @icla_signature.id %>
+</p>
+
+<p>
+  <strong>Name</strong>
+  <%= @icla_signature.user.name %>
+</p>
+
+<p>
+  <strong>Company</strong>
+  <%= @icla_signature.user.company %>
+</p>
+
+<p>
+  <strong>Email</strong>
+  <%= @icla_signature.user.primary_email.try(:email) %>
+</p>
+
+<p>
+  <strong>GitHub IDs</strong>
+  <% @icla_signature.user.accounts.for(:github).each do |account| %>
+    <ul>
+      <li><%= account.username %></li>
+    </ul>
+  <% end %>
+</p>
