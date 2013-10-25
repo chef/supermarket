@@ -1,9 +1,7 @@
 module OmniAuth
   module Policies
-    class GitHub
+    class Github
       include OmniAuth::Policy
-
-      key :github
 
       # @see OmniAuth::Policy#first_name
       def first_name

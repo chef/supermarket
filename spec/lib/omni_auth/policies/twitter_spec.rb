@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'omni_auth/policies/twitter'
 
 describe OmniAuth::Policies::Twitter do
   let(:auth) do

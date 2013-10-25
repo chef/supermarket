@@ -1,7 +1,6 @@
 require 'spec_helper'
-require 'omni_auth/policies/github'
 
-describe OmniAuth::Policies::GitHub do
+describe OmniAuth::Policies::Github do
   let(:auth) do
     {
       'provider' => 'github',

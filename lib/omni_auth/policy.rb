@@ -1,10 +1,6 @@
 module OmniAuth
   module Policy
     class << self
-      def included(base)
-        base.send(:extend, ClassMethods)
-      end
-
       #
       # Finds a policy object for the given auth hash and returns a new policy
       # object instance for the auth hash.
@@ -15,44 +11,24 @@ module OmniAuth
       # @return [~OmniAuth::Policy]
       #
       def load(auth)
-        key = auth['provider'].to_sym
-        provider = policies[key] || raise(RuntimeError, ":#{key} is not a valid key!")
-        provider.new(auth)
-      end
+        provider = auth['provider'].classify
 
-      #
-      # Register a new policy object.
-      #
-      # @param [Symbol] key
-      # @param [Class] klass
-      #
-      def register(key, klass)
-        policies[key.to_sym] = klass
-      end
-
-      #
-      # The full collection of policy objects.
-      #
-      # @return [Hash<Symbol, Class>]
-      #
-      def policies
-        @@policies ||= {}
-      end
-    end
-
-    module ClassMethods
-      def key(key = nil)
-        if key.nil?
-          @key
-        else
-          @key = key
-          OmniAuth::Policy.register(key, self)
+        begin
+          "OmniAuth::Policies::#{provider}".constantize.new(auth)
+        rescue NameError
+          raise RuntimeError, "#{provider} is not a valid policy!"
         end
       end
     end
 
+    # @return [OmniAuth::AuthHash]
     attr_reader :auth
 
+    #
+    # Create a new instance of this policy object.
+    #
+    # @param [OmniAuth::AuthHash] auth
+    #
     def initialize(auth)
       @auth = auth
     end
@@ -159,6 +135,3 @@ module OmniAuth
 
   end
 end
-
-require_relative 'policies/github'
-require_relative 'policies/twitter'

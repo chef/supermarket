@@ -3,8 +3,6 @@ module OmniAuth
     class Twitter
       include OmniAuth::Policy
 
-      key :twitter
-
       # @see OmniAuth::Policy#first_name
       def first_name
         split_name.first
