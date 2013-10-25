@@ -39,6 +39,14 @@ Requirements
 Tests
 -----
 
+### Acceptance tests
+
+Acceptance tests are run with [Capybara](https://github.com/jnicklas/capybara). Run `rake spec:features` to run the specs in spec/features. The default `rake spec` also runs these.
+
+When writing a feature, use `require 'spec_feature_helper'` instead of `spec_helper` to require the extra configuration and libraries needed to run the feature specs.
+
+The specs run using [PhantomJS](http://phantomjs.org/), which must be installed.
+
 ### JavaScript Tests
 
 The JavaScript specs are run with [Karma](http://karma-runner.github.io) and use the [Mocha](http://visionmedia.github.io/mocha/) test framework and the [Chai Assertion Library](http://chaijs.com/)
