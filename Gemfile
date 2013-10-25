@@ -22,6 +22,11 @@ group :doc do
   gem 'yard', '~> 0.8', require: false
 end
 
+group :test do
+  gem 'capybara' # For acceptance tests
+  gem 'poltergeist' # Use PhantomJS for JS driver
+end
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
