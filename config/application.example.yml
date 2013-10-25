@@ -1,0 +1,29 @@
+#
+# Register your applications and add the appropiate keys and secrets
+#
+development:
+  omni_auth:
+    twitter:
+      key: YOUR_KEY
+      secret: YOUR_SECRET
+    github:
+      key: YOUR_KEY
+      secret: YOUR_SECRET
+
+production:
+  omni_auth:
+    twitter:
+      key: <%= ENV['OAUTH_TWITTER_KEY'] %>
+      secret: <%= ENV['OAUTH_TWITTER_SECRET'] %>
+    github:
+      key: <%= ENV['OAUTH_GITHUB_KEY'] %>
+      secret: <%= ENV['OAUTH_GITHUB_SECRET'] %>
+
+test:
+  omni_auth:
+    twitter:
+      key: test
+      secret: test
+    github:
+      key: test
+      secret: test

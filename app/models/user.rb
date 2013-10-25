@@ -9,14 +9,35 @@ class User < ActiveRecord::Base
 
   # Validations
   # --------------------
-  validates_presence_of :username
-  validates_uniqueness_of :username
   validates_presence_of :first_name
   validates_presence_of :last_name
 
   # Callbacks
   # --------------------
   before_validation :normalize_phone
+
+  class << self
+    #
+    # Creates a new +User+ from the given oauth hash, updating or creating
+    # the nested account as well.
+    #
+    # @param [OmniAuth::AuthHash]
+    #
+    # @return [Account]
+    #
+    def from_oauth(auth)
+      policy  = OmniAuth::Policy.load(auth)
+      account = Account.from_oauth(auth)
+
+      account.user ||= create! do |user|
+        user.first_name = policy.first_name
+        user.last_name  = policy.last_name
+      end
+
+      account.save!
+      account.user
+    end
+  end
 
   #
   # Determine if the current user signed the Individual Contributor License
@@ -31,6 +52,14 @@ class User < ActiveRecord::Base
     !icla_signatures.empty?
   end
 
+  #
+  # The name of the current user.
+  #
+  # @example
+  #   user.name #=> "Seth Vargo"
+  #
+  # @return [String]
+  #
   def name
     [first_name, last_name].join(' ')
   end

@@ -26,3 +26,12 @@
 
 # Ignore Node modules used by the JS test runner
 node_modules/
+
+# Ignore built documentation
+.yard/
+.yardoc/
+.yardopts
+doc/
+
+# Ignore user-specific configuration files
+config/application.yml
