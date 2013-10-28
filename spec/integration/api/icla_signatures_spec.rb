@@ -39,7 +39,7 @@ describe 'Icla Signatures API' do
         'user' => {
           'id'   => user.id,
           'name' => user.name,
-          'link' => user_url(user),
+          'link' => api_user_url(user),
         }
       })
     end

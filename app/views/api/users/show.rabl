@@ -20,15 +20,6 @@ child :accounts do
   attribute :uid
 end
 
-child :addresses do
-  attribute :address_line_1
-  attribute :address_line_2
-  attribute :city
-  attribute :state
-  attribute :zip
-  attribute :country
-end
-
 child :emails do
   attribute :email
   attribute :confirmed? => :confirmed

@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <th>Number</th>
+    <th>Contributor</th>
+    <th>Company</th>
+    <th>Date</th>
+  </tr>
+
+  <% @icla_signatures.each do |icla_signature| %>
+    <tr>
+      <td><%= icla_signature.id %></td>
+      <td><%= link_to icla_signature.user.name, icla_signature %></td>
+      <td><%= icla_signature.user.company %></td>
+      <td><%= icla_signature.signed_at.to_date.to_s(:long) %></td>
+    </tr>
+  <% end %>
+</table>

@@ -24,10 +24,9 @@ describe 'Users API' do
 
   context 'GET #show' do
     let(:account) { create(:account) }
-    let(:address) { create(:address) }
     let(:email) { create(:email) }
     let(:icla_signature) { create(:icla_signature) }
-    let(:user) { create(:user, accounts: [account], addresses: [address], emails: [email], icla_signatures: [icla_signature]) }
+    let(:user) { create(:user, accounts: [account], emails: [email], primary_email: email, icla_signatures: [icla_signature]) }
 
     before { get "/api/users/#{user.id}" }
 
@@ -48,16 +47,6 @@ describe 'Users API' do
         'signed_icla'   => user.signed_icla?,
         'accounts' => [
           { 'uid' => account.uid },
-        ],
-        'addresses' => [
-          {
-            'address_line_1' => address.address_line_1,
-            'address_line_2' => address.address_line_2,
-            'city'           => address.city,
-            'state'          => address.state,
-            'zip'            => address.zip,
-            'country'        => address.country,
-          }
         ],
         'emails' => [
           {

@@ -8,6 +8,6 @@ child :user do
   attribute :name
 
   node :link do |user|
-    user_url(user)
+    api_user_url(user)
   end
 end

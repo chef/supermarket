@@ -1,8 +1,10 @@
 Supermarket::Application.routes.draw do
-  scope 'api', module: 'api' do
+  namespace :api do
     resources :icla_signatures, path: 'icla-signatures'
     resources :users
   end
+
+  resources :icla_signatures, path: 'icla-signatures'
 
   get 'login' => 'sessions#new'
   delete 'logout' => 'sessions#destroy'

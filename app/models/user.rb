@@ -2,10 +2,9 @@ class User < ActiveRecord::Base
   # Associations
   # --------------------
   has_many :accounts
-  has_many :addresses
   has_many :emails
   has_many :icla_signatures
-  has_one :primary_email, class_name: 'Email'
+  belongs_to :primary_email, class_name: 'Email'
 
   # Validations
   # --------------------
@@ -26,16 +25,7 @@ class User < ActiveRecord::Base
     # @return [Account]
     #
     def from_oauth(auth)
-      policy  = OmniAuth::Policy.load(auth)
-      account = Account.from_oauth(auth)
-
-      account.user ||= create! do |user|
-        user.first_name = policy.first_name
-        user.last_name  = policy.last_name
-      end
-
-      account.save!
-      account.user
+      Account.from_oauth(auth).user
     end
   end
 

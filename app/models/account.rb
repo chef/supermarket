@@ -10,6 +10,10 @@ class Account < ActiveRecord::Base
   validates_presence_of :provider
   validates_presence_of :oauth_token
 
+  # Scope
+  # --------------------
+  scope :for, ->(id) { where(provider: id) }
+
   # Callbacks
   # --------------------
 
@@ -26,11 +30,31 @@ class Account < ActiveRecord::Base
     def from_oauth(auth)
       policy = OmniAuth::Policy.load(auth)
 
-      where(policy.signature).first_or_initialize do |account|
-        account.username      = policy.username
-        account.oauth_token   = policy.oauth_token
-        account.oauth_secret  = policy.oauth_secret
-        account.oauth_expires = policy.oauth_expires
+      transaction do
+        account = where(policy.signature).first_or_initialize do |account|
+          account.username      = policy.username
+          account.oauth_token   = policy.oauth_token
+          account.oauth_secret  = policy.oauth_secret
+          account.oauth_expires = policy.oauth_expires
+        end
+
+        user = account.user ||= User.create! do |user|
+          user.first_name = policy.first_name
+          user.last_name  = policy.last_name
+        end
+
+        # Some OmniAuth providers do not provide an email address
+        unless policy.email.nil?
+          email = user.emails.where(email: policy.email).first_or_create
+
+          # Update the primary email if the User does not already have a
+          # primary email
+          user.primary_email ||= email
+          user.save! if user.changed?
+        end
+
+        account.save!
+        account
       end
     end
   end
