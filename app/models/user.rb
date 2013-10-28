@@ -26,16 +26,7 @@ class User < ActiveRecord::Base
     # @return [Account]
     #
     def from_oauth(auth)
-      policy  = OmniAuth::Policy.load(auth)
-      account = Account.from_oauth(auth)
-
-      account.user ||= create! do |user|
-        user.first_name = policy.first_name
-        user.last_name  = policy.last_name
-      end
-
-      account.save!
-      account.user
+      Account.from_oauth(auth).user
     end
   end
 
