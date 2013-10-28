@@ -9,7 +9,6 @@ describe IclaSignature do
     it { should validate_presence_of(:user) }
     it { should validate_presence_of(:user) }
     it { should validate_presence_of(:first_name) }
-    it { should validate_presence_of(:middle_name) }
     it { should validate_presence_of(:last_name) }
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:phone) }
