@@ -1,0 +1,43 @@
+<ul>
+  <% @icla_signature.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+</ul>
+
+<%= form_for @icla_signature do |f| %>
+  prefix: <%= f.text_field :prefix %>
+  <br>
+  first name: <%= f.text_field :first_name %>
+  <br>
+  middle name: <%= f.text_field :middle_name %>
+  <br>
+  last name: <%= f.text_field :last_name %>
+  <br>
+  suffix: <%= f.text_field :suffix %>
+  <br>
+  phone: <%= f.text_field :phone %>
+  <br>
+  email: <%= f.text_field :email %>
+  <br>
+  company: <%= f.text_field :company %>
+
+  <br><br><br>
+
+  line 1: <%= f.text_field :address_line_1 %>
+  <br>
+  line 2: <%= f.text_field :address_line_2 %>
+  <br>
+  city: <%= f.text_field :city %>
+  <br>
+  state: <%= f.text_field :state %>
+  <br>
+  zip: <%= f.text_field :zip %>
+  <br>
+  country: <%= f.text_field :country %>
+
+  <br><br><br>
+
+  <%= f.check_box :agreement %> I agree to the terms of this agreement
+  <br>
+  <%= submit_tag 'Sign ICLA' %>
+<% end %>

@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
   # Associations
   # --------------------
   has_many :accounts
-  has_many :addresses
   has_many :emails
   has_many :icla_signatures
   belongs_to :primary_email, class_name: 'Email'

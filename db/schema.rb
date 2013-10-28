@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131025194929) do
+ActiveRecord::Schema.define(version: 20131028190700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,18 +28,6 @@ ActiveRecord::Schema.define(version: 20131025194929) do
 
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
 
-  create_table "addresses", force: true do |t|
-    t.integer "user_id"
-    t.string  "address_line_1"
-    t.string  "address_line_2"
-    t.string  "city"
-    t.string  "state"
-    t.string  "zip"
-    t.string  "country"
-  end
-
-  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
-
   create_table "emails", force: true do |t|
     t.integer  "user_id"
     t.string   "email"
@@ -52,6 +40,20 @@ ActiveRecord::Schema.define(version: 20131025194929) do
   create_table "icla_signatures", force: true do |t|
     t.integer  "user_id"
     t.datetime "signed_at"
+    t.string   "prefix"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "suffix"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "company"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
   end
 
   add_index "icla_signatures", ["user_id"], name: "index_icla_signatures_on_user_id", using: :btree
