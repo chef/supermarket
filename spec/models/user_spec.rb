@@ -6,7 +6,7 @@ describe User do
     it { should have_many(:addresses) }
     it { should have_many(:emails) }
     it { should have_many(:icla_signatures) }
-    it { should have_one(:primary_email) }
+    it { should belong_to(:primary_email) }
   end
 
   context 'validations' do
