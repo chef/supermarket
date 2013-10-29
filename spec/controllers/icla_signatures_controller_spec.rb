@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe IclaSignaturesController do
+  let(:admin) { build(:user, roles: 'admin') }
+  before { subject.stub(:current_user).and_return(admin) }
+
   describe 'GET #index' do
     before { get :index }
 
