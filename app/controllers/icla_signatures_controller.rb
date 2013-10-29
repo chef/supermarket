@@ -8,6 +8,7 @@ class IclaSignaturesController < ApplicationController
   #
   def index
     @icla_signatures = IclaSignature.by_user
+    authorize! @icla_signatures
   end
 
   #
@@ -17,6 +18,7 @@ class IclaSignaturesController < ApplicationController
   #
   def show
     @icla_signature = IclaSignature.find(params[:id])
+    authorize! @icla_signature
   end
 
   #
@@ -26,6 +28,7 @@ class IclaSignaturesController < ApplicationController
   #
   def new
     @icla_signature = current_user.icla_signatures.new
+    authorize! @icla_signature
 
     # Prepopulate any fields we can from the User object
     @icla_signature.prefix      = current_user.prefix
@@ -41,10 +44,11 @@ class IclaSignaturesController < ApplicationController
   #
   # POST /icla-signatures
   #
-  # Create a new Icla signature (and associated user, if applicable)
+  # Create a new Icla signature
   #
   def create
-    @icla_signature = current_user.icla_signatures.new(icla_signature_params)
+    @icla_signature = IclaSignature.new(icla_signature_params)
+    authorize! @icla_signature
 
     if @icla_signature.save
       redirect_to @icla_signature
@@ -53,9 +57,23 @@ class IclaSignaturesController < ApplicationController
     end
   end
 
+  #
+  # DELETE /icla-signatures
+  #
+  # Delete an Icla signature
+  #
+  def destroy
+    @icla_signature = IclaSignature.find(params[:id])
+    authorize! @icla_signature
+
+    @icla_signature.destroy
+    redirect_to icla_signatures_path
+  end
+
   private
     def icla_signature_params
       params.require(:icla_signature).permit(
+        :user_id,
         :prefix,
         :first_name,
         :middle_name,

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Authorizable
+
   # Associations
   # --------------------
   has_many :accounts
