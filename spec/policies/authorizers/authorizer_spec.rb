@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Authorizers::Authorizer, focus: true do
+describe Authorizers::Authorizer do
   describe '.included' do
     it 'defines the attr_reader methods on the base' do
       base = double(:base)

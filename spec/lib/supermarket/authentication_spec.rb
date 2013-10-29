@@ -2,12 +2,14 @@ require 'spec_helper'
 
 describe Supermarket::Authentication do
   subject do
-    Class.new { include Supermarket::Authentication }.new
+    Class.new(ActionController::Base) do
+      include Supermarket::Authentication
+    end.new
   end
 
   describe '.included' do
     it 'defines the helper methods on controller' do
-      controller = double(:controller, helper_method: true)
+      controller = double(:controller)
 
       expect(controller).to receive(:helper_method)
         .with(:current_user, :logged_in?)

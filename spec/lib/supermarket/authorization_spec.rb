@@ -6,7 +6,7 @@ end
 
 describe Supermarket::Authorization do
   subject do
-    Class.new do
+    Class.new(ActionController::Base) do
       include Supermarket::Authorization
       def current_user; end
     end.new
@@ -14,7 +14,7 @@ describe Supermarket::Authorization do
 
   describe '.included' do
     it 'defines the helper methods on controller' do
-      controller = double(:controller, helper_method: true)
+      controller = double(:controller)
 
       expect(controller).to receive(:helper_method).with(:policy, :can?)
       described_class.included(controller)
