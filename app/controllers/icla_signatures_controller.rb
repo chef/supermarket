@@ -8,6 +8,7 @@ class IclaSignaturesController < ApplicationController
   #
   def index
     @icla_signatures = IclaSignature.by_user
+    authorize! @icla_signatures
   end
 
   #
@@ -17,6 +18,7 @@ class IclaSignaturesController < ApplicationController
   #
   def show
     @icla_signature = IclaSignature.find(params[:id])
+    authorize! @icla_signature
   end
 
   #
