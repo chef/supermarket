@@ -8,7 +8,9 @@ module Supermarket
     class NotAuthorizedError < StandardError; end
 
     def self.included(controller)
-      controller.send(:helper_method, :policy, :can?)
+      if controller.respond_to?(:helper_method)
+        controller.send(:helper_method, :policy, :can?)
+      end
     end
 
     #
@@ -74,7 +76,7 @@ module Supermarket
     # @return [Boolean]
     #
     def can?(action, record)
-      policy(record).public_send(action + '?')
+      policy(record).public_send(action.to_s + '?')
     end
 
     #
