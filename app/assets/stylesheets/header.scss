@@ -1,0 +1,58 @@
+body > header {
+  @include row();
+
+  color: #bbb;
+  background-color: $opscode-dark-blue;
+  padding: 0.75em;
+
+  a {
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+      color: $opscode-orange;
+    }
+
+    &:active {
+      color: #bbb;
+    }
+  }
+
+  h1 {
+    @include span-columns(1 of 2);
+
+    background-image: image-url('opscode-logo.png');
+    background-repeat: no-repeat;
+    background-size: 29px;
+    color: white;
+    font-size: 150%;
+    letter-spacing: 0.10em;
+    padding-left: 40px;
+    text-transform: uppercase;
+
+    span {
+      color: $opscode-orange;
+      display: block;
+      font-size: 50%;
+      font-weight: 400;
+      letter-spacing: normal;
+      margin-left: 1.3em;
+      margin-top: 0.2em;
+    }
+  }
+
+  nav {
+    @include span-columns(1 of 2);
+
+    text-align: right;
+
+    .signed-in-as {
+      font-size: 75%;
+    }
+
+    ul li {
+      display: inline;
+      margin-left: 1em;
+    }
+  }
+}

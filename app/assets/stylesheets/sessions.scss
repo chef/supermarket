@@ -1,0 +1,42 @@
+body.sessions {
+  .sign-in-box {
+    @include span-columns(4);
+    @include shift(4);
+
+    font-size: 80%;
+    margin-top: 10%;
+    text-align: center;
+
+    .buttons {
+      @include outer-container();
+
+      a {
+        @include span-columns(1 of 2);
+
+        border: 1px solid lighten($opscode-orange, 30%);
+        border-radius: 15px;
+        font-size: 100%;
+        padding: 0.5em;
+        text-decoration: none;
+
+        i {
+          display: block;
+          font-size: 250%;
+        }
+
+        &:active, &:active:visited {
+          color: $opscode-dark-blue;
+          border: 1px solid lighten($opscode-dark-blue, 30%);
+        }
+
+        &:hover {
+          background-color: lighten($opscode-dark-blue, 60%);
+        }
+
+        &:visited {
+          color: $opscode-orange;
+        }
+      }
+    }
+  }
+}
