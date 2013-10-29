@@ -1,5 +1,6 @@
 class IclaSignaturesController < ApplicationController
   before_filter :redirect_if_signed!, only: [:new, :create, :update]
+  before_filter :require_valid_user!, except: [:index]
 
   #
   # GET /icla-signatures
@@ -27,7 +28,7 @@ class IclaSignaturesController < ApplicationController
   # Show the form for creating a new ICLA signature
   #
   def new
-    @icla_signature = current_user.icla_signatures.new
+    @icla_signature = IclaSignature.new(user: current_user)
     authorize! @icla_signature
 
     # Prepopulate any fields we can from the User object
