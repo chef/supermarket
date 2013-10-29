@@ -43,7 +43,7 @@ class IclaSignaturesController < ApplicationController
   #
   # POST /icla-signatures
   #
-  # Create a new Icla signature (and associated user, if applicable)
+  # Create a new Icla signature
   #
   def create
     @icla_signature = current_user.icla_signatures.new(icla_signature_params)
@@ -53,6 +53,19 @@ class IclaSignaturesController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  #
+  # DELETE /icla-signatures
+  #
+  # Delete an Icla signature
+  #
+  def destroy
+    @icla_signature = IclaSignature.find(params[:id])
+    authorize! @icla_signature
+
+    @icla_signature.destroy
+    redirect_to icla_signatures_path
   end
 
   private
