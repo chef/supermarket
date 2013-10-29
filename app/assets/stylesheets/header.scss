@@ -52,7 +52,12 @@ body > header {
 
     ul li {
       display: inline;
+      line-height: 1.5;
       margin-left: 1em;
+
+      a {
+        white-space: nowrap;
+      }
     }
   }
 }
