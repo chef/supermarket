@@ -28,6 +28,7 @@ class IclaSignaturesController < ApplicationController
   #
   def new
     @icla_signature = current_user.icla_signatures.new
+    authorize! @icla_signature
 
     # Prepopulate any fields we can from the User object
     @icla_signature.prefix      = current_user.prefix
@@ -46,7 +47,8 @@ class IclaSignaturesController < ApplicationController
   # Create a new Icla signature
   #
   def create
-    @icla_signature = current_user.icla_signatures.new(icla_signature_params)
+    @icla_signature = IclaSignature.new(icla_signature_params)
+    authorize! @icla_signature
 
     if @icla_signature.save
       redirect_to @icla_signature
@@ -71,6 +73,7 @@ class IclaSignaturesController < ApplicationController
   private
     def icla_signature_params
       params.require(:icla_signature).permit(
+        :user_id,
         :prefix,
         :first_name,
         :middle_name,

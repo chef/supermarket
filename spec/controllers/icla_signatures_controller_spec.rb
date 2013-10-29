@@ -49,16 +49,18 @@ describe IclaSignaturesController do
 
   describe 'POST #create' do
     context 'with valid attributes' do
+      let(:payload) { attributes_for(:icla_signature, user_id: admin.id) }
+
       it 'creates a new ICLA signature' do
         expect {
-          post :create, icla_signature: attributes_for(:icla_signature)
+          post :create, icla_signature: payload
         }.to change(IclaSignature, :count).by(1)
       end
-    end
 
-    it 'redirects to the icla signature' do
-      post :create, icla_signature: attributes_for(:icla_signature)
-      expect(response).to redirect_to(IclaSignature.last)
+      it 'redirects to the icla signature' do
+        post :create, icla_signature: payload
+        expect(response).to redirect_to(IclaSignature.last)
+      end
     end
 
     context 'with invalid attributes' do

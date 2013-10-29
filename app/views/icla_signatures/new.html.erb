@@ -39,5 +39,6 @@
 
   <%= f.check_box :agreement %> I agree to the terms of this agreement
   <br>
+  <%= f.hidden_field :user_id %>
   <%= submit_tag 'Sign ICLA' %>
 <% end %>
