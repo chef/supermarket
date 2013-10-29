@@ -14,7 +14,7 @@ module Authorizable
   #
   def roles=(roles)
     roles = Array(roles).map(&:to_s)
-    roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
   end
 
   #
@@ -27,7 +27,7 @@ module Authorizable
   #
   def roles
     ROLES.reject do |r|
-      (roles_mask.to_i & 2**ROLES.index(r)).zero?
+      (self.roles_mask.to_i & 2**ROLES.index(r)).zero?
     end
   end
 
