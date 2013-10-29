@@ -1,8 +1,6 @@
 require 'spec_helper'
 
-class Authorizers::TestPolicy
-  include Authorizer
-end
+class TestAuthorizer < Authorizer::Base; end
 
 describe Supermarket::Authorization do
   subject do
@@ -16,24 +14,24 @@ describe Supermarket::Authorization do
     it 'defines the helper methods on controller' do
       controller = double(:controller)
 
-      expect(controller).to receive(:helper_method).with(:policy, :can?)
+      expect(controller).to receive(:helper_method).with(:authorizer, :can?)
       described_class.included(controller)
     end
   end
 
-  describe '#policy' do
-    it 'raises an error when the policy does not exist' do
+  describe '#authorizer' do
+    it 'raises an exception when the authorizer does not exist' do
       expect {
-        subject.policy(Class)
-      }.to raise_error(Supermarket::Authorization::NotAuthorizedError,
-        "No policy exists for Class, so all actions are assumed to be" \
+        subject.authorizer(Class)
+      }.to raise_error(Supermarket::Authorization::NoAuthorizerError,
+        "No authorizer exists for Class, so all actions are assumed to be" \
         " unauthorized!"
       )
     end
 
     it 'creates a new instance' do
       record = double(:record, model_name: 'Test')
-      expect(subject.policy(record)).to be_a(Authorizers::TestPolicy)
+      expect(subject.authorizer(record)).to be_a(TestAuthorizer)
     end
   end
 
@@ -49,11 +47,11 @@ describe Supermarket::Authorization do
   end
 
   describe '#can?' do
-    it 'delegates the action to the policy' do
-      policy = double(:policy, create?: false)
-      subject.stub(:policy).and_return(policy)
+    it 'delegates the action to the authorizer' do
+      authorizer = double(:authorizer, create?: false)
+      subject.stub(:authorizer).and_return(authorizer)
 
-      expect(policy).to receive(:create?)
+      expect(authorizer).to receive(:create?)
       subject.can?(:create, Class)
     end
   end
@@ -69,7 +67,7 @@ describe Supermarket::Authorization do
   end
 
   describe '#authorize!' do
-    it 'raises an exception if the user is not authorized' do
+    it 'raises an error if the user is not authorized' do
       subject.stub(:authorized?).and_return(false)
       subject.stub(:params).and_return(action: 'create')
 

@@ -2,38 +2,43 @@ module Supermarket
   module Authorization
 
     #
+    # Custom error class raised when an authorizer does not exist.
+    #
+    class NoAuthorizerError < StandardError; end
+
+    #
     # Custom error class raised when the user is not authorized to
     # perform an action.
     #
     class NotAuthorizedError < StandardError; end
 
     def self.included(controller)
-      controller.send(:helper_method, :policy, :can?)
+      controller.send(:helper_method, :authorizer, :can?)
     end
 
     #
-    # The policy object for the associated record. The method makes some
-    # assumptions about the name of the policy. It is assumed that policies
-    # live in +app/policies/authorizers+ and are scoped under the
-    # +Authorizers+ module.
+    # The authorizer object for the associated record. The method makes some
+    # assumptions about the name of the authorizer. It is assumed that
+    # authorizers live in +app/authorizers+ and end in +Authorizer+.
     #
     # @example
-    #   policy(@post) #=> #<Authorizers::PostPolicy ...>
+    #   authorizer(@post) #=> #<PostAuthorizer ...>
     #
     # @raise [NotAuthorizedError]
-    #   if not policy exists for the given record
+    #   if no authorizer exists for the given record
     #
     # @param [Class] record
-    #   the record to find a policy for
+    #   the record to find a authorizer for
     #
-    # @return [Policy]
+    # @return [~Authorizer]
     #
-    def policy(record)
-      klass = "Authorizers::#{policy_name(record)}".constantize
+    def authorizer(record)
+      klass = "#{authorizer_name(record)}Authorizer".constantize
       klass.new(current_user, record)
     rescue NameError
-      raise NotAuthorizedError, "No policy exists for #{record.class}," \
-        " so all actions are assumed to be unauthorized!"
+      raise NoAuthorizerError, "No authorizer exists for" \
+        " #{authorizer_name(record)}, so all actions are assumed to be" \
+        " unauthorized!"
     end
 
     #
@@ -59,7 +64,7 @@ module Supermarket
 
     #
     # Determine if the current user is eligible to perform the given action.
-    # This method queries the policy object for the action.
+    # This method queries the authorizer object for the action.
     #
     # @example
     #   if can?(:create, @post)
@@ -74,7 +79,7 @@ module Supermarket
     # @return [Boolean]
     #
     def can?(action, record)
-      policy(record).public_send(action.to_s + '?')
+      authorizer(record).public_send(action.to_s + '?')
     end
 
     #
@@ -108,22 +113,22 @@ module Supermarket
     private
 
       #
-      # Calculate the name of the policy from the given object. This is
+      # Calculate the name of the authorizer from the given object. This is
       # useful when checking an array of records or ActiveRecord collection.
       #
       # @param [Object] record
       #
       # @return [String]
       #
-      def policy_name(record)
+      def authorizer_name(record)
         if record.respond_to?(:model_name)
-          "#{record.model_name}Policy"
+          record.model_name.to_s
         elsif record.class.respond_to?(:model_name)
-          "#{record.class.model_name}Policy"
+          record.class.model_name.to_s
         elsif record.is_a?(Class)
-          "#{record}Policy"
+          record.to_s
         else
-          "#{record.class}Policy"
+          record.class.to_s
         end
       end
     end

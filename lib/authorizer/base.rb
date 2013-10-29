@@ -1,10 +1,17 @@
-module Authorizers
-  module Authorizer
-    def self.included(base)
-      base.send(:attr_reader, :user)
-      base.send(:attr_reader, :record)
-    end
+module Authorizer
+  class Base
+    # @return [User]
+    attr_reader :user
 
+    # @return [Object]
+    attr_reader :record
+
+    #
+    # Create a new authorizer for the given user and record.
+    #
+    # @param [User] user
+    # @param [Object] record
+    #
     def initialize(user, record)
       @user = user || User.new
       @record = record
