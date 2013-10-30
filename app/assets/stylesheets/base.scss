@@ -1,0 +1,8 @@
+body {
+  color: #333;
+  margin: 0;
+
+  > .container {
+    @include outer-container()
+  }
+}

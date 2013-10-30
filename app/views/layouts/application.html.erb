@@ -5,14 +5,12 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-  <% if logged_in? %>
-    <p align="center">Logged in as <%= current_user.name %> | <%= link_to 'Logout', logout_path, method: :delete %><p>
-    <p align="center"><%= link_to 'Sign ICLA', new_icla_signature_path %></p>
-  <% end %>
-
-  <%= yield %>
-
+<body class="<%= controller.controller_name %>">
+  <%= render partial: 'flash' %>
+  <%= render partial: 'header' %>
+  <div class="container">
+    <%= yield %>
+  </div>
   <%= javascript_include_tag 'application' %>
 </body>
 </html>

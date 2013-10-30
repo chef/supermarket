@@ -11,7 +11,7 @@ gem 'pg'
 gem 'unicorn'
 gem 'unicorn-rails'
 
-gem 'jquery-rails', '~> 3.0'
+gem 'neat'
 gem 'sass-rails',   '~> 4.0.0'
 gem 'uglifier',     '~> 2.2'
 

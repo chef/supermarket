@@ -1,6 +1,11 @@
-<p align="center">Sign in using:</p>
-
-<ul>
-  <li><%= link_to 'Twitter', auth_path(:twitter) %></li>
-  <li><%= link_to 'GitHub', auth_path(:github) %></li>
-<ul>
+<div class="sign-in-box">
+  <p>Sign in using your Twitter or GitHub account.</p>
+  <div class="buttons">
+    <%= link_to auth_path(:twitter) do %>
+      <i class="icon-twitter"></i>Twitter
+    <% end %>
+    <%= link_to auth_path(:github) do %>
+      <i class="icon-github"></i>GitHub
+    <% end %>
+  </div>
+</div>

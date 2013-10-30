@@ -1,0 +1,49 @@
+.flash {
+  @include span-columns(6);
+  @include shift(3);
+  position: absolute;
+  top: 0;
+  margin-top: 0;
+
+  border: 1px solid;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  padding: 0.5em;
+  text-align: center;
+
+  &.alert {
+    color: darken(red, 10%);
+    background-color: lighten(red, 45%);
+    border-color: lighten(red, 35%);
+
+    .close {
+      color: darken(red, 10%);
+    }
+  }
+
+  &.notice {
+    color: darken(green, 10%);
+    background-color: lighten(green, 70%);
+    border-color: lighten(green, 60%);
+
+    .close {
+      color: darken(green, 10%);
+    }
+  }
+
+  &.dismissed {
+    margin-top: -5000px;
+    @include transition(all 1s ease);
+  }
+
+  .close {
+    float: right;
+    font-weight: bold;
+    text-decoration: none;
+    opacity: 0.25;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
