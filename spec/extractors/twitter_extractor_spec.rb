@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OmniAuth::Policies::Twitter do
+describe TwitterExtractor do
 let(:auth) { OmniAuth.config.mock_auth[:twitter] }
 
   subject { described_class.new(auth) }

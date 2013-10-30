@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OmniAuth::Policies::Github do
+describe GithubExtractor do
   let(:auth) { OmniAuth.config.mock_auth[:github] }
 
   subject { described_class.new(auth) }
