@@ -173,7 +173,6 @@ DEPENDENCIES
   factory_girl
   magiconf
   neat
-  oj
   omniauth
   omniauth-github
   omniauth-twitter
