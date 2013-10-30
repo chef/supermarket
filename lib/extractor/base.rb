@@ -1,22 +1,22 @@
-module OmniAuth
-  module Policy
+module Extractor
+  class Base
     class << self
       #
-      # Finds a policy object for the given auth hash and returns a new policy
-      # object instance for the auth hash.
+      # Finds an extractor object for the given auth hash and returns a new
+      # extractor instance for the auth hash.
       #
       # @param [Hash]
       #   the hash returned from omniauth
       #
-      # @return [~OmniAuth::Policy]
+      # @return [~Extractor::Base]
       #
       def load(auth)
         provider = auth['provider'].classify
 
         begin
-          "OmniAuth::Policies::#{provider}".constantize.new(auth)
+          "#{provider}Extractor".constantize.new(auth)
         rescue NameError
-          raise RuntimeError, "#{provider} is not a valid policy!"
+          raise RuntimeError, "#{provider} is not a valid extractor!"
         end
       end
     end
@@ -25,7 +25,7 @@ module OmniAuth
     attr_reader :auth
 
     #
-    # Create a new instance of this policy object.
+    # Create a new instance of this extractor object.
     #
     # @param [OmniAuth::AuthHash] auth
     #
@@ -35,7 +35,7 @@ module OmniAuth
 
     #
     # The unique signature (like composite key) used by ActiveRecord to
-    # identify this policy.
+    # identify this extractor.
     #
     # @example
     #   { provider: 'github', uid: 'abcd1234' }
@@ -43,16 +43,16 @@ module OmniAuth
     # @return [Hash]
     #
     def signature
-      { provider: auth['provider'], uid: uid }
+      { provider: provider, uid: uid }
     end
 
     #
-    # The name for this OAuth policy.
+    # The name for this extractor.
     #
     # @return [Symbol]
     #
     def provider
-      self.class.key
+      auth['provider']
     end
 
     #
@@ -132,6 +132,5 @@ module OmniAuth
 
         [first_name, last_name]
       end
-
   end
 end

@@ -26,9 +26,9 @@ To register GitHub as an OmniAuth login method:
 
   where `MY_KEY` and `MY_SECRET` are the values given when you created the application.
 
-3. Create a policy object in `lib/omni_auth/policies`
+3. Create an extractor object in `app/extractors`
 
-  Since each OmniAuth provider returns a different set of information, you often end up with nested case statements to account for all the different providers. Super Market accounts for this behavior using Policy objects. Each OmniAuth provider must have an associated policy object that extracts the correct information from the OmniAuth response hash into a object with a unified interface.
+  Since each OmniAuth provider returns a different set of information, you often end up with nested case statements to account for all the different providers. Super Market accounts for this behavior using Extractor objects. Each OmniAuth provider must have an associated Extractor object that extracts the correct information from the OmniAuth response hash into a object with a unified interface.
 
 
 Requirements
