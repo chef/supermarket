@@ -19,33 +19,33 @@ class Account < ActiveRecord::Base
 
   class << self
     #
-    # Creates a new +Account+ (or updates an existing one) from the given oauth
-    # hash. The +provider+ and +uid+ values are used as a composite key to
-    # uniquely identify the credentials.
+    # Creates a new +Account+ (or updates an existing one) from the given
+    # oauth hash. The +provider+ and +uid+ values are used as a composite
+    # key to uniquely identify the credentials.
     #
     # @param [OmniAuth::AuthHash]
     #
     # @return [Account]
     #
     def from_oauth(auth)
-      policy = OmniAuth::Policy.load(auth)
+      extractor = Extractor::Base.load(auth)
 
       transaction do
-        account = where(policy.signature).first_or_initialize do |account|
-          account.username      = policy.username
-          account.oauth_token   = policy.oauth_token
-          account.oauth_secret  = policy.oauth_secret
-          account.oauth_expires = policy.oauth_expires
+        account = where(extractor.signature).first_or_initialize do |account|
+          account.username      = extractor.username
+          account.oauth_token   = extractor.oauth_token
+          account.oauth_secret  = extractor.oauth_secret
+          account.oauth_expires = extractor.oauth_expires
         end
 
         user = account.user ||= User.create! do |user|
-          user.first_name = policy.first_name
-          user.last_name  = policy.last_name
+          user.first_name = extractor.first_name
+          user.last_name  = extractor.last_name
         end
 
         # Some OmniAuth providers do not provide an email address
-        unless policy.email.nil?
-          email = user.emails.where(email: policy.email).first_or_create
+        unless extractor.email.nil?
+          email = user.emails.where(email: extractor.email).first_or_create
 
           # Update the primary email if the User does not already have a
           # primary email

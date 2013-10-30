@@ -24,4 +24,28 @@ describe Account do
       expect(Account.for(:twitter)).to eq(twitters)
     end
   end
+
+  describe '.from_oauth' do
+    let(:auth) { OmniAuth.config.mock_auth[:default] }
+
+    it 'creates the account' do
+      expect { Account.from_oauth(auth) }.to change(Account, :count).by(1)
+    end
+
+    it 'creates the user' do
+      expect { Account.from_oauth(auth) }.to change(User, :count).by(1)
+    end
+
+    it 'does not save anything if the transaction fails' do
+      bad_auth = auth.dup
+      bad_auth['credentials']['token'] = nil
+
+      expect {
+        Account.from_oauth(bad_auth)
+      }.to raise_error(ActiveRecord::RecordInvalid)
+
+      expect(Account.count).to eq(0)
+      expect(User.count).to eq(0)
+    end
+  end
 end

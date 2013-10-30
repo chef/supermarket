@@ -43,7 +43,7 @@ module Extractor
     # @return [Hash]
     #
     def signature
-      { provider: auth['provider'], uid: uid }
+      { provider: provider, uid: uid }
     end
 
     #
@@ -52,7 +52,7 @@ module Extractor
     # @return [Symbol]
     #
     def provider
-      self.class.key
+      auth['provider']
     end
 
     #
