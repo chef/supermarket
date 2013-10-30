@@ -1,0 +1,80 @@
+form.new_icla_signature {
+  @include outer-container();
+
+  .error-messages {
+    color: lighten($opscode-secondary-red, 20%);
+    padding: 2em 2em 0 2em;
+
+    ul li {
+      line-height: 1.4;
+    }
+  }
+
+  #{$all-text-inputs} {
+    border: none;
+    border-bottom: 1px solid;
+    font: inherit;
+    margin-bottom: 0.5em;
+
+    &.error {
+      background-color: lighten($opscode-secondary-red, 65%);
+      border-bottom: 1px solid lighten($opscode-secondary-red, 20%);
+    }
+
+    // For polyfill
+    &.placeholder {
+      color: #a9a9a9;
+    }
+  }
+
+  label.error {
+    background-color: lighten($opscode-secondary-red, 65%);
+    color: lighten($opscode-secondary-red, 20%);
+    padding: 0.25em;
+  }
+
+  fieldset {
+    @include outer-container();
+    border: none;
+  }
+
+  fieldset.name {
+    #icla_signature_prefix, #icla_signature_suffix {
+      @include span-columns(1);
+      margin-right: 0.5em;
+    }
+
+    #icla_signature_first_name, #icla_signature_last_name, #icla_signature_middle_name {
+      @include span-columns(3);
+      margin-right: 0.5em;
+    }
+  }
+
+  fieldset.contact {
+    input {
+      @include span-columns(4);
+    }
+  }
+
+  fieldset.address {
+    #icla_signature_address_line_1, #icla_signature_address_line_2 {
+      @include span-columns(12);
+    }
+
+
+    input {
+      @include span-columns(3);
+    }
+  }
+
+  fieldset.end {
+    .agreement {
+      @include span-columns(9);
+    }
+
+    input[type=submit] {
+      float: right;
+      @include button($opscode-orange);
+    }
+  }
+}
