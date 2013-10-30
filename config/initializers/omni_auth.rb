@@ -7,4 +7,12 @@ Rails.application.config.middleware.use(OmniAuth::Builder) do
   end
 end
 
+# Use the Rails logger
 OmniAuth.config.logger = Rails.logger
+
+# Set top-level OmniAuth failures to fail in the application controller
+unless Rails.env.development?
+  OmniAuth.config.on_failure = Proc.new do |env|
+    ApplicationController.action(:omniauth_error).call(env)
+  end
+end
