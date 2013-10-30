@@ -3,5 +3,4 @@ class ApplicationController < ActionController::Base
 
   include Supermarket::Authentication
   include Supermarket::Authorization
-  include Supermarket::Extrication
 end
