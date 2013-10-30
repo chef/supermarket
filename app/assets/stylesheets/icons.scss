@@ -14,8 +14,8 @@
 }
 */
 
- [class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: "icons";
+@mixin icon {
+  font-family: 'icons';
   font-style: normal;
   font-weight: normal;
   speak: none;
@@ -23,27 +23,39 @@
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
-  margin-right: .2em;
+  margin: 0 .2em;
   text-align: center;
-  /* opacity: .8; */
 
   /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal;
   text-transform: none;
 
-  /* fix buttons height, for twitter bootstrap */
-  line-height: 1em;
-
-  /* Animation center compensation - margins should be symmetric */
-  /* remove if not needed */
-  margin-left: .2em;
-
-  /* you can be more comfortable with increased icons size */
-  /* font-size: 120%; */
+  /* You can be more comfortable with increased icons size */
+  // font-size: 120%;
 
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
-.icon-github:before { content: '\e800'; } /* '' */
-.icon-twitter:before { content: '\e801'; } /* '' */
-.icon-cart:before { content: '\e803'; } /* '' */
+
+[class^='icon-']:before, [class*=' icon-']:before {
+  @include icon;
+}
+
+@mixin icon-github {
+  @include icon;
+  content: '\e800';
+}
+
+@mixin icon-twitter {
+  @include icon;
+  content: '\e801';
+}
+
+@mixin icon-cart {
+  @include icon;
+  content: '\e803';
+}
+
+.icon-github:before { content: '\e800'; }
+.icon-twitter:before { content: '\e801'; }
+.icon-cart:before { content: '\e803'; }

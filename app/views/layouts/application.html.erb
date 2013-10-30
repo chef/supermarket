@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Supermarket</title>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= csrf_meta_tags %>
-</head>
-<body class="<%= controller.controller_name %>">
-  <%= render partial: 'flash' %>
-  <%= render partial: 'header' %>
-  <div class="container">
-    <%= yield %>
-  </div>
-  <%= javascript_include_tag 'application' %>
-</body>
+  <head>
+    <title>Supermarket</title>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body class="<%= controller.controller_name %>">
+    <%= render partial: 'flash' %>
+    <%= render partial: 'header' %>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <%= javascript_include_tag 'application' %>
+  </body>
 </html>

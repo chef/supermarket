@@ -2,7 +2,7 @@ body > header {
   @include row();
 
   color: #bbb;
-  background-color: $opscode-dark-blue;
+  background-color: $primary-blue;
   padding: 0.75em;
 
   a {
@@ -10,7 +10,7 @@ body > header {
     text-decoration: none;
 
     &:hover {
-      color: $opscode-orange;
+      color: $primary-orange;
     }
 
     &:active {
@@ -31,7 +31,7 @@ body > header {
     text-transform: uppercase;
 
     span {
-      color: $opscode-orange;
+      color: $primary-orange;
       display: block;
       font-size: 50%;
       font-weight: 400;

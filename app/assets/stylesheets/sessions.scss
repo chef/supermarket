@@ -1,42 +1,94 @@
 body.sessions {
-  .sign-in-box {
-    @include span-columns(4);
-    @include shift(4);
+  .login-box {
+    @include span-columns(6);
+    @include shift(3);
 
-    font-size: 80%;
-    margin-top: 10%;
+    background: #fff;
+    border-radius: $radius;
+    border: 1px solid $primary-blue;
+    margin-top: 5em;
+    overflow: hidden;
+
+    h1.sign-up {
+      font-size: 1.5em;
+      font-weight: normal;
+      line-height: 0.6em;
+    }
+
+    .header {
+      border-bottom: $primary-blue;
+      color: darken($primary-blue, 10%);
+      @include linear-gradient(lighten($primary-blue, 25%), lighten($primary-blue, 5%));
+      margin: 0;
+      padding: 0.25em 0;
+      text-align: center;
+      text-shadow: 1px 1px 1px lighten($primary-blue, 20%);
+    }
+
+    .contents {
+      padding: 2em;
+    }
+  }
+
+  ul.buttons {
+    @include inline-block;
+    line-height: $button-height;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+
+    li {
+      @include inline-block;
+      margin: 0 0.2em;
+    }
+
+    li.github {
+      a {
+        @include button(#666);
+        padding-right: 1em;
+      }
+
+      a:before {
+        @include icon-github;
+        font-size: 200%;
+        float: left;
+        line-height: 50%;
+        margin: 0.17em 0.25em 0 -0.5em;
+      }
+    }
+
+    li.twitter {
+      a {
+        @include button($secondary-blue);
+        padding-right: 1em;
+      }
+
+      a:before {
+        @include icon-twitter;
+        font-size: 200%;
+        float: left;
+        line-height: 50%;
+        margin: 0.2em 0.2em 0 -0.5em;
+      }
+    }
+  }
+
+  p.help-text {
+    margin: -1em 0 1em 0;
+    padding: 0;
     text-align: center;
 
-    .buttons {
-      @include outer-container();
 
-      a {
-        @include span-columns(1 of 2);
+    a {
+      color: lighten($secondary-gray, 20%);
+      font-size: 0.9em;
+      text-decoration: none;
+    }
 
-        border: 1px solid lighten($opscode-orange, 30%);
-        border-radius: 15px;
-        font-size: 100%;
-        padding: 0.5em;
-        text-decoration: none;
-
-        i {
-          display: block;
-          font-size: 250%;
-        }
-
-        &:active, &:active:visited {
-          color: $opscode-dark-blue;
-          border: 1px solid lighten($opscode-dark-blue, 30%);
-        }
-
-        &:hover {
-          background-color: lighten($opscode-dark-blue, 60%);
-        }
-
-        &:visited {
-          color: $opscode-orange;
-        }
-      }
+    a:hover {
+      color: $secondary-gray;
     }
   }
 }
