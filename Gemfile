@@ -3,14 +3,11 @@ ruby '2.0.0'
 
 gem 'rails', '4.0.0'
 
-gem 'factory_girl'
 gem 'magiconf'
-gem 'oj'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-twitter'
-gem 'pg',    '~> 0.17'
-gem 'rabl'
+gem 'pg'
 gem 'unicorn'
 gem 'unicorn-rails'
 
@@ -19,16 +16,17 @@ gem 'sass-rails',   '~> 4.0.0'
 gem 'uglifier',     '~> 2.2'
 
 group :doc do
-  gem 'yard', '~> 0.8', require: false
+  gem 'yard', require: false
 end
 
 group :test do
-  gem 'capybara' # For acceptance tests
-  gem 'poltergeist' # Use PhantomJS for JS driver
+  gem 'capybara'
+  gem 'factory_girl'
+  gem 'poltergeist'
+  gem 'shoulda-matchers'
 end
 
-group :test, :development do
+group :development, :test do
   gem 'quiet_assets'
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
 end
