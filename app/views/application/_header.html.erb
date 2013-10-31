@@ -1,23 +1,25 @@
 <header>
-  <h1>
-    Opscode
-    <span><i class="icon-cart"></i>Supermarket</span>
-  </h1>
+  <h1><%= link_to 'Opscode', root_path %></h1>
 
   <nav>
-    <span class="signed-in-as">
-      <% if logged_in? %>
-        Signed in as: <%= current_user.name %>
-      <% else %>
-        &nbsp;
-      <% end %>
-    </span>
     <ul>
+      <li>
+        <%= link_to 'Contributors', icla_signatures_path %>
+      </li>
       <% if logged_in? %>
-        <li><%= link_to 'Sign ICLA', new_icla_signature_path, title: 'Sign Individual Contributor License Agreement' %></li>
-        <li><%= link_to 'Sign Out', logout_path, method: :delete %></li>
+        <% unless current_user.signed_icla? %>
+          <li>
+            <%= link_to 'Sign ICLA', new_icla_signature_path %>
+          </li>
+        <% end %>
+
+        <li>
+          <%= link_to 'Sign Out', logout_path, method: :delete %>
+        </li>
       <% else %>
-        <li><%= link_to 'Sign In', login_path %></li>
+        <li>
+          <%= link_to 'Sign In', login_path %>
+        </li>
       <% end %>
     </ul>
   </nav>
