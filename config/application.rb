@@ -30,6 +30,17 @@ module Supermarket
     # Autoload everything in app
     config.autoload_paths += Dir["#{config.root}/app", "#{config.root}/app/**/*"]
 
+    # Use a custom exception handling application
+    config.exceptions_app = Proc.new do |env|
+      ExceptionsController.action(:show).call(env)
+    end
+
+    # Define the status codes for rescuing our custom exceptions
+    config.action_dispatch.rescue_responses.merge!(
+      'Supermarket::Authorization::NoAuthorizerError'  => :not_implemented,
+      'Supermarket::Authorization::NotAuthorizedError' => :unauthorized,
+    )
+
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'

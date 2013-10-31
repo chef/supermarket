@@ -25,7 +25,7 @@ describe Supermarket::Authentication do
 
     it 'finds the user by the session' do
       user = double(:user)
-      User.stub(:find).with(1).and_return(user)
+      User.stub(:find_by_id).with(1).and_return(user)
       subject.stub(:session).and_return(user_id: 1)
 
       expect(subject.current_user).to be(user)
