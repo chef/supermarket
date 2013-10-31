@@ -4,7 +4,7 @@
   border-radius: $button-radius;
   color: darken($color, 20%);
   cursor: pointer;
-  font-family: HelveticaNeue;
+  font-family: $helvetica;
   font-size: $font-size;
   font-weight: bold;
   @include inline-block;
