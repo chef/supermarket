@@ -1,22 +1,9 @@
 body > header {
-  @include row();
+  @include row;
 
-  color: #bbb;
-  background-color: $opscode-dark-blue;
-  padding: 0.75em;
-
-  a {
-    color: white;
-    text-decoration: none;
-
-    &:hover {
-      color: $opscode-orange;
-    }
-
-    &:active {
-      color: #bbb;
-    }
-  }
+  @include linear-gradient($primary-blue, darken($primary-blue, 10%));
+  border-bottom: 1px solid lighten($primary-blue, 35%);
+  padding: 0 0.75em;
 
   h1 {
     @include span-columns(1 of 2);
@@ -26,28 +13,34 @@ body > header {
     background-size: 29px;
     color: white;
     font-size: 150%;
-    letter-spacing: 0.10em;
+    font-weight: bold;
     padding-left: 40px;
     text-transform: uppercase;
 
-    span {
-      color: $opscode-orange;
-      display: block;
-      font-size: 50%;
-      font-weight: 400;
-      letter-spacing: normal;
-      margin-left: 1.3em;
-      margin-top: 0.2em;
+    a {
+      color: #fff;
+      text-decoration: none;
     }
   }
 
   nav {
     @include span-columns(1 of 2);
-
     text-align: right;
 
-    .signed-in-as {
-      font-size: 75%;
+    a {
+      color: lighten($primary-blue, 50%);
+      font-size: 0.80em;
+      text-transform: uppercase;
+      text-decoration: none;
+      @include transition(all 0.2s ease-in-out);
+
+      &:hover {
+        color: #fff;
+      }
+
+      &:active {
+        color: #bbb;
+      }
     }
 
     ul li {

@@ -1,49 +1,45 @@
 .flash {
-  @include span-columns(6);
-  @include shift(3);
-  position: absolute;
-  top: 0;
-  margin-top: 0;
-
-  border: 1px solid;
-  border-top: none;
-  border-radius: 0 0 10px 10px;
-  padding: 0.5em;
+  cursor: pointer;
+  display: block;
+  margin: -1px 0 0 0; // Move up 1px to overlay the border-bottom header
+  padding: 1em 0;
   text-align: center;
 
-  &.alert {
-    color: darken(red, 10%);
-    background-color: lighten(red, 45%);
-    border-color: lighten(red, 35%);
+  .close {
+    color: inherit;
+    float: right;
+    font-weight: bold;
+    margin-right: 1em;
+    opacity: 0.5;
+    text-decoration: none;
+    @include transition(opacity 0.25s ease-in-out);
 
-    .close {
-      color: darken(red, 10%);
+    &:hover {
+      opacity: 1
     }
   }
 
   &.notice {
-    color: darken(green, 10%);
-    background-color: lighten(green, 70%);
-    border-color: lighten(green, 60%);
+    background: $secondary-yellow;
+    color: darken($secondary-yellow, 30%);
+  }
 
-    .close {
-      color: darken(green, 10%);
-    }
+  &.alert {
+    background: $secondary-red;
+    color: lighten($secondary-red, 50%);
+  }
+
+  &.success {
+    background: $secondary-green;
+    color: darken($secondary-green, 25%);
   }
 
   &.dismissed {
-    margin-top: -5000px;
-    @include transition(all 1s ease);
-  }
-
-  .close {
-    float: right;
-    font-weight: bold;
-    text-decoration: none;
-    opacity: 0.25;
-
-    &:hover {
-      opacity: 1;
-    }
+    height: 0;
+    line-height: 0;
+    overflow: hidden;
+    padding: 0;
+    @include transition(all 0.2s ease-in-out);
+    zoom: 1;
   }
 }

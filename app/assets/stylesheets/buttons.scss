@@ -1,0 +1,51 @@
+@mixin button($color: $secondary-gray) {
+  border: 1px solid darken($color, 5%);
+  box-shadow: 0 1px 1px lighten($color, 20%), inset 0 1px 0 lighten($color, 25%);
+  border-radius: $button-radius;
+  color: darken($color, 20%);
+  cursor: pointer;
+  font-family: HelveticaNeue;
+  font-size: $font-size;
+  font-weight: bold;
+  @include inline-block;
+  @include linear-gradient(lighten($color, 15%), $color);
+  outline: none;
+  padding: $font-size/2 $font-size*2;
+  line-height: $button-height;
+  text-decoration: none;
+  text-shadow: 0 1px 0 lighten($color, 20%);
+
+  &:hover {
+    border: 1px solid darken($color, 10%);
+    box-shadow: 0 1px 1px lighten($color, 15%), inset 0 1px 0 lighten($color, 20%);
+    @include linear-gradient(lighten($color, 15%), lighten($color, 10%));
+  }
+}
+
+.button.primary {
+  @include button($primary-blue);
+}
+
+.button.secondary {
+  @include button($primary-orange);
+}
+
+.button.gray {
+  @include button($secondary-gray);
+}
+
+.button.blue, .button.info {
+  @include button($secondary-blue);
+}
+
+.button.green {
+  @include button($secondary-green);
+}
+
+.button.yellow, .button.warning {
+  @include button($secondary-yellow);
+}
+
+.button.red, .button.alert {
+  @include button($secondary-red);
+}

@@ -1,42 +1,101 @@
 body.sessions {
-  .sign-in-box {
-    @include span-columns(4);
-    @include shift(4);
+  .login-box {
+    @include span-columns(6);
+    @include shift(3);
 
-    font-size: 80%;
-    margin-top: 10%;
+    background: #fff;
+    border-radius: $radius;
+    border: 1px solid $primary-blue;
+    margin-top: 5em;
+    overflow: hidden;
+
+    .header {
+      border-bottom: $primary-blue;
+      color: lighten($primary-blue, 50%);
+      @include linear-gradient($primary-blue, darken($primary-blue, 10%));
+      margin: 0;
+      padding: 0.25em 0;
+      text-align: center;
+      text-shadow: 0 1px 0 darken($primary-blue, 25%);
+
+      h1 {
+        font-size: 1.5em;
+        font-weight: normal;
+        line-height: 0.6em;
+      }
+    }
+
+    .contents {
+      padding: 2em;
+    }
+  }
+
+  ul.buttons {
+    @include inline-block;
+    line-height: $button-height;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+
+    li {
+      @include media(769px) {
+        @include inline-block;
+        margin: 0 0.2em 0.4em 0.2em;
+      }
+
+      @include media(max-width 769px) {
+        display: block;
+        margin: 0.5em 0;
+        width: 100%;
+      }
+    }
+
+    @mixin omniauth-button {
+      a {
+        display: block;
+        padding-right: 1em
+      }
+
+      a:before {
+        font-size: 200%;
+        float: left;
+        line-height: 50%;
+        margin: 0.2em 0.2em 0 -0.5em;
+      }
+    }
+
+    li.github {
+      a { @include button(#666); }
+      a:before { @include icon-github; }
+      @include omniauth-button;
+    }
+
+    li.twitter {
+      a { @include button($secondary-blue); }
+      a:before { @include icon-twitter; }
+      @include omniauth-button;
+    }
+  }
+
+  p.help-text {
+    margin: -1em 0 1em 0;
+    padding: 0;
     text-align: center;
 
-    .buttons {
-      @include outer-container();
+    @include media(max-width 769px) {
+      display: none;
+    }
 
-      a {
-        @include span-columns(1 of 2);
+    a {
+      color: lighten($secondary-gray, 20%);
+      font-size: 0.9em;
+      text-decoration: none;
+    }
 
-        border: 1px solid lighten($opscode-orange, 30%);
-        border-radius: 15px;
-        font-size: 100%;
-        padding: 0.5em;
-        text-decoration: none;
-
-        i {
-          display: block;
-          font-size: 250%;
-        }
-
-        &:active, &:active:visited {
-          color: $opscode-dark-blue;
-          border: 1px solid lighten($opscode-dark-blue, 30%);
-        }
-
-        &:hover {
-          background-color: lighten($opscode-dark-blue, 60%);
-        }
-
-        &:visited {
-          color: $opscode-orange;
-        }
-      }
+    a:hover {
+      color: $secondary-gray;
     }
   }
 }
