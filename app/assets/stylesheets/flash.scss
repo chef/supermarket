@@ -6,26 +6,32 @@
   text-align: center;
 
   .close {
+    color: inherit;
     float: right;
     font-weight: bold;
     margin-right: 1em;
-    opacity: 0.25;
+    opacity: 0.5;
     text-decoration: none;
     @include transition(opacity 0.25s ease-in-out);
 
     &:hover {
-      opacity: 0.5
+      opacity: 1
     }
   }
 
   &.notice {
     background: $secondary-yellow;
-    color: darken($secondary-yellow, 25%);
+    color: darken($secondary-yellow, 30%);
   }
 
   &.alert {
     background: $secondary-red;
-    color: darken($secondary-red, 25%);
+    color: lighten($secondary-red, 50%);
+  }
+
+  &.success {
+    background: $secondary-green;
+    color: darken($secondary-green, 25%);
   }
 
   &.dismissed {
