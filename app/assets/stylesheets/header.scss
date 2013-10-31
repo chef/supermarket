@@ -1,8 +1,7 @@
 body > header {
   @include row;
 
-  color: #bbb;
-  @include linear-gradient($primary-blue, darken($primary-blue, 5%));
+  @include linear-gradient($primary-blue, darken($primary-blue, 10%));
   border-bottom: 1px solid lighten($primary-blue, 35%);
   padding: 0 0.75em;
 

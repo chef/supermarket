@@ -17,12 +17,12 @@ body.sessions {
 
     .header {
       border-bottom: $primary-blue;
-      color: darken($primary-blue, 10%);
-      @include linear-gradient(lighten($primary-blue, 25%), lighten($primary-blue, 5%));
+      color: lighten($primary-blue, 50%);
+      @include linear-gradient($primary-blue, darken($primary-blue, 10%));
       margin: 0;
       padding: 0.25em 0;
       text-align: center;
-      text-shadow: 1px 1px 1px lighten($primary-blue, 20%);
+      text-shadow: 0 1px 0 darken($primary-blue, 25%);
     }
 
     .contents {
