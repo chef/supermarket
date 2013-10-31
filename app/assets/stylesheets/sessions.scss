@@ -52,13 +52,16 @@ body.sessions {
       }
     }
 
-    @mixin omniauth-button {
+    @mixin omniauth-button($color, $logo) {
       a {
+        @include button($color);
         display: block;
         padding-right: 1em
       }
 
       a:before {
+        @extend .#{$fa-css-prefix};
+        content: $logo;
         font-size: 200%;
         float: left;
         line-height: 50%;
@@ -66,17 +69,8 @@ body.sessions {
       }
     }
 
-    li.github {
-      a { @include button(#666); }
-      a:before { @include icon-github; }
-      @include omniauth-button;
-    }
-
-    li.twitter {
-      a { @include button($secondary-blue); }
-      a:before { @include icon-twitter; }
-      @include omniauth-button;
-    }
+    li.github  { @include omniauth-button(#666, $fa-var-github); }
+    li.twitter { @include omniauth-button($secondary-blue, $fa-var-twitter); }
   }
 
   p.help-text {
