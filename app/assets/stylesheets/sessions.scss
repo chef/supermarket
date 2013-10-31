@@ -40,38 +40,42 @@ body.sessions {
     width: 100%;
 
     li {
-      @include inline-block;
-      margin: 0 0.2em;
-    }
-
-    li.github {
-      a {
-        @include button(#666);
-        padding-right: 1em;
+      @include media(769px) {
+        @include inline-block;
+        margin: 0 0.2em 0.4em 0.2em;
       }
 
-      a:before {
-        @include icon-github;
-        font-size: 200%;
-        float: left;
-        line-height: 50%;
-        margin: 0.17em 0.25em 0 -0.5em;
+      @include media(max-width 769px) {
+        display: block;
+        margin: 0.5em 0;
+        width: 100%;
       }
     }
 
-    li.twitter {
+    @mixin omniauth-button {
       a {
-        @include button($secondary-blue);
-        padding-right: 1em;
+        display: block;
+        padding-right: 1em
       }
 
       a:before {
-        @include icon-twitter;
         font-size: 200%;
         float: left;
         line-height: 50%;
         margin: 0.2em 0.2em 0 -0.5em;
       }
+    }
+
+    li.github {
+      a { @include button(#666); }
+      a:before { @include icon-github; }
+      @include omniauth-button;
+    }
+
+    li.twitter {
+      a { @include button($secondary-blue); }
+      a:before { @include icon-twitter; }
+      @include omniauth-button;
     }
   }
 
@@ -80,6 +84,9 @@ body.sessions {
     padding: 0;
     text-align: center;
 
+    @include media(max-width 769px) {
+      display: none;
+    }
 
     a {
       color: lighten($secondary-gray, 20%);
