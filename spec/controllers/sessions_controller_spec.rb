@@ -12,7 +12,7 @@ describe SessionsController do
     let(:auth_hash) { OmniAuth.config.mock_auth[:default] }
 
     before do
-      User.stub(:from_oauth).and_return(double(id: 1))
+      User.stub(:from_oauth).and_return(double(id: 1, name: 'John Doe'))
       request.env['omniauth.auth'] = auth_hash
     end
 

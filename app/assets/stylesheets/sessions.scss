@@ -9,12 +9,6 @@ body.sessions {
     margin-top: 5em;
     overflow: hidden;
 
-    h1.sign-up {
-      font-size: 1.5em;
-      font-weight: normal;
-      line-height: 0.6em;
-    }
-
     .header {
       border-bottom: $primary-blue;
       color: lighten($primary-blue, 50%);
@@ -23,6 +17,12 @@ body.sessions {
       padding: 0.25em 0;
       text-align: center;
       text-shadow: 0 1px 0 darken($primary-blue, 25%);
+
+      h1 {
+        font-size: 1.5em;
+        font-weight: normal;
+        line-height: 0.6em;
+      }
     }
 
     .contents {
