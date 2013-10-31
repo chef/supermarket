@@ -1,7 +1,7 @@
 // Script for handling flash messages
 
 // Add a dismissed class to the flash when the close button is clicked.
-$(document.body).on('click', '.flash .close', function (event) {
-    event.preventDefault()
-    $(event.currentTarget).parents('.flash').addClass('dismissed');
+$('div.flash a.close').on('click', function(e) {
+  e.preventDefault();
+  $(e.currentTarget).parents('div.flash').addClass('dismissed');
 });

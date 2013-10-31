@@ -1,6 +1,6 @@
 <% flash.each do |name, message| %>
-  <p class="flash <%= name %>">
+  <div class="flash <%= name %>">
     <%= message %>
     <a class="close" href='#'>&times;</a>
-  </p>
+  </div>
 <% end %>
