@@ -1,10 +1,10 @@
 class DefaultExtractor < Extractor::Base
   def first_name
-    auth['info']['name'].first
+    split_name.first
   end
 
   def last_name
-    auth['info']['name'].last
+    split_name.last
   end
 
   def uid
@@ -13,6 +13,10 @@ class DefaultExtractor < Extractor::Base
 
   def username
     auth['info']['username']
+  end
+
+  def email
+    auth['info']['email']
   end
 
   def oauth_token

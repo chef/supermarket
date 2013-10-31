@@ -26,26 +26,86 @@ describe Account do
   end
 
   describe '.from_oauth' do
-    let(:auth) { OmniAuth.config.mock_auth[:default] }
+    let(:auth) { OmniAuth.config.mock_auth[:default].dup }
+    let(:account) { Account.first }
 
-    it 'creates the account' do
-      expect { Account.from_oauth(auth) }.to change(Account, :count).by(1)
+    it 'updates the primary email' do
+      auth['info']['email'] = 'johndoe@example.com'
+      user = create(:user)
+
+      Account.from_oauth(auth, user)
+      expect(user.primary_email.email).to eq('johndoe@example.com')
     end
 
-    it 'creates the user' do
-      expect { Account.from_oauth(auth) }.to change(User, :count).by(1)
+    it 'does not change the exiting primary email' do
+      auth['info']['email'] = 'johndoe@example.com'
+      user = create(:user, primary_email: create(:email, email: 'john@example.com'))
+
+      Account.from_oauth(auth, user)
+      expect(user.primary_email.email).to eq('john@example.com')
     end
 
-    it 'does not save anything if the transaction fails' do
-      bad_auth = auth.dup
-      bad_auth['credentials']['token'] = nil
+    context 'when a user is given' do
+      let(:user) { create(:user) }
 
-      expect {
-        Account.from_oauth(bad_auth)
-      }.to raise_error(ActiveRecord::RecordInvalid)
+      it 'uses the given user' do
+        Account.from_oauth(auth, user)
 
-      expect(Account.count).to eq(0)
-      expect(User.count).to eq(0)
+        expect(account).to be
+        expect(account.user).to eq(user)
+      end
+
+      it 'creates a single user' do
+        Account.from_oauth(auth, user)
+        expect(User.count).to eq(1)
+      end
+    end
+
+    context 'when an email already exists' do
+      let(:address) { 'johndoe@example.com' }
+      let(:user)    { create(:user) }
+
+      before { create(:email, email: address, user: user) }
+
+      it 'uses the user from the email' do
+        auth['info']['email'] = address
+        Account.from_oauth(auth)
+
+        expect(account).to be
+        expect(account.user).to eq(user)
+      end
+    end
+
+    context 'when an icla signature exists' do
+      let(:address) { 'johndoe@example.com' }
+      let(:user)    { create(:user) }
+
+      before { create(:icla_signature, email: address, user: user) }
+
+      it 'uses the user from the signature' do
+        auth['info']['email'] = address
+        Account.from_oauth(auth)
+
+        expect(account).to be
+        expect(account.user).to eq(user)
+      end
+    end
+
+    context 'when no user exists' do
+      it 'creates a new user' do
+        expect { Account.from_oauth(auth) }.to change(User, :count).by(1)
+      end
+    end
+
+    context 'when something in the transaction fails' do
+      it 'does not save any of the objects' do
+        auth['credentials']['token'] = nil
+
+        expect { Account.from_oauth(bad_auth) }.to raise_error
+
+        expect(Account.count).to eq(0)
+        expect(User.count).to eq(0)
+      end
     end
   end
 end

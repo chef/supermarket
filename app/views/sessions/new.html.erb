@@ -5,12 +5,8 @@
 
   <div class="contents">
     <ul class="buttons">
-      <li class="github">
-        <%= link_to 'GitHub', auth_path(:github) %>
-      </li>
-      <li class="twitter">
-        <%= link_to 'Twitter', auth_path(:twitter) %>
-      </li>
+      <%= omniauth_button('GitHub') %>
+      <%= omniauth_button('Twitter') %>
     </ul>
   </div>
 
