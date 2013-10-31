@@ -34,7 +34,7 @@
   @include button($secondary-gray);
 }
 
-.button.blue {
+.button.blue, .button.info {
   @include button($secondary-blue);
 }
 
@@ -42,10 +42,10 @@
   @include button($secondary-green);
 }
 
-.button.yellow {
+.button.yellow, .button.warning {
   @include button($secondary-yellow);
 }
 
-.button.red {
+.button.red, .button.alert {
   @include button($secondary-red);
 }
