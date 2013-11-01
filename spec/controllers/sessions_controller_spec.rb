@@ -17,7 +17,7 @@ describe SessionsController do
     end
 
     it 'loads or creates the user from the OAuth hash' do
-      expect(User).to receive(:from_oauth).with(auth_hash)
+      expect(User).to receive(:from_oauth).with(auth_hash, nil)
       post :create, provider: 'default'
     end
 
