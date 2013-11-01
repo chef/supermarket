@@ -34,6 +34,7 @@
       <%= f.check_box :agreement %>
       <%= f.label :agreement, 'I agree to the terms of this agreement' %>
     </div>
+    <%= f.hidden_field :user_id %>
     <%= submit_tag 'Sign ICLA' %>
   </fieldset>
 <% end %>
