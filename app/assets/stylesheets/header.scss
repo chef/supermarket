@@ -1,3 +1,29 @@
+@mixin oc-logo {
+  background-image: image-url('opscode-logo.png');
+  background-repeat: no-repeat;
+  background-position: 0 5px;
+  background-size: 34px;
+  color: white;
+  font-family: $gotham;
+  font-size: 21px;
+  font-weight: bold;
+  letter-spacing: 0.025em;
+  padding-left: 43px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+@mixin oc-logo-tagline {
+  color: $primary-orange;
+  display: block;
+  font-family: $gotham;
+  font-size: 11px;
+  font-weight: normal;
+  letter-spacing: 0;
+  margin-top: -2px;
+  margin-left: 2px;
+}
+
 body > header {
   @include row;
 
@@ -5,21 +31,23 @@ body > header {
   border-bottom: 1px solid lighten($primary-blue, 35%);
   padding: 0 0.75em;
 
-  h1 {
+  .logo {
     @include span-columns(1 of 2);
-
-    background-image: image-url('opscode-logo.png');
-    background-repeat: no-repeat;
-    background-size: 29px;
-    color: white;
-    font-size: 150%;
-    font-weight: bold;
-    padding-left: 40px;
-    text-transform: uppercase;
+    display: inline;
+    margin-top: 5px;
+    margin-bottom: 5px;
 
     a {
-      color: #fff;
       text-decoration: none;
+
+      h1 {
+        @include oc-logo;
+        margin: 0;
+
+        span {
+          @include oc-logo-tagline;
+        }
+      }
     }
   }
 
@@ -43,13 +71,18 @@ body > header {
       }
     }
 
-    ul li {
-      display: inline;
-      line-height: 1.5;
-      margin-left: 1em;
+    ul {
+      margin-bottom: 4px;
+      margin-top: 10px;
 
-      a {
-        white-space: nowrap;
+      li {
+        display: inline;
+        line-height: 1.5;
+        margin-left: 1em;
+
+        a {
+          white-space: nowrap;
+        }
       }
     }
   }
