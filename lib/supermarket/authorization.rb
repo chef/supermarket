@@ -118,7 +118,7 @@ module Supermarket
     #
     def require_valid_user!
       unless current_user
-        raise NotAuthorizedError, 'You must be logged in to perform that' \
+        raise NotAuthorizedError, 'You must be signed in to perform that' \
           ' action!'
       end
     end
