@@ -1,14 +1,14 @@
 @mixin oc-logo {
   background-image: image-url('opscode-logo.png');
   background-repeat: no-repeat;
-  background-size: 29px;
+  background-position: 0 5px;
+  background-size: 34px;
   color: white;
-  display: inline;
   font-family: $gotham;
   font-size: 21px;
   font-weight: bold;
   letter-spacing: 0.10em;
-  padding-left: 35px;
+  padding-left: 38px;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -20,8 +20,7 @@
   font-size: 11px;
   font-weight: normal;
   letter-spacing: 0;
-  padding-left: 35px;
-  vertical-align: middle;
+  margin-top: -2px;
 }
 
 body > header {
@@ -34,19 +33,18 @@ body > header {
   .logo {
     @include span-columns(1 of 2);
     display: inline;
-    margin-top: 16px;
-    margin-bottom: -9px; // The h1 and span push the bottom margin down a bit.
-                         // This brings it back up to be balanced.
+    margin-top: 5px;
+    margin-bottom: 5px;
 
     a {
       text-decoration: none;
 
       h1 {
         @include oc-logo;
+        margin: 0;
 
         span {
           @include oc-logo-tagline;
-          margin-left: 1.7em;
         }
       }
     }
@@ -72,13 +70,18 @@ body > header {
       }
     }
 
-    ul li {
-      display: inline;
-      line-height: 1.5;
-      margin-left: 1em;
+    ul {
+      margin-bottom: 4px;
+      margin-top: 10px;
 
-      a {
-        white-space: nowrap;
+      li {
+        display: inline;
+        line-height: 1.5;
+        margin-left: 1em;
+
+        a {
+          white-space: nowrap;
+        }
       }
     }
   }
