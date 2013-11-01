@@ -3,6 +3,7 @@
   background-repeat: no-repeat;
   background-size: 29px;
   color: white;
+  display: inline;
   font-family: $gotham;
   font-size: 21px;
   font-weight: bold;
@@ -19,6 +20,7 @@
   font-size: 11px;
   font-weight: normal;
   letter-spacing: 0;
+  padding-left: 35px;
   vertical-align: middle;
 }
 
@@ -29,16 +31,23 @@ body > header {
   border-bottom: 1px solid lighten($primary-blue, 35%);
   padding: 0 0.75em;
 
-  > a {
+  .logo {
     @include span-columns(1 of 2);
-    text-decoration: none;
+    display: inline;
+    margin-top: 16px;
+    margin-bottom: -9px; // The h1 and span push the bottom margin down a bit.
+                         // This brings it back up to be balanced.
 
-    h1 {
-      @include oc-logo;
+    a {
+      text-decoration: none;
 
-      span {
-        @include oc-logo-tagline;
-        margin-left: 1.7em;
+      h1 {
+        @include oc-logo;
+
+        span {
+          @include oc-logo-tagline;
+          margin-left: 1.7em;
+        }
       }
     }
   }
