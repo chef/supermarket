@@ -22,12 +22,16 @@ class User < ActiveRecord::Base
     # Creates a new +User+ from the given oauth hash, updating or creating
     # the nested account as well.
     #
+    # @see Account.from_oauth
+    #   for more information about the +user+ parameter
+    #
     # @param [OmniAuth::AuthHash]
+    # @param [User, nil]
     #
     # @return [Account]
     #
-    def from_oauth(auth)
-      Account.from_oauth(auth).user
+    def from_oauth(auth, user = nil)
+      Account.from_oauth(auth, user).user
     end
   end
 
