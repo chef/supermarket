@@ -5,7 +5,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "opscode-ubuntu-13.10"
-  config.vm.box_url = "https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-13.04_provisionerless.box"
+  config.vm.box_url = "https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-13.10_provisionerless.box"
 
   config.omnibus.chef_version = "11.6.2"
 
@@ -16,10 +16,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "./deploy/cookbooks"
-    chef.roles_path = "./deploy/roles"
-    chef.data_bags_path = "./deploy/data_bags"
+    chef.cookbooks_path = 'deploy/cookbooks'
+    chef.roles_path     = 'deploy/roles'
+    chef.data_bags_path = 'deploy/data_bags'
 
-    chef.run_list = "recipe[supermarket::default]"
+    chef.run_list = [
+      'recipe[supermarket::default]'
+    ]
   end
 end
