@@ -1,5 +1,6 @@
 Super Market
 ============
+
 Super Market is Opscode's Individual Contributor License Agreement (ICLA) service. It performs a variety of functions including:
 
 - Exposing an API for other services to consume
@@ -8,15 +9,16 @@ Super Market is Opscode's Individual Contributor License Agreement (ICLA) servic
 
 Trello Project: https://trello.com/c/aBFr3DaK
 
-
 OmniAuth
 --------
-Super Market uses OmniAuth for authentication. The OmniAuth configuration is data-driven, so you can configure OmniAuth to use whatever authentication method your organization desires. You can read more about OmniAuth on the [OmniAuth GitHub page](https://github.com/intridea/omniauth). In short, you need to create and register Super Market as an application and setup the keys in the `config/application.yml` file.
+
+Super Market uses [OmniAuth](https://github.com/intridea/omniauth) for authentication. The OmniAuth configuration is data-driven, so you can configure OmniAuth to use whatever authentication method your organization desires. You can read more about OmniAuth on the [OmniAuth GitHub page](https://github.com/intridea/omniauth). In short, you need to create and register Super Market as an application and setup the keys in the `config/application.yml` file.
 
 To register GitHub as an OmniAuth login method:
 
 1. [Register your application](https://github.com/settings/applications/new)
-2. Add the following to your `config/application.yml`:
+2. Make sure the Authorization callback URL has the app's URL with the /auth/github/callback path
+3. Add the following to your `config/application.yml`:
   ```yaml
   omni_auth:
     github:
@@ -24,15 +26,19 @@ To register GitHub as an OmniAuth login method:
       secret: MY_SECRET
   ```
 
-  where `MY_KEY` and `MY_SECRET` are the values given when you created the application.
+where `MY_KEY` and `MY_SECRET` are the values given when you created the application.
 
-3. Create an extractor object in `app/extractors`
+You can register Twitter as a provider by creating an application on the [Twitter Developers site](https://dev.twitter.com/apps).
 
-  Since each OmniAuth provider returns a different set of information, you often end up with nested case statements to account for all the different providers. Super Market accounts for this behavior using Extractor objects. Each OmniAuth provider must have an associated Extractor object that extracts the correct information from the OmniAuth response hash into a object with a unified interface.
+### Adding Additional Providers
 
+You can add support for additional OAUTH providers by creating an extractor object in `app/extractors`.
+
+Since each OmniAuth provider returns a different set of information, you often end up with nested case statements to account for all the different providers. Super Market accounts for this behavior using Extractor objects. Each OmniAuth provider must have an associated Extractor object that extracts the correct information from the OmniAuth response hash into a object with a unified interface.
 
 Requirements
 ------------
+
 - Ruby 2.0.0
 - PostgreSQL 9.3+
 
