@@ -1,6 +1,4 @@
 form.new_icla_signature {
-  @include outer-container();
-
   .error-messages {
     color: lighten($secondary-red, 20%);
     padding: 2em 2em 0 2em;
@@ -11,6 +9,7 @@ form.new_icla_signature {
   }
 
   #{$all-text-inputs} {
+    background-color: transparent;
     border: none;
     border-bottom: 1px solid;
     font: inherit;
@@ -34,7 +33,6 @@ form.new_icla_signature {
   }
 
   fieldset {
-    @include outer-container();
     border: none;
   }
 
@@ -70,6 +68,11 @@ form.new_icla_signature {
   fieldset.end {
     .agreement {
       @include span-columns(9);
+    }
+
+    input[type=checkbox] {
+      margin-bottom: 7px;
+      vertical-align: middle;
     }
 
     input[type=submit] {
