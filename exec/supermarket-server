@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+#
+# Usage: supermarket server
+# Summary: Starts the Rails server
+#
+
+set -e
+
+. $SUPERMARKET_EXEC/shared.sh
+in_supermarket "./bin/rake db:migrate && ./bin/rails server"

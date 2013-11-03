@@ -19,42 +19,17 @@
 
 # NodeJS is required because of the asset pipeline needs a valud JS runtime
 
-Chef::Resource.send(:include, Chef::Mixin::ShellOut)
+include_recipe 'supermarket::_apt'
 
-source_url = node['supermarket']['node']['source_url']
-src_dir    = node['supermarket']['node']['src_dir']
-version    = node['supermarket']['node']['version']
-prefix     = node['supermarket']['node']['prefix']
+package 'python-software-properties'
+package 'python'
+package 'g++'
+package 'make'
 
-%w[build-essential openssl libssl-dev pkg-config].each do |name|
-  package name do
-    action :install
-  end
+execute 'add-apt-repository[ppa:chris-lea]' do
+  command 'add-apt-repository -y ppa:chris-lea/node.js'
+  notifies :run, 'execute[apt-get update]', :immediately
+  not_if 'test -f /etc/apt/sources.list.d/chris-lea-node_js-precise.list'
 end
 
-directory src_dir do
-  action :create
-end
-
-remote_file "#{src_dir}/node-#{version}.tar.gz" do
-  source source_url
-  not_if do
-    File.exists?("#{prefix}/bin/node") &&
-    shell_out("#{prefix}/bin/node --version").stdout.include?(version.gsub('-', ''))
-  end
-end
-
-execute "untar-node-#{version}" do
-  command "tar -xvzf node-#{version}.tar.gz"
-  cwd src_dir
-  not_if { File.directory?("#{src_dir}/node-v#{version}") }
-end
-
-execute "compile-node-#{version}" do
-  command "./configure --prefix=#{prefix} && make && make install"
-  cwd "#{src_dir}/node-v#{version}"
-  not_if do
-    File.exists?("#{prefix}/bin/node") &&
-    shell_out("#{prefix}/bin/node --version").stdout.include?(version.gsub('-', ''))
-  end
-end
+package 'nodejs'

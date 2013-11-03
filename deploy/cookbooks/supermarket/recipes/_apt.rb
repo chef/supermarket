@@ -1,6 +1,6 @@
 #
 # Author:: Seth Vargo (<sethvargo@gmail.com>)
-# Recipe:: postgres
+# Recipe:: apt
 #
 # Copyright 2013 Opscode, Inc.
 #
@@ -17,22 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe 'supermarket::_apt'
+execute 'apt-get update'
 
-package 'postgresql'
-package 'postgresql-contrib'
-package 'libpq-dev'
-
-execute 'postgres_user[vagrant]' do
-  user 'postgres'
-  command 'createuser vagrant --superuser'
-  not_if %q(su - postgres -c 'psql postgres -tAc "SELECT 1 FROM pg_roles WHERE rolname='\''vagrant'\''" | grep -q 1')
-end
-
-template '/etc/postgresql/9.1/main/pg_hba.conf' do
-  notifies :reload, 'service[postgresql]', :immediately
-end
-
-service 'postgresql' do
-  action :nothing
-end
+package 'software-properties-common'

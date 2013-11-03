@@ -17,58 +17,21 @@
 # limitations under the License.
 #
 
-Chef::Resource.send(:include, Chef::Mixin::ShellOut)
+include_recipe 'supermarket::_apt'
 
-source_url = node['supermarket']['ruby']['source_url']
-src_dir    = node['supermarket']['ruby']['src_dir']
-version    = node['supermarket']['ruby']['version']
-prefix     = node['supermarket']['ruby']['prefix']
-
-%w[build-essential zlib1g-dev libssl-dev libreadline6-dev libyaml-dev].each do |name|
-  package name do
-    action :install
-  end
+execute 'add-apt-repository[ppa:brightbox]' do
+  command 'add-apt-repository ppa:brightbox/ruby-ng-experimental'
+  notifies :run, 'execute[apt-get update]', :immediately
+  not_if 'test -f /etc/apt/sources.list.d/brightbox-ruby-ng-experimental-precise.list'
 end
 
-directory src_dir do
-  action :create
-end
+package 'ruby2.0'
+package 'ruby2.0-dev'
 
-remote_file "#{src_dir}/ruby-#{version}.tar.gz" do
-  source source_url
-  not_if do
-    File.exists?("#{prefix}/bin/ruby") &&
-    shell_out("#{prefix}/bin/ruby --version").stdout.include?(version.gsub('-', ''))
-  end
-end
+gem_package 'bundler'
 
-execute "untar-ruby-#{version}" do
-  command "tar -xvzf ruby-#{version}.tar.gz"
-  cwd src_dir
-  notifies :run, "execute[compile-ruby-#{version}]", :immediately
-  not_if { File.directory?("#{src_dir}/ruby-#{version}") }
-end
-
-execute "compile-ruby-#{version}" do
-  command "./configure --prefix=#{prefix} && make && make install"
-  cwd "#{src_dir}/ruby-#{version}"
-  notifies :reload, 'ohai[reload_ruby]', :immediately
-  not_if do
-    File.exists?("#{prefix}/bin/ruby") &&
-    shell_out("#{prefix}/bin/ruby --version").stdout.include?(version.gsub('-', ''))
-  end
-end
-
-ohai 'reload_ruby' do
-  plugin 'ruby'
-  action :nothing
-end
-
-gem_package 'bundler' do
-  action :install
-end
-
-execute 'bundle install --path vendor' do
-  cwd    '/vagrant'
-  not_if 'bundle check'
+execute 'bundle[install]' do
+  cwd '/supermarket'
+  command 'bundle install --path vendor'
+  not_if '(cd /supermarket && bundle check)'
 end

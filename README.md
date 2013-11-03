@@ -83,3 +83,34 @@ Other Stuff We Need to Document
 - How to run the test suite
 - Services (job queues, cache servers, search engines, etc.)
 - Deployment instructions
+
+
+Development
+-----------
+### Using the Development VM (recommended for new users)
+Supermarket includes a collection of Chef cookbooks and a preconfigured `Vagrantfile` that makes it easy to get up an running without modifying your local system.
+
+1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and [Vagrant](http://downloads.vagrantup.com/)
+1. Run the following command to bring up a new virtual development machine:
+
+        $ vagrant up --provision
+
+  This can take up to 10 minutes the first time (because it needs to configure the virtual machine). You may be asked to enter your password to mount the NFS share.
+1. SSH into the development machine and change into the project directory:
+
+        $ vagrant ssh
+        > vagrant@ cd /supermarket
+
+1. Start the Rails server:
+
+        $ ./bin/rails server
+
+**Note:** The development VM makes certain assumptions, such as the port and mode you are running Rails on. _The Chef cookbooks and `Vagrantfile` are **not** designed for deploying this application!_
+
+
+### Using your laptop (advanced users only)
+
+1. Install Ruby 2.0 (latest patch) using your favorite Ruby manager
+1. Install [homebrew](http://brew.sh/)
+
+        $ ./bin/setup

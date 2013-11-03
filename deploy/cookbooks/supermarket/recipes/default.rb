@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe 'supermarket::_postgres'
-include_recipe 'supermarket::_node'
-include_recipe 'supermarket::_ruby'
 include_recipe 'supermarket::_editors'
+include_recipe 'supermarket::_node'
+include_recipe 'supermarket::_postgres'
+include_recipe 'supermarket::_ruby'
