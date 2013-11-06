@@ -1,7 +1,8 @@
 form.new_icla_signature {
+  background-color: white;
   border: 1px solid $secondary-blue;
   margin: 2em;
-  padding: 1em;
+  padding: 3em;
 
   > h1 {
     color: white;
@@ -9,7 +10,7 @@ form.new_icla_signature {
     font-size: 125%;
     padding: 1em;
     padding-left: 43px;
-    margin: -0.8em;
+    margin: -2.4em;
     margin-bottom: 1em;
     position: relative;
 
@@ -28,7 +29,9 @@ form.new_icla_signature {
   }
 
 
-  header {
+  header, section {
+    text-align: justify;
+
     h1, h2, h3, h4, h5, h6 {
       text-align: center;
       text-transform: none;
@@ -36,22 +39,24 @@ form.new_icla_signature {
 
     .about {
       background-color: lighten($secondary-blue, 33%);
-      border: 1px dotted $secondary-blue;
-      border-radius: 3px;
+      border: 1px solid lighten($secondary-blue, 15%);
       padding: 1em;
+      text-align: left;
     }
 
-    p {
+    p, li {
       line-height: 1.5;
     }
   }
 
   .error-messages {
-    color: lighten($secondary-red, 20%);
-    padding: 2em 2em 0 2em;
+    background-color: lighten($secondary-red, 65%);
+    border: 1px solid lighten($secondary-red, 55%);
+    padding: 1em;
+    margin-bottom: 1em;
 
     ul li {
-      line-height: 1.4;
+      line-height: 1.5;
     }
   }
 
@@ -113,6 +118,8 @@ form.new_icla_signature {
   }
 
   fieldset.end {
+    padding: 12px 0;
+
     .agreement {
       font-family: $gotham;
       font-size: 150%;
@@ -126,6 +133,7 @@ form.new_icla_signature {
 
     input[type=submit] {
       @include button($primary-orange);
+      float: right;
     }
   }
 
