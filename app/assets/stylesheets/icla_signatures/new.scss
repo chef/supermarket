@@ -1,4 +1,51 @@
 form.new_icla_signature {
+  border: 1px solid $secondary-blue;
+  margin: 2em;
+  padding: 1em;
+
+  > h1 {
+    color: white;
+    background-color: $secondary-blue;
+    font-size: 125%;
+    padding: 1em;
+    padding-left: 43px;
+    margin: -0.8em;
+    margin-bottom: 1em;
+    position: relative;
+
+    &:before {
+      content: "\f15c"; // icon-file-text
+      font-family: FontAwesome;
+      font-style: normal;
+      font-weight: normal;
+      text-decoration: inherit;
+      font-size: 18px;
+      padding-right: 0.5em;
+      position: absolute;
+      top: 23px;
+      left: 16px;
+    }
+  }
+
+
+  header {
+    h1, h2, h3, h4, h5, h6 {
+      text-align: center;
+      text-transform: none;
+    }
+
+    .about {
+      background-color: lighten($secondary-blue, 33%);
+      border: 1px dotted $secondary-blue;
+      border-radius: 3px;
+      padding: 1em;
+    }
+
+    p {
+      line-height: 1.5;
+    }
+  }
+
   .error-messages {
     color: lighten($secondary-red, 20%);
     padding: 2em 2em 0 2em;
@@ -67,7 +114,9 @@ form.new_icla_signature {
 
   fieldset.end {
     .agreement {
-      @include span-columns(9);
+      font-family: $gotham;
+      font-size: 150%;
+      margin-right: 3em;
     }
 
     input[type=checkbox] {
@@ -76,8 +125,12 @@ form.new_icla_signature {
     }
 
     input[type=submit] {
-      float: right;
       @include button($primary-orange);
     }
+  }
+
+  footer {
+    color: #ccc;
+    text-align: right;
   }
 }
