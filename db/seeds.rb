@@ -5,3 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# The Default ICLA Document
+parts = %w[ head body ].inject({}) do |result, part|
+  result[part] = open(File.dirname(__FILE__) + "/seeds/icla/#{part}.md").read
+  result
+end
+
+Icla.create_with({
+  :head => parts['head'],
+  :body => parts['body']
+}).find_or_create_by(:version => Supermarket::Config.icla_version)

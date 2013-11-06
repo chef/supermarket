@@ -1,4 +1,7 @@
 <%= form_for @icla_signature do |f| %>
+  <header>
+    <%= markdown(@icla_signature.icla.head) %>
+  </header>
   <div class="error-messages">
     <% if @icla_signature.errors.present? %>
       <p>There were some problems submitting the form:</p>
@@ -29,12 +32,19 @@
     <%= f.text_field :zip, placeholder: 'Postal Code *', title: 'Postal Code', required: true %>
     <%= f.text_field :country, placeholder: 'Country *', title: 'Country', required: true %>
   </fieldset>
+  <section>
+    <%= markdown(@icla_signature.icla.body) %>
+  </section>
   <fieldset class="end">
     <div class="agreement">
       <%= f.check_box :agreement %>
       <%= f.label :agreement, 'I agree to the terms of this agreement' %>
     </div>
     <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :icla_id %>
     <%= submit_tag 'Sign ICLA' %>
   </fieldset>
+  <footer>
+    <%= @icla_signature.icla.version %>
+  </footer>
 <% end %>

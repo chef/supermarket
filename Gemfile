@@ -8,6 +8,7 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-twitter'
 gem 'pg'
+gem 'redcarpet' # markdown parsing
 gem 'unicorn'
 gem 'unicorn-rails'
 
