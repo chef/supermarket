@@ -12,4 +12,4 @@ parts = %w[ head body ].inject({}) do |result, part|
   result
 end
 
-Icla.create_with(parts).find_or_create_by(:version => Supermarket::Config.icla_version)
+Icla.find_or_create_by_version(Supermarket::Config.icla_version).update_attributes(parts)
