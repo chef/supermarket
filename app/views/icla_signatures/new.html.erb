@@ -6,16 +6,16 @@
     </section>
     <%= markdown(@icla_signature.icla.head) %>
   </header>
-  <div class="error-messages">
-    <% if @icla_signature.errors.present? %>
+  <% if @icla_signature.errors.present? %>
+    <div class="error-messages">
       <p>There were some problems submitting the form:</p>
       <ul>
         <% @icla_signature.errors.full_messages.each do |error| %>
           <li><%= error %></li>
         <% end %>
       </ul>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
   <fieldset class="name">
     <%= f.text_field :prefix, placeholder: 'Prefix',  title: 'Prefix', autofocus: true %>
     <%= f.text_field :first_name, placeholder: 'First Name *', title: 'First Name', required: true %>
