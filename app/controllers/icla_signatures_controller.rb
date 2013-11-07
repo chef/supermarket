@@ -32,7 +32,7 @@ class IclaSignaturesController < ApplicationController
     authorize! @icla_signature
 
     # Load default ICLA text
-    @icla_signature.icla = Icla.find_by_version(Supermarket::Config.icla_version)
+    @icla_signature.icla = Icla.latest
 
     # Prepopulate any fields we can from the User object
     @icla_signature.prefix      = current_user.prefix
@@ -93,7 +93,7 @@ class IclaSignaturesController < ApplicationController
         :zip,
         :country,
         :agreement,
-        :icla_id
+        :icla_id,
       )
     end
 

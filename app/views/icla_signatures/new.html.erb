@@ -4,7 +4,7 @@
     <section class="about">
       <p>You've been asked to sign an ICLA as part of the <%= link_to 'Community Contributions', 'http://docs.opscode.com/community_contributions.html', :target => :blank %> process. Read the document below and fill in the form for your ICLA to be filed. Thanks!</p>
     </section>
-    <%= markdown(@icla_signature.icla.head) %>
+    <%= render_markdown(@icla_signature.icla.head) %>
   </header>
   <% if @icla_signature.errors.present? %>
     <div class="error-messages">
@@ -37,7 +37,7 @@
     <%= f.text_field :country, placeholder: 'Country *', title: 'Country', required: true %>
   </fieldset>
   <section>
-    <%= markdown(@icla_signature.icla.body) %>
+    <%= render_markdown(@icla_signature.icla.body) %>
   </section>
   <fieldset class="end">
     <%= f.hidden_field :user_id %>

@@ -9,22 +9,14 @@ form.new_icla_signature {
     background-color: $secondary-blue;
     font-size: 125%;
     padding: 1em;
-    padding-left: 43px;
     margin: -2.4em;
     margin-bottom: 1em;
     position: relative;
 
     &:before {
-      content: "\f15c"; // icon-file-text
-      font-family: FontAwesome;
-      font-style: normal;
-      font-weight: normal;
-      text-decoration: inherit;
-      font-size: 18px;
-      padding-right: 0.5em;
-      position: absolute;
-      top: 23px;
-      left: 16px;
+      @extend .fa;
+      content: $fa-var-file-text;
+      padding-right: 1em;
     }
   }
 

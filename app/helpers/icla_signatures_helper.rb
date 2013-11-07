@@ -7,7 +7,9 @@ module IclaSignaturesHelper
   end
 
   # Render markdown
-  def markdown(text = '')
-    Redcarpet::Markdown.new(TargetBlankRenderer, :autolink => true).render(text).html_safe
+  def render_markdown(text)
+    Redcarpet::Markdown.new(TargetBlankRenderer, autolink: true).render(
+      text.to_s
+    ).html_safe
   end
 end
