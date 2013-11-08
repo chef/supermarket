@@ -16,10 +16,13 @@
 #
 
 development:
+  icla_version: '99999-2621/LEGAL14767024.1'
   omni_auth:
 
 production:
+  icla_version: '99999-2621/LEGAL14767024.1'
   omni_auth:
 
 test:
+  icla_version: '99999-2621/LEGAL14767024.1'
   omni_auth:

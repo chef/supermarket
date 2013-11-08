@@ -1,10 +1,54 @@
 form.new_icla_signature {
+  background-color: white;
+  border: 1px solid $secondary-blue;
+  margin: 2em;
+  padding: 3em;
+
+  > h1 {
+    color: white;
+    background-color: $secondary-blue;
+    font-size: 125%;
+    padding: 1em;
+    margin: -2.4em;
+    margin-bottom: 1em;
+    position: relative;
+
+    &:before {
+      @extend .fa;
+      content: $fa-var-file-text;
+      padding-right: 1em;
+    }
+  }
+
+
+  header, section {
+    text-align: justify;
+
+    h1, h2, h3, h4, h5, h6 {
+      text-align: center;
+      text-transform: none;
+    }
+
+    .about {
+      background-color: lighten($secondary-blue, 33%);
+      border: 1px solid lighten($secondary-blue, 15%);
+      padding: 1em;
+      text-align: left;
+    }
+
+    p, li {
+      line-height: 1.5;
+    }
+  }
+
   .error-messages {
-    color: lighten($secondary-red, 20%);
-    padding: 2em 2em 0 2em;
+    background-color: lighten($secondary-red, 65%);
+    border: 1px solid lighten($secondary-red, 55%);
+    padding: 1em;
+    margin-bottom: 1em;
 
     ul li {
-      line-height: 1.4;
+      line-height: 1.5;
     }
   }
 
@@ -66,8 +110,12 @@ form.new_icla_signature {
   }
 
   fieldset.end {
+    padding: 12px 0;
+
     .agreement {
-      @include span-columns(9);
+      font-family: $gotham;
+      font-size: 150%;
+      margin-right: 3em;
     }
 
     input[type=checkbox] {
@@ -76,8 +124,13 @@ form.new_icla_signature {
     }
 
     input[type=submit] {
-      float: right;
       @include button($primary-orange);
+      float: right;
     }
+  }
+
+  footer {
+    color: #ccc;
+    text-align: right;
   }
 }
