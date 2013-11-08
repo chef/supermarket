@@ -9,6 +9,18 @@ Super Market is Opscode's Individual Contributor License Agreement (ICLA) servic
 
 Trello Project: https://trello.com/c/aBFr3DaK
 
+Database Setup
+--------------
+
+To create the database and populate it, make sure your config/database.yml has
+the correct values. Then run:
+
+```sh
+rake db:create
+rake db:migrate
+rake db:seed
+```
+
 OmniAuth
 --------
 
