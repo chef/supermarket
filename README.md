@@ -93,7 +93,24 @@ By default, the VM uses NFS mounted folders, 4GB of RAM, and 2 CPUs. If you are 
 
 **NOTE:** These variables must be set the _first_ time you run any supermarket command. After that, they will be persisted. To change them, you'll need to destroy the Vagrant machine (`vagrant destroy`) and run the command again.
 
-If your operating system supports NFS mounted folders, you may be asked to supply your administrative password.
+If your operating system supports NFS mounted folders, you may be asked to supply your administrative password. Please note, sometimes VirtualBox explodes when trying to mount NFS shares; although it will make the application significantly slower, disabling NFS folder sharing can alleviate an error like:
+
+```text
+There was an error while executing `VBoxManage`, a CLI used by Vagrant
+for controlling VirtualBox. The command and stderr is shown below.
+
+Command: ["hostonlyif", "create"]
+
+Stderr: 0%...
+Progress state: NS_ERROR_FAILURE
+VBoxManage: error: Failed to create the host-only adapter
+VBoxManage: error: VBoxNetAdpCtl: Error while adding new interface: failed to open /dev/vboxnetctl: No such file or directory
+
+VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005), component HostNetworkInterface, interface IHostNetworkInterface
+VBoxManage: error: Context: "int handleCreate(HandlerArg*, int, int*)" at line 68 of file VBoxManageHostonly.cpp
+```
+
+Running `sudo /Library/StartupItems/VirtualBox/VirtualBox restart` can help fix this problem, but sometimes you just can't use NFS mounts with VirtualBox.
 
 ### Using your laptop (advanced users only)
 
