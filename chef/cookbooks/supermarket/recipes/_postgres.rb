@@ -30,7 +30,7 @@ execute 'postgres_user[vagrant]' do
 end
 
 template '/etc/postgresql/9.1/main/pg_hba.conf' do
-  notifies :reload, 'service[postgresql]', :immediately
+  notifies :restart, 'service[postgresql]', :immediately
 end
 
 service 'postgresql' do

@@ -34,6 +34,10 @@ You can add support for additional OAUTH providers by creating an extractor obje
 
 Since each OmniAuth provider returns a different set of information, you often end up with nested case statements to account for all the different providers. Super Market accounts for this behavior using Extractor objects. Each OmniAuth provider must have an associated Extractor object that extracts the correct information from the OmniAuth response hash into a object with a unified interface.
 
+### lvh.me
+
+Twitter and other OmniAuth providers do _not_ like localhost URLs as callback URLs. Thankfully, there's a special DNS entry, `lvh.me`, that will resolve to localhost. It is recommended that you register your OmniAuth callbacks with `lvh.me:3000` and always browse to `lvh.me` instead of `localhost:3000`.
+
 Requirements
 ------------
 
@@ -83,6 +87,13 @@ Supermarket includes a collection of Chef cookbooks and a preconfigured `Vagrant
 
 **Note:** The development VM makes certain assumptions (such as the port and mode you are running Rails on), which are not configurable at this time. _The Chef cookbooks and `Vagrantfile` are packaged with this repository are **not** designed for a production deployment!_
 
+By default, the VM uses NFS mounted folders, 4GB of RAM, and 2 CPUs. If you are constrained in any of these areas, you can override these defaults by specifying the enviroment variables:
+
+        $ VM_MEMORY=2048 VM_CPUS=1 VM_NFS=false ./bin/supermarket server
+
+**NOTE:** These variables must be set the _first_ time you run any supermarket command. After that, they will be persisted. To change them, you'll need to destroy the Vagrant machine (`vagrant destroy`) and run the command again.
+
+If your operating system supports NFS mounted folders, you may be asked to supply your administrative password.
 
 ### Using your laptop (advanced users only)
 
