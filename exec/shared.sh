@@ -7,7 +7,15 @@ vagrant_up() {
 }
 
 vagrant_ssh() {
-  config=$(vagrant ssh-config)
+  # Cache the results of ssh-config (it's super expensive)
+  config_file=".vagrant/ssh-config.cache"
+  if [ -f "$config_file" ]; then
+    config="$(cat $config_file)"
+  else
+    config="$(vagrant ssh-config)"
+    echo "$config" > $config_file
+  fi
+
   host=$(echo "$config" | grep "HostName" -m1 | cut -d' ' -f4)
   user=$(echo "$config" | grep "User" -m1 | cut -d' ' -f4)
   port=$(echo "$config" | grep "Port" -m1 | cut -d' ' -f4)
