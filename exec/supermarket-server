@@ -1,10 +1,43 @@
 #!/usr/bin/env sh
 #
 # Usage: supermarket server
-# Summary: Starts the Rails server
+# Summary: Start the Rails server
 #
 
 set -e
 
 . $SUPERMARKET_EXEC/shared.sh
-in_supermarket "./bin/rake db:migrate && ./bin/rails server"
+
+command=$(cat <<EOH
+as_postgres() {
+  sudo su - postgres --command "psql --dbname=supermarket_development --command=\"\$@\""
+}
+
+migrated() {
+  local schema_version="\$(ls db/migrate | tail -1 | cut -d'_' -f1)"
+  as_postgres "SELECT version FROM schema_migrations WHERE version='\$schema_version';" | grep \$schema_version 2>&1 > /dev/null
+  return \$?
+}
+
+seeded() {
+  as_postgres "SELECT * FROM iclas;" | grep "0 rows" 2>&1 > /dev/null
+
+  if [ \$? != 0 ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+if ! migrated; then
+  ./bin/rake db:migrate
+fi
+
+if ! seeded; then
+  ./bin/rake db:seed
+fi
+
+./bin/rails server
+EOH)
+
+in_supermarket "$command"

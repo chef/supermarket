@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 #
 # Usage: supermarket logs
-# Summary: Tails the Rails logs
+# Summary: Tail the server logs
 #
 
 set -e

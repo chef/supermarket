@@ -47,11 +47,10 @@ summary() {
 command="$1"
 case "$command" in
   "" )
-    echo $(summaries)
-    # echo "Usage: supermarket COMMAND [ARGS]
-    #   help
-    #   $(summaries)
-    # "
+    echo "Usage: supermarket COMMAND [ARGS]
+
+COMMANDS:
+$(summaries)"
     ;;
   * )
     file="$SUPERMARKET_EXEC/supermarket-$command"
