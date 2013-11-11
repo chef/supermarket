@@ -1,25 +1,11 @@
 Super Market
 ============
-
 Super Market is Opscode's Individual Contributor License Agreement (ICLA) service. It performs a variety of functions including:
 
 - Exposing an API for other services to consume
 - Storing user-information and CLA status
 - More...
 
-Trello Project: https://trello.com/c/aBFr3DaK
-
-Database Setup
---------------
-
-To create the database and populate it, make sure your config/database.yml has
-the correct values. Then run:
-
-```sh
-rake db:create
-rake db:migrate
-rake db:seed
-```
 
 OmniAuth
 --------
@@ -91,26 +77,29 @@ Development
 Supermarket includes a collection of Chef cookbooks and a preconfigured `Vagrantfile` that makes it easy to get up an running without modifying your local system.
 
 1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and [Vagrant](http://downloads.vagrantup.com/)
-1. Run the following command to bring up a new virtual development machine:
+1. Run the server:
 
-        $ vagrant up --provision
+        $ ./bin/supermarket server
 
-  This can take up to 10 minutes the first time (because it needs to configure the virtual machine). You may be asked to enter your password to mount the NFS share.
-1. SSH into the development machine and change into the project directory:
-
-        $ vagrant ssh
-        > vagrant@ cd /supermarket
-
-1. Start the Rails server:
-
-        $ ./bin/rails server
-
-**Note:** The development VM makes certain assumptions, such as the port and mode you are running Rails on. _The Chef cookbooks and `Vagrantfile` are **not** designed for deploying this application!_
+**Note:** The development VM makes certain assumptions (such as the port and mode you are running Rails on), which are not configurable at this time. _The Chef cookbooks and `Vagrantfile` are packaged with this repository are **not** designed for a production deployment!_
 
 
 ### Using your laptop (advanced users only)
 
 1. Install Ruby 2.0 (latest patch) using your favorite Ruby manager
-1. Install [homebrew](http://brew.sh/)
+1. Install Postgres (from [homebrew](http://brew.sh/) or the [app](http://postgresapp.com/))
+1. Install bundler
 
-        $ ./bin/setup
+        $ gem install bundler
+
+1. Install required gems:
+
+        $ bundle
+
+1. Run the migrations:
+
+        $ ./bin/rake db:create && ./bin/rake db:migrate && ./bin/rake db:seed
+
+1. Start the server:
+
+        $ ./bin/rails server
