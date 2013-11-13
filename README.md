@@ -87,7 +87,7 @@ Supermarket includes a collection of Chef cookbooks and a preconfigured `Vagrant
 
 **Note:** The development VM makes certain assumptions (such as the port and mode you are running Rails on), which are not configurable at this time. _The Chef cookbooks and `Vagrantfile` are packaged with this repository are **not** designed for a production deployment!_
 
-By default, the VM uses NFS mounted folders, 4GB of RAM, and 2 CPUs. If you are constrained in any of these areas, you can override these defaults by specifying the enviroment variables:
+By default, the VM uses NFS mounted folders, 4GB of RAM, and 2 CPUs. If you are constrained in any of these areas, you can override these defaults by specifying the environment variables:
 
         $ VM_MEMORY=2048 VM_CPUS=1 VM_NFS=false ./bin/supermarket server
 
