@@ -1,0 +1,64 @@
+#!/usr/bin/env sh
+set -e
+
+summaries() {
+  local commands=()
+  local summaries=()
+  local longest=0
+
+  for file in $(ls $SUPERMARKET_EXEC); do
+    local command="${file:12}"
+    local summary="$(summary "$SUPERMARKET_EXEC/$file")"
+
+    if [ -n "$summary" ]; then
+      commands["${#commands[@]}"]="$command"
+      summaries["${#summaries[@]}"]="$summary"
+
+      if [ "${#command}" -gt "$longest" ]; then
+        longest="${#command}"
+      fi
+    fi
+  done
+
+  local index
+  local columns="$(tput cols)"
+  local max=$(( $columns - $longest - 5 ))
+
+  for (( index=0; index < ${#commands[@]}; index++ )); do
+    printf "   %-${longest}s  %s\n" "${commands[$index]}" "${summaries[$index]}"
+  done
+}
+
+print_help() {
+  local file="$1"
+  local usage="$(sed -n "s/^# \(Usage: .*\)/\1/p" "$file")"
+
+  if [ -n "$usage" ]; then
+    echo "$usage"
+  else
+    echo "Sorry, no documentation for $file, yet..."
+  fi
+}
+
+summary() {
+  sed -n "s/^# Summary: \(.*\)/\1/p" "$1"
+}
+
+command="$1"
+case "$command" in
+  "" )
+    echo "Usage: supermarket COMMAND [ARGS]
+
+COMMANDS:
+$(summaries)"
+    ;;
+  * )
+    file="$SUPERMARKET_EXEC/supermarket-$command"
+
+    if [ -n "$file" ]; then
+      print_help "$file"
+    else
+      echo "Supermarket: No command '$command'!" >&2
+      exit 1
+    fi
+esac

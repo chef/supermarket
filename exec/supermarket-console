@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+#
+# Usage: supermarket console
+# Summary: Run the Rails console
+#
+
+set -e
+
+. $SUPERMARKET_EXEC/shared.sh
+in_supermarket "./bin/rails console"

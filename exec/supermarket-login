@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+#
+# Usage: supermarket ssh
+# Summary: Establish an SSH connection
+#
+
+set -e
+
+vagrant ssh

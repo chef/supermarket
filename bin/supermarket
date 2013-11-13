@@ -1,0 +1,81 @@
+#!/usr/bin/env sh
+set -e
+
+export SUPERMARKET_PATH=$(cd "$(dirname "$0")/.." && pwd)
+export SUPERMARKET_EXEC="$SUPERMARKET_PATH/exec"
+export PATH="$SUPERMARKET_EXEC:$PATH"
+
+
+###
+# Dispatcher
+###
+command="$1"
+case "$command" in
+  "" | "-h" | "--help" )
+    exec supermarket-help
+    ;;
+  * )
+    command_path=$(command -v "supermarket-$command" || true)
+    if [ ! -x "$command_path" ]; then
+      echo "Supermarket: no such command \`$command\`" >&2
+      exit 1
+    fi
+
+    shift
+    exec "$command_path" "$@"
+    ;;
+esac
+
+# export SUPERMARKET_PATH="/supermarket"
+
+# # Default values
+# port=3000
+# env="development"
+# migrate_command="./bin/rake db:create && ./bin/rake db:migrate"
+# server_command="./bin/rails server"
+
+# ###
+# # Commands
+# ###
+
+# function usage {
+#   "Usage: $0 [--port PORT] [--env RAILS_ENV]"
+# }
+
+# function start {
+#   in_supermarket "./bin/rails server"
+# }
+
+# function logs {
+#   in_supermarket "tail -f ./log/*.log"
+# }
+
+# while [ "$1" != "" ]; do
+#   case $1 in
+#     -p | --port )  shift
+#                    port=$1
+#                    ;;
+#     -e | --env  )  shift
+#                    env=$1
+#                    ;;
+#     -h | --help )  echo usage
+#                    exit
+#                    ;;
+#     *           )  echo usage
+#                    exit 1
+#   esac
+#   shift
+# done
+
+# # Sanity check to make sure the user has Vagrant installed
+# if ! vagrant_installed; then
+#   echo "Vagrant is not installed! Please install Vagrant by visiting" \
+#        " http://downloads.vagrantup.com/."
+#   exit 1
+# fi
+
+# if ! vagrant_running; then
+#   vagrant_up
+# fi
+
+# start

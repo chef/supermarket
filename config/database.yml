@@ -9,5 +9,6 @@ test:
   host: localhost
 
 production:
+  username: vagrant
   adapter: postgresql
   database: supermarket_production

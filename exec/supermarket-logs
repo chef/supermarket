@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+#
+# Usage: supermarket logs
+# Summary: Tail the server logs
+#
+
+set -e
+
+. $SUPERMARKET_EXEC/shared.sh
+in_supermarket "tail -f log/*.log"
