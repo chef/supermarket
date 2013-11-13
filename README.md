@@ -93,7 +93,7 @@ By default, the VM uses NFS mounted folders, 4GB of RAM, and 2 CPUs. If you are 
 
 **NOTE:** These variables must be set the _first_ time you run any supermarket command. After that, they will be persisted. To change them, you'll need to destroy the Vagrant machine (`vagrant destroy`) and run the command again.
 
-If your operating system supports NFS mounted folders, you may be asked to supply your administrative password. Please note, sometimes VirtualBox explodes when trying to mount NFS shares; although it will make the application significantly slower, disabling NFS folder sharing can alleviate an error like:
+If your operating system supports NFS mounted folders, you may be asked to supply your administrative password. Please note, sometimes VirtualBox explodes when trying to mount NFS shares (specifically on OSX Mavericks); although it will make the application significantly slower, disabling NFS folder sharing can alleviate an error like:
 
 ```text
 There was an error while executing `VBoxManage`, a CLI used by Vagrant
@@ -112,7 +112,7 @@ VBoxManage: error: Context: "int handleCreate(HandlerArg*, int, int*)" at line 6
 
 Running `sudo /Library/StartupItems/VirtualBox/VirtualBox restart` can help fix this problem, but sometimes you just can't use NFS mounts with VirtualBox.
 
-### Using your laptop (advanced users only)
+### Using your local machine (advanced users only)
 
 1. Install Ruby 2.0 (latest patch) using your favorite Ruby manager
 1. Install Postgres (from [homebrew](http://brew.sh/) or the [app](http://postgresapp.com/))
