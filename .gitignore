@@ -39,3 +39,6 @@ config/application.yml
 # Ignore vendored gems
 vendor/gems
 vendor/ruby
+
+# Ignore any Opscode-specific fixture data
+db/fixtures
