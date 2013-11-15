@@ -11,5 +11,5 @@ Supermarket::Application.routes.draw do
   match 'auth/:provider/callback' => 'sessions#create', as: :auth_callback, via: [:get, :post]
   get 'auth/failure' => 'sessions#failure', as: :auth_failure
 
-  root 'sessions#new'
+  root 'icla_signatures#index'
 end
