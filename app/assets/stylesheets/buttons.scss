@@ -4,6 +4,7 @@
   border-radius: $button-radius;
   color: darken($color, 20%);
   cursor: pointer;
+  display: block;
   font-family: $helvetica;
   font-size: $font-size;
   font-weight: bold;
@@ -14,11 +15,20 @@
   line-height: $button-height;
   text-decoration: none;
   text-shadow: 0 1px 0 lighten($color, 20%);
+  width: 100%;
 
   &:hover {
     border: 1px solid darken($color, 10%);
     box-shadow: 0 1px 1px lighten($color, 15%), inset 0 1px 0 lighten($color, 20%);
     @include linear-gradient(lighten($color, 15%), lighten($color, 10%));
+  }
+
+  &.disabled {
+    background: lighten($color, 25%);
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-shadow: none;
   }
 }
 

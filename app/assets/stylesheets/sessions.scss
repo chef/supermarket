@@ -53,13 +53,13 @@ body.sessions {
     }
 
     @mixin omniauth-button($color, $logo) {
-      a {
+      a, button {
         @include button($color);
         display: block;
         padding-right: 1em
       }
 
-      a:before {
+      a:before, button:before {
         @extend .#{$fa-css-prefix};
         content: $logo;
         font-size: 200%;
