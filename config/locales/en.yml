@@ -1,0 +1,4 @@
+en:
+  user:
+    signed_in:  "Welcome back %{name}!"
+    signed_out: "Goodbye"

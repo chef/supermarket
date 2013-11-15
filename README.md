@@ -12,7 +12,7 @@ OmniAuth
 
 Super Market uses [OmniAuth](https://github.com/intridea/omniauth) for authentication. The OmniAuth configuration is data-driven, so you can configure OmniAuth to use whatever authentication method your organization desires. You can read more about OmniAuth on the [OmniAuth GitHub page](https://github.com/intridea/omniauth). In short, you need to create and register Super Market as an application and setup the keys in the `config/application.yml` file.
 
-To register GitHub as an OmniAuth login method:
+To register GitHub as an OmniAuth sign in method:
 
 1. [Register your application](https://github.com/settings/applications/new)
 2. Make sure the Authorization callback URL has the app's URL with the /auth/github/callback path

@@ -101,7 +101,7 @@ class IclaSignaturesController < ApplicationController
     # Redirect to the home page if the current user already has a signed ICLA.
     #
     def redirect_if_signed!
-      if logged_in? && current_user.signed_icla?
+      if signed_in? && current_user.signed_icla?
         return redirect_to root_path, alert: 'You have already signed the Individual CLA!'
       end
     end

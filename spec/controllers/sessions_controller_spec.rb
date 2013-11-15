@@ -6,6 +6,13 @@ describe SessionsController do
 
     it { should respond_with(200) }
     it { should render_template('new') }
+
+    context 'when a user is already signed in' do
+      before { subject.stub(:current_user).and_return(build(:user)) }
+      before { get :new }
+
+      it { should redirect_to(root_path) }
+    end
   end
 
   describe 'POST #create' do
