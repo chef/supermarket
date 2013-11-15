@@ -4,7 +4,7 @@
 VAGRANTFILE_API_VERSION = '2'
 VM_MEMORY = ENV['VM_MEMORY'] || '4096'
 VM_CPUS = ENV['VM_CPUS'] || '2'
-VM_NFS = (ENV['VM_NFS'] && %w(1 true yes).include?(ENV['VM_NFS'])) || true
+VM_NFS = (!ENV['VM_NFS'].nil? && %w(1 true yes).include?(ENV['VM_NFS']))
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.omnibus.chef_version = '11.8.0'

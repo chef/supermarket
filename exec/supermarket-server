@@ -24,7 +24,7 @@ db_migrated() {
   return \$?
 }
 
-seeded() {
+db_seeded() {
   as_postgres "SELECT * FROM iclas;" | grep "0 rows" 2>&1 > /dev/null
 
   if [ \$? != 0 ]; then
@@ -36,13 +36,14 @@ seeded() {
 
 if ! db_created; then
   ./bin/rake db:create
+  ./bin/rake db:migrate
 fi
 
 if ! db_migrated; then
   ./bin/rake db:migrate
 fi
 
-if ! seeded; then
+if ! db_seeded; then
   ./bin/rake db:seed
 fi
 
