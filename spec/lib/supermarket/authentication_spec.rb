@@ -12,7 +12,7 @@ describe Supermarket::Authentication do
       controller = double(:controller)
 
       expect(controller).to receive(:helper_method)
-        .with(:current_user, :logged_in?)
+        .with(:current_user, :signed_in?)
       described_class.included(controller)
     end
   end
@@ -32,15 +32,15 @@ describe Supermarket::Authentication do
     end
   end
 
-  describe '#logged_in?' do
+  describe '#signed_in?' do
     it 'returns true when there is a current_user' do
       subject.stub(:current_user).and_return(true)
-      expect(subject.logged_in?).to be_true
+      expect(subject.signed_in?).to be_true
     end
 
     it 'returns false when there is no current_user' do
       subject.stub(:current_user).and_return(false)
-      expect(subject.logged_in?).to be_false
+      expect(subject.signed_in?).to be_false
     end
   end
 end

@@ -1,7 +1,7 @@
 module Supermarket
   module Authentication
     def self.included(controller)
-      controller.send(:helper_method, :current_user, :logged_in?)
+      controller.send(:helper_method, :current_user, :signed_in?)
     end
 
     #
@@ -18,7 +18,7 @@ module Supermarket
     #
     # @return [Boolean]
     #
-    def logged_in?
+    def signed_in?
       !!current_user
     end
   end

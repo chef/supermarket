@@ -13,7 +13,7 @@
       <li>
         <%= link_to 'Contributors', icla_signatures_path %>
       </li>
-      <% if logged_in? %>
+      <% if signed_in? %>
         <% unless current_user.signed_icla? %>
           <li>
             <%= link_to 'Sign ICLA', new_icla_signature_path %>
@@ -21,11 +21,11 @@
         <% end %>
 
         <li>
-          <%= link_to 'Sign Out', logout_path, method: :delete %>
+          <%= link_to 'Sign Out', sign_out_path, method: :delete %>
         </li>
       <% else %>
         <li>
-          <%= link_to 'Sign In', login_path %>
+          <%= link_to 'Sign In', sign_in_path %>
         </li>
       <% end %>
     </ul>
