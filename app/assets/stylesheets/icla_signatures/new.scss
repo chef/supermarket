@@ -1,136 +1,115 @@
 form.new_icla_signature {
-  background-color: white;
-  border: 1px solid $secondary-blue;
-  margin: 2em;
-  padding: 3em;
-
-  > h1 {
-    color: white;
-    background-color: $secondary-blue;
-    font-size: 125%;
-    padding: 1em;
-    margin: -2.4em;
-    margin-bottom: 1em;
-    position: relative;
-
-    &:before {
-      @extend .fa;
-      content: $fa-var-file-text;
-      padding-right: 1em;
-    }
+  section {
+    @include row;
   }
 
-
-  header, section {
-    text-align: justify;
-
-    h1, h2, h3, h4, h5, h6 {
+  .icla-header {
+    > h1 {
+      font-family: $helvetica;
+      margin: 2em 0 0 0;
       text-align: center;
       text-transform: none;
     }
 
-    .about {
-      background-color: lighten($secondary-blue, 33%);
-      border: 1px solid lighten($secondary-blue, 15%);
-      padding: 1em;
-      text-align: left;
-    }
-
-    p, li {
-      line-height: 1.5;
+    > h2 {
+      font-family: $helvetica;
+      margin: 0 0 1em 0;
+      text-align: center;
+      text-transform: none;
     }
   }
 
-  .error-messages {
-    background-color: lighten($secondary-red, 65%);
-    border: 1px solid lighten($secondary-red, 55%);
-    padding: 1em;
-    margin-bottom: 1em;
-
-    ul li {
-      line-height: 1.5;
+  .icla-body {
+    footer {
+      @include row;
+      margin: 1em 0 1em 0;
+      text-align: right;
     }
   }
 
-  #{$all-text-inputs} {
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid;
-    font: inherit;
-    margin-bottom: 0.5em;
+  .agreement {
+    @include row;
 
-    &.error {
-      background-color: lighten($secondary-red, 65%);
-      border-bottom: 1px solid lighten($secondary-red, 20%);
+    p {
+      @include span-columns(10);
+      margin-top: 0;
     }
 
-    // For polyfill
-    &.placeholder {
-      color: #a9a9a9;
+    fieldset {
+      @include span-columns(2);
     }
   }
 
-  label.error {
-    background-color: lighten($secondary-red, 65%);
-    color: lighten($secondary-red, 20%);
-    padding: 0.25em;
-  }
-
-  fieldset {
-    border: none;
-  }
-
-  fieldset.name {
-    #icla_signature_prefix, #icla_signature_suffix {
+  /*
+   * Input-specific styles
+   */
+  @include desktop {
+    // Row 1
+    input#icla_signature_prefix {
       @include span-columns(1);
-      margin-right: 0.5em;
     }
 
-    #icla_signature_first_name, #icla_signature_last_name, #icla_signature_middle_name {
+    input#icla_signature_first_name, input#icla_signature_middle_name {
       @include span-columns(3);
-      margin-right: 0.5em;
     }
-  }
 
-  fieldset.contact {
-    input {
+    input#icla_signature_last_name {
       @include span-columns(4);
     }
-  }
 
-  fieldset.address {
-    #icla_signature_address_line_1, #icla_signature_address_line_2 {
+    input#icla_signature_suffix {
+      @include span-columns(1);
+    }
+
+    // Row 2
+    input#icla_signature_company {
+      @include span-columns(4);
+    }
+
+    input#icla_signature_phone {
+      @include span-columns(3);
+    }
+
+    input#icla_signature_email {
+      @include span-columns(5);
+    }
+
+    // Row 3
+    input#icla_signature_address_line_1 {
       @include span-columns(12);
     }
 
+    // Row 4
+    input#icla_signature_address_line_2 {
+      @include span-columns(12);
+    }
 
-    input {
+    // Row 5
+    input#icla_signature_city {
       @include span-columns(3);
     }
-  }
 
-  fieldset.end {
-    padding: 12px 0;
+    input#icla_signature_state {
+      @include span-columns(3);
+    }
 
+    input#icla_signature_zip {
+      @include span-columns(2);
+    }
+
+    input#icla_signature_country {
+      @include span-columns(4);
+    }
+
+    // Row 6
     .agreement {
-      font-family: $gotham;
-      font-size: 150%;
-      margin-right: 3em;
-    }
+      fieldset {
+        @include span-columns(1);
+      }
 
-    input[type=checkbox] {
-      margin-bottom: 7px;
-      vertical-align: middle;
+      p {
+        @include span-columns(11);
+      }
     }
-
-    input[type=submit] {
-      @include button($primary-orange);
-      float: right;
-    }
-  }
-
-  footer {
-    color: #ccc;
-    text-align: right;
   }
 }

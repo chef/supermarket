@@ -13,7 +13,7 @@ $font-size: 16px;
 $line-height: 24px;
 
 /* Radius */
-$radius: 3px;
+$radius: 2px;
 
 /* Buttons */
 $button-height: 30px;
@@ -21,3 +21,6 @@ $button-radius: $radius;
 
 /* Fonts */
 $gotham: Gotham, Montserrat, sans-serif;
+
+/* Responsive */
+$breakpoint: 480px;

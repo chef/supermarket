@@ -1,33 +1,24 @@
 <header>
-  <div class="logo">
-    <%= link_to root_path do %>
-      <h1>
-        Opscode
-        <span>Supermarket</span>
-      </h1>
+  <div class="container">
+    <%= link_to root_path, class: 'logo' do %>
+      <span>
+        Opscode<span>Supermarket</span>
+      </span>
     <% end %>
-  </div>
 
-  <nav>
-    <ul>
-      <li>
-        <%= link_to 'Contributors', icla_signatures_path %>
-      </li>
-      <% if signed_in? %>
-        <% unless current_user.signed_icla? %>
-          <li>
-            <%= link_to 'Sign ICLA', new_icla_signature_path %>
-          </li>
+    <nav>
+      <ul>
+        <li><%= link_to 'Contributors', icla_signatures_path %></li>
+        <% if signed_in? %>
+          <% unless current_user.signed_icla? %>
+            <li><%= link_to 'Sign ICLA', new_icla_signature_path %></li>
+          <% end %>
+
+          <li><%= link_to 'Sign Out', sign_out_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to 'Sign In', sign_in_path %></li>
         <% end %>
-
-        <li>
-          <%= link_to 'Sign Out', sign_out_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to 'Sign In', sign_in_path %>
-        </li>
-      <% end %>
-    </ul>
-  </nav>
+      </ul>
+    </nav>
+  </div>
 </header>

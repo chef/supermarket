@@ -1,88 +1,97 @@
-@mixin oc-logo {
-  background-image: image-url('opscode-logo.png');
-  background-repeat: no-repeat;
-  background-position: 0 5px;
-  background-size: 34px;
-  color: white;
-  font-family: $gotham;
-  font-size: 21px;
-  font-weight: bold;
-  letter-spacing: 0.025em;
-  padding-left: 43px;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-@mixin oc-logo-tagline {
-  color: $primary-orange;
-  display: block;
-  font-family: $gotham;
-  font-size: 11px;
-  font-weight: normal;
-  letter-spacing: 0;
-  margin-top: -2px;
-  margin-left: 2px;
-}
-
 body > header {
   @include row;
+  background: $primary-blue;
+  line-height: 1.0;
+  overflow: hidden;
+  width: 100%;
 
-  @include linear-gradient($primary-blue, darken($primary-blue, 10%));
-  border-bottom: 1px solid lighten($primary-blue, 35%);
-  padding: 0 0.75em;
+  @include mobile {
+    text-align: center;
+  }
 
-  .logo {
-    @include span-columns(1 of 2);
-    display: inline;
-    margin-top: 5px;
-    margin-bottom: 5px;
+  a.logo {
+    color: #fff;
+    @include inline-block;
+    font-family: $gotham;
+    font-size: 21px;
+    letter-spacing: 0.1em;
+    margin: 1em 0;
+    text-decoration: none;
+    text-transform: uppercase;
 
-    a {
-      text-decoration: none;
+    @include mobile {
+      margin-bottom: 0.25em;
+    }
 
-      h1 {
-        @include oc-logo;
-        margin: 0;
+    &:before {
+      @include retina-image('opscode-logo', 46px 40px);
+      content: ' ';
+      @include inline-block;
+      float: left;
+      height: 40px;
+      margin-right: 0.5em;
+      width: 46px;
+    }
 
-        span {
-          @include oc-logo-tagline;
-        }
+    span {
+      text-align: center;
+
+      span {
+        color: $primary-orange;
+        display: block;
+        font-size: 11px;
+        letter-spacing: 0.05em;
+        margin-top: 0.25em;
       }
+
     }
   }
 
   nav {
-    @include span-columns(1 of 2);
-    text-align: right;
+    float: right;
+    overflow: scroll;
+    white-space: nowrap;
+
+    @include mobile {
+      @include inline-block;
+      width: 100%;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        @include inline-block;
+        margin: 0;
+        padding: 0;
+      }
+    }
 
     a {
-      color: lighten($primary-blue, 50%);
-      font-size: 0.80em;
+      color: #fff;
+      display: block;
+      font-family: $gotham;
+      font-size: 0.9em;
+      margin: 0;
+      padding: 2.5em 1em;
       text-transform: uppercase;
       text-decoration: none;
       @include transition(all 0.2s ease-in-out);
 
+      @include mobile {
+        padding: 1em;
+        margin: 0;
+      }
+
       &:hover {
+        background: lighten($primary-blue, 10%);
         color: #fff;
       }
 
       &:active {
         color: #bbb;
-      }
-    }
-
-    ul {
-      margin-bottom: 4px;
-      margin-top: 10px;
-
-      li {
-        display: inline;
-        line-height: 1.5;
-        margin-left: 1em;
-
-        a {
-          white-space: nowrap;
-        }
       }
     }
   }

@@ -1,14 +1,133 @@
 @import 'bourbon';
 @import 'neat';
-
-@import 'variables';
-@import 'buttons';
-@import 'fonts';
 @import 'icons';
 
-@import 'base';
+@import 'variables';
+@import 'mixins/button';
+@import 'mixins/callout';
+@import 'mixins/responsive';
+@import 'mixins/page';
+
+@import url('http://fonts.googleapis.com/css?family=Montserrat:400;700');
+
+body {
+  background-color: #ffffff;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAAAAACoBHk5AAAAHklEQVQI1wXBwREAIAACIPef187iFYRqYPE24RKnfGxTGEiCmPxJAAAAAElFTkSuQmCC');
+  background-repeat: repeat;
+  color: #333;
+  font-family: $helvetica;
+  padding: 0;
+  margin: 0;
+
+  .container {
+    @include outer-container;
+    padding: 0 $gutter;
+
+    @include mobile {
+      padding: 0;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $gotham;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+    font-family: $helvetica;
+    line-height: 1.5;
+  }
+}
+
+fieldset {
+  border: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+  @include row;
+  @include span-columns(12);
+}
+
+input {
+  background: #fff;
+  border: 1px solid lighten($secondary-gray, 25%);
+  border-radius: $radius;
+  font-family: $helvetica;
+  font-size: $font-size*0.9;
+  outline: none;
+  margin: 0.5em 0;
+  padding: 0.75em;
+  @include row;
+  @include span-columns(12);
+  @include transition;
+
+  // Remove the inner shadown on iOS devices
+  -webkit-appearance: none;
+
+  &:focus {
+    background: lighten($secondary-gray, 45%);
+    border: 1px solid $secondary-gray;
+  }
+
+  &.error {
+    background: lighten($secondary-red, 68%);
+    border: 1px solid lighten($secondary-red, 45%);
+
+    &::-webkit-input-placeholder {
+      color: lighten($secondary-red, 50%);
+    }
+  }
+}
+
+input[type="checkbox"] {
+  display: none;
+
+  & + label {
+    background: #fff;
+    border: 1px solid lighten($secondary-gray, 25%);
+    border-radius: $radius;
+    content: ' ';
+    cursor: pointer;
+    display: block;
+    outline: none;
+    position: relative;
+    @include transition;
+
+    height: 2em;
+    width: 2em;
+  }
+
+  & + label:hover, & + label:focus {
+    background: lighten($secondary-gray, 45%);
+    border: 1px solid $secondary-gray;
+  }
+
+  &.error + label {
+    background: lighten($secondary-red, 68%);
+    border: 1px solid lighten($secondary-red, 45%);
+  }
+
+  &:checked + label:after {
+    content: "\2713";
+    font-size: 2em;
+    position: absolute;
+
+    top: -0.15em;
+    left: 0.10em;
+  }
+}
+
+
+/*
+ * Specific Stylesheets
+ */
 @import 'flash';
 @import 'header';
 
 @import 'sessions';
-@import 'icla_signatures/new'
+@import 'icla_signatures/new';
