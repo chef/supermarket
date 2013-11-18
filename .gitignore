@@ -35,6 +35,7 @@ doc/
 
 # Ignore user-specific configuration files
 config/application.yml
+config/database.yml
 
 # Ignore vendored gems
 vendor/gems
