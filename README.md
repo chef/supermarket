@@ -17,6 +17,7 @@ To register GitHub as an OmniAuth sign in method:
 1. [Register your application](https://github.com/settings/applications/new)
 2. Make sure the Authorization callback URL has the app's URL with the /auth/github/callback path
 3. Add the following to your `config/application.yml`:
+
   ```yaml
   omni_auth:
     github:
