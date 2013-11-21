@@ -1,19 +1,29 @@
-<div class="foo">
-  <table>
-    <tr>
-      <th>Number</th>
-      <th>Contributor</th>
-      <th>Company</th>
-      <th>Date</th>
-    </tr>
+<div class="page">
+  <div class="title">
+    <span class="fa fa-group"></span>Approved Contributors
+  </div>
 
-    <% @icla_signatures.each do |icla_signature| %>
-      <tr>
-        <td><%= icla_signature.id %></td>
-        <td><%= link_to icla_signature.user.name, icla_signature %></td>
-        <td><%= icla_signature.user.company %></td>
-        <td><%= icla_signature.signed_at.to_date.to_s(:long) %></td>
-      </tr>
+  <div class="content">
+    <%= form_for '/search', html: { class: 'icla_signatures_search' } do %>
+      <%= text_field_tag :q, params[:q], placeholder: 'Enter a name, username, or contributor number...', id: 'icla_signatures_search_q' %>
     <% end %>
-  </table>
+
+    <table class="green">
+      <tr>
+        <th>#</th>
+        <th>Contributor</th>
+        <th>Company</th>
+        <th>Date</th>
+      </tr>
+
+      <% @icla_signatures.each do |icla_signature| %>
+        <tr>
+          <td align="center" width="50"><%= icla_signature.id %></td>
+          <td><%= link_to icla_signature.user.name, icla_signature %></td>
+          <td width="200"><%= icla_signature.user.company %></td>
+          <td width="250"><%= icla_signature.signed_at.to_date.to_s(:long) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>

@@ -7,6 +7,7 @@
 @import 'mixins/callout';
 @import 'mixins/responsive';
 @import 'mixins/page';
+@import 'mixins/table';
 
 @import url('http://fonts.googleapis.com/css?family=Montserrat:400;700');
 
@@ -122,6 +123,25 @@ input[type="checkbox"] {
   }
 }
 
+table {
+  @include table($secondary-gray);
+}
+
+table.blue {
+  @include table($secondary-blue);
+}
+
+table.green {
+  @include table($secondary-green);
+}
+
+table.red {
+  @include table($secondary-red);
+}
+
+table.yellow {
+  @include table($secondary-yellow)
+}
 
 /*
  * Specific Stylesheets
@@ -130,4 +150,5 @@ input[type="checkbox"] {
 @import 'header';
 
 @import 'sessions';
+@import 'icla_signatures/index';
 @import 'icla_signatures/new';

@@ -1,0 +1,40 @@
+@mixin table($color: $primary-blue) {
+  $highlight-color: lighten($color, 42%);
+  $border-color: lighten($color, 30%);
+
+  background: #fff;
+  border: 1px solid $color;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-family: $helvetica;
+  font-size: $font-size*0.9;
+  overflow: scroll;
+  margin: 0.5em 0 0 0;
+  width: 100%;
+
+  a, a:visited {
+    color: $color;
+  }
+
+  tr {
+    margin: 0;
+    padding: 0;
+
+    &:nth-child(odd) td {
+      background: $highlight-color;
+    }
+
+    th {
+      background: $color;
+      color: #fff;
+      font-family: $gotham;
+      font-weight: normal;
+      text-transform: uppercase;
+    }
+
+    th, td {
+      border-top: 1px solid $border-color;
+      padding: 0.75em;
+    }
+  }
+}
