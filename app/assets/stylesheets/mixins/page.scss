@@ -1,0 +1,47 @@
+@mixin page($color: $secondary-blue) {
+  background-color: #fff;
+  border: 1px solid $color;
+  border-radius: $radius;
+  font-family: $helvetica;
+  margin: 4em 0 0 0;
+
+  @include mobile {
+    margin: 0;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .title {
+    color: #fff;
+    background: $color;
+    font-family: $gotham;
+    font-size: 1.25em;
+    overflow: hidden;
+    padding: 1em;
+    text-transform: uppercase;
+    @include user-select(none);
+
+    span { // icon
+      margin-right: 0.5em;
+    }
+  }
+
+  .content {
+    margin: 3em;
+    overflow: scroll;
+
+    @include mobile {
+      margin: 1.5em;
+    }
+  }
+
+  p {
+    margin: 1em 0;
+  }
+}
+
+
+.page {
+  @include page;
+}

@@ -1,26 +1,28 @@
 @mixin button($color: $secondary-gray) {
-  border: 1px solid darken($color, 5%);
-  box-shadow: 0 1px 1px lighten($color, 20%), inset 0 1px 0 lighten($color, 25%);
+  background: $color;
+  border: 1px solid $color;
   border-radius: $button-radius;
-  color: darken($color, 20%);
+  color: #fff;
   cursor: pointer;
   display: block;
   font-family: $helvetica;
   font-size: $font-size;
   font-weight: bold;
   @include inline-block;
-  @include linear-gradient(lighten($color, 15%), $color);
   outline: none;
   padding: $font-size/2 $font-size*2;
   line-height: $button-height;
   text-decoration: none;
-  text-shadow: 0 1px 0 lighten($color, 20%);
+  @include transition;
+  @include user-select(none);
   width: 100%;
 
   &:hover {
-    border: 1px solid darken($color, 10%);
-    box-shadow: 0 1px 1px lighten($color, 15%), inset 0 1px 0 lighten($color, 20%);
-    @include linear-gradient(lighten($color, 15%), lighten($color, 10%));
+    background: lighten($color, 15%);
+  }
+
+  &:active {
+    background: lighten($color, 7%);
   }
 
   &.disabled {
