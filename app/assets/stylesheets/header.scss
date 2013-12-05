@@ -10,42 +10,14 @@ body > header {
   }
 
   a.logo {
-    color: #fff;
-    @include inline-block;
-    font-family: $gotham;
-    font-size: 44px;
-    margin: 5px 0;
-    padding-top: 10px;
-    text-decoration: none;
-    text-transform: uppercase;
-
     @include mobile {
       margin-bottom: 0.25em;
     }
 
-    &:before {
-      @include inline-block;
-      @include retina-image('chef-logo', 46px 46px);
-      background-position-y: 6px;
-      content: ' ';
-      float: left;
-      height: 52px;
-      margin-right: 5px;
-      width: 46px;
-    }
-
-    span {
-      text-align: center;
-
-      span {
-        color: $primary-orange;
-        display: block;
-        font-size: 11px;
-        margin-left: 56px;
-        margin-top: -2px;
-        text-align: left;
-      }
-
+    img {
+      border: none;
+      height: 45px;
+      margin-top: 1.25em;
     }
   }
 

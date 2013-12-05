@@ -1,11 +1,8 @@
 <header>
   <div class="container">
     <%= link_to root_path, class: 'logo' do %>
-      <span>
-        Chef<span>Supermarket</span>
-      </span>
+      <%= image_tag 'chef-logo.svg', alt: 'Chef Supermarket' %>
     <% end %>
-
     <nav>
       <ul>
         <li><%= link_to 'Contributors', icla_signatures_path %></li>
