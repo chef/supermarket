@@ -24,7 +24,7 @@ body > header {
     }
 
     &:before {
-      @include retina-image('opscode-logo', 46px 40px);
+      @include retina-image('chef-logo', 46px 46px);
       content: ' ';
       @include inline-block;
       float: left;

@@ -1,6 +1,7 @@
 Super Market
 ============
-Super Market is Opscode's Individual Contributor License Agreement (ICLA) service. It performs a variety of functions including:
+
+Super Market is Chef's Individual Contributor License Agreement (ICLA) service. It performs a variety of functions including:
 
 - Exposing an API for other services to consume
 - Storing user-information and CLA status
