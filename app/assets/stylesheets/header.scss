@@ -13,9 +13,9 @@ body > header {
     color: #fff;
     @include inline-block;
     font-family: $gotham;
-    font-size: 21px;
-    letter-spacing: 0.1em;
-    margin: 1em 0;
+    font-size: 44px;
+    margin: 5px 0;
+    padding-top: 10px;
     text-decoration: none;
     text-transform: uppercase;
 
@@ -24,12 +24,13 @@ body > header {
     }
 
     &:before {
-      @include retina-image('chef-logo', 46px 46px);
-      content: ' ';
       @include inline-block;
+      @include retina-image('chef-logo', 46px 46px);
+      background-position-y: 6px;
+      content: ' ';
       float: left;
-      height: 40px;
-      margin-right: 0.5em;
+      height: 52px;
+      margin-right: 5px;
       width: 46px;
     }
 
@@ -40,8 +41,9 @@ body > header {
         color: $primary-orange;
         display: block;
         font-size: 11px;
-        letter-spacing: 0.05em;
-        margin-top: 0.25em;
+        margin-left: 56px;
+        margin-top: -2px;
+        text-align: left;
       }
 
     }
