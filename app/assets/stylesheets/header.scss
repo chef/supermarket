@@ -20,16 +20,8 @@ body > header {
     padding-top: 1.25em;
     text-decoration: none;
 
-    h1 {
+    img {
       height: 45px;
-      margin: 0;
-      background-image: url(asset_path("chef-logo.png", image));
-      background-image: url(asset_path("chef-logo.svg", image)), none;
-      background-repeat: no-repeat;
-      background-size: 139px 45px;
-      font-size: 45px;
-      height: 45px;
-      text-indent: -9999px;
     }
 
     &:hover {
