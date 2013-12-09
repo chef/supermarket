@@ -10,40 +10,22 @@ body > header {
   }
 
   a.logo {
-    color: #fff;
-    @include inline-block;
-    font-family: $gotham;
-    font-size: 21px;
-    letter-spacing: 0.1em;
-    margin: 1em 0;
-    text-decoration: none;
-    text-transform: uppercase;
-
     @include mobile {
       margin-bottom: 0.25em;
     }
 
-    &:before {
-      @include retina-image('opscode-logo', 46px 40px);
-      content: ' ';
-      @include inline-block;
-      float: left;
-      height: 40px;
-      margin-right: 0.5em;
-      width: 46px;
+    border: none;
+    display: block;
+    float: left;
+    padding-top: 1.25em;
+    text-decoration: none;
+
+    img {
+      height: 45px;
     }
 
-    span {
-      text-align: center;
-
-      span {
-        color: $primary-orange;
-        display: block;
-        font-size: 11px;
-        letter-spacing: 0.05em;
-        margin-top: 0.25em;
-      }
-
+    &:hover {
+      text-decoration: none;
     }
   }
 
