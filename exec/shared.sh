@@ -46,6 +46,16 @@ vagrant_installed() {
   fi
 }
 
+setup_configs() {
+  if ! test -f config/application.yml
+    cp config/application.example.yml config/application.yml
+  fi
+
+  if ! test -f config/database.yml
+    cp config/database.example.yml config/database.yml
+  fi
+}
+
 ###
 # Supermarket stuff
 ###
@@ -60,6 +70,8 @@ in_supermarket() {
   if ! vagrant_running; then
     vagrant_up
   fi
+
+  setup_configs
 
   vagrant_ssh -t "(cd /supermarket && $@)"
 }

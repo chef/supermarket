@@ -1,0 +1,4 @@
+rvm:
+  - 2.0.0
+script:
+  - ./bin/rake spec:ci

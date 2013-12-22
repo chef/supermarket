@@ -18,11 +18,20 @@
 development:
   icla_version: '99999-2621/LEGAL14767024.1'
   omni_auth:
+    github:
+      key: YOUR_KEY
+      secret: YOUR_SECRET
 
 production:
   icla_version: '99999-2621/LEGAL14767024.1'
   omni_auth:
+    github:
+      key: YOUR_KEY
+      secret: YOUR_SECRET
 
 test:
   icla_version: '99999-2621/LEGAL14767024.1'
   omni_auth:
+    github:
+      key: YOUR_KEY
+      secret: YOUR_SECRET
