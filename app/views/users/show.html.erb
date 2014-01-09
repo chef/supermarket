@@ -1,5 +1,11 @@
-<h1><%= @user.name %></h1>
+<div class="page">
+  <div class="title">
+    <span class="fa fa-file-text"></span><%= @user.name %>
+  </div>
 
-<% @user.ccla_signatures.each do |ccla_signature| %>
-  Admin of <%= ccla_signature.company %>
-<% end %>
+  <div class="content">
+    <% @user.ccla_signatures.each do |ccla_signature| %>
+      Admin of <%= ccla_signature.company %> - <%= link_to "[View CCLA]", ccla_signature %>
+    <% end %>
+  </div>
+</div>
