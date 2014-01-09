@@ -1,5 +1,5 @@
 class CclaSignaturesController < ApplicationController
-  before_filter :require_valid_user!, except: [:index]
+  before_filter :require_valid_user!
 
   #
   # GET /ccla-signatures/:id
@@ -21,7 +21,7 @@ class CclaSignaturesController < ApplicationController
     authorize! @ccla_signature
 
     # Load default ICLA text
-    @ccla_signature.ccla = Ccla.first
+    @ccla_signature.ccla = Ccla.latest
 
     # Prepopulate any fields we can from the User object
     @ccla_signature.email = current_user.primary_email.try(:email)

@@ -1,7 +1,6 @@
 require 'spec_feature_helper'
 
 describe 'signing a CCLA' do
-
   before { create(:ccla) }
 
   it 'establishes the signer as an admin of the organization' do
@@ -12,19 +11,6 @@ describe 'signing a CCLA' do
   end
 
   def sign_in
-    OmniAuth.config.test_mode = true
-    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
-      provider: 'github',
-      uid: '123545',
-      credentials: {
-        token: 'snarfle'
-      },
-      info: {
-        email: 'foo@example.com',
-        name: 'John Doe'
-      }
-    })
-
     visit '/'
     click_link 'Sign In'
     click_link 'GitHub'
