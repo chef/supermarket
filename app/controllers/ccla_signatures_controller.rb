@@ -14,7 +14,7 @@ class CclaSignaturesController < ApplicationController
   #
   # GET /ccla-signatures/new
   #
-  # Show the form for creating a new CCLA signature
+  # Show the form for creating a new CCLA signature.
   #
   def new
     @ccla_signature = CclaSignature.new(user: current_user)
@@ -30,15 +30,26 @@ class CclaSignaturesController < ApplicationController
   #
   # POST /ccla-signatures
   #
-  # Create a new CCLA signature
+  # Create a new Organization and CCLA signature and assign
+  # the current user as the Organization admin.
   #
   def create
-    @ccla_signature = CclaSignature.new(ccla_signature_params)
+    @organization      = Organization.new(name: ccla_signature_params[:company])
+    @ccla_signature    = @organization.build_ccla_signature(ccla_signature_params)
+    @organization_user = @organization.organization_users.new(user: current_user, admin: true)
+
     authorize! @ccla_signature
 
-    if @ccla_signature.save
+    begin
+      ActiveRecord::Base.transaction do
+        @ccla_signature.save!
+        @organization.save!
+        @organization_user.save!
+      end
+
       redirect_to @ccla_signature
-    else
+
+    rescue ActiveRecord::RecordInvalid => invald
       render 'new'
     end
   end

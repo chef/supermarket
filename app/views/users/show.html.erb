@@ -1,11 +1,15 @@
 <div class="page">
   <div class="title">
-    <span class="fa fa-file-text"></span><%= @user.name %>
+    <span class="fa fa-user"></span><%= @user.name %>
   </div>
 
   <div class="content">
-    <% @user.ccla_signatures.each do |ccla_signature| %>
-      Admin of <%= ccla_signature.company %> - <%= link_to "[View CCLA]", ccla_signature %>
+    <% @user.organization_users.each do |organization_user| %>
+      <% if organization_user.admin? %>
+        Admin of <%= organization_user.organization.name %> - <%= link_to "[View CCLA]", organization_user.organization.ccla_signature %>
+      <% else %>
+        Member of <%= organization_user.organization.name %> - <%= link_to "[View CCLA]", organization_user.organization.ccla_signature %>
+      <% end %>
     <% end %>
   </div>
 </div>

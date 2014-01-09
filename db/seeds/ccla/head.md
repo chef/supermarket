@@ -1,6 +1,6 @@
 # Chef, Inc.
 
-## Individual Contributor License Agreement ("Agreement") V1.0
+## Corporate Contributor License Agreement ("Agreement") V1.0
 
 Based on the Apache Software Foundation Individual Contributor License Agreement V2.0, with modifications.
 
