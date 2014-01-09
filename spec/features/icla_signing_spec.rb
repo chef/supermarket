@@ -4,17 +4,11 @@ describe 'signing a ICLA' do
   before { create(:icla) }
 
   it 'associates the signer with a icla' do
-    sign_in
+    sign_in_with_github
     sign_icla
     click_link 'View Profile'
     expect(page).to have_content 'View ICLA'
     expect(page).to have_no_content 'Sign ICLA'
-  end
-
-  def sign_in
-    visit '/'
-    click_link 'Sign In'
-    click_link 'GitHub'
   end
 
   def sign_icla

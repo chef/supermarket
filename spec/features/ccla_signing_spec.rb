@@ -4,19 +4,13 @@ describe 'signing a CCLA' do
   before { create(:ccla) }
 
   it 'establishes the signer as an admin of the organization' do
-    sign_in
+    sign_in_with_github
     sign_ccla
     click_link 'View Profile'
     expect(page).to have_content 'Admin of Opscode'
   end
 
-  def sign_in
-    visit '/'
-    click_link 'Sign In'
-    click_link 'GitHub'
-  end
-
-  def sign_ccla_as
+  def sign_ccla
     click_link 'Sign CCLA'
 
     fill_in 'ccla_signature_first_name', with: 'John'
