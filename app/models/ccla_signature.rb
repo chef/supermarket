@@ -12,6 +12,7 @@ class CclaSignature < ActiveRecord::Base
   validates_presence_of :last_name
   validates_presence_of :email
   validates_presence_of :phone
+  validates_presence_of :company
   validates_presence_of :address_line_1
   validates_presence_of :city
   validates_presence_of :state
