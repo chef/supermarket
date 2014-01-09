@@ -9,7 +9,7 @@
         You have been asked to sign an ICLA as part of the <%= link_to 'Community Contribution process', 'http://docs.opscode.com/community_contributions.html', target: :blank %>. Please read the document below and complete the form to file your ICLA.
       </div>
 
-      <header class="icla-header"><%= render_markdown(@icla_signature.icla.head) %></header>
+      <header class="agreement-header"><%= render_markdown(@icla_signature.icla.head) %></header>
 
       <% if @icla_signature.errors.present? %>
         <div class="callout error">
@@ -24,28 +24,28 @@
 
       <section class="fields">
         <fieldset class="name">
-          <%= f.text_field :prefix, placeholder: 'Prefix',  title: 'Prefix' %>
-          <%= f.text_field :first_name, placeholder: 'First Name *', title: 'First Name' %>
-          <%= f.text_field :middle_name, placeholder: 'Middle Name', title: 'Middle Name' %>
-          <%= f.text_field :last_name, placeholder: 'Last Name *', title: 'Last Name' %>
-          <%= f.text_field :suffix, placeholder: 'Suffix', title: 'Suffix' %>
+          <%= f.text_field :prefix, placeholder: 'Prefix',  title: 'Prefix', class: 'span-1' %>
+          <%= f.text_field :first_name, placeholder: 'First Name *', title: 'First Name', class: 'span-3' %>
+          <%= f.text_field :middle_name, placeholder: 'Middle Name', title: 'Middle Name', class: 'span-3' %>
+          <%= f.text_field :last_name, placeholder: 'Last Name *', title: 'Last Name', class: 'span-4' %>
+          <%= f.text_field :suffix, placeholder: 'Suffix', title: 'Suffix', class: 'span-1' %>
         </fieldset>
         <fieldset class="contact">
-          <%= f.text_field :company, placeholder: 'Company', title: 'Company' %>
-          <%= f.telephone_field :phone, placeholder: 'Phone *', title: 'Phone' %>
-          <%= f.email_field :email, placeholder: 'Email *', title: 'Email' %>
+          <%= f.text_field :company, placeholder: 'Company', title: 'Company', class: 'span-4' %>
+          <%= f.telephone_field :phone, placeholder: 'Phone *', title: 'Phone', class: 'span-3' %>
+          <%= f.email_field :email, placeholder: 'Email *', title: 'Email', class: 'span-5' %>
         </fieldset>
         <fieldset class="address">
           <%= f.text_field :address_line_1, placeholder: 'Address Line 1 *', title: 'Address Line 1' %>
           <%= f.text_field :address_line_2, placeholder: 'Address Line 2', title: 'Address Line 2' %>
-          <%= f.text_field :city, placeholder: 'City *', title: 'City' %>
-          <%= f.text_field :state, placeholder: 'State or Province *', title: 'State or Province' %>
-          <%= f.text_field :zip, placeholder: 'Postal Code *', title: 'Postal Code' %>
-          <%= f.text_field :country, placeholder: 'Country *', title: 'Country' %>
+          <%= f.text_field :city, placeholder: 'City *', title: 'City', class: 'span-3' %>
+          <%= f.text_field :state, placeholder: 'State or Province *', title: 'State or Province', class: 'span-3' %>
+          <%= f.text_field :zip, placeholder: 'Postal Code *', title: 'Postal Code', class: 'span-2' %>
+          <%= f.text_field :country, placeholder: 'Country *', title: 'Country', class: 'span-4' %>
         </fieldset>
       </section>
 
-      <section class="icla-body">
+      <section class="agreement-body">
         <%= render_markdown(@icla_signature.icla.body) %>
         <footer><%= @icla_signature.icla.version %></footer>
       </section>
