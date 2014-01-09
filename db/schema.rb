@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131106043731) do
+ActiveRecord::Schema.define(version: 20140109152104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,41 @@ ActiveRecord::Schema.define(version: 20131106043731) do
   end
 
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
+
+  create_table "ccla_signatures", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "organization_id"
+    t.integer  "ccla_id"
+    t.datetime "signed_at"
+    t.string   "prefix"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "suffix"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "company"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ccla_signatures", ["ccla_id"], name: "index_ccla_signatures_on_ccla_id", using: :btree
+  add_index "ccla_signatures", ["organization_id"], name: "index_ccla_signatures_on_organization_id", using: :btree
+  add_index "ccla_signatures", ["user_id"], name: "index_ccla_signatures_on_user_id", using: :btree
+
+  create_table "cclas", force: true do |t|
+    t.string   "version"
+    t.text     "head"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "emails", force: true do |t|
     t.integer  "user_id"
@@ -64,6 +99,12 @@ ActiveRecord::Schema.define(version: 20131106043731) do
     t.string   "version"
     t.text     "head"
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "organizations", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

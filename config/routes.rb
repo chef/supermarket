@@ -5,6 +5,8 @@ Supermarket::Application.routes.draw do
   end
 
   resources :icla_signatures, path: 'icla-signatures'
+  resources :ccla_signatures, path: 'ccla-signatures'
+  resources :users, only: [:show]
 
   get 'login'   => redirect('/sign-in'), as: nil
   get 'signin'  => redirect('/sign-in'), as: nil

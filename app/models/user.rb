@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :accounts
   has_many :emails
   has_many :icla_signatures
+  has_many :ccla_signatures
   belongs_to :primary_email, class_name: 'Email'
 
   # Validations
