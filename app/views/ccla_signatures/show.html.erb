@@ -16,5 +16,11 @@
       <strong>Company</strong>
       <%= @ccla_signature.company %>
     </p>
+
+    <hr>
+
+    <%= render_markdown(@ccla_signature.ccla.head) %>
+    <%= render_markdown(@ccla_signature.ccla.body) %>
+    <%= @ccla_signature.ccla.version %>
   </div>
 </div>

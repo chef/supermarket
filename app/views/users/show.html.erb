@@ -5,14 +5,14 @@
 
   <div class="content">
     <% if @user.icla_signatures.any? %>
-      <%= link_to "View ICLA", @user.icla_signatures.first %>
+      <p><%= link_to "View ICLA", @user.icla_signatures.first %></p>
     <% end %>
 
     <% @user.organization_users.each do |organization_user| %>
       <% if organization_user.admin? %>
-        Admin of <%= organization_user.organization.name %> - <%= link_to "[View CCLA]", organization_user.organization.ccla_signature %>
+        <p>Admin of <%= organization_user.organization.name %> - <%= link_to "View CCLA", organization_user.organization.ccla_signature %></p>
       <% else %>
-        Member of <%= organization_user.organization.name %> - <%= link_to "[View CCLA]", organization_user.organization.ccla_signature %>
+        <p>Member of <%= organization_user.organization.name %> - <%= link_to "View CCLA", organization_user.organization.ccla_signature %></p>
       <% end %>
     <% end %>
   </div>
