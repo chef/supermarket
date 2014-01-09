@@ -5,7 +5,7 @@ describe 'signing a CCLA' do
 
   it 'establishes the signer as an admin of the organization' do
     sign_in
-    sign_ccla_as('Opscode')
+    sign_ccla
     click_link 'View Profile'
     expect(page).to have_content 'Admin of Opscode'
   end
@@ -16,10 +16,8 @@ describe 'signing a CCLA' do
     click_link 'GitHub'
   end
 
-  def sign_ccla_as(organization_name)
-    click_link "Sign CCLA"
-
-    expect(page).to have_content '(CCLA)'
+  def sign_ccla_as
+    click_link 'Sign CCLA'
 
     fill_in 'ccla_signature_first_name', with: 'John'
     fill_in 'ccla_signature_last_name', with: 'Doe'
