@@ -57,7 +57,7 @@ class IclaSignaturesController < ApplicationController
     authorize! @icla_signature
 
     if @icla_signature.save
-      redirect_to @icla_signature
+      redirect_to @icla_signature, notice: 'Successfully signed ICLA.'
     else
       render 'new'
     end

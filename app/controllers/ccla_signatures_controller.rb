@@ -47,7 +47,7 @@ class CclaSignaturesController < ApplicationController
         @organization_user.save!
       end
 
-      redirect_to @ccla_signature
+      redirect_to @ccla_signature, notice: "Successfully signed CCLA for #{@organization.name}."
 
     rescue ActiveRecord::RecordInvalid => invald
       render 'new'
