@@ -143,19 +143,6 @@ table.yellow {
   @include table($secondary-yellow)
 }
 
-.span-1 { @include span-columns(1); }
-.span-2 { @include span-columns(2); }
-.span-3 { @include span-columns(3); }
-.span-4 { @include span-columns(4); }
-.span-5 { @include span-columns(5); }
-.span-6 { @include span-columns(6); }
-.span-7 { @include span-columns(7); }
-.span-8 { @include span-columns(8); }
-.span-9 { @include span-columns(9); }
-.span-10 { @include span-columns(10); }
-.span-11 { @include span-columns(11); }
-.span-12 { @include span-columns(12); }
-
 /*
  * Specific Stylesheets
  */

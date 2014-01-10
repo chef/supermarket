@@ -27,6 +27,32 @@ form.new_icla_signature, form.new_ccla_signature {
     }
   }
 
+  #ccla_signature_prefix, #ccla_signature_suffix,
+    #icla_signature_prefix, #icla_signature_suffix {
+      @include span-columns(1);
+  }
+
+  #ccla_signature_zip, #icla_signature_zip {
+    @include span-columns(2);
+  }
+
+  #ccla_signature_first_name, #ccla_signature_middle_name,
+    #ccla_signature_phone, #ccla_signature_city, #ccla_signature_state,
+    #icla_signature_first_name, #icla_signature_middle_name,
+    #icla_signature_phone, #icla_signature_city, #icla_signature_state {
+      @include span-columns(3);
+  }
+
+  #ccla_signature_last_name, #ccla_signature_company,
+    #ccla_signature_country, #icla_signature_last_name,
+    #icla_signature_company, #icla_signature_country {
+      @include span-columns(4);
+  }
+
+  #ccla_signature_email,  #icla_signature_email {
+    @include span-columns(5);
+  }
+
   .agreement {
     @include row;
 
