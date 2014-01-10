@@ -1,2 +1,2 @@
-class CclaSignatureAuthorizer < IclaSignatureAuthorizer
+class CclaSignatureAuthorizer < ClaSignatureAuthorizer
 end

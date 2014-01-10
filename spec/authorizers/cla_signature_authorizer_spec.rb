@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe IclaSignatureAuthorizer do
+describe ClaSignatureAuthorizer do
   let(:record) { build(:icla_signature) }
 
   subject { described_class.new(user, record) }
