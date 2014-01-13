@@ -4,23 +4,11 @@ class ClaSignatureAuthorizer < Authorizer::Base
   end
 
   def show?
-    if user.is?(:admin, :api, :employee, :legal)
+    if user.is?(:admin)
       true
     else
       record.user_id == user.id
     end
-  end
-
-  def create?
-    if user.is?(:admin, :legal)
-      true
-    else
-      record.user_id == user.id
-    end
-  end
-
-  def new?
-    create?
   end
 
   def update?

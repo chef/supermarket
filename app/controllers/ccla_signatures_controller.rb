@@ -17,8 +17,7 @@ class CclaSignaturesController < ApplicationController
   # Show the form for creating a new CCLA signature.
   #
   def new
-    @ccla_signature = CclaSignature.new(user: current_user)
-    authorize! @ccla_signature
+    @ccla_signature = CclaSignature.new
 
     # Load default ICLA text
     @ccla_signature.ccla = Ccla.latest
@@ -35,10 +34,9 @@ class CclaSignaturesController < ApplicationController
   #
   def create
     @organization      = Organization.new(name: ccla_signature_params[:company])
-    @ccla_signature    = @organization.build_ccla_signature(ccla_signature_params)
+    @ccla_signature    = @organization.build_ccla_signature(
+      ccla_signature_params.merge(user_id: current_user.id))
     @organization_user = @organization.organization_users.new(user: current_user, admin: true)
-
-    authorize! @ccla_signature
 
     begin
       ActiveRecord::Base.transaction do

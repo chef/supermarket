@@ -30,7 +30,6 @@ class IclaSignaturesController < ApplicationController
     current_user = User.first
     session[:user_id] = current_user.id
     @icla_signature = IclaSignature.new(user: current_user)
-    authorize! @icla_signature
 
     # Load default ICLA text
     @icla_signature.icla = Icla.latest
@@ -53,7 +52,6 @@ class IclaSignaturesController < ApplicationController
   #
   def create
     @icla_signature = IclaSignature.new(icla_signature_params)
-    authorize! @icla_signature
 
     if @icla_signature.save
       redirect_to @icla_signature, notice: 'Successfully signed ICLA.'
