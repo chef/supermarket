@@ -1,14 +1,22 @@
-<p>
-  <strong>Number</strong>
-  <%= @icla_signature.id %>
-</p>
+<div class="page">
+  <div class="title">
+    <span class="fa fa-file-text"></span>Individual Contributor License Agreement (ICLA)
+  </div>
 
-<p>
-  <strong>Name</strong>
-  <%= @icla_signature.name %>
-</p>
+  <div class="content">
+    <p>
+      <strong>Number</strong>
+      <%= @icla_signature.id %>
+    </p>
+    <p>
+      <strong>Name</strong>
+      <%= @icla_signature.name %>
+    </p>
 
-<p>
-  <strong>Company</strong>
-  <%= @icla_signature.company %>
-</p>
+    <hr>
+
+    <%= render_markdown(@icla_signature.icla.head) %>
+    <%= render_markdown(@icla_signature.icla.body) %>
+    <%= @icla_signature.icla.version %>
+  </div>
+</div>

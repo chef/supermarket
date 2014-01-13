@@ -1,0 +1,26 @@
+<div class="page">
+  <div class="title">
+    <span class="fa fa-file-text"></span>Corporate Contributor License Agreement (CCLA)
+  </div>
+
+  <div class="content">
+    <p>
+      <strong>Number</strong>
+      <%= @ccla_signature.id %>
+    </p>
+    <p>
+      <strong>Name</strong>
+      <%= @ccla_signature.name %>
+    </p>
+    <p>
+      <strong>Company</strong>
+      <%= @ccla_signature.company %>
+    </p>
+
+    <hr>
+
+    <%= render_markdown(@ccla_signature.ccla.head) %>
+    <%= render_markdown(@ccla_signature.ccla.body) %>
+    <%= @ccla_signature.ccla.version %>
+  </div>
+</div>

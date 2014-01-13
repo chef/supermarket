@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   has_many :accounts
   has_many :emails
   has_many :icla_signatures
+  has_many :ccla_signatures
+  has_many :organization_users
+  has_many :organizations, through: :organization_users
   belongs_to :primary_email, class_name: 'Email'
 
   # Validations

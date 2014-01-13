@@ -21,3 +21,12 @@ end
 
 Icla.find_or_create_by_version(Supermarket::Config.icla_version).
   update_attributes(attributes)
+
+%w[ head body ].each do |section|
+  attributes[section] = open(
+    "#{File.dirname(__FILE__)}/seeds/ccla/#{section}.md"
+  ).read
+end
+
+Ccla.find_or_create_by_version(Supermarket::Config.ccla_version).
+  update_attributes(attributes)

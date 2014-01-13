@@ -25,9 +25,12 @@ group :test do
   gem 'factory_girl'
   gem 'poltergeist'
   gem 'shoulda-matchers'
+  gem 'database_cleaner'
 end
 
 group :development, :test do
   gem 'quiet_assets'
   gem 'rspec-rails'
+  gem 'byebug'
+  gem 'launchy'
 end

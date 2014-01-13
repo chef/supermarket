@@ -1,5 +1,4 @@
 class IclaSignaturesController < ApplicationController
-  before_filter :redirect_if_signed!, only: [:new, :create, :update]
   before_filter :require_valid_user!, except: [:index]
 
   #
@@ -31,7 +30,6 @@ class IclaSignaturesController < ApplicationController
     current_user = User.first
     session[:user_id] = current_user.id
     @icla_signature = IclaSignature.new(user: current_user)
-    authorize! @icla_signature
 
     # Load default ICLA text
     @icla_signature.icla = Icla.latest
@@ -54,10 +52,9 @@ class IclaSignaturesController < ApplicationController
   #
   def create
     @icla_signature = IclaSignature.new(icla_signature_params)
-    authorize! @icla_signature
 
     if @icla_signature.save
-      redirect_to @icla_signature
+      redirect_to @icla_signature, notice: 'Successfully signed ICLA.'
     else
       render 'new'
     end

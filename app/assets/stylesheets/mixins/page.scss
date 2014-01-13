@@ -29,7 +29,6 @@
 
   .content {
     margin: 3em;
-    overflow: scroll;
 
     @include mobile {
       margin: 1.5em;
@@ -40,7 +39,6 @@
     margin: 1em 0;
   }
 }
-
 
 .page {
   @include page;

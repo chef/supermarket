@@ -17,6 +17,7 @@
 
 development:
   icla_version: '99999-2621/LEGAL14767024.1'
+  ccla_version: '99999-2621/LEGAL14767024.1'
   omni_auth:
     github:
       key: YOUR_KEY
@@ -24,6 +25,7 @@ development:
 
 production:
   icla_version: '99999-2621/LEGAL14767024.1'
+  ccla_version: '99999-2621/LEGAL14767024.1'
   omni_auth:
     github:
       key: YOUR_KEY
@@ -31,6 +33,7 @@ production:
 
 test:
   icla_version: '99999-2621/LEGAL14767024.1'
+  ccla_version: '99999-2621/LEGAL14767024.1'
   omni_auth:
     github:
       key: YOUR_KEY
