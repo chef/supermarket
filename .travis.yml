@@ -4,6 +4,6 @@ rvm:
 before_script:
   - psql -c 'create database supermarket_test;' -U postgres
   - cp config/application.example.yml config/application.yml
-  - bundle exec rake db:migrate
+  - bundle exec rake db:schema:load
 bundler_args: --without development
 script: 'bundle exec rspec && bundle exec rake spec:javascripts'
