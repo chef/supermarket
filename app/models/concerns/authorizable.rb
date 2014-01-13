@@ -1,6 +1,6 @@
 module Authorizable
   # The list of roles.
-  ROLES = %w[admin api employee legal].freeze
+  ROLES = %w[admin].freeze
 
   #
   # Set the roles on the parent model.
