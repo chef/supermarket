@@ -10,7 +10,12 @@
 
     <% @user.organization_users.each do |organization_user| %>
       <% if organization_user.admin? %>
-        <p>Admin of <%= organization_user.organization.name %> - <%= link_to "View CCLA", organization_user.organization.ccla_signature %></p>
+        <p>
+        Admin of <%= organization_user.organization.name %> -
+        <%= link_to "View CCLA", organization_user.organization.ccla_signature %>
+        or
+        <%= link_to "Invite Contributors", new_organization_invitation_url(organization_user.organization) %>
+        </p>
       <% else %>
         <p>Member of <%= organization_user.organization.name %> - <%= link_to "View CCLA", organization_user.organization.ccla_signature %></p>
       <% end %>

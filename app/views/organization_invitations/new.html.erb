@@ -1,0 +1,13 @@
+<div class="page">
+  <div class="title">Invite contributors from <%= @organization.name %></div>
+
+  <div class="content">
+    <%= form_for(@invitation) do |f| %>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+
+      <%= f.label :role %>
+      <%= f.select :role, @possible_roles %>
+    <% end %>
+  </div>
+</div>
