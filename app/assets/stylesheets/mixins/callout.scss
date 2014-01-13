@@ -5,6 +5,7 @@
   padding: 1em;
   @include row;
   text-align: left;
+  margin-bottom: 20px;
 
   a, a:hover, a:visited {
     color: inherit;

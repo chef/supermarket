@@ -14,7 +14,7 @@
         Admin of <%= organization_user.organization.name %> -
         <%= link_to "View CCLA", organization_user.organization.ccla_signature %>
         or
-        <%= link_to "Invite Contributors", new_organization_invitation_url(organization_user.organization) %>
+        <%= link_to "Invite Contributors", organization_invitations_url(organization_user.organization) %>
         </p>
       <% else %>
         <p>Member of <%= organization_user.organization.name %> - <%= link_to "View CCLA", organization_user.organization.ccla_signature %></p>
