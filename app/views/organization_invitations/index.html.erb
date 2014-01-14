@@ -21,7 +21,7 @@
       </section>
 
       <section>
-        <%= f.submit 'Send invite', class: 'button secondary' %>
+        <%= f.submit 'Send invitation', class: 'button secondary' %>
       </section>
     <% end %>
 
@@ -31,13 +31,11 @@
         <th>Role</th>
       </tr>
 
-      <% @organization.invitations.each do |invitation| %>
-        <% if invitation.persisted? %>
-          <tr>
-            <td><%= invitation.email%></td>
-            <td><%= invitation.admin? ? 'Admin' : 'Contributor' %></td>
-          </tr>
-        <% end %>
+      <% @invitations.each do |invitation| %>
+        <tr>
+          <td><%= invitation.email %></td>
+          <td><%= invitation.admin? ? 'Admin' : 'Contributor' %></td>
+        </tr>
       <% end %>
     </table>
   </div>

@@ -10,7 +10,7 @@ describe 'Inviting people to sign a CCLA' do
 
     fill_in 'invitation_email', with: 'johndoe@example.com'
     find("label[for='invitation_admin']").click
-    find_button('Send invite').click
+    find_button('Send invitation').click
     expect(page).to have_content('johndoe@example.com')
     expect(page).to have_content('Admin')
   end
