@@ -1,11 +1,38 @@
 Super Market
 ============
 
-Super Market is Chef's Individual Contributor License Agreement (ICLA) service. It performs a variety of functions including:
+Super Market is Chef's new community project. Here is a rough rodmap and the main outcomes we hope to achieve through rebuilding the Chef community experience from the ground up:
 
-- Exposing an API for other services to consume
-- Storing user-information and CLA status
-- More...
+- Better facilitation for signing and managing Contribor License Agreements (CLA)
+- Exposing API endpoints for accessing community member and contributor status for other services to consume
+- Storing community member information and presenting it in a more user friendly and manageable way
+- Establishing a low barrier to entry for individuals to contribute and improve the community experience
+- Providing capabalities for trusted community members to moderate the community contributions
+- Imrpvoing the Cookbooks API to provide more relevant information about individual cookbooks 
+- Better organized documentation for various Chef projects
+- Chef Server cookbook API
+- Dependency API
+- Incorporating other community contributions like knife plugings, ohai plugins, and related chef packages
+- Improved Cookbook ratings using automatic multifactor metascore instead of voting
+
+
+Project Status
+--------------
+
+This project is currently in heavy active development and is a pre-release. 
+
+
+Contributing
+------------
+
+We'd love for you to be involved. Read the [contributor's workflow](https://github.com/opscode/supermarket/blob/master/CONTRIBUTING.md) for license information and helpful tips before you get started. 
+
+You can view the prioritized tasks in [Super Market's public Pivotal Tracker project](https://www.pivotaltracker.com/s/projects/984852). Please include a link to the story (or Story ID) if there is one in your pull requests. 
+
+There are also some project artifacts such as planning docs, wireframes, recorded demos, and team retrospectives in a [public Google Drive folder](https://drive.google.com/a/cramerdev.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8). 
+
+If you have questions, feature ideas, or other suggestions, please [create a Github Issue](https://github.com/opscode/supermarket/issues?state=open) and we'll respond in a timely manner. 
+
 
 
 OmniAuth
