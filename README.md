@@ -5,13 +5,13 @@ Super Market
 
 Super Market is Chef's new community project. Here is a rough rodmap and the main outcomes we hope to achieve through rebuilding the Chef community experience from the ground up:
 
-- Better facilitation for signing and managing Contribor License Agreements (CLA)
-- Exposing API endpoints for accessing community member and contributor status for other services to consume
-- Storing community member information and presenting it in a more user friendly and manageable way
-- Establishing a low barrier to entry for individuals to contribute and improve the community experience
-- Providing capabalities for trusted community members to moderate the community contributions
-- Imrpvoing the Cookbooks API to provide more relevant information about individual cookbooks 
-- Better organized documentation for various Chef projects
+- Better facilitation for signing and managing Contribor License Agreements (CLA) [Milestone #2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
+- Exposing API endpoints for accessing community member and contributor status for other services to consume [Milestone #2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
+- Storing community member information and presenting it in a more user friendly and manageable way [Milestone #2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
+- Establishing a low barrier to entry for individuals to contribute and improve the community experience [Milestone #2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
+- Providing capabalities for trusted community members to moderate the community contributions [Milestone #3](https://github.com/opscode/supermarket/issues?milestone=3&state=open)
+- Imrpvoing the Cookbooks API to provide more relevant information about individual cookbooks [Milestone #3](https://github.com/opscode/supermarket/issues?milestone=3&state=open)
+- Better organized documentation for various Chef projects 
 - Chef Server cookbook API
 - Dependency API
 - Incorporating other community contributions like knife plugings, ohai plugins, and related chef packages
@@ -33,7 +33,7 @@ You can view the prioritized tasks in [Super Market's public Pivotal Tracker pro
 
 There are also some project artifacts such as planning docs, wireframes, recorded demos, and team retrospectives in a [public Google Drive folder](https://drive.google.com/a/cramerdev.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8). 
 
-If you have questions, feature ideas, or other suggestions, please [create a Github Issue](https://github.com/opscode/supermarket/issues?state=open) and we'll respond in a timely manner. 
+If you have questions, feature ideas, or other suggestions, please [create a Github Issue](https://github.com/opscode/supermarket/issues?state=open) and we'll respond in a timely manner. If you include the "Feature", "Enhancement", or "Bug" labels when creating a new issue, a Pivotal Tracker story will be automatically created in the icebox.
 
 
 Continuous Integration
