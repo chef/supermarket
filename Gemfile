@@ -26,6 +26,7 @@ group :test do
   gem 'poltergeist'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
+  gem 'nokogiri', require: false
 end
 
 group :development, :test do

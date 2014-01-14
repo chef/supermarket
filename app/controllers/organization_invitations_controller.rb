@@ -14,6 +14,8 @@ class OrganizationInvitationsController < ApplicationController
     authorize! @invitation
 
     if @invitation.save
+      InvitationMailer.deliver_invitation(@invitation)
+
       redirect_to organization_invitations_path(@organization),
         notice: "Invited #{@invitation.email} to #{@organization.name}"
     else

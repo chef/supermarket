@@ -5,12 +5,16 @@ module FeatureHelpers
     click_link 'GitHub'
   end
 
-  def sign_ccla
+  def sign_out
+    click_link "Sign Out"
+  end
+
+  def sign_ccla(company = "Chef")
     click_link 'Sign CCLA'
 
     fill_in 'ccla_signature_first_name', with: 'John'
     fill_in 'ccla_signature_last_name', with: 'Doe'
-    fill_in 'ccla_signature_company', with: 'Chef'
+    fill_in 'ccla_signature_company', with: company
     fill_in 'ccla_signature_email', with: 'john@example.com'
     fill_in 'ccla_signature_phone', with: '(555) 555-5555'
     fill_in 'ccla_signature_address_line_1', with: '1 Chef Way'

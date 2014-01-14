@@ -186,6 +186,7 @@ DEPENDENCIES
   launchy
   magiconf
   neat
+  nokogiri
   omniauth
   omniauth-github
   omniauth-twitter

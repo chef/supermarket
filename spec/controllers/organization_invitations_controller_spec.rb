@@ -40,6 +40,7 @@ describe OrganizationInvitationsController do
 
   describe 'POST #create' do
     before { controller.stub(:current_user) { user } }
+    before { InvitationMailer.stub(:deliver_invitation) }
 
     it 'creates the invitation' do
       authorizer.stub(:create?) { true }
@@ -49,6 +50,17 @@ describe OrganizationInvitationsController do
           organization_id: organization.id,
           invitation: { email: 'chef@example.com' }
       end.to change(organization.invitations, :count).by(1)
+    end
+
+    it 'sends the invitation' do
+      authorizer.stub(:create?) { true }
+      InvitationMailer.
+        should_receive(:deliver_invitation).
+        with(instance_of(Invitation))
+
+      post :create,
+        organization_id: organization.id,
+        invitation: { email: 'chef@example.com' }
     end
 
     it 'authorizes that the user may send invitations' do
