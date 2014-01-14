@@ -1,4 +1,6 @@
 class CclaSignature < ActiveRecord::Base
+  extend Supermarket::ProtectedResource
+
   # Associations
   # --------------------
   belongs_to :user

@@ -1,0 +1,2 @@
+class IclaSignatureAuthorizer < ClaSignatureAuthorizer
+end

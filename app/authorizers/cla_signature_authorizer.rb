@@ -22,4 +22,8 @@ class ClaSignatureAuthorizer < Authorizer::Base
   def destroy?
     show?
   end
+
+  def new?
+    true
+  end
 end
