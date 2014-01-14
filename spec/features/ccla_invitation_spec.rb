@@ -5,10 +5,10 @@ describe 'Inviting people to sign a CCLA' do
   it 'sends invited users an email prompting them to sign the CCLA' do
     create(:ccla)
     sign_in_with_github
-    sign_ccla("Acme")
-    invite_admin("johndoe@example.com")
+    sign_ccla('Acme')
+    invite_admin('johndoe@example.com')
     sign_out
-    accept_invitation("Acme")
+    accept_invitation('Acme')
   end
 
   def accept_invitation(organization)
@@ -17,13 +17,12 @@ describe 'Inviting people to sign a CCLA' do
     invitation = ActionMailer::Base.deliveries.last
     body = invitation.parts.find { |p| p.content_type =~ /html/ }.body.to_s
     html = Nokogiri::HTML(body)
-    url = html.css("a.invitation").first.attribute('href').value
+    url = html.css('a.invitation').first.attribute('href').value
 
     visit url
     click_link 'GitHub'
 
     click_link 'Accept'
-
     expect(page).to have_content "Admin of #{organization}"
   end
 
