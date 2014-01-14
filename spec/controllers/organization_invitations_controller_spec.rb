@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe OrganizationInvitationsController do
-
   let(:organization) { create(:organization) }
   let(:user) { create(:user, organizations: [organization]) }
   let(:authorizer) { InvitationAuthorizer.any_instance }
@@ -80,7 +79,5 @@ describe OrganizationInvitationsController do
           invitation: { email: 'chef@example.com' }
       end.to_not change(Invitation, :count)
     end
-
   end
-
 end

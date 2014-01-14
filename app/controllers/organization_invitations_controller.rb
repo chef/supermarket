@@ -3,7 +3,7 @@ class OrganizationInvitationsController < ApplicationController
 
   def index
     @invitations = @organization.invitations
-    @invitation = Invitation.new
+    @invitation = Invitation.new(organization: @organization)
 
     authorize! @invitation
   end
