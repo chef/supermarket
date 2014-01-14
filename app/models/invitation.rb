@@ -1,4 +1,6 @@
 class Invitation < ActiveRecord::Base
+  include Tokenable
+
   # Associations
   # --------------------
   belongs_to :organization
@@ -11,11 +13,7 @@ class Invitation < ActiveRecord::Base
 
   # Callbacks
   # --------------------
-  before_validation :generate_token
-
-  def generate_token
-    self.token = Digest::SHA1.hexdigest([Time.now, rand].join)
-  end
+  before_validation { generate_token(:token) }
 
   def to_param
     token
