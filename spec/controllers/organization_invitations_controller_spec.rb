@@ -3,13 +3,12 @@ require "spec_helper"
 describe OrganizationInvitationsController do
   let(:organization) { create(:organization) }
   let(:user) { create(:user, organizations: [organization]) }
-  let(:authorizer) { InvitationAuthorizer.any_instance }
 
   before { controller.stub(:current_user) { user } }
 
   describe 'GET #index' do
     it 'tells the view the organization' do
-      authorizer.stub(:index?) { true }
+      allow_any_instance_of(InvitationAuthorizer).to receive(:index?) { true }
 
       get :index, organization_id: organization.id
 
@@ -17,7 +16,7 @@ describe OrganizationInvitationsController do
     end
 
     it "tells the view the organization's invitations" do
-      authorizer.stub(:index?) { true }
+      allow_any_instance_of(InvitationAuthorizer).to receive(:index?) { true }
 
       get :index, organization_id: organization.id
 
@@ -29,12 +28,6 @@ describe OrganizationInvitationsController do
 
       expect(assigns[:invitations]).to include(invitation)
     end
-
-    it 'authorizes the user wishing to invite collaborators' do
-      authorizer.should_receive(:index?) { true }
-
-      get :index, organization_id: organization.id
-    end
   end
 
   describe 'POST #create' do
@@ -42,7 +35,7 @@ describe OrganizationInvitationsController do
     before { InvitationMailer.stub(:deliver_invitation) }
 
     it 'creates the invitation' do
-      authorizer.stub(:create?) { true }
+      allow_any_instance_of(InvitationAuthorizer).to receive(:create?) { true }
 
       expect do
         post :create,
@@ -52,7 +45,7 @@ describe OrganizationInvitationsController do
     end
 
     it 'sends the invitation' do
-      authorizer.stub(:create?) { true }
+      allow_any_instance_of(InvitationAuthorizer).to receive(:create?) { true }
       InvitationMailer.
         should_receive(:deliver_invitation).
         with(instance_of(Invitation))
@@ -63,7 +56,7 @@ describe OrganizationInvitationsController do
     end
 
     it 'authorizes that the user may send invitations' do
-      authorizer.should_receive(:create?) { true }
+      allow_any_instance_of(InvitationAuthorizer).to receive(:create?) { true }
 
       post :create,
           organization_id: organization.id,
@@ -71,7 +64,7 @@ describe OrganizationInvitationsController do
     end
 
     it 'will not create an invitation if the user is not authorized to do so' do
-      authorizer.stub(:create?) { false }
+      allow_any_instance_of(InvitationAuthorizer).to receive(:create?) { false }
 
       expect do
         post :create,
