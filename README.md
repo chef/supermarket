@@ -1,19 +1,19 @@
 Super Market
 ============
 
-Super Market is Chef's new community project. Here is a rough rodmap and the main outcomes we hope to achieve through rebuilding the Chef community experience from the ground up:
+Super Market is Chef's new community project. Here is a rough rodmap the corresponds to the main outcomes we hope to achieve through improving the Chef community experience:
 
-- Better facilitation for signing and managing Contribor License Agreements (CLA) [Milestone #2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
-- Exposing API endpoints for accessing community member and contributor status for other services to consume [Milestone #2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
-- Storing community member information and presenting it in a more user friendly and manageable way [Milestone #2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
-- Establishing a low barrier to entry for individuals to contribute and improve the community experience [Milestone #2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
-- Providing capabalities for trusted community members to moderate the community contributions [Milestone #3](https://github.com/opscode/supermarket/issues?milestone=3&state=open)
-- Imrpvoing the Cookbooks API to provide more relevant information about individual cookbooks [Milestone #3](https://github.com/opscode/supermarket/issues?milestone=3&state=open)
-- Better organized documentation for various Chef projects 
-- Chef Server cookbook API
-- Dependency API
-- Incorporating other community contributions like knife plugings, ohai plugins, and related chef packages
-- Improved Cookbook ratings using automatic multifactor metascore instead of voting
+- Better facilitation for signing and managing Contribor License Agreements (CLA). [#2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
+- Exposing API endpoints for accessing community member and contributor status for other services to consume. [#2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
+- Storing community member information and presenting it in a more user friendly and manageable way. [#2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
+- Establishing a low barrier to entry for individuals to contribute and improve the community experience. [#2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
+- Providing capabalities for trusted community members to moderate the community contributions. [#3](https://github.com/opscode/supermarket/issues?milestone=3&state=open)
+- Imrpvoing the Cookbooks API to provide more relevant information about individual cookbooks. [#3](https://github.com/opscode/supermarket/issues?milestone=3&state=open)
+- Better organized documentation for various Chef projects. [#4]
+- Chef Server cookbook API. [#4]
+- Dependency API. [#4]
+- Incorporating other community contributions like knife plugings, ohai plugins, and related chef packages. [#5]
+- Improved Cookbook ratings using automatic multifactor metascore instead of voting. [#6]
 
 
 Project Status
@@ -36,8 +36,10 @@ If you have questions, feature ideas, or other suggestions, please [create a Git
 
 Continuous Integration
 ------------
+Super Market is using Travis CI. [View build info](https://travis-ci.org/opscode/supermarket)
 
-[![Build Status](https://travis-ci.org/opscode/supermarket.png?branch=master)](https://travis-ci.org/opscode/supermarket) Super Market is using Travis CI. [View build info](https://travis-ci.org/opscode/supermarket)
+
+[![Build Status](https://travis-ci.org/opscode/supermarket.png?branch=master)](https://travis-ci.org/opscode/supermarket) 
 
 
 OmniAuth
