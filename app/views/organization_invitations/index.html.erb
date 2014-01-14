@@ -4,7 +4,7 @@
   </div>
 
   <div class="content">
-    <%= form_for(@invitation, url: create_organization_invitations_path, method: :post) do |f| %>
+    <%= form_for(@invitation, url: organization_invitations_path, method: :post) do |f| %>
       <%= render 'application/form_errors', record: @invitation %>
 
       <section>

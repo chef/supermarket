@@ -8,11 +8,13 @@ Supermarket::Application.routes.draw do
   resources :ccla_signatures, path: 'ccla-signatures'
   resources :users, only: [:show]
 
-  get 'organizations/:organization_id/invitations' => 'organization_invitations#index',
-    as: :organization_invitations
+  resources :invitations, only: [:show]
 
-  post 'organizations/:organization_id/invitations' => 'organization_invitations#create',
-    as: :create_organization_invitations
+  resources :organizations, only: [] do
+    resources :invitations,
+      only: [:index, :create],
+      controller: :organization_invitations
+  end
 
   get 'login'   => redirect('/sign-in'), as: nil
   get 'signin'  => redirect('/sign-in'), as: nil

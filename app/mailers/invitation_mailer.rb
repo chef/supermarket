@@ -6,6 +6,8 @@ class InvitationMailer < ActionMailer::Base
   end
 
   def invitation_email(invitation)
+    @invitation = invitation
+
     mail(to: invitation.email)
   end
 end
