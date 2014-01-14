@@ -1,5 +1,6 @@
 module Supermarket
   module Authorization
+    include LocationStorage
 
     #
     # Custom error class raised when an authorizer does not exist.
@@ -118,6 +119,7 @@ module Supermarket
     #
     def require_valid_user!
       unless current_user
+        store_location!
         raise NotAuthorizedError, 'You must be signed in to perform that' \
           ' action!'
       end

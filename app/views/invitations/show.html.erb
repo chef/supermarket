@@ -1,0 +1,9 @@
+<div class="page">
+  <div class="title">
+    Accept invitation to <%= @invitation.organization.name %>
+  </div>
+
+  <div class="content">
+    <%= link_to 'Accept', @invitation, method: :put %>
+  </div>
+</div>

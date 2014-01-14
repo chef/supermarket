@@ -8,7 +8,7 @@ Supermarket::Application.routes.draw do
   resources :ccla_signatures, path: 'ccla-signatures'
   resources :users, only: [:show]
 
-  resources :invitations, only: [:show]
+  resources :invitations, only: [:show, :update]
 
   resources :organizations, only: [] do
     resources :invitations,

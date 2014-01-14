@@ -8,10 +8,10 @@ describe 'Inviting people to sign a CCLA' do
     sign_ccla("Acme")
     invite_admin("johndoe@example.com")
     sign_out
-    accept_invitation
+    accept_invitation("Acme")
   end
 
-  def accept_invitation
+  def accept_invitation(organization)
     expect(ActionMailer::Base.deliveries.size).to eql(1)
 
     invitation = ActionMailer::Base.deliveries.last
@@ -20,8 +20,11 @@ describe 'Inviting people to sign a CCLA' do
     url = html.css("a.invitation").first.attribute('href').value
 
     visit url
+    click_link 'GitHub'
 
-    pending "fill out the form, become a contributor"
+    click_link 'Accept'
+
+    expect(page).to have_content "Admin of #{organization}"
   end
 
   def invite_admin(email)
