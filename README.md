@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/opscode/supermarket.png?branch=master)](https://travis-ci.org/opscode/supermarket)
+
 Super Market
 ============
 
@@ -33,6 +35,11 @@ There are also some project artifacts such as planning docs, wireframes, recorde
 
 If you have questions, feature ideas, or other suggestions, please [create a Github Issue](https://github.com/opscode/supermarket/issues?state=open) and we'll respond in a timely manner. 
 
+
+Continuous Integration
+------------
+
+Super Market is using Travis CI. [View build info](https://travis-ci.org/opscode/supermarket)
 
 
 OmniAuth
