@@ -1,5 +1,6 @@
 class IclaSignaturesController < ApplicationController
   before_filter :redirect_if_signed!, only: [:new, :create, :update]
+  before_filter :require_valid_user!, except: [:index]
 
   #
   # GET /icla-signatures
@@ -8,6 +9,7 @@ class IclaSignaturesController < ApplicationController
   #
   def index
     @icla_signatures = IclaSignature.by_user
+    authorize! @icla_signatures
   end
 
   #
@@ -17,7 +19,7 @@ class IclaSignaturesController < ApplicationController
   #
   def show
     @icla_signature = IclaSignature.find(params[:id])
-    authorize @icla_signature
+    authorize! @icla_signature
   end
 
   #
@@ -29,7 +31,6 @@ class IclaSignaturesController < ApplicationController
     current_user = User.first
     session[:user_id] = current_user.id
     @icla_signature = IclaSignature.new(user: current_user)
-    authorize @icla_signature
 
     # Load default ICLA text
     @icla_signature.icla = Icla.latest
@@ -52,7 +53,6 @@ class IclaSignaturesController < ApplicationController
   #
   def create
     @icla_signature = IclaSignature.new(icla_signature_params)
-    authorize @icla_signature
 
     if @icla_signature.save
       redirect_to @icla_signature, notice: 'Successfully signed ICLA.'
@@ -68,7 +68,7 @@ class IclaSignaturesController < ApplicationController
   #
   def destroy
     @icla_signature = IclaSignature.find(params[:id])
-    authorize @icla_signature
+    authorize! @icla_signature
 
     @icla_signature.destroy
     redirect_to icla_signatures_path
