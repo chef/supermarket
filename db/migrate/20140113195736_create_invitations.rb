@@ -5,6 +5,7 @@ class CreateInvitations < ActiveRecord::Migration
       t.string     :email
       t.string     :token
       t.boolean    :admin
+      t.boolean    :accepted
 
       t.timestamps
     end

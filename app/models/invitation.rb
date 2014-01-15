@@ -18,4 +18,12 @@ class Invitation < ActiveRecord::Base
   def to_param
     token
   end
+
+  def accept
+    update_attributes(accepted: true)
+  end
+
+  def reject
+    update_attributes(accepted: false)
+  end
 end

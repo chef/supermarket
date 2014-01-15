@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20140113195736) do
     t.string   "email"
     t.string   "token"
     t.boolean  "admin"
+    t.boolean  "accepted"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
