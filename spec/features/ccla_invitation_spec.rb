@@ -8,10 +8,10 @@ describe 'Inviting people to sign a CCLA' do
     accept_invitation('Acme')
   end
 
-  it 'sends invited users and email prompting them to sign the CCLA and they reject' do
+  it 'sends invited users and email prompting them to sign the CCLA and they decline' do
     sign_ccla_and_invite_user('Acme')
     sign_out
-    reject_invitation('Acme')
+    decline_invitation('Acme')
   end
 
   def sign_ccla_and_invite_user(organization)
@@ -27,10 +27,10 @@ describe 'Inviting people to sign a CCLA' do
     expect(page).to have_content "Admin of #{organization}"
   end
 
-  def reject_invitation(organization)
+  def decline_invitation(organization)
     receive_and_visit_invitation
-    click_link 'Reject'
-    expect(page).to have_content "Successfully rejected invitation to #{organization}"
+    click_link 'Decline'
+    expect(page).to have_content "Successfully declined invitation to #{organization}"
   end
 
   def receive_and_visit_invitation

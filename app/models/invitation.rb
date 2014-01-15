@@ -23,7 +23,7 @@ class Invitation < ActiveRecord::Base
     update_attributes(accepted: true)
   end
 
-  def reject
+  def decline
     update_attributes(accepted: false)
   end
 end

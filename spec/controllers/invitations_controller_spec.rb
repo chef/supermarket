@@ -42,7 +42,7 @@ describe InvitationsController do
   end
 
   describe 'DELETE #destroy' do
-    it 'rejects the invitation' do
+    it 'declines the invitation' do
       delete :destroy, id: invitation.token
       invitation.reload
 

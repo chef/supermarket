@@ -16,8 +16,8 @@ class InvitationsController < ApplicationController
   end
 
   def destroy
-    @invitation.reject
-    redirect_to current_user, notice: "Successfully rejected
+    @invitation.decline
+    redirect_to current_user, notice: "Successfully declined
       invitation to #{@invitation.organization.name}"
   end
 
