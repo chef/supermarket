@@ -1,4 +1,8 @@
 Supermarket::Application.routes.draw do
+  if Rails.env.development?
+    mount MailPreview => 'mail_view'
+  end
+
   namespace :api do
     resources :icla_signatures, path: 'icla-signatures'
     resources :users

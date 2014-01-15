@@ -30,6 +30,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'mail_view'
   gem 'quiet_assets'
   gem 'rspec-rails'
   gem 'byebug'
