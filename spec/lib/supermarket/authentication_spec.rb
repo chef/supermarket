@@ -43,4 +43,22 @@ describe Supermarket::Authentication do
       expect(subject.signed_in?).to be_false
     end
   end
+
+  describe '#require_user!' do
+    it 'raises NotAuthenticatedError when the user is signed out' do
+      subject.stub(:current_user)
+
+      expect do
+        subject.require_user!
+      end.to raise_error(Supermarket::Authentication::NotAuthenticatedError)
+    end
+
+    it 'does not raise when the user is signed in' do
+      subject.stub(:current_user) { true }
+
+      expect do
+        subject.require_user!
+      end.to_not raise_error
+    end
+  end
 end

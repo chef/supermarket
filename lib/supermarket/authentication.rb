@@ -1,5 +1,10 @@
 module Supermarket
   module Authentication
+
+    # Custom error class raised when the user must be authenticated
+    #
+    class NotAuthenticatedError < StandardError; end
+
     def self.included(controller)
       controller.send(:helper_method, :current_user, :signed_in?)
     end
@@ -21,5 +26,19 @@ module Supermarket
     def signed_in?
       !!current_user
     end
+
+    #
+    # Authentication action ensuring the current user exists.
+    #
+    # @raise [NotAuthenticatedError]
+    #   if the user is not currently logged in
+    #
+    def require_user!
+      unless signed_in?
+        raise NotAuthenticatedError, 'You must be signed in to perform that' \
+          ' action!'
+      end
+    end
+
   end
 end
