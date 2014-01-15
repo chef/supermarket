@@ -1,6 +1,4 @@
 class SessionsController < ApplicationController
-  include LocationStorage
-
   def new
     if signed_in?
       return redirect_to stored_location_or_root,
