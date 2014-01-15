@@ -30,6 +30,11 @@ production:
     github:
       key: YOUR_KEY
       secret: YOUR_SECRET
+  smtp:
+    address: smtp.someserver.com
+    port: SOME_PORT
+    user_name: SOME_USER_NAME
+    password: SOME_PASSWORD
 
 test:
   icla_version: '99999-2621/LEGAL14767024.1'
