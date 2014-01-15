@@ -1,7 +1,6 @@
 class InvitationAuthorizer < Authorizer::Base
   def index?
-    user.organization_users.where(admin: true)
-      .map(&:organization).include?(record.organization)
+    user.is_admin_of_organization?(record.organization)
   end
 
   def create?

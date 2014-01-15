@@ -63,6 +63,22 @@ class User < ActiveRecord::Base
     [first_name, last_name].join(' ')
   end
 
+  #
+  # Determine if the current user is an admin of a given organization
+  #
+  # @example
+  #   user.is_admin_of_organization?(organization)
+  #
+  # @param [Organization]
+  #
+  # @return [Boolean]
+  #
+  def is_admin_of_organization?(organization)
+    organizations.joins(:organization_users).where(
+      'organization_users.admin = ? AND organizations.id = ?',
+      true, organization.id).count > 0
+  end
+
   private
 
     #
