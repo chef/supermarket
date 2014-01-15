@@ -4,10 +4,6 @@ module Supermarket
   module Authorization
     include Pundit
 
-    def self.included(controller)
-      controller.send(:helper_method, :can?)
-    end
-
     alias :authorize! :authorize
 
     #
