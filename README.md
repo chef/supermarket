@@ -1,4 +1,4 @@
-Super Market
+Super Market [![Code Climate](https://codeclimate.com/github/opscode/supermarket.png)](https://codeclimate.com/github/opscode/supermarket) [![Build Status](https://travis-ci.org/opscode/supermarket.png?branch=master)](https://travis-ci.org/opscode/supermarket) [![Dependency Status](https://gemnasium.com/opscode/supermarket.png)](https://gemnasium.com/opscode/supermarket) [![Coverage Status](https://coveralls.io/repos/opscode/supermarket/badge.png)](https://coveralls.io/r/opscode/supermarket)
 ============
 
 Super Market is Chef's new community project. Here is a rough roadmap that corresponds to the main outcomes we hope to achieve through improving the Chef community experience:
@@ -37,9 +37,6 @@ If you have questions, feature ideas, or other suggestions, please [create a Git
 Continuous Integration
 ------------
 Super Market is using Travis CI. [View build info](https://travis-ci.org/opscode/supermarket)
-
-
-[![Build Status](https://travis-ci.org/opscode/supermarket.png?branch=master)](https://travis-ci.org/opscode/supermarket)
 
 
 OmniAuth
