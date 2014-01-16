@@ -30,5 +30,8 @@
       <%= yield %>
     </div>
     <%= javascript_include_tag 'application' %>
+    <% if Supermarket::Config.segment_io %>
+      <%= render partial: 'segment.io' %>
+    <% end %>
   </body>
 </html>
