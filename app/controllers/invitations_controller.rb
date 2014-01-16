@@ -3,6 +3,7 @@ class InvitationsController < ApplicationController
   before_filter :require_valid_user!
 
   def show
+    @organization = @invitation.organization
   end
 
   def update
