@@ -52,6 +52,19 @@ class User < ActiveRecord::Base
   end
 
   #
+  # Determine if the current user signed the Corporate Contributor License
+  # Agreement.
+  #
+  # @todo Expand this functionality to search for the most recently active
+  #       CCLA and return some sort of history instead.
+  #
+  # @return [Boolean]
+  #
+  def signed_ccla?
+    !ccla_signatures.empty?
+  end
+
+  #
   # The name of the current user.
   #
   # @example

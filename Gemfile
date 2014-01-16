@@ -11,6 +11,7 @@ gem 'pg'
 gem 'redcarpet' # markdown parsing
 gem 'unicorn'
 gem 'unicorn-rails'
+gem 'doorkeeper'
 
 gem 'neat'
 gem 'sass-rails',   '~> 4.0.1'

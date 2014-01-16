@@ -46,6 +46,8 @@ GEM
     database_cleaner (1.2.0)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.4)
+    doorkeeper (1.0.0)
+      railties (>= 3.1)
     erubis (2.7.0)
     execjs (2.0.2)
     factory_girl (4.2.0)
@@ -182,6 +184,7 @@ DEPENDENCIES
   byebug
   capybara
   database_cleaner
+  doorkeeper
   factory_girl
   launchy
   magiconf
