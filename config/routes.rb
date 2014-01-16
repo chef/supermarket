@@ -1,4 +1,6 @@
 Supermarket::Application.routes.draw do
+  use_doorkeeper
+
   namespace :api do
     resources :icla_signatures, path: 'icla-signatures'
     resources :users
@@ -18,6 +20,10 @@ Supermarket::Application.routes.draw do
 
   match 'auth/:provider/callback' => 'sessions#create', as: :auth_callback, via: [:get, :post]
   get 'auth/failure' => 'sessions#failure', as: :auth_failure
+
+  scope 'api', format: :json do
+    get '/agreements/:github_username' => 'api/agreements#show'
+  end
 
   root 'icla_signatures#index'
 end
