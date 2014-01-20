@@ -3,4 +3,8 @@ class OrganizationUser < ActiveRecord::Base
   # --------------------
   belongs_to :organization
   belongs_to :user
+
+  def email
+    user.primary_email.try(:email)
+  end
 end

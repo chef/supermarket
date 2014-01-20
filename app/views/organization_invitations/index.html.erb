@@ -29,12 +29,30 @@
       <tr>
         <th>Email</th>
         <th>Role</th>
+        <th>Status</th>
       </tr>
 
-      <% @invitations.each do |invitation| %>
+      <% @pending_invitations.each do |invitation| %>
         <tr class="contributor <%= invitation.admin? ? 'admin' : '' %>">
           <td><%= invitation.email %></td>
           <td><%= invitation.admin? ? 'Admin' : 'Contributor' %></td>
+          <td><%= "Pending" %></td>
+        </tr>
+      <% end %>
+
+      <% @contributors.each do |contributor| %>
+        <tr class="contributor <%= contributor.admin? ? 'admin' : '' %>">
+          <td><%= contributor.email %></td>
+          <td><%= contributor.admin? ? 'Admin' : 'Contributor' %></td>
+          <td><%= "Accepted" %></td>
+        </tr>
+      <% end %>
+
+      <% @declined_invitations.each do |invitation| %>
+        <tr class="contributor <%= invitation.admin? ? 'admin' : '' %>">
+          <td><%= invitation.email %></td>
+          <td><%= invitation.admin? ? 'Admin' : 'Contributor' %></td>
+          <td><%= "Declined" %></td>
         </tr>
       <% end %>
     </table>

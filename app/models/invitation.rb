@@ -15,6 +15,9 @@ class Invitation < ActiveRecord::Base
   # --------------------
   before_validation { generate_token(:token) }
 
+  scope :pending, -> { where(accepted: nil) }
+  scope :declined, -> { where(accepted: false) }
+
   def to_param
     token
   end
