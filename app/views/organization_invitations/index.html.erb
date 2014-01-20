@@ -1,0 +1,42 @@
+<div class="page">
+  <div class="title">
+    <span class="fa fa-users"></span>Invite contributors to <%= @organization.name %>
+  </div>
+
+  <div class="content">
+    <%= form_for([@organization, @invitation]) do |f| %>
+      <%= render 'application/form_errors', record: @invitation %>
+
+      <section>
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true %>
+      </section>
+
+      <section class='checkbox-with-label'>
+        <fieldset>
+          <%= f.check_box :admin  %>
+          <%= f.label :admin, '' %>
+        </fieldset>
+        <p>Make this user an admin of <%= @organization.name %>.</p>
+      </section>
+
+      <section>
+        <%= f.submit 'Send invitation', class: 'button secondary' %>
+      </section>
+    <% end %>
+
+    <table class="green">
+      <tr>
+        <th>Email</th>
+        <th>Role</th>
+      </tr>
+
+      <% @invitations.each do |invitation| %>
+        <tr>
+          <td><%= invitation.email %></td>
+          <td><%= invitation.admin? ? 'Admin' : 'Contributor' %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

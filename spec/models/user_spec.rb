@@ -32,4 +32,22 @@ describe User do
       expect(user.signed_icla?).to be_false
     end
   end
+
+  describe '#is_admin_of_organization?' do
+    it 'is true when the user is an admin of the given organization' do
+      organization_user = create(:organization_user, admin: true)
+      user = organization_user.user
+      organization = organization_user.organization
+
+      expect(user.is_admin_of_organization?(organization)).to be_true
+    end
+
+    it 'is false when the user is not an admin of the given organization' do
+      organization_user = create(:organization_user, admin: false)
+      user = organization_user.user
+      organization = organization_user.organization
+
+      expect(user.is_admin_of_organization?(organization)).to be_false
+    end
+  end
 end

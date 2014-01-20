@@ -18,6 +18,8 @@
 development:
   icla_version: '99999-2621/LEGAL14767024.1'
   ccla_version: '99999-2621/LEGAL14767024.1'
+  segment_io:
+    write_key: YOUR_KEY
   omni_auth:
     github:
       key: YOUR_KEY
@@ -30,6 +32,13 @@ production:
     github:
       key: YOUR_KEY
       secret: YOUR_SECRET
+  segment_io:
+    write_key: YOUR_KEY
+  smtp:
+    address: smtp.someserver.com
+    port: SOME_PORT
+    user_name: SOME_USER_NAME
+    password: SOME_PASSWORD
 
 test:
   icla_version: '99999-2621/LEGAL14767024.1'

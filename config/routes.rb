@@ -1,4 +1,8 @@
 Supermarket::Application.routes.draw do
+  if Rails.env.development?
+    mount MailPreview => 'mail_view'
+  end
+
   namespace :api do
     resources :icla_signatures, path: 'icla-signatures'
     resources :users
@@ -7,6 +11,14 @@ Supermarket::Application.routes.draw do
   resources :icla_signatures, path: 'icla-signatures'
   resources :ccla_signatures, path: 'ccla-signatures'
   resources :users, only: [:show]
+
+  resources :invitations, only: [:show, :update, :destroy]
+
+  resources :organizations, only: [] do
+    resources :invitations,
+      only: [:index, :create],
+      controller: :organization_invitations
+  end
 
   get 'login'   => redirect('/sign-in'), as: nil
   get 'signin'  => redirect('/sign-in'), as: nil

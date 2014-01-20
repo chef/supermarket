@@ -11,16 +11,7 @@
 
       <header class="agreement-header"><%= render_markdown(@ccla_signature.ccla.head) %></header>
 
-      <% if @ccla_signature.errors.present? %>
-        <div class="callout error">
-          <p>There were some problems submitting the form:</p>
-          <ul>
-            <% @ccla_signature.errors.full_messages.each do |error| %>
-              <li><%= error %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <%= render 'application/form_errors', record: @ccla_signature %>
 
       <section class="fields">
         <fieldset class="name">
@@ -50,7 +41,7 @@
         <footer><%= @ccla_signature.ccla.version %></footer>
       </section>
 
-      <section class="agreement">
+      <section class="checkbox-with-label">
         <fieldset>
           <%= f.check_box :agreement %>
           <%= label_tag :ccla_signature_agreement, '' %>

@@ -26,9 +26,11 @@ group :test do
   gem 'poltergeist'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
+  gem 'nokogiri', require: false
 end
 
 group :development, :test do
+  gem 'mail_view'
   gem 'quiet_assets'
   gem 'rspec-rails'
   gem 'byebug'

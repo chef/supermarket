@@ -54,6 +54,24 @@ fieldset {
   @include span-columns(12);
 }
 
+form section {
+  @include row;
+}
+
+.checkbox-with-label {
+  @include row;
+  margin: 20px 0 20px 0;
+
+  p {
+    @include span-columns(11);
+    margin: 0;
+  }
+
+  fieldset {
+    @include span-columns(1);
+  }
+}
+
 input {
   background: #fff;
   border: 1px solid lighten($secondary-gray, 25%);
