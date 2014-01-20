@@ -32,7 +32,7 @@
       </tr>
 
       <% @invitations.each do |invitation| %>
-        <tr>
+        <tr class="contributor <%= invitation.admin? ? 'admin' : '' %>">
           <td><%= invitation.email %></td>
           <td><%= invitation.admin? ? 'Admin' : 'Contributor' %></td>
         </tr>

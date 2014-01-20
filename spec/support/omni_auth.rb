@@ -16,22 +16,6 @@ module OmniAuth
     }
   })
 
-  # GitHub
-  config.mock_auth[:github] = OmniAuth::AuthHash.new({
-    provider: 'github',
-    uid: '12345',
-    info: {
-      nickname: 'johndoe',
-      email: 'johndoe@example.com',
-      name: 'John Doe',
-      image: 'https://image-url.com',
-    },
-    credentials: {
-      token: 'oauth_token',
-      expires: false
-    }
-  })
-
   # Twitter
   config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
     provider: 'twitter',
