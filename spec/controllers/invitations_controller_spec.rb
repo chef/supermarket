@@ -39,6 +39,14 @@ describe InvitationsController do
 
       expect(response).to redirect_to(user)
     end
+
+    it 'creates admins if the invitation specifies as such' do
+      invitation = create(:invitation, admin: true)
+
+      expect {
+        put :update, id: invitation.token
+      }.to change(OrganizationUser.where(admin: true), :count).by(1)
+    end
   end
 
   describe 'DELETE #destroy' do

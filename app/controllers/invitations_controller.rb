@@ -8,8 +8,10 @@ class InvitationsController < ApplicationController
 
   def update
     @organization_user = OrganizationUser.create!(
-      organization: @invitation.organization, user: current_user,
-      admin: @invitation.admin)
+      organization: @invitation.organization,
+      user: current_user,
+      admin: @invitation.admin
+    )
 
     @invitation.accept
     redirect_to current_user, notice: "Successfully joined
