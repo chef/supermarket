@@ -168,4 +168,4 @@ Running `sudo /Library/StartupItems/VirtualBox/VirtualBox restart` can help fix 
 
 1. Start the server:
 
-        $ ./bin/rails server
+        $ foreman start
