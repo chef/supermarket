@@ -42,19 +42,22 @@ Super Market is using Travis CI. [View build info](https://travis-ci.org/opscode
 OmniAuth
 --------
 
-Super Market uses [OmniAuth](https://github.com/intridea/omniauth) for authentication. The OmniAuth configuration is data-driven, so you can configure OmniAuth to use whatever authentication method your organization desires. You can read more about OmniAuth on the [OmniAuth GitHub page](https://github.com/intridea/omniauth). In short, you need to create and register Super Market as an application and setup the keys in the `config/application.yml` file.
+Super Market uses [OmniAuth](https://github.com/intridea/omniauth) for
+authentication. The OmniAuth configuration is data-driven, so you can configure
+OmniAuth to use whatever authentication method your organization desires. You
+can read more about OmniAuth on the [OmniAuth GitHub
+page](https://github.com/intridea/omniauth). In short, you need to create and
+register Super Market as an application and setup the keys in the `.env` file.
 
 To register GitHub as an OmniAuth sign in method:
 
 1. [Register your application](https://github.com/settings/applications/new)
 2. Make sure the Authorization callback URL has the app's URL with the /auth/github/callback path
-3. Add the following to your `config/application.yml`:
+3. Add the following to your `.env`:
 
   ```yaml
-  omni_auth:
-    github:
-      key: MY_KEY
-      secret: MY_SECRET
+  GITHUB_KEY: MY_KEY
+  GITHUB_SECRET: MY_SECRET
   ```
 
 where `MY_KEY` and `MY_SECRET` are the values given when you created the application.
@@ -156,6 +159,8 @@ Running `sudo /Library/StartupItems/VirtualBox/VirtualBox restart` can help fix 
 1. Install required gems:
 
         $ bundle
+
+1. Configure the [dotenv](https://github.com/bkeepers/dotenv) keys and secrets.  See `.env.example` for required keys and secrets to get up and running.
 
 1. Run the migrations:
 
