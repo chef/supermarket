@@ -1,3 +1,5 @@
+require 'authorizer/base'
+
 class OrganizationUserAuthorizer < Authorizer::Base
 
   alias contributor record
@@ -7,7 +9,7 @@ class OrganizationUserAuthorizer < Authorizer::Base
 
     if user.is_admin_of_organization?(organization)
       if contributor.admin?
-        organization.admins.count > 1
+        not contributor.only_admin?
       else
         true
       end

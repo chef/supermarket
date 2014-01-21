@@ -7,4 +7,8 @@ class OrganizationUser < ActiveRecord::Base
   def email
     user.primary_email.try(:email)
   end
+
+  def only_admin?
+    admin? && organization.admins.count == 1
+  end
 end

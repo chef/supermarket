@@ -59,6 +59,12 @@ module FeatureHelpers
     expect(page).to have_content "Admin of #{organization}"
   end
 
+  def decline_invitation_to_join(organization)
+    receive_and_visit_invitation
+    click_link 'Decline'
+    expect(page).to have_content "Declined invitation to join #{organization}"
+  end
+
   def manage_contributors
     click_link 'View Profile'
     click_link 'Invite Contributors'
