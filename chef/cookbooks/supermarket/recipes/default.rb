@@ -1,8 +1,8 @@
 #
-# Author:: Seth Vargo (<sethvargo@gmail.com>)
+# Author:: Tristan O'Neil (<tristanoneil@gmail.com>)
 # Recipe:: default
 #
-# Copyright 2013 Chef, Inc.
+# Copyright 2014 Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,7 +17,10 @@
 # limitations under the License.
 #
 
+include_recipe 'supermarket::_git'
 include_recipe 'supermarket::_editors'
 include_recipe 'supermarket::_node'
 include_recipe 'supermarket::_postgres'
 include_recipe 'supermarket::_ruby'
+include_recipe 'supermarket::_nginx'
+include_recipe 'supermarket::_application'

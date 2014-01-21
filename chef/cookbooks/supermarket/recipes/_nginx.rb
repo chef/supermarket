@@ -1,6 +1,6 @@
 #
-# Author:: Seth Vargo (<sethvargo@gmail.com>)
-# Recipe:: node
+# Author:: Tristan O'Neil (<tristanoneil@gmail.com>)
+# Recipe:: nginx
 #
 # Copyright 2014 Chef Software, Inc.
 #
@@ -17,19 +17,14 @@
 # limitations under the License.
 #
 
-# NodeJS is required because of the asset pipeline needs a valud JS runtime
-
 include_recipe 'supermarket::_apt'
 
-package 'python-software-properties'
-package 'python'
-package 'g++'
-package 'make'
+package 'nginx'
 
-execute 'add-apt-repository[ppa:chris-lea]' do
-  command 'add-apt-repository -y ppa:chris-lea/node.js'
-  notifies :run, 'execute[apt-get update]', :immediately
-  not_if 'test -f /etc/apt/sources.list.d/chris-lea-node_js-precise.list'
+template '/etc/nginx/sites-available/default' do
+  notifies :restart, 'service[nginx]', :immediately
 end
 
-package 'nodejs'
+service 'nginx' do
+  action :nothing
+end

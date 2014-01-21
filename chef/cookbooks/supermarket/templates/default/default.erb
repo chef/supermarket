@@ -1,0 +1,27 @@
+upstream unicorn {
+  server unix:/tmp/.supermarket.sock.0;
+}
+
+server {
+  listen 80;
+
+  location ~ ^/assets/ {
+    root /var/www/supermarket/current/public;
+
+    # to serve pre-gzipped version
+    gzip_static on;
+    expires 1y;
+    add_header Cache-Control public;
+    add_header ETag "";
+    break;
+  }
+
+  location / {
+    proxy_set_header HOST $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $remote_addr;
+    proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+    proxy_pass http://unicorn;
+    proxy_redirect off;
+  }
+}

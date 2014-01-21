@@ -9,6 +9,7 @@ test:
   host: localhost
 
 production:
-  username: vagrant
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
   adapter: postgresql
   database: supermarket_production

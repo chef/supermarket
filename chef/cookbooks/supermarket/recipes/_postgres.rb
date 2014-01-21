@@ -2,7 +2,7 @@
 # Author:: Seth Vargo (<sethvargo@gmail.com>)
 # Recipe:: postgres
 #
-# Copyright 2013 Chef, Inc.
+# Copyright 2014 Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,10 +23,23 @@ package 'postgresql'
 package 'postgresql-contrib'
 package 'libpq-dev'
 
-execute 'postgres_user[vagrant]' do
+execute 'postgres[user]' do
   user 'postgres'
-  command 'createuser vagrant --superuser'
-  not_if %q(su - postgres -c 'psql postgres -tAc "SELECT 1 FROM pg_roles WHERE rolname='\''vagrant'\''" | grep -q 1')
+  command %Q(psql postgres -tAc "CREATE USER #{node['postgres']['user']}
+    WITH PASSWORD '#{node['postgres']['password']}' CREATEDB CREATEUSER")
+
+  # do not create user if the user already exists or authentication fails
+  not_if %Q(su - postgres -c 'psql postgres -U postgres --no-password -tAc "SELECT 1 FROM pg_roles
+    WHERE rolname='\\''#{node['postgres']['user']}'\\''" 2>&1 | grep -E -i -w -q "1|fe_sendauth"')
+end
+
+execute 'postgres[database]' do
+  user 'postgres'
+  command %Q(psql postgres -tAc "CREATE DATABASE #{node['postgres']['database']}")
+
+  # do not create database if the database already exists or authentication fails
+  not_if %Q(su - postgres -c 'psql postgres -U postgres --no-password -tAc "SELECT 1
+    FROM pg_database WHERE datname='\\''#{node['postgres']['database']}'\\''" 2>&1 | grep -E -i -w -q "1|fe_sendauth"')
 end
 
 template '/etc/postgresql/9.1/main/pg_hba.conf' do
