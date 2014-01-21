@@ -14,10 +14,11 @@ describe 'Removing members from a CCLA' do
 
     admin_elements = all('.contributor.admin')
 
-    expect(admin_elements.size).to eql(0)
+    expect(admin_elements.size).to eql(1)
   end
 
   def remove_other_admin_from(organization)
+    click_link "Remove Contributor"
   end
 
   example 'admins can remove other, non-admin members'
