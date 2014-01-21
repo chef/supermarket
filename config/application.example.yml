@@ -18,6 +18,7 @@
 development:
   icla_version: '99999-2621/LEGAL14767024.1'
   ccla_version: '99999-2621/LEGAL14767024.1'
+  secret_key_base: YOUR_SECRET_KEY_BASE
   segment_io:
     write_key: YOUR_KEY
   omni_auth:
@@ -28,6 +29,7 @@ development:
 production:
   icla_version: '99999-2621/LEGAL14767024.1'
   ccla_version: '99999-2621/LEGAL14767024.1'
+  secret_key_base: YOUR_SECRET_KEY_BASE
   omni_auth:
     github:
       key: YOUR_KEY
@@ -43,6 +45,7 @@ production:
 test:
   icla_version: '99999-2621/LEGAL14767024.1'
   ccla_version: '99999-2621/LEGAL14767024.1'
+  secret_key_base: YOUR_SECRET_KEY_BASE
   omni_auth:
     github:
       key: YOUR_KEY

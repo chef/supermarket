@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Supermarket::Application.config.secret_key_base = '704a7605027870aff6e3921692ba9fb682c3bd90cb58699fb620db50939c5f50db3ef69296cf977e7347538674b8b698114c67da85617717b5f5bba763636678'
+Supermarket::Application.config.secret_key_base = Supermarket::Config.secret_key_base
