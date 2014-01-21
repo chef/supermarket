@@ -1,6 +1,6 @@
 class InvitationsController < ApplicationController
   before_filter :find_invitation
-  before_filter :require_valid_user!
+  before_filter :require_user!
 
   def show
     @organization = @invitation.organization
@@ -22,7 +22,8 @@ class InvitationsController < ApplicationController
       invitation to #{@invitation.organization.name}"
   end
 
-  rescue_from NotAuthorizedError do |error|
+  rescue_from NotAuthenticatedError do |error|
+    store_location!
     redirect_to sign_in_path
   end
 
