@@ -54,7 +54,7 @@
           <% end %>
 
           <td>
-            <% if can? :destroy, contributor %>
+            <% if policy(contributor).destroy? %>
               <%= link_to text, organization_user_url(@organization, contributor), method: :delete %>
             <% end %>
           </td>
