@@ -46,12 +46,18 @@ GEM
     database_cleaner (1.2.0)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.4)
+    dotenv (0.9.0)
+    dotenv-rails (0.9.0)
+      dotenv (= 0.9.0)
     erubis (2.7.0)
     execjs (2.0.2)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
+    foreman (0.63.0)
+      dotenv (>= 0.7)
+      thor (>= 0.13.6)
     hashie (2.0.5)
     hike (1.2.3)
     httpauth (0.2.0)
@@ -184,7 +190,9 @@ DEPENDENCIES
   byebug
   capybara
   database_cleaner
+  dotenv-rails
   factory_girl
+  foreman
   launchy
   magiconf
   mail_view

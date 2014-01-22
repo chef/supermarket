@@ -11,6 +11,7 @@ gem 'pg'
 gem 'redcarpet' # markdown parsing
 gem 'unicorn'
 gem 'unicorn-rails'
+gem 'foreman'
 
 gem 'neat'
 gem 'sass-rails',   '~> 4.0.1'
@@ -35,4 +36,5 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'byebug'
   gem 'launchy'
+  gem 'dotenv-rails'
 end

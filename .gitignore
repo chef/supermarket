@@ -34,7 +34,7 @@ node_modules/
 doc/
 
 # Ignore user-specific configuration files
-config/application.yml
+.env
 
 # Ignore vendored gems
 vendor/gems

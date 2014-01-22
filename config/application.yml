@@ -1,0 +1,52 @@
+#
+# Register your application's keys and secrets.
+# This file is powered by ENV variables. For local development, create and
+# configure a .env (dotenv: https://github.com/bkeepers/dotenv) file
+# When deploying to a PaaS, like Heroku, simply set the ENV variables.
+#
+# An example using GitHub
+#
+#
+#   github:
+#     key: <%= ENV['GITHUB_OAUTH_KEY'] %>
+#     secret: <%= ENV['GITHUB_OAUTH_SECRET'] %>
+#
+
+development:
+  icla_version: '99999-2621/LEGAL14767024.1'
+  ccla_version: '99999-2621/LEGAL14767024.1'
+  secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
+  omni_auth:
+    github:
+      key: <%= ENV['GITHUB_KEY'] %>
+      secret: <%= ENV['GITHUB_SECRET'] %>
+  smtp:
+    address: <%= ENV['SMTP_ADDRESS'] %>
+    port: <%= ENV['SMTP_PORT'] %>
+    user_name: <%= ENV['SMTP_USER_NAME'] %>
+    password: <%= ENV['SMTP_PASSWORD'] %>
+
+production:
+  icla_version: '99999-2621/LEGAL14767024.1'
+  ccla_version: '99999-2621/LEGAL14767024.1'
+  secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
+  omni_auth:
+    github:
+      key: <%= ENV['GITHUB_KEY'] %>
+      secret: <%= ENV['GITHUB_SECRET'] %>
+  segment_io:
+    write_key: <%= ENV['SEGMENT_IO_WRITE_KEY'] %>
+  smtp:
+    address: <%= ENV['SMTP_ADDRESS'] %>
+    port: <%= ENV['SMTP_PORT'] %>
+    user_name: <%= ENV['SMTP_USER_NAME'] %>
+    password: <%= ENV['SMTP_PASSWORD'] %>
+
+test:
+  icla_version: '99999-2621/LEGAL14767024.1'
+  ccla_version: '99999-2621/LEGAL14767024.1'
+  secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
+  omni_auth:
+    github:
+      key: <%= ENV['GITHUB_KEY'] %>
+      secret: <%= ENV['GITHUB_SECRET'] %>
