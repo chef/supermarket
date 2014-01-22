@@ -2,7 +2,6 @@ module FeatureHelpers
 
   def sign_in_with_github(uid = '12345', nickname = 'johndoe',
                           email = 'johndoe@example.com')
-    # GitHub
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
       provider: 'github',
       uid: uid,
