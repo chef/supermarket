@@ -1,5 +1,6 @@
 class IclaSignaturesController < ApplicationController
-  before_filter :require_valid_user!, except: [:index]
+  before_filter :redirect_if_signed!, only: [:new, :create, :update]
+  before_filter :require_user!, except: [:index]
 
   #
   # GET /icla-signatures

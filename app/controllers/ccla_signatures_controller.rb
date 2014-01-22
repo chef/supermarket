@@ -1,5 +1,5 @@
 class CclaSignaturesController < ApplicationController
-  before_filter :require_valid_user!
+  before_filter :require_user!
 
   #
   # GET /ccla-signatures/:id
