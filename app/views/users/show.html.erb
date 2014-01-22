@@ -17,7 +17,7 @@
         <%= link_to "Invite Contributors", organization_invitations_url(organization_user.organization) %>
         </p>
       <% else %>
-        <p>Member of <%= organization_user.organization.name %> - <%= link_to "View CCLA", organization_user.organization.ccla_signature %></p>
+        <p>Contributor of <%= organization_user.organization.name %> - <%= link_to "View CCLA", organization_user.organization.ccla_signature %></p>
       <% end %>
     <% end %>
   </div>

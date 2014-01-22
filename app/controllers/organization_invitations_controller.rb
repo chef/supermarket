@@ -2,7 +2,9 @@ class OrganizationInvitationsController < ApplicationController
   before_filter :find_organization
 
   def index
-    @invitations = @organization.invitations
+    @pending_invitations = @organization.invitations.pending
+    @declined_invitations = @organization.invitations.declined
+    @contributors = @organization.organization_users
     @invitation = Invitation.new(organization: @organization)
 
     authorize! @invitation

@@ -7,6 +7,7 @@ describe OrganizationInvitationsController do
   before { controller.stub(:current_user) { user } }
 
   describe 'GET #index' do
+
     it 'tells the view the organization' do
       allow_any_instance_of(InvitationAuthorizer).to receive(:index?) { true }
 
@@ -15,19 +16,55 @@ describe OrganizationInvitationsController do
       expect(assigns[:organization]).to eql(organization)
     end
 
-    it "tells the view the organization's invitations" do
+    describe "when selecting invitations to send to the view" do
+
+      let!(:pending_invitation) do
+        organization.invitations.create!(email: 'chef@example.com')
+      end
+
+      let!(:accepted_invitation) do
+        organization.invitations.create!(
+          email: 'chef@example.com',
+          accepted: true
+        )
+      end
+
+      let!(:declined_invitation) do
+        organization.invitations.create!(
+          email: 'chef@example.com',
+          accepted: false
+        )
+      end
+
+      it "tells the view the organization's pending invitations" do
+        allow_any_instance_of(InvitationAuthorizer).to receive(:index?) { true }
+
+        get :index, organization_id: organization.id
+
+        expect(assigns[:pending_invitations]).to include(pending_invitation)
+        expect(assigns[:pending_invitations]).to_not include(accepted_invitation)
+        expect(assigns[:pending_invitations]).to_not include(declined_invitation)
+      end
+
+      it "tells the view the organization's declined invitations" do
+        allow_any_instance_of(InvitationAuthorizer).to receive(:index?) { true }
+
+        get :index, organization_id: organization.id
+
+        expect(assigns[:declined_invitations]).to include(declined_invitation)
+        expect(assigns[:declined_invitations]).to_not include(pending_invitation)
+        expect(assigns[:declined_invitations]).to_not include(accepted_invitation)
+      end
+    end
+
+    it "tells the view the organization's contributors" do
       allow_any_instance_of(InvitationAuthorizer).to receive(:index?) { true }
 
       get :index, organization_id: organization.id
 
-      expect(assigns[:invitations]).to be_empty
-
-      get :index, organization_id: organization.id
-
-      invitation = organization.invitations.create!(email: 'chef@example.com')
-
-      expect(assigns[:invitations]).to include(invitation)
+      expect(assigns[:contributors]).to include(user.organization_users.first)
     end
+
   end
 
   describe 'POST #create' do

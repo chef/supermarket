@@ -8,8 +8,10 @@ class InvitationsController < ApplicationController
 
   def update
     @organization_user = OrganizationUser.create!(
-      organization: @invitation.organization, user: current_user,
-      admin: @invitation.admin)
+      organization: @invitation.organization,
+      user: current_user,
+      admin: @invitation.admin
+    )
 
     @invitation.accept
     redirect_to current_user, notice: "Successfully joined
@@ -18,8 +20,8 @@ class InvitationsController < ApplicationController
 
   def destroy
     @invitation.decline
-    redirect_to current_user, notice: "Successfully declined
-      invitation to #{@invitation.organization.name}"
+    redirect_to current_user, notice: "Declined invitation to join
+      #{@invitation.organization.name}"
   end
 
   rescue_from NotAuthenticatedError do |error|

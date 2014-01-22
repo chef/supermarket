@@ -9,4 +9,8 @@ class Organization < ActiveRecord::Base
   # Validations
   # --------------------
   validates_presence_of :name
+
+  def admins
+    organization_users.where(admin: true)
+  end
 end

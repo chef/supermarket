@@ -29,12 +29,43 @@
       <tr>
         <th>Email</th>
         <th>Role</th>
+        <th>Status</th>
+        <th>Actions</th>
       </tr>
 
-      <% @invitations.each do |invitation| %>
-        <tr>
+      <% @pending_invitations.each do |invitation| %>
+        <tr class="contributor <%= invitation.admin? ? 'admin' : '' %>">
           <td><%= invitation.email %></td>
           <td><%= invitation.admin? ? 'Admin' : 'Contributor' %></td>
+          <td><%= "Pending" %></td>
+          <td></td>
+        </tr>
+      <% end %>
+
+      <% @contributors.each do |contributor| %>
+        <tr class="contributor <%= contributor.admin? ? 'admin' : '' %>">
+          <td><%= contributor.email %></td>
+          <td><%= contributor.admin? ? 'Admin' : 'Contributor' %></td>
+          <td><%= "Accepted" %></td>
+          <% if contributor.user == current_user %>
+            <% text = "Remove Myself as a Contributor" %>
+          <% else %>
+            <% text = "Remove Contributor" %>
+          <% end %>
+
+          <td>
+            <% if policy(contributor).destroy? %>
+              <%= link_to text, organization_user_url(@organization, contributor), method: :delete %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+
+      <% @declined_invitations.each do |invitation| %>
+        <tr class="contributor <%= invitation.admin? ? 'admin' : '' %>">
+          <td><%= invitation.email %></td>
+          <td><%= invitation.admin? ? 'Admin' : 'Contributor' %></td>
+          <td><%= "Declined" %></td>
         </tr>
       <% end %>
     </table>
