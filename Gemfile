@@ -24,6 +24,10 @@ group :doc do
   gem 'yard', require: false
 end
 
+group :development do
+  gem 'license_finder', git: "https://github.com/pivotal/LicenseFinder.git" # checks for compatible licenses
+end
+
 group :test do
   gem 'capybara'
   gem 'factory_girl'

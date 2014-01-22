@@ -1,0 +1,11 @@
+---
+whitelist:
+- MIT
+- Apache 2.0
+- BSD
+ignore_groups:
+- test
+- development
+- devDependencies
+dependencies_file_dir: './doc/'
+project_name: Supermarket

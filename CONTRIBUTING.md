@@ -63,3 +63,8 @@ Good: Add some feature
 
 ### Writing Tests
 In order to ensure the integrity of the project (and prevent regressions), we _cannot_ merge any patch that does not have adequate test coverage. Even if you have never written tests before, the existing tests serve as great boilerplate examples. At minimum, changes to a model must have a unit spec, changes to a controller must have a request spec, changes to a view must have a view or capybara spec, changes to the javascript must have a polgergist spec.
+
+### Adding Dependencies
+If you are adding dependencies to the project (gems in the Gemfile or npm
+packages in `packages.json`, please run `license_finder` to make sure that none
+of the added dependencies conflict  with the project's whitelisted licenses.

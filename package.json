@@ -3,10 +3,10 @@
   "devDependencies": {
     "chai": "~1.8.1",
     "karma": "~0.10.2",
+    "mocha": "~1.13.0",
     "karma-mocha": "~0.1.0",
     "karma-osx-reporter": "0.0.3",
     "karma-spec-reporter": "0.0.6",
-    "mocha": "~1.13.0",
     "sprockets-chain": "0.0.9"
   }
 }
