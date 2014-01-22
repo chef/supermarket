@@ -53,10 +53,23 @@ module FeatureHelpers
     invite_admin('admin@example.com')
   end
 
+  def sign_ccla_and_invite_contributor_to(organization)
+    create(:ccla)
+    sign_in_with_github
+    sign_ccla(organization)
+    invite_contributor('contributor@example.com')
+  end
+
   def accept_invitation_to_become_admin_of(organization)
     receive_and_visit_invitation
     click_link 'Accept'
     expect(page).to have_content "Admin of #{organization}"
+  end
+
+  def accept_invitation_to_become_contributor_of(organization)
+    receive_and_visit_invitation
+    click_link 'Accept'
+    expect(page).to have_content "Contributor of #{organization}"
   end
 
   def decline_invitation_to_join(organization)
@@ -80,6 +93,15 @@ module FeatureHelpers
     expect(page).to have_content('Admin')
   end
 
+  def invite_contributor(email)
+    manage_contributors
+
+    fill_in 'invitation_email', with: email
+    find_button('Send invitation').click
+    expect(page).to have_content(email)
+    expect(page).to have_content('Contributor')
+  end
+
   def receive_and_visit_invitation
     expect(ActionMailer::Base.deliveries.size).to eql(1)
 
@@ -93,4 +115,7 @@ module FeatureHelpers
     ActionMailer::Base.deliveries.clear
   end
 
+  def remove_contributor_from(organization)
+    click_link "Remove Contributor"
+  end
 end

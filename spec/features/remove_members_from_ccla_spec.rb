@@ -10,17 +10,26 @@ describe 'Removing members from a CCLA' do
     sign_out
     sign_in_with_github
     manage_contributors
-    remove_other_admin_from('Acme')
+    remove_contributor_from('Acme')
 
     admin_elements = all('.contributor.admin')
 
     expect(admin_elements.size).to eql(1)
   end
 
-  def remove_other_admin_from(organization)
-    click_link "Remove Contributor"
-  end
+  example 'admins can remove other, non-admin members' do
+    sign_ccla_and_invite_contributor_to('Acme')
+    sign_out
+    sign_in_with_github('12346', 'janedoe', 'janedoe@example.com')
+    accept_invitation_to_become_contributor_of('Acme')
+    sign_out
+    sign_in_with_github
+    manage_contributors
+    remove_contributor_from('Acme')
 
-  example 'admins can remove other, non-admin members'
+    contributor_elements = all('.contributor')
+
+    expect(contributor_elements.size).to eql(1)
+  end
 
 end
