@@ -4,7 +4,7 @@ describe CclaSignaturesController do
   describe 'admin can view ccla' do
     let(:admin) { create(:user, roles: 'admin') }
     let(:ccla_signature) { create(:ccla_signature) }
-    before { subject.stub(:current_user).and_return(admin) }
+    before { sign_in admin }
     before { get :show, id: ccla_signature.id }
 
     it { should respond_with(200) }
@@ -17,7 +17,7 @@ describe CclaSignaturesController do
   describe 'user cannot view ccla that they do not belong to' do
     let(:user) { create(:user) }
     let(:ccla_signature) { create(:ccla_signature) }
-    before { subject.stub(:current_user).and_return(user) }
+    before { sign_in user }
     before { get :show, id: ccla_signature.id }
 
     it { should respond_with(404) }
@@ -27,7 +27,7 @@ describe CclaSignaturesController do
     let(:organization) { create(:organization) }
     let(:user) { create(:user, organizations: [organization]) }
     let(:ccla_signature) { create(:ccla_signature, organization: organization) }
-    before { subject.stub(:current_user).and_return(user) }
+    before { sign_in user }
     before { get :show, id: ccla_signature.id }
 
     it { should respond_with(200) }
@@ -36,7 +36,7 @@ describe CclaSignaturesController do
   describe 'POST #create' do
     let(:user) { create(:user) }
     let(:payload) { attributes_for(:ccla_signature, user_id: user.id) }
-    before { subject.stub(:current_user).and_return(user) }
+    before { sign_in user }
 
     it 'creates a ccla signature for the current user' do
       expect {

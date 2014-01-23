@@ -5,10 +5,9 @@ describe 'Removing members from a CCLA' do
   example 'admins can remove another admin' do
     sign_ccla_and_invite_admin_to('Acme')
     sign_out
-    sign_in_with_github('12346', 'janedoe', 'janedoe@example.com')
+
+    sign_in(create(:user))
     accept_invitation_to_become_admin_of('Acme')
-    sign_out
-    sign_in_with_github
     manage_contributors
     remove_contributor_from('Acme')
 
@@ -20,10 +19,10 @@ describe 'Removing members from a CCLA' do
   example 'admins can remove other, non-admin members' do
     sign_ccla_and_invite_contributor_to('Acme')
     sign_out
-    sign_in_with_github('12346', 'janedoe', 'janedoe@example.com')
+    sign_in(create(:user))
     accept_invitation_to_become_contributor_of('Acme')
     sign_out
-    sign_in_with_github
+    sign_in(known_users[:bob])
     manage_contributors
     remove_contributor_from('Acme')
 

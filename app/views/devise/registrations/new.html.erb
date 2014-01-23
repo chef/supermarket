@@ -1,0 +1,40 @@
+<div class='page'>
+  <div class='title'>
+    <span class='fa fa-group'></span>Sign In
+  </div>
+
+  <div class='content'>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render 'application/form_errors', record: resource %>
+
+      <fieldset>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, autofocus: true %>
+      </fieldset>
+
+      <fieldset>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>
+      </fieldset>
+
+      <fieldset>
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </fieldset>
+
+      <fieldset>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </fieldset>
+
+      <fieldset>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </fieldset>
+
+      <%= f.submit 'Sign up', class: 'button primary' %>
+    <% end %>
+
+    <%= render 'devise/shared/links' %>
+  </div>
+</div>

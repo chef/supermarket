@@ -3,7 +3,7 @@ require 'spec_helper'
 describe InvitationsController do
   let(:user) { create(:user) }
   let(:invitation) { create(:invitation) }
-  before { subject.stub(:current_user).and_return(user) }
+  before { sign_in user }
 
   describe 'GET #show' do
     it 'assigns an invitation' do
@@ -13,10 +13,10 @@ describe InvitationsController do
     end
 
     it 'redirects guests to sign in' do
-      subject.stub(:current_user) { nil }
+      sign_out user
       get :show, id: invitation.token
 
-      expect(response).to redirect_to(sign_in_path)
+      expect(response).to redirect_to(user_session_path)
     end
   end
 

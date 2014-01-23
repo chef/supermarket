@@ -3,8 +3,7 @@ require "spec_helper"
 describe OrganizationInvitationsController do
   let(:organization) { create(:organization) }
   let(:user) { create(:user, organizations: [organization]) }
-
-  before { controller.stub(:current_user) { user } }
+  before { sign_in user }
 
   describe 'GET #index' do
 

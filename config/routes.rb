@@ -3,6 +3,14 @@ Supermarket::Application.routes.draw do
     mount MailPreview => 'mail_view'
   end
 
+  devise_for :users
+
+  devise_scope :user do
+     get 'sign-in',  to: 'devise/sessions#new', as: :sign_in
+     delete 'sign-out', to: 'devise/sessions#destroy', as: :sign_out
+     get 'sign-up',  to: 'devise/registrations#new', as: 'sign_up'
+   end
+
   namespace :api do
     resources :icla_signatures, path: 'icla-signatures'
     resources :users
@@ -22,15 +30,6 @@ Supermarket::Application.routes.draw do
       controller: :organization_invitations
   end
 
-  get 'login'   => redirect('/sign-in'), as: nil
-  get 'signin'  => redirect('/sign-in'), as: nil
-  get 'sign-in' => 'sessions#new', as: :sign_in
-
-  delete 'logout'   => redirect('/sign-out'), as: nil
-  delete 'signout'  => redirect('/sign-out'), as: nil
-  delete 'sign-out' => 'sessions#destroy', as: :sign_out
-
-  match 'auth/:provider/callback' => 'sessions#create', as: :auth_callback, via: [:get, :post]
   get 'auth/failure' => 'sessions#failure', as: :auth_failure
 
   root 'icla_signatures#index'
