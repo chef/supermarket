@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
   include Authorizable
 
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
   # Associations
   # --------------------
   has_many :accounts
@@ -19,24 +24,6 @@ class User < ActiveRecord::Base
   # Callbacks
   # --------------------
   before_validation :normalize_phone
-
-  class << self
-    #
-    # Creates a new +User+ from the given oauth hash, updating or creating
-    # the nested account as well.
-    #
-    # @see Account.from_oauth
-    #   for more information about the +user+ parameter
-    #
-    # @param [OmniAuth::AuthHash]
-    # @param [User, nil]
-    #
-    # @return [Account]
-    #
-    def from_oauth(auth, user = nil)
-      Account.from_oauth(auth, user).user
-    end
-  end
 
   #
   # Determine if the current user signed the Individual Contributor License
@@ -77,6 +64,28 @@ class User < ActiveRecord::Base
     organizations.joins(:organization_users).where(
       'organization_users.admin = ? AND organizations.id = ?',
       true, organization.id).count > 0
+  end
+
+  #
+  # Find or initialize an account based on a hash
+  # most typically an OAuth response
+  #
+  # @example
+  #   user.account_from_oauth?(request.env['omniauth.auth'])
+  #
+  # @param [Hash]
+  #
+  # @return [Account]
+  #
+  def account_from_oauth(auth)
+    extractor = Extractor::Base.load(auth)
+
+    accounts.where(extractor.signature).first_or_initialize do |account|
+      account.username      = extractor.username
+      account.oauth_token   = extractor.oauth_token
+      account.oauth_secret  = extractor.oauth_secret
+      account.oauth_expires = extractor.oauth_expires
+    end
   end
 
   private

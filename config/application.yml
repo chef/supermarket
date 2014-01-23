@@ -16,10 +16,15 @@ development:
   icla_version: '99999-2621/LEGAL14767024.1'
   ccla_version: '99999-2621/LEGAL14767024.1'
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
+  devise:
+    secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
   omni_auth:
     github:
       key: <%= ENV['GITHUB_KEY'] %>
       secret: <%= ENV['GITHUB_SECRET'] %>
+    twitter:
+      key: <%= ENV['TWITTER_KEY'] %>
+      secret: <%= ENV['TWITTER_SECRET'] %>
   smtp:
     address: <%= ENV['SMTP_ADDRESS'] %>
     port: <%= ENV['SMTP_PORT'] %>
@@ -30,6 +35,8 @@ production:
   icla_version: '99999-2621/LEGAL14767024.1'
   ccla_version: '99999-2621/LEGAL14767024.1'
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
+  devise:
+    secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
   omni_auth:
     github:
       key: <%= ENV['GITHUB_KEY'] %>
@@ -46,7 +53,12 @@ test:
   icla_version: '99999-2621/LEGAL14767024.1'
   ccla_version: '99999-2621/LEGAL14767024.1'
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
+  devise:
+    secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
   omni_auth:
     github:
       key: <%= ENV['GITHUB_KEY'] %>
       secret: <%= ENV['GITHUB_SECRET'] %>
+    twitter:
+      key: <%= ENV['TWITTER_KEY'] %>
+      secret: <%= ENV['TWITTER_SECRET'] %>

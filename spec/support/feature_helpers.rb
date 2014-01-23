@@ -1,25 +1,13 @@
 module FeatureHelpers
 
-  def sign_in_with_github(uid = '12345', nickname = 'johndoe',
-                          email = 'johndoe@example.com')
-    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
-      provider: 'github',
-      uid: uid,
-      info: {
-        nickname: nickname,
-        email: email,
-        name: 'John Doe',
-        image: 'https://image-url.com',
-      },
-      credentials: {
-        token: 'oauth_token',
-        expires: false
-      }
-    })
-
+  def sign_in(user)
     visit '/'
     click_link 'Sign In'
-    click_link 'GitHub'
+
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+
+    find_button('Sign in').click
   end
 
   def sign_out
@@ -47,14 +35,16 @@ module FeatureHelpers
 
   def sign_ccla_and_invite_admin_to(organization)
     create(:ccla)
-    sign_in_with_github
+    known_users[:bob] = create(:user)
+    sign_in(known_users[:bob])
     sign_ccla(organization)
     invite_admin('admin@example.com')
   end
 
   def sign_ccla_and_invite_contributor_to(organization)
     create(:ccla)
-    sign_in_with_github
+    known_users[:bob] = create(:user)
+    sign_in(known_users[:bob])
     sign_ccla(organization)
     invite_contributor('contributor@example.com')
   end
@@ -117,4 +107,9 @@ module FeatureHelpers
   def remove_contributor_from(organization)
     click_link "Remove Contributor"
   end
+
+  def known_users
+    @known_users ||= { }
+  end
+
 end

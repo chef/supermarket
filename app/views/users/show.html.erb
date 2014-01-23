@@ -4,6 +4,18 @@
   </div>
 
   <div class="content">
+    <% @user.accounts.for('github').each do |account| %>
+      <p><%= account.username %> [GitHub]</p>
+    <% end %>
+
+    <p><%= link_to 'Connect GitHub Account', auth_path(:github) %></p>
+
+    <% @user.accounts.for('twitter').each do |account| %>
+      <p><%= account.username %> [Twitter]</p>
+    <% end %>
+
+    <p><%= link_to 'Connect Twitter Account', auth_path(:twitter) %></p>
+
     <% if @user.icla_signatures.any? %>
       <p><%= link_to "View ICLA", @user.icla_signatures.first %></p>
     <% end %>

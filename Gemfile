@@ -13,6 +13,7 @@ gem 'unicorn'
 gem 'unicorn-rails'
 gem 'foreman'
 gem 'pundit'
+gem 'devise'
 
 gem 'neat'
 gem 'sass-rails',   '~> 4.0.1'

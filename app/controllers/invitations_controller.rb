@@ -1,6 +1,6 @@
 class InvitationsController < ApplicationController
   before_filter :find_invitation
-  before_filter :require_user!
+  before_filter :store_location_then_authenticate_user!
 
   def show
     @organization = @invitation.organization
@@ -24,14 +24,13 @@ class InvitationsController < ApplicationController
       #{@invitation.organization.name}"
   end
 
-  rescue_from NotAuthenticatedError do |error|
-    store_location!
-    redirect_to sign_in_path
-  end
-
   private
     def find_invitation
       @invitation = Invitation.find_by(token: params[:id])
     end
 
+    def store_location_then_authenticate_user!
+      store_location!
+      authenticate_user!
+    end
 end
