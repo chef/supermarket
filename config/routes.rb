@@ -30,6 +30,7 @@ Supermarket::Application.routes.draw do
       controller: :organization_invitations
   end
 
+  match 'auth/:provider/callback' => 'accounts#create', as: :auth_callback, via: [:get, :post]
   get 'auth/failure' => 'sessions#failure', as: :auth_failure
 
   root 'icla_signatures#index'

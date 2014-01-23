@@ -50,4 +50,18 @@ describe User do
       expect(user.is_admin_of_organization?(organization)).to be_false
     end
   end
+
+  describe '#account_from_oauth' do
+    it 'returns an account' do
+      user = build(:user)
+      auth = { 'provider' => 'github', 'info' => { 'username' => 'johndoe' },
+        'credentials' => { 'token' => 'sometoken' }, 'uid' => 'someuid' }
+
+      account = user.account_from_oauth(auth)
+
+      expect(account.provider).to eql('github')
+      expect(account.uid).to eql('someuid')
+      expect(account.oauth_token).to eql('sometoken')
+    end
+  end
 end

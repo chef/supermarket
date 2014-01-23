@@ -1,8 +1,7 @@
 require 'nokogiri'
 require 'spec_feature_helper'
 
-describe 'Inviting people to sign a CCLA' do
-
+describe 'inviting people to sign a CCLA' do
   it 'sends invited users an email prompting them to sign the CCLA and they accept' do
     sign_ccla_and_invite_admin_to('Acme')
     sign_out
