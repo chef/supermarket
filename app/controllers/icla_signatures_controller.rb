@@ -28,8 +28,6 @@ class IclaSignaturesController < ApplicationController
   # Show the form for creating a new ICLA signature
   #
   def new
-    current_user = User.first
-    session[:user_id] = current_user.id
     @icla_signature = IclaSignature.new(user: current_user)
 
     # Load default ICLA text
