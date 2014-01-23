@@ -61,7 +61,7 @@ describe OrganizationInvitationsController do
 
       get :index, organization_id: organization.id
 
-      expect(assigns[:contributors]).to include(user.organization_users.first)
+      expect(assigns[:contributors]).to include(user.contributors.first)
     end
 
   end

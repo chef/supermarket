@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
   has_many :emails
   has_many :icla_signatures
   has_many :ccla_signatures
-  has_many :organization_users
-  has_many :organizations, through: :organization_users
+  has_many :contributors
+  has_many :organizations, through: :contributors
   belongs_to :primary_email, class_name: 'Email'
 
   # Validations
@@ -61,8 +61,8 @@ class User < ActiveRecord::Base
   # @return [Boolean]
   #
   def is_admin_of_organization?(organization)
-    organizations.joins(:organization_users).where(
-      'organization_users.admin = ? AND organizations.id = ?',
+    organizations.joins(:contributors).where(
+      'contributors.admin = ? AND organizations.id = ?',
       true, organization.id).count > 0
   end
 

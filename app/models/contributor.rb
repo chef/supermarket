@@ -1,11 +1,11 @@
-class OrganizationUser < ActiveRecord::Base
+class Contributor < ActiveRecord::Base
   # Associations
   # --------------------
   belongs_to :organization
   belongs_to :user
 
   #
-  # Returns the +OrganizationUser+'s primary email address.
+  # Returns the +Contributor+'s primary email address.
   #
   # @return [String] if the user has a primary email.
   #
@@ -16,7 +16,7 @@ class OrganizationUser < ActiveRecord::Base
   end
 
   #
-  # Determine if the if the instance of +OrganizationUser+ is the only admin of
+  # Determine if the if the instance of +Contributor+ is the only admin of
   # its +Organization+
   #
   # @return [Boolean]
