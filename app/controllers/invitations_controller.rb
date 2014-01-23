@@ -7,7 +7,7 @@ class InvitationsController < ApplicationController
   end
 
   def update
-    @organization_user = OrganizationUser.create!(
+    @contributor = Contributor.create!(
       organization: @invitation.organization,
       user: current_user,
       admin: @invitation.admin
@@ -15,7 +15,7 @@ class InvitationsController < ApplicationController
 
     @invitation.accept
     redirect_to current_user, notice: "Successfully joined
-      #{@organization_user.organization.name}"
+      #{@contributor.organization.name}"
   end
 
   def destroy

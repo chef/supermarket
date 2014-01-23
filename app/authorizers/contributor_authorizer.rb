@@ -1,6 +1,6 @@
 require 'authorizer/base'
 
-class OrganizationUserAuthorizer < Authorizer::Base
+class ContributorAuthorizer < Authorizer::Base
 
   alias contributor record
 

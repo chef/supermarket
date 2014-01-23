@@ -36,13 +36,13 @@ class CclaSignaturesController < ApplicationController
     @organization      = Organization.new(name: ccla_signature_params[:company])
     @ccla_signature    = @organization.build_ccla_signature(
       ccla_signature_params.merge(user_id: current_user.id))
-    @organization_user = @organization.organization_users.new(user: current_user, admin: true)
+    @contributor = @organization.contributors.new(user: current_user, admin: true)
 
     begin
       ActiveRecord::Base.transaction do
         @ccla_signature.save!
         @organization.save!
-        @organization_user.save!
+        @contributor.save!
       end
 
       redirect_to @ccla_signature, notice: "Successfully signed CCLA for #{@organization.name}."

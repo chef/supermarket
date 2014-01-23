@@ -4,7 +4,7 @@ class OrganizationInvitationsController < ApplicationController
   def index
     @pending_invitations = @organization.invitations.pending
     @declined_invitations = @organization.invitations.declined
-    @contributors = @organization.organization_users
+    @contributors = @organization.contributors
     @invitation = Invitation.new(organization: @organization)
 
     authorize! @invitation

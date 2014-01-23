@@ -1,8 +1,8 @@
 class Organization < ActiveRecord::Base
   # Associations
   # --------------------
-  has_many :organization_users
-  has_many :users, through: :organization_users
+  has_many :contributors
+  has_many :users, through: :contributors
   has_many :invitations
   has_one  :ccla_signature
 
@@ -11,6 +11,6 @@ class Organization < ActiveRecord::Base
   validates_presence_of :name
 
   def admins
-    organization_users.where(admin: true)
+    contributors.where(admin: true)
   end
 end

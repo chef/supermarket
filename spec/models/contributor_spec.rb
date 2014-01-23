@@ -1,18 +1,18 @@
 require 'spec_helper'
 
-describe OrganizationUser do
+describe Contributor do
 
   describe '#only_admin?' do
 
     it 'is false when the contributor is not an admin' do
-      contributor = create(:organization_user, admin: false)
+      contributor = create(:contributor, admin: false)
 
       expect(contributor.only_admin?).to be_false
     end
 
     it 'is false when the contributor is not the only admin' do
-      admin_contributor = create(:organization_user, admin: true)
-      other_admin_contributor = create(:organization_user, {
+      admin_contributor = create(:contributor, admin: true)
+      other_admin_contributor = create(:contributor, {
         organization: admin_contributor.organization,
         admin: true
       })
@@ -21,8 +21,8 @@ describe OrganizationUser do
     end
 
     it 'is true when the contributor is the only admin' do
-      admin_contributor = create(:organization_user, admin: true)
-      other_contributor = create(:organization_user, {
+      admin_contributor = create(:contributor, admin: true)
+      other_contributor = create(:contributor, {
         organization: admin_contributor.organization,
         admin: false
       })

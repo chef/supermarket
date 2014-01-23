@@ -21,10 +21,10 @@ describe InvitationsController do
   end
 
   describe 'PUT #update' do
-    it 'creates a new OrganizationUser' do
+    it 'creates a new Contributor' do
       expect {
         put :update, id: invitation.token
-      }.to change(OrganizationUser, :count).by(1)
+      }.to change(Contributor, :count).by(1)
     end
 
     it 'accepts the invitation' do
@@ -45,7 +45,7 @@ describe InvitationsController do
 
       expect {
         put :update, id: invitation.token
-      }.to change(OrganizationUser.where(admin: true), :count).by(1)
+      }.to change(Contributor.where(admin: true), :count).by(1)
     end
   end
 

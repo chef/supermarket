@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :organization_user do
+  factory :contributor do
     association :organization
     association :user
     admin       false
