@@ -64,4 +64,20 @@ describe User do
       expect(account.oauth_token).to eql('sometoken')
     end
   end
+
+  describe '#linked_github_account?' do
+
+    let(:user) { create(:user) }
+
+    it 'is false when the user has not linked a GitHub account' do
+      expect(user.linked_github_account?).to eql(false)
+    end
+
+    it 'is true when the user has linked a GitHub account' do
+      user.account_from_oauth(OmniAuth.config.mock_auth[:github]).save!
+
+      expect(user.linked_github_account?).to eql(true)
+    end
+
+  end
 end

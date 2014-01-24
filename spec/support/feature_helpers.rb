@@ -15,8 +15,6 @@ module FeatureHelpers
   end
 
   def sign_icla
-    click_link 'Sign ICLA'
-
     fill_in 'icla_signature_first_name', with: 'John'
     fill_in 'icla_signature_last_name', with: 'Doe'
     fill_in 'icla_signature_company', with: 'Chef'

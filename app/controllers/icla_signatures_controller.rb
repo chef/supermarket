@@ -1,6 +1,7 @@
 class IclaSignaturesController < ApplicationController
   before_filter :redirect_if_signed!, only: [:new, :create, :update]
   before_filter :authenticate_user!, except: [:index]
+  before_filter :require_linked_github_account!, only: [:new, :create]
 
   #
   # GET /icla-signatures
@@ -101,6 +102,15 @@ class IclaSignaturesController < ApplicationController
     def redirect_if_signed!
       if signed_in? && current_user.signed_icla?
         return redirect_to root_path, alert: 'You have already signed the Individual CLA!'
+      end
+    end
+
+    def require_linked_github_account!
+      if !current_user.linked_github_account?
+        store_location_for current_user, new_icla_signature_path
+
+        redirect_to current_user,
+          notice: t('icla_signature.requires_linked_github')
       end
     end
 end

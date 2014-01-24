@@ -5,6 +5,8 @@ describe 'signing a ICLA' do
 
   it 'associates the signer with a icla' do
     sign_in(create(:user))
+    click_link "Sign ICLA"
+    click_link "Connect GitHub Account"
     sign_icla
     click_link 'View Profile'
     expect(page).to have_content 'View ICLA'

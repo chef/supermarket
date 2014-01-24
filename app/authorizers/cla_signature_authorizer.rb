@@ -1,3 +1,5 @@
+require 'authorizer/base'
+
 class ClaSignatureAuthorizer < Authorizer::Base
   def index?
     true
