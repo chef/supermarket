@@ -1,36 +1,40 @@
 require 'spec_helper'
 
 describe CclaSignaturesController do
-  describe 'admin can view ccla' do
-    let(:admin) { create(:user, roles: 'admin') }
-    let(:ccla_signature) { create(:ccla_signature) }
-    before { sign_in admin }
-    before { get :show, id: ccla_signature.id }
+  describe 'GET #show' do
 
-    it { should respond_with(200) }
+    context 'when viewing a signature as an admin' do
+      let(:admin) { create(:user, roles: 'admin') }
+      let(:ccla_signature) { create(:ccla_signature) }
+      before { sign_in admin }
+      before { get :show, id: ccla_signature.id }
 
-    it 'assigns @ccla_signature' do
-      expect(assigns(:ccla_signature)).to eq(ccla_signature)
+      it { should respond_with(200) }
+
+      it 'assigns @ccla_signature' do
+        expect(assigns(:ccla_signature)).to eq(ccla_signature)
+      end
     end
-  end
 
-  describe 'user cannot view ccla that they do not belong to' do
-    let(:user) { create(:user) }
-    let(:ccla_signature) { create(:ccla_signature) }
-    before { sign_in user }
-    before { get :show, id: ccla_signature.id }
+    context "when viewing another user's signature as a non-admin" do
+      let(:user) { create(:user) }
+      let(:ccla_signature) { create(:ccla_signature) }
+      before { sign_in user }
+      before { get :show, id: ccla_signature.id }
 
-    it { should respond_with(404) }
-  end
+      it { should respond_with(404) }
+    end
 
-  describe 'user can view ccla that they belong to' do
-    let(:organization) { create(:organization) }
-    let(:user) { create(:user, organizations: [organization]) }
-    let(:ccla_signature) { create(:ccla_signature, organization: organization) }
-    before { sign_in user }
-    before { get :show, id: ccla_signature.id }
+    context "when viewing a CCLA that the user signed" do
+      let(:organization) { create(:organization) }
+      let(:user) { create(:user, organizations: [organization]) }
+      let(:ccla_signature) { create(:ccla_signature, organization: organization) }
+      before { sign_in user }
+      before { get :show, id: ccla_signature.id }
 
-    it { should respond_with(200) }
+      it { should respond_with(200) }
+    end
+
   end
 
   describe 'GET #new' do
