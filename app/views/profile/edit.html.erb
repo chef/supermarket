@@ -1,0 +1,29 @@
+<%= form_for(current_user, url: profile_path) do |f| %>
+  <div class="page">
+    <div class="title">
+      <span class="fa fa-user"></span> Edit Profile
+    </div>
+
+    <div class="content">
+      <%= render 'application/form_errors', record: current_user %>
+
+      <section class="fields">
+        <fieldset class="name">
+          <%= f.text_field :email, placeholder: 'Email', title: 'Email' %>
+          <%= f.text_field :first_name, placeholder: 'First Name', title: 'First Name' %>
+          <%= f.text_field :last_name, placeholder: 'Last Name', title: 'Last Name' %>
+          <%= f.text_field :irc_nickname, placeholder: 'IRC Nickname', title: 'IRC Nickname' %>
+          <%= f.text_field :company, placeholder: 'Company', title: 'Company' %>
+          <%= f.text_field :jira_username, placeholder: 'JIRA Username', title: 'JIRA Username' %>
+
+          <p>Avatars are powered by <a href='https://gravatar.com'>Gravatar</a>.
+            <%= gravatar_for current_user, size: 72 %></p>
+        </fieldset>
+      </section>
+
+      <section>
+        <%= f.submit 'Update Profile', class: 'button primary' %>
+      </section>
+    </div>
+  </div>
+<% end %>

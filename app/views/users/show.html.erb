@@ -6,6 +6,12 @@
   <div class="content">
     <%= gravatar_for @user, size: 72 %>
 
+    <br />
+
+    <% if current_user == @user %>
+      <%= link_to 'Edit Profile', edit_profile_path %>
+    <% end %>
+
     <% @user.accounts.for('github').each do |account| %>
       <p>
         <%= account.username %> [GitHub]<br />

@@ -10,4 +10,5 @@ describe UsersController do
       expect(assigns[:user]).to eql(user)
     end
   end
+
 end
