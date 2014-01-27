@@ -88,6 +88,24 @@ class User < ActiveRecord::Base
     end
   end
 
+  #
+  # Determine if the user has linked any GitHub accounts
+  #
+  # @example
+  #   user.linked_github_account? #=> false
+  #   user.accounts.create(
+  #     provider: 'github',
+  #     uid: '1234',
+  #     oauth_token: 'token'
+  #   )
+  #   user.linked_github_account? #=> true
+  #
+  # @return [Boolean]
+  #
+  def linked_github_account?
+    accounts.for('github').any?
+  end
+
   private
 
     #

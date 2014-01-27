@@ -11,7 +11,7 @@ class AccountsController < ApplicationController
     account = current_user.account_from_oauth(request.env['omniauth.auth'])
 
     if account.save
-      redirect_to current_user, notice: "Successfully
+      redirect_to after_link_location, notice: "Successfully
         connected #{params[:provider]}."
     else
       redirect_to current_user, alert: "Something went wrong
@@ -28,4 +28,10 @@ class AccountsController < ApplicationController
 
     redirect_to :back, alert: "Account disconnected."
   end
+
+  private
+
+    def after_link_location
+      stored_location_for(current_user) || current_user
+    end
 end
