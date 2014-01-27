@@ -32,8 +32,11 @@ RSpec.configure do |config|
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
 
-  # Reset OmniAuth GitHub stub before each example
   config.before do
+    # Clear ActionMailer deliveries before each example
+    ActionMailer::Base.deliveries.clear
+
+    # Reset OmniAuth GitHub stub before each example
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
       provider: 'github',
       uid: '12345',

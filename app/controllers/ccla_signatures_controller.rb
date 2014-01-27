@@ -46,6 +46,10 @@ class CclaSignaturesController < ApplicationController
         @contributor.save!
       end
 
+      if Supermarket::Config.cla_signature_notification_email.present?
+        ClaSignatureMailer.deliver_notification(@ccla_signature)
+      end
+
       redirect_to @ccla_signature, notice: "Successfully signed CCLA for #{@organization.name}."
 
     rescue ActiveRecord::RecordInvalid => invald
