@@ -5,12 +5,28 @@ describe AccountsController do
   before { sign_in user }
 
   describe 'POST #create' do
-    it 'creates a new account for a user' do
+    before do
       request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:github]
+    end
 
+    it 'creates a new account for a user' do
       expect do
         post :create, provider: 'github'
       end.to change(user.accounts, :count).by(1)
+    end
+
+    it 'redirects to the user profile on success by default' do
+      post :create, provider: 'github'
+
+      expect(response).to redirect_to(user)
+    end
+
+    it 'redirects to the stored location for the user on success if set' do
+      controller.store_location_for(user, new_icla_signature_path)
+
+      post :create, provider: 'github'
+
+      expect(response).to redirect_to(new_icla_signature_path)
     end
   end
 
