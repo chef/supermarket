@@ -20,7 +20,7 @@ class CclaSignaturesController < ApplicationController
   def new
     @ccla_signature = CclaSignature.new
 
-    # Load default ICLA text
+    # Load default CCLA text
     @ccla_signature.ccla = Ccla.latest
 
     # Prepopulate any fields we can from the User object
