@@ -108,6 +108,11 @@ module FeatureHelpers
     click_link "Remove Contributor"
   end
 
+  def connect_account(provider)
+    click_link 'Profile'
+    click_link "Connect #{provider} Account"
+  end
+
   def known_users
     @known_users ||= { }
   end

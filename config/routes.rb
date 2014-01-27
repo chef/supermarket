@@ -18,7 +18,9 @@ Supermarket::Application.routes.draw do
 
   resources :icla_signatures, path: 'icla-signatures'
   resources :ccla_signatures, path: 'ccla-signatures'
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :accounts, only: [:destroy]
+  end
 
   resources :invitations, only: [:show, :update, :destroy]
 

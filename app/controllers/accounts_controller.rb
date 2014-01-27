@@ -18,4 +18,14 @@ class AccountsController < ApplicationController
         while connecting #{params[:provider]}"
     end
   end
+
+  #
+  # Destroy an account
+  # Unlinks connected account (either GitHub or Twitter) from the current_user.
+  #
+  def destroy
+    current_user.accounts.find(params[:id]).destroy
+
+    redirect_to :back, alert: "Account disconnected."
+  end
 end
