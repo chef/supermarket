@@ -14,6 +14,7 @@ gem 'unicorn-rails'
 gem 'foreman'
 gem 'pundit'
 gem 'devise'
+gem 'dotenv-rails'
 
 gem 'neat'
 gem 'sass-rails',   '~> 4.0.1'
@@ -38,5 +39,4 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'byebug'
   gem 'launchy'
-  gem 'dotenv-rails'
 end

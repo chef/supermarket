@@ -30,6 +30,12 @@ module Supermarket
     # Autoload everything in app
     config.autoload_paths += Dir["#{config.root}/app", "#{config.root}/app/**/*"]
 
+    # Include vendor fonts in the asset pipeline
+    config.assets.paths << Rails.root.join("vendor", "assets", "fonts")
+
+    # Ensure fonts are precompiled during asset compilation
+    config.assets.precompile += %w(*.svg *.eot *.woff *.ttf)
+
     # Use a custom exception handling application
     config.exceptions_app = Proc.new do |env|
       ExceptionsController.action(:show).call(env)

@@ -1,6 +1,6 @@
 #
 # Author:: Seth Vargo (<sethvargo@gmail.com>)
-# Recipe:: node
+# Recipe:: vagrant
 #
 # Copyright 2014 Chef Software, Inc.
 #
@@ -17,19 +17,20 @@
 # limitations under the License.
 #
 
-# NodeJS is required because of the asset pipeline needs a valud JS runtime
+node.set['secret_key_base'] = 'development'
+node.set['devise_secret_key'] = 'development'
+node.set['postgres']['auth_method'] = 'trust'
+node.set['postgres']['user'] = 'vagrant'
+node.set['postgres']['password'] = 'vagrant'
+node.set['postgres']['database'] = 'supermarket_development'
 
-include_recipe 'supermarket::_apt'
+include_recipe 'supermarket::_editors'
+include_recipe 'supermarket::_node'
+include_recipe 'supermarket::_postgres'
+include_recipe 'supermarket::_ruby'
 
-package 'python-software-properties'
-package 'python'
-package 'g++'
-package 'make'
-
-execute 'add-apt-repository[ppa:chris-lea]' do
-  command 'add-apt-repository -y ppa:chris-lea/node.js'
-  notifies :run, 'execute[apt-get update]', :immediately
-  not_if 'test -f /etc/apt/sources.list.d/chris-lea-node_js-precise.list'
+execute 'bundle[install]' do
+  cwd '/supermarket'
+  command 'bundle install --path vendor'
+  not_if '(cd /supermarket && bundle check)'
 end
-
-package 'nodejs'

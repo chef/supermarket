@@ -121,8 +121,6 @@ Supermarket includes a collection of Chef cookbooks and a preconfigured `Vagrant
 
         $ ./bin/supermarket server
 
-**Note:** The development VM makes certain assumptions (such as the port and mode you are running Rails on), which are not configurable at this time. _The Chef cookbooks and `Vagrantfile` are packaged with this repository are **not** designed for a production deployment!_
-
 By default, the VM uses NFS mounted folders, 4GB of RAM, and 2 CPUs. If you are constrained in any of these areas, you can override these defaults by specifying the environment variables:
 
         $ VM_MEMORY=2048 VM_CPUS=1 VM_NFS=false ./bin/supermarket server
@@ -169,3 +167,40 @@ Running `sudo /Library/StartupItems/VirtualBox/VirtualBox restart` can help fix 
 1. Start the server:
 
         $ foreman start
+
+Deployment
+-----------
+### Deploying with Chef
+
+1. Upload the supermarket cookbook to your Chef server.
+
+        $ knife upload supermarket -o path-to-supermarket-repo/chef/cookbooks
+
+1. Bootstrap a server as a new node.
+
+        $ knife bootstrap someserver.com -u some-user -N some-node
+
+1. Within your node _you must_ set a postgres username, password, default database, devise secret key and a secret key base.
+
+        {
+          "postgres": {
+            "user": "some-user",
+            "password": "some-password",
+            "database": "some-database"
+          },
+          "secret_key_base": "some-secret",
+          "devise_secret_key": "some-secret"
+        }
+
+_You'll also most likely want to add other configuration to your node, reference `chef/cookbooks/templates/default/.env.erb`
+for other environment variables that can be set._
+
+1. Add the supermarket cookbook to your newly bootstraped nodes run list.
+
+        $ knife node run_list add some-node 'recipe[supermarket]'
+
+1. SSH into your node and run `chef-client` this will deploy supermarket.
+
+        ssh some-user@someserver.com
+        chef-client
+
