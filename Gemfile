@@ -15,6 +15,7 @@ gem 'foreman'
 gem 'pundit'
 gem 'devise'
 gem 'dotenv-rails'
+gem 'coveralls', require: false
 
 gem 'neat'
 gem 'sass-rails',   '~> 4.0.1'
