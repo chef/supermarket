@@ -5,13 +5,23 @@
 
   <div class="content">
     <% @user.accounts.for('github').each do |account| %>
-      <p><%= account.username %> [GitHub]</p>
+      <p>
+        <%= account.username %> [GitHub]<br />
+        <%= link_to user_account_url(current_user, account), method: :delete do %>
+          <span>Disconnect GitHub Account</span>
+        <% end %>
+      </p>
     <% end %>
 
     <p><%= link_to 'Connect GitHub Account', auth_path(:github) %></p>
 
     <% @user.accounts.for('twitter').each do |account| %>
-      <p><%= account.username %> [Twitter]</p>
+      <p>
+        <%= account.username %> [Twitter]<br />
+        <%= link_to user_account_url(current_user, account), method: :delete do %>
+          <span>Disconnect Twitter Account</span>
+        <% end %>
+      </p>
     <% end %>
 
     <p><%= link_to 'Connect Twitter Account', auth_path(:twitter) %></p>
