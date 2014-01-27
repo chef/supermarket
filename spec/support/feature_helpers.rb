@@ -33,6 +33,7 @@ module FeatureHelpers
 
   def sign_ccla(company = "Chef")
     click_link 'Sign CCLA'
+    click_link "Connect GitHub Account"
 
     fill_in 'ccla_signature_first_name', with: 'John'
     fill_in 'ccla_signature_last_name', with: 'Doe'

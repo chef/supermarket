@@ -1,5 +1,6 @@
 class CclaSignaturesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :require_linked_github!, only: [:new, :create]
 
   #
   # GET /ccla-signatures/:id
@@ -73,5 +74,14 @@ class CclaSignaturesController < ApplicationController
         :agreement,
         :ccla_id,
       )
+    end
+
+    def require_linked_github!
+      if !current_user.linked_github_account?
+        store_location_for current_user, new_ccla_signature_path
+
+        redirect_to current_user,
+          notice: t('ccla_signature.requires_linked_github')
+      end
     end
 end

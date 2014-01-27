@@ -4,3 +4,5 @@ en:
     signed_out: "Goodbye"
   icla_signature:
     requires_linked_github: "You need to link your GitHub account before you sign an ICLA"
+  ccla_signature:
+    requires_linked_github: "You need to link your GitHub account before you sign a CCLA"
