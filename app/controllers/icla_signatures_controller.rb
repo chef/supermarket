@@ -105,6 +105,11 @@ class IclaSignaturesController < ApplicationController
       end
     end
 
+    #
+    # Redirect the user to their profile page if they do not have any linked
+    # GitHub accounts with the notice to instruct them to link a GitHub account
+    # before signing an ICLA.
+    #
     def require_linked_github_account!
       if !current_user.linked_github_account?
         store_location_for current_user, new_icla_signature_path

@@ -1,6 +1,6 @@
 class CclaSignaturesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :require_linked_github!, only: [:new, :create]
+  before_filter :require_linked_github_account!, only: [:new, :create]
 
   #
   # GET /ccla-signatures/:id
@@ -76,7 +76,12 @@ class CclaSignaturesController < ApplicationController
       )
     end
 
-    def require_linked_github!
+    #
+    # Redirect the user to their profile page if they do not have any linked
+    # GitHub accounts with the notice to instruct them to link a GitHub account
+    # before signing an CCLA.
+    #
+    def require_linked_github_account!
       if !current_user.linked_github_account?
         store_location_for current_user, new_ccla_signature_path
 
