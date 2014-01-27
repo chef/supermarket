@@ -4,6 +4,8 @@
   </div>
 
   <div class="content">
+    <%= gravatar_for @user, size: 72 %>
+
     <% @user.accounts.for('github').each do |account| %>
       <p>
         <%= account.username %> [GitHub]<br />
