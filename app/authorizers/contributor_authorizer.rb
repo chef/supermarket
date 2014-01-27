@@ -1,7 +1,6 @@
 require 'authorizer/base'
 
 class ContributorAuthorizer < Authorizer::Base
-
   alias contributor record
 
   def destroy?
@@ -16,4 +15,8 @@ class ContributorAuthorizer < Authorizer::Base
     end
   end
 
+  def update?
+    destroy?
+  end
 end
+

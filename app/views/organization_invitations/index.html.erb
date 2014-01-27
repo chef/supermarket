@@ -15,7 +15,6 @@
       <section class='checkbox-with-label'>
         <fieldset>
           <%= f.check_box :admin  %>
-          <%= f.label :admin, '' %>
         </fieldset>
         <p>Make this user an admin of <%= @organization.name %>.</p>
       </section>
@@ -28,7 +27,7 @@
     <table class="green">
       <tr>
         <th>Email</th>
-        <th>Role</th>
+        <th>Admin</th>
         <th>Status</th>
         <th>Actions</th>
       </tr>
@@ -36,7 +35,7 @@
       <% @pending_invitations.each do |invitation| %>
         <tr class="contributor <%= invitation.admin? ? 'admin' : '' %>">
           <td><%= invitation.email %></td>
-          <td><%= invitation.admin? ? 'Admin' : 'Contributor' %></td>
+          <td><%= invitation.admin? ? 'Yes' : 'No' %></td>
           <td><%= "Pending" %></td>
           <td></td>
         </tr>
@@ -45,7 +44,13 @@
       <% @contributors.each do |contributor| %>
         <tr class="contributor <%= contributor.admin? ? 'admin' : '' %>">
           <td><%= contributor.email %></td>
-          <td><%= contributor.admin? ? 'Admin' : 'Contributor' %></td>
+          <td>
+            <% if contributor.user != current_user %>
+              <%= form_for [@organization, contributor], remote: true do |f| %>
+                <%= f.check_box :admin, class: 'auto trigger' %>
+              <% end %>
+            <% end %>
+          </td>
           <td><%= "Accepted" %></td>
           <% if contributor.user == current_user %>
             <% text = "Remove Myself as a Contributor" %>
