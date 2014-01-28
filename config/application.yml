@@ -15,6 +15,7 @@
 development:
   icla_version: '99999-2621/LEGAL14767024.1'
   ccla_version: '99999-2621/LEGAL14767024.1'
+  cla_signature_notification_email: <%= ENV['CLA_SIGNATURE_NOTIFICATION_EMAIL'] %>
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
   devise:
     secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
@@ -34,6 +35,7 @@ development:
 production:
   icla_version: '99999-2621/LEGAL14767024.1'
   ccla_version: '99999-2621/LEGAL14767024.1'
+  cla_signature_notification_email: <%= ENV['CLA_SIGNATURE_NOTIFICATION_EMAIL'] %>
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
   devise:
     secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
@@ -55,6 +57,7 @@ production:
 test:
   icla_version: '99999-2621/LEGAL14767024.1'
   ccla_version: '99999-2621/LEGAL14767024.1'
+  cla_signature_notification_email: <%= ENV['CLA_SIGNATURE_NOTIFICATION_EMAIL'] %>
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
   devise:
     secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>

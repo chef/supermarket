@@ -54,6 +54,10 @@ class IclaSignaturesController < ApplicationController
     @icla_signature = IclaSignature.new(icla_signature_params)
 
     if @icla_signature.save
+      if Supermarket::Config.cla_signature_notification_email.present?
+        ClaSignatureMailer.deliver_notification(@icla_signature)
+      end
+
       redirect_to @icla_signature, notice: 'Successfully signed ICLA.'
     else
       render 'new'

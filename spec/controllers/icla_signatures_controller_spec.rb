@@ -116,6 +116,12 @@ describe IclaSignaturesController do
           }.to change(IclaSignature, :count).by(1)
         end
 
+        it 'sends a notification that the ICLA has been signed' do
+          expect {
+            post :create, icla_signature: payload
+          }.to change(ActionMailer::Base.deliveries, :count).by(1)
+        end
+
         it 'redirects to the icla signature' do
           post :create, icla_signature: payload
           expect(response).to redirect_to(IclaSignature.last)

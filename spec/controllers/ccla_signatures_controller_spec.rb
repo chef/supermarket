@@ -144,6 +144,13 @@ describe CclaSignaturesController do
           post :create, ccla_signature: payload
         }.to change(user.organizations, :count).by(1)
       end
+
+      it 'sends a notification that the CCLA has been signed' do
+        expect {
+          post :create, ccla_signature: payload
+        }.to change(ActionMailer::Base.deliveries, :count).by(1)
+      end
     end
   end
 end
+

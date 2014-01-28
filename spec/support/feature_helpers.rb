@@ -110,16 +110,14 @@ module FeatureHelpers
   end
 
   def receive_and_visit_invitation
-    expect(ActionMailer::Base.deliveries.size).to eql(1)
+    invitation = ActionMailer::Base.deliveries.detect { |email|
+      /Invitation/ =~ email['Subject'].to_s
+    }
 
-    invitation = ActionMailer::Base.deliveries.last
     body = invitation.parts.find { |p| p.content_type =~ /html/ }.body.to_s
     html = Nokogiri::HTML(body)
     url = html.css('a.invitation').first.attribute('href').value
-
     visit url
-  ensure
-    ActionMailer::Base.deliveries.clear
   end
 
   def remove_contributor_from(organization)
