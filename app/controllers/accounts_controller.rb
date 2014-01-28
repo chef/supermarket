@@ -20,6 +20,8 @@ class AccountsController < ApplicationController
   end
 
   #
+  # DELETE /users/:user_id/accounts/:id
+  #
   # Destroy an account
   # Unlinks connected account (either GitHub or Twitter) from the current_user.
   #
