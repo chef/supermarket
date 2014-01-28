@@ -32,4 +32,7 @@ package 'ruby2.0-dev'
 package 'libxslt-dev'
 package 'libxml2-dev'
 
+# SQLite3 requires development headers
+package 'libsqlite3-dev'
+
 gem_package 'bundler'
