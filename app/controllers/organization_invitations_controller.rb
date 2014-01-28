@@ -26,11 +26,12 @@ class OrganizationInvitationsController < ApplicationController
   end
 
   private
-    def invitation_params
-      params.require(:invitation).permit(:email, :admin)
-    end
 
-    def find_organization
-      @organization = current_user.organizations.find(params[:organization_id])
-    end
+  def invitation_params
+    params.require(:invitation).permit(:email, :admin)
+  end
+
+  def find_organization
+    @organization = current_user.organizations.find(params[:organization_id])
+  end
 end

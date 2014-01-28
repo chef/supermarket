@@ -31,7 +31,7 @@ class AccountsController < ApplicationController
 
   private
 
-    def after_link_location
-      stored_location_for(current_user) || current_user
-    end
+  def after_link_location
+    stored_location_for(current_user) || current_user
+  end
 end

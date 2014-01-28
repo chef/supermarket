@@ -25,12 +25,13 @@ class InvitationsController < ApplicationController
   end
 
   private
-    def find_invitation
-      @invitation = Invitation.find_by(token: params[:id])
-    end
 
-    def store_location_then_authenticate_user!
-      store_location!
-      authenticate_user!
-    end
+  def find_invitation
+    @invitation = Invitation.find_by(token: params[:id])
+  end
+
+  def store_location_then_authenticate_user!
+    store_location!
+    authenticate_user!
+  end
 end
