@@ -13,6 +13,8 @@ describe ClaSignatureAuthorizer do
     it { should permit(:create) }
     it { should permit(:update) }
     it { should permit(:destroy) }
+    it { should permit(:edit) }
+    it { should permit(:new) }
   end
 
   context 'as a user with a cla owned by said user' do
@@ -21,7 +23,10 @@ describe ClaSignatureAuthorizer do
 
     it { should permit(:index) }
     it { should permit(:show) }
+    it { should permit(:create) }
     it { should permit(:update) }
     it { should permit(:destroy) }
+    it { should permit(:edit) }
+    it { should permit(:new) }
   end
 end
