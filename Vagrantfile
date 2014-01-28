@@ -37,7 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.log_level = :warn
 
     chef.run_list = [
-      'recipe[supermarket::default]'
+      'recipe[supermarket::vagrant]'
     ]
   end
 end

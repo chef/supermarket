@@ -18,6 +18,11 @@ db_created() {
   return \$?
 }
 
+db_initialized() {
+  as_postgres "\dt" | grep schema_migrations
+  return \$?
+}
+
 db_migrated() {
   local schema_version="\$(ls db/migrate | tail -1 | cut -d'_' -f1)"
   as_postgres "SELECT version FROM schema_migrations WHERE version='\$schema_version';" | grep \$schema_version 2>&1 > /dev/null
@@ -34,9 +39,10 @@ db_seeded() {
   fi
 }
 
-if ! db_created; then
-  ./bin/rake db:create
-  ./bin/rake db:migrate
+./bin/rake db:create
+
+if ! db_initialized; then
+  ./bin/rake db:schema:load
 fi
 
 if ! db_migrated; then
