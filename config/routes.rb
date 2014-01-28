@@ -22,6 +22,8 @@ Supermarket::Application.routes.draw do
     resources :accounts, only: [:destroy]
   end
 
+  resource :profile, controller: 'profile', only: [:update, :edit]
+
   resources :invitations, only: [:show, :update, :destroy]
 
   resources :organizations, only: [] do
