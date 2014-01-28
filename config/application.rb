@@ -56,6 +56,11 @@ module Supermarket
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # Skip locale validation.
+    # Note: if the time comes to support locales, this will want to be set to
+    # true.
+    config.i18n.enforce_available_locales = false
+
     # Allow magiconf to work with application configuration
     Magiconf.setup!
   end
