@@ -41,6 +41,9 @@ production:
     github:
       key: <%= ENV['GITHUB_KEY'] %>
       secret: <%= ENV['GITHUB_SECRET'] %>
+    twitter:
+      key: <%= ENV['TWITTER_KEY'] %>
+      secret: <%= ENV['TWITTER_SECRET'] %>
   segment_io:
     write_key: <%= ENV['SEGMENT_IO_WRITE_KEY'] %>
   smtp:
