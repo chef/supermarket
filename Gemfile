@@ -16,6 +16,7 @@ gem 'pundit'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'coveralls', require: false
+gem 'maildown'
 
 gem 'neat'
 gem 'sass-rails',   '~> 4.0.1'
