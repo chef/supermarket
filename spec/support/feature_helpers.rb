@@ -26,7 +26,7 @@ module FeatureHelpers
     fill_in 'icla_signature_zip', with: '12345'
     fill_in 'icla_signature_country', with: 'USA'
 
-    find("label[for='icla_signature_agreement']").click
+    check 'icla_signature_agreement'
 
     find_button('Sign ICLA').click
   end
@@ -46,7 +46,7 @@ module FeatureHelpers
     fill_in 'ccla_signature_zip', with: '12345'
     fill_in 'ccla_signature_country', with: 'USA'
 
-    find("label[for='ccla_signature_agreement']").click
+    check 'ccla_signature_agreement'
 
     find_button('Sign CCLA').click
   end
@@ -94,10 +94,10 @@ module FeatureHelpers
     manage_contributors
 
     fill_in 'invitation_email', with: email
-    find("label[for='invitation_admin']").click
+    check 'invitation_admin'
     find_button('Send invitation').click
     expect(page).to have_content(email)
-    expect(page).to have_content('Admin')
+    expect(page).to have_content('Yes')
   end
 
   def invite_contributor(email)
@@ -106,7 +106,7 @@ module FeatureHelpers
     fill_in 'invitation_email', with: email
     find_button('Send invitation').click
     expect(page).to have_content(email)
-    expect(page).to have_content('Contributor')
+    expect(page).to have_content('No')
   end
 
   def receive_and_visit_invitation

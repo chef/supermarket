@@ -25,7 +25,7 @@ Supermarket::Application.routes.draw do
   resources :invitations, only: [:show, :update, :destroy]
 
   resources :organizations, only: [] do
-    resources :contributors, only: [:destroy], controller: :contributors
+    resources :contributors, only: [:update, :destroy], controller: :contributors
 
     resources :invitations,
       only: [:index, :create],

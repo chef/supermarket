@@ -12,5 +12,4 @@ describe 'signing a ICLA' do
     expect(page).to have_content 'View ICLA'
     expect(page).to have_no_content 'Sign ICLA'
   end
-
 end

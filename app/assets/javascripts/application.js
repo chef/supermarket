@@ -4,3 +4,5 @@
 
 //= require application/polyfills
 //= require application/flash
+//= require application/checkbox
+
