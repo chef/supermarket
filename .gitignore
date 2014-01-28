@@ -42,3 +42,7 @@ vendor/ruby
 
 # Ignore any Opscode-specific fixture data
 db/fixtures
+
+# Ignore Coveralls related files
+coverage/
+
