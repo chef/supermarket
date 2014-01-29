@@ -117,7 +117,9 @@ module FeatureHelpers
     body = invitation.parts.find { |p| p.content_type =~ /html/ }.body.to_s
     html = Nokogiri::HTML(body)
     url = html.css('a.invitation').first.attribute('href').value
-    visit url
+    path = URI(url).path
+
+    visit path
   end
 
   def remove_contributor_from(organization)
