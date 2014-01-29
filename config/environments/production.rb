@@ -80,4 +80,19 @@ Supermarket::Application.configure do
 
   # Set default URL for ActionMailer
   config.action_mailer.default_url_options = { host: 'community.opscode.com' }
+
+  # If SMTP is setup use those settings otherwise just use sendmail
+  if Supermarket::Config.smtp
+    Supermarket::Application.config.action_mailer.delivery_method = :smtp
+
+    Supermarket::Application.config.action_mailer.smtp_settings = {
+      address:              Supermarket::Config.smtp['address'],
+      port:                 Supermarket::Config.smtp['port'],
+      user_name:            Supermarket::Config.smtp['user_name'],
+      password:             Supermarket::Config.smtp['password'],
+      authentication:       'plain',
+    }
+  else
+    Supermarket::Application.config.action_mailer.delivery_method = :smtp
+  end
 end

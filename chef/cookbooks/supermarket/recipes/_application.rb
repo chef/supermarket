@@ -34,7 +34,7 @@ deploy "#{application_directory}" do
 
     execute 'bundle install' do
       cwd release_path
-      command 'bundle install'
+      command 'bundle install --without test development'
     end
   end
 
