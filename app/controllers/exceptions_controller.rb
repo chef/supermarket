@@ -22,41 +22,41 @@ class ExceptionsController < ApplicationController
 
   protected
 
-    #
-    # The application backtrace from the exception.
-    #
-    # @return [Array<String>]
-    #
-    def backtrace
-      wrapper.application_trace
-    end
+  #
+  # The application backtrace from the exception.
+  #
+  # @return [Array<String>]
+  #
+  def backtrace
+    wrapper.application_trace
+  end
 
-    #
-    # The exception that was raised.
-    #
-    # @return [~Exception]
-    #
-    def exception
-      env['action_dispatch.exception']
-    end
+  #
+  # The exception that was raised.
+  #
+  # @return [~Exception]
+  #
+  def exception
+    env['action_dispatch.exception']
+  end
 
-    #
-    # The Rack status code for the error.
-    #
-    # @return [Integer]
-    #
-    def status_code
-      wrapper.status_code.to_i
-    end
+  #
+  # The Rack status code for the error.
+  #
+  # @return [Integer]
+  #
+  def status_code
+    wrapper.status_code.to_i
+  end
 
   private
 
-    #
-    # The exception wrapper.
-    #
-    # @return [ActionDispatch::ExceptionWrapper]
-    #
-    def wrapper
-      @wrapper ||= ActionDispatch::ExceptionWrapper.new(env, exception)
-    end
+  #
+  # The exception wrapper.
+  #
+  # @return [ActionDispatch::ExceptionWrapper]
+  #
+  def wrapper
+    @wrapper ||= ActionDispatch::ExceptionWrapper.new(env, exception)
+  end
 end

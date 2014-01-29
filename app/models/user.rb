@@ -108,10 +108,10 @@ class User < ActiveRecord::Base
 
   private
 
-    #
-    # Callback: strip anything that is not a digit from the phone number.
-    #
-    def normalize_phone
-      phone.gsub!(/[^0-9]/, '') if phone
-    end
+  #
+  # Callback: strip anything that is not a digit from the phone number.
+  #
+  def normalize_phone
+    phone.gsub!(/[^0-9]/, '') if phone
+  end
 end
