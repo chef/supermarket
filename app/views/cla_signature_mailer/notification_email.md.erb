@@ -1,2 +1,7 @@
 A new CLA has been signed by <%= @cla_signature.name %>.
-View it [here](<%= url_for(@cla_signature) %>).
+
+<% if @cla_signature.is_a?(CclaSignature) %>
+View it [here](<%= ccla_signature_url(@cla_signature) %>).
+<% elsif @cla_signature.is_a?(IclaSignature) %>
+View it [here](<%= icla_signature_url(@cla_signature) %>).
+<% end %>
