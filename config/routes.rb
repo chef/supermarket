@@ -22,7 +22,11 @@ Supermarket::Application.routes.draw do
     resources :accounts, only: [:destroy]
   end
 
-  resource :profile, controller: 'profile', only: [:update, :edit]
+  resource :profile, controller: 'profile', only: [:update, :edit] do
+    collection do
+      patch :change_password
+    end
+  end
 
   resources :invitations, only: [:show, :update, :destroy]
 
