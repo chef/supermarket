@@ -40,7 +40,7 @@ class IclaSignaturesController < ApplicationController
     @icla_signature.middle_name = current_user.middle_name
     @icla_signature.last_name   = current_user.last_name
     @icla_signature.suffix      = current_user.suffix
-    @icla_signature.email       = current_user.primary_email.try(:email)
+    @icla_signature.email       = current_user.email
     @icla_signature.phone       = current_user.phone
     @icla_signature.company     = current_user.company
   end
