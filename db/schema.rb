@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140127221554) do
+ActiveRecord::Schema.define(version: 20140129215544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,15 +73,6 @@ ActiveRecord::Schema.define(version: 20140127221554) do
 
   add_index "contributors", ["organization_id"], name: "index_contributors_on_organization_id", using: :btree
   add_index "contributors", ["user_id"], name: "index_contributors_on_user_id", using: :btree
-
-  create_table "emails", force: true do |t|
-    t.integer  "user_id"
-    t.string   "email"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-  end
-
-  add_index "emails", ["user_id"], name: "index_emails_on_user_id", using: :btree
 
   create_table "icla_signatures", force: true do |t|
     t.integer  "user_id"

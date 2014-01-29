@@ -24,7 +24,7 @@ class CclaSignaturesController < ApplicationController
     @ccla_signature.ccla = Ccla.latest
 
     # Prepopulate any fields we can from the User object
-    @ccla_signature.email = current_user.primary_email.try(:email)
+    @ccla_signature.email = current_user.email
   end
 
   #

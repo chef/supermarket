@@ -46,7 +46,7 @@ describe IclaSignaturesController do
         expect(icla_signature.middle_name).to eq(admin.middle_name)
         expect(icla_signature.last_name).to eq(admin.last_name)
         expect(icla_signature.suffix).to eq(admin.suffix)
-        expect(icla_signature.email).to eq(admin.primary_email.try(:email))
+        expect(icla_signature.email).to eq(admin.email)
         expect(icla_signature.phone).to eq(admin.phone)
         expect(icla_signature.company).to eq(admin.company)
       end
