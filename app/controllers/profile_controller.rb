@@ -4,12 +4,33 @@ class ProfileController < ApplicationController
   #
   # PATCH /profile
   #
-  # Update the current_user's attributes
+  # Update the current_user's profile
   #
   def update
-    current_user.update_attributes(user_params)
+    if current_user.update_attributes(user_params)
+      redirect_to current_user, notice: 'Profile successfully updated.'
+    else
+      render 'edit'
+    end
+  end
 
-    redirect_to current_user, notice: 'Profile successfully updated.'
+  #
+  # PATCH /profile/change_password
+  #
+  # Change the current_user's password
+  #
+  def change_password
+    if current_user.update_with_password(password_params)
+      #
+      # Sign in the user bypassing validation in case
+      # their password changed.
+      #
+      sign_in current_user, bypass: true
+
+      redirect_to current_user, notice: 'Password successfully changed.'
+    else
+      render 'edit'
+    end
   end
 
   #
@@ -36,4 +57,14 @@ class ProfileController < ApplicationController
     )
   end
 
+  #
+  # The strong params for the user's password.
+  #
+  def password_params
+    params.require(:user).permit(
+      :current_password,
+      :password,
+      :password_confirmation
+    )
+  end
 end

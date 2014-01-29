@@ -1,14 +1,14 @@
-<%= form_for(current_user, url: profile_path) do |f| %>
-  <div class="page">
-    <div class="title">
-      <span class="fa fa-user"></span> Edit Profile
-    </div>
+<div class="page">
+  <div class="title">
+    <span class="fa fa-user"></span> Edit Profile
+  </div>
 
-    <div class="content">
+  <div class="content">
+    <%= form_for(current_user, url: profile_path) do |f| %>
       <%= render 'application/form_errors', record: current_user %>
 
       <section class="fields">
-        <fieldset class="name">
+        <fieldset>
           <%= f.text_field :email, placeholder: 'Email', title: 'Email' %>
           <%= f.text_field :first_name, placeholder: 'First Name', title: 'First Name' %>
           <%= f.text_field :last_name, placeholder: 'Last Name', title: 'Last Name' %>
@@ -24,6 +24,22 @@
       <section>
         <%= f.submit 'Update Profile', class: 'button primary' %>
       </section>
-    </div>
+    <% end %>
+
+    <%= form_for(current_user, url: change_password_profile_path) do |f| %>
+      <section class="fields">
+        <fieldset>
+          <h4>Change Password</h4>
+          <%= f.password_field :current_password, placeholder: 'Current password' %>
+          <%= f.password_field :password, placeholder: 'New Password' %>
+          <%= f.password_field :password_confirmation, placeholder: 'Password confirmation' %>
+        </fieldset>
+      </section>
+
+      <section>
+        <%= f.submit 'Change Password', class: 'button primary' %>
+      </section>
+    <% end %>
   </div>
-<% end %>
+</div>
+
