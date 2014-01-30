@@ -19,6 +19,8 @@ gem 'coveralls', require: false
 gem 'maildown'
 gem 'sentry-raven', github: 'getsentry/raven-ruby'
 gem 'statsd-ruby', require: 'statsd'
+gem 'octokit', github: 'octokit/octokit.rb', require: false
+gem 'sidekiq'
 
 gem 'sass-rails',   '~> 4.0.1'
 gem 'compass-rails'
@@ -40,6 +42,8 @@ group :test do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'nokogiri', require: false
+  gem 'vcr', require: false
+  gem 'webmock', require: false
 end
 
 group :development, :test do

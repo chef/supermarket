@@ -33,6 +33,49 @@ describe User do
     end
   end
 
+  describe '#signed_ccla?' do
+    it 'is true when there is a ccla signature' do
+      user = build(:user, ccla_signatures: [build(:ccla_signature)])
+      expect(user.signed_ccla?).to be_true
+    end
+
+    it 'is false when there is not a ccla signature' do
+      user = build(:user, ccla_signatures: [])
+      expect(user.signed_ccla?).to be_false
+    end
+  end
+
+  describe '#signed_cla' do
+    it 'is it true when there is an ccla signature and a icla signature' do
+      user = build(
+        :user,
+        ccla_signatures: [build(:ccla_signature)],
+        icla_signatures: [build(:icla_signature)]
+      )
+
+      expect(user.signed_cla?).to be_true
+    end
+
+    it 'is it true when there is an ccla signature' do
+      user = build(
+        :user,
+        ccla_signatures: [build(:ccla_signature)]
+      )
+
+      expect(user.signed_cla?).to be_true
+    end
+
+    it 'is it true when there is no ccla or icla signature' do
+      user = build(
+        :user,
+        icla_signatures: [],
+        ccla_signatures: []
+      )
+
+      expect(user.signed_cla?).to be_false
+    end
+  end
+
   describe '#is_admin_of_organization?' do
     it 'is true when the user is an admin of the given organization' do
       contributor = create(:contributor, admin: true)
@@ -77,6 +120,20 @@ describe User do
       user.account_from_oauth(OmniAuth.config.mock_auth[:github]).save!
 
       expect(user.linked_github_account?).to eql(true)
+    end
+
+  end
+
+  describe '.find_by_github_login' do
+    it 'returns the user with that GitHub login' do
+      user = create(:user)
+      account = create(:account, user: user, provider: 'github')
+
+      expect(User.find_by_github_login(account.username)).to eql(user)
+    end
+
+    it 'returns a new user if there is no user with that GitHub login' do
+      expect(User.find_by_github_login('trex').persisted?).to be_false
     end
 
   end

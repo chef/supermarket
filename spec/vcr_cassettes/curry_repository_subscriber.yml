@@ -1,0 +1,107 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.github.com/hub
+    body:
+      encoding: UTF-8
+      string: hub.callback=http%3A%2F%2Fcurrybowl.herokuapp.com%2F52f2934cec5edd0002000015&hub.mode=subscribe&hub.secret=YOUR_PUBSUBHUBBUB_SECRET&hub.topic=https%3A%2F%2Fgithub.com%2Fcramerdev%2Fnot_paprika%2Fevents%2Fpull_request
+    headers:
+      User-Agent:
+      - Octokit Ruby Gem 3.0.0.pre
+      Authorization:
+      - token <TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 422
+      message: Unprocessable Entity
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 11 Feb 2014 16:38:50 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Status:
+      - 422 Unprocessable Entity
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4910'
+      X-Ratelimit-Reset:
+      - '1392137000'
+      X-Oauth-Scopes:
+      - user, public_repo, repo, gist
+      X-Accepted-Oauth-Scopes:
+      - repo
+      X-Github-Media-Type:
+      - github.beta
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '192'
+      X-Github-Request-Id:
+      - 6153E20C:22D7:4E6E6E:52FA5219
+    body:
+      encoding: UTF-8
+      string: '{"message":"No repository found for hub.topic: \"https://github.com/cramerdev/not_paprika/events/pull_request\"","documentation_url":"http://developer.github.com/v3/repos/hooks/#pubsubhubbub"}'
+    http_version: 
+  recorded_at: Tue, 11 Feb 2014 16:38:52 GMT
+- request:
+    method: post
+    uri: https://api.github.com/hub
+    body:
+      encoding: UTF-8
+      string: hub.callback=http%3A%2F%2Fcurrybowl.herokuapp.com%2F52f2934cec5edd0002000015&hub.mode=subscribe&hub.secret=YOUR_PUBSUBHUBBUB_SECRET&hub.topic=https%3A%2F%2Fgithub.com%2Fcramerdev%2Fpaprika%2Fevents%2Fpull_request
+    headers:
+      User-Agent:
+      - Octokit Ruby Gem 3.0.0.pre
+      Authorization:
+      - token <TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 11 Feb 2014 16:38:51 GMT
+      Status:
+      - 204 No Content
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4907'
+      X-Ratelimit-Reset:
+      - '1392137000'
+      X-Oauth-Scopes:
+      - user, public_repo, repo, gist
+      X-Accepted-Oauth-Scopes:
+      - repo
+      X-Github-Media-Type:
+      - github.beta
+      X-Content-Type-Options:
+      - nosniff
+      X-Github-Request-Id:
+      - 6153E20C:22D7:4E71DD:52FA521B
+      Vary:
+      - Accept-Encoding
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Tue, 11 Feb 2014 16:38:54 GMT
+recorded_with: VCR 2.8.0

@@ -6,3 +6,11 @@ en:
     requires_linked_github: "You need to link your GitHub account before you sign an ICLA"
   ccla_signature:
     requires_linked_github: "You need to link your GitHub account before you sign a CCLA"
+  curry:
+    repositories:
+      subscribe:
+        failure: "That repository does not exist on GitHub."
+        success: "Supermarket is now monitoring this repository"
+      unsubscribe:
+        failure: "The repository was destroyed, but there was an issue unsubscribing from the repo."
+        success: "The repository was destroyed and Supermarket has been unsubscribed from the repo."

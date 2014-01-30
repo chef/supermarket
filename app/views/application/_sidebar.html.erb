@@ -13,6 +13,13 @@
 
         <li><%= link_to 'Sign CCLA', new_ccla_signature_path %></li>
         <li><%= link_to 'View Profile', current_user %></li>
+
+        <% if current_user && current_user.is?(:admin) %>
+          <li>
+            <%= link_to "Watched Repositories", curry_repositories_url, class: 'admin repositories' %>
+          </li>
+        <% end %>
+
         <li><%= link_to 'Sign Out', sign_out_path, method: :delete %></li>
       <% else %>
         <li><%= link_to 'Sign In', sign_in_path %></li>

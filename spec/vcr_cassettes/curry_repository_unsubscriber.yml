@@ -1,0 +1,286 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/repos/cramerdev/paprika/hooks
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.0.0.pre
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 11 Feb 2014 16:38:45 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4922'
+      X-Ratelimit-Reset:
+      - '1392137000'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Etag:
+      - '"674612fb93a6deb20a6c34b0061f87c5"'
+      X-Oauth-Scopes:
+      - user, public_repo, repo, gist
+      X-Accepted-Oauth-Scopes:
+      - admin:repo_hook, public_repo, read:repo_hook, repo, write:repo_hook
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Content-Type-Options:
+      - nosniff
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - '*'
+      X-Github-Request-Id:
+      - 6153E20C:22DC:C985B:52FA5215
+    body:
+      encoding: UTF-8
+      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/hooks/1782454","test_url":"https://api.github.com/repos/cramerdev/paprika/hooks/1782454/test","id":1782454,"name":"tenxer","active":true,"events":["push"],"config":{"api_key":""},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-10T18:32:34Z","created_at":"2014-02-07T05:28:33Z"},{"url":"https://api.github.com/repos/cramerdev/paprika/hooks/1798712","test_url":"https://api.github.com/repos/cramerdev/paprika/hooks/1798712/test","id":1798712,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://currybowl.herokuapp.com/52f2934cec5edd0002000015","secret":"YOUR_PUBSUBHUBBUB_SECRET","content_type":"form"},"last_response":{"code":null,"status":"unused","message":null},"updated_at":"2014-02-11T16:38:44Z","created_at":"2014-02-11T16:38:44Z"}]'
+    http_version: 
+  recorded_at: Tue, 11 Feb 2014 16:38:47 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/cramerdev/paprika/hooks
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.0.0.pre
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 11 Feb 2014 16:38:45 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4920'
+      X-Ratelimit-Reset:
+      - '1392137000'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Etag:
+      - '"d3916b73ecc8571621881c52a02b1616"'
+      X-Oauth-Scopes:
+      - user, public_repo, repo, gist
+      X-Accepted-Oauth-Scopes:
+      - admin:repo_hook, public_repo, read:repo_hook, repo, write:repo_hook
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Content-Type-Options:
+      - nosniff
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - '*'
+      X-Github-Request-Id:
+      - 6153E20C:22D8:4E2732:52FA5215
+    body:
+      encoding: UTF-8
+      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/hooks/1782454","test_url":"https://api.github.com/repos/cramerdev/paprika/hooks/1782454/test","id":1782454,"name":"tenxer","active":true,"events":["push"],"config":{"api_key":""},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-10T18:32:34Z","created_at":"2014-02-07T05:28:33Z"}]'
+    http_version: 
+  recorded_at: Tue, 11 Feb 2014 16:38:48 GMT
+- request:
+    method: post
+    uri: https://api.github.com/hub
+    body:
+      encoding: UTF-8
+      string: hub.callback=http%3A%2F%2Fcurrybowl.herokuapp.com%2F52f2934cec5edd0002000015&hub.mode=subscribe&hub.secret=YOUR_PUBSUBHUBBUB_SECRET&hub.topic=https%3A%2F%2Fgithub.com%2Fcramerdev%2Fpaprika%2Fevents%2Fpull_request
+    headers:
+      User-Agent:
+      - Octokit Ruby Gem 3.0.0.pre
+      Authorization:
+      - token <TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 11 Feb 2014 16:38:48 GMT
+      Status:
+      - 204 No Content
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4915'
+      X-Ratelimit-Reset:
+      - '1392137000'
+      X-Oauth-Scopes:
+      - user, public_repo, repo, gist
+      X-Accepted-Oauth-Scopes:
+      - repo
+      X-Github-Media-Type:
+      - github.beta
+      X-Content-Type-Options:
+      - nosniff
+      X-Github-Request-Id:
+      - 6153E20C:22D8:4E2BF4:52FA5218
+      Vary:
+      - Accept-Encoding
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Tue, 11 Feb 2014 16:38:50 GMT
+- request:
+    method: post
+    uri: https://api.github.com/hub
+    body:
+      encoding: UTF-8
+      string: hub.callback=http%3A%2F%2Fcurrybowl.herokuapp.com%2F52f2934cec5edd0002000015&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fgithub.com%2Fcramerdev%2Fpaprika%2Fevents%2Fpull_request
+    headers:
+      User-Agent:
+      - Octokit Ruby Gem 3.0.0.pre
+      Authorization:
+      - token <TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 11 Feb 2014 16:38:48 GMT
+      Status:
+      - 204 No Content
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4914'
+      X-Ratelimit-Reset:
+      - '1392137000'
+      X-Oauth-Scopes:
+      - user, public_repo, repo, gist
+      X-Accepted-Oauth-Scopes:
+      - repo
+      X-Github-Media-Type:
+      - github.beta
+      X-Content-Type-Options:
+      - nosniff
+      X-Github-Request-Id:
+      - 6153E20C:22D7:4E6B8B:52FA5218
+      Vary:
+      - Accept-Encoding
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Tue, 11 Feb 2014 16:38:51 GMT
+- request:
+    method: post
+    uri: https://api.github.com/hub
+    body:
+      encoding: UTF-8
+      string: hub.callback=http%3A%2F%2Fcurrybowl.herokuapp.com%2F52f2934cec5edd0002000015&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fgithub.com%2Fcramerdev%2Fpaprika%2Fevents%2Fpull_request
+    headers:
+      User-Agent:
+      - Octokit Ruby Gem 3.0.0.pre
+      Authorization:
+      - token <TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 11 Feb 2014 16:38:49 GMT
+      Status:
+      - 204 No Content
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4913'
+      X-Ratelimit-Reset:
+      - '1392137000'
+      X-Oauth-Scopes:
+      - user, public_repo, repo, gist
+      X-Accepted-Oauth-Scopes:
+      - repo
+      X-Github-Media-Type:
+      - github.beta
+      X-Content-Type-Options:
+      - nosniff
+      X-Github-Request-Id:
+      - 6153E20C:22D9:4E9D47:52FA5218
+      Vary:
+      - Accept-Encoding
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Tue, 11 Feb 2014 16:38:51 GMT
+recorded_with: VCR 2.8.0

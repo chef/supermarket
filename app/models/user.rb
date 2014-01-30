@@ -43,6 +43,37 @@ class User < ActiveRecord::Base
   end
 
   #
+  # Retrieve the current users latest CCLA signature if they have signed a
+  # CCLA.
+  #
+  # @return [IclaSignature]
+  #
+  def latest_ccla
+    ccla_signatures.order(:signed_at).last
+  end
+
+  # Determine if the current user signed the Corporate Contributor License
+  # Agreement.
+  #
+  # @todo Expand this functionality to search for the most recently active
+  #       CCLA and return some sort of history instead.
+  #
+  # @return [Boolean]
+  #
+  def signed_ccla?
+    !ccla_signatures.empty?
+  end
+
+  #
+  # Determine if the current user signed any CLAs.
+  #
+  # @return [Boolean]
+  #
+  def signed_cla?
+    signed_icla? || signed_ccla?
+  end
+
+  #
   # The name of the current user.
   #
   # @example
@@ -108,5 +139,29 @@ class User < ActiveRecord::Base
   #
   def linked_github_account?
     accounts.for('github').any?
+  end
+
+  #
+  # Find a user from a GitHub login. If there is no user with that GitHub login,
+  # return a new user.
+  #
+  # @param [String] github_login The GitHub login/username to find the user by
+  #
+  # @return [User] The user with that GitHub login. If none exists, return a new
+  #                user.
+  #
+  def self.find_by_github_login(github_login)
+    account = Account.for('github').where(username: github_login).first
+
+    account.try(:user) || User.new
+  end
+
+  private
+
+  #
+  # Callback: strip anything that is not a digit from the phone number.
+  #
+  def normalize_phone
+    phone.gsub!(/[^0-9]/, '') if phone
   end
 end

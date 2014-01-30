@@ -74,6 +74,40 @@ ActiveRecord::Schema.define(version: 20140207221439) do
   add_index "contributors", ["organization_id"], name: "index_contributors_on_organization_id", using: :btree
   add_index "contributors", ["user_id"], name: "index_contributors_on_user_id", using: :btree
 
+  create_table "curry_pull_request_updates", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "action"
+    t.integer  "pull_request_id", null: false
+  end
+
+  create_table "curry_pull_requests", force: true do |t|
+    t.string   "number",        null: false
+    t.integer  "repository_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "curry_repositories", force: true do |t|
+    t.string   "owner"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "callback_url"
+  end
+
+  create_table "curry_unknown_committers", force: true do |t|
+    t.string   "login"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "curry_unknown_pull_request_committers", force: true do |t|
+    t.integer "pull_request_id",      null: false
+    t.integer "unknown_committer_id", null: false
+  end
+
   create_table "icla_signatures", force: true do |t|
     t.integer  "user_id"
     t.datetime "signed_at"

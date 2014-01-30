@@ -6,10 +6,20 @@ class ApplicationController < ActionController::Base
   include Supermarket::LocationStorage
 
   rescue_from NotAuthorizedError do |error|
-    render 'exceptions/404', status: 404, notice: error.message
+    not_found!(error)
   end
 
   protected
+
+  def not_found!(error = nil)
+    options = { status: 404 }
+
+    if error
+      options[:notice] = error.message
+    end
+
+    render 'exceptions/404', options
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) do |u|

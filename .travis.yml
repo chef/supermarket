@@ -9,4 +9,7 @@ before_script:
   - cp .env.example .env
   - bundle exec rake db:schema:load
 bundler_args: --without development
-script: 'bundle exec rspec && bundle exec rake spec:javascripts'
+script: bundle exec rspec && bundle exec rake spec:javascripts
+env:
+  global:
+    secure: 3FQQOyNDbi98izCrHovUld+Laj+y7ENcMraVlpgge4q12PysndHWz5zU/VrSo/3ZInE3u36Mn2dH95nnM+kXa8rfpXtDh23YjinW4vkA1FTnnt/yppdksvY1K+K7QePIvGfmVU/Y7kq6C3k4R3kB99cN+luf5oVdby9kePFkQHc=
