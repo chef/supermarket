@@ -12,7 +12,7 @@ class Contributor < ActiveRecord::Base
   # @return [nil] if the user does not have a primary email.
   #
   def email
-    user.primary_email.try(:email)
+    user.email
   end
 
   #
