@@ -2,7 +2,7 @@ class ContributorsController < ApplicationController
   before_filter :find_contributor
 
   #
-  # PUT /organizations/:organization_id/contributors/:id
+  # PATCH /organizations/:organization_id/contributors/:id
   #
   # Update a single contributor.
   #
@@ -11,7 +11,7 @@ class ContributorsController < ApplicationController
 
     @contributor.update_attributes(contributor_params)
 
-    render json: @contributor
+    head 204
   end
 
   #

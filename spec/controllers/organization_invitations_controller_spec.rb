@@ -67,7 +67,6 @@ describe OrganizationInvitationsController do
   end
 
   describe 'POST #create' do
-    before { controller.stub(:current_user) { user } }
     before { InvitationMailer.stub(:deliver_invitation) }
 
     it 'creates the invitation' do
@@ -91,14 +90,6 @@ describe OrganizationInvitationsController do
         invitation: { email: 'chef@example.com' }
     end
 
-    it 'authorizes that the user may send invitations' do
-      allow_any_instance_of(InvitationAuthorizer).to receive(:create?) { true }
-
-      post :create,
-          organization_id: organization.id,
-          invitation: { email: 'chef@example.com' }
-    end
-
     it 'will not create an invitation if the user is not authorized to do so' do
       allow_any_instance_of(InvitationAuthorizer).to receive(:create?) { false }
 
@@ -107,6 +98,32 @@ describe OrganizationInvitationsController do
           organization_id: organization.id,
           invitation: { email: 'chef@example.com' }
       end.to_not change(Invitation, :count)
+    end
+  end
+
+  describe 'PATCH #update' do
+    let(:invitation) { create(:invitation, admin: true) }
+
+    it 'updates an invitation' do
+      allow_any_instance_of(InvitationAuthorizer).to receive(:update?) { true }
+
+      patch :update, organization_id: organization.id,
+        id: invitation.token, invitation: { admin: false }
+
+      invitation.reload
+
+      expect(invitation.admin).to be_false
+    end
+
+    it 'will not update an invitation if the user is not auhtorized to do so' do
+      allow_any_instance_of(InvitationAuthorizer).to receive(:update?) { false }
+
+      patch :update, organization_id: organization.id,
+        id: invitation.token, invitation: { admin: false }
+
+      invitation.reload
+
+      expect(invitation.admin).to be_true
     end
   end
 end
