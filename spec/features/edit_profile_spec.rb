@@ -15,6 +15,6 @@ describe 'editing the current user profile' do
 
     find_button('Update Profile').click
 
-    expect(page).to have_selector '.flash.notice'
+    expect_to_see_success_message
   end
 end

@@ -6,4 +6,8 @@ class InvitationAuthorizer < Authorizer::Base
   def create?
     index?
   end
+
+  def update?
+    index?
+  end
 end
