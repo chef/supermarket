@@ -17,6 +17,8 @@ development:
   ccla_version: '99999-2621/LEGAL14767024.1'
   cla_signature_notification_email: <%= ENV['CLA_SIGNATURE_NOTIFICATION_EMAIL'] %>
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
+  host: <%= ENV['HOST'] %>
+  port: <%= ENV['PORT'] %>
   devise:
     secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
   omni_auth:
@@ -37,6 +39,8 @@ production:
   ccla_version: '99999-2621/LEGAL14767024.1'
   cla_signature_notification_email: <%= ENV['CLA_SIGNATURE_NOTIFICATION_EMAIL'] %>
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
+  host: <%= ENV['HOST'] %>
+  port: <%= ENV['PORT'] %>
   devise:
     secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
   omni_auth:
@@ -59,6 +63,8 @@ test:
   ccla_version: '99999-2621/LEGAL14767024.1'
   cla_signature_notification_email: <%= ENV['CLA_SIGNATURE_NOTIFICATION_EMAIL'] %>
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
+  host: <%= ENV['HOST'] %>
+  port: <%= ENV['PORT'] %>
   devise:
     secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
   omni_auth:
