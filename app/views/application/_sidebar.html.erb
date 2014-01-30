@@ -1,0 +1,22 @@
+<header>
+  <h2 class="appheader">Supermarket</h2>
+  <form action="" class="searchform">
+
+  </form>
+  <nav class="appnav">
+    <ul>
+      <li><%= link_to 'Contributors', icla_signatures_path %></li>
+      <% if signed_in? %>
+        <% unless current_user.signed_icla? %>
+          <li><%= link_to 'Sign ICLA', new_icla_signature_path %></li>
+        <% end %>
+
+        <li><%= link_to 'Sign CCLA', new_ccla_signature_path %></li>
+        <li><%= link_to 'View Profile', current_user %></li>
+        <li><%= link_to 'Sign Out', sign_out_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to 'Sign In', sign_in_path %></li>
+      <% end %>
+    </ul>
+  </nav>
+</header>
