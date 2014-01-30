@@ -1,35 +1,36 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
   <head>
-    <meta charset="utf-8">
-
-    <!-- Always force latest IE rendering engine or request Chrome Frame -->
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-
-    <!-- Use title if it's in the page YAML frontmatter -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= [content_for(:title), 'Chef Supermarket'].compact.join(' - ') %></title>
-
-    <!-- Custom favicons -->
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Supermarket" %>">
     <link rel="shortcut icon" href="<%= image_url('favicon.ico') %>" type="image/x-icon">
     <link rel="icon" href="<%= image_url('favicon.ico') %>" type="image/x-icon">
     <link rel="apple-touch-icon" href="<%= image_url('apple-touch-icon.png') %>"/>
-
-    <!-- Viewport -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-
-    <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
-
-
   <body class="<%= controller.controller_name %>">
-    <%= render partial: 'header' %>
     <%= render partial: 'flash' %>
 
     <div class="container">
-      <%= yield %>
+      <div class="globalcolumn">
+        <%= link_to root_path, class: 'logochef' do %><img src="/assets/logo_chef.png" data-interchange="[/assets/logo_chef@2x.png, (retina)]" alt="Chef"><noscript><img src="/images/logo_chef.png" alt="Chef"></noscript><% end %>
+      </div>
+      <div class="appcolumn">
+        <div class="approw">
+          <div class="sidebar">
+            <%= render partial: 'sidebar' %>
+          </div>
+          <%= yield %>
+        </div>
+      </div>
     </div>
-    <%= javascript_include_tag 'application' %>
     <% if Supermarket::Config.segment_io %>
       <%= render partial: 'segment.io' %>
     <% end %>

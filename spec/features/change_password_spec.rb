@@ -12,6 +12,6 @@ describe 'changing the current user password' do
 
     find_button('Change Password').click
 
-    expect(page).to have_selector '.flash.notice'
+    expect(page).to have_selector('.alert-box.success')
   end
  end
