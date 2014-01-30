@@ -35,7 +35,13 @@
       <% @pending_invitations.each do |invitation| %>
         <tr class="contributor <%= invitation.admin? ? 'admin' : '' %>">
           <td><%= invitation.email %></td>
-          <td><%= invitation.admin? ? 'Yes' : 'No' %></td>
+          <td>
+            <% if invitation.admin? %>
+              <input type="checkbox" checked disabled>
+            <% else %>
+              <input type="checkbox" disabled>
+            <% end %>
+          </td>
           <td><%= "Pending" %></td>
           <td></td>
         </tr>
@@ -45,7 +51,13 @@
         <tr class="contributor <%= contributor.admin? ? 'admin' : '' %>">
           <td><%= contributor.email %></td>
           <td>
-            <% if contributor.user != current_user %>
+            <% if contributor.user == current_user %>
+              <% if contributor.admin? %>
+                <input type="checkbox" checked disabled>
+              <% else %>
+                <input type="checkbox" disabled>
+              <% end %>
+            <% else %>
               <%= form_for [@organization, contributor], remote: true do |f| %>
                 <%= f.check_box :admin, class: 'auto trigger' %>
               <% end %>
