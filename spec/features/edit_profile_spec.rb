@@ -12,6 +12,6 @@ describe 'editing the current user profile' do
     fill_in 'user_company', with: 'Winterfell'
     fill_in 'user_jira_username', with: 'eddardstark'
     find_button('Update Profile').click
-    expect(page).to have_selector '.flash.notice'
+    expect_to_see_success_message
   end
 end
