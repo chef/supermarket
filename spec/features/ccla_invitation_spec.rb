@@ -1,4 +1,3 @@
-require 'nokogiri'
 require 'spec_feature_helper'
 
 describe 'inviting people to sign a CCLA' do
@@ -15,5 +14,4 @@ describe 'inviting people to sign a CCLA' do
     sign_in(create(:user))
     decline_invitation_to_join('Acme')
   end
-
 end

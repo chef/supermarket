@@ -10,4 +10,8 @@ class InvitationAuthorizer < Authorizer::Base
   def update?
     index?
   end
+
+  def resend?
+    index?
+  end
 end
