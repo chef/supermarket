@@ -39,7 +39,7 @@ class OrganizationInvitationsController < ApplicationController
   end
 
   #
-  # PATCH /organizations/:organization_id/invitations/:token
+  # PATCH /organizations/:organization_id/invitations/:id
   #
   # Updates an invitation.
   #
@@ -51,6 +51,22 @@ class OrganizationInvitationsController < ApplicationController
     @invitation.update_attributes(invitation_params)
 
     head 204
+  end
+
+  #
+  # PATCH /organizations/:organization_id/invitations/:id/resend
+  #
+  # Resends email for a given invitation.
+  #
+  def resend
+    @invitation = Invitation.find_by(token: params[:id])
+
+    authorize! @invitation
+
+    InvitationMailer.deliver_invitation(@invitation)
+
+    redirect_to :back, notice: "Successfully resent
+      invitation for #{@invitation.email}"
   end
 
   private
