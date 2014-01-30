@@ -63,5 +63,11 @@ module Supermarket
 
     # Allow magiconf to work with application configuration
     Magiconf.setup!
+
+    # Set default URL for ActionMailer
+    config.action_mailer.default_url_options = {
+      host: Supermarket::Config.host,
+      port: Supermarket::Config.port
+    }
   end
 end

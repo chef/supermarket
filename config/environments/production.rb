@@ -78,9 +78,6 @@ Supermarket::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  # Set default URL for ActionMailer
-  config.action_mailer.default_url_options = { host: 'community.opscode.com' }
-
   # If SMTP is setup use those settings otherwise just use sendmail
   if Supermarket::Config.smtp
     Supermarket::Application.config.action_mailer.delivery_method = :smtp
