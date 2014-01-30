@@ -41,7 +41,7 @@
             <% end %>
           </td>
           <td><%= "Pending" %></td>
-          <td></td>
+          <td><%= link_to "Resend", resend_organization_invitation_path(@organization, invitation), method: :patch %></td>
         </tr>
       <% end %>
 

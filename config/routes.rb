@@ -35,7 +35,12 @@ Supermarket::Application.routes.draw do
 
     resources :invitations,
       only: [:index, :create, :update],
-      controller: :organization_invitations
+      controller: :organization_invitations do
+
+      member do
+        patch :resend
+      end
+    end
   end
 
   match 'auth/:provider/callback' => 'accounts#create', as: :auth_callback, via: [:get, :post]

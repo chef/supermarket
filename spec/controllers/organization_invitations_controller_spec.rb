@@ -1,4 +1,4 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe OrganizationInvitationsController do
   let(:organization) { create(:organization) }
@@ -6,7 +6,6 @@ describe OrganizationInvitationsController do
   before { sign_in user }
 
   describe 'GET #index' do
-
     it 'tells the view the organization' do
       allow_any_instance_of(InvitationAuthorizer).to receive(:index?) { true }
 
@@ -15,8 +14,7 @@ describe OrganizationInvitationsController do
       expect(assigns[:organization]).to eql(organization)
     end
 
-    describe "when selecting invitations to send to the view" do
-
+    describe 'when selecting invitations to send to the view' do
       let!(:pending_invitation) do
         organization.invitations.create!(email: 'chef@example.com')
       end
@@ -63,31 +61,27 @@ describe OrganizationInvitationsController do
 
       expect(assigns[:contributors]).to include(user.contributors.first)
     end
-
   end
 
   describe 'POST #create' do
-    before { InvitationMailer.stub(:deliver_invitation) }
-
     it 'creates the invitation' do
       allow_any_instance_of(InvitationAuthorizer).to receive(:create?) { true }
 
-      expect do
+      expect {
         post :create,
           organization_id: organization.id,
           invitation: { email: 'chef@example.com' }
-      end.to change(organization.invitations, :count).by(1)
+      }.to change(organization.invitations, :count).by(1)
     end
 
     it 'sends the invitation' do
       allow_any_instance_of(InvitationAuthorizer).to receive(:create?) { true }
-      InvitationMailer.
-        should_receive(:deliver_invitation).
-        with(instance_of(Invitation))
 
-      post :create,
-        organization_id: organization.id,
-        invitation: { email: 'chef@example.com' }
+      expect {
+        post :create,
+          organization_id: organization.id,
+          invitation: { email: 'chef@example.com' }
+      }.to change(ActionMailer::Base.deliveries, :size).by(1)
     end
 
     it 'will not create an invitation if the user is not authorized to do so' do
@@ -124,6 +118,29 @@ describe OrganizationInvitationsController do
       invitation.reload
 
       expect(invitation.admin).to be_true
+    end
+  end
+
+  describe 'PATCH #resend' do
+    let(:invitation) { create(:invitation) }
+    before { request.env['HTTP_REFERER'] = 'the_previous_path' }
+
+    it 'resends the invitation' do
+      allow_any_instance_of(InvitationAuthorizer).to receive(:resend?) { true }
+
+      expect {
+        patch :resend, organization_id: organization.id,
+          id: invitation.token
+      }.to change(ActionMailer::Base.deliveries, :size).by(1)
+    end
+
+    it 'will not resend the invitation if the user is not authorized to do so' do
+      allow_any_instance_of(InvitationAuthorizer).to receive(:resend?) { false }
+
+      expect {
+        patch :resend, organization_id: organization.id,
+          id: invitation.token
+      }.to_not change(ActionMailer::Base.deliveries, :size).by(1)
     end
   end
 end
