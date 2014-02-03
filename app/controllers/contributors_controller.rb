@@ -28,12 +28,12 @@ class ContributorsController < ApplicationController
   end
 
   private
-    def find_contributor
-      @contributor = Contributor.find(params[:id])
-    end
 
-    def contributor_params
-      params.require(:contributor).permit(:admin)
-    end
+  def find_contributor
+    @contributor = Contributor.find(params[:id])
+  end
+
+  def contributor_params
+    params.require(:contributor).permit(:admin)
+  end
 end
-

@@ -97,7 +97,7 @@ module FeatureHelpers
     check 'invitation_admin'
     find_button('Send invitation').click
 
-	expect_to_see_success_message
+    expect_to_see_success_message
     expect(all('#invitation_admin:checked').size).to eql(1)
   end
 
@@ -114,6 +114,8 @@ module FeatureHelpers
     invitation = ActionMailer::Base.deliveries.detect { |email|
       /Invitation/ =~ email['Subject'].to_s
     }
+
+    ActionMailer::Base.deliveries.clear
 
     body = invitation.parts.find { |p| p.content_type =~ /html/ }.body.to_s
     html = Nokogiri::HTML(body)
