@@ -1,59 +1,23 @@
-<%= form_for(@icla_signature) do |f| %>
-  <div class="page">
-    <div class="title">
-      <span class="fa fa-file-text"></span>Individual Contributor License Agreement (ICLA)
+<div class="page">
+  <div class="title">
+    <span class="fa fa-file-text"></span>Individual Contributor License Agreement (ICLA)
+  </div>
+
+  <div class="content">
+    <div class="callout info">
+      You have been asked to sign an ICLA as part of the <%= link_to 'Community Contribution process', 'http://docs.opscode.com/community_contributions.html', target: :blank %>. Please read the document below and complete the form to file your ICLA.
     </div>
 
-    <div class="content">
-      <div class="callout info">
-        You have been asked to sign an ICLA as part of the <%= link_to 'Community Contribution process', 'http://docs.opscode.com/community_contributions.html', target: :blank %>. Please read the document below and complete the form to file your ICLA.
-      </div>
+    <div class="signature">
+      <%= render 'form', submit_text: 'Sign ICLA' %>
+    </div>
 
+    <div class="agreement">
       <header class="agreement-header"><%= render_markdown(@icla_signature.icla.head) %></header>
-
-      <%= render 'application/form_errors', record: @icla_signature %>
-
-      <section class="fields">
-        <fieldset class="name">
-          <%= f.text_field :prefix, placeholder: 'Prefix',  title: 'Prefix' %>
-          <%= f.text_field :first_name, placeholder: 'First Name *', title: 'First Name' %>
-          <%= f.text_field :middle_name, placeholder: 'Middle Name', title: 'Middle Name' %>
-          <%= f.text_field :last_name, placeholder: 'Last Name *', title: 'Last Name' %>
-          <%= f.text_field :suffix, placeholder: 'Suffix', title: 'Suffix' %>
-        </fieldset>
-        <fieldset class="contact">
-          <%= f.text_field :company, placeholder: 'Company', title: 'Company' %>
-          <%= f.telephone_field :phone, placeholder: 'Phone *', title: 'Phone' %>
-          <%= f.email_field :email, placeholder: 'Email *', title: 'Email' %>
-        </fieldset>
-        <fieldset class="address">
-          <%= f.text_field :address_line_1, placeholder: 'Address Line 1 *', title: 'Address Line 1' %>
-          <%= f.text_field :address_line_2, placeholder: 'Address Line 2', title: 'Address Line 2' %>
-          <%= f.text_field :city, placeholder: 'City *', title: 'City' %>
-          <%= f.text_field :state, placeholder: 'State or Province *', title: 'State or Province' %>
-          <%= f.text_field :zip, placeholder: 'Postal Code *', title: 'Postal Code' %>
-          <%= f.text_field :country, placeholder: 'Country *', title: 'Country' %>
-        </fieldset>
-      </section>
-
       <section class="agreement-body">
         <%= render_markdown(@icla_signature.icla.body) %>
         <footer><%= @icla_signature.icla.version %></footer>
       </section>
-
-      <section class="checkbox-with-label">
-        <fieldset>
-          <%= f.check_box :agreement %>
-          <%= label_tag :icla_signature_agreement, '' %>
-        </fieldset>
-        <p>I have read and accept the terms of this agreement</p>
-      </section>
-
-      <section>
-        <%= f.hidden_field :user_id %>
-        <%= f.hidden_field :icla_id %>
-        <%= f.submit 'Sign ICLA', class: 'button secondary' %>
-      </section>
     </div>
   </div>
-<% end %>
+</div>

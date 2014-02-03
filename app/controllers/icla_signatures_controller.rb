@@ -1,7 +1,8 @@
 class IclaSignaturesController < ApplicationController
-  before_filter :redirect_if_signed!, only: [:new, :create, :update]
+  before_filter :redirect_if_signed!, only: [:new, :create]
   before_filter :authenticate_user!, except: [:index]
-  before_filter :require_linked_github_account!, only: [:new, :create]
+  before_filter :require_linked_github_account!, only: [:new, :create, :update]
+  before_filter :find_and_authorize_icla_signature!, only: [:show, :update]
 
   #
   # GET /icla-signatures
@@ -16,11 +17,9 @@ class IclaSignaturesController < ApplicationController
   #
   # GET /icla-signatures/:id
   #
-  # Show a single signature.
+  # Show a single ICLA signature.
   #
   def show
-    @icla_signature = IclaSignature.find(params[:id])
-    authorize! @icla_signature
   end
 
   #
@@ -48,7 +47,7 @@ class IclaSignaturesController < ApplicationController
   #
   # POST /icla-signatures
   #
-  # Create a new Icla signature
+  # Create a new ICLA signature
   #
   def create
     @icla_signature = IclaSignature.new(icla_signature_params)
@@ -65,16 +64,16 @@ class IclaSignaturesController < ApplicationController
   end
 
   #
-  # DELETE /icla-signatures
+  # PATCH /icla-signatures/:id
   #
-  # Delete an Icla signature
+  # Updates a ICLA signature.
   #
-  def destroy
-    @icla_signature = IclaSignature.find(params[:id])
-    authorize! @icla_signature
-
-    @icla_signature.destroy
-    redirect_to icla_signatures_path
+  def update
+    if @icla_signature.update_attributes(icla_signature_params)
+      redirect_to @icla_signature, notice: "Successfully updated your ICLA."
+    else
+      render 'show'
+    end
   end
 
   private
@@ -117,10 +116,15 @@ class IclaSignaturesController < ApplicationController
   #
   def require_linked_github_account!
     if !current_user.linked_github_account?
-      store_location_for current_user, new_icla_signature_path
+      store_location_for current_user, request.path
 
       redirect_to current_user,
         notice: t('icla_signature.requires_linked_github')
     end
+  end
+
+  def find_and_authorize_icla_signature!
+    @icla_signature = IclaSignature.find(params[:id])
+    authorize! @icla_signature
   end
 end

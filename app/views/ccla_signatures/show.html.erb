@@ -4,23 +4,29 @@
   </div>
 
   <div class="content">
-    <p>
-      <strong>Number</strong>
-      <%= @ccla_signature.id %>
-    </p>
-    <p>
-      <strong>Name</strong>
-      <%= @ccla_signature.name %>
-    </p>
-    <p>
-      <strong>Company</strong>
-      <%= @ccla_signature.company %>
-    </p>
+    <div class="signature">
+      <% if policy(@ccla_signature).update? %>
+        <%= render 'form', submit_text: 'Update CCLA' %>
+      <% else %>
+        <p>
+          <strong>Number</strong>
+          <%= @ccla_signature.id %>
+        </p>
+        <p>
+          <strong>Name</strong>
+          <%= @ccla_signature.name %>
+        </p>
+        <p>
+          <strong>Company</strong>
+          <%= @ccla_signature.company %>
+        </p>
+      <% end %>
+    </div>
 
-    <hr>
-
-    <%= render_markdown(@ccla_signature.ccla.head) %>
-    <%= render_markdown(@ccla_signature.ccla.body) %>
-    <%= @ccla_signature.ccla.version %>
+    <div class="agreement">
+      <%= render_markdown(@ccla_signature.ccla.head) %>
+      <%= render_markdown(@ccla_signature.ccla.body) %>
+      <%= @ccla_signature.ccla.version %>
+    </div>
   </div>
 </div>
