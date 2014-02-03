@@ -1,6 +1,7 @@
 language: ruby
 notifications:
   email: false
+  webhooks: https://getchef.slack.com/services/hooks/travis?token=ECftsW2P2itUaz1MhfiU6cS4
 rvm:
   - 2.0.0
 before_script:
