@@ -27,7 +27,7 @@ group :doc do
 end
 
 group :development do
-  gem 'license_finder', git: "https://github.com/pivotal/LicenseFinder.git" # checks for compatible licenses
+  gem 'license_finder'
 end
 
 group :test do
