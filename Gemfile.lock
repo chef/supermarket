@@ -1,15 +1,3 @@
-GIT
-  remote: https://github.com/pivotal/LicenseFinder.git
-  revision: 04a6a9279a69912dd0d1b3002e117370ca008dd1
-  specs:
-    license_finder (0.9.4)
-      bundler
-      httparty
-      rake
-      sequel
-      sqlite3
-      thor
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -97,6 +85,13 @@ GEM
     kramdown (1.3.1)
     launchy (2.4.2)
       addressable (~> 2.3)
+    license_finder (0.9.5.1)
+      bundler
+      httparty
+      rake
+      sequel
+      sqlite3
+      thor
     magiconf (1.0.0)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -175,9 +170,9 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec-core (2.14.7)
-    rspec-expectations (2.14.4)
+    rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.14.4)
+    rspec-mocks (2.14.5)
     rspec-rails (2.14.1)
       actionpack (>= 3.0)
       activemodel (>= 3.0)
@@ -191,7 +186,7 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
-    sequel (4.6.0)
+    sequel (4.7.0)
     shoulda-matchers (2.5.0)
       activesupport (>= 3.0.0)
     simplecov (0.8.2)
@@ -215,7 +210,7 @@ GEM
     thread_safe (0.1.3)
       atomic
     tilt (1.4.1)
-    tins (0.13.1)
+    tins (0.13.2)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -223,7 +218,7 @@ GEM
     uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    unicorn (4.8.0)
+    unicorn (4.8.1)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
@@ -250,7 +245,7 @@ DEPENDENCIES
   factory_girl
   foreman
   launchy
-  license_finder!
+  license_finder
   magiconf
   mail_view
   maildown
