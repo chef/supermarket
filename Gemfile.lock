@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/getsentry/raven-ruby.git
+  revision: 2d03001ae655b4a19214aceb7e0d041b7e9185cb
+  specs:
+    sentry-raven (0.7.1)
+      faraday (>= 0.7.6)
+      hashie (>= 1.1.0)
+      uuidtools
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -225,6 +234,7 @@ GEM
     unicorn-rails (1.1.0)
       rack
       unicorn
+    uuidtools (2.1.4)
     warden (1.2.3)
       rack (>= 1.0)
     websocket-driver (0.3.2)
@@ -262,6 +272,7 @@ DEPENDENCIES
   redcarpet
   rspec-rails
   sass-rails (~> 4.0.1)
+  sentry-raven!
   shoulda-matchers
   uglifier (~> 2.2)
   unicorn
