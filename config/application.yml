@@ -19,6 +19,7 @@ development:
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
   host: <%= ENV['HOST'] %>
   port: <%= ENV['PORT'] %>
+  sentry_url: <%= ENV['SENTRY_URL'] %>
   devise:
     secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
   omni_auth:
@@ -41,6 +42,7 @@ production:
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
   host: <%= ENV['HOST'] %>
   port: <%= ENV['PORT'] %>
+  sentry_url: <%= ENV['SENTRY_URL'] %>
   devise:
     secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
   omni_auth:
@@ -65,6 +67,7 @@ test:
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
   host: <%= ENV['HOST'] %>
   port: <%= ENV['PORT'] %>
+  sentry_url: <%= ENV['SENTRY_URL'] %>
   devise:
     secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
   omni_auth:
