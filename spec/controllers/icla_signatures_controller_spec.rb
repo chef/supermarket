@@ -18,13 +18,28 @@ describe IclaSignaturesController do
 
   describe 'GET #show' do
     let(:icla_signature) { create(:icla_signature) }
-    before { get :show, id: icla_signature.id }
+    before { sign_in(create(:user)) }
 
-    it { should respond_with(200) }
-    it { should render_template('show') }
+    context 'user is authorized to view ICLA Signature' do
+      before do
+        allow_any_instance_of(IclaSignatureAuthorizer).to receive(:show?) { true }
+        get :show, id: icla_signature.id
+      end
 
-    it 'assigns @icla_signature' do
-      expect(assigns(:icla_signature)).to eq(icla_signature)
+      it 'assigns @icla_signature' do
+        expect(assigns(:icla_signature)).to_not be_nil
+      end
+
+      it { should respond_with(200) }
+    end
+
+    context 'user is not authorized to view ICLA Signature' do
+      before do
+        allow_any_instance_of(IclaSignatureAuthorizer).to receive(:show?) { false }
+        get :show, id: icla_signature.id
+      end
+
+      it { should respond_with(404) }
     end
   end
 
@@ -68,7 +83,7 @@ describe IclaSignaturesController do
           to eql(I18n.t('icla_signature.requires_linked_github'))
       end
 
-      it 'stores the signature page as the "stored location" for the user' do
+      it 'stores the previous URL before directed to link GitHub' do
         expect(controller.stored_location_for(admin)).
           to eql(new_icla_signature_path)
       end
@@ -76,7 +91,6 @@ describe IclaSignaturesController do
   end
 
   describe 'POST #create' do
-
     context 'when the user has no linked GitHub accounts' do
 
       before do
@@ -94,15 +108,13 @@ describe IclaSignaturesController do
           to eql(I18n.t('icla_signature.requires_linked_github'))
       end
 
-      it 'stores the signature page as the "stored location" for the user' do
+      it 'stores the previous URL before directed to link GitHub' do
         expect(controller.stored_location_for(admin)).
-          to eql(new_icla_signature_path)
+          to eql(icla_signatures_path)
       end
-
     end
 
     context 'when the user has a linked GitHub account' do
-
       before do
         admin.accounts << create(:account, provider: 'github')
       end
@@ -143,14 +155,66 @@ describe IclaSignaturesController do
     end
   end
 
-  describe 'DELETE #destroy' do
-    let(:icla_signature) { create(:icla_signature) }
-    before { delete :destroy, id: icla_signature }
+  describe 'PATCH #update' do
+    let(:user) { create(:user) }
+    let(:icla_signature) { create(:icla_signature, email: 'jim@example.com') }
+    before { sign_in(user) }
 
-    it { should redirect_to(icla_signatures_path) }
+    context 'when the user has no linked GitHub accounts' do
+      before do
+        user.accounts.clear
 
-    it 'deletes the ICLA signature' do
-      expect(IclaSignature.pluck(:id)).to_not include(icla_signature.id)
+        patch :update, id: icla_signature.id,
+          icla_signature: { email: 'jack@example.com' }
+      end
+
+      it 'redirects the user to their profile' do
+        expect(response).to redirect_to(user)
+      end
+
+      it 'prompts the user to link their GitHub account' do
+        expect(flash[:notice]).
+          to eql(I18n.t('icla_signature.requires_linked_github'))
+      end
+
+      it 'stores the previous URL before directed to link GitHub' do
+        expect(controller.stored_location_for(user)).
+          to eql(icla_signature_path(icla_signature))
+      end
+    end
+
+    context 'user is authorized to update ICLA Signature and they have a linked GitHub account' do
+      before do
+        user.accounts << create(:account, provider: 'github')
+        allow_any_instance_of(IclaSignatureAuthorizer).to receive(:update?) { true }
+
+        patch :update, id: icla_signature.id,
+          icla_signature: { email: 'jack@example.com' }
+
+        icla_signature.reload
+      end
+
+      it 'updates a ICLA Signature' do
+        expect(icla_signature.email).to eql('jack@example.com')
+      end
+    end
+
+    context 'user is not authorized to update ICLA Signature' do
+      before do
+        user.accounts << create(:account, provider: 'github')
+        allow_any_instance_of(IclaSignatureAuthorizer).to receive(:update?) { false }
+
+        patch :update, id: icla_signature.id,
+          icla_signature: { email: 'jack@example.com' }
+
+        icla_signature.reload
+      end
+
+      it 'does not update a ICLA Signature' do
+        expect(icla_signature.email).to eql('jim@example.com')
+      end
+
+      it { should respond_with(404) }
     end
   end
 end

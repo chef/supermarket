@@ -16,7 +16,7 @@ class IclaSignature < ActiveRecord::Base
   validates_presence_of :state
   validates_presence_of :zip
   validates_presence_of :country
-  validates_acceptance_of :agreement, allow_nil: false
+  validates_acceptance_of :agreement, allow_nil: false, on: :create
 
   # Accessors
   # --------------------

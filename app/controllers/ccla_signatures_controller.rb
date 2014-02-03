@@ -1,6 +1,7 @@
 class CclaSignaturesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :require_linked_github_account!, only: [:new, :create]
+  before_filter :require_linked_github_account!, only: [:new, :create, :update]
+  before_filter :find_and_authorize_ccla_signature!, only: [:show, :update]
 
   #
   # GET /ccla-signatures/:id
@@ -8,7 +9,6 @@ class CclaSignaturesController < ApplicationController
   # Show a single signature.
   #
   def show
-    @ccla_signature = CclaSignature.find(params[:id])
     authorize! @ccla_signature
   end
 
@@ -34,8 +34,8 @@ class CclaSignaturesController < ApplicationController
   # the current user as the Organization admin.
   #
   def create
-    @organization      = Organization.new(name: ccla_signature_params[:company])
-    @ccla_signature    = @organization.build_ccla_signature(
+    @organization = Organization.new(name: ccla_signature_params[:company])
+    @ccla_signature = @organization.build_ccla_signature(
       ccla_signature_params.merge(user_id: current_user.id))
     @contributor = @organization.contributors.new(user: current_user, admin: true)
 
@@ -54,6 +54,19 @@ class CclaSignaturesController < ApplicationController
 
     rescue ActiveRecord::RecordInvalid => invald
       render 'new'
+    end
+  end
+
+  #
+  # PATCH /ccla-signatures/:id
+  #
+  # Updates a CCLA signature and associated Organization.
+  #
+  def update
+    if @ccla_signature.update_attributes(ccla_signature_params)
+      redirect_to @ccla_signature, notice: "Successfully updated CCLA for #{@ccla_signature.organization.name}."
+    else
+      render 'show'
     end
   end
 
@@ -88,10 +101,15 @@ class CclaSignaturesController < ApplicationController
   #
   def require_linked_github_account!
     if !current_user.linked_github_account?
-      store_location_for current_user, new_ccla_signature_path
+      store_location_for current_user, request.path
 
       redirect_to current_user,
         notice: t('ccla_signature.requires_linked_github')
     end
+  end
+
+  def find_and_authorize_ccla_signature!
+    @ccla_signature = CclaSignature.find(params[:id])
+    authorize! @ccla_signature
   end
 end

@@ -1,0 +1,40 @@
+<%= form_for(@ccla_signature) do |f| %>
+  <%= render 'application/form_errors', record: @ccla_signature %>
+
+  <section class="fields">
+    <fieldset class="name">
+      <%= f.text_field :prefix, placeholder: 'Prefix',  title: 'Prefix' %>
+      <%= f.text_field :first_name, placeholder: 'First Name *', title: 'First Name' %>
+      <%= f.text_field :middle_name, placeholder: 'Middle Name', title: 'Middle Name' %>
+      <%= f.text_field :last_name, placeholder: 'Last Name *', title: 'Last Name' %>
+      <%= f.text_field :suffix, placeholder: 'Suffix', title: 'Suffix' %>
+    </fieldset>
+    <fieldset class="contact">
+      <%= f.text_field :company, placeholder: 'Company *', title: 'Company' %>
+      <%= f.telephone_field :phone, placeholder: 'Phone *', title: 'Phone' %>
+      <%= f.email_field :email, placeholder: 'Email *', title: 'Email' %>
+    </fieldset>
+    <fieldset class="address">
+      <%= f.text_field :address_line_1, placeholder: 'Address Line 1 *', title: 'Address Line 1' %>
+      <%= f.text_field :address_line_2, placeholder: 'Address Line 2', title: 'Address Line 2' %>
+      <%= f.text_field :city, placeholder: 'City *', title: 'City' %>
+      <%= f.text_field :state, placeholder: 'State or Province *', title: 'State or Province' %>
+      <%= f.text_field :zip, placeholder: 'Postal Code *', title: 'Postal Code' %>
+      <%= f.text_field :country, placeholder: 'Country *', title: 'Country' %>
+    </fieldset>
+  </section>
+
+  <% unless @ccla_signature.persisted? %>
+    <section class="checkbox-with-label">
+      <fieldset>
+        <%= f.check_box :agreement %>
+      </fieldset>
+      <p>I have read and accept the terms of this agreement</p>
+    </section>
+  <% end %>
+
+  <section>
+    <%= f.hidden_field :ccla_id %>
+    <%= f.submit submit_text, class: 'button secondary' %>
+  </section>
+<% end %>

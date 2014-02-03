@@ -15,6 +15,9 @@ module FeatureHelpers
   end
 
   def sign_icla
+    click_link "Sign ICLA"
+    click_link "Connect GitHub Account"
+
     fill_in 'icla_signature_first_name', with: 'John'
     fill_in 'icla_signature_last_name', with: 'Doe'
     fill_in 'icla_signature_company', with: 'Chef'
@@ -97,7 +100,7 @@ module FeatureHelpers
     check 'invitation_admin'
     find_button('Send invitation').click
 
-	expect_to_see_success_message
+    expect_to_see_success_message
     expect(all('#invitation_admin:checked').size).to eql(1)
   end
 
