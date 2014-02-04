@@ -28,6 +28,7 @@
   }
 
   .content {
+    @include row;
     margin: 3em;
 
     @include mobile {
