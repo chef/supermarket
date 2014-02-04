@@ -47,6 +47,17 @@ describe InvitationsController do
         put :update, id: invitation.token
       }.to change(Contributor.where(admin: true), :count).by(1)
     end
+
+    it "it doesn't create a new Contributor if the same user already belongs to the CCLA (organization)" do
+      organization = create(:organization)
+      invitation_1 = create(:invitation, organization: organization)
+      invitation_2 = create(:invitation, organization: organization)
+
+      expect {
+        put :update, id: invitation_1.token
+        put :update, id: invitation_2.token
+      }.to_not change(Contributor, :count).by(2)
+    end
   end
 
   describe 'DELETE #destroy' do

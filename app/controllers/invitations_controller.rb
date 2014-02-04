@@ -7,15 +7,22 @@ class InvitationsController < ApplicationController
   end
 
   def update
-    @contributor = Contributor.create!(
+    @contributor = Contributor.new(
       organization: @invitation.organization,
       user: current_user,
       admin: @invitation.admin
     )
 
-    @invitation.accept
-    redirect_to current_user, notice: "Successfully joined
-      #{@contributor.organization.name}"
+    if @contributor.save
+      @invitation.accept
+      redirect_to current_user, notice: "Successfully joined
+        #{@contributor.organization.name}"
+    else
+      redirect_to current_user, alert: "You've already signed
+        #{@invitation.organization}'s CCLA, please sign in as a
+        different user to accept or if this invitation was sent
+        in error no action is required."
+    end
   end
 
   def destroy

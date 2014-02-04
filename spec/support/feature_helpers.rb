@@ -118,6 +118,8 @@ module FeatureHelpers
       /Invitation/ =~ email['Subject'].to_s
     }
 
+    ActionMailer::Base.deliveries.clear
+
     body = invitation.parts.find { |p| p.content_type =~ /html/ }.body.to_s
     html = Nokogiri::HTML(body)
     url = html.css('a.invitation').first.attribute('href').value
