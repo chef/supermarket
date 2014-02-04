@@ -20,6 +20,10 @@ development:
   host: <%= ENV['HOST'] %>
   port: <%= ENV['PORT'] %>
   sentry_url: <%= ENV['SENTRY_URL'] %>
+  statsd:
+    host: <%= ENV['STATSD_HOST'] %>
+    port: <%= ENV['STATSD_PORT'] %>
+    namespace: <%= ENV['STATSD_NAMESPACE'] %>
   devise:
     secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
   omni_auth:
@@ -43,6 +47,10 @@ production:
   host: <%= ENV['HOST'] %>
   port: <%= ENV['PORT'] %>
   sentry_url: <%= ENV['SENTRY_URL'] %>
+  statsd:
+    host: <%= ENV['STATSD_HOST'] %>
+    port: <%= ENV['STATSD_PORT'] %>
+    namespace: <%= ENV['STATSD_NAMESPACE'] %>
   devise:
     secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
   omni_auth:
@@ -68,6 +76,10 @@ test:
   host: <%= ENV['HOST'] %>
   port: <%= ENV['PORT'] %>
   sentry_url: <%= ENV['SENTRY_URL'] %>
+  statsd:
+    host: <%= ENV['STATSD_HOST'] %>
+    port: <%= ENV['STATSD_PORT'] %>
+    namespace: <%= ENV['STATSD_NAMESPACE'] %>
   devise:
     secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
   omni_auth:
