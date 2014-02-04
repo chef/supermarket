@@ -133,5 +133,4 @@ describe ProfileController do
       end
     end
   end
-
 end
