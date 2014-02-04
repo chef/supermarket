@@ -21,7 +21,7 @@ include_recipe 'supermarket::_apt'
 
 application_directory = '/var/www/supermarket'
 
-deploy "#{application_directory}" do
+deploy_revision "#{application_directory}" do
   repo 'https://github.com/opscode/supermarket.git'
   migrate true
   migration_command 'bundle exec rake db:migrate'
@@ -55,14 +55,15 @@ deploy "#{application_directory}" do
   restart do
     unicorn_pid = "#{release_path}/tmp/pids/unicorn.pid"
 
-    execute 'stop unicorn' do
-      command "kill `cat #{unicorn_pid}`"
+    execute 'restart unicorn' do
+      command "kill -HUP `cat #{unicorn_pid}`"
       only_if { File.exist?(unicorn_pid) }
     end
 
     execute 'start unicorn' do
       cwd release_path
       command 'export RAILS_ENV=production && bundle exec unicorn -c config/unicorn/production.rb -D'
+      not_if { File.exist?(unicorn_pid) }
     end
   end
 end
