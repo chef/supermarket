@@ -7,7 +7,7 @@ describe CclaSignaturesController do
 
     context 'user is authorized to view CCLA Signature' do
       before do
-        allow_any_instance_of(CclaSignatureAuthorizer).to receive(:show?) { true }
+        auto_authorize!(CclaSignature, 'show')
         get :show, id: ccla_signature.id
       end
 
@@ -20,7 +20,6 @@ describe CclaSignaturesController do
 
     context 'user is not authorized to view CCLA Signature' do
       before do
-        allow_any_instance_of(CclaSignatureAuthorizer).to receive(:show?) { false }
         get :show, id: ccla_signature.id
       end
 
@@ -166,42 +165,44 @@ describe CclaSignaturesController do
       end
     end
 
-    context 'user is authorized to update CCLA Signature and they have a linked GitHub account' do
+    context 'when the user has a linked GitHub account' do
       before do
         user.accounts << create(:account, provider: 'github')
-        allow_any_instance_of(CclaSignatureAuthorizer).to receive(:update?) { true }
-
-        patch :update, id: ccla_signature.id,
-          ccla_signature: { company: 'Cramer Development', email: 'jack@example.com' }
-
-        ccla_signature.reload
       end
 
-      it 'updates a CCLA Signature' do
-        expect(ccla_signature.email).to eql('jack@example.com')
+      context 'user is authorized to update CCLA Signature' do
+        before do
+          auto_authorize!(CclaSignature, 'update')
+
+          patch :update, id: ccla_signature.id,
+            ccla_signature: { email: 'jack@example.com', company: 'Cramer Development' }
+
+          ccla_signature.reload
+       end
+
+        it 'updates a CCLA Signature' do
+          expect(ccla_signature.email).to eql('jack@example.com')
+        end
+
+        it 'updates a related Organization' do
+          expect(ccla_signature.organization.name).to eql('Cramer Development')
+        end
       end
 
-      it 'updates a related Organization' do
-        expect(ccla_signature.organization.name).to eql('Cramer Development')
+      context 'user is not authorized to update CCLA Signature' do
+        before do
+          patch :update, id: ccla_signature.id,
+            ccla_signature: { email: 'jack@example.com' }
+
+          ccla_signature.reload
+        end
+
+        it 'does not update a CCLA Signature' do
+          expect(ccla_signature.email).to eql('jim@example.com')
+        end
+
+        it { should respond_with(404) }
       end
-    end
-
-    context 'user is not authorized to update CCLA Signature' do
-      before do
-        user.accounts << create(:account, provider: 'github')
-        allow_any_instance_of(CclaSignatureAuthorizer).to receive(:update?) { false }
-
-        patch :update, id: ccla_signature.id,
-          ccla_signature: { email: 'jack@example.com' }
-
-        ccla_signature.reload
-      end
-
-      it 'does not update a CCLA Signature' do
-        expect(ccla_signature.email).to eql('jim@example.com')
-      end
-
-      it { should respond_with(404) }
     end
   end
 end

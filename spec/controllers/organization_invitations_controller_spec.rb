@@ -6,118 +6,126 @@ describe OrganizationInvitationsController do
   before { sign_in user }
 
   describe 'GET #index' do
-    it 'tells the view the organization' do
-      allow_any_instance_of(InvitationAuthorizer).to receive(:index?) { true }
-
-      get :index, organization_id: organization.id
-
-      expect(assigns[:organization]).to eql(organization)
-    end
-
-    describe 'when selecting invitations to send to the view' do
-      let!(:pending_invitation) do
-        organization.invitations.create!(email: 'chef@example.com')
-      end
-
-      let!(:accepted_invitation) do
-        organization.invitations.create!(
-          email: 'chef@example.com',
-          accepted: true
-        )
-      end
-
-      let!(:declined_invitation) do
-        organization.invitations.create!(
-          email: 'chef@example.com',
-          accepted: false
-        )
-      end
-
-      it "tells the view the organization's pending invitations" do
-        allow_any_instance_of(InvitationAuthorizer).to receive(:index?) { true }
-
+    context 'user is authorized to view invitations' do
+      before do
+        auto_authorize!(Invitation, 'index')
         get :index, organization_id: organization.id
-
-        expect(assigns[:pending_invitations]).to include(pending_invitation)
-        expect(assigns[:pending_invitations]).to_not include(accepted_invitation)
-        expect(assigns[:pending_invitations]).to_not include(declined_invitation)
       end
 
-      it "tells the view the organization's declined invitations" do
-        allow_any_instance_of(InvitationAuthorizer).to receive(:index?) { true }
-
-        get :index, organization_id: organization.id
-
-        expect(assigns[:declined_invitations]).to include(declined_invitation)
-        expect(assigns[:declined_invitations]).to_not include(pending_invitation)
-        expect(assigns[:declined_invitations]).to_not include(accepted_invitation)
+      it 'tells the view the organization' do
+        expect(assigns[:organization]).to eql(organization)
       end
-    end
 
-    it "tells the view the organization's contributors" do
-      allow_any_instance_of(InvitationAuthorizer).to receive(:index?) { true }
+      describe 'when selecting invitations to send to the view' do
+        let!(:pending_invitation) do
+          organization.invitations.create!(email: 'chef@example.com')
+        end
 
-      get :index, organization_id: organization.id
+        let!(:accepted_invitation) do
+          organization.invitations.create!(
+            email: 'chef@example.com',
+            accepted: true
+          )
+        end
 
-      expect(assigns[:contributors]).to include(user.contributors.first)
+        let!(:declined_invitation) do
+          organization.invitations.create!(
+            email: 'chef@example.com',
+            accepted: false
+          )
+        end
+
+        it "tells the view the organization's pending invitations" do
+          expect(assigns[:pending_invitations]).to include(pending_invitation)
+          expect(assigns[:pending_invitations]).to_not include(accepted_invitation)
+          expect(assigns[:pending_invitations]).to_not include(declined_invitation)
+        end
+
+        it "tells the view the organization's declined invitations" do
+          expect(assigns[:declined_invitations]).to include(declined_invitation)
+          expect(assigns[:declined_invitations]).to_not include(pending_invitation)
+          expect(assigns[:declined_invitations]).to_not include(accepted_invitation)
+        end
+      end
+
+      it "tells the view the organization's contributors" do
+        expect(assigns[:contributors]).to include(user.contributors.first)
+      end
     end
   end
 
   describe 'POST #create' do
-    it 'creates the invitation' do
-      allow_any_instance_of(InvitationAuthorizer).to receive(:create?) { true }
+    context 'user is authorized to create an Invitation' do
+      before { auto_authorize!(Invitation, 'create') }
 
-      expect {
-        post :create,
-          organization_id: organization.id,
-          invitation: { email: 'chef@example.com' }
-      }.to change(organization.invitations, :count).by(1)
+      it 'creates the invitation' do
+        expect {
+          post :create,
+            organization_id: organization.id,
+            invitation: { email: 'chef@example.com' }
+        }.to change(organization.invitations, :count).by(1)
+      end
+
+      it 'sends the invitation' do
+        expect {
+          post :create,
+            organization_id: organization.id,
+            invitation: { email: 'chef@example.com' }
+        }.to change(ActionMailer::Base.deliveries, :size).by(1)
+      end
     end
 
-    it 'sends the invitation' do
-      allow_any_instance_of(InvitationAuthorizer).to receive(:create?) { true }
+    context 'user is not authorized to create an Invitation' do
+      it "doesn't create the invitation" do
+        expect do
+          post :create,
+            organization_id: organization.id,
+            invitation: { email: 'chef@example.com' }
+        end.to_not change(Invitation, :count)
+      end
 
-      expect {
+      it 'responds with 404' do
         post :create,
           organization_id: organization.id,
           invitation: { email: 'chef@example.com' }
-      }.to change(ActionMailer::Base.deliveries, :size).by(1)
-    end
 
-    it 'will not create an invitation if the user is not authorized to do so' do
-      allow_any_instance_of(InvitationAuthorizer).to receive(:create?) { false }
-
-      expect do
-        post :create,
-          organization_id: organization.id,
-          invitation: { email: 'chef@example.com' }
-      end.to_not change(Invitation, :count)
+        should respond_with(404)
+      end
     end
   end
 
   describe 'PATCH #update' do
     let(:invitation) { create(:invitation, admin: true) }
 
-    it 'updates an invitation' do
-      allow_any_instance_of(InvitationAuthorizer).to receive(:update?) { true }
+    context 'user is authorized to update an Invitation' do
+      before { auto_authorize!(Invitation, 'update') }
 
-      patch :update, organization_id: organization.id,
-        id: invitation.token, invitation: { admin: false }
+      it 'updates an invitation' do
+        patch :update, organization_id: organization.id,
+          id: invitation.token, invitation: { admin: false }
 
-      invitation.reload
+        invitation.reload
 
-      expect(invitation.admin).to be_false
+        expect(invitation.admin).to be_false
+      end
     end
 
-    it 'will not update an invitation if the user is not auhtorized to do so' do
-      allow_any_instance_of(InvitationAuthorizer).to receive(:update?) { false }
+    context 'user is not authorized to update an Invitation' do
+      it "doesn't update the invitation" do
+        patch :update, organization_id: organization.id,
+          id: invitation.token, invitation: { admin: false }
 
-      patch :update, organization_id: organization.id,
-        id: invitation.token, invitation: { admin: false }
+        invitation.reload
 
-      invitation.reload
+        expect(invitation.admin).to be_true
+      end
 
-      expect(invitation.admin).to be_true
+      it 'responds wtih 404' do
+        patch :update, organization_id: organization.id,
+          id: invitation.token, invitation: { admin: false }
+
+        should respond_with(404)
+      end
     end
   end
 
@@ -125,22 +133,31 @@ describe OrganizationInvitationsController do
     let(:invitation) { create(:invitation) }
     before { request.env['HTTP_REFERER'] = 'the_previous_path' }
 
-    it 'resends the invitation' do
-      allow_any_instance_of(InvitationAuthorizer).to receive(:resend?) { true }
+    context 'user is authorized to resend Invitation' do
+      before { auto_authorize!(Invitation, 'resend') }
 
-      expect {
-        patch :resend, organization_id: organization.id,
-          id: invitation.token
-      }.to change(ActionMailer::Base.deliveries, :size).by(1)
+      it 'resends the invitation' do
+        expect {
+          patch :resend, organization_id: organization.id,
+            id: invitation.token
+        }.to change(ActionMailer::Base.deliveries, :size).by(1)
+      end
     end
 
-    it 'will not resend the invitation if the user is not authorized to do so' do
-      allow_any_instance_of(InvitationAuthorizer).to receive(:resend?) { false }
+    context 'user is not authorized to resend Invitation' do
+      it "doesn't resend the invitation" do
+        expect {
+          patch :resend, organization_id: organization.id,
+            id: invitation.token
+        }.to_not change(ActionMailer::Base.deliveries, :size).by(1)
+      end
 
-      expect {
+      it 'responds with 404' do
         patch :resend, organization_id: organization.id,
           id: invitation.token
-      }.to_not change(ActionMailer::Base.deliveries, :size).by(1)
+
+        should respond_with(404)
+      end
     end
   end
 end
