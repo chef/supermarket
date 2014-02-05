@@ -16,57 +16,64 @@ describe ContributorsController do
     sign_in user
   end
 
-  describe 'PUT #destroy' do
-    it 'allows authorized users to update contributors' do
-      allow_any_instance_of(ContributorAuthorizer).to receive(:update?) { true }
+  describe 'PATCH #update' do
+    context 'user is authorized to update Contributor' do
+      before do
+        auto_authorize!(Contributor, 'update')
+        put :update, id: contributor.id, organization_id: organization.id,
+          contributor: { admin: true }
 
-      put :update, id: contributor.id, organization_id: organization.id,
-        contributor: { admin: true }
-      contributor.reload
+        contributor.reload
+      end
 
-      expect(contributor.admin).to eql(true)
+      it 'updates the contributor' do
+        expect(contributor.admin).to eql(true)
+      end
     end
 
-    it 'does not allow unauthorized users to update contributors' do
-      allow_any_instance_of(ContributorAuthorizer).to receive(:update?) { false }
+    context 'user is not authorized to update Contributor' do
+      before do
+        put :update, id: contributor.id, organization_id: organization.id,
+          contributor: { admin: true }
 
-      put :update, id: contributor.id, organization_id: organization.id,
-        contributor: { admin: true }
-      contributor.reload
+        contributor.reload
+      end
 
-      expect(contributor.admin).to_not eql(true)
-    end
+      it "doesn't update the contributor" do
+        expect(contributor.admin).to_not eql(true)
+      end
 
-    it 'authorizes that the logged-in users can update the contributor' do
-      expect_any_instance_of(ContributorAuthorizer).to receive(:update?)
-
-      put :update, id: contributor.id, organization_id: organization.id,
-        contributor: { admin: true }
+      it { should respond_with(404) }
     end
   end
 
   describe 'DELETE #destroy' do
-    it 'allows authorized users to delete contributors' do
-      allow_any_instance_of(ContributorAuthorizer).to receive(:destroy?) { true }
+    context 'user is authorized to destroy Contributor' do
+      before { auto_authorize!(Contributor, 'destroy') }
 
-      expect {
+      it 'destroys the contributor' do
+        expect {
+          delete :destroy, id: contributor.id, organization_id: organization.id
+        }.to change(Contributor, :count).by(-1)
+      end
+
+      it 'redirects the user back' do
         delete :destroy, id: contributor.id, organization_id: organization.id
-      }.to change(Contributor, :count).by(-1)
+        should redirect_to :back
+      end
     end
 
-    it 'does not allow unauthorized users to delete contributors' do
-      allow_any_instance_of(ContributorAuthorizer).to receive(:destroy?) { false }
+    context 'user is not authorized to destroy Contributor' do
+      it "doesn't destroy the contributor" do
+        expect {
+          delete :destroy, id: contributor.id, organization_id: organization.id
+        }.to_not change(Contributor, :count)
+      end
 
-      expect {
+      it 'responds with 404' do
         delete :destroy, id: contributor.id, organization_id: organization.id
-      }.to_not change(Contributor, :count)
-    end
-
-    it 'authorizes that the logged-in users can remove the contributor' do
-      expect_any_instance_of(ContributorAuthorizer).to receive(:destroy?)
-
-      delete :destroy, id: contributor.id, organization_id: organization.id
+        should respond_with(404)
+      end
     end
   end
 end
-

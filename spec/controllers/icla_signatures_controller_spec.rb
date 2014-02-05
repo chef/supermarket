@@ -22,7 +22,7 @@ describe IclaSignaturesController do
 
     context 'user is authorized to view ICLA Signature' do
       before do
-        allow_any_instance_of(IclaSignatureAuthorizer).to receive(:show?) { true }
+        auto_authorize!(IclaSignature, 'show')
         get :show, id: icla_signature.id
       end
 
@@ -35,7 +35,6 @@ describe IclaSignaturesController do
 
     context 'user is not authorized to view ICLA Signature' do
       before do
-        allow_any_instance_of(IclaSignatureAuthorizer).to receive(:show?) { false }
         get :show, id: icla_signature.id
       end
 
@@ -92,7 +91,6 @@ describe IclaSignaturesController do
 
   describe 'POST #create' do
     context 'when the user has no linked GitHub accounts' do
-
       before do
         admin.accounts.clear
 
@@ -183,38 +181,40 @@ describe IclaSignaturesController do
       end
     end
 
-    context 'user is authorized to update ICLA Signature and they have a linked GitHub account' do
+    context 'when the user has a linked GitHub account' do
       before do
         user.accounts << create(:account, provider: 'github')
-        allow_any_instance_of(IclaSignatureAuthorizer).to receive(:update?) { true }
-
-        patch :update, id: icla_signature.id,
-          icla_signature: { email: 'jack@example.com' }
-
-        icla_signature.reload
       end
 
-      it 'updates a ICLA Signature' do
-        expect(icla_signature.email).to eql('jack@example.com')
-      end
-    end
+      context 'user is authorized to update ICLA Signature' do
+        before do
+          auto_authorize!(IclaSignature, 'update')
 
-    context 'user is not authorized to update ICLA Signature' do
-      before do
-        user.accounts << create(:account, provider: 'github')
-        allow_any_instance_of(IclaSignatureAuthorizer).to receive(:update?) { false }
+          patch :update, id: icla_signature.id,
+            icla_signature: { email: 'jack@example.com' }
 
-        patch :update, id: icla_signature.id,
-          icla_signature: { email: 'jack@example.com' }
+          icla_signature.reload
+       end
 
-        icla_signature.reload
-      end
-
-      it 'does not update a ICLA Signature' do
-        expect(icla_signature.email).to eql('jim@example.com')
+        it 'updates a ICLA Signature' do
+          expect(icla_signature.email).to eql('jack@example.com')
+        end
       end
 
-      it { should respond_with(404) }
+      context 'user is not authorized to update ICLA Signature' do
+        before do
+          patch :update, id: icla_signature.id,
+            icla_signature: { email: 'jack@example.com' }
+
+          icla_signature.reload
+        end
+
+        it 'does not update a ICLA Signature' do
+          expect(icla_signature.email).to eql('jim@example.com')
+        end
+
+        it { should respond_with(404) }
+      end
     end
   end
 end
