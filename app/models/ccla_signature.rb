@@ -8,27 +8,15 @@ class CclaSignature < ActiveRecord::Base
   # Validations
   # --------------------
   validates_presence_of :user
-  validates_presence_of :first_name
-  validates_presence_of :last_name
-  validates_presence_of :email
-  validates_presence_of :phone
-  validates_presence_of :company
-  validates_presence_of :address_line_1
-  validates_presence_of :city
-  validates_presence_of :state
-  validates_presence_of :zip
-  validates_presence_of :country
   validates_acceptance_of :agreement, allow_nil: false, on: :create
 
   # Accessors
   # --------------------
   attr_accessor :agreement
 
-  # Callbacks
+  # Accepts Nested Attributes
   # --------------------
-  before_update do
-    organization.update_attributes!(name: company)
-  end
+  accepts_nested_attributes_for :organization, update_only: true
 
   def name
     "#{first_name} #{last_name}"

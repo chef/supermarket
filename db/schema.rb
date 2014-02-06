@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129215544) do
+ActiveRecord::Schema.define(version: 20140206202108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,20 +33,6 @@ ActiveRecord::Schema.define(version: 20140129215544) do
     t.integer  "organization_id"
     t.integer  "ccla_id"
     t.datetime "signed_at"
-    t.string   "prefix"
-    t.string   "first_name"
-    t.string   "middle_name"
-    t.string   "last_name"
-    t.string   "suffix"
-    t.string   "email"
-    t.string   "phone"
-    t.string   "company"
-    t.string   "address_line_1"
-    t.string   "address_line_2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "country"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -77,20 +63,6 @@ ActiveRecord::Schema.define(version: 20140129215544) do
   create_table "icla_signatures", force: true do |t|
     t.integer  "user_id"
     t.datetime "signed_at"
-    t.string   "prefix"
-    t.string   "first_name"
-    t.string   "middle_name"
-    t.string   "last_name"
-    t.string   "suffix"
-    t.string   "email"
-    t.string   "phone"
-    t.string   "company"
-    t.string   "address_line_1"
-    t.string   "address_line_2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "country"
     t.integer  "icla_id"
   end
 
@@ -121,19 +93,20 @@ ActiveRecord::Schema.define(version: 20140129215544) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
   end
 
   create_table "users", force: true do |t|
-    t.string   "prefix"
     t.string   "first_name"
-    t.string   "middle_name"
     t.string   "last_name"
-    t.string   "suffix"
     t.string   "phone"
-    t.integer  "primary_email_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
     t.string   "company"
     t.integer  "roles_mask"
     t.string   "email",                  default: "", null: false
@@ -148,6 +121,12 @@ ActiveRecord::Schema.define(version: 20140129215544) do
     t.string   "last_sign_in_ip"
     t.string   "jira_username"
     t.string   "irc_nickname"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -18,16 +18,12 @@ module FeatureHelpers
     click_link "Sign ICLA"
     click_link "Connect GitHub Account"
 
-    fill_in 'icla_signature_first_name', with: 'John'
-    fill_in 'icla_signature_last_name', with: 'Doe'
-    fill_in 'icla_signature_company', with: 'Chef'
-    fill_in 'icla_signature_email', with: 'john@example.com'
-    fill_in 'icla_signature_phone', with: '(555) 555-5555'
-    fill_in 'icla_signature_address_line_1', with: '1 Chef Way'
-    fill_in 'icla_signature_city', with: 'Seattle'
-    fill_in 'icla_signature_state', with: 'WA'
-    fill_in 'icla_signature_zip', with: '12345'
-    fill_in 'icla_signature_country', with: 'USA'
+    fill_in 'icla_signature_user_attributes_phone', with: '(555) 555-5555'
+    fill_in 'icla_signature_user_attributes_address_line_1', with: '1 Chef Way'
+    fill_in 'icla_signature_user_attributes_city', with: 'Seattle'
+    fill_in 'icla_signature_user_attributes_state', with: 'WA'
+    fill_in 'icla_signature_user_attributes_zip', with: '12345'
+    fill_in 'icla_signature_user_attributes_country', with: 'USA'
 
     check 'icla_signature_agreement'
 
@@ -38,16 +34,12 @@ module FeatureHelpers
     click_link 'Sign CCLA'
     click_link "Connect GitHub Account"
 
-    fill_in 'ccla_signature_first_name', with: 'John'
-    fill_in 'ccla_signature_last_name', with: 'Doe'
-    fill_in 'ccla_signature_company', with: company
-    fill_in 'ccla_signature_email', with: 'john@example.com'
-    fill_in 'ccla_signature_phone', with: '(555) 555-5555'
-    fill_in 'ccla_signature_address_line_1', with: '1 Chef Way'
-    fill_in 'ccla_signature_city', with: 'Seattle'
-    fill_in 'ccla_signature_state', with: 'WA'
-    fill_in 'ccla_signature_zip', with: '12345'
-    fill_in 'ccla_signature_country', with: 'USA'
+    fill_in 'ccla_signature_organization_attributes_name', with: company
+    fill_in 'ccla_signature_organization_attributes_address_line_1', with: '1 Chef Way'
+    fill_in 'ccla_signature_organization_attributes_city', with: 'Seattle'
+    fill_in 'ccla_signature_organization_attributes_state', with: 'WA'
+    fill_in 'ccla_signature_organization_attributes_zip', with: '12345'
+    fill_in 'ccla_signature_organization_attributes_country', with: 'USA'
 
     check 'ccla_signature_agreement'
 

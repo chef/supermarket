@@ -1,8 +1,8 @@
 class IclaSignaturesController < ApplicationController
   before_filter :redirect_if_signed!, only: [:new, :create]
   before_filter :authenticate_user!, except: [:index]
-  before_filter :require_linked_github_account!, only: [:new, :create, :update]
-  before_filter :find_and_authorize_icla_signature!, only: [:show, :update]
+  before_filter :require_linked_github_account!, only: [:new, :create]
+  before_filter :find_and_authorize_icla_signature!, only: [:show]
 
   #
   # GET /icla-signatures
@@ -32,16 +32,6 @@ class IclaSignaturesController < ApplicationController
 
     # Load default ICLA text
     @icla_signature.icla = Icla.latest
-
-    # Prepopulate any fields we can from the User object
-    @icla_signature.prefix      = current_user.prefix
-    @icla_signature.first_name  = current_user.first_name
-    @icla_signature.middle_name = current_user.middle_name
-    @icla_signature.last_name   = current_user.last_name
-    @icla_signature.suffix      = current_user.suffix
-    @icla_signature.email       = current_user.email
-    @icla_signature.phone       = current_user.phone
-    @icla_signature.company     = current_user.company
   end
 
   #
@@ -63,40 +53,23 @@ class IclaSignaturesController < ApplicationController
     end
   end
 
-  #
-  # PATCH /icla-signatures/:id
-  #
-  # Updates a ICLA signature.
-  #
-  def update
-    if @icla_signature.update_attributes(icla_signature_params)
-      redirect_to @icla_signature, notice: "Successfully updated your ICLA."
-    else
-      render 'show'
-    end
-  end
-
   private
 
   def icla_signature_params
     params.require(:icla_signature).permit(
       :user_id,
-      :prefix,
-      :first_name,
-      :middle_name,
-      :last_name,
-      :suffix,
-      :email,
-      :phone,
-      :company,
-      :address_line_1,
-      :address_line_2,
-      :city,
-      :state,
-      :zip,
-      :country,
       :agreement,
       :icla_id,
+      user_attributes: [
+        :signing_icla,
+        :phone,
+        :address_line_1,
+        :address_line_2,
+        :city,
+        :state,
+        :zip,
+        :country
+      ]
     )
   end
 

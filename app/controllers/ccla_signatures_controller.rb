@@ -18,13 +18,10 @@ class CclaSignaturesController < ApplicationController
   # Show the form for creating a new CCLA signature.
   #
   def new
-    @ccla_signature = CclaSignature.new
+    @ccla_signature = CclaSignature.new(user: current_user, organization: Organization.new)
 
     # Load default CCLA text
     @ccla_signature.ccla = Ccla.latest
-
-    # Prepopulate any fields we can from the User object
-    @ccla_signature.email = current_user.email
   end
 
   #
@@ -34,25 +31,18 @@ class CclaSignaturesController < ApplicationController
   # the current user as the Organization admin.
   #
   def create
-    @organization = Organization.new(name: ccla_signature_params[:company])
-    @ccla_signature = @organization.build_ccla_signature(
-      ccla_signature_params.merge(user_id: current_user.id))
-    @contributor = @organization.contributors.new(user: current_user, admin: true)
+    @ccla_signature = CclaSignature.new(ccla_signature_params)
 
-    begin
-      ActiveRecord::Base.transaction do
-        @ccla_signature.save!
-        @organization.save!
-        @contributor.save!
-      end
-
+    if @ccla_signature.save!
       if Supermarket::Config.cla_signature_notification_email.present?
         ClaSignatureMailer.deliver_notification(@ccla_signature)
       end
 
-      redirect_to @ccla_signature, notice: "Successfully signed CCLA for #{@organization.name}."
+      @contributor = Contributor.create(user: @ccla_signature.user,
+        organization: @ccla_signature.organization, admin: true)
 
-    rescue ActiveRecord::RecordInvalid => invald
+      redirect_to @ccla_signature, notice: "Successfully signed CCLA for #{@ccla_signature.organization.name}."
+    else
       render 'new'
     end
   end
@@ -75,22 +65,17 @@ class CclaSignaturesController < ApplicationController
   def ccla_signature_params
     params.require(:ccla_signature).permit(
       :user_id,
-      :prefix,
-      :first_name,
-      :middle_name,
-      :last_name,
-      :suffix,
-      :email,
-      :phone,
-      :company,
-      :address_line_1,
-      :address_line_2,
-      :city,
-      :state,
-      :zip,
-      :country,
       :agreement,
       :ccla_id,
+      organization_attributes: [
+        :name,
+        :address_line_1,
+        :address_line_2,
+        :city,
+        :state,
+        :zip,
+        :country
+      ]
     )
   end
 

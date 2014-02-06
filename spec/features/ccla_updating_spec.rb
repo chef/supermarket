@@ -9,7 +9,7 @@ describe 'updating a CCLA' do
     click_link 'View Profile'
     click_link 'Edit CCLA'
 
-    fill_in 'ccla_signature_company', with: 'Cramer Development'
+    fill_in 'ccla_signature_organization_attributes_name', with: 'Cramer Development'
     click_button 'Update CCLA'
 
     expect_to_see_success_message
