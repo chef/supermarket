@@ -18,10 +18,22 @@ class User < ActiveRecord::Base
   # --------------------
   validates_presence_of :first_name
   validates_presence_of :last_name
+  validates :phone,
+            :address_line_1,
+            :city,
+            :state,
+            :zip,
+            :country,
+            presence: true,
+            if: -> { :signing_icla || signed_icla? }
 
   # Callbacks
   # --------------------
   before_validation :normalize_phone
+
+  # Accessors
+  # --------------------
+  attr_accessor :signing_icla
 
   #
   # Determine if the current user signed the Individual Contributor License

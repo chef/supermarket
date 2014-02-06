@@ -53,7 +53,14 @@ class ProfileController < ApplicationController
       :last_name,
       :company,
       :irc_nickname,
-      :jira_username
+      :jira_username,
+      :phone,
+      :address_line_1,
+      :address_line_2,
+      :city,
+      :state,
+      :zip,
+      :country
     )
   end
 

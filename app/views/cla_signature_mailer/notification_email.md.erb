@@ -1,4 +1,4 @@
-A new CLA has been signed by <%= @cla_signature.name %>.
+A new CLA has been signed by <%= @cla_signature.user.name %>.
 
 <% if @cla_signature.is_a?(CclaSignature) %>
 View it [here](<%= ccla_signature_url(@cla_signature) %>).

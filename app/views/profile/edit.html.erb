@@ -16,6 +16,14 @@
           <%= f.text_field :company, placeholder: 'Company', title: 'Company' %>
           <%= f.text_field :jira_username, placeholder: 'JIRA Username', title: 'JIRA Username' %>
 
+          <%= f.telephone_field :phone, placeholder: 'Phone *', title: 'Phone' %>
+          <%= f.text_field :address_line_1, placeholder: 'Address Line 1 *', title: 'Address Line 1' %>
+          <%= f.text_field :address_line_2, placeholder: 'Address Line 2', title: 'Address Line 2' %>
+          <%= f.text_field :city, placeholder: 'City *', title: 'City' %>
+          <%= f.text_field :state, placeholder: 'State or Province *', title: 'State or Province' %>
+          <%= f.text_field :zip, placeholder: 'Postal Code *', title: 'Postal Code' %>
+          <%= f.text_field :country, placeholder: 'Country *', title: 'Country' %>
+
           <p>Avatars are powered by <a href='https://gravatar.com'>Gravatar</a>.
             <%= gravatar_for current_user, size: 72 %></p>
         </fieldset>

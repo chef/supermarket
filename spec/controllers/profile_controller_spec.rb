@@ -37,14 +37,14 @@ describe ProfileController do
 
         controller.stub(:current_user) { fake_user }
 
-        patch :update, user: attributes_for(:user, {
+        patch :update, user: {
           'email' => 'bob@example.com',
           'first_name' => 'Bob',
           'last_name' => 'Smith',
           'company' => 'Acme',
           'irc_nickname' => 'bobbo',
           'jira_username' => 'bobbo'
-        })
+        }
       end
     end
 

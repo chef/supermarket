@@ -78,7 +78,7 @@ describe CclaSignaturesController do
 
   describe 'POST #create' do
     let(:user) { create(:user) }
-    let(:payload) { attributes_for(:ccla_signature, user_id: user.id) }
+    let(:payload) { attributes_for(:ccla_signature).merge({ user_id: user.id, organization_attributes: attributes_for(:organization) }) }
     before { sign_in user }
 
     context 'when the user has no linked GitHub accounts' do
@@ -139,7 +139,7 @@ describe CclaSignaturesController do
 
   describe 'PATCH #update' do
     let(:user) { create(:user) }
-    let(:ccla_signature) { create(:ccla_signature, email: 'jim@example.com', company: 'Chef') }
+    let(:ccla_signature) { create(:ccla_signature) }
     before { sign_in(user) }
 
     context 'when the user has no linked GitHub accounts' do
@@ -147,7 +147,7 @@ describe CclaSignaturesController do
         user.accounts.clear
 
         patch :update, id: ccla_signature.id,
-          ccla_signature: { company: 'Cramer Development', email: 'jack@example.com' }
+          ccla_signature: { organization_attributes: { name: 'Cramer Development' } }
       end
 
       it 'redirects the user to their profile' do
@@ -175,14 +175,10 @@ describe CclaSignaturesController do
           auto_authorize!(CclaSignature, 'update')
 
           patch :update, id: ccla_signature.id,
-            ccla_signature: { email: 'jack@example.com', company: 'Cramer Development' }
+            ccla_signature: { organization_attributes: { name: 'Cramer Development' } }
 
           ccla_signature.reload
        end
-
-        it 'updates a CCLA Signature' do
-          expect(ccla_signature.email).to eql('jack@example.com')
-        end
 
         it 'updates a related Organization' do
           expect(ccla_signature.organization.name).to eql('Cramer Development')
@@ -192,13 +188,13 @@ describe CclaSignaturesController do
       context 'user is not authorized to update CCLA Signature' do
         before do
           patch :update, id: ccla_signature.id,
-            ccla_signature: { email: 'jack@example.com' }
+            ccla_signature: { organization_attributes: { name: 'Cramer Development' } }
 
           ccla_signature.reload
         end
 
-        it 'does not update a CCLA Signature' do
-          expect(ccla_signature.email).to eql('jim@example.com')
+        it 'does not update a related Organization' do
+          expect(ccla_signature.organization.name).to_not eql('Cramer Development')
         end
 
         it { should respond_with(404) }
