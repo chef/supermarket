@@ -16,8 +16,18 @@ Supermarket::Application.routes.draw do
     resources :users
   end
 
-  resources :icla_signatures, path: 'icla-signatures'
-  resources :ccla_signatures, path: 'ccla-signatures'
+  resources :icla_signatures, path: 'icla-signatures' do
+    collection do
+      post :re_sign, path: 're-sign'
+    end
+  end
+
+  resources :ccla_signatures, path: 'ccla-signatures' do
+    collection do
+      post :re_sign, path: 're-sign'
+    end
+  end
+
   resources :users, only: [:show] do
     resources :accounts, only: [:destroy]
   end

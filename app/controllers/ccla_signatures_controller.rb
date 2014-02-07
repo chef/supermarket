@@ -1,7 +1,6 @@
 class CclaSignaturesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :require_linked_github_account!, only: [:new, :create, :update]
-  before_filter :find_and_authorize_ccla_signature!, only: [:show, :update]
+  before_filter :require_linked_github_account!, only: [:new, :create, :re_sign]
 
   #
   # GET /ccla-signatures/:id
@@ -9,6 +8,7 @@ class CclaSignaturesController < ApplicationController
   # Show a single signature.
   #
   def show
+    @ccla_signature = CclaSignature.find(params[:id])
     authorize! @ccla_signature
   end
 
@@ -18,13 +18,16 @@ class CclaSignaturesController < ApplicationController
   # Show the form for creating a new CCLA signature.
   #
   def new
-    @ccla_signature = CclaSignature.new
+    @ccla_signature = CclaSignature.new(user: current_user)
 
     # Load default CCLA text
     @ccla_signature.ccla = Ccla.latest
 
     # Prepopulate any fields we can from the User object
     @ccla_signature.email = current_user.email
+    @ccla_signature.first_name = current_user.first_name
+    @ccla_signature.last_name = current_user.last_name
+    @ccla_signature.company = current_user.company
   end
 
   #
@@ -34,37 +37,31 @@ class CclaSignaturesController < ApplicationController
   # the current user as the Organization admin.
   #
   def create
-    @organization = Organization.new(name: ccla_signature_params[:company])
-    @ccla_signature = @organization.build_ccla_signature(
-      ccla_signature_params.merge(user_id: current_user.id))
-    @contributor = @organization.contributors.new(user: current_user, admin: true)
+    @ccla_signature = CclaSignature.new(ccla_signature_params)
 
-    begin
-      ActiveRecord::Base.transaction do
-        @ccla_signature.save!
-        @organization.save!
-        @contributor.save!
-      end
-
+    if @ccla_signature.sign!
       if Supermarket::Config.cla_signature_notification_email.present?
         ClaSignatureMailer.deliver_notification(@ccla_signature)
       end
 
-      redirect_to @ccla_signature, notice: "Successfully signed CCLA for #{@organization.name}."
-
-    rescue ActiveRecord::RecordInvalid => invald
+      redirect_to @ccla_signature, notice: 'Successfully signed CCLA.'
+    else
       render 'new'
     end
   end
 
   #
-  # PATCH /ccla-signatures/:id
+  # POST /ccla-signatures/re-sign
   #
-  # Updates a CCLA signature and associated Organization.
+  # Creates a new CCLA signature based on a previously signed signature.
+  # Effectivly resigning the CCLA. Useful if CCLA contact information
+  # needs to be updated.
   #
-  def update
-    if @ccla_signature.update_attributes(ccla_signature_params)
-      redirect_to @ccla_signature, notice: "Successfully updated CCLA for #{@ccla_signature.organization.name}."
+  def re_sign
+    @ccla_signature = CclaSignature.new(ccla_signature_params)
+
+    if @ccla_signature.save
+      redirect_to @ccla_signature, notice: 'Successfully re-signed CCLA.'
     else
       render 'show'
     end
@@ -74,7 +71,6 @@ class CclaSignaturesController < ApplicationController
 
   def ccla_signature_params
     params.require(:ccla_signature).permit(
-      :user_id,
       :prefix,
       :first_name,
       :middle_name,
@@ -91,6 +87,8 @@ class CclaSignaturesController < ApplicationController
       :country,
       :agreement,
       :ccla_id,
+      :user_id,
+      :organization_id
     )
   end
 
@@ -106,10 +104,5 @@ class CclaSignaturesController < ApplicationController
       redirect_to current_user,
         notice: t('ccla_signature.requires_linked_github')
     end
-  end
-
-  def find_and_authorize_ccla_signature!
-    @ccla_signature = CclaSignature.find(params[:id])
-    authorize! @ccla_signature
   end
 end

@@ -4,13 +4,13 @@ class Organization < ActiveRecord::Base
   has_many :contributors
   has_many :users, through: :contributors
   has_many :invitations
-  has_one  :ccla_signature
-
-  # Validations
-  # --------------------
-  validates_presence_of :name
+  has_many :ccla_signatures
 
   def admins
     contributors.where(admin: true)
+  end
+
+  def name
+    ccla_signatures.first.company
   end
 end

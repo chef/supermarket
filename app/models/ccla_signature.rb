@@ -24,13 +24,21 @@ class CclaSignature < ActiveRecord::Base
   # --------------------
   attr_accessor :agreement
 
-  # Callbacks
-  # --------------------
-  before_update do
-    organization.update_attributes!(name: company)
-  end
-
   def name
     "#{first_name} #{last_name}"
+  end
+
+  #
+  # Creates an associated organization and an admin contributor for said
+  # organization then saves the signature.
+  #
+  # @return [Boolean]
+  #
+  def sign!
+    transaction do
+      create_organization!
+      organization.contributors.create!(organization: organization, user: user, admin: true)
+      save!
+    end
   end
 end

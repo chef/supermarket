@@ -9,15 +9,20 @@
     </div>
 
     <div class="signature">
-      <%= render 'form', submit_text: 'Sign CCLA' %>
+      <%= form_for(@ccla_signature) do |f| %>
+        <%= render 'application/form_errors', record: @ccla_signature %>
+        <%= render 'fields', f: f %>
+
+        <section>
+          <%= f.submit 'Sign CCLA', class: 'button secondary' %>
+        </section>
+      <% end %>
     </div>
 
     <div class="agreement">
-      <header class="agreement-header"><%= render_markdown(@ccla_signature.ccla.head) %></header>
-      <section class="agreement-body">
-        <%= render_markdown(@ccla_signature.ccla.body) %>
-        <footer><%= @ccla_signature.ccla.version %></footer>
-      </section>
+      <%= render_markdown(@ccla_signature.ccla.head) %>
+      <%= render_markdown(@ccla_signature.ccla.body) %>
+      <%= @ccla_signature.ccla.version %>
     </div>
   </div>
   </div>

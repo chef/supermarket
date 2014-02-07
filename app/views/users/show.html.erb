@@ -6,48 +6,48 @@
   <div class="content">
     <%= gravatar_for @user, size: 72 %>
 
-    <br />
+    <hr>
 
     <% if current_user == @user %>
       <%= link_to 'Edit Profile', edit_profile_path %>
-    <% end %>
 
-    <% @user.accounts.for('github').each do |account| %>
-      <p>
-        <%= account.username %> [GitHub]<br />
-        <%= link_to user_account_url(current_user, account), method: :delete do %>
-          <span>Disconnect GitHub Account</span>
-        <% end %>
-      </p>
-    <% end %>
-
-    <p><%= link_to 'Connect GitHub Account', auth_path(:github) %></p>
-
-    <% @user.accounts.for('twitter').each do |account| %>
-      <p>
-        <%= account.username %> [Twitter]<br />
-        <%= link_to user_account_url(current_user, account), method: :delete do %>
-          <span>Disconnect Twitter Account</span>
-        <% end %>
-      </p>
-    <% end %>
-
-    <p><%= link_to 'Connect Twitter Account', auth_path(:twitter) %></p>
-
-    <% if @user.icla_signatures.any? %>
-      <p><%= link_to "Edit ICLA", @user.icla_signatures.first %></p>
-    <% end %>
-
-    <% @user.contributors.each do |contributor| %>
-      <% if contributor.admin? %>
+      <% @user.accounts.for('github').each do |account| %>
         <p>
-        Admin of <%= contributor.organization.name %> -
-        <%= link_to "Edit CCLA", contributor.organization.ccla_signature %>
-        or
-        <%= link_to "Invite Contributors", organization_invitations_url(contributor.organization) %>
+          <%= account.username %> [GitHub]<br />
+          <%= link_to user_account_url(current_user, account), method: :delete do %>
+            <span>Disconnect GitHub Account</span>
+          <% end %>
         </p>
-      <% else %>
-        <p>Contributor of <%= contributor.organization.name %> - <%= link_to "View CCLA", contributor.organization.ccla_signature %></p>
+      <% end %>
+
+      <p><%= link_to 'Connect GitHub Account', auth_path(:github) %></p>
+
+      <% @user.accounts.for('twitter').each do |account| %>
+        <p>
+          <%= account.username %> [Twitter]<br />
+          <%= link_to user_account_url(current_user, account), method: :delete do %>
+            <span>Disconnect Twitter Account</span>
+          <% end %>
+        </p>
+      <% end %>
+
+      <p><%= link_to 'Connect Twitter Account', auth_path(:twitter) %></p>
+
+      <% if @user.icla_signatures.any? %>
+        <p><%= link_to "View ICLA", @user.latest_icla %></p>
+      <% end %>
+
+      <% @user.contributors.each do |contributor| %>
+        <% if contributor.admin? %>
+          <p>
+          Admin of <%= contributor.organization.name %> -
+          <%= link_to "View CCLA", contributor.user.latest_ccla %>
+          or
+          <%= link_to "Invite Contributors", organization_invitations_url(contributor.organization) %>
+          </p>
+        <% else %>
+          <p>Contributor of <%= contributor.organization.name %> - <%= link_to "View CCLA", contributor.user.latest_ccla %></p>
+        <% end %>
       <% end %>
     <% end %>
   </div>
