@@ -18,6 +18,7 @@ gem 'dotenv-rails'
 gem 'coveralls', require: false
 gem 'maildown'
 gem 'sentry-raven', github: 'getsentry/raven-ruby'
+gem 'statsd-ruby', require: 'statsd'
 
 gem 'neat'
 gem 'sass-rails',   '~> 4.0.1'
