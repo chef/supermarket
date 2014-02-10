@@ -1,6 +1,9 @@
-<% flash.each do |name, message| %>
-  <div class="flash <%= name %>">
-    <%= message %>
-    <a class="close" href='#'>&times;</a>
-  </div>
+<%# Rails flash messages styled for Zurb Foundation %>
+<% flash.each do |name, msg| %>
+  <% if msg.is_a?(String) %>
+    <div data-alert class="alert-box round <%= name == :notice ? "success" : "alert" %>">
+      <%= content_tag :div, msg %>
+      <a href="#" class="close">&times;</a>
+    </div>
+  <% end %>
 <% end %>

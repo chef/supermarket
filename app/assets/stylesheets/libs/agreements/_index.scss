@@ -1,0 +1,21 @@
+body.icla_signatures {
+  form.icla_signatures_search {
+
+    input#icla_signatures_search_q {
+      //@include span-columns(12);
+    }
+  }
+
+  table {
+    th {
+      text-align: left;
+    }
+
+    tr {
+      // Hide company and date on skinny mobile
+      th:nth-child(3), td:nth-child(3), th:nth-child(4), td:nth-child(4) {
+        display: none;
+      }
+    }
+  }
+}

@@ -138,7 +138,7 @@ module FeatureHelpers
   end
 
   def expect_to_see_success_message
-    expect(page).to have_selector('.flash.notice')
+    expect(page).to have_selector('.alert-box.success')
   end
 
   def known_users

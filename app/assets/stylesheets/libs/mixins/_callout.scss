@@ -1,0 +1,49 @@
+@mixin callout {
+  border-radius: $radius;
+  font-family: $helvetica;
+  line-height: 1.5;
+  padding: 1em;
+  text-align: left;
+  margin-bottom: 20px;
+
+  a, a:hover, a:visited {
+    color: inherit;
+  }
+
+  p {
+    margin: 0 0 1em 0;
+    padding: 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.callout.info {
+  background: lighten($secondary-blue, 33%);
+  border: 1px solid lighten($secondary-blue, 15%);
+  color: darken($secondary-blue, 25%);
+  @include callout;
+}
+
+.callout.error {
+  background: lighten($secondary-red, 68%);
+  border: 1px solid lighten($secondary-red, 45%);
+  color: lighten($secondary-red, 10%);
+  @include callout;
+}
+
+.callout.warning {
+  background: lighten($secondary-yellow, 43%);
+  border: 1px solid lighten($secondary-yellow, 15%);
+  color: darken($secondary-yellow, 20%);
+  @include callout;
+}
+
+.callout.success {
+  background: lighten($secondary-green, 44%);
+  border: 1px solid lighten($secondary-green, 15%);
+  color: darken($secondary-green, 15%);
+  @include callout;
+}

@@ -33,6 +33,6 @@ describe 'inviting people to sign a CCLA' do
     receive_and_visit_invitation
     click_link 'Accept'
 
-    expect(page).to have_selector '.flash.alert'
+    expect(page).to have_selector('.alert-box.alert')
   end
 end
