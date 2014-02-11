@@ -20,7 +20,9 @@
 
     <div class="container">
       <div class="globalcolumn">
-        <%= link_to root_path, class: 'logochef' do %><img src="/assets/logo_chef.png" data-interchange="[/assets/logo_chef@2x.png, (retina)]" alt="Chef"><noscript><img src="/images/logo_chef.png" alt="Chef"></noscript><% end %>
+        <%= link_to root_path, class: 'logochef' do %>
+          <%= image_tag 'logo.svg', alt: 'Chef' %>
+        <% end %>
       </div>
       <div class="appcolumn">
         <div class="approw">
