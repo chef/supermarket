@@ -1,29 +1,28 @@
-<div class="page">
-  <div class="title">
-    <span class="fa fa-file-text"></span>Corporate Contributor License Agreement (CCLA)
+<div class="cla">
+  <h1>Corporate Contributor License Agreement <small>(CCLA)</small></h1>
+
+  <p>
+    You have been asked to sign an CCLA as part of the <%= link_to 'Community Contribution process', 'http://docs.opscode.com/community_contributions.html', target: :blank %>. Please read the document below and complete the form to file your CCLA.
+  </p>
+
+  <div class="signature">
+    <%= form_for(@ccla_signature, data: { abide: true }) do |f| %>
+      <%= render 'application/form_errors', record: @ccla_signature %>
+      <%= render 'fields', f: f %>
+
+      <section>
+        <%= f.submit 'Sign CCLA', class: 'radius button expand' %>
+      </section>
+    <% end %>
   </div>
 
-  <div class="content">
-    <div class="callout info">
-      You have been asked to sign an CCLA as part of the <%= link_to 'Community Contribution process', 'http://docs.opscode.com/community_contributions.html', target: :blank %>. Please read the document below and complete the form to file your CCLA.
+  <div class="agreement">
+    <div class="panel">
+      <header><%= render_markdown(@ccla_signature.ccla.head) %></header>
+      <section>
+        <%= render_markdown(@ccla_signature.ccla.body) %>
+        <footer><%= @ccla_signature.ccla.version %></footer>
+      </section>
     </div>
-
-    <div class="signature">
-      <%= form_for(@ccla_signature) do |f| %>
-        <%= render 'application/form_errors', record: @ccla_signature %>
-        <%= render 'fields', f: f %>
-
-        <section>
-          <%= f.submit 'Sign CCLA', class: 'button secondary' %>
-        </section>
-      <% end %>
-    </div>
-
-    <div class="agreement">
-      <%= render_markdown(@ccla_signature.ccla.head) %>
-      <%= render_markdown(@ccla_signature.ccla.body) %>
-      <%= @ccla_signature.ccla.version %>
-    </div>
-  </div>
   </div>
 </div>

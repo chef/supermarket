@@ -6,7 +6,7 @@ class InvitationsController < ApplicationController
     @organization = @invitation.organization
   end
 
-  def update
+  def accept
     @contributor = Contributor.new(
       organization: @invitation.organization,
       user: current_user,
@@ -25,7 +25,7 @@ class InvitationsController < ApplicationController
     end
   end
 
-  def destroy
+  def decline
     @invitation.decline
     redirect_to current_user, notice: "Declined invitation to join
       #{@invitation.organization.name}"

@@ -1,8 +1,20 @@
 // .globalcolumn elements
 .logochef {
-  img {
+  background: url(image-path('logo.svg')) no-repeat;
+  @include background-size(rem-calc(48) rem-calc(50));
+  height: rem-calc(50);
+  margin: rem-calc(30) auto rem-calc(22);
+  width: rem-calc(48);
+
+  .no-svg & {
+    background: url(image-path('logo_pngfallback.png')) no-repeat;
+  }
+
+  a {
     display: block;
-    height: auto;
-    margin: 2.1875rem auto 1.375rem; //35px 22px
+    height: rem-calc(50);
+    width: rem-calc(48);
+
+    span { display: none; }
   }
 }

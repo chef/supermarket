@@ -30,8 +30,7 @@ describe 'inviting people to sign a CCLA' do
     sign_out
 
     sign_in(user)
-    receive_and_visit_invitation
-    click_link 'Accept'
+    receive_and_respond_to_invitation_with('accept')
 
     expect(page).to have_selector('.alert-box.alert')
   end

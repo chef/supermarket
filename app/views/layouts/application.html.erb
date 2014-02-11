@@ -12,7 +12,6 @@
     <link rel="apple-touch-icon" href="<%= image_url('apple-touch-icon.png') %>"/>
     <%= stylesheet_link_tag "application", media: "all" %>
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
   <body class="<%= controller.controller_name %>">
@@ -20,21 +19,24 @@
 
     <div class="container">
       <div class="globalcolumn">
-        <%= link_to root_path, class: 'logochef' do %>
-          <%= image_tag 'logo.svg', alt: 'Chef' %>
-        <% end %>
+        <h2 class="logochef"><%= link_to root_path do %><span>Chef</span><% end %></h2>
       </div>
       <div class="appcolumn">
         <div class="approw">
           <div class="sidebar">
             <%= render partial: 'sidebar' %>
           </div>
-          <%= yield %>
+          <div class="page">
+            <%= yield %>
+          </div>
         </div>
       </div>
     </div>
+
     <% if Supermarket::Config.segment_io %>
       <%= render partial: 'segment.io' %>
     <% end %>
+
+    <%= javascript_include_tag "application" %>
   </body>
 </html>

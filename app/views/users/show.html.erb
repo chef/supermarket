@@ -1,4 +1,4 @@
-<div class="page user">
+<div class="user">
   <div class="profile">
     <div class="avatar">
       <%= gravatar_for @user, size: 200 %>
@@ -25,10 +25,6 @@
 
         <li data-tooltip class="has-tip" title="When <%= @user.name %> joined the Chef Community site.">
           <i class="fa fa-clock-o"></i> Joined <%= time_ago_in_words(@user.created_at) %> ago.
-        </li>
-
-        <li data-tooltip class="has-tip" title="When <%= @user.name %> last logged in.">
-          <i class="fa fa-sign-in"></i> Signed in <%= time_ago_in_words(@user.last_sign_in_at) %> ago.
         </li>
       </ul>
 

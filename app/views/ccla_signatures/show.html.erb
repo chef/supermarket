@@ -1,24 +1,22 @@
-<div class="page">
-  <div class="title">
-    <span class="fa fa-file-text"></span>Corporate Contributor License Agreement (CCLA)
+<div class="cla">
+  <h1>Corporate Contributor License Agreement <small>(CCLA)</small></h1>
+
+  <div class="signature">
+    <%= form_for(@ccla_signature.dup, url: { action: :re_sign }, data: { abide: true }) do |f| %>
+      <%= render 'application/form_errors', record: @ccla_signature %>
+      <%= render 'fields', f: f %>
+
+      <section>
+        <%= f.submit 'Sign CCLA', class: 'radius button expand' %>
+      </section>
+    <% end %>
   </div>
 
-  <div class="content">
-    <div class="signature">
-      <%= form_for(@ccla_signature.dup, url: { action: :re_sign }) do |f| %>
-        <%= render 'application/form_errors', record: @ccla_signature %>
-        <%= render 'fields', f: f %>
-
-        <section>
-          <%= f.submit 'Re-Sign CCLA', class: 'button secondary' %>
-        </section>
-      <% end %>
-    </div>
-
-    <div class="agreement">
+  <div class="agreement">
+    <div class="panel">
       <%= render_markdown(@ccla_signature.ccla.head) %>
       <%= render_markdown(@ccla_signature.ccla.body) %>
-      <%= @ccla_signature.ccla.version %>
+      <footer><%= @ccla_signature.ccla.version %></footer>
     </div>
   </div>
 </div>

@@ -165,3 +165,29 @@ body > header {
     }
   }
 }
+
+// CLA Elements
+.cla {
+  @include grid-row($behavior: nest);
+  margin: 0;
+
+  .signature {
+    @include grid-column(5, $collapse: true);
+  }
+
+  .agreement {
+    @include grid-column(7);
+
+    .panel {
+      max-height: 1020px;
+      overflow: auto;
+
+      h1 { font-size: rem-calc(18); line-height: rem-calc(24); }
+      h2 { font-size: rem-calc(14); line-height: rem-calc(24); }
+      p, li, footer {
+        font-size: rem-calc(12);
+        margin-bottom: rem-calc(18);
+      }
+    }
+  }
+}

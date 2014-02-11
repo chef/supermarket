@@ -16,7 +16,6 @@ gem 'pundit'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'coveralls', require: false
-gem 'maildown'
 gem 'sentry-raven', github: 'getsentry/raven-ruby'
 gem 'statsd-ruby', require: 'statsd'
 gem 'octokit', github: 'octokit/octokit.rb', require: false
