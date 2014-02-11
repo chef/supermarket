@@ -38,18 +38,8 @@ class User < ActiveRecord::Base
   #
   # @return [IclaSignature]
   #
-  def latest_icla
+  def latest_icla_signature
     icla_signatures.order(:signed_at).last
-  end
-
-  #
-  # Retrieve the current users latest CCLA signature if they have signed a
-  # CCLA.
-  #
-  # @return [IclaSignature]
-  #
-  def latest_ccla
-    ccla_signatures.order(:signed_at).last
   end
 
   #

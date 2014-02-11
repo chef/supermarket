@@ -23,23 +23,13 @@ describe User do
     end
   end
 
-  describe '#latest_icla' do
+  describe '#latest_icla_signature' do
     it 'returns the latest ICLA signature' do
       one_year_ago = create(:icla_signature, signed_at: 1.year.ago)
       one_month_ago = create(:icla_signature, signed_at: 1.month.ago)
 
       user = create(:user, icla_signatures: [one_year_ago, one_month_ago])
-      expect(user.latest_icla).to eql(one_month_ago)
-    end
-  end
-
-  describe '#latest_ccla' do
-    it 'returns the latest CCLA signature' do
-      one_year_ago = create(:ccla_signature, signed_at: 1.year.ago)
-      one_month_ago = create(:ccla_signature, signed_at: 1.month.ago)
-
-      user = create(:user, ccla_signatures: [one_year_ago, one_month_ago])
-      expect(user.latest_ccla).to eql(one_month_ago)
+      expect(user.latest_icla_signature).to eql(one_month_ago)
     end
   end
 

@@ -6,7 +6,7 @@ describe 'signing a CCLA' do
   it 'establishes the signer as an admin of the organization' do
     sign_in(create(:user))
     sign_ccla
-    click_link 'View Profile'
+    manage_agreements
     expect(page).to have_content 'Admin of Chef'
   end
 end

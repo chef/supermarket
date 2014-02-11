@@ -1,54 +1,40 @@
-<div class="page">
-  <div class="title">
-    <span class="fa fa-user"></span><%= @user.name %>
-  </div>
+<div class="page user">
+  <div class="profile">
+    <div class="avatar">
+      <%= gravatar_for @user, size: 200 %>
+    </div>
+    <div class="info">
+      <h2><%= @user.name %></h2>
 
-  <div class="content">
-    <%= gravatar_for @user, size: 72 %>
+      <ul>
+        <li data-tooltip class="has-tip" title="The company <%= @user.name %> associates with.">
+          <span class="fa fa-building"></span> <%= @user.company %>
+        </li>
 
-    <hr>
-
-    <% if current_user == @user %>
-      <%= link_to 'Edit Profile', edit_profile_path %>
-
-      <% @user.accounts.for('github').each do |account| %>
-        <p>
-          <%= account.username %> [GitHub]<br />
-          <%= link_to user_account_url(current_user, account), method: :delete do %>
-            <span>Disconnect GitHub Account</span>
-          <% end %>
-        </p>
-      <% end %>
-
-      <p><%= link_to 'Connect GitHub Account', auth_path(:github) %></p>
-
-      <% @user.accounts.for('twitter').each do |account| %>
-        <p>
-          <%= account.username %> [Twitter]<br />
-          <%= link_to user_account_url(current_user, account), method: :delete do %>
-            <span>Disconnect Twitter Account</span>
-          <% end %>
-        </p>
-      <% end %>
-
-      <p><%= link_to 'Connect Twitter Account', auth_path(:twitter) %></p>
-
-      <% if @user.icla_signatures.any? %>
-        <p><%= link_to "View ICLA", @user.latest_icla %></p>
-      <% end %>
-
-      <% @user.contributors.each do |contributor| %>
-        <% if contributor.admin? %>
-          <p>
-          Admin of <%= contributor.organization.name %> -
-          <%= link_to "View CCLA", contributor.user.latest_ccla %>
-          or
-          <%= link_to "Invite Contributors", organization_invitations_url(contributor.organization) %>
-          </p>
-        <% else %>
-          <p>Contributor of <%= contributor.organization.name %> - <%= link_to "View CCLA", contributor.user.latest_ccla %></p>
+        <% if @user.irc_nickname.present? %>
+          <li data-tooltip class="has-tip" title="<%= @user.name %>'s IRC Nickname.">
+            <i class="fa fa-comment"></i> <%= @user.irc_nickname %>
+          </li>
         <% end %>
+
+        <% if @user.jira_username.present? %>
+          <li data-tooltip class="has-tip" title="<%= @user.name %>'s Jira Username.">
+            <i class="fa fa-ticket"></i> <%= @user.jira_username %>
+          </li>
+        <% end %>
+
+        <li data-tooltip class="has-tip" title="When <%= @user.name %> joined the Chef Community site.">
+          <i class="fa fa-clock-o"></i> Joined <%= time_ago_in_words(@user.created_at) %> ago.
+        </li>
+
+        <li data-tooltip class="has-tip" title="When <%= @user.name %> last logged in.">
+          <i class="fa fa-sign-in"></i> Signed in <%= time_ago_in_words(@user.last_sign_in_at) %> ago.
+        </li>
+      </ul>
+
+      <% if current_user == @user %>
+        <%= link_to 'Manage Profile', edit_profile_path, class: 'button radius tiny', id: 'manage-profile' %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>

@@ -18,7 +18,7 @@ describe AccountsController do
     it 'redirects to the user profile on success by default' do
       post :create, provider: 'github'
 
-      expect(response).to redirect_to(user)
+      expect(response).to redirect_to(edit_profile_path(user))
     end
 
     it 'redirects to the stored location for the user on success if set' do
