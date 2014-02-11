@@ -21,6 +21,7 @@ gem 'sentry-raven', github: 'getsentry/raven-ruby'
 gem 'statsd-ruby', require: 'statsd'
 
 gem 'sass-rails',   '~> 4.0.1'
+gem 'compass-rails'
 gem 'uglifier',     '~> 2.2'
 gem 'jquery-rails'
 
