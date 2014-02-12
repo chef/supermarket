@@ -113,21 +113,65 @@ Other Stuff We Need to Document
 
 Development
 -----------
-### Using the Development VM (recommended for new users)
-Supermarket includes a collection of Chef cookbooks and a preconfigured `Vagrantfile` that makes it easy to get up an running without modifying your local system.
 
-1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and [Vagrant](http://downloads.vagrantup.com/)
+## Using Vagrant (Beginner)
+
+Supermarket includes a collection of Chef cookbooks and a preconfigured
+`Vagrantfile` to make it easy to get up an running without modifying your local system.
+
+1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and
+[Vagrant](http://www.vagrantup.com/downloads.html)
+
+1. Install the `vagrant-omnibus` plugin:
+
+  ```
+  vagrant plugin install vagrant-omnibus
+  ```
+
 1. Run the server:
 
-        $ ./bin/supermarket server
+  ```
+  $ ./bin/supermarket server
+  ```
 
-By default, the VM uses NFS mounted folders, 4GB of RAM, and 2 CPUs. If you are constrained in any of these areas, you can override these defaults by specifying the environment variables:
+The next time you want to start the application, you only need to run:
 
-        $ VM_MEMORY=2048 VM_CPUS=1 VM_NFS=false ./bin/supermarket server
+```
+$ ./bin/supermarket server
+```
 
-**NOTE:** These variables must be set the _first_ time you run any supermarket command. After that, they will be persisted. To change them, you'll need to destroy the Vagrant machine (`vagrant destroy`) and run the command again.
+### Notes
 
-If your operating system supports NFS mounted folders, you may be asked to supply your administrative password. Please note, sometimes VirtualBox explodes when trying to mount NFS shares (specifically on OSX Mavericks); although it will make the application significantly slower, disabling NFS folder sharing can alleviate an error like:
+#### About Vagrant
+
+Vagrant uses VirtualBox to run a VM that has access to the application project
+files. It syncs your local project files with the VM. Running the
+`./bin/supermarket server` command spins up a VM. When you are done running the
+application, do not forget to run `vagrant suspend` or `vagrant halt` to give
+the VM a break.
+
+You can [read more about Vagrant teardown in the Vagrant
+docs](http://docs.vagrantup.com/v2/getting-started/teardown.html).
+
+#### Changing the VM Defaults
+
+By default, the VM uses NFS mounted folders, 4GB of RAM, and 2 CPUs. If you are
+constrained in any of these areas, you can override these defaults by specifying
+the environment variables:
+
+``` sh
+$ VM_MEMORY=2048 VM_CPUS=1 VM_NFS=false ./bin/supermarket server
+```
+
+These variables must be set the _first_ time you run any supermarket command.
+After that, they will be persisted. To change them, you'll need to destroy the
+Vagrant machine (`vagrant destroy`) and run the command again.
+
+If your operating system supports NFS mounted folders, you may be asked to
+supply your administrative password. Please note, sometimes VirtualBox explodes
+when trying to mount NFS shares (specifically on OSX Mavericks); although it
+will make the application significantly slower, disabling NFS folder sharing can
+alleviate an error like:
 
 ```text
 There was an error while executing `VBoxManage`, a CLI used by Vagrant
@@ -144,9 +188,19 @@ VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005), component HostNe
 VBoxManage: error: Context: "int handleCreate(HandlerArg*, int, int*)" at line 68 of file VBoxManageHostonly.cpp
 ```
 
-Running `sudo /Library/StartupItems/VirtualBox/VirtualBox restart` can help fix this problem, but sometimes you just can't use NFS mounts with VirtualBox.
+Running `sudo /Library/StartupItems/VirtualBox/VirtualBox restart` can help fix
+this problem, but sometimes you just can't use NFS mounts with VirtualBox.
 
-### Using your local machine (advanced users only)
+#### Guest Additions
+
+If you get an error about Guest Additions, install the `vagrant-vbguest` vagrant
+plugin:
+
+```
+vagrant plugin install vagrant-vbguest
+```
+
+## Local Environment (Advanced)
 
 1. Install Ruby 2.0 (latest patch) using your favorite Ruby manager
 1. Install Postgres (from [homebrew](http://brew.sh/) or the [app](http://postgresapp.com/))

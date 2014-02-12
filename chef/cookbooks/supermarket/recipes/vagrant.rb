@@ -27,10 +27,20 @@ node.set['postgres']['database'] = 'supermarket_development'
 include_recipe 'supermarket::_editors'
 include_recipe 'supermarket::_node'
 include_recipe 'supermarket::_postgres'
+include_recipe 'supermarket::_git'
 include_recipe 'supermarket::_ruby'
 
+execute 'dotenv[setup]' do
+  user "vagrant"
+  cwd "/supermarket"
+  command 'cp .env.example .env'
+  not_if { ::File.exists?('/supermarket/.env') }
+end
+
 execute 'bundle[install]' do
+  user "vagrant"
+  environment 'HOME' => '/home/vagrant'
   cwd '/supermarket'
-  command 'bundle install --path vendor'
+  command 'bundle install'
   not_if '(cd /supermarket && bundle check)'
 end
