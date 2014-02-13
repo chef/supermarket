@@ -16,7 +16,7 @@ module FeatureHelpers
 
   def sign_icla
     click_link "Sign ICLA"
-    click_link "Connect GitHub Account"
+    connect_github_account
 
     fill_in 'icla_signature_first_name', with: 'John'
     fill_in 'icla_signature_last_name', with: 'Doe'
@@ -36,7 +36,7 @@ module FeatureHelpers
 
   def sign_ccla(company = "Chef")
     click_link 'Sign CCLA'
-    click_link "Connect GitHub Account"
+    connect_github_account
 
     fill_in 'ccla_signature_first_name', with: 'John'
     fill_in 'ccla_signature_last_name', with: 'Doe'
@@ -88,9 +88,15 @@ module FeatureHelpers
     expect_to_see_success_message
   end
 
-  def manage_contributors
+  def manage_agreements
     click_link 'View Profile'
-    click_link 'Invite Contributors'
+    click_link 'manage-profile'
+    click_link 'manage-agreements'
+  end
+
+  def manage_contributors
+    manage_agreements
+    click_link 'invite-contributors'
   end
 
   def invite_admin(email)
@@ -132,9 +138,11 @@ module FeatureHelpers
     click_link "Remove Contributor"
   end
 
-  def connect_account(provider)
-    click_link 'Profile'
-    click_link "Connect #{provider} Account"
+  def connect_github_account
+    click_link 'View Profile'
+    click_link 'manage-profile'
+    click_link 'manage-github-accounts'
+    click_link 'connect-github'
   end
 
   def expect_to_see_success_message

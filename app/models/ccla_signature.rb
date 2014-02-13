@@ -28,6 +28,10 @@ class CclaSignature < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  # Callbacks
+  # --------------------
+  before_create ->(record){ record.signed_at = Time.now }
+
   #
   # Creates an associated organization and an admin contributor for said
   # organization then saves the signature.

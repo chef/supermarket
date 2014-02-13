@@ -1,45 +1,98 @@
-<div class="page">
-  <div class="title">
-    <span class="fa fa-user"></span> Edit Profile
-  </div>
+<div class="page user">
+  <dl class="tabs radius" data-tab>
+    <dd class="active"><a href="#profile" id="manage-profile">Edit Profile</a></dd>
+    <dd><a href="#password" id="manage-password">Change Password</a></dd>
+    <dd><a href="#github-accounts" id="manage-github-accounts">GitHub Accounts</a></dd>
+    <dd><a href="#agreements" id="manage-agreements">Agreements</a></dd>
+  </dl>
 
-  <div class="content">
-    <%= form_for(current_user, url: profile_path) do |f| %>
-      <%= render 'application/form_errors', record: current_user %>
+  <div class="tabs-content">
+    <div class="content active" id="profile">
+      <%= form_for(current_user, url: profile_path) do |f| %>
+        <%= render 'application/form_errors', record: current_user %>
 
-      <section class="fields">
-        <fieldset>
-          <%= f.text_field :email, placeholder: 'Email', title: 'Email' %>
-          <%= f.text_field :first_name, placeholder: 'First Name', title: 'First Name' %>
-          <%= f.text_field :last_name, placeholder: 'Last Name', title: 'Last Name' %>
-          <%= f.text_field :company, placeholder: 'Company', title: 'Company' %>
-          <%= f.text_field :irc_nickname, placeholder: 'IRC Nickname', title: 'IRC Nickname' %>
-          <%= f.text_field :jira_username, placeholder: 'JIRA Username', title: 'JIRA Username' %>
+        <section class="fields">
+          <fieldset>
+            <%= f.label :email %>
+            <%= f.text_field :email, placeholder: 'email', title: 'email' %>
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name, placeholder: 'first name', title: 'first name' %>
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, placeholder: 'last name', title: 'last name' %>
+            <%= f.label :company %>
+            <%= f.text_field :company, placeholder: 'company', title: 'company' %>
+            <%= f.label :irc_nickname %>
+            <%= f.text_field :irc_nickname, placeholder: 'irc nickname', title: 'irc nickname' %>
+            <%= f.label :jira_nickname %>
+            <%= f.text_field :jira_username, placeholder: 'jira username', title: 'jira username' %>
 
-          <p>Avatars are powered by <a href='https://gravatar.com'>Gravatar</a>.
-            <%= gravatar_for current_user, size: 72 %></p>
-        </fieldset>
-      </section>
+            <p class="gravatar">
+              <%= gravatar_for current_user, size: 30 %>
+              Avatars are powered by <%= link_to 'Gravatar', 'https://www.gravatar.com' %>
+            </p>
+          </fieldset>
+        </section>
 
-      <section>
-        <%= f.submit 'Update Profile', class: 'button primary' %>
-      </section>
-    <% end %>
+        <section>
+          <%= f.submit 'Update Profile', class: 'button primary expand radius' %>
+        </section>
+      <% end %>
+    </div>
+    <div class="content" id="password">
+      <%= form_for(current_user, url: change_password_profile_path) do |f| %>
+        <section class="fields">
+          <fieldset>
+            <%= f.password_field :current_password, placeholder: 'Current password', required: true %>
+            <%= f.password_field :password, placeholder: 'New Password', required: true %>
+            <%= f.password_field :password_confirmation, placeholder: 'Password confirmation', required: true %>
+          </fieldset>
+        </section>
 
-    <%= form_for(current_user, url: change_password_profile_path) do |f| %>
-      <section class="fields">
-        <fieldset>
-          <h4>Change Password</h4>
-          <%= f.password_field :current_password, placeholder: 'Current password' %>
-          <%= f.password_field :password, placeholder: 'New Password' %>
-          <%= f.password_field :password_confirmation, placeholder: 'Password confirmation' %>
-        </fieldset>
-      </section>
+        <section>
+          <%= f.submit 'Change Password', class: 'button primary expand radius' %>
+        </section>
+      <% end %>
+    </div>
+    <div class="content" id="github-accounts">
+      <p>You must have at least one linked GitHub account in order for us to match your contributions on GitHub with your signed Contributors License Agreement.</p>
+      <table>
+        <% current_user.accounts.for('github').each do |account| %>
+          <tr>
+            <td><i class="fa fa-github"></i> <%= account.username %></td>
+            <td class="text-right"><%= link_to 'Disconnect GitHub', user_account_url(current_user, account), method: :delete, id: 'disconnect-github' %></td>
+          </tr>
+        <% end %>
+      </table>
 
-      <section>
-        <%= f.submit 'Change Password', class: 'button primary' %>
-      </section>
-    <% end %>
+      <%= link_to '<i class="fa fa-github"></i> Connect GitHub'.html_safe, auth_path(:github), class: 'button radius', id: 'connect-github' %>
+    </div>
+    <div class="content" id="agreements">
+      <table>
+        <% if current_user.signed_icla? %>
+          <tr>
+            <td>Signed ICLA</td>
+            <td class="text-right"><%= link_to "Edit ICLA", current_user.latest_icla_signature %></td>
+          </tr>
+        <% end %>
+
+        <% current_user.contributors.each do |contributor| %>
+          <% if contributor.admin? %>
+            <tr>
+              <td>Admin of <%= contributor.organization.name %>
+              <td class="text-right">
+                <%= link_to "Edit CCLA", contributor.organization.latest_ccla_signature %>
+                <span> or</span>
+                <%= link_to "Invite Contributors", organization_invitations_url(contributor.organization), id: 'invite-contributors' %>
+              </td>
+            </tr>
+          <% else %>
+            <tr>
+              <td>Contributor of <%= contributor.organization.name %></td>
+              <td class="text-right"><%= link_to "View CCLA", contributor.organization.latest_ccla_signature %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
   </div>
 </div>
-

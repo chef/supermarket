@@ -4,7 +4,7 @@ describe 'editing the current user profile' do
   it 'updates the users profile' do
     sign_in(create(:user))
     click_link 'View Profile'
-    click_link 'Edit Profile'
+    click_link 'manage-profile'
 
     fill_in 'user_email', with: 'eddardstark@agofai.com'
     fill_in 'user_first_name', with: 'Eddard'

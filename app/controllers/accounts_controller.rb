@@ -14,7 +14,7 @@ class AccountsController < ApplicationController
       redirect_to after_link_location, notice: "Successfully
         connected #{params[:provider]}."
     else
-      redirect_to current_user, alert: "Something went wrong
+      redirect_to edit_profile_path(current_user), alert: "Something went wrong
         while connecting #{params[:provider]}"
     end
   end
@@ -28,12 +28,12 @@ class AccountsController < ApplicationController
   def destroy
     current_user.accounts.find(params[:id]).destroy
 
-    redirect_to :back, alert: "Account disconnected."
+    redirect_to :back, notice: "Account disconnected."
   end
 
   private
 
   def after_link_location
-    stored_location_for(current_user) || current_user
+    stored_location_for(current_user) || edit_profile_path(current_user)
   end
 end
