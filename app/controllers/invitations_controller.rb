@@ -19,7 +19,7 @@ class InvitationsController < ApplicationController
         #{@contributor.organization.name}"
     else
       redirect_to current_user, alert: "You've already signed
-        #{@invitation.organization}'s CCLA, please sign in as a
+        #{@invitation.organization.name}'s CCLA, please sign in as a
         different user to accept or if this invitation was sent
         in error no action is required."
     end
