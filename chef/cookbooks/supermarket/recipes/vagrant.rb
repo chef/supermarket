@@ -24,6 +24,7 @@ node.set['postgres']['user'] = 'vagrant'
 node.set['postgres']['password'] = 'vagrant'
 node.set['postgres']['database'] = 'supermarket_development'
 node.set['redis']['maxmemory'] = '64mb'
+node.set['sidekiq']['concurrency'] = '25'
 
 include_recipe 'supermarket::_editors'
 include_recipe 'supermarket::_node'
