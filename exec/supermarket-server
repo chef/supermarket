@@ -19,7 +19,7 @@ db_created() {
 }
 
 db_initialized() {
-  as_postgres "\dt" | grep schema_migrations
+  as_postgres "\dt" | grep schema_migrations 2>&1 > /dev/null
   return \$?
 }
 
@@ -39,7 +39,7 @@ db_seeded() {
   fi
 }
 
-./bin/rake db:create
+./bin/rake db:create 2>&1 > /dev/null
 
 if ! db_initialized; then
   ./bin/rake db:schema:load
@@ -53,7 +53,7 @@ if ! db_seeded; then
   ./bin/rake db:seed
 fi
 
-./bin/rails server
+bundle exec foreman start
 EOH)
 
 in_supermarket "$command"

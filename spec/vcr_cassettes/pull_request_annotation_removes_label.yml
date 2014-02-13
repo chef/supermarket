@@ -1,0 +1,342 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.github.com/repos/cramerdev/paprika/issues/1/labels
+    body:
+      encoding: UTF-8
+      string: '["All Committers are CLA Signers"]'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.0.0.pre
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 11 Feb 2014 15:26:16 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4948'
+      X-Ratelimit-Reset:
+      - '1392133369'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Etag:
+      - '"7cf280480cd7cb75e3b0c0ef55a19ef7"'
+      X-Oauth-Scopes:
+      - user, public_repo, repo, gist
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Content-Type-Options:
+      - nosniff
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - '*'
+      X-Github-Request-Id:
+      - 6153E20C:2470:2E1079:52FA4117
+    body:
+      encoding: UTF-8
+      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/labels/All+Committers+are+CLA+Signers","name":"All
+        Committers are CLA Signers","color":"ededed"}]'
+    http_version:
+  recorded_at: Tue, 11 Feb 2014 15:26:19 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/cramerdev/paprika/issues/1/labels
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.0.0.pre
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 11 Feb 2014 15:26:16 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4947'
+      X-Ratelimit-Reset:
+      - '1392133369'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Last-Modified:
+      - Tue, 11 Feb 2014 15:26:16 GMT
+      Etag:
+      - '"c6bda569a97d6a79142c642aabdbd971"'
+      X-Oauth-Scopes:
+      - user, public_repo, repo, gist
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Content-Type-Options:
+      - nosniff
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - '*'
+      X-Github-Request-Id:
+      - 6153E20C:2478:2E34D6:52FA4118
+    body:
+      encoding: UTF-8
+      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/labels/All+Committers+are+CLA+Signers","name":"All
+        Committers are CLA Signers","color":"ededed"}]'
+    http_version:
+  recorded_at: Tue, 11 Feb 2014 15:26:19 GMT
+- request:
+    method: delete
+    uri: https://api.github.com/repos/cramerdev/paprika/issues/1/labels/All+Committers+are+CLA+Signers
+    body:
+      encoding: UTF-8
+      string: '{}'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.0.0.pre
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 11 Feb 2014 15:26:17 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4946'
+      X-Ratelimit-Reset:
+      - '1392133369'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Etag:
+      - '"5896cd88e98181d2d58027fc14eeab5b"'
+      X-Oauth-Scopes:
+      - user, public_repo, repo, gist
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '2'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - '*'
+      X-Github-Request-Id:
+      - 6153E20C:2478:2E3614:52FA4119
+    body:
+      encoding: UTF-8
+      string: '[]'
+    http_version:
+  recorded_at: Tue, 11 Feb 2014 15:26:20 GMT
+- request:
+    method: post
+    uri: https://api.github.com/repos/cramerdev/paprika/issues/1/comments
+    body:
+      encoding: UTF-8
+      string: '{"body":"Hi. Your friendly Curry bot here. Just letting you know that
+        there are committers on this Pull Request who appear to not have signed a
+        Chef CLA.\n\nThe following GitHub users do not appear to have signed a CLA:\n\n*
+        @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.0.0.pre
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 11 Feb 2014 15:26:17 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Status:
+      - 201 Created
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4945'
+      X-Ratelimit-Reset:
+      - '1392133369'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Etag:
+      - '"bae28c54b8bd2c800480a92dcd6d58e2"'
+      X-Oauth-Scopes:
+      - user, public_repo, repo, gist
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Location:
+      - https://api.github.com/repos/cramerdev/paprika/issues/comments/34764601
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '1640'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - '*'
+      X-Github-Request-Id:
+      - 6153E20C:2471:28287D:52FA4119
+    body:
+      encoding: UTF-8
+      string: '{"url":"https://api.github.com/repos/cramerdev/paprika/issues/comments/34764601","html_url":"https://github.com/cramerdev/paprika/pull/1#issuecomment-34764601","issue_url":"https://api.github.com/repos/cramerdev/paprika/issues/1","id":34764601,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://gravatar.com/avatar/a17d579ae533fa7dbf3f3875de913e10?d=https%3A%2F%2Fidenticons.github.com%2Fc23454742636600091b5bfbfe3187dc2.png&r=x","gravatar_id":"a17d579ae533fa7dbf3f3875de913e10","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-02-11T15:26:17Z","updated_at":"2014-02-11T15:26:17Z","body":"Hi.
+        Your friendly Curry bot here. Just letting you know that there are committers
+        on this Pull Request who appear to not have signed a Chef CLA.\n\nThe following
+        GitHub users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please
+        sign the CLA here.](https://community.getchef.com)"}'
+    http_version:
+  recorded_at: Tue, 11 Feb 2014 15:26:20 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/cramerdev/paprika/issues/1/labels
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.0.0.pre
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 11 Feb 2014 15:26:18 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4944'
+      X-Ratelimit-Reset:
+      - '1392133369'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Last-Modified:
+      - Tue, 11 Feb 2014 15:26:17 GMT
+      Etag:
+      - '"a750cdd428035f397b53731c665886f0"'
+      X-Oauth-Scopes:
+      - user, public_repo, repo, gist
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '2'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - '*'
+      X-Github-Request-Id:
+      - 6153E20C:2478:2E37CC:52FA4119
+    body:
+      encoding: UTF-8
+      string: '[]'
+    http_version:
+  recorded_at: Tue, 11 Feb 2014 15:26:21 GMT
+recorded_with: VCR 2.8.0

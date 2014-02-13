@@ -1,0 +1,41 @@
+<div class="page">
+  <div class="title">
+    <span class="fa fa-eye"></span>Watched Repositories
+  </div>
+
+  <table class="green">
+    <tr>
+      <th>Repository</th>
+      <th>Actions</th>
+    </tr>
+
+    <% @repositories.each do |repository| %>
+      <tr class="repository">
+        <td>
+          <%= "#{repository.owner}/#{repository.name}" %>
+        </td>
+        <td>
+          <%= link_to "Remove Repository", repository, method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= form_for(@repository) do |f| %>
+    <fieldset>
+      <div>
+        <%= f.label :owner, "GitHub Repository Owner" %>
+        <%= f.text_field :owner %><br/>
+      </div>
+
+      <div>
+        <%= f.label :name, "GitHub Repository Name" %>
+        <%= f.text_field :name %><br/>
+      </div>
+
+      <div>
+        <%= f.submit "Add Repository", class: 'button primary' %>
+      </div>
+    </fieldset>
+  <% end %>
+</div>

@@ -23,6 +23,7 @@ application_directory = '/var/www/supermarket'
 
 deploy_revision "#{application_directory}" do
   repo 'https://github.com/opscode/supermarket.git'
+  revision "master"
   migrate true
   migration_command 'bundle exec rake db:migrate'
   environment 'RAILS_ENV' => 'production'
@@ -30,15 +31,6 @@ deploy_revision "#{application_directory}" do
   symlink_before_migrate '.env' => '.env'
 
   before_migrate do
-    template "#{application_directory}/shared/.env"
-
-    execute 'bundle install' do
-      cwd release_path
-      command 'bundle install --without test development'
-    end
-  end
-
-  before_restart do
     %w{pids log system public}.each do |dir|
       directory "#{application_directory}/shared/#{dir}" do
         mode 0777
@@ -46,6 +38,23 @@ deploy_revision "#{application_directory}" do
       end
     end
 
+    sidekiq_pid = "#{application_directory}/shared/pids/sidekiq.pid"
+
+    template "#{application_directory}/shared/.env"
+
+    execute 'bundle install' do
+      cwd release_path
+      command 'bundle install --without test development'
+    end
+
+    execute 'quiet sidekiq' do
+      cwd release_path
+      command "bundle exec sidekiqctl quiet #{sidekiq_pid}"
+      only_if "test -f #{sidekiq_pid}"
+    end
+  end
+
+  before_restart do
     execute 'asset:precompile' do
       cwd release_path
       command 'export RAILS_ENV=production && bundle exec rake assets:precompile'
@@ -54,6 +63,8 @@ deploy_revision "#{application_directory}" do
 
   restart do
     unicorn_pid = "#{release_path}/tmp/pids/unicorn.pid"
+    sidekiq_pid = "#{release_path}/tmp/pids/sidekiq.pid"
+    log_dir = "#{application_directory}/shared/log"
 
     execute 'restart unicorn' do
       command "kill -HUP `cat #{unicorn_pid}`"
@@ -64,6 +75,18 @@ deploy_revision "#{application_directory}" do
       cwd release_path
       command 'export RAILS_ENV=production && bundle exec unicorn -c config/unicorn/production.rb -D'
       not_if { File.exist?(unicorn_pid) }
+    end
+
+    execute 'stop sidekiq' do
+      cwd release_path
+      command "bundle exec sidekiqctl stop #{sidekiq_pid} 60"
+      only_if "test -f #{sidekiq_pid}"
+    end
+
+    execute 'start sidekiq' do
+      cwd release_path
+      command "bundle exec sidekiq -d -P #{sidekiq_pid} -C /etc/sidekiq/sidekiq.yml -e production -t 30 -L #{log_dir}/sidekiq.log"
+      not_if "test -f #{sidekiq_pid}"
     end
   end
 end
