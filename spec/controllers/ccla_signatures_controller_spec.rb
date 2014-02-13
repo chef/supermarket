@@ -76,18 +76,18 @@ describe CclaSignaturesController do
     end
   end
 
-  describe 'POST #create' do
+  describe 'post #create' do
     let(:user) { create(:user) }
     let(:payload) { attributes_for(:ccla_signature, user_id: user.id) }
     before { sign_in user }
 
-    context 'when the user has no linked GitHub accounts' do
+    context 'when the user has no linked github accounts' do
       before do
         user.accounts.clear
 
         post :create, ccla_signature: {
-          first_name: 'My',
-          last_name: 'Doge'
+          first_name: 'my',
+          last_name: 'doge'
         }
       end
 
@@ -95,18 +95,18 @@ describe CclaSignaturesController do
         expect(response).to redirect_to(user)
       end
 
-      it 'prompts the user to link their GitHub account' do
+      it 'prompts the user to link their github account' do
         expect(flash[:notice]).
           to eql(I18n.t('ccla_signature.requires_linked_github'))
       end
 
-      it 'stores the previous URL before directed to link GitHub' do
+      it 'stores the previous url before directed to link github' do
         expect(controller.stored_location_for(user)).
           to eql(ccla_signatures_path)
       end
     end
 
-    context 'when the user has a linked GitHub account' do
+    context 'when the user has a linked github account' do
       before do
         user.accounts << create(:account, provider: 'github')
       end
@@ -129,7 +129,7 @@ describe CclaSignaturesController do
         }.to change(user.organizations, :count).by(1)
       end
 
-      it 'sends a notification that the CCLA has been signed' do
+      it 'sends a notification that the ccla has been signed' do
         expect {
           post :create, ccla_signature: payload
         }.to change(ActionMailer::Base.deliveries, :count).by(1)
@@ -137,71 +137,52 @@ describe CclaSignaturesController do
     end
   end
 
-  describe 'PATCH #update' do
+  describe 'post #re_sign' do
     let(:user) { create(:user) }
-    let(:ccla_signature) { create(:ccla_signature, email: 'jim@example.com', company: 'Chef') }
-    before { sign_in(user) }
+    let(:organization) { create(:organization) }
+    let(:payload) { attributes_for(:ccla_signature, user_id: user.id, organization_id: organization.id) }
+    before { sign_in user }
 
-    context 'when the user has no linked GitHub accounts' do
+    context 'when the user has no linked github accounts' do
       before do
         user.accounts.clear
 
-        patch :update, id: ccla_signature.id,
-          ccla_signature: { company: 'Cramer Development', email: 'jack@example.com' }
+        post :re_sign, ccla_signature: {
+          first_name: 'my',
+          last_name: 'doge'
+        }
       end
 
       it 'redirects the user to their profile' do
         expect(response).to redirect_to(user)
       end
 
-      it 'prompts the user to link their GitHub account' do
+      it 'prompts the user to link their github account' do
         expect(flash[:notice]).
           to eql(I18n.t('ccla_signature.requires_linked_github'))
       end
 
-      it 'stores the previous URL before directed to link GitHub' do
+      it 'stores the previous url before directed to link github' do
         expect(controller.stored_location_for(user)).
-          to eql(ccla_signature_path(ccla_signature))
+          to eql(re_sign_ccla_signatures_path)
       end
     end
 
-    context 'when the user has a linked GitHub account' do
+    context 'when the user has a linked github account' do
       before do
         user.accounts << create(:account, provider: 'github')
       end
 
-      context 'user is authorized to update CCLA Signature' do
-        before do
-          auto_authorize!(CclaSignature, 'update')
-
-          patch :update, id: ccla_signature.id,
-            ccla_signature: { email: 'jack@example.com', company: 'Cramer Development' }
-
-          ccla_signature.reload
-       end
-
-        it 'updates a CCLA Signature' do
-          expect(ccla_signature.email).to eql('jack@example.com')
-        end
-
-        it 'updates a related Organization' do
-          expect(ccla_signature.organization.name).to eql('Cramer Development')
-        end
+      it 'creates a ccla signature for the current user' do
+        expect {
+          post :re_sign, ccla_signature: payload
+        }.to change(user.ccla_signatures, :count).by(1)
       end
 
-      context 'user is not authorized to update CCLA Signature' do
-        before do
-          patch :update, id: ccla_signature.id,
-            ccla_signature: { email: 'jack@example.com' }
-
-          ccla_signature.reload
-        end
-
-        it 'does not update a CCLA Signature' do
-          expect(ccla_signature.email).to eql('jim@example.com')
-        end
-
-        it { should respond_with(404) }
+      it 'maintains the original signing organization' do
+        expect {
+          post :re_sign, ccla_signature: payload
+        }.to change(organization.ccla_signatures, :count).by(1)
       end
     end
   end

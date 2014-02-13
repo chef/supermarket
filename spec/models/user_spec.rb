@@ -11,14 +11,6 @@ describe User do
     it { should validate_presence_of(:last_name) }
   end
 
-  context 'callbacks' do
-    it 'normalizes the phone number' do
-      user = build(:user, phone: '(888) 888-8888')
-      user.valid? # force running validations to invoke the callback
-      expect(user.phone).to eq('8888888888')
-    end
-  end
-
   describe '#signed_icla?' do
     it 'is true when there is an icla signature' do
       user = build(:user, icla_signatures: [build(:icla_signature)])
@@ -28,6 +20,26 @@ describe User do
     it 'is false when there is not an icla signature' do
       user = build(:user, icla_signatures: [])
       expect(user.signed_icla?).to be_false
+    end
+  end
+
+  describe '#latest_icla' do
+    it 'returns the latest ICLA signature' do
+      one_year_ago = create(:icla_signature, signed_at: 1.year.ago)
+      one_month_ago = create(:icla_signature, signed_at: 1.month.ago)
+
+      user = create(:user, icla_signatures: [one_year_ago, one_month_ago])
+      expect(user.latest_icla).to eql(one_month_ago)
+    end
+  end
+
+  describe '#latest_ccla' do
+    it 'returns the latest CCLA signature' do
+      one_year_ago = create(:ccla_signature, signed_at: 1.year.ago)
+      one_month_ago = create(:ccla_signature, signed_at: 1.month.ago)
+
+      user = create(:user, ccla_signatures: [one_year_ago, one_month_ago])
+      expect(user.latest_ccla).to eql(one_month_ago)
     end
   end
 

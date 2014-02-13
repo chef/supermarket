@@ -24,7 +24,7 @@ class IclaSignature < ActiveRecord::Base
 
   # Scopes
   # --------------------
-  scope :by_user, ->{ includes(:user).order('users.last_name, users.first_name') }
+  scope :by_user, ->{ select('DISTINCT ON (user_id) *') }
 
   # Callbacks
   # --------------------

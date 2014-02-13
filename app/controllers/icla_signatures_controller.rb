@@ -1,8 +1,7 @@
 class IclaSignaturesController < ApplicationController
   before_filter :redirect_if_signed!, only: [:new, :create]
   before_filter :authenticate_user!, except: [:index]
-  before_filter :require_linked_github_account!, only: [:new, :create, :update]
-  before_filter :find_and_authorize_icla_signature!, only: [:show, :update]
+  before_filter :require_linked_github_account!, only: [:new, :create, :re_sign]
 
   #
   # GET /icla-signatures
@@ -20,6 +19,8 @@ class IclaSignaturesController < ApplicationController
   # Show a single ICLA signature.
   #
   def show
+    @icla_signature = IclaSignature.find(params[:id])
+    authorize! @icla_signature
   end
 
   #
@@ -34,14 +35,10 @@ class IclaSignaturesController < ApplicationController
     @icla_signature.icla = Icla.latest
 
     # Prepopulate any fields we can from the User object
-    @icla_signature.prefix      = current_user.prefix
-    @icla_signature.first_name  = current_user.first_name
-    @icla_signature.middle_name = current_user.middle_name
-    @icla_signature.last_name   = current_user.last_name
-    @icla_signature.suffix      = current_user.suffix
-    @icla_signature.email       = current_user.email
-    @icla_signature.phone       = current_user.phone
-    @icla_signature.company     = current_user.company
+    @icla_signature.first_name = current_user.first_name
+    @icla_signature.last_name = current_user.last_name
+    @icla_signature.email = current_user.email
+    @icla_signature.company = current_user.company
   end
 
   #
@@ -64,13 +61,17 @@ class IclaSignaturesController < ApplicationController
   end
 
   #
-  # PATCH /icla-signatures/:id
+  # POST /icla-signatures/re-sign
   #
-  # Updates a ICLA signature.
+  # Creates a new ICLA signature based on a previously signed signature.
+  # Effectivly resigning the ICLA. Useful if ICLA contact information
+  # needs to be updated.
   #
-  def update
-    if @icla_signature.update_attributes(icla_signature_params)
-      redirect_to @icla_signature, notice: "Successfully updated your ICLA."
+  def re_sign
+    @icla_signature = IclaSignature.new(icla_signature_params)
+
+    if @icla_signature.save
+      redirect_to @icla_signature, notice: 'Successfully re-signed ICLA.'
     else
       render 'show'
     end
@@ -121,10 +122,5 @@ class IclaSignaturesController < ApplicationController
       redirect_to current_user,
         notice: t('icla_signature.requires_linked_github')
     end
-  end
-
-  def find_and_authorize_icla_signature!
-    @icla_signature = IclaSignature.find(params[:id])
-    authorize! @icla_signature
   end
 end

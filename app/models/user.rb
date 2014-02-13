@@ -19,10 +19,6 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name
   validates_presence_of :last_name
 
-  # Callbacks
-  # --------------------
-  before_validation :normalize_phone
-
   #
   # Determine if the current user signed the Individual Contributor License
   # Agreement.
@@ -34,6 +30,26 @@ class User < ActiveRecord::Base
   #
   def signed_icla?
     !icla_signatures.empty?
+  end
+
+  #
+  # Retrieve the current users latest ICLA signature if they have signed a
+  # ICLA.
+  #
+  # @return [IclaSignature]
+  #
+  def latest_icla
+    icla_signatures.order(:signed_at).last
+  end
+
+  #
+  # Retrieve the current users latest CCLA signature if they have signed a
+  # CCLA.
+  #
+  # @return [IclaSignature]
+  #
+  def latest_ccla
+    ccla_signatures.order(:signed_at).last
   end
 
   #
@@ -102,14 +118,5 @@ class User < ActiveRecord::Base
   #
   def linked_github_account?
     accounts.for('github').any?
-  end
-
-  private
-
-  #
-  # Callback: strip anything that is not a digit from the phone number.
-  #
-  def normalize_phone
-    phone.gsub!(/[^0-9]/, '') if phone
   end
 end

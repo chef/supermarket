@@ -5,21 +5,13 @@
 
   <div class="content">
     <div class="signature">
-      <% if policy(@ccla_signature).update? %>
-        <%= render 'form', submit_text: 'Update CCLA' %>
-      <% else %>
-        <p>
-          <strong>Number</strong>
-          <%= @ccla_signature.id %>
-        </p>
-        <p>
-          <strong>Name</strong>
-          <%= @ccla_signature.name %>
-        </p>
-        <p>
-          <strong>Company</strong>
-          <%= @ccla_signature.company %>
-        </p>
+      <%= form_for(@ccla_signature.dup, url: { action: :re_sign }) do |f| %>
+        <%= render 'application/form_errors', record: @ccla_signature %>
+        <%= render 'fields', f: f %>
+
+        <section>
+          <%= f.submit 'Re-Sign CCLA', class: 'button secondary' %>
+        </section>
       <% end %>
     </div>
 

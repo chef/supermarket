@@ -55,13 +55,9 @@ describe IclaSignaturesController do
 
       it 'assigns @icla_signature' do
         icla_signature = assigns(:icla_signature)
-        expect(icla_signature.prefix).to eq(admin.prefix)
         expect(icla_signature.first_name).to eq(admin.first_name)
-        expect(icla_signature.middle_name).to eq(admin.middle_name)
         expect(icla_signature.last_name).to eq(admin.last_name)
-        expect(icla_signature.suffix).to eq(admin.suffix)
         expect(icla_signature.email).to eq(admin.email)
-        expect(icla_signature.phone).to eq(admin.phone)
         expect(icla_signature.company).to eq(admin.company)
       end
     end
@@ -153,21 +149,16 @@ describe IclaSignaturesController do
     end
   end
 
-  describe 'PATCH #update' do
-    let(:user) { create(:user) }
-    let(:icla_signature) { create(:icla_signature, email: 'jim@example.com') }
-    before { sign_in(user) }
-
+  describe 'POST #re_sign' do
     context 'when the user has no linked GitHub accounts' do
       before do
-        user.accounts.clear
+        admin.accounts.clear
 
-        patch :update, id: icla_signature.id,
-          icla_signature: { email: 'jack@example.com' }
+        post :re_sign, icla_signature: { first_name: 'T', last_name: 'Rex' }
       end
 
       it 'redirects the user to their profile' do
-        expect(response).to redirect_to(user)
+        expect(response).to redirect_to(admin)
       end
 
       it 'prompts the user to link their GitHub account' do
@@ -176,44 +167,42 @@ describe IclaSignaturesController do
       end
 
       it 'stores the previous URL before directed to link GitHub' do
-        expect(controller.stored_location_for(user)).
-          to eql(icla_signature_path(icla_signature))
+        expect(controller.stored_location_for(admin)).
+          to eql(re_sign_icla_signatures_path)
       end
     end
 
     context 'when the user has a linked GitHub account' do
       before do
-        user.accounts << create(:account, provider: 'github')
+        admin.accounts << create(:account, provider: 'github')
       end
 
-      context 'user is authorized to update ICLA Signature' do
-        before do
-          auto_authorize!(IclaSignature, 'update')
+      context 'with valid attributes' do
+        let(:payload) { attributes_for(:icla_signature, user_id: admin.id) }
 
-          patch :update, id: icla_signature.id,
-            icla_signature: { email: 'jack@example.com' }
+        it 'creates a new ICLA signature' do
+          expect {
+            post :re_sign, icla_signature: payload
+          }.to change(IclaSignature, :count).by(1)
+        end
 
-          icla_signature.reload
-       end
-
-        it 'updates a ICLA Signature' do
-          expect(icla_signature.email).to eql('jack@example.com')
+        it 'redirects to the icla signature' do
+          post :re_sign, icla_signature: payload
+          expect(response).to redirect_to(IclaSignature.last)
         end
       end
 
-      context 'user is not authorized to update ICLA Signature' do
-        before do
-          patch :update, id: icla_signature.id,
-            icla_signature: { email: 'jack@example.com' }
-
-          icla_signature.reload
+      context 'with invalid attributes' do
+        it 'does not save the ICLA signature' do
+          expect {
+            post :re_sign, icla_signature: { prefix: 'Ms.' }
+          }.to_not change(IclaSignature, :count)
         end
 
-        it 'does not update a ICLA Signature' do
-          expect(icla_signature.email).to eql('jim@example.com')
+        it 'renders the #show action' do
+          post :re_sign, icla_signature: { prefix: 'Ms.' }
+          expect(response).to render_template('show')
         end
-
-        it { should respond_with(404) }
       end
     end
   end
