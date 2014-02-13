@@ -38,9 +38,7 @@ execute 'dotenv[setup]' do
 end
 
 execute 'bundle[install]' do
-  user "vagrant"
-  environment 'HOME' => '/home/vagrant'
   cwd '/supermarket'
-  command 'bundle install'
+  command 'bundle install --path vendor'
   not_if '(cd /supermarket && bundle check)'
 end

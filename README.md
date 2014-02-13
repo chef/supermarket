@@ -200,6 +200,21 @@ plugin:
 vagrant plugin install vagrant-vbguest
 ```
 
+### Switching from Vagrant to Local Environment Development
+
+If you want to switch from Vagrant to your developing locally, you have two
+options:
+
+When Vagrant runs `bundle install` it installs the gems into `vendor/ruby/gems`.
+This is because of the Bundler config in `.bundle/config`.
+
+1. If you want to continue to install gems in `vendor/ruby/gems`, delete that
+   directory and run `bundle install`. This will rebuild the gems with native
+   dependencies on your local machine instead of the Vagrant VM.
+1. If you want to install your gems system wide, delete the `.bundle`
+   directory.
+
+
 ## Local Environment (Advanced)
 
 1. Install Ruby 2.0 (latest patch) using your favorite Ruby manager
