@@ -44,6 +44,8 @@ class CclaSignaturesController < ApplicationController
         ClaSignatureMailer.deliver_notification(@ccla_signature)
       end
 
+      Curry::PullRequestAppraiserWorker.perform_async(current_user.id)
+
       redirect_to @ccla_signature, notice: 'Successfully signed CCLA.'
     else
       render 'new'

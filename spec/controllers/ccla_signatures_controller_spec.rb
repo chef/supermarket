@@ -109,6 +109,8 @@ describe CclaSignaturesController do
     context 'when the user has a linked github account' do
       before do
         user.accounts << create(:account, provider: 'github')
+
+        allow(Curry::PullRequestAppraiserWorker).to receive(:perform_async)
       end
 
       it 'creates a ccla signature for the current user' do
@@ -133,6 +135,14 @@ describe CclaSignaturesController do
         expect {
           post :create, ccla_signature: payload
         }.to change(ActionMailer::Base.deliveries, :count).by(1)
+      end
+
+      it "appraises that user's pull requests" do
+        expect(Curry::PullRequestAppraiserWorker).
+          to receive(:perform_async).
+          with(user.id)
+
+        post :create, ccla_signature: payload
       end
     end
   end
