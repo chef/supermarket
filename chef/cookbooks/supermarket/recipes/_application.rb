@@ -55,8 +55,8 @@ deploy_revision "#{application_directory}" do
   restart do
     unicorn_pid = "#{release_path}/tmp/pids/unicorn.pid"
 
-    execute 'restart unicorn' do
-      command "kill -HUP `cat #{unicorn_pid}`"
+    execute 'stop unicorn' do
+      command "kill `cat #{unicorn_pid}`"
       only_if { File.exist?(unicorn_pid) }
     end
 
