@@ -9,4 +9,14 @@ class Curry::CommitAuthor < ActiveRecord::Base
   scope :with_email, ->(email) { where(email: email) }
   scope :with_login, ->(login) { where(login: login) }
 
+  #
+  # Update the commit author's signed_cla? flag to true
+  #
+  # @returns [Boolean]
+  #
+  def sign_cla!
+    self.signed_cla = true
+    save!
+  end
+
 end

@@ -20,6 +20,28 @@ class User < ActiveRecord::Base
   validates_presence_of :last_name
 
   #
+  # The commit author identities who have signed a CLA
+  #
+  # @return [Array<Curry::CommitAuthor>]
+  #
+  def verified_commit_author_identities
+    accounts.for(:github).map do |account|
+      Curry::CommitAuthor.with_login(account.username).where(signed_cla: true)
+    end.flatten
+  end
+
+  #
+  # The commit author identities who have not signed a CLA
+  #
+  # @return [Array<Curry::CommitAuthor>]
+  #
+  def unverified_commit_author_identities
+    accounts.for(:github).map do |account|
+      Curry::CommitAuthor.with_login(account.username).where(signed_cla: false)
+    end.flatten
+  end
+
+  #
   # Determine if the current user signed the Individual Contributor License
   # Agreement.
   #

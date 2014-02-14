@@ -112,7 +112,7 @@ describe IclaSignaturesController do
       before do
         admin.accounts << create(:account, provider: 'github')
 
-        allow(Curry::PullRequestAppraiserWorker).to receive(:perform_async)
+        allow(Curry::CommitAuthorVerificationWorker).to receive(:perform_async)
       end
 
       context 'with valid attributes' do
@@ -135,8 +135,8 @@ describe IclaSignaturesController do
           expect(response).to redirect_to(IclaSignature.last)
         end
 
-        it "appraises the user's pull requests" do
-          expect(Curry::PullRequestAppraiserWorker).
+        it "changes the user's commit author records to have signed a CLA" do
+          expect(Curry::CommitAuthorVerificationWorker).
             to receive(:perform_async).
             with(admin.id)
 

@@ -110,7 +110,7 @@ describe CclaSignaturesController do
       before do
         user.accounts << create(:account, provider: 'github')
 
-        allow(Curry::PullRequestAppraiserWorker).to receive(:perform_async)
+        allow(Curry::CommitAuthorVerificationWorker).to receive(:perform_async)
       end
 
       it 'creates a ccla signature for the current user' do
@@ -137,8 +137,8 @@ describe CclaSignaturesController do
         }.to change(ActionMailer::Base.deliveries, :count).by(1)
       end
 
-      it "appraises that user's pull requests" do
-        expect(Curry::PullRequestAppraiserWorker).
+      it "changes the user's commit author records to have signed a CLA" do
+        expect(Curry::CommitAuthorVerificationWorker).
           to receive(:perform_async).
           with(user.id)
 

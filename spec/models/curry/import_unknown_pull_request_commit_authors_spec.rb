@@ -16,7 +16,7 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
 
     expect do
       importer.import
-    end.to change(pull_request.reload.commit_authors, :count).by(2)
+    end.to change(pull_request.reload.unknown_commit_authors, :count).by(2)
   end
 
   it 'does not duplicate existing unknown commit authors' do
@@ -26,7 +26,26 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
 
     expect do
       2.times { importer.import }
-    end.to change(pull_request.reload.commit_authors, :count).by(2)
+    end.to change(pull_request.reload.unknown_commit_authors, :count).by(2)
+  end
+
+  it 'does not import known commit authors' do
+    repository = create(:repository, owner: 'cramerdev', name: 'paprika')
+    pull_request = create(:pull_request, repository: repository)
+    importer = Curry::ImportUnknownPullRequestCommitAuthors.new(pull_request)
+
+    user = create(:user)
+    account = create(
+      :account,
+      user: user,
+      username: 'brettchalupa',
+      provider: 'github'
+    )
+    signature = create(:icla_signature, user: user)
+
+    expect do
+      importer.import
+    end.to change(pull_request.reload.commit_authors, :count).by(1)
   end
 
 end
