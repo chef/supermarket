@@ -66,8 +66,8 @@ deploy_revision "#{application_directory}" do
     sidekiq_pid = "#{release_path}/tmp/pids/sidekiq.pid"
     log_dir = "#{application_directory}/shared/log"
 
-    execute 'restart unicorn' do
-      command "kill -HUP `cat #{unicorn_pid}`"
+    execute 'stop unicorn' do
+      command "kill `cat #{unicorn_pid}`"
       only_if { File.exist?(unicorn_pid) }
     end
 
