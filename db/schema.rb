@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207221439) do
+ActiveRecord::Schema.define(version: 20140214190948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,19 @@ ActiveRecord::Schema.define(version: 20140207221439) do
   add_index "contributors", ["organization_id"], name: "index_contributors_on_organization_id", using: :btree
   add_index "contributors", ["user_id"], name: "index_contributors_on_user_id", using: :btree
 
+  create_table "curry_commit_authors", force: true do |t|
+    t.string   "login"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "signed_cla", default: false, null: false
+  end
+
+  create_table "curry_pull_request_commit_authors", force: true do |t|
+    t.integer "pull_request_id",  null: false
+    t.integer "commit_author_id", null: false
+  end
+
   create_table "curry_pull_request_updates", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -94,18 +107,6 @@ ActiveRecord::Schema.define(version: 20140207221439) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "callback_url"
-  end
-
-  create_table "curry_unknown_committers", force: true do |t|
-    t.string   "login"
-    t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "curry_unknown_pull_request_committers", force: true do |t|
-    t.integer "pull_request_id",      null: false
-    t.integer "unknown_committer_id", null: false
   end
 
   create_table "icla_signatures", force: true do |t|

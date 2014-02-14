@@ -7,10 +7,10 @@ describe Curry::PullRequestAppraiserWorker do
     it 'validates each pull request associated with the given user' do
       repository = create(:repository)
       pull_request = create(:pull_request, repository: repository)
-      unknown_committer = create(:unknown_committer, login: 'renandstimpy')
-      Curry::UnknownPullRequestCommitter.create(
+      unknown_commit_author = create(:commit_author, login: 'renandstimpy')
+      Curry::PullRequestCommitAuthor.create(
         pull_request: pull_request,
-        unknown_committer: unknown_committer
+        commit_author: unknown_commit_author
       )
 
       user = create(:user)
@@ -27,16 +27,16 @@ describe Curry::PullRequestAppraiserWorker do
     it 'does not validate the same pull request twice' do
       repository = create(:repository)
       pull_request = create(:pull_request, repository: repository)
-      unknown_committer = create(:unknown_committer, login: 'joedoe_work')
-      Curry::UnknownPullRequestCommitter.create(
+      unknown_commit_author = create(:commit_author, login: 'joedoe_work')
+      Curry::PullRequestCommitAuthor.create(
         pull_request: pull_request,
-        unknown_committer: unknown_committer
+        commit_author: unknown_commit_author
       )
 
-      unknown_committer_two = create(:unknown_committer, login: 'joedoe')
-      Curry::UnknownPullRequestCommitter.create(
+      unknown_commit_author_two = create(:commit_author, login: 'joedoe')
+      Curry::PullRequestCommitAuthor.create(
         pull_request: pull_request,
-        unknown_committer: unknown_committer_two
+        commit_author: unknown_commit_author
       )
 
       user = create(:user)
@@ -46,7 +46,7 @@ describe Curry::PullRequestAppraiserWorker do
       expect(Curry::ClaValidationWorker).
         to receive(:perform_async).
         with(pull_request.id).
-        at_most(:once)
+        exactly(:once)
 
       worker = Curry::PullRequestAppraiserWorker.new
       worker.perform(user.id)

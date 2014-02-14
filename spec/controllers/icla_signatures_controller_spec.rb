@@ -135,7 +135,7 @@ describe IclaSignaturesController do
           expect(response).to redirect_to(IclaSignature.last)
         end
 
-        it "starts a background job that checks to see if there is an unknown committer for the user's github accounts" do
+        it "appraises the user's pull requests" do
           expect(Curry::PullRequestAppraiserWorker).
             to receive(:perform_async).
             with(admin.id)

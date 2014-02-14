@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Tue, 11 Feb 2014 15:26:19 GMT
+      - Fri, 14 Feb 2014 21:39:31 GMT
       Content-Type:
       - application/json; charset=utf-8
       Status:
@@ -31,15 +31,15 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4940'
+      - '4980'
       X-Ratelimit-Reset:
-      - '1392133369'
+      - '1392416831'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Last-Modified:
-      - Tue, 11 Feb 2014 15:26:19 GMT
+      - Fri, 14 Feb 2014 21:39:30 GMT
       Etag:
-      - '"f556ec276efb8a5b21e1f8ee34ea5398"'
+      - '"dc6c1e419cfcd5471382b484eb7bf8fa"'
       X-Oauth-Scopes:
       - user, public_repo, repo, gist
       X-Accepted-Oauth-Scopes:
@@ -61,24 +61,24 @@ http_interactions:
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 6153E20C:2477:2EA507:52FA411B
+      - 6153E20C:149A:7CA89CE:52FE8D13
     body:
       encoding: UTF-8
       string: '[]'
     http_version:
-  recorded_at: Tue, 11 Feb 2014 15:26:22 GMT
+  recorded_at: Fri, 14 Feb 2014 21:39:30 GMT
 - request:
     method: post
     uri: https://api.github.com/repos/cramerdev/paprika/issues/1/comments
     body:
       encoding: UTF-8
       string: '{"body":"Hi. Your friendly Curry bot here. Just letting you know that
-        there are committers on this Pull Request who appear to not have signed a
-        Chef CLA.\n\nThere are 1 committer(s) whose commits are authored by a non
-        GitHub-verified email address in this Pull Request. Chef will have to verify
-        by hand that they have signed a Chef CLA.\n\nThe following GitHub users do
-        not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA
-        here.](https://community.getchef.com)"}'
+        there are commit authors in this Pull Request who appear to not have signed
+        a Chef CLA.\n\nThere are 1 commit author(s) whose commits are authored by
+        a non GitHub-verified email address in this Pull Request. Chef will have to
+        verify by hand that they have signed a Chef CLA.\n\nThe following GitHub users
+        do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the
+        CLA here.](https://community.getchef.com)"}'
     headers:
       Accept:
       - application/vnd.github.v3+json
@@ -96,7 +96,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Tue, 11 Feb 2014 15:26:19 GMT
+      - Fri, 14 Feb 2014 21:39:32 GMT
       Content-Type:
       - application/json; charset=utf-8
       Status:
@@ -104,19 +104,19 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4939'
+      - '4979'
       X-Ratelimit-Reset:
-      - '1392133369'
+      - '1392416831'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"a8f26a7a81d692f4be1b0c5ebe24e8dd"'
+      - '"103be51b32ebf3ec8339ffb3421f50d9"'
       X-Oauth-Scopes:
       - user, public_repo, repo, gist
       X-Accepted-Oauth-Scopes:
       - repo
       Location:
-      - https://api.github.com/repos/cramerdev/paprika/issues/comments/34764608
+      - https://api.github.com/repos/cramerdev/paprika/issues/comments/35127401
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       X-Github-Media-Type:
@@ -124,7 +124,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Content-Length:
-      - '1823'
+      - '1822'
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Expose-Headers:
@@ -133,18 +133,18 @@ http_interactions:
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 6153E20C:2471:282B53:52FA411B
+      - 6153E20C:149B:475B3B9:52FE8D13
     body:
       encoding: UTF-8
-      string: '{"url":"https://api.github.com/repos/cramerdev/paprika/issues/comments/34764608","html_url":"https://github.com/cramerdev/paprika/pull/1#issuecomment-34764608","issue_url":"https://api.github.com/repos/cramerdev/paprika/issues/1","id":34764608,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://gravatar.com/avatar/a17d579ae533fa7dbf3f3875de913e10?d=https%3A%2F%2Fidenticons.github.com%2Fc23454742636600091b5bfbfe3187dc2.png&r=x","gravatar_id":"a17d579ae533fa7dbf3f3875de913e10","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-02-11T15:26:19Z","updated_at":"2014-02-11T15:26:19Z","body":"Hi.
-        Your friendly Curry bot here. Just letting you know that there are committers
-        on this Pull Request who appear to not have signed a Chef CLA.\n\nThere are
-        1 committer(s) whose commits are authored by a non GitHub-verified email address
-        in this Pull Request. Chef will have to verify by hand that they have signed
-        a Chef CLA.\n\nThe following GitHub users do not appear to have signed a CLA:\n\n*
-        @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}'
+      string: '{"url":"https://api.github.com/repos/cramerdev/paprika/issues/comments/35127401","html_url":"https://github.com/cramerdev/paprika/pull/1#issuecomment-35127401","issue_url":"https://api.github.com/repos/cramerdev/paprika/issues/1","id":35127401,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://gravatar.com/avatar/a17d579ae533fa7dbf3f3875de913e10?d=https%3A%2F%2Fidenticons.github.com%2Fc23454742636600091b5bfbfe3187dc2.png&r=x","gravatar_id":"a17d579ae533fa7dbf3f3875de913e10","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-02-14T21:39:32Z","updated_at":"2014-02-14T21:39:32Z","body":"Hi.
+        Your friendly Curry bot here. Just letting you know that there are commit
+        authors in this Pull Request who appear to not have signed a Chef CLA.\n\nThere
+        are 1 commit author(s) whose commits are authored by a non GitHub-verified
+        email address in this Pull Request. Chef will have to verify by hand that
+        they have signed a Chef CLA.\n\nThe following GitHub users do not appear to
+        have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}'
     http_version:
-  recorded_at: Tue, 11 Feb 2014 15:26:23 GMT
+  recorded_at: Fri, 14 Feb 2014 21:39:31 GMT
 - request:
     method: get
     uri: https://api.github.com/repos/cramerdev/paprika/issues/1/comments
@@ -168,7 +168,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Tue, 11 Feb 2014 15:26:20 GMT
+      - Fri, 14 Feb 2014 21:39:32 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -178,13 +178,13 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4938'
+      - '4978'
       X-Ratelimit-Reset:
-      - '1392133369'
+      - '1392416831'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"8b1df88171e5b9fe9d9ffb9fc9382996"'
+      - '"f45c0d7f5218b52fc816f8be32bf1676"'
       X-Oauth-Scopes:
       - user, public_repo, repo, gist
       X-Accepted-Oauth-Scopes:
@@ -204,16 +204,16 @@ http_interactions:
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 6153E20C:2470:2E18C1:52FA411C
+      - 6153E20C:149A:7CA8C22:52FE8D14
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/issues/comments/34764608","html_url":"https://github.com/cramerdev/paprika/pull/1#issuecomment-34764608","issue_url":"https://api.github.com/repos/cramerdev/paprika/issues/1","id":34764608,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://gravatar.com/avatar/a17d579ae533fa7dbf3f3875de913e10?d=https%3A%2F%2Fidenticons.github.com%2Fc23454742636600091b5bfbfe3187dc2.png&r=x","gravatar_id":"a17d579ae533fa7dbf3f3875de913e10","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-02-11T15:26:19Z","updated_at":"2014-02-11T15:26:19Z","body":"Hi.
-        Your friendly Curry bot here. Just letting you know that there are committers
-        on this Pull Request who appear to not have signed a Chef CLA.\n\nThere are
-        1 committer(s) whose commits are authored by a non GitHub-verified email address
-        in this Pull Request. Chef will have to verify by hand that they have signed
-        a Chef CLA.\n\nThe following GitHub users do not appear to have signed a CLA:\n\n*
-        @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}]'
+      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/issues/comments/35127401","html_url":"https://github.com/cramerdev/paprika/pull/1#issuecomment-35127401","issue_url":"https://api.github.com/repos/cramerdev/paprika/issues/1","id":35127401,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://gravatar.com/avatar/a17d579ae533fa7dbf3f3875de913e10?d=https%3A%2F%2Fidenticons.github.com%2Fc23454742636600091b5bfbfe3187dc2.png&r=x","gravatar_id":"a17d579ae533fa7dbf3f3875de913e10","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-02-14T21:39:32Z","updated_at":"2014-02-14T21:39:32Z","body":"Hi.
+        Your friendly Curry bot here. Just letting you know that there are commit
+        authors in this Pull Request who appear to not have signed a Chef CLA.\n\nThere
+        are 1 commit author(s) whose commits are authored by a non GitHub-verified
+        email address in this Pull Request. Chef will have to verify by hand that
+        they have signed a Chef CLA.\n\nThe following GitHub users do not appear to
+        have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}]'
     http_version:
-  recorded_at: Tue, 11 Feb 2014 15:26:23 GMT
+  recorded_at: Fri, 14 Feb 2014 21:39:31 GMT
 recorded_with: VCR 2.8.0

@@ -1,17 +1,19 @@
 require 'octokit'
 
 #
-# +Curry::ImportUnknownPullRequestCommitters+ uses Octokit to go through a pull
-# request's committers to see if they have signed CLAs. If the committer has
-# not signed a Supermarket CLA, a record is created for that committer.
+# +Curry::ImportUnknownPullRequestCommitAuthors+ uses Octokit to go through a
+# pull request's commit authors to see if they have signed CLAs. If the commit
+# author has not signed a Supermarket CLA, a record is created for that commit
+# author.
 #
-class Curry::ImportUnknownPullRequestCommitters
+class Curry::ImportUnknownPullRequestCommitAuthors
 
   #
-  # Create a new instance of +Curry::ImportUnknownPullRequestCommitters+. This
-  # creates an instance of +Octokit::Client+ to interact with the GitHub API.
+  # Create a new instance of +Curry::ImportUnknownPullRequestCommitAuthors+.
+  # This creates an instance of +Octokit::Client+ to interact with the GitHub
+  # API.
   #
-  # @param [Curry::PullRequest] pull_request The pull request check the committers of.
+  # @param [Curry::PullRequest] pull_request The pull request check the commit authors of.
   #
   def initialize(pull_request)
     @pull_request = pull_request
@@ -23,23 +25,23 @@ class Curry::ImportUnknownPullRequestCommitters
   end
 
   #
-  # Loop through all of the committers with GitHub login or email address that
-  # have not signed a CLA. Create a record for them if one does not exist.
+  # Loop through all of the commit authors with GitHub login or email address
+  # that have not signed a CLA. Create a record for them if one does not exist.
   #
   def import
     unknown_emails.each do |email|
-      committer = Curry::UnknownCommitter.with_email(email).first_or_create!
+      commit_author = Curry::CommitAuthor.with_email(email).first_or_create!
 
-      @pull_request.unknown_pull_request_committers.where(
-        unknown_committer_id: committer.id
+      @pull_request.pull_request_commit_authors.where(
+        commit_author_id: commit_author.id
       ).first_or_create!
     end
 
     unknown_github_logins.each do |login|
-      committer = Curry::UnknownCommitter.with_login(login).first_or_create!
+      commit_author = Curry::CommitAuthor.with_login(login).first_or_create!
 
-      @pull_request.unknown_pull_request_committers.where(
-        unknown_committer_id: committer.id
+      @pull_request.pull_request_commit_authors.where(
+        commit_author_id: commit_author.id
       ).first_or_create!
     end
   end
