@@ -10,6 +10,8 @@ before_script:
   - bundle exec rake db:schema:load
 bundler_args: --without development
 script: bundle exec rspec && bundle exec rake spec:javascripts
+services:
+  - redis-server
 env:
   global:
-    secure: 3FQQOyNDbi98izCrHovUld+Laj+y7ENcMraVlpgge4q12PysndHWz5zU/VrSo/3ZInE3u36Mn2dH95nnM+kXa8rfpXtDh23YjinW4vkA1FTnnt/yppdksvY1K+K7QePIvGfmVU/Y7kq6C3k4R3kB99cN+luf5oVdby9kePFkQHc=
+    secure: "rzoy57s+oxvw27HStU1VNHN7fS525ocQo11bmASbwG5Ax6I4X/dwWofQCoZPoGrXisMw5RQaa7e3bHJpATZsMJC67Sf6gbfSOIYY7tISXuCFh9q/19YPGltdwZkP3OgawEpufA8zcMHzD5nvWNXq4c4TKRdtX6mHQVIAOJ9u6qY="
