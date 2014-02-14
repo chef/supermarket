@@ -37,4 +37,35 @@ describe CclaSignature do
       expect(ccla_signature.persisted?).to be_true
     end
   end
+
+  describe '.by_organization' do
+    context 'when multiple organizations have signed a CCLA' do
+      let(:organization_one) { create(:organization) }
+      let(:organization_two) { create(:organization) }
+      let!(:organization_one_signature) { create(:ccla_signature, organization: organization_one, signed_at: 1.year.ago) }
+      let!(:organization_two_signature) { create(:ccla_signature, organization: organization_two, signed_at: 1.day.ago) }
+
+      it 'should return the signatures' do
+        expect(CclaSignature.by_organization.count).to eql(2)
+      end
+
+      it 'should order the signatures ascending by signed at date' do
+        expect(CclaSignature.by_organization.first).to eql(organization_one_signature)
+      end
+    end
+
+    context 'when a organizaiton has re-signed a CCLA' do
+      let(:organization) { create(:organization) }
+      let!(:one_year_ago) { create(:ccla_signature, organization: organization, signed_at: 1.year.ago) }
+      let!(:one_day_ago) { create(:ccla_signature, organization: organization, signed_at: 1.day.ago) }
+
+      it 'should return the latest signature' do
+        expect(CclaSignature.by_organization).to include(one_day_ago)
+      end
+
+      it 'should not return older signatures' do
+        expect(CclaSignature.by_organization).to_not include(one_year_ago)
+      end
+    end
+  end
 end

@@ -1,6 +1,18 @@
 require 'spec_helper'
 
 describe CclaSignaturesController do
+  describe 'GET #index' do
+    let(:ccla_signature) { create(:ccla_signature) }
+    before { get :index }
+
+    it { should respond_with(200) }
+    it { should render_template('index') }
+
+    it 'assigns @ccla_signatures' do
+      expect(assigns(:ccla_signatures)).to include(ccla_signature)
+    end
+  end
+
   describe 'GET #show' do
     let(:ccla_signature) { create(:ccla_signature) }
     before { sign_in(create(:user)) }

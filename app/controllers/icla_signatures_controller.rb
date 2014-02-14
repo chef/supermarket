@@ -10,7 +10,6 @@ class IclaSignaturesController < ApplicationController
   #
   def index
     @icla_signatures = IclaSignature.by_user
-    authorize! @icla_signatures
   end
 
   #
