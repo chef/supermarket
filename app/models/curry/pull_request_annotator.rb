@@ -15,8 +15,6 @@ require 'octokit'
 #
 class Curry::PullRequestAnnotator
 
-  LABEL_TEXT = "All Commit Authors are CLA Signers"
-
   #
   # The initializer for a new instance of a Pull Request Annotator. Requires a
   # +Curry::PullRequest+, which is used to find the +Curry::Repository+
@@ -71,7 +69,7 @@ class Curry::PullRequestAnnotator
     @octokit.add_labels_to_an_issue(
       @repository.full_name,
       @pull_request.number,
-      [LABEL_TEXT]
+      [Supermarket::Config.curry.fetch('success_label')]
     )
   end
 
@@ -91,12 +89,12 @@ class Curry::PullRequestAnnotator
   # Removes the label indicating that all commit authors have signed a CLA
   #
   def remove_existing_label
-    if existing_labels.include?(LABEL_TEXT)
+    if existing_labels.include?(Supermarket::Config.curry.fetch('success_label'))
       begin
         @octokit.remove_label(
           @repository.full_name,
           @pull_request.number,
-          LABEL_TEXT
+          Supermarket::Config.curry.fetch('success_label')
         )
       rescue Octokit::NotFound
         # Label went missing in the meantime

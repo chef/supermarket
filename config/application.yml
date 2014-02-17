@@ -44,6 +44,8 @@ development:
     user_name: <%= ENV['SMTP_USER_NAME'] %>
     password: <%= ENV['SMTP_PASSWORD'] %>
   curry_cla_location: <%= ENV['CURRY_CLA_LOCATION'] || 'https://community.getchef.com' %>
+  curry:
+    success_label: 'Signed CLA'
 
 production:
   icla_version: '99999-2621/LEGAL14767024.1'
@@ -78,6 +80,8 @@ production:
     user_name: <%= ENV['SMTP_USER_NAME'] %>
     password: <%= ENV['SMTP_PASSWORD'] %>
   curry_cla_location: <%= ENV['CURRY_CLA_LOCATION'] || 'https://community.getchef.com' %>
+  curry:
+    success_label: 'Signed CLA'
 
 test:
   icla_version: '99999-2621/LEGAL14767024.1'
@@ -106,3 +110,5 @@ test:
       key: <%= ENV['TWITTER_KEY'] %>
       secret: <%= ENV['TWITTER_SECRET'] %>
   curry_cla_location: 'https://community.getchef.com'
+  curry:
+    success_label: 'Signed CLA'

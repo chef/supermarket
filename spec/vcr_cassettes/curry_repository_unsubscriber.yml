@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Tue, 11 Feb 2014 16:38:45 GMT
+      - Mon, 17 Feb 2014 21:18:58 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -33,13 +33,13 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4922'
+      - '4998'
       X-Ratelimit-Reset:
-      - '1392137000'
+      - '1392675537'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"674612fb93a6deb20a6c34b0061f87c5"'
+      - '"1689fdb5690c99b3b8cc4c024356c60b"'
       X-Oauth-Scopes:
       - user, public_repo, repo, gist
       X-Accepted-Oauth-Scopes:
@@ -59,12 +59,12 @@ http_interactions:
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 6153E20C:22DC:C985B:52FA5215
+      - 6153E20C:6E59:39142:53027CC2
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/hooks/1782454","test_url":"https://api.github.com/repos/cramerdev/paprika/hooks/1782454/test","id":1782454,"name":"tenxer","active":true,"events":["push"],"config":{"api_key":""},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-10T18:32:34Z","created_at":"2014-02-07T05:28:33Z"},{"url":"https://api.github.com/repos/cramerdev/paprika/hooks/1798712","test_url":"https://api.github.com/repos/cramerdev/paprika/hooks/1798712/test","id":1798712,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://currybowl.herokuapp.com/52f2934cec5edd0002000015","secret":"YOUR_PUBSUBHUBBUB_SECRET","content_type":"form"},"last_response":{"code":null,"status":"unused","message":null},"updated_at":"2014-02-11T16:38:44Z","created_at":"2014-02-11T16:38:44Z"}]'
+      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/hooks/1782454","test_url":"https://api.github.com/repos/cramerdev/paprika/hooks/1782454/test","id":1782454,"name":"tenxer","active":true,"events":["push"],"config":{"api_key":""},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T15:36:46Z","created_at":"2014-02-07T05:28:33Z"},{"url":"https://api.github.com/repos/cramerdev/paprika/hooks/1810176","test_url":"https://api.github.com/repos/cramerdev/paprika/hooks/1810176/test","id":1810176,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://supermarket-staging.getchef.com/curry/pull_request_updates","secret":"1da97fd0c9e60147ba5eaa0d53f2365e","content_type":"form"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T15:36:46Z","created_at":"2014-02-13T20:20:42Z"},{"url":"https://api.github.com/repos/cramerdev/paprika/hooks/1823255","test_url":"https://api.github.com/repos/cramerdev/paprika/hooks/1823255/test","id":1823255,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://currybowl.herokuapp.com/52f2934cec5edd0002000015","secret":"YOUR_PUBSUBHUBBUB_SECRET","content_type":"form"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T18:57:47Z","created_at":"2014-02-17T18:57:47Z"}]'
     http_version: 
-  recorded_at: Tue, 11 Feb 2014 16:38:47 GMT
+  recorded_at: Mon, 17 Feb 2014 21:18:58 GMT
 - request:
     method: get
     uri: https://api.github.com/repos/cramerdev/paprika/hooks
@@ -88,7 +88,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Tue, 11 Feb 2014 16:38:45 GMT
+      - Mon, 17 Feb 2014 21:18:59 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -98,13 +98,13 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4920'
+      - '4996'
       X-Ratelimit-Reset:
-      - '1392137000'
+      - '1392675537'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"d3916b73ecc8571621881c52a02b1616"'
+      - '"547271f6712b41865c48a14fde7aceca"'
       X-Oauth-Scopes:
       - user, public_repo, repo, gist
       X-Accepted-Oauth-Scopes:
@@ -124,12 +124,12 @@ http_interactions:
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 6153E20C:22D8:4E2732:52FA5215
+      - 6153E20C:6E59:39267:53027CC2
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/hooks/1782454","test_url":"https://api.github.com/repos/cramerdev/paprika/hooks/1782454/test","id":1782454,"name":"tenxer","active":true,"events":["push"],"config":{"api_key":""},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-10T18:32:34Z","created_at":"2014-02-07T05:28:33Z"}]'
+      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/hooks/1782454","test_url":"https://api.github.com/repos/cramerdev/paprika/hooks/1782454/test","id":1782454,"name":"tenxer","active":true,"events":["push"],"config":{"api_key":""},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T15:36:46Z","created_at":"2014-02-07T05:28:33Z"},{"url":"https://api.github.com/repos/cramerdev/paprika/hooks/1810176","test_url":"https://api.github.com/repos/cramerdev/paprika/hooks/1810176/test","id":1810176,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://supermarket-staging.getchef.com/curry/pull_request_updates","secret":"1da97fd0c9e60147ba5eaa0d53f2365e","content_type":"form"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T15:36:46Z","created_at":"2014-02-13T20:20:42Z"}]'
     http_version: 
-  recorded_at: Tue, 11 Feb 2014 16:38:48 GMT
+  recorded_at: Mon, 17 Feb 2014 21:18:59 GMT
 - request:
     method: post
     uri: https://api.github.com/hub
@@ -155,15 +155,15 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Tue, 11 Feb 2014 16:38:48 GMT
+      - Mon, 17 Feb 2014 21:19:02 GMT
       Status:
       - 204 No Content
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4915'
+      - '4991'
       X-Ratelimit-Reset:
-      - '1392137000'
+      - '1392675537'
       X-Oauth-Scopes:
       - user, public_repo, repo, gist
       X-Accepted-Oauth-Scopes:
@@ -173,14 +173,14 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       X-Github-Request-Id:
-      - 6153E20C:22D8:4E2BF4:52FA5218
+      - 6153E20C:6E55:13CAA:53027CC6
       Vary:
       - Accept-Encoding
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Tue, 11 Feb 2014 16:38:50 GMT
+  recorded_at: Mon, 17 Feb 2014 21:19:02 GMT
 - request:
     method: post
     uri: https://api.github.com/hub
@@ -206,15 +206,15 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Tue, 11 Feb 2014 16:38:48 GMT
+      - Mon, 17 Feb 2014 21:19:02 GMT
       Status:
       - 204 No Content
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4914'
+      - '4990'
       X-Ratelimit-Reset:
-      - '1392137000'
+      - '1392675537'
       X-Oauth-Scopes:
       - user, public_repo, repo, gist
       X-Accepted-Oauth-Scopes:
@@ -224,14 +224,14 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       X-Github-Request-Id:
-      - 6153E20C:22D7:4E6B8B:52FA5218
+      - 6153E20C:6E59:39730:53027CC6
       Vary:
       - Accept-Encoding
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Tue, 11 Feb 2014 16:38:51 GMT
+  recorded_at: Mon, 17 Feb 2014 21:19:02 GMT
 - request:
     method: post
     uri: https://api.github.com/hub
@@ -257,15 +257,15 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Tue, 11 Feb 2014 16:38:49 GMT
+      - Mon, 17 Feb 2014 21:19:03 GMT
       Status:
       - 204 No Content
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4913'
+      - '4989'
       X-Ratelimit-Reset:
-      - '1392137000'
+      - '1392675537'
       X-Oauth-Scopes:
       - user, public_repo, repo, gist
       X-Accepted-Oauth-Scopes:
@@ -275,12 +275,12 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       X-Github-Request-Id:
-      - 6153E20C:22D9:4E9D47:52FA5218
+      - 6153E20C:6E58:42861:53027CC6
       Vary:
       - Accept-Encoding
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Tue, 11 Feb 2014 16:38:51 GMT
+  recorded_at: Mon, 17 Feb 2014 21:19:03 GMT
 recorded_with: VCR 2.8.0
