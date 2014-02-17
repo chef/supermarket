@@ -59,7 +59,6 @@
 .searchform {
   float: right;
   height: rem-calc(69);
-  margin-right: rem-calc(87);
   position: relative;
 
   .fa {
@@ -81,7 +80,8 @@
   @include box-shadow(#141417 0 -1px 0, #333 0 1px 0);
   @include box-sizing(border-box);
   color: #7c858c;
-  margin-top: rem-calc(18);
+  height: rem-calc(32);
+  margin-top: rem-calc(20);
   padding: 0 rem-calc(20);
   width: rem-calc(310);
 }
@@ -120,8 +120,35 @@
 
 .usermenu {
   float: right;
+  height: rem-calc(69);
+  position: relative;
+  width: rem-calc(119);
+  z-index: 1;
+
+  .signin {
+    color: #7c858c;
+    display: block;
+    font: {
+      family: "Montserrat", $body-font-family;
+      size: rem-calc(12);
+      weight: 700;
+    }
+    line-height: rem-calc(69);
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover, &:active {
+      color: #949ea6;
+    }
+  }
+
+  &:hover {
+    .userdropdown { display: block; }
+  }
 
   .avatar {
+    float: right;
     height: rem-calc(32);
     margin-top: rem-calc(18);
     width: rem-calc(32);
@@ -131,6 +158,48 @@
       @include box-shadow(rgba(0,0,0,.6) 0 1px 0);
       height: auto;
       max-width: 100%;
+    }
+  }
+}
+
+.userdropdown {
+  background-color: white;
+  @include border-bottom-radius(rem-calc(5));
+  @include box-shadow(rgba(0,0,0,.2) 0 rem-calc(5) rem-calc(10));
+  display: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: rem-calc(6);
+  top: rem-calc(69);
+  width: rem-calc(150);
+  z-index: 1;
+
+  &:after {
+    bottom: 100%;
+    border: solid transparent;
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #ffffff;
+    border-width: rem-calc(10);
+    content: " ";
+    height: 0;
+    position: absolute;
+    pointer-events: none;
+    right: 0;
+    width: 0;
+  }
+
+  li {
+    border-bottom: 1px solid #ecedef;
+    list-style: none;
+
+    &:last-child { border: none; }
+
+    a {
+      display: block;
+      font-size: 12px;
+      padding: rem-calc(7 10);
+      text-decoration: none;
     }
   }
 }

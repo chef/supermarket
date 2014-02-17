@@ -2,11 +2,27 @@
   <h2 class="appheader">Supermarket</h2>
   <nav class="usermenu">
       <% if signed_in? %>
-        <% if current_user %>
         <div class="avatar">
-          <%= gravatar_for @current_user, size: 80 %>
+          <% if current_user %><%= gravatar_for @current_user, size: 80 %><% end %>
+          <ul class="userdropdown">
+              <% unless current_user.signed_icla? %>
+                <li><%= link_to 'Sign ICLA', new_icla_signature_path %></li>
+              <% end %>
+
+              <li><%= link_to 'Sign CCLA', new_ccla_signature_path %></li>
+              <li><%= link_to 'View Profile', current_user %></li>
+
+              <% if current_user && current_user.is?(:admin) %>
+                <li>
+                  <%= link_to "Watched Repositories", curry_repositories_url, class: 'admin repositories' %>
+                </li>
+              <% end %>
+
+              <li><%= link_to 'Sign Out', sign_out_path, method: :delete %></li>
+          </ul>
         </div>
-        <% end %>
+      <% else %>
+        <%= link_to 'Sign In', sign_in_path, :class => 'signin' %>
       <% end %>
   </nav>
   <form action="" class="searchform">
@@ -16,23 +32,5 @@
   <nav class="appnav">
     <ul>
       <li><%= link_to 'Contributors', icla_signatures_path %></li>
-      <% if signed_in? %>
-        <% unless current_user.signed_icla? %>
-          <li><%= link_to 'Sign ICLA', new_icla_signature_path %></li>
-        <% end %>
-
-        <li><%= link_to 'Sign CCLA', new_ccla_signature_path %></li>
-        <li><%= link_to 'View Profile', current_user %></li>
-
-        <% if current_user && current_user.is?(:admin) %>
-          <li>
-            <%= link_to "Watched Repositories", curry_repositories_url, class: 'admin repositories' %>
-          </li>
-        <% end %>
-
-        <li><%= link_to 'Sign Out', sign_out_path, method: :delete %></li>
-      <% else %>
-        <li><%= link_to 'Sign In', sign_in_path %></li>
-      <% end %>
     </ul>
   </nav>
