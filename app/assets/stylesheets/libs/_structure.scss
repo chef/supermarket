@@ -79,7 +79,7 @@ body {
       max-height: 1020px;
       overflow: auto;
 
-      h1 { font-size: rem-calc(18); line-height: rem-calc(24); }
+      h1 { border: none; font-size: rem-calc(18); line-height: rem-calc(24); }
       h2 { font-size: rem-calc(14); line-height: rem-calc(24); }
       p, li, footer {
         font-size: rem-calc(12);

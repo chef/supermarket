@@ -1,0 +1,21 @@
+/* Retina Imagery */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+
+}
+
+@media #{$small-only} {
+  html, body { font-size: 62.5%; }
+  #searchfield { width: rem-calc(220); }
+  .page { padding: rem-calc(40) rem-calc(70); }
+}
+
+@media #{$medium-only} {
+  html, body { font-size: 75%; }
+  #searchfield { width: rem-calc(220); }
+  .page { padding: rem-calc(40) rem-calc(70); }
+}
+
+@media #{$xlarge-up} {
+  html, body { font-size: 120%; }
+  .searchform .fa { right: rem-calc(12); top: rem-calc(26); }
+}

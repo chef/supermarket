@@ -1,6 +1,6 @@
 // Global Header
 .globalheader {
-  @include bringdanoise();
+  @include bringdanoise(#292929);
   border-bottom: 1px solid black;
   @include box-sizing(border-box);
   height: rem-calc(69);
@@ -123,7 +123,7 @@
   height: rem-calc(69);
   position: relative;
   width: rem-calc(119);
-  z-index: 1;
+  z-index: 101;
 
   .signin {
     color: #7c858c;
@@ -173,7 +173,7 @@
   right: rem-calc(6);
   top: rem-calc(69);
   width: rem-calc(150);
-  z-index: 1;
+  z-index: 101;
 
   &:after {
     bottom: 100%;
@@ -197,7 +197,7 @@
 
     a {
       display: block;
-      font-size: 12px;
+      font-size: rem-calc(12);
       padding: rem-calc(7 10);
       text-decoration: none;
     }
