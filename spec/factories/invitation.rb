@@ -1,8 +1,9 @@
 FactoryGirl.define do
   factory :invitation do
     association :organization
-    email       'johndoe@example.com'
     token       'ABCD1234'
     admin       true
+
+    sequence(:email) { |n| "johndoe#{n}@example.com" }
   end
 end

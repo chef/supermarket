@@ -1,0 +1,35 @@
+<% if @cla_signature.is_a?(CclaSignature) %>
+_________________________________________________________
+Chef Supermarket - CCLA Signed
+_________________________________________________________
+
+A new CCLA has been signed by <%= @cla_signature.name %> on behalf of <%= @cla_signature.company %>.
+View Signed CCLA: <%= ccla_signature_url(@cla_signature) %>
+
+_________________________________________________________
+
+<% elsif @cla_signature.is_a?(IclaSignature) %>
+_________________________________________________________
+Chef Supermarket - CCLA Signed
+_________________________________________________________
+
+A new ICLA has been signed by <%= @cla_signature.name %>.
+View Signed ICLA: <%= icla_signature_url(@cla_signature) %>
+
+<% end %>
+
+_________________________________________________________
+
+<%= @cla_signature.name %>
+<%= @cla_signature.company %>
+
+<%= @cla_signature.email %> - <%= @cla_signature.phone %>
+<%= @cla_signature.address_line_1 %>
+<%= @cla_signature.address_line_2 %>
+
+View Supermarket Profile: <%= user_url(@cla_signature.user) %>
+View Github Profile: <%= "https://www.github.com/#{@cla_signature.user.accounts.for('github').first.username}" %>
+
+_________________________________________________________
+Chef - 1008 Western Ave #600 - Seattle, WA 98104
+This email was sent to <%= @cla_signature.email %>

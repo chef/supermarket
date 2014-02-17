@@ -1,30 +1,26 @@
-<div class='page'>
-  <div class='title'>
-    <span class='fa fa-group'></span>Sign In
-  </div>
+<h1>Sign In to Your Account</h1>
 
-  <div class='content'>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <fieldset>
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true %>
-      </fieldset>
-
-      <fieldset>
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-      </fieldset>
+<div class="row collapse">
+  <div class="small-6 columns">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { abide: true }) do |f| %>
+      <div class="email-field">
+        <%= f.email_field :email, placeholder: 'Email *',  title: 'Email', required: true, pattern: 'email' %>
+        <small class="error">Valid email is required.</small>
+      </div>
+      <div class="password-field">
+        <%= f.password_field :password, placeholder: 'Password *',  title: 'Password', required: true, pattern: 'password' %>
+        <small class="error">Password is required.</small>
+      </div>
 
       <% if devise_mapping.rememberable? %>
-        <fieldset>
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
-        </fieldset>
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
       <% end -%>
 
-      <div><%= f.submit 'Sign in', class: 'button primary' %></div>
+      <%= f.submit 'Sign In', class: 'button primary radius expand' %>
     <% end %>
-
+  </div>
+  <div class="small-5 small-offset-1 columns">
     <%= render 'devise/shared/links' %>
   </div>
 </div>

@@ -1,10 +1,4 @@
-<div class="page ccla invitation">
-  <div class="title">
-    Accept invitation to <%= @organization.name %>
-  </div>
+<h1>Accept invitation to <%= @organization.name %></h1>
 
-  <div class="content">
-    <%= link_to 'Accept', @invitation, method: :put, class: 'accept', data: { organization: @organization.name } %>
-    <%= link_to 'Decline', @invitation, method: :delete, class: 'decline', data: { organization: @organization.name } %>
-  </div>
-</div>
+<%= link_to 'Accept', accept_invitation_path(@invitation), class: 'button accept radius' %>
+<%= link_to 'Decline', decline_invitation_path(@invitation), class: 'button decline radius alert' %>

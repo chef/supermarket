@@ -13,11 +13,17 @@
 //= require jquery
 //= require jquery_ujs
 //= require placeholder
+//= require fastclick
 //= require modernizr
 //= require foundation.min
 //= require_tree .
 
-// Initialize Foundation JS compontents
-$(function() {
+$(function(){
   $(document).foundation();
+
+  // Ensure client side validation isn't stronger
+  // than serverside validation.
+  jQuery.extend(window.Foundation.libs.abide.settings.patterns, {
+    'password': /[a-zA-Z]+/,
+  });
 });

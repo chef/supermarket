@@ -20,22 +20,22 @@ describe InvitationsController do
     end
   end
 
-  describe 'PUT #update' do
+  describe 'GET #accept' do
     it 'creates a new Contributor' do
       expect {
-        put :update, id: invitation.token
+        get :accept, id: invitation.token
       }.to change(Contributor, :count).by(1)
     end
 
     it 'accepts the invitation' do
-      put :update, id: invitation.token
+      get :accept, id: invitation.token
       invitation.reload
 
       expect(invitation.accepted).to eql(true)
     end
 
     it 'redirects to the current users profile' do
-      put :update, id: invitation.token
+      get :accept, id: invitation.token
 
       expect(response).to redirect_to(user)
     end
@@ -44,7 +44,7 @@ describe InvitationsController do
       invitation = create(:invitation, admin: true)
 
       expect {
-        put :update, id: invitation.token
+        get :accept, id: invitation.token
       }.to change(Contributor.where(admin: true), :count).by(1)
     end
 
@@ -54,22 +54,22 @@ describe InvitationsController do
       invitation_2 = create(:invitation, organization: organization)
 
       expect {
-        put :update, id: invitation_1.token
-        put :update, id: invitation_2.token
+        get :accept, id: invitation_1.token
+        get :accept, id: invitation_2.token
       }.to_not change(Contributor, :count).by(2)
     end
   end
 
-  describe 'DELETE #destroy' do
+  describe 'GET #decline' do
     it 'declines the invitation' do
-      delete :destroy, id: invitation.token
+      get :decline, id: invitation.token
       invitation.reload
 
       expect(invitation.accepted).to eql(false)
     end
 
     it 'redirects to the current users profile' do
-      delete :destroy, id: invitation.token
+      get :decline, id: invitation.token
 
       expect(response).to redirect_to(user)
     end

@@ -1,84 +1,83 @@
-<div class="page">
-  <div class="title">
-    <span class="fa fa-users"></span>Invite contributors to <%= @organization.name %>
+<h1>Invite contributors to <%= @organization.name %></h1>
+
+<%= form_for([@organization, @invitation]) do |f| %>
+  <%= render 'application/form_errors', record: @invitation %>
+  <div class="row collapse">
+    <div class="small-10 columns">
+      <%= f.email_field :email, placeholder: 'Contributor Email',  title: 'Contributor Email', autofocus: true %>
+    </div>
+    <div class="small-2 columns">
+      <%= f.submit 'Send Invite', class: 'button primary radius postfix' %>
+    </div>
   </div>
-
-  <div class="content">
-    <%= form_for([@organization, @invitation]) do |f| %>
-      <%= render 'application/form_errors', record: @invitation %>
-
-      <section>
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true %>
-      </section>
-
-      <section class='checkbox-with-label'>
-        <fieldset>
-          <%= f.check_box :admin  %>
-        </fieldset>
-        <p>Make this user an admin of <%= @organization.name %>.</p>
-      </section>
-
-      <section>
-        <%= f.submit 'Send invitation', class: 'button secondary' %>
-      </section>
+  <div class="row collapse">
+    <div class="small-12 columns">
+      <%= f.check_box :admin  %>
+      <label for="invitation_admin">Make this user an admin of <%= @organization.name %>.</label>
+    </div>
+  </div>
+<% end %>
+<br>
+<h2>Contributors</h2>
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Admin</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pending_invitations.each do |invitation| %>
+      <tr class="contributor <%= invitation.admin? ? 'admin' : '' %>">
+        <td><%= invitation.email %></td>
+        <td>
+          <%= form_for [@organization, invitation], remote: true do |f| %>
+            <%= f.check_box :admin, class: 'auto trigger' %>
+          <% end %>
+        </td>
+        <td><%= "Pending" %></td>
+        <td><%= link_to "Resend", resend_organization_invitation_path(@organization, invitation), method: :patch, class: 'button secondary radius tiny' %></td>
+      </tr>
     <% end %>
 
-    <table class="green">
-      <tr>
-        <th>Email</th>
-        <th>Admin</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-
-      <% @pending_invitations.each do |invitation| %>
-        <tr class="contributor <%= invitation.admin? ? 'admin' : '' %>">
-          <td><%= invitation.email %></td>
-          <td>
-            <%= form_for [@organization, invitation], remote: true do |f| %>
+    <% @contributors.each do |contributor| %>
+      <tr class="contributor <%= contributor.admin? ? 'admin' : '' %>">
+        <td><%= contributor.email %></td>
+        <td>
+          <% if contributor.user != current_user %>
+            <%= form_for [@organization, contributor], remote: true do |f| %>
               <%= f.check_box :admin, class: 'auto trigger' %>
             <% end %>
-          </td>
-          <td><%= "Pending" %></td>
-          <td><%= link_to "Resend", resend_organization_invitation_path(@organization, invitation), method: :patch %></td>
-        </tr>
-      <% end %>
-
-      <% @contributors.each do |contributor| %>
-        <tr class="contributor <%= contributor.admin? ? 'admin' : '' %>">
-          <td><%= contributor.email %></td>
-          <td>
-            <% if contributor.user != current_user %>
-              <%= form_for [@organization, contributor], remote: true do |f| %>
-                <%= f.check_box :admin, class: 'auto trigger' %>
-              <% end %>
-            <% else %>
-              <input type="checkbox" disabled>
-            <% end %>
-          </td>
-          <td><%= "Accepted" %></td>
-          <% if contributor.user == current_user %>
-            <% text = "Remove Myself as a Contributor" %>
           <% else %>
-            <% text = "Remove Contributor" %>
+            <input type="checkbox" disabled>
           <% end %>
+        </td>
+        <td><%= "Accepted" %></td>
+        <% if contributor.user == current_user %>
+          <% text = "Remove Myself as a Contributor" %>
+        <% else %>
+          <% text = "Remove Contributor" %>
+        <% end %>
 
-          <td>
-            <% if policy(contributor).destroy? %>
-              <%= link_to text, organization_contributor_url(@organization, contributor), method: :delete %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
+        <td>
+          <% if policy(contributor).destroy? %>
+            <%= link_to text, organization_contributor_url(@organization, contributor), method: :delete %>
+          <% else %>
+            -
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
 
-      <% @declined_invitations.each do |invitation| %>
-        <tr class="contributor <%= invitation.admin? ? 'admin' : '' %>">
-          <td><%= invitation.email %></td>
-          <td><%= invitation.admin? ? 'Admin' : 'Contributor' %></td>
-          <td><%= "Declined" %></td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
+    <% @declined_invitations.each do |invitation| %>
+      <tr class="contributor <%= invitation.admin? ? 'admin' : '' %>">
+        <td><%= invitation.email %></td>
+        <td><%= invitation.admin? ? 'Admin' : 'Contributor' %></td>
+        <td><%= "Declined" %></td>
+        <td>-</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

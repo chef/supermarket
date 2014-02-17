@@ -212,7 +212,7 @@ $font-smoothing: antialiased;
 
 // We use this to control the display property.
 // $button-display: inline-block;
-// $button-margin-bottom: rem-calc(20);
+$button-margin-bottom: rem-calc(0);
 
 // We use these to control button text styles.
 // $button-font-family: $body-font-family;
@@ -388,15 +388,15 @@ $font-smoothing: antialiased;
 
 // We use these to style the fieldset border and spacing.
 // $fieldset-border-style: solid;
-// $fieldset-border-width: 1px;
+$fieldset-border-width: 0;
 // $fieldset-border-color: #ddd;
-// $fieldset-padding: rem-calc(20);
-// $fieldset-margin: rem-calc(18 0);
+$fieldset-padding: rem-calc(20 0);
+$fieldset-margin: rem-calc(0);
 
 // We use these to style the legends when you use them
-// $legend-bg: #fff;
-// $legend-font-weight: bold;
-// $legend-padding: rem-calc(0 3);
+$legend-bg: #fff;
+$legend-font-weight: bold;
+$legend-padding: rem-calc(0 3);
 
 // We use these to style the prefix and postfix input elements
 // $input-prefix-bg: scale-color(#fff, $lightness: -5%);
@@ -1086,19 +1086,19 @@ $font-smoothing: antialiased;
 $header-font-family: join("Montserrat", $body-font-family);
 $header-font-weight: 400;
 // $header-font-style: normal;
-// $header-font-color: #222;
-// $header-line-height: 1.4;
+$header-font-color: #222;
+$header-line-height: 1.4;
 // $header-top-margin: .2rem;
-// $header-bottom-margin: .5rem;
-// $header-text-rendering: optimizeLegibility;
+$header-bottom-margin: 1.5rem;
+$header-text-rendering: optimizeLegibility;
 
 // We use these to control header font sizes
-// $h1-font-size: rem-calc(44);
-// $h2-font-size: rem-calc(37);
-// $h3-font-size: rem-calc(27);
-// $h4-font-size: rem-calc(23);
-// $h5-font-size: rem-calc(18);
-// $h6-font-size: 1rem;
+$h1-font-size: rem-calc(28);
+$h2-font-size: rem-calc(24);
+$h3-font-size: rem-calc(18);
+$h4-font-size: rem-calc(14);
+$h5-font-size: rem-calc(12);
+$h6-font-size: rem-calc(10);;
 
 // These control how subheaders are styled.
 // $subheader-line-height: 1.4;
@@ -1108,18 +1108,18 @@ $header-font-weight: 400;
 // $subheader-bottom-margin: .5rem;
 
 // A general <small> styling
-// $small-font-size: 60%;
-// $small-font-color: scale-color($header-font-color, $lightness: 35%);
+$small-font-size: 60%;
+$small-font-color: scale-color($header-font-color, $lightness: 35%);
 
 // We use these to style paragraphs
 // $paragraph-font-family: inherit;
 // $paragraph-font-weight: normal;
-// $paragraph-font-size: 1rem;
-// $paragraph-line-height: 1.6;
-// $paragraph-margin-bottom: rem-calc(20);
-// $paragraph-aside-font-size: rem-calc(14);
-// $paragraph-aside-line-height: 1.35;
-// $paragraph-aside-font-style: italic;
+$paragraph-font-size: 1rem;
+$paragraph-line-height: 1.8;
+$paragraph-margin-bottom: rem-calc(24);
+$paragraph-aside-font-size: rem-calc(14);
+$paragraph-aside-line-height: 1.35;
+$paragraph-aside-font-style: italic;
 // $paragraph-text-rendering: optimizeLegibility;
 
 // We use these to style <code> tags
@@ -1149,12 +1149,12 @@ $header-font-weight: 400;
 // $definition-list-margin-bottom: rem-calc(12);
 
 // We use these to style blockquotes
-// $blockquote-font-color: scale-color($header-font-color, $lightness: 35%);
-// $blockquote-padding: rem-calc(9 20 0 19);
-// $blockquote-border: 1px solid #ddd;
-// $blockquote-cite-font-size: rem-calc(13);
-// $blockquote-cite-font-color: scale-color($header-font-color, $lightness: 23%);
-// $blockquote-cite-link-color: $blockquote-cite-font-color;
+$blockquote-font-color: scale-color($header-font-color, $lightness: 35%);
+$blockquote-padding: rem-calc(9 20 0 19);
+$blockquote-border: 1px solid #ddd;
+$blockquote-cite-font-size: rem-calc(13);
+$blockquote-cite-font-color: scale-color($header-font-color, $lightness: 23%);
+$blockquote-cite-link-color: $blockquote-cite-font-color;
 
 // Acronym styles
 // $acronym-underline: 1px dotted #ddd;

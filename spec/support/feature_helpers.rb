@@ -4,10 +4,10 @@ module FeatureHelpers
     visit '/'
     click_link 'Sign In'
 
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
+    fill_in 'user_email', with: user.email
+    fill_in 'user_password', with: user.password
 
-    find_button('Sign in').click
+    find_button('Sign In').click
   end
 
   def sign_out
@@ -71,20 +71,17 @@ module FeatureHelpers
   end
 
   def accept_invitation_to_become_admin_of(organization)
-    receive_and_visit_invitation
-    click_link 'Accept'
+    receive_and_respond_to_invitation_with('accept')
     expect_to_see_success_message
   end
 
   def accept_invitation_to_become_contributor_of(organization)
-    receive_and_visit_invitation
-    click_link 'Accept'
+    receive_and_respond_to_invitation_with('accept')
     expect_to_see_success_message
   end
 
   def decline_invitation_to_join(organization)
-    receive_and_visit_invitation
-    click_link 'Decline'
+    receive_and_respond_to_invitation_with('decline')
     expect_to_see_success_message
   end
 
@@ -104,7 +101,7 @@ module FeatureHelpers
 
     fill_in 'invitation_email', with: email
     check 'invitation_admin'
-    find_button('Send invitation').click
+    find_button('Send Invite').click
 
     expect_to_see_success_message
     expect(all('#invitation_admin:checked').size).to eql(1)
@@ -114,21 +111,20 @@ module FeatureHelpers
     manage_contributors
 
     fill_in 'invitation_email', with: email
-    find_button('Send invitation').click
+    find_button('Send Invite').click
     expect_to_see_success_message
     expect(all('#invitation_admin:checked').size).to eql(0)
   end
 
-  def receive_and_visit_invitation
+  def receive_and_respond_to_invitation_with(response)
     invitation = ActionMailer::Base.deliveries.detect { |email|
       /Invitation/ =~ email['Subject'].to_s
-    }
+    }.to_s
 
     ActionMailer::Base.deliveries.clear
 
-    body = invitation.parts.find { |p| p.content_type =~ /html/ }.body.to_s
-    html = Nokogiri::HTML(body)
-    url = html.css('a.invitation').first.attribute('href').value
+    html = Nokogiri::HTML(invitation)
+    url = html.css("a.#{response}").first.attribute('href').value
     path = URI(url).path
 
     visit path

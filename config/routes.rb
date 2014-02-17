@@ -43,7 +43,12 @@ Supermarket::Application.routes.draw do
     end
   end
 
-  resources :invitations, only: [:show, :update, :destroy]
+  resources :invitations, only: [:show] do
+    member do
+      get :accept
+      get :decline
+    end
+  end
 
   resources :organizations, only: [] do
     resources :contributors, only: [:update, :destroy], controller: :contributors
