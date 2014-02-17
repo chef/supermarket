@@ -150,7 +150,10 @@ class Curry::PullRequestAnnotator
       parts << list
     end
 
-    parts << "[Please sign the CLA here.](#{Supermarket::Config.curry_cla_location})"
+    parts << [
+      "[Please sign the CLA here.]",
+      "(#{Supermarket::Config.curry.fetch('cla_location')})"
+    ].join
 
     parts.join("\n\n")
   end
