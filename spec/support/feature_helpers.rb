@@ -87,7 +87,6 @@ module FeatureHelpers
 
   def manage_agreements
     click_link 'View Profile'
-    click_link 'manage-profile'
     click_link 'manage-agreements'
   end
 
@@ -136,7 +135,6 @@ module FeatureHelpers
 
   def connect_github_account
     click_link 'View Profile'
-    click_link 'manage-profile'
     click_link 'manage-github-accounts'
     click_link 'connect-github'
   end
