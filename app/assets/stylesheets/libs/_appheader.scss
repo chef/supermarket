@@ -1,0 +1,136 @@
+// Global Header
+.globalheader {
+  @include bringdanoise();
+  border-bottom: 1px solid black;
+  @include box-sizing(border-box);
+  height: rem-calc(69);
+  padding: 0 rem-calc(20) 0 rem-calc(66);
+}
+
+.left-off-canvas-toggle {
+  color: #7c858c;
+  display: block;
+  height: rem-calc(69);
+  left: 0;
+  line-height: rem-calc(69);
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: rem-calc(66);
+  z-index: 1;
+
+  &:visited { color: #7c858c; }
+  &:hover { color: #949ea6; }
+}
+
+// Global chef elements
+.logochef {
+  background: url(image-path('logo.svg')) 0 rem-calc(9) no-repeat;
+  @include background-size(rem-calc(48) rem-calc(50));
+  float: left;
+  height: rem-calc(69);
+  margin: 0 rem-calc(27) 0 0;
+  width: rem-calc(47);
+
+  .no-svg & {
+    background: url(image-path('logo_pngfallback.png')) no-repeat;
+  }
+
+  a {
+    display: block;
+    height: rem-calc(50);
+    width: rem-calc(48);
+
+    span { display: none; }
+  }
+}
+
+
+// App-specific elements
+.appheader {
+  color: #f18a20;
+  float: left;
+  font-size: rem-calc(24);
+  line-height: rem-calc(69);
+  margin: 0 rem-calc(20) 0 0;
+  text-transform: uppercase;
+}
+
+.searchform {
+  float: right;
+  height: rem-calc(69);
+  margin-right: rem-calc(87);
+  position: relative;
+
+  .fa {
+    @include box-shadow(rgba(0,0,0,.9) 0 1px 0);
+    color: #7c858c;
+    height: rem-calc(16);
+    position: absolute;
+    right: rem-calc(10);
+    top: rem-calc(28);
+    width: rem-calc(16);
+    z-index: 1;
+  }
+}
+
+#searchfield {
+  background-color: #1b1b1f;
+  border: none;
+  @include border-radius(rem-calc(32));
+  @include box-shadow(#141417 0 -1px 0, #333 0 1px 0);
+  @include box-sizing(border-box);
+  color: #7c858c;
+  margin-top: rem-calc(18);
+  padding: 0 rem-calc(20);
+  width: rem-calc(310);
+}
+
+.appnav {
+  float: left;
+
+  ul {
+    margin: 0;
+
+    li {
+      float: left;
+      list-style: none;
+
+      a:link, a:visited {
+        color: #7c858c;
+        display: block;
+        float: left;
+        font: {
+          family: "Montserrat", $body-font-family;
+          size: rem-calc(12);
+          weight: 700;
+        }
+        line-height: rem-calc(69);
+        padding: 0 rem-calc(20);
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      a:hover, a:active {
+        color: #949ea6;
+      }
+    }
+  }
+}
+
+.usermenu {
+  float: right;
+
+  .avatar {
+    height: rem-calc(32);
+    margin-top: rem-calc(18);
+    width: rem-calc(32);
+
+    img {
+      @include border-radius(rem-calc(32));
+      @include box-shadow(rgba(0,0,0,.6) 0 1px 0);
+      height: auto;
+      max-width: 100%;
+    }
+  }
+}

@@ -30,12 +30,12 @@
 
 // $include-html-grid-classes: $include-html-classes;
 
-$row-width: rem-calc(1280);
+$row-width: rem-calc(1440);
 // $column-gutter: rem-calc(30);
 // $total-columns: 12;
 
 // We use these to control various global styles
-$body-bg: #435364;
+$body-bg: white;
 $body-font-color: #222;
 $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
@@ -1086,19 +1086,19 @@ $legend-padding: rem-calc(0 3);
 $header-font-family: join("Montserrat", $body-font-family);
 $header-font-weight: 400;
 // $header-font-style: normal;
-$header-font-color: #222;
+$header-font-color: #6bb1e1;
 $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 $header-bottom-margin: 1.5rem;
 $header-text-rendering: optimizeLegibility;
 
 // We use these to control header font sizes
-$h1-font-size: rem-calc(28);
-$h2-font-size: rem-calc(24);
+$h1-font-size: rem-calc(24);
+$h2-font-size: rem-calc(20);
 $h3-font-size: rem-calc(18);
 $h4-font-size: rem-calc(14);
 $h5-font-size: rem-calc(12);
-$h6-font-size: rem-calc(10);;
+$h6-font-size: rem-calc(10);
 
 // These control how subheaders are styled.
 // $subheader-line-height: 1.4;
@@ -1133,10 +1133,10 @@ $paragraph-aside-font-style: italic;
 // $anchor-font-color-hover: scale-color($primary-color, $lightness: -14%);
 
 // We use these to style the <hr> element
-// $hr-border-width: 1px;
-// $hr-border-style: solid;
-// $hr-border-color: #ddd;
-// $hr-margin: rem-calc(20);
+$hr-border-width: 2px;
+$hr-border-style: solid;
+$hr-border-color: #ecedef;
+$hr-margin: rem-calc(20);
 
 // We use these to style lists
 // $list-style-position: outside;

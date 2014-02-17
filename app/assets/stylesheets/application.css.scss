@@ -11,10 +11,9 @@
 // Import the Foundation framework
 @import "foundation";
 
-@import "icons";
-
 // UI
-@import "libs/globalcolumn";
-@import "libs/sidebar";
+@import "mixins/mixins";
+@import "libs/typography";
+@import "libs/appheader";
 @import "libs/structure";
 @import "libs/alerts";

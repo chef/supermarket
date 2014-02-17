@@ -11,25 +11,37 @@
     <link rel="icon" href="<%= image_url('favicon.ico') %>" type="image/x-icon">
     <link rel="apple-touch-icon" href="<%= image_url('apple-touch-icon.png') %>"/>
     <%= stylesheet_link_tag "application", media: "all" %>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     <%= csrf_meta_tags %>
   </head>
   <body class="<%= controller.controller_name %>">
     <%= render partial: 'flash' %>
 
-    <div class="container">
-      <div class="globalcolumn">
-        <h2 class="logochef"><%= link_to root_path do %><span>Chef</span><% end %></h2>
-      </div>
-      <div class="appcolumn">
-        <div class="approw">
-          <div class="sidebar">
-            <%= render partial: 'sidebar' %>
-          </div>
+    <div class="off-canvas-wrap">
+      <div class="inner-wrap">
+        <a class="left-off-canvas-toggle"><i class="fa fa-bars fa-fw"></i><span class="hide">Menu</span></a>
+        <!-- Chef Property Menu -->
+        <aside class="left-off-canvas-menu">
+            <ul class="off-canvas-list">
+              <li><a href="#">Get Chef</a></li>
+              <li><a href="#">#learnchef</a></li>
+              <li><a href="#">Docs</a></li>
+              <li><a href="#">Chat</a></li>
+            </ul>
+        </aside>
+
+        <header class="globalheader">
+          <h2 class="logochef"><%= link_to root_path do %><span>Chef</span><% end %></h2>
+          <%= render partial: 'appheader' %>
+        </header>
+        <div class="container">
           <div class="page">
             <%= yield %>
           </div>
         </div>
+
+        <a class="exit-off-canvas"></a>
       </div>
     </div>
 
@@ -38,5 +50,17 @@
     <% end %>
 
     <%= javascript_include_tag "application" %>
+    <script>
+    $(function() {
+         var timer;
+
+         $(window).resize(function() {
+            clearTimeout(timer);
+            timer = setTimeout(function() {
+               $('.inner-wrap').css("min-height", $(window).height() + "px" );
+                }, 40);
+          }).resize();
+     });
+    </script>
   </body>
 </html>

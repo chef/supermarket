@@ -1,166 +1,63 @@
 // Basic structural elements
-html {
-  height: 100%;
-  min-height: 100%;
-}
+html, body { height: 100%; min-height: 100%; }
 
 body {
   background-color: $body-bg;
-  @include background-image(linear-gradient(#4c5e70, #435364 140px));
-  height: 100%;
-  min-height: 100%;
+  margin: 0;
 }
 
 .container {
-  display: table;
   @include grid-row();
-  height: 100%;
-  margin: 0;
-
-  .globalcolumn {
-    background-color: #202c35;
-    display: table-cell;
-    @include grid-column(1);
-    height: 100%;
-  }
-
-  .appcolumn {
-    background-color: #435364;
-    @include background-image(linear-gradient(#4c5e70, #435364 140px));
-    @include box-sizing(border-box);
-    display: table-cell;
-    @include grid-column(11, $collapse: true);
-    height: 100%;
-    margin: 0;
-    padding-top: 2.5rem; //40px
-
-    .approw {
-      @include grid-row();
-      height: 100%;
-
-      .sidebar {
-        @include grid-column(3, $collapse: true);
-        height: 100%;
-      }
-
-      .page {
-        background-color: white;
-        @include grid-column(9);
-        height: 100%;
-        padding: 3.75rem; //60px
-      }
-    }
-  }
-
-  // User Elements
-  .user {
-    table { width: 100%; }
-    .content { float: none; }
-
-    .tabls-content {
-      height: 100%;
-    }
-
-    .gravatar {
-      font-size: .8rem;
-      margin: 0;
-
-      img {
-        border-radius: 4px;
-        margin-right: 10px;
-      }
-    }
-
-    .profile {
-      @include grid-row($behavior: nest);
-
-      .avatar {
-        @include grid-column(3);
-
-        img {
-          margin-top: 1rem;
-          border-radius: 4px;
-        }
-      }
-
-      .info {
-        @include grid-column(9);
-
-        ul {
-          list-style-type: none;
-          margin: 0 0 1rem 0;
-
-          li {
-            display: inline-block;
-            margin: 0 1rem .5rem 0;
-          }
-        }
-      }
-    }
-  }
+  min-height: 100%;
 }
 
-// Header
-body > header {
-  background: $primary-blue;
-  line-height: 1.0;
-  overflow: hidden;
-  padding: 0 1.25rem; //20px
-  width: 100%;
+.page {
+  @include grid-column(12, $center: true);
+  padding: rem-calc(70) rem-calc(140);
+}
 
-  a.logo {
+// User Elements
+.user {
+  table { width: 100%; }
+  .content { float: none; }
 
-    border: none;
-    display: block;
-    float: left;
-    padding-top: 1.25em;
-    text-decoration: none;
+  .tabls-content {
+    height: 100%;
+  }
+
+  .gravatar {
+    font-size: .8rem;
+    margin: 0;
 
     img {
-      height: 45px;
-    }
-
-    &:hover {
-      text-decoration: none;
+      border-radius: 4px;
+      margin-right: 10px;
     }
   }
 
-  nav {
-    float: right;
-    overflow: hidden;
-    -webkit-overflow-scrolling: touch;
-    white-space: nowrap;
+  .profile {
+    @include grid-row($behavior: nest);
 
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
+    .avatar {
+      @include grid-column(3);
 
-      li {
-        @include inline-block;
-        margin: 0;
-        padding: 0;
+      img {
+        margin-top: 1rem;
+        border-radius: 4px;
       }
     }
 
-    a {
-      color: #fff;
-      display: block;
-      font-family: $gotham;
-      font-size: 0.9em;
-      margin: 0;
-      padding: 2.5em 1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      @include transition(all 0.2s ease-in-out);
+    .info {
+      @include grid-column(9);
 
-      &:hover {
-        background: lighten($primary-blue, 10%);
-        color: #fff;
-      }
+      ul {
+        list-style-type: none;
+        margin: 0 0 1rem 0;
 
-      &:active {
-        color: #bbb;
+        li {
+          display: inline-block;
+          margin: 0 1rem .5rem 0;
+        }
       }
     }
   }
