@@ -111,6 +111,8 @@ describe IclaSignaturesController do
     context 'when the user has a linked GitHub account' do
       before do
         admin.accounts << create(:account, provider: 'github')
+
+        allow(Curry::CommitAuthorVerificationWorker).to receive(:perform_async)
       end
 
       context 'with valid attributes' do
@@ -131,6 +133,14 @@ describe IclaSignaturesController do
         it 'redirects to the icla signature' do
           post :create, icla_signature: payload
           expect(response).to redirect_to(IclaSignature.last)
+        end
+
+        it "changes the user's commit author records to have signed a CLA" do
+          expect(Curry::CommitAuthorVerificationWorker).
+            to receive(:perform_async).
+            with(admin.id)
+
+          post :create, icla_signature: payload
         end
       end
 

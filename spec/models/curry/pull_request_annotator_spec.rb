@@ -41,7 +41,7 @@ describe Curry::PullRequestAnnotator do
       end
     end
 
-    it 'adds a label to the Pull Request when all committers have signed a CLA' do
+    it 'adds a label to the Pull Request when all commit authors have signed a CLA' do
       VCR.use_cassette('pull_request_annotation_adds_label', record: :once) do
         brett = create(:user)
 
@@ -69,10 +69,10 @@ describe Curry::PullRequestAnnotator do
       end
     end
 
-    it 'adds a comment to the Pull Request when not all committers have signed a CLA' do
-      VCR.use_cassette('pull_request_annotation_adds_comment', record: :once) do
-        pull_request.unknown_committers.create!(login: 'brettchalupa')
-        pull_request.unknown_committers.create!(
+    it 'adds a comment to the Pull Request when not all commit authors have signed a CLA' do
+      VCR.use_cassette('pull_request_annotation_adds_comment', record: :all) do
+        pull_request.commit_authors.create!(login: 'brettchalupa')
+        pull_request.commit_authors.create!(
           email: 'brian+bcobb+brettchalupa@cramerdev.com'
         )
 
@@ -90,14 +90,14 @@ describe Curry::PullRequestAnnotator do
     end
 
     it 'removes the label before adding a comment' do
-      VCR.use_cassette('pull_request_annotation_removes_label', record: :once) do
+      VCR.use_cassette('pull_request_annotation_removes_label', record: :all) do
         octokit.add_labels_to_an_issue(
           repository.full_name,
           pull_request.number,
           [Curry::PullRequestAnnotator::LABEL_TEXT]
         )
 
-        pull_request.unknown_committers.create!(login: 'brettchalupa')
+        pull_request.commit_authors.create!(login: 'brettchalupa')
 
         annotator = Curry::PullRequestAnnotator.new(pull_request)
 

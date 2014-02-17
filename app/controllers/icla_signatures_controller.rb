@@ -54,6 +54,8 @@ class IclaSignaturesController < ApplicationController
         ClaSignatureMailer.deliver_notification(@icla_signature)
       end
 
+      Curry::CommitAuthorVerificationWorker.perform_async(current_user.id)
+
       redirect_to @icla_signature, notice: 'Successfully signed ICLA.'
     else
       render 'new'

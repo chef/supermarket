@@ -4,7 +4,7 @@ describe Curry::PullRequestUpdatesController do
   describe 'when GitHub sends a POST request' do
 
     before do
-      allow(Curry::ImportUnknownPullRequestCommittersWorker).to receive(:perform_async)
+      allow(Curry::ImportUnknownPullRequestCommitAuthorsWorker).to receive(:perform_async)
       allow(OpenSSL::HMAC).to receive(:hexdigest) { 'csrf' }
     end
 
@@ -53,8 +53,8 @@ describe Curry::PullRequestUpdatesController do
         expect(response.status.to_i).to eql(200)
       end
 
-      it "starts a background job to validate the Pull Request committers' CLA status" do
-        expect(Curry::ImportUnknownPullRequestCommittersWorker).
+      it "starts a background job to validate the Pull Request commit authors' CLA status" do
+        expect(Curry::ImportUnknownPullRequestCommitAuthorsWorker).
           to receive(:perform_async)
 
         secure_post :create, payload: payload
@@ -80,8 +80,8 @@ describe Curry::PullRequestUpdatesController do
         expect(response.status.to_i).to eql(200)
       end
 
-      it "does not start a background job to validate the PR committers' CLA status" do
-        expect(Curry::ImportUnknownPullRequestCommittersWorker).
+      it "does not start a background job to validate the PR commit authors' CLA status" do
+        expect(Curry::ImportUnknownPullRequestCommitAuthorsWorker).
           to_not receive(:perform_async)
 
         secure_post :create, payload: payload

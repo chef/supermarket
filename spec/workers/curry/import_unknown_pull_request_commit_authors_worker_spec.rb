@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe Curry::ImportUnknownPullRequestCommittersWorker do
+describe Curry::ImportUnknownPullRequestCommitAuthorsWorker do
 
-  it 'imports committers from the given Pull Request' do
+  it 'imports commit authors from the given Pull Request' do
     allow(Curry::ClaValidationWorker).to receive(:perform_async)
 
     pull_request = create(:pull_request)
-    expect_any_instance_of(Curry::ImportUnknownPullRequestCommitters).
+    expect_any_instance_of(Curry::ImportUnknownPullRequestCommitAuthors).
       to receive(:import)
 
-    worker = Curry::ImportUnknownPullRequestCommittersWorker.new
+    worker = Curry::ImportUnknownPullRequestCommitAuthorsWorker.new
     worker.perform(pull_request.id)
   end
 
@@ -18,7 +18,7 @@ describe Curry::ImportUnknownPullRequestCommittersWorker do
     expect(Curry::ClaValidationWorker).
       to receive(:perform_async)
 
-    worker = Curry::ImportUnknownPullRequestCommittersWorker.new
+    worker = Curry::ImportUnknownPullRequestCommitAuthorsWorker.new
     worker.perform(pull_request.id)
   end
 

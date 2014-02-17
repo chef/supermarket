@@ -124,6 +124,68 @@ describe User do
 
   end
 
+  describe '#verified_commit_author_identities' do
+
+    it "returns the user's commit author identities who have signed a CLA" do
+      commit_author = create(:commit_author, login: 'joedoe', signed_cla: true)
+      user = create(:user)
+      account = create(
+        :account,
+        user: user,
+        provider: 'github',
+        username: 'joedoe'
+      )
+
+      expect(user.verified_commit_author_identities).
+        to eql([commit_author])
+    end
+
+    it "does not return the user's commit author identities who have not signed a CLA" do
+      commit_author = create(:commit_author, login: 'joedoe', signed_cla: false)
+      user = create(:user)
+      account = create(
+        :account,
+        user: user,
+        provider: 'github',
+        username: 'joedoe'
+      )
+
+      expect(user.verified_commit_author_identities).
+        to eql([])
+    end
+  end
+
+  describe '#unverified_commit_author_identities' do
+
+    it "returns the user's commit author identities who have not signed a CLA" do
+      commit_author = create(:commit_author, login: 'joedoe', signed_cla: false)
+      user = create(:user)
+      account = create(
+        :account,
+        user: user,
+        provider: 'github',
+        username: 'joedoe'
+      )
+
+      expect(user.unverified_commit_author_identities).
+        to eql([commit_author])
+    end
+
+    it "does not return the user's commit author identities who have signed a CLA" do
+      commit_author = create(:commit_author, login: 'joedoe', signed_cla: true)
+      user = create(:user)
+      account = create(
+        :account,
+        user: user,
+        provider: 'github',
+        username: 'joedoe'
+      )
+
+      expect(user.unverified_commit_author_identities).
+        to eql([])
+    end
+  end
+
   describe '.find_by_github_login' do
     it 'returns the user with that GitHub login' do
       user = create(:user)

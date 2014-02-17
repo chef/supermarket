@@ -72,7 +72,7 @@ http_interactions:
     uri: https://api.github.com/repos/cramerdev/paprika/issues/1/labels
     body:
       encoding: UTF-8
-      string: '["All Committers are CLA Signers"]'
+      string: '["All Commit Authors are CLA Signers"]'
     headers:
       Accept:
       - application/vnd.github.v3+json
@@ -129,8 +129,8 @@ http_interactions:
       - 6153E20C:2476:2279D0:52FA411E
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/labels/All+Committers+are+CLA+Signers","name":"All
-        Committers are CLA Signers","color":"ededed"}]'
+      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/labels/All+Commit+Authors+are+CLA+Signers","name":"All
+        Commit Authors are CLA Signers","color":"ededed"}]'
     http_version:
   recorded_at: Tue, 11 Feb 2014 15:26:25 GMT
 - request:
@@ -197,8 +197,8 @@ http_interactions:
       - 6153E20C:2476:227A51:52FA411E
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/labels/All+Committers+are+CLA+Signers","name":"All
-        Committers are CLA Signers","color":"ededed"}]'
+      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/labels/All+Commit+Authors+are+CLA+Signers","name":"All
+        Commit Authors are CLA Signers","color":"ededed"}]'
     http_version:
   recorded_at: Tue, 11 Feb 2014 15:26:25 GMT
 recorded_with: VCR 2.8.0
