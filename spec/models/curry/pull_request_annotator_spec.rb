@@ -63,14 +63,14 @@ describe Curry::PullRequestAnnotator do
           pull_request.number
         )
 
-        label_text = Curry::PullRequestAnnotator::LABEL_TEXT
+        label_text = Supermarket::Config.curry.fetch('success_label')
 
         expect(labels.map(&:name)).to include(label_text)
       end
     end
 
     it 'adds a comment to the Pull Request when not all commit authors have signed a CLA' do
-      VCR.use_cassette('pull_request_annotation_adds_comment', record: :all) do
+      VCR.use_cassette('pull_request_annotation_adds_comment', record: :once) do
         pull_request.commit_authors.create!(login: 'brettchalupa')
         pull_request.commit_authors.create!(
           email: 'brian+bcobb+brettchalupa@cramerdev.com'
@@ -90,11 +90,11 @@ describe Curry::PullRequestAnnotator do
     end
 
     it 'removes the label before adding a comment' do
-      VCR.use_cassette('pull_request_annotation_removes_label', record: :all) do
+      VCR.use_cassette('pull_request_annotation_removes_label', record: :once) do
         octokit.add_labels_to_an_issue(
           repository.full_name,
           pull_request.number,
-          [Curry::PullRequestAnnotator::LABEL_TEXT]
+          [Supermarket::Config.curry.fetch('success_label')]
         )
 
         pull_request.commit_authors.create!(login: 'brettchalupa')
@@ -108,7 +108,7 @@ describe Curry::PullRequestAnnotator do
           pull_request.number
         )
 
-        label_text = Curry::PullRequestAnnotator::LABEL_TEXT
+        label_text = Supermarket::Config.curry.fetch('success_label')
 
         expect(labels.map(&:name)).to_not include(label_text)
       end
