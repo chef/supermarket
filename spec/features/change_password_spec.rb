@@ -4,7 +4,6 @@ describe 'changing the current user password' do
   it 'changes the current users password' do
     sign_in(create(:user))
     click_link 'View Profile'
-    click_link 'manage-profile'
     click_link 'manage-password'
 
     fill_in 'user_current_password', with: 'password'

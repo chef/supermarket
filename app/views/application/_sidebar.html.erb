@@ -12,7 +12,7 @@
         <% end %>
 
         <li><%= link_to 'Sign CCLA', new_ccla_signature_path %></li>
-        <li><%= link_to 'View Profile', current_user %></li>
+        <li><%= link_to 'View Profile', edit_profile_path %></li>
 
         <% if current_user && current_user.is?(:admin) %>
           <li>
