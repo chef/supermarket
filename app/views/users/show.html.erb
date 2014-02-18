@@ -37,7 +37,7 @@
       </ul>
 
       <% if current_user == @user %>
-        <%= link_to 'Manage Profile', edit_profile_path, class: 'button radius tiny', id: 'manage-profile' %>
+        <%= link_to 'Manage Profile', edit_profile_path, class: 'button radius tiny', rel: 'manage_profile' %>
       <% end %>
     </div>
   </div>

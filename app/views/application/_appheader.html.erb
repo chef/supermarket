@@ -1,0 +1,35 @@
+<h2 class="appheader"><%= link_to root_path do %>Supermarket<% end %></h2>
+<nav class="usermenu">
+  <% if signed_in? %>
+    <div class="avatar">
+      <%= gravatar_for current_user, size: 80 %>
+      <ul class="userdropdown">
+        <% unless current_user.signed_icla? %>
+          <li><%= link_to 'Sign ICLA', new_icla_signature_path, :class => 'fa fa-file-text', rel: 'sign_icla' %></li>
+        <% end %>
+
+        <li><%= link_to 'Sign CCLA', new_ccla_signature_path, :class => 'fa fa-file-text', rel: 'sign_ccla' %></li>
+        <li><%= link_to 'View Profile', current_user, :class => 'fa fa-user', rel: 'view_profile' %></li>
+
+        <% if current_user && current_user.is?(:admin) %>
+          <li>
+            <%= link_to "Watched Repositories", curry_repositories_url, :class => 'fa fa-github', rel: 'manage_repositories' %>
+          </li>
+        <% end %>
+
+        <li><%= link_to 'Sign Out', sign_out_path, :class => 'fa fa-power-off', method: :delete, rel: 'sign_out' %></li>
+      </ul>
+    </div>
+  <% else %>
+    <%= link_to 'Sign In', sign_in_path, :class => 'signin', rel: 'sign_in' %>
+  <% end %>
+</nav>
+<form action="" class="searchform">
+  <i class="fa fa-search fa-fw"></i>
+  <input type="search" id="searchfield" name="searchfield">
+</form>
+<nav class="appnav">
+  <ul>
+    <li><%= link_to 'Contributors', icla_signatures_path %></li>
+  </ul>
+</nav>

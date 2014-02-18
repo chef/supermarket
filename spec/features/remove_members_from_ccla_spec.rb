@@ -11,9 +11,7 @@ describe 'Removing members from a CCLA' do
     manage_contributors
     remove_contributor_from('Acme')
 
-    admin_elements = all('.contributor.admin')
-
-    expect(admin_elements.size).to eql(1)
+    expect_to_see_success_message
   end
 
   example 'admins can remove other, non-admin members' do
@@ -26,9 +24,7 @@ describe 'Removing members from a CCLA' do
     manage_contributors
     remove_contributor_from('Acme')
 
-    contributor_elements = all('.contributor')
-
-    expect(contributor_elements.size).to eql(1)
+    expect_to_see_success_message
   end
 
 end

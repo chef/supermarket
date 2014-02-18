@@ -6,8 +6,7 @@ describe 'signing a ICLA' do
   it 'associates the signer with a icla' do
     sign_in(create(:user))
     sign_icla
-    manage_agreements
-    expect(page).to have_content 'Signed ICLA'
-    expect(page).to have_no_content 'Sign ICLA'
+
+    expect_to_see_success_message
   end
 end

@@ -2,20 +2,25 @@ module FeatureHelpers
 
   def sign_in(user)
     visit '/'
-    click_link 'Sign In'
+    follow_relation 'sign_in'
 
     fill_in 'user_email', with: user.email
     fill_in 'user_password', with: user.password
 
-    find_button('Sign In').click
+    submit_form
   end
 
   def sign_out
-    click_link "Sign Out"
+    in_user_menu do
+      follow_relation 'sign_out'
+    end
   end
 
   def sign_icla
-    click_link "Sign ICLA"
+    in_user_menu do
+      follow_relation 'sign_icla'
+    end
+
     connect_github_account
 
     fill_in 'icla_signature_first_name', with: 'John'
@@ -31,11 +36,14 @@ module FeatureHelpers
 
     check 'icla_signature_agreement'
 
-    find_button('Sign ICLA').click
+    submit_form
   end
 
   def sign_ccla(company = "Chef")
-    click_link 'Sign CCLA'
+    in_user_menu do
+      follow_relation 'sign_ccla'
+    end
+
     connect_github_account
 
     fill_in 'ccla_signature_first_name', with: 'John'
@@ -51,7 +59,7 @@ module FeatureHelpers
 
     check 'ccla_signature_agreement'
 
-    find_button('Sign CCLA').click
+    submit_form
   end
 
   def sign_ccla_and_invite_admin_to(organization)
@@ -85,15 +93,22 @@ module FeatureHelpers
     expect_to_see_success_message
   end
 
+  def manage_profile
+    in_user_menu do
+      follow_relation 'view_profile'
+    end
+
+    follow_relation 'manage_profile'
+  end
+
   def manage_agreements
-    click_link 'View Profile'
-    click_link 'manage-profile'
-    click_link 'manage-agreements'
+    manage_profile
+    follow_relation 'manage_agreements'
   end
 
   def manage_contributors
     manage_agreements
-    click_link 'invite-contributors'
+    follow_relation 'invite_contributors'
   end
 
   def invite_admin(email)
@@ -101,7 +116,7 @@ module FeatureHelpers
 
     fill_in 'invitation_email', with: email
     check 'invitation_admin'
-    find_button('Send Invite').click
+    submit_form
 
     expect_to_see_success_message
     expect(all('#invitation_admin:checked').size).to eql(1)
@@ -111,7 +126,8 @@ module FeatureHelpers
     manage_contributors
 
     fill_in 'invitation_email', with: email
-    find_button('Send Invite').click
+    submit_form
+
     expect_to_see_success_message
     expect(all('#invitation_admin:checked').size).to eql(0)
   end
@@ -131,25 +147,47 @@ module FeatureHelpers
   end
 
   def remove_contributor_from(organization)
-    click_link "Remove Contributor"
+    follow_relation 'remove_contributor'
   end
 
   def connect_github_account
-    click_link 'connect-github'
+    follow_relation 'connect_github'
   end
 
   def manage_github_accounts
-    click_link 'View Profile'
-    click_link 'Manage Profile'
-    click_link 'manage-github-accounts'
+    manage_profile
+    follow_relation 'manage_github_accounts'
+  end
+
+  def manage_repositories
+    in_user_menu do
+      follow_relation 'manage_repositories'
+    end
   end
 
   def expect_to_see_success_message
     expect(page).to have_selector('.alert-box.success')
   end
 
+  def expect_to_see_failure_message
+    expect(page).to have_selector('.alert-box.alert')
+  end
+
   def known_users
     @known_users ||= { }
+  end
+
+  def follow_relation(rel)
+    find("[rel*=#{rel}]").click
+  end
+
+  def submit_form
+    find('[type=submit]').click
+  end
+
+  def in_user_menu
+    find('.usermenu').hover
+    yield
   end
 
 end

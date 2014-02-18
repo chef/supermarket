@@ -38,7 +38,7 @@
           <% end %>
         </td>
         <td><%= "Pending" %></td>
-        <td><%= link_to "Resend", resend_organization_invitation_path(@organization, invitation), method: :patch, class: 'button secondary radius tiny' %></td>
+        <td><%= link_to "Resend", resend_organization_invitation_path(@organization, invitation), method: :patch, class: 'button secondary radius tiny', rel: 'resend_invitation' %></td>
       </tr>
     <% end %>
 
@@ -57,13 +57,15 @@
         <td><%= "Accepted" %></td>
         <% if contributor.user == current_user %>
           <% text = "Remove Myself as a Contributor" %>
+          <% rel = "remove_self" %>
         <% else %>
           <% text = "Remove Contributor" %>
+          <% rel = "remove_contributor" %>
         <% end %>
 
         <td>
           <% if policy(contributor).destroy? %>
-            <%= link_to text, organization_contributor_url(@organization, contributor), method: :delete %>
+            <%= link_to text, organization_contributor_url(@organization, contributor), method: :delete, rel: rel %>
           <% else %>
             -
           <% end %>
