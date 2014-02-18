@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/octokit/octokit.rb.git
-  revision: a1dff9f2f0d1cce97a1fd1ee7d99a660ebfb5ee4
+  revision: e2dd92202505e577c20658ec2f7ab0bdaa352fb7
   specs:
     octokit (3.0.0.pre)
       sawyer (~> 0.5.3)
@@ -90,7 +90,7 @@ GEM
       dotenv (= 0.9.0)
     erubis (2.7.0)
     execjs (2.0.2)
-    factory_girl (4.3.0)
+    factory_girl (4.4.0)
       activesupport (>= 3.0.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
@@ -100,7 +100,7 @@ GEM
     fssm (0.2.10)
     hashie (2.0.5)
     hike (1.2.3)
-    httparty (0.12.0)
+    httparty (0.13.0)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.6.9)
@@ -110,7 +110,7 @@ GEM
     json (1.8.1)
     jwt (0.1.11)
       multi_json (>= 1.5)
-    kgio (2.9.1)
+    kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
     license_finder (0.9.5.1)
@@ -131,8 +131,8 @@ GEM
     minitest (4.7.5)
     multi_json (1.8.4)
     multi_xml (0.5.5)
-    multipart-post (1.2.0)
-    nokogiri (1.6.0)
+    multipart-post (2.0.0)
+    nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     oauth (0.4.7)
     oauth2 (0.9.3)
@@ -165,7 +165,7 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
-    polyglot (0.3.3)
+    polyglot (0.3.4)
     pundit (0.2.2)
       activesupport (>= 3.0.0)
     quiet_assets (1.0.2)
@@ -188,7 +188,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.12.0)
     rake (10.1.1)
-    redcarpet (3.0.0)
+    redcarpet (3.1.0)
     redis (3.0.7)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
@@ -218,7 +218,7 @@ GEM
     sequel (4.7.0)
     shoulda-matchers (2.5.0)
       activesupport (>= 3.0.0)
-    sidekiq (2.17.4)
+    sidekiq (2.17.5)
       celluloid (>= 0.15.2)
       connection_pool (>= 1.0.0)
       json
@@ -266,7 +266,7 @@ GEM
     vcr (2.8.0)
     warden (1.2.3)
       rack (>= 1.0)
-    webmock (1.17.2)
+    webmock (1.17.3)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
     websocket-driver (0.3.2)
