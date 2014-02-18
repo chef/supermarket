@@ -4,6 +4,7 @@ class Curry::PullRequestUpdatesController < ApplicationController
 
   skip_before_action :verify_authenticity_token
   before_filter :verify_github_signature, unless: -> { Rails.env.development? }
+  before_filter :ignore_zen_updates
   before_filter :find_pull_request!
 
   #
@@ -73,6 +74,15 @@ class Curry::PullRequestUpdatesController < ApplicationController
   def verify_github_signature
     if github_signature != expected_signature
       head 400
+    end
+  end
+
+  #
+  # Respond with a 200 if the payload is a zen message
+  #
+  def ignore_zen_updates
+    if payload.fetch('zen', false)
+      head 200
     end
   end
 
