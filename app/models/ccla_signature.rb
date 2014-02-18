@@ -24,13 +24,17 @@ class CclaSignature < ActiveRecord::Base
   # --------------------
   attr_accessor :agreement
 
-  def name
-    "#{first_name} #{last_name}"
-  end
+  # Scopes
+  # --------------------
+  scope :by_organization, ->{ where(id: select('DISTINCT ON(organization_id) id').order('organization_id, signed_at DESC')).order('signed_at ASC') }
 
   # Callbacks
   # --------------------
   before_create ->(record){ record.signed_at = Time.now }
+
+  def name
+    "#{first_name} #{last_name}"
+  end
 
   #
   # Creates an associated organization and an admin contributor for said

@@ -191,3 +191,40 @@ body > header {
     }
   }
 }
+
+// Contributors List Elements
+.contributors {
+  table {
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+
+  .heading {
+    @include grid-row($behavior: nest);
+
+    .left {
+      @include grid-column(8);
+
+      h1 {
+        margin-bottom: .2rem;
+      }
+
+      h4 {
+        display: inline-block;
+
+        &:first-of-type {
+          border-right: solid 1px #000;
+          padding-right: .5rem;
+          margin-right: .5rem;
+        }
+      }
+    }
+
+    .right {
+      @include grid-column(4);
+      text-align: right;
+
+      ul { text-align: left; }
+    }
+  }
+}
