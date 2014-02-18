@@ -178,12 +178,4 @@ class User < ActiveRecord::Base
     account.try(:user) || User.new
   end
 
-  private
-
-  #
-  # Callback: strip anything that is not a digit from the phone number.
-  #
-  def normalize_phone
-    phone.gsub!(/[^0-9]/, '') if phone
-  end
 end
