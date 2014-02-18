@@ -86,12 +86,26 @@ class Curry::PullRequestUpdatesController < ApplicationController
     end
   end
 
+  #
+  # GitHub's HMAC hex digest of the request body
+  #
+  # @see https://github.com/github/github-services/blob/f3bb3dd/lib/service/http_helper.rb#L77
+  #
+  # @return [String] the digest if the X-Hub-Signature is present
+  # @return [nil] if the X-Hub-Signature is missing
+  #
   def github_signature
     if request.headers['X-Hub-Signature']
       request.headers['X-Hub-Signature'].split('=').last
     end
   end
 
+  #
+  # The HMAC hex digest of the request body, using the shared hub secret as the
+  # key
+  #
+  # @return [String] the hexdigest
+  #
   def expected_signature
     OpenSSL::HMAC.hexdigest(
       HMAC_DIGEST,
