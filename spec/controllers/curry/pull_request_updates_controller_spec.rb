@@ -88,5 +88,21 @@ describe Curry::PullRequestUpdatesController do
       end
 
     end
+
+    context 'when GitHub sends a zen payload' do
+
+      it 'returns a 200' do
+        zen_payload = {
+          "zen" => "Anything added dilutes everything else.",
+          "hook_id" => 1824075
+        }.to_json
+
+        secure_post :create, payload: zen_payload
+
+        expect(response.code.to_i).to eql(200)
+      end
+
+    end
+
   end
 end
