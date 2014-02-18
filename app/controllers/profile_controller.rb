@@ -52,6 +52,7 @@ class ProfileController < ApplicationController
       :first_name,
       :last_name,
       :company,
+      :twitter_username,
       :irc_nickname,
       :jira_username
     )
