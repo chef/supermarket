@@ -11,6 +11,12 @@
           <span class="fa fa-building"></span> <%= @user.company %>
         </li>
 
+        <% if @user.twitter_username.present? %>
+          <li data-tooltip class="has-tip" title="<%= @user.name %>'s Twitter Username.">
+            <i class="fa fa-twitter"></i> <%= @user.twitter_username %>
+          </li>
+        <% end %>
+
         <% if @user.irc_nickname.present? %>
           <li data-tooltip class="has-tip" title="<%= @user.name %>'s IRC Nickname.">
             <i class="fa fa-comment"></i> <%= @user.irc_nickname %>

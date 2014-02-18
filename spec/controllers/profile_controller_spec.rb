@@ -31,6 +31,7 @@ describe ProfileController do
           'first_name' => 'Bob',
           'last_name' => 'Smith',
           'company' => 'Acme',
+          'twitter_username' => 'bobbo',
           'irc_nickname' => 'bobbo',
           'jira_username' => 'bobbo'
         })
@@ -42,6 +43,7 @@ describe ProfileController do
           'first_name' => 'Bob',
           'last_name' => 'Smith',
           'company' => 'Acme',
+          'twitter_username' => 'bobbo',
           'irc_nickname' => 'bobbo',
           'jira_username' => 'bobbo'
         })
