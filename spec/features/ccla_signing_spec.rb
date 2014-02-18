@@ -3,10 +3,10 @@ require 'spec_feature_helper'
 describe 'signing a CCLA' do
   before { create(:ccla) }
 
-  it 'establishes the signer as an admin of the organization' do
+  it 'is possible for users to sign CCLAs' do
     sign_in(create(:user))
     sign_ccla
-    manage_agreements
-    expect(page).to have_content 'Admin of Chef'
+
+    expect_to_see_success_message
   end
 end

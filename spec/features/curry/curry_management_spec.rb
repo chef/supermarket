@@ -12,7 +12,7 @@ describe 'Curry management' do
       fill_in 'GitHub Repository Name', with: 'paprika'
       submit_form
 
-      expect(page).to have_selector '.repository'
+      expect_to_see_success_message
     end
   end
 
@@ -28,7 +28,7 @@ describe 'Curry management' do
 
       follow_relation 'remove_repository'
 
-      expect(page).to_not have_selector '.repository'
+      expect_to_see_success_message
     end
   end
 
