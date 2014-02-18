@@ -19,8 +19,14 @@
   width: rem-calc(66);
   z-index: 1;
 
+  &:before { display: block; margin-top: rem-calc(28); }
+
   &:visited { color: #7c858c; }
   &:hover { color: #949ea6; }
+}
+
+.off-canvas-list li a:hover {
+  background-color: #222;
 }
 
 // Global chef elements
@@ -59,6 +65,7 @@
 .searchform {
   float: right;
   height: rem-calc(69);
+  margin-right: rem-calc(87);
   position: relative;
 
   .fa {
@@ -122,7 +129,7 @@
   float: right;
   height: rem-calc(69);
   position: relative;
-  width: rem-calc(119);
+  width: rem-calc(32);
   z-index: 101;
 
   .signin {
@@ -196,10 +203,17 @@
     &:last-child { border: none; }
 
     a {
+      color: #7c858c;
       display: block;
       font-size: rem-calc(12);
-      padding: rem-calc(7 10);
+      padding: rem-calc(10);
       text-decoration: none;
+
+      &:hover, &:active {
+        color: #949ea6;
+      }
+
+      &:before { margin-right: rem-calc(7); }
     }
   }
 }

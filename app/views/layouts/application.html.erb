@@ -20,14 +20,14 @@
 
     <div class="off-canvas-wrap">
       <div class="inner-wrap">
-        <a class="left-off-canvas-toggle"><i class="fa fa-bars fa-fw"></i><span class="hide">Menu</span></a>
+        <a class="left-off-canvas-toggle fa fa-bars"><span class="hide">Menu</span></a>
         <!-- Chef Property Menu -->
         <aside class="left-off-canvas-menu">
             <ul class="off-canvas-list">
-              <li><a href="#">Get Chef</a></li>
-              <li><a href="#">#learnchef</a></li>
-              <li><a href="#">Docs</a></li>
-              <li><a href="#">Chat</a></li>
+              <li><a href="http://www.getchef.com/">Get Chef</a></li>
+              <li><a href="https://learnchef.opscode.com/">#learnchef</a></li>
+              <li><a href="http://docs.opscode.com/">Docs</a></li>
+              <li><a href="http://www.getchef.com/training/">Training</a></li>
             </ul>
         </aside>
 
@@ -50,17 +50,5 @@
     <% end %>
 
     <%= javascript_include_tag "application" %>
-    <script>
-    $(function() {
-         var timer;
-
-         $(window).resize(function() {
-            clearTimeout(timer);
-            timer = setTimeout(function() {
-               $('.inner-wrap').css("min-height", $(window).height() + "px" );
-                }, 40);
-          }).resize();
-     });
-    </script>
   </body>
 </html>
