@@ -17,6 +17,14 @@
 # limitations under the License.
 #
 
-execute 'apt-get update'
+execute 'apt-get update' do
+  ignore_failure true
+end
+
+execute 'apt-cache gencaches' do
+  ignore_failure true
+  action :nothing
+end
 
 package 'software-properties-common'
+package 'python-software-properties'

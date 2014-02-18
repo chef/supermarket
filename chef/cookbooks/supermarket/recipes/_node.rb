@@ -26,9 +26,16 @@ package 'python'
 package 'g++'
 package 'make'
 
+execute 'apt-get-update-node-only' do
+  command "apt-get update -o Dir::Etc::sourcelist='sources.list.d/chris-lea-node_js-precise.list' -o Dir::Etc::sourceparts='-' -o APT::Get::List-Cleanup='0'"
+  notifies :run, 'execute[apt-cache gencaches]'
+  action :nothing
+  ignore_failure true
+end
+
 execute 'add-apt-repository[ppa:chris-lea]' do
   command 'add-apt-repository -y ppa:chris-lea/node.js'
-  notifies :run, 'execute[apt-get update]', :immediately
+  notifies :run, 'execute[apt-get-update-node-only]', :immediately
   not_if 'test -f /etc/apt/sources.list.d/chris-lea-node_js-precise.list'
 end
 
