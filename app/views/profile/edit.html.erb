@@ -1,10 +1,10 @@
 <div class="user">
   <h1>Manage Profile</h1>
   <dl class="tabs radius" data-tab>
-    <dd class="active"><a href="#profile" id="manage-profile">Edit Profile</a></dd>
-    <dd><a href="#password" id="manage-password">Change Password</a></dd>
-    <dd><a href="#github-accounts" id="manage-github-accounts">GitHub Accounts</a></dd>
-    <dd><a href="#agreements" id="manage-agreements">Agreements</a></dd>
+    <dd class="active"><a href="#profile" rel="manage_profile">Edit Profile</a></dd>
+    <dd><a href="#password" rel="change_password">Change Password</a></dd>
+    <dd><a href="#github-accounts" rel="manage_github_accounts">GitHub Accounts</a></dd>
+    <dd><a href="#agreements" rel="manage_agreements">Agreements</a></dd>
   </dl>
 
   <div class="tabs-content">
@@ -60,12 +60,12 @@
         <% current_user.accounts.for('github').each do |account| %>
           <tr>
             <td><i class="fa fa-github"></i> <%= account.username %></td>
-            <td class="text-right"><%= link_to 'Disconnect GitHub', user_account_url(current_user, account), method: :delete, id: 'disconnect-github' %></td>
+            <td class="text-right"><%= link_to 'Disconnect GitHub', user_account_url(current_user, account), method: :delete, rel: 'disconnect_github' %></td>
           </tr>
         <% end %>
       </table>
 
-      <%= link_to '<i class="fa fa-github"></i> Connect GitHub'.html_safe, auth_path(:github), class: 'button radius', id: 'connect-github' %>
+      <%= link_to '<i class="fa fa-github"></i> Connect GitHub'.html_safe, auth_path(:github), class: 'button radius', rel: 'connect_github' %>
     </div>
     <div class="content" id="agreements">
       <table>
@@ -83,7 +83,7 @@
               <td class="text-right">
                 <%= link_to "Edit CCLA", contributor.organization.latest_ccla_signature %>
                 <span> or</span>
-                <%= link_to "Invite Contributors", organization_invitations_url(contributor.organization), id: 'invite-contributors' %>
+                <%= link_to "Invite Contributors", organization_invitations_url(contributor.organization), rel: 'invite_contributors' %>
               </td>
             </tr>
           <% else %>

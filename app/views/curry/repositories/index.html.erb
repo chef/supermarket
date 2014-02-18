@@ -15,7 +15,7 @@
           <%= "#{repository.owner}/#{repository.name}" %>
         </td>
         <td>
-          <%= link_to "Remove Repository", repository, method: :delete %>
+          <%= link_to "Remove Repository", repository, method: :delete, rel: 'remove_repository' %>
         </td>
       </tr>
     <% end %>

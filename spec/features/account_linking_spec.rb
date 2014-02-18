@@ -14,8 +14,10 @@ describe 'unlinking an OAuth account on a user' do
     sign_in(create(:user))
     manage_github_accounts
     connect_github_account
-    click_link 'manage-github-accounts'
-    click_link 'disconnect-github'
+    manage_github_accounts
+
+    follow_relation 'disconnect_github'
+
     expect_to_see_success_message
   end
 end

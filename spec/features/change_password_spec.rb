@@ -3,16 +3,14 @@ require 'spec_feature_helper'
 describe 'changing the current user password' do
   it 'changes the current users password' do
     sign_in(create(:user))
-    click_link 'View Profile'
-    click_link 'manage-profile'
-    click_link 'manage-password'
+    manage_profile
+    follow_relation 'change_password'
 
     fill_in 'user_current_password', with: 'password'
     fill_in 'user_password', with: 'winter123'
     fill_in 'user_password_confirmation', with: 'winter123'
+    submit_form
 
-    find_button('Change Password').click
-
-    expect(page).to have_selector('.alert-box.success')
+    expect_to_see_success_message
   end
  end

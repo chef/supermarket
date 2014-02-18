@@ -32,6 +32,6 @@ describe 'inviting people to sign a CCLA' do
     sign_in(user)
     receive_and_respond_to_invitation_with('accept')
 
-    expect(page).to have_selector('.alert-box.alert')
+    expect_to_see_failure_message
   end
 end
