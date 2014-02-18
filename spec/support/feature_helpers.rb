@@ -118,7 +118,7 @@ module FeatureHelpers
 
   def receive_and_respond_to_invitation_with(response)
     invitation = ActionMailer::Base.deliveries.detect { |email|
-      /Invitation/ =~ email['Subject'].to_s
+      /invited/ =~ email['Subject'].to_s
     }.to_s
 
     ActionMailer::Base.deliveries.clear
