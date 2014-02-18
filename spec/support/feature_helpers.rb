@@ -135,10 +135,13 @@ module FeatureHelpers
   end
 
   def connect_github_account
-    click_link 'View Profile'
-    click_link 'manage-profile'
-    click_link 'manage-github-accounts'
     click_link 'connect-github'
+  end
+
+  def manage_github_accounts
+    click_link 'View Profile'
+    click_link 'Manage Profile'
+    click_link 'manage-github-accounts'
   end
 
   def expect_to_see_success_message

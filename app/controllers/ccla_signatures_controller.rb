@@ -103,7 +103,7 @@ class CclaSignaturesController < ApplicationController
     if !current_user.linked_github_account?
       store_location_for current_user, request.path
 
-      redirect_to current_user,
+      redirect_to link_github_profile_path,
         notice: t('ccla_signature.requires_linked_github')
     end
   end

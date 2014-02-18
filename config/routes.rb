@@ -40,6 +40,7 @@ Supermarket::Application.routes.draw do
   resource :profile, controller: 'profile', only: [:update, :edit] do
     collection do
       patch :change_password
+      get :link_github, path: 'link-github'
     end
   end
 
