@@ -60,12 +60,21 @@
   line-height: rem-calc(69);
   margin: 0 rem-calc(20) 0 0;
   text-transform: uppercase;
+
+  a:link, a:visited {
+    color: #f18a20;
+    text-decoration: none;
+  }
+  a:hover, a:active {
+    color: #f99e40;
+    text-decoration: none;
+  }
 }
 
 .searchform {
   float: right;
   height: rem-calc(69);
-  margin-right: rem-calc(87);
+  margin-right: rem-calc(57);
   position: relative;
 
   .fa {
@@ -129,7 +138,7 @@
   float: right;
   height: rem-calc(69);
   position: relative;
-  width: rem-calc(32);
+  width: rem-calc(62);
   z-index: 101;
 
   .signin {

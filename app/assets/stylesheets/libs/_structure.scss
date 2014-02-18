@@ -13,7 +13,7 @@ body {
 
 .page {
   @include grid-column(12, $center: true);
-  padding: rem-calc(70) rem-calc(140);
+  padding: rem-calc(70 140 140);
 }
 
 // User Elements
@@ -76,7 +76,7 @@ body {
     @include grid-column(7);
 
     .panel {
-      max-height: 1020px;
+      max-height: rem-calc(1020);
       overflow: auto;
 
       h1 { border: none; font-size: rem-calc(18); line-height: rem-calc(24); }
