@@ -18,13 +18,13 @@
 # limitations under the License.
 #
 
-directory "/etc/sidekiq" do
-  mode "0750"
+directory '/etc/sidekiq' do
+  mode '0755'
   recursive true
 end
 
-template "/etc/sidekiq/sidekiq.yml" do
-  source "sidekiq.yml.erb"
-  mode   "0644"
+template '/etc/sidekiq/sidekiq.yml' do
+  source 'sidekiq.yml.erb'
+  variables :config => node['sidekiq'].to_hash
+  mode   '0644'
 end
-

@@ -1,0 +1,37 @@
+---
+driver:
+  name: vagrant
+  customize:
+    memory: 1024
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: ubuntu-12.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[supermarket::_postgres]
+      - recipe[supermarket::_redis]
+      - recipe[supermarket::_sidekiq]
+      - recipe[supermarket::_apt]
+      - recipe[supermarket::_node]
+      - recipe[supermarket::_ruby]
+      - recipe[supermarket::_application]
+      - recipe[supermarket::_nginx]
+    attributes:
+      supermarket:
+        secret_key_base: development
+        devise_secret_key: development
+      postgres:
+        auth_method: trust
+        user: supermarket
+        password: notarealpassword
+        database: supermarket_production
+      redis:
+        config:
+          maxmemory: 64mb
+      sidekiq:
+        concurrency: 25

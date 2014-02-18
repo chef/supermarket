@@ -21,9 +21,25 @@ include_recipe 'supermarket::_apt'
 
 application_directory = '/var/www/supermarket'
 
-deploy_revision "#{application_directory}" do
+package 'git'
+
+group 'supermarket' do
+  system true
+end
+
+user 'supermarket' do
+  gid 'supermarket'
+  system true
+  home '/var/www/supermarket'
+  comment 'Supermarket'
+  shell '/bin/bash'
+end
+
+deploy_revision application_directory do
   repo 'https://github.com/opscode/supermarket.git'
-  revision "master"
+  revision 'master'
+  user 'supermarket'
+  group 'supermarket'
   migrate true
   migration_command 'bundle exec rake db:migrate'
   environment 'RAILS_ENV' => 'production'
@@ -44,7 +60,7 @@ deploy_revision "#{application_directory}" do
 
     execute 'bundle install' do
       cwd release_path
-      command 'bundle install --without test development'
+      command 'bundle install --without test development --path=vendor/bundle'
     end
 
     execute 'quiet sidekiq' do
@@ -89,4 +105,5 @@ deploy_revision "#{application_directory}" do
       not_if "test -f #{sidekiq_pid}"
     end
   end
+  action :deploy
 end

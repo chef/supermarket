@@ -47,5 +47,5 @@ template '/etc/postgresql/9.1/main/pg_hba.conf' do
 end
 
 service 'postgresql' do
-  action :nothing
+  action [:enable, :start]
 end

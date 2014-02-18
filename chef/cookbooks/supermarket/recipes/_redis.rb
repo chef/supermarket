@@ -22,9 +22,16 @@
 
 include_recipe 'supermarket::_apt'
 
+execute 'apt-get-update-redis-only' do
+  command "apt-get update -o Dir::Etc::sourcelist='sources.list.d/chris-lea-redis-server-precise.list' -o Dir::Etc::sourceparts='-' -o APT::Get::List-Cleanup='0'"
+  notifies :run, 'execute[apt-cache gencaches]'
+  action :nothing
+  ignore_failure true
+end
+
 execute 'add-apt-repository[ppa:chris-lea]' do
   command 'add-apt-repository -y ppa:chris-lea/redis-server'
-  notifies :run, 'execute[apt-get update]', :immediately
+  notifies :run, 'execute[apt-get-update-redis-only]', :immediately
   not_if 'test -f /etc/apt/sources.list.d/chris-lea-redis-server-precise.list'
 end
 
