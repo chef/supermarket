@@ -16,6 +16,7 @@ development:
   icla_version: '99999-2621/LEGAL14767024.1'
   ccla_version: '99999-2621/LEGAL14767024.1'
   cla_signature_notification_email: <%= ENV['CLA_SIGNATURE_NOTIFICATION_EMAIL'] %>
+  from_email: <%= ENV['FROM_EMAIL'] %>
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
   host: <%= ENV['HOST'] %>
   port: <%= ENV['PORT'] %>
@@ -51,6 +52,7 @@ production:
   icla_version: '99999-2621/LEGAL14767024.1'
   ccla_version: '99999-2621/LEGAL14767024.1'
   cla_signature_notification_email: <%= ENV['CLA_SIGNATURE_NOTIFICATION_EMAIL'] %>
+  from_email: <%= ENV['FROM_EMAIL'] %>
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
   host: <%= ENV['HOST'] %>
   port: <%= ENV['PORT'] %>
@@ -87,6 +89,7 @@ test:
   icla_version: '99999-2621/LEGAL14767024.1'
   ccla_version: '99999-2621/LEGAL14767024.1'
   cla_signature_notification_email: <%= ENV['CLA_SIGNATURE_NOTIFICATION_EMAIL'] %>
+  from_email: <%= ENV['FROM_EMAIL'] %>
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
   host: <%= ENV['HOST'] %>
   port: <%= ENV['PORT'] %>

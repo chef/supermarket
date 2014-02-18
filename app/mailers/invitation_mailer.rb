@@ -1,6 +1,4 @@
 class InvitationMailer < ActionMailer::Base
-  default from: "from@example.com"
-
   def self.deliver_invitation(invitation)
     invitation_email(invitation).deliver
   end
@@ -8,6 +6,6 @@ class InvitationMailer < ActionMailer::Base
   def invitation_email(invitation)
     @invitation = invitation
 
-    mail(to: invitation.email)
+    mail(to: invitation.email, subject: "You've been invited to sign #{@invitation.organization.name}'s CCLA")
   end
 end

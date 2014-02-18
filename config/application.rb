@@ -69,5 +69,8 @@ module Supermarket
       host: Supermarket::Config.host,
       port: Supermarket::Config.port
     }
+
+    # Set default from email for ActionMailer
+    ActionMailer::Base.default from: Supermarket::Config.from_email
   end
 end
