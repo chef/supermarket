@@ -69,8 +69,8 @@ describe IclaSignaturesController do
         get :new
       end
 
-      it 'redirects the user to their profile' do
-        expect(response).to redirect_to(admin)
+      it 'directs the user to link their github account' do
+        expect(response).to redirect_to(link_github_profile_path)
       end
 
       it 'prompts the user to link their GitHub account' do
@@ -93,8 +93,8 @@ describe IclaSignaturesController do
         post :create, icla_signature: { first_name: 'T', last_name: 'Rex' }
       end
 
-      it 'redirects the user to their profile' do
-        expect(response).to redirect_to(admin)
+      it 'directs the user to link their github account' do
+        expect(response).to redirect_to(link_github_profile_path)
       end
 
       it 'prompts the user to link their GitHub account' do
@@ -168,7 +168,7 @@ describe IclaSignaturesController do
       end
 
       it 'redirects the user to their profile' do
-        expect(response).to redirect_to(admin)
+        expect(response).to redirect_to(link_github_profile_path)
       end
 
       it 'prompts the user to link their GitHub account' do

@@ -39,7 +39,7 @@ describe CclaSignaturesController do
       end
 
       it 'redirects the user to their profile' do
-        expect(response).to redirect_to(user)
+        expect(response).to redirect_to(link_github_profile_path)
       end
 
       it 'prompts the user to link their GitHub account' do
@@ -91,8 +91,8 @@ describe CclaSignaturesController do
         }
       end
 
-      it 'redirects the user to their profile' do
-        expect(response).to redirect_to(user)
+      it 'directs the user to link their github account' do
+        expect(response).to redirect_to(link_github_profile_path)
       end
 
       it 'prompts the user to link their github account' do
@@ -163,8 +163,8 @@ describe CclaSignaturesController do
         }
       end
 
-      it 'redirects the user to their profile' do
-        expect(response).to redirect_to(user)
+      it 'directs the user to link their github account' do
+        expect(response).to redirect_to(link_github_profile_path)
       end
 
       it 'prompts the user to link their github account' do
