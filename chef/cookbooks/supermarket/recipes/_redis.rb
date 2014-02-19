@@ -37,22 +37,22 @@ end
 
 package 'redis-server'
 
-directory "/var/lib/redis" do
-  owner "redis"
-  group "redis"
-  mode "0750"
+directory '/var/lib/redis' do
+  owner 'redis'
+  group 'redis'
+  mode '0750'
   recursive true
 end
 
-template "/etc/redis/redis.conf" do
-  source "redis.conf.erb"
-  owner  "root"
-  group  "root"
-  mode   "0644"
-  notifies :restart, "service[redis-server]"
+template '/etc/redis/redis.conf' do
+  source 'redis.conf.erb'
+  owner  'root'
+  group  'root'
+  mode   '0644'
+  notifies :restart, 'service[redis-server]'
 end
 
-service "redis-server" do
+service 'redis-server' do
   supports restart: true
   action [:enable, :start]
 end
