@@ -1,10 +1,11 @@
 <h1>Invite contributors to <%= @organization.name %></h1>
 
-<%= form_for([@organization, @invitation]) do |f| %>
+<%= form_for([@organization, @invitation], data: { abide: true }) do |f| %>
   <%= render 'application/form_errors', record: @invitation %>
   <div class="row collapse">
     <div class="small-10 columns">
-      <%= f.email_field :email, placeholder: 'Contributor Email',  title: 'Contributor Email', autofocus: true %>
+      <%= f.email_field :email, placeholder: 'Contributor Email',  title: 'Contributor Email', autofocus: true, require: '', pattern: 'email' %>
+      <small class="error">A valid email is required.</small>
     </div>
     <div class="small-2 columns">
       <%= f.submit 'Send Invite', class: 'button primary radius postfix' %>

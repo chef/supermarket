@@ -34,7 +34,8 @@ class OrganizationInvitationsController < ApplicationController
       redirect_to organization_invitations_path(@organization),
         notice: "Invited #{@invitation.email} to #{@organization.name}"
     else
-      render 'index'
+      redirect_to organization_invitations_path(@organization),
+        alert: t('organization_invitations.invite.failure')
     end
   end
 

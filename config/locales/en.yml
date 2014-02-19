@@ -6,6 +6,9 @@ en:
     requires_linked_github: "You need to link your GitHub account before you sign an ICLA"
   ccla_signature:
     requires_linked_github: "You need to link your GitHub account before you sign a CCLA"
+  organization_invitations:
+    invite:
+      failure: "Your invitation was unable to be sent. Did you specify an email address?"
   curry:
     repositories:
       subscribe:

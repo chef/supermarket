@@ -73,6 +73,15 @@ describe OrganizationInvitationsController do
             invitation: { email: 'chef@example.com' }
         }.to change(ActionMailer::Base.deliveries, :size).by(1)
       end
+
+      it 'displays an alert if the invitation did not save' do
+        post :create,
+          organization_id: organization.id,
+          invitation: { email: '' }
+
+        expect(flash.now[:alert]).
+          to eql(I18n.t('organization_invitations.invite.failure'))
+      end
     end
 
     context 'user is not authorized to create an Invitation' do
