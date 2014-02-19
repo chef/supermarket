@@ -18,6 +18,17 @@ class Invitation < ActiveRecord::Base
   scope :pending, -> { where(accepted: nil) }
   scope :declined, -> { where(accepted: false) }
 
+  #
+  # Returns the invitation identified by the given token
+  #
+  # @raise [ActiveRecord::RecordNotFound] if there is no such invitation
+  #
+  # @return [Invitation] the invitation
+  #
+  def self.with_token!(token)
+    find_by!(token: token)
+  end
+
   def to_param
     token
   end
