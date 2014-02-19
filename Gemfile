@@ -51,4 +51,5 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'byebug'
   gem 'launchy'
+  gem 'rubocop'
 end
