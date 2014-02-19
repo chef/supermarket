@@ -15,6 +15,7 @@
   }
   .page { padding: rem-calc(20); }
   .alert-box .close { margin-top: rem-calc(-17); }
+  .footer { margin-top: rem-calc(40); padding: rem-calc(20 0); }
 }
 
 @media #{$small-only} {
@@ -25,6 +26,7 @@
   #searchfield { width: rem-calc(220); }
   .page { padding: rem-calc(40 70 70); }
   .alert-box .close { margin-top: rem-calc(-17); }
+  .footer { margin-top: rem-calc(40); padding: rem-calc(20 0); }
 }
 
 @media #{$medium-only} {
