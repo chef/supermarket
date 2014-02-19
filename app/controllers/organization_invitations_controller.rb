@@ -44,7 +44,7 @@ class OrganizationInvitationsController < ApplicationController
   # Updates an invitation.
   #
   def update
-    @invitation = Invitation.find_by(token: params[:id])
+    @invitation = Invitation.with_token!(params[:id])
 
     authorize! @invitation
 
@@ -59,7 +59,7 @@ class OrganizationInvitationsController < ApplicationController
   # Resends email for a given invitation.
   #
   def resend
-    @invitation = Invitation.find_by(token: params[:id])
+    @invitation = Invitation.with_token!(params[:id])
 
     authorize! @invitation
 
