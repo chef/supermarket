@@ -113,7 +113,6 @@ describe Curry::PullRequestAnnotator do
         expect(labels.map(&:name)).to_not include(label_text)
       end
     end
-
   end
 
 end
