@@ -16,6 +16,15 @@ body {
   padding: rem-calc(70 140 140);
 }
 
+.footer {
+  border-top: rem-calc(2) solid #ecedef;
+  color: #999;
+  font-size: rem-calc(11);
+  margin-top: rem-calc(70);
+  padding: rem-calc(40 0);
+  text-align: center;
+}
+
 // User Elements
 .user {
   table { width: 100%; }
