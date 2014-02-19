@@ -4,9 +4,9 @@ module UsersHelper
   # email. If the user does not have a Gravatar, the default Gravatar image is
   # displayed. The default size is 48 pixels.
   #
-  # @param [User] the User for get the Gravatar for
-  # @param optional [Hash] options
-  # @option options [Integer] the size of the Gravatar in pixels, default: 48
+  # @param user [User] the User for get the Gravatar for
+  # @param options [Hash] options for the Gravatar
+  # @option options [Integer] :size (48) the size of the Gravatar in pixels
   #
   # @example Gravtar for current_user
   #   gravatar_for current_user, size: 72

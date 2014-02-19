@@ -113,7 +113,7 @@ class User < ActiveRecord::Base
   # @example
   #   user.is_admin_of_organization?(organization)
   #
-  # @param [Organization]
+  # @param organization [Organization] the organization
   #
   # @return [Boolean]
   #
@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
   # @example
   #   user.account_from_oauth?(request.env['omniauth.auth'])
   #
-  # @param [Hash]
+  # @param auth [Hash] the account information, formatted like OmniAuth schema
   #
   # @return [Account]
   #

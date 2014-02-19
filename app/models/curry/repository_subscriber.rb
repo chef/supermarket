@@ -5,7 +5,7 @@ module Curry
     attr_reader :repository
 
     #
-    # @params [Repository] repository An instance of +Curry::Repository+ that
+    # @param [Repository] repository An instance of +Curry::Repository+ that
     # is used for the Hubbub subscribing.
     #
     def initialize(repository)

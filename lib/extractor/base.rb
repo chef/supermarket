@@ -5,7 +5,7 @@ module Extractor
       # Finds an extractor object for the given auth hash and returns a new
       # extractor instance for the auth hash.
       #
-      # @param [Hash]
+      # @param auth [Hash]
       #   the hash returned from omniauth
       #
       # @return [~Extractor::Base]

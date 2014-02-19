@@ -12,7 +12,7 @@ class Curry::CommitAuthor < ActiveRecord::Base
   #
   # Update the commit author's signed_cla? flag to true
   #
-  # @returns [Boolean]
+  # @return [Boolean]
   #
   def sign_cla!
     self.signed_cla = true
