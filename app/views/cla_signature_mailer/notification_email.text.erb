@@ -23,7 +23,7 @@ _________________________________________________________
 <%= @cla_signature.name %>
 <%= @cla_signature.company %>
 
-<%= @cla_signature.email %> - <%= @cla_signature.phone %>
+<%= @cla_signature.email %> - <%= number_to_phone(@cla_signature.phone) %>
 <%= @cla_signature.address_line_1 %>
 <%= @cla_signature.address_line_2 %>
 

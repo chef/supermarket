@@ -1,0 +1,191 @@
+/* Based on The MailChimp Reset INLINE: Yes. */
+/* Client-specific Styles */
+#outlook a { padding: 0; } /* Force Outlook to provide a "view in browser" menu link. */
+
+body {
+  background-color: #eeeeee;
+  font: 16px/30px Helvetica, Arial, sans-serif;
+  width: 100% !important;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Prevent Webkit and Windows Mobile platforms from changing default font sizes.*/
+.ExternalClass { width: 100%; } /* Force Hotmail to display emails at full width */
+.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; }
+
+/* Forces Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */
+#backgroundTable {
+  margin: 0;
+  padding: 0;
+  width:100% !important;
+  line-height: 100% !important;
+}
+
+/* Some sensible defaults for images */
+img {
+  outline: none;
+  text-decoration: none;
+  -ms-interpolation-mode: bicubic;
+}
+
+a img { border: none; }
+.image_fix { display:block;}
+
+/** Yahoo paragraph fix: removes the proper spacing or the paragraph (p) tag. **/
+p { margin: 1em 0; }
+
+/** Hotmail header color reset **/
+h1, h2, h3, h4, h5, h6 { color: black !important; }
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: blue !important; }
+h1 a:active, h2 a:active,  h3 a:active, h4 a:active, h5 a:active, h6 a:active { color: red !important; }
+h1 a:visited, h2 a:visited,  h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited { color: purple !important; }
+
+/** Outlook 07, 10 Padding issue **/
+table td { border-collapse: collapse; }
+
+/** Remove spacing around Outlook 07, 10 tables **/
+table {
+  border-collapse: collapse;
+  mso-table-lspace: 0pt;
+  mso-table-rspace:0pt;
+}
+
+/* Styling your links has become much simpler with the new Yahoo. */
+a { color: orange; }
+
+/* Chef Styles */
+#wrapper { background-color: #eeeeee; }
+
+.interior-wrapper { padding: 50px; }
+.content { margin-bottom: 60px; }
+
+.header {
+  background-color: #202c35;
+  height: 100px;
+  -moz-border-radius-topleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  border-top-left-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  -webkit-border-top-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.body {
+  background-color: #ffffff;
+  padding: 60px 100px 100px;
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.body h1 {
+  color: #202c35 !important;
+  font-family: 'helvetica neue', helvetica, arial, sans-serif;
+  font-size: 28px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.body h2 {
+  color: #404248 !important;
+  font-family: 'helvetica neue', helvetica, arial, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.body h3 {
+  color: #404248 !important;
+  font-family: 'helvetica neue', helvetica, arial, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  margin: 0 0 10px 0 !important;
+}
+
+.body small {
+  color: #404248 !important;
+  display: block;
+  font-family: 'helvetica neue', helvetica, arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 22px !important;
+  margin-bottom: 30px;
+}
+
+.body p { color: #435363; }
+
+.icon {
+  display: inline-block;
+  margin: 4px 8px -2px 0;
+}
+
+.panel {
+  background-color: #ecedef;
+  padding: 50px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.footer {
+  color: #777777;
+  font-family: 'helvetica neue', helvetica, arial, sans-serif;
+  font-size: 12px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.button, .button-small {
+  font-family: Helvetica, Arial, sans-serif;
+  color: #FFFFFF;
+  background-color: #435364;
+  display: inline-block;
+  white-space: nowrap;
+  height: 40px;
+  line-height: 42px;
+  margin: 0 20px 0 0;
+  padding: 0 22px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 14px;
+  cursor: pointer;
+  border:0 ;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-border-radius:4px;
+  vertical-align:top;
+}
+
+.button-small {
+  float: none;
+  display: inline-block;
+  height: auto;
+  line-height: 18px !important;
+  padding: 2px 15px !important;
+  font-size: 11px !important;
+}
+
+.button:hover, .button-small:hover { opacity: .8; }
+.button:hover, .button-small:hover{opacity:.8;}
+.lightbutton {background-color: #a0a9ba;}
+.signedcla {background-color: #f79005; float: right; margin: -35px 0 0 0; }
+
+.accept {
+  background-color: #43AC6A;
+  padding: 0 50px;
+}
+
+.decline {
+  background-color: #f04124;
+  padding: 0 50px;
+}

@@ -80,9 +80,9 @@ Supermarket::Application.configure do
 
   # If SMTP is setup use those settings otherwise just use sendmail
   if Supermarket::Config.smtp
-    Supermarket::Application.config.action_mailer.delivery_method = :smtp
+    config.action_mailer.delivery_method = :smtp
 
-    Supermarket::Application.config.action_mailer.smtp_settings = {
+    config.action_mailer.smtp_settings = {
       address:              Supermarket::Config.smtp['address'],
       port:                 Supermarket::Config.smtp['port'],
       user_name:            Supermarket::Config.smtp['user_name'],
@@ -90,6 +90,6 @@ Supermarket::Application.configure do
       authentication:       'plain',
     }
   else
-    Supermarket::Application.config.action_mailer.delivery_method = :smtp
+    config.action_mailer.delivery_method = :sendmail
   end
 end

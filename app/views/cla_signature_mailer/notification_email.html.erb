@@ -5,99 +5,56 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chef Supermarket</title>
-  <style type="text/css">
-    /* Based on The MailChimp Reset INLINE: Yes. */
-    /* Client-specific Styles */
-    #outlook a {padding:0;} /* Force Outlook to provide a "view in browser" menu link. */
-    body{background-color: #eeeeee; font:16px/30px Helvetica, Arial, sans-serif; width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0;}
-    /* Prevent Webkit and Windows Mobile platforms from changing default font sizes.*/
-    .ExternalClass {width:100%;} /* Force Hotmail to display emails at full width */
-    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
-    /* Forces Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */
-    #backgroundTable {margin:0; padding:0; width:100% !important; line-height: 100% !important;}
-    /* End reset */
-
-    /* Some sensible defaults for images */
-    img {outline:none; text-decoration:none; -ms-interpolation-mode: bicubic;}
-    a img {border:none;}
-    .image_fix {display:block;}
-
-    /** Yahoo paragraph fix: removes the proper spacing or the paragraph (p) tag. **/
-    p {margin: 1em 0;}
-
-    /** Hotmail header color reset **/
-    h1, h2, h3, h4, h5, h6 {color: black !important;}
-    h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {color: blue !important;}
-    h1 a:active, h2 a:active,  h3 a:active, h4 a:active, h5 a:active, h6 a:active {
-      color: red !important;
-     }
-
-    h1 a:visited, h2 a:visited,  h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {
-      color: purple !important;
-    }
-
-    /** Outlook 07, 10 Padding issue **/
-    table td {border-collapse: collapse;}
-
-    /** Remove spacing around Outlook 07, 10 tables **/
-    table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
-
-    /* Styling your links has become much simpler with the new Yahoo. */
-    a {color: orange;}
-
-    /* Chef Styles */
-    #wrapper {
-      background-color: #eeeeee;
-    }
-    .button, .button-small {font-family: Helvetica, Arial, sans-serif; color:#FFFFFF; background-color:#435364; display:inline-block; white-space:nowrap; height:40px; line-height:42px; margin:0 20px 0 0; padding:0 22px; text-decoration:none; text-transform:uppercase; text-align:center; font-weight:bold; font-style:normal; font-size:14px; cursor:pointer; border:0; -moz-border-radius:4px; border-radius:4px; -webkit-border-radius:4px; vertical-align:top;}
-    .button-small {float:none; display:inline-block; height:auto; line-height:18px !important; padding:2px 15px !important; font-size:11px !important;}
-    .button:hover, .button-small:hover{opacity:.8;}
-    .lightbutton {background-color: #a0a9ba;}
-    .signedcla {background-color: #f79005; float: right; margin: -35px 0 0 0; }
-  </style>
+  <%= stylesheet_link_tag "mailers", media: "all" %>
 </head>
 <body>
   <table cellpadding="0" cellspacing="0" border="0" width="100%" id="wrapper">
     <tr>
-      <td style="padding: 50px" align="center">
-        <table cellpadding="0" cellspacing="0" border="0" width="800" style="margin-bottom: 60px;">
+      <td class="interior-wrapper" align="center">
+        <table class="content" cellpadding="0" cellspacing="0" border="0" width="800">
           <tr>
-            <td style="background-color: #202c35; height: 100px; -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px; border-top-left-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px; border-top-right-radius: 4px;" align="center"><img class="image_fix" src="/assets/logo_email.jpg" alt="Chef Supermarket" title="Chef Supermarket" width="800" height="100" /></td>
+            <td class="header" align="center">
+              <%= image_tag "logo_email.jpg", alt: "Chef Supermarket", title: "Chef Supermarket", width: 800, height: 100, class: "image_fix" %>
+            </td>
           </tr>
           <tr>
-            <td style="background-color: #ffffff; padding: 60px 100px 100px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px; border-bottom-left-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px; border-bottom-right-radius: 4px;">
+            <td class="body">
               <% if @cla_signature.is_a?(CclaSignature) %>
-                <h1 style="color: #202c35 !important; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 28px; font-weight: normal; margin: 0;">A new CCLA has been signed.</h1>
+                <h1>A new CCLA has been signed.</h1>
                 <%= link_to "View Signed CCLA", ccla_signature_url(@cla_signature), class: "button signedcla" %>
-                <p style="color: #435363;"><%= @cla_signature.name %> signed a CCLA on behalf of <%= @cla_signature.company %>.</p>
+                <p><%= @cla_signature.name %> signed a CCLA on behalf of <%= @cla_signature.company %>.</p>
               <% elsif @cla_signature.is_a?(IclaSignature) %>
-                <h1 style="color: #202c35 !important; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 28px; font-weight: normal; margin: 0;">A new ICLA has been signed.</h1>
+                <h1>A new ICLA has been signed.</h1>
                 <%= link_to "View Signed ICLA", ccla_signature_url(@cla_signature), class: "button signedcla" %>
-                <p style="color: #435363;"><%= @cla_signature.name %> signed an ICLA.</p>
+                <p><%= @cla_signature.name %> signed an ICLA.</p>
               <% end %>
               <table border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
-                  <td style="background-color: #ecedef; padding: 40px 50px 50px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;">
-                    <h2 style="color: #404248 !important; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 24px; font-weight: bold; margin: 0;">
-                      <%= @cla_signature.name %>
-                    </h2>
-                    <h3 style="color: #404248 !important; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 16px; font-weight: normal; margin: 0 0 10px 0 !important;">
-                      <%= @cla_signature.company %>
-                    </h3>
-                    <small style="color: #404248 !important; display: block; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 12px; font-weight: bold; line-height: 22px !important; margin-bottom: 30px;">
-                      <img class="image_fix" src="/assets/emailicon_email.jpg" alt="Chef Supermarket" title="Chef Supermarket" width="16" height="13" style="display: inline-block; margin: 4px 8px -2px 0;" /><%= @cla_signature.email %>&nbsp;&nbsp;&nbsp;&nbsp;
-                      <img class="image_fix" src="/assets/emailicon_phone.jpg" alt="Chef Supermarket" title="Chef Supermarket" width="15" height="15" style="display: inline-block; margin: 4px 8px -3px 0;" /><%= @cla_signature.phone %><br>
-                      <img class="image_fix" src="/assets/emailicon_address.jpg" alt="Chef Supermarket" title="Chef Supermarket" width="16" height="15" style="display: inline-block; margin: 7px 8px -2px 0;" /><%= @cla_signature.address_line_1 %><br><%= @cla_signature.address_line_2 %>
+                  <td class="panel">
+                    <h2><%= @cla_signature.name %></h2>
+                    <h3><%= @cla_signature.company %></h3>
+
+                    <small>
+                      <%= image_tag "emailicon_email.jpg", width: 16, height: 13, class: 'icon image_fix' %>
+                      <%= @cla_signature.email %>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <%= image_tag "emailicon_phone.jpg", width: 15, height: 15, class: 'icon image_fix' %>
+                      <%= number_to_phone(@cla_signature.phone) %><br>
+                      <%= image_tag "emailicon_address.jpg", width: 16, height: 15, class: 'icon image_fix' %>
+                      <%= @cla_signature.address_line_1 %><br><%= @cla_signature.address_line_2 %>
+
+                      <% @cla_signature.user.accounts.for('github').each do |account| %>
+                        <%= link_to account.username, "https://www.github.com/#{account.username}" %>
+                      <% end %>
                     </small>
+
                     <%= link_to 'Supermarket Profile', user_url(@cla_signature.user), class: 'button' %>
-                    <%= link_to 'GitHub Profile', "https://www.github.com/#{@cla_signature.user.accounts.for('github').first.username}", class: 'button lightbutton' %>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
         </table>
-        <p align="center" style="color: #777777; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 12px; line-height: 24px; text-align: center;">
+        <p align="center" class="footer">
           <strong>Chef</strong> &#8226; 1008 Western Ave #600 &#8226; Seattle, WA 98104<br>
           This email was sent to <%= @to %>
         </p>

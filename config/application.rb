@@ -70,6 +70,8 @@ module Supermarket
       port: Supermarket::Config.port
     }
 
+    config.action_mailer.asset_host = Supermarket::Config.port ? "#{Supermarket::Config.host}:#{Supermarket::Config.port}" : Supermarket::Config.host
+
     # Set default from email for ActionMailer
     ActionMailer::Base.default from: Supermarket::Config.from_email
   end

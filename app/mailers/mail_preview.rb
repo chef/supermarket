@@ -15,6 +15,8 @@ if Rails.env.development?
     end
 
     def invitation
+      ccla_signature
+
       invitation = Invitation.where(
         email: 'johndoe@example.com',
         organization: organization

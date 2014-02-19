@@ -10,4 +10,3 @@ class ClaSignatureMailer < ActionMailer::Base
     mail(to: @to, subject: "New CLA Signed")
   end
 end
-
