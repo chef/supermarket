@@ -1,6 +1,6 @@
 class OrganizationInvitationsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :find_organization
-
 
   #
   # GET /organizations/:organization_id/invitations

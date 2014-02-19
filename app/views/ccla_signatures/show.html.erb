@@ -1,5 +1,10 @@
 <div class="cla">
-  <h1>Corporate Contributor License Agreement <small>(CCLA)</small></h1>
+  <h1>Corporate Contributor License Agreement for <%= @ccla_signature.organization.name %> <small>(CCLA)</small></h1>
+
+  <dl class="tabs">
+    <dd class="active"><%= link_to 'Signature', @ccla_signature %></dd>
+    <dd><%= link_to 'Contributors', organization_invitations_path(@ccla_signature.organization) %></dd>
+  </dl>
 
   <div class="signature">
     <%= form_for(@ccla_signature.dup, url: { action: :re_sign }, data: { abide: true }) do |f| %>

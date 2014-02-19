@@ -1,86 +1,95 @@
-<h1>Invite contributors to <%= @organization.name %></h1>
+<div class="cla">
+  <h1>Corporate Contributor License Agreement for <%= @organization.name %> <small>(CCLA)</small></h1>
 
-<%= form_for([@organization, @invitation], data: { abide: true }) do |f| %>
-  <%= render 'application/form_errors', record: @invitation %>
-  <div class="row collapse">
-    <div class="small-10 columns">
-      <%= f.email_field :email, placeholder: 'Contributor Email',  title: 'Contributor Email', autofocus: true, require: '', pattern: 'email' %>
-      <small class="error">A valid email is required.</small>
-    </div>
-    <div class="small-2 columns">
-      <%= f.submit 'Send Invite', class: 'button primary radius postfix' %>
-    </div>
-  </div>
-  <div class="row collapse">
-    <div class="small-12 columns">
-      <%= f.check_box :admin  %>
-      <label for="invitation_admin">Make this user an admin of <%= @organization.name %>.</label>
-    </div>
-  </div>
-<% end %>
-<br>
-<h2>Contributors</h2>
-<table width="100%">
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Admin</th>
-      <th>Status</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @pending_invitations.each do |invitation| %>
-      <tr class="contributor <%= invitation.admin? ? 'admin' : '' %>">
-        <td><%= invitation.email %></td>
-        <td>
-          <%= form_for [@organization, invitation], remote: true do |f| %>
-            <%= f.check_box :admin, class: 'auto trigger' %>
-          <% end %>
-        </td>
-        <td><%= "Pending" %></td>
-        <td><%= link_to "Resend", resend_organization_invitation_path(@organization, invitation), method: :patch, class: 'button secondary radius tiny', rel: 'resend_invitation' %></td>
-      </tr>
+  <dl class="tabs">
+    <dd><%= link_to 'Signature', @organization.latest_ccla_signature  %></dd>
+    <dd class="active"><%= link_to 'Contributors', organization_invitations_path(@organization) %></dd>
+  </dl>
+
+  <div class="contributors">
+    <%= form_for([@organization, @invitation], data: { abide: true }) do |f| %>
+      <%= render 'application/form_errors', record: @invitation %>
+      <div class="row collapse">
+        <div class="small-10 columns">
+          <%= f.email_field :email, placeholder: 'Contributor Email', title: 'Contributor Email', autofocus: true, require: true, pattern: 'email' %>
+          <small class="error">A valid email is required.</small>
+        </div>
+        <div class="small-2 columns">
+          <%= f.submit 'Send Invite', class: 'button primary radius postfix' %>
+        </div>
+      </div>
+      <div class="row collapse">
+        <div class="small-12 columns">
+          <%= f.check_box :admin  %>
+          <label for="invitation_admin">Make this user an admin of the <%= @organization.name %> CCLA.</label>
+        </div>
+      </div>
     <% end %>
-
-    <% @contributors.each do |contributor| %>
-      <tr class="contributor <%= contributor.admin? ? 'admin' : '' %>">
-        <td><%= contributor.email %></td>
-        <td>
-          <% if contributor.user != current_user %>
-            <%= form_for [@organization, contributor], remote: true do |f| %>
-              <%= f.check_box :admin, class: 'auto trigger' %>
-            <% end %>
-          <% else %>
-            <input type="checkbox" disabled>
-          <% end %>
-        </td>
-        <td><%= "Accepted" %></td>
-        <% if contributor.user == current_user %>
-          <% text = "Remove Myself as a Contributor" %>
-          <% rel = "remove_self" %>
-        <% else %>
-          <% text = "Remove Contributor" %>
-          <% rel = "remove_contributor" %>
+    <br>
+    <h2>Contributors</h2>
+    <table width="100%">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Admin</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @pending_invitations.each do |invitation| %>
+          <tr class="contributor <%= invitation.admin? ? 'admin' : '' %>">
+            <td><%= invitation.email %></td>
+            <td>
+              <%= form_for [@organization, invitation], remote: true do |f| %>
+                <%= f.check_box :admin, class: 'auto trigger' %>
+              <% end %>
+            </td>
+            <td><%= "Pending" %></td>
+            <td><%= link_to "Resend", resend_organization_invitation_path(@organization, invitation), method: :patch, class: 'button secondary radius tiny', rel: 'resend_invitation' %></td>
+          </tr>
         <% end %>
 
-        <td>
-          <% if policy(contributor).destroy? %>
-            <%= link_to text, organization_contributor_url(@organization, contributor), method: :delete, rel: rel %>
-          <% else %>
-            -
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
+        <% @contributors.each do |contributor| %>
+          <tr class="contributor <%= contributor.admin? ? 'admin' : '' %>">
+            <td><%= contributor.email %></td>
+            <td>
+              <% if contributor.user != current_user %>
+                <%= form_for [@organization, contributor], remote: true do |f| %>
+                  <%= f.check_box :admin, class: 'auto trigger' %>
+                <% end %>
+              <% else %>
+                <input type="checkbox" disabled>
+              <% end %>
+            </td>
+            <td><%= "Active" %></td>
+            <td>
+              <% if policy(contributor).destroy? %>
+                <%= remove_contributor_link_for(contributor) %>
+              <% else %>
+                -
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
 
-    <% @declined_invitations.each do |invitation| %>
-      <tr class="contributor <%= invitation.admin? ? 'admin' : '' %>">
-        <td><%= invitation.email %></td>
-        <td><%= invitation.admin? ? 'Admin' : 'Contributor' %></td>
-        <td><%= "Declined" %></td>
-        <td>-</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <% @declined_invitations.each do |invitation| %>
+          <tr class="contributor <%= invitation.admin? ? 'admin' : '' %>">
+            <td><%= invitation.email %></td>
+            <td><%= invitation.admin? ? 'Admin' : 'Contributor' %></td>
+            <td><%= "Declined" %></td>
+            <td>-</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="agreement">
+    <div class="panel">
+      <%= render_markdown(@organization.latest_ccla_signature.ccla.head) %>
+      <%= render_markdown(@organization.latest_ccla_signature.ccla.body) %>
+      <footer><%= @organization.latest_ccla_signature.ccla.version %></footer>
+    </div>
+  </div>
+</div>

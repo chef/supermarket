@@ -86,7 +86,7 @@
               <td class="text-right">
                 <%= link_to "Edit CCLA", contributor.organization.latest_ccla_signature %>
                 <span> or</span>
-                <%= link_to "Invite Contributors", organization_invitations_url(contributor.organization), rel: 'invite_contributors' %>
+                <%= link_to "Manage Contributors", organization_invitations_url(contributor.organization), rel: 'invite_contributors' %>
               </td>
             </tr>
           <% else %>
