@@ -2,9 +2,11 @@
 # Do NOT modify this file by hand!
 
 # Database administrative login by Unix domain socket
-local   all             postgres                                <%= node['postgres']['auth_method'] || 'password' %>
+local   all             postgres                                <%= node['postgres']['auth_method'] %>
 
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
-local   all             all                                     <%= node['postgres']['auth_method'] || 'password' %>
-host    all             all             127.0.0.1/32            <%= node['postgres']['auth_method'] || 'password' %>
-host    all             all             ::1/128                 <%= node['postgres']['auth_method'] || 'password' %>
+local   all             all                                     <%= node['postgres']['auth_method'] %>
+<% if node['postgres']['auth_method'] == 'trust' %>
+host    all             all             127.0.0.1/32            <%= node['postgres']['auth_method'] %>
+host    all             all             ::1/128                 <%= node['postgres']['auth_method'] %>
+<% end %>

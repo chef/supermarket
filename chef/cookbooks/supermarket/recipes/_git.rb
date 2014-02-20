@@ -1,7 +1,6 @@
 #
-# Author:: Brian Cobb (<brian@cramerdev.com>)
-# Author:: Brett Chalupa (<brett@cramerdev.com>)
-# Recipe:: sidekiq
+# Author:: Tristan O'Neil (<tristanoneil@gmail.com>)
+# Recipe:: git
 #
 # Copyright 2014 Chef Software, Inc.
 #
@@ -18,12 +17,6 @@
 # limitations under the License.
 #
 
-directory '/etc/sidekiq' do
-  mode '0755'
-  recursive true
-end
+include_recipe 'supermarket::_apt'
 
-file '/etc/sidekiq/sidekiq.yml' do
-  content node['supermarket']['sidekiq'].to_hash.to_yaml
-  mode '0644'
-end
+package 'git'

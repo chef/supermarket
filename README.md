@@ -43,11 +43,8 @@ OmniAuth
 --------
 
 Super Market uses [OmniAuth](https://github.com/intridea/omniauth) for
-authentication. The OmniAuth configuration is data-driven, so you can configure
-OmniAuth to use whatever authentication method your organization desires. You
-can read more about OmniAuth on the [OmniAuth GitHub
-page](https://github.com/intridea/omniauth). In short, you need to create and
-register Super Market as an application and setup the keys in the `.env` file.
+linking OAuth accounts to users. You need to create and
+register Supermarket as an application and setup the keys in the `.env` file.
 
 To register GitHub as an OmniAuth sign in method:
 
@@ -61,8 +58,6 @@ To register GitHub as an OmniAuth sign in method:
   ```
 
 where `MY_KEY` and `MY_SECRET` are the values given when you created the application.
-
-You can register Twitter as a provider by creating an application on the [Twitter Developers site](https://dev.twitter.com/apps).
 
 ### Adding Additional Providers
 
@@ -163,6 +158,15 @@ the environment variables:
 $ VM_MEMORY=2048 VM_CPUS=1 VM_NFS=false ./bin/supermarket server
 ```
 
+By default, Supermarket will be forwarded locally to port 3000. If for some reason
+port 3000 is already occupied on your computer you may override this:
+
+``` sh
+$ PORT=5000 ./bin/supermarket server
+```
+
+Supermarket would then be accessible by visiting http://localhost:5000 in this case.
+
 These variables must be set the _first_ time you run any supermarket command.
 After that, they will be persisted. To change them, you'll need to destroy the
 Vagrant machine (`vagrant destroy`) and run the command again.
@@ -245,33 +249,23 @@ Deployment
 
 1. Upload the supermarket cookbook to your Chef server.
 
-        $ knife upload supermarket -o path-to-supermarket-repo/chef/cookbooks
+        $ knife cookbook upload supermarket -o path-to-supermarket-repo/chef/cookbooks
 
 1. Bootstrap a server as a new node.
 
         $ knife bootstrap someserver.com -u some-user -N some-node
 
-1. Within your node _you must_ set a postgres username, password, default database, devise secret key and a secret key base.
+1. Change the defaults in `chef/data_bags/apps/supermarket.json` and upload this databag to your Chef server.
 
-        {
-          "postgres": {
-            "user": "some-user",
-            "password": "some-password",
-            "database": "some-database"
-          },
-          "secret_key_base": "some-secret",
-          "devise_secret_key": "some-secret"
-        }
-
-_You'll also most likely want to add other configuration to your node, reference `chef/cookbooks/templates/default/.env.erb`
-for other environment variables that can be set._
+        $ knife data bag from file apps path-to-supermarket-repo/chef/data_bags
 
 1. Add the supermarket cookbook to your newly bootstraped nodes run list.
 
         $ knife node run_list add some-node 'recipe[supermarket]'
 
+1. Override any default attributes found in `chef/cookbooks/supermarket/attributes/default.rb` in a role or environment as needed.
+
 1. SSH into your node and run `chef-client` this will deploy supermarket.
 
         ssh some-user@someserver.com
         chef-client
-

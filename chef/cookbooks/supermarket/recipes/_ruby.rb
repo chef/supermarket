@@ -35,6 +35,11 @@ end
 package 'ruby2.0'
 package 'ruby2.0-dev'
 
+execute 'update-alternatives[ruby]' do
+  command 'update-alternatives --set ruby /usr/bin/ruby2.0'
+  not_if 'ruby -v | grep 2.0.0'
+end
+
 # Nokogiri requires XML
 package 'libxslt-dev'
 package 'libxml2-dev'

@@ -19,9 +19,7 @@
 
 include_recipe 'supermarket::_apt'
 
-application_directory = '/var/www/supermarket'
-
-package 'git'
+app = data_bag_item(:apps, 'supermarket')
 
 group 'supermarket' do
   system true
@@ -30,14 +28,14 @@ end
 user 'supermarket' do
   gid 'supermarket'
   system true
-  home '/var/www/supermarket'
+  home node['supermarket']['home']
   comment 'Supermarket'
   shell '/bin/bash'
 end
 
-deploy_revision application_directory do
+deploy_revision node['supermarket']['home'] do
   repo 'https://github.com/opscode/supermarket.git'
-  revision 'master'
+  revision app['revision']
   user 'supermarket'
   group 'supermarket'
   migrate true
@@ -48,62 +46,30 @@ deploy_revision application_directory do
 
   before_migrate do
     %w{pids log system public}.each do |dir|
-      directory "#{application_directory}/shared/#{dir}" do
+      directory "#{node['supermarket']['home']}/shared/#{dir}" do
         mode 0777
         recursive true
       end
     end
 
-    sidekiq_pid = "#{application_directory}/shared/pids/sidekiq.pid"
-
-    template "#{application_directory}/shared/.env"
+    template "#{node['supermarket']['home']}/shared/.env" do
+      variables(app: app)
+    end
 
     execute 'bundle install' do
       cwd release_path
       command 'bundle install --without test development --path=vendor/bundle'
     end
-
-    execute 'quiet sidekiq' do
-      cwd release_path
-      command "bundle exec sidekiqctl quiet #{sidekiq_pid}"
-      only_if "test -f #{sidekiq_pid}"
-    end
   end
 
   before_restart do
     execute 'asset:precompile' do
+      environment 'RAILS_ENV' => 'production'
       cwd release_path
-      command 'export RAILS_ENV=production && bundle exec rake assets:precompile'
+      command 'bundle exec rake assets:precompile'
     end
   end
 
-  restart do
-    unicorn_pid = "#{release_path}/tmp/pids/unicorn.pid"
-    sidekiq_pid = "#{release_path}/tmp/pids/sidekiq.pid"
-    log_dir = "#{application_directory}/shared/log"
-
-    execute 'stop unicorn' do
-      command "kill `cat #{unicorn_pid}`"
-      only_if { File.exist?(unicorn_pid) }
-    end
-
-    execute 'start unicorn' do
-      cwd release_path
-      command 'export RAILS_ENV=production && bundle exec unicorn -c config/unicorn/production.rb -D'
-      not_if { File.exist?(unicorn_pid) }
-    end
-
-    execute 'stop sidekiq' do
-      cwd release_path
-      command "bundle exec sidekiqctl stop #{sidekiq_pid} 60"
-      only_if "test -f #{sidekiq_pid}"
-    end
-
-    execute 'start sidekiq' do
-      cwd release_path
-      command "bundle exec sidekiq -d -P #{sidekiq_pid} -C /etc/sidekiq/sidekiq.yml -e production -t 30 -L #{log_dir}/sidekiq.log"
-      not_if "test -f #{sidekiq_pid}"
-    end
-  end
-  action :deploy
+  notifies :restart, 'service[unicorn]'
+  notifies :restart, 'service[sidekiq]'
 end
