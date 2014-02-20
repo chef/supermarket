@@ -10,11 +10,11 @@
 <body>
   <table cellpadding="0" cellspacing="0" border="0" width="100%" id="wrapper">
     <tr>
-      <td class="interior-wrapper" align="center">
-        <table class="content" cellpadding="0" cellspacing="0" border="0" width="800">
+      <td align="center">
+        <table class="content" cellpadding="0" cellspacing="0" border="0" width="720">
           <tr>
             <td class="header" align="center">
-              <%= image_tag "logo_email.jpg", alt: "Chef Supermarket", title: "Chef Supermarket", width: 800, height: 100, class: "image_fix" %>
+              <%= image_tag "logo_email.jpg", alt: "Chef Supermarket", title: "Chef Supermarket", width: 235, height: 72, class: "image_fix" %>
             </td>
           </tr>
           <tr>
@@ -43,11 +43,12 @@
                       <%= @cla_signature.address_line_1 %><br><%= @cla_signature.address_line_2 %>
 
                       <% @cla_signature.user.accounts.for('github').each do |account| %>
+                        <%= image_tag "emailicon_github.jpg", width: 16, height: 16, class: 'icon image_fix' %>
                         <%= link_to account.username, "https://www.github.com/#{account.username}" %>
                       <% end %>
                     </small>
 
-                    <%= link_to 'Supermarket Profile', user_url(@cla_signature.user), class: 'button' %>
+                    <%= link_to 'Supermarket Profile', user_url(@cla_signature.user), class: 'button lightbutton' %>
                   </td>
                 </tr>
               </table>

@@ -54,34 +54,23 @@ table {
 }
 
 /* Styling your links has become much simpler with the new Yahoo. */
-a { color: orange; }
+a { color: #404248; }
 
 /* Chef Styles */
 #wrapper { background-color: #eeeeee; }
 
-.interior-wrapper { padding: 50px; }
-.content { margin-bottom: 60px; }
+.content { margin-bottom: 30px; }
 
 .header {
-  background-color: #202c35;
-  height: 100px;
-  -moz-border-radius-topleft: 4px;
-  -webkit-border-top-left-radius: 4px;
-  border-top-left-radius: 4px;
-  -moz-border-radius-topright: 4px;
-  -webkit-border-top-right-radius: 4px;
-  border-top-right-radius: 4px;
+  height: 120px;
 }
 
 .body {
   background-color: #ffffff;
-  padding: 60px 100px 100px;
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomright: 4px;
-  -webkit-border-bottom-right-radius: 4px;
-  border-bottom-right-radius: 4px;
+  padding: 60px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
 }
 
 .body h1 {
@@ -177,7 +166,7 @@ a { color: orange; }
 
 .button:hover, .button-small:hover { opacity: .8; }
 .button:hover, .button-small:hover{opacity:.8;}
-.lightbutton {background-color: #a0a9ba;}
+.lightbutton {background-color: #a0a9ba; }
 .signedcla {background-color: #f79005; float: right; margin: -35px 0 0 0; }
 
 .accept {
