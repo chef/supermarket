@@ -24,7 +24,7 @@ if Rails.env.development?
     end
 
     def ccla_signature
-      user.ccla_signatures.where(
+      user_with_account.ccla_signatures.where(
         first_name: 'John',
         last_name: 'Doe',
         email: 'john@example.com',
@@ -40,7 +40,7 @@ if Rails.env.development?
     end
 
     def icla_signature
-      user.icla_signatures.where(
+      user_with_account.icla_signatures.where(
         first_name: 'John',
         last_name: 'Doe',
         email: 'john@example.com',
@@ -53,13 +53,25 @@ if Rails.env.development?
       ).first_or_create!(agreement: '1')
     end
 
-    def user
-      User.where(
+    def user_with_account
+      user = User.where(
         first_name: 'John',
         last_name: 'Doe',
         email: 'john@example.com'
       ).first_or_create!(password: 'password', password_confirmation: 'password')
+
+
+      Account.where(
+        user: user,
+        uid: '123',
+        username: 'johndoe',
+        provider: 'github',
+        oauth_token: '123',
+        oauth_secret: '123',
+        oauth_expires: Date.parse('Tue, 20 Feb 2024')
+      ).first_or_create!
+
+      user
     end
   end
 end
-
