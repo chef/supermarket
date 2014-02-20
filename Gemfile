@@ -20,6 +20,7 @@ gem 'sentry-raven', github: 'getsentry/raven-ruby'
 gem 'statsd-ruby', require: 'statsd'
 gem 'octokit', github: 'octokit/octokit.rb', require: false
 gem 'sidekiq'
+gem 'premailer-rails', group: [:development, :production]
 
 gem 'sass-rails',   '~> 4.0.1'
 gem 'compass-rails'

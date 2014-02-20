@@ -5,81 +5,34 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chef Supermarket</title>
-  <style type="text/css">
-    /* Based on The MailChimp Reset INLINE: Yes. */
-    /* Client-specific Styles */
-    #outlook a {padding:0;} /* Force Outlook to provide a "view in browser" menu link. */
-    body{background-color: #eeeeee; font:16px/30px Helvetica, Arial, sans-serif; width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0;}
-    /* Prevent Webkit and Windows Mobile platforms from changing default font sizes.*/
-    .ExternalClass {width:100%;} /* Force Hotmail to display emails at full width */
-    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
-    /* Forces Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */
-    #backgroundTable {margin:0; padding:0; width:100% !important; line-height: 100% !important;}
-    /* End reset */
-
-    /* Some sensible defaults for images */
-    img {outline:none; text-decoration:none; -ms-interpolation-mode: bicubic;}
-    a img {border:none;}
-    .image_fix {display:block;}
-
-    /** Yahoo paragraph fix: removes the proper spacing or the paragraph (p) tag. **/
-    p {margin: 1em 0;}
-
-    /** Hotmail header color reset **/
-    h1, h2, h3, h4, h5, h6 {color: black !important;}
-    h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {color: blue !important;}
-    h1 a:active, h2 a:active,  h3 a:active, h4 a:active, h5 a:active, h6 a:active {
-      color: red !important;
-     }
-
-    h1 a:visited, h2 a:visited,  h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {
-      color: purple !important;
-    }
-
-    /** Outlook 07, 10 Padding issue **/
-    table td {border-collapse: collapse;}
-
-    /** Remove spacing around Outlook 07, 10 tables **/
-    table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
-
-    /* Styling your links has become much simpler with the new Yahoo. */
-    a {color: orange;}
-
-    /* Chef Styles */
-    #wrapper {
-      background-color: #eeeeee;
-    }
-    .button, .button-small {font-family: Helvetica, Arial, sans-serif; color:#FFFFFF; background-color:#435364; display:inline-block; white-space:nowrap; height:40px; line-height:42px; margin:0 20px 0 0; padding:0 22px; text-decoration:none; text-transform:uppercase; text-align:center; font-weight:bold; font-style:normal; font-size:14px; cursor:pointer; border:0; -moz-border-radius:4px; border-radius:4px; -webkit-border-radius:4px; vertical-align:top;}
-    .button-small {float:none; display:inline-block; height:auto; line-height:18px !important; padding:2px 15px !important; font-size:11px !important;}
-    .button:hover, .button-small:hover{opacity:.8;}
-    .accept { background-color: #43AC6A; padding: 0 50px; }
-    .decline { background-color: #f04124; padding: 0 50px; }
-  </style>
+  <%= stylesheet_link_tag "mailers", media: "all" %>
 </head>
 <body>
   <table cellpadding="0" cellspacing="0" border="0" width="100%" id="wrapper">
     <tr>
-      <td style="padding: 50px" align="center">
-        <table cellpadding="0" cellspacing="0" border="0" width="800" style="margin-bottom: 60px;">
+      <td class="interior-wrapper" align="center">
+        <table class="content" cellpadding="0" cellspacing="0" border="0" width="800">
           <tr>
-            <td style="background-color: #202c35; height: 100px; -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px; border-top-left-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px; border-top-right-radius: 4px;" align="center"><img class="image_fix" src="/assets/logo_email.jpg" alt="Chef Supermarket" title="Chef Supermarket" width="800" height="100" /></td>
+            <td class="header" align="center">
+              <%= image_tag "logo_email.jpg", alt: "Chef Supermarket", title: "Chef Supermarket", width: 800, height: 100, class: "image_fix" %>
+            </td>
           </tr>
           <tr>
-            <td style="background-color: #ffffff; padding: 60px 100px 100px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px; border-bottom-left-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px; border-bottom-right-radius: 4px;">
-              <h1 style="color: #202c35 !important; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 28px; font-weight: normal; margin: 0;">Contributor Invitation</h1>
-              <p style="color: #435363;">You've been invited to be a contributor for <%= @invitation.organization.name %>.</p>
+            <td class="body">
+              <h1>Contributor Invitation</h1>
+              <p>You've been invited to be a contributor for <%= @invitation.organization.name %>.</p>
               <table border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
-                  <td style="background-color: #ecedef; padding: 50px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;" align="center">
+                  <td class="panel" align="center">
                     <%= link_to 'Accept', accept_invitation_url(@invitation), class: 'button accept' %>
                     <%= link_to 'Decline', decline_invitation_url(@invitation), class: 'button decline' %>
-                  </td?
+                  </td>
                 </tr>
               </table>
             </td>
           </tr>
         </table>
-        <p align="center" style="color: #777777; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 12px; line-height: 24px; text-align: center;">
+        <p class="footer" align="center">
           <strong>Chef</strong> &#8226; 1008 Western Ave #600 &#8226; Seattle, WA 98104<br>
           This email was sent to <%= @invitation.email %>
         </p>
