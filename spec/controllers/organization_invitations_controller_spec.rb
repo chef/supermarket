@@ -169,4 +169,36 @@ describe OrganizationInvitationsController do
       end
     end
   end
+
+  describe 'DELETE #revoke' do
+    let!(:invitation) { create(:invitation) }
+    before { request.env['HTTP_REFERER'] = 'the_previous_path' }
+
+    context 'user is authorized to resend Invitation' do
+      before { auto_authorize!(Invitation, 'revoke') }
+
+      it 'destroys the invitation' do
+        expect {
+          delete :revoke, organization_id: organization.id,
+            id: invitation.token
+        }.to change(Invitation, :count).by(-1)
+      end
+    end
+
+    context 'user is not authorized to revoke Invitation' do
+      it "doesn't revoke the invitation" do
+        expect {
+          delete :revoke, organization_id: organization.id,
+            id: invitation.token
+        }.to_not change(Invitation, :count).by(-1)
+      end
+
+      it 'responds with 404' do
+        delete :revoke, organization_id: organization.id,
+          id: invitation.token
+
+        should respond_with(404)
+      end
+    end
+  end
 end

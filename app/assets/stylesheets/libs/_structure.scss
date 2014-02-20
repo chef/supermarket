@@ -79,8 +79,12 @@ body {
 
   .tabs { margin-bottom: 40px !important; }
 
-  .signature, .contributors {
+  .signature {
     @include grid-column(5, $collapse: true);
+  }
+
+  .contributors {
+    @include grid-column(12, $collapse: true);
   }
 
   .agreement {
