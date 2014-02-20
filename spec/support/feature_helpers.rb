@@ -80,11 +80,13 @@ module FeatureHelpers
 
   def accept_invitation_to_become_admin_of(organization)
     receive_and_respond_to_invitation_with('accept')
+    connect_github_account
     expect_to_see_success_message
   end
 
   def accept_invitation_to_become_contributor_of(organization)
     receive_and_respond_to_invitation_with('accept')
+    connect_github_account
     expect_to_see_success_message
   end
 
@@ -114,12 +116,13 @@ module FeatureHelpers
   def invite_admin(email)
     manage_contributors
 
-    fill_in 'invitation_email', with: email
-    check 'invitation_admin'
-    submit_form
+    within '.new_invitation' do
+      fill_in 'invitation_email', with: email
+      check 'invitation_admin'
+      submit_form
+    end
 
     expect_to_see_success_message
-    expect(all('#invitation_admin:checked').size).to eql(1)
   end
 
   def invite_contributor(email)
