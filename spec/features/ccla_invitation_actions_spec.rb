@@ -8,3 +8,12 @@ describe 'resending an invitation to a CCLA' do
     expect_to_see_success_message
   end
 end
+
+describe 'cancelling an invitation to a CCLA' do
+  it 'removes the invitation' do
+    sign_ccla_and_invite_admin_to('Acme')
+    follow_relation 'revoke_invitation'
+
+    expect_to_see_success_message
+  end
+end

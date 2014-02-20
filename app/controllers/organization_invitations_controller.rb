@@ -70,6 +70,22 @@ class OrganizationInvitationsController < ApplicationController
       invitation for #{@invitation.email}"
   end
 
+  #
+  # DELETE /organizations/:organization_id/invitations/:id/resend
+  #
+  # Revokes an invitation.
+  #
+  def revoke
+    @invitation = Invitation.with_token!(params[:id])
+
+    authorize! @invitation
+
+    @invitation.destroy
+
+    redirect_to :back, notice: "Successfully revoked
+      invitation for #{@invitation.email}"
+  end
+
   private
 
   def invitation_params

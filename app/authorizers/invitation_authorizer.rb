@@ -14,4 +14,8 @@ class InvitationAuthorizer < Authorizer::Base
   def resend?
     index?
   end
+
+  def revoke?
+    index?
+  end
 end

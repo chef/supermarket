@@ -13,6 +13,7 @@ describe InvitationAuthorizer do
     it { should permit(:create) }
     it { should permit(:update) }
     it { should permit(:resend) }
+    it { should permit(:revoke) }
   end
 
   context 'as an organization contributor' do
@@ -23,5 +24,6 @@ describe InvitationAuthorizer do
     it { should_not permit(:create) }
     it { should_not permit(:update) }
     it { should_not permit(:resend) }
+    it { should_not permit(:revoke) }
   end
 end

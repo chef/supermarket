@@ -60,6 +60,7 @@ Supermarket::Application.routes.draw do
 
       member do
         patch :resend
+        delete :revoke
       end
     end
   end

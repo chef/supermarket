@@ -46,7 +46,12 @@
               <% end %>
             </td>
             <td><%= "Pending" %></td>
-            <td><%= link_to "Resend", resend_organization_invitation_path(@organization, invitation), method: :patch, class: 'button secondary radius tiny', rel: 'resend_invitation' %></td>
+            <td>
+              <ul class="button-group radius">
+                <li><%= link_to "Resend", resend_organization_invitation_path(@organization, invitation), method: :patch, class: 'button secondary tiny', rel: 'resend_invitation' %></li>
+                <li><%= link_to "Revoke", revoke_organization_invitation_path(@organization, invitation), method: :delete, class: 'button alert tiny', rel: 'revoke_invitation' %></li>
+              </ul>
+            </td>
           </tr>
         <% end %>
 
@@ -85,11 +90,4 @@
     </table>
   </div>
 
-  <div class="agreement">
-    <div class="panel">
-      <%= render_markdown(@organization.latest_ccla_signature.ccla.head) %>
-      <%= render_markdown(@organization.latest_ccla_signature.ccla.body) %>
-      <footer><%= @organization.latest_ccla_signature.ccla.version %></footer>
-    </div>
-  </div>
 </div>
