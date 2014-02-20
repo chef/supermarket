@@ -48,11 +48,20 @@
       <% end %>
     </div>
     <div class="content" id="password">
-      <%= form_for(current_user, url: change_password_profile_path) do |f| %>
+      <%= form_for(current_user, url: change_password_profile_path, data: { abide: true }) do |f| %>
         <fieldset>
-          <%= f.password_field :current_password, placeholder: 'Current password', required: true %>
-          <%= f.password_field :password, placeholder: 'New Password', required: true %>
-          <%= f.password_field :password_confirmation, placeholder: 'Password confirmation', required: true %>
+          <div class="currentpassword-field">
+            <%= f.password_field :current_password, placeholder: 'Current password *',  title: 'Current Password', required: '', pattern: 'alpha_numeric' %>
+            <small class="error">Current password is required.</small>
+          </div>
+          <div class="newpassword-field">
+            <%= f.password_field :password, placeholder: 'New Password *',  title: 'New Password', required: '', pattern: 'alpha_numeric' %>
+            <small class="error">New password is required.</small>
+          </div>
+          <div class="confirmnewpassword-field">
+            <%= f.password_field :password_confirmation, placeholder: 'Confirm New Password *', title: 'Confirm New Password', required: '', pattern: 'alpha_numeric' %>
+            <small class="error">Confirm new password is required.</small>
+          </div>
         </fieldset>
         <%= f.submit 'Change Password', class: 'button primary expand radius' %>
       <% end %>
