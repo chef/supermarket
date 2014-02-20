@@ -48,7 +48,7 @@
       <% end %>
     </div>
     <div class="content" id="password">
-      <%= form_for(current_user, url: change_password_profile_path, :html => {:"data-abide" => ''}) do |f| %>
+      <%= form_for(current_user, url: change_password_profile_path, data: { abide: true }) do |f| %>
         <fieldset>
           <div class="currentpassword-field">
             <%= f.password_field :current_password, placeholder: 'Current password *',  title: 'Current Password', required: '', pattern: 'alpha_numeric' %>
