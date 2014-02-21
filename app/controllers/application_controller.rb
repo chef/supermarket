@@ -31,4 +31,18 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     stored_location || root_path
   end
+
+  #
+  # Redirect the user to their profile page if they do not have any linked
+  # GitHub accounts with the notice to instruct them to link a GitHub account
+  # before signing an CCLA.
+  #
+  def require_linked_github_account!
+    if !current_user.linked_github_account?
+      store_location_for current_user, request.path
+
+      redirect_to link_github_profile_path,
+        notice: t('requires_linked_github')
+    end
+  end
 end

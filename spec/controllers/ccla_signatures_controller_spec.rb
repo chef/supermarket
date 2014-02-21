@@ -56,7 +56,7 @@ describe CclaSignaturesController do
 
       it 'prompts the user to link their GitHub account' do
         expect(flash[:notice]).
-          to eql(I18n.t('ccla_signature.requires_linked_github'))
+          to eql(I18n.t('requires_linked_github'))
       end
 
       it 'stores the signature page as the "stored location" for the user' do
@@ -109,7 +109,7 @@ describe CclaSignaturesController do
 
       it 'prompts the user to link their github account' do
         expect(flash[:notice]).
-          to eql(I18n.t('ccla_signature.requires_linked_github'))
+          to eql(I18n.t('requires_linked_github'))
       end
 
       it 'stores the previous url before directed to link github' do
@@ -181,7 +181,7 @@ describe CclaSignaturesController do
 
       it 'prompts the user to link their github account' do
         expect(flash[:notice]).
-          to eql(I18n.t('ccla_signature.requires_linked_github'))
+          to eql(I18n.t('requires_linked_github'))
       end
 
       it 'stores the previous url before directed to link github' do

@@ -1,6 +1,7 @@
 class InvitationsController < ApplicationController
   before_filter :find_invitation
   before_filter :store_location_then_authenticate_user!
+  before_filter :require_linked_github_account!, only: [:accept]
 
   def show
     @organization = @invitation.organization
@@ -41,4 +42,5 @@ class InvitationsController < ApplicationController
     store_location!
     authenticate_user!
   end
+
 end

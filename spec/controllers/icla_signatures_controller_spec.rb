@@ -75,7 +75,7 @@ describe IclaSignaturesController do
 
       it 'prompts the user to link their GitHub account' do
         expect(flash[:notice]).
-          to eql(I18n.t('icla_signature.requires_linked_github'))
+          to eql(I18n.t('requires_linked_github'))
       end
 
       it 'stores the previous URL before directed to link GitHub' do
@@ -99,7 +99,7 @@ describe IclaSignaturesController do
 
       it 'prompts the user to link their GitHub account' do
         expect(flash[:notice]).
-          to eql(I18n.t('icla_signature.requires_linked_github'))
+          to eql(I18n.t('requires_linked_github'))
       end
 
       it 'stores the previous URL before directed to link GitHub' do
@@ -173,7 +173,7 @@ describe IclaSignaturesController do
 
       it 'prompts the user to link their GitHub account' do
         expect(flash[:notice]).
-          to eql(I18n.t('icla_signature.requires_linked_github'))
+          to eql(I18n.t('requires_linked_github'))
       end
 
       it 'stores the previous URL before directed to link GitHub' do
