@@ -43,17 +43,4 @@ class InvitationsController < ApplicationController
     authenticate_user!
   end
 
-  #
-  # Redirect the user to their profile page if they do not have any linked
-  # GitHub accounts with the notice to instruct them to link a GitHub account
-  # before signing an CCLA.
-  #
-  def require_linked_github_account!
-    if !current_user.linked_github_account?
-      store_location_for current_user, request.path
-
-      redirect_to link_github_profile_path,
-        notice: t('ccla_signature.requires_linked_github')
-    end
-  end
 end
