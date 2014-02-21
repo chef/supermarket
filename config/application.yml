@@ -74,8 +74,7 @@ production:
       secret: <%= ENV['TWITTER_SECRET'] %>
   pubsubhubbub:
     hub_secret: <%= ENV['PUBSUBHUBBUB_SECRET'] %>
-  segment_io:
-    write_key: <%= ENV['SEGMENT_IO_WRITE_KEY'] %>
+  segment_io_write_key: <%= ENV['SEGMENT_IO_WRITE_KEY'] %>
   smtp:
     address: <%= ENV['SMTP_ADDRESS'] %>
     port: <%= ENV['SMTP_PORT'] %>

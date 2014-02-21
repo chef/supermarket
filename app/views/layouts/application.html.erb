@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <% if Supermarket::Config.segment_io %>
+    <% if Supermarket::Config.segment_io_write_key %>
       <%= render partial: 'segment.io' %>
     <% end %>
 
