@@ -107,6 +107,9 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.6.9)
+    jbuilder (1.5.3)
+      activesupport (>= 3.0.0)
+      multi_json (>= 1.2.0)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -296,6 +299,7 @@ DEPENDENCIES
   dotenv-rails
   factory_girl
   foreman
+  jbuilder
   jquery-rails
   launchy
   license_finder

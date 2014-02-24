@@ -21,6 +21,7 @@ gem 'statsd-ruby', require: 'statsd'
 gem 'octokit', github: 'octokit/octokit.rb', require: false
 gem 'sidekiq'
 gem 'premailer-rails', group: [:development, :production]
+gem 'jbuilder'
 
 gem 'sass-rails',   '~> 4.0.1'
 gem 'compass-rails'
