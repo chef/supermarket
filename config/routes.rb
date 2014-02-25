@@ -12,8 +12,9 @@ Supermarket::Application.routes.draw do
    end
 
   namespace :api do
-    resources :icla_signatures, path: 'icla-signatures'
-    resources :users
+    namespace :v1 do
+      resources :cookbooks, only: [:index, :show], defaults: { format: :json }
+    end
   end
 
   resources :icla_signatures, path: 'icla-signatures' do
