@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224215236) do
+ActiveRecord::Schema.define(version: 20140226140858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,17 @@ ActiveRecord::Schema.define(version: 20140224215236) do
 
   add_index "contributors", ["organization_id"], name: "index_contributors_on_organization_id", using: :btree
   add_index "contributors", ["user_id"], name: "index_contributors_on_user_id", using: :btree
+
+  create_table "cookbook_versions", force: true do |t|
+    t.integer  "cookbook_id"
+    t.text     "description"
+    t.string   "license"
+    t.string   "version"
+    t.string   "file_url"
+    t.string   "file_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cookbooks", force: true do |t|
     t.string   "name",        null: false
