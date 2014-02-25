@@ -3,12 +3,10 @@ Super Market [![Code Climate](https://codeclimate.com/github/opscode/supermarket
 
 Super Market is Chef's new community project. Here is a rough roadmap that corresponds to the main outcomes we hope to achieve through improving the Chef community experience:
 
-- Better facilitation for signing and managing Contribor License Agreements (CLA). [#2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
-- Exposing API endpoints for accessing community member and contributor status for other services to consume. [#2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
-- Storing community member information and presenting it in a more user friendly and manageable way. [#2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
-- Establishing a low barrier to entry for individuals to contribute and improve the community experience. [#2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
-- Providing capabalities for trusted community members to moderate the community contributions. [#3](https://github.com/opscode/supermarket/issues?milestone=3&state=open)
-- Improving the Cookbooks API to provide more relevant information about individual cookbooks. [#3](https://github.com/opscode/supermarket/issues?milestone=3&state=open)
+- ~~Better facilitation for signing and managing Contribor License Agreements (CLA). [#2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)~~
+- ~~Storing community member information and presenting it in a more user friendly and manageable way. [#2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)~~
+- [*In Progress*] Establishing a low barrier to entry for individuals to contribute and improve the community experience. [#2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
+- [*In Progress*] Improving the Cookbooks API to provide more relevant information about individual cookbooks. [#3](https://github.com/opscode/supermarket/issues?milestone=3&state=open)
 - Better organized documentation for various Chef projects. [#4]
 - Chef Server cookbook API. [#4]
 - Dependency API. [#4]
@@ -21,17 +19,21 @@ Project Status
 
 This project is currently in heavy active development and is a pre-release.
 
+Talk To Us
+----------
+
+We have an open project chat on Gitter. There are usually active developers available for collaboration during normal weekly business hours. 
+
+[![Gitter chat](https://badges.gitter.im/opscode/supermarket.png)](https://gitter.im/opscode/supermarket)
 
 Contributing
 ------------
 
 We'd love for you to be involved. Read the [contributor's workflow](https://github.com/opscode/supermarket/blob/master/CONTRIBUTING.md) for license information and helpful tips before you get started.
 
-You can view the prioritized tasks in [Super Market's public Pivotal Tracker project](https://www.pivotaltracker.com/s/projects/984852). Please include a link to the story (or Story ID) if there is one in your pull requests.
+There are some project artifacts such as planning docs, wireframes, recorded demos, and team retrospectives in a [public Google Drive folder](https://drive.google.com/a/cramerdev.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8).
 
-There are also some project artifacts such as planning docs, wireframes, recorded demos, and team retrospectives in a [public Google Drive folder](https://drive.google.com/a/cramerdev.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8).
-
-If you have questions, feature ideas, or other suggestions, please [create a Github Issue](https://github.com/opscode/supermarket/issues?state=open) and we'll respond in a timely manner. If you include the "Feature", "Enhancement", or "Bug" labels when creating a new issue, a Pivotal Tracker story will be automatically created in the icebox.
+If you have questions, feature ideas, or other suggestions, please [create a Github Issue](https://github.com/opscode/supermarket/issues?state=open) and we'll respond in a timely manner. 
 
 
 Continuous Integration
