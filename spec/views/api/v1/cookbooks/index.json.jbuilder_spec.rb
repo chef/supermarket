@@ -11,11 +11,11 @@ describe 'api/v1/cookbooks/index' do
   end
 
   it 'displays the total number of cookbooks' do
-    assign(:total, 666)
+    assign(:total, 9001)
 
     render
 
-    expect(json_body['total']).to eql(666)
+    expect(json_body['total']).to eql(9001)
   end
 
   it 'displays an array of cookbooks' do

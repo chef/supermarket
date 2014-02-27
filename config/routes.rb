@@ -11,9 +11,11 @@ Supermarket::Application.routes.draw do
      get 'sign-up',  to: 'devise/registrations#new', as: 'sign_up'
    end
 
-  namespace :api do
+  namespace :api, defaults: { format: :json }  do
     namespace :v1 do
-      resources :cookbooks, only: [:index, :show], defaults: { format: :json }
+      get 'cookbooks' => 'cookbooks#index'
+      get 'cookbooks/:cookbook' => 'cookbooks#show', as: :cookbook
+      get 'cookbooks/:cookbook/versions/:version' => 'cookbook_versions#show'
     end
   end
 
