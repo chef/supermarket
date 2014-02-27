@@ -1,7 +1,6 @@
 #
-# Author:: Brian Cobb (<brian@cramerdev.com>)
-# Author:: Brett Chalupa (<brett@cramerdev.com>)
-# Recipe:: sidekiq
+# Author:: Seth Vargo (<sethvargo@gmail.com>)
+# Recipe:: vagrant
 #
 # Copyright 2014 Chef Software, Inc.
 #
@@ -18,12 +17,21 @@
 # limitations under the License.
 #
 
-directory '/etc/sidekiq' do
-  mode '0755'
-  recursive true
+include_recipe 'supermarket::_node'
+include_recipe 'supermarket::_postgres'
+include_recipe 'supermarket::_redis'
+include_recipe 'supermarket::_git'
+include_recipe 'supermarket::_ruby'
+
+execute 'dotenv[setup]' do
+  user 'vagrant'
+  cwd '/supermarket'
+  command 'cp .env.example .env'
+  not_if 'test -f /supermarket/.env'
 end
 
-file '/etc/sidekiq/sidekiq.yml' do
-  content node['supermarket']['sidekiq'].to_hash.to_yaml
-  mode '0644'
+execute 'bundle[install]' do
+  cwd '/supermarket'
+  command 'bundle install --path vendor'
+  not_if '(cd /supermarket && bundle check)'
 end

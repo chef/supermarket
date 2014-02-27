@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.omnibus.chef_version = '11.8.0'
 
   config.vm.network :private_network, ip: '172.0.1.50'
-  config.vm.network :forwarded_port, guest: 3000, host: 3000
+  config.vm.network :forwarded_port, guest: 3000, host: ENV['PORT'].to_i || 3000
   config.vm.synced_folder './', '/supermarket', nfs: VM_NFS
   config.vm.synced_folder './', '/vagrant', disabled: true
 
@@ -30,11 +30,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = 'chef/cookbooks'
-    chef.roles_path     = 'chef/roles'
     chef.data_bags_path = 'chef/data_bags'
 
     chef.formatter = 'doc'
     chef.log_level = :warn
+
+    chef.json = {
+      postgres: {
+        user: 'vagrant',
+        database: 'supermarket_development',
+        auth_method: 'trust'
+      },
+      supermarket: {
+        host: 'localhost',
+        port: ENV['PORT'] || '3000'
+      }
+    }
 
     chef.run_list = [
       'recipe[supermarket::vagrant]'

@@ -25,21 +25,14 @@ package 'libpq-dev'
 
 execute 'postgres[user]' do
   user 'postgres'
-  command %Q(psql postgres -tAc "CREATE USER #{node['postgres']['user']}
-    WITH PASSWORD '#{node['postgres']['password']}' CREATEDB CREATEUSER")
-
-  # do not create user if the user already exists or authentication fails
-  not_if %Q(su - postgres -c 'psql postgres -U postgres --no-password -tAc "SELECT 1 FROM pg_roles
-    WHERE rolname='\\''#{node['postgres']['user']}'\\''" 2>&1 | grep -E -i -w -q "1|fe_sendauth"')
+  command "echo 'CREATE ROLE #{node['postgres']['user']} WITH LOGIN CREATEDB;' | psql"
+  not_if  "echo 'SELECT 1 FROM pg_roles WHERE rolname = \'#{node['postgres']['user']}\';' | psql | grep -q 1"
 end
 
 execute 'postgres[database]' do
   user 'postgres'
-  command %Q(psql postgres -tAc "CREATE DATABASE #{node['postgres']['database']}")
-
-  # do not create database if the database already exists or authentication fails
-  not_if %Q(su - postgres -c 'psql postgres -U postgres --no-password -tAc "SELECT 1
-    FROM pg_database WHERE datname='\\''#{node['postgres']['database']}'\\''" 2>&1 | grep -E -i -w -q "1|fe_sendauth"')
+  command "echo 'CREATE DATABASE #{node['postgres']['database']};' | psql"
+  not_if  "echo 'SELECT 1 FROM pg_database WHERE datname = \'#{node['postgres']['database']}\';' | psql | grep -q 1"
 end
 
 template '/etc/postgresql/9.1/main/pg_hba.conf' do

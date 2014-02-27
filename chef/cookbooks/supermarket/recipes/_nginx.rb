@@ -22,6 +22,7 @@ include_recipe 'supermarket::_apt'
 package 'nginx'
 
 template '/etc/nginx/sites-available/default' do
+  source 'supermarket.nginx.erb'
   notifies :restart, 'service[nginx]', :immediately
 end
 

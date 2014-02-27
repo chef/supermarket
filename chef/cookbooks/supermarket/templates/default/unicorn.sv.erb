@@ -1,0 +1,5 @@
+#!/bin/sh
+exec 2>&1
+
+cd <%= node['supermarket']['home'] %>/current
+exec chpst -usupermarket bundle exec unicorn -E production -c config/unicorn/production.rb -D

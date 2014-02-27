@@ -1,0 +1,5 @@
+#!/bin/sh
+exec 2>&1
+
+cd <%= node['supermarket']['home'] %>/current
+exec chpst -usupermarket bundle exec sidekiq -d -P <%= node['supermarket']['home'] %>/shared/pids/sidekiq.pid -C /etc/sidekiq/sidekiq.yml -e production -t 30 -L <%= node['supermarket']['home'] %>/shared/logs/sidekiq.log
