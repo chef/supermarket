@@ -2,8 +2,11 @@ require 'spec_helper'
 
 describe Api::V1::CookbooksController do
 
-  before do
+  let!(:slow_cooking) do
     create(:cookbook, name: 'slow_cooking')
+  end
+
+  let!(:sashimi) do
     create(:cookbook, name: 'sashimi')
   end
 
@@ -72,4 +75,27 @@ describe Api::V1::CookbooksController do
     end
   end
 
+  describe '#show' do
+    context 'when a cookbook exists' do
+      it 'responds with a 200' do
+        get :show, cookbook: 'sashimi', format: :json
+
+        expect(response.status.to_i).to eql(200)
+      end
+
+      it 'sends the cookbook to the view' do
+        get :show, cookbook: 'sashimi', format: :json
+
+        expect(assigns[:cookbook]).to eql(sashimi)
+      end
+    end
+
+    context 'when a cookbook does not exist' do
+      it 'responds with a 404' do
+        get :show, cookbook: 'mamimi', format: :json
+
+        expect(response.status.to_i).to eql(404)
+      end
+    end
+  end
 end

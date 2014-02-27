@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'spec_api_helper'
 
 describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
 
@@ -33,10 +33,6 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
         'cookbook' => 'http://www.example.com/api/v1/cookbooks/sashimi',
         'file' => '/tarballs/original/missing.png'
       }
-    end
-
-    def signature(resource)
-      resource.except('created_at', 'updated_at')
     end
 
     context 'for the latest version' do

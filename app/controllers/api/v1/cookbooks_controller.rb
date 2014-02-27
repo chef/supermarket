@@ -1,4 +1,4 @@
-class Api::V1::CookbooksController < ApplicationController
+class Api::V1::CookbooksController < Api::V1Controller
   #
   # GET /api/v1/cookbooks
   #
@@ -17,5 +17,17 @@ class Api::V1::CookbooksController < ApplicationController
     @items = [params.fetch(:items, 10).to_i, 100].min
     @total = Cookbook.count
     @cookbooks = Cookbook.all.order('name ASC').limit(@items).offset(@start)
+  end
+
+  #
+  # GET /api/v1/cookbooks/:cookbook
+  #
+  # Return the specified cookbook. If it does not exist, return a 404.
+  #
+  # @example
+  #   GET /api/v1/cookbooks/redis
+  #
+  def show
+    @cookbook = Cookbook.find_by!(name: params[:cookbook])
   end
 end

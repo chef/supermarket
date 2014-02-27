@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'spec_api_helper'
 
 describe 'GET /api/v1/cookbooks' do
 
