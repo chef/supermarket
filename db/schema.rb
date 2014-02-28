@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227202438) do
+ActiveRecord::Schema.define(version: 20140228144237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 20140227202438) do
     t.datetime "updated_at"
   end
 
+  add_index "cookbook_versions", ["version"], name: "index_cookbook_versions_on_version", using: :btree
+
   create_table "cookbooks", force: true do |t|
     t.string   "name",                         null: false
     t.string   "maintainer",                   null: false
@@ -95,6 +97,8 @@ ActiveRecord::Schema.define(version: 20140227202438) do
     t.string   "external_url"
     t.boolean  "deprecated",   default: false
   end
+
+  add_index "cookbooks", ["name"], name: "index_cookbooks_on_name", using: :btree
 
   create_table "curry_commit_authors", force: true do |t|
     t.string   "login"
