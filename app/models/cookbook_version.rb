@@ -11,10 +11,12 @@ class CookbookVersion < ActiveRecord::Base
   # dots.
   #
   # @example
-  #   cookbook_version.to_param # => '1_0_2
+  #   cookbook_version = CookbookVersion.new(version: '1.0.2')
+  #   cookbook_version.to_param # => '1_0_2'
   #
   # @return [String] the version of the +CookbookVersion+
+  #
   def to_param
-    version.gsub(/\./,'_')
+    version.gsub(/\./, '_')
   end
 end
