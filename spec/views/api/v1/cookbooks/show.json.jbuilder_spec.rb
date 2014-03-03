@@ -13,16 +13,44 @@ describe 'api/v1/cookbooks/show' do
     )
   end
 
+  let(:cookbook_version_1_0_0) do
+    create(
+      :cookbook_version,
+      cookbook: cookbook,
+      version: '1.1.0'
+    )
+  end
+
+  let(:cookbook_version_1_1_0) do
+    create(
+      :cookbook_version,
+      cookbook: cookbook,
+      version: '1.1.0'
+    )
+  end
+
   before do
     assign(
       :cookbook,
       cookbook
     )
 
-    create(
-      :cookbook_version,
-      cookbook: cookbook,
-      version: '1.1.0'
+    assign(
+      :latest_cookbook_version,
+      cookbook_version_1_1_0
+    )
+
+    assign(
+      :latest_cookbook_version_url,
+      "http://test.host/api/v1/cookbooks/redis/versions/1_1_0"
+    )
+
+    assign(
+      :cookbook_versions_urls,
+      [
+        "http://test.host/api/v1/cookbooks/redis/versions/1_0_0",
+        "http://test.host/api/v1/cookbooks/redis/versions/1_1_0"
+      ]
     )
   end
 
@@ -77,12 +105,6 @@ describe 'api/v1/cookbooks/show' do
   end
 
   it "displays the cookbook's versions" do
-    create(
-      :cookbook_version,
-      cookbook: cookbook,
-      version: '1.0.0'
-    )
-
     render
 
     versions = json_body['versions']

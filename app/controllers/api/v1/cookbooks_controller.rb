@@ -29,5 +29,12 @@ class Api::V1::CookbooksController < Api::V1Controller
   #
   def show
     @cookbook = Cookbook.find_by!(name: params[:cookbook])
+    cookbook_versions = @cookbook.cookbook_versions.order('version ASC')
+    @cookbook_versions_urls = cookbook_versions.map do |version|
+      api_v1_cookbook_version_url(@cookbook, version)
+    end
+
+    @latest_cookbook_version = cookbook_versions.last
+    @latest_cookbook_version_url = api_v1_cookbook_version_url(@cookbook, @latest_cookbook_version)
   end
 end
