@@ -4,12 +4,12 @@ describe Api::V1::CookbookVersionsController do
   describe '#show' do
     let!(:redis) { create(:cookbook, name: 'redis') }
 
-    let!(:redis_1_0_0) do
-      create(:cookbook_version, cookbook: redis, version: '1.0.0')
-    end
-
     let!(:redis_0_1_2) do
       create(:cookbook_version, cookbook: redis, version: '0.1.2')
+    end
+
+    let!(:redis_1_0_0) do
+      create(:cookbook_version, cookbook: redis, version: '1.0.0')
     end
 
     it 'responds with a 200' do

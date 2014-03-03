@@ -81,7 +81,7 @@ describe Api::V1::CookbooksController do
         create(
           :cookbook_version,
           cookbook: sashimi,
-          version: '2.1.0',
+          version: '1.1.0',
           license: 'MIT',
           description: 'great'
         )
@@ -89,7 +89,7 @@ describe Api::V1::CookbooksController do
         create(
           :cookbook_version,
           cookbook: sashimi,
-          version: '1.1.0',
+          version: '2.1.0',
           license: 'MIT',
           description: 'great'
         )
@@ -112,8 +112,8 @@ describe Api::V1::CookbooksController do
 
         expect(assigns[:cookbook_versions_urls]).to eql(
           [
-            "http://test.host/api/v1/cookbooks/sashimi/versions/1_1_0",
-            "http://test.host/api/v1/cookbooks/sashimi/versions/2_1_0"
+            "http://test.host/api/v1/cookbooks/sashimi/versions/2_1_0",
+            "http://test.host/api/v1/cookbooks/sashimi/versions/1_1_0"
           ]
         )
       end
