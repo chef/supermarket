@@ -1,4 +1,19 @@
 class Cookbook < ActiveRecord::Base
+  include PgSearch
+
+  pg_search_scope(
+    :search,
+    against: {
+      name: 'A',
+      description: 'B',
+      category: 'C',
+      maintainer: 'D'
+    },
+    using: {
+      tsearch: { prefix: true, dictionary: 'english' }
+    }
+  )
+
   has_many :cookbook_versions, -> { order(created_at: :desc) }
 
   #
