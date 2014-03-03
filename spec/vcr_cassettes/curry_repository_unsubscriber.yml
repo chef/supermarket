@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.github.com/repos/cramerdev/paprika/hooks
+    uri: https://api.github.com/repos/gofullstack/paprika/hooks
     body:
       encoding: US-ASCII
       string: ''
@@ -62,12 +62,12 @@ http_interactions:
       - 6153E20C:6E59:39142:53027CC2
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/hooks/1782454","test_url":"https://api.github.com/repos/cramerdev/paprika/hooks/1782454/test","id":1782454,"name":"tenxer","active":true,"events":["push"],"config":{"api_key":""},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T15:36:46Z","created_at":"2014-02-07T05:28:33Z"},{"url":"https://api.github.com/repos/cramerdev/paprika/hooks/1810176","test_url":"https://api.github.com/repos/cramerdev/paprika/hooks/1810176/test","id":1810176,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://supermarket-staging.getchef.com/curry/pull_request_updates","secret":"1da97fd0c9e60147ba5eaa0d53f2365e","content_type":"form"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T15:36:46Z","created_at":"2014-02-13T20:20:42Z"},{"url":"https://api.github.com/repos/cramerdev/paprika/hooks/1823255","test_url":"https://api.github.com/repos/cramerdev/paprika/hooks/1823255/test","id":1823255,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://currybowl.herokuapp.com/52f2934cec5edd0002000015","secret":"YOUR_PUBSUBHUBBUB_SECRET","content_type":"form"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T18:57:47Z","created_at":"2014-02-17T18:57:47Z"}]'
-    http_version: 
+      string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/hooks/1782454","test_url":"https://api.github.com/repos/gofullstack/paprika/hooks/1782454/test","id":1782454,"name":"tenxer","active":true,"events":["push"],"config":{"api_key":""},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T15:36:46Z","created_at":"2014-02-07T05:28:33Z"},{"url":"https://api.github.com/repos/gofullstack/paprika/hooks/1810176","test_url":"https://api.github.com/repos/gofullstack/paprika/hooks/1810176/test","id":1810176,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://supermarket-staging.getchef.com/curry/pull_request_updates","secret":"1da97fd0c9e60147ba5eaa0d53f2365e","content_type":"form"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T15:36:46Z","created_at":"2014-02-13T20:20:42Z"},{"url":"https://api.github.com/repos/gofullstack/paprika/hooks/1823255","test_url":"https://api.github.com/repos/gofullstack/paprika/hooks/1823255/test","id":1823255,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://currybowl.herokuapp.com/52f2934cec5edd0002000015","secret":"YOUR_PUBSUBHUBBUB_SECRET","content_type":"form"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T18:57:47Z","created_at":"2014-02-17T18:57:47Z"}]'
+    http_version:
   recorded_at: Mon, 17 Feb 2014 21:18:58 GMT
 - request:
     method: get
-    uri: https://api.github.com/repos/cramerdev/paprika/hooks
+    uri: https://api.github.com/repos/gofullstack/paprika/hooks
     body:
       encoding: US-ASCII
       string: ''
@@ -127,15 +127,15 @@ http_interactions:
       - 6153E20C:6E59:39267:53027CC2
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/hooks/1782454","test_url":"https://api.github.com/repos/cramerdev/paprika/hooks/1782454/test","id":1782454,"name":"tenxer","active":true,"events":["push"],"config":{"api_key":""},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T15:36:46Z","created_at":"2014-02-07T05:28:33Z"},{"url":"https://api.github.com/repos/cramerdev/paprika/hooks/1810176","test_url":"https://api.github.com/repos/cramerdev/paprika/hooks/1810176/test","id":1810176,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://supermarket-staging.getchef.com/curry/pull_request_updates","secret":"1da97fd0c9e60147ba5eaa0d53f2365e","content_type":"form"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T15:36:46Z","created_at":"2014-02-13T20:20:42Z"}]'
-    http_version: 
+      string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/hooks/1782454","test_url":"https://api.github.com/repos/gofullstack/paprika/hooks/1782454/test","id":1782454,"name":"tenxer","active":true,"events":["push"],"config":{"api_key":""},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T15:36:46Z","created_at":"2014-02-07T05:28:33Z"},{"url":"https://api.github.com/repos/gofullstack/paprika/hooks/1810176","test_url":"https://api.github.com/repos/gofullstack/paprika/hooks/1810176/test","id":1810176,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://supermarket-staging.getchef.com/curry/pull_request_updates","secret":"1da97fd0c9e60147ba5eaa0d53f2365e","content_type":"form"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T15:36:46Z","created_at":"2014-02-13T20:20:42Z"}]'
+    http_version:
   recorded_at: Mon, 17 Feb 2014 21:18:59 GMT
 - request:
     method: post
     uri: https://api.github.com/hub
     body:
       encoding: UTF-8
-      string: hub.callback=http%3A%2F%2Fcurrybowl.herokuapp.com%2F52f2934cec5edd0002000015&hub.mode=subscribe&hub.secret=YOUR_PUBSUBHUBBUB_SECRET&hub.topic=https%3A%2F%2Fgithub.com%2Fcramerdev%2Fpaprika%2Fevents%2Fpull_request
+      string: hub.callback=http%3A%2F%2Fcurrybowl.herokuapp.com%2F52f2934cec5edd0002000015&hub.mode=subscribe&hub.secret=YOUR_PUBSUBHUBBUB_SECRET&hub.topic=https%3A%2F%2Fgithub.com%2Fgofullstack%2Fpaprika%2Fevents%2Fpull_request
     headers:
       User-Agent:
       - Octokit Ruby Gem 3.0.0.pre
@@ -179,14 +179,14 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version: 
+    http_version:
   recorded_at: Mon, 17 Feb 2014 21:19:02 GMT
 - request:
     method: post
     uri: https://api.github.com/hub
     body:
       encoding: UTF-8
-      string: hub.callback=http%3A%2F%2Fcurrybowl.herokuapp.com%2F52f2934cec5edd0002000015&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fgithub.com%2Fcramerdev%2Fpaprika%2Fevents%2Fpull_request
+      string: hub.callback=http%3A%2F%2Fcurrybowl.herokuapp.com%2F52f2934cec5edd0002000015&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fgithub.com%2Fgofullstack%2Fpaprika%2Fevents%2Fpull_request
     headers:
       User-Agent:
       - Octokit Ruby Gem 3.0.0.pre
@@ -230,14 +230,14 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version: 
+    http_version:
   recorded_at: Mon, 17 Feb 2014 21:19:02 GMT
 - request:
     method: post
     uri: https://api.github.com/hub
     body:
       encoding: UTF-8
-      string: hub.callback=http%3A%2F%2Fcurrybowl.herokuapp.com%2F52f2934cec5edd0002000015&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fgithub.com%2Fcramerdev%2Fpaprika%2Fevents%2Fpull_request
+      string: hub.callback=http%3A%2F%2Fcurrybowl.herokuapp.com%2F52f2934cec5edd0002000015&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fgithub.com%2Fgofullstack%2Fpaprika%2Fevents%2Fpull_request
     headers:
       User-Agent:
       - Octokit Ruby Gem 3.0.0.pre
@@ -281,6 +281,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version: 
+    http_version:
   recorded_at: Mon, 17 Feb 2014 21:19:03 GMT
 recorded_with: VCR 2.8.0

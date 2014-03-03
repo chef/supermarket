@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.github.com/repos/cramerdev/paprika/issues/1/labels
+    uri: https://api.github.com/repos/gofullstack/paprika/issues/1/labels
     body:
       encoding: US-ASCII
       string: ''
@@ -65,11 +65,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '[]'
-    http_version: 
+    http_version:
   recorded_at: Mon, 17 Feb 2014 21:21:06 GMT
 - request:
     method: post
-    uri: https://api.github.com/repos/cramerdev/paprika/issues/1/labels
+    uri: https://api.github.com/repos/gofullstack/paprika/issues/1/labels
     body:
       encoding: UTF-8
       string: '["Signed CLA"]'
@@ -129,13 +129,13 @@ http_interactions:
       - 6153E20C:2F31:540EB:53027D42
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/labels/Signed+CLA","name":"Signed
+      string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/labels/Signed+CLA","name":"Signed
         CLA","color":"8ED41E"}]'
-    http_version: 
+    http_version:
   recorded_at: Mon, 17 Feb 2014 21:21:06 GMT
 - request:
     method: get
-    uri: https://api.github.com/repos/cramerdev/paprika/issues/1/labels
+    uri: https://api.github.com/repos/gofullstack/paprika/issues/1/labels
     body:
       encoding: US-ASCII
       string: ''
@@ -197,8 +197,8 @@ http_interactions:
       - 6153E20C:2F2E:32BD5:53027D42
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/labels/Signed+CLA","name":"Signed
+      string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/labels/Signed+CLA","name":"Signed
         CLA","color":"8ED41E"}]'
-    http_version: 
+    http_version:
   recorded_at: Mon, 17 Feb 2014 21:21:06 GMT
 recorded_with: VCR 2.8.0

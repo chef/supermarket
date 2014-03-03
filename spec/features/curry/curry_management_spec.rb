@@ -8,7 +8,7 @@ describe 'Curry management' do
 
       manage_repositories
 
-      fill_in 'GitHub Repository Owner', with: 'cramerdev'
+      fill_in 'GitHub Repository Owner', with: 'gofullstack'
       fill_in 'GitHub Repository Name', with: 'paprika'
       submit_form
 
@@ -22,7 +22,7 @@ describe 'Curry management' do
 
       manage_repositories
 
-      fill_in 'GitHub Repository Owner', with: 'cramerdev'
+      fill_in 'GitHub Repository Owner', with: 'gofullstack'
       fill_in 'GitHub Repository Name', with: 'paprika'
       submit_form
 

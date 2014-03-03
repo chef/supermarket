@@ -16,7 +16,7 @@ describe Curry::RepositorySubscriber do
     context 'for a repository that exists' do
       let!(:subscriber) do
         Curry::RepositorySubscriber.new(
-          Curry::Repository.new(owner: 'cramerdev', name: 'paprika')
+          Curry::Repository.new(owner: 'gofullstack', name: 'paprika')
         )
       end
 
@@ -98,7 +98,7 @@ describe Curry::RepositorySubscriber do
 
       expect do
         subscriber.unsubscribe
-      end.to change { client.hooks('cramerdev/paprika').size }.by(-1)
+      end.to change { client.hooks('gofullstack/paprika').size }.by(-1)
     end
 
     it "it destroys the RepositorySubscriber's repository record" do

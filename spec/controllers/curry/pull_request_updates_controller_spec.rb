@@ -9,7 +9,7 @@ describe Curry::PullRequestUpdatesController do
     end
 
     let!(:repository) do
-      create(:repository, owner: 'cramerdev', name: 'paprika')
+      create(:repository, owner: 'gofullstack', name: 'paprika')
     end
 
     def secure_post(action, params = {})

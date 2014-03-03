@@ -53,7 +53,7 @@ describe Curry::RepositoriesController do
             with(curry_pull_request_updates_url) { true }
 
           post :create, curry_repository: {
-            owner: 'cramerdev',
+            owner: 'gofullstack',
             name: 'paprika'
           }
 
@@ -68,7 +68,7 @@ describe Curry::RepositoriesController do
         end
 
         it 'redirects back to the repository index' do
-          post :create, curry_repository: { owner: 'cramerdev', name: 'paprika' }
+          post :create, curry_repository: { owner: 'gofullstack', name: 'paprika' }
 
           expect(response).to redirect_to(curry_repositories_url)
         end

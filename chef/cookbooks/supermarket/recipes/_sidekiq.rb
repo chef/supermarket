@@ -1,6 +1,6 @@
 #
-# Author:: Brian Cobb (<brian@cramerdev.com>)
-# Author:: Brett Chalupa (<brett@cramerdev.com>)
+# Author:: Brian Cobb (<brian@gofullstack.com>)
+# Author:: Brett Chalupa (<brett@gofullstack.com>)
 # Recipe:: sidekiq
 #
 # Copyright 2014 Chef Software, Inc.
