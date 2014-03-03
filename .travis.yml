@@ -14,7 +14,9 @@ before_script:
   - cp .env.example .env
   - bundle exec rake db:schema:load
 bundler_args: --without development
-script: bundle exec rspec && bundle exec rake spec:javascripts
+script:
+  - bundle exec rspec
+  - bundle exec rubocop
 services:
   - redis-server
 env:

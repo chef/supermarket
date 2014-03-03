@@ -6,8 +6,13 @@ describe InvitationAuthorizer do
   subject { described_class.new(user, record) }
 
   context 'as an organization admin' do
-    let(:user) { create(:contributor, admin: true,
-      organization: record.organization).user }
+    let(:user) do
+      create(
+        :contributor,
+        admin: true,
+        organization: record.organization)
+      .user
+    end
 
     it { should permit(:index) }
     it { should permit(:create) }
@@ -17,8 +22,13 @@ describe InvitationAuthorizer do
   end
 
   context 'as an organization contributor' do
-    let(:user) { create(:contributor, admin: false,
-      organization: record.organization).user }
+    let(:user) do
+      create(
+        :contributor,
+        admin: false,
+        organization: record.organization
+      ).user
+    end
 
     it { should_not permit(:index) }
     it { should_not permit(:create) }

@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe 'GET /api/v1/cookbooks/:cookbook' do
-
   context 'when the cookbook exists' do
-
     let(:sashimi_signature) do
       {
         'name' => 'apache',

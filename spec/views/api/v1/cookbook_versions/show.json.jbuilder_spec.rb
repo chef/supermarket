@@ -44,5 +44,4 @@ describe 'api/v1/cookbook_versions/show' do
   it "displays the cookbook version's tarball file size"
   it "displays the cookbook version's file url"
   it "displays the cookbook version's average rating"
-
 end

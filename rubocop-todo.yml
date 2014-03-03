@@ -5,121 +5,10 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offence count: 2
-# Cop supports --auto-correct.
-Alias:
-  Enabled: false
-
-# Offence count: 16
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedHashRocketStyle, EnforcedColonStyle.
-AlignHash:
-  Enabled: false
-
-# Offence count: 16
-# Cop supports --auto-correct.
-AlignParameters:
-  Enabled: false
-
-# Offence count: 2
-# Cop supports --auto-correct.
-AndOr:
-  Enabled: false
-
-# Offence count: 4
-BlockAlignment:
-  Enabled: false
-
-# Offence count: 30
-# Cop supports --auto-correct.
-Blocks:
-  Enabled: false
-
-# Offence count: 12
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-BracesAroundHashParameters:
-  Enabled: false
-
-# Offence count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: PreferredMethods.
-CollectionMethods:
-  Enabled: false
-
-# Offence count: 1
-# Cop supports --auto-correct.
-ColonMethodCall:
-  Enabled: false
-
-# Offence count: 104
-Documentation:
-  Enabled: false
 
 # Offence count: 41
 # Configuration parameters: Style, SupportedStyles.
 DotPosition:
-  Enabled: false
-
-# Offence count: 3
-# Cop supports --auto-correct.
-EmptyLines:
-  Enabled: false
-
-# Offence count: 2
-EmptyLinesAroundAccessModifier:
-  Enabled: false
-
-# Offence count: 19
-# Cop supports --auto-correct.
-EmptyLinesAroundBody:
-  Enabled: false
-
-# Offence count: 1
-EndOfLine:
-  Enabled: false
-
-# Offence count: 1
-FavorUnlessOverNegatedIf:
-  Enabled: false
-
-# Offence count: 2
-HandleExceptions:
-  Enabled: false
-
-# Offence count: 8
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-HashSyntax:
-  Enabled: false
-
-# Offence count: 4
-IfUnlessModifier:
-  Enabled: false
-
-# Offence count: 3
-IndentationConsistency:
-  Enabled: false
-
-# Offence count: 2
-IndentationWidth:
-  Enabled: false
-
-# Offence count: 190
-LineLength:
-  Max: 173
-
-# Offence count: 1
-Loop:
-  Enabled: false
-
-# Offence count: 17
-# Configuration parameters: CountComments.
-MethodLength:
-  Max: 28
-
-# Offence count: 1
-Not:
   Enabled: false
 
 # Offence count: 3
@@ -133,65 +22,7 @@ PredicateName:
   Enabled: false
 
 # Offence count: 2
-# Cop supports --auto-correct.
-Proc:
-  Enabled: false
-
-# Offence count: 2
 RedundantBegin:
-  Enabled: false
-
-# Offence count: 2
-RedundantException:
-  Enabled: false
-
-# Offence count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AllowMultipleReturnValues.
-RedundantReturn:
-  Enabled: false
-
-# Offence count: 1
-# Cop supports --auto-correct.
-RedundantSelf:
-  Enabled: false
-
-# Offence count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-SignalException:
-  Enabled: false
-
-# Offence count: 1
-# Cop supports --auto-correct.
-SpaceAfterColon:
-  Enabled: false
-
-# Offence count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
-SpaceAroundBlockBraces:
-  Enabled: true
-
-# Offence count: 2
-# Cop supports --auto-correct.
-SpaceAroundOperators:
-  Enabled: false
-
-# Offence count: 4
-# Cop supports --auto-correct.
-SpaceInsideBrackets:
-  Enabled: false
-
-# Offence count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SupportedStyles.
-SpaceInsideHashLiteralBraces:
-  Enabled: false
-
-# Offence count: 2
-# Cop supports --auto-correct.
-SpaceInsideParens:
   Enabled: false
 
 # Offence count: 221
@@ -200,21 +31,6 @@ SpaceInsideParens:
 StringLiterals:
   Enabled: false
 
-# Offence count: 1
-# Cop supports --auto-correct.
-TrailingBlankLines:
-  Enabled: false
-
-# Offence count: 5
-# Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.
-TrailingComma:
-  Enabled: false
-
 # Offence count: 27
 UselessAssignment:
   Enabled: false
-
-# Offence count: 1
-# Cop supports --auto-correct.
-WordArray:
-  MinSize: 2

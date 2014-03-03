@@ -6,10 +6,10 @@ Supermarket::Application.routes.draw do
   devise_for :users
 
   devise_scope :user do
-     get 'sign-in',  to: 'devise/sessions#new', as: :sign_in
-     delete 'sign-out', to: 'devise/sessions#destroy', as: :sign_out
-     get 'sign-up',  to: 'devise/registrations#new', as: 'sign_up'
-   end
+    get 'sign-in',  to: 'devise/sessions#new', as: :sign_in
+    delete 'sign-out', to: 'devise/sessions#destroy', as: :sign_out
+    get 'sign-up',  to: 'devise/registrations#new', as: 'sign_up'
+  end
 
   namespace :api, defaults: { format: :json }  do
     namespace :v1 do
@@ -57,9 +57,8 @@ Supermarket::Application.routes.draw do
   resources :organizations, only: [] do
     resources :contributors, only: [:update, :destroy], controller: :contributors
 
-    resources :invitations,
-      only: [:index, :create, :update],
-      controller: :organization_invitations do
+    resources :invitations, only: [:index, :create, :update],
+                            controller: :organization_invitations do
 
       member do
         patch :resend

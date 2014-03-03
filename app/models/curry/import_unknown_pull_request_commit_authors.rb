@@ -7,7 +7,6 @@ require 'octokit'
 # author.
 #
 class Curry::ImportUnknownPullRequestCommitAuthors
-
   #
   # Create a new instance of +Curry::ImportUnknownPullRequestCommitAuthors+.
   # This creates an instance of +Octokit::Client+ to interact with the GitHub
@@ -90,5 +89,4 @@ class Curry::ImportUnknownPullRequestCommitAuthors
   def signed_a_cla?(github_login)
     User.find_by_github_login(github_login).signed_cla?
   end
-
 end

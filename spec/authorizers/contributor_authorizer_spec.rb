@@ -2,9 +2,7 @@ require 'isolated_spec_helper'
 require 'contributor_authorizer'
 
 describe ContributorAuthorizer do
-
   describe '#update?' do
-
     it 'does not allow non-admin contributors to update contributors' do
       user = double('User')
       contributor = double('Contributor')
@@ -42,11 +40,9 @@ describe ContributorAuthorizer do
       authorizer = ContributorAuthorizer.new(user, contributor)
       expect(authorizer.update?).to be_true
     end
-
-  end # update?
+  end
 
   describe '#destroy?' do
-
     it 'does not allow non-admin contributors to delete contributors' do
       user = double('User')
       contributor = double('Contributor')
@@ -98,7 +94,5 @@ describe ContributorAuthorizer do
       authorizer = ContributorAuthorizer.new(user, contributor)
       expect(authorizer.destroy?).to be_false
     end
-
   end
-
 end

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Curry::CommitAuthorVerificationWorker do
-
   it "changes the user's commit author records to have signed a CLA" do
     allow(Curry::PullRequestAppraiserWorker).to receive(:perform_async)
 
@@ -27,5 +26,4 @@ describe Curry::CommitAuthorVerificationWorker do
     worker = Curry::CommitAuthorVerificationWorker.new
     worker.perform(user.id)
   end
-
 end

@@ -47,5 +47,4 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
       importer.import
     end.to change(pull_request.reload.commit_authors, :count).by(1)
   end
-
 end

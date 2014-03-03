@@ -1,7 +1,7 @@
 require 'authorizer/base'
 
 class ContributorAuthorizer < Authorizer::Base
-  alias contributor record
+  alias_method :contributor, :record
 
   #
   # A user who is an admin of the contributor's organization while the
@@ -17,7 +17,7 @@ class ContributorAuthorizer < Authorizer::Base
 
     if user.is_admin_of_organization?(organization)
       if contributor.admin?
-        not contributor.only_admin?
+        !contributor.only_admin?
       else
         true
       end
@@ -33,4 +33,3 @@ class ContributorAuthorizer < Authorizer::Base
     destroy?
   end
 end
-

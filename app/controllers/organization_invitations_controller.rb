@@ -16,7 +16,6 @@ class OrganizationInvitationsController < ApplicationController
     authorize! @invitation
   end
 
-
   #
   # POST /organizations/:organization_id/invitations
   #
@@ -32,10 +31,10 @@ class OrganizationInvitationsController < ApplicationController
       InvitationMailer.deliver_invitation(@invitation)
 
       redirect_to organization_invitations_path(@organization),
-        notice: "Invited #{@invitation.email} to #{@organization.name}"
+                  notice: "Invited #{@invitation.email} to #{@organization.name}"
     else
       redirect_to organization_invitations_path(@organization),
-        alert: t('organization_invitations.invite.failure')
+                  alert: t('organization_invitations.invite.failure')
     end
   end
 

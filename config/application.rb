@@ -11,6 +11,7 @@ require "rails"
   begin
     require "#{framework}/railtie"
   rescue LoadError
+    Rails.logger.info "Unable to load #{framework}."
   end
 end
 
@@ -37,14 +38,14 @@ module Supermarket
     config.assets.precompile += %w(*.svg *.eot *.woff *.ttf)
 
     # Use a custom exception handling application
-    config.exceptions_app = Proc.new do |env|
+    config.exceptions_app = proc do |env|
       ExceptionsController.action(:show).call(env)
     end
 
     # Define the status codes for rescuing our custom exceptions
     config.action_dispatch.rescue_responses.merge!(
       'Supermarket::Authorization::NoAuthorizerError'  => :not_implemented,
-      'Supermarket::Authorization::NotAuthorizedError' => :unauthorized,
+      'Supermarket::Authorization::NotAuthorizedError' => :unauthorized
     )
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.

@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe Curry::ClaValidationWorker do
-
   context 'when processing a pull pequest' do
-
     it "annotates the pull request when the PR exists" do
       repository = create(:repository)
       pull_request = repository.pull_requests.create!(number: '1')
@@ -31,7 +29,5 @@ describe Curry::ClaValidationWorker do
       pull_request.repository.delete
       worker.perform(pull_request.id)
     end
-
   end
-
 end

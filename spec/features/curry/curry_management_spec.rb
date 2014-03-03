@@ -1,7 +1,6 @@
 require 'spec_feature_helper'
 
 describe 'Curry management' do
-
   describe 'when a Chef Admin adds a GitHub repository to the Super Market watched repositories' do
     it 'subscribes to a repository' do
       sign_in(create(:admin))
@@ -31,5 +30,4 @@ describe 'Curry management' do
       expect_to_see_success_message
     end
   end
-
 end

@@ -83,11 +83,11 @@ Supermarket::Application.configure do
     config.action_mailer.delivery_method = :smtp
 
     config.action_mailer.smtp_settings = {
-      address:              Supermarket::Config.smtp['address'],
-      port:                 Supermarket::Config.smtp['port'],
-      user_name:            Supermarket::Config.smtp['user_name'],
-      password:             Supermarket::Config.smtp['password'],
-      authentication:       'plain',
+      address: Supermarket::Config.smtp['address'],
+      port: Supermarket::Config.smtp['port'],
+      user_name: Supermarket::Config.smtp['user_name'],
+      password: Supermarket::Config.smtp['password'],
+      authentication: 'plain'
     }
   else
     config.action_mailer.delivery_method = :sendmail

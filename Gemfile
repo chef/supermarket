@@ -33,7 +33,6 @@ group :doc do
 end
 
 group :development do
-  gem 'rubocop'
   gem 'license_finder'
 end
 
@@ -49,6 +48,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'rubocop'
   gem 'mail_view'
   gem 'quiet_assets'
   gem 'rspec-rails'

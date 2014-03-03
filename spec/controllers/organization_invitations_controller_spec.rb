@@ -59,25 +59,23 @@ describe OrganizationInvitationsController do
       before { auto_authorize!(Invitation, 'create') }
 
       it 'creates the invitation' do
-        expect {
-          post :create,
-            organization_id: organization.id,
-            invitation: { email: 'chef@example.com' }
-        }.to change(organization.invitations, :count).by(1)
+        expect do
+          post :create, organization_id: organization.id,
+                        invitation: { email: 'chef@example.com' }
+        end.to change(organization.invitations, :count).by(1)
       end
 
       it 'sends the invitation' do
-        expect {
-          post :create,
-            organization_id: organization.id,
-            invitation: { email: 'chef@example.com' }
-        }.to change(ActionMailer::Base.deliveries, :size).by(1)
+        expect do
+          post :create, organization_id: organization.id,
+                        invitation: { email: 'chef@example.com' }
+        end.to change(ActionMailer::Base.deliveries, :size).by(1)
       end
 
       it 'displays an alert if the invitation did not save' do
         post :create,
-          organization_id: organization.id,
-          invitation: { email: '' }
+             organization_id: organization.id,
+             invitation: { email: '' }
 
         expect(flash.now[:alert]).
           to eql(I18n.t('organization_invitations.invite.failure'))
@@ -88,15 +86,14 @@ describe OrganizationInvitationsController do
       it "doesn't create the invitation" do
         expect do
           post :create,
-            organization_id: organization.id,
-            invitation: { email: 'chef@example.com' }
+               organization_id: organization.id,
+               invitation: { email: 'chef@example.com' }
         end.to_not change(Invitation, :count)
       end
 
       it 'responds with 404' do
-        post :create,
-          organization_id: organization.id,
-          invitation: { email: 'chef@example.com' }
+        post :create, organization_id: organization.id,
+                      invitation: { email: 'chef@example.com' }
 
         should respond_with(404)
       end
@@ -110,8 +107,10 @@ describe OrganizationInvitationsController do
       before { auto_authorize!(Invitation, 'update') }
 
       it 'updates an invitation' do
-        patch :update, organization_id: organization.id,
-          id: invitation.token, invitation: { admin: false }
+        patch :update,
+              organization_id: organization.id,
+              id: invitation.token,
+              invitation: { admin: false }
 
         invitation.reload
 
@@ -121,8 +120,10 @@ describe OrganizationInvitationsController do
 
     context 'user is not authorized to update an Invitation' do
       it "doesn't update the invitation" do
-        patch :update, organization_id: organization.id,
-          id: invitation.token, invitation: { admin: false }
+        patch :update,
+              organization_id: organization.id,
+              id: invitation.token,
+              invitation: { admin: false }
 
         invitation.reload
 
@@ -130,8 +131,10 @@ describe OrganizationInvitationsController do
       end
 
       it 'responds wtih 404' do
-        patch :update, organization_id: organization.id,
-          id: invitation.token, invitation: { admin: false }
+        patch :update,
+              organization_id: organization.id,
+              id: invitation.token,
+              invitation: { admin: false }
 
         should respond_with(404)
       end
@@ -146,24 +149,19 @@ describe OrganizationInvitationsController do
       before { auto_authorize!(Invitation, 'resend') }
 
       it 'resends the invitation' do
-        expect {
-          patch :resend, organization_id: organization.id,
-            id: invitation.token
-        }.to change(ActionMailer::Base.deliveries, :size).by(1)
+        expect { patch :resend, organization_id: organization.id, id: invitation.token }
+        .to change(ActionMailer::Base.deliveries, :size).by(1)
       end
     end
 
     context 'user is not authorized to resend Invitation' do
       it "doesn't resend the invitation" do
-        expect {
-          patch :resend, organization_id: organization.id,
-            id: invitation.token
-        }.to_not change(ActionMailer::Base.deliveries, :size).by(1)
+        expect { patch :resend, organization_id: organization.id, id: invitation.token }
+        .to_not change(ActionMailer::Base.deliveries, :size).by(1)
       end
 
       it 'responds with 404' do
-        patch :resend, organization_id: organization.id,
-          id: invitation.token
+        patch :resend, organization_id: organization.id, id: invitation.token
 
         should respond_with(404)
       end
@@ -178,24 +176,19 @@ describe OrganizationInvitationsController do
       before { auto_authorize!(Invitation, 'revoke') }
 
       it 'destroys the invitation' do
-        expect {
-          delete :revoke, organization_id: organization.id,
-            id: invitation.token
-        }.to change(Invitation, :count).by(-1)
+        expect { delete :revoke, organization_id: organization.id, id: invitation.token }
+        .to change(Invitation, :count).by(-1)
       end
     end
 
     context 'user is not authorized to revoke Invitation' do
       it "doesn't revoke the invitation" do
-        expect {
-          delete :revoke, organization_id: organization.id,
-            id: invitation.token
-        }.to_not change(Invitation, :count).by(-1)
+        expect { delete :revoke, organization_id: organization.id, id: invitation.token }
+        .to_not change(Invitation, :count).by(-1)
       end
 
       it 'responds with 404' do
-        delete :revoke, organization_id: organization.id,
-          id: invitation.token
+        delete :revoke, organization_id: organization.id, id: invitation.token
 
         should respond_with(404)
       end

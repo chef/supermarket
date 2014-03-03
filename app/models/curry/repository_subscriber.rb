@@ -78,6 +78,5 @@ module Curry
         access_token: Supermarket::Config.github['access_token']
       )
     end
-
   end
 end

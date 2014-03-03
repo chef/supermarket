@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
-
   let(:error_404) do
     {
        'error_messages' => ['Resource does not exist'],
@@ -18,9 +17,9 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
           description: 'Sashimi that will make your heart melt',
           maintainer: 'Haru Maru',
           name: 'sashimi'
-       ),
-       license: 'GPLv2',
-       version: '2.0.0'
+        ),
+        license: 'GPLv2',
+        version: '2.0.0'
       )
     end
 

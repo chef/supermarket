@@ -25,8 +25,9 @@ module Supermarket
     end
 
     private
-      def storage_key
-        "location_storage_return_to"
-      end
+
+    def storage_key
+      "location_storage_return_to"
+    end
   end
 end

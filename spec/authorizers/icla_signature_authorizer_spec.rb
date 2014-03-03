@@ -2,7 +2,6 @@ require 'isolated_spec_helper'
 require 'icla_signature_authorizer'
 
 describe IclaSignatureAuthorizer do
-
   let(:user) { double('User') }
   let(:signature) { double('IclaSignature') }
 
@@ -11,5 +10,4 @@ describe IclaSignatureAuthorizer do
 
     expect(authorizer).to be_a(ClaSignatureAuthorizer)
   end
-
 end

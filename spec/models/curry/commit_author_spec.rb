@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Curry::CommitAuthor do
-
   describe 'database default values' do
 
     it 'sets signed_cla to false' do
@@ -42,7 +41,5 @@ describe Curry::CommitAuthor do
       expect(Curry::CommitAuthor.with_known_login).to include(known)
       expect(Curry::CommitAuthor.with_known_login).to_not include(unknown)
     end
-
   end
-
 end

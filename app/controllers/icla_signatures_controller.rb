@@ -98,7 +98,7 @@ class IclaSignaturesController < ApplicationController
       :zip,
       :country,
       :agreement,
-      :icla_id,
+      :icla_id
     )
   end
 

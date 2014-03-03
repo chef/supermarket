@@ -23,9 +23,8 @@ describe InvitationsController do
   describe 'GET #accept' do
     it 'creates a new Contributor' do
       create(:account, user: user)
-      expect {
-        get :accept, id: invitation.token
-      }.to change(Contributor, :count).by(1)
+      expect { get :accept, id: invitation.token }
+      .to change(Contributor, :count).by(1)
     end
 
     it 'accepts the invitation' do
@@ -53,9 +52,7 @@ describe InvitationsController do
       create(:account, user: user)
       invitation = create(:invitation, admin: true)
 
-      expect {
-        get :accept, id: invitation.token
-      }.to change(Contributor.where(admin: true), :count).by(1)
+      expect { get :accept, id: invitation.token }.to change(Contributor.where(admin: true), :count).by(1)
     end
 
     it "it doesn't create a new Contributor if the same user already belongs to the CCLA (organization)" do
@@ -64,10 +61,10 @@ describe InvitationsController do
       invitation_1 = create(:invitation, organization: organization)
       invitation_2 = create(:invitation, organization: organization)
 
-      expect {
+      expect do
         get :accept, id: invitation_1.token
         get :accept, id: invitation_2.token
-      }.to_not change(Contributor, :count).by(2)
+      end.to_not change(Contributor, :count).by(2)
     end
   end
 

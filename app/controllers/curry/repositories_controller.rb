@@ -23,7 +23,7 @@ class Curry::RepositoriesController < ApplicationController
 
     if subscriber.subscribe(pubsubhubbub_callback_url)
       redirect_to curry_repositories_url,
-        notice: t('curry.repositories.subscribe.success')
+                  notice: t('curry.repositories.subscribe.success')
     else
       @repository = subscriber.repository
       @repositories = Curry::Repository.all

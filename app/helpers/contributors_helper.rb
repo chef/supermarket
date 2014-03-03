@@ -19,7 +19,7 @@ module ContributorsHelper
       rel = 'remove_contributor'
     end
 
-    return link_to text, organization_contributor_url(contributor.organization, contributor),
-      method: :delete, rel: rel, class: 'button secondary radius tiny'
+    link_to text, organization_contributor_url(contributor.organization, contributor),
+            method: :delete, rel: rel, class: 'button secondary radius tiny'
   end
 end

@@ -177,5 +177,4 @@ class User < ActiveRecord::Base
 
     account.try(:user) || User.new
   end
-
 end

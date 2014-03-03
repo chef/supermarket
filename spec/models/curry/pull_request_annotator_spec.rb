@@ -2,9 +2,7 @@ require 'spec_helper'
 require 'vcr_helper'
 
 describe Curry::PullRequestAnnotator do
-
   describe '#annotate' do
-
     let(:octokit) do
       Octokit::Client.new(
         access_token: Supermarket::Config.github['access_token']
@@ -114,5 +112,4 @@ describe Curry::PullRequestAnnotator do
       end
     end
   end
-
 end

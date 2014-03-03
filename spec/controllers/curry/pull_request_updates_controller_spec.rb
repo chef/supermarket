@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Curry::PullRequestUpdatesController do
   describe 'when GitHub sends a POST request' do
-
     before do
       allow(Curry::ImportUnknownPullRequestCommitAuthorsWorker).to receive(:perform_async)
       allow(OpenSSL::HMAC).to receive(:hexdigest) { 'csrf' }
@@ -59,11 +58,9 @@ describe Curry::PullRequestUpdatesController do
 
         secure_post :create, payload: payload
       end
-
     end
 
     context 'when the action is "closed"' do
-
       let(:payload) do
         File.read('spec/support/request_fixtures/github_close_pull_request.json')
       end
@@ -86,7 +83,6 @@ describe Curry::PullRequestUpdatesController do
 
         secure_post :create, payload: payload
       end
-
     end
 
     context 'when GitHub sends a zen payload' do
@@ -101,8 +97,6 @@ describe Curry::PullRequestUpdatesController do
 
         expect(response.code.to_i).to eql(200)
       end
-
     end
-
   end
 end

@@ -42,5 +42,4 @@ class InvitationsController < ApplicationController
     store_location!
     authenticate_user!
   end
-
 end
