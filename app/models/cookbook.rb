@@ -1,5 +1,5 @@
 class Cookbook < ActiveRecord::Base
-  has_many :cookbook_versions
+  has_many :cookbook_versions, -> { order(created_at: :desc) }
 
   #
   # Returns the name of the +Cookbook+ parameterized.
@@ -30,7 +30,7 @@ class Cookbook < ActiveRecord::Base
     version.gsub!(/_/, '.')
 
     if version == 'latest'
-      cookbook_versions.order('version DESC').first!
+      cookbook_versions.first!
     else
       cookbook_versions.find_by!(version: version)
     end

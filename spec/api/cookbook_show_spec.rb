@@ -13,8 +13,8 @@ describe 'GET /api/v1/cookbooks/:cookbook' do
         'external_url' => nil,
         'versions' =>
           [
-            'http://www.example.com/api/v1/cookbooks/apache/versions/1_0',
-            'http://www.example.com/api/v1/cookbooks/apache/versions/2_0'
+            'http://www.example.com/api/v1/cookbooks/apache/versions/2_0',
+            'http://www.example.com/api/v1/cookbooks/apache/versions/1_0'
           ],
         'description' => 'installs apache.',
         'average_rating' => nil,
