@@ -1,7 +1,7 @@
-Super Market [![Code Climate](https://codeclimate.com/github/opscode/supermarket.png)](https://codeclimate.com/github/opscode/supermarket) [![Build Status](https://travis-ci.org/opscode/supermarket.png?branch=master)](https://travis-ci.org/opscode/supermarket) [![Dependency Status](https://gemnasium.com/opscode/supermarket.png)](https://gemnasium.com/opscode/supermarket) [![Coverage Status](https://coveralls.io/repos/opscode/supermarket/badge.png?branch=master)](https://coveralls.io/r/opscode/supermarket?branch=master)
+Supermarket [![Code Climate](https://codeclimate.com/github/opscode/supermarket.png)](https://codeclimate.com/github/opscode/supermarket) [![Build Status](https://travis-ci.org/opscode/supermarket.png?branch=master)](https://travis-ci.org/opscode/supermarket) [![Dependency Status](https://gemnasium.com/opscode/supermarket.png)](https://gemnasium.com/opscode/supermarket) [![Coverage Status](https://coveralls.io/repos/opscode/supermarket/badge.png?branch=master)](https://coveralls.io/r/opscode/supermarket?branch=master)
 ===========
 
-Super Market is Chef's new community project. Here is a rough roadmap that corresponds to the main outcomes we hope to achieve through improving the Chef community experience:
+Supermarket is Chef's new community project. Here is a rough roadmap that corresponds to the main outcomes we hope to achieve through improving the Chef community experience:
 
 - ~~Better facilitation for signing and managing Contribor License Agreements (CLA). [#2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)~~
 - ~~Storing community member information and presenting it in a more user friendly and manageable way. [#2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)~~
@@ -38,13 +38,13 @@ If you have questions, feature ideas, or other suggestions, please [create a Git
 
 Continuous Integration
 ------------
-Super Market is using Travis CI. [View build info](https://travis-ci.org/opscode/supermarket)
+Supermarket is using Travis CI. [View build info](https://travis-ci.org/opscode/supermarket)
 
 
 OmniAuth
 --------
 
-Super Market uses [OmniAuth](https://github.com/intridea/omniauth) for
+Supermarket uses [OmniAuth](https://github.com/intridea/omniauth) for
 linking OAuth accounts to users. You need to create and
 register Supermarket as an application and setup the keys in the `.env` file.
 
@@ -65,7 +65,7 @@ where `MY_KEY` and `MY_SECRET` are the values given when you created the applica
 
 You can add support for additional OAUTH providers by creating an extractor object in `app/extractors`.
 
-Since each OmniAuth provider returns a different set of information, you often end up with nested case statements to account for all the different providers. Super Market accounts for this behavior using Extractor objects. Each OmniAuth provider must have an associated Extractor object that extracts the correct information from the OmniAuth response hash into a object with a unified interface.
+Since each OmniAuth provider returns a different set of information, you often end up with nested case statements to account for all the different providers. Supermarket accounts for this behavior using Extractor objects. Each OmniAuth provider must have an associated Extractor object that extracts the correct information from the OmniAuth response hash into a object with a unified interface.
 
 ### lvh.me
 
