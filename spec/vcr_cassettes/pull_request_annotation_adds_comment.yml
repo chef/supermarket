@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.github.com/repos/cramerdev/paprika/issues/1/labels
+    uri: https://api.github.com/repos/gofullstack/paprika/issues/1/labels
     body:
       encoding: US-ASCII
       string: ''
@@ -65,11 +65,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '[]'
-    http_version: 
+    http_version:
   recorded_at: Mon, 17 Feb 2014 21:21:03 GMT
 - request:
     method: post
-    uri: https://api.github.com/repos/cramerdev/paprika/issues/1/comments
+    uri: https://api.github.com/repos/gofullstack/paprika/issues/1/comments
     body:
       encoding: UTF-8
       string: '{"body":"Hi. Your friendly Curry bot here. Just letting you know that
@@ -116,7 +116,7 @@ http_interactions:
       X-Accepted-Oauth-Scopes:
       - repo
       Location:
-      - https://api.github.com/repos/cramerdev/paprika/issues/comments/35323944
+      - https://api.github.com/repos/gofullstack/paprika/issues/comments/35323944
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       X-Github-Media-Type:
@@ -136,18 +136,18 @@ http_interactions:
       - 6153E20C:2F30:5B10F:53027D3F
     body:
       encoding: UTF-8
-      string: '{"url":"https://api.github.com/repos/cramerdev/paprika/issues/comments/35323944","html_url":"https://github.com/cramerdev/paprika/pull/1#issuecomment-35323944","issue_url":"https://api.github.com/repos/cramerdev/paprika/issues/1","id":35323944,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://gravatar.com/avatar/a17d579ae533fa7dbf3f3875de913e10?d=https%3A%2F%2Fidenticons.github.com%2Fc23454742636600091b5bfbfe3187dc2.png&r=x","gravatar_id":"a17d579ae533fa7dbf3f3875de913e10","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-02-17T21:21:03Z","updated_at":"2014-02-17T21:21:03Z","body":"Hi.
+      string: '{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/35323944","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-35323944","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":35323944,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://gravatar.com/avatar/a17d579ae533fa7dbf3f3875de913e10?d=https%3A%2F%2Fidenticons.github.com%2Fc23454742636600091b5bfbfe3187dc2.png&r=x","gravatar_id":"a17d579ae533fa7dbf3f3875de913e10","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-02-17T21:21:03Z","updated_at":"2014-02-17T21:21:03Z","body":"Hi.
         Your friendly Curry bot here. Just letting you know that there are commit
         authors in this Pull Request who appear to not have signed a Chef CLA.\n\nThere
         are 1 commit author(s) whose commits are authored by a non GitHub-verified
         email address in this Pull Request. Chef will have to verify by hand that
         they have signed a Chef CLA.\n\nThe following GitHub users do not appear to
         have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 17 Feb 2014 21:21:03 GMT
 - request:
     method: get
-    uri: https://api.github.com/repos/cramerdev/paprika/issues/1/comments
+    uri: https://api.github.com/repos/gofullstack/paprika/issues/1/comments
     body:
       encoding: US-ASCII
       string: ''
@@ -207,13 +207,13 @@ http_interactions:
       - 6153E20C:2F30:5B1E2:53027D40
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/cramerdev/paprika/issues/comments/35323944","html_url":"https://github.com/cramerdev/paprika/pull/1#issuecomment-35323944","issue_url":"https://api.github.com/repos/cramerdev/paprika/issues/1","id":35323944,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://gravatar.com/avatar/a17d579ae533fa7dbf3f3875de913e10?d=https%3A%2F%2Fidenticons.github.com%2Fc23454742636600091b5bfbfe3187dc2.png&r=x","gravatar_id":"a17d579ae533fa7dbf3f3875de913e10","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-02-17T21:21:03Z","updated_at":"2014-02-17T21:21:03Z","body":"Hi.
+      string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/35323944","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-35323944","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":35323944,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://gravatar.com/avatar/a17d579ae533fa7dbf3f3875de913e10?d=https%3A%2F%2Fidenticons.github.com%2Fc23454742636600091b5bfbfe3187dc2.png&r=x","gravatar_id":"a17d579ae533fa7dbf3f3875de913e10","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-02-17T21:21:03Z","updated_at":"2014-02-17T21:21:03Z","body":"Hi.
         Your friendly Curry bot here. Just letting you know that there are commit
         authors in this Pull Request who appear to not have signed a Chef CLA.\n\nThere
         are 1 commit author(s) whose commits are authored by a non GitHub-verified
         email address in this Pull Request. Chef will have to verify by hand that
         they have signed a Chef CLA.\n\nThe following GitHub users do not appear to
         have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}]'
-    http_version: 
+    http_version:
   recorded_at: Mon, 17 Feb 2014 21:21:04 GMT
 recorded_with: VCR 2.8.0

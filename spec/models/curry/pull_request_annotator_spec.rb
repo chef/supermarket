@@ -12,7 +12,7 @@ describe Curry::PullRequestAnnotator do
     end
 
     let(:repository) do
-      create(:repository, owner: 'cramerdev', name: 'paprika')
+      create(:repository, owner: 'gofullstack', name: 'paprika')
     end
 
     let(:pull_request) do
@@ -73,7 +73,7 @@ describe Curry::PullRequestAnnotator do
       VCR.use_cassette('pull_request_annotation_adds_comment', record: :once) do
         pull_request.commit_authors.create!(login: 'brettchalupa')
         pull_request.commit_authors.create!(
-          email: 'brian+bcobb+brettchalupa@cramerdev.com'
+          email: 'brian+bcobb+brettchalupa@gofullstack.com'
         )
 
         annotator = Curry::PullRequestAnnotator.new(pull_request)

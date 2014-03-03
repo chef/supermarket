@@ -22,7 +22,7 @@ This project is currently in heavy active development and is a pre-release.
 Talk To Us
 ----------
 
-We have an open project chat on Gitter. There are usually active developers available for collaboration during normal weekly business hours. 
+We have an open project chat on Gitter. There are usually active developers available for collaboration during normal weekly business hours.
 
 [![Gitter chat](https://badges.gitter.im/opscode/supermarket.png)](https://gitter.im/opscode/supermarket)
 
@@ -31,9 +31,9 @@ Contributing
 
 We'd love for you to be involved. Read the [contributor's workflow](https://github.com/opscode/supermarket/blob/master/CONTRIBUTING.md) for license information and helpful tips before you get started.
 
-There are some project artifacts such as planning docs, wireframes, recorded demos, and team retrospectives in a [public Google Drive folder](https://drive.google.com/a/cramerdev.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8).
+There are some project artifacts such as planning docs, wireframes, recorded demos, and team retrospectives in a [public Google Drive folder](https://drive.google.com/a/gofullstack.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8).
 
-If you have questions, feature ideas, or other suggestions, please [create a Github Issue](https://github.com/opscode/supermarket/issues?state=open) and we'll respond in a timely manner. 
+If you have questions, feature ideas, or other suggestions, please [create a Github Issue](https://github.com/opscode/supermarket/issues?state=open) and we'll respond in a timely manner.
 
 
 Continuous Integration

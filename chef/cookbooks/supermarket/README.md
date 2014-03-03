@@ -4,8 +4,8 @@ This cookbook deploys the [Supermarket application](https://github.com/opscode/s
 
 # License and Authors
 
-- Author: Brett Chalupa (<brett@cramerdev.com>)
-- Author: Brian Cobb (<brian@cramerdev.com>)
+- Author: Brett Chalupa (<brett@gofullstack.com>)
+- Author: Brian Cobb (<brian@gofullstack.com>)
 - Author: Seth Vargo (<sethvargo@gmail.com>)
 - Author: Tristan O'Neil (<tristanoneil@gmail.com>)
 - Author: Joshua Timberman (<joshua@getchef.com>)

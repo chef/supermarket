@@ -10,7 +10,7 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
 
   it 'creates records for the unknown commit authors of a pull request' do
     # NOTE: This is a repository created to be in _this_ state
-    repository = create(:repository, owner: 'cramerdev', name: 'paprika')
+    repository = create(:repository, owner: 'gofullstack', name: 'paprika')
     pull_request = create(:pull_request, repository: repository)
     importer = Curry::ImportUnknownPullRequestCommitAuthors.new(pull_request)
 
@@ -20,7 +20,7 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
   end
 
   it 'does not duplicate existing unknown commit authors' do
-    repository = create(:repository, owner: 'cramerdev', name: 'paprika')
+    repository = create(:repository, owner: 'gofullstack', name: 'paprika')
     pull_request = create(:pull_request, repository: repository)
     importer = Curry::ImportUnknownPullRequestCommitAuthors.new(pull_request)
 
@@ -30,7 +30,7 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
   end
 
   it 'does not import known commit authors' do
-    repository = create(:repository, owner: 'cramerdev', name: 'paprika')
+    repository = create(:repository, owner: 'gofullstack', name: 'paprika')
     pull_request = create(:pull_request, repository: repository)
     importer = Curry::ImportUnknownPullRequestCommitAuthors.new(pull_request)
 
