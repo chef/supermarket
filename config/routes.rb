@@ -15,7 +15,7 @@ Supermarket::Application.routes.draw do
     namespace :v1 do
       get 'cookbooks' => 'cookbooks#index'
       get 'cookbooks/:cookbook' => 'cookbooks#show', as: :cookbook
-      get 'cookbooks/:cookbook/versions/:version' => 'cookbook_versions#show'
+      get 'cookbooks/:cookbook/versions/:version' => 'cookbook_versions#show', as: :cookbook_version
     end
   end
 

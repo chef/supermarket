@@ -2,8 +2,11 @@ require 'spec_helper'
 
 describe Api::V1::CookbooksController do
 
-  before do
+  let!(:slow_cooking) do
     create(:cookbook, name: 'slow_cooking')
+  end
+
+  let!(:sashimi) do
     create(:cookbook, name: 'sashimi')
   end
 
@@ -72,4 +75,63 @@ describe Api::V1::CookbooksController do
     end
   end
 
+  describe '#show' do
+    context 'when a cookbook exists' do
+      before do
+        create(
+          :cookbook_version,
+          cookbook: sashimi,
+          version: '2.1.0',
+          license: 'MIT',
+          description: 'great'
+        )
+
+        create(
+          :cookbook_version,
+          cookbook: sashimi,
+          version: '1.1.0',
+          license: 'MIT',
+          description: 'great'
+        )
+      end
+
+      it 'responds with a 200' do
+        get :show, cookbook: 'sashimi', format: :json
+
+        expect(response.status.to_i).to eql(200)
+      end
+
+      it 'sends the cookbook to the view' do
+        get :show, cookbook: 'sashimi', format: :json
+
+        expect(assigns[:cookbook]).to eql(sashimi)
+      end
+
+      it 'sends the cookbook_versions_urls to the view' do
+        get :show, cookbook: 'sashimi', format: :json
+
+        expect(assigns[:cookbook_versions_urls]).to eql(
+          [
+            "http://test.host/api/v1/cookbooks/sashimi/versions/1_1_0",
+            "http://test.host/api/v1/cookbooks/sashimi/versions/2_1_0"
+          ]
+        )
+      end
+
+      it 'sends the latest_cookbook_version_url to the view' do
+        get :show, cookbook: 'sashimi', format: :json
+
+        expect(assigns[:latest_cookbook_version_url]).
+          to eql("http://test.host/api/v1/cookbooks/sashimi/versions/2_1_0")
+      end
+    end
+
+    context 'when a cookbook does not exist' do
+      it 'responds with a 404' do
+        get :show, cookbook: 'mamimi', format: :json
+
+        expect(response.status.to_i).to eql(404)
+      end
+    end
+  end
 end

@@ -35,10 +35,6 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
       }
     end
 
-    def signature(resource)
-      resource.except('created_at', 'updated_at')
-    end
-
     context 'for the latest version' do
       it 'returns a 200' do
         get '/api/v1/cookbooks/sashimi/versions/latest'
