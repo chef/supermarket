@@ -32,7 +32,7 @@ img {
 }
 
 a img { border: none; }
-.image_fix { display:block;}
+.image_fix { display:block; }
 
 /** Yahoo paragraph fix: removes the proper spacing or the paragraph (p) tag. **/
 p { margin: 1em 0; }
@@ -115,12 +115,7 @@ a { color: #404248; }
 }
 
 .panel {
-  background-color: #ecedef;
-  padding: 50px;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  padding-top: 20px;
 }
 
 .footer {
@@ -165,9 +160,9 @@ a { color: #404248; }
 }
 
 .button:hover, .button-small:hover { opacity: .8; }
-.button:hover, .button-small:hover{opacity:.8;}
-.lightbutton {background-color: #a0a9ba; }
-.signedcla {background-color: #f79005; float: right; margin: -35px 0 0 0; }
+.button:hover, .button-small:hover{ opacity:.8; }
+.lightbutton { background-color: #a0a9ba; }
+.signedcla { background-color: #f79005; float: right; margin: -35px 0 0 0; }
 
 .accept {
   background-color: #43AC6A;
