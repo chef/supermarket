@@ -26,11 +26,11 @@ class CclaSignature < ActiveRecord::Base
 
   # Scopes
   # --------------------
-  scope :by_organization, ->{ where(id: select('DISTINCT ON(organization_id) id').order('organization_id, signed_at DESC')).order('signed_at ASC') }
+  scope :by_organization, -> { where(id: select('DISTINCT ON(organization_id) id').order('organization_id, signed_at DESC')).order('signed_at ASC') }
 
   # Callbacks
   # --------------------
-  before_create ->(record){ record.signed_at = Time.now }
+  before_create -> (record) { record.signed_at = Time.now }
 
   def name
     "#{first_name} #{last_name}"
