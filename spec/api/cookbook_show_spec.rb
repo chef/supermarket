@@ -1,4 +1,4 @@
-require 'spec_api_helper'
+require 'spec_helper'
 
 describe 'GET /api/v1/cookbooks/:cookbook' do
 
@@ -34,17 +34,8 @@ describe 'GET /api/v1/cookbooks/:cookbook' do
     end
 
     before do
-      create(
-        :cookbook_version,
-        cookbook: cookbook,
-        version: '1.0'
-      )
-
-      create(
-        :cookbook_version,
-        cookbook: cookbook,
-        version: '2.0'
-      )
+      publish_version(cookbook, '1.0')
+      publish_version(cookbook, '2.0')
     end
 
     it 'returns a 200' do
