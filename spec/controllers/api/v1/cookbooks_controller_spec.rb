@@ -10,7 +10,6 @@ describe Api::V1::CookbooksController do
   end
 
   describe '#index' do
-
     it 'orders the cookbooks by their name' do
       get :index, format: :json
 
@@ -131,6 +130,61 @@ describe Api::V1::CookbooksController do
 
         expect(response.status.to_i).to eql(404)
       end
+    end
+  end
+
+  describe '#search' do
+    let!(:redis) { create(:cookbook, name: 'redis') }
+    let!(:redis_2) { create(:cookbook, name: 'redis 2') }
+    let!(:postgres) { create(:cookbook, name: 'postgres') }
+
+    it 'responds with a 200' do
+      get :search, format: :json
+
+      expect(response.status.to_i).to eql(200)
+    end
+
+    it 'sends cookbook search result to the view' do
+      get :search, q: 'redis', format: :json
+
+      expect(assigns[:results]).to include(redis)
+    end
+
+    it 'searches based on the query' do
+      get :search, q: 'postgres', format: :json
+
+      expect(assigns[:results]).to include(postgres)
+      expect(assigns[:results]).to_not include(redis)
+    end
+
+    it 'sends start param to the view if it is present' do
+      get :search, q: 'redis', start: '1', format: :json
+
+      expect(assigns[:start]).to eql(1)
+    end
+
+    it 'defaults the start param to 0 if it is not present' do
+      get :search, q: 'redis', format: :json
+
+      expect(assigns[:start]).to eql(0)
+    end
+
+    it 'handles the start param' do
+      get :search, q: 'redis', start: 1, format: :json
+
+      cookbook_names = assigns[:results].map(&:name)
+
+      expect(cookbook_names).to eql(['redis 2'])
+    end
+
+    it 'handles the items param' do
+      6.times do |index|
+        create(:cookbook, name: "jam#{index}")
+      end
+
+      get :search, q: 'jam', items: 5, format: :json
+      cookbooks = assigns[:results]
+      expect(cookbooks.size).to eql 5
     end
   end
 end

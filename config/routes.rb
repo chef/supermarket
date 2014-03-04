@@ -14,6 +14,7 @@ Supermarket::Application.routes.draw do
   namespace :api, defaults: { format: :json }  do
     namespace :v1 do
       get 'cookbooks' => 'cookbooks#index'
+      get 'search' => 'cookbooks#search'
       get 'cookbooks/:cookbook' => 'cookbooks#show', as: :cookbook
       get 'cookbooks/:cookbook/versions/:version' => 'cookbook_versions#show', as: :cookbook_version
     end

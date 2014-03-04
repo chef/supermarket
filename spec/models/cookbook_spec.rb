@@ -45,4 +45,46 @@ describe Cookbook do
         to raise_error(ActiveRecord::RecordNotFound)
     end
   end
+
+  describe '.search' do
+    let!(:redis) do
+      Cookbook.create(
+        name: 'redis',
+        maintainer: 'tokein',
+        category: 'datastore',
+        description: 'Redis: a fast, flexible datastore offering an extremely useful set of data structure primitives'
+      )
+    end
+
+    let!(:redisio) do
+      Cookbook.create(
+        name: 'redisio',
+        maintainer: 'fruit',
+        category: 'datastore',
+        description: 'Installs/Configures redis'
+      )
+    end
+
+    it 'returns cookbooks with a similar name' do
+      expect(Cookbook.search('redis')).to include(redis)
+      expect(Cookbook.search('redis')).to include(redisio)
+    end
+
+    it 'returns cookbooks with a similar maintainer' do
+      expect(Cookbook.search('fruit')).to include(redisio)
+      expect(Cookbook.search('fruit')).to_not include(redis)
+      expect(Cookbook.search('tokein')).to include(redis)
+      expect(Cookbook.search('tokein')).to_not include(redisio)
+    end
+
+    it 'returns cookbooks with a similar category' do
+      expect(Cookbook.search('datastore')).to include(redisio)
+      expect(Cookbook.search('datastore')).to include(redis)
+    end
+
+    it 'returns cookbooks with a similar description' do
+      expect(Cookbook.search('fast')).to include(redis)
+      expect(Cookbook.search('fast')).to_not include(redisio)
+    end
+  end
 end

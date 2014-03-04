@@ -22,6 +22,7 @@ gem 'octokit', github: 'octokit/octokit.rb', require: false
 gem 'sidekiq'
 gem 'premailer-rails', group: [:development, :production]
 gem 'jbuilder'
+gem 'pg_search'
 
 gem 'sass-rails',   '~> 4.0.1'
 gem 'compass-rails'
