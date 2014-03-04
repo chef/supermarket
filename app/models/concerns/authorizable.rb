@@ -52,14 +52,14 @@ module Authorizable
   # roles.
   #
   # @example
-  #   user.is_all?(:admin, :employee)
+  #   user.all?(:admin, :employee)
   #
   # @param [Array<String, Symbol>] list
   #
   # @return [Boolean]
   #   true if the parent model has all of the given roles, false otherwise
   #
-  def is_all?(*list)
+  def all?(*list)
     (list.map(&:to_s) & roles).size == list.size
   end
 end

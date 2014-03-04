@@ -17,11 +17,6 @@ NumericLiterals:
   MinDigits: 14
 
 # Offence count: 2
-# Configuration parameters: NamePrefixBlacklist.
-PredicateName:
-  Enabled: false
-
-# Offence count: 2
 RedundantBegin:
   Enabled: false
 

@@ -76,13 +76,13 @@ describe User do
     end
   end
 
-  describe '#is_admin_of_organization?' do
+  describe '#admin_of_organization?' do
     it 'is true when the user is an admin of the given organization' do
       contributor = create(:contributor, admin: true)
       user = contributor.user
       organization = contributor.organization
 
-      expect(user.is_admin_of_organization?(organization)).to be_true
+      expect(user.admin_of_organization?(organization)).to be_true
     end
 
     it 'is false when the user is not an admin of the given organization' do
@@ -90,7 +90,7 @@ describe User do
       user = contributor.user
       organization = contributor.organization
 
-      expect(user.is_admin_of_organization?(organization)).to be_false
+      expect(user.admin_of_organization?(organization)).to be_false
     end
   end
 

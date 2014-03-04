@@ -15,7 +15,7 @@ class ContributorAuthorizer < Authorizer::Base
   def destroy?
     organization = contributor.organization
 
-    if user.is_admin_of_organization?(organization)
+    if user.admin_of_organization?(organization)
       if contributor.admin?
         !contributor.only_admin?
       else
