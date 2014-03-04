@@ -16,10 +16,6 @@ DotPosition:
 NumericLiterals:
   MinDigits: 14
 
-# Offence count: 2
-RedundantBegin:
-  Enabled: false
-
 # Offence count: 221
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.

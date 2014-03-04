@@ -7,14 +7,13 @@ class Curry::ClaValidationWorker
   # @param [Integer] pull_request_id the id for the Pull Request
   #
   def perform(pull_request_id)
-    begin
-      pull_request = Curry::PullRequest.find(pull_request_id)
+    pull_request = Curry::PullRequest.find(pull_request_id)
 
-      if pull_request.repository.present?
-        Curry::PullRequestAnnotator.new(pull_request).annotate
-      end
-    rescue ActiveRecord::RecordNotFound
-      nil
+    if pull_request.repository.present?
+      Curry::PullRequestAnnotator.new(pull_request).annotate
     end
+
+  rescue ActiveRecord::RecordNotFound
+    nil
   end
 end
