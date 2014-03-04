@@ -1,5 +1,4 @@
 class Curry::CommitAuthor < ActiveRecord::Base
-
   has_many :pull_request_commit_authors
   has_many :pull_requests, through: :pull_request_commit_authors
 
@@ -18,5 +17,4 @@ class Curry::CommitAuthor < ActiveRecord::Base
     self.signed_cla = true
     save!
   end
-
 end

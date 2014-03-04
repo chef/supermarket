@@ -119,15 +119,13 @@ describe IclaSignaturesController do
         let(:payload) { attributes_for(:icla_signature, user_id: admin.id) }
 
         it 'creates a new ICLA signature' do
-          expect {
-            post :create, icla_signature: payload
-          }.to change(IclaSignature, :count).by(1)
+          expect { post :create, icla_signature: payload }
+          .to change(IclaSignature, :count).by(1)
         end
 
         it 'sends a notification that the ICLA has been signed' do
-          expect {
-            post :create, icla_signature: payload
-          }.to change(ActionMailer::Base.deliveries, :count).by(1)
+          expect { post :create, icla_signature: payload }
+          .to change(ActionMailer::Base.deliveries, :count).by(1)
         end
 
         it 'redirects to the icla signature' do
@@ -146,9 +144,8 @@ describe IclaSignaturesController do
 
       context 'with invalid attributes' do
         it 'does not save the ICLA signature' do
-          expect {
-            post :create, icla_signature: { prefix: 'Ms.' }
-          }.to_not change(IclaSignature, :count)
+          expect { post :create, icla_signature: { prefix: 'Ms.' } }
+          .to_not change(IclaSignature, :count)
         end
 
         it 'renders the #new action' do
@@ -191,9 +188,8 @@ describe IclaSignaturesController do
         let(:payload) { attributes_for(:icla_signature, user_id: admin.id) }
 
         it 'creates a new ICLA signature' do
-          expect {
-            post :re_sign, icla_signature: payload
-          }.to change(IclaSignature, :count).by(1)
+          expect { post :re_sign, icla_signature: payload }
+          .to change(IclaSignature, :count).by(1)
         end
 
         it 'redirects to the icla signature' do
@@ -204,9 +200,8 @@ describe IclaSignaturesController do
 
       context 'with invalid attributes' do
         it 'does not save the ICLA signature' do
-          expect {
-            post :re_sign, icla_signature: { prefix: 'Ms.' }
-          }.to_not change(IclaSignature, :count)
+          expect { post :re_sign, icla_signature: { prefix: 'Ms.' } }
+          .to_not change(IclaSignature, :count)
         end
 
         it 'renders the #show action' do

@@ -26,7 +26,7 @@ describe ProfileController do
       it 'uses strong parameters' do
         fake_user = stub_model(User)
 
-        expect(fake_user).to receive(:update_attributes).with({
+        expect(fake_user).to receive(:update_attributes).with(
           'email' => 'bob@example.com',
           'first_name' => 'Bob',
           'last_name' => 'Smith',
@@ -34,11 +34,12 @@ describe ProfileController do
           'twitter_username' => 'bobbo',
           'irc_nickname' => 'bobbo',
           'jira_username' => 'bobbo'
-        })
+        )
 
         controller.stub(:current_user) { fake_user }
 
-        patch :update, user: attributes_for(:user, {
+        patch :update, user: attributes_for(
+          :user,
           'email' => 'bob@example.com',
           'first_name' => 'Bob',
           'last_name' => 'Smith',
@@ -46,7 +47,7 @@ describe ProfileController do
           'twitter_username' => 'bobbo',
           'irc_nickname' => 'bobbo',
           'jira_username' => 'bobbo'
-        })
+        )
       end
     end
 
@@ -69,7 +70,7 @@ describe ProfileController do
         patch :change_password, user: {
           current_password: 'password',
           password: 'winter123',
-          password_confirmation:'winter123'
+          password_confirmation: 'winter123'
         }
       end
 
@@ -87,19 +88,20 @@ describe ProfileController do
       it 'uses strong parameters' do
         fake_user = stub_model(User)
 
-        expect(fake_user).to receive(:update_with_password).with({
+        expect(fake_user).to receive(:update_with_password).with(
           'current_password' => 'password',
           'password' => 'winter123',
           'password_confirmation' => 'winter123'
-        })
+        )
 
         controller.stub(:current_user) { fake_user }
 
-        patch :change_password, user: attributes_for(:user, {
+        patch :change_password, user: attributes_for(
+          :user,
           'current_password' => 'password',
           'password' => 'winter123',
           'password_confirmation' => 'winter123'
-        })
+        )
       end
     end
 

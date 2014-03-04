@@ -2,11 +2,9 @@ require 'spec_helper'
 require 'vcr_helper'
 
 describe Curry::RepositorySubscriber do
-
   let(:hub_callback) { Supermarket::Config.pubsubhubbub['callback_url'] }
 
   describe '#subscribe' do
-
     around(:each) do |example|
       VCR.use_cassette('curry_repository_subscriber', record: :once) do
         example.run
@@ -68,7 +66,6 @@ describe Curry::RepositorySubscriber do
   end
 
   describe '#unsubscribe' do
-
     around(:each) do |example|
       VCR.use_cassette('curry_repository_unsubscriber', record: :once) do
         example.run
@@ -118,5 +115,4 @@ describe Curry::RepositorySubscriber do
       end.to change(Curry::Repository, :count).by(-1)
     end
   end
-
 end

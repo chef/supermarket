@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Curry::ImportUnknownPullRequestCommitAuthorsWorker do
-
   before do
     allow(Curry::ClaValidationWorker).to receive(:perform_async)
     allow_any_instance_of(Curry::ImportUnknownPullRequestCommitAuthors).
@@ -42,5 +41,4 @@ describe Curry::ImportUnknownPullRequestCommitAuthorsWorker do
     pull_request.repository.delete
     worker.perform(pull_request.id)
   end
-
 end

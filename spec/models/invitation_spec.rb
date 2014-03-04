@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe Invitation do
-
   describe '.with_token!' do
-
     it 'returns the invitation which has the given token' do
       existing_invitation = create(:invitation)
       token = existing_invitation.token
@@ -16,7 +14,5 @@ describe Invitation do
         Invitation.with_token!('')
       end.to raise_error(ActiveRecord::RecordNotFound)
     end
-
   end
-
 end

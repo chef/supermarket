@@ -14,7 +14,6 @@ require 'octokit'
 # +Curry::ClaValidationWorker+ is performing its job.
 #
 class Curry::PullRequestAnnotator
-
   #
   # The initializer for a new instance of a Pull Request Annotator. Requires a
   # +Curry::PullRequest+, which is used to find the +Curry::Repository+
@@ -97,7 +96,7 @@ class Curry::PullRequestAnnotator
           Supermarket::Config.curry.fetch('success_label')
         )
       rescue Octokit::NotFound
-        # Label went missing in the meantime
+        Rails.logger.info 'Octokit not found.'
       end
     end
   end

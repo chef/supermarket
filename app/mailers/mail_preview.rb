@@ -60,7 +60,6 @@ if Rails.env.development?
         email: 'john@example.com'
       ).first_or_create!(password: 'password', password_confirmation: 'password')
 
-
       Account.where(
         user: user,
         uid: '123',

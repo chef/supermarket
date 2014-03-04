@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Curry::RepositoriesController do
   describe 'GET #index' do
-
     context 'when signed in as an admin' do
       before { sign_in(create(:admin)) }
 
@@ -24,7 +23,6 @@ describe Curry::RepositoriesController do
     end
 
     context 'when signed in as a non-admin' do
-
       it '404s' do
         sign_in create(:user)
 
@@ -32,14 +30,11 @@ describe Curry::RepositoriesController do
 
         expect(response.status.to_i).to eql(404)
       end
-
     end
   end
 
   describe 'POST #create' do
-
     context 'as an admin' do
-
       before { sign_in create(:admin) }
 
       context 'when the environment has no set PubSubHubbub callback url' do
@@ -59,7 +54,6 @@ describe Curry::RepositoriesController do
 
           Supermarket::Config.pubsubhubbub['callback_url'] = callback
         end
-
       end
 
       context 'when subscribing to a repository succeeds' do
@@ -107,9 +101,7 @@ describe Curry::RepositoriesController do
 
           expect(repositories).to_not be_nil
         end
-
       end
-
     end
 
     context 'as a non-admin' do
@@ -121,11 +113,9 @@ describe Curry::RepositoriesController do
         expect(response.status.to_i).to eql(404)
       end
     end
-
   end
 
   describe 'DELETE #destroy' do
-
     it 'redirects with a success message after unsubscribing' do
       sign_in create(:admin)
 
@@ -152,5 +142,4 @@ describe Curry::RepositoriesController do
       expect(response).to redirect_to(curry_repositories_url)
     end
   end
-
 end

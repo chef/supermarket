@@ -97,8 +97,12 @@ describe User do
   describe '#account_from_oauth' do
     it 'returns an account' do
       user = build(:user)
-      auth = { 'provider' => 'github', 'info' => { 'username' => 'johndoe' },
-        'credentials' => { 'token' => 'sometoken' }, 'uid' => 'someuid' }
+      auth = {
+        'provider' => 'github',
+        'info' => { 'username' => 'johndoe' },
+        'credentials' => { 'token' => 'sometoken' },
+        'uid' => 'someuid'
+      }
 
       account = user.account_from_oauth(auth)
 
@@ -197,6 +201,5 @@ describe User do
     it 'returns a new user if there is no user with that GitHub login' do
       expect(User.find_by_github_login('trex').persisted?).to be_false
     end
-
   end
 end

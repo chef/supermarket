@@ -1,7 +1,6 @@
 require 'openssl'
 
 class Curry::PullRequestUpdatesController < ApplicationController
-
   skip_before_action :verify_authenticity_token
   before_filter :verify_github_signature, unless: -> { Rails.env.development? }
   before_filter :ignore_zen_updates
@@ -117,5 +116,4 @@ class Curry::PullRequestUpdatesController < ApplicationController
   attr_reader :pull_request
 
   HMAC_DIGEST = OpenSSL::Digest::Digest.new('sha1')
-
 end

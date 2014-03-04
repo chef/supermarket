@@ -45,20 +45,20 @@ RSpec.configure do |config|
     ActionMailer::Base.deliveries.clear
 
     # Reset OmniAuth GitHub stub before each example
-    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
+    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
       provider: 'github',
       uid: '12345',
       info: {
         nickname: 'johndoe',
         email: 'johndoe@example.com',
         name: 'John Doe',
-        image: 'https://image-url.com',
+        image: 'https://image-url.com'
       },
       credentials: {
         token: 'oauth_token',
         expires: false
       }
-    })
+    )
   end
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your

@@ -16,7 +16,7 @@ module Extractor
         begin
           "#{provider}Extractor".constantize.new(auth)
         rescue NameError
-          raise RuntimeError, "#{provider} is not a valid extractor!"
+          raise "#{provider} is not a valid extractor!"
         end
       end
     end
@@ -119,18 +119,19 @@ module Extractor
     def oauth_secret; end
 
     private
-      def split_name
-        name = auth['info']['name']
 
-        if name.include?(' ')
-          last_name  = name.split(' ').last
-          first_name = name.split(' ')[0...-1].join(' ')
-        else
-          first_name = name
-          last_name  = nil
-        end
+    def split_name
+      name = auth['info']['name']
 
-        [first_name, last_name]
+      if name.include?(' ')
+        last_name  = name.split(' ').last
+        first_name = name.split(' ')[0...-1].join(' ')
+      else
+        first_name = name
+        last_name  = nil
       end
+
+      [first_name, last_name]
+    end
   end
 end

@@ -7,7 +7,6 @@ describe Curry::PullRequestUpdate do
   end
 
   describe '#closing?' do
-
     it 'is true when the action is "closed"' do
       expect(Curry::PullRequestUpdate.new(action: 'closed').closing?).to be_true
     end
@@ -15,6 +14,5 @@ describe Curry::PullRequestUpdate do
     it 'is false when the action is not "closed"' do
       expect(Curry::PullRequestUpdate.new(action: 'opened').closing?).to be_false
     end
-
   end
 end

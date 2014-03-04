@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 class ReadOnly
-
   class Policy
-
     def initialize(*_) ; end
 
     def show?
@@ -13,13 +11,11 @@ class ReadOnly
     def edit?
       false
     end
-
   end
 
   def policy_class
     Policy
   end
-
 end
 
 describe Supermarket::Authorization do
@@ -36,17 +32,13 @@ describe Supermarket::Authorization do
     it 'raises an error if the user is not authorized' do
       subject.stub(:params).and_return(action: 'edit')
 
-      expect {
-        subject.authorize!(read_only_object)
-      }.to raise_error(Supermarket::Authorization::NotAuthorizedError)
+      expect { subject.authorize!(read_only_object) }
+      .to raise_error(Supermarket::Authorization::NotAuthorizedError)
     end
 
     it 'does nothing with the user is authorized' do
       subject.stub(:params).and_return(action: 'show')
-
-      expect {
-        subject.authorize!(read_only_object)
-      }.to_not raise_error
+      expect { subject.authorize!(read_only_object) }.to_not raise_error
     end
   end
 end

@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe Curry::PullRequestAppraiserWorker do
-
   context 'when a CLA is signed' do
-
     it 'validates each pull request associated with the given user' do
       repository = create(:repository)
       pull_request = create(:pull_request, repository: repository)

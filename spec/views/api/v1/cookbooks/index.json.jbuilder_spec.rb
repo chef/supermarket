@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'api/v1/cookbooks/index' do
-
   it 'displays the starting offset' do
     assign(:start, 0)
 
@@ -40,5 +39,4 @@ describe 'api/v1/cookbooks/index' do
     expect(cookbook['cookbook_description']).to eql('test cookbook')
     expect(cookbook['cookbook']).to eql('http://test.host/api/v1/cookbooks/test')
   end
-
 end

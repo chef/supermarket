@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'GET /api/v1/cookbooks' do
-
   it 'returns a 200' do
     get '/api/v1/cookbooks'
 
@@ -12,11 +11,11 @@ describe 'GET /api/v1/cookbooks' do
     it 'returns an empty JSON template' do
       get '/api/v1/cookbooks'
 
-      expect(json_body).to eql({
+      expect(json_body).to eql(
         'start' => 0,
         'total' => 0,
         'items' => []
-      })
+      )
     end
   end
 
@@ -58,12 +57,11 @@ describe 'GET /api/v1/cookbooks' do
     it 'returns a JSON template with the cookbooks' do
       get '/api/v1/cookbooks'
 
-      expect(json_body).to eql({
+      expect(json_body).to eql(
         'start' => 0,
         'total' => 2,
         'items' => [sashimi, slow_cooking]
-      })
+      )
     end
-
   end
 end

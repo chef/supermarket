@@ -1,5 +1,4 @@
 class Curry::PullRequest < ActiveRecord::Base
-
   belongs_to :repository
   has_many :pull_request_updates, dependent: :destroy
 
@@ -14,5 +13,4 @@ class Curry::PullRequest < ActiveRecord::Base
   def unknown_commit_authors
     commit_authors.where(signed_cla: false)
   end
-
 end

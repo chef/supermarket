@@ -20,8 +20,7 @@ module Supermarket
       # Alias Pundit's +authorize+ method to +authorize!+ for compatibility
       # with previous authorization library.
       #
-      alias authorize! authorize
+      alias_method :authorize!, :authorize
     end
-
   end
 end

@@ -2,3 +2,19 @@ inherit_from: rubocop-todo.yml
 AllCops:
   Excludes:
     - db/**
+    - vendor/**
+    - node_modules/**
+IfUnlessModifier:
+  Enabled: false
+Loop:
+  Enabled: false
+ClassLength:
+  Enabled: false
+LineLength:
+  Enabled: false
+MethodLength:
+  Enabled: false
+SignalException:
+  Enabled: false
+Documentation:
+  Enabled: false

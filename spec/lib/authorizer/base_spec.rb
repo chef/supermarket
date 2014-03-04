@@ -24,9 +24,8 @@ describe Authorizer::Base do
       before { Rails.env.stub(:development?).and_return(true) }
 
       it 'raises an exception if a method is undefined' do
-        expect {
-          described_class.new(user, record).create?
-        }.to raise_error(RuntimeError)
+        expect { described_class.new(user, record).create? }
+        .to raise_error(RuntimeError)
       end
     end
 

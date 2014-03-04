@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit(:email, :first_name, :last_name,
-        :password, :password_confirmation)
+               :password, :password_confirmation)
     end
   end
 
@@ -38,11 +38,9 @@ class ApplicationController < ActionController::Base
   # before signing an CCLA.
   #
   def require_linked_github_account!
-    if !current_user.linked_github_account?
+    unless current_user.linked_github_account?
       store_location_for current_user, request.path
-
-      redirect_to link_github_profile_path,
-        notice: t('requires_linked_github')
+      redirect_to link_github_profile_path,  notice: t('requires_linked_github')
     end
   end
 end

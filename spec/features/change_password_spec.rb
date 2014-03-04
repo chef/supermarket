@@ -13,4 +13,4 @@ describe 'changing the current user password' do
 
     expect_to_see_success_message
   end
- end
+end

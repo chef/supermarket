@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Api::V1::CookbooksController do
-
   let!(:slow_cooking) do
     create(:cookbook, name: 'slow_cooking')
   end
@@ -17,7 +16,7 @@ describe Api::V1::CookbooksController do
 
       cookbook_names = assigns[:cookbooks].map(&:name)
 
-      expect(cookbook_names).to eql(['sashimi', 'slow_cooking'])
+      expect(cookbook_names).to eql(%W(sashimi slow_cooking))
     end
 
     it 'uses the start param to offset the cookbooks sent to the view' do

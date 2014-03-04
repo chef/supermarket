@@ -27,7 +27,7 @@ module Authorizer
     #
     def method_missing(m, *args, &block)
       if Rails.env.development? || Rails.env.test?
-        raise RuntimeError, "#{self.class.name} does not define #{m}!"
+        raise "#{self.class.name} does not define #{m}!"
       else
         false
       end

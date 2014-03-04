@@ -1,5 +1,4 @@
 module FeatureHelpers
-
   def sign_in(user)
     visit '/'
     follow_relation 'sign_in'
@@ -136,10 +135,7 @@ module FeatureHelpers
   end
 
   def receive_and_respond_to_invitation_with(response)
-    invitation = ActionMailer::Base.deliveries.detect { |email|
-      /invited/ =~ email['Subject'].to_s
-    }.to_s
-
+    invitation = ActionMailer::Base.deliveries.find { |email| /invited/ =~ email['Subject'].to_s }.to_s
     ActionMailer::Base.deliveries.clear
 
     html = Nokogiri::HTML(invitation)
@@ -177,7 +173,7 @@ module FeatureHelpers
   end
 
   def known_users
-    @known_users ||= { }
+    @known_users ||= {}
   end
 
   def follow_relation(rel)
@@ -192,5 +188,4 @@ module FeatureHelpers
     find('.usermenu').hover
     yield
   end
-
 end

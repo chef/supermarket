@@ -8,9 +8,8 @@ class TestExtractor < Extractor::Base; end
 describe Extractor::Base do
   describe '.load' do
     it 'raises an exception when the extractor does not exist' do
-      expect {
-        described_class.load('provider' => 'fake')
-      }.to raise_error(RuntimeError, 'Fake is not a valid extractor!')
+      expect { described_class.load('provider' => 'fake') }
+      .to raise_error(RuntimeError, 'Fake is not a valid extractor!')
     end
 
     it 'returns an instance of the extractor' do

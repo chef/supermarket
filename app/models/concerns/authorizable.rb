@@ -27,7 +27,7 @@ module Authorizable
   #
   def roles
     ROLES.reject do |r|
-      (self.roles_mask.to_i & 2**ROLES.index(r)).zero?
+      (roles_mask.to_i & 2**ROLES.index(r)).zero?
     end
   end
 
