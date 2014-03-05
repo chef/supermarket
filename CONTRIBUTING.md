@@ -68,3 +68,10 @@ In order to ensure the integrity of the project (and prevent regressions), we _c
 If you are adding dependencies to the project (gems in the Gemfile or npm
 packages in `packages.json`, please run `license_finder` to make sure that none
 of the added dependencies conflict  with the project's whitelisted licenses.
+
+### Code Style
+
+[Rubocop](https://github.com/bbatsov/rubocop) is used to enforce a specific Ruby
+style guide. You can run Rubocop by runninng the `rubocop` command. Rubocop will
+let you know what the offences are and where they occur. It is also worth noting
+that Travis CI runs Rubocop, and the build will fail if Rubocop fails.
