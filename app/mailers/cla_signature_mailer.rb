@@ -7,6 +7,6 @@ class ClaSignatureMailer < ActionMailer::Base
     @cla_signature = cla_signature
     @to = Supermarket::Config.cla_signature_notification_email
 
-    mail(to: @to, subject: "New CLA Signed")
+    mail(to: @to, subject: 'New CLA Signed')
   end
 end

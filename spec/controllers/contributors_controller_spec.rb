@@ -11,7 +11,7 @@ describe ContributorsController do
   end
 
   before do
-    request.env["HTTP_REFERER"] = "http://example.com/back"
+    request.env['HTTP_REFERER'] = 'http://example.com/back'
     sign_in user
   end
 

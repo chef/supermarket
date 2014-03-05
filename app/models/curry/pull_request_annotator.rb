@@ -140,7 +140,7 @@ class Curry::PullRequestAnnotator
     unknown_commit_authors_with_login = @pull_request.unknown_commit_authors.with_known_login
 
     if unknown_commit_authors_with_login.count > 0
-      parts << "The following GitHub users do not appear to have signed a CLA:"
+      parts << 'The following GitHub users do not appear to have signed a CLA:'
 
       list = unknown_commit_authors_with_login.map do |commit_author|
         "* @#{commit_author.login}"
@@ -150,7 +150,7 @@ class Curry::PullRequestAnnotator
     end
 
     parts << [
-      "[Please sign the CLA here.]",
+      '[Please sign the CLA here.]',
       "(#{Supermarket::Config.curry.fetch('cla_location')})"
     ].join
 

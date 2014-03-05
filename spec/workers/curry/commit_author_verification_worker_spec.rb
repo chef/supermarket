@@ -16,7 +16,7 @@ describe Curry::CommitAuthorVerificationWorker do
     end.to change { user.reload.verified_commit_author_identities.count }.by(1)
   end
 
-  it "kicks off the PullRequestAppraiserWorker" do
+  it 'kicks off the PullRequestAppraiserWorker' do
     user = create(:user)
 
     expect(Curry::PullRequestAppraiserWorker).

@@ -2,7 +2,7 @@ module IclaSignaturesHelper
   # Make auto-links target=_blank
   class TargetBlankRenderer < Redcarpet::Render::HTML
     def initialize(extensions = {})
-      super extensions.merge(link_attributes: { target: "_blank" })
+      super extensions.merge(link_attributes: { target: '_blank' })
     end
   end
 

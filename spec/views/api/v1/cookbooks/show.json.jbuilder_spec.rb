@@ -42,14 +42,14 @@ describe 'api/v1/cookbooks/show' do
 
     assign(
       :latest_cookbook_version_url,
-      "http://test.host/api/v1/cookbooks/redis/versions/1_1_0"
+      'http://test.host/api/v1/cookbooks/redis/versions/1_1_0'
     )
 
     assign(
       :cookbook_versions_urls,
       [
-        "http://test.host/api/v1/cookbooks/redis/versions/1_0_0",
-        "http://test.host/api/v1/cookbooks/redis/versions/1_1_0"
+        'http://test.host/api/v1/cookbooks/redis/versions/1_0_0',
+        'http://test.host/api/v1/cookbooks/redis/versions/1_1_0'
       ]
     )
   end
@@ -117,14 +117,14 @@ describe 'api/v1/cookbooks/show' do
   end
 
   # let's roll with when the latest cookbook was last updated_at
-  it "displays the date the cookbook was last updated at" do
+  it 'displays the date the cookbook was last updated at' do
     render
 
     updated_at = json_body['updated_at']
     expect(DateTime.parse(updated_at).to_i).to eql(cookbook.created_at.to_i)
   end
 
-  it "displays the date the cookbook was created at" do
+  it 'displays the date the cookbook was created at' do
     render
 
     created_at = json_body['created_at']

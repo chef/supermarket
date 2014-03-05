@@ -34,7 +34,7 @@ describe AccountsController do
     let!(:account) { create(:account, user: user) }
 
     it 'destroys an account for a user' do
-      request.env["HTTP_REFERER"] = "http://example.com/back"
+      request.env['HTTP_REFERER'] = 'http://example.com/back'
 
       expect { delete :destroy, id: account.id, user_id: user.id }
       .to change(user.accounts, :count).by(-1)

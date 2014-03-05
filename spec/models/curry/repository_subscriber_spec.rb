@@ -22,13 +22,13 @@ describe Curry::RepositorySubscriber do
         expect(subscriber.subscribe(hub_callback)).to be_true
       end
 
-      it "saves a repository record in the act of subscribing" do
+      it 'saves a repository record in the act of subscribing' do
         expect do
           subscriber.subscribe(hub_callback)
         end.to change(Curry::Repository, :count).by(1)
       end
 
-      it "saves the callback url with the repository" do
+      it 'saves the callback url with the repository' do
         subscriber = Curry::RepositorySubscriber.new(
           build(:repository)
         )
@@ -51,13 +51,13 @@ describe Curry::RepositorySubscriber do
         expect(subscriber.subscribe(hub_callback)).to be_false
       end
 
-      it "does not save repositories to which it cannot subscribe" do
+      it 'does not save repositories to which it cannot subscribe' do
         expect do
           subscriber.subscribe(hub_callback)
         end.to_not change(Curry::Repository, :count)
       end
 
-      it "records errors which occur while subscribing" do
+      it 'records errors which occur while subscribing' do
         subscriber.subscribe(hub_callback)
 
         expect(subscriber.repository.errors).to_not be_nil
@@ -90,7 +90,7 @@ describe Curry::RepositorySubscriber do
       expect(subscriber.unsubscribe).to be_true
     end
 
-    it "unsubscribes the PubSubHubbub hook" do
+    it 'unsubscribes the PubSubHubbub hook' do
       subscriber.subscribe(hub_callback)
 
       expect do
