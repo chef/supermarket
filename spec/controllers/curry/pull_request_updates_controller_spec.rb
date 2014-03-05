@@ -90,7 +90,7 @@ describe Curry::PullRequestUpdatesController do
       it 'returns a 200' do
         zen_payload = {
           "zen" => "Anything added dilutes everything else.",
-          "hook_id" => 1824075
+          "hook_id" => 1_824_075
         }.to_json
 
         secure_post :create, payload: zen_payload

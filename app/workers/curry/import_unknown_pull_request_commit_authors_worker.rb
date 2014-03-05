@@ -14,18 +14,16 @@ class Curry::ImportUnknownPullRequestCommitAuthorsWorker
   #                                  authors we want to import
   #
   def perform(pull_request_id)
-    begin
-      pull_request = Curry::PullRequest.find(pull_request_id)
+    pull_request = Curry::PullRequest.find(pull_request_id)
 
-      if pull_request.repository.present?
-        Curry::ImportUnknownPullRequestCommitAuthors.new(
-          pull_request
-        ).import
+    if pull_request.repository.present?
+      Curry::ImportUnknownPullRequestCommitAuthors.new(
+        pull_request
+      ).import
 
-        Curry::ClaValidationWorker.perform_async(pull_request_id)
-      end
-    rescue ActiveRecord::RecordNotFound
-      nil
+      Curry::ClaValidationWorker.perform_async(pull_request_id)
     end
+  rescue ActiveRecord::RecordNotFound
+    nil
   end
 end

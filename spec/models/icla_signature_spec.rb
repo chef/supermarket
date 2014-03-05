@@ -23,7 +23,7 @@ describe IclaSignature do
 
   context 'callbacks' do
     it 'sets the value of signed_at' do
-      time = Time.at(680241600)
+      time = Time.at(680_241_600)
       Time.stub(:now).and_return(time)
 
       icla_signature = create(:icla_signature)

@@ -111,13 +111,13 @@ class User < ActiveRecord::Base
   # Determine if the current user is an admin of a given organization
   #
   # @example
-  #   user.is_admin_of_organization?(organization)
+  #   user.admin_of_organization?(organization)
   #
   # @param organization [Organization] the organization
   #
   # @return [Boolean]
   #
-  def is_admin_of_organization?(organization)
+  def admin_of_organization?(organization)
     organizations.joins(:contributors).where(
       'contributors.admin = ? AND organizations.id = ?',
       true, organization.id).count > 0

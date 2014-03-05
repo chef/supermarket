@@ -8,7 +8,7 @@ describe ContributorAuthorizer do
       contributor = double('Contributor')
 
       allow(contributor).to receive(:organization)
-      allow(user).to receive(:is_admin_of_organization?) { false }
+      allow(user).to receive(:admin_of_organization?) { false }
 
       authorizer = ContributorAuthorizer.new(user, contributor)
       expect(authorizer.update?).to be_false
@@ -22,7 +22,7 @@ describe ContributorAuthorizer do
       allow(contributor).to receive(:admin?) { true }
       allow(contributor).to receive(:only_admin?) { false }
 
-      allow(user).to receive(:is_admin_of_organization?) { true }
+      allow(user).to receive(:admin_of_organization?) { true }
 
       authorizer = ContributorAuthorizer.new(user, contributor)
       expect(authorizer.update?).to be_true
@@ -35,7 +35,7 @@ describe ContributorAuthorizer do
       allow(contributor).to receive(:organization)
       allow(contributor).to receive(:admin?) { false }
 
-      allow(user).to receive(:is_admin_of_organization?) { true }
+      allow(user).to receive(:admin_of_organization?) { true }
 
       authorizer = ContributorAuthorizer.new(user, contributor)
       expect(authorizer.update?).to be_true
@@ -48,7 +48,7 @@ describe ContributorAuthorizer do
       contributor = double('Contributor')
 
       allow(contributor).to receive(:organization)
-      allow(user).to receive(:is_admin_of_organization?) { false }
+      allow(user).to receive(:admin_of_organization?) { false }
 
       authorizer = ContributorAuthorizer.new(user, contributor)
       expect(authorizer.destroy?).to be_false
@@ -62,7 +62,7 @@ describe ContributorAuthorizer do
       allow(contributor).to receive(:admin?) { true }
       allow(contributor).to receive(:only_admin?) { false }
 
-      allow(user).to receive(:is_admin_of_organization?) { true }
+      allow(user).to receive(:admin_of_organization?) { true }
 
       authorizer = ContributorAuthorizer.new(user, contributor)
       expect(authorizer.destroy?).to be_true
@@ -75,7 +75,7 @@ describe ContributorAuthorizer do
       allow(contributor).to receive(:organization)
       allow(contributor).to receive(:admin?) { false }
 
-      allow(user).to receive(:is_admin_of_organization?) { true }
+      allow(user).to receive(:admin_of_organization?) { true }
 
       authorizer = ContributorAuthorizer.new(user, contributor)
       expect(authorizer.destroy?).to be_true
@@ -89,7 +89,7 @@ describe ContributorAuthorizer do
       allow(contributor).to receive(:admin?) { true }
       allow(contributor).to receive(:only_admin?) { true }
 
-      allow(user).to receive(:is_admin_of_organization?) { true }
+      allow(user).to receive(:admin_of_organization?) { true }
 
       authorizer = ContributorAuthorizer.new(user, contributor)
       expect(authorizer.destroy?).to be_false

@@ -18,3 +18,5 @@ SignalException:
   Enabled: false
 Documentation:
   Enabled: false
+DotPosition:
+  Enabled: false
