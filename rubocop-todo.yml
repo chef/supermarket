@@ -8,8 +8,8 @@
 # Offence count: 221
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
-StringLiterals:
-  Enabled: false
+# StringLiterals:
+  # Enabled: false
 
 # Offence count: 27
 UselessAssignment:

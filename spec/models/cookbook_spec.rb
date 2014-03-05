@@ -41,7 +41,7 @@ describe Cookbook do
     end
 
     it 'raises ActiveRecord::RecordNotFound if the version does not exist' do
-      expect { kiwi.get_version!("0_4_0") }.
+      expect { kiwi.get_version!('0_4_0') }.
         to raise_error(ActiveRecord::RecordNotFound)
     end
   end

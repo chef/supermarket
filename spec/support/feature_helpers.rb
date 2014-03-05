@@ -38,7 +38,7 @@ module FeatureHelpers
     submit_form
   end
 
-  def sign_ccla(company = "Chef")
+  def sign_ccla(company = 'Chef')
     in_user_menu do
       follow_relation 'sign_ccla'
     end

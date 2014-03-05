@@ -28,7 +28,7 @@ class AccountsController < ApplicationController
   def destroy
     current_user.accounts.find(params[:id]).destroy
 
-    redirect_to :back, notice: "Account disconnected."
+    redirect_to :back, notice: 'Account disconnected.'
   end
 
   private

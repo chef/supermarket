@@ -24,7 +24,7 @@ class ContributorsController < ApplicationController
 
     @contributor.destroy
 
-    redirect_to :back, notice: "Contributor removed."
+    redirect_to :back, notice: 'Contributor removed.'
   end
 
   private

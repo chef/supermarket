@@ -110,8 +110,8 @@ describe Api::V1::CookbooksController do
 
         expect(assigns[:cookbook_versions_urls]).to eql(
           [
-            "http://test.host/api/v1/cookbooks/sashimi/versions/2_1_0",
-            "http://test.host/api/v1/cookbooks/sashimi/versions/1_1_0"
+            'http://test.host/api/v1/cookbooks/sashimi/versions/2_1_0',
+            'http://test.host/api/v1/cookbooks/sashimi/versions/1_1_0'
           ]
         )
       end
@@ -120,7 +120,7 @@ describe Api::V1::CookbooksController do
         get :show, cookbook: 'sashimi', format: :json
 
         expect(assigns[:latest_cookbook_version_url]).
-          to eql("http://test.host/api/v1/cookbooks/sashimi/versions/2_1_0")
+          to eql('http://test.host/api/v1/cookbooks/sashimi/versions/2_1_0')
       end
     end
 
