@@ -80,6 +80,11 @@ Requirements
 Tests
 -----
 
+This application supports [Spring](https://github.com/rails/spring), which
+preloads the Rails application. This speeds up tests subsequently after
+the first time a spec is run. To use Spring when running specs, use `bin/rspec
+path/to/spec.rb`.
+
 ### Acceptance tests
 
 Acceptance tests are run with [Capybara](https://github.com/jnicklas/capybara). Run `rake spec:features` to run the specs in spec/features. The default `rake spec` also runs these.
