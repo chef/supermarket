@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/getsentry/raven-ruby.git
-  revision: 0e4d21373b2ec40342a01245415f65fec5042762
+  revision: e6d646402dc7211e89a2e930a455302919f4be49
   specs:
     sentry-raven (0.7.1)
       faraday (>= 0.7.6)
@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/octokit/octokit.rb.git
-  revision: 19d72a447c87ade5f4f577408abf302468a5ff38
+  revision: ca5136632e1c0013b94eb855095565f843bf5d14
   specs:
     octokit (3.0.0.pre)
       sawyer (~> 0.5.3)
@@ -63,10 +63,10 @@ GEM
     chunky_png (1.3.0)
     cliver (0.3.2)
     columnize (0.3.6)
-    compass (0.12.2)
+    compass (0.12.3)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
-      sass (~> 3.1)
+      sass (= 3.2.14)
     compass-rails (1.1.3)
       compass (>= 0.12.2)
     connection_pool (1.2.0)
@@ -110,7 +110,7 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.6.9)
-    jbuilder (2.0.3)
+    jbuilder (2.0.4)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     jquery-rails (3.1.0)
@@ -138,7 +138,7 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
-    multi_json (1.8.4)
+    multi_json (1.9.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nokogiri (1.6.1)
@@ -168,7 +168,7 @@ GEM
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
     orm_adapter (0.5.0)
-    parser (2.1.5)
+    parser (2.1.7)
       ast (~> 1.1)
       slop (~> 3.4, >= 3.4.5)
     pg (0.17.1)
@@ -281,7 +281,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.38)
+    tzinfo (0.3.39)
     uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
