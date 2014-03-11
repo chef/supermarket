@@ -8,6 +8,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'paperclip/matchers'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -23,6 +24,9 @@ FactoryGirl.find_definitions
 RSpec.configure do |config|
   # Include FactoryGirl mixin for syntax
   config.include FactoryGirl::Syntax::Methods
+
+  # Include Paperclip matchers
+  config.include Paperclip::Shoulda::Matchers
 
   # Custom helper modules and extensions
   config.include RequestHelpers

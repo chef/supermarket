@@ -7,7 +7,6 @@ describe 'api/v1/cookbooks/show' do
       name: 'redis',
       maintainer: 'slime',
       description: 'great cookbook',
-      category: 'datastore',
       external_url: 'http://example.com',
       deprecated: false
     )
@@ -79,7 +78,7 @@ describe 'api/v1/cookbooks/show' do
     render
 
     cookbook_category = json_body['category']
-    expect(cookbook_category).to eql('datastore')
+    expect(cookbook_category).to eql('Other')
   end
 
   it "displays the url to cookbook's latest version" do
@@ -120,16 +119,18 @@ describe 'api/v1/cookbooks/show' do
   it 'displays the date the cookbook was last updated at' do
     render
 
-    updated_at = json_body['updated_at']
-    expect(DateTime.parse(updated_at).to_i).to eql(cookbook.created_at.to_i)
+    updated_at = DateTime.parse(json_body['updated_at'])
+
+    expect(updated_at.to_i).to be_within(1).of(cookbook.updated_at.to_i)
   end
 
   it 'displays the date the cookbook was created at' do
     render
 
-    created_at = json_body['created_at']
-    expect(DateTime.parse(created_at).to_i).
-      to eql(cookbook.get_version!('latest').updated_at.to_i)
+    created_at = DateTime.parse(json_body['created_at'])
+
+    expect(created_at.to_i).
+      to be_within(1).of(cookbook.get_version!('latest').created_at.to_i)
   end
 
   # TODO: add this when ratings are implemented

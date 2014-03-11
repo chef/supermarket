@@ -17,6 +17,7 @@ Supermarket::Application.routes.draw do
       get 'search' => 'cookbooks#search'
       get 'cookbooks/:cookbook' => 'cookbooks#show', as: :cookbook
       get 'cookbooks/:cookbook/versions/:version' => 'cookbook_versions#show', as: :cookbook_version
+      post 'cookbooks' => 'cookbook_uploads#create'
     end
   end
 

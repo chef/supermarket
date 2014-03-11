@@ -21,7 +21,7 @@ describe 'api/v1/cookbooks/search' do
     cookbook = json_body['items'].first
 
     expect(cookbook['cookbook_name']).to eql('redis')
-    expect(cookbook['cookbook_maintainer']).to eql('Chef Software Inc')
+    expect(cookbook['cookbook_maintainer']).to eql('Chef Software, Inc')
     expect(cookbook['cookbook_description']).to eql('An awesome cookbook!')
     expect(cookbook['cookbook']).to eql('http://test.host/api/v1/cookbooks/redis')
   end

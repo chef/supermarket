@@ -14,3 +14,16 @@ en:
       unsubscribe:
         failure: "The repository was destroyed, but there was an issue unsubscribing from the repo."
         success: "The repository was destroyed and Supermarket has been unsubscribed from the repo."
+  api:
+    error_codes:
+      missing_required_data: "MISSING_REQUIRED_DATA"
+      invalid_data: "INVALID_DATA"
+    error_messages:
+      missing_cookbook: "Mulipart POST must include a part named 'cookbook'"
+      cookbook_not_json: "Mulipart POST part 'cookbook' must be a valid JSON string"
+      missing_tarball: "Mulipart POST must include a part named 'tarball'"
+      tarball_has_no_path: "Multipart POST part 'tarball' must be a file"
+      non_existent_category: "Category '%{category_name}' does not exist"
+      tarball_not_gzipped: "Multipart POST part 'tarball' must be GZipped"
+      missing_metadata: "Multipart POST part 'tarball' must contain a metadata.json entry"
+      metadata_not_json: "Tarball entry named 'metadata.json' could not be parsed as JSON"

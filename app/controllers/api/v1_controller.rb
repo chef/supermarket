@@ -1,5 +1,6 @@
 class Api::V1Controller < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
+  skip_before_action :verify_authenticity_token
 
   private
 

@@ -1,7 +1,7 @@
 json.name @cookbook.name
 json.maintainer @cookbook.maintainer
 json.description @cookbook.description
-json.category @cookbook.category
+json.category @cookbook.category.name
 json.latest_version @latest_cookbook_version_url
 json.external_url @cookbook.external_url
 json.deprecated @cookbook.deprecated

@@ -1,5 +1,5 @@
 class Api::V1::CookbooksController < Api::V1Controller
-  before_filter :init_params, only: [:index, :search]
+  before_filter :init_params
 
   #
   # GET /api/v1/cookbooks

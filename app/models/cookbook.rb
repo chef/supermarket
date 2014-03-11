@@ -1,20 +1,39 @@
 class Cookbook < ActiveRecord::Base
   include PgSearch
 
+  scope :with_name, ->(name) { where('lower(name) = ?', name.to_s.downcase) }
+
+  # Search
+  # --------------------
   pg_search_scope(
     :search,
     against: {
       name: 'A',
       description: 'B',
-      category: 'C',
       maintainer: 'D'
+    },
+    associated_against: {
+      category: :name
     },
     using: {
       tsearch: { prefix: true, dictionary: 'english' }
     }
   )
 
+  # Callbacks
+  # --------------------
+  before_validation :copy_name_to_lowercase_name
+
+  # Associations
+  # --------------------
   has_many :cookbook_versions, -> { order(created_at: :desc) }
+  belongs_to :category
+
+  # Validations
+  # --------------------
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :lowercase_name, presence: true, uniqueness: true
+  validates :maintainer, presence: true
 
   #
   # Returns the name of the +Cookbook+ parameterized.
@@ -49,5 +68,48 @@ class Cookbook < ActiveRecord::Base
     else
       cookbook_versions.find_by!(version: version)
     end
+  end
+
+  #
+  # Saves a new version of the cookbook as specified by the given metadata and
+  # tarball
+  #
+  # @raise [ActiveRecord::RecordInvalid] if the new version fails validation
+  # @raise [ActiveRecord::RecordNotUnique] if the new version is a duplicate of
+  #   an existing version for this cookbook
+  #
+  # @return [TrueClass]
+  #
+  # @param metadata [CookbookUpload::Metadata] the cookbook metadata
+  # @param tarball [File] the cookbook artifact
+  #
+  def publish_version!(metadata, tarball)
+    transaction do
+      self.maintainer = metadata.maintainer
+      save!
+
+      cookbook_versions.create!(
+        license: metadata.license,
+        version: metadata.version,
+        description: metadata.description,
+        tarball: tarball
+      )
+    end
+
+    true
+  end
+
+  private
+
+  #
+  # Populates the +lowercase_name+ attribute with the lowercase +name+
+  #
+  # This exists until Rails schema dumping supports Posgres's expression
+  # indices, which would allow us to create an index on LOWER(name). To do that
+  # now, we'd have to use the raw SQL schema dumping functionality, which is
+  # less-than ideal
+  #
+  def copy_name_to_lowercase_name
+    self.lowercase_name = name.to_s.downcase
   end
 end
