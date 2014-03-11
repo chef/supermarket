@@ -1,10 +1,25 @@
 class CookbookVersion < ActiveRecord::Base
+  # Associations
+  # --------------------
   belongs_to :cookbook
 
+  # Attachments
+  # --------------------
+  has_attached_file :tarball
+
+  # Validations
+  # --------------------
   validates :license, presence: true
-  validates :version, presence: true
+  validates :version, presence: true, uniqueness: { scope: :cookbook }
   validates :description, presence: true
   validates :cookbook_id, presence: true
+  validates_attachment(
+    :tarball,
+    presence: true,
+    content_type: {
+      content_type: ['application/x-gzip', 'application/octet-stream']
+    }
+  )
 
   #
   # Returns the verison of the +CookbookVersion+ with underscores replacing the

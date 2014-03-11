@@ -24,7 +24,7 @@ describe 'GET /api/v1/cookbooks/:cookbook' do
       create(
         :cookbook,
         name: 'apache',
-        category: 'web servers',
+        category: create(:category, name: 'web servers'),
         maintainer: 'jtimberman',
         external_url: nil,
         description: 'installs apache.'

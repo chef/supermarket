@@ -46,3 +46,8 @@ db/fixtures
 # Ignore Coveralls related files
 coverage/
 
+# Ignore Paperclip uploads locally
+public/system
+
+# Ignore Redis dumps
+*.rdb

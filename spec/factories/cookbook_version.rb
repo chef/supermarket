@@ -5,7 +5,6 @@ FactoryGirl.define do
     description 'An awesome cookbook!'
     license 'MIT'
     version '1.2.0'
-    file_url '/tarballs/original/missing.png'
-    file_size '10KB'
+    tarball { File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz') }
   end
 end

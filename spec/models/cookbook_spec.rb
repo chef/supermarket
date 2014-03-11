@@ -3,6 +3,28 @@ require 'spec_helper'
 describe Cookbook do
   context 'associations' do
     it { should have_many(:cookbook_versions) }
+    it { should belong_to(:category) }
+  end
+
+  context 'validations' do
+    it 'validates the uniqueness of name' do
+      create(:cookbook)
+
+      expect(subject).to validate_uniqueness_of(:name).case_insensitive
+    end
+
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:maintainer) }
+  end
+
+  describe '#lowercase_name' do
+    it 'is set as part of the saving lifecycle' do
+      cookbook = Cookbook.new(name: 'Apache')
+
+      expect do
+        cookbook.save
+      end.to change(cookbook, :lowercase_name).from(nil).to('apache')
+    end
   end
 
   describe '#to_param' do
@@ -13,9 +35,10 @@ describe Cookbook do
   end
 
   describe '#get_version!' do
-    let!(:kiwi) { Cookbook.create(name: 'kiwi', maintainer: 'fruit') }
+    let!(:kiwi) { create(:cookbook, name: 'kiwi', maintainer: 'fruit') }
     let!(:kiwi_0_1_0) do
-      kiwi.cookbook_versions.create(
+      create(
+        :cookbook_version,
         cookbook: kiwi,
         version: '0.1.0',
         description: 'bird',
@@ -24,7 +47,8 @@ describe Cookbook do
     end
 
     let!(:kiwi_0_2_0) do
-      kiwi.cookbook_versions.create(
+      create(
+        :cookbook_version,
         cookbook: kiwi,
         version: '0.2.0',
         description: 'better bird',
@@ -48,19 +72,21 @@ describe Cookbook do
 
   describe '.search' do
     let!(:redis) do
-      Cookbook.create(
+      create(
+        :cookbook,
         name: 'redis',
         maintainer: 'tokein',
-        category: 'datastore',
+        category: create(:category, name: 'datastore'),
         description: 'Redis: a fast, flexible datastore offering an extremely useful set of data structure primitives'
       )
     end
 
     let!(:redisio) do
-      Cookbook.create(
+      create(
+        :cookbook,
         name: 'redisio',
         maintainer: 'fruit',
-        category: 'datastore',
+        category: create(:category, name: 'datastore'),
         description: 'Installs/Configures redis'
       )
     end

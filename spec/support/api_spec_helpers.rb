@@ -4,7 +4,7 @@ module ApiSpecHelpers
   end
 
   def signature(resource)
-    resource.except('created_at', 'updated_at')
+    resource.except('created_at', 'updated_at', 'file', 'tarball_file_size')
   end
 
   def error_404

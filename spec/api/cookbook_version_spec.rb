@@ -26,11 +26,9 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
     let(:sashimi_version_signature) do
       {
         'license' => 'GPLv2',
-        'tarball_file_size' => nil,
         'version' => '2.0.0',
         'average_rating' => nil,
-        'cookbook' => 'http://www.example.com/api/v1/cookbooks/sashimi',
-        'file' => '/tarballs/original/missing.png'
+        'cookbook' => 'http://www.example.com/api/v1/cookbooks/sashimi'
       }
     end
 
