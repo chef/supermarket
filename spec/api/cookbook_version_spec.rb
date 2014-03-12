@@ -1,62 +1,56 @@
 require 'spec_helper'
 
 describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
-  let(:error_404) do
-    {
-       'error_messages' => ['Resource does not exist'],
-       'error_code' => 'NOT_FOUND'
-    }
-  end
-
   context 'for a cookbook that exists' do
     before do
-      create(
-        :cookbook_version,
-        cookbook: create(
-          :cookbook,
-          description: 'Sashimi that will make your heart melt',
-          maintainer: 'Haru Maru',
-          name: 'sashimi'
-        ),
-        license: 'GPLv2',
-        version: '2.0.0'
-      )
-    end
-
-    let(:sashimi_version_signature) do
-      {
-        'license' => 'GPLv2',
-        'version' => '2.0.0',
-        'average_rating' => nil,
-        'cookbook' => 'http://www.example.com/api/v1/cookbooks/sashimi'
-      }
+      share_cookbook(cookbook: 'redis-test-v1.tgz')
+      share_cookbook(cookbook: 'redis-test-v2.tgz')
+      get json_body['uri']
     end
 
     context 'for the latest version' do
+      let(:cookbook_version_signature) do
+        {
+          'license' => 'All rights reserved',
+          'version' => '0.2.0',
+          'average_rating' => nil,
+          'cookbook' => 'http://www.example.com/api/v1/cookbooks/redis-test'
+        }
+      end
+
       it 'returns a 200' do
-        get '/api/v1/cookbooks/sashimi/versions/latest'
+        get '/api/v1/cookbooks/redis-test/versions/latest'
 
         expect(response.status.to_i).to eql(200)
       end
 
       it 'returns a version of the cookbook' do
-        get '/api/v1/cookbooks/sashimi/versions/latest'
+        get '/api/v1/cookbooks/redis-test/versions/latest'
 
-        expect(signature(json_body)).to eql(sashimi_version_signature)
+        expect(signature(json_body)).to eql(cookbook_version_signature)
       end
     end
 
     context 'for a version that exists' do
+      let(:cookbook_version_signature) do
+        {
+          'license' => 'All rights reserved',
+          'version' => '0.1.0',
+          'average_rating' => nil,
+          'cookbook' => 'http://www.example.com/api/v1/cookbooks/redis-test'
+        }
+      end
+
       it 'returns a 200' do
-        get '/api/v1/cookbooks/sashimi/versions/2_0_0'
+        get json_body['versions'].find { |v| v =~ /0_1_0/ }
 
         expect(response.status.to_i).to eql(200)
       end
 
       it 'returns a version of the cookbook' do
-        get '/api/v1/cookbooks/sashimi/versions/2_0_0'
+        get json_body['versions'].find { |v| v =~ /0_1_0/ }
 
-        expect(signature(json_body)).to eql(sashimi_version_signature)
+        expect(signature(json_body)).to eql(cookbook_version_signature)
       end
     end
 

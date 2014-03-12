@@ -1,11 +1,3 @@
-json.name @cookbook.name
-json.maintainer @cookbook.maintainer
-json.description @cookbook.description
-json.category @cookbook.category.name
-json.latest_version @latest_cookbook_version_url
-json.external_url @cookbook.external_url
+json.partial! 'cookbook'
 json.deprecated @cookbook.deprecated
-json.average_rating nil
 json.versions Array(@cookbook_versions_urls)
-json.created_at @cookbook.created_at
-json.updated_at @latest_cookbook_version.updated_at

@@ -1,4 +1,14 @@
 module ApiSpecHelpers
+  def share_cookbook(args = {})
+    cookbook_name = args[:cookbook] || 'redis-test-v1.tgz'
+    category_name = (args[:category] || 'other').titleize
+
+    tarball = fixture_file_upload("spec/support/cookbook_fixtures/#{cookbook_name}", 'application/x-gzip')
+    category = create(:category, name: category_name)
+
+    post '/api/v1/cookbooks', cookbook: "{\"category\": \"#{category_name}\"}", tarball: tarball
+  end
+
   def json_body
     JSON.parse(response.body)
   end

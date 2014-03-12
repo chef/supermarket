@@ -26,7 +26,7 @@ class Cookbook < ActiveRecord::Base
 
   # Associations
   # --------------------
-  has_many :cookbook_versions, -> { order(created_at: :desc) }
+  has_many :cookbook_versions, -> { order(created_at: :desc) }, dependent: :destroy
   belongs_to :category
 
   # Validations

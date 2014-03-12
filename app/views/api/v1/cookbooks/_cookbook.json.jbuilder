@@ -1,0 +1,9 @@
+json.name @cookbook.name
+json.maintainer @cookbook.maintainer
+json.description @cookbook.description
+json.category @cookbook.category.name
+json.latest_version @latest_cookbook_version_url
+json.external_url @cookbook.external_url
+json.average_rating nil
+json.created_at @cookbook.created_at
+json.updated_at @cookbook.updated_at

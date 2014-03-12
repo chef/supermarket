@@ -119,21 +119,17 @@ describe 'api/v1/cookbooks/show' do
   it 'displays the date the cookbook was last updated at' do
     render
 
-    updated_at = DateTime.parse(json_body['updated_at'])
-
-    expect(updated_at.to_i).to be_within(1).of(cookbook.updated_at.to_i)
+    expect(DateTime.parse(json_body['updated_at']).to_i).
+      to be_within(1).of(cookbook.updated_at.to_i)
   end
 
   it 'displays the date the cookbook was created at' do
     render
 
-    created_at = DateTime.parse(json_body['created_at'])
-
-    expect(created_at.to_i).
-      to be_within(1).of(cookbook.get_version!('latest').created_at.to_i)
+    expect(DateTime.parse(json_body['created_at']).to_i).
+      to be_within(1).of(cookbook.created_at.to_i)
   end
 
   # TODO: add this when ratings are implemented
   it "displays the cookbook's average rating"
-
 end
