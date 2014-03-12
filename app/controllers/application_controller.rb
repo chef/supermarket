@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_filter :configure_permitted_parameters, if: :devise_controller?
 
   include Supermarket::Authorization
+  include Supermarket::Authentication
   include Supermarket::LocationStorage
 
   rescue_from NotAuthorizedError, ActiveRecord::RecordNotFound do |error|
@@ -21,13 +21,6 @@ class ApplicationController < ActionController::Base
     render 'exceptions/404', options
   end
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:email, :first_name, :last_name,
-               :password, :password_confirmation)
-    end
-  end
-
   def after_sign_in_path_for(resource)
     stored_location || root_path
   end
@@ -39,7 +32,7 @@ class ApplicationController < ActionController::Base
   #
   def require_linked_github_account!
     unless current_user.linked_github_account?
-      store_location_for current_user, request.path
+      store_location!
       redirect_to link_github_profile_path,  notice: t('requires_linked_github')
     end
   end

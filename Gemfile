@@ -6,14 +6,13 @@ gem 'rails', '~> 4.0.4'
 gem 'magiconf'
 gem 'omniauth'
 gem 'omniauth-github'
-gem 'omniauth-twitter'
+gem 'omniauth-chef-oauth2', git: 'https://github.com/opscode/omniauth-chef-oauth2.git'
 gem 'pg'
 gem 'redcarpet' # markdown parsing
 gem 'unicorn'
 gem 'unicorn-rails'
 gem 'foreman'
 gem 'pundit'
-gem 'devise'
 gem 'dotenv-rails'
 gem 'coveralls', require: false
 gem 'octokit', github: 'octokit/octokit.rb', require: false

@@ -1,11 +1,6 @@
 class User < ActiveRecord::Base
   include Authorizable
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
   # Associations
   # --------------------
   has_many :accounts
@@ -128,7 +123,7 @@ class User < ActiveRecord::Base
   # most typically an OAuth response
   #
   # @example
-  #   user.account_from_oauth?(request.env['omniauth.auth'])
+  #   user.account_from_oauth(request.env['omniauth.auth'])
   #
   # @param auth [Hash] the account information, formatted like OmniAuth schema
   #
@@ -186,5 +181,45 @@ class User < ActiveRecord::Base
     account = Account.for('github').where(username: github_login).first
 
     account.try(:user) || User.new
+  end
+
+  #
+  # Find or create a user based on the OmniAuth auth hash. If an account exists,
+  # return the user for that account. If the account does not exist, create the
+  # account, create a user based on the information and associate that account
+  # with the newly created user.
+  #
+  # @example
+  #   user = User.find_or_create_from_oauth({ uid: '123', provider: 'chef_oauth2' })
+  #
+  # @param [Hash] auth the OmniAuth hash returned from the provider
+  #
+  # @return [User] the user that exists or was created with the +auth+
+  #                information
+  #
+  def self.find_or_create_from_oauth(auth)
+    extractor = Extractor::Base.load(auth)
+
+    account = Account.where(extractor.signature).first_or_initialize do |new_account|
+      new_account.username      = extractor.username
+      new_account.oauth_token   = extractor.oauth_token
+      new_account.oauth_secret  = extractor.oauth_secret
+      new_account.oauth_expires = extractor.oauth_expires
+    end
+
+    if account.user.nil?
+      user = User.first_or_initialize(
+        email: extractor.email,
+        public_key: extractor.public_key
+      )
+
+      user.first_name = extractor.first_name
+      user.last_name  = extractor.last_name
+
+      account.user = user
+      account.save
+    end
+
+    account.user
   end
 end

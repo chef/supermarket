@@ -304,7 +304,7 @@ describe CookbooksController do
       it 'redirects to user sign in' do
         put :follow, id: cookbook
 
-        expect(response).to redirect_to(user_session_path)
+        expect(response).to redirect_to(sign_in_path)
       end
     end
 

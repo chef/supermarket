@@ -25,17 +25,16 @@ development:
     host: <%= ENV['STATSD_HOST'] %>
     port: <%= ENV['STATSD_PORT'] %>
     namespace: <%= ENV['STATSD_NAMESPACE'] %>
-  devise:
-    secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
   github:
     access_token: <%= ENV['GITHUB_ACCESS_TOKEN'] %>
-  omni_auth:
+  omniauth:
     github:
       key: <%= ENV['GITHUB_KEY'] %>
       secret: <%= ENV['GITHUB_SECRET'] %>
-    twitter:
-      key: <%= ENV['TWITTER_KEY'] %>
-      secret: <%= ENV['TWITTER_SECRET'] %>
+    chef_oauth2:
+      app_id: <%= ENV['CHEF_OAUTH2_APP_ID'] %>
+      secret: <%= ENV['CHEF_OAUTH2_SECRET'] %>
+      site: <%= ENV['CHEF_OAUTH2_SITE'] %>
   pubsubhubbub:
     callback_url: "http://currybowl.herokuapp.com/52f2934cec5edd0002000015"
     hub_secret: <%= ENV['PUBSUBHUBBUB_SECRET'] %>
@@ -63,15 +62,14 @@ production:
     namespace: <%= ENV['STATSD_NAMESPACE'] %>
   github:
     access_token: <%= ENV['GITHUB_ACCESS_TOKEN'] %>
-  devise:
-    secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
-  omni_auth:
+  omniauth:
     github:
       key: <%= ENV['GITHUB_KEY'] %>
       secret: <%= ENV['GITHUB_SECRET'] %>
-    twitter:
-      key: <%= ENV['TWITTER_KEY'] %>
-      secret: <%= ENV['TWITTER_SECRET'] %>
+    chef_oauth2:
+      app_id: <%= ENV['CHEF_OAUTH2_APP_ID'] %>
+      secret: <%= ENV['CHEF_OAUTH2_SECRET'] %>
+      site: <%= ENV['CHEF_OAUTH2_SITE'] %>
   pubsubhubbub:
     hub_secret: <%= ENV['PUBSUBHUBBUB_SECRET'] %>
   segment_io_write_key: <%= ENV['SEGMENT_IO_WRITE_KEY'] %>
@@ -97,20 +95,19 @@ test:
     host: <%= ENV['STATSD_HOST'] %>
     port: <%= ENV['STATSD_PORT'] %>
     namespace: <%= ENV['STATSD_NAMESPACE'] %>
-  devise:
-    secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
   github:
     access_token: <%= ENV['GITHUB_ACCESS_TOKEN'] %>
   pubsubhubbub:
     callback_url: "http://currybowl.herokuapp.com/52f2934cec5edd0002000015"
     hub_secret: "YOUR_PUBSUBHUBBUB_SECRET"
-  omni_auth:
+  omniauth:
     github:
       key: <%= ENV['GITHUB_KEY'] %>
       secret: <%= ENV['GITHUB_SECRET'] %>
-    twitter:
-      key: <%= ENV['TWITTER_KEY'] %>
-      secret: <%= ENV['TWITTER_SECRET'] %>
+    chef_oauth2:
+      app_id: <%= ENV['CHEF_OAUTH2_APP_ID'] %>
+      secret: <%= ENV['CHEF_OAUTH2_SECRET'] %>
+      site: <%= ENV['CHEF_OAUTH2_SITE'] %>
   curry:
     success_label: 'Signed CLA'
     cla_location: 'https://community.getchef.com'

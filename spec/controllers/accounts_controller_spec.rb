@@ -22,7 +22,7 @@ describe AccountsController do
     end
 
     it 'redirects to the stored location for the user on success if set' do
-      controller.store_location_for(user, new_icla_signature_path)
+      controller.store_location!(new_icla_signature_path)
 
       post :create, provider: 'github'
 

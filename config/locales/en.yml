@@ -2,6 +2,7 @@ en:
   user:
     signed_in:  "Welcome back %{name}!"
     signed_out: "Goodbye"
+    must_be_signed_in: "You must be signed in to do that."
   requires_linked_github: "You need to link your GitHub account."
   organization_invitations:
     invite:

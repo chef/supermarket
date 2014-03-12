@@ -1,7 +1,6 @@
 {
   "id": "supermarket",
   "description": "This is an example data bag that is used to standup Supermarket if you use this please please please change the default values for security sake.",
-  "devise_secret_key": "someSecret",
   "secret_key_base": "someSecret",
   "revision": "master",
   "sentry_url": "someSentryUrl",
@@ -13,6 +12,10 @@
   },
   "github": {
     "key": "someKey",
+    "secret": "someSecret"
+  },
+  "chef_oauth2": {
+    "app_id": "someAppID",
     "secret": "someSecret"
   },
   "curry": {

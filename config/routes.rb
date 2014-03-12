@@ -3,14 +3,6 @@ Supermarket::Application.routes.draw do
     mount MailPreview => 'mail_view'
   end
 
-  devise_for :users
-
-  devise_scope :user do
-    get 'sign-in',  to: 'devise/sessions#new', as: :sign_in
-    delete 'sign-out', to: 'devise/sessions#destroy', as: :sign_out
-    get 'sign-up',  to: 'devise/registrations#new', as: 'sign_up'
-  end
-
   namespace :api, defaults: { format: :json }  do
     namespace :v1 do
       get 'cookbooks' => 'cookbooks#index'
@@ -85,8 +77,20 @@ Supermarket::Application.routes.draw do
     end
   end
 
-  match 'auth/:provider/callback' => 'accounts#create', as: :auth_callback, via: [:get, :post]
+  # when signing in or up with chef account
+  match 'auth/chef_oauth2/callback' => 'sessions#create', as: :auth_session_callback, via: [:get, :post]
   get 'auth/failure' => 'sessions#failure', as: :auth_failure
+  get 'login'   => redirect('/sign-in'), as: nil
+  get 'signin'  => redirect('/sign-in'), as: nil
+  get 'sign-in' => 'sessions#new', as: :sign_in
+  get 'sign-up' => 'sessions#new', as: :sign_up
+
+  delete 'logout'   => redirect('/sign-out'), as: nil
+  delete 'signout'  => redirect('/sign-out'), as: nil
+  delete 'sign-out' => 'sessions#destroy', as: :sign_out
+
+  # when linking a github account
+  match 'auth/github/callback' => 'accounts#create', as: :auth_callback, via: [:get, :post]
 
   root 'icla_signatures#index'
 end
