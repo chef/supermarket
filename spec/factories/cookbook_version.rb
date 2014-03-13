@@ -4,7 +4,7 @@ FactoryGirl.define do
 
     description 'An awesome cookbook!'
     license 'MIT'
-    version '1.2.0'
+    sequence(:version) { |n| "1.2.#{n}" }
     tarball { File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz') }
   end
 end

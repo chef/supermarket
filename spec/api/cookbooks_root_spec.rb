@@ -11,57 +11,43 @@ describe 'GET /api/v1/cookbooks' do
     it 'returns an empty JSON template' do
       get '/api/v1/cookbooks'
 
-      expect(json_body).to eql(
-        'start' => 0,
-        'total' => 0,
-        'items' => []
-      )
+      expect(json_body['start']).to eql(0)
+      expect(json_body['total']).to eql(0)
+      expect(json_body['items']).to match_array([])
     end
   end
 
   context 'when there are cookbooks' do
-    let(:sashimi) do
+    let(:redis_test_signature) do
       {
-        'cookbook_description' => 'Sashimi that will make your heart melt',
-        'cookbook_maintainer' => 'Haru Maru',
-        'cookbook' => 'http://www.example.com/api/v1/cookbooks/sashimi',
-        'cookbook_name' => 'sashimi'
+        'cookbook_name' => 'redis-test',
+        'cookbook_maintainer' => 'Chef Software, Inc',
+        'cookbook_description' => 'Installs/Configures redis-test',
+        'cookbook' => 'http://www.example.com/api/v1/cookbooks/redis-test'
       }
     end
 
-    let(:slow_cooking) do
+    let(:redisio_test_signature) do
       {
-        'cookbook_description' => 'The best recipes for your slow cooker',
-        'cookbook_maintainer' => 'Joe Doe',
-        'cookbook' => 'http://www.example.com/api/v1/cookbooks/slow_cooking',
-        'cookbook_name' => 'slow_cooking'
+        'cookbook_name' => 'redisio-test',
+        'cookbook_maintainer' => 'Chef Software, Inc',
+        'cookbook_description' => 'Installs/Configures redisio-test',
+        'cookbook' => 'http://www.example.com/api/v1/cookbooks/redisio-test'
       }
     end
 
     before do
-      create(
-        :cookbook,
-        description: 'The best recipes for your slow cooker',
-        maintainer: 'Joe Doe',
-        name: 'slow_cooking'
-      )
-
-      create(
-        :cookbook,
-        description: 'Sashimi that will make your heart melt',
-        maintainer: 'Haru Maru',
-        name: 'sashimi'
-      )
+      share_cookbook(cookbook: 'redis-test-v2.tgz')
+      share_cookbook(cookbook: 'redisio-test-v1.tgz')
     end
 
     it 'returns a JSON template with the cookbooks' do
       get '/api/v1/cookbooks'
 
-      expect(json_body).to eql(
-        'start' => 0,
-        'total' => 2,
-        'items' => [sashimi, slow_cooking]
-      )
+      expect(json_body['start']).to eql(0)
+      expect(json_body['total']).to eql(2)
+      expect(json_body['items']).
+        to match_array([redis_test_signature, redisio_test_signature])
     end
   end
 end

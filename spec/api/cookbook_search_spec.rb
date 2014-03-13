@@ -1,20 +1,27 @@
 require 'spec_helper'
 
 describe 'GET /api/v1/search' do
-  before do
-    create(
-      :cookbook,
-      name: 'redis',
-      description: 'great cookbook',
-      maintainer: 'brett'
-    )
+  let(:redis_test_signature) do
+    {
+      'cookbook_name' => 'redis-test',
+      'cookbook_description' => 'Installs/Configures redis-test',
+      'cookbook' => 'http://www.example.com/api/v1/cookbooks/redis-test',
+      'cookbook_maintainer' => 'Chef Software, Inc'
+    }
+  end
 
-    create(
-      :cookbook,
-      name: 'redisio',
-      description: 'greater cookbook',
-      maintainer: 'josh'
-    )
+  let(:redisio_test_signature) do
+    {
+      'cookbook_name' => 'redisio-test',
+      'cookbook_description' => 'Installs/Configures redisio-test',
+      'cookbook' => 'http://www.example.com/api/v1/cookbooks/redisio-test',
+      'cookbook_maintainer' => 'Chef Software, Inc'
+    }
+  end
+
+  before do
+    share_cookbook(cookbook: 'redis-test-v2.tgz')
+    share_cookbook(cookbook: 'redisio-test-v1.tgz')
   end
 
   it 'returns a 200' do
@@ -25,20 +32,7 @@ describe 'GET /api/v1/search' do
 
   it 'returns cookbooks that match the search query' do
     search_response = {
-      'items' => [
-        {
-          'cookbook_name' => 'redis',
-          'cookbook_description' => 'great cookbook',
-          'cookbook' => 'http://www.example.com/api/v1/cookbooks/redis',
-          'cookbook_maintainer' => 'brett'
-        },
-        {
-          'cookbook_name' => 'redisio',
-          'cookbook_description' => 'greater cookbook',
-          'cookbook' => 'http://www.example.com/api/v1/cookbooks/redisio',
-          'cookbook_maintainer' => 'josh'
-        }
-      ],
+      'items' => [redis_test_signature, redisio_test_signature],
       'total' => 2,
       'start' => 0
     }
@@ -50,14 +44,7 @@ describe 'GET /api/v1/search' do
 
   it 'handles the start and items params' do
     search_response = {
-      'items' => [
-        {
-          'cookbook_name' => 'redisio',
-          'cookbook_description' => 'greater cookbook',
-          'cookbook' => 'http://www.example.com/api/v1/cookbooks/redisio',
-          'cookbook_maintainer' => 'josh'
-        }
-      ],
+      'items' => [redisio_test_signature],
       'total' => 1,
       'start' => 1
     }
