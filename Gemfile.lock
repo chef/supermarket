@@ -131,6 +131,9 @@ GEM
     json (1.8.1)
     jwt (0.1.11)
       multi_json (>= 1.5)
+    kaminari (0.15.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
@@ -344,6 +347,7 @@ DEPENDENCIES
   foreman
   jbuilder
   jquery-rails
+  kaminari
   launchy
   license_finder
   magiconf

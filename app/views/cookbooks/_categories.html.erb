@@ -1,0 +1,5 @@
+<div class="categories">
+  <% @categories.each do |category| %>
+    <%= link_to category.name, cookbooks_category_path(category), class: ('active' if params[:category] == category.to_param) %>
+  <% end %>
+</div>

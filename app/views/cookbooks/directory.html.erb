@@ -1,0 +1,18 @@
+<%= render 'search' %>
+<%= render 'categories' %>
+
+<div class="recently-updated">
+  <h2>Recently Updated</h3>
+  <%= link_to 'View All', cookbooks_path(order: 'recently_updated') %>
+  <%= link_to 'RSS', cookbooks_path(order: 'recently_updated', format: 'atom') %>
+
+  <%= render @recently_updated_cookbooks %>
+</div>
+
+<div class="recently-added">
+  <h2>Recently Added</h3>
+  <%= link_to 'View All', cookbooks_path(order: 'recently_added') %>
+  <%= link_to 'RSS', cookbooks_path(order: 'recently_added', format: 'atom') %>
+
+  <%= render @recently_added_cookbooks %>
+</div>
