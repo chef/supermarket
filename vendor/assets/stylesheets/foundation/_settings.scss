@@ -30,12 +30,12 @@
 
 // $include-html-grid-classes: $include-html-classes;
 
-$row-width: rem-calc(1440);
-// $column-gutter: rem-calc(30);
-// $total-columns: 12;
+$row-width: 100%;
+$column-gutter: rem-calc(30);
+$total-columns: 12;
 
 // We use these to control various global styles
-$body-bg: white;
+$body-bg: #ecf0f1;
 $body-font-color: #222;
 $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
@@ -50,7 +50,7 @@ $font-smoothing: antialiased;
 // $default-float: left;
 
 // We use these as default colors throughout
-// $primary-color: #008CBA;
+$primary-color: saturate(lighten($primary_gray, 25%), 13%);
 // $secondary-color: #e7e7e7;
 // $alert-color: #f04124;
 // $success-color: #43AC6A;
@@ -68,8 +68,8 @@ $font-smoothing: antialiased;
 
 // Media Query Ranges
 $mobile-range: (0em, 32em);
-$small-range: (32.063em, 40em);
-$medium-range: (40.063em, 64em);
+$small-range: (32.063em, 55em);
+$medium-range: (55.063em, 64em);
 $large-range: (64.063em, 90em);
 $xlarge-range: (90.063em, 120em);
 $xxlarge-range: (120.063em);
@@ -218,7 +218,7 @@ $xxlarge-only: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (m
 $button-margin-bottom: rem-calc(0);
 
 // We use these to control button text styles.
-// $button-font-family: $body-font-family;
+$button-font-family: $accent_font;
 // $button-font-color: #fff;
 // $button-font-color-alt: #333;
 // $button-font-tny: rem-calc(11);
@@ -543,7 +543,7 @@ $legend-padding: rem-calc(0 3);
 
 // Off Canvas Menu Variables
 // $off-canvas-width: 250px;
-// $off-canvas-bg: #333;
+$off-canvas-bg: darken($primary_blue, 3%);
 
 // Off Canvas Menu List Variables
 // $off-canvas-label-padding: 0.3rem rem-calc(15);
@@ -995,9 +995,9 @@ $legend-padding: rem-calc(0 3);
 // $has-tip-font-color-hover: $primary-color;
 // $has-tip-cursor-type: help;
 
-// $tooltip-padding: rem-calc(12);
-// $tooltip-bg: #333;
-// $tooltip-font-size: rem-calc(14);
+$tooltip-padding: rem-calc(5 10);
+$tooltip-bg: $primary_blue;
+$tooltip-font-size: rem-calc(10);
 // $tooltip-font-weight: normal;
 // $tooltip-font-color: #fff;
 // $tooltip-line-height: 1.3;
@@ -1089,7 +1089,7 @@ $legend-padding: rem-calc(0 3);
 $header-font-family: join("Montserrat", $body-font-family);
 $header-font-weight: 400;
 // $header-font-style: normal;
-$header-font-color: #6bb1e1;
+$header-font-color: saturate(lighten($primary_gray, 20%), 13%);
 $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 $header-bottom-margin: 1.5rem;

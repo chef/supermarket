@@ -1,18 +1,50 @@
 <%= render 'search' %>
-<%= render 'categories' %>
+<section class="cookbooks_stats show-for-medium-up">
+  <ul>
+    <li>
+      <h3>56 <small>Recently Updated</small></h3>
+    </li>
+    <li>
+      <h3>1,465 <small>Cookbooks</small></h3>
+    </li>
+    <li>
+      <h3>325,292 <small>Downloads</small></h3>
+    </li>
+    <li>
+      <h3>2,000 <small>Collaborators</small></h3>
+    </li>
+  </ul>
+</section>
+<section class="cookbook_body">
 
-<div class="recently-updated">
-  <h2>Recently Updated</h3>
-  <%= link_to 'View All', cookbooks_path(order: 'recently_updated') %>
-  <%= link_to 'RSS', cookbooks_path(order: 'recently_updated', format: 'atom') %>
+  <%= render 'categories' %>
 
-  <%= render @recently_updated_cookbooks %>
-</div>
+  <article class="cookbook_content">
+    <div class="recently-updated">
+      <h2 class="cookbook_content_heading">
+        <i class="fa fa-folder"></i>
+        Recently Updated
+        <small>
+          <!--<span class="label secondary radius">56</span>-->
+          <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, cookbooks_path(order: 'recently_updated', format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
+        </small>
+        <%= link_to 'View All', cookbooks_path(order: 'recently_updated'), :class => 'button radius tiny right' %>
+      </h2>
+      <ul class="cookbook_listing"><%= render @recently_updated_cookbooks %></ul>
+    </div>
 
-<div class="recently-added">
-  <h2>Recently Added</h3>
-  <%= link_to 'View All', cookbooks_path(order: 'recently_added') %>
-  <%= link_to 'RSS', cookbooks_path(order: 'recently_added', format: 'atom') %>
+    <div class="recently-added">
+      <h2 class="cookbook_content_heading">
+        <i class="fa fa-folder"></i>
+        Recently Added
+        <small>
+          <!--<span class="label secondary radius">56</span>-->
+          <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, cookbooks_path(order: 'recently_added', format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
+        </small>
+        <%= link_to 'View All', cookbooks_path(order: 'recently_added'), :class => 'button radius tiny right' %>
+      </h2>
+      <ul class="cookbook_listing"><%= render @recently_added_cookbooks %></ul>
+    </div>
+  </article>
 
-  <%= render @recently_added_cookbooks %>
-</div>
+</section>
