@@ -20,7 +20,6 @@
 
     <div class="off-canvas-wrap">
       <div class="inner-wrap">
-        <a class="left-off-canvas-toggle fa fa-bars"><span class="hide">Menu</span></a>
         <!-- Chef Property Menu -->
         <aside class="left-off-canvas-menu">
             <ul class="off-canvas-list mobileappnav hide">
@@ -35,8 +34,13 @@
         </aside>
 
         <header class="globalheader">
-          <h2 class="logochef"><%= link_to root_path do %><span>Chef</span><% end %></h2>
-          <%= render partial: 'appheader' %>
+          <div class="logo_and_nav_toggle">
+            <a class="left-off-canvas-toggle fa fa-bars"><span class="hide">Menu</span></a>
+            <h2 class="logochef"><%= link_to root_path do %><span>Chef Supermarket</span><% end %></h2>
+          </div>
+          <div class="navigation_search_and_avatar">
+            <%= render partial: 'appheader' %>
+          </div>
         </header>
         <div class="container">
           <div class="page">

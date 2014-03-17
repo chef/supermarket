@@ -1,23 +1,26 @@
 // Global Header
 .globalheader {
-  @include bringdanoise(#292929);
-  border-bottom: 1px solid black;
-  @include box-sizing(border-box);
-  height: rem-calc(69);
-  padding: 0 rem-calc(20) 0 rem-calc(66);
+  background-color: #1E3C4D;
+  @include grid-row();
+  height: rem-calc(70);
+}
+
+.logo_and_nav_toggle {
+  @include grid-column($columns: 3, $collapse: true);
+}
+
+.navigation_search_and_avatar {
+  @include grid-column($columns: 9, $collapse: true);
 }
 
 .left-off-canvas-toggle {
   color: #7c858c;
   display: block;
-  height: rem-calc(69);
-  left: 0;
-  line-height: rem-calc(69);
-  position: absolute;
+  float: left;
+  height: rem-calc(70);
+  line-height: rem-calc(70);
   text-align: center;
-  top: 0;
   width: rem-calc(66);
-  z-index: 1;
 
   &:before { display: block; margin-top: rem-calc(28); }
 
@@ -31,21 +34,21 @@
 
 // Global chef elements
 .logochef {
-  background: url(image-path('logo.svg')) 0 rem-calc(9) no-repeat;
-  @include background-size(rem-calc(48) rem-calc(50));
+  background: url(image-path('logo-supermarket.svg')) no-repeat;
+  @include background-size(rem-calc(147) rem-calc(37));
   float: left;
-  height: rem-calc(69);
-  margin: 0 rem-calc(27) 0 0;
-  width: rem-calc(47);
+  height: rem-calc(37);
+  margin: rem-calc(16 0 0 0);
+  width: rem-calc(147);
 
   .no-svg & {
-    background: url(image-path('logo_pngfallback.png')) no-repeat;
+    background: url(image-path('logo-supermarket.png')) no-repeat;
   }
 
   a {
     display: block;
-    height: rem-calc(50);
-    width: rem-calc(48);
+    height: rem-calc(37);
+    width: rem-calc(147);
 
     span { display: none; }
   }
@@ -53,32 +56,13 @@
 
 
 // App-specific elements
-.appheader {
-  color: #f18a20;
-  float: left;
-  font-size: rem-calc(24);
-  line-height: rem-calc(69);
-  margin: 0 rem-calc(20) 0 0;
-  text-transform: uppercase;
-
-  a:link, a:visited {
-    color: #f18a20;
-    text-decoration: none;
-  }
-  a:hover, a:active {
-    color: #f99e40;
-    text-decoration: none;
-  }
-}
-
 .searchform {
   float: right;
   height: rem-calc(69);
-  margin-right: rem-calc(57);
+  margin-right: rem-calc(20);
   position: relative;
 
   .fa {
-    @include box-shadow(rgba(0,0,0,.9) 0 1px 0);
     color: #7c858c;
     height: rem-calc(16);
     position: absolute;
@@ -90,16 +74,15 @@
 }
 
 #searchfield {
-  background-color: #1b1b1f;
+  background-color: #122730;
   border: none;
-  @include border-radius(rem-calc(32));
-  @include box-shadow(#141417 0 -1px 0, #333 0 1px 0);
+  @include border-radius(rem-calc(36));
   @include box-sizing(border-box);
   color: #7c858c;
-  height: rem-calc(32);
-  margin-top: rem-calc(20);
+  height: rem-calc(36);
+  margin-top: rem-calc(17);
   padding: 0 rem-calc(20);
-  width: rem-calc(310);
+  width: rem-calc(274);
 }
 
 .appnav {
@@ -107,21 +90,22 @@
 
   ul {
     margin: 0;
+    padding-left: rem-calc(20);
 
     li {
       float: left;
       list-style: none;
 
       a:link, a:visited {
-        color: #7c858c;
+        color: white;
         display: block;
         float: left;
         font: {
           family: "Montserrat", $body-font-family;
           size: rem-calc(12);
-          weight: 700;
+          weight: 400;
         }
-        line-height: rem-calc(69);
+        line-height: rem-calc(70);
         padding: 0 rem-calc(20);
         text-decoration: none;
         text-transform: uppercase;
@@ -137,8 +121,9 @@
 .usermenu {
   float: right;
   height: rem-calc(69);
+  margin-right: rem-calc(70);
   position: relative;
-  width: rem-calc(62);
+  width: rem-calc(36);
   z-index: 101;
 
   .signin {
@@ -165,12 +150,12 @@
 
   .avatar {
     float: right;
-    height: rem-calc(32);
-    margin-top: rem-calc(18);
-    width: rem-calc(32);
+    height: rem-calc(36);
+    margin-top: rem-calc(17);
+    width: rem-calc(36);
 
     img {
-      @include border-radius(rem-calc(32));
+      @include border-radius(rem-calc(36));
       @include box-shadow(rgba(0,0,0,.6) 0 1px 0);
       height: auto;
       max-width: 100%;
