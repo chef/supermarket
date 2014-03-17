@@ -1,0 +1,7 @@
+<div class="recently-updated">
+  <% @recently_updated_cookbooks.each do |cookbook| %>
+    <div class="cookbook">
+      <span class="updated-at">Updated <%= cookbook.updated_at %></span>
+    </div>
+  <% end %>
+</div>

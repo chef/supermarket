@@ -2,6 +2,7 @@ class Cookbook < ActiveRecord::Base
   include PgSearch
 
   scope :with_name, ->(name) { where('lower(name) = ?', name.to_s.downcase) }
+  scope :recently_updated, -> { where(updated_at: 30.days.ago..Time.now) }
 
   # Search
   # --------------------
