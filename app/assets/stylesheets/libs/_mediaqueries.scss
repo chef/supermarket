@@ -32,7 +32,6 @@
 @media #{$medium-only} {
   html, body { font-size: 75%; }
   .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
-  .searchform { margin-right: rem-calc(-8); }
   #searchfield { width: rem-calc(220); }
   .usermenu .signin { margin-right: rem-calc(-5); text-align: right; }
   .page { padding: rem-calc(40 70 70); }
@@ -41,7 +40,5 @@
 
 @media #{$xlarge-up} {
   html, body { font-size: 120%; }
-  .left-off-canvas-toggle:before { margin-top: rem-calc(26); }
-  .searchform { margin-right: rem-calc(-8); }
   .searchform .fa { right: rem-calc(12); top: rem-calc(26); }
 }

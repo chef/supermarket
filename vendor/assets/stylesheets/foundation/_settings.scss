@@ -30,9 +30,9 @@
 
 // $include-html-grid-classes: $include-html-classes;
 
-$row-width: rem-calc(1440);
-// $column-gutter: rem-calc(30);
-// $total-columns: 12;
+$row-width: rem-calc(1170);
+$column-gutter: rem-calc(30);
+$total-columns: 12;
 
 // We use these to control various global styles
 $body-bg: white;

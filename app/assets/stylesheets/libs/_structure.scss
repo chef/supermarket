@@ -12,8 +12,8 @@ body {
 }
 
 .page {
-  @include grid-column(12, $center: true);
-  padding: rem-calc(70 140 140);
+  @include grid-column(12);
+  padding: rem-calc(35 70);
 }
 
 .footer {
