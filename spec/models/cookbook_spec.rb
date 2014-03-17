@@ -15,6 +15,7 @@ describe Cookbook do
 
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:maintainer) }
+    it { should validate_presence_of(:description) }
   end
 
   describe '#lowercase_name' do
@@ -41,7 +42,6 @@ describe Cookbook do
         :cookbook_version,
         cookbook: kiwi,
         version: '0.1.0',
-        description: 'bird',
         license: 'MIT'
       )
     end
@@ -51,7 +51,6 @@ describe Cookbook do
         :cookbook_version,
         cookbook: kiwi,
         version: '0.2.0',
-        description: 'better bird',
         license: 'MIT'
       )
     end

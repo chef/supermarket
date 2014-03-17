@@ -80,16 +80,14 @@ describe Api::V1::CookbooksController do
           :cookbook_version,
           cookbook: sashimi,
           version: '1.1.0',
-          license: 'MIT',
-          description: 'great'
+          license: 'MIT'
         )
 
         create(
           :cookbook_version,
           cookbook: sashimi,
           version: '2.1.0',
-          license: 'MIT',
-          description: 'great'
+          license: 'MIT'
         )
       end
 

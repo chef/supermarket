@@ -34,6 +34,7 @@ class Cookbook < ActiveRecord::Base
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :lowercase_name, presence: true, uniqueness: true
   validates :maintainer, presence: true
+  validates :description, presence: true
 
   #
   # Returns the name of the +Cookbook+ parameterized.
@@ -86,12 +87,12 @@ class Cookbook < ActiveRecord::Base
   def publish_version!(metadata, tarball)
     transaction do
       self.maintainer = metadata.maintainer
+      self.description = metadata.description
       save!
 
       cookbook_versions.create!(
         license: metadata.license,
         version: metadata.version,
-        description: metadata.description,
         tarball: tarball
       )
     end
