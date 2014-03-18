@@ -1,5 +1,5 @@
 class CookbooksController < ApplicationController
-  def index
+  def directory
     @recently_updated_cookbooks = Cookbook.order(:updated_at)
     @recently_created_cookbooks = Cookbook.order(:created_at)
   end
