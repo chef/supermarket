@@ -39,6 +39,7 @@
 }
 
 @media #{$xlarge-up} {
-  html, body { font-size: 120%; }
-  .searchform .fa { right: rem-calc(12); top: rem-calc(26); }
+  html, body { font-size: 130%; }
+  .left-off-canvas-toggle:before { margin-top: rem-calc(24.5); }
+  .searchform .fa { right: rem-calc(12); top: rem-calc(24); }
 }

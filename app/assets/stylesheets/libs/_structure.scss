@@ -7,13 +7,14 @@ body {
 }
 
 .container {
+  background-color: white;
   @include grid-row();
   min-height: 100%;
 }
 
 .page {
   @include grid-column(12);
-  padding: rem-calc(35 70);
+  padding: rem-calc(70);
 }
 
 .footer {
@@ -93,6 +94,7 @@ body {
     .panel {
       max-height: rem-calc(1020);
       overflow: auto;
+      -webkit-overflow-scrolling: touch;
 
       h1 { border: none; font-size: rem-calc(18); line-height: rem-calc(24); }
       h2 { font-size: rem-calc(14); line-height: rem-calc(24); }
