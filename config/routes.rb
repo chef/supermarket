@@ -22,6 +22,8 @@ Supermarket::Application.routes.draw do
     end
   end
 
+  resources :cookbooks, only: [:show]
+
   resources :icla_signatures, path: 'icla-signatures' do
     collection do
       post :re_sign, path: 're-sign'

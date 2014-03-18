@@ -1,0 +1,24 @@
+<!-- breadcrumbs -->
+
+<div class="cookbook">
+  <div class="not-sidebar">
+    <h1><%= @cookbook.name %></h1>
+    <p>dum follow button</p>
+    <p>dum knife command</p>
+    <p><%= @cookbook.description %></p>
+
+    <p>dum readme</p>
+  </div>
+
+  <div class="sidebar">
+    <p><%= link_to "Download Cookbook", cookbook_download_path(@cookbook) %></p>
+    <p><i class="fa-money"><%= @latest_version.updated_at.strftime('%B %-d, %Y') %></p>
+    <p><%= @cookbook.created_at.strftime('%B %-d, %Y') %></p>
+    <p><i class="fa-money">Versions</p>
+      <p>
+        <% @cookbook.cookbook_versions.each do |version| %>
+          <%= version.version %>
+        <% end %>
+      </p>
+  </div>
+</div>
