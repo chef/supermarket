@@ -3,9 +3,7 @@
   <%= link_to 'View All', cookbooks_path(order: 'updated_at') %>
   <%= link_to 'RSS', cookbooks_path(order: 'updated_at', format: 'atom') %>
 
-  <% @recently_updated_cookbooks.each do |cookbook| %>
-    <%= render cookbook %>
-  <% end %>
+  <%= render @recently_updated_cookbooks %>
 </div>
 
 <div class="recently-created">
@@ -13,7 +11,5 @@
   <%= link_to 'View All', cookbooks_path(order: 'created_at') %>
   <%= link_to 'RSS', cookbooks_path(order: 'created_at', format: 'atom') %>
 
-  <% @recently_created_cookbooks.each do |cookbook| %>
-    <%= render cookbook %>
-  <% end %>
+  <%= render @recently_created_cookbooks %>
 </div>
