@@ -12,7 +12,7 @@ class CookbooksController < ApplicationController
   def index
     @cookbooks = Cookbook.order('name ASC')
 
-    if ['updated_at', 'created_at'].include?(params[:order])
+    if %w(updated_at created_at).include?(params[:order])
       @cookbooks = Cookbook.order("#{params[:order]} DESC")
     end
 
