@@ -1,0 +1,95 @@
+// Cookbooks
+.cookbook_stats {
+  background-color: adjust-lightness($secondary_gray, 35%);
+  @include border-radius(rem-calc(5));
+  padding: rem-calc(20 0 30);
+  margin: rem-calc(0 0 40 0);
+
+  ul {
+    @include grid-row();
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      @include grid-column($columns: 3, $collapse: true);
+      text-align: center;
+
+      h3 {
+        color: $primary_gray;
+        font-size: rem-calc(36);
+        margin: 0;
+
+        small {
+          color: adjust-lightness($primary_gray, 20%);
+          display: block;
+          font: $bold rem-calc(10) $default_font;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
+
+.cookbook_body {
+  @include grid-row();
+}
+
+.cookbook_sidebar {
+  @include grid-column($columns: 3, $collapse: true);
+}
+
+.cookbook_sidebar_heading {
+  border-bottom: 2px solid lighten($secondary_gray, 35%);
+  color: $secondary_gray;
+  font: {
+    size: rem-calc(12);
+    weight: $normal;
+  }
+  margin: rem-calc(13 40 20 0);
+  padding-bottom: rem-calc(19);
+  text-transform: uppercase;
+}
+
+.cookbook_content {
+  @include grid-column($columns: 9, $collapse: true);
+}
+
+.cookbook_content_heading {
+  border-bottom: 2px solid lighten($secondary_gray, 35%);
+  color: saturate(lighten($primary_gray, 20%), 13%);
+  font: {
+    size: rem-calc(24);
+    weight: $normal;
+  }
+  margin: rem-calc(0 0 20 0);
+  padding-bottom: rem-calc(15);
+
+  small { @include inline-block; }
+
+  .fa-folder {
+    color: lighten($secondary_gray, 30%);
+    margin-right: rem-calc(15);
+  }
+
+  .label {
+    color: lighten($primary_gray, 20%);
+    font: $bold rem-calc(12) $accent_font;
+    margin-left: rem-calc(10);
+    padding: rem-calc(4 10);
+
+    &.secondary { background-color: lighten($secondary_gray, 35%); }
+  }
+}
+
+.rss_feed_link {
+  color: darken($primary_gray, 10%);
+  font: {
+    size: rem-calc(12);
+    weight: $bold;
+  }
+  @include inline-block;
+  margin-left: rem-calc(15);
+
+  .fa-rss { color: $primary_orange; }
+}
