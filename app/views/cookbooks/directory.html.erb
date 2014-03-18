@@ -1,23 +1,19 @@
 <div class="recently-updated">
   <h2>Recently Updated</h3>
+  <%= link_to 'View All', cookbooks_path(order: 'updated_at') %>
+  <%= link_to 'RSS', cookbooks_path(order: 'updated_at', format: 'atom') %>
 
   <% @recently_updated_cookbooks.each do |cookbook| %>
-    <div class="cookbook">
-      <h3><%= cookbook.name %></h3>
-      <%= cookbook.get_version!('latest').version %>
-      <span>Updated <%= cookbook.updated_at.to_s(:long) %></span>
-    </div>
+    <%= render cookbook %>
   <% end %>
 </div>
 
 <div class="recently-created">
   <h2>Recently Created</h3>
+  <%= link_to 'View All', cookbooks_path(order: 'created_at') %>
+  <%= link_to 'RSS', cookbooks_path(order: 'created_at', format: 'atom') %>
 
   <% @recently_created_cookbooks.each do |cookbook| %>
-    <div class="cookbook">
-      <h3><%= cookbook.name %></h3>
-      <%= cookbook.get_version!('latest').version %>
-      <span>Created <%= cookbook.created_at.to_s(:long) %></span>
-    </div>
+    <%= render cookbook %>
   <% end %>
 </div>

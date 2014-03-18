@@ -31,8 +31,11 @@ RSpec.configure do |config|
   # Custom helper modules and extensions
   config.include RequestHelpers
 
+  # Request helpers specifically useful for the API
   config.include ApiSpecHelpers, type: :request
-  config.include ApiViewSpecHelpers, type: :view
+
+  # View helpers
+  config.include ViewSpecHelpers, type: :view
 
   # Prohibit using the should syntax
   config.expect_with :rspec do |spec|

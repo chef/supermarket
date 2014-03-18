@@ -22,7 +22,7 @@ Supermarket::Application.routes.draw do
     end
   end
 
-  resources :cookbooks, only: [:index] do
+  resources :cookbooks, only: [:index, :show] do
     collection do
       get :directory
     end
