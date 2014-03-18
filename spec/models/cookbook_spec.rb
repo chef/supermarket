@@ -16,6 +16,7 @@ describe Cookbook do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:maintainer) }
     it { should validate_presence_of(:description) }
+    it { should validate_presence_of(:cookbook_versions) }
   end
 
   describe '#lowercase_name' do
@@ -36,11 +37,9 @@ describe Cookbook do
   end
 
   describe '#get_version!' do
-    let!(:kiwi) { create(:cookbook, name: 'kiwi', maintainer: 'fruit') }
     let!(:kiwi_0_1_0) do
       create(
         :cookbook_version,
-        cookbook: kiwi,
         version: '0.1.0',
         license: 'MIT'
       )
@@ -49,9 +48,18 @@ describe Cookbook do
     let!(:kiwi_0_2_0) do
       create(
         :cookbook_version,
-        cookbook: kiwi,
         version: '0.2.0',
         license: 'MIT'
+      )
+    end
+
+    let!(:kiwi) do
+      create(
+        :cookbook,
+        name: 'kiwi',
+        maintainer: 'fruit',
+        cookbook_versions_count: 0,
+        cookbook_versions: [kiwi_0_2_0, kiwi_0_1_0]
       )
     end
 

@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe Api::V1::CookbooksController do
   let!(:slow_cooking) do
-    create(:cookbook, name: 'slow_cooking', cookbook_versions_count: 0)
+    create(:cookbook, name: 'slow_cooking')
   end
 
   let!(:sashimi) do
-    create(:cookbook, name: 'sashimi', cookbook_versions_count: 0)
+    create(:cookbook, name: 'sashimi')
   end
 
   describe '#index' do
@@ -106,12 +106,8 @@ describe Api::V1::CookbooksController do
       it 'sends the cookbook_versions_urls to the view' do
         get :show, cookbook: 'sashimi', format: :json
 
-        expect(assigns[:cookbook_versions_urls]).to eql(
-          [
-            'http://test.host/api/v1/cookbooks/sashimi/versions/2_1_0',
-            'http://test.host/api/v1/cookbooks/sashimi/versions/1_1_0'
-          ]
-        )
+        expect(assigns[:cookbook_versions_urls]).to include('http://test.host/api/v1/cookbooks/sashimi/versions/2_1_0')
+        expect(assigns[:cookbook_versions_urls]).to include('http://test.host/api/v1/cookbooks/sashimi/versions/1_1_0')
       end
 
       it 'sends the latest_cookbook_version_url to the view' do

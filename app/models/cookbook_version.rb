@@ -11,7 +11,7 @@ class CookbookVersion < ActiveRecord::Base
   # --------------------
   validates :license, presence: true
   validates :version, presence: true, uniqueness: { scope: :cookbook }
-  validates :cookbook_id, presence: true
+  validates :cookbook, presence: true
   validates_attachment(
     :tarball,
     presence: true,
