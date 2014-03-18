@@ -35,6 +35,7 @@ class Cookbook < ActiveRecord::Base
   validates :lowercase_name, presence: true, uniqueness: true
   validates :maintainer, presence: true
   validates :description, presence: true
+  validates :cookbook_versions, presence: true
 
   #
   # Returns the name of the +Cookbook+ parameterized.
@@ -65,7 +66,7 @@ class Cookbook < ActiveRecord::Base
     version.gsub!(/_/, '.')
 
     if version == 'latest'
-      cookbook_versions.first!
+      cookbook_versions.first
     else
       cookbook_versions.find_by!(version: version)
     end
@@ -88,13 +89,15 @@ class Cookbook < ActiveRecord::Base
     transaction do
       self.maintainer = metadata.maintainer
       self.description = metadata.description
-      save!
 
-      cookbook_versions.create!(
+      cookbook_versions.build(
+        cookbook: self,
         license: metadata.license,
         version: metadata.version,
         tarball: tarball
       )
+
+      save!
     end
 
     true

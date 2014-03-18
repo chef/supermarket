@@ -11,8 +11,8 @@ FactoryGirl.define do
       cookbook_versions_count 2
     end
 
-    after(:create) do |cookbook, evaluator|
-      create_list(:cookbook_version, evaluator.cookbook_versions_count, cookbook: cookbook)
+    before(:create) do |cookbook, evaluator|
+      cookbook.cookbook_versions << build_list(:cookbook_version, evaluator.cookbook_versions_count, cookbook: cookbook)
     end
   end
 end
