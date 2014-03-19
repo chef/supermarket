@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319154111) do
+ActiveRecord::Schema.define(version: 20140319160549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(version: 20140319154111) do
     t.integer  "tarball_file_size"
     t.datetime "tarball_updated_at"
     t.integer  "download_count",       default: 0
+    t.text     "readme"
+    t.string   "readme_extension"
   end
 
   add_index "cookbook_versions", ["version", "cookbook_id"], name: "index_cookbook_versions_on_version_and_cookbook_id", unique: true, using: :btree
