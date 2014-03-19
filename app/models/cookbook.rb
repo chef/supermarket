@@ -36,6 +36,7 @@ class Cookbook < ActiveRecord::Base
   validates :maintainer, presence: true
   validates :description, presence: true
   validates :cookbook_versions, presence: true
+  validates :category, presence: true
 
   #
   # Returns the name of the +Cookbook+ parameterized.
