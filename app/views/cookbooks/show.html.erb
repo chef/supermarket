@@ -2,7 +2,7 @@
 <div>breadcrumbs</div>
 
 <div class="row collapse cookbook">
-  <div class="small-12 medium-6 columns">
+  <div class="small-12 medium-8 columns">
     <h1><%= @cookbook.name %></h1>
 
     <div class="button">Follow</div>
@@ -11,17 +11,17 @@
 
     <div><%= @cookbook.description %></div>
 
-    <div><%= @latest_version.ghfmd_readme %></div>
+    <div><%= render_readme(@latest_version.readme, @latest_version.readme_extension) %></div>
   </div>
 
-  <div class="small-12 medium-6 columns sidebar">
+  <div class="small-12 medium-4 columns sidebar">
     <div><%= link_to "Download Cookbook", download_cookbook_path(@cookbook) %></div>
     <%= @cookbook.download_count %> total downloads<br />
     <%= @latest_version.download_count %> latest version downloads
 
-    <div><i class="fa fa-money"></i><%= @latest_version.updated_at.strftime('%B %-d, %Y') %></div>
+    <div><i class="fa fa-money"></i>Updated <%= @latest_version.updated_at.strftime('%B %-d, %Y') %></div>
 
-    <div><%= @cookbook.created_at.strftime('%B %-d, %Y') %></div>
+    <div>Created on <%= @cookbook.created_at.strftime('%B %-d, %Y') %></div>
 
     <div><i class="fa fa-money"></i>Versions</div>
 
