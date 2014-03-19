@@ -16,7 +16,7 @@
 
   <div class="small-12 medium-6 columns sidebar">
     <div><%= link_to "Download Cookbook", download_cookbook_path(@cookbook) %></div>
-    <%= 100 %> total downloads<br />
+    <%= @cookbook.download_count %> total downloads<br />
     <%= @latest_version.download_count %> latest version downloads
 
     <div><i class="fa fa-money"></i><%= @latest_version.updated_at.strftime('%B %-d, %Y') %></div>

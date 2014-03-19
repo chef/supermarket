@@ -12,10 +12,16 @@ describe CookbookVersionsController do
       expect(response.status.to_i).to eql(302)
     end
 
-    it 'logs the download count' do
+    it 'logs the download count for the cookbook version' do
       expect do
         get :download, cookbook_id: cookbook.name, version: version.to_param
       end.to change { version.reload.download_count }.by(1)
+    end
+
+    it 'logs the download count for the cookbook' do
+      expect do
+        get :download, cookbook_id: cookbook.name, version: version.to_param
+      end.to change { cookbook.reload.download_count }.by(1)
     end
 
     it '404s when the cookbook does not exist' do
