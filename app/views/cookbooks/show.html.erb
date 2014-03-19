@@ -10,6 +10,8 @@
     <div><pre><code>knife cookbook site install <%= @cookbook.name %></code></pre></div>
 
     <div><%= @cookbook.description %></div>
+
+    <div><%= render_readme(@latest_version.readme, @latest_version.readme_extension) %></div>
   </div>
 
   <div class="small-12 medium-4 columns sidebar">

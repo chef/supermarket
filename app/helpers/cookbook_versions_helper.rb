@@ -1,14 +1,21 @@
 module CookbookVersionsHelper
+  include MarkdownHelper
+
   #
-  # Constructs the full URL for the given +CookbookVersion+
+  # Returns the given README +content+ as it should be rendered. If the given
+  # +extension+ indicates the README is formatted as Markdown, the +content+ is
+  # parsed as such.
   #
-  # @todo construct an S3 URL if we're using S3 for tarball storage
+  # @param content [String] the README content
+  # @param extension [String] the README extension
   #
-  # @param cookbook_version [CookbookVersion]
+  # @return [String] the README content ready to be rendered
   #
-  # @return [String] the tarball URL
-  #
-  def tarball_url(cookbook_version)
-    URI.join(request.url, cookbook_version.tarball.url).to_s
+  def render_readme(content, extension)
+    if %w(md mdown markdown).include?(extension.downcase)
+      render_markdown(content)
+    else
+      content
+    end
   end
 end

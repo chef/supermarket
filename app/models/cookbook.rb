@@ -86,7 +86,7 @@ class Cookbook < ActiveRecord::Base
   # @param metadata [CookbookUpload::Metadata] the cookbook metadata
   # @param tarball [File] the cookbook artifact
   #
-  def publish_version!(metadata, tarball)
+  def publish_version!(metadata, tarball, readme)
     transaction do
       self.maintainer = metadata.maintainer
       self.description = metadata.description
@@ -95,7 +95,9 @@ class Cookbook < ActiveRecord::Base
         cookbook: self,
         license: metadata.license,
         version: metadata.version,
-        tarball: tarball
+        tarball: tarball,
+        readme: readme.contents,
+        readme_extension: readme.extension
       )
 
       save!

@@ -87,13 +87,23 @@ describe CookbookUpload do
     end
 
     it 'yields an error if the tarball has no metadata.json entry' do
-      tarball = File.open('spec/support/cookbook_fixtures/no-metadata.tgz')
+      tarball = File.open('spec/support/cookbook_fixtures/no-metadata-or-readme.tgz')
 
       upload = CookbookUpload.new(cookbook: '{}', tarball: tarball)
       errors = upload.finish { |e, _| e }
 
       expect(errors.full_messages).
         to include(I18n.t('api.error_messages.missing_metadata'))
+    end
+
+    it 'yields an error if the tarball has no README entry' do
+      tarball = File.open('spec/support/cookbook_fixtures/no-metadata-or-readme.tgz')
+
+      upload = CookbookUpload.new(cookbook: '{}', tarball: tarball)
+      errors = upload.finish { |e, _| e }
+
+      expect(errors.full_messages).
+        to include(I18n.t('api.error_messages.missing_readme'))
     end
 
     it "yields an error if the tarball's metadata.json is not actually JSON" do
