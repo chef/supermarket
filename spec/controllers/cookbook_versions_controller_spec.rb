@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe CookbookVersionsController do
   describe '#download' do
-     let(:cookbook) { create(:cookbook) }
-     let(:version) {create(:cookbook_version, cookbook: cookbook) }
+    let(:cookbook) { create(:cookbook) }
+    let(:version) { create(:cookbook_version, cookbook: cookbook) }
 
     it '302s to the latest cookbook version file' do
       get :download, cookbook_id: cookbook.name, version: version.to_param

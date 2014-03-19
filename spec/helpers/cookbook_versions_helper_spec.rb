@@ -7,7 +7,7 @@ describe CookbookVersionsHelper do
     end
 
     it 'returns the content if no extension is specified' do
-      expect(render_readme('_hi_', '')).to eql("_hi_")
+      expect(render_readme('_hi_', '')).to eql('_hi_')
     end
   end
 end

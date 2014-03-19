@@ -33,13 +33,4 @@ class CookbookVersion < ActiveRecord::Base
   def to_param
     version.gsub(/\./, '_')
   end
-
-  #
-  # returns the README parsed with GitHub flavoured markdown
-  #
-  # TODO: implement this
-  #
-  def ghfmd_readme
-    "hi, I am a great readme"
-  end
 end

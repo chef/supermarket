@@ -30,8 +30,6 @@ Supermarket::Application.routes.draw do
     get 'versions/:version/download' => 'cookbook_versions#download', as: :version_download
   end
 
-
-
   resources :icla_signatures, path: 'icla-signatures' do
     collection do
       post :re_sign, path: 're-sign'
