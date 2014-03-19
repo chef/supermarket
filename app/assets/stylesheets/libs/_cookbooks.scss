@@ -4,7 +4,7 @@
 .cookbook_search {
   border-bottom: 2px solid lighten($secondary_gray, 35%);
   @include grid-row();
-  margin-bottom: rem-calc(40);
+  margin-bottom: rem-calc(35);
 }
 
 input[type="search"].cookbook_search_textfield {
@@ -12,7 +12,7 @@ input[type="search"].cookbook_search_textfield {
   border-left: 2px solid $silver;
   @include box-shadow(none);
   color: $concrete;
-  font-size: rem-calc(48);
+  font-size: rem-calc(44);
   @include grid-column($columns: 11, $collapse: true);
   height: auto;
   margin: rem-calc(0 0 10 0);
@@ -40,15 +40,25 @@ input[type="search"].cookbook_search_textfield {
 }
 
 .cookbook_search_button {
+  background-color: white;
+  color: $concrete;
+  font-size: rem-calc(44);
   @include grid-column($columns: 1, $collapse: true);
+  padding: 0;
+  text-align: right;
+
+  &:hover, &:active, &:focus {
+    background-color: white;
+    color: darken($concrete, 10%);
+  }
 }
 
 // Cookbook stats bar
 .cookbooks_stats {
   background-color: adjust-lightness($secondary_gray, 35%);
   @include border-radius(rem-calc(5));
-  padding: rem-calc(20 0 30);
-  margin: rem-calc(0 0 40 0);
+  padding: rem-calc(15 0 25);
+  margin: rem-calc(0 0 35 0);
 
   ul {
     @include grid-row();
@@ -326,3 +336,5 @@ input[type="search"].cookbook_search_textfield {
   border-color: $category_other;
   color: $category_other;
 }
+
+// Cookbook platform icons

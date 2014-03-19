@@ -40,11 +40,7 @@
 
 @media #{$xlarge-up} {
   html, body { font-size: 110%; }
-  .globalheader, .container { max-width: rem-calc(1440); }
+  .globalheader, .container { max-width: rem-calc(1280); }
   .left-off-canvas-toggle:before { margin-top: rem-calc(24.5); }
   .searchform .fa { right: rem-calc(12); top: rem-calc(24); }
-  .cookbook_listing {
-    @include block-grid($per-row: 4, $spacing: rem-calc(40));
-    margin: rem-calc(0 -20);
-  }
 }
