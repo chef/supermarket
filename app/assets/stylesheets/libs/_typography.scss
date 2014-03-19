@@ -1,3 +1,30 @@
+// Custom Fonts
+/*
+Platform icon letter mapping
+
+A AWS
+B centOS
+C Debian
+D Fedora
+E FreeBSD
+F Linux Mint
+G Mac OSX
+H Oracle
+I Red Hat
+J Scientific
+K SmartOS
+L SUSE
+M Ubuntu
+N Windows
+
+*/
+@font-face {
+  font-family: "platform_icons";
+  src: url(image-path('platform_icons.ttf')) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 // Typography defaults and overrides to foundation settings
 h1 {
   border-bottom: rem-calc(2) solid #ecedef;
