@@ -1,15 +1,32 @@
-/* Colors */
+// Chef Color Palette
 $primary_orange: #f8971d;
 $primary_gray: #5c6f7c;
 $primary_blue: #1e3b4c;
-
 $secondary_gray: #959ca2;
 $secondary_blue: #79bde8;
 $secondary_green: #73cbc8;
 $secondary_yellow: #fcb713;
 $secondary_red: #7c3a00;
 
-/* Fonts */
+// Category Colors
+$category_applications: #b1dcf0;
+$category_databases: #5c6f7c;
+$category_monitoring_and_trending: #f8971d;
+$category_networking: #7c3a00;
+$category_package_management: #f1c40f;
+$category_process_management: #73cbc7;
+$category_programming_languages: #82a0ad;
+$category_utilities: #c4cdd2;
+$category_web_servers: #51c15c;
+$category_other: #9b59b6;
+
+// Flatuicolors.com Palette
+$clouds: #ecf0f1;
+$silver: #bdc3c7;
+$concrete: #95a5a6;
+$asbestos: #7f8c8d;
+
+// Fonts
 $default_font: "helvetica neue", helvetica, arial, sans-serif;
 $accent_font: "Montserrat", $default_font;
 $bold: 700;
