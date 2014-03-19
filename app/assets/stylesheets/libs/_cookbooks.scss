@@ -46,24 +46,40 @@
     border-bottom: 2px solid lighten($secondary_gray, 35%);
     list-style: none;
     margin: rem-calc(0 40 20 0);
-    padding: rem-calc(0 0 5 0);
+    padding: rem-calc(0 0 10 0);
 
     li {
+      @include clearfix;
       line-height: rem-calc(30);
 
       &:before {
         content: "\00b7";
+        display: block;
+        float: left;
         font-size: rem-calc(52);
-        @include inline-block;
         line-height: rem-calc(15);
-        margin-top: rem-calc(-10);
+        margin: rem-calc(5 7 0 0);
       }
 
       a {
-        @include inline-block;
+        color: $secondary_gray;
         font-size: rem-calc(12);
+        display: block;
         line-height: rem-calc(30);
-        margin-top: rem-calc(-3);
+        padding-left: rem-calc(20);
+        @include single-transition($speed: 100ms);
+
+        &:hover {
+          background-color: $clouds;
+          @include border-radius(rem-calc(3));
+          color: darken($secondary_gray, 20%);
+        }
+
+        em {
+          font: normal $bold rem-calc(12) $accent_font;
+          @include inline-block;
+          min-width: rem-calc(28);
+        }
       }
     }
   }
@@ -76,7 +92,7 @@
     size: rem-calc(12);
     weight: $normal;
   }
-  margin: rem-calc(13 40 15 0);
+  margin: rem-calc(13 40 10 0);
   padding-bottom: rem-calc(19);
   text-transform: uppercase;
 }
@@ -138,6 +154,11 @@
   @include box-shadow(0 1px 1px rgba(0,0,0,0.25));
   min-height: rem-calc(300);
   padding: rem-calc(4 4 10 0);
+  @include single-transition(background-color, $speed: 100ms);
+
+  &:hover {
+    background-color: scale-lightness($clouds, -5%);
+  }
 }
 
 .cookbook_heading {
