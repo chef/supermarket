@@ -1,0 +1,9 @@
+<div class="order">
+  Sort By
+  <%= link_to 'Recently Updated', cookbooks_path(order: 'updated_at'), class: ('active' if params[:order] == 'updated_at') %>
+  <%= link_to 'Recently Created', cookbooks_path(order: 'created_at'), class: ('active' if params[:order] == 'created_at') %>
+</div>
+
+<%= link_to 'RSS', params.merge(format: 'atom') %>
+
+<%= render @cookbooks %>

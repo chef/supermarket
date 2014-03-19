@@ -1,0 +1,5 @@
+<div class="cookbook">
+  <h3><%= cookbook.name %></h3>
+  <%= cookbook.get_version!('latest').version %>
+  <span>Updated <%= cookbook.updated_at.to_s(:long) %></span>
+</div>
