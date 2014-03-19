@@ -336,20 +336,24 @@ input[type="search"].cookbook_search_textfield {
   @include box-sizing(border-box);
   list-style: none;
   margin: 0;
-  padding: rem-calc(20);
+  padding: rem-calc(20 0 20 20);
 }
 
 .cookbook_platform_icon {
   float: left;
-  height: rem-calc(12);
-  margin: rem-calc(0 10 10 0);
-  width: rem-calc(12);
+  font: {
+    family: "platform_icons";
+    size: rem-calc(16);
+  }
+  line-height: rem-calc(16);
+  margin: rem-calc(0 9 10 0);
 
   &[data-icon]:before {
     color: $asbestos;
-    font-family: "platform_icons";
     content: attr(data-icon);
   }
+
+  &.has-tip { border: none; }
 
   span { display: none; }
 }
