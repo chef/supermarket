@@ -1,5 +1,5 @@
 <form class="cookbook_search">
-  <input type="search" class="cookbook_search_textfield">
+  <input type="search" class="cookbook_search_textfield" placeholder="Search Cookbooks">
   <input type="submit" class="cookbook_search_button">
 </form>
 <section class="cookbooks_stats">
@@ -100,8 +100,8 @@
           <div class="cookbook category_databases">
             <h3 class="cookbook_heading">
               <%= gravatar_for current_user, size: 80 %>
-              application
-              <small>4.1.4</small>
+              elasticsearch_cluster
+              <small>2.4.0</small>
               <span class="cookbook_lastupdated">
                 <i class="fa fa-clock-o"></i> Updated Jan 27, 2014
               </span>
@@ -110,7 +110,7 @@
               <li></li>
             </ul>
             <div class="cookbook_category_and_stats">
-              <i class="fa fa-folder"></i> Applications
+              <i class="fa fa-folder"></i> Databases
               <ul class="cookbook_stats">
                 <li>
                   <i class="fa fa-download"></i> 37
@@ -128,8 +128,8 @@
           <div class="cookbook category_web_servers">
             <h3 class="cookbook_heading">
               <%= gravatar_for current_user, size: 80 %>
-              application
-              <small>4.1.4</small>
+              passenger_apache2
+              <small>2.2.0</small>
               <span class="cookbook_lastupdated">
                 <i class="fa fa-clock-o"></i> Updated Jan 27, 2014
               </span>
@@ -138,7 +138,7 @@
               <li></li>
             </ul>
             <div class="cookbook_category_and_stats">
-              <i class="fa fa-folder"></i> Applications
+              <i class="fa fa-folder"></i> Web Servers
               <ul class="cookbook_stats">
                 <li>
                   <i class="fa fa-download"></i> 37
@@ -155,6 +155,11 @@
 
   </article>
 </section>
+
+
+
+
+
 
 <div class="contributors">
   <%= render 'contributors_list_heading' %>

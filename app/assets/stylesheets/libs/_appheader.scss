@@ -22,6 +22,7 @@
   float: left;
   height: rem-calc(70);
   line-height: rem-calc(70);
+  @include single-transition(color, $speed: 100ms);
   text-align: center;
   width: rem-calc(66);
 
@@ -105,6 +106,7 @@
         font: rem-calc(12) $accent_font;
         line-height: rem-calc(70);
         padding: 0 rem-calc(20);
+        @include single-transition(color, $speed: 100ms);
         text-decoration: none;
         text-transform: uppercase;
       }
