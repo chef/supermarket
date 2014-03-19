@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20140319143432) do
     t.string   "tarball_content_type"
     t.integer  "tarball_file_size"
     t.datetime "tarball_updated_at"
+    t.integer  "download_count",       default: 0
   end
 
   add_index "cookbook_versions", ["version", "cookbook_id"], name: "index_cookbook_versions_on_version_and_cookbook_id", unique: true, using: :btree

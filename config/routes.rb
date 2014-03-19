@@ -22,7 +22,15 @@ Supermarket::Application.routes.draw do
     end
   end
 
-  resources :cookbooks, only: [:show]
+  resources :cookbooks, only: [:show] do
+    member do
+      get :download
+    end
+
+    get 'versions/:version/download' => 'cookbook_versions#download', as: :version_download
+  end
+
+
 
   resources :icla_signatures, path: 'icla-signatures' do
     collection do

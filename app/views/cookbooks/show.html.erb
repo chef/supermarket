@@ -10,9 +10,13 @@
     <p>dum readme</p>
   </div>
 
-  <div class="sidebar">
-    <p><%= link_to "Download Cookbook", cookbook_download_path(@cookbook) %></p>
-    <p><i class="fa-money"><%= @latest_version.updated_at.strftime('%B %-d, %Y') %></p>
+  <div class="small-12 medium-6 columns sidebar">
+    <p><%= link_to "Download Cookbook", download_cookbook_path(@cookbook) %></p>
+    9001 total downloads
+    1001 latest version downloads
+
+    <p><i class="fa fa-money"></i><%= @latest_version.updated_at.strftime('%B %-d, %Y') %></p>
+
     <p><%= @cookbook.created_at.strftime('%B %-d, %Y') %></p>
     <p><i class="fa-money">Versions</p>
       <p>

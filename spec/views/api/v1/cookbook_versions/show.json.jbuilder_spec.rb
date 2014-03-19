@@ -55,7 +55,7 @@ describe 'api/v1/cookbook_versions/show' do
     file_url = URI(json_body['file'])
 
     expect(file_url.relative?).to eql(false)
-    expect(file_url.to_s).to include('redis-test-v1.tgz')
+    expect(file_url.to_s).to include('cookbooks/redis/versions/1_2_0/download')
   end
 
   it "displays the cookbook version's average rating"
