@@ -1,28 +1,34 @@
 <!-- breadcrumbs -->
+<div>breadcrumbs</div>
 
-<div class="cookbook">
-  <div class="not-sidebar">
+<div class="row collapse cookbook">
+  <div class="small-12 medium-6 columns">
     <h1><%= @cookbook.name %></h1>
-    <p>dum follow button</p>
-    <p>dum knife command</p>
-    <p><%= @cookbook.description %></p>
 
-    <p>dum readme</p>
+    <div class="button">Follow</div>
+
+    <div><pre><code>knife cookbook site install <%= @cookbook.name %></code></pre></div>
+
+    <div><%= @cookbook.description %></div>
+
+    <div><%= @latest_version.ghfmd_readme %></div>
   </div>
 
   <div class="small-12 medium-6 columns sidebar">
-    <p><%= link_to "Download Cookbook", download_cookbook_path(@cookbook) %></p>
-    9001 total downloads
-    1001 latest version downloads
+    <div><%= link_to "Download Cookbook", download_cookbook_path(@cookbook) %></div>
+    <%= 100 %> total downloads<br />
+    <%= @latest_version.download_count %> latest version downloads
 
-    <p><i class="fa fa-money"></i><%= @latest_version.updated_at.strftime('%B %-d, %Y') %></p>
+    <div><i class="fa fa-money"></i><%= @latest_version.updated_at.strftime('%B %-d, %Y') %></div>
 
-    <p><%= @cookbook.created_at.strftime('%B %-d, %Y') %></p>
-    <p><i class="fa-money">Versions</p>
-      <p>
-        <% @cookbook.cookbook_versions.each do |version| %>
-          <%= version.version %>
-        <% end %>
-      </p>
+    <div><%= @cookbook.created_at.strftime('%B %-d, %Y') %></div>
+
+    <div><i class="fa fa-money"></i>Versions</div>
+
+    <div>
+      <% @cookbook.cookbook_versions.each do |version| %>
+        <%= version.version %>
+      <% end %>
+    </div>
   </div>
 </div>
