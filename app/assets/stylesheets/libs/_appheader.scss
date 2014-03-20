@@ -102,7 +102,6 @@
   }
 }
 
-
 // App-specific elements
 .searchform {
   float: right;
@@ -127,7 +126,6 @@
 @media #{$xlarge-up} {
   .searchform .fa { right: rem-calc(12); top: rem-calc(24); }
 }
-
 
 #searchfield {
   background-color: shade($primary_blue, 35%);
