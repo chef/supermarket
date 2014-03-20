@@ -1089,7 +1089,7 @@ $tooltip-font-size: rem-calc(10);
 $header-font-family: join("Montserrat", $body-font-family);
 $header-font-weight: 400;
 // $header-font-style: normal;
-$header-font-color: #6bb1e1;
+$header-font-color: saturate(lighten($primary_gray, 20%), 13%);
 $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 $header-bottom-margin: 1.5rem;

@@ -5,9 +5,8 @@
 
 @media #{$mobile-only} {
   html, body { font-size: 62.5%; }
-  .appnav, .searchform { display: none; }
+  .searchform { display: none; }
   .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
-  .mobileappnav { display: block; }
   .userdropdown {
     width: rem-calc(200);
 
