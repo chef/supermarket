@@ -190,7 +190,7 @@ input[type="search"].cookbook_search_textfield {
       width: auto;
 
       li {
-        border-left: rem-calc(10) solid;
+        border-left: rem-calc(5) solid;
         float: left;
         line-height: rem-calc(64);
         width: 50%;
@@ -211,6 +211,7 @@ input[type="search"].cookbook_search_textfield {
           border-right: rem-calc(2) solid lighten($secondary_gray, 35%);
           font-size: rem-calc(15);
           line-height: rem-calc(64);
+          padding-left: rem-calc(15);
 
           em {
             font-size: rem-calc(14);
