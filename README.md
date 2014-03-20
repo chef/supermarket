@@ -19,6 +19,9 @@ Project Status
 
 This project is currently in heavy active development and is a pre-release.
 
+[You can follow along with the project development in
+Trello.](https://trello.com/b/IGLbkBWL/supermarket)
+
 Talk To Us
 ----------
 
