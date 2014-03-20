@@ -68,7 +68,7 @@ class CookbooksController < ApplicationController
   #
   def show
     @cookbook = Cookbook.with_name(params[:id]).first!
-    @latest_version = @cookbook.get_version!('latest')
+    @latest_version = @cookbook.latest_cookbook_version
     @cookbook_versions = @cookbook.cookbook_versions
     @maintainer = User.first
     @collaborators = [User.first]
@@ -82,7 +82,7 @@ class CookbooksController < ApplicationController
   #
   def download
     cookbook = Cookbook.with_name(params[:id]).first!
-    latest_version = cookbook.get_version!('latest')
+    latest_version = cookbook.latest_cookbook_version
     redirect_to cookbook_version_download_url(cookbook, latest_version)
   end
 
