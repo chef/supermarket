@@ -59,9 +59,20 @@ class CookbooksController < ApplicationController
   end
 
   #
-  # GET /cookbooks/:cookbook
+  # GET /cookbooks/:name - NOTE: is this the right syntax?
+  #
+  # @todo Provide real maintainer and collaborator records to the view once
+  # oc-id is in place
+  #
+  # Displays a cookbook.
   #
   def show
+    @cookbook = Cookbook.find_by(name: params[:id])
+    @latest_version = @cookbook.get_version!('latest')
+    @cookbook_versions = @cookbook.cookbook_versions
+    @maintainer = User.first
+    @collaborators = [User.first]
+    @supported_platforms = []
   end
 
   private
