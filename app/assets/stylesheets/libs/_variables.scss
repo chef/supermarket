@@ -27,6 +27,34 @@ $concrete: #95a5a6;
 $asbestos: #7f8c8d;
 
 // Fonts
+
+// Custom Fonts
+/*
+Platform icon letter mapping
+
+A AWS
+B centOS
+C Debian
+D Fedora
+E FreeBSD
+F Linux Mint
+G Mac OSX
+H Oracle
+I Red Hat
+J Scientific
+K SmartOS
+L SUSE
+M Ubuntu
+N Windows
+
+*/
+@font-face {
+  font-family: "platform_icons";
+  src: url(image-path('platform_icons.ttf')) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 $default_font: "helvetica neue", helvetica, arial, sans-serif;
 $accent_font: "Montserrat", $default_font;
 $bold: 700;
