@@ -72,7 +72,7 @@ class CookbooksController < ApplicationController
     @cookbook_versions = @cookbook.cookbook_versions
     @maintainer = User.first
     @collaborators = [User.first]
-    @supported_platforms = []
+    @supported_platforms = @cookbook.supported_platforms
   end
 
   #

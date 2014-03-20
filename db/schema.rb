@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320152951) do
+ActiveRecord::Schema.define(version: 20140320153919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -198,6 +198,16 @@ ActiveRecord::Schema.define(version: 20140320152951) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "supported_platforms", force: true do |t|
+    t.string   "name",                                     null: false
+    t.string   "version_constraint",  default: ">= 0.0.0", null: false
+    t.integer  "cookbook_version_id",                      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "supported_platforms", ["cookbook_version_id"], name: "index_supported_platforms_on_cookbook_version_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
