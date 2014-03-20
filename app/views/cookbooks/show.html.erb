@@ -19,6 +19,10 @@
     <%= @cookbook.download_count %> total downloads<br />
     <%= @latest_version.download_count %> latest version downloads
 
+    <% if @cookbook.external_url.present? %>
+      <%= link_to 'View Source', @cookbook.external_url, class: 'button' %>
+    <% end %>
+
     <div>
       <h4><i class="fa fa-money"></i> Updated <%= @latest_version.updated_at.strftime('%B %-d, %Y') %></h4>
 
