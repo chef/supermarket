@@ -146,7 +146,7 @@ class CookbookUpload
     #
     def parse_tarball_metadata(&block)
       metadata = Metadata.new
-      parsing_errors = ActiveModel::Errors.new([])
+      errors = ActiveModel::Errors.new([])
 
       begin
         raise TarballHasNoPath unless tarball.respond_to?(:path)
@@ -163,24 +163,18 @@ class CookbookUpload
           end
         end
       rescue JSON::ParserError
-        parsing_errors.tap do |errors|
-          errors.add(:base, I18n.t('api.error_messages.metadata_not_json'))
-        end
+        errors.add(:base, I18n.t('api.error_messages.metadata_not_json'))
       rescue MissingMetadata
-        parsing_errors.tap do |errors|
-          errors.add(:base, I18n.t('api.error_messages.missing_metadata'))
-        end
+        errors.add(:base, I18n.t('api.error_messages.missing_metadata'))
+      rescue Virtus::CoercionError
+        errors.add(:base, I18n.t('api.error_messages.invalid_platforms'))
       rescue Zlib::GzipFile::Error
-        parsing_errors.tap do |errors|
-          errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
-        end
+        errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
       rescue TarballHasNoPath
-        parsing_errors.tap do |errors|
-          errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
-        end
+        errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
       end
 
-      block.call(parsing_errors, metadata)
+      block.call(errors, metadata)
     end
 
     #
@@ -231,17 +225,15 @@ class CookbookUpload
     #
     def parse_cookbook_json(&block)
       json = {}
-      parsing_errors = ActiveModel::Errors.new([])
+      errors = ActiveModel::Errors.new([])
 
       begin
         json = JSON.parse(@cookbook_data)
       rescue JSON::ParserError
-        parsing_errors.tap do |errors|
-          errors.add(:base, I18n.t('api.error_messages.cookbook_not_json'))
-        end
+        errors.add(:base, I18n.t('api.error_messages.cookbook_not_json'))
       end
 
-      block.call(parsing_errors, json)
+      block.call(errors, json)
     end
   end
 end
