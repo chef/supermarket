@@ -1,0 +1,21 @@
+<div class="breadcrumbs">
+  <%= link_to 'Cookbooks', cookbooks_path %>
+  <%= link_to params[:category].titleize, cookbooks_category_path(params[:category]) if params[:category] %>
+</div>
+
+<%= render 'search' %>
+
+<h1><%= feed_title %></h1>
+
+<%= render 'categories' %>
+
+<div class="order">
+  Sort By
+  <%= link_to 'Recently Updated', params.merge(order: 'recently_updated'), class: ('active' if params[:order] == 'recently_updated') %>
+  <%= link_to 'Recently Added', params.merge(order: 'recently_added'), class: ('active' if params[:order] == 'recently_added') %>
+</div>
+
+<%= link_to 'RSS', params.merge(format: 'atom') %>
+
+<%= render @cookbooks %>
+<%= paginate @cookbooks %>

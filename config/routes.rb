@@ -22,6 +22,12 @@ Supermarket::Application.routes.draw do
     end
   end
 
+  get 'cookbooks/directory' => 'cookbooks#directory'
+  get 'cookbooks(/categories/:category)' => 'cookbooks#index', as: :cookbooks_category
+  get 'cookbooks/categories', to: redirect('/cookbooks')
+
+  resources :cookbooks, only: [:index, :show]
+
   resources :icla_signatures, path: 'icla-signatures' do
     collection do
       post :re_sign, path: 're-sign'

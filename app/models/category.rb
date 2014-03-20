@@ -4,4 +4,13 @@ class Category < ActiveRecord::Base
   # Associations
   # --------------------
   has_many :cookbooks
+
+  #
+  # Returns the name of the +Category+ parameterized.
+  #
+  # @return [String] the name of the +Category+ parameterized
+  #
+  def to_param
+    name.parameterize
+  end
 end

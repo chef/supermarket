@@ -25,6 +25,7 @@ gem 'jbuilder'
 gem 'pg_search'
 gem 'paperclip'
 gem 'virtus', require: false
+gem 'kaminari'
 
 gem 'sass-rails',   '~> 4.0.1'
 gem 'compass-rails'
