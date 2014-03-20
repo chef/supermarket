@@ -23,14 +23,14 @@
     <%= link_to 'Sign In', sign_in_path, :class => 'signin', rel: 'sign_in' %>
   <% end %>
 </nav>
-<form action="" class="searchform">
+<form action="" class="searchform show-for-small-up">
   <i class="fa fa-search fa-fw"></i>
   <input type="search" id="searchfield" name="searchfield">
 </form>
-<nav class="appnav">
+<nav class="appnav show-for-medium-up">
   <ul>
-    <li><a href="#" data-hover="Cookbooks">Cookbooks</a></li>
-    <li><%= link_to 'Contribute', icla_signatures_path, "data-hover" => "Contribute" %></li>
-    <li><a href="#" data-hover="Resources">Resources</a></li>
+    <li><a href="#">Cookbooks</a></li>
+    <li><%= link_to 'Contribute', icla_signatures_path %></li>
+    <li><a href="#">Resources</a></li>
   </ul>
 </nav>

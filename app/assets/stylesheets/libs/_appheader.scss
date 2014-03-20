@@ -6,14 +6,33 @@
   height: rem-calc(70);
 }
 
+@media #{$mobile-only} {
+  .globalheader {
+    position: relative;
+  }
+}
+
 // logo and Chef properties toggle column
 .logo_and_nav_toggle {
   @include grid-column($columns: 3, $collapse: true);
 }
 
+@media #{$mobile-only} {
+  .logo_and_nav_toggle {
+    @include grid-column($columns: 10, $collapse: true);
+    position: static;
+  }
+}
+
 // Navigation, search and user menu column
 .navigation_search_and_avatar {
   @include grid-column($columns: 9, $collapse: true);
+}
+
+@media #{$mobile-only} {
+  .navigation_search_and_avatar {
+    @include grid-column($columns: 2, $collapse: true);
+  }
 }
 
 .left-off-canvas-toggle {
@@ -30,6 +49,22 @@
 
   &:visited { color: adjust-lightness($primary_blue, 20%); }
   &:hover { color: adjust-lightness($primary_blue, 40%); }
+}
+
+@media #{$mobile-only} {
+  .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
+}
+
+@media #{$small-only} {
+  .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
+}
+
+@media #{$medium-only} {
+  .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
+}
+
+@media #{$xlarge-up} {
+  .left-off-canvas-toggle:before { margin-top: rem-calc(24.5); }
 }
 
 .off-canvas-list li a:hover {
@@ -58,6 +93,15 @@
   }
 }
 
+@media #{$mobile-only} {
+  .logochef {
+    float: none;
+    left: 50%;
+    margin-left: rem-calc(-73.5);
+    position: absolute;
+  }
+}
+
 
 // App-specific elements
 .searchform {
@@ -75,6 +119,15 @@
     z-index: 1;
   }
 }
+
+@media #{$small-only} {
+  .searchform { margin-right: rem-calc(-8); }
+}
+
+@media #{$xlarge-up} {
+  .searchform .fa { right: rem-calc(12); top: rem-calc(24); }
+}
+
 
 #searchfield {
   background-color: shade($primary_blue, 35%);
@@ -155,6 +208,12 @@
       height: auto;
       max-width: 100%;
     }
+  }
+}
+
+@media #{$mobile-only} {
+  .usermenu {
+    margin: rem-calc(0 20 0 0);
   }
 }
 

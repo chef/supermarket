@@ -2,14 +2,14 @@
 
 // Cookbooks search
 .cookbook_search {
-  border-bottom: 2px solid lighten($secondary_gray, 35%);
+  border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
   @include grid-row();
   margin-bottom: rem-calc(35);
 }
 
 input[type="search"].cookbook_search_textfield {
   border: none;
-  border-left: 2px solid $silver;
+  border-left: rem-calc(2) solid $silver;
   @include box-shadow(none);
   color: $concrete;
   font-size: rem-calc(44);
@@ -97,10 +97,10 @@ input[type="search"].cookbook_search_textfield {
   @include grid-column($columns: 3, $collapse: true);
 
   ul {
-    border-bottom: 2px solid lighten($secondary_gray, 35%);
+    border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
     @include box-sizing(border-box);
     list-style: none;
-    margin: rem-calc(0 40 20 0);
+    margin: rem-calc(0 30 20 0);
     padding: rem-calc(0 0 20 0);
 
     li {
@@ -140,14 +140,26 @@ input[type="search"].cookbook_search_textfield {
   }
 }
 
+@media #{$mobile-only} {
+  .cookbook_sidebar {
+    @include grid-row();
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_sidebar {
+    @include grid-column($columns: 4, $collapse: true);
+  }
+}
+
 .cookbook_sidebar_heading {
-  border-bottom: 2px solid lighten($secondary_gray, 35%);
+  border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
   color: $concrete;
   font: {
     size: rem-calc(12);
     weight: $normal;
   }
-  margin: rem-calc(13 40 20 0);
+  margin: rem-calc(13 30 20 0);
   padding-bottom: rem-calc(19);
   text-transform: uppercase;
 }
@@ -157,8 +169,20 @@ input[type="search"].cookbook_search_textfield {
   @include grid-column($columns: 9, $collapse: true);
 }
 
+@media #{$mobile-only} {
+  .cookbook_content {
+    @include grid-row();
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_content {
+    @include grid-column($columns: 8, $collapse: true);
+  }
+}
+
 .cookbook_content_heading {
-  border-bottom: 2px solid lighten($secondary_gray, 35%);
+  border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
   color: saturate(lighten($primary_gray, 20%), 13%);
   font: {
     size: rem-calc(24);
@@ -201,6 +225,20 @@ input[type="search"].cookbook_search_textfield {
   margin: rem-calc(0 -20);
 }
 
+@media #{$mobile-only} {
+  .cookbook_listing {
+    @include block-grid($per-row: 1, $spacing: rem-calc(20));
+    margin: rem-calc(0 -10);
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_listing {
+    @include block-grid($per-row: 2, $spacing: rem-calc(20));
+    margin: rem-calc(0 -10);
+  }
+}
+
 // Cookbook
 .cookbook {
   background-color: $clouds;
@@ -215,6 +253,18 @@ input[type="search"].cookbook_search_textfield {
 
   &:hover {
     background-color: scale-lightness($clouds, -5%);
+  }
+}
+
+@media #{$mobile-only} {
+  .cookbook {
+    min-height: 0;
+  }
+}
+
+@media #{$small-only} {
+  .cookbook {
+    min-height: rem-calc(220);
   }
 }
 
@@ -238,6 +288,15 @@ input[type="search"].cookbook_search_textfield {
     width: rem-calc(24);
   }
 
+  @media #{$mobile-only} {
+    .gravatar {
+      height: rem-calc(20);
+      left: rem-calc(-10);
+      top: rem-calc(20);
+      width: rem-calc(20);
+    }
+  }
+
   small {
     color: desaturate(lighten($primary_blue, 40%), 20%);
     display: block;
@@ -246,6 +305,19 @@ input[type="search"].cookbook_search_textfield {
       weight: $bold;
     }
     margin: rem-calc(19 0 15);
+  }
+
+  @media #{$mobile-only} {
+    small {
+      display: inline;
+      margin: 0;
+    }
+  }
+}
+
+@media #{$mobile-only} {
+  .cookbook_heading {
+    padding: rem-calc(15 10 10 20);
   }
 }
 
@@ -260,6 +332,13 @@ input[type="search"].cookbook_search_textfield {
   }
 }
 
+@media #{$mobile-only} {
+  .cookbook_lastupdated {
+    display: block;
+    margin-top: rem-calc(5);
+  }
+}
+
 .cookbook_category_and_stats {
   bottom: rem-calc(10);
   color: $asbestos;
@@ -267,6 +346,13 @@ input[type="search"].cookbook_search_textfield {
   padding: rem-calc(0 20 0);
   position: absolute;
   z-index: 1;
+}
+
+@media #{$mobile-only} {
+  .cookbook_category_and_stats {
+    padding: rem-calc(10 10 0 20);
+    position: static;
+  }
 }
 
 .cookbook_stats {
@@ -278,6 +364,14 @@ input[type="search"].cookbook_search_textfield {
     font: $bold rem-calc(10) $default_font;
     @include inline-block;
     margin-right: rem-calc(10);
+  }
+}
+
+@media #{$mobile-only} {
+  .cookbook_stats {
+    @include inline-block;
+    margin: rem-calc(-7 0 0 20);
+    padding: 0;
   }
 }
 
