@@ -263,3 +263,14 @@
     }
   }
 }
+
+@media #{$mobile-only} {
+  .userdropdown {
+    width: rem-calc(250);
+
+    li a {
+      font-size: rem-calc(18);
+      padding: rem-calc(20);
+    }
+  }
+}
