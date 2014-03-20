@@ -98,9 +98,10 @@ input[type="search"].cookbook_search_textfield {
 
   ul {
     border-bottom: 2px solid lighten($secondary_gray, 35%);
+    @include box-sizing(border-box);
     list-style: none;
     margin: rem-calc(0 40 20 0);
-    padding: rem-calc(0 0 10 0);
+    padding: rem-calc(0 0 20 0);
 
     li {
       @include clearfix;
@@ -146,7 +147,7 @@ input[type="search"].cookbook_search_textfield {
     size: rem-calc(12);
     weight: $normal;
   }
-  margin: rem-calc(13 40 10 0);
+  margin: rem-calc(13 40 20 0);
   padding-bottom: rem-calc(19);
   text-transform: uppercase;
 }
@@ -170,7 +171,7 @@ input[type="search"].cookbook_search_textfield {
 
   .fa-folder {
     color: lighten($secondary_gray, 30%);
-    margin-right: rem-calc(15);
+    margin-right: rem-calc(11);
   }
 
   .label {
@@ -206,7 +207,7 @@ input[type="search"].cookbook_search_textfield {
   border-left: rem-calc(20) solid $silver;
   @include border-right-radius(rem-calc(5));
   @include box-shadow(0 1px 1px rgba(0,0,0,0.25));
-  min-height: rem-calc(300);
+  min-height: rem-calc(322);
   padding: rem-calc(4 4 10 0);
   position: relative;
   @include single-transition(background-color, $speed: 100ms);
