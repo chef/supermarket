@@ -39,6 +39,12 @@ input[type="search"].cookbook_search_textfield {
   }
 }
 
+@media #{$mobile-only} {
+  input[type="search"].cookbook_search_textfield {
+    font-size: rem-calc(36);
+  }
+}
+
 .cookbook_search_button {
   background-color: white;
   color: $concrete;
@@ -51,6 +57,12 @@ input[type="search"].cookbook_search_textfield {
   &:hover, &:active, &:focus {
     background-color: white;
     color: darken($concrete, 10%);
+  }
+}
+
+@media #{$mobile-only} {
+  .cookbook_search_button {
+    font-size: rem-calc(40);
   }
 }
 
@@ -104,7 +116,6 @@ input[type="search"].cookbook_search_textfield {
     padding: rem-calc(0 0 20 0);
 
     li {
-      @include clearfix;
       line-height: rem-calc(30);
 
       &:before {
