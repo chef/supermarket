@@ -39,13 +39,4 @@ describe CookbookVersion do
       expect(cookbook_version.to_param).to eql('1_1_0')
     end
   end
-
-  context '#ghfmd_readme' do
-    it 'returns the README parsed with GitHub flavored markdown' do
-      cookbook = create(:cookbook)
-      cookbook_version = create(:cookbook_version, cookbook: cookbook)
-
-      expect(cookbook_version.ghfmd_readme).to be_present
-    end
-  end
 end
