@@ -1,0 +1,60 @@
+<!-- breadcrumbs -->
+<div>breadcrumbs</div>
+
+<div class="row collapse cookbook">
+  <div class="small-12 medium-8 columns">
+    <h1><%= @cookbook.name %></h1>
+
+    <div class="button">Follow</div>
+
+    <div><pre><code>knife cookbook site install <%= @cookbook.name %></code></pre></div>
+
+    <div><%= @cookbook.description %></div>
+  </div>
+
+  <div class="small-12 medium-4 columns sidebar">
+    <% if @cookbook.external_url.present? %>
+      <%= link_to 'View Source', @cookbook.external_url, class: 'button' %>
+    <% end %>
+
+    <div>
+      <h4><i class="fa fa-money"></i> Updated <%= @latest_version.updated_at.strftime('%B %-d, %Y') %></h4>
+
+      <div>Created on <%= @cookbook.created_at.strftime('%B %-d, %Y') %></div>
+    </div>
+
+    <div>
+      <h4><i class="fa fa-money"></i> Versions</h4>
+      <ul>
+        <% @cookbook_versions.each_with_index do |version, index| %>
+          <% if index < @cookbook_versions.size - 1 %>
+            <li><%= version.version %>,</li>
+          <% else %>
+            <li><%= version.version %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+    <div>
+      <h4><i class="fa fa-money"></i> License</h4>
+      <p><%= @latest_version.license %></p>
+    </div>
+
+    <div>
+      <h4><i class="fa fa-money"></i> Maintainer &amp; Collaborators</h4>
+      <div>
+        <%= link_to @maintainer do %>
+          <%= gravatar_for @maintainer %>
+          <%= @maintainer.username %>
+          <%= @maintainer.name %>
+        <% end %>
+      </div>
+      <div>
+        <% @collaborators.each do |collaborator| %>
+          <%= link_to gravatar_for(collaborator), collaborator %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
