@@ -143,6 +143,41 @@ input[type="search"].cookbook_search_textfield {
 @media #{$mobile-only} {
   .cookbook_sidebar {
     @include grid-row();
+
+    ul {
+      @include grid-column($columns: 12, $collapse: true);
+      margin: rem-calc(0 -20 40);
+      padding: 0;
+      width: auto;
+
+      li {
+        float: left;
+        line-height: rem-calc(64);
+        width: 50%;
+
+        &:before {
+          font-size: rem-calc(64);
+          line-height: rem-calc(50);
+          margin-left: rem-calc(8);
+        }
+
+        &:nth-child(2n+2) a {
+          border-right: none;
+        }
+
+        a {
+          border-top: rem-calc(2) solid lighten($secondary_gray, 35%);
+          border-right: rem-calc(2) solid lighten($secondary_gray, 35%);
+          font-size: rem-calc(15);
+          line-height: rem-calc(64);
+
+          em {
+            font-size: rem-calc(14);
+            margin-top: rem-calc(-5);
+          }
+        }
+      }
+    }
   }
 }
 
@@ -162,6 +197,12 @@ input[type="search"].cookbook_search_textfield {
   margin: rem-calc(13 30 20 0);
   padding-bottom: rem-calc(19);
   text-transform: uppercase;
+}
+
+@media #{$mobile-only} {
+  .cookbook_sidebar_heading {
+    display: none;
+  }
 }
 
 // Cookbooks body column
