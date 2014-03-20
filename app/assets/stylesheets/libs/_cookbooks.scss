@@ -190,11 +190,13 @@ input[type="search"].cookbook_search_textfield {
       width: auto;
 
       li {
+        border-left: rem-calc(10) solid;
         float: left;
         line-height: rem-calc(64);
         width: 50%;
 
         &:before {
+          display: none;
           font-size: rem-calc(64);
           line-height: rem-calc(50);
           margin-left: rem-calc(8);
@@ -519,6 +521,7 @@ input[type="search"].cookbook_search_textfield {
   font: {
     family: "platform_icons";
     size: rem-calc(16);
+    weight: $normal;
   }
   line-height: rem-calc(16);
   margin: rem-calc(0 9 10 0);
@@ -531,9 +534,4 @@ input[type="search"].cookbook_search_textfield {
   &.has-tip { border: none; }
 
   span { display: none; }
-}
-
-.icon_aws {
-  background: url(image-path('platform_aws.svg')) no-repeat;
-  @include background-size(rem-calc(12) auto);
 }
