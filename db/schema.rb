@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319143432) do
+ActiveRecord::Schema.define(version: 20140319154111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20140319143432) do
     t.string   "tarball_content_type"
     t.integer  "tarball_file_size"
     t.datetime "tarball_updated_at"
+    t.integer  "download_count",       default: 0
   end
 
   add_index "cookbook_versions", ["version", "cookbook_id"], name: "index_cookbook_versions_on_version_and_cookbook_id", unique: true, using: :btree
@@ -107,6 +108,7 @@ ActiveRecord::Schema.define(version: 20140319143432) do
     t.boolean  "deprecated",     default: false
     t.integer  "category_id",                    null: false
     t.string   "lowercase_name"
+    t.integer  "download_count", default: 0
   end
 
   add_index "cookbooks", ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true, using: :btree

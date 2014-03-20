@@ -173,4 +173,25 @@ describe CookbooksController do
       expect(response.status.to_i).to eql(404)
     end
   end
+
+  describe '#download' do
+    let(:cookbook) do
+      cookbook = create(:cookbook)
+    end
+
+    it '302s to the cookbook version download  path' do
+      version = create(:cookbook_version, cookbook: cookbook)
+
+      get :download, id: cookbook.name
+
+      expect(response).to redirect_to(cookbook_version_download_url(cookbook, version))
+      expect(response.status.to_i).to eql(302)
+    end
+
+    it '404s when the cookbook does not exist' do
+      get :download, id: 'snarfle'
+
+      expect(response.status.to_i).to eql(404)
+    end
+  end
 end
