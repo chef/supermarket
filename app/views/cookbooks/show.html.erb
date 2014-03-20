@@ -13,6 +13,10 @@
   </div>
 
   <div class="small-12 medium-4 columns sidebar">
+    <div><%= link_to "Download Cookbook", download_cookbook_path(@cookbook) %></div>
+    <%= @cookbook.download_count %> total downloads<br />
+    <%= @latest_version.download_count %> latest version downloads
+
     <% if @cookbook.external_url.present? %>
       <%= link_to 'View Source', @cookbook.external_url, class: 'button' %>
     <% end %>

@@ -26,7 +26,13 @@ Supermarket::Application.routes.draw do
   get 'cookbooks(/categories/:category)' => 'cookbooks#index', as: :cookbooks_category
   get 'cookbooks/categories', to: redirect('/cookbooks')
 
-  resources :cookbooks, only: [:index, :show]
+  resources :cookbooks, only: [:index, :show] do
+    member do
+      get :download
+    end
+
+    get 'versions/:version/download' => 'cookbook_versions#download', as: :version_download
+  end
 
   resources :icla_signatures, path: 'icla-signatures' do
     collection do
