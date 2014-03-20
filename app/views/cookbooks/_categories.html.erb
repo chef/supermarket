@@ -1,5 +1,10 @@
-<div class="categories">
+<aside class="cookbook_sidebar">
+  <h4 class="cookbook_sidebar_heading">Categories</h4>
+  <ul>
   <% @categories.each do |category| %>
-    <%= link_to category.name, cookbooks_category_path(category), class: ('active' if params[:category] == category.to_param) %>
+    <li class="category_<%= category.name.downcase %>">
+      <%= link_to category.name, cookbooks_category_path(category), class: ('active' if params[:category] == category.to_param) %>
+    </li>
   <% end %>
-</div>
+  </ul>
+</aside>

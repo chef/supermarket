@@ -1,5 +1,41 @@
-<div class="cookbook">
-  <h3><%= cookbook.name %></h3>
-  <%= cookbook.get_version!('latest').version %>
-  <span>Updated <%= cookbook.updated_at.to_s(:long) %></span>
-</div>
+<li>
+  <a href="#">
+    <div class="cookbook">
+      <h3 class="cookbook_heading">
+        <%#= gravatar_for @user, size: 80 %>
+        <%= cookbook.name %>
+        <small><%= cookbook.get_version!('latest').version %></small>
+        <span class="cookbook_lastupdated">
+          <i class="fa fa-clock-o"></i> Updated <%= cookbook.updated_at.to_s(:long) %>
+        </span>
+      </h3>
+      <div class="cookbook_category_and_stats">
+        <i class="fa fa-folder"></i> Applications
+        <ul class="cookbook_stats">
+          <li>
+            <i class="fa fa-download"></i> 37
+          </li>
+          <li>
+            <i class="fa fa-users"></i> 2
+          </li>
+        </ul>
+      </div>
+      <ul class="cookbook_platforms show-for-medium-up">
+        <li class="cookbook_platform_icon has-tip" title="AWS" data-tooltip data-icon="A"><span>AWS</span></li>
+        <li class="cookbook_platform_icon has-tip" title="CentOS" data-tooltip data-icon="B"><span>CentOS</span></li>
+        <li class="cookbook_platform_icon has-tip" title="Debian" data-tooltip data-icon="C"><span>Debian</span></li>
+        <li class="cookbook_platform_icon has-tip" title="Fedora" data-tooltip data-icon="D"><span>Fedora</span></li>
+        <li class="cookbook_platform_icon has-tip" title="FreeBSD" data-tooltip data-icon="E"><span>FreeBSD</span></li>
+        <li class="cookbook_platform_icon has-tip" title="Linux Mint" data-tooltip data-icon="F"><span>Linux Mint</span></li>
+        <li class="cookbook_platform_icon has-tip" title="Mac OSX" data-tooltip data-icon="G"><span>Mac OSX</span></li>
+        <li class="cookbook_platform_icon has-tip" title="Oracle" data-tooltip data-icon="H"><span>Oracle</span></li>
+        <li class="cookbook_platform_icon has-tip" title="Red Hat" data-tooltip data-icon="I"><span>Red Hat</span></li>
+        <li class="cookbook_platform_icon has-tip" title="Scientific" data-tooltip data-icon="J"><span>Scientific</span></li>
+        <li class="cookbook_platform_icon has-tip" title="SmartOS" data-tooltip data-icon="K"><span>SmartOS</span></li>
+        <li class="cookbook_platform_icon has-tip" title="SUSE" data-tooltip data-icon="L"><span>SUSE</span></li>
+        <li class="cookbook_platform_icon has-tip" title="Ubuntu" data-tooltip data-icon="M"><span>Ubuntu</span></li>
+        <li class="cookbook_platform_icon has-tip" title="Windows" data-tooltip data-icon="N"><span>Windows</span></li>
+      </ul>
+    </div>
+  </a>
+</li>

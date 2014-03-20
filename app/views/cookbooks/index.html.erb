@@ -5,17 +5,27 @@
 
 <%= render 'search' %>
 
-<h1><%= feed_title %></h1>
+<section class="cookbook_body">
 
-<%= render 'categories' %>
+  <div class="order right">
+    Sort By
+    <%= link_to 'Recently Updated', params.merge(order: 'recently_updated'), class: ('active' if params[:order] == 'recently_updated') %>
+    <%= link_to 'Recently Added', params.merge(order: 'recently_added'), class: ('active' if params[:order] == 'recently_added') %>
+  </div>
+  <h1 class="cookbook_content_heading">
+    <i class="fa fa-folder"></i>
+    <%= feed_title %>
+    <small>
+      <!--<span class="label secondary radius">56</span>-->
+      <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
+    </small>
+  </h1>
 
-<div class="order">
-  Sort By
-  <%= link_to 'Recently Updated', params.merge(order: 'recently_updated'), class: ('active' if params[:order] == 'recently_updated') %>
-  <%= link_to 'Recently Added', params.merge(order: 'recently_added'), class: ('active' if params[:order] == 'recently_added') %>
-</div>
+  <%= render 'categories' %>
 
-<%= link_to 'RSS', params.merge(format: 'atom') %>
+  <article class="cookbook_content">
+    <ul class="cookbook_listing"><%= render @cookbooks %></ul>
+    <%= paginate @cookbooks %>
+  </article>
 
-<%= render @cookbooks %>
-<%= paginate @cookbooks %>
+</section>
