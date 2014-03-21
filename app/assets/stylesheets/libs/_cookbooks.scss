@@ -184,7 +184,8 @@ input[type="search"].cookbook_search_textfield {
     @include grid-row();
 
     ul {
-      @include grid-column($columns: 12, $collapse: true);
+      @include clearfix;
+      @include grid-column($columns: 12, $collapse: true, $float: none);
       margin: rem-calc(0 -20 40);
       padding: 0;
       width: auto;
@@ -225,7 +226,46 @@ input[type="search"].cookbook_search_textfield {
 
 @media #{$small-only} {
   .cookbook_sidebar {
-    @include grid-column($columns: 4, $collapse: true);
+    @include grid-row();
+
+    ul {
+      @include clearfix;
+      @include grid-column($columns: 12, $collapse: true, $float: none);
+      margin: rem-calc(0 -20 40);
+      padding: 0;
+      width: auto;
+
+      li {
+        border-left: rem-calc(5) solid;
+        float: left;
+        line-height: rem-calc(64);
+        width: 50%;
+
+        &:before {
+          display: none;
+          font-size: rem-calc(64);
+          line-height: rem-calc(50);
+          margin-left: rem-calc(8);
+        }
+
+        &:nth-child(2n+2) a {
+          border-right: none;
+        }
+
+        a {
+          border-top: rem-calc(2) solid lighten($secondary_gray, 35%);
+          border-right: rem-calc(2) solid lighten($secondary_gray, 35%);
+          font-size: rem-calc(15);
+          line-height: rem-calc(64);
+          padding-left: rem-calc(15);
+
+          em {
+            font-size: rem-calc(14);
+            margin-top: rem-calc(-5);
+          }
+        }
+      }
+    }
   }
 }
 
@@ -242,6 +282,12 @@ input[type="search"].cookbook_search_textfield {
 }
 
 @media #{$mobile-only} {
+  .cookbook_sidebar_heading {
+    display: none;
+  }
+}
+
+@media #{$small-only} {
   .cookbook_sidebar_heading {
     display: none;
   }
@@ -317,7 +363,7 @@ input[type="search"].cookbook_search_textfield {
 
 @media #{$small-only} {
   .cookbook_listing {
-    @include block-grid($per-row: 2, $spacing: rem-calc(20));
+    @include block-grid($per-row: 1, $spacing: rem-calc(20));
     margin: rem-calc(0 -10);
   }
 }
@@ -347,7 +393,7 @@ input[type="search"].cookbook_search_textfield {
 
 @media #{$small-only} {
   .cookbook {
-    min-height: rem-calc(220);
+    min-height: 0;
   }
 }
 
@@ -361,6 +407,7 @@ input[type="search"].cookbook_search_textfield {
   word-wrap: break-word;
 
   .gravatar {
+    background-color: $primary_gray;
     border: rem-calc(3) solid white;
     @include border-radius(rem-calc(24));
     @include box-sizing(content-box);
@@ -372,6 +419,15 @@ input[type="search"].cookbook_search_textfield {
   }
 
   @media #{$mobile-only} {
+    .gravatar {
+      height: rem-calc(20);
+      left: rem-calc(-10);
+      top: rem-calc(20);
+      width: rem-calc(20);
+    }
+  }
+
+  @media #{$small-only} {
     .gravatar {
       height: rem-calc(20);
       left: rem-calc(-10);
@@ -396,9 +452,22 @@ input[type="search"].cookbook_search_textfield {
       margin: 0;
     }
   }
+
+  @media #{$small-only} {
+    small {
+      display: inline;
+      margin: 0;
+    }
+  }
 }
 
 @media #{$mobile-only} {
+  .cookbook_heading {
+    padding: rem-calc(15 10 10 20);
+  }
+}
+
+@media #{$small-only} {
   .cookbook_heading {
     padding: rem-calc(15 10 10 20);
   }
@@ -422,6 +491,13 @@ input[type="search"].cookbook_search_textfield {
   }
 }
 
+@media #{$small-only} {
+  .cookbook_lastupdated {
+    display: block;
+    margin-top: rem-calc(5);
+  }
+}
+
 .cookbook_category_and_stats {
   bottom: rem-calc(10);
   color: $asbestos;
@@ -432,6 +508,13 @@ input[type="search"].cookbook_search_textfield {
 }
 
 @media #{$mobile-only} {
+  .cookbook_category_and_stats {
+    padding: rem-calc(10 10 0 20);
+    position: static;
+  }
+}
+
+@media #{$small-only} {
   .cookbook_category_and_stats {
     padding: rem-calc(10 10 0 20);
     position: static;
@@ -451,6 +534,14 @@ input[type="search"].cookbook_search_textfield {
 }
 
 @media #{$mobile-only} {
+  .cookbook_stats {
+    @include inline-block;
+    margin: rem-calc(-7 0 0 20);
+    padding: 0;
+  }
+}
+
+@media #{$small-only} {
   .cookbook_stats {
     @include inline-block;
     margin: rem-calc(-7 0 0 20);

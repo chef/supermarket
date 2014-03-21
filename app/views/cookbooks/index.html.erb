@@ -7,6 +7,8 @@
 
 <section class="cookbook_body">
 
+  <div class="hide-for-medium-up"><%= render 'categories' %></div>
+
   <div class="order right">
     Sort By
     <%= link_to 'Recently Updated', params.merge(order: 'recently_updated'), class: ('active' if params[:order] == 'recently_updated') %>
@@ -21,7 +23,7 @@
     </small>
   </h1>
 
-  <%= render 'categories' %>
+  <div class="show-for-medium-up"><%= render 'categories' %></div>
 
   <article class="cookbook_content">
     <ul class="cookbook_listing"><%= render @cookbooks %></ul>
