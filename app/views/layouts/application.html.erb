@@ -4,7 +4,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
     <title><%= [content_for(:title), 'Chef Supermarket'].compact.join(' - ') %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Supermarket" %>">
     <link rel="shortcut icon" href="<%= image_url('favicon.ico') %>" type="image/x-icon">
@@ -20,11 +20,11 @@
 
     <div class="off-canvas-wrap">
       <div class="inner-wrap">
-        <a class="left-off-canvas-toggle fa fa-bars"><span class="hide">Menu</span></a>
         <!-- Chef Property Menu -->
         <aside class="left-off-canvas-menu">
-            <ul class="off-canvas-list mobileappnav hide">
-              <li><%= link_to 'Contributors', icla_signatures_path %></li>
+            <ul class="off-canvas-list hide-for-medium-up">
+              <li><%= link_to 'Cookbooks', cookbooks_directory_path %></li>
+              <li><%= link_to 'Contribute', icla_signatures_path %></li>
             </ul>
             <ul class="off-canvas-list">
               <li><a href="http://www.getchef.com/">Get Chef</a></li>
@@ -35,8 +35,13 @@
         </aside>
 
         <header class="globalheader">
-          <h2 class="logochef"><%= link_to root_path do %><span>Chef</span><% end %></h2>
-          <%= render partial: 'appheader' %>
+          <div class="logo_and_nav_toggle">
+            <a class="left-off-canvas-toggle fa fa-bars"><span class="hide">Menu</span></a>
+            <h2 class="logochef"><%= link_to root_path do %><span>Chef Supermarket</span><% end %></h2>
+          </div>
+          <div class="navigation_search_and_avatar">
+            <%= render partial: 'appheader' %>
+          </div>
         </header>
         <div class="container">
           <div class="page">

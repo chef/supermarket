@@ -1,3 +1,179 @@
+<form class="cookbook_search">
+  <input class="cookbook_search_textfield" type="search" placeholder="Search Cookbooks" autofocus>
+  <button class="cookbook_search_button"><i class="fa fa-search"></i></button>
+</form>
+<section class="cookbooks_stats show-for-medium-up">
+  <ul>
+    <li>
+      <h3>56 <small>Recently Updated</small></h3>
+    </li>
+    <li>
+      <h3>1,465 <small>Cookbooks</small></h3>
+    </li>
+    <li>
+      <h3>325,292 <small>Downloads</small></h3>
+    </li>
+    <li>
+      <h3>2,000 <small>Collaborators</small></h3>
+    </li>
+  </ul>
+</section>
+<section class="cookbook_body">
+  <aside class="cookbook_sidebar">
+    <h4 class="cookbook_sidebar_heading">Categories</h4>
+    <ul>
+      <li class="category_applications">
+        <a href="#"><em>423</em> Applications</a>
+      </li>
+      <li class="category_databases">
+        <a href="#"><em>156</em> Databases</a>
+      </li>
+      <li class="category_monitoring_and_trending">
+        <a href="#"><em>68</em> Monitoring &amp; Trending</a>
+      </li>
+      <li class="category_networking">
+        <a href="#"><em>47</em> Networking</a>
+      </li>
+      <li class="category_package_management">
+        <a href="#"><em>210</em> Package Management</a>
+      </li>
+      <li class="category_process_management">
+        <a href="#"><em>390</em> Process Management</a>
+      </li>
+      <li class="category_programming_languages">
+        <a href="#"><em>142</em> Programming Languages</a>
+      </li>
+      <li class="category_utilities">
+        <a href="#"><em>56</em> Utilities</a>
+      </li>
+      <li class="category_web_servers">
+        <a href="#"><em>28</em> Web Servers</a>
+      </li>
+      <li class="category_other">
+        <a href="#"><em>34</em> Other</a>
+      </li>
+    </ul>
+  </aside>
+  <article class="cookbook_content">
+
+    <h2 class="cookbook_content_heading">
+      <i class="fa fa-folder"></i>
+      Recently Updated
+      <small>
+        <span class="label secondary radius">56</span>
+        <a href="#" class="rss_feed_link show-for-medium-up"><i class="fa fa-rss"></i> RSS</a>
+      </small>
+      <a href="#" class="button radius tiny right">View All</a>
+    </h2>
+
+    <ul class="cookbook_listing">
+      <li>
+        <a href="#">
+          <div class="cookbook category_applications">
+            <h3 class="cookbook_heading">
+              <%= gravatar_for current_user, size: 80 %>
+              application
+              <small>4.1.4</small>
+              <span class="cookbook_lastupdated">
+                <i class="fa fa-clock-o"></i> Updated Jan 27, 2014
+              </span>
+            </h3>
+            <ul class="cookbook_platforms show-for-medium-up">
+              <li class="cookbook_platform_icon has-tip" title="AWS" data-tooltip data-icon="A"><span>AWS</span></li>
+              <li class="cookbook_platform_icon has-tip" title="CentOS" data-tooltip data-icon="B"><span>CentOS</span></li>
+              <li class="cookbook_platform_icon has-tip" title="Debian" data-tooltip data-icon="C"><span>Debian</span></li>
+              <li class="cookbook_platform_icon has-tip" title="Fedora" data-tooltip data-icon="D"><span>Fedora</span></li>
+              <li class="cookbook_platform_icon has-tip" title="FreeBSD" data-tooltip data-icon="E"><span>FreeBSD</span></li>
+              <li class="cookbook_platform_icon has-tip" title="Linux Mint" data-tooltip data-icon="F"><span>Linux Mint</span></li>
+              <li class="cookbook_platform_icon has-tip" title="Mac OSX" data-tooltip data-icon="G"><span>Mac OSX</span></li>
+              <li class="cookbook_platform_icon has-tip" title="Oracle" data-tooltip data-icon="H"><span>Oracle</span></li>
+              <li class="cookbook_platform_icon has-tip" title="Red Hat" data-tooltip data-icon="I"><span>Red Hat</span></li>
+              <li class="cookbook_platform_icon has-tip" title="Scientific" data-tooltip data-icon="J"><span>Scientific</span></li>
+              <li class="cookbook_platform_icon has-tip" title="SmartOS" data-tooltip data-icon="K"><span>SmartOS</span></li>
+              <li class="cookbook_platform_icon has-tip" title="SUSE" data-tooltip data-icon="L"><span>SUSE</span></li>
+              <li class="cookbook_platform_icon has-tip" title="Ubuntu" data-tooltip data-icon="M"><span>Ubuntu</span></li>
+              <li class="cookbook_platform_icon has-tip" title="Windows" data-tooltip data-icon="N"><span>Windows</span></li>
+            </ul>
+            <div class="cookbook_category_and_stats">
+              <i class="fa fa-folder"></i> Applications
+              <ul class="cookbook_stats">
+                <li>
+                  <i class="fa fa-download"></i> 37
+                </li>
+                <li>
+                  <i class="fa fa-users"></i> 2
+                </li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <div class="cookbook category_databases">
+            <h3 class="cookbook_heading">
+              <%= gravatar_for current_user, size: 80 %>
+              elasticsearch_cluster
+              <small>2.4.0</small>
+              <span class="cookbook_lastupdated">
+                <i class="fa fa-clock-o"></i> Updated Jan 27, 2014
+              </span>
+            </h3>
+            <ul class="cookbook_platforms show-for-medium-up">
+              <li></li>
+            </ul>
+            <div class="cookbook_category_and_stats">
+              <i class="fa fa-folder"></i> Databases
+              <ul class="cookbook_stats">
+                <li>
+                  <i class="fa fa-download"></i> 37
+                </li>
+                <li>
+                  <i class="fa fa-users"></i> 2
+                </li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <div class="cookbook category_web_servers">
+            <h3 class="cookbook_heading">
+              <%= gravatar_for current_user, size: 80 %>
+              passenger_apache2
+              <small>2.2.0</small>
+              <span class="cookbook_lastupdated">
+                <i class="fa fa-clock-o"></i> Updated Jan 27, 2014
+              </span>
+            </h3>
+            <ul class="cookbook_platforms show-for-medium-up">
+              <li></li>
+            </ul>
+            <div class="cookbook_category_and_stats">
+              <i class="fa fa-folder"></i> Web Servers
+              <ul class="cookbook_stats">
+                <li>
+                  <i class="fa fa-download"></i> 37
+                </li>
+                <li>
+                  <i class="fa fa-users"></i> 2
+                </li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+  </article>
+</section>
+
+
+
+
+
+<!--
 <div class="contributors">
   <%= render 'contributors_list_heading' %>
 
@@ -28,3 +204,4 @@
     </tbody>
   </table>
 </div>
+-->

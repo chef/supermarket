@@ -1,4 +1,3 @@
-<h2 class="appheader"><%= link_to root_path do %>Supermarket<% end %></h2>
 <nav class="usermenu">
   <% if signed_in? %>
     <div class="avatar">
@@ -24,11 +23,11 @@
     <%= link_to 'Sign In', sign_in_path, :class => 'signin', rel: 'sign_in' %>
   <% end %>
 </nav>
-<form action="" class="searchform">
+<form action="" class="searchform show-for-small-up">
   <i class="fa fa-search fa-fw"></i>
   <input type="search" id="searchfield" name="searchfield">
 </form>
-<nav class="appnav">
+<nav class="appnav show-for-medium-up">
   <ul>
     <li><%= link_to 'Cookbooks', cookbooks_directory_path %></li>
     <li><%= link_to 'Contributors', icla_signatures_path %></li>

@@ -5,14 +5,8 @@
 
 @media #{$mobile-only} {
   html, body { font-size: 62.5%; }
-  .appnav, .searchform { display: none; }
+  .searchform { display: none; }
   .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
-  .mobileappnav { display: block; }
-  .userdropdown {
-    width: rem-calc(200);
-
-    li a { font-size: rem-calc(16); padding: rem-calc(15); }
-  }
   .page { padding: rem-calc(20); }
   .alert-box .close { margin-top: rem-calc(-17); }
   .footer { margin-top: rem-calc(40); padding: rem-calc(20 0); }
@@ -32,7 +26,6 @@
 @media #{$medium-only} {
   html, body { font-size: 75%; }
   .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
-  .searchform { margin-right: rem-calc(-8); }
   #searchfield { width: rem-calc(220); }
   .usermenu .signin { margin-right: rem-calc(-5); text-align: right; }
   .page { padding: rem-calc(40 70 70); }
@@ -40,8 +33,8 @@
 }
 
 @media #{$xlarge-up} {
-  html, body { font-size: 120%; }
-  .left-off-canvas-toggle:before { margin-top: rem-calc(26); }
-  .searchform { margin-right: rem-calc(-8); }
-  .searchform .fa { right: rem-calc(12); top: rem-calc(26); }
+  html, body { font-size: 110%; }
+  .globalheader, .container { max-width: rem-calc(1280); }
+  .left-off-canvas-toggle:before { margin-top: rem-calc(24.5); }
+  .searchform .fa { right: rem-calc(12); top: rem-calc(24); }
 }
