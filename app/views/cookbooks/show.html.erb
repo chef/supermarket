@@ -19,17 +19,34 @@
     <%= @cookbook.download_count %> total downloads<br />
     <%= @latest_version.download_count %> latest version downloads
 
-    <% if @cookbook.external_url.present? %>
-      <%= link_to 'View Source', @cookbook.external_url, class: 'button' %>
-    <% end %>
+    <div class="cookbook-details">
+      <h4>Cookbook Details</h4>
+      <%= link_to 'Edit', '#', class: 'button tiny show-cookbook-urls-manage' %>
 
-    <div>
+      <div class="cookbook-urls">
+        <% if @cookbook.source_url.present? %>
+          <%= link_to 'View Source', @cookbook.source_url, class: 'button' %>
+        <% end %>
+
+        <% if @cookbook.issues_url.present? %>
+          <%= link_to 'View Issues', @cookbook.issues_url, class: 'button' %>
+        <% end %>
+      </div>
+
+      <div class="manage-cookbook-urls hidden">
+        <%= form_for @cookbook, remote: true do |f| %>
+          <%= f.label :source_url, 'Source URL' %>
+          <%= f.text_field :source_url, placeholder: 'http://example.com' %>
+          <%= f.label :issues_url, 'Issues URL' %>
+          <%= f.text_field :issues_url, placeholder: 'http://example.com' %>
+          <%= f.submit "Save", class: 'button tiny' %>
+        <% end %>
+      </div>
+
       <h4><i class="fa fa-money"></i> Updated <%= @latest_version.updated_at.strftime('%B %-d, %Y') %></h4>
 
       <div>Created on <%= @cookbook.created_at.strftime('%B %-d, %Y') %></div>
-    </div>
 
-    <div>
       <h4><i class="fa fa-money"></i> Versions</h4>
       <ul>
         <% @cookbook_versions.each_with_index do |version, index| %>
@@ -40,9 +57,7 @@
           <% end %>
         <% end %>
       </ul>
-    </div>
 
-    <div>
       <h4><i class="fa fa-money"></i> Platforms</h4>
       <ul>
         <% @supported_platforms.each do |platform| %>
@@ -51,9 +66,7 @@
           </li>
         <% end %>
       </ul>
-    </div>
 
-    <div>
       <h4><i class="fa fa-money"></i> License</h4>
       <p><%= @latest_version.license %></p>
     </div>
