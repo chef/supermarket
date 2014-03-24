@@ -164,6 +164,16 @@ class User < ActiveRecord::Base
   end
 
   #
+  # The user's Chef ID username
+  #
+  # @return [String] the username for that Chef ID
+  # @return [nil] if the user has unlinked their Chef ID
+  #
+  def username
+    accounts.for('chef_oauth2').first.try(:username)
+  end
+
+  #
   # Find a user from a GitHub login. If there is no user with that GitHub login,
   # return a new user.
   #

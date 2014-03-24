@@ -1,4 +1,4 @@
-module IclaSignaturesHelper
+module MarkdownHelper
   # Make auto-links target=_blank
   class TargetBlankRenderer < Redcarpet::Render::HTML
     def initialize(extensions = {})

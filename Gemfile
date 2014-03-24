@@ -26,6 +26,7 @@ gem 'pg_search'
 gem 'paperclip'
 gem 'virtus', require: false
 gem 'kaminari'
+gem 'chef', require: ['chef/version_constraint', 'chef/exceptions']
 
 gem 'sass-rails',   '~> 4.0.1'
 gem 'compass-rails'

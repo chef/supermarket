@@ -190,6 +190,20 @@ describe User do
     end
   end
 
+  describe '#username' do
+    it 'returns the chef username for the user' do
+      user = create(:user)
+      account = create(
+        :account,
+        user: user,
+        provider: 'chef_oauth2',
+        username: 'joedoe'
+      )
+
+      expect(user.username).to eql('joedoe')
+    end
+  end
+
   describe '.find_by_github_login' do
     it 'returns the user with that GitHub login' do
       user = create(:user)

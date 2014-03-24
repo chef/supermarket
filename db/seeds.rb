@@ -49,15 +49,21 @@ if Rails.env.development?
     ).first_or_initialize(
       maintainer: '...',
       description: '...',
+      source_url: 'http://example.com',
+      issues_url: 'http://example.com',
       category: category
     )
 
+    # TODO: figure out a nice way to use CookbookUpload here, which will ensure
+    # that our seed data is realistically seeded.
     cookbook_version = cookbook.cookbook_versions.where(
       version: '0.1.0'
     ).first_or_initialize(
       license: 'MIT',
       cookbook: cookbook,
-      tarball: File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
+      tarball: File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz'),
+      readme: File.read('README.md'),
+      readme_extension: 'md'
     )
 
     cookbook.cookbook_versions << cookbook_version

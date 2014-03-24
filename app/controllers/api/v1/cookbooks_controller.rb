@@ -85,7 +85,7 @@ class Api::V1::CookbooksController < Api::V1Controller
   #
   def assign_latest_version_url
     @latest_cookbook_version_url = api_v1_cookbook_version_url(
-      @cookbook, @cookbook.get_version!('latest')
+      @cookbook, @cookbook.latest_cookbook_version
     )
   end
 end

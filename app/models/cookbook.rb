@@ -27,6 +27,8 @@ class Cookbook < ActiveRecord::Base
   # Associations
   # --------------------
   has_many :cookbook_versions, -> { order(created_at: :desc) }, dependent: :destroy
+  has_one :latest_cookbook_version, -> { order(created_at: :desc) }, class_name: 'CookbookVersion'
+  has_many :supported_platforms, through: :latest_cookbook_version
   belongs_to :category
 
   # Validations
@@ -67,7 +69,7 @@ class Cookbook < ActiveRecord::Base
     version.gsub!(/_/, '.')
 
     if version == 'latest'
-      cookbook_versions.first
+      latest_cookbook_version
     else
       cookbook_versions.find_by!(version: version)
     end
@@ -86,19 +88,28 @@ class Cookbook < ActiveRecord::Base
   # @param metadata [CookbookUpload::Metadata] the cookbook metadata
   # @param tarball [File] the cookbook artifact
   #
-  def publish_version!(metadata, tarball)
+  def publish_version!(metadata, tarball, readme)
     transaction do
       self.maintainer = metadata.maintainer
       self.description = metadata.description
 
-      cookbook_versions.build(
+      cookbook_version = cookbook_versions.build(
         cookbook: self,
         license: metadata.license,
         version: metadata.version,
-        tarball: tarball
+        tarball: tarball,
+        readme: readme.contents,
+        readme_extension: readme.extension
       )
 
       save!
+
+      metadata.platforms.each do |name, version_constraint|
+        cookbook_version.supported_platforms.create!(
+          name: name,
+          version_constraint: version_constraint
+        )
+      end
     end
 
     true

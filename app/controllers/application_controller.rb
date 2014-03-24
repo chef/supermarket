@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include Supermarket::Authorization
   include Supermarket::LocationStorage
 
-  rescue_from NotAuthorizedError do |error|
+  rescue_from NotAuthorizedError, ActiveRecord::RecordNotFound do |error|
     not_found!(error)
   end
 
