@@ -26,6 +26,7 @@ gem 'pg_search'
 gem 'paperclip'
 gem 'virtus', require: false
 gem 'kaminari'
+gem 'chef', require: ['chef/version_constraint', 'chef/exceptions']
 
 gem 'sass-rails',   '~> 4.0.1'
 gem 'compass-rails'
@@ -60,4 +61,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'byebug'
   gem 'launchy'
+  gem 'and_feathers', '>= 1.0.0.pre', require: false
+  gem 'and_feathers-gzipped_tarball', '>= 1.0.0.pre', require: false
 end

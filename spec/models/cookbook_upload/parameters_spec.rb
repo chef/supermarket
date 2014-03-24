@@ -53,7 +53,7 @@ describe CookbookUpload::Parameters do
     end
 
     it 'is blank if the tarball parameter has no metadata.json entry' do
-      tarball = File.open('spec/support/cookbook_fixtures/no-metadata.tgz')
+      tarball = File.open('spec/support/cookbook_fixtures/no-metadata-or-readme.tgz')
 
       params = params(cookbook: '{}', tarball: tarball)
 
@@ -66,6 +66,39 @@ describe CookbookUpload::Parameters do
       params = params(cookbook: '{}', tarball: tarball)
 
       expect(params.metadata).to eql(CookbookUpload::Metadata.new)
+    end
+  end
+
+  describe '#readme' do
+    it 'is extracted from the tarball' do
+      tarball = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
+
+      params = params(cookbook: '{}', tarball: tarball)
+
+      expect(params.readme.contents).to_not be_empty
+      expect(params.readme.extension).to eql('md')
+    end
+
+    it 'is blank if the tarball parameter is not a file' do
+      params = params(cookbook: '{}', tarball: 'tarball!')
+
+      expect(params.readme).to eql(CookbookUpload::Readme.new)
+    end
+
+    it 'is blank if the tarball parameter is not GZipped' do
+      file = Tempfile.open('notgzipped') { |f| f << 'metadata' }
+
+      params = params(cookbook: '{}', tarball: file)
+
+      expect(params.readme).to eql(CookbookUpload::Readme.new)
+    end
+
+    it 'is blank if the tarball parameter has no README entry' do
+      tarball = File.open('spec/support/cookbook_fixtures/no-metadata-or-readme.tgz')
+
+      params = params(cookbook: '{}', tarball: tarball)
+
+      expect(params.readme).to eql(CookbookUpload::Readme.new)
     end
   end
 end

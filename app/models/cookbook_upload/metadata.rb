@@ -14,7 +14,7 @@ class CookbookUpload
   #   metadata.name #=> "Apache"
   #
   class Metadata
-    include Virtus.value_object
+    include Virtus.value_object(strict: true)
 
     #
     # @!attribute [r] name
@@ -41,12 +41,21 @@ class CookbookUpload
     #   @return [String] The cookbook license
     #
 
+    #
+    # @!attribute [r] platforms
+    #   @return [String] The platforms supported by the cookbook
+    #
+    #   @example
+    #     metadata.platforms == { 'ubuntu' => '>= 0.0.0' }
+    #
+
     values do
-      attribute :name, String
-      attribute :version, String
-      attribute :description, String
-      attribute :maintainer, String
-      attribute :license, String
+      attribute :name, String, default: ''
+      attribute :version, String, default: ''
+      attribute :description, String, default: ''
+      attribute :maintainer, String, default: ''
+      attribute :license, String, default: ''
+      attribute :platforms, Hash[String => String]
     end
   end
 end

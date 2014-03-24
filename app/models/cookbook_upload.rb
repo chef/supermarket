@@ -29,7 +29,7 @@ class CookbookUpload
 
       begin
         result = cookbook.tap do |book|
-          book.publish_version!(@params.metadata, @params.tarball)
+          book.publish_version!(@params.metadata, @params.tarball, @params.readme)
         end
       rescue ActiveRecord::RecordNotUnique
         upload_errors.add(

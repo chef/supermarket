@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319143432) do
+ActiveRecord::Schema.define(version: 20140320153919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,9 @@ ActiveRecord::Schema.define(version: 20140319143432) do
     t.string   "tarball_content_type"
     t.integer  "tarball_file_size"
     t.datetime "tarball_updated_at"
+    t.integer  "download_count",       default: 0
+    t.text     "readme",               default: "", null: false
+    t.string   "readme_extension",     default: "", null: false
   end
 
   add_index "cookbook_versions", ["version", "cookbook_id"], name: "index_cookbook_versions_on_version_and_cookbook_id", unique: true, using: :btree
@@ -107,6 +110,7 @@ ActiveRecord::Schema.define(version: 20140319143432) do
     t.boolean  "deprecated",     default: false
     t.integer  "category_id",                    null: false
     t.string   "lowercase_name"
+    t.integer  "download_count", default: 0
   end
 
   add_index "cookbooks", ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true, using: :btree
@@ -194,6 +198,16 @@ ActiveRecord::Schema.define(version: 20140319143432) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "supported_platforms", force: true do |t|
+    t.string   "name",                                     null: false
+    t.string   "version_constraint",  default: ">= 0.0.0", null: false
+    t.integer  "cookbook_version_id",                      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "supported_platforms", ["cookbook_version_id"], name: "index_supported_platforms_on_cookbook_version_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"

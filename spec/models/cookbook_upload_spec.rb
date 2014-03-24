@@ -1,4 +1,7 @@
+require 'and_feathers'
+require 'and_feathers/gzipped_tarball'
 require 'spec_helper'
+require 'tempfile'
 
 describe CookbookUpload do
   describe '#finish' do
@@ -87,13 +90,23 @@ describe CookbookUpload do
     end
 
     it 'yields an error if the tarball has no metadata.json entry' do
-      tarball = File.open('spec/support/cookbook_fixtures/no-metadata.tgz')
+      tarball = File.open('spec/support/cookbook_fixtures/no-metadata-or-readme.tgz')
 
       upload = CookbookUpload.new(cookbook: '{}', tarball: tarball)
       errors = upload.finish { |e, _| e }
 
       expect(errors.full_messages).
         to include(I18n.t('api.error_messages.missing_metadata'))
+    end
+
+    it 'yields an error if the tarball has no README entry' do
+      tarball = File.open('spec/support/cookbook_fixtures/no-metadata-or-readme.tgz')
+
+      upload = CookbookUpload.new(cookbook: '{}', tarball: tarball)
+      errors = upload.finish { |e, _| e }
+
+      expect(errors.full_messages).
+        to include(I18n.t('api.error_messages.missing_readme'))
     end
 
     it "yields an error if the tarball's metadata.json is not actually JSON" do
@@ -104,6 +117,23 @@ describe CookbookUpload do
 
       expect(errors.full_messages).
         to include(I18n.t('api.error_messages.metadata_not_json'))
+    end
+
+    it 'yields an error if the metadata.json has a malformed platforms hash' do
+      tarball = Tempfile.new('bad_platforms', 'tmp').tap do |file|
+        io = AndFeathers.build('cookbook') do |cookbook|
+          cookbook.file('metadata.json') { JSON.dump(platforms: '') }
+        end.to_io(AndFeathers::GzippedTarball)
+
+        file.write(io.read)
+        file.rewind
+      end
+
+      upload = CookbookUpload.new(cookbook: '{}', tarball: tarball)
+      errors = upload.finish { |e, _| e }
+
+      expect(errors.full_messages).
+        to include(I18n.t('api.error_messages.invalid_platforms'))
     end
 
     it 'yields an error if the cookbook parameters do not specify a category' do
