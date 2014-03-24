@@ -4,7 +4,8 @@ FactoryGirl.define do
     sequence(:name) { |n| "redis-#{n}" }
     description 'An awesome cookbook!'
     maintainer 'Chef Software, Inc'
-    external_url 'http://example.com'
+    source_url 'http://example.com'
+    issues_url 'http://example.com/issues'
     deprecated false
 
     ignore do

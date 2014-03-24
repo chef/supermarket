@@ -109,11 +109,12 @@ ActiveRecord::Schema.define(version: 20140326154848) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "external_url"
+    t.string   "source_url"
     t.boolean  "deprecated",     default: false
     t.integer  "category_id",                    null: false
     t.string   "lowercase_name"
     t.integer  "download_count", default: 0
+    t.string   "issues_url"
   end
 
   add_index "cookbooks", ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true, using: :btree
