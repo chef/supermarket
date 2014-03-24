@@ -176,8 +176,20 @@ module FeatureHelpers
     @known_users ||= {}
   end
 
+  #
+  # Finds an element with the given relation, and clicks it.
+  #
+  # @raise [Capybara::ElementNotFound] if the element does not exist
+  #
   def follow_relation(rel)
-    find("[rel*=#{rel}]").click
+    selector = "[rel*=#{rel}]"
+    element = all(selector).first
+
+    if element
+      element.click
+    else
+      find(selector)
+    end
   end
 
   def submit_form
