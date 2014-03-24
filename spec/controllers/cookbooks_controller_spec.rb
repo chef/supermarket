@@ -99,6 +99,48 @@ describe CookbooksController do
     end
   end
 
+  describe 'PATCH #update' do
+    let(:cookbook) { create(:cookbook) }
+
+    it 'updates the cookbook' do
+      patch :update, id: cookbook, format: :js, cookbook: {
+        source_url: 'http://example.com/cookbook',
+        issues_url: 'http://example.com/cookbook/issues'
+      }
+
+      cookbook.reload
+
+      expect(cookbook.source_url).to eql('http://example.com/cookbook')
+      expect(cookbook.issues_url).to eql('http://example.com/cookbook/issues')
+    end
+
+    it 'returns a 200 on success'  do
+      patch :update, id: cookbook, format: :js, cookbook: {
+        source_url: 'http://example.com/cookbook',
+        issues_url: 'http://example.com/cookbook/issues'
+      }
+
+      expect(response.status.to_i).to eql(200)
+    end
+
+    it 'updates the dom with update.js.erb'  do
+      patch :update, id: cookbook, format: :js, cookbook: {
+        source_url: 'http://example.com/cookbook',
+        issues_url: 'http://example.com/cookbook/issues'
+      }
+
+      expect(response).to render_template('update')
+    end
+
+    it 'should make @cookbook invalid for invalid attributes' do
+      patch :update, id: cookbook, format: :js, cookbook: {
+        source_url: 'test'
+      }
+
+      expect(assigns[:cookbook].valid?).to be_false
+    end
+  end
+
   describe 'GET #directory' do
     before { get :directory }
 
@@ -117,7 +159,7 @@ describe CookbooksController do
 
   describe '#show' do
     let(:cookbook) do
-      cookbook = create(:cookbook)
+      create(:cookbook)
     end
 
     it 'renders the show template' do

@@ -87,9 +87,26 @@ class CookbooksController < ApplicationController
     redirect_to cookbook_version_download_url(cookbook, latest_version)
   end
 
+  #
+  # PATCH /cookbooks/:id
+  #
+  # Update a the specified cookbook. This currently only supports updating the
+  # cookbook's URLs. It also only returns JSON.
+  #
+  # NOTE: :id must be the name of the cookbook.
+  #
+  def update
+    @cookbook = Cookbook.find_by(name: params[:id])
+    @cookbook.update_attributes(cookbook_urls_params)
+  end
+
   private
 
   def assign_categories
     @categories ||= Category.all
+  end
+
+  def cookbook_urls_params
+    params.require(:cookbook).permit(:source_url, :issues_url)
   end
 end

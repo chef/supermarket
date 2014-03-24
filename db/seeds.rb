@@ -49,6 +49,8 @@ if Rails.env.development?
     ).first_or_initialize(
       maintainer: Faker::Name.name,
       description: Faker::Lorem.sentences(1).first,
+      source_url: 'http://example.com',
+      issues_url: 'http://example.com',
       category: category
     )
 
