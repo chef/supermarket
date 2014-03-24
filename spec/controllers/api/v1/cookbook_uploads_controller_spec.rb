@@ -6,7 +6,7 @@ describe Api::V1::CookbookUploadsController do
       before do
         allow_any_instance_of(CookbookUpload).
           to receive(:finish).
-          and_yield([], double('Cookbook'))
+          and_yield([], double('Cookbook', name: 'cookbook'))
       end
 
       it 'sends the cookbook to the view' do

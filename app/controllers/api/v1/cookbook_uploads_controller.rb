@@ -42,6 +42,11 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
       else
         @cookbook = cookbook
 
+        SegmentIO.track_server_event(
+          'cookbook_version_published',
+          cookbook: @cookbook.name
+        )
+
         render :create, status: 201
       end
     end

@@ -67,6 +67,13 @@ class Api::V1::CookbooksController < Api::V1Controller
     assign_latest_version_url
 
     @cookbook.destroy
+
+    if @cookbook.destroyed?
+      SegmentIO.track_server_event(
+        'cookbook_deleted',
+        cookbook: @cookbook.name
+      )
+    end
   end
 
   private
