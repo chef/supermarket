@@ -231,7 +231,7 @@ input[type="search"].cookbook_search_textfield {
     ul {
       @include clearfix;
       @include grid-column($columns: 12, $collapse: true, $float: none);
-      margin: rem-calc(0 -20 40);
+      margin: rem-calc(0 0 40);
       padding: 0;
       width: auto;
 
@@ -246,10 +246,6 @@ input[type="search"].cookbook_search_textfield {
           font-size: rem-calc(64);
           line-height: rem-calc(50);
           margin-left: rem-calc(8);
-        }
-
-        &:nth-child(2n+2) a {
-          border-right: none;
         }
 
         a {
@@ -306,7 +302,7 @@ input[type="search"].cookbook_search_textfield {
 
 @media #{$small-only} {
   .cookbook_content {
-    @include grid-column($columns: 8, $collapse: true);
+    @include grid-row();
   }
 }
 
@@ -363,7 +359,7 @@ input[type="search"].cookbook_search_textfield {
 
 @media #{$small-only} {
   .cookbook_listing {
-    @include block-grid($per-row: 1, $spacing: rem-calc(20));
+    @include block-grid($per-row: 2, $spacing: rem-calc(20));
     margin: rem-calc(0 -10);
   }
 }

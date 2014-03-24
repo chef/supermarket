@@ -24,6 +24,13 @@
   }
 }
 
+@media #{$small-only} {
+  .logo_and_nav_toggle {
+    @include grid-column($columns: 5, $collapse: true);
+    position: static;
+  }
+}
+
 // Navigation, search and user menu column
 .navigation_search_and_avatar {
   @include grid-column($columns: 9, $collapse: true);
@@ -32,6 +39,12 @@
 @media #{$mobile-only} {
   .navigation_search_and_avatar {
     @include grid-column($columns: 2, $collapse: true);
+  }
+}
+
+@media #{$small-only} {
+  .navigation_search_and_avatar {
+    @include grid-column($columns: 7, $collapse: true);
   }
 }
 
