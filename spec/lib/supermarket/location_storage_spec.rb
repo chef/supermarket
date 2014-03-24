@@ -6,7 +6,7 @@ describe Supermarket::LocationStorage do
       include Supermarket::LocationStorage
 
       def request
-        Struct.new(:url).new('http://localhost:3000')
+        Struct.new(:path).new('/profile')
       end
 
       def session
@@ -19,7 +19,13 @@ describe Supermarket::LocationStorage do
     it 'store the current request location in the session' do
       subject.store_location!
 
-      expect(subject.stored_location).to eql('http://localhost:3000')
+      expect(subject.stored_location).to eql('/profile')
+    end
+
+    it 'stores the passed in location' do
+      subject.store_location!('/icla_signatures/new')
+
+      expect(subject.stored_location).to eql('/icla_signatures/new')
     end
   end
 

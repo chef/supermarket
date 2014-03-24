@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Cookbook do
   context 'associations' do
     it { should have_many(:cookbook_versions) }
+    it { should have_many(:cookbook_followers) }
     it { should belong_to(:category) }
   end
 
@@ -189,6 +190,23 @@ describe Cookbook do
       create(:cookbook, name: 'neat')
 
       expect(Cookbook.ordered_by('recently_created').first.name).to eql('neat')
+    end
+  end
+
+  describe '#followed_by?' do
+    it 'returns true if the user passed follows the cookbook' do
+      user = create(:user)
+      cookbook = create(:cookbook)
+      create(:cookbook_follower, user: user, cookbook: cookbook)
+
+      expect(cookbook.followed_by?(user)).to be_true
+    end
+
+    it "returns falase if the user passed doesn't follow the cookbook" do
+      user = create(:user)
+      cookbook = create(:cookbook)
+
+      expect(cookbook.followed_by?(user)).to be_false
     end
   end
 end

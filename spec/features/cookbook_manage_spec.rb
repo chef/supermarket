@@ -1,6 +1,8 @@
 require 'spec_feature_helper'
 
 describe "updating a cookbook's issue and source urls" do
+  before { sign_in create(:user) }
+
   it 'displays success message when saved' do
     maintainer = create(:user)
     cookbook = create(:cookbook) # TODO: give this cookbook a real maintainer

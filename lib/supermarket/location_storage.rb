@@ -4,11 +4,14 @@ module Supermarket
     # Stores the current request URL or the root URL
     # in a session variable.
     #
+    # @param [String] location the location to store
+    #
     # @example
     #   store_location!
+    #   store_location!(profile_path)
     #
-    def store_location!
-      session[storage_key] = request.url || root_url
+    def store_location!(location = request.path)
+      session[storage_key] = location || root_path
     end
 
     #

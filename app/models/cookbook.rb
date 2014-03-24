@@ -34,8 +34,9 @@ class Cookbook < ActiveRecord::Base
   # Associations
   # --------------------
   has_many :cookbook_versions, -> { order(created_at: :desc) }, dependent: :destroy
-  has_one :latest_cookbook_version, -> { order(created_at: :desc) }, class_name: 'CookbookVersion'
   has_many :supported_platforms, through: :latest_cookbook_version
+  has_many :cookbook_followers, dependent: :destroy
+  has_one :latest_cookbook_version, -> { order(created_at: :desc) }, class_name: 'CookbookVersion'
   belongs_to :category
 
   # Validations
@@ -132,6 +133,17 @@ class Cookbook < ActiveRecord::Base
     end
 
     true
+  end
+
+  #
+  # Returns true if the user passed follows the cookbook.
+  #
+  # @return [TrueClass]
+  #
+  # @param user [User]
+  #
+  def followed_by?(user)
+    cookbook_followers.where(user: user).any?
   end
 
   private

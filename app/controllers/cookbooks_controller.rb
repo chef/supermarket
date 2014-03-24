@@ -1,5 +1,7 @@
 class CookbooksController < ApplicationController
   before_filter :assign_categories
+  before_filter :assign_cookbook, only: [:show, :update, :follow, :unfollow]
+  before_filter :store_location_then_authenticate_user!, only: [:update, :follow, :unfollow]
 
   #
   # GET /cookbooks(/categories/:category)
@@ -68,7 +70,6 @@ class CookbooksController < ApplicationController
   # Displays a cookbook.
   #
   def show
-    @cookbook = Cookbook.with_name(params[:id]).first!
     @latest_version = @cookbook.latest_cookbook_version
     @cookbook_versions = @cookbook.cookbook_versions
     @maintainer = User.first
@@ -96,14 +97,44 @@ class CookbooksController < ApplicationController
   # NOTE: :id must be the name of the cookbook.
   #
   def update
-    @cookbook = Cookbook.find_by(name: params[:id])
     @cookbook.update_attributes(cookbook_urls_params)
+  end
+
+  #
+  # PUT /cookbooks/:cookbook/follow
+  #
+  # Makes the current user follow the specified cookbook.
+  #
+  def follow
+    @cookbook.cookbook_followers.create(user: current_user)
+  end
+
+  #
+  # DELETE /cookbooks/:cookbook/unfollow
+  #
+  # Makes the current user unfollow the specified cookbook.
+  #
+  def unfollow
+    cookbook_follower = @cookbook.cookbook_followers.
+      where(user: current_user).first
+    cookbook_follower.try(:destroy)
+
+    render 'follow'
   end
 
   private
 
   def assign_categories
     @categories ||= Category.all
+  end
+
+  def assign_cookbook
+    @cookbook ||= Cookbook.with_name(params[:id]).first!
+  end
+
+  def store_location_then_authenticate_user!
+    store_location!(cookbook_path(@cookbook))
+    authenticate_user!
   end
 
   def cookbook_urls_params

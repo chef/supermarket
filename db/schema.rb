@@ -83,6 +83,15 @@ ActiveRecord::Schema.define(version: 20140326154848) do
   add_index "contributors", ["organization_id"], name: "index_contributors_on_organization_id", using: :btree
   add_index "contributors", ["user_id"], name: "index_contributors_on_user_id", using: :btree
 
+  create_table "cookbook_followers", force: true do |t|
+    t.integer  "cookbook_id", null: false
+    t.integer  "user_id",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cookbook_followers", ["cookbook_id", "user_id"], name: "index_cookbook_followers_on_cookbook_id_and_user_id", unique: true, using: :btree
+
   create_table "cookbook_versions", force: true do |t|
     t.integer  "cookbook_id"
     t.string   "license"
