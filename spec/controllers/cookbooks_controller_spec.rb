@@ -99,6 +99,44 @@ describe CookbooksController do
     end
   end
 
+  describe 'PATCH #update' do
+    let(:cookbook) { create(:cookbook) }
+    it 'updates the cookbook' do
+      patch :update, id: cookbook.name, cookbook: {
+        source_url: 'http://example.com/cookbook',
+        issues_url: 'http://example.com/cookbook/issues'
+      }
+      cookbook.reload
+
+      expect(cookbook.source_url).to eql('http://example.com/cookbook')
+      expect(cookbook.issues_url).to eql('http://example.com/cookbook/issues')
+    end
+
+    # maybe this should be 'returns the cookbook on success'
+    it 'returns a 200 on success'  do
+      patch :update, id: cookbook.name, cookbook: {
+        source_url: 'http://example.com/cookbook',
+        issues_url: 'http://example.com/cookbook/issues'
+      }
+      cookbook.reload
+
+      expect(response.status.to_i).to eql(200)
+    end
+
+    it 'returns cookbook on success'  do
+      patch :update, id: cookbook.name, cookbook: {
+        source_url: 'http://example.com/cookbook',
+        issues_url: 'http://example.com/cookbook/issues'
+      }
+      cookbook.reload
+
+      expect(response.body).to include(cookbook.to_json)
+    end
+
+    it 'returns error messages on failure'
+    it 'returns a 404 when cookbook not found'
+  end
+
   describe 'GET #directory' do
     before { get :directory }
 

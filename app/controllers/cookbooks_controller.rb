@@ -87,9 +87,22 @@ class CookbooksController < ApplicationController
     redirect_to cookbook_version_download_url(cookbook, latest_version)
   end
 
+  def update
+    cookbook = Cookbook.find_by(name: params[:id])
+    if cookbook.update_attributes(cookbook_urls_params)
+      render json: cookbook
+    else
+      render json: { errors: cookbook.errors.full_messages }, status: 400
+    end
+  end
+
   private
 
   def assign_categories
     @categories ||= Category.all
+  end
+
+  def cookbook_urls_params
+    params.require(:cookbook).permit(:source_url, :issues_url)
   end
 end
