@@ -14,4 +14,15 @@ describe 'viewing a cookbook' do
 
     expect(page).to have_selector('.cookbook')
   end
+
+  it "shows that cookbook's versions" do
+    maintainer = create(:user)
+    cookbook = create(:cookbook) # TODO: give this cookbook a real maintainer
+
+    visit cookbook_path(cookbook)
+
+    relations('cookbook_version').first.click
+
+    expect(page).to have_selector('.cookbook')
+  end
 end
