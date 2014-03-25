@@ -33,10 +33,10 @@ class Cookbook < ActiveRecord::Base
 
   # Associations
   # --------------------
-  has_many :cookbook_versions, -> { order(created_at: :desc) }, dependent: :destroy
+  has_many :cookbook_versions, -> { order(id: :desc) }, dependent: :destroy
   has_many :supported_platforms, through: :latest_cookbook_version
   has_many :cookbook_followers, dependent: :destroy
-  has_one :latest_cookbook_version, -> { order(created_at: :desc) }, class_name: 'CookbookVersion'
+  has_one :latest_cookbook_version, -> { order(id: :desc) }, class_name: 'CookbookVersion'
   belongs_to :category
 
   # Validations
