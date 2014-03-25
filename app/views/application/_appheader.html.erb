@@ -29,7 +29,7 @@
 <% end %>
 <nav class="appnav show-for-medium-up">
   <ul>
-    <li><%= link_to 'Cookbooks', cookbooks_directory_path, 'data-hover' => 'Cookbooks' %></li>
+  <li><%= link_to 'Cookbooks', cookbooks_directory_path, 'data-hover' => 'Cookbooks', :rel => 'cookbooks' %></li>
     <li><%= link_to 'Contribute', icla_signatures_path, 'data-hover' => 'Contribute' %></li>
     <li><%= link_to 'Resources', '#', 'data-hover' => 'Resources' %></li>
   </ul>

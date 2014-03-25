@@ -5,7 +5,12 @@ describe 'viewing a cookbook' do
     maintainer = create(:user)
     cookbook = create(:cookbook) # TODO: give this cookbook a real maintainer
 
-    visit cookbook_path(cookbook)
+    visit '/'
+    follow_relation 'cookbooks'
+
+    within '.recently-updated' do
+      follow_relation 'cookbook'
+    end
 
     expect(page).to have_selector('.cookbook')
   end
