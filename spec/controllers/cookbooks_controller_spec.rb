@@ -155,7 +155,7 @@ describe CookbooksController do
 
   describe '#show' do
     let(:cookbook) do
-      cookbook = create(:cookbook)
+      create(:cookbook)
     end
 
     it 'renders the show template' do
