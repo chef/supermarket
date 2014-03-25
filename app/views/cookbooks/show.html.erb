@@ -34,7 +34,7 @@
       <ul>
         <% @cookbook_versions.each_with_index do |version, index| %>
           <% if index < @cookbook_versions.size - 1 %>
-            <li><%= version.version %>,</li>
+            <li><%= link_to version.version, cookbook_version_path(@cookbook, version), rel: 'cookbook_version' %>,</li>
           <% else %>
             <li><%= version.version %></li>
           <% end %>
