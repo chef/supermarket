@@ -26,8 +26,8 @@ class Cookbook < ActiveRecord::Base
 
   # Associations
   # --------------------
-  has_many :cookbook_versions, -> { order(created_at: :desc) }, dependent: :destroy
-  has_one :latest_cookbook_version, -> { order(created_at: :desc) }, class_name: 'CookbookVersion'
+  has_many :cookbook_versions, -> { order(id: :desc) }, dependent: :destroy
+  has_one :latest_cookbook_version, -> { order(id: :desc) }, class_name: 'CookbookVersion'
   has_many :supported_platforms, through: :latest_cookbook_version
   belongs_to :category
 
