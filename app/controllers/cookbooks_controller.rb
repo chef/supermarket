@@ -21,10 +21,12 @@ class CookbooksController < ApplicationController
   #
   def index
     if params[:category]
-      @cookbooks = Cookbook.joins(:category).
+      @cookbooks = Cookbook.
+        includes(:latest_cookbook_version).
+        joins(:category).
         where('lower(categories.name) = ?', params[:category].downcase)
     else
-      @cookbooks = Cookbook.all
+      @cookbooks = Cookbook.includes(:latest_cookbook_version)
     end
 
     if params[:q]
@@ -54,8 +56,14 @@ class CookbooksController < ApplicationController
   # Return the three most recently updated and created cookbooks.
   #
   def directory
-    @recently_updated_cookbooks = Cookbook.order('updated_at DESC').limit(3)
-    @recently_added_cookbooks = Cookbook.order('created_at DESC').limit(3)
+    @recently_updated_cookbooks = Cookbook.
+      includes(:latest_cookbook_version).
+      order('updated_at DESC').
+      limit(3)
+    @recently_added_cookbooks = Cookbook.
+      includes(:latest_cookbook_version).
+      order('created_at DESC').
+      limit(3)
   end
 
   #
