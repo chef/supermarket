@@ -29,7 +29,7 @@ execute 'apt-get-update-redis-only' do
   ignore_failure true
 end
 
-execute 'add-apt-repository[ppa:chris-lea]' do
+execute 'add-apt-repository[ppa:chris-lea/redis-server]' do
   command 'add-apt-repository -y ppa:chris-lea/redis-server'
   notifies :run, 'execute[apt-get-update-redis-only]', :immediately
   not_if 'test -f /etc/apt/sources.list.d/chris-lea-redis-server-precise.list'

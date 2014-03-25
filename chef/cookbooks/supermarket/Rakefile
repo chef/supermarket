@@ -9,10 +9,7 @@ desc 'Run Foodcritic lint checks'
 FoodCritic::Rake::LintTask.new(:foodcritic) do |t|
   t.options = {
     :fail_tags => ['any'],
-    :tags => [
-      '~FC003',
-      '~FC015'
-    ]
+    :tags => []
   }
 end
 

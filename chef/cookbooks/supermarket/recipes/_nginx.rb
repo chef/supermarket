@@ -23,9 +23,9 @@ package 'nginx'
 
 template '/etc/nginx/sites-available/default' do
   source 'supermarket.nginx.erb'
-  notifies :restart, 'service[nginx]', :immediately
+  notifies :reload, 'service[nginx]'
 end
 
 service 'nginx' do
-  action :nothing
+  action [:enable, :start]
 end

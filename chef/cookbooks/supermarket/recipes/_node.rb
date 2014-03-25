@@ -21,7 +21,6 @@
 
 include_recipe 'supermarket::_apt'
 
-package 'python-software-properties'
 package 'python'
 package 'g++'
 package 'make'
@@ -33,7 +32,7 @@ execute 'apt-get-update-node-only' do
   ignore_failure true
 end
 
-execute 'add-apt-repository[ppa:chris-lea]' do
+execute 'add-apt-repository[ppa:chris-lea/node.js]' do
   command 'add-apt-repository -y ppa:chris-lea/node.js'
   notifies :run, 'execute[apt-get-update-node-only]', :immediately
   not_if 'test -f /etc/apt/sources.list.d/chris-lea-node_js-precise.list'
