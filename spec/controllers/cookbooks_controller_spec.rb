@@ -133,9 +133,6 @@ describe CookbooksController do
 
       expect(response.body).to include(cookbook.to_json)
     end
-
-    it 'returns error messages on failure'
-    it 'returns a 404 when cookbook not found'
   end
 
   describe 'GET #directory' do
