@@ -32,11 +32,19 @@
     <div>
       <h4><i class="fa fa-money"></i> Versions</h4>
       <ul>
-        <% @cookbook_versions.each_with_index do |version, index| %>
-          <% if index < @cookbook_versions.size - 1 %>
-            <li><%= link_to version.version, cookbook_version_path(@cookbook, version), rel: 'cookbook_version' %>,</li>
+        <% @cookbook_versions.each do |version| %>
+          <% if version != @version %>
+            <li>
+              <%= tooltip_for(version) do %>
+                <%= link_to version.version, cookbook_version_path(@cookbook, version), rel: 'cookbook_version' %>
+              <% end %>
+            </li>
           <% else %>
-            <li><%= version.version %></li>
+            <li>
+              <%= tooltip_for(version) do %>
+                <%= version.version %>
+              <% end %>
+            </li>
           <% end %>
         <% end %>
       </ul>

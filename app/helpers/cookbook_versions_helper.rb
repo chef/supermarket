@@ -18,4 +18,28 @@ module CookbookVersionsHelper
       content
     end
   end
+
+  #
+  # Returns a span that displays a tooltip for the cookbook version, showing
+  # last updated at and download count.
+  #
+  # @param version [CookbookVersion] the cookbook version
+  #
+  # @return [String] the span tag with the appropriate information
+  #
+  # @yieldreturn [String] the tooltip enabled content
+  #
+  def tooltip_for(version)
+    updated_at = version.updated_at.to_s(:db)
+    download_count = version.download_count
+
+    content_tag(
+      :span,
+      data: { tooltip: true },
+      class: 'has-tip',
+      title: "Updated at: #{updated_at}. Downloaded #{download_count} times."
+    ) do
+      yield
+    end
+  end
 end
