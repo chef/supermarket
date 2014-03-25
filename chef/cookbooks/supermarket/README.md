@@ -9,6 +9,7 @@ This cookbook deploys the [Supermarket application](https://github.com/opscode/s
 - Author: Seth Vargo (<sethvargo@gmail.com>)
 - Author: Tristan O'Neil (<tristanoneil@gmail.com>)
 - Author: Joshua Timberman (<joshua@getchef.com>)
+- Author: Gleb M Borisov (<borisov.gleb@gmail.com>)
 
 - Copyright (C) 2014, Chef Software, Inc. (<legal@getchef.com>)
 

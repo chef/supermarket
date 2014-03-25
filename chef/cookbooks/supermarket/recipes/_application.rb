@@ -30,7 +30,7 @@ user 'supermarket' do
   system true
   home node['supermarket']['home']
   comment 'Supermarket'
-  shell '/bin/bash'
+  shell '/bin/false'
 end
 
 deploy_revision node['supermarket']['home'] do
@@ -45,7 +45,7 @@ deploy_revision node['supermarket']['home'] do
   symlink_before_migrate '.env' => '.env'
 
   before_migrate do
-    %w{pids log system public}.each do |dir|
+    %w(pids log system public).each do |dir|
       directory "#{node['supermarket']['home']}/shared/#{dir}" do
         mode 0777
         recursive true
