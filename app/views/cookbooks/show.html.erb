@@ -21,7 +21,7 @@
 
     <div class="cookbook-details">
       <h4>Cookbook Details</h4>
-      <%= link_to 'Edit', '#', class: 'button tiny show-cookbook-urls-manage' %>
+      <%= link_to 'Edit', '#', class: 'button tiny show-cookbook-urls-manage', rel: 'edit-cookbook-urls' %>
 
       <div class="cookbook-urls">
         <% if @cookbook.source_url.present? %>
@@ -39,7 +39,7 @@
           <%= f.text_field :source_url, placeholder: 'http://example.com' %>
           <%= f.label :issues_url, 'Issues URL' %>
           <%= f.text_field :issues_url, placeholder: 'http://example.com' %>
-          <%= f.submit "Save", class: 'button tiny' %>
+          <%= f.submit "Save", class: 'button tiny submit-urls' %>
         <% end %>
       </div>
 

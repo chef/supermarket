@@ -7,7 +7,7 @@ $(function() {
   });
 
   $(".manage-cookbook-urls .edit_cookbook").on('ajax:success', function(event, data, status, xhr) {
-    event.preventDefault(); // do I need this?
+    event.preventDefault();
     $(".manage-cookbook-urls").hide();
     $(".show-cookbook-urls-manage").show();
     $(".source-url").attr("href", data.source_url)
@@ -15,14 +15,14 @@ $(function() {
     $(".cookbook-urls").show();
 
     $(".globalheader").append(
-      '<div data-alert class="alert-box">Your cookbook URLs were successfully saved. <a href="#" class="close">&times;</a></div>'
+      '<div data-alert class="alert-box success"><div>The cookbook URLs were successfully saved.</div> <a href="#" class="close">&times;</a></div>'
     );
   });
 
   $(".manage-cookbook-urls .edit_cookbook").on('ajax:error', function(event, data, status, xhr) {
-    event.preventDefault(); // do I need this?
+    event.preventDefault();
     $(".globalheader").append(
-      '<div data-alert class="alert-box">There was an error saving the cookbook URLs. <a href="#" class="close">&times;</a></div>'
+      '<div data-alert class="alert-box failure"><div>There was an error saving the cookbook URLs.</div> <a href="#" class="close">&times;</a></div>'
     );
   });
 });
