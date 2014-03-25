@@ -49,8 +49,8 @@ RSpec.configure do |config|
 
   # Skip specs that require secure environment variables when running them
   # with Travis CI.
-  if ENV['TRAVIS_SECURE_ENV_VARS'] == false
-    c.filter_run_excluding skip_travis: true
+  if ENV['TRAVIS_SECURE_ENV_VARS'] == 'false'
+    config.filter_run_excluding uses_secrets: true
   end
 
   config.before do

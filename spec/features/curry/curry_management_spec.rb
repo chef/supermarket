@@ -1,6 +1,6 @@
 require 'spec_feature_helper'
 
-describe 'Curry management', skip_travis: true do
+describe 'Curry management', uses_secrets: true do
   describe 'when a Chef Admin adds a GitHub repository to the Super Market watched repositories' do
     it 'subscribes to a repository' do
       sign_in(create(:admin))
