@@ -12,7 +12,7 @@ describe 'viewing a cookbook' do
       follow_relation 'cookbook'
     end
 
-    expect(page).to have_selector('.cookbook')
+    expect(page).to have_selector('.cookbook_show')
   end
 
   it "shows that cookbook's versions" do
@@ -24,6 +24,6 @@ describe 'viewing a cookbook' do
     follow_relation 'cookbook_versions'
     relations('cookbook_version').first.click
 
-    expect(page).to have_selector('.cookbook')
+    expect(page).to have_selector('.cookbook_show')
   end
 end

@@ -9,14 +9,14 @@ describe "updating a cookbook's issue and source urls" do
 
     visit cookbook_path(cookbook)
 
-    within '.cookbook-details' do
+    within '.cookbook_show_sidebar' do
       follow_relation 'edit-cookbook-urls'
-      fill_in 'Source URL', with: 'http://example.com/source'
-      fill_in 'Issues URL', with: 'http://example.com/tissues'
+      fill_in 'cookbook_source_url', with: 'http://example.com/source'
+      fill_in 'cookbook_source_url', with: 'http://example.com/tissues'
       submit_form
     end
 
-    expect_to_see_success_message
+    expect(page).to have_selector('.source-url')
   end
 
   it 'displays a failure message when invalid urls are entered' do
@@ -25,10 +25,10 @@ describe "updating a cookbook's issue and source urls" do
 
     visit cookbook_path(cookbook)
 
-    within '.cookbook-details' do
+    within '.cookbook_show_sidebar' do
       follow_relation 'edit-cookbook-urls'
-      fill_in 'Source URL', with: 'example'
-      fill_in 'Issues URL', with: 'example'
+      fill_in 'cookbook_source_url', with: 'example'
+      fill_in 'cookbook_source_url', with: 'example'
       expect(page).to have_selector('.error')
     end
   end

@@ -1,0 +1,50 @@
+// Tab structure
+.tabs {
+  border-bottom: rem-calc(2) solid $clouds;
+  margin: 0;
+  padding: 0;
+
+  &.profiletabs { padding-top: rem-calc(2); }
+
+  dd {
+
+    &:last-child { border-right: none; }
+
+    a {
+      background-color: transparent;
+      color: $concrete;
+      font: {
+        size: rem-calc(14);
+        weight: $normal;
+      }
+      line-height: rem-calc(15);
+      padding: rem-calc(15 30);
+      text-align: center;
+
+      &:hover {
+        background-color: transparent;
+        color: $silver;
+      }
+    }
+
+    &.active {
+
+      a {
+        background-color: white;
+        border-top: rem-calc(2) solid $clouds;
+        border-right: rem-calc(2) solid $clouds;
+        border-left: rem-calc(2) solid $clouds;
+        @include border-top-radius(rem-calc(5));
+        color: $primary_blue;
+        font-weight: $bold;
+        line-height: rem-calc(10);
+        padding-bottom: rem-calc(19);
+        margin-bottom: rem-calc(-1);
+      }
+    }
+  }
+}
+
+.tabs-content {
+  padding-top: rem-calc(20);
+}

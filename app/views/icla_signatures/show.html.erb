@@ -1,24 +1,26 @@
 <%= provide(:title, "ICLA Signature") %>
 
-<div class="cla">
-  <h1>Individual Contributor License Agreement <small>(ICLA)</small></h1>
+<div class="page">
+  <div class="cla">
+    <h1>Individual Contributor License Agreement <small>(ICLA)</small></h1>
 
-  <div class="signature">
-    <%= form_for(@icla_signature.dup, url: { action: :re_sign }, :html => {:"data-abide" => ''}) do |f| %>
-      <%= render 'application/form_errors', record: @icla_signature %>
-      <%= render 'fields', f: f %>
+    <div class="signature">
+      <%= form_for(@icla_signature.dup, url: { action: :re_sign }, html: { 'data-abide' => true }) do |f| %>
+        <%= render 'application/form_errors', record: @icla_signature %>
+        <%= render 'fields', f: f %>
 
-      <section>
-        <%= f.submit 'Re-sign ICLA', class: 'radius button expand' %>
-      </section>
-    <% end %>
-  </div>
+        <section>
+          <%= f.submit 'Re-sign ICLA', class: 'radius button expand' %>
+        </section>
+      <% end %>
+    </div>
 
-  <div class="agreement">
-    <div class="panel">
-      <%= render_markdown(@icla_signature.icla.head) %>
-      <%= render_markdown(@icla_signature.icla.body) %>
-      <footer><%= @icla_signature.icla.version %></footer>
+    <div class="agreement">
+      <div class="panel">
+        <%= render_markdown(@icla_signature.icla.head) %>
+        <%= render_markdown(@icla_signature.icla.body) %>
+        <footer><%= @icla_signature.icla.version %></footer>
+      </div>
     </div>
   </div>
 </div>

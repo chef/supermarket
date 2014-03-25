@@ -30,11 +30,9 @@ body {
 }
 
 .footer {
-  border-top: rem-calc(2) solid #ecedef;
   color: #999;
   font-size: rem-calc(11);
-  margin-top: rem-calc(70);
-  padding: rem-calc(40 0 0);
+  padding: rem-calc(40);
   text-align: center;
 }
 
@@ -164,4 +162,18 @@ body {
   top: rem-calc(30);
   left: rem-calc(70);
   z-index: 1;
+
+  * {
+    color: $concrete;
+    text-decoration: underline;
+    text-transform: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:last-child {
+      text-decoration: none;
+    }
+  }
 }

@@ -1,0 +1,47 @@
+<div class="cookbook_show_content">
+  <h1 class="cookbook_show_heading">
+    <%= cookbook.name %>
+    <small>
+      <%= link_to version.version, '#', 'data-dropdown' => 'versions', class: 'button radius tiny dropdown', rel: 'cookbook_versions' %>
+      <ul id="versions" data-dropdown-content class="f-dropdown">
+        <% cookbook_versions.each do |cookbook_version| %>
+          <li>
+            <%= link_to cookbook_version_path(cookbook, cookbook_version), rel: 'cookbook_version' do %>
+              <%= cookbook_version.version %>
+              <% if cookbook_version == version %><i class="fa fa-check right"></i><% end %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </small>
+    <small>
+      <a href="#" class="rss_feed_link"><i class="fa fa-rss"></i> RSS</a>
+    </small>
+    <small class="followbutton">
+      <i class="fa fa-users"></i> 349
+      <%= follow_button_for(cookbook) %>
+    </small>
+    <%= link_to "<i class='fa fa-chevron-left previouspage'></i>".html_safe, :back %>
+  </h1>
+
+  <pre class="prettyprint">knife cookbook site install <%= cookbook.name %></pre>
+
+  <p><%= cookbook.description %></p>
+
+  <dl class="tabs" data-tab>
+    <dd class="active"><a href="#readme">readme</a></dd>
+    <dd><a href="#dependencies">Dependencies</a></dd>
+    <dd><a href="#relatedcookbooks">Related Cookbooks</a></dd>
+  </dl>
+  <div class="tabs-content">
+    <div class="content active" id="readme">
+      <%= render_readme(version.readme, version.readme_extension) %>
+    </div>
+    <div class="content" id="dependencies">
+      Dependencies
+    </div>
+    <div class="content" id="relatedcookbooks">
+      Related Cookbooks
+    </div>
+  </div>
+</div>

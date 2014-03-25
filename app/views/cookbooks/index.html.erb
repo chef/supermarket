@@ -1,33 +1,35 @@
 <%= provide(:title, "Cookbooks") %>
 <%= provide(:description, "Browse and search Chef cookbooks.") %>
 
-<div class="breadcrumbs show-for-large-up">
-  <%= link_to 'Cookbooks', cookbooks_path %>
-  <%= link_to params[:category].titleize, cookbooks_category_path(params[:category]) if params[:category] %>
-</div>
-
-<%= render 'search' %>
-
-<section class="cookbook_body">
-  <div class="categories hide-for-medium-up"><%= render 'categories' %></div>
-
-  <div class="order right">
-    Sort By
-    <%= link_to 'Recently Updated', params.merge(order: 'recently_updated'), class: ('active' if params[:order] == 'recently_updated') %>
-    <%= link_to 'Recently Added', params.merge(order: 'recently_added'), class: ('active' if params[:order] == 'recently_added') %>
+<div class="page">
+  <div class="breadcrumbs show-for-large-up">
+    <%= link_to 'Cookbooks', cookbooks_path %>
+    <%= link_to params[:category].titleize, cookbooks_category_path(params[:category]) if params[:category] %>
   </div>
-  <h1 class="cookbook_content_heading">
-    <i class="fa fa-folder"></i>
-    <%= feed_title %>
-    <small>
-      <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
-    </small>
-  </h1>
 
-  <div class="show-for-medium-up"><%= render 'categories' %></div>
+  <%= render 'search' %>
 
-  <article class="cookbook_content">
-    <ul class="cookbook_listing"><%= render @cookbooks %></ul>
-    <%= paginate @cookbooks %>
-  </article>
-</section>
+  <section class="cookbook_body">
+    <div class="categories hide-for-medium-up"><%= render 'categories' %></div>
+
+    <div class="order right">
+      Sort By
+      <%= link_to 'Recently Updated', params.merge(order: 'recently_updated'), class: ('active' if params[:order] == 'recently_updated') %>
+      <%= link_to 'Recently Added', params.merge(order: 'recently_added'), class: ('active' if params[:order] == 'recently_added') %>
+    </div>
+    <h1 class="cookbook_content_heading">
+      <i class="fa fa-folder"></i>
+      <%= feed_title %>
+      <small>
+        <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom'), class: 'rss_feed_link show-for-medium-up' %>
+      </small>
+    </h1>
+
+    <div class="show-for-medium-up"><%= render 'categories' %></div>
+
+    <article class="cookbook_content">
+      <ul class="cookbook_listing"><%= render @cookbooks %></ul>
+      <%= paginate @cookbooks %>
+    </article>
+  </section>
+</div>

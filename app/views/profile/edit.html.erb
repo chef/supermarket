@@ -1,113 +1,115 @@
 <%= provide(:title, "Manage Profile") %>
 
-<div class="user">
-  <h1>Manage Profile</h1>
-  <dl class="tabs radius" data-tab>
-    <dd class="active"><a href="#profile" rel="manage_profile">Edit Profile</a></dd>
-    <dd><a href="#password" rel="change_password">Change Password</a></dd>
-    <dd><a href="#github-accounts" rel="manage_github_accounts">GitHub Accounts</a></dd>
-    <dd><a href="#agreements" rel="manage_agreements">Agreements</a></dd>
-  </dl>
+<div class="page">
+  <div class="user">
+    <h1>Manage Profile</h1>
+    <dl class="tabs radius" data-tab>
+      <dd class="active"><a href="#profile" rel="manage_profile">Edit Profile</a></dd>
+      <dd><a href="#password" rel="change_password">Change Password</a></dd>
+      <dd><a href="#github-accounts" rel="manage_github_accounts">GitHub Accounts</a></dd>
+      <dd><a href="#agreements" rel="manage_agreements">Agreements</a></dd>
+    </dl>
 
-  <div class="tabs-content">
-    <div class="content active" id="profile">
-      <%= form_for(current_user, url: profile_path, :html => {:"data-abide" => ''}) do |f| %>
-        <%= render 'application/form_errors', record: current_user %>
+    <div class="tabs-content">
+      <div class="content active" id="profile">
+        <%= form_for(current_user, url: profile_path, html: { 'data-abide' => true }) do |f| %>
+          <%= render 'application/form_errors', record: current_user %>
 
-        <fieldset>
-          <div class="email-field">
-            <%= f.email_field :email, placeholder: 'Email *',  title: 'Email', required: '', pattern: 'email' %>
-            <small class="error">Valid email is required.</small>
-          </div>
-          <div class="firstname-field">
-            <%= f.text_field :first_name, placeholder: 'First Name *',  title: 'First Name', required: '', pattern: 'alpha_numeric' %>
-            <small class="error">First name is required.</small>
-          </div>
-          <div class="lastname-field">
-            <%= f.text_field :last_name, placeholder: 'Last Name *',  title: 'Last Name', required: '', pattern: 'alpha_numeric' %>
-            <small class="error">Last name is required.</small>
-          </div>
-          <div class="company-field">
-            <%= f.text_field :company, placeholder: 'Company', title: 'Company' %>
-          </div>
-          <div class="twitterusername-field">
-            <%= f.text_field :twitter_username, placeholder: 'Twitter Username', title: 'twitter username' %>
-          </div>
-          <div class="ircnickname-field">
-            <%= f.text_field :irc_nickname, placeholder: 'IRC Nickname', title: 'irc nickname' %>
-          </div>
-          <div class="jirausername-field">
-            <%= f.text_field :jira_username, placeholder: 'JIRA Username', title: 'jira username' %>
-          </div>
-          <div class="jirausername-field">
-            <p class="gravatar">
-              <%= gravatar_for current_user, size: 30 %>
-              Avatars are powered by <%= link_to 'Gravatar', 'https://www.gravatar.com' %>
-            </p>
-          </div>
-        </fieldset>
-        <%= f.submit 'Update Profile', class: 'button primary expand radius' %>
-      <% end %>
-    </div>
-    <div class="content" id="password">
-      <%= form_for(current_user, url: change_password_profile_path, data: { abide: true }) do |f| %>
-        <fieldset>
-          <div class="currentpassword-field">
-            <%= f.password_field :current_password, placeholder: 'Current password *',  title: 'Current Password', required: '', pattern: 'alpha_numeric' %>
-            <small class="error">Current password is required.</small>
-          </div>
-          <div class="newpassword-field">
-            <%= f.password_field :password, placeholder: 'New Password *',  title: 'New Password', required: '', pattern: 'alpha_numeric' %>
-            <small class="error">New password is required.</small>
-          </div>
-          <div class="confirmnewpassword-field">
-            <%= f.password_field :password_confirmation, placeholder: 'Confirm New Password *', title: 'Confirm New Password', required: '', pattern: 'alpha_numeric' %>
-            <small class="error">Confirm new password is required.</small>
-          </div>
-        </fieldset>
-        <%= f.submit 'Change Password', class: 'button primary expand radius' %>
-      <% end %>
-    </div>
-    <div class="content" id="github-accounts">
-      <p>You must have at least one linked GitHub account in order for us to match your contributions on GitHub with your signed Contributors License Agreement.</p>
-      <table>
-        <% current_user.accounts.for('github').each do |account| %>
-          <tr>
-            <td><i class="fa fa-github"></i> <%= account.username %></td>
-            <td class="text-right"><%= link_to 'Disconnect GitHub', user_account_url(current_user, account), method: :delete, rel: 'disconnect_github' %></td>
-          </tr>
+          <fieldset>
+            <div class="email-field">
+              <%= f.email_field :email, placeholder: 'Email *',  title: 'Email', required: '', pattern: 'email' %>
+              <small class="error">Valid email is required.</small>
+            </div>
+            <div class="firstname-field">
+              <%= f.text_field :first_name, placeholder: 'First Name *',  title: 'First Name', required: '', pattern: 'alpha_numeric' %>
+              <small class="error">First name is required.</small>
+            </div>
+            <div class="lastname-field">
+              <%= f.text_field :last_name, placeholder: 'Last Name *',  title: 'Last Name', required: '', pattern: 'alpha_numeric' %>
+              <small class="error">Last name is required.</small>
+            </div>
+            <div class="company-field">
+              <%= f.text_field :company, placeholder: 'Company', title: 'Company' %>
+            </div>
+            <div class="twitterusername-field">
+              <%= f.text_field :twitter_username, placeholder: 'Twitter Username', title: 'twitter username' %>
+            </div>
+            <div class="ircnickname-field">
+              <%= f.text_field :irc_nickname, placeholder: 'IRC Nickname', title: 'irc nickname' %>
+            </div>
+            <div class="jirausername-field">
+              <%= f.text_field :jira_username, placeholder: 'JIRA Username', title: 'jira username' %>
+            </div>
+            <div class="jirausername-field">
+              <p class="gravatar">
+                <%= gravatar_for current_user, size: 30 %>
+                Avatars are powered by <%= link_to 'Gravatar', 'https://www.gravatar.com' %>
+              </p>
+            </div>
+          </fieldset>
+          <%= f.submit 'Update Profile', class: 'button primary expand radius' %>
         <% end %>
-      </table>
-
-      <%= link_to '<i class="fa fa-github"></i> Connect GitHub'.html_safe, auth_path(:github), class: 'button radius', rel: 'connect_github' %>
-    </div>
-    <div class="content" id="agreements">
-      <table>
-        <% if current_user.signed_icla? %>
-          <tr>
-            <td>Signed ICLA</td>
-            <td class="text-right"><%= link_to "Edit ICLA", current_user.latest_icla_signature %></td>
-          </tr>
+      </div>
+      <div class="content" id="password">
+        <%= form_for(current_user, url: change_password_profile_path, data: { abide: true }) do |f| %>
+          <fieldset>
+            <div class="currentpassword-field">
+              <%= f.password_field :current_password, placeholder: 'Current password *',  title: 'Current Password', required: '', pattern: 'alpha_numeric' %>
+              <small class="error">Current password is required.</small>
+            </div>
+            <div class="newpassword-field">
+              <%= f.password_field :password, placeholder: 'New Password *',  title: 'New Password', required: '', pattern: 'alpha_numeric' %>
+              <small class="error">New password is required.</small>
+            </div>
+            <div class="confirmnewpassword-field">
+              <%= f.password_field :password_confirmation, placeholder: 'Confirm New Password *', title: 'Confirm New Password', required: '', pattern: 'alpha_numeric' %>
+              <small class="error">Confirm new password is required.</small>
+            </div>
+          </fieldset>
+          <%= f.submit 'Change Password', class: 'button primary expand radius' %>
         <% end %>
-
-        <% current_user.contributors.each do |contributor| %>
-          <% if contributor.admin? %>
+      </div>
+      <div class="content" id="github-accounts">
+        <p>You must have at least one linked GitHub account in order for us to match your contributions on GitHub with your signed Contributors License Agreement.</p>
+        <table>
+          <% current_user.accounts.for('github').each do |account| %>
             <tr>
-              <td>Admin of <%= contributor.organization.name %>
-              <td class="text-right">
-                <%= link_to "Edit CCLA", contributor.organization.latest_ccla_signature %>
-                <span> or</span>
-                <%= link_to "Manage Contributors", organization_invitations_url(contributor.organization), rel: 'invite_contributors' %>
-              </td>
-            </tr>
-          <% else %>
-            <tr>
-              <td>Contributor of <%= contributor.organization.name %></td>
-              <td class="text-right"><%= link_to "View CCLA", contributor.organization.latest_ccla_signature %></td>
+              <td><i class="fa fa-github"></i> <%= account.username %></td>
+              <td class="text-right"><%= link_to 'Disconnect GitHub', user_account_url(current_user, account), method: :delete, rel: 'disconnect_github' %></td>
             </tr>
           <% end %>
-        <% end %>
-      </table>
+        </table>
+
+        <%= link_to '<i class="fa fa-github"></i> Connect GitHub'.html_safe, auth_path(:github), class: 'button radius', rel: 'connect_github' %>
+      </div>
+      <div class="content" id="agreements">
+        <table>
+          <% if current_user.signed_icla? %>
+            <tr>
+              <td>Signed ICLA</td>
+              <td class="text-right"><%= link_to "Edit ICLA", current_user.latest_icla_signature %></td>
+            </tr>
+          <% end %>
+
+          <% current_user.contributors.each do |contributor| %>
+            <% if contributor.admin? %>
+              <tr>
+                <td>Admin of <%= contributor.organization.name %>
+                <td class="text-right">
+                  <%= link_to "Edit CCLA", contributor.organization.latest_ccla_signature %>
+                  <span> or</span>
+                  <%= link_to "Manage Contributors", organization_invitations_url(contributor.organization), rel: 'invite_contributors' %>
+                </td>
+              </tr>
+            <% else %>
+              <tr>
+                <td>Contributor of <%= contributor.organization.name %></td>
+                <td class="text-right"><%= link_to "View CCLA", contributor.organization.latest_ccla_signature %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+      </div>
     </div>
   </div>
 </div>
