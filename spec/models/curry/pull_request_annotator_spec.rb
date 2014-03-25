@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'vcr_helper'
 
-describe Curry::PullRequestAnnotator do
+describe Curry::PullRequestAnnotator, uses_secrets: true do
   describe '#annotate' do
     let(:octokit) do
       Octokit::Client.new(
