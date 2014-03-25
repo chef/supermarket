@@ -47,6 +47,12 @@ RSpec.configure do |config|
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
 
+  # Skip specs that require secure environment variables when running them
+  # with Travis CI.
+  if ENV['TRAVIS_SECURE_ENV_VARS'] == false
+    c.filter_run_excluding skip_travis: true
+  end
+
   config.before do
     # Clear ActionMailer deliveries before each example
     ActionMailer::Base.deliveries.clear
