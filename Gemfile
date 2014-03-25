@@ -16,8 +16,6 @@ gem 'pundit'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'coveralls', require: false
-gem 'sentry-raven', github: 'getsentry/raven-ruby'
-gem 'statsd-ruby', require: 'statsd'
 gem 'octokit', github: 'octokit/octokit.rb', require: false
 gem 'sidekiq'
 gem 'premailer-rails', group: [:development, :production]
@@ -27,6 +25,10 @@ gem 'paperclip'
 gem 'virtus', require: false
 gem 'kaminari'
 gem 'chef', require: ['chef/version_constraint', 'chef/exceptions']
+
+gem 'sentry-raven', github: 'getsentry/raven-ruby'
+gem 'statsd-ruby', require: 'statsd'
+gem 'analytics-ruby', require: false
 
 gem 'sass-rails',   '~> 4.0.1'
 gem 'compass-rails'

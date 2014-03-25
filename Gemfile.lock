@@ -42,6 +42,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
+    analytics-ruby (1.0.0)
     and_feathers (1.0.0.pre.1)
     and_feathers-gzipped_tarball (1.0.0.pre)
     arel (4.0.2)
@@ -396,6 +397,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  analytics-ruby
   and_feathers (>= 1.0.0.pre)
   and_feathers-gzipped_tarball (>= 1.0.0.pre)
   byebug

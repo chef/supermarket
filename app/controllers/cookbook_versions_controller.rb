@@ -10,6 +10,12 @@ class CookbookVersionsController < ApplicationController
     CookbookVersion.increment_counter(:download_count, version.id)
     Cookbook.increment_counter(:download_count, cookbook.id)
 
+    SegmentIO.track_server_event(
+      'cookbook_version_downloaded',
+      cookbook: cookbook.name,
+      version: version.version
+    )
+
     redirect_to version.tarball.url
   end
 end
