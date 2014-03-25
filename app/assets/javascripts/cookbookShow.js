@@ -15,14 +15,14 @@ $(function() {
     $(".cookbook-urls").show();
 
     $(".globalheader").append(
-      '<div data-alert class="alert-box">wow such save <a href="#" class="close">&times;</a></div>'
+      '<div data-alert class="alert-box">Your cookbook URLs were successfully saved. <a href="#" class="close">&times;</a></div>'
     );
   });
 
   $(".manage-cookbook-urls .edit_cookbook").on('ajax:error', function(event, data, status, xhr) {
     event.preventDefault(); // do I need this?
     $(".globalheader").append(
-      '<div data-alert class="alert-box">wow such error so sorry <a href="#" class="close">&times;</a></div>'
+      '<div data-alert class="alert-box">There was an error saving the cookbook URLs. <a href="#" class="close">&times;</a></div>'
     );
   });
 });
