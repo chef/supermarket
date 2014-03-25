@@ -1,19 +1,32 @@
 // Basic structural elements
 html, body { height: 100%; min-height: 100%; }
 
+@media #{$mobile-only} {
+  html, body { font-size: 62.5%; }
+}
+
+@media #{$medium-only} {
+  html, body { font-size: 75%; }
+}
+
+@media #{$xlarge-up} {
+  html, body { font-size: 110%; }
+}
+
 body {
   background-color: $body-bg;
   margin: 0;
 }
 
 .container {
+  background-color: white;
   @include grid-row();
   min-height: 100%;
 }
 
 .page {
-  @include grid-column(12, $center: true);
-  padding: rem-calc(70 140 140);
+  @include grid-column(12);
+  padding: rem-calc(70);
 }
 
 .footer {
@@ -21,7 +34,7 @@ body {
   color: #999;
   font-size: rem-calc(11);
   margin-top: rem-calc(70);
-  padding: rem-calc(40 0);
+  padding: rem-calc(40 0 0);
   text-align: center;
 }
 
@@ -93,6 +106,7 @@ body {
     .panel {
       max-height: rem-calc(1020);
       overflow: auto;
+      -webkit-overflow-scrolling: touch;
 
       h1 { border: none; font-size: rem-calc(18); line-height: rem-calc(24); }
       h2 { font-size: rem-calc(14); line-height: rem-calc(24); }
@@ -139,4 +153,15 @@ body {
       ul { text-align: left; }
     }
   }
+}
+
+// Breadcrumbs
+.breadcrumbs {
+  background-color: white;
+  border: 0;
+  padding: 0;
+  position: absolute;
+  top: rem-calc(30);
+  left: rem-calc(70);
+  z-index: 1;
 }

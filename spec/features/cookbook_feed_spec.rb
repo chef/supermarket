@@ -33,8 +33,10 @@ describe 'cookbook feed' do
     visit '/'
     click_link 'Cookbooks'
 
-    fill_in 'q', with: 'Amazing'
-    find('.search').click
+    within '.page' do
+      fill_in 'q', with: 'Amazing'
+      submit_form
+    end
 
     expect(all('.cookbook').size).to eql(1)
   end

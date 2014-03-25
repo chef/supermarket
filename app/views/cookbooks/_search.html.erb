@@ -1,4 +1,6 @@
-<%= form_tag cookbooks_path, method: :get do %>
-  <%= text_field_tag :q %>
-  <%= submit_tag 'Search', class: 'search' %>
+<%= form_tag cookbooks_path, class: 'cookbook_search', method: :get do %>
+  <%= search_field_tag :q, params[:q], placeholder: 'Search Cookbooks', autofocus: 'true', class: 'cookbook_search_textfield' %>
+  <%= button_tag(type: 'submit', class: 'cookbook_search_button') do %>
+    <%= content_tag(:i, nil, class: 'fa fa-search') %>
+  <% end %>
 <% end %>

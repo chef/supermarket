@@ -1,28 +1,83 @@
 // Global Header
+// Header wrapping element and row
 .globalheader {
-  @include bringdanoise(#292929);
-  border-bottom: 1px solid black;
-  @include box-sizing(border-box);
-  height: rem-calc(69);
-  padding: 0 rem-calc(20) 0 rem-calc(66);
+  background-color: $primary_blue;
+  @include grid-row();
+  height: rem-calc(70);
+}
+
+@media #{$mobile-only} {
+  .globalheader {
+    position: relative;
+  }
+}
+
+// logo and Chef properties toggle column
+.logo_and_nav_toggle {
+  @include grid-column($columns: 3, $collapse: true);
+}
+
+@media #{$mobile-only} {
+  .logo_and_nav_toggle {
+    @include grid-column($columns: 10, $collapse: true);
+    position: static;
+  }
+}
+
+@media #{$small-only} {
+  .logo_and_nav_toggle {
+    @include grid-column($columns: 5, $collapse: true);
+    position: static;
+  }
+}
+
+// Navigation, search and user menu column
+.navigation_search_and_avatar {
+  @include grid-column($columns: 9, $collapse: true);
+}
+
+@media #{$mobile-only} {
+  .navigation_search_and_avatar {
+    @include grid-column($columns: 2, $collapse: true);
+  }
+}
+
+@media #{$small-only} {
+  .navigation_search_and_avatar {
+    @include grid-column($columns: 7, $collapse: true);
+  }
 }
 
 .left-off-canvas-toggle {
-  color: #7c858c;
+  color: adjust-lightness($primary_blue, 20%);
   display: block;
-  height: rem-calc(69);
-  left: 0;
-  line-height: rem-calc(69);
-  position: absolute;
+  float: left;
+  height: rem-calc(70);
+  line-height: rem-calc(70);
+  @include single-transition(color, $speed: 100ms);
   text-align: center;
-  top: 0;
   width: rem-calc(66);
-  z-index: 1;
 
   &:before { display: block; margin-top: rem-calc(28); }
 
-  &:visited { color: #7c858c; }
-  &:hover { color: #949ea6; }
+  &:visited { color: adjust-lightness($primary_blue, 20%); }
+  &:hover { color: adjust-lightness($primary_blue, 40%); }
+}
+
+@media #{$mobile-only} {
+  .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
+}
+
+@media #{$small-only} {
+  .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
+}
+
+@media #{$medium-only} {
+  .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
+}
+
+@media #{$xlarge-up} {
+  .left-off-canvas-toggle:before { margin-top: rem-calc(24.5); }
 }
 
 .off-canvas-list li a:hover {
@@ -31,75 +86,70 @@
 
 // Global chef elements
 .logochef {
-  background: url(image-path('logo.svg')) 0 rem-calc(9) no-repeat;
-  @include background-size(rem-calc(48) rem-calc(50));
+  background: url(image-path('logo-supermarket.svg')) no-repeat;
+  @include background-size(rem-calc(147) rem-calc(37));
   float: left;
-  height: rem-calc(69);
-  margin: 0 rem-calc(27) 0 0;
-  width: rem-calc(47);
+  height: rem-calc(37);
+  margin: rem-calc(16 0 0 0);
+  width: rem-calc(147);
 
   .no-svg & {
-    background: url(image-path('logo_pngfallback.png')) no-repeat;
+    background: url(image-path('logo-supermarket.png')) no-repeat;
   }
 
   a {
     display: block;
-    height: rem-calc(50);
-    width: rem-calc(48);
+    height: rem-calc(37);
+    width: rem-calc(147);
 
     span { display: none; }
   }
 }
 
-
-// App-specific elements
-.appheader {
-  color: #f18a20;
-  float: left;
-  font-size: rem-calc(24);
-  line-height: rem-calc(69);
-  margin: 0 rem-calc(20) 0 0;
-  text-transform: uppercase;
-
-  a:link, a:visited {
-    color: #f18a20;
-    text-decoration: none;
-  }
-  a:hover, a:active {
-    color: #f99e40;
-    text-decoration: none;
+@media #{$mobile-only} {
+  .logochef {
+    float: none;
+    left: 50%;
+    margin-left: rem-calc(-73.5);
+    position: absolute;
   }
 }
 
+// App-specific elements
 .searchform {
   float: right;
-  height: rem-calc(69);
-  margin-right: rem-calc(57);
+  height: rem-calc(70);
   position: relative;
 
   .fa {
-    @include box-shadow(rgba(0,0,0,.9) 0 1px 0);
-    color: #7c858c;
+    color: tint($primary_blue, 20%);
     height: rem-calc(16);
     position: absolute;
     right: rem-calc(10);
-    top: rem-calc(28);
+    top: rem-calc(27);
     width: rem-calc(16);
     z-index: 1;
   }
 }
 
+@media #{$small-only} {
+  .searchform { margin-right: rem-calc(-8); }
+}
+
+@media #{$xlarge-up} {
+  .searchform .fa { right: rem-calc(12); top: rem-calc(24); }
+}
+
 #searchfield {
-  background-color: #1b1b1f;
+  background-color: shade($primary_blue, 35%);
   border: none;
-  @include border-radius(rem-calc(32));
-  @include box-shadow(#141417 0 -1px 0, #333 0 1px 0);
+  @include border-radius(rem-calc(36));
   @include box-sizing(border-box);
-  color: #7c858c;
-  height: rem-calc(32);
-  margin-top: rem-calc(20);
+  color: tint($primary_blue, 60%);
+  height: rem-calc(36);
+  margin-top: rem-calc(17);
   padding: 0 rem-calc(20);
-  width: rem-calc(310);
+  width: rem-calc(274);
 }
 
 .appnav {
@@ -107,28 +157,26 @@
 
   ul {
     margin: 0;
+    padding-left: rem-calc(20);
 
     li {
       float: left;
       list-style: none;
 
       a:link, a:visited {
-        color: #7c858c;
+        color: adjust-lightness($primary_blue, 100%);
         display: block;
         float: left;
-        font: {
-          family: "Montserrat", $body-font-family;
-          size: rem-calc(12);
-          weight: 700;
-        }
-        line-height: rem-calc(69);
+        font: rem-calc(12) $accent_font;
+        line-height: rem-calc(70);
         padding: 0 rem-calc(20);
+        @include single-transition(color, $speed: 100ms);
         text-decoration: none;
         text-transform: uppercase;
       }
 
       a:hover, a:active {
-        color: #949ea6;
+        color: adjust-lightness($primary_blue, 40%);
       }
     }
   }
@@ -136,20 +184,17 @@
 
 .usermenu {
   float: right;
-  height: rem-calc(69);
+  height: rem-calc(70);
+  margin: rem-calc(0 70 0 20);
   position: relative;
-  width: rem-calc(62);
+  width: rem-calc(36);
   z-index: 101;
 
   .signin {
     color: #7c858c;
     display: block;
-    font: {
-      family: "Montserrat", $body-font-family;
-      size: rem-calc(12);
-      weight: 700;
-    }
-    line-height: rem-calc(69);
+    font: $bold rem-calc(12) $accent_font;
+    line-height: rem-calc(70);
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
@@ -165,16 +210,21 @@
 
   .avatar {
     float: right;
-    height: rem-calc(32);
-    margin-top: rem-calc(18);
-    width: rem-calc(32);
+    height: rem-calc(36);
+    margin-top: rem-calc(17);
+    width: rem-calc(36);
 
     img {
-      @include border-radius(rem-calc(32));
-      @include box-shadow(rgba(0,0,0,.6) 0 1px 0);
+      @include border-radius(rem-calc(36));
       height: auto;
       max-width: 100%;
     }
+  }
+}
+
+@media #{$mobile-only} {
+  .usermenu {
+    margin: rem-calc(0 20 0 0);
   }
 }
 
@@ -187,7 +237,7 @@
   padding: 0;
   position: absolute;
   right: rem-calc(6);
-  top: rem-calc(69);
+  top: rem-calc(70);
   width: rem-calc(150);
   z-index: 101;
 
@@ -223,6 +273,17 @@
       }
 
       &:before { margin-right: rem-calc(7); }
+    }
+  }
+}
+
+@media #{$mobile-only} {
+  .userdropdown {
+    width: rem-calc(250);
+
+    li a {
+      font-size: rem-calc(18);
+      padding: rem-calc(20);
     }
   }
 }
