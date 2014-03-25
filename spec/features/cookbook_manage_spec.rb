@@ -12,8 +12,8 @@ describe "updating a cookbook's issue and source urls" do
       fill_in 'Source URL', with: 'http://example.com/source'
       fill_in 'Issues URL', with: 'http://example.com/tissues'
       submit_form
-
-      expect_to_see_success_message
     end
+
+    expect_to_see_success_message
   end
 end
