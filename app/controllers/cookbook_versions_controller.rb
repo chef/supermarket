@@ -25,6 +25,10 @@ class CookbookVersionsController < ApplicationController
   # Displays information about this particular cookbook version
   #
   def show
+    @cookbook_versions = @cookbook.cookbook_versions
+    @maintainer = User.first
+    @collaborators = [User.first]
+    @supported_platforms = @version.supported_platforms
   end
 
   private
