@@ -149,4 +149,28 @@ describe Cookbook do
       expect(Cookbook.search('fast')).to_not include(redisio)
     end
   end
+
+  describe '.ordered_by' do
+    before do
+      create(:cookbook, name: 'great')
+      create(:cookbook, name: 'cookbook')
+    end
+
+    it 'orders by name ascending by default' do
+      expect(Cookbook.ordered_by(nil).map(&:name)).to eql(%w(cookbook great))
+    end
+
+    it 'orders by updated_at descending when given "recently_updated"' do
+      Cookbook.with_name('great').first.touch
+
+      expect(Cookbook.ordered_by('recently_updated').map(&:name)).
+        to eql(%w(great cookbook))
+    end
+
+    it 'orders by created_at descending when given "recently_created"' do
+      create(:cookbook, name: 'neat')
+
+      expect(Cookbook.ordered_by('recently_created').first.name).to eql('neat')
+    end
+  end
 end

@@ -3,6 +3,13 @@ class Cookbook < ActiveRecord::Base
 
   scope :with_name, ->(name) { where('lower(name) = ?', name.to_s.downcase) }
 
+  scope :ordered_by, lambda { |ordering|
+    order({
+      'recently_updated' => 'updated_at DESC',
+      'recently_created' => 'created_at DESC'
+    }.fetch(ordering, 'name ASC'))
+  }
+
   # Search
   # --------------------
   pg_search_scope(
