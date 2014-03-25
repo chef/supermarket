@@ -7,19 +7,11 @@ $(function() {
   });
 
   $(".manage-cookbook-urls .edit_cookbook").on('ajax:success', function(event, data, status, xhr) {
-    // here is where the AJAX will happen
-    // todo
-    // - replace the cookbook urls
-    // - post the update
-    // - display success or error message
-
-    // do I need this?
-    event.preventDefault();
-    console.log(data);
-    console.log(status);
-    console.log(xhr);
+    event.preventDefault(); // do I need this?
     $(".manage-cookbook-urls").hide();
     $(".show-cookbook-urls-manage").show();
+    $(".source-url").attr("href", data.source_url)
+    $(".issues-url").attr("href", data.issues_url)
     $(".cookbook-urls").show();
 
     $(".globalheader").append(
@@ -28,11 +20,7 @@ $(function() {
   });
 
   $(".manage-cookbook-urls .edit_cookbook").on('ajax:error', function(event, data, status, xhr) {
-    // do I need this?
-    event.preventDefault();
-    console.log(data);
-    console.log(status);
-    console.log(xhr);
+    event.preventDefault(); // do I need this?
     $(".globalheader").append(
       '<div data-alert class="alert-box">wow such error so sorry <a href="#" class="close">&times;</a></div>'
     );

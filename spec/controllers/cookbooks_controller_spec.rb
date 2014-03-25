@@ -101,6 +101,7 @@ describe CookbooksController do
 
   describe 'PATCH #update' do
     let(:cookbook) { create(:cookbook) }
+
     it 'updates the cookbook' do
       patch :update, id: cookbook.name, cookbook: {
         source_url: 'http://example.com/cookbook',
