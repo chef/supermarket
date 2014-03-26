@@ -24,7 +24,7 @@ class CookbooksController < ApplicationController
       @cookbooks = Cookbook.
         includes(:latest_cookbook_version).
         joins(:category).
-        where('lower(categories.name) = ?', params[:category].downcase)
+        where('categories.slug = ?', params[:category])
     else
       @cookbooks = Cookbook.includes(:latest_cookbook_version)
     end
