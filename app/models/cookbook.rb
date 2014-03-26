@@ -47,6 +47,9 @@ class Cookbook < ActiveRecord::Base
   validates :cookbook_versions, presence: true
   validates :category, presence: true
 
+  validates_format_of :source_url, with: URI::regexp(%w(http https))
+  validates_format_of :issues_url, with: URI::regexp(%w(http https))
+
   #
   # Returns the name of the +Cookbook+ parameterized.
   #
