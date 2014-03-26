@@ -31,7 +31,7 @@
 
     <div>
       <h4><i class="fa fa-money"></i> Versions</h4>
-      <ul>
+      <ul class="truncated_directory" data-initial-size="5">
         <% @cookbook_versions.each_with_index do |version, index| %>
           <li data-index="<%= index %>">
             <% if version != @latest_version %>
@@ -45,6 +45,8 @@
             <% end %>
           </li>
         <% end %>
+        <li class="expand"><a href="#">View All</a></li>
+        <li class="collapse"><a href="#">View Fewer</a></li>
       </ul>
     </div>
 
