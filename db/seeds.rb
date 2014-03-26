@@ -47,8 +47,8 @@ if Rails.env.development?
     cookbook = Cookbook.where(
       name: name
     ).first_or_initialize(
-      maintainer: '...',
-      description: '...',
+      maintainer: Faker::Name.name,
+      description: Faker::Lorem.sentences(1).first,
       category: category
     )
 
