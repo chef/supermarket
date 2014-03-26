@@ -43,6 +43,7 @@ group :development do
   gem 'license_finder'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'faker'
 end
 
 group :test do
