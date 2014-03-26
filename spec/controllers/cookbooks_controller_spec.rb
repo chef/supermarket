@@ -103,10 +103,11 @@ describe CookbooksController do
     let(:cookbook) { create(:cookbook) }
 
     it 'updates the cookbook' do
-      patch :update, id: cookbook.name, cookbook: {
+      patch :update, id: cookbook, format: :js, cookbook: {
         source_url: 'http://example.com/cookbook',
         issues_url: 'http://example.com/cookbook/issues'
       }
+
       cookbook.reload
 
       expect(cookbook.source_url).to eql('http://example.com/cookbook')
@@ -114,31 +115,29 @@ describe CookbooksController do
     end
 
     it 'returns a 200 on success'  do
-      patch :update, id: cookbook.name, cookbook: {
+      patch :update, id: cookbook, format: :js, cookbook: {
         source_url: 'http://example.com/cookbook',
         issues_url: 'http://example.com/cookbook/issues'
       }
-      cookbook.reload
 
       expect(response.status.to_i).to eql(200)
     end
 
-    it 'returns cookbook on success'  do
-      patch :update, id: cookbook.name, cookbook: {
+    it 'updates the dom with update.js.erb'  do
+      patch :update, id: cookbook, format: :js, cookbook: {
         source_url: 'http://example.com/cookbook',
         issues_url: 'http://example.com/cookbook/issues'
       }
-      cookbook.reload
 
-      expect(response.body).to include(cookbook.to_json)
+      expect(response).to render_template('update')
     end
 
-    it 'returns a 422 if the urls are not valid' do
-      patch :update, id: cookbook.name, cookbook: {
+    it 'should make @cookbook invalid for invalid attributes' do
+      patch :update, id: cookbook, format: :js, cookbook: {
         source_url: 'test'
       }
 
-      expect(response.status.to_i).to eql(422)
+      expect(assigns[:cookbook].valid?).to be_false
     end
   end
 

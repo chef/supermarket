@@ -96,13 +96,8 @@ class CookbooksController < ApplicationController
   # NOTE: :id must be the name of the cookbook.
   #
   def update
-    cookbook = Cookbook.find_by(name: params[:id])
-
-    if cookbook.update_attributes(cookbook_urls_params)
-      render json: cookbook
-    else
-      render json: { errors: cookbook.errors.full_messages }, status: 422
-    end
+    @cookbook = Cookbook.find_by(name: params[:id])
+    @cookbook.update_attributes(cookbook_urls_params)
   end
 
   private

@@ -24,22 +24,24 @@
       <%= link_to 'Edit', '#', class: 'button tiny show-cookbook-urls-manage', rel: 'edit-cookbook-urls' %>
 
       <div class="cookbook-urls">
-        <% if @cookbook.source_url.present? %>
-          <%= link_to 'View Source', @cookbook.source_url, class: 'button source-url' %>
-        <% end %>
-
-        <% if @cookbook.issues_url.present? %>
-          <%= link_to 'View Issues', @cookbook.issues_url, class: 'button issues-url' %>
-        <% end %>
+        <%= render 'cookbook_urls', cookbook: @cookbook %>
       </div>
 
       <div class="manage-cookbook-urls hidden">
-        <%= form_for @cookbook, remote: true do |f| %>
-          <%= f.label :source_url, 'Source URL' %>
-          <%= f.text_field :source_url, placeholder: 'http://example.com' %>
-          <%= f.label :issues_url, 'Issues URL' %>
-          <%= f.text_field :issues_url, placeholder: 'http://example.com' %>
-          <%= f.submit "Save", class: 'button tiny submit-urls' %>
+        <%= form_for @cookbook, remote: true, data: { abide: true } do |f| %>
+          <div class="source-url-field">
+            <%= f.label :source_url, 'Source URL' %>
+            <%= f.text_field :source_url, placeholder: 'http://example.com', pattern: 'url' %>
+            <small class="error">Must be formatted as a URL.</small>
+          </div>
+
+          <div class="issues-url-field">
+            <%= f.label :issues_url, 'Issues URL' %>
+            <%= f.text_field :issues_url, placeholder: 'http://example.com', pattern: 'url' %>
+            <small class="error">Must be formatted as a URL.</small>
+          </div>
+
+          <%= f.submit 'Save', class: 'button tiny submit-urls', data: { disable_with: 'Saving...' } %>
         <% end %>
       </div>
 
