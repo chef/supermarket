@@ -16,7 +16,10 @@
 //= require fastclick
 //= require modernizr
 //= require foundation.min
-//= require_tree .
+//= require checkbox
+//= require expandContributors
+//= require flash
+//= require truncatedDirectory
 
 $(function(){
   $(document).foundation();
