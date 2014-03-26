@@ -31,9 +31,9 @@
 
     <div>
       <h4><i class="fa fa-money"></i> Versions</h4>
-      <ul class="truncated_directory" data-initial-size="5">
-        <% @cookbook_versions.each_with_index do |version, index| %>
-          <li data-index="<%= index %>">
+      <ul class="truncated_directory">
+        <% @cookbook_versions.each do |version| %>
+          <li>
             <% if version != @version %>
               <%= tooltip_for(version) do %>
                 <%= link_to version.version, cookbook_version_path(@cookbook, version), rel: 'cookbook_version' %>
