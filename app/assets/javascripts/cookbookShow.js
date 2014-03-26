@@ -15,7 +15,6 @@ $(function() {
     $(".issues-url").attr("href", data.issues_url)
     $(".cookbook-urls").show();
 
-    // hide or show buttons based on content
     if (data.source_url == "" || data.source_url == null) {
       $(".source-url").hide();
     }

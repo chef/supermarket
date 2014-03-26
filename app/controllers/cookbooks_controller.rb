@@ -101,7 +101,7 @@ class CookbooksController < ApplicationController
     if cookbook.update_attributes(cookbook_urls_params)
       render json: cookbook
     else
-      render json: { errors: cookbook.errors.full_messages }, status: 400
+      render json: { errors: cookbook.errors.full_messages }, status: 422
     end
   end
 

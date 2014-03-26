@@ -113,7 +113,6 @@ describe CookbooksController do
       expect(cookbook.issues_url).to eql('http://example.com/cookbook/issues')
     end
 
-    # maybe this should be 'returns the cookbook on success'
     it 'returns a 200 on success'  do
       patch :update, id: cookbook.name, cookbook: {
         source_url: 'http://example.com/cookbook',
@@ -132,6 +131,14 @@ describe CookbooksController do
       cookbook.reload
 
       expect(response.body).to include(cookbook.to_json)
+    end
+
+    it 'returns a 422 if the urls are not valid' do
+      patch :update, id: cookbook.name, cookbook: {
+        source_url: 'test'
+      }
+
+      expect(response.status.to_i).to eql(422)
     end
   end
 
