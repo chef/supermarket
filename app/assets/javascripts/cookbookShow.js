@@ -15,9 +15,37 @@ $(function() {
     $(".issues-url").attr("href", data.issues_url)
     $(".cookbook-urls").show();
 
+    // hide or show buttons based on content
+    if (data.source_url == "" || data.source_url == null) {
+      $(".source-url").hide();
+    }
+    else {
+      if ($(".source-url")) {
+        $(".source-url").show();
+      }
+      else {
+        var url = '<a href="'+data.source_url+'" class="button source-url">View Source</div>'
+        $(".cookbook-urls").prepend(url);
+      }
+    }
+
+    if (data.issues_url == "" || data.issues_url == null) {
+      $(".issues-url").hide();
+    }
+    else {
+      if ($(".issues-url")) {
+        $(".issues-url").show();
+      }
+      else {
+        var url = '<a href="'+data.issues_url+'" class="button issues-url">View Issues</div>'
+        $(".cookbook-urls").append(url);
+      }
+    }
+
     $(".page").append(
       '<div data-alert class="alert-box success"><div>The cookbook URLs were successfully saved.</div> <a href="#" class="close">&times;</a></div>'
     );
+
     $(document).foundation();
   });
 
