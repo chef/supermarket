@@ -14,7 +14,7 @@ $(function() {
     $(".issues-url").attr("href", data.issues_url)
     $(".cookbook-urls").show();
 
-    $(".globalheader").append(
+    $(".page").append(
       '<div data-alert class="alert-box success"><div>The cookbook URLs were successfully saved.</div> <a href="#" class="close">&times;</a></div>'
     );
     $(document).foundation();
@@ -22,7 +22,7 @@ $(function() {
 
   $(".manage-cookbook-urls .edit_cookbook").on('ajax:error', function(event, data, status, xhr) {
     event.preventDefault();
-    $(".globalheader").append(
+    $(".page").append(
       '<div data-alert class="alert-box failure"><div>There was an error saving the cookbook URLs.</div> <a href="#" class="close">&times;</a></div>'
     );
     $(document).foundation();
