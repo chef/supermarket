@@ -7,7 +7,8 @@ describe 'api/v1/cookbooks/show' do
       name: 'redis',
       maintainer: 'slime',
       description: 'great cookbook',
-      external_url: 'http://example.com',
+      source_url: 'http://example.com',
+      issues_url: 'http://example.com',
       deprecated: false
     )
   end
