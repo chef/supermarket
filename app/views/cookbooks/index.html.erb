@@ -1,3 +1,6 @@
+<%= provide(:title, "Cookbooks") %>
+<%= provide(:description, "Browse and search Chef cookbooks.") %>
+
 <div class="breadcrumbs show-for-large-up">
   <%= link_to 'Cookbooks', cookbooks_path %>
   <%= link_to params[:category].titleize, cookbooks_category_path(params[:category]) if params[:category] %>
