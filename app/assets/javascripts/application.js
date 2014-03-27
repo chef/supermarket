@@ -19,7 +19,6 @@
 //= require checkbox
 //= require expandContributors
 //= require flash
-//= require truncatedDirectory
 
 $(function(){
   $(document).foundation();

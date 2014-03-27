@@ -5,6 +5,19 @@
   <div class="small-12 medium-8 columns">
     <h1><%= @cookbook.name %></h1>
 
+    <%= link_to @latest_version.version, '#', 'data-dropdown' => 'versions', class: 'button dropdown', rel: 'cookbook_versions' %>
+
+    <ul id="versions" data-dropdown-content class="f-dropdown">
+      <% @cookbook_versions.each do |version| %>
+        <li>
+          <%= link_to cookbook_version_path(@cookbook, version), rel: 'cookbook_version' do %>
+            <%= version.version %>
+            <% if version == @latest_version %><i class="fa fa-check right"></i><% end %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+
     <div class="button">Follow</div>
 
     <div><pre><code>knife cookbook site install <%= @cookbook.name %></code></pre></div>
@@ -27,27 +40,6 @@
       <h4><i class="fa fa-money"></i> Updated <%= @latest_version.updated_at.strftime('%B %-d, %Y') %></h4>
 
       <div>Created on <%= @cookbook.created_at.strftime('%B %-d, %Y') %></div>
-    </div>
-
-    <div>
-      <h4><i class="fa fa-money"></i> Versions</h4>
-      <ul class="truncated_directory">
-        <% @cookbook_versions.each do |version| %>
-          <li>
-            <% if version != @latest_version %>
-              <%= tooltip_for(version) do %>
-                <%= link_to version.version, cookbook_version_path(@cookbook, version), rel: 'cookbook_version' %>
-              <% end %>
-            <% else %>
-              <%= tooltip_for(version) do %>
-                <%= version.version %>
-              <% end %>
-            <% end %>
-          </li>
-        <% end %>
-        <li class="expand"><a href="#">View All</a></li>
-        <li class="collapse"><a href="#">View Fewer</a></li>
-      </ul>
     </div>
 
     <div>

@@ -16,6 +16,7 @@ describe 'viewing a cookbook' do
 
     visit cookbook_path(cookbook)
 
+    follow_relation 'cookbook_versions'
     follow_relation 'cookbook_version'
 
     expect(page).to have_selector('.cookbook')
