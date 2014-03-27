@@ -2,7 +2,11 @@
 <%= provide(:description, @cookbook.description) %>
 
 <!-- breadcrumbs -->
-<div>breadcrumbs</div>
+<nav class="breadcrumbs show-for-large-up">
+  <%= link_to 'Cookbooks', cookbooks_path %>
+  <%= link_to @cookbook.category.name, cookbooks_category_path(@cookbook.category) if @cookbook.category.present? %>
+  <%= link_to @cookbook.name, @cookbook %>
+</nav>
 
 <div class="row collapse cookbook">
   <div class="small-12 medium-8 columns">
