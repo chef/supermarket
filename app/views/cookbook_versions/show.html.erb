@@ -13,6 +13,19 @@
   <div class="small-12 medium-8 columns">
     <h1><%= @cookbook.name %></h1>
 
+    <%= link_to @version.version, '#', 'data-dropdown' => 'versions', class: 'button dropdown', rel: 'cookbook_versions' %>
+
+    <ul id="versions" data-dropdown-content class="f-dropdown">
+      <% @cookbook_versions.each do |version| %>
+        <li>
+          <%= link_to cookbook_version_path(@cookbook, version), rel: 'cookbook_version' do %>
+            <%= version.version %>
+            <% if version == @version %><i class="fa fa-check right"></i><% end %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+
     <%= follow_button_for(@cookbook) %>
 
     <div><pre><code>knife cookbook site install <%= @cookbook.name %> <%= @version.version %></code></pre></div>

@@ -12,6 +12,19 @@
   <div class="small-12 medium-8 columns">
     <h1><%= @cookbook.name %></h1>
 
+    <%= link_to @latest_version.version, '#', 'data-dropdown' => 'versions', class: 'button dropdown', rel: 'cookbook_versions' %>
+
+    <ul id="versions" data-dropdown-content class="f-dropdown">
+      <% @cookbook_versions.each do |version| %>
+        <li>
+          <%= link_to cookbook_version_path(@cookbook, version), rel: 'cookbook_version' do %>
+            <%= version.version %>
+            <% if version == @latest_version %><i class="fa fa-check right"></i><% end %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+
     <%= follow_button_for(@cookbook) %>
 
     <div><pre><code>knife cookbook site install <%= @cookbook.name %></code></pre></div>
@@ -55,17 +68,6 @@
       <h4><i class="fa fa-money"></i> Updated <%= @latest_version.updated_at.strftime('%B %-d, %Y') %></h4>
 
       <div>Created on <%= @cookbook.created_at.strftime('%B %-d, %Y') %></div>
-
-      <h4><i class="fa fa-money"></i> Versions</h4>
-      <ul>
-        <% @cookbook_versions.each_with_index do |version, index| %>
-          <% if index < @cookbook_versions.size - 1 %>
-            <li><%= link_to version.version, cookbook_version_path(@cookbook, version), rel: 'cookbook_version' %>,</li>
-          <% else %>
-            <li><%= version.version %></li>
-          <% end %>
-        <% end %>
-      </ul>
 
       <h4><i class="fa fa-money"></i> Platforms</h4>
       <ul>
