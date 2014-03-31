@@ -12,7 +12,7 @@
   <div class="small-12 medium-8 columns">
     <h1><%= @cookbook.name %></h1>
 
-    <div class="button">Follow</div>
+    <%= follow_button_for(@cookbook) %>
 
     <div><pre><code>knife cookbook site install <%= @cookbook.name %></code></pre></div>
 

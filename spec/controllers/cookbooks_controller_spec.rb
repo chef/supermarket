@@ -101,6 +101,7 @@ describe CookbooksController do
 
   describe 'PATCH #update' do
     let(:cookbook) { create(:cookbook) }
+    before { sign_in create(:user) }
 
     it 'updates the cookbook' do
       patch :update, id: cookbook, format: :js, cookbook: {
@@ -234,6 +235,84 @@ describe CookbooksController do
       get :download, id: 'snarfle'
 
       expect(response.status.to_i).to eql(404)
+    end
+  end
+
+  describe 'PUT #follow' do
+    let(:cookbook) { create(:cookbook) }
+
+    context 'a user is signed in' do
+      before { sign_in create(:user) }
+
+      it 'should add a follower' do
+        expect do
+          put :follow, id: cookbook, format: :js
+        end.to change(cookbook.cookbook_followers, :count).by(1)
+      end
+
+      it 'renders follow' do
+        put :follow, id: cookbook, format: :js
+
+        expect(response).to render_template('follow')
+      end
+    end
+
+    context 'a user is not signed in' do
+      it 'redirects to user sign in' do
+        put :follow, id: cookbook
+
+        expect(response).to redirect_to(user_session_path)
+      end
+    end
+
+    context 'cookbook does not exist' do
+      before { sign_in create(:user) }
+
+      it 'returns a 404' do
+        put :follow, id: 'snarfle', format: :js
+
+        expect(response.status.to_i).to eql(404)
+      end
+    end
+  end
+
+  describe 'DELETE #unfollow' do
+    let(:cookbook) { create(:cookbook) }
+
+    context 'the signed in user follows the specified cookbook' do
+      before do
+        user = create(:user)
+        create(:cookbook_follower, cookbook: cookbook, user: user)
+        sign_in(user)
+      end
+
+      it 'should remove follower' do
+        expect do
+          delete :unfollow, id: cookbook, format: :js
+        end.to change(cookbook.cookbook_followers, :count).by(-1)
+      end
+
+      it 'renders follow' do
+        delete :follow, id: cookbook, format: :js
+
+        expect(response).to render_template('follow')
+      end
+    end
+
+    context "the signed in user doesn't follow the specified cookbook" do
+      before { sign_in create(:user) }
+
+      it 'should not remove a follower'  do
+        expect do
+          delete :unfollow, id: cookbook, format: :js
+        end.to_not change(cookbook.cookbook_followers, :count)
+      end
+
+      it 'renders follow' do
+        delete :follow, id: cookbook, format: :js
+
+        expect(response).to render_template('follow')
+      end
     end
   end
 end
