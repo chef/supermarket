@@ -30,4 +30,4 @@ en:
       missing_readme: "Multipart POST part 'tarball' must contain a README"
       metadata_not_json: "Tarball entry named 'metadata.json' could not be parsed as JSON"
       invalid_version_constraint: "Platform '%{name}' has invalid version constraint '%{version_constraint}'"
-      invalid_platforms: "The list of supported platforms must be a JSON object."
+      invalid_metadata: "The metadata is formatted incorrectly."

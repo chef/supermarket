@@ -38,7 +38,7 @@
       <%= render_readme(version.readme, version.readme_extension) %>
     </div>
     <div class="content" id="dependencies">
-      Dependencies
+      <%= render partial: 'dependency', collection: cookbook.cookbook_dependencies %>
     </div>
     <div class="content" id="relatedcookbooks">
       Related Cookbooks

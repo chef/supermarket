@@ -2,6 +2,7 @@ class CookbookVersion < ActiveRecord::Base
   # Associations
   # --------------------
   has_many :supported_platforms, dependent: :destroy
+  has_many :cookbook_dependencies, dependent: :destroy
   belongs_to :cookbook
 
   # Attachments

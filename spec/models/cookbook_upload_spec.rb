@@ -133,7 +133,24 @@ describe CookbookUpload do
       errors = upload.finish { |e, _| e }
 
       expect(errors.full_messages).
-        to include(I18n.t('api.error_messages.invalid_platforms'))
+        to include(I18n.t('api.error_messages.invalid_metadata'))
+    end
+
+    it 'yields an error if the metadata.json has a malformed dependencies hash' do
+      tarball = Tempfile.new('bad_dependencies', 'tmp').tap do |file|
+        io = AndFeathers.build('cookbook') do |cookbook|
+          cookbook.file('metadata.json') { JSON.dump(dependencies: '') }
+        end.to_io(AndFeathers::GzippedTarball)
+
+        file.write(io.read)
+        file.rewind
+      end
+
+      upload = CookbookUpload.new(cookbook: '{}', tarball: tarball)
+      errors = upload.finish { |e, _| e }
+
+      expect(errors.full_messages).
+        to include(I18n.t('api.error_messages.invalid_metadata'))
     end
 
     it 'yields an error if the cookbook parameters do not specify a category' do

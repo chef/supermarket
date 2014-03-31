@@ -43,10 +43,17 @@ class CookbookUpload
 
     #
     # @!attribute [r] platforms
-    #   @return [String] The platforms supported by the cookbook
+    #   @return [Hash<String,String>] The platforms supported by the cookbook
     #
     #   @example
     #     metadata.platforms == { 'ubuntu' => '>= 0.0.0' }
+    #
+    #
+    # @!attribute [r] dependencies
+    #   @return [Hash<String,String>] The cookbook dependencies
+    #
+    #   @example
+    #     metadata.dependencies == { 'apt' => '~> 0.0.2' }
     #
 
     values do
@@ -56,6 +63,7 @@ class CookbookUpload
       attribute :maintainer, String, default: ''
       attribute :license, String, default: ''
       attribute :platforms, Hash[String => String]
+      attribute :dependencies, Hash[String => String]
     end
   end
 end

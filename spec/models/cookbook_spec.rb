@@ -117,9 +117,9 @@ describe Cookbook do
   end
 
   describe '#publish_version!' do
-    it 'saves supported platform metadata' do
-      cookbook = create(:cookbook)
-      metadata = CookbookUpload::Metadata.new(
+    let(:cookbook) { create(:cookbook) }
+    let(:metadata) do
+      CookbookUpload::Metadata.new(
         license: 'MIT',
         version: cookbook.latest_cookbook_version.version + '-beta',
         description: 'Description',
@@ -127,13 +127,17 @@ describe Cookbook do
         platforms: {
           'ubuntu' => '= 12.04',
           'debian' => '>= 0.0.0'
+        },
+        dependencies: {
+          'apt' => '= 1.2.3',
+          'yum' => '~> 2.1.3'
         }
       )
+    end
+    let(:tarball) { File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz') }
+    let(:readme) { CookbookUpload::Readme.new(contents: '', extension: '') }
 
-      tarball = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
-
-      readme = CookbookUpload::Readme.new(contents: '', extension: '')
-
+    it 'creates supported platforms from the metadata' do
       cookbook.publish_version!(metadata, tarball, readme)
 
       supported_platforms = cookbook.reload.supported_platforms
@@ -141,6 +145,16 @@ describe Cookbook do
       expect(supported_platforms.map(&:name)).to match_array(%w(debian ubuntu))
       expect(supported_platforms.map(&:version_constraint)).
         to match_array(['= 12.04', '>= 0.0.0'])
+    end
+
+    it 'saves supported platform metadata' do
+      cookbook.publish_version!(metadata, tarball, readme)
+
+      dependencies = cookbook.reload.cookbook_dependencies
+
+      expect(dependencies.map(&:name)).to match_array(%w(apt yum))
+      expect(dependencies.map(&:version_constraint)).
+        to match_array(['= 1.2.3', '~> 2.1.3'])
     end
   end
 

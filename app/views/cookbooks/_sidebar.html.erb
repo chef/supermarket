@@ -40,8 +40,8 @@
     </div>
 
     <h4>
-      <i class="fa fa-clock-o"></i> Updated <%= version.updated_at.strftime('%B %-d, %Y') %>
-      <small>Created on <%= cookbook.created_at.strftime('%B %-d, %Y') %></small>
+      <i class="fa fa-clock-o"></i> Updated <%= version.updated_at.to_s(:longish) %>
+      <small>Created on <%= cookbook.created_at.to_s(:longish) %></small>
     </h4>
 
     <h4><i class="fa fa-desktop"></i> Platforms</h4>

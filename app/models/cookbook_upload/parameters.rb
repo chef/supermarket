@@ -167,7 +167,7 @@ class CookbookUpload
       rescue MissingMetadata
         errors.add(:base, I18n.t('api.error_messages.missing_metadata'))
       rescue Virtus::CoercionError
-        errors.add(:base, I18n.t('api.error_messages.invalid_platforms'))
+        errors.add(:base, I18n.t('api.error_messages.invalid_metadata'))
       rescue Zlib::GzipFile::Error
         errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
       rescue TarballHasNoPath
