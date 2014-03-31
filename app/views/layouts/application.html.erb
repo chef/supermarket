@@ -57,6 +57,8 @@
       </div>
     </div>
 
+    <%= debug(params) if Rails.env.development? %>
+
     <% if Supermarket::Config.segment_io_write_key %>
       <%= render partial: 'segment.io' %>
     <% end %>
