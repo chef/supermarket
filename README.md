@@ -244,7 +244,11 @@ This is because of the Bundler config in `.bundle/config`.
 
         $ bundle
 
-1. Configure the [dotenv](https://github.com/bkeepers/dotenv) keys and secrets.  See `.env.example` for required keys and secrets to get up and running.
+1. Configure the [dotenv](https://github.com/bkeepers/dotenv) keys and secrets.
+   See `.env.example` for required keys and secrets to get up and running.
+   [`docs/CONFIGURING.md`](https://github.com/opscode/supermarket/blob/master/docs/CONFIGURING.md)
+   goes into detail about the not so straight forward configuration that needs
+   to happen to get Supermarket working locally.
 
 1. Run the migrations:
 
