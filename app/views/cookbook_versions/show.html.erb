@@ -6,20 +6,21 @@
   <%= link_to 'Cookbooks', cookbooks_path %>
   <%= link_to @cookbook.category.name, cookbooks_category_path(@cookbook.category) if @cookbook.category.present? %>
   <%= link_to @cookbook.name, @cookbook %>
+  <%= link_to @version.version, cookbook_version_path(@cookbook, @version) %>
 </nav>
 
 <div class="row collapse cookbook">
   <div class="small-12 medium-8 columns">
     <h1><%= @cookbook.name %></h1>
 
-    <%= link_to @latest_version.version, '#', 'data-dropdown' => 'versions', class: 'button dropdown', rel: 'cookbook_versions' %>
+    <%= link_to @version.version, '#', 'data-dropdown' => 'versions', class: 'button dropdown', rel: 'cookbook_versions' %>
 
     <ul id="versions" data-dropdown-content class="f-dropdown">
       <% @cookbook_versions.each do |version| %>
         <li>
           <%= link_to cookbook_version_path(@cookbook, version), rel: 'cookbook_version' do %>
             <%= version.version %>
-            <% if version == @latest_version %><i class="fa fa-check right"></i><% end %>
+            <% if version == @version %><i class="fa fa-check right"></i><% end %>
           <% end %>
         </li>
       <% end %>
@@ -27,17 +28,17 @@
 
     <%= follow_button_for(@cookbook) %>
 
-    <div><pre><code>knife cookbook site install <%= @cookbook.name %></code></pre></div>
+    <div><pre><code>knife cookbook site install <%= @cookbook.name %> <%= @version.version %></code></pre></div>
 
     <div><p><%= @cookbook.description %></p></div>
 
-    <div><%= render_readme(@latest_version.readme, @latest_version.readme_extension) %></div>
+    <div><%= render_readme(@version.readme, @version.readme_extension) %></div>
   </div>
 
   <div class="small-12 medium-4 columns sidebar">
     <div><%= link_to "Download Cookbook", download_cookbook_path(@cookbook) %></div>
     <%= @cookbook.download_count %> total downloads<br />
-    <%= @latest_version.download_count %> latest version downloads
+    <%= @version.download_count %> this version's downloads
 
     <div class="cookbook-details">
       <h4>Cookbook Details</h4>
@@ -65,9 +66,9 @@
         <% end %>
       </div>
 
-      <h4><i class="fa fa-money"></i> Updated <%= @latest_version.updated_at.strftime('%B %-d, %Y') %></h4>
+      <h4><i class="fa fa-money"></i> Updated <%= @version.updated_at.strftime('%B %-d, %Y') %></h4>
 
-      <div>Created on <%= @cookbook.created_at.strftime('%B %-d, %Y') %></div>
+      <div>Created on <%= @version.created_at.strftime('%B %-d, %Y') %></div>
 
       <h4><i class="fa fa-money"></i> Platforms</h4>
       <ul>
@@ -79,7 +80,7 @@
       </ul>
 
       <h4><i class="fa fa-money"></i> License</h4>
-      <p><%= @latest_version.license %></p>
+      <p><%= @version.license %></p>
     </div>
 
     <div>

@@ -1,5 +1,10 @@
 // Cookbooks
 
+#versions {
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
 // Cookbooks search
 .cookbook_search {
   border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
@@ -36,15 +41,15 @@ input[type="search"].cookbook_search_textfield {
   }
 
   &:-moz-placeholder { /* Firefox 18- */
-     color: $silver;  
+     color: $silver;
   }
 
   &::-moz-placeholder {  /* Firefox 19+ */
-     color: $silver;  
+     color: $silver;
   }
 
-  &:-ms-input-placeholder {  
-     color: $silver;  
+  &:-ms-input-placeholder {
+     color: $silver;
   }
 }
 
