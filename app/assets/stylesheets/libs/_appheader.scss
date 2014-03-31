@@ -228,14 +228,14 @@
     &:last-child { border: none; }
 
     a {
-      color: #7c858c;
+      color: $concrete;
       display: block;
       font-size: rem-calc(12);
       padding: rem-calc(10);
       text-decoration: none;
 
       &:hover, &:active {
-        color: #949ea6;
+        color: lighten($concrete, 10%);
       }
 
       &:before { margin-right: rem-calc(7); }

@@ -1,8 +1,8 @@
 <div class="cookbook_show_content">
   <h1 class="cookbook_show_heading">
     <%= cookbook.name %>
-    <small>
-      <%= link_to version.version, '#', 'data-dropdown' => 'versions', class: 'button radius tiny dropdown', rel: 'cookbook_versions' %>
+    <small class="version_dropdown">
+      <%= link_to version.version, '#', 'data-dropdown' => 'versions', class: 'button radius tiny dropdown secondary', rel: 'cookbook_versions' %>
       <ul id="versions" data-dropdown-content class="f-dropdown">
         <% cookbook_versions.each do |cookbook_version| %>
           <li>

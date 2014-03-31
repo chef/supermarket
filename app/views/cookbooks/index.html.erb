@@ -9,27 +9,26 @@
 
   <%= render 'search' %>
 
-  <section class="cookbook_body">
-    <div class="categories hide-for-medium-up"><%= render 'categories' %></div>
+<section class="cookbook_body">
+  <div class="categories hide-for-medium-up"><%= render 'categories' %></div>
+  <h1 class="cookbook_content_heading">
+    <i class="fa fa-folder"></i>
+    <%= feed_title %>
+    <small>
+      <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
+    </small>
+  </h1>
+  <div class="order_cookbooks_by right">
+    Sort By
+    <%= link_to 'Recently Updated', params.merge(order: 'recently_updated'), class: ('active' if params[:order] == 'recently_updated') %>
+    <%= link_to 'Recently Added', params.merge(order: 'recently_added'), class: ('active' if params[:order] == 'recently_added') %>
+    <%= link_to 'Most Downloaded', params.merge(order: 'most_downloaded'), class: ('active' if params[:order] == 'most_downloaded') %>
+    <%= link_to 'Most Followed', params.merge(order: 'most_followed'), class: ('active' if params[:order] == 'most_followed') %>
+  </div>
 
-    <div class="order right">
-      Sort By
-      <%= link_to 'Recently Updated', params.merge(order: 'recently_updated'), class: ('active' if params[:order] == 'recently_updated') %>
-      <%= link_to 'Recently Added', params.merge(order: 'recently_added'), class: ('active' if params[:order] == 'recently_added') %>
-      <%= link_to 'Most Downloaded', params.merge(order: 'most_downloaded'), class: ('active' if params[:order] == 'most_downloaded') %>
-      <%= link_to 'Most Followed', params.merge(order: 'most_followed'), class: ('active' if params[:order] == 'most_followed') %>
-    </div>
-    <h1 class="cookbook_content_heading">
-      <i class="fa fa-folder"></i>
-      <%= feed_title %>
-      <small>
-        <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom'), class: 'rss_feed_link show-for-medium-up' %>
-      </small>
-    </h1>
+  <div class="show-for-medium-up"><%= render 'categories' %></div>
 
-    <div class="show-for-medium-up"><%= render 'categories' %></div>
-
-    <article class="cookbook_content">
+    <article class="cookbook_content cookbook_content_category_listing">
       <ul class="cookbook_listing"><%= render @cookbooks %></ul>
       <%= paginate @cookbooks %>
     </article>

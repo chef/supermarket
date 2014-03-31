@@ -11,15 +11,6 @@
   </h3>
 
   <div class="cookbook-details">
-    <div class="cookbook-urls">
-      <% if cookbook.source_url.present? %>
-        <%= link_to 'View Source', cookbook.source_url, class: 'button radius source-url' %>
-      <% end %>
-
-      <% if cookbook.issues_url.present? %>
-        <%= link_to 'View Issues', cookbook.issues_url, class: 'button radius issues-url' %>
-      <% end %>
-    </div>
 
     <div class="manage-cookbook-urls hide">
       <%= form_for cookbook, data: { abide: true } do |f| %>
@@ -38,13 +29,23 @@
       <% end %>
     </div>
 
+    <div class="cookbook-urls">
+      <% if cookbook.source_url.present? %>
+        <%= link_to 'View Source', cookbook.source_url, class: 'button radius tiny source-url' %>
+      <% end %>
+
+      <% if cookbook.issues_url.present? %>
+        <%= link_to 'View Issues', cookbook.issues_url, class: 'button radius tiny issues-url' %>
+      <% end %>
+    </div>
+
     <h4>
       <i class="fa fa-clock-o"></i> Updated <%= version.updated_at.strftime('%B %-d, %Y') %>
       <small>Created on <%= cookbook.created_at.strftime('%B %-d, %Y') %></small>
     </h4>
 
     <h4><i class="fa fa-desktop"></i> Platforms</h4>
-    <ul>
+    <ul class="cookbook_platforms">
       <% supported_platforms.each do |platform| %>
         <li class="cookbook_platform_icon has-tip" title="<%= platform.name %> <%= platform.version_constraint %>" data-tooltip data-icon="<%= supported_platform_icon(platform) %>">
           <span><%= platform.name %></span>
