@@ -5,7 +5,7 @@ upstream unicorn {
 server {
   listen 80;
 
-  location ~ ^/assets/ {
+  location ~ ^/(assets|system)/ {
     root <%= node['supermarket']['home'] %>/current/public;
 
     # to serve pre-gzipped version
