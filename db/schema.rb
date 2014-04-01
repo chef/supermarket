@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140326154848) do
+ActiveRecord::Schema.define(version: 20140401161756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,17 +113,18 @@ ActiveRecord::Schema.define(version: 20140326154848) do
   add_index "cookbook_versions", ["version"], name: "index_cookbook_versions_on_version", using: :btree
 
   create_table "cookbooks", force: true do |t|
-    t.string   "name",                           null: false
-    t.string   "maintainer",                     null: false
+    t.string   "name",                                     null: false
+    t.string   "maintainer",                               null: false
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "source_url"
-    t.boolean  "deprecated",     default: false
-    t.integer  "category_id",                    null: false
+    t.boolean  "deprecated",               default: false
+    t.integer  "category_id",                              null: false
     t.string   "lowercase_name"
-    t.integer  "download_count", default: 0
+    t.integer  "download_count",           default: 0
     t.string   "issues_url"
+    t.integer  "cookbook_followers_count", default: 0
   end
 
   add_index "cookbooks", ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true, using: :btree

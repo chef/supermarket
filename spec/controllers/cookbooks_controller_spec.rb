@@ -22,8 +22,27 @@ describe CookbooksController do
     end
 
     context 'there is an order parameter' do
-      let!(:cookbook_1) { create(:cookbook, updated_at: 1.year.ago, created_at: 1.year.ago) }
-      let!(:cookbook_2) { create(:cookbook, updated_at: 1.day.ago, created_at: 2.years.ago) }
+      let!(:cookbook_1) do
+        create(
+          :cookbook,
+          name: 'great',
+          updated_at: 1.year.ago,
+          created_at: 1.year.ago,
+          download_count: 100,
+          cookbook_followers_count: 100
+        )
+      end
+
+      let!(:cookbook_2) do
+        create(
+          :cookbook,
+          name: 'cookbook',
+          updated_at: 1.day.ago,
+          created_at: 2.years.ago,
+          download_count: 50,
+          cookbook_followers_count: 50
+        )
+      end
 
       it 'orders @cookbooks by updated at' do
         get :index, order: 'recently_updated'
@@ -31,7 +50,17 @@ describe CookbooksController do
       end
 
       it 'orders @cookbooks by created at' do
-        get :index, order: 'created_at'
+        get :index, order: 'recently_created'
+        expect(assigns[:cookbooks].first).to eql(cookbook_1)
+      end
+
+      it 'orders @cookbooks by download_count' do
+        get :index, order: 'most_followed'
+        expect(assigns[:cookbooks].first).to eql(cookbook_1)
+      end
+
+      it 'orders @cookbooks by download_followers_count' do
+        get :index, order: 'most_downloaded'
         expect(assigns[:cookbooks].first).to eql(cookbook_1)
       end
     end
@@ -151,6 +180,14 @@ describe CookbooksController do
 
     it 'assigns @recently_added_cookbooks' do
       expect(assigns[:recently_added_cookbooks]).to_not be_nil
+    end
+
+    it 'assigns @most_downloaded_cookbooks' do
+      expect(assigns[:most_downloaded_cookbooks]).to_not be_nil
+    end
+
+    it 'assigns @most_followed_cookbooks' do
+      expect(assigns[:most_followed_cookbooks]).to_not be_nil
     end
 
     it 'assigns @categories' do

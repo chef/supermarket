@@ -59,6 +59,14 @@ class CookbooksController < ApplicationController
       includes(:latest_cookbook_version).
       ordered_by('recently_created').
       limit(3)
+    @most_downloaded_cookbooks = Cookbook.
+      includes(:latest_cookbook_version).
+      ordered_by('most_downloaded').
+      limit(3)
+    @most_followed_cookbooks = Cookbook.
+      includes(:latest_cookbook_version).
+      ordered_by('most_followed').
+      limit(3)
   end
 
   #

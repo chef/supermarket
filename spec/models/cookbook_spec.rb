@@ -170,17 +170,15 @@ describe Cookbook do
   end
 
   describe '.ordered_by' do
-    before do
-      create(:cookbook, name: 'great')
-      create(:cookbook, name: 'cookbook')
-    end
+    let!(:great) { create(:cookbook, name: 'great') }
+    let!(:cookbook) { create(:cookbook, name: 'cookbook') }
 
     it 'orders by name ascending by default' do
       expect(Cookbook.ordered_by(nil).map(&:name)).to eql(%w(cookbook great))
     end
 
     it 'orders by updated_at descending when given "recently_updated"' do
-      Cookbook.with_name('great').first.touch
+      great.touch
 
       expect(Cookbook.ordered_by('recently_updated').map(&:name)).
         to eql(%w(great cookbook))
@@ -190,6 +188,22 @@ describe Cookbook do
       create(:cookbook, name: 'neat')
 
       expect(Cookbook.ordered_by('recently_created').first.name).to eql('neat')
+    end
+
+    it 'orders by download_count descending when given "most_downloaded"' do
+      great.update_attributes(download_count: 100)
+      cookbook.update_attributes(download_count: 50)
+
+      expect(Cookbook.ordered_by('most_downloaded').map(&:name)).
+        to eql(%w(great cookbook))
+    end
+
+    it 'orders by cookbook_followers_count when given "most_followed"' do
+      great.update_attributes(cookbook_followers_count: 100)
+      cookbook.update_attributes(cookbook_followers_count: 50)
+
+      expect(Cookbook.ordered_by('most_followed').map(&:name)).
+        to eql(%w(great cookbook))
     end
   end
 

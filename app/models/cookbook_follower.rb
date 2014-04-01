@@ -1,7 +1,7 @@
 class CookbookFollower < ActiveRecord::Base
   # Associations
   # --------------------
-  belongs_to :cookbook
+  belongs_to :cookbook, counter_cache: true
   belongs_to :user
 
   # Validations
