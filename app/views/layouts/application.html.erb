@@ -42,16 +42,13 @@
           </div>
         </header>
         <div class="container">
-          <div class="page">
-            <%= render partial: 'flash' %>
+          <%= render partial: 'flash' %>
 
-            <%= yield %>
-
-            <footer class="footer">
-              &copy; 2008 - <%= Time.new.year %> Chef. All Rights Reserved.
-            </footer>
-          </div>
+          <%= yield %>
         </div>
+        <footer class="footer">
+          &copy; 2008 - <%= Time.new.year %> Chef. All Rights Reserved.
+        </footer>
 
         <a class="exit-off-canvas"></a>
       </div>

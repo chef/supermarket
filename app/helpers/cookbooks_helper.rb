@@ -27,7 +27,7 @@ module CookbooksHelper
         follow_cookbook_path(cookbook),
         method: 'put',
         rel: 'sign-in-to-follow',
-        class: 'button follow',
+        class: 'button radius tiny follow',
         title: 'You must be signed in to follow a cookbook.',
         'data-tooltip' => true
       )
@@ -40,7 +40,7 @@ module CookbooksHelper
         method: 'delete',
         remote: true,
         rel: 'unfollow',
-        class: 'button follow'
+        class: 'button radius tiny follow'
       )
     else
       link_to(
@@ -49,7 +49,7 @@ module CookbooksHelper
         method: 'put',
         remote: true,
         rel: 'follow',
-        class: 'button follow'
+        class: 'button radius tiny follow'
       )
     end
   end

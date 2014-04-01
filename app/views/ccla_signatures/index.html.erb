@@ -1,44 +1,46 @@
 <%= provide(:title, "CCLA Signatures") %>
 
-<div class="contributors">
-  <%= render 'contributors_list_heading' %>
+<div class="page">
+  <div class="contributors">
+    <%= render 'contributors_list_heading' %>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Company</th>
-        <th>Date</th>
-        <th colspan="2">Contributors</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @ccla_signatures.each do |ccla_signature| %>
+    <table>
+      <thead>
         <tr>
-          <td><%= ccla_signature.company %></td>
-          <td><%= ccla_signature.signed_at.to_date.to_s(:long) %></td>
-          <td colspan="2" width="25%"><a href="#" class="expand-contributors button radius tiny" data-id="<%= ccla_signature.id %>">View</a></td>
-        </tr>
-
-        <tr class="text-left hide contributor-<%= ccla_signature.id %>">
-          <th>Name</th>
+          <th>Company</th>
           <th>Date</th>
-          <th>GitHub</th>
-          <th>Jira</th>
+          <th colspan="2">Contributors</th>
         </tr>
-
-        <% ccla_signature.organization.contributors.each do |contributor| %>
-          <tr class="hide contributor-<%= ccla_signature.id %>">
-            <td><%= link_to contributor.user.name, contributor.user %></td>
-            <td><%= contributor.created_at.to_date.to_s(:long) %></td>
-            <td>
-              <% contributor.user.accounts.for('github').each do |account| %>
-                <%= link_to account.username, "https://www.github.com/#{account.username}", target: :blank %>
-              <% end %>
-            </td>
-            <td><%= contributor.user.jira_username %></td>
+      </thead>
+      <tbody>
+        <% @ccla_signatures.each do |ccla_signature| %>
+          <tr>
+            <td><%= ccla_signature.company %></td>
+            <td><%= ccla_signature.signed_at.to_date.to_s(:long) %></td>
+            <td colspan="2" width="25%"><a href="#" class="expand-contributors button radius tiny" data-id="<%= ccla_signature.id %>">View</a></td>
           </tr>
+
+          <tr class="text-left hide contributor-<%= ccla_signature.id %>">
+            <th>Name</th>
+            <th>Date</th>
+            <th>GitHub</th>
+            <th>Jira</th>
+          </tr>
+
+          <% ccla_signature.organization.contributors.each do |contributor| %>
+            <tr class="hide contributor-<%= ccla_signature.id %>">
+              <td><%= link_to contributor.user.name, contributor.user %></td>
+              <td><%= contributor.created_at.to_date.to_s(:long) %></td>
+              <td>
+                <% contributor.user.accounts.for('github').each do |account| %>
+                  <%= link_to account.username, "https://www.github.com/#{account.username}", target: :blank %>
+                <% end %>
+              </td>
+              <td><%= contributor.user.jira_username %></td>
+            </tr>
+          <% end %>
         <% end %>
-      <% end %>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>

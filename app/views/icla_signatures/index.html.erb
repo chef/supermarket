@@ -1,32 +1,34 @@
 <%= provide(:title, "ICLA Signatures") %>
 
-<div class="contributors">
-  <%= render 'contributors_list_heading' %>
+<div class="page">
+  <div class="contributors">
+    <%= render 'contributors_list_heading' %>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Contributor</th>
-        <th>Company</th>
-        <th>Date</th>
-        <th>GitHub</th>
-        <th>Jira</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @icla_signatures.each do |icla_signature| %>
+    <table>
+      <thead>
         <tr>
-          <td><%= link_to icla_signature.user.name, icla_signature.user %></td>
-          <td><%= icla_signature.company %></td>
-          <td><%= icla_signature.signed_at.to_date.to_s(:long) %></td>
-          <td>
-            <% icla_signature.user.accounts.for('github').each do |account| %>
-              <%= link_to account.username, "https://www.github.com/#{account.username}", target: :blank %>
-            <% end %>
-          </td>
-          <td><%= icla_signature.user.jira_username %></td>
+          <th>Contributor</th>
+          <th>Company</th>
+          <th>Date</th>
+          <th>GitHub</th>
+          <th>Jira</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @icla_signatures.each do |icla_signature| %>
+          <tr>
+            <td><%= link_to icla_signature.user.name, icla_signature.user %></td>
+            <td><%= icla_signature.company %></td>
+            <td><%= icla_signature.signed_at.to_date.to_s(:long) %></td>
+            <td>
+              <% icla_signature.user.accounts.for('github').each do |account| %>
+                <%= link_to account.username, "https://www.github.com/#{account.username}", target: :blank %>
+              <% end %>
+            </td>
+            <td><%= icla_signature.user.jira_username %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

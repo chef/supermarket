@@ -1,0 +1,66 @@
+<div class="cookbook_show_sidebar">
+  <%= link_to "Download Cookbook", download_cookbook_path(cookbook), class: 'button radius expand button_download_cookbook' %>
+  <h4 class="cookbook_show_sidebar_downloads">
+    <i class="fa fa-download"></i> <%= cookbook.download_count %> Total Downloads (API + Web)
+    <small><%= version.download_count %> Latest Version Downloads</small>
+  </h4>
+
+  <h3>
+    <%= link_to 'Edit', '#', class: 'button radius tiny right show-cookbook-urls-manage', rel: 'edit-cookbook-urls' %>
+    Cookbook Details
+  </h3>
+
+  <div class="cookbook-details">
+    <div class="cookbook-urls">
+      <%= render 'cookbooks/cookbook_urls', cookbook: cookbook %>
+    </div>
+
+    <div class="manage-cookbook-urls hide">
+      <%= form_for cookbook, remote: true, data: { abide: true } do |f| %>
+        <div class="source-url-field">
+          <%= f.text_field :source_url, placeholder: 'Source URL: http://example.com', pattern: 'url' %>
+          <small class="error">Must be formatted as a URL.</small>
+        </div>
+
+        <div class="issues-url-field">
+          <%= f.text_field :issues_url, placeholder: 'Issues URL: http://example.com', pattern: 'url' %>
+          <small class="error">Must be formatted as a URL.</small>
+        </div>
+
+        <%= f.submit 'Save', class: 'button radius tiny submit-urls', data: { disable_with: 'Saving...' } %>
+        <a href="#" class="button radius tiny secondary cancel-submit-urls">Cancel</a>
+      <% end %>
+    </div>
+
+    <h4>
+      <i class="fa fa-clock-o"></i> Updated <%= version.updated_at.strftime('%B %-d, %Y') %>
+      <small>Created on <%= cookbook.created_at.strftime('%B %-d, %Y') %></small>
+    </h4>
+
+    <h4><i class="fa fa-desktop"></i> Platforms</h4>
+    <ul>
+      <% supported_platforms.each do |platform| %>
+        <li class="cookbook_platform_icon has-tip" title="<%= platform.name %> <%= platform.version_constraint %>" data-tooltip data-icon="<%= supported_platform_icon(platform) %>">
+          <span><%= platform.name %></span>
+        </li>
+      <% end %>
+    </ul>
+
+    <h4><i class="fa fa-key"></i> License</h4>
+    <p><%= version.license %></p>
+
+    <h3>Maintainer &amp; Collaborators</h3>
+    <div class="owner_avatar">
+      <%= link_to maintainer do %>
+        <%= gravatar_for maintainer, size: 144 %>
+        <%= maintainer.username %>
+        <small><%= maintainer.name %></small>
+      <% end %>
+    </div>
+    <div class="collaborators_avatar">
+      <% collaborators.each do |collaborator| %>
+        <%= link_to gravatar_for(collaborator, size: 80), collaborator %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,7 @@
   <h4 class="cookbook_sidebar_heading">Categories</h4>
   <ul>
   <% @categories.each do |category| %>
-    <li class="category_<%= category.name.downcase %>">
+    <li class="category_<%= category.name.underscore %>">
       <%= link_to category.name, cookbooks_category_path(category), class: ('active' if params[:category] == category.to_param) %>
     </li>
   <% end %>

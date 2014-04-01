@@ -1,8 +1,8 @@
 $(function() {
-  $(".show-cookbook-urls-manage").click(function(event) {
+  $(".show-cookbook-urls-manage, .cancel-submit-urls").click(function(event) {
     event.preventDefault();
-    $(".manage-cookbook-urls").show();
-    $(".show-cookbook-urls-manage").hide();
-    $(".cookbook-urls").hide();
+    $(".manage-cookbook-urls").slideToggle();
+    $(".show-cookbook-urls-manage").fadeToggle();
+    $(".cookbook-urls").fadeToggle();
   });
 });

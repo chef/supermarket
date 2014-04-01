@@ -17,6 +17,6 @@
 </div>
 
 <dl class="tabs">
-  <dd class="<%= "active" if current_page?(icla_signatures_path) %>"><%= link_to 'Individuals', icla_signatures_path %></dd>
+  <dd class="<%= "active" if !current_page?(ccla_signatures_path) %>"><%= link_to 'Individuals', icla_signatures_path %></dd>
   <dd class="<%= "active" if current_page?(ccla_signatures_path) %>"><%= link_to 'Companies', ccla_signatures_path %></dd>
 </dl>
