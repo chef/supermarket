@@ -98,7 +98,7 @@ describe 'cookbook following' do
     it_behaves_like 'a page which can manage cookbook URLs'
   end
 
-  context 'when navigating from search results', focus: true do
+  context 'when navigating from search results' do
     before do
       sign_in(create(:user))
       create(:cookbook, name: 'AmazingCookbook')
