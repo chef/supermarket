@@ -1,6 +1,6 @@
 <li>
   <%= link_to cookbook, rel: 'cookbook' do %>
-    <div class="cookbook">
+    <div class="cookbook category_<%= cookbook.category.name.parameterize('_') %>">
       <h3 class="cookbook_heading">
         <%= cookbook.name %>
         <small><%= cookbook.latest_cookbook_version.version %></small>
