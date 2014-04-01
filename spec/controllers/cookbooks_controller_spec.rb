@@ -169,6 +169,12 @@ describe CookbooksController do
       expect(response).to render_template('show')
     end
 
+    it 'renders an atom feed of cookbook versions' do
+      get :show, id: cookbook.name, format: :atom
+
+      expect(response).to render_template('show')
+    end
+
     it 'sends the cookbook to the view' do
       get :show, id: cookbook.name
 

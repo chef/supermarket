@@ -75,6 +75,11 @@ class CookbooksController < ApplicationController
     @maintainer = User.first
     @collaborators = [User.first]
     @supported_platforms = @cookbook.supported_platforms
+
+    respond_to do |format|
+      format.atom
+      format.html
+    end
   end
 
   #
