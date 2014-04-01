@@ -33,7 +33,8 @@ describe ProfileController do
           'company' => 'Acme',
           'twitter_username' => 'bobbo',
           'irc_nickname' => 'bobbo',
-          'jira_username' => 'bobbo'
+          'jira_username' => 'bobbo',
+          'email_notifications' => true
         )
 
         controller.stub(:current_user) { fake_user }
@@ -46,7 +47,8 @@ describe ProfileController do
           'company' => 'Acme',
           'twitter_username' => 'bobbo',
           'irc_nickname' => 'bobbo',
-          'jira_username' => 'bobbo'
+          'jira_username' => 'bobbo',
+          'email_notifications' => true
         )
       end
     end

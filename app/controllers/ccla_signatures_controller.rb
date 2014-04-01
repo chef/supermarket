@@ -50,7 +50,7 @@ class CclaSignaturesController < ApplicationController
 
     if @ccla_signature.sign!
       if Supermarket::Config.cla_signature_notification_email.present?
-        ClaSignatureMailer.deliver_notification(@ccla_signature)
+        ClaSignatureMailer.delay.ccla_signature_notification_email(@ccla_signature)
       end
 
       Curry::CommitAuthorVerificationWorker.perform_async(current_user.id)

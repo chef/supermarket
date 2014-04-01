@@ -1,0 +1,24 @@
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td class="panel">
+      <h2><%= signature.name %></h2>
+      <h3><%= signature.company %></h3>
+
+      <small>
+        <%= image_tag "emailicon_email.jpg", width: 16, height: 13, class: 'icon image_fix' %>
+        <%= signature.email %>&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= image_tag "emailicon_phone.jpg", width: 15, height: 15, class: 'icon image_fix' %>
+        <%= number_to_phone(signature.phone) %><br>
+        <%= image_tag "emailicon_address.jpg", width: 16, height: 15, class: 'icon image_fix' %>
+        <%= signature.address_line_1 %><br><%= signature.address_line_2 %>
+
+        <% signature.user.accounts.for('github').each do |account| %>
+          <%= image_tag "emailicon_github.jpg", width: 16, height: 16, class: 'icon image_fix' %>
+          <%= link_to account.username, "https://www.github.com/#{account.username}" %>
+        <% end %>
+      </small>
+
+      <%= link_to 'Supermarket Profile', user_url(signature.user), class: 'button lightbutton' %>
+    </td>
+  </tr>
+</table>

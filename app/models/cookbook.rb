@@ -142,6 +142,8 @@ class Cookbook < ActiveRecord::Base
       end
     end
 
+    CookbookNotifyWorker.perform_async(id)
+
     true
   end
 

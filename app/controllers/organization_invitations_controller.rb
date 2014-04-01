@@ -28,7 +28,7 @@ class OrganizationInvitationsController < ApplicationController
     authorize! @invitation
 
     if @invitation.save
-      InvitationMailer.deliver_invitation(@invitation)
+      InvitationMailer.delay.invitation_email(@invitation)
 
       redirect_to organization_invitations_path(@organization),
                   notice: "Invited #{@invitation.email} to #{@organization.name}"
@@ -63,7 +63,7 @@ class OrganizationInvitationsController < ApplicationController
 
     authorize! @invitation
 
-    InvitationMailer.deliver_invitation(@invitation)
+    InvitationMailer.delay.invitation_email(@invitation)
 
     redirect_to :back, notice: "Successfully resent
       invitation for #{@invitation.email}"

@@ -1,12 +1,27 @@
 class ClaSignatureMailer < ActionMailer::Base
-  def self.deliver_notification(cla_signature)
-    notification_email(cla_signature).deliver
-  end
+  layout 'mailer'
 
-  def notification_email(cla_signature)
-    @cla_signature = cla_signature
+  #
+  # Creates CCLA signature notification email
+  #
+  # @param ccla_signature [CclaSignature] the signature
+  #
+  def ccla_signature_notification_email(ccla_signature)
+    @ccla_signature = ccla_signature
     @to = Supermarket::Config.cla_signature_notification_email
 
-    mail(to: @to, subject: 'New CLA Signed')
+    mail(to: @to, subject: 'New CCLA Signed')
+  end
+
+  #
+  # Creates ICLA signature notification email
+  #
+  # @param icla_signature [IclaSignature] the signature
+  #
+  def icla_signature_notification_email(icla_signature)
+    @icla_signature = icla_signature
+    @to = Supermarket::Config.cla_signature_notification_email
+
+    mail(to: @to, subject: 'New ICLA Signed')
   end
 end

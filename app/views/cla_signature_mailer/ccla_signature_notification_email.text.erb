@@ -1,0 +1,10 @@
+Chef Supermarket - CCLA Signed
+_________________________________________________________
+
+
+A new CCLA has been signed by <%= @ccla_signature.name %> on behalf of <%= @ccla_signature.company %>.
+View Signed CCLA: <%= ccla_signature_url(@ccla_signature) %>
+_________________________________________________________
+
+
+<%= render 'signature', signature: @ccla_signature %>

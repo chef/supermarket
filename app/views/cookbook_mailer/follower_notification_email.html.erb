@@ -1,0 +1,3 @@
+<h1>New version of <%= @cookbook.name %> released.</h1>
+<p>A new version of <%= @cookbook.name %> has been relased [<%= @cookbook.latest_cookbook_version.version %>].</p>
+<%= link_to 'View Version', cookbook_version_path(@cookbook, @cookbook.latest_cookbook_version), class: 'button accept' %>
