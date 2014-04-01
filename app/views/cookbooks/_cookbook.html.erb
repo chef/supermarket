@@ -5,7 +5,7 @@
         <%= cookbook.name %>
         <small><%= cookbook.latest_cookbook_version.version %></small>
         <span class="cookbook_lastupdated">
-          <i class="fa fa-clock-o"></i> Updated <%= cookbook.updated_at.to_s(:long) %>
+          <i class="fa fa-clock-o"></i> Updated <%= cookbook.latest_cookbook_version.updated_at.strftime('%B %-d, %Y') %>
         </span>
       </h3>
       <div class="cookbook_category_and_stats">
