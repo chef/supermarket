@@ -47,17 +47,13 @@ class Cookbook < ActiveRecord::Base
   validates :description, presence: true
   validates :cookbook_versions, presence: true
   validates :category, presence: true
-
-  validates :source_url, format: {
-    with: URI.regexp(%w(http https)),
+  validates :source_url, url: {
     allow_blank: true,
-    case_sensitive: false
+    allow_nil: true
   }
-
-  validates :issues_url, format: {
-    with: URI.regexp(%w(http https)),
+  validates :issues_url, url: {
     allow_blank: true,
-    case_sensitive: false
+    allow_nil: true
   }
 
   #
