@@ -1,7 +1,7 @@
 require 'spec_feature_helper'
 
 describe 'cookbook following' do
-  shared_examples "a page which has a Follow button" do
+  shared_examples 'a page which has a Follow button' do
     it 'allows a user to follow a cookbook' do
       follow_relation 'follow'
 
