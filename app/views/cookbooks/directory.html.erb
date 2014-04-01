@@ -29,7 +29,6 @@
           <i class="fa fa-folder"></i>
           Recently Updated
           <small>
-            <!--<span class="label secondary radius">56</span>-->
             <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, cookbooks_path(order: 'recently_updated', format: 'atom'), class: 'rss_feed_link show-for-medium-up' %>
           </small>
           <%= link_to 'View All', cookbooks_path(order: 'recently_updated'), class: 'button radius tiny right' %>
@@ -42,12 +41,35 @@
           <i class="fa fa-folder"></i>
           Recently Added
           <small>
-            <!--<span class="label secondary radius">56</span>-->
             <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, cookbooks_path(order: 'recently_added', format: 'atom'), class: 'rss_feed_link show-for-medium-up' %>
           </small>
           <%= link_to 'View All', cookbooks_path(order: 'recently_added'), class: 'button radius tiny right' %>
         </h2>
         <ul class="cookbook_listing"><%= render @recently_added_cookbooks %></ul>
+      </div>
+
+      <div class="most-downloaded">
+        <h2 class="cookbook_content_heading">
+          <i class="fa fa-folder"></i>
+          Most Downloaded
+          <small>
+            <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, cookbooks_path(order: 'most_downloaded', format: 'atom'), class: 'rss_feed_link show-for-medium-up' %>
+          </small>
+          <%= link_to 'View All', cookbooks_path(order: 'most_downloaded'), class: 'button radius tiny right' %>
+        </h2>
+        <ul class="cookbook_listing"><%= render @most_downloaded_cookbooks %></ul>
+      </div>
+
+      <div class="most-followed">
+        <h2 class="cookbook_content_heading">
+          <i class="fa fa-folder"></i>
+          Most Followed
+          <small>
+            <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, cookbooks_path(order: 'most_followed', format: 'atom'), class: 'rss_feed_link show-for-medium-up' %>
+          </small>
+          <%= link_to 'View All', cookbooks_path(order: 'most_followed'), class: 'button radius tiny right' %>
+        </h2>
+        <ul class="cookbook_listing"><%= render @most_followed_cookbooks %></ul>
       </div>
     </article>
 
