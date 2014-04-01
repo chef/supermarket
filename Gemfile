@@ -25,6 +25,7 @@ gem 'paperclip'
 gem 'virtus', require: false
 gem 'kaminari'
 gem 'chef', require: ['chef/version_constraint', 'chef/exceptions']
+gem 'validate_url'
 
 gem 'sentry-raven', github: 'getsentry/raven-ruby'
 gem 'statsd-ruby', require: 'statsd'

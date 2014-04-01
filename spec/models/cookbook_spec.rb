@@ -14,22 +14,22 @@ describe Cookbook do
       expect(subject).to validate_uniqueness_of(:name).case_insensitive
     end
 
-    it 'validates the format of source_url' do
-      cookbook = create(:cookbook)
-      cookbook_version = create(:cookbook_version, cookbook: cookbook)
-      cookbook.source_url = 'com.http.com'
-
-      expect(cookbook).to_not be_valid
-      expect(cookbook.errors[:source_url]).to_not be_nil
-    end
-
-    it 'validates the format of issues_url' do
+    it 'validates that issues_url is a http(s) url' do
       cookbook = create(:cookbook)
       cookbook_version = create(:cookbook_version, cookbook: cookbook)
       cookbook.issues_url = 'com.http.com'
 
       expect(cookbook).to_not be_valid
       expect(cookbook.errors[:issues_url]).to_not be_nil
+    end
+
+    it 'validates that source_url is a http(s) url' do
+      cookbook = create(:cookbook)
+      cookbook_version = create(:cookbook_version, cookbook: cookbook)
+      cookbook.source_url = 'com.http.com'
+
+      expect(cookbook).to_not be_valid
+      expect(cookbook.errors[:source_url]).to_not be_nil
     end
 
     it { should validate_presence_of(:name) }

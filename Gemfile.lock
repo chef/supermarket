@@ -379,6 +379,8 @@ GEM
       rack
       unicorn
     uuidtools (2.1.4)
+    validate_url (0.2.0)
+      activemodel (>= 3.0.0)
     vcr (2.9.0)
     virtus (1.0.2)
       axiom-types (~> 0.1)
@@ -446,6 +448,7 @@ DEPENDENCIES
   uglifier (~> 2.2)
   unicorn
   unicorn-rails
+  validate_url
   vcr
   virtus
   webmock
