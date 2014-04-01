@@ -41,7 +41,7 @@ class Cookbook < ActiveRecord::Base
 
   # Validations
   # --------------------
-  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :name, presence: true, uniqueness: { case_sensitive: false }, format: /\A[\w_-]+\z/i
   validates :lowercase_name, presence: true, uniqueness: true
   validates :maintainer, presence: true
   validates :description, presence: true

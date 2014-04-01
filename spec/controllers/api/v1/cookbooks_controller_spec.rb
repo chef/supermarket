@@ -129,7 +129,7 @@ describe Api::V1::CookbooksController do
 
   describe '#search' do
     let!(:redis) { create(:cookbook, name: 'redis') }
-    let!(:redis_2) { create(:cookbook, name: 'redis 2') }
+    let!(:redis_2) { create(:cookbook, name: 'redis-2') }
     let!(:postgres) { create(:cookbook, name: 'postgres') }
 
     it 'responds with a 200' do
@@ -168,7 +168,7 @@ describe Api::V1::CookbooksController do
 
       cookbook_names = assigns[:results].map(&:name)
 
-      expect(cookbook_names).to eql(['redis 2'])
+      expect(cookbook_names).to eql(['redis-2'])
     end
 
     it 'handles the items param' do
