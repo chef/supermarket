@@ -1,7 +1,7 @@
 class CookbooksController < ApplicationController
   before_filter :assign_categories
   before_filter :assign_cookbook, only: [:show, :update, :follow, :unfollow]
-  before_filter :store_location_then_authenticate_user!, only: [:update, :follow, :unfollow]
+  before_filter :store_location_then_authenticate_user!, only: [:follow, :unfollow]
 
   #
   # GET /cookbooks(/categories/:category)
@@ -111,6 +111,8 @@ class CookbooksController < ApplicationController
   #
   def update
     @cookbook.update_attributes(cookbook_urls_params)
+
+    redirect_to @cookbook
   end
 
   #
@@ -120,6 +122,8 @@ class CookbooksController < ApplicationController
   #
   def follow
     @cookbook.cookbook_followers.create(user: current_user)
+
+    redirect_to :back
   end
 
   #
@@ -132,7 +136,7 @@ class CookbooksController < ApplicationController
       where(user: current_user).first
     cookbook_follower.try(:destroy)
 
-    render 'follow'
+    redirect_to @cookbook
   end
 
   private

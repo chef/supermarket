@@ -132,42 +132,41 @@ describe CookbooksController do
     let(:cookbook) { create(:cookbook) }
     before { sign_in create(:user) }
 
-    it 'updates the cookbook' do
-      patch :update, id: cookbook, format: :js, cookbook: {
-        source_url: 'http://example.com/cookbook',
-        issues_url: 'http://example.com/cookbook/issues'
-      }
+    context 'the params are valid' do
+      it 'updates the cookbook' do
+        patch :update, id: cookbook, cookbook: {
+          source_url: 'http://example.com/cookbook',
+          issues_url: 'http://example.com/cookbook/issues'
+        }
 
-      cookbook.reload
+        cookbook.reload
 
-      expect(cookbook.source_url).to eql('http://example.com/cookbook')
-      expect(cookbook.issues_url).to eql('http://example.com/cookbook/issues')
+        expect(cookbook.source_url).to eql('http://example.com/cookbook')
+        expect(cookbook.issues_url).to eql('http://example.com/cookbook/issues')
+      end
+
+      it 'redirects to @cookbook'  do
+        patch :update, id: cookbook, cookbook: {
+          source_url: 'http://example.com/cookbook',
+          issues_url: 'http://example.com/cookbook/issues'
+        }
+
+        expect(response).to redirect_to(assigns[:cookbook])
+      end
     end
 
-    it 'returns a 200 on success'  do
-      patch :update, id: cookbook, format: :js, cookbook: {
-        source_url: 'http://example.com/cookbook',
-        issues_url: 'http://example.com/cookbook/issues'
-      }
+    context 'the params are invalid' do
+      it "doesn't update the cookbook" do
+        expect do
+          patch :update, id: cookbook, cookbook: { source_url: 'some-invalid-url' }
+        end.to_not change(cookbook, :source_url)
+      end
 
-      expect(response.status.to_i).to eql(200)
-    end
+      it 'redirects to @cookbook' do
+        patch :update, id: cookbook, cookbook: { source_url: 'some-invalid-url' }
 
-    it 'updates the dom with update.js.erb'  do
-      patch :update, id: cookbook, format: :js, cookbook: {
-        source_url: 'http://example.com/cookbook',
-        issues_url: 'http://example.com/cookbook/issues'
-      }
-
-      expect(response).to render_template('update')
-    end
-
-    it 'should make @cookbook invalid for invalid attributes' do
-      patch :update, id: cookbook, format: :js, cookbook: {
-        source_url: 'test'
-      }
-
-      expect(assigns[:cookbook].valid?).to be_false
+        expect(response).to redirect_to(assigns[:cookbook])
+      end
     end
   end
 
@@ -283,20 +282,21 @@ describe CookbooksController do
 
   describe 'PUT #follow' do
     let(:cookbook) { create(:cookbook) }
+    before { request.env['HTTP_REFERER'] = cookbook_url(cookbook) }
 
     context 'a user is signed in' do
       before { sign_in create(:user) }
 
       it 'should add a follower' do
         expect do
-          put :follow, id: cookbook, format: :js
+          put :follow, id: cookbook
         end.to change(cookbook.cookbook_followers, :count).by(1)
       end
 
-      it 'renders follow' do
-        put :follow, id: cookbook, format: :js
+      it 'redirects back' do
+        put :follow, id: cookbook
 
-        expect(response).to render_template('follow')
+        expect(response).to redirect_to(:back)
       end
     end
 
@@ -312,7 +312,7 @@ describe CookbooksController do
       before { sign_in create(:user) }
 
       it 'returns a 404' do
-        put :follow, id: 'snarfle', format: :js
+        put :follow, id: 'snarfle'
 
         expect(response.status.to_i).to eql(404)
       end
@@ -321,6 +321,7 @@ describe CookbooksController do
 
   describe 'DELETE #unfollow' do
     let(:cookbook) { create(:cookbook) }
+    before { request.env['HTTP_REFERER'] = cookbook_url(cookbook) }
 
     context 'the signed in user follows the specified cookbook' do
       before do
@@ -331,14 +332,14 @@ describe CookbooksController do
 
       it 'should remove follower' do
         expect do
-          delete :unfollow, id: cookbook, format: :js
+          delete :unfollow, id: cookbook
         end.to change(cookbook.cookbook_followers, :count).by(-1)
       end
 
-      it 'renders follow' do
-        delete :follow, id: cookbook, format: :js
+      it 'redirects back' do
+        delete :follow, id: cookbook
 
-        expect(response).to render_template('follow')
+        expect(response).to redirect_to(:back)
       end
     end
 
@@ -347,14 +348,14 @@ describe CookbooksController do
 
       it 'should not remove a follower'  do
         expect do
-          delete :unfollow, id: cookbook, format: :js
+          delete :unfollow, id: cookbook
         end.to_not change(cookbook.cookbook_followers, :count)
       end
 
-      it 'renders follow' do
-        delete :follow, id: cookbook, format: :js
+      it 'redirects back' do
+        delete :follow, id: cookbook
 
-        expect(response).to render_template('follow')
+        expect(response).to redirect_to(:back)
       end
     end
   end
