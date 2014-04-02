@@ -162,7 +162,7 @@ describe CookbooksController do
         end.to_not change(cookbook, :source_url)
       end
 
-      it "redirects to @cookbook" do
+      it 'redirects to @cookbook' do
         patch :update, id: cookbook, cookbook: { source_url: 'some-invalid-url' }
 
         expect(response).to redirect_to(assigns[:cookbook])

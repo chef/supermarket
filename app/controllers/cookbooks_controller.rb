@@ -1,7 +1,7 @@
 class CookbooksController < ApplicationController
   before_filter :assign_categories
   before_filter :assign_cookbook, only: [:show, :update, :follow, :unfollow]
-  before_filter :store_location_then_authenticate_user!, only: [:update, :follow, :unfollow]
+  before_filter :store_location_then_authenticate_user!, only: [:follow, :unfollow]
 
   #
   # GET /cookbooks(/categories/:category)
@@ -112,7 +112,7 @@ class CookbooksController < ApplicationController
   def update
     @cookbook.update_attributes(cookbook_urls_params)
 
-    redirect_to @cookbook, notice: t('cookbook.update.success')
+    redirect_to @cookbook
   end
 
   #
