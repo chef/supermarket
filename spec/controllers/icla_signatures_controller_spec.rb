@@ -79,8 +79,7 @@ describe IclaSignaturesController do
       end
 
       it 'stores the previous URL before directed to link GitHub' do
-        expect(controller.stored_location_for(admin)).
-          to eql(new_icla_signature_path)
+        expect(controller.stored_location).to eql(new_icla_signature_path)
       end
     end
   end
@@ -103,8 +102,7 @@ describe IclaSignaturesController do
       end
 
       it 'stores the previous URL before directed to link GitHub' do
-        expect(controller.stored_location_for(admin)).
-          to eql(icla_signatures_path)
+        expect(controller.stored_location).to eql(icla_signatures_path)
       end
     end
 
@@ -174,7 +172,7 @@ describe IclaSignaturesController do
       end
 
       it 'stores the previous URL before directed to link GitHub' do
-        expect(controller.stored_location_for(admin)).
+        expect(controller.stored_location).
           to eql(re_sign_icla_signatures_path)
       end
     end

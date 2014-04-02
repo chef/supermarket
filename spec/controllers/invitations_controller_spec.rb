@@ -13,10 +13,10 @@ describe InvitationsController do
     end
 
     it 'redirects guests to sign in' do
-      sign_out user
+      sign_out
       get :show, id: invitation.token
 
-      expect(response).to redirect_to(user_session_path)
+      expect(response).to redirect_to(sign_in_path)
     end
   end
 

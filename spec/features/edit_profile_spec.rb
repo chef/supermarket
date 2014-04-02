@@ -2,7 +2,7 @@ require 'spec_feature_helper'
 
 describe 'editing the current user profile' do
   it 'updates the users profile' do
-    sign_in(create(:user))
+    sign_in
     manage_profile
 
     fill_in 'user_email', with: 'eddardstark@agofai.com'

@@ -31,6 +31,9 @@ RSpec.configure do |config|
   # Custom helper modules and extensions
   config.include RequestHelpers
 
+  # Helpers that stub sign in and sign out with current_user
+  config.include AuthHelpers
+
   # Request helpers specifically useful for the API
   config.include ApiSpecHelpers, type: :request
 
@@ -66,6 +69,23 @@ RSpec.configure do |config|
         email: 'johndoe@example.com',
         name: 'John Doe',
         image: 'https://image-url.com'
+      },
+      credentials: {
+        token: 'oauth_token',
+        expires: false
+      }
+    )
+
+    # Reset OmniAuth Developer stub before each example
+    OmniAuth.config.mock_auth[:chef_oauth2] = OmniAuth::AuthHash.new(
+      provider: 'chef_oauth2',
+      uid: '12345',
+      info: {
+        username: 'johndoe',
+        email: 'johndoe@example.com',
+        first_name: 'John',
+        last_name: 'Doe',
+        public_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKVuZCyYt/gLXeclgnEibmM0+o1hPNaGGls6/lFNJYa1VvoN7dNdvXIdC6cPcBAijZp/LJI6u2w0dIjo7H2lw8aYF1TgmrYzeuCy+OZjXvfk6ZCi2ls3AILsxfw8S74Gd06JB+nwYJmusF/b01Bn1ua9ywaIUpKf5ewP0aM/2nAcJn/1C+q/JyRSK0DrfajV+Tiw0jufblzx6mfvSMtFUresEAKnsmu1QJYH6aNAvBWIiz/Sh7uIBA5tHHCP43G/95tPP9wXw2Capp/aOX+PViwkGuh8ebJaYjPhV35jGGXFdUPkcHj/i14bxUVKFjUkcLataLW7DvcO4LQfZtRt0p'
       },
       credentials: {
         token: 'oauth_token',

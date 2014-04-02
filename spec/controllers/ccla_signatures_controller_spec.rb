@@ -60,8 +60,7 @@ describe CclaSignaturesController do
       end
 
       it 'stores the signature page as the "stored location" for the user' do
-        expect(controller.stored_location_for(user)).
-          to eql(new_ccla_signature_path)
+        expect(controller.stored_location).to eql(new_ccla_signature_path)
       end
     end
 
@@ -113,8 +112,7 @@ describe CclaSignaturesController do
       end
 
       it 'stores the previous url before directed to link github' do
-        expect(controller.stored_location_for(user)).
-          to eql(ccla_signatures_path)
+        expect(controller.stored_location).to eql(ccla_signatures_path)
       end
     end
 
@@ -181,7 +179,7 @@ describe CclaSignaturesController do
       end
 
       it 'stores the previous url before directed to link github' do
-        expect(controller.stored_location_for(user)).
+        expect(controller.stored_location).
           to eql(re_sign_ccla_signatures_path)
       end
     end
