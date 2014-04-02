@@ -19,6 +19,7 @@ gem 'coveralls', require: false
 gem 'octokit', github: 'octokit/octokit.rb', require: false
 gem 'sidekiq'
 gem 'premailer-rails', group: [:development, :production]
+gem 'nokogiri'
 gem 'jbuilder'
 gem 'pg_search'
 gem 'paperclip'
@@ -52,7 +53,6 @@ group :test do
   gem 'poltergeist'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
-  gem 'nokogiri', require: false
   gem 'vcr', require: false
   gem 'webmock', require: false
 end
