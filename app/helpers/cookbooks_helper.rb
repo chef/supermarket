@@ -53,4 +53,22 @@ module CookbooksHelper
       )
     end
   end
+
+  #
+  # Generates a link to the current page with a parameter to sort cookbooks in
+  # a particular way.
+  #
+  # @param linked_text [String] the contents of the +a+ tag
+  # @param ordering [String] the name of the ordering
+  #
+  # @example
+  #   link_to_sorted_cookbooks 'Recently Updated', 'recently_updated'
+  #
+  # @return [String] the generated anchor tag
+  #
+  def link_to_sorted_cookbooks(linked_text, ordering)
+    class_name = params[:order] == ordering ? 'active' : nil
+
+    link_to linked_text, params.merge(order: ordering), class: class_name
+  end
 end

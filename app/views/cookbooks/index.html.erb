@@ -20,10 +20,10 @@
   </h1>
   <div class="order_cookbooks_by right">
     Sort By
-    <%= link_to 'Recently Updated', params.merge(order: 'recently_updated'), class: ('active' if params[:order] == 'recently_updated') %>
-    <%= link_to 'Recently Added', params.merge(order: 'recently_added'), class: ('active' if params[:order] == 'recently_added') %>
-    <%= link_to 'Most Downloaded', params.merge(order: 'most_downloaded'), class: ('active' if params[:order] == 'most_downloaded') %>
-    <%= link_to 'Most Followed', params.merge(order: 'most_followed'), class: ('active' if params[:order] == 'most_followed') %>
+    <%= link_to_sorted_cookbooks 'Recently Updated', 'recently_updated' %>
+    <%= link_to_sorted_cookbooks 'Recently Added', 'recently_added' %>
+    <%= link_to_sorted_cookbooks 'Most Downloaded', 'most_downloaded' %>
+    <%= link_to_sorted_cookbooks 'Most Followed', 'most_followed' %>
   </div>
 
   <div class="show-for-medium-up"><%= render 'categories' %></div>
