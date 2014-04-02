@@ -10,12 +10,12 @@ describe 'DELETE /api/v1/cookbooks/:cookbook' do
         'description' => 'Installs/Configures redis-test',
         'average_rating' => nil,
         'category' => 'Other',
-        'latest_version' => 'http://www.example.com/api/v1/cookbooks/redis-test/versions/0_2_0'
+        'latest_version' => 'http://www.example.com/api/v1/cookbooks/redis-test/versions/1_0_0'
       }
     end
 
     before do
-      share_cookbook(cookbook: 'redis-test-v2.tgz')
+      share_cookbook('redis-test')
       delete json_body['uri']
     end
 

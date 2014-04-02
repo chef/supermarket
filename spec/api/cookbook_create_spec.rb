@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'POST /api/v1/cookbooks' do
   context 'the user provides valid params' do
-    before(:each) { share_cookbook }
+    before(:each) { share_cookbook('redis-test') }
 
     it 'returns a 201' do
       expect(response.status.to_i).to eql(201)

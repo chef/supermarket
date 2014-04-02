@@ -1,12 +1,42 @@
-module ApiSpecHelpers
-  def share_cookbook(args = {})
-    cookbook_name = args[:cookbook] || 'redis-test-v1.tgz'
-    category_name = (args[:category] || 'other').titleize
+require 'and_feathers'
+require 'and_feathers/gzipped_tarball'
+require 'tempfile'
 
-    tarball = fixture_file_upload("spec/support/cookbook_fixtures/#{cookbook_name}", 'application/x-gzip')
+module ApiSpecHelpers
+  def share_cookbook(cookbook_name, options = {})
+    category_name = options.fetch(:category, 'other').titleize
+    custom_metadata = options.dup.tap { |o| o.delete(:category) }
+
+    metadata = {
+      name: cookbook_name,
+      version: '1.0.0',
+      description: "Installs/Configures #{cookbook_name}",
+      maintainer: "Chef Software, Inc",
+      license: "MIT",
+      platforms: {
+        "ubuntu" => ">= 12.0.0"
+      },
+      dependencies: {
+        "apt" => "~> 1.0.0"
+      }
+    }.merge(custom_metadata)
+
+    tarball = Tempfile.new([cookbook_name, '.tgz'], 'tmp').tap do |file|
+      io = AndFeathers.build(cookbook_name) do |base_dir|
+        base_dir.file('README.md') { '# README' }
+        base_dir.file('metadata.json') do
+          JSON.dump(metadata)
+        end
+      end.to_io(AndFeathers::GzippedTarball)
+
+      file.write(io.read)
+      file.rewind
+    end
+
+    tarball_upload = fixture_file_upload(tarball.path, 'application/x-gzip')
     category = create(:category, name: category_name)
 
-    post '/api/v1/cookbooks', cookbook: "{\"category\": \"#{category_name}\"}", tarball: tarball
+    post '/api/v1/cookbooks', cookbook: "{\"category\": \"#{category_name}\"}", tarball: tarball_upload
   end
 
   def json_body

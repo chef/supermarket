@@ -37,8 +37,8 @@ describe 'GET /api/v1/cookbooks' do
     end
 
     before do
-      share_cookbook(cookbook: 'redis-test-v2.tgz')
-      share_cookbook(cookbook: 'redisio-test-v1.tgz')
+      share_cookbook('redis-test')
+      share_cookbook('redisio-test')
     end
 
     it 'returns a JSON template with the cookbooks' do
