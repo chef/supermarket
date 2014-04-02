@@ -38,18 +38,18 @@ module CookbooksHelper
         'Unfollow',
         unfollow_cookbook_path(cookbook),
         method: 'delete',
-        remote: true,
         rel: 'unfollow',
-        class: 'button radius tiny follow'
+        class: 'button radius tiny follow',
+        'data-disable-with' => 'Unfollowing'
       )
     else
       link_to(
         'Follow',
         follow_cookbook_path(cookbook),
         method: 'put',
-        remote: true,
         rel: 'follow',
-        class: 'button radius tiny follow'
+        class: 'button radius tiny follow',
+        'data-disable-with' => 'Following'
       )
     end
   end

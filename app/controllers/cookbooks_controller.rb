@@ -111,6 +111,8 @@ class CookbooksController < ApplicationController
   #
   def update
     @cookbook.update_attributes(cookbook_urls_params)
+
+    redirect_to @cookbook, notice: t('cookbook.update.success')
   end
 
   #
@@ -120,6 +122,8 @@ class CookbooksController < ApplicationController
   #
   def follow
     @cookbook.cookbook_followers.create(user: current_user)
+
+    redirect_to :back
   end
 
   #
@@ -132,7 +136,7 @@ class CookbooksController < ApplicationController
       where(user: current_user).first
     cookbook_follower.try(:destroy)
 
-    render 'follow'
+    redirect_to @cookbook
   end
 
   private

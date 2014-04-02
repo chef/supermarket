@@ -5,7 +5,6 @@ en:
   cookbook:
     update:
       success: "The cookbook URLs were successfully saved."
-      failure: "There was an error saving the cookbook URLs."
   requires_linked_github: "You need to link your GitHub account."
   organization_invitations:
     invite:
