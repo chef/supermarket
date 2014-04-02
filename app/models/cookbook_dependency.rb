@@ -1,3 +1,5 @@
+require 'active_model/validations/chef_version_constraint_validator'
+
 class CookbookDependency < ActiveRecord::Base
   # Associations
   # --------------------
@@ -7,24 +9,5 @@ class CookbookDependency < ActiveRecord::Base
   # --------------------
   validates :name, presence: true
   validates :cookbook_version, presence: true
-  validate :platform_has_valid_version_constraint
-
-  private
-
-  #
-  # Check to see if the version constraint is a valid Chef version constraint.
-  # If not, it adds an error on the +version_constraint+ attribute.
-  #
-  def platform_has_valid_version_constraint
-    Chef::VersionConstraint.new(version_constraint)
-  rescue Chef::Exceptions::InvalidVersionConstraint
-    errors.add(
-      :version_constraint,
-      I18n.t(
-        'api.error_messages.invalid_version_constraint',
-        name: name,
-        version_constraint: version_constraint
-      )
-    )
-  end
+  validates :version_constraint, chef_version_constraint: true
 end

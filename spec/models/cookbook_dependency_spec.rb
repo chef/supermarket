@@ -16,7 +16,7 @@ describe CookbookDependency do
       platform.valid?
 
       expect(platform.errors[:version_constraint]).
-        to include("Platform '' has invalid version constraint 'snarfle'")
+        to include('is not a valid Chef version constraint')
     end
 
     it 'does not allow blank version constraints' do
@@ -25,7 +25,7 @@ describe CookbookDependency do
       platform.valid?
 
       expect(platform.errors[:version_constraint]).
-        to include("Platform '' has invalid version constraint ''")
+        to include('is not a valid Chef version constraint')
     end
   end
 end
