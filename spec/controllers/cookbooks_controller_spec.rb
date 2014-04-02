@@ -50,7 +50,7 @@ describe CookbooksController do
       end
 
       it 'orders @cookbooks by created at' do
-        get :index, order: 'recently_created'
+        get :index, order: 'recently_added'
         expect(assigns[:cookbooks].first).to eql(cookbook_1)
       end
 

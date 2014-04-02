@@ -203,10 +203,10 @@ describe Cookbook do
         to eql(%w(great cookbook))
     end
 
-    it 'orders by created_at descending when given "recently_created"' do
+    it 'orders by created_at descending when given "recently_added"' do
       create(:cookbook, name: 'neat')
 
-      expect(Cookbook.ordered_by('recently_created').first.name).to eql('neat')
+      expect(Cookbook.ordered_by('recently_added').first.name).to eql('neat')
     end
 
     it 'orders by download_count descending when given "most_downloaded"' do
