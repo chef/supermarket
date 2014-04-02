@@ -28,7 +28,7 @@ gem 'kaminari'
 gem 'chef', require: ['chef/version_constraint', 'chef/exceptions']
 gem 'validate_url'
 
-gem 'sentry-raven', github: 'getsentry/raven-ruby'
+gem 'sentry-raven', github: 'getsentry/raven-ruby', require: false
 gem 'statsd-ruby', require: 'statsd'
 gem 'analytics-ruby', require: false
 
