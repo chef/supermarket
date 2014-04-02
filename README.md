@@ -84,10 +84,11 @@ Requirements
 Tests
 -----
 
-This application supports [Spring](https://github.com/rails/spring), which
-preloads the Rails application. This speeds up tests subsequently after
-the first time a spec is run. To use Spring when running specs, use `bin/rspec
-path/to/spec.rb`.
+Run the entire test suite (rspec, rubocop and mocha) with:
+
+``` sh
+bundle exec rake spec:all
+```
 
 ### Acceptance tests
 
