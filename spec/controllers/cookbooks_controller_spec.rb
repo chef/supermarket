@@ -81,7 +81,7 @@ describe CookbooksController do
       let!(:amazing_cookbook) do
         create(
           :cookbook,
-          name: 'Amazing Cookbook',
+          name: 'AmazingCookbook',
           maintainer: 'john@example.com',
           description: 'Makes you a pirate',
           category: create(:category, name: 'Databases')
@@ -91,7 +91,7 @@ describe CookbooksController do
       let!(:ok_cookbook) do
         create(
           :cookbook,
-          name: 'OK Cookbook',
+          name: 'OKCookbook',
           maintainer: 'jack@example.com',
           description: 'Makes you a pigeon',
           category: create(:category, name: 'Other')

@@ -28,7 +28,7 @@ describe 'cookbook feed' do
   end
 
   it 'lists cookbooks by a metadata search term' do
-    create(:cookbook, name: 'Amazing Cookbook')
+    create(:cookbook, name: 'AmazingCookbook')
 
     visit '/'
     click_link 'Cookbooks'

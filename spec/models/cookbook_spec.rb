@@ -32,6 +32,25 @@ describe Cookbook do
       expect(cookbook.errors[:source_url]).to_not be_nil
     end
 
+    it 'does not allow spaces in cookbook names' do
+      cookbook = Cookbook.new(name: 'great cookbook')
+      cookbook.valid?
+
+      expect(cookbook.errors[:name]).to_not be_empty
+
+      cookbook = Cookbook.new(name: 'great-cookbook')
+      cookbook.valid?
+
+      expect(cookbook.errors[:name]).to be_empty
+    end
+
+    it 'allows letters, numbers, dashes, and underscores in cookbook names' do
+      cookbook = Cookbook.new(name: 'Cookbook_-1')
+      cookbook.valid?
+
+      expect(cookbook.errors[:name]).to be_empty
+    end
+
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:maintainer) }
     it { should validate_presence_of(:description) }
