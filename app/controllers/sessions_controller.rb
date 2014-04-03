@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
   # Creates a new session for the user from the OmniAuth Auth hash.
   #
   def create
-    user = User.find_or_create_from_oauth(request.env['omniauth.auth'])
+    user = User.find_or_create_from_chef_oauth(request.env['omniauth.auth'])
     session[:user_id] = user.id
     redirect_to redirect_path, notice: t('user.signed_in', name: user.name)
   end

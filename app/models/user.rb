@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   # --------------------
   validates_presence_of :email
 
+  # Scope
+  # --------------------
+  scope :with_email, ->(email) { where(email: email) }
+
   #
   # The commit author identities who have signed a CLA
   #
@@ -183,21 +187,23 @@ class User < ActiveRecord::Base
   end
 
   #
-  # Find or create a user based on the OmniAuth auth hash. If an account exists,
-  # return the user for that account. If the account does not exist, create the
-  # account, create a user based on the information and associate that account
-  # with the newly created user.
+  # Find or create a user based on the oc-id auth hash. If the user already
+  # exists, its +first_name+, +last_name+, and +public_key+ will be updated to
+  # reflect the extracted values.
   #
   # @example
-  #   user = User.find_or_create_from_oauth({ uid: '123', provider: 'chef_oauth2' })
+  #   user = User.find_or_create_from_chef_oauth(
+  #     uid: '123',
+  #     provider: 'chef_oauth2'
+  #   )
   #
-  # @param [Hash] auth the OmniAuth hash returned from the provider
+  # @param [Hash] auth the OmniAuth hash returned from the oc-id provider
   #
   # @return [User] the user that exists or was created with the +auth+
   #                information
   #
-  def self.find_or_create_from_oauth(auth)
-    extractor = Extractor::Base.load(auth)
+  def self.find_or_create_from_chef_oauth(auth)
+    extractor = ChefOauth2Extractor.new(auth)
 
     account = Account.where(extractor.signature).first_or_initialize do |new_account|
       new_account.username      = extractor.username
@@ -206,15 +212,19 @@ class User < ActiveRecord::Base
       new_account.oauth_expires = extractor.oauth_expires
     end
 
+    oauth_attributes = {
+      public_key: extractor.public_key,
+      first_name: extractor.first_name,
+      last_name: extractor.last_name
+    }
+
     if account.user.nil?
-      user = User.where(email: extractor.email).first_or_create(
-        public_key: extractor.public_key,
-        first_name: extractor.first_name,
-        last_name: extractor.last_name
-      )
+      user = User.with_email(extractor.email).first_or_create(oauth_attributes)
 
       account.user = user
       account.save
+    else
+      account.user.update_attributes(oauth_attributes)
     end
 
     account.user
