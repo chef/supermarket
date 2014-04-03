@@ -9,7 +9,7 @@ describe 'cookbook feed' do
       click_link 'View All'
     end
 
-    expect(all('.order .active').size).to eql(1)
+    expect(all('.order_cookbooks_by .active').size).to eql(1)
   end
 
   it 'lists cookbooks by category' do

@@ -137,6 +137,41 @@ input[type="search"].cookbook_search_textfield {
   @include grid-row();
 }
 
+.order_cookbooks_by {
+  color: $concrete;
+  font: {
+    family: $accent_font;
+    size: rem-calc(12);
+    weight: $bold;
+  }
+  line-height: rem-calc(36);
+  margin-top: rem-calc(-66);
+  text-transform: uppercase;
+
+  a {
+    @include inline-block;
+    font: {
+      family: $default_font;
+      size: rem-calc(12);
+      weight: $normal;
+    }
+    margin-left: rem-calc(20);
+    @include single-transition($speed: 100ms);
+    text-transform: none;
+
+    &.active {
+      background-color: $primary-color;
+      @include border-radius(rem-calc(3));
+      color: white;
+      padding: rem-calc(0 15);
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+}
+
 // Cookbooks sidebar column
 .cookbook_sidebar {
   @include grid-column($columns: 3, $collapse: true);
@@ -179,7 +214,33 @@ input[type="search"].cookbook_search_textfield {
           @include inline-block;
           min-width: rem-calc(28);
         }
+
+        &.active {
+          background-color: lighten($clouds, 2%);
+          @include border-radius(rem-calc(3));
+          color: darken($secondary_gray, 20%);
+          font-weight: $bold;
+        }
       }
+
+      .fa {
+        color: darken($secondary_gray, 20%);
+        font-size: rem-calc(12);
+        margin: rem-calc(10 5 0 0);
+      }
+
+      @media #{$mobile-only} {
+        .fa {
+          margin: rem-calc(25 20 0 0);
+        }
+      }
+
+      @media #{$small-only} {
+        .fa {
+          margin: rem-calc(25 20 0 0);
+        }
+      }
+
     }
   }
 }
@@ -297,6 +358,10 @@ input[type="search"].cookbook_search_textfield {
 // Cookbooks body column
 .cookbook_content {
   @include grid-column($columns: 9, $collapse: true);
+}
+
+.cookbook_content_category_listing {
+  margin-top: rem-calc(48);
 }
 
 @media #{$mobile-only} {
@@ -630,6 +695,11 @@ input[type="search"].cookbook_search_textfield {
   position: relative;
   z-index: 1;
 }
+
+.version_dropdown {
+  @include inline-block;
+  margin: rem-calc(-5 10 0);
+}
  
 .previouspage {
   @include box-sizing(border-box);
@@ -655,6 +725,7 @@ input[type="search"].cookbook_search_textfield {
     size: rem-calc(10);
     weight: $bold;
   }
+  margin-top: rem-calc(3);
 
   .button {
     margin-left: rem-calc(10);
@@ -673,6 +744,10 @@ input[type="search"].cookbook_search_textfield {
 .button.show-cookbook-urls-manage {
   margin-top: rem-calc(-7);
   padding: rem-calc(7 10);
+}
+
+.cookbook-urls {
+  padding-bottom: rem-calc(20);
 }
 
 .manage-cookbook-urls {
@@ -769,6 +844,12 @@ pre.prettyprint {
   list-style: none;
   margin: 0;
   padding: rem-calc(20 0 20 20);
+
+  .cookbook_show_sidebar & {
+    @include clearfix;
+    margin-top: rem-calc(-15);
+    padding: rem-calc(0 0 20 20);
+  }
 }
 
 .cookbook_platform_icon {
@@ -789,4 +870,12 @@ pre.prettyprint {
   &.has-tip { border: none; }
 
   span { display: none; }
+
+  .cookbook_show_sidebar & {
+    font-size: rem-calc(20);
+
+    &[data-icon]:before {
+      color: adjust-lightness($primary_gray, 20%);
+    }
+  }
 }

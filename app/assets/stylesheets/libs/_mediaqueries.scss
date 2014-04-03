@@ -15,8 +15,6 @@
 @media #{$small-only} {
   html, body { font-size: 62.5%; }
   .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
-  .searchform { margin-right: rem-calc(-8); }
-  .usermenu .signin { margin-right: rem-calc(-5); text-align: right; }
   #searchfield { width: rem-calc(220); }
   .page { padding: rem-calc(40 70 70); }
   .alert-box .close { margin-top: rem-calc(-17); }
@@ -27,7 +25,6 @@
   html, body { font-size: 75%; }
   .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
   #searchfield { width: rem-calc(220); }
-  .usermenu .signin { margin-right: rem-calc(-5); text-align: right; }
   .page { padding: rem-calc(40 70 70); }
   .alert-box .close { margin-top: rem-calc(-14); }
 }

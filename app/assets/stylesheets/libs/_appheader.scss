@@ -12,42 +12,6 @@
   }
 }
 
-// logo and Chef properties toggle column
-.logo_and_nav_toggle {
-  @include grid-column($columns: 3, $collapse: true);
-}
-
-@media #{$mobile-only} {
-  .logo_and_nav_toggle {
-    @include grid-column($columns: 10, $collapse: true);
-    position: static;
-  }
-}
-
-@media #{$small-only} {
-  .logo_and_nav_toggle {
-    @include grid-column($columns: 5, $collapse: true);
-    position: static;
-  }
-}
-
-// Navigation, search and user menu column
-.navigation_search_and_avatar {
-  @include grid-column($columns: 9, $collapse: true);
-}
-
-@media #{$mobile-only} {
-  .navigation_search_and_avatar {
-    @include grid-column($columns: 2, $collapse: true);
-  }
-}
-
-@media #{$small-only} {
-  .navigation_search_and_avatar {
-    @include grid-column($columns: 7, $collapse: true);
-  }
-}
-
 .left-off-canvas-toggle {
   color: adjust-lightness($primary_blue, 20%);
   display: block;
@@ -116,6 +80,10 @@
 }
 
 // App-specific elements
+.search_and_usermenu {
+  margin-right: rem-calc(70);
+}
+
 .searchform {
   float: right;
   height: rem-calc(70);
@@ -130,10 +98,6 @@
     width: rem-calc(16);
     z-index: 1;
   }
-}
-
-@media #{$small-only} {
-  .searchform { margin-right: rem-calc(-8); }
 }
 
 @media #{$xlarge-up} {
@@ -167,12 +131,28 @@
         color: adjust-lightness($primary_blue, 100%);
         display: block;
         float: left;
-        font: rem-calc(12) $accent_font;
+        font: rem-calc(11) $accent_font;
         line-height: rem-calc(70);
-        padding: 0 rem-calc(20);
+        padding: 0 rem-calc(10);
         @include single-transition(color, $speed: 100ms);
         text-decoration: none;
         text-transform: uppercase;
+
+        &.sign_in_create_account {
+          color: adjust-lightness($primary_blue, 50%);
+          display: block;
+          float: right;
+          font: rem-calc(9) $accent_font;
+          line-height: rem-calc(70);
+          padding: 0 rem-calc(10);
+          @include single-transition(color, $speed: 100ms);
+          text-decoration: none;
+          text-transform: uppercase;
+
+          &:hover, &:active {
+            color: adjust-lightness($primary_blue, 25%);
+          }
+        }
       }
 
       a:hover, a:active {
@@ -185,24 +165,10 @@
 .usermenu {
   float: right;
   height: rem-calc(70);
-  margin: rem-calc(0 70 0 20);
+  margin-left: rem-calc(20);
   position: relative;
   width: rem-calc(36);
   z-index: 101;
-
-  .signin {
-    color: #7c858c;
-    display: block;
-    font: $bold rem-calc(12) $accent_font;
-    line-height: rem-calc(70);
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-
-    &:hover, &:active {
-      color: #949ea6;
-    }
-  }
 
   &:hover {
     .userdropdown { display: block; }
@@ -262,14 +228,14 @@
     &:last-child { border: none; }
 
     a {
-      color: #7c858c;
+      color: $concrete;
       display: block;
       font-size: rem-calc(12);
       padding: rem-calc(10);
       text-decoration: none;
 
       &:hover, &:active {
-        color: #949ea6;
+        color: lighten($concrete, 10%);
       }
 
       &:before { margin-right: rem-calc(7); }
