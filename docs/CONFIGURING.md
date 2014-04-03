@@ -21,3 +21,13 @@ Supermarket running.
   [Sentry](https://getsentry.com/). In development, it is okay not to set it.
 * `PUBSUBHUBBUB_SECRET` is used for Supermarket to subscripe to repositories.
   It can be set to anything in development.
+* `CHEF_OAUTH2_APP_ID` and `CHEF_OAUTH2_SECRET` are generated when registering
+  an application on oc-id: https://id.opscode.com/id/oauth/applications/ They
+  are needed for authentication via OAuth2. When using the application locally,
+  be sure to create an application and set the callback url to
+  `http://localhost:3000/auth/chef_oauth2/callback` or whatever localhost domain
+  you use.
+* `CHEF_OAUTH2_SITE` is currently not used for anything within the application,
+  but if you wanted to provide a provider for authentication, you could set this
+  and configure it in the OmniAuth initializer. It configued by default in the
+  [omniauth-chef-oauth2 gem](https://github.com/opscode/omniauth-chef-oauth2).
