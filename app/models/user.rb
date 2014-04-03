@@ -208,13 +208,11 @@ class User < ActiveRecord::Base
     end
 
     if account.user.nil?
-      user = User.first_or_initialize(
-        email: extractor.email,
-        public_key: extractor.public_key
+      user = User.where(email: extractor.email).first_or_create(
+        public_key: extractor.public_key,
+        first_name: extractor.first_name,
+        last_name: extractor.last_name
       )
-
-      user.first_name = extractor.first_name
-      user.last_name  = extractor.last_name
 
       account.user = user
       account.save
