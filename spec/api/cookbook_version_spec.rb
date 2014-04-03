@@ -3,15 +3,15 @@ require 'spec_helper'
 describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
   context 'for a cookbook that exists' do
     before do
-      share_cookbook(cookbook: 'redis-test-v1.tgz')
-      share_cookbook(cookbook: 'redis-test-v2.tgz')
+      share_cookbook('redis-test', version: '0.1.0')
+      share_cookbook('redis-test', version: '0.2.0')
       get json_body['uri']
     end
 
     context 'for the latest version' do
       let(:cookbook_version_signature) do
         {
-          'license' => 'All rights reserved',
+          'license' => 'MIT',
           'version' => '0.2.0',
           'average_rating' => nil,
           'cookbook' => 'http://www.example.com/api/v1/cookbooks/redis-test'
@@ -34,7 +34,7 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
     context 'for a version that exists' do
       let(:cookbook_version_signature) do
         {
-          'license' => 'All rights reserved',
+          'license' => 'MIT',
           'version' => '0.1.0',
           'average_rating' => nil,
           'cookbook' => 'http://www.example.com/api/v1/cookbooks/redis-test'

@@ -1,9 +1,10 @@
 require 'active_model/validations/chef_version_constraint_validator'
 
-class SupportedPlatform < ActiveRecord::Base
+class CookbookDependency < ActiveRecord::Base
   # Associations
   # --------------------
   belongs_to :cookbook_version
+  belongs_to :cookbook
 
   # Validations
   # --------------------

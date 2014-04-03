@@ -26,4 +26,20 @@ describe 'viewing a cookbook' do
 
     expect(page).to have_selector('.cookbook_show')
   end
+
+  it "shows that cookbook's dependencies" do
+    maintainer = create(:user)
+    cookbook = create(:cookbook) # TODO: give this cookbook a real maintainer
+    apt = create(:cookbook, name: 'apt')
+
+    create(:cookbook_dependency, cookbook_version: cookbook.cookbook_versions.first, cookbook: apt)
+
+    visit cookbook_path(cookbook)
+
+    follow_relation 'cookbook_dependencies'
+    relations('cookbook_dependency').first.click
+
+    expect(page).to have_selector('.cookbook_show')
+    expect(page).to have_content('apt')
+  end
 end

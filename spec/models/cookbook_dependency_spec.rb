@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe SupportedPlatform do
+describe CookbookDependency do
   context 'validations' do
     it 'allows ">= 0.0.0" as a version constraint' do
-      platform = SupportedPlatform.new(version_constraint: '>= 0.0.0')
+      platform = CookbookDependency.new(version_constraint: '>= 0.0.0')
 
       platform.valid?
 
@@ -11,7 +11,7 @@ describe SupportedPlatform do
     end
 
     it 'does not allow "snarfle" as a version constraint' do
-      platform = SupportedPlatform.new(version_constraint: 'snarfle')
+      platform = CookbookDependency.new(version_constraint: 'snarfle')
 
       platform.valid?
 
@@ -20,7 +20,7 @@ describe SupportedPlatform do
     end
 
     it 'does not allow blank version constraints' do
-      platform = SupportedPlatform.new(version_constraint: '')
+      platform = CookbookDependency.new(version_constraint: '')
 
       platform.valid?
 

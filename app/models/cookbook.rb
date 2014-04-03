@@ -37,6 +37,7 @@ class Cookbook < ActiveRecord::Base
   # --------------------
   has_many :cookbook_versions, -> { order(id: :desc) }, dependent: :destroy
   has_many :supported_platforms, through: :latest_cookbook_version
+  has_many :cookbook_dependencies, through: :latest_cookbook_version
   has_many :cookbook_followers, dependent: :destroy
   has_one :latest_cookbook_version, -> { order(id: :desc) }, class_name: 'CookbookVersion'
   belongs_to :category
@@ -107,6 +108,9 @@ class Cookbook < ActiveRecord::Base
   # @param tarball [File] the cookbook artifact
   #
   def publish_version!(metadata, tarball, readme)
+    dependency_names = metadata.dependencies.keys
+    existing_cookbooks = Cookbook.where(name: dependency_names)
+
     transaction do
       self.maintainer = metadata.maintainer
       self.description = metadata.description
@@ -126,6 +130,14 @@ class Cookbook < ActiveRecord::Base
         cookbook_version.supported_platforms.create!(
           name: name,
           version_constraint: version_constraint
+        )
+      end
+
+      metadata.dependencies.each do |name, version_constraint|
+        cookbook_version.cookbook_dependencies.create!(
+          name: name,
+          version_constraint: version_constraint,
+          cookbook: existing_cookbooks.find { |c| c.name == name }
         )
       end
     end
