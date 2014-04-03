@@ -108,6 +108,9 @@ class Cookbook < ActiveRecord::Base
   # @param tarball [File] the cookbook artifact
   #
   def publish_version!(metadata, tarball, readme)
+    dependency_names = metadata.dependencies.keys
+    existing_cookbooks = Cookbook.where(name: dependency_names)
+
     transaction do
       self.maintainer = metadata.maintainer
       self.description = metadata.description
@@ -133,7 +136,8 @@ class Cookbook < ActiveRecord::Base
       metadata.dependencies.each do |name, version_constraint|
         cookbook_version.cookbook_dependencies.create!(
           name: name,
-          version_constraint: version_constraint
+          version_constraint: version_constraint,
+          cookbook: existing_cookbooks.find { |c| c.name == name }
         )
       end
     end

@@ -4,6 +4,7 @@ class CookbookDependency < ActiveRecord::Base
   # Associations
   # --------------------
   belongs_to :cookbook_version
+  belongs_to :cookbook
 
   # Validations
   # --------------------

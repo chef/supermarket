@@ -11,13 +11,13 @@ module ApiSpecHelpers
       name: cookbook_name,
       version: '1.0.0',
       description: "Installs/Configures #{cookbook_name}",
-      maintainer: "Chef Software, Inc",
-      license: "MIT",
+      maintainer: 'Chef Software, Inc',
+      license: 'MIT',
       platforms: {
-        "ubuntu" => ">= 12.0.0"
+        'ubuntu' => '>= 12.0.0'
       },
       dependencies: {
-        "apt" => "~> 1.0.0"
+        'apt' => '~> 1.0.0'
       }
     }.merge(custom_metadata)
 

@@ -1,5 +1,25 @@
 module CookbooksHelper
   #
+  # If we have a linked cookbook for this dependency, allow the user to get to
+  # it. Otherwise, just show the name
+  #
+  # @param dep [CookbookDependency]
+  #
+  # @return [String] The dependency info to show on the page
+  #
+  def dependency_link(dep)
+    name_and_version = "#{dep.name} #{dep.version_constraint}"
+
+    content_tag(:p) do
+      if dep.cookbook
+        link_to name_and_version, cookbook_url(dep.cookbook), rel: 'cookbook_dependency'
+      else
+        name_and_version
+      end
+    end
+  end
+
+  #
   # Return a title for cookbook feeds based on the parameters
   # that are currently set.
   #

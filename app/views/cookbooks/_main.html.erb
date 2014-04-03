@@ -30,7 +30,7 @@
 
   <dl class="tabs" data-tab>
     <dd class="active"><a href="#readme">readme</a></dd>
-    <dd><a href="#dependencies">Dependencies</a></dd>
+    <dd><a href="#dependencies" rel="cookbook_dependencies">Dependencies</a></dd>
     <dd><a href="#relatedcookbooks">Related Cookbooks</a></dd>
   </dl>
   <div class="tabs-content">
@@ -38,7 +38,7 @@
       <%= render_readme(version.readme, version.readme_extension) %>
     </div>
     <div class="content" id="dependencies">
-      <%= render partial: 'dependency', collection: cookbook.cookbook_dependencies %>
+      <%= render partial: 'cookbooks/dependency', collection: cookbook.cookbook_dependencies %>
     </div>
     <div class="content" id="relatedcookbooks">
       Related Cookbooks
