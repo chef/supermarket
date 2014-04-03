@@ -26,5 +26,3 @@ end
 
 desc 'Run javascript specs'
 task 'spec:javascripts' => 'spec:javascripts:run'
-
-task default: 'spec:javascripts'
