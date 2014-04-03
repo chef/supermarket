@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Api::V1::CookbookUploadsController do
+  before do
+    subject.stub(:authenticate_user!) { true }
+    subject.stub(:current_user) { create(:user) }
+  end
+
   describe '#create' do
     context 'when the upload succeeds' do
       before do
@@ -68,6 +73,39 @@ describe Api::V1::CookbookUploadsController do
         post :create, tarball: 'tarball', format: :json
 
         expect(response.status.to_i).to eql(400)
+      end
+    end
+  end
+
+  describe '#destroy' do
+    context 'when a cookbook exists' do
+      let!(:cookbook) { create(:cookbook) }
+      let(:unshare) { delete :destroy, cookbook: cookbook.name, format: :json }
+
+      it 'sends the cookbook to the view' do
+        unshare
+        expect(assigns[:cookbook]).to eql(cookbook)
+      end
+
+      it 'responds with a 200' do
+        unshare
+        expect(response.status.to_i).to eql(200)
+      end
+
+      it 'destroys a cookbook' do
+        expect { unshare }.to change(Cookbook, :count).by(-1)
+      end
+
+      it 'destroys all associated cookbook versions' do
+        expect { unshare }.to change(CookbookVersion, :count).by(-2)
+      end
+    end
+
+    context 'when a cookbook does not exist' do
+      it 'responds with a 404' do
+        delete :destroy, cookbook: 'mamimi', format: :json
+
+        expect(response.status.to_i).to eql(404)
       end
     end
   end

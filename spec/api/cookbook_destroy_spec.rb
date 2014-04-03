@@ -16,7 +16,7 @@ describe 'DELETE /api/v1/cookbooks/:cookbook' do
 
     before do
       share_cookbook('redis-test')
-      delete json_body['uri']
+      unshare_cookbook('redis-test')
     end
 
     it 'returns a 200' do
@@ -29,15 +29,13 @@ describe 'DELETE /api/v1/cookbooks/:cookbook' do
   end
 
   context "the cookbook doesn't exist" do
-    it 'returns a 404' do
-      get '/api/v1/cookbooks/mamimi'
+    before { unshare_cookbook('mamimi') }
 
+    it 'returns a 404' do
       expect(response.status.to_i).to eql(404)
     end
 
     it 'returns a 404 message' do
-      get '/api/v1/cookbooks/mamimi'
-
       expect(json_body).to eql(error_404)
     end
   end

@@ -19,6 +19,7 @@ en:
     error_codes:
       missing_required_data: "MISSING_REQUIRED_DATA"
       invalid_data: "INVALID_DATA"
+      authentication_failed: "AUTHENTICATION_FAILED"
     error_messages:
       missing_cookbook: "Mulipart POST must include a part named 'cookbook'"
       cookbook_not_json: "Mulipart POST part 'cookbook' must be a valid JSON string"
@@ -31,3 +32,7 @@ en:
       metadata_not_json: "Tarball entry named 'metadata.json' could not be parsed as JSON"
       invalid_version_constraint: "Platform '%{name}' has invalid version constraint '%{version_constraint}'"
       invalid_metadata: "The metadata is formatted incorrectly."
+      invalid_platforms: "The list of supported platforms must be a JSON object."
+      invalid_username: "Could not find user '%{username}'"
+      authentication_request_error: "Authentication failed due to an invalid signed request."
+      authentication_key_error: "Authentication failed due to an invalid public/private key pair. If you've changed your keys recently try logging out and logging back in to Supermarket."
