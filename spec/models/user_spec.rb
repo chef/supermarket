@@ -212,34 +212,67 @@ describe User do
     end
   end
 
-  describe '.find_or_create_from_oauth' do
+  describe '.find_or_create_from_chef_oauth' do
     let(:auth) do
       OmniAuth.config.mock_auth[:chef_oauth2]
     end
 
-    it 'creates records for new users' do
-      expect do
-        User.find_or_create_from_oauth(auth)
-      end.to change(User, :count).by(1)
+    context 'when the user does not already exist' do
+      it 'creates a record' do
+        expect do
+          User.find_or_create_from_chef_oauth(auth)
+        end.to change(User, :count).by(1)
+      end
+
+      it "sets the user's public key and name" do
+        user = User.find_or_create_from_chef_oauth(auth)
+
+        expect(user.public_key).to eql(auth['info']['public_key'])
+        expect(user.first_name).to eql(auth['info']['first_name'])
+        expect(user.last_name).to eql(auth['info']['last_name'])
+      end
+
+      it 'ties the user and account together' do
+        user = User.find_or_create_from_chef_oauth(auth)
+
+        expect(user.accounts.reload.count).to eql(1)
+      end
     end
 
-    it 'does not create a user if such a user exists' do
-      User.find_or_create_from_oauth(auth)
+    context 'when the user already exists' do
+      before do
+        User.find_or_create_from_chef_oauth(auth)
+      end
 
-      expect do
-        User.find_or_create_from_oauth(auth)
-      end.to_not change(User, :count)
+      it 'does not create a record' do
+        expect do
+          User.find_or_create_from_chef_oauth(auth)
+        end.to_not change(User, :count)
+      end
+
+      it "updates the user's name and public key" do
+        new_auth = auth.dup.tap do |auth|
+          auth[:info][:first_name] = 'Sous'
+          auth[:info][:last_name] = 'Chef'
+          auth[:info][:public_key] = 'ssh-rsa blahblahblah'
+        end
+
+        user = User.find_or_create_from_chef_oauth(new_auth)
+
+        expect(user.first_name).to eql('Sous')
+        expect(user.last_name).to eql('Chef')
+        expect(user.public_key).to eql('ssh-rsa blahblahblah')
+      end
     end
+  end
 
-    it 'it returns a user' do
-      expect(
-        User.find_or_create_from_oauth(auth)
-      ).to be_a(User)
-    end
+  describe '.with_email' do
+    it 'finds users with the given email address' do
+      user = create(:user, email: 'with_email@example.com')
+      user2 = create(:user, email: 'with_email2@example.com')
 
-    it "sets the user's public key" do
-      user = User.find_or_create_from_oauth(auth)
-      expect(user.public_key).to eql(auth['info']['public_key'])
+      expect(User.with_email('with_email@example.com')).to include(user)
+      expect(User.with_email('with_email@example.com')).to_not include(user2)
     end
   end
 end
