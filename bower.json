@@ -1,0 +1,18 @@
+{
+  "lib": {
+    "name": "lib assets",
+    "dependencies": {
+      // "threex" : "git@github.com:rharriso/threex.git",
+      // "gsvpano.js" : "https://github.com/rharriso/GSVPano.js/blob/master/src/GSVPano.js"
+    }
+  },
+  "vendor": {
+    "name": "vendor assets",
+    "dependencies": {
+      "jquery": "2.1.0",
+      "foundation": "5.2.2",
+      "placeholder": "1.0.2",
+      "jquery-ujs": "latest"
+    }
+  }
+}
