@@ -5,7 +5,6 @@
     <h1>Manage Profile</h1>
     <dl class="tabs radius" data-tab>
       <dd class="active"><a href="#profile" rel="manage_profile">Edit Profile</a></dd>
-      <dd><a href="#password" rel="change_password">Change Password</a></dd>
       <dd><a href="#github-accounts" rel="manage_github_accounts">GitHub Accounts</a></dd>
       <dd><a href="#agreements" rel="manage_agreements">Agreements</a></dd>
     </dl>
@@ -48,25 +47,6 @@
             </div>
           </fieldset>
           <%= f.submit 'Update Profile', class: 'button primary expand radius' %>
-        <% end %>
-      </div>
-      <div class="content" id="password">
-        <%= form_for(current_user, url: change_password_profile_path, data: { abide: true }) do |f| %>
-          <fieldset>
-            <div class="currentpassword-field">
-              <%= f.password_field :current_password, placeholder: 'Current password *',  title: 'Current Password', required: '', pattern: 'alpha_numeric' %>
-              <small class="error">Current password is required.</small>
-            </div>
-            <div class="newpassword-field">
-              <%= f.password_field :password, placeholder: 'New Password *',  title: 'New Password', required: '', pattern: 'alpha_numeric' %>
-              <small class="error">New password is required.</small>
-            </div>
-            <div class="confirmnewpassword-field">
-              <%= f.password_field :password_confirmation, placeholder: 'Confirm New Password *', title: 'Confirm New Password', required: '', pattern: 'alpha_numeric' %>
-              <small class="error">Confirm new password is required.</small>
-            </div>
-          </fieldset>
-          <%= f.submit 'Change Password', class: 'button primary expand radius' %>
         <% end %>
       </div>
       <div class="content" id="github-accounts">
