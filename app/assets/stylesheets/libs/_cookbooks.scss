@@ -403,6 +403,16 @@ input[type="search"].cookbook_search_textfield {
   }
 }
 
+.versions_count {
+  color: darken($primary_gray, 10%);
+  font: {
+    size: rem-calc(12);
+    weight: $bold;
+  }
+  @include inline-block;
+  margin: rem-calc(0 20 0 0);
+}
+
 .rss_feed_link {
   color: darken($primary_gray, 10%);
   font: {
