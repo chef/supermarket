@@ -23,7 +23,7 @@
       <% end %>
     </small>
     <small class="followbutton">
-      <span class="hardcoded"><i class="fa fa-users"></i> 349<span>
+      <i class="fa fa-users"></i> <%= cookbook.cookbook_followers_count %>
       <%= follow_button_for(cookbook) %>
     </small>
     <%= link_to "<i class='fa fa-chevron-left previouspage'></i>".html_safe, :back %>
