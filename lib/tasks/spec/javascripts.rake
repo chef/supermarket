@@ -6,7 +6,7 @@ namespace :spec do
     end
 
     task :run => :deps do
-      system "#{karma_command} --singleRun=true --reporters=dots"
+      fail unless system "#{karma_command} --singleRun=true --reporters=dots"
     end
 
     desc 'Run JavaScript specs continuously'
