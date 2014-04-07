@@ -15,18 +15,6 @@
           <%= render 'application/form_errors', record: current_user %>
 
           <fieldset>
-            <div class="email-field">
-              <%= f.email_field :email, placeholder: 'Email *',  title: 'Email', required: '', pattern: 'email' %>
-              <small class="error">Valid email is required.</small>
-            </div>
-            <div class="firstname-field">
-              <%= f.text_field :first_name, placeholder: 'First Name *',  title: 'First Name', required: '', pattern: 'alpha_numeric' %>
-              <small class="error">First name is required.</small>
-            </div>
-            <div class="lastname-field">
-              <%= f.text_field :last_name, placeholder: 'Last Name *',  title: 'Last Name', required: '', pattern: 'alpha_numeric' %>
-              <small class="error">Last name is required.</small>
-            </div>
             <div class="company-field">
               <%= f.text_field :company, placeholder: 'Company', title: 'Company' %>
             </div>
