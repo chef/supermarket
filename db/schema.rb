@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140402221028) do
+ActiveRecord::Schema.define(version: 20140407202135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,13 @@ ActiveRecord::Schema.define(version: 20140402221028) do
   add_index "contributors", ["organization_id"], name: "index_contributors_on_organization_id", using: :btree
   add_index "contributors", ["user_id"], name: "index_contributors_on_user_id", using: :btree
 
+  create_table "cookbook_collaborators", force: true do |t|
+    t.integer  "cookbook_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "cookbook_dependencies", force: true do |t|
     t.string   "name",                                     null: false
     t.string   "version_constraint",  default: ">= 0.0.0", null: false
@@ -137,10 +144,12 @@ ActiveRecord::Schema.define(version: 20140402221028) do
     t.integer  "download_count",           default: 0
     t.string   "issues_url"
     t.integer  "cookbook_followers_count", default: 0
+    t.integer  "user_id"
   end
 
   add_index "cookbooks", ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true, using: :btree
   add_index "cookbooks", ["name"], name: "index_cookbooks_on_name", using: :btree
+  add_index "cookbooks", ["user_id"], name: "index_cookbooks_on_user_id", using: :btree
 
   create_table "curry_commit_authors", force: true do |t|
     t.string   "login"

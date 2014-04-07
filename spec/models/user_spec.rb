@@ -4,6 +4,9 @@ describe User do
   context 'associations' do
     it { should have_many(:accounts) }
     it { should have_many(:icla_signatures) }
+    it { should have_many(:owned_cookbooks) }
+    it { should have_many(:cookbook_collaborators) }
+    it { should have_many(:collaborated_cookbooks) }
   end
 
   context 'validations' do

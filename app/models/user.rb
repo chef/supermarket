@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   has_many :ccla_signatures
   has_many :contributors
   has_many :organizations, through: :contributors
+  has_many :owned_cookbooks, class_name: 'Cookbook', foreign_key: 'user_id'
+  has_many :cookbook_collaborators
+  has_many :collaborated_cookbooks, through: :cookbook_collaborators, source: :cookbook
 
   # Validations
   # --------------------
