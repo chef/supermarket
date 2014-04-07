@@ -9,6 +9,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'paperclip/matchers'
+require 'sidekiq/testing'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -20,6 +21,9 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 # Load factories from FactoryGirl
 FactoryGirl.find_definitions
+
+# Run sidekiq jobs immediately so we may test the results
+Sidekiq::Testing.inline!
 
 RSpec.configure do |config|
   # Include FactoryGirl mixin for syntax

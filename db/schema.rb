@@ -246,6 +246,7 @@ ActiveRecord::Schema.define(version: 20140402221028) do
     t.string   "jira_username"
     t.string   "irc_nickname"
     t.string   "twitter_username"
+    t.boolean  "email_notifications", default: true
     t.text     "public_key"
   end
 

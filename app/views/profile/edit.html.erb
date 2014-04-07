@@ -27,6 +27,10 @@
             <div class="jirausername-field">
               <%= f.text_field :jira_username, placeholder: 'JIRA Username', title: 'jira username' %>
             </div>
+            <div class="emailnotification-field">
+              <%= f.check_box :email_notifications %>
+              <%= label_tag :user_email_notifications, "Receive email notifications." %>
+            </div>
             <div class="jirausername-field">
               <p class="gravatar">
                 <%= gravatar_for current_user, size: 30 %>

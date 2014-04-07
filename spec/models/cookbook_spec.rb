@@ -118,6 +118,9 @@ describe Cookbook do
 
   describe '#publish_version!' do
     let(:cookbook) { create(:cookbook) }
+    let(:tarball) { File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz') }
+    let(:readme) { CookbookUpload::Readme.new(contents: '', extension: '') }
+
     let(:metadata) do
       CookbookUpload::Metadata.new(
         license: 'MIT',
@@ -134,12 +137,9 @@ describe Cookbook do
         }
       )
     end
-    let(:tarball) { File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz') }
-    let(:readme) { CookbookUpload::Readme.new(contents: '', extension: '') }
 
     it 'creates supported platforms from the metadata' do
       cookbook.publish_version!(metadata, tarball, readme)
-
       supported_platforms = cookbook.reload.supported_platforms
 
       expect(supported_platforms.map(&:name)).to match_array(%w(debian ubuntu))
@@ -155,6 +155,32 @@ describe Cookbook do
       expect(dependencies.map(&:name)).to match_array(%w(apt yum))
       expect(dependencies.map(&:version_constraint)).
         to match_array(['= 1.2.3', '~> 2.1.3'])
+    end
+
+    it 'notifies each cookbook follower via email' do
+      create_list(:cookbook_follower, 2, cookbook: cookbook)
+
+      expect do
+        cookbook.publish_version!(metadata, tarball, readme)
+      end.to change(ActionMailer::Base.deliveries, :count).by(2)
+    end
+
+    it 'only notifies cookbook followers with email notifications enabled' do
+      create(
+        :cookbook_follower,
+        cookbook: cookbook,
+        user: create(:user, email_notifications: true)
+      )
+
+      create(
+        :cookbook_follower,
+        cookbook: cookbook,
+        user: create(:user, email_notifications: false)
+      )
+
+      expect do
+        cookbook.publish_version!(metadata, tarball, readme)
+      end.to change(ActionMailer::Base.deliveries, :count).by(1)
     end
   end
 

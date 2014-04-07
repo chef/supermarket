@@ -50,7 +50,7 @@ class IclaSignaturesController < ApplicationController
 
     if @icla_signature.save
       if Supermarket::Config.cla_signature_notification_email.present?
-        ClaSignatureMailer.deliver_notification(@icla_signature)
+        ClaSignatureMailer.delay.icla_signature_notification_email(@icla_signature)
       end
 
       Curry::CommitAuthorVerificationWorker.perform_async(current_user.id)

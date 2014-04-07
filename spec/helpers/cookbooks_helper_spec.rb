@@ -21,21 +21,21 @@ describe CookbooksHelper do
 
   describe '#follow_button_for' do
     it "returns a follow button if current user doesn't follow the given cookbook" do
-      cookbook = double(:cookbook, followed_by?: false)
+      cookbook = double(:cookbook, followed_by?: false, name: 'redis')
       helper.stub(:current_user) { true }
 
       expect(helper.follow_button_for(cookbook)).to match(/follow/)
     end
 
     it 'returns an unfollow button if the current user follows the given cookbook' do
-      cookbook = double(:cookbook, followed_by?: true)
+      cookbook = double(:cookbook, followed_by?: true, name: 'redis')
       helper.stub(:current_user) { true }
 
       expect(helper.follow_button_for(cookbook)).to match(/unfollow/)
     end
 
     it 'returns a call to action follow button if there is no current user' do
-      cookbook = double(:cookbook)
+      cookbook = double(:cookbook, name: 'redis')
       helper.stub(:current_user) { false }
 
       expect(helper.follow_button_for(cookbook)).to match(/sign-in-to-follow/)

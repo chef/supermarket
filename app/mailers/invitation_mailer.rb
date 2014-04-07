@@ -1,11 +1,16 @@
 class InvitationMailer < ActionMailer::Base
-  def self.deliver_invitation(invitation)
-    invitation_email(invitation).deliver
-  end
+  layout 'mailer'
 
+  #
+  # Creates invitation email to invite users to a +CclaSignature+ via
+  # an +Organization+
+  #
+  # @param invitation [Invitation] the invitation
+  #
   def invitation_email(invitation)
     @invitation = invitation
+    @to = invitation.email
 
-    mail(to: invitation.email, subject: "You've been invited to sign #{@invitation.organization.name}'s CCLA")
+    mail(to: @to, subject: "You've been invited to sign #{@invitation.organization.name}'s CCLA")
   end
 end

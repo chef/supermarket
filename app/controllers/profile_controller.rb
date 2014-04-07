@@ -35,7 +35,8 @@ class ProfileController < ApplicationController
       :company,
       :twitter_username,
       :irc_nickname,
-      :jira_username
+      :jira_username,
+      :email_notifications
     )
   end
 end

@@ -69,4 +69,71 @@ if Rails.env.development?
     cookbook.cookbook_versions << cookbook_version
     cookbook.save!
   end
+
+  #
+  # Default user for use in development.
+  #
+  user = User.where(
+    first_name: 'John',
+    last_name: 'Doe',
+    email: 'john@example.com'
+  ).first_or_create!
+
+  #
+  # Default account for use in development.
+  #
+  Account.where(
+    user: user,
+    uid: '123',
+    username: 'johndoe',
+    provider: 'github',
+    oauth_token: '123',
+    oauth_secret: '123',
+    oauth_expires: Date.parse('Tue, 20 Feb 2024')
+  ).first_or_create!
+
+  #
+  # Default ICLA Signature for use in development.
+  #
+  user.icla_signatures.where(
+    first_name: 'John',
+    last_name: 'Doe',
+    email: 'john@example.com',
+    phone: '888-555-5555',
+    address_line_1: '123 Fake Street',
+    city: 'Burlington',
+    state: 'Vermont',
+    zip: '05401',
+    country: 'United States'
+  ).first_or_create!(agreement: '1')
+
+  #
+  # Default Organization for use in development.
+  #
+  organization = Organization.first_or_create
+
+  #
+  # Default CCLA Signature for use in development.
+  #
+  user.ccla_signatures.where(
+    first_name: 'John',
+    last_name: 'Doe',
+    email: 'john@example.com',
+    phone: '888-555-5555',
+    address_line_1: '123 Fake Street',
+    city: 'Burlington',
+    state: 'Vermont',
+    zip: '05401',
+    country: 'United States',
+    company: 'Chef',
+    organization: organization
+  ).first_or_create!(agreement: '1')
+
+  #
+  # Default Invitation for use in development.
+  #
+  invitation = Invitation.where(
+    email: 'johndoe@example.com',
+    organization: organization
+  ).first_or_create!
 end
