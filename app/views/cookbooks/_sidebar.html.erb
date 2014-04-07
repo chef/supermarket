@@ -57,14 +57,14 @@
     <p><%= version.license %></p>
 
     <h3>Maintainer &amp; Collaborators</h3>
-    <div class="owner_avatar">
+    <div class="owner_avatar hardcoded">
       <%= link_to maintainer do %>
         <%= gravatar_for maintainer, size: 144 %>
         <%= maintainer.username %>
         <small><%= maintainer.name %></small>
       <% end %>
     </div>
-    <div class="collaborators_avatar">
+    <div class="collaborators_avatar hardcoded">
       <% collaborators.each do |collaborator| %>
         <%= link_to gravatar_for(collaborator, size: 80), collaborator %>
       <% end %>
