@@ -1,6 +1,6 @@
 inherit_from: rubocop-todo.yml
 AllCops:
-  Excludes:
+  Exclude:
     - db/**
     - vendor/**
     - node_modules/**
