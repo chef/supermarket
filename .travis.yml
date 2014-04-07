@@ -15,7 +15,9 @@ before_script:
   - bundle exec rake db:schema:load
 bundler_args: --without development
 script:
-  - bundle exec rake spec:all
+  - bundle exec rake spec
+  - bundle exec rake spec:javascripts
+  - bundle exec rake spec:rubocop
 services:
   - redis-server
 env:
