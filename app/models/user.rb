@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include Authorizable
+  include PgSearch
 
   # Associations
   # --------------------
@@ -8,6 +9,9 @@ class User < ActiveRecord::Base
   has_many :ccla_signatures
   has_many :contributors
   has_many :organizations, through: :contributors
+  has_many :owned_cookbooks, class_name: 'Cookbook', foreign_key: 'user_id'
+  has_many :cookbook_collaborators
+  has_many :collaborated_cookbooks, through: :cookbook_collaborators, source: :cookbook
 
   # Validations
   # --------------------
@@ -16,6 +20,32 @@ class User < ActiveRecord::Base
   # Scope
   # --------------------
   scope :with_email, ->(email) { where(email: email) }
+
+  # Search
+  # --------------------
+  pg_search_scope(
+    :search,
+    against: {
+      first_name: 'A',
+      last_name: 'B',
+      email: 'C'
+    },
+    using: {
+      tsearch: { prefix: true, dictionary: 'english' },
+      trigram: { threshold: 0.2 }
+    }
+  )
+
+  #
+  # Find a CookbookCollaborator for this User, given a Cookbook
+  #
+  # @param cookbook [Cookbook]
+  #
+  # @return [CookbookCollaborator]
+  #
+  def collaborator_for_cookbook(cookbook)
+    cookbook_collaborators.where(cookbook_id: cookbook.id).first
+  end
 
   #
   # The commit author identities who have signed a CLA

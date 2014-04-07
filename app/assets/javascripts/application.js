@@ -20,6 +20,8 @@
 //= require cookbookShow
 //= require expandContributors
 //= require flash
+//= require select2.min
+//= require collaborators
 
 $(function(){
   $(document).foundation();

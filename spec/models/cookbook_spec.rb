@@ -5,6 +5,9 @@ describe Cookbook do
     it { should have_many(:cookbook_versions) }
     it { should have_many(:cookbook_followers) }
     it { should belong_to(:category) }
+    it { should belong_to(:owner) }
+    it { should have_many(:cookbook_collaborators) }
+    it { should have_many(:collaborators) }
   end
 
   context 'validations' do

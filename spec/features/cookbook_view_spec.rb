@@ -2,8 +2,8 @@ require 'spec_feature_helper'
 
 describe 'viewing a cookbook' do
   it 'displays cookbook details if the cookbook exists' do
-    maintainer = create(:user)
-    cookbook = create(:cookbook) # TODO: give this cookbook a real maintainer
+    owner = create(:user)
+    cookbook = create(:cookbook, owner: owner)
 
     visit '/'
     follow_relation 'cookbooks'
@@ -16,8 +16,8 @@ describe 'viewing a cookbook' do
   end
 
   it "shows that cookbook's versions" do
-    maintainer = create(:user)
-    cookbook = create(:cookbook) # TODO: give this cookbook a real maintainer
+    owner = create(:user)
+    cookbook = create(:cookbook, owner: owner)
 
     visit cookbook_path(cookbook)
 
@@ -28,9 +28,9 @@ describe 'viewing a cookbook' do
   end
 
   it "shows that cookbook's dependencies" do
-    maintainer = create(:user)
-    cookbook = create(:cookbook) # TODO: give this cookbook a real maintainer
-    apt = create(:cookbook, name: 'apt')
+    owner = create(:user)
+    cookbook = create(:cookbook, owner: owner)
+    apt = create(:cookbook, name: 'apt', owner: owner)
 
     create(
       :cookbook_dependency,

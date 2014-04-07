@@ -72,17 +72,15 @@ class CookbooksController < ApplicationController
   #
   # GET /cookbooks/:id
   #
-  # @todo Provide real maintainer and collaborator records to the view once
-  # oc-id is in place
-  #
   # Displays a cookbook.
   #
   def show
     @latest_version = @cookbook.latest_cookbook_version
     @cookbook_versions = @cookbook.cookbook_versions
-    @maintainer = User.first
-    @collaborators = [User.first]
+    @owner = @cookbook.owner
+    @collaborators = @cookbook.collaborators
     @supported_platforms = @cookbook.supported_platforms
+    @owner_collaborator = CookbookCollaborator.new cookbook: @cookbook, user: @owner
 
     respond_to do |format|
       format.atom

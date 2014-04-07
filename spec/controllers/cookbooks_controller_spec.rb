@@ -195,9 +195,9 @@ describe CookbooksController do
   end
 
   describe '#show' do
-    let(:cookbook) do
-      create(:cookbook)
-    end
+    let(:hank) { create(:user) }
+    let(:sally) { create(:user) }
+    let(:cookbook) { create(:cookbook, owner: hank) }
 
     it 'renders the show template' do
       get :show, id: cookbook.name
@@ -231,16 +231,12 @@ describe CookbooksController do
     end
 
     it 'sends the maintainer to the view' do
-      create(:user) # TODO: remove this once cookbooks have a maintainer
-
       get :show, id: cookbook.name
 
-      expect(assigns(:maintainer)).to_not be_nil
+      expect(assigns(:owner)).to_not be_nil
     end
 
     it 'sends the collaborators to the view' do
-      create(:user) # TODO: remove this once cookbooks have a maintainer
-
       get :show, id: cookbook.name
 
       expect(assigns(:collaborators)).to_not be_nil
