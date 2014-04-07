@@ -18,7 +18,9 @@
       <%= pluralize cookbook_versions.count, 'Version' %>
     </small>
     <small>
-      <a href="#" class="rss_feed_link"><i class="fa fa-rss"></i> RSS</a>
+      <%= link_to cookbook_path(cookbook, format: 'atom'), class: 'rss_feed_link' do %>
+        <i class="fa fa-rss"></i> RSS
+      <% end %>
     </small>
     <small class="followbutton">
       <span class="hardcoded"><i class="fa fa-users"></i> 349<span>
