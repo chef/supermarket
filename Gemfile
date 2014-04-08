@@ -34,7 +34,6 @@ gem 'analytics-ruby', require: false
 gem 'sass-rails', '~> 4.0.1'
 gem 'compass-rails'
 gem 'uglifier', '~> 2.2'
-gem 'bower-rails'
 
 group :doc do
   gem 'yard', require: false
