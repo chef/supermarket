@@ -12,9 +12,10 @@
 //
 //= require jquery
 //= require jquery-ujs
-//= require placeholder
+//= require jquery-placeholder
+//= require jquery.cookie/jquery.cookie
 //= require fastclick
-//= require modernizr/modernizr.js
+//= require modernizr/modernizr
 //= require foundation
 //= require checkbox
 //= require cookbookShow
