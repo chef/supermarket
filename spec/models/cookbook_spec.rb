@@ -275,7 +275,7 @@ describe Cookbook do
       expect(cookbook.followed_by?(user)).to be_true
     end
 
-    it "returns falase if the user passed doesn't follow the cookbook" do
+    it "returns false if the user passed doesn't follow the cookbook" do
       user = create(:user)
       cookbook = create(:cookbook)
 

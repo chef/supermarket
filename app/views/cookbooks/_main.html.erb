@@ -18,10 +18,12 @@
       <%= pluralize cookbook_versions.count, 'Version' %>
     </small>
     <small>
-      <a href="#" class="rss_feed_link"><i class="fa fa-rss"></i> RSS</a>
+      <%= link_to cookbook_path(cookbook, format: 'atom'), class: 'rss_feed_link' do %>
+        <i class="fa fa-rss"></i> RSS
+      <% end %>
     </small>
     <small class="followbutton">
-      <span class="hardcoded"><i class="fa fa-users"></i> 349<span>
+      <i class="fa fa-users"></i> <%= cookbook.cookbook_followers_count %>
       <%= follow_button_for(cookbook) %>
     </small>
     <%= link_to "<i class='fa fa-chevron-left previouspage'></i>".html_safe, :back %>
@@ -32,9 +34,8 @@
   <p><%= cookbook.description %></p>
 
   <dl class="tabs" data-tab>
-    <dd class="active"><a href="#readme">readme</a></dd>
+    <dd class="active"><a href="#readme">README</a></dd>
     <dd><a href="#dependencies" rel="cookbook_dependencies">Dependencies</a></dd>
-    <dd><a href="#relatedcookbooks">Related Cookbooks</a></dd>
   </dl>
   <div class="tabs-content">
     <div class="content active" id="readme">
@@ -42,9 +43,6 @@
     </div>
     <div class="content" id="dependencies">
       <%= render partial: 'cookbooks/dependency', collection: cookbook.cookbook_dependencies %>
-    </div>
-    <div class="content" id="relatedcookbooks">
-      Related Cookbooks
     </div>
   </div>
 </div>
