@@ -80,8 +80,8 @@ class CookbooksController < ApplicationController
   def show
     @latest_version = @cookbook.latest_cookbook_version
     @cookbook_versions = @cookbook.cookbook_versions
-    @maintainer = User.first
-    @collaborators = [User.first]
+    @owner = @cookbook.owner
+    @collaborators = @cookbook.collaborators
     @supported_platforms = @cookbook.supported_platforms
 
     respond_to do |format|

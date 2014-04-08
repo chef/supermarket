@@ -25,6 +25,41 @@ describe User do
     end
   end
 
+  describe '.search' do
+    let!(:jimmy) do
+      create(
+        :user,
+        first_name: 'Jimmy',
+        last_name: 'Jammy',
+        email: 'jimmyjammy@example.com'
+      )
+    end
+
+    let!(:jim) do
+      create(
+        :user,
+        first_name: 'Jim',
+        last_name: 'McJimmerton',
+        email: 'jimmcjimmerton@example.com'
+      )
+    end
+
+    it 'returns users with a similar first name' do
+      expect(User.search('jim')).to include(jimmy)
+      expect(User.search('jim')).to include(jim)
+    end
+
+    it 'returns users with a similar last name' do
+      expect(User.search('jam')).to include(jimmy)
+      expect(User.search('jam')).to_not include(jim)
+    end
+
+    it 'returns users with a similar email address' do
+      expect(User.search('example')).to include(jimmy)
+      expect(User.search('example')).to include(jim)
+    end
+  end
+
   describe '#latest_icla_signature' do
     it 'returns the latest ICLA signature' do
       one_year_ago = create(:icla_signature, signed_at: 1.year.ago)

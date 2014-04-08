@@ -18,7 +18,11 @@ Supermarket::Application.routes.draw do
   get 'cookbooks(/categories/:category)' => 'cookbooks#index', as: :cookbooks_category
   get 'cookbooks/categories', to: redirect('/cookbooks')
 
+  resources :collaborators, only: [:index]
+
   resources :cookbooks, only: [:index, :show, :update] do
+    resources :collaborators, only: [:create, :destroy], controller: :collaborators
+
     member do
       get :download
       put :follow

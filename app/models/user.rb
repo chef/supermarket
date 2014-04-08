@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include Authorizable
+  include PgSearch
 
   # Associations
   # --------------------
@@ -19,6 +20,21 @@ class User < ActiveRecord::Base
   # Scope
   # --------------------
   scope :with_email, ->(email) { where(email: email) }
+
+  # Search
+  # --------------------
+  pg_search_scope(
+    :search,
+    against: {
+      first_name: 'A',
+      last_name: 'B',
+      email: 'C'
+    },
+    using: {
+      tsearch: { prefix: true, dictionary: 'english' },
+      trigram: { threshold: 0.2 }
+    }
+  )
 
   #
   # The commit author identities who have signed a CLA
