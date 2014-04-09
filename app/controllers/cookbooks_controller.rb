@@ -40,8 +40,8 @@ class CookbooksController < ApplicationController
     @cookbooks = @cookbooks.ordered_by(order).page(page).per(20)
 
     respond_to do |format|
-      format.atom
       format.html
+      format.atom
     end
   end
 
