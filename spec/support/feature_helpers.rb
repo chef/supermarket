@@ -25,20 +25,22 @@ module FeatureHelpers
 
     connect_github_account
 
-    fill_in 'icla_signature_first_name', with: 'John'
-    fill_in 'icla_signature_last_name', with: 'Doe'
-    fill_in 'icla_signature_company', with: 'Chef'
-    fill_in 'icla_signature_email', with: 'john@example.com'
-    fill_in 'icla_signature_phone', with: '(555) 555-5555'
-    fill_in 'icla_signature_address_line_1', with: '1 Chef Way'
-    fill_in 'icla_signature_city', with: 'Seattle'
-    fill_in 'icla_signature_state', with: 'WA'
-    fill_in 'icla_signature_zip', with: '12345'
-    fill_in 'icla_signature_country', with: 'USA'
+    within '.new_icla_signature' do
+      fill_in 'icla_signature_first_name', with: 'John'
+      fill_in 'icla_signature_last_name', with: 'Doe'
+      fill_in 'icla_signature_company', with: 'Chef'
+      fill_in 'icla_signature_email', with: 'john@example.com'
+      fill_in 'icla_signature_phone', with: '(555) 555-5555'
+      fill_in 'icla_signature_address_line_1', with: '1 Chef Way'
+      fill_in 'icla_signature_city', with: 'Seattle'
+      fill_in 'icla_signature_state', with: 'WA'
+      fill_in 'icla_signature_zip', with: '12345'
+      fill_in 'icla_signature_country', with: 'USA'
 
-    check 'icla_signature_agreement'
+      check 'icla_signature_agreement'
 
-    submit_form
+      submit_form
+    end
   end
 
   def sign_ccla(company = 'Chef')
@@ -48,20 +50,22 @@ module FeatureHelpers
 
     connect_github_account
 
-    fill_in 'ccla_signature_first_name', with: 'John'
-    fill_in 'ccla_signature_last_name', with: 'Doe'
-    fill_in 'ccla_signature_company', with: company
-    fill_in 'ccla_signature_email', with: 'john@example.com'
-    fill_in 'ccla_signature_phone', with: '(555) 555-5555'
-    fill_in 'ccla_signature_address_line_1', with: '1 Chef Way'
-    fill_in 'ccla_signature_city', with: 'Seattle'
-    fill_in 'ccla_signature_state', with: 'WA'
-    fill_in 'ccla_signature_zip', with: '12345'
-    fill_in 'ccla_signature_country', with: 'USA'
+    within '.new_ccla_signature' do
+      fill_in 'ccla_signature_first_name', with: 'John'
+      fill_in 'ccla_signature_last_name', with: 'Doe'
+      fill_in 'ccla_signature_company', with: company
+      fill_in 'ccla_signature_email', with: 'john@example.com'
+      fill_in 'ccla_signature_phone', with: '(555) 555-5555'
+      fill_in 'ccla_signature_address_line_1', with: '1 Chef Way'
+      fill_in 'ccla_signature_city', with: 'Seattle'
+      fill_in 'ccla_signature_state', with: 'WA'
+      fill_in 'ccla_signature_zip', with: '12345'
+      fill_in 'ccla_signature_country', with: 'USA'
 
-    check 'ccla_signature_agreement'
+      check 'ccla_signature_agreement'
 
-    submit_form
+      submit_form
+    end
   end
 
   def sign_ccla_and_invite_admin_to(organization)
@@ -130,8 +134,10 @@ module FeatureHelpers
   def invite_contributor(email)
     manage_contributors
 
-    fill_in 'invitation_email', with: email
-    submit_form
+    within '.new_invitation' do
+      fill_in 'invitation_email', with: email
+      submit_form
+    end
 
     expect_to_see_success_message
     expect(all('#invitation_admin:checked').size).to eql(0)

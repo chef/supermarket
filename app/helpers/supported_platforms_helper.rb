@@ -6,26 +6,26 @@ module SupportedPlatformsHelper
   #   platform = SupportedPlatform.new(name: 'ubuntu')
   #   supported_platform_icon(platform) == 'U'
   #
-  # TODO: Add fallback icon key, currently it just falls back to empty string.
   #
   # @return [String] the icon
   #
   def supported_platform_icon(platform)
     {
-      'aws' => 'A',
+      'amazon' => 'A',
       'centos' => 'B',
       'debian' => 'C',
       'fedora' => 'D',
       'freebsd' => 'E',
-      'linux_mint' => 'F',
-      'mac_osx' => 'G',
+      'linuxmint' => 'F',
+      'mac_os_x' => 'G',
+      'mac_os_x_server' => 'G',
       'oracle' => 'H',
-      'red_hat' => 'I',
+      'redhat' => 'I',
       'scientific' => 'J',
       'smartos' => 'K',
       'suse' => 'L',
       'ubuntu' => 'M',
       'windows' => 'N'
-    }.fetch(platform.name.parameterize('_'), '')
+    }.fetch(platform.name.parameterize('_'), 'O')
   end
 end

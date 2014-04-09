@@ -1,73 +1,49 @@
 <%= provide(:title, "Cookbooks") %>
 <%= provide(:description, "Browse and search Chef cookbooks.") %>
 
-<div class="page">
-  <%= render 'search' %>
-  <section class="cookbooks_stats show-for-medium-up">
-    <ul>
-      <li>
-        <h3 class="hardcoded">56 <small>Recently Updated</small></h3>
-      </li>
-      <li>
-        <h3 class="hardcoded">1,465 <small>Cookbooks</small></h3>
-      </li>
-      <li>
-        <h3 class="hardcoded">325,292 <small>Downloads</small></h3>
-      </li>
-      <li>
-        <h3 class="hardcoded">2,000 <small>Collaborators</small></h3>
-      </li>
-    </ul>
-  </section>
+<div class="page nobg">
   <section class="cookbook_body">
-
-    <%= render 'categories' %>
-
     <article class="cookbook_content">
       <div class="recently-updated">
         <h2 class="cookbook_content_heading">
-          <i class="fa fa-folder"></i>
           Recently Updated
           <small>
             <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, cookbooks_path(order: 'recently_updated', format: 'atom'), class: 'rss_feed_link show-for-medium-up' %>
           </small>
-          <%= link_to 'View All', cookbooks_path(order: 'recently_updated'), class: 'button radius tiny right' %>
+          <%= link_to 'View All', cookbooks_path(order: 'recently_updated'), class: 'button radius small right' %>
         </h2>
         <ul class="cookbook_listing"><%= render @recently_updated_cookbooks %></ul>
       </div>
 
       <div class="recently-added">
         <h2 class="cookbook_content_heading">
-          <i class="fa fa-folder"></i>
           Recently Added
           <small>
             <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, cookbooks_path(order: 'recently_added', format: 'atom'), class: 'rss_feed_link show-for-medium-up' %>
           </small>
-          <%= link_to 'View All', cookbooks_path(order: 'recently_added'), class: 'button radius tiny right' %>
+          <%= link_to 'View All', cookbooks_path(order: 'recently_added'), class: 'button radius small right' %>
         </h2>
         <ul class="cookbook_listing"><%= render @recently_added_cookbooks %></ul>
       </div>
 
       <div class="most-downloaded">
         <h2 class="cookbook_content_heading">
-          <i class="fa fa-folder"></i>
           Most Downloaded
           <small>
             <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, cookbooks_path(order: 'most_downloaded', format: 'atom'), class: 'rss_feed_link show-for-medium-up' %>
           </small>
-          <%= link_to 'View All', cookbooks_path(order: 'most_downloaded'), class: 'button radius tiny right' %>
+          <%= link_to 'View All', cookbooks_path(order: 'most_downloaded'), class: 'button radius small right' %>
         </h2>
         <ul class="cookbook_listing"><%= render @most_downloaded_cookbooks %></ul>
       </div>
 
       <div class="most-followed">
         <h2 class="cookbook_content_heading">
-          <i class="fa fa-folder"></i>
           Most Followed
           <small>
             <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, cookbooks_path(order: 'most_followed', format: 'atom'), class: 'rss_feed_link show-for-medium-up' %>
           </small>
-          <%= link_to 'View All', cookbooks_path(order: 'most_followed'), class: 'button radius tiny right' %>
+          <%= link_to 'View All', cookbooks_path(order: 'most_followed'), class: 'button radius small right' %>
         </h2>
         <ul class="cookbook_listing"><%= render @most_followed_cookbooks %></ul>
       </div>

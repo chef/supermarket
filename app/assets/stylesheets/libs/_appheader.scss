@@ -1,9 +1,10 @@
 // Global Header
 // Header wrapping element and row
 .globalheader {
-  background-color: $primary_blue;
+  background-color: white;
   @include grid-row();
-  height: rem-calc(70);
+  height: rem-calc(100);
+  padding: rem-calc(0 55);
 }
 
 @media #{$mobile-only} {
@@ -13,49 +14,52 @@
 }
 
 .left-off-canvas-toggle {
-  color: adjust-lightness($primary_blue, 20%);
+  color: adjust-lightness($concrete, 10%);
   display: block;
-  float: left;
-  height: rem-calc(70);
-  line-height: rem-calc(70);
+  height: rem-calc(100);
+  left: rem-calc(-55);
+  line-height: rem-calc(100);
   @include single-transition(color, $speed: 100ms);
+  position: absolute;
   text-align: center;
-  width: rem-calc(66);
+  top: 0;
+  width: rem-calc(55);
+  z-index: 1;
 
-  &:before { display: block; margin-top: rem-calc(28); }
+  &:before { display: block; margin-top: rem-calc(43); }
 
-  &:visited { color: adjust-lightness($primary_blue, 20%); }
-  &:hover { color: adjust-lightness($primary_blue, 40%); }
+  &:visited { color: adjust-lightness($concrete, 10%); }
+  &:hover { color: adjust-lightness($concrete, 20%); }
+}
+
+// Global chef elements
+.logo_and_nav_toggle {
+  @include grid-column(2, $collapse: true);
 }
 
 @media #{$mobile-only} {
-  .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
+  .logo_and_nav_toggle {
+    @include grid-column(6, $collapse: true);
+  }
 }
 
 @media #{$small-only} {
-  .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
-}
-
-@media #{$medium-only} {
-  .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
-}
-
-@media #{$xlarge-up} {
-  .left-off-canvas-toggle:before { margin-top: rem-calc(24.5); }
+  .logo_and_nav_toggle {
+    @include grid-column(6, $collapse: true);
+  }
 }
 
 .off-canvas-list li a:hover {
   background-color: #222;
 }
 
-// Global chef elements
 .logochef {
   background: url(image-path('logo-supermarket.svg')) no-repeat;
-  @include background-size(rem-calc(147) rem-calc(37));
+  @include background-size(rem-calc(140) rem-calc(36));
   float: left;
-  height: rem-calc(37);
-  margin: rem-calc(16 0 0 0);
-  width: rem-calc(147);
+  height: rem-calc(36);
+  margin: rem-calc(32 0 0 0);
+  width: rem-calc(140);
 
   .no-svg & {
     background: url(image-path('logo-supermarket.png')) no-repeat;
@@ -63,138 +67,101 @@
 
   a {
     display: block;
-    height: rem-calc(37);
-    width: rem-calc(147);
+    height: rem-calc(36);
+    width: rem-calc(140);
 
     span { display: none; }
   }
 }
 
-@media #{$mobile-only} {
-  .logochef {
-    float: none;
-    left: 50%;
-    margin-left: rem-calc(-73.5);
-    position: absolute;
-  }
-}
-
 // App-specific elements
-.search_and_usermenu {
-  margin-right: rem-calc(70);
-}
-
-.searchform {
-  float: right;
-  height: rem-calc(70);
-  position: relative;
-
-  .fa {
-    color: tint($primary_blue, 20%);
-    height: rem-calc(16);
-    position: absolute;
-    right: rem-calc(10);
-    top: rem-calc(27);
-    width: rem-calc(16);
-    z-index: 1;
-  }
-}
-
-@media #{$xlarge-up} {
-  .searchform .fa { right: rem-calc(12); top: rem-calc(24); }
-}
-
-#searchfield {
-  background-color: shade($primary_blue, 35%);
-  border: none;
-  @include border-radius(rem-calc(36));
-  @include box-sizing(border-box);
-  color: tint($primary_blue, 60%);
-  height: rem-calc(36);
-  margin-top: rem-calc(17);
-  padding: 0 rem-calc(20);
-  width: rem-calc(230);
-}
-
 .appnav {
-  float: left;
+  @include grid-column(10, $collapse: true);
 
   ul {
     margin: 0;
-    padding-left: rem-calc(20);
 
     li {
       float: left;
       list-style: none;
+      margin-right: rem-calc(40);
 
-      a:link, a:visited {
-        color: adjust-lightness($primary_blue, 100%);
-        display: block;
-        float: left;
-        font: rem-calc(11) $accent_font;
-        line-height: rem-calc(70);
-        padding: 0 rem-calc(10);
-        @include single-transition(color, $speed: 100ms);
-        text-decoration: none;
-        text-transform: uppercase;
+      &.sign_in_create_account {
+        float: right;
+        margin: rem-calc(0 0 0 40);
 
-        &.sign_in_create_account {
-          color: adjust-lightness($primary_blue, 50%);
-          display: block;
-          float: right;
-          font: rem-calc(9) $accent_font;
-          line-height: rem-calc(70);
-          padding: 0 rem-calc(10);
-          @include single-transition(color, $speed: 100ms);
-          text-decoration: none;
-          text-transform: uppercase;
+        a {
+          color: lighten($concrete, 5%);
+          font: rem-calc(12) $accent_font;
+          line-height: rem-calc(102);
 
           &:hover, &:active {
-            color: adjust-lightness($primary_blue, 25%);
+            color: lighten($concrete, 15%);
           }
         }
       }
 
-      a:hover, a:active {
-        color: adjust-lightness($primary_blue, 40%);
+      a {
+        color: darken($concrete, 5%);
+        display: block;
+        float: left;
+        font: rem-calc(14) $accent_font;
+        line-height: rem-calc(102);
+        @include single-transition(color, $speed: 100ms);
+        text-decoration: none;
+        text-transform: uppercase;
+
+        &:hover, &:active {
+          color: lighten($concrete, 10%);
+        }
       }
     }
   }
 }
 
+@media #{$mobile-only} {
+  .appnav {
+    @include grid-column(6, $collapse: true);
+  }
+}
+
+@media #{$small-only} {
+  .appnav {
+    @include grid-column(6, $collapse: true);
+  }
+}
+
 .usermenu {
+  color: darken($concrete, 5%);
+  cursor: pointer;
   float: right;
-  height: rem-calc(70);
+  font: rem-calc(14) $accent_font;
+  height: rem-calc(100);
+  line-height: rem-calc(102);
   margin-left: rem-calc(20);
   position: relative;
-  width: rem-calc(36);
+  @include single-transition(color, $speed: 100ms);
   z-index: 101;
 
   &:hover {
     .userdropdown { display: block; }
   }
 
-  .avatar {
-    float: right;
-    height: rem-calc(36);
-    margin-top: rem-calc(17);
-    width: rem-calc(36);
+  .gravatar {
+    @include border-radius(rem-calc(40));
+    float: left;
+    height: rem-calc(40);
+    margin: rem-calc(30 10 0 0);
+    width: rem-calc(40);
+  }
 
-    img {
-      @include border-radius(rem-calc(36));
-      height: auto;
-      max-width: 100%;
-    }
+  .fa {
+    font-size: rem-calc(16);
+    margin-left: rem-calc(5);
   }
 }
 
-@media #{$mobile-only} {
-  .usermenu {
-    margin: rem-calc(0 20 0 0);
-  }
-}
-
-.userdropdown {
+.appnav .userdropdown {
   background-color: white;
   @include border-bottom-radius(rem-calc(5));
   @include box-shadow(rgba(0,0,0,.2) 0 rem-calc(5) rem-calc(10));
@@ -202,9 +169,9 @@
   margin: 0;
   padding: 0;
   position: absolute;
-  right: rem-calc(6);
-  top: rem-calc(70);
-  width: rem-calc(150);
+  right: rem-calc(-20);
+  top: rem-calc(100);
+  width: rem-calc(200);
   z-index: 101;
 
   &:after {
@@ -223,14 +190,18 @@
 
   li {
     border-bottom: 1px solid #ecedef;
+    float: none;
     list-style: none;
+    margin: 0;
 
     &:last-child { border: none; }
 
     a {
       color: $concrete;
       display: block;
+      float: none;
       font-size: rem-calc(12);
+      line-height: rem-calc(16);
       padding: rem-calc(10);
       text-decoration: none;
 
@@ -238,7 +209,10 @@
         color: lighten($concrete, 10%);
       }
 
-      &:before { margin-right: rem-calc(7); }
+      &:before {
+        font-family: "fontawesome";
+        margin-right: rem-calc(7);
+      }
     }
   }
 }

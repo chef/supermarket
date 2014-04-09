@@ -8,11 +8,12 @@ describe 'Curry management', uses_secrets: true do
 
       manage_repositories
 
-      fill_in 'GitHub Repository Owner', with: 'gofullstack'
-      fill_in 'GitHub Repository Name', with: 'paprika'
-
-      VCR.use_cassette('curry_add_repo', record: :once) do
-        submit_form
+      within '.new_curry_repository' do
+        fill_in 'GitHub Repository Owner', with: 'gofullstack'
+        fill_in 'GitHub Repository Name', with: 'paprika'
+        VCR.use_cassette('curry_add_repo', record: :once) do
+          submit_form
+        end
       end
 
       expect_to_see_success_message
@@ -25,11 +26,14 @@ describe 'Curry management', uses_secrets: true do
 
       manage_repositories
 
-      fill_in 'GitHub Repository Owner', with: 'gofullstack'
-      fill_in 'GitHub Repository Name', with: 'paprika'
-
-      VCR.use_cassette('curry_add_repo', record: :once) do
+      within '.new_curry_repository' do
+        fill_in 'GitHub Repository Owner', with: 'gofullstack'
+        fill_in 'GitHub Repository Name', with: 'paprika'
         submit_form
+
+        VCR.use_cassette('curry_add_repo', record: :once) do
+          submit_form
+        end
       end
 
       VCR.use_cassette('curry_remove_repo', record: :once) do
