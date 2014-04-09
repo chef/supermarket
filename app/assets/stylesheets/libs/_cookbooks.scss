@@ -357,7 +357,7 @@ input[type="search"].cookbook_search_textfield {
 
 // Cookbooks body column
 .cookbook_content {
-  @include grid-column($columns: 9, $collapse: true);
+  @include grid-column($columns: 12, $collapse: true);
 }
 
 .cookbook_content_category_listing {
