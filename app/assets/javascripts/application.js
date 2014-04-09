@@ -10,20 +10,22 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery-2.1.0.min
-//= require jquery/rails
-//= require placeholder
+//= require jquery
+//= require jquery-ujs
+//= require jquery-placeholder
+//= require jquery.cookie/jquery.cookie
 //= require fastclick
-//= require modernizr
-//= require foundation.min
+//= require modernizr/modernizr
+//= require foundation
 //= require checkbox
 //= require cookbookShow
 //= require expandContributors
 //= require flash
 
-$(function(){
-  $(document).foundation();
 
+$(document).foundation();
+
+$(function(){
   // Ensure client side validation isn't stronger
   // than serverside validation.
   jQuery.extend(window.Foundation.libs.abide.settings.patterns, {

@@ -37,6 +37,10 @@ module Supermarket
     # Ensure fonts are precompiled during asset compilation
     config.assets.precompile += %w(*.svg *.eot *.woff *.ttf)
 
+    # Inform sprockets and sass of bower components
+    config.sass.load_paths << Rails.root.join('bower_components')
+    config.assets.paths << Rails.root.join('bower_components')
+
     # Use a custom exception handling application
     config.exceptions_app = proc do |env|
       ExceptionsController.action(:show).call(env)

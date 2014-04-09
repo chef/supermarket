@@ -5,11 +5,14 @@
 // Variables
 @import "libs/variables";
 
+// Override default Foundation settings
+@import "settings";
+
 // Import Normalize
-@import "normalize";
+@import "foundation/scss/normalize";
 
 // Import the Foundation framework
-@import "foundation";
+@import "foundation/scss/foundation";
 
 // UI
 @import "mixins/mixins";

@@ -245,6 +245,10 @@ This is because of the Bundler config in `.bundle/config`.
 
         $ bundle
 
+1. Install required assets:
+
+        $ bower install
+
 1. Configure the [dotenv](https://github.com/bkeepers/dotenv) keys and secrets.
    See `.env.example` for required keys and secrets to get up and running.
    [`docs/CONFIGURING.md`](https://github.com/opscode/supermarket/blob/master/docs/CONFIGURING.md)

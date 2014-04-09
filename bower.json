@@ -1,0 +1,21 @@
+{
+  "name": "supermarket",
+  "version": "0.0.1",
+  "homepage": "https://github.com/opscode/supermarket",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "2.1.0",
+    "foundation": "5.2.2",
+    "jquery-ujs": "latest"
+  },
+  "resolutions": {
+    "jquery": ">= 2.1.0"
+  }
+}

@@ -31,9 +31,9 @@ gem 'sentry-raven', github: 'getsentry/raven-ruby', require: false
 gem 'statsd-ruby', require: 'statsd'
 gem 'analytics-ruby', require: false
 
-gem 'sass-rails',   '~> 4.0.1'
+gem 'sass-rails', '~> 4.0.1'
 gem 'compass-rails'
-gem 'uglifier',     '~> 2.2'
+gem 'uglifier', '~> 2.2'
 
 group :doc do
   gem 'yard', require: false
