@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   # Scope
   # --------------------
   scope :with_email, ->(email) { where(email: email) }
+  scope :with_icla_signature, -> { where(id: IclaSignature.pluck(:user_id)) }
 
   # Search
   # --------------------

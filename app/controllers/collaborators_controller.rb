@@ -1,7 +1,7 @@
 class CollaboratorsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :destroy]
   before_filter :find_cookbook, only: [:new, :create, :destroy]
-  before_filter :find_user, only: [:create, :destroy]
+  skip_before_filter :verify_authenticity_token, only: [:destroy]
 
   #
   # GET /collaborators?q=jimmy
@@ -9,10 +9,10 @@ class CollaboratorsController < ApplicationController
   # Searches for someone by username.
   #
   def index
+    @collaborators = User.with_icla_signature.limit(20)
+
     if params[:q]
-      @collaborators = User.search(params[:q])
-    else
-      @collaborators = User.all
+      @collaborators = @collaborators.search(params[:q])
     end
 
     respond_to do |format|
@@ -26,35 +26,42 @@ class CollaboratorsController < ApplicationController
   # Displays a search box for adding collaborators
   #
   def new
+    @collaborator = CookbookCollaborator.new
   end
 
   #
-  # POST /cookbooks/:cookbook_id/collaborators/:user_id
+  # POST /cookbooks/:cookbook_id/collaborators
   #
   # Add a collaborator to a cookbook.
   #
   def create
-    respond_to do |format|
-      format.json do
-        if cookbook_ownership_valid?
-          CookbookCollaborator.create! cookbook: @cookbook, user: @user
-        else
-          head :forbidden
+    users = User.find(params[:cookbook_collaborator][:user_id].split(','))
+
+    if users.present?
+      users.each do |user|
+        if can_modify_collaborators?(user)
+          CookbookCollaborator.create cookbook: @cookbook, user: user
+          # TODO send an email to user here
         end
       end
     end
+
+    flash[:notice] = 'Collaborators added'
+    redirect_to cookbook_path(@cookbook)
   end
 
   #
-  # DELETE /cookbooks/:cookbook_id/collaborators/:user_id
+  # DELETE /cookbooks/:cookbook_id/collaborators/:id
   #
   # Remove a single collaborator.
   #
   def destroy
     respond_to do |format|
-      format.json do
-        if cookbook_ownership_valid?
-          cc = CookbookCollaborator.with_cookbook_and_user(@cookbook, @user)
+      format.js do
+        user = User.find(params[:id])
+
+        if can_modify_collaborators?(user)
+          cc = CookbookCollaborator.with_cookbook_and_user(@cookbook, user)
 
           if cc.nil?
             head :not_found
@@ -71,17 +78,23 @@ class CollaboratorsController < ApplicationController
 
   private
 
-  # TODO document this jazz
+  #
+  # Find a cookbook from the +cookbook_id+ param
+  #
+  # @return [Cookbook]
+  #
   def find_cookbook
     @cookbook = Cookbook.with_name(params[:cookbook_id]).first!
   end
 
-  def find_user
-    @user = User.find(params[:user_id])
-  end
-
-  def cookbook_ownership_valid?
+  #
+  # Determine if the cookbook collaborators can be modified. Only the cookbook
+  # owner or the collaborator in question can remove collaborators.
+  #
+  # @return [Boolean] Whether the modification is legal
+  #
+  def can_modify_collaborators?(user)
     @cookbook.owner == current_user ||
-      (@cookbook.collaborators.include?(@user) && @user == current_user)
+      (@cookbook.collaborators.include?(user) && user == current_user)
   end
 end
