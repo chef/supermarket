@@ -71,10 +71,6 @@ You can add support for additional OAUTH providers by creating an extractor obje
 
 Since each OmniAuth provider returns a different set of information, you often end up with nested case statements to account for all the different providers. Supermarket accounts for this behavior using Extractor objects. Each OmniAuth provider must have an associated Extractor object that extracts the correct information from the OmniAuth response hash into a object with a unified interface.
 
-### lvh.me
-
-Twitter and other OmniAuth providers do _not_ like localhost URLs as callback URLs. Thankfully, there's a special DNS entry, `lvh.me`, that will resolve to localhost. It is recommended that you register your OmniAuth callbacks with `lvh.me:3000` and always browse to `lvh.me` instead of `localhost:3000`.
-
 Requirements
 ------------
 
