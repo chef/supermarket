@@ -1,0 +1,29 @@
+<%= provide :title, 'Welcome - The resource for Chef cookbooks' %>
+<%= provide :description, 'Find, explore and view Chef cookbooks for all of your ops needs.' %>
+
+<div class="page">
+  <h2 class="text-center">Welcome to Supermarket. Find, explore and view Chef cookbooks for all of your ops needs.</h2>
+
+  <p class="text-center">
+    <%= link_to 'Sign In With Your Chef Account', sign_in_path, class: 'button' %>
+  </p>
+
+  <%= render 'cookbooks/search' %>
+
+  <section class="cookbooks_stats show-for-medium-up">
+    <ul>
+      <li>
+        <h3><%= @recently_updated_count %> <small>Recently Updated</small></h3>
+      </li>
+      <li>
+        <h3><%= @cookbook_count %> <small>Cookbooks</small></h3>
+      </li>
+      <li>
+        <h3><%= @download_count %> <small>Downloads</small></h3>
+      </li>
+      <li>
+        <h3><%= @user_count %> <small>Chefs</small></h3>
+      </li>
+    </ul>
+  </section>
+</div>

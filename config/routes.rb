@@ -92,5 +92,8 @@ Supermarket::Application.routes.draw do
   # when linking a github account
   match 'auth/github/callback' => 'accounts#create', as: :auth_callback, via: [:get, :post]
 
-  root 'icla_signatures#index'
+  # this is what a logged in user sees after login
+  get 'dashboard' => 'pages#dashboard'
+
+  root 'pages#welcome'
 end
