@@ -18,7 +18,7 @@ describe 'cookbook feed' do
     visit '/'
     click_link 'Cookbooks'
 
-    within '.page' do
+    within '.cookbook_search' do
       fill_in 'q', with: 'Amazing'
       submit_form
     end

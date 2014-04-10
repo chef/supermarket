@@ -7,9 +7,11 @@
 
 // Cookbooks search
 .cookbook_search {
-  border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
+  border: none;
   @include grid-row();
-  margin-bottom: rem-calc(35);
+  width: initial;
+  padding: rem-calc(35);
+  background-color: $primary_blue;
 }
 
 @media #{$mobile-only} {
@@ -23,33 +25,29 @@
 
 input[type="search"].cookbook_search_textfield {
   border: none;
-  border-left: rem-calc(2) solid $silver;
   @include box-shadow(none);
-  color: $concrete;
+  color: white;
+  background-color: darken($primary_blue, 10%);
   font-size: rem-calc(44);
   @include grid-column($columns: 11, $collapse: true);
   height: auto;
   margin: rem-calc(0 0 10 0);
   padding: rem-calc(5 20);
 
-  &:focus {
-    background-color: white;
-  }
-
   &::-webkit-input-placeholder {
-     color: $silver;
+     color: darken(white, 5%);
   }
 
   &:-moz-placeholder { /* Firefox 18- */
-     color: $silver;
+     color: darken(white, 5%);
   }
 
   &::-moz-placeholder {  /* Firefox 19+ */
-     color: $silver;
+     color: darken(white, 5%);
   }
 
   &:-ms-input-placeholder {
-     color: $silver;
+     color: darken(white, 5%);
   }
 }
 
@@ -70,17 +68,18 @@ input[type="search"].cookbook_search_textfield {
 }
 
 .cookbook_search_button {
-  background-color: white;
-  color: $concrete;
-  font-size: rem-calc(44);
+  background-color: lighten($primary_blue, 20%);
+  color: white;
+  font-size: rem-calc(28);
   @include grid-column($columns: 1, $collapse: true);
-  padding: 0;
   @include single-transition($speed: 100ms);
-  text-align: right;
+  text-align: center;
+  margin: rem-calc(0 0 10 0);
+  padding: rem-calc(14 20);
 
   &:hover, &:active, &:focus {
-    background-color: white;
-    color: darken($concrete, 10%);
+    background-color: lighten($primary_blue, 10%);
+    color: white;
   }
 }
 
