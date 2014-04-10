@@ -35,6 +35,7 @@
     <li><%= link_to 'Resources', '#', 'data-hover' => 'Resources' %></li>
     <% if !signed_in? %>
       <li><%= link_to 'Sign In', sign_in_path, class: 'sign_in_create_account', rel: 'sign_in' %></li>
+      <li><%= link_to 'Sign Up', 'https://manage.opscode.com/signup?ref=community', class: 'sign_in_create_account', rel: 'sign_up' %></li>
     <% end %>
   </ul>
 </nav>
