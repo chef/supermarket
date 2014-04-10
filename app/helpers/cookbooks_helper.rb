@@ -1,5 +1,27 @@
 module CookbooksHelper
   #
+  # Determines if the current user is a collaborator of the given cookbook
+  #
+  # @param cookbook [Cookbook]
+  #
+  # @return [Boolean]
+  #
+  def collaborator?(cookbook)
+    cookbook.collaborators.include? current_user
+  end
+
+  #
+  # Determines if the current user is the owner of the given cookbook
+  #
+  # @param cookbook [Cookbook]
+  #
+  # @return [Boolean]
+  #
+  def owner?(cookbook)
+    cookbook.owner == current_user
+  end
+
+  #
   # If we have a linked cookbook for this dependency, allow the user to get to
   # it. Otherwise, just show the name
   #

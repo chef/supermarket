@@ -66,7 +66,17 @@
     </div>
     <div class="collaborators_avatar">
       <% collaborators.each do |collaborator| %>
-        <%= link_to gravatar_for(collaborator, size: 80), collaborator, title: collaborator.name %>
+        <div>
+          <%= link_to gravatar_for(collaborator, size: 80), collaborator, title: collaborator.name %>
+          <% if owner?(cookbook) || collaborator?(cookbook) %>
+            <%= link_to 'x', cookbook_collaborator_path(cookbook, collaborator), remote: true, method: :delete %>
+          <% end %>
+        </div>
+      <% end %>
+      <% if owner?(cookbook) %>
+        <div>
+          <%= link_to 'Add', new_cookbook_collaborator_path(cookbook) %>
+        </div>
       <% end %>
     </div>
   </div>

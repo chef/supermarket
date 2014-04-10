@@ -1,0 +1,9 @@
+<div class="cookbook_show">
+  <%= render 'cookbooks/breadcrumbs', cookbook: @cookbook %>
+  <div class="cookbook_show_content">
+    <%= form_for [@cookbook, @collaborator], url: cookbook_collaborators_path(@cookbook) do |f| %>
+      <%= f.hidden_field :user_id %>
+      <%= f.submit 'Add' %>
+    <% end %>
+  </div>
+</div>
