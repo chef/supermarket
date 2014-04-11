@@ -80,6 +80,14 @@ if Rails.env.development?
   ).first_or_create!
 
   #
+  # Default cookbook folower for use in development.
+  #
+  CookbookFollower.where(
+    user: user,
+    cookbook: Cookbook.find_by(name: 'redis')
+  ).first_or_create!
+
+  #
   # Default account for use in development.
   #
   Account.where(
