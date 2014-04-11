@@ -27,4 +27,5 @@ default['supermarket']['cla_signature_notification_email'] = 'notifications@exam
 default['supermarket']['from_email'] = 'donotreply@example.com'
 default['supermarket']['home'] = '/srv/supermarket'
 default['supermarket']['host'] = 'supermarket.getchef.com'
+default['supermarket']['asset_host'] = 'https://supermarket.getchef.com'
 default['supermarket']['sidekiq']['concurrency'] = '25'

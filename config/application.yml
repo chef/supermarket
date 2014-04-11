@@ -55,6 +55,7 @@ production:
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
   host: <%= ENV['HOST'] %>
   port: <%= ENV['PORT'] %>
+  asset_host: <%= ENV['ASSET_HOST'] %>
   sentry_url: <%= ENV['SENTRY_URL'] %>
   statsd:
     host: <%= ENV['STATSD_HOST'] %>
