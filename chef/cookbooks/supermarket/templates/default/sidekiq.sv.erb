@@ -2,4 +2,4 @@
 exec 2>&1
 
 cd <%= node['supermarket']['home'] %>/current
-exec chpst -usupermarket -P bundle exec sidekiq -C /etc/sidekiq/sidekiq.yml -e production -t 30 -L <%= node['supermarket']['home'] %>/shared/logs/sidekiq.log
+exec chpst -usupermarket -P bundle exec sidekiq -C /etc/sidekiq/sidekiq.yml -e production -t 30 -L <%= node['supermarket']['home'] %>/shared/log/sidekiq.log
