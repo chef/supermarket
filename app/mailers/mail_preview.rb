@@ -12,8 +12,8 @@ if Rails.env.development?
       ClaSignatureMailer.icla_signature_notification_email(icla_signature)
     end
 
-    def cookbook_version_notification_email
-      CookbookMailer.version_notification_email(cookbook)
+    def cookbook_follower_notification_email
+      CookbookMailer.follower_notification_email(cookbook_follower)
     end
 
     private
@@ -39,7 +39,11 @@ if Rails.env.development?
     end
 
     def cookbook
-      Cookbook.first
+      Cookbook.first!
+    end
+
+    def cookbook_follower
+      CookbookFollower.where(user: user).first!
     end
   end
 end
