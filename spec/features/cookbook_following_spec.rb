@@ -3,8 +3,8 @@ require 'spec_feature_helper'
 describe 'cookbook following' do
   before do
     sign_in(create(:user))
-    maintainer = create(:user)
-    cookbook = create(:cookbook) # TODO: give this cookbook a real maintainer
+    owner = create(:user)
+    cookbook = create(:cookbook, owner: owner)
 
     visit '/'
     follow_relation 'cookbooks'

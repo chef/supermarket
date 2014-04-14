@@ -4,8 +4,8 @@ describe "updating a cookbook's issue and source urls" do
   before { sign_in create(:user) }
 
   it 'displays success message when saved' do
-    maintainer = create(:user)
-    cookbook = create(:cookbook) # TODO: give this cookbook a real maintainer
+    owner = create(:user)
+    cookbook = create(:cookbook, owner: owner)
 
     visit cookbook_path(cookbook)
 
@@ -20,8 +20,8 @@ describe "updating a cookbook's issue and source urls" do
   end
 
   it 'displays a failure message when invalid urls are entered' do
-    maintainer = create(:user)
-    cookbook = create(:cookbook) # TODO: give this cookbook a real maintainer
+    owner = create(:user)
+    cookbook = create(:cookbook, owner: owner)
 
     visit cookbook_path(cookbook)
 

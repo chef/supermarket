@@ -72,9 +72,6 @@ class CookbooksController < ApplicationController
   #
   # GET /cookbooks/:id
   #
-  # @todo Provide real maintainer and collaborator records to the view once
-  # oc-id is in place
-  #
   # Displays a cookbook.
   #
   def show

@@ -41,7 +41,7 @@ class CollaboratorsController < ApplicationController
       users.each do |user|
         if can_modify_collaborators?(user)
           CookbookCollaborator.create cookbook: @cookbook, user: user
-          # TODO send an email to user here
+          # TODO: send an email to user here
         end
       end
     end
