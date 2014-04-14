@@ -4,13 +4,19 @@ require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
 
-Capybara.javascript_driver = :poltergeist
+Capybara.register_driver :quiet_ghost do |app|
+  error_logger = Logger.new(STDERR).tap { |l| l.level = Logger::ERROR }
+
+  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: error_logger)
+end
+
+Capybara.javascript_driver = :quiet_ghost
 
 # Use JS driver for all features
 RSpec.configure do |config|
   config.before(:each) do
     if example.metadata[:type] == :feature
-      Capybara.current_driver = :poltergeist
+      Capybara.current_driver = :quiet_ghost
     else
       Capybara.use_default_driver # presumed to be :rack_test
     end
