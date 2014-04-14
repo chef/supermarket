@@ -12,10 +12,10 @@ class AccountsController < ApplicationController
 
     if account.save
       redirect_to after_link_location, notice: "Successfully
-        connected #{params[:provider]}."
+        connected #{request.env['omniauth.auth']['provider']}."
     else
       redirect_to edit_profile_path(current_user), alert: "Something went wrong
-        while connecting #{params[:provider]}"
+        while connecting #{request.env['omniauth.auth']['provider']}"
     end
   end
 
