@@ -1,5 +1,13 @@
 require File.expand_path('../boot', __FILE__)
 
+require 'dotenv'
+
+begin
+  Dotenv.load!('.env')
+rescue Errno::ENOENT
+  fail 'Cannot run Supermarket without a .env file. To get started, `cp .env.example .env`'
+end
+
 require 'rails'
 
 %w(
