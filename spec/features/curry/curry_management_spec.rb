@@ -7,9 +7,11 @@ describe 'Curry management', uses_secrets: true do
 
       manage_repositories
 
-      fill_in 'GitHub Repository Owner', with: 'gofullstack'
-      fill_in 'GitHub Repository Name', with: 'paprika'
-      submit_form
+      within '.new_curry_repository' do
+        fill_in 'GitHub Repository Owner', with: 'gofullstack'
+        fill_in 'GitHub Repository Name', with: 'paprika'
+        submit_form
+      end
 
       expect_to_see_success_message
     end
@@ -21,9 +23,11 @@ describe 'Curry management', uses_secrets: true do
 
       manage_repositories
 
-      fill_in 'GitHub Repository Owner', with: 'gofullstack'
-      fill_in 'GitHub Repository Name', with: 'paprika'
-      submit_form
+      within '.new_curry_repository' do
+        fill_in 'GitHub Repository Owner', with: 'gofullstack'
+        fill_in 'GitHub Repository Name', with: 'paprika'
+        submit_form
+      end
 
       follow_relation 'remove_repository'
 

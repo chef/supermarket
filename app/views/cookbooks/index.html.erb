@@ -7,26 +7,22 @@
     <%= link_to params[:category].titleize, cookbooks_category_path(params[:category]) if params[:category] %>
   </div>
 
-  <%= render 'search' %>
+  <section class="cookbook_body">
+    <h1 class="cookbook_content_heading">
+      <i class="fa fa-folder"></i>
+      <%= feed_title %>
+      <small>
+        <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
+      </small>
+    </h1>
+    <div class="order_cookbooks_by right">
+      Sort By
+      <%= link_to_sorted_cookbooks 'Recently Updated', 'recently_updated' %>
+      <%= link_to_sorted_cookbooks 'Recently Added', 'recently_added' %>
+      <%= link_to_sorted_cookbooks 'Most Downloaded', 'most_downloaded' %>
+      <%= link_to_sorted_cookbooks 'Most Followed', 'most_followed' %>
+    </div>
 
-<section class="cookbook_body">
-  <div class="categories hide-for-medium-up"><%= render 'categories' %></div>
-  <h1 class="cookbook_content_heading">
-    <i class="fa fa-folder"></i>
-    <%= feed_title %>
-    <small>
-      <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
-    </small>
-  </h1>
-  <div class="order_cookbooks_by right">
-    Sort By
-    <%= link_to_sorted_cookbooks 'Recently Updated', 'recently_updated' %>
-    <%= link_to_sorted_cookbooks 'Recently Added', 'recently_added' %>
-    <%= link_to_sorted_cookbooks 'Most Downloaded', 'most_downloaded' %>
-    <%= link_to_sorted_cookbooks 'Most Followed', 'most_followed' %>
-  </div>
-
-  <div class="show-for-medium-up"><%= render 'categories' %></div>
 
     <article class="cookbook_content cookbook_content_category_listing">
       <ul class="cookbook_listing"><%= render @cookbooks %></ul>
