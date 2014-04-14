@@ -21,21 +21,23 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
     end
 
     before do
-      octokit.remove_all_labels(
-        repository.full_name,
-        pull_request.number
-      )
-
-      issue_comments = octokit.issue_comments(
-        repository.full_name,
-        pull_request.number
-      )
-
-      issue_comments.each do |comment|
-        octokit.delete_comment(
+      VCR.use_cassette('pull_request_annotation_setup', record: :once) do
+        octokit.remove_all_labels(
           repository.full_name,
-          comment.id
+          pull_request.number
         )
+
+        issue_comments = octokit.issue_comments(
+          repository.full_name,
+          pull_request.number
+        )
+
+        issue_comments.each do |comment|
+          octokit.delete_comment(
+            repository.full_name,
+            comment.id
+          )
+        end
       end
     end
 

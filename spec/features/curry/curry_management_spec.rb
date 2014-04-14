@@ -1,4 +1,5 @@
 require 'spec_feature_helper'
+require 'vcr_helper'
 
 describe 'Curry management', uses_secrets: true do
   describe 'when a Chef Admin adds a GitHub repository to the Super Market watched repositories' do
@@ -9,7 +10,10 @@ describe 'Curry management', uses_secrets: true do
 
       fill_in 'GitHub Repository Owner', with: 'gofullstack'
       fill_in 'GitHub Repository Name', with: 'paprika'
-      submit_form
+
+      VCR.use_cassette('curry_add_repo', record: :once) do
+        submit_form
+      end
 
       expect_to_see_success_message
     end
@@ -23,9 +27,14 @@ describe 'Curry management', uses_secrets: true do
 
       fill_in 'GitHub Repository Owner', with: 'gofullstack'
       fill_in 'GitHub Repository Name', with: 'paprika'
-      submit_form
 
-      follow_relation 'remove_repository'
+      VCR.use_cassette('curry_add_repo', record: :once) do
+        submit_form
+      end
+
+      VCR.use_cassette('curry_remove_repo', record: :once) do
+        follow_relation 'remove_repository'
+      end
 
       expect_to_see_success_message
     end

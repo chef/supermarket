@@ -10,7 +10,7 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 3.0.0.pre
+      - Octokit Ruby Gem 3.0.0
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 17 Feb 2014 21:21:00 GMT
+      - Mon, 14 Apr 2014 15:35:07 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -33,39 +33,49 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4980'
+      - '4945'
       X-Ratelimit-Reset:
-      - '1392675537'
+      - '1397491776'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"bd6b6e871f2617e4619cd416e56e9811"'
+      - '"0d6247705489e1887164e167bd0cd45e"'
       X-Oauth-Scopes:
-      - user, public_repo, repo, gist
+      - public_repo
       X-Accepted-Oauth-Scopes:
-      - repo
+      - ''
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       - Accept-Encoding
       X-Github-Media-Type:
       - github.v3; format=json
-      X-Content-Type-Options:
-      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Expose-Headers:
-      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 6153E20C:2F2D:1DBC5:53027D3C
+      - 6153E20C:2054:669B27C:534C002A
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 88d924ed861736d2749ce1a55766cb53
     body:
       encoding: UTF-8
       string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/labels/Signed+CLA","name":"Signed
         CLA","color":"8ED41E"}]'
-    http_version:
-  recorded_at: Mon, 17 Feb 2014 21:21:00 GMT
+    http_version: 
+  recorded_at: Mon, 14 Apr 2014 15:35:07 GMT
 - request:
     method: get
     uri: https://api.github.com/repos/gofullstack/paprika/issues/1/labels
@@ -76,7 +86,7 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 3.0.0.pre
+      - Octokit Ruby Gem 3.0.0
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -89,7 +99,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 17 Feb 2014 21:21:01 GMT
+      - Mon, 14 Apr 2014 15:35:07 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -99,41 +109,51 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4979'
+      - '4944'
       X-Ratelimit-Reset:
-      - '1392675537'
+      - '1397491776'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Last-Modified:
-      - Mon, 17 Feb 2014 21:21:00 GMT
+      - Mon, 14 Apr 2014 15:35:07 GMT
       Etag:
-      - '"a42e584b6db79ba00a5f79ec3b32f036"'
+      - '"1ac64b5e86628e12bca85133a1aa298c"'
       X-Oauth-Scopes:
-      - user, public_repo, repo, gist
+      - public_repo
       X-Accepted-Oauth-Scopes:
-      - repo
+      - ''
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       - Accept-Encoding
       X-Github-Media-Type:
       - github.v3; format=json
-      X-Content-Type-Options:
-      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Expose-Headers:
-      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 6153E20C:2F2C:E736:53027D3C
+      - 6153E20C:2054:669B3CB:534C002B
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - a1d8c69b807c8e21f06cad9da377d1b0
     body:
       encoding: UTF-8
       string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/labels/Signed+CLA","name":"Signed
         CLA","color":"8ED41E"}]'
-    http_version:
-  recorded_at: Mon, 17 Feb 2014 21:21:01 GMT
+    http_version: 
+  recorded_at: Mon, 14 Apr 2014 15:35:07 GMT
 - request:
     method: delete
     uri: https://api.github.com/repos/gofullstack/paprika/issues/1/labels/Signed+CLA
@@ -144,7 +164,7 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 3.0.0.pre
+      - Octokit Ruby Gem 3.0.0
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -157,7 +177,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 17 Feb 2014 21:21:01 GMT
+      - Mon, 14 Apr 2014 15:35:07 GMT
       Content-Type:
       - application/json; charset=utf-8
       Status:
@@ -165,40 +185,50 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4978'
+      - '4943'
       X-Ratelimit-Reset:
-      - '1392675537'
+      - '1397491776'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"ae9aa718984c6afbf19ba5a581905c60"'
+      - '"9207e113ddcd20a9ac22319a53c77615"'
       X-Oauth-Scopes:
-      - user, public_repo, repo, gist
+      - public_repo
       X-Accepted-Oauth-Scopes:
-      - repo
+      - ''
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       - Accept-Encoding
       X-Github-Media-Type:
       - github.v3; format=json
-      X-Content-Type-Options:
-      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
       Content-Length:
       - '2'
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Expose-Headers:
-      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 6153E20C:2F32:4669B:53027D3D
+      - 6153E20C:2051:1D7DAE7:534C002B
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - d818ddef80f4c7d10683dd483558952a
     body:
       encoding: UTF-8
       string: '[]'
-    http_version:
-  recorded_at: Mon, 17 Feb 2014 21:21:01 GMT
+    http_version: 
+  recorded_at: Mon, 14 Apr 2014 15:35:08 GMT
 - request:
     method: post
     uri: https://api.github.com/repos/gofullstack/paprika/issues/1/comments
@@ -212,7 +242,7 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 3.0.0.pre
+      - Octokit Ruby Gem 3.0.0
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -225,7 +255,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 17 Feb 2014 21:21:01 GMT
+      - Mon, 14 Apr 2014 15:35:08 GMT
       Content-Type:
       - application/json; charset=utf-8
       Status:
@@ -233,45 +263,53 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4977'
+      - '4942'
       X-Ratelimit-Reset:
-      - '1392675537'
+      - '1397491776'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"9e2f92bdb775319eebdd6c4129f94e71"'
+      - '"61b946e90c958c24810718528a60d71b"'
       X-Oauth-Scopes:
-      - user, public_repo, repo, gist
+      - public_repo
       X-Accepted-Oauth-Scopes:
-      - repo
+      - ''
       Location:
-      - https://api.github.com/repos/gofullstack/paprika/issues/comments/35323943
+      - https://api.github.com/repos/gofullstack/paprika/issues/comments/40380642
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       X-Github-Media-Type:
       - github.v3; format=json
-      X-Content-Type-Options:
-      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
       Content-Length:
-      - '1635'
+      - '1496'
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Expose-Headers:
-      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 6153E20C:2F2C:E78D:53027D3D
+      - 6153E20C:2053:4E34600:534C002C
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
     body:
       encoding: UTF-8
-      string: '{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/35323943","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-35323943","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":35323943,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://gravatar.com/avatar/a17d579ae533fa7dbf3f3875de913e10?d=https%3A%2F%2Fidenticons.github.com%2Fc23454742636600091b5bfbfe3187dc2.png&r=x","gravatar_id":"a17d579ae533fa7dbf3f3875de913e10","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-02-17T21:21:01Z","updated_at":"2014-02-17T21:21:01Z","body":"Hi.
+      string: '{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/40380642","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-40380642","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":40380642,"user":{"login":"bcobb","id":35545,"avatar_url":"https://avatars.githubusercontent.com/u/35545?","gravatar_id":"269b40217dfecccd37c71650992dd2cc","url":"https://api.github.com/users/bcobb","html_url":"https://github.com/bcobb","followers_url":"https://api.github.com/users/bcobb/followers","following_url":"https://api.github.com/users/bcobb/following{/other_user}","gists_url":"https://api.github.com/users/bcobb/gists{/gist_id}","starred_url":"https://api.github.com/users/bcobb/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/bcobb/subscriptions","organizations_url":"https://api.github.com/users/bcobb/orgs","repos_url":"https://api.github.com/users/bcobb/repos","events_url":"https://api.github.com/users/bcobb/events{/privacy}","received_events_url":"https://api.github.com/users/bcobb/received_events","type":"User","site_admin":false},"created_at":"2014-04-14T15:35:08Z","updated_at":"2014-04-14T15:35:08Z","body":"Hi.
         Your friendly Curry bot here. Just letting you know that there are commit
         authors in this Pull Request who appear to not have signed a Chef CLA.\n\nThe
         following GitHub users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please
         sign the CLA here.](https://community.getchef.com)"}'
-    http_version:
-  recorded_at: Mon, 17 Feb 2014 21:21:01 GMT
+    http_version: 
+  recorded_at: Mon, 14 Apr 2014 15:35:08 GMT
 - request:
     method: get
     uri: https://api.github.com/repos/gofullstack/paprika/issues/1/labels
@@ -282,7 +320,7 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 3.0.0.pre
+      - Octokit Ruby Gem 3.0.0
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -295,7 +333,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 17 Feb 2014 21:21:02 GMT
+      - Mon, 14 Apr 2014 15:35:08 GMT
       Content-Type:
       - application/json; charset=utf-8
       Status:
@@ -303,40 +341,50 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4976'
+      - '4941'
       X-Ratelimit-Reset:
-      - '1392675537'
+      - '1397491776'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Last-Modified:
-      - Mon, 17 Feb 2014 21:21:01 GMT
+      - Mon, 14 Apr 2014 15:35:08 GMT
       Etag:
-      - '"3291bceb346c36f05f6257adc42dafdf"'
+      - '"5213d3c6787cb9e7d2b56244a7fe5fce"'
       X-Oauth-Scopes:
-      - user, public_repo, repo, gist
+      - public_repo
       X-Accepted-Oauth-Scopes:
-      - repo
+      - ''
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       - Accept-Encoding
       X-Github-Media-Type:
       - github.v3; format=json
-      X-Content-Type-Options:
-      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
       Content-Length:
       - '2'
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Expose-Headers:
-      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 6153E20C:2F2E:3251D:53027D3E
+      - 6153E20C:2051:1D7DBB6:534C002C
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 132026e9262a0093e437f99db5f1e499
     body:
       encoding: UTF-8
       string: '[]'
-    http_version:
-  recorded_at: Mon, 17 Feb 2014 21:21:02 GMT
-recorded_with: VCR 2.8.0
+    http_version: 
+  recorded_at: Mon, 14 Apr 2014 15:35:08 GMT
+recorded_with: VCR 2.9.0
