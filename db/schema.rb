@@ -242,12 +242,12 @@ ActiveRecord::Schema.define(version: 20140402221028) do
     t.datetime "updated_at"
     t.string   "company"
     t.integer  "roles_mask"
-    t.string   "email",            default: "", null: false
+    t.string   "email",               default: "",   null: false
     t.string   "jira_username"
     t.string   "irc_nickname"
     t.string   "twitter_username"
-    t.boolean  "email_notifications", default: true
     t.text     "public_key"
+    t.boolean  "email_notifications", default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -6,5 +6,4 @@ h1 {
 
 button, .button {
   @include single-transition(background-color, $speed: 100ms);
-  text-transform: uppercase;
 }
