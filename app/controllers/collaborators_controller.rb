@@ -40,8 +40,8 @@ class CollaboratorsController < ApplicationController
     if users.present?
       users.each do |user|
         if can_modify_collaborators?(user)
-          CookbookCollaborator.create cookbook: @cookbook, user: user
-          # TODO: send an email to user here
+          cc = CookbookCollaborator.create cookbook: @cookbook, user: user
+          CollaboratorMailer.delay.added_email(cc)
         end
       end
     end
