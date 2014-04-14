@@ -68,7 +68,7 @@
       <% collaborators.each do |collaborator| %>
         <div>
           <%= link_to gravatar_for(collaborator, size: 80), collaborator, title: collaborator.name %>
-          <% if owner?(cookbook) || collaborator?(cookbook) %>
+          <% if owner?(cookbook) || collaborator?(cookbook, collaborator) %>
             <%= link_to 'x', cookbook_collaborator_path(cookbook, collaborator), remote: true, method: :delete %>
           <% end %>
         </div>

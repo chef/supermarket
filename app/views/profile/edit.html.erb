@@ -7,6 +7,7 @@
       <dd class="active"><a href="#profile" rel="manage_profile">Edit Profile</a></dd>
       <dd><a href="#github-accounts" rel="manage_github_accounts">GitHub Accounts</a></dd>
       <dd><a href="#agreements" rel="manage_agreements">Agreements</a></dd>
+      <dd><a href="#collaborations" rel="manage_collaborations">Collaborations</a></dd>
     </dl>
 
     <div class="tabs-content">
@@ -81,6 +82,13 @@
             <% end %>
           <% end %>
         </table>
+      </div>
+      <div class="content" id="collaborations">
+        <% current_user.collaborated_cookbooks.each do |cbk| %>
+          <div>
+            <%= link_to cbk.name, cookbook_path(cbk) %> <%= link_to 'REMOVE MYSELF', cookbook_collaborator_path(cbk, current_user), remote: true, method: :delete %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

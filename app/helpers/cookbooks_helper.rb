@@ -6,8 +6,8 @@ module CookbooksHelper
   #
   # @return [Boolean]
   #
-  def collaborator?(cookbook)
-    cookbook.collaborators.include? current_user
+  def collaborator?(cookbook, collaborator)
+    cookbook.collaborators.include?(current_user) && collaborator == current_user
   end
 
   #

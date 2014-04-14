@@ -38,6 +38,15 @@ class User < ActiveRecord::Base
   )
 
   #
+  # Whether there are any collaborated cookbooks or not
+  #
+  # @return [Boolean]
+  #
+  def has_collaborations?
+    collaborated_cookbooks.size > 0
+  end
+
+  #
   # The commit author identities who have signed a CLA
   #
   # @return [Array<Curry::CommitAuthor>]
