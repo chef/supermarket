@@ -10,7 +10,7 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 3.0.0.pre
+      - Octokit Ruby Gem 3.0.0
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 17 Feb 2014 21:18:58 GMT
+      - Mon, 14 Apr 2014 15:22:08 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -33,15 +33,15 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4998'
+      - '4955'
       X-Ratelimit-Reset:
-      - '1392675537'
+      - '1397491776'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"1689fdb5690c99b3b8cc4c024356c60b"'
+      - '"74dd08311d038ba6c9b2635087107635"'
       X-Oauth-Scopes:
-      - user, public_repo, repo, gist
+      - public_repo
       X-Accepted-Oauth-Scopes:
       - admin:repo_hook, public_repo, read:repo_hook, repo, write:repo_hook
       Vary:
@@ -49,22 +49,32 @@ http_interactions:
       - Accept-Encoding
       X-Github-Media-Type:
       - github.v3; format=json
-      X-Content-Type-Options:
-      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Expose-Headers:
-      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 6153E20C:6E59:39142:53027CC2
+      - 6153E20C:2050:D9044B:534BFD20
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - d818ddef80f4c7d10683dd483558952a
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/hooks/1782454","test_url":"https://api.github.com/repos/gofullstack/paprika/hooks/1782454/test","id":1782454,"name":"tenxer","active":true,"events":["push"],"config":{"api_key":""},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T15:36:46Z","created_at":"2014-02-07T05:28:33Z"},{"url":"https://api.github.com/repos/gofullstack/paprika/hooks/1810176","test_url":"https://api.github.com/repos/gofullstack/paprika/hooks/1810176/test","id":1810176,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://supermarket-staging.getchef.com/curry/pull_request_updates","secret":"1da97fd0c9e60147ba5eaa0d53f2365e","content_type":"form"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T15:36:46Z","created_at":"2014-02-13T20:20:42Z"},{"url":"https://api.github.com/repos/gofullstack/paprika/hooks/1823255","test_url":"https://api.github.com/repos/gofullstack/paprika/hooks/1823255/test","id":1823255,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://currybowl.herokuapp.com/52f2934cec5edd0002000015","secret":"YOUR_PUBSUBHUBBUB_SECRET","content_type":"form"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T18:57:47Z","created_at":"2014-02-17T18:57:47Z"}]'
-    http_version:
-  recorded_at: Mon, 17 Feb 2014 21:18:58 GMT
+      string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/hooks/2098271","test_url":"https://api.github.com/repos/gofullstack/paprika/hooks/2098271/test","id":2098271,"name":"web","active":true,"events":["pull_request"],"config":{"url":"<PUBSUBHUBBUB_CALLBACK>","secret":"<PUBSUBHUBBUB_SECRET>","content_type":"form"},"last_response":{"code":null,"status":"unused","message":null},"updated_at":"2014-04-14T15:22:08Z","created_at":"2014-04-14T15:22:08Z"}]'
+    http_version: 
+  recorded_at: Mon, 14 Apr 2014 15:22:08 GMT
 - request:
     method: get
     uri: https://api.github.com/repos/gofullstack/paprika/hooks
@@ -75,7 +85,7 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 3.0.0.pre
+      - Octokit Ruby Gem 3.0.0
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -88,25 +98,23 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 17 Feb 2014 21:18:59 GMT
+      - Mon, 14 Apr 2014 15:22:09 GMT
       Content-Type:
       - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
       Status:
       - 200 OK
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4996'
+      - '4953'
       X-Ratelimit-Reset:
-      - '1392675537'
+      - '1397491776'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"547271f6712b41865c48a14fde7aceca"'
+      - '"9207e113ddcd20a9ac22319a53c77615"'
       X-Oauth-Scopes:
-      - user, public_repo, repo, gist
+      - public_repo
       X-Accepted-Oauth-Scopes:
       - admin:repo_hook, public_repo, read:repo_hook, repo, write:repo_hook
       Vary:
@@ -114,31 +122,43 @@ http_interactions:
       - Accept-Encoding
       X-Github-Media-Type:
       - github.v3; format=json
-      X-Content-Type-Options:
-      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Content-Length:
+      - '2'
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Expose-Headers:
-      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 6153E20C:6E59:39267:53027CC2
+      - 6153E20C:2054:6643571:534BFD21
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - c436b2b44345c72ff906059f604991e7
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/hooks/1782454","test_url":"https://api.github.com/repos/gofullstack/paprika/hooks/1782454/test","id":1782454,"name":"tenxer","active":true,"events":["push"],"config":{"api_key":""},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T15:36:46Z","created_at":"2014-02-07T05:28:33Z"},{"url":"https://api.github.com/repos/gofullstack/paprika/hooks/1810176","test_url":"https://api.github.com/repos/gofullstack/paprika/hooks/1810176/test","id":1810176,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://supermarket-staging.getchef.com/curry/pull_request_updates","secret":"1da97fd0c9e60147ba5eaa0d53f2365e","content_type":"form"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2014-02-17T15:36:46Z","created_at":"2014-02-13T20:20:42Z"}]'
-    http_version:
-  recorded_at: Mon, 17 Feb 2014 21:18:59 GMT
+      string: '[]'
+    http_version: 
+  recorded_at: Mon, 14 Apr 2014 15:22:09 GMT
 - request:
     method: post
     uri: https://api.github.com/hub
     body:
       encoding: UTF-8
-      string: hub.callback=http%3A%2F%2Fcurrybowl.herokuapp.com%2F52f2934cec5edd0002000015&hub.mode=subscribe&hub.secret=YOUR_PUBSUBHUBBUB_SECRET&hub.topic=https%3A%2F%2Fgithub.com%2Fgofullstack%2Fpaprika%2Fevents%2Fpull_request
+      string: hub.callback=<PUBSUBHUBBUB_CALLBACK>&hub.mode=subscribe&hub.secret=<PUBSUBHUBBUB_SECRET>&hub.topic=https%3A%2F%2Fgithub.com%2Fgofullstack%2Fpaprika%2Fevents%2Fpull_request
     headers:
       User-Agent:
-      - Octokit Ruby Gem 3.0.0.pre
+      - Octokit Ruby Gem 3.0.0
       Authorization:
       - token <TOKEN>
       Content-Type:
@@ -155,41 +175,51 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 17 Feb 2014 21:19:02 GMT
+      - Mon, 14 Apr 2014 15:22:10 GMT
       Status:
       - 204 No Content
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4991'
+      - '4950'
       X-Ratelimit-Reset:
-      - '1392675537'
+      - '1397491776'
       X-Oauth-Scopes:
-      - user, public_repo, repo, gist
+      - public_repo
       X-Accepted-Oauth-Scopes:
-      - repo
+      - ''
       X-Github-Media-Type:
       - github.beta
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Github-Request-Id:
+      - 6153E20C:2054:66436CF:534BFD22
+      Strict-Transport-Security:
+      - max-age=31536000
       X-Content-Type-Options:
       - nosniff
-      X-Github-Request-Id:
-      - 6153E20C:6E55:13CAA:53027CC6
       Vary:
       - Accept-Encoding
+      X-Served-By:
+      - c046d59f93ede9ab52d5ac29f1ed70f7
     body:
       encoding: UTF-8
       string: ''
-    http_version:
-  recorded_at: Mon, 17 Feb 2014 21:19:02 GMT
+    http_version: 
+  recorded_at: Mon, 14 Apr 2014 15:22:10 GMT
 - request:
     method: post
     uri: https://api.github.com/hub
     body:
       encoding: UTF-8
-      string: hub.callback=http%3A%2F%2Fcurrybowl.herokuapp.com%2F52f2934cec5edd0002000015&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fgithub.com%2Fgofullstack%2Fpaprika%2Fevents%2Fpull_request
+      string: hub.callback=<PUBSUBHUBBUB_CALLBACK>&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fgithub.com%2Fgofullstack%2Fpaprika%2Fevents%2Fpull_request
     headers:
       User-Agent:
-      - Octokit Ruby Gem 3.0.0.pre
+      - Octokit Ruby Gem 3.0.0
       Authorization:
       - token <TOKEN>
       Content-Type:
@@ -206,41 +236,51 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 17 Feb 2014 21:19:02 GMT
+      - Mon, 14 Apr 2014 15:22:10 GMT
       Status:
       - 204 No Content
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4990'
+      - '4949'
       X-Ratelimit-Reset:
-      - '1392675537'
+      - '1397491776'
       X-Oauth-Scopes:
-      - user, public_repo, repo, gist
+      - public_repo
       X-Accepted-Oauth-Scopes:
-      - repo
+      - ''
       X-Github-Media-Type:
       - github.beta
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Github-Request-Id:
+      - 6153E20C:2055:14C4871:534BFD22
+      Strict-Transport-Security:
+      - max-age=31536000
       X-Content-Type-Options:
       - nosniff
-      X-Github-Request-Id:
-      - 6153E20C:6E59:39730:53027CC6
       Vary:
       - Accept-Encoding
+      X-Served-By:
+      - 3061975e1f37121b3751604ad153c687
     body:
       encoding: UTF-8
       string: ''
-    http_version:
-  recorded_at: Mon, 17 Feb 2014 21:19:02 GMT
+    http_version: 
+  recorded_at: Mon, 14 Apr 2014 15:22:10 GMT
 - request:
     method: post
     uri: https://api.github.com/hub
     body:
       encoding: UTF-8
-      string: hub.callback=http%3A%2F%2Fcurrybowl.herokuapp.com%2F52f2934cec5edd0002000015&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fgithub.com%2Fgofullstack%2Fpaprika%2Fevents%2Fpull_request
+      string: hub.callback=<PUBSUBHUBBUB_CALLBACK>&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fgithub.com%2Fgofullstack%2Fpaprika%2Fevents%2Fpull_request
     headers:
       User-Agent:
-      - Octokit Ruby Gem 3.0.0.pre
+      - Octokit Ruby Gem 3.0.0
       Authorization:
       - token <TOKEN>
       Content-Type:
@@ -257,30 +297,40 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 17 Feb 2014 21:19:03 GMT
+      - Mon, 14 Apr 2014 15:22:10 GMT
       Status:
       - 204 No Content
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4989'
+      - '4948'
       X-Ratelimit-Reset:
-      - '1392675537'
+      - '1397491776'
       X-Oauth-Scopes:
-      - user, public_repo, repo, gist
+      - public_repo
       X-Accepted-Oauth-Scopes:
-      - repo
+      - ''
       X-Github-Media-Type:
       - github.beta
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Github-Request-Id:
+      - 6153E20C:2050:D904FB:534BFD22
+      Strict-Transport-Security:
+      - max-age=31536000
       X-Content-Type-Options:
       - nosniff
-      X-Github-Request-Id:
-      - 6153E20C:6E58:42861:53027CC6
       Vary:
       - Accept-Encoding
+      X-Served-By:
+      - a8d8e492d6966f0c23dee2eed64c678a
     body:
       encoding: UTF-8
       string: ''
-    http_version:
-  recorded_at: Mon, 17 Feb 2014 21:19:03 GMT
-recorded_with: VCR 2.8.0
+    http_version: 
+  recorded_at: Mon, 14 Apr 2014 15:22:10 GMT
+recorded_with: VCR 2.9.0

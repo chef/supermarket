@@ -10,7 +10,7 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 3.0.0.pre
+      - Octokit Ruby Gem 3.0.0
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 17 Feb 2014 21:21:03 GMT
+      - Mon, 14 Apr 2014 15:35:09 GMT
       Content-Type:
       - application/json; charset=utf-8
       Status:
@@ -31,42 +31,52 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4972'
+      - '4937'
       X-Ratelimit-Reset:
-      - '1392675537'
+      - '1397491776'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Last-Modified:
-      - Mon, 17 Feb 2014 21:21:03 GMT
+      - Mon, 14 Apr 2014 15:35:09 GMT
       Etag:
-      - '"510cedd35348ab8769d65904eb212c82"'
+      - '"23c4a76ed0ee28557caa5ef9fe80b9bf"'
       X-Oauth-Scopes:
-      - user, public_repo, repo, gist
+      - public_repo
       X-Accepted-Oauth-Scopes:
-      - repo
+      - ''
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       - Accept-Encoding
       X-Github-Media-Type:
       - github.v3; format=json
-      X-Content-Type-Options:
-      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
       Content-Length:
       - '2'
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Expose-Headers:
-      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 6153E20C:2F2C:E8AE:53027D3F
+      - 6153E20C:204F:4C3CF7:534C002D
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 62a1303ae95931e56e387e87d354bb24
     body:
       encoding: UTF-8
       string: '[]'
-    http_version:
-  recorded_at: Mon, 17 Feb 2014 21:21:03 GMT
+    http_version: 
+  recorded_at: Mon, 14 Apr 2014 15:35:10 GMT
 - request:
     method: post
     uri: https://api.github.com/repos/gofullstack/paprika/issues/1/comments
@@ -83,7 +93,7 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 3.0.0.pre
+      - Octokit Ruby Gem 3.0.0
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -96,7 +106,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 17 Feb 2014 21:21:03 GMT
+      - Mon, 14 Apr 2014 15:35:10 GMT
       Content-Type:
       - application/json; charset=utf-8
       Status:
@@ -104,47 +114,55 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4971'
+      - '4936'
       X-Ratelimit-Reset:
-      - '1392675537'
+      - '1397491776'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"0267e4b487849767c4d968dd8973fd8e"'
+      - '"fd024c59de41c761a79510bf24b3f01f"'
       X-Oauth-Scopes:
-      - user, public_repo, repo, gist
+      - public_repo
       X-Accepted-Oauth-Scopes:
-      - repo
+      - ''
       Location:
-      - https://api.github.com/repos/gofullstack/paprika/issues/comments/35323944
+      - https://api.github.com/repos/gofullstack/paprika/issues/comments/40380649
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       X-Github-Media-Type:
       - github.v3; format=json
-      X-Content-Type-Options:
-      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
       Content-Length:
-      - '1822'
+      - '1683'
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Expose-Headers:
-      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 6153E20C:2F30:5B10F:53027D3F
+      - 6153E20C:2051:1D7DCDE:534C002E
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
     body:
       encoding: UTF-8
-      string: '{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/35323944","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-35323944","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":35323944,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://gravatar.com/avatar/a17d579ae533fa7dbf3f3875de913e10?d=https%3A%2F%2Fidenticons.github.com%2Fc23454742636600091b5bfbfe3187dc2.png&r=x","gravatar_id":"a17d579ae533fa7dbf3f3875de913e10","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-02-17T21:21:03Z","updated_at":"2014-02-17T21:21:03Z","body":"Hi.
+      string: '{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/40380649","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-40380649","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":40380649,"user":{"login":"bcobb","id":35545,"avatar_url":"https://avatars.githubusercontent.com/u/35545?","gravatar_id":"269b40217dfecccd37c71650992dd2cc","url":"https://api.github.com/users/bcobb","html_url":"https://github.com/bcobb","followers_url":"https://api.github.com/users/bcobb/followers","following_url":"https://api.github.com/users/bcobb/following{/other_user}","gists_url":"https://api.github.com/users/bcobb/gists{/gist_id}","starred_url":"https://api.github.com/users/bcobb/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/bcobb/subscriptions","organizations_url":"https://api.github.com/users/bcobb/orgs","repos_url":"https://api.github.com/users/bcobb/repos","events_url":"https://api.github.com/users/bcobb/events{/privacy}","received_events_url":"https://api.github.com/users/bcobb/received_events","type":"User","site_admin":false},"created_at":"2014-04-14T15:35:10Z","updated_at":"2014-04-14T15:35:10Z","body":"Hi.
         Your friendly Curry bot here. Just letting you know that there are commit
         authors in this Pull Request who appear to not have signed a Chef CLA.\n\nThere
         are 1 commit author(s) whose commits are authored by a non GitHub-verified
         email address in this Pull Request. Chef will have to verify by hand that
         they have signed a Chef CLA.\n\nThe following GitHub users do not appear to
         have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}'
-    http_version:
-  recorded_at: Mon, 17 Feb 2014 21:21:03 GMT
+    http_version: 
+  recorded_at: Mon, 14 Apr 2014 15:35:10 GMT
 - request:
     method: get
     uri: https://api.github.com/repos/gofullstack/paprika/issues/1/comments
@@ -155,7 +173,7 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 3.0.0.pre
+      - Octokit Ruby Gem 3.0.0
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -168,7 +186,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 17 Feb 2014 21:21:04 GMT
+      - Mon, 14 Apr 2014 15:35:10 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -178,42 +196,52 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4970'
+      - '4935'
       X-Ratelimit-Reset:
-      - '1392675537'
+      - '1397491776'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"f262415377ce3464a879271ee273519a"'
+      - '"7dca30d0ab6cb6d4c4be2cb32064e45d"'
       X-Oauth-Scopes:
-      - user, public_repo, repo, gist
+      - public_repo
       X-Accepted-Oauth-Scopes:
-      - repo
+      - ''
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       - Accept-Encoding
       X-Github-Media-Type:
       - github.v3; format=json
-      X-Content-Type-Options:
-      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Expose-Headers:
-      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 6153E20C:2F30:5B1E2:53027D40
+      - 6153E20C:2054:669B88B:534C002E
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - a1d8c69b807c8e21f06cad9da377d1b0
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/35323944","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-35323944","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":35323944,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://gravatar.com/avatar/a17d579ae533fa7dbf3f3875de913e10?d=https%3A%2F%2Fidenticons.github.com%2Fc23454742636600091b5bfbfe3187dc2.png&r=x","gravatar_id":"a17d579ae533fa7dbf3f3875de913e10","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-02-17T21:21:03Z","updated_at":"2014-02-17T21:21:03Z","body":"Hi.
+      string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/40380649","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-40380649","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":40380649,"user":{"login":"bcobb","id":35545,"avatar_url":"https://avatars.githubusercontent.com/u/35545?","gravatar_id":"269b40217dfecccd37c71650992dd2cc","url":"https://api.github.com/users/bcobb","html_url":"https://github.com/bcobb","followers_url":"https://api.github.com/users/bcobb/followers","following_url":"https://api.github.com/users/bcobb/following{/other_user}","gists_url":"https://api.github.com/users/bcobb/gists{/gist_id}","starred_url":"https://api.github.com/users/bcobb/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/bcobb/subscriptions","organizations_url":"https://api.github.com/users/bcobb/orgs","repos_url":"https://api.github.com/users/bcobb/repos","events_url":"https://api.github.com/users/bcobb/events{/privacy}","received_events_url":"https://api.github.com/users/bcobb/received_events","type":"User","site_admin":false},"created_at":"2014-04-14T15:35:10Z","updated_at":"2014-04-14T15:35:10Z","body":"Hi.
         Your friendly Curry bot here. Just letting you know that there are commit
         authors in this Pull Request who appear to not have signed a Chef CLA.\n\nThere
         are 1 commit author(s) whose commits are authored by a non GitHub-verified
         email address in this Pull Request. Chef will have to verify by hand that
         they have signed a Chef CLA.\n\nThe following GitHub users do not appear to
         have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}]'
-    http_version:
-  recorded_at: Mon, 17 Feb 2014 21:21:04 GMT
-recorded_with: VCR 2.8.0
+    http_version: 
+  recorded_at: Mon, 14 Apr 2014 15:35:10 GMT
+recorded_with: VCR 2.9.0
