@@ -18,7 +18,7 @@
 
           <% if @user.twitter_username.present? %>
             <li data-tooltip class="has-tip" title="<%= @user.name %>'s Twitter Username.">
-              <i class="fa fa-twitter"></i> <%= @user.twitter_username %>
+              <a href="https://twitter.com/<%= @user.twitter_username %>"><i class="fa fa-twitter"></i> <%= @user.twitter_username %></a>
             </li>
           <% end %>
 
