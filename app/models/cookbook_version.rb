@@ -6,8 +6,16 @@ class CookbookVersion < ActiveRecord::Base
   belongs_to :cookbook
 
   # Attachments
+  #
+  # If both a S3 bucket set in the application configuration use S3
+  # otherwise use local storage.
+  #
   # --------------------
-  has_attached_file :tarball
+  if Supermarket::Config.s3[:bucket].present?
+    has_attached_file :tarball, storage: 's3', s3_credentials: Supermarket::Config.s3
+  else
+    has_attached_file :tarball
+  end
 
   # Validations
   # --------------------

@@ -55,6 +55,10 @@ GEM
     and_feathers-gzipped_tarball (1.0.0.pre)
     arel (4.0.2)
     ast (1.1.0)
+    aws-sdk (1.38.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -393,6 +397,7 @@ DEPENDENCIES
   analytics-ruby
   and_feathers (>= 1.0.0.pre)
   and_feathers-gzipped_tarball (>= 1.0.0.pre)
+  aws-sdk
   byebug
   capybara
   chef

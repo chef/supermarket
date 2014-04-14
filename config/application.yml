@@ -46,6 +46,10 @@ development:
   curry:
     success_label: 'Signed CLA'
     cla_location: <%= ENV['CURRY_CLA_LOCATION'] || 'https://community.getchef.com' %>
+  s3:
+    bucket: <%= ENV['S3_BUCKET'] %>
+    access_key_id: <%= ENV['S3_ACCESS_KEY_ID'] %>
+    secret_access_key: <%= ENV['S3_SECRET_ACCESS_KEY'] %>
 
 production:
   icla_version: '99999-2621/LEGAL14767024.1'
@@ -81,6 +85,10 @@ production:
   curry:
     success_label: 'Signed CLA'
     cla_location: <%= ENV['CURRY_CLA_LOCATION'] || 'https://community.getchef.com' %>
+  s3:
+    bucket: <%= ENV['S3_BUCKET'] %>
+    access_key_id: <%= ENV['S3_ACCESS_KEY_ID'] %>
+    secret_access_key: <%= ENV['S3_SECRET_ACCESS_KEY'] %>
 
 test:
   icla_version: '99999-2621/LEGAL14767024.1'
@@ -111,3 +119,7 @@ test:
   curry:
     success_label: 'Signed CLA'
     cla_location: 'https://community.getchef.com'
+  s3:
+    bucket: <%= ENV['S3_BUCKET'] %>
+    access_key_id: <%= ENV['S3_ACCESS_KEY_ID'] %>
+    secret_access_key: <%= ENV['S3_SECRET_ACCESS_KEY'] %>

@@ -26,6 +26,7 @@ gem 'virtus', require: false
 gem 'kaminari'
 gem 'validate_url'
 gem 'chef', require: false
+gem 'aws-sdk'
 
 gem 'sentry-raven', github: 'getsentry/raven-ruby', require: false
 gem 'statsd-ruby', require: 'statsd'
