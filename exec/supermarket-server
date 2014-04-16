@@ -54,6 +54,7 @@ if ! db_seeded; then
 fi
 
 bundle exec foreman start
-EOH)
+EOH
+)
 
 in_supermarket "$command"
