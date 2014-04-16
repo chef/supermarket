@@ -1,3 +1,14 @@
+@import 'common';
+@import 'foundation';
+@import 'compass/css3';
+@import 'mixins';
+
+/** being more specific here would be super nice
+@import 'compass/css3/box-shadow';
+@import 'compass/css3/border-radius';
+@import 'compass/css3/inline-block';
+**/
+
 // Cookbooks
 
 #versions {
@@ -75,7 +86,7 @@ input[type="search"].cookbook_search_textfield {
   font-size: rem-calc(44);
   @include grid-column($columns: 1, $collapse: true);
   padding: 0;
-  @include single-transition($speed: 100ms);
+  @include single-transition(100ms);
   text-align: right;
 
   &:hover, &:active, &:focus {
@@ -156,7 +167,7 @@ input[type="search"].cookbook_search_textfield {
       weight: $normal;
     }
     margin-left: rem-calc(20);
-    @include single-transition($speed: 100ms);
+    @include single-transition(100ms);
     text-transform: none;
 
     &.active {
@@ -201,7 +212,7 @@ input[type="search"].cookbook_search_textfield {
         display: block;
         line-height: rem-calc(30);
         padding-left: rem-calc(20);
-        @include single-transition($speed: 100ms);
+        @include single-transition(100ms);
 
         &:hover {
           background-color: $clouds;
@@ -457,7 +468,7 @@ input[type="search"].cookbook_search_textfield {
   min-height: rem-calc(322);
   padding: rem-calc(4 4 10 0);
   position: relative;
-  @include single-transition(background-color, $speed: 100ms);
+  @include single-transition(background-color, 100ms);
   z-index: 1;
 
   &:hover {
@@ -719,7 +730,7 @@ input[type="search"].cookbook_search_textfield {
   left: rem-calc(-57);
   padding: rem-calc(15);
   position: absolute;
-  @include single-transition($speed: 100ms);
+  @include single-transition(100ms);
   text-align: center;
   top: 0;
   z-index: 1;

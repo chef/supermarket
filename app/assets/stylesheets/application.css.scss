@@ -1,22 +1,15 @@
-@import "compass/typography/vertical_rhythm";
-@import "compass/css3";
-@import "compass/utilities";
+// Use Sprockets for importing styles
+//
+//= require_self
 
-// Variables
-@import "libs/variables";
+// third-party libs
+//= require normalize
 
-// Import Normalize
-@import "normalize";
-
-// Import the Foundation framework
-@import "foundation";
-
-// UI
-@import "mixins/mixins";
-@import "libs/typography";
-@import "libs/appheader";
-@import "libs/structure";
-@import "libs/cookbooks";
-@import "libs/tabs";
-@import "libs/alerts";
-@import "libs/mediaqueries";
+// Supermarket styles
+//= require structure
+//= require typography
+//= require appheader
+//= require cookbooks
+//= require tabs
+//= require alerts
+//= require mediaqueries

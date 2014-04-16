@@ -1,0 +1,12 @@
+// common is a place to import different sass files that need to be imported in
+// other sass files
+
+@import 'variables';
+@import 'mixins';
+
+// not sure if these are needed??
+@import "compass/typography/vertical_rhythm";
+@import "compass/utilities";
+
+// I do not think we need all of compass/css3
+@import "compass/css3";
