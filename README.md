@@ -35,7 +35,8 @@ Contributing
 
 We'd love for you to be involved. Read the [contributor's workflow](https://github.com/opscode/supermarket/blob/master/CONTRIBUTING.md) for license information and helpful tips before you get started.
 
-There are some project artifacts such as planning docs, wireframes, recorded demos, and team retrospectives in a [public Google Drive folder](https://drive.google.com/a/gofullstack.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8).
+There are some project artifacts such as planning docs, wireframes, recorded demos, and team retrospectives in a [public Google Drive folder](https://drive.google.com/a/gofullstack.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8) and
+on [InVision](https://projects.invisionapp.com/share/VMOMTJ36#/screens).
 
 If you have questions, feature ideas, or other suggestions, please [create a Github Issue](https://github.com/opscode/supermarket/issues?state=open) and we'll respond in a timely manner.
 
