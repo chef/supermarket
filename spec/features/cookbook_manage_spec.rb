@@ -13,6 +13,7 @@ describe "updating a cookbook's issues and source urls" do
       follow_relation 'edit-cookbook-urls'
       fill_in 'cookbook_source_url', with: 'http://example.com/source'
       fill_in 'cookbook_issues_url', with: 'http://example.com/tissues'
+      sleep 1
       submit_form
     end
 
@@ -20,7 +21,7 @@ describe "updating a cookbook's issues and source urls" do
     expect(find('.issues-url')[:href]).to eql('http://example.com/tissues')
   end
 
-  xit 'displays an error message when invalid urls are entered' do
+  it 'displays an error message when invalid urls are entered' do
     maintainer = create(:user)
     cookbook = create(:cookbook) # TODO: give this cookbook a real maintainer
 
