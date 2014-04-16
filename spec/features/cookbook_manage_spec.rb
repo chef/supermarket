@@ -31,7 +31,8 @@ describe "updating a cookbook's issues and source urls" do
       follow_relation 'edit-cookbook-urls'
       fill_in 'cookbook_source_url', with: 'example'
       fill_in 'cookbook_source_url', with: 'example'
-      expect(page).to have_selector('.error')
     end
+
+    expect(find('.edit_cookbook').all('.error').count).to eql(2)
   end
 end
