@@ -1,15 +1,14 @@
 // Use Sprockets for importing styles
-//
-//= require_self
 
 // third-party libs
 //= require normalize
+//= require_directory ../../../vendor/assets/stylesheets/foundation/components
 
 // Supermarket styles
 //= require structure
 //= require typography
-//= require appheader
-//= require cookbooks
-//= require tabs
 //= require alerts
+//= require appheader
+//= require tabs
 //= require mediaqueries
+//= require cookbooks
