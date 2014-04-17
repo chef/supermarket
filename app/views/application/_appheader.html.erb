@@ -1,41 +1,34 @@
-<div class="search_and_usermenu">
-  <% if signed_in? %>
-    <nav class="usermenu">
-      <div class="avatar">
-        <%= gravatar_for current_user, size: 80 %>
-        <ul class="userdropdown">
-          <% unless current_user.signed_icla? %>
-            <li><%= link_to 'Sign ICLA', new_icla_signature_path, class: 'fa fa-file-text', rel: 'sign_icla' %></li>
-          <% end %>
-
-          <li><%= link_to 'Sign CCLA', new_ccla_signature_path, class: 'fa fa-file-text', rel: 'sign_ccla' %></li>
-          <li><%= link_to 'View Profile', current_user, class: 'fa fa-user', rel: 'view_profile' %></li>
-          <li><%= link_to 'Manage Profile', edit_profile_path, class: 'fa fa-cog', rel: 'manage_profile' %></li>
-
-          <% if current_user && current_user.is?(:admin) %>
-            <li>
-              <%= link_to "Watched Repositories", curry_repositories_url, :class => 'fa fa-github', rel: 'manage_repositories' %>
-            </li>
-          <% end %>
-
-          <li><%= link_to 'Sign Out', sign_out_path, :class => 'fa fa-power-off', method: :delete, rel: 'sign_out' %></li>
-        </ul>
-      </div>
-    </nav>
-  <% end %>
-  <%= form_tag cookbooks_path, class: 'searchform show-for-small-up', method: :get do %>
-    <i class="fa fa-search fa-fw"></i>
-    <%= search_field_tag :q, params[:q], id: 'searchfield' %>
-  <% end %>
-</div>
-<nav class="appnav show-for-medium-up">
-  <ul>
-  <li><%= link_to 'Cookbooks', cookbooks_directory_path, 'data-hover' => 'Cookbooks', :rel => 'cookbooks' %></li>
+<nav class="appnav">
+  <ul class="show-for-medium-up">
+    <li><%= link_to 'Cookbooks', cookbooks_directory_path, 'data-hover' => 'Cookbooks', :rel => 'cookbooks' %></li>
     <li><%= link_to 'Contribute', icla_signatures_path, 'data-hover' => 'Contribute' %></li>
     <li><%= link_to 'Resources', '#', 'data-hover' => 'Resources' %></li>
     <% if !signed_in? %>
-      <li><%= link_to 'Sign In', sign_in_path, class: 'sign_in_create_account', rel: 'sign_in' %></li>
-      <li><%= link_to 'Sign Up', 'https://manage.opscode.com/signup?ref=community', class: 'sign_in_create_account', rel: 'sign_up' %></li>
+      <li class="sign_in_create_account"><%= link_to 'Sign In', sign_in_path, rel: 'sign_in' %></li>
+      <li class="sign_in_create_account"><%= link_to 'Create Account', 'https://manage.opscode.com/signup?ref=community' %></li>
     <% end %>
   </ul>
+  <% if signed_in? %>
+    <div class="usermenu">
+      <%= gravatar_for current_user, size: 80 %>
+      <%= current_user.username %> <i class="fa fa-caret-down"></i>
+      <ul class="userdropdown">
+        <% unless current_user.signed_icla? %>
+          <li><%= link_to 'Sign ICLA', new_icla_signature_path, class: 'fa fa-file-text', rel: 'sign_icla' %></li>
+        <% end %>
+
+        <li><%= link_to 'Sign CCLA', new_ccla_signature_path, class: 'fa fa-file-text', rel: 'sign_ccla' %></li>
+        <li><%= link_to 'View Profile', current_user, class: 'fa fa-user', rel: 'view_profile' %></li>
+        <li><%= link_to 'Manage Profile', edit_profile_path, class: 'fa fa-cog', rel: 'manage_profile' %></li>
+
+        <% if current_user && current_user.is?(:admin) %>
+          <li>
+            <%= link_to "Watched Repositories", curry_repositories_url, :class => 'fa fa-github', rel: 'manage_repositories' %>
+          </li>
+        <% end %>
+
+        <li><%= link_to 'Sign Out', sign_out_path, :class => 'fa fa-power-off', method: :delete, rel: 'sign_out' %></li>
+      </ul>
+    </div>
+  <% end %>
 </nav>

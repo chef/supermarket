@@ -12,28 +12,13 @@ describe 'cookbook feed' do
     expect(all('.order_cookbooks_by .active').size).to eql(1)
   end
 
-  it 'lists cookbooks by category' do
-    create_list(:cookbook, 5, category: create(:category, name: 'Databases'))
-    create_list(:cookbook, 5, category: create(:category, name: 'Other'))
-
-    visit '/'
-    click_link 'Cookbooks'
-
-    within '.categories' do
-      click_link 'Other'
-    end
-
-    expect(all('.categories .active').size).to eql(1)
-    expect(all('.cookbook').size).to eql(5)
-  end
-
   it 'lists cookbooks by a metadata search term' do
     create(:cookbook, name: 'AmazingCookbook')
 
     visit '/'
     click_link 'Cookbooks'
 
-    within '.page' do
+    within '.cookbook_search' do
       fill_in 'q', with: 'Amazing'
       submit_form
     end
