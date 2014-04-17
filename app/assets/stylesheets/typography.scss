@@ -1,3 +1,6 @@
+@import 'common';
+@import 'compass/css3/transition';
+
 // Typography defaults and overrides to foundation settings
 h1 {
   border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
@@ -5,6 +8,6 @@ h1 {
 }
 
 button, .button {
-  @include single-transition(background-color, $speed: 100ms);
+  @include single-transition(background-color, 100ms);
   text-transform: uppercase;
 }
