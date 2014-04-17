@@ -4,34 +4,22 @@
 }
 
 @media #{$mobile-only} {
-  html, body { font-size: 62.5%; }
-  .searchform { display: none; }
-  .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
   .page { padding: rem-calc(20); }
   .alert-box .close { margin-top: rem-calc(-17); }
   .footer { margin-top: rem-calc(40); padding: rem-calc(20 0); }
 }
 
 @media #{$small-only} {
-  html, body { font-size: 62.5%; }
-  .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
-  #searchfield { width: rem-calc(220); }
   .page { padding: rem-calc(40 70 70); }
   .alert-box .close { margin-top: rem-calc(-17); }
   .footer { margin-top: rem-calc(40); padding: rem-calc(20 0); }
 }
 
 @media #{$medium-only} {
-  html, body { font-size: 75%; }
-  .left-off-canvas-toggle:before { font-size: rem-calc(24); margin-top: rem-calc(23); }
-  #searchfield { width: rem-calc(220); }
   .page { padding: rem-calc(40 70 70); }
   .alert-box .close { margin-top: rem-calc(-14); }
 }
 
 @media #{$xlarge-up} {
-  html, body { font-size: 110%; }
   .globalheader, .container { max-width: rem-calc(1280); }
-  .left-off-canvas-toggle:before { margin-top: rem-calc(24.5); }
-  .searchform .fa { right: rem-calc(12); top: rem-calc(24); }
 }

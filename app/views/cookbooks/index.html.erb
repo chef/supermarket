@@ -1,15 +1,10 @@
 <%= provide(:title, "Cookbooks") %>
 <%= provide(:description, "Browse and search Chef cookbooks.") %>
 
-<div class="page">
-  <div class="breadcrumbs show-for-large-up">
-    <%= link_to 'Cookbooks', cookbooks_path %>
-    <%= link_to params[:category].titleize, cookbooks_category_path(params[:category]) if params[:category] %>
-  </div>
+<div class="page nobg">
 
   <section class="cookbook_body">
     <h1 class="cookbook_content_heading">
-      <i class="fa fa-folder"></i>
       <%= feed_title %>
       <small>
         <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>

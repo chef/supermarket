@@ -14,19 +14,23 @@ html, body { height: 100%; min-height: 100%; }
 }
 
 body {
-  background-color: $body-bg;
+  background-color: $clouds;
   margin: 0;
 }
 
 .container {
-  background-color: white;
   @include grid-row();
   min-height: 100%;
 }
 
 .page {
+  background-color: white;
   @include grid-column(12);
-  padding: rem-calc(70);
+  padding: rem-calc(40 55 55);
+
+  &.nobg {
+    background-color: transparent;
+  }
 }
 
 .footer {
