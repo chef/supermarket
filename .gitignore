@@ -33,9 +33,6 @@ node_modules/
 .yardopts
 doc/
 
-# Ignore user-specific configuration files
-.env
-
 # Ignore vendored gems
 vendor/gems
 vendor/ruby
@@ -54,3 +51,6 @@ public/system
 
 # Ignore the generated sitemap
 public/sitemap.xml.gz
+
+# Ignore local configuration
+.env.development
