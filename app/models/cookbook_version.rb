@@ -11,7 +11,7 @@ class CookbookVersion < ActiveRecord::Base
   # otherwise use local storage.
   #
   # --------------------
-  if Supermarket::Config.s3[:bucket].present?
+  if Supermarket::Config.s3['bucket'].present?
     has_attached_file :tarball, storage: 's3', s3_credentials: Supermarket::Config.s3
   else
     has_attached_file :tarball
