@@ -248,9 +248,9 @@ This is because of the Bundler config in `.bundle/config`.
    goes into detail about the not so straight forward configuration that needs
    to happen to get Supermarket working locally.
 
-1. Run the migrations:
+1. Create the database, migrate the database and seed the database:
 
-        $ ./bin/rake db:create && ./bin/rake db:migrate && ./bin/rake db:seed
+        $ bundle exec rake db:setup
 
 1. Start the server:
 
