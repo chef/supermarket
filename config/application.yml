@@ -21,10 +21,6 @@ development:
   host: <%= ENV['HOST'] %>
   port: <%= ENV['PORT'] %>
   sentry_url: <%= ENV['SENTRY_URL'] %>
-  statsd:
-    host: <%= ENV['STATSD_HOST'] %>
-    port: <%= ENV['STATSD_PORT'] %>
-    namespace: <%= ENV['STATSD_NAMESPACE'] %>
   github:
     access_token: <%= ENV['GITHUB_ACCESS_TOKEN'] %>
   omniauth:
@@ -56,10 +52,6 @@ production:
   host: <%= ENV['HOST'] %>
   port: <%= ENV['PORT'] %>
   sentry_url: <%= ENV['SENTRY_URL'] %>
-  statsd:
-    host: <%= ENV['STATSD_HOST'] %>
-    port: <%= ENV['STATSD_PORT'] %>
-    namespace: <%= ENV['STATSD_NAMESPACE'] %>
   github:
     access_token: <%= ENV['GITHUB_ACCESS_TOKEN'] %>
   omniauth:
@@ -91,10 +83,6 @@ test:
   host: <%= ENV['HOST'] %>
   port: <%= ENV['PORT'] %>
   sentry_url: <%= ENV['SENTRY_URL'] %>
-  statsd:
-    host: <%= ENV['STATSD_HOST'] %>
-    port: <%= ENV['STATSD_PORT'] %>
-    namespace: <%= ENV['STATSD_NAMESPACE'] %>
   github:
     access_token: <%= ENV['GITHUB_ACCESS_TOKEN'] %>
   pubsubhubbub:
