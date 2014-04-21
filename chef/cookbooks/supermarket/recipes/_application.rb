@@ -33,6 +33,12 @@ user 'supermarket' do
   shell '/bin/false'
 end
 
+template "#{node['supermarket']['home']}/shared/.env" do
+  variables(app: app)
+  notifies :restart, 'service[unicorn]'
+  notifies :restart, 'service[sidekiq]'
+end
+
 deploy_revision node['supermarket']['home'] do
   repo 'https://github.com/opscode/supermarket.git'
   revision app['revision']
@@ -50,10 +56,6 @@ deploy_revision node['supermarket']['home'] do
         mode 0777
         recursive true
       end
-    end
-
-    template "#{node['supermarket']['home']}/shared/.env" do
-      variables(app: app)
     end
 
     execute 'bundle install' do
