@@ -42,7 +42,7 @@ deploy_revision node['supermarket']['home'] do
   migration_command 'bundle exec rake db:migrate'
   environment 'RAILS_ENV' => 'production'
 
-  symlink_before_migrate '.env' => '.env'
+  symlink_before_migrate '.env.production' => '.env.production'
 
   before_migrate do
     %w(pids log system public).each do |dir|
@@ -52,7 +52,7 @@ deploy_revision node['supermarket']['home'] do
       end
     end
 
-    template "#{node['supermarket']['home']}/shared/.env" do
+    template "#{node['supermarket']['home']}/shared/.env.production" do
       variables(app: app)
     end
 

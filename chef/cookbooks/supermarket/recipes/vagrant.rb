@@ -26,8 +26,8 @@ include_recipe 'supermarket::_ruby'
 execute 'dotenv[setup]' do
   user 'vagrant'
   cwd '/supermarket'
-  command 'cp .env.example .env'
-  not_if 'test -f /supermarket/.env'
+  command 'cp .env .env.development'
+  not_if 'test -f /supermarket/.env.development'
 end
 
 execute 'bundle[install]' do
