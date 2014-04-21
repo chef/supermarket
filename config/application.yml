@@ -41,7 +41,6 @@ development:
     password: <%= ENV['SMTP_PASSWORD'] %>
   curry:
     success_label: 'Signed CLA'
-    cla_location: <%= ENV['CURRY_CLA_LOCATION'] || 'https://community.getchef.com' %>
 
 production:
   icla_version: '99999-2621/LEGAL14767024.1'
@@ -72,7 +71,6 @@ production:
     password: <%= ENV['SMTP_PASSWORD'] %>
   curry:
     success_label: 'Signed CLA'
-    cla_location: <%= ENV['CURRY_CLA_LOCATION'] || 'https://community.getchef.com' %>
 
 test:
   icla_version: '99999-2621/LEGAL14767024.1'
@@ -98,4 +96,3 @@ test:
       site: <%= ENV['CHEF_OAUTH2_SITE'] %>
   curry:
     success_label: 'Signed CLA'
-    cla_location: 'https://community.getchef.com'

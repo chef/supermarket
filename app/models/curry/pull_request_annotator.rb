@@ -151,7 +151,7 @@ class Curry::PullRequestAnnotator
 
     parts << [
       '[Please sign the CLA here.]',
-      "(#{Supermarket::Config.curry.fetch('cla_location')})"
+      "(#{ENV['CURRY_CLA_LOCATION']})"
     ].join
 
     parts.join("\n\n")
