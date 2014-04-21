@@ -31,7 +31,7 @@ module Curry
           client.subscribe(
             topic,
             callback_url,
-            Supermarket::Config.pubsubhubbub.fetch('hub_secret')
+            ENV['PUBSUBHUBBUB_SECRET']
           )
 
           @repository.save
@@ -79,7 +79,7 @@ module Curry
     # the GitHub Access Token.
     def client
       Octokit::Client.new(
-        access_token: Supermarket::Config.github['access_token']
+        access_token: ENV['GITHUB_ACCESS_TOKEN']
       )
     end
   end

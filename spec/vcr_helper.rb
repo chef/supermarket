@@ -6,19 +6,19 @@ VCR.configure do |c|
   c.hook_into :webmock
   c.allow_http_connections_when_no_cassette = true
   c.filter_sensitive_data('<TOKEN>') do
-    Supermarket::Config.github.fetch('access_token')
+    ENV['GITHUB_ACCESS_TOKEN']
   end
   c.filter_sensitive_data('<PUBSUBHUBBUB_SECRET>') do
-    CGI.escape(Supermarket::Config.pubsubhubbub.fetch('hub_secret'))
+    CGI.escape(ENV['PUBSUBHUBBUB_SECRET'])
   end
   c.filter_sensitive_data('<PUBSUBHUBBUB_SECRET>') do
-    Supermarket::Config.pubsubhubbub.fetch('hub_secret')
+    ENV['PUBSUBHUBBUB_SECRET']
   end
   c.filter_sensitive_data('<PUBSUBHUBBUB_CALLBACK>') do
-    CGI.escape(Supermarket::Config.pubsubhubbub.fetch('callback_url'))
+    CGI.escape(ENV['PUBSUBHUBBUB_CALLBACK_URL'])
   end
   c.filter_sensitive_data('<PUBSUBHUBBUB_CALLBACK>') do
-    Supermarket::Config.pubsubhubbub.fetch('callback_url')
+    ENV['PUBSUBHUBBUB_CALLBACK_URL']
   end
   c.filter_sensitive_data('<CHEF_OAUTH2_APP_ID>') do
     ENV['CHEF_OAUTH2_APP_ID']

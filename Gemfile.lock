@@ -208,7 +208,6 @@ GEM
       sqlite3
       thor
       xml-simple
-    magiconf (1.0.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -471,7 +470,6 @@ DEPENDENCIES
   launchy
   libarchive!
   license_finder
-  magiconf
   mail_view
   mixlib-authentication
   newrelic_rpm

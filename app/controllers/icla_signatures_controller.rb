@@ -48,7 +48,7 @@ class IclaSignaturesController < ApplicationController
     @icla_signature = IclaSignature.new(icla_signature_params)
 
     if @icla_signature.save
-      if Supermarket::Config.cla_signature_notification_email.present?
+      if ENV['CLA_SIGNATURE_NOTIFICATION_EMAIL'].present?
         ClaSignatureMailer.delay.icla_signature_notification_email(@icla_signature)
       end
 

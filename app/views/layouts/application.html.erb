@@ -65,7 +65,7 @@
 
     <%= javascript_include_tag 'application' %>
 
-    <% if Supermarket::Config.segment_io_write_key %>
+    <% if ENV['SEGMENT_IO_WRITE_KEY'].present? %>
       <%= render partial: 'segment.io' %>
     <% end %>
   </body>

@@ -25,7 +25,7 @@ class Curry::PullRequestAnnotator
     @pull_request = pull_request
     @repository = @pull_request.repository
     @octokit = Octokit::Client.new(
-      access_token: Supermarket::Config.github['access_token']
+      access_token: ENV['GITHUB_ACCESS_TOKEN']
     )
   end
 
@@ -68,7 +68,7 @@ class Curry::PullRequestAnnotator
     @octokit.add_labels_to_an_issue(
       @repository.full_name,
       @pull_request.number,
-      [Supermarket::Config.curry.fetch('success_label')]
+      [ENV['CURRY_SUCCESS_LABEL']]
     )
   end
 
@@ -88,12 +88,12 @@ class Curry::PullRequestAnnotator
   # Removes the label indicating that all commit authors have signed a CLA
   #
   def remove_existing_label
-    if existing_labels.include?(Supermarket::Config.curry.fetch('success_label'))
+    if existing_labels.include?(ENV['CURRY_SUCCESS_LABEL'])
       begin
         @octokit.remove_label(
           @repository.full_name,
           @pull_request.number,
-          Supermarket::Config.curry.fetch('success_label')
+          ENV['CURRY_SUCCESS_LABEL']
         )
       rescue Octokit::NotFound
         Rails.logger.info 'Octokit not found.'
@@ -151,7 +151,7 @@ class Curry::PullRequestAnnotator
 
     parts << [
       '[Please sign the CLA here.]',
-      "(#{Supermarket::Config.curry.fetch('cla_location')})"
+      "(#{ENV['CURRY_CLA_LOCATION']})"
     ].join
 
     parts.join("\n\n")

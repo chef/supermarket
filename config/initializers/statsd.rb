@@ -1,7 +1,7 @@
-if Supermarket::Config.statsd['host'].present? && Supermarket::Config.statsd['port'].present?
-  STATSD = Statsd.new(Supermarket::Config.statsd['host'], Supermarket::Config.statsd['port'])
+if [ENV['STATSD_HOST'], ENV['STATSD_PORT']].all?(&:present?)
+  STATSD = Statsd.new(ENV['STATSD_HOST'], ENV['STATSD_PORT'])
 
-  if Supermarket::Config.statsd['namespace'].present?
-    STATSD.namespace = Supermarket::Config.statsd['namespace']
+  if ENV['STATSD_NAMESPACE'].present?
+    STATSD.namespace = ENV['STATSD_NAMESPACE']
   end
 end

@@ -10,20 +10,20 @@ module Supermarket
   class SegmentIoAgent
     #
     # Create a new +SegmentIoAgent+ with the given configuration. If the
-    # configuration does not specify +segment_io_write_key+, this agent will not
+    # configuration does not specify +SEGMENT_IO_WRITE_KEY+, this agent will not
     # be enabled.
     #
-    # @param config [Supermarket::Config] the agent caller's configuration
+    # @param config [Hash] the agent caller's configuration
     #
     def initialize(config)
-      @enabled = config.segment_io_write_key.to_s.size > 0
+      @enabled = config['SEGMENT_IO_WRITE_KEY'].to_s.size > 0
       @last_event = {}
 
       if enabled?
         require 'analytics-ruby'
 
         @segment_io = AnalyticsRuby.tap do |segment_io|
-          segment_io.init(secret: config.segment_io_write_key)
+          segment_io.init(secret: config['SEGMENT_IO_WRITE_KEY'])
         end
       end
     end

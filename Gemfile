@@ -3,7 +3,6 @@ ruby '2.0.0'
 
 gem 'rails', '~> 4.1.1'
 
-gem 'magiconf'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-chef-oauth2', git: 'https://github.com/opscode/omniauth-chef-oauth2.git'

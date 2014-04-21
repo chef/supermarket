@@ -108,7 +108,7 @@ class Curry::PullRequestUpdatesController < ApplicationController
   def expected_signature
     OpenSSL::HMAC.hexdigest(
       HMAC_DIGEST,
-      Supermarket::Config.pubsubhubbub.fetch('hub_secret'),
+      ENV['PUBSUBHUBBUB_SECRET'],
       request.body.read
     )
   end
