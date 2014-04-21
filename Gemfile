@@ -13,7 +13,7 @@ gem 'unicorn'
 gem 'unicorn-rails'
 gem 'foreman'
 gem 'pundit'
-gem 'dotenv'
+gem 'dotenv-rails'
 gem 'coveralls', require: false
 gem 'octokit', github: 'octokit/octokit.rb', require: false
 gem 'sidekiq'
