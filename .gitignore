@@ -48,3 +48,7 @@ public/system
 
 # Ignore Redis dumps
 *.rdb
+
+# Ignore local configuration
+.env.development
+.env.test
