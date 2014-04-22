@@ -163,32 +163,43 @@ input[type="search"].cookbook_search_textfield {
 }
 
 .order_cookbooks_by {
-  color: $concrete;
+  color: $primary_gray;
   font: {
     family: $accent_font;
-    size: rem-calc(12);
-    weight: $bold;
+    size: rem-calc(14);
   }
   line-height: rem-calc(36);
-  margin-top: rem-calc(-66);
-  text-transform: uppercase;
 
-  a {
+  a.button {
+    background-color: darken($clouds, 5%);
+    color: $concrete;
     @include inline-block;
     font: {
-      family: $default_font;
-      size: rem-calc(12);
+      size: rem-calc(14);
       weight: $normal;
     }
-    margin-left: rem-calc(20);
+    margin-left: rem-calc(6);
+    padding: rem-calc(9 20);
     @include single-transition($speed: 100ms);
     text-transform: none;
+
+    &:hover {
+      background-color: darken($clouds, 10%);
+      color: darken($concrete, 5%);
+    }
+
+    &.dropdown {
+      padding-right: rem-calc(57);
+
+      &:before {
+        border-color: $concrete rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+      }
+    }
 
     &.active {
       background-color: $primary-color;
       @include border-radius(rem-calc(3));
       color: white;
-      padding: rem-calc(0 15);
 
       &:hover {
         background-color: darken($primary-color, 10%);
