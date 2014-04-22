@@ -27,5 +27,6 @@ template '/etc/nginx/sites-available/default' do
 end
 
 service 'nginx' do
+  supports reload: true
   action [:enable, :start]
 end
