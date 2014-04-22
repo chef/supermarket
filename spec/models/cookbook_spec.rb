@@ -147,7 +147,7 @@ describe Cookbook do
         to match_array(['= 12.04', '>= 0.0.0'])
     end
 
-    it 'saves supported platform metadata' do
+    it 'creates cookbook dependencies from the metadata' do
       cookbook.publish_version!(metadata, tarball, readme)
 
       dependencies = cookbook.reload.cookbook_dependencies

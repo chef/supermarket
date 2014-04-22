@@ -32,7 +32,11 @@ describe 'viewing a cookbook' do
     cookbook = create(:cookbook) # TODO: give this cookbook a real maintainer
     apt = create(:cookbook, name: 'apt')
 
-    create(:cookbook_dependency, cookbook_version: cookbook.cookbook_versions.first, cookbook: apt)
+    create(
+      :cookbook_dependency,
+      cookbook_version: cookbook.latest_cookbook_version,
+      cookbook: apt
+    )
 
     visit cookbook_path(cookbook)
 
