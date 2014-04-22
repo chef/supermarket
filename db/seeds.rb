@@ -35,40 +35,6 @@ Ccla.where(version: Supermarket::Config.ccla_version).
   update_attributes(attributes)
 
 if Rails.env.development?
-  #
-  # Default category for use in development.
-  #
-  category = Category.where(name: 'Other').first_or_create!
-
-  #
-  # Default cookbooks for use in development.
-  #
-  %w(redis postgres node ruby haskell clojure java mysql apache2 nginx yum apt).each do |name|
-    cookbook = Cookbook.where(
-      name: name
-    ).first_or_initialize(
-      maintainer: Faker::Name.name,
-      description: Faker::Lorem.sentences(1).first,
-      source_url: 'http://example.com',
-      issues_url: 'http://example.com',
-      category: category
-    )
-
-    # TODO: figure out a nice way to use CookbookUpload here, which will ensure
-    # that our seed data is realistically seeded.
-    cookbook_version = cookbook.cookbook_versions.where(
-      version: '0.1.0'
-    ).first_or_initialize(
-      license: 'MIT',
-      cookbook: cookbook,
-      tarball: File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz'),
-      readme: File.read('README.md'),
-      readme_extension: 'md'
-    )
-
-    cookbook.cookbook_versions << cookbook_version
-    cookbook.save!
-  end
 
   #
   # Default user for use in development.
@@ -77,14 +43,6 @@ if Rails.env.development?
     first_name: 'John',
     last_name: 'Doe',
     email: 'john@example.com'
-  ).first_or_create!
-
-  #
-  # Default cookbook folower for use in development.
-  #
-  CookbookFollower.where(
-    user: user,
-    cookbook: Cookbook.find_by(name: 'redis')
   ).first_or_create!
 
   #
@@ -144,4 +102,49 @@ if Rails.env.development?
     email: 'johndoe@example.com',
     organization: organization
   ).first_or_create!
+
+  #
+  # Default category for use in development.
+  #
+  category = Category.where(name: 'Other').first_or_create!
+
+  #
+  # Default cookbooks for use in development.
+  #
+  %w(redis postgres node ruby haskell clojure java mysql apache2 nginx yum apt).each do |name|
+    cookbook = Cookbook.where(
+      name: name
+    ).first_or_initialize(
+      maintainer: Faker::Name.name,
+      description: Faker::Lorem.sentences(1).first,
+      source_url: 'http://example.com',
+      issues_url: 'http://example.com',
+      category: category,
+      owner: user
+    )
+
+    # TODO: figure out a nice way to use CookbookUpload here, which will ensure
+    # that our seed data is realistically seeded.
+    cookbook_version = cookbook.cookbook_versions.where(
+      version: '0.1.0'
+    ).first_or_initialize(
+      license: 'MIT',
+      cookbook: cookbook,
+      tarball: File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz'),
+      readme: File.read('README.md'),
+      readme_extension: 'md'
+    )
+
+    cookbook.cookbook_versions << cookbook_version
+    cookbook.save!
+  end
+
+  #
+  # Default cookbook folower for use in development.
+  #
+  CookbookFollower.where(
+    user: user,
+    cookbook: Cookbook.find_by(name: 'redis')
+  ).first_or_create!
+
 end

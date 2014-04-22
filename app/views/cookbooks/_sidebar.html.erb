@@ -62,17 +62,28 @@
     <h4><i class="fa fa-key"></i> License</h4>
     <p><%= version.license %></p>
 
-    <h3>Maintainer &amp; Collaborators</h3>
-    <div class="owner_avatar hardcoded">
-      <%= link_to maintainer do %>
-        <%= gravatar_for maintainer, size: 144 %>
-        <%= maintainer.username %>
-        <small><%= maintainer.name %></small>
+    <h3>Owner &amp; Collaborators</h3>
+    <div class="owner_avatar">
+      <%= link_to owner do %>
+        <%= gravatar_for owner, size: 144 %>
+        <%= owner.username %>
+        <small><%= owner.name %></small>
       <% end %>
     </div>
-    <div class="collaborators_avatar hardcoded">
+    <div class="collaborators_avatar">
       <% collaborators.each do |collaborator| %>
-        <%= link_to gravatar_for(collaborator, size: 80), collaborator %>
+        <div>
+          <%= link_to gravatar_for(collaborator, size: 80), collaborator, title: collaborator.name %>
+          <% if policy(collaborator.collaborator_for_cookbook(cookbook)).destroy? %>
+            <%= link_to 'x', cookbook_collaborator_path(cookbook, collaborator), remote: true, method: :delete %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if policy(@owner_collaborator).create? %>
+        <div>
+          <%= link_to 'Add', new_cookbook_collaborator_path(cookbook) %>
+        </div>
       <% end %>
     </div>
   </div>

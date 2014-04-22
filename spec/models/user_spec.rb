@@ -4,10 +4,20 @@ describe User do
   context 'associations' do
     it { should have_many(:accounts) }
     it { should have_many(:icla_signatures) }
+    it { should have_many(:owned_cookbooks) }
+    it { should have_many(:cookbook_collaborators) }
+    it { should have_many(:collaborated_cookbooks) }
   end
 
   context 'validations' do
     it { should validate_presence_of(:email) }
+  end
+
+  it 'should find a cookbook collaborator given a cookbook' do
+    user = create(:user)
+    cookbook = create(:cookbook)
+    cookbook_collaborator = CookbookCollaborator.create! cookbook: cookbook, user: user
+    expect(user.reload.collaborator_for_cookbook(cookbook)).to eql(cookbook_collaborator)
   end
 
   describe '#signed_icla?' do
@@ -19,6 +29,41 @@ describe User do
     it 'is false when there is not an icla signature' do
       user = build(:user, icla_signatures: [])
       expect(user.signed_icla?).to be_false
+    end
+  end
+
+  describe '.search' do
+    let!(:jimmy) do
+      create(
+        :user,
+        first_name: 'Jimmy',
+        last_name: 'Jammy',
+        email: 'jimmyjammy@example.com'
+      )
+    end
+
+    let!(:jim) do
+      create(
+        :user,
+        first_name: 'Jim',
+        last_name: 'McJimmerton',
+        email: 'jimmcjimmerton@example.com'
+      )
+    end
+
+    it 'returns users with a similar first name' do
+      expect(User.search('jim')).to include(jimmy)
+      expect(User.search('jim')).to include(jim)
+    end
+
+    it 'returns users with a similar last name' do
+      expect(User.search('jam')).to include(jimmy)
+      expect(User.search('jam')).to_not include(jim)
+    end
+
+    it 'returns users with a similar email address' do
+      expect(User.search('example')).to include(jimmy)
+      expect(User.search('example')).to include(jim)
     end
   end
 

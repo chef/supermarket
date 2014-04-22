@@ -5,4 +5,8 @@ $(function() {
     $(".show-cookbook-urls-manage").fadeToggle();
     $(".cookbook-urls").fadeToggle();
   });
+
+  $('a[data-remote]').on('ajax:success', function(e, data, status, xhr) {
+    $(this).parent().remove();
+  });
 });
