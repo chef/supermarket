@@ -39,9 +39,15 @@
   <div class="cookbook_footer">
     <div class="cookbook_partial_content_footer">
       <ul class="cookbook_platforms show-for-medium-up">
-        <% cookbook.supported_platforms.each do |platform| %>
-          <li class="cookbook_platform_icon has-tip" title="<%= platform.name %> <%= platform.version_constraint %>" data-tooltip data-icon="<%= supported_platform_icon(platform) %>">
-            <span><%= platform.name %></span>
+        <% if cookbook.supported_platforms.present? %>
+          <% cookbook.supported_platforms.each do |platform| %>
+            <li class="cookbook_platform_icon has-tip" title="<%= platform.name %> <%= platform.version_constraint %>" data-tooltip data-icon="<%= supported_platform_icon(platform) %>">
+              <span><%= platform.name %></span>
+            </li>
+          <% end %>
+        <% else %>
+          <li data-tooltip class="has-tip cookbook_no_platform_icon" title="Not specified">
+            <span class="fa fa-question-circle"></span>
           </li>
         <% end %>
       </ul>
