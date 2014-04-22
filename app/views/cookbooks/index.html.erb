@@ -4,19 +4,18 @@
 <div class="page nobg">
 
   <section class="cookbook_body">
+    <div class="order_cookbooks_by right">
+      Filter by
+      <%= link_to_sorted_cookbooks 'Most Downloaded', 'most_downloaded' %>
+      <%= link_to_sorted_cookbooks 'Most Followed', 'most_followed' %>
+
+    </div>
     <h1 class="cookbook_content_heading">
       <%= feed_title %>
       <small>
         <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
       </small>
     </h1>
-    <div class="order_cookbooks_by right">
-      Sort By
-      <%= link_to_sorted_cookbooks 'Recently Updated', 'recently_updated' %>
-      <%= link_to_sorted_cookbooks 'Recently Added', 'recently_added' %>
-      <%= link_to_sorted_cookbooks 'Most Downloaded', 'most_downloaded' %>
-      <%= link_to_sorted_cookbooks 'Most Followed', 'most_followed' %>
-    </div>
 
 
     <article class="cookbook_content cookbook_content_category_listing">

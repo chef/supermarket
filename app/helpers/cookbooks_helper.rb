@@ -91,7 +91,8 @@ module CookbooksHelper
   # @return [String] the generated anchor tag
   #
   def link_to_sorted_cookbooks(linked_text, ordering)
-    class_name = params[:order] == ordering ? 'active' : nil
+    class_name = params[:order] == ordering ? 'active ' : ''
+    class_name += 'button radius secondary'
 
     link_to linked_text, params.merge(order: ordering), class: class_name
   end

@@ -52,7 +52,7 @@ describe CookbooksHelper do
         helper.link_to_sorted_cookbooks('Excellent', 'excellent')
       ).css('a').first
 
-      expect(link['class']).to eql('active')
+      expect(link['class']).to eql('active button radius secondary')
     end
 
     it 'returns a non-active link if the :order param is not the given ordering' do
