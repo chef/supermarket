@@ -17,14 +17,14 @@
     </div>
 
     <div class="cookbook_partial_sidebar">
-      <div class="cookbook_owner hardcoded">
-        <a href="#"><!-- TODO: Link to and display actual user -->
-          <%= gravatar_for User.new(email: 'test@example.com'), size: 128 %>
+      <div class="cookbook_owner">
+        <%= link_to cookbook.owner do %>
+          <%= gravatar_for cookbook.owner, size: 128 %>
           <h5>
-            danvolkens
-            <small>Dan Volkens</small>
+            <%= cookbook.owner.username %>
+            <small><%= cookbook.owner.name %></small>
           </h5>
-        </a>
+        <% end %>
       </div>
       <div class="cookbook_partial_sidebar_urls">
         <% if cookbook.source_url.present? %>
