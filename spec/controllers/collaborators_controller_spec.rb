@@ -39,9 +39,11 @@ describe CollaboratorsController do
       it 'sends the collaborator an email' do
         sign_in fanny
 
-        expect do
-          post :create, cookbook_id: cookbook.to_param, cookbook_collaborator: { user_id: hank.to_param }
-        end.to change { ActionMailer::Base.deliveries.size }.by(1)
+        Sidekiq::Testing.inline! do
+          expect do
+            post :create, cookbook_id: cookbook.to_param, cookbook_collaborator: { user_id: hank.to_param }
+          end.to change { ActionMailer::Base.deliveries.size }.by(1)
+        end
       end
 
       it 'fails if the signed in user is not the cookbook owner' do

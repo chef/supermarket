@@ -159,32 +159,6 @@ describe Cookbook do
       expect(dependencies.map(&:version_constraint)).
         to match_array(['= 1.2.3', '~> 2.1.3'])
     end
-
-    it 'notifies each cookbook follower via email' do
-      create_list(:cookbook_follower, 2, cookbook: cookbook)
-
-      expect do
-        cookbook.publish_version!(metadata, tarball, readme)
-      end.to change(ActionMailer::Base.deliveries, :count).by(2)
-    end
-
-    it 'only notifies cookbook followers with email notifications enabled' do
-      create(
-        :cookbook_follower,
-        cookbook: cookbook,
-        user: create(:user, email_notifications: true)
-      )
-
-      create(
-        :cookbook_follower,
-        cookbook: cookbook,
-        user: create(:user, email_notifications: false)
-      )
-
-      expect do
-        cookbook.publish_version!(metadata, tarball, readme)
-      end.to change(ActionMailer::Base.deliveries, :count).by(1)
-    end
   end
 
   describe '.search' do

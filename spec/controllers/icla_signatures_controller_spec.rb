@@ -122,8 +122,10 @@ describe IclaSignaturesController do
         end
 
         it 'sends a notification that the ICLA has been signed' do
-          expect { post :create, icla_signature: payload }
-          .to change(ActionMailer::Base.deliveries, :count).by(1)
+          Sidekiq::Testing.inline! do
+            expect { post :create, icla_signature: payload }
+            .to change(ActionMailer::Base.deliveries, :count).by(1)
+          end
         end
 
         it 'redirects to the icla signature' do
