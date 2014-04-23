@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :owned_cookbooks, class_name: 'Cookbook', foreign_key: 'user_id'
   has_many :cookbook_collaborators
   has_many :collaborated_cookbooks, through: :cookbook_collaborators, source: :cookbook
+  has_one  :chef_account, -> { self.for('chef_oauth2') }, class_name: 'Account'
 
   # Validations
   # --------------------
@@ -29,6 +30,9 @@ class User < ActiveRecord::Base
       first_name: 'A',
       last_name: 'B',
       email: 'C'
+    },
+    associated_against: {
+      chef_account: :username
     },
     using: {
       tsearch: { prefix: true, dictionary: 'english' },
@@ -198,7 +202,7 @@ class User < ActiveRecord::Base
   # @return [String] the username for that Chef ID
   #
   def username
-    accounts.for('chef_oauth2').first.try(:username).to_s
+    chef_account.try(:username).to_s
   end
 
   #
