@@ -47,4 +47,39 @@
 
 .tabs-content {
   padding-top: rem-calc(20);
+
+  // mostly readme content formatting
+  h1 {
+    border: 0;
+    color: $body-font-color;
+    margin: rem-calc(0 0 30 0);
+    padding: 0;
+  }
+
+  h2 {
+    color: $body-font-color;
+    margin: rem-calc(0 0 24 0);
+  }
+
+  h3 {
+    color: $body-font-color;
+    margin: rem-calc(0 0 16 0);
+  }
+
+  h4 {
+    color: $body-font-color;
+    margin: rem-calc(0 0 14 0);
+  }
+
+  code {
+    color: $primary_gray;
+  }
+
+  table {
+    width: 100%;
+
+    th {
+      text-align: left;
+    }
+  }
 }
