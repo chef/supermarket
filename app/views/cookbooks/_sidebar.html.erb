@@ -82,7 +82,9 @@
 
       <% if policy(@owner_collaborator).create? %>
         <div>
-          <%= link_to 'Add', new_cookbook_collaborator_path(cookbook) %>
+          <%= link_to 'Add', new_cookbook_collaborator_path(cookbook), 'data-reveal-id' => 'collaborators', 'data-reveal-ajax' => true %>
+          <div id="collaborators" class="reveal-modal small" data-reveal>
+          </div>
         </div>
       <% end %>
     </div>

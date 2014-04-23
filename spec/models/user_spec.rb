@@ -51,6 +51,11 @@ describe User do
       )
     end
 
+    before do
+      jimmy.accounts << create(:account, provider: 'chef_oauth2', username: 'jimmyjammy')
+      jim.accounts << create(:account, provider: 'chef_oauth2', username: 'jimmcjimmerton')
+    end
+
     it 'returns users with a similar first name' do
       expect(User.search('jim')).to include(jimmy)
       expect(User.search('jim')).to include(jim)
@@ -64,6 +69,11 @@ describe User do
     it 'returns users with a similar email address' do
       expect(User.search('example')).to include(jimmy)
       expect(User.search('example')).to include(jim)
+    end
+
+    it 'returns users with a similar chef account username' do
+      expect(User.search('jimmyjam')).to include(jimmy)
+      expect(User.search('jimmcji')).to include(jim)
     end
   end
 
