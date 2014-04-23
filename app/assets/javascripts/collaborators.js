@@ -1,9 +1,9 @@
-$(function() {
+$(document).on('opened', '[data-reveal]', function () {
   $('#cookbook_collaborator_user_id').select2({
     placeholder: 'Search for a collaborator',
     minimumInputLength: 3,
     multiple: true,
-    width: '400px',
+    width: '80%',
     ajax: {
       url: '/collaborators.json',
       dataType: 'json',
@@ -19,7 +19,7 @@ $(function() {
       return collaborator.username;
     },
     formatResult: function(collaborator, container) {
-      return collaborator.first_name + ' ' + collaborator.last_name + '(' + collaborator.username + ')';
+      return collaborator.first_name + ' ' + collaborator.last_name + ' (' + collaborator.username + ')';
     }
   });
 });

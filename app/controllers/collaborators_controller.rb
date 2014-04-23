@@ -27,6 +27,7 @@ class CollaboratorsController < ApplicationController
   #
   def new
     @collaborator = CookbookCollaborator.new
+    render layout: false
   end
 
   #
