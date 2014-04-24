@@ -1,13 +1,33 @@
 <div class="cookbook_show_sidebar">
-  <%= link_to "Download Cookbook", download_cookbook_path(cookbook), class: 'button radius expand button_download_cookbook' %>
-  <h4 class="cookbook_show_sidebar_downloads">
-    <i class="fa fa-download"></i> <%= cookbook.download_count %> Total Downloads (API + Web)
-    <small><%= version.download_count %> Latest Version Downloads</small>
-  </h4>
+  <div class="owner_avatar">
+    <%= link_to owner do %>
+      <%= gravatar_for owner, size: 144 %>
+      <%= owner.username %>
+      <small><%= owner.name %></small>
+    <% end %>
+  </div>
+  <div class="collaborators_avatar">
+    <% collaborators.each do |collaborator| %>
+      <div>
+        <%= link_to gravatar_for(collaborator, size: 80), collaborator, title: collaborator.name %>
+        <% if policy(collaborator.collaborator_for_cookbook(cookbook)).destroy? %>
+          <%= link_to 'x', cookbook_collaborator_path(cookbook, collaborator), remote: true, method: :delete %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if policy(@owner_collaborator).create? %>
+      <div>
+        <%= link_to 'Add', new_cookbook_collaborator_path(cookbook), 'data-reveal-id' => 'collaborators', 'data-reveal-ajax' => true %>
+        <div id="collaborators" class="reveal-modal small" data-reveal>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
   <h3>
-    <%= link_to 'Edit', '#', class: 'button radius tiny right show-cookbook-urls-manage', rel: 'edit-cookbook-urls' %>
-    Cookbook Details
+    <%= link_to 'Edit', '#', class: 'button secondary radius tiny right show-cookbook-urls-manage', rel: 'edit-cookbook-urls' %>
+    Details
   </h3>
 
   <div class="cookbook-details">
@@ -31,11 +51,11 @@
 
     <div class="cookbook-urls">
       <% if cookbook.source_url.present? %>
-        <%= link_to 'View Source', cookbook.source_url, class: 'button radius tiny source-url' %>
+        <%= link_to 'View Source', cookbook.source_url, class: 'button secondary radius tiny source-url' %>
       <% end %>
 
       <% if cookbook.issues_url.present? %>
-        <%= link_to 'View Issues', cookbook.issues_url, class: 'button radius tiny issues-url' %>
+        <%= link_to 'View Issues', cookbook.issues_url, class: 'button secondary radius tiny issues-url' %>
       <% end %>
     </div>
 
@@ -62,31 +82,10 @@
     <h4><i class="fa fa-key"></i> License</h4>
     <p><%= version.license %></p>
 
-    <h3>Owner &amp; Collaborators</h3>
-    <div class="owner_avatar">
-      <%= link_to owner do %>
-        <%= gravatar_for owner, size: 144 %>
-        <%= owner.username %>
-        <small><%= owner.name %></small>
-      <% end %>
-    </div>
-    <div class="collaborators_avatar">
-      <% collaborators.each do |collaborator| %>
-        <div>
-          <%= link_to gravatar_for(collaborator, size: 80), collaborator, title: collaborator.name %>
-          <% if policy(collaborator.collaborator_for_cookbook(cookbook)).destroy? %>
-            <%= link_to 'x', cookbook_collaborator_path(cookbook, collaborator), remote: true, method: :delete %>
-          <% end %>
-        </div>
-      <% end %>
-
-      <% if policy(@owner_collaborator).create? %>
-        <div>
-          <%= link_to 'Add', new_cookbook_collaborator_path(cookbook), 'data-reveal-id' => 'collaborators', 'data-reveal-ajax' => true %>
-          <div id="collaborators" class="reveal-modal small" data-reveal>
-          </div>
-        </div>
-      <% end %>
-    </div>
+    <h4 class="cookbook_show_sidebar_downloads">
+      <i class="fa fa-download"></i> <%= version.download_count %> Latest Version Downloads
+      <small><%= cookbook.download_count %> Total Downloads</small>
+    </h4>
+    <%= link_to "Download Cookbook", download_cookbook_path(cookbook), class: 'button secondary radius expand button_download_cookbook' %>
   </div>
 </div>

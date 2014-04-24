@@ -540,17 +540,22 @@ input[type="search"].cookbook_search_textfield {
     font-size: rem-calc(18);
     margin: rem-calc(0 0 20 0);
   }
+}
 
-  pre {
-    color: $primary_blue;
-    padding: rem-calc(8 20);
-    font: {
-      size: rem-calc(16);
-      weight: $normal;
-    }
-    border: rem-calc(1) solid $cookbook_partial_sidebar;
-    cursor: text;
-    @include border-radius(rem-calc(3));
+pre {
+  color: $primary_blue;
+  padding: rem-calc(8 20);
+  font: {
+    size: rem-calc(16);
+    weight: $normal;
+  }
+  line-height: rem-calc(24);
+  border: rem-calc(1) solid $cookbook_partial_sidebar;
+  cursor: text;
+  @include border-radius(rem-calc(3));
+
+  .cookbook_show_content & {
+    margin-bottom: rem-calc(20);
   }
 }
 
@@ -762,12 +767,12 @@ input[type="search"].cookbook_search_textfield {
 
 .cookbook_show_content {
   @include grid-column($columns: 8);
-  padding: rem-calc(70);
+  padding: rem-calc(55);
 }
 
 .cookbook_show_sidebar {
   @include grid-column($columns: 4);
-  padding: rem-calc(70);
+  padding: rem-calc(55);
 
   .fa {
     color: $silver;
@@ -795,10 +800,6 @@ input[type="search"].cookbook_search_textfield {
     border-bottom: rem-calc(2) solid $clouds;
     padding-bottom: rem-calc(10);
     margin-bottom: rem-calc(25);
-  }
-
-  .cookbook_show_sidebar_downloads {
-    margin-bottom: rem-calc(96);
   }
 
   p {
@@ -839,7 +840,7 @@ input[type="search"].cookbook_search_textfield {
   color: $silver;
   display: block;
   font-size: rem-calc(18);
-  left: rem-calc(-57);
+  left: rem-calc(-48);
   padding: rem-calc(15);
   position: absolute;
   @include single-transition($speed: 100ms);
@@ -889,15 +890,6 @@ input[type="search"].cookbook_search_textfield {
   }
 }
 
-.button_download_cookbook {
-  background-color: $primary_orange;
-  margin: rem-calc(-5 0 40 0);
-
-  &:hover {
-    background-color: darken($primary_orange, 10%);
-  }
-}
-
 .button.show-cookbook-urls-manage {
   margin-top: rem-calc(-7);
   padding: rem-calc(7 10);
@@ -927,7 +919,6 @@ pre.prettyprint {
     size: rem-calc(18);
     weight: $bold;
   }
-  padding-top: rem-calc(15);
 
   .gravatar {
     float: left;
@@ -942,6 +933,10 @@ pre.prettyprint {
     }
     margin-top: rem-calc(5);
   }
+}
+
+.collaborators_avatar {
+  margin-bottom: rem-calc(20);
 }
 
 // Cookbook category color classes

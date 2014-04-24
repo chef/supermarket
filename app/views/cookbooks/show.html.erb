@@ -2,7 +2,6 @@
 <%= provide(:description, @cookbook.description) %>
 
 <div class="cookbook_show">
-  <%= render 'breadcrumbs', cookbook: @cookbook %>
   <%= render 'main', cookbook: @cookbook, version: @latest_version, cookbook_versions: @cookbook_versions %>
   <%= render 'sidebar', cookbook: @cookbook, version: @latest_version, supported_platforms: @supported_platforms, owner: @owner, collaborators: @collaborators %>
 </div>
