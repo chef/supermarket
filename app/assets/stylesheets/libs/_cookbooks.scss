@@ -858,10 +858,34 @@ input[type="search"].cookbook_search_textfield {
     size: rem-calc(10);
     weight: $bold;
   }
-  margin-top: rem-calc(3);
 
   .button {
-    margin-left: rem-calc(10);
+    padding: rem-calc(12 20 10);
+
+    i:before {
+      margin-right: rem-calc(5);
+    }
+
+    .cookbook_follow_count {
+      @include inline-block;
+      background-color: darken($primary-color, 5%);
+      @include border-radius(rem-calc(2));
+      color: $clouds;
+      font: {
+        size: rem-calc(10);
+        weight: $bold;
+      }
+      line-height: rem-calc(10);
+      margin: rem-calc(-2 -10 0 10);
+      padding: rem-calc(5 5 3);
+      @include single-transition($speed: 100ms);
+    }
+
+    &:hover {
+      .cookbook_follow_count {
+        background-color: darken($primary-color, 20%);
+      }
+    }
   }
 }
 

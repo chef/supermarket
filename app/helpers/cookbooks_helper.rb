@@ -41,21 +41,29 @@ module CookbooksHelper
   # @return [String] a link based on the following state for the current cookbook.
   #
   def follow_button_for(cookbook)
+    fa_icon = content_tag(:i, '', class: 'fa fa-users')
+    followers_count = cookbook.cookbook_followers_count.to_s
+    followers_count_span = content_tag(
+      :span, followers_count, class: 'cookbook_follow_count'
+    )
+    follow_html = fa_icon + 'Follow' + followers_count_span
+    unfollow_html = fa_icon + 'Unfollow' + followers_count_span
+
     unless current_user
       return link_to(
-        'Follow',
         follow_cookbook_path(cookbook),
         method: 'put',
         rel: 'sign-in-to-follow',
         class: 'button radius tiny follow',
         title: 'You must be signed in to follow a cookbook.',
         'data-tooltip' => true
-      )
+      ) do
+        follow_html
+      end
     end
 
     if cookbook.followed_by?(current_user)
       link_to(
-        'Unfollow',
         unfollow_cookbook_path(cookbook),
         method: 'delete',
         rel: 'unfollow',
@@ -63,10 +71,11 @@ module CookbooksHelper
         id: 'unfollow_cookbook',
         'data-cookbook' => cookbook.name,
         'data-disable-with' => 'Unfollowing'
-      )
+      ) do
+        unfollow_html
+      end
     else
       link_to(
-        'Follow',
         follow_cookbook_path(cookbook),
         method: 'put',
         rel: 'follow',
@@ -74,7 +83,9 @@ module CookbooksHelper
         id: 'follow_cookbook',
         'data-cookbook' => cookbook.name,
         'data-disable-with' => 'Following'
-      )
+      ) do
+        follow_html
+      end
     end
   end
 
