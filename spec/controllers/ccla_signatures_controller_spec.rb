@@ -139,8 +139,10 @@ describe CclaSignaturesController do
       end
 
       it 'sends a notification that the ccla has been signed' do
-        expect { post :create, ccla_signature: payload }
-        .to change(ActionMailer::Base.deliveries, :count).by(1)
+        Sidekiq::Testing.inline! do
+          expect { post :create, ccla_signature: payload }
+          .to change(ActionMailer::Base.deliveries, :count).by(1)
+        end
       end
 
       it "changes the user's commit author records to have signed a CLA" do

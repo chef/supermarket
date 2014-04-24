@@ -22,8 +22,9 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 # Load factories from FactoryGirl
 FactoryGirl.find_definitions
 
-# Run sidekiq jobs immediately so we may test the results
-Sidekiq::Testing.inline!
+# Treat Sidekiq like ActionMailer. In most cases, tests which queue jobs should
+# only care that the job was queued, and not care about the result.
+Sidekiq::Testing.fake!
 
 RSpec.configure do |config|
   # Include FactoryGirl mixin for syntax

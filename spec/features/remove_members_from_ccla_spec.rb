@@ -3,6 +3,7 @@ require 'spec_feature_helper'
 describe 'Removing members from a CCLA' do
   example 'admins can remove another admin' do
     sign_ccla_and_invite_admin_to('Acme')
+
     sign_out
 
     sign_in(create(:user))

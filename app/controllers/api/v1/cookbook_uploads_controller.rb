@@ -42,6 +42,8 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
       else
         @cookbook = cookbook
 
+        CookbookNotifyWorker.perform_async(@cookbook.id)
+
         SegmentIO.track_server_event(
           'cookbook_version_published',
           cookbook: @cookbook.name

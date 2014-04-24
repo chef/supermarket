@@ -66,10 +66,12 @@ describe OrganizationInvitationsController do
       end
 
       it 'sends the invitation' do
-        expect do
-          post :create, organization_id: organization.id,
-                        invitation: { email: 'chef@example.com' }
-        end.to change(ActionMailer::Base.deliveries, :size).by(1)
+        Sidekiq::Testing.inline! do
+          expect do
+            post :create, organization_id: organization.id,
+                          invitation: { email: 'chef@example.com' }
+          end.to change(ActionMailer::Base.deliveries, :size).by(1)
+        end
       end
 
       it 'displays an alert if the invitation did not save' do
@@ -149,15 +151,19 @@ describe OrganizationInvitationsController do
       before { auto_authorize!(Invitation, 'resend') }
 
       it 'resends the invitation' do
-        expect { patch :resend, organization_id: organization.id, id: invitation.token }
-        .to change(ActionMailer::Base.deliveries, :size).by(1)
+        Sidekiq::Testing.inline! do
+          expect { patch :resend, organization_id: organization.id, id: invitation.token }
+          .to change(ActionMailer::Base.deliveries, :size).by(1)
+        end
       end
     end
 
     context 'user is not authorized to resend Invitation' do
       it "doesn't resend the invitation" do
-        expect { patch :resend, organization_id: organization.id, id: invitation.token }
-        .to_not change(ActionMailer::Base.deliveries, :size).by(1)
+        Sidekiq::Testing.inline! do
+          expect { patch :resend, organization_id: organization.id, id: invitation.token }
+          .to_not change(ActionMailer::Base.deliveries, :size).by(1)
+        end
       end
 
       it 'responds with 404' do

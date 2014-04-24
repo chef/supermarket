@@ -125,7 +125,10 @@ module FeatureHelpers
     within '.new_invitation' do
       fill_in 'invitation_email', with: email
       check 'invitation_admin'
-      submit_form
+
+      Sidekiq::Testing.inline! do
+        submit_form
+      end
     end
 
     expect_to_see_success_message
@@ -136,7 +139,10 @@ module FeatureHelpers
 
     within '.new_invitation' do
       fill_in 'invitation_email', with: email
-      submit_form
+
+      Sidekiq::Testing.inline! do
+        submit_form
+      end
     end
 
     expect_to_see_success_message

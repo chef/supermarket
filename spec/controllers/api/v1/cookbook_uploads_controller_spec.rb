@@ -6,7 +6,7 @@ describe Api::V1::CookbookUploadsController do
       before do
         allow_any_instance_of(CookbookUpload).
           to receive(:finish).
-          and_yield([], double('Cookbook', name: 'cookbook'))
+          and_yield([], double('Cookbook', name: 'cookbook', id: 1))
       end
 
       it 'sends the cookbook to the view' do
@@ -19,6 +19,12 @@ describe Api::V1::CookbookUploadsController do
         post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
 
         expect(response.status.to_i).to eql(201)
+      end
+
+      it 'kicks off a CookbookNotifyWorker' do
+        expect do
+          post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+        end.to change(CookbookNotifyWorker.jobs, :size).by(1)
       end
     end
 
