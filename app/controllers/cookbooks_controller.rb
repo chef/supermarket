@@ -108,6 +108,8 @@ class CookbooksController < ApplicationController
   # NOTE: :id must be the name of the cookbook.
   #
   def update
+    authorize! @cookbook, :manage_cookbook_urls?
+
     @cookbook.update_attributes(cookbook_urls_params)
 
     redirect_to @cookbook

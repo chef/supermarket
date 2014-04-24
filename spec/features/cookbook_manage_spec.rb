@@ -1,11 +1,11 @@
 require 'spec_feature_helper'
 
 describe "updating a cookbook's issues and source urls" do
-  before { sign_in create(:user) }
+  let(:user) { create(:user) }
+  before { sign_in user }
 
   it 'saves the source and issues urls' do
-    owner = create(:user)
-    cookbook = create(:cookbook, owner: owner)
+    cookbook = create(:cookbook, owner: user)
 
     visit cookbook_path(cookbook)
 
@@ -21,8 +21,7 @@ describe "updating a cookbook's issues and source urls" do
   end
 
   it 'displays an error message when invalid urls are entered' do
-    owner = create(:user)
-    cookbook = create(:cookbook, owner: owner)
+    cookbook = create(:cookbook, owner: user)
 
     visit cookbook_path(cookbook)
 

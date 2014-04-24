@@ -129,8 +129,9 @@ describe CookbooksController do
   end
 
   describe 'PATCH #update' do
-    let(:cookbook) { create(:cookbook) }
-    before { sign_in create(:user) }
+    let(:user) { create(:user) }
+    let(:cookbook) { create(:cookbook, owner: user) }
+    before { sign_in user }
 
     context 'the params are valid' do
       it 'updates the cookbook' do
