@@ -26,28 +26,32 @@
   </div>
 
   <h3>
-    <%= link_to 'Edit', '#', class: 'button secondary radius tiny right show-cookbook-urls-manage', rel: 'edit-cookbook-urls' %>
+    <% if policy(cookbook).manage_cookbook_urls? %>
+      <%= link_to 'Edit', '#', class: 'button secondary radius tiny right show-cookbook-urls-manage', rel: 'edit-cookbook-urls' %>
+    <% end %>
     Details
   </h3>
 
   <div class="cookbook-details">
 
-    <div class="manage-cookbook-urls hide">
-      <%= form_for cookbook, data: { abide: true } do |f| %>
-        <div class="source-url-field">
-          <%= f.text_field :source_url, placeholder: 'Source URL: http://example.com', pattern: 'url' %>
-          <small class="error">Must be formatted as a URL.</small>
-        </div>
+    <% if policy(cookbook).manage_cookbook_urls? %>
+      <div class="manage-cookbook-urls hide">
+        <%= form_for cookbook, data: { abide: true } do |f| %>
+          <div class="source-url-field">
+            <%= f.text_field :source_url, placeholder: 'Source URL: http://example.com', pattern: 'url' %>
+            <small class="error">Must be formatted as a URL.</small>
+          </div>
 
-        <div class="issues-url-field">
-          <%= f.text_field :issues_url, placeholder: 'Issues URL: http://example.com', pattern: 'url' %>
-          <small class="error">Must be formatted as a URL.</small>
-        </div>
+          <div class="issues-url-field">
+            <%= f.text_field :issues_url, placeholder: 'Issues URL: http://example.com', pattern: 'url' %>
+            <small class="error">Must be formatted as a URL.</small>
+          </div>
 
-        <%= f.submit 'Save', class: 'button radius tiny submit-urls', data: { disable_with: 'Saving...' } %>
-        <a href="#" class="button radius tiny secondary cancel-submit-urls">Cancel</a>
-      <% end %>
-    </div>
+          <%= f.submit 'Save', class: 'button radius tiny submit-urls', data: { disable_with: 'Saving...' } %>
+          <a href="#" class="button radius tiny secondary cancel-submit-urls">Cancel</a>
+        <% end %>
+      </div>
+    <% end %>
 
     <div class="cookbook-urls">
       <% if cookbook.source_url.present? %>
