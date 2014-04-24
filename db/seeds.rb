@@ -127,9 +127,8 @@ if Rails.env.development?
     # that our seed data is realistically seeded.
     cookbook_version = cookbook.cookbook_versions.where(
       version: '0.1.0'
-    ).first_or_initialize(
+    ).first_or_create(
       license: 'MIT',
-      cookbook: cookbook,
       tarball: File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz'),
       readme: File.read('README.md'),
       readme_extension: 'md'

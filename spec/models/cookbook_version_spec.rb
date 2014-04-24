@@ -8,7 +8,6 @@ describe CookbookVersion do
   context 'validations' do
     it { should validate_presence_of(:license) }
     it { should validate_presence_of(:version) }
-    it { should validate_presence_of(:cookbook) }
     it { should validate_uniqueness_of(:version).scoped_to(:cookbook_id) }
 
     it 'seriously validates the uniqueness of cookbook version numbers' do
