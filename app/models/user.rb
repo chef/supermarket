@@ -263,4 +263,8 @@ class User < ActiveRecord::Base
 
     account.user
   end
+
+  def to_param
+    username
+  end
 end

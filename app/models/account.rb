@@ -13,4 +13,5 @@ class Account < ActiveRecord::Base
   # Scope
   # --------------------
   scope :for, ->(id) { where(provider: id) }
+  scope :with_username, ->(username) { where(username: username) }
 end
