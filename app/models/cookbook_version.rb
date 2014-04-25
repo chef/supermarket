@@ -25,7 +25,14 @@ class CookbookVersion < ActiveRecord::Base
     :tarball,
     presence: true,
     content_type: {
-      content_type: ['application/x-gzip', 'application/octet-stream']
+      content_type: ['application/x-gzip', 'application/gzip',
+                     'application/octet-stream', 'application/x-tar',
+                     'application/x-compressed-tar', 'application/x-gtar',
+                     'application/x-bzip2', 'application/gzipped-tar',
+                     'application/x-compressed', 'application/download',
+                     'application/x-gtar-compressed', 'application/zip',
+                     'application/x-bzip', 'application/x-zip-compressed',
+                     'application/cap', 'application/x-tar-gz']
     }
   )
 
