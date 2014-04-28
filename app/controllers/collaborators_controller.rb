@@ -1,15 +1,15 @@
 class CollaboratorsController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :create, :destroy]
-  before_filter :find_cookbook, only: [:new, :create, :destroy]
+  before_filter :authenticate_user!
+  before_filter :find_cookbook
   skip_before_filter :verify_authenticity_token, only: [:destroy]
 
   #
-  # GET /collaborators?q=jimmy
+  # GET /cookbooks/:cookbook_id/collaborators?q=jimmy
   #
   # Searches for someone by username.
   #
   def index
-    @collaborators = User.limit(20)
+    @collaborators = eligible_collaborators.limit(20)
 
     if params[:q]
       @collaborators = @collaborators.search(params[:q])
@@ -38,7 +38,7 @@ class CollaboratorsController < ApplicationController
   def create
     authorize!(@cookbook, :create_collaborator?)
     collaborator_params = params.require(:cookbook_collaborator).permit(:user_id)
-    users = User.where(id: collaborator_params[:user_id].split(','))
+    users = eligible_collaborators.where(id: collaborator_params[:user_id].split(','))
 
     users.each do |user|
       cookbook_collaborator = CookbookCollaborator.create! cookbook: @cookbook, user: user
@@ -79,5 +79,16 @@ class CollaboratorsController < ApplicationController
   #
   def find_cookbook
     @cookbook = Cookbook.with_name(params[:cookbook_id]).first!
+  end
+
+  #
+  # Finds eligible collaborators, namely users that are not the cookbook owner
+  # and are not already collaborators
+  #
+  # @return [Array<User>]
+  #
+  def eligible_collaborators
+    ineligible_users = [@cookbook.collaborators, @cookbook.owner].flatten
+    User.where('users.id NOT IN (?)', ineligible_users)
   end
 end

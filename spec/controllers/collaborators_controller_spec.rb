@@ -7,17 +7,22 @@ describe CollaboratorsController do
   let!(:cookbook) { create(:cookbook, owner: fanny) }
 
   describe 'GET #index' do
+    before do
+      sign_in fanny
+    end
+
     it 'returns all collaborators by default' do
-      get :index, format: :json
+      get :index, cookbook_id: cookbook.to_param, format: :json
       collaborators = assigns[:collaborators]
-      expect(collaborators.size).to eql(3)
-      expect(collaborators).to include(fanny)
+      expect(collaborators.size).to eql(2)
       expect(collaborators).to include(hank)
+      expect(collaborators).to include(hanky)
+      expect(collaborators).to_not include(fanny)
       expect(response).to be_success
     end
 
     it 'returns only collaborators matching the query string' do
-      get :index, q: 'hank', format: :json
+      get :index, cookbook_id: cookbook.to_param, q: 'hank', format: :json
       collaborators = assigns[:collaborators]
       expect(collaborators.size).to eql(2)
       expect(collaborators.first).to eql(hank)
@@ -53,6 +58,14 @@ describe CollaboratorsController do
           post :create, cookbook_id: cookbook.to_param, cookbook_collaborator: { user_id: hank.id }
         end.to_not change { CookbookCollaborator.count }
         expect(response.status).to eql(404)
+      end
+
+      it 'does not include the cookbook owner if the cookbook owner tries to add themselves as a contributor' do
+        sign_in fanny
+
+        expect do
+          post :create, cookbook_id: cookbook.to_param, cookbook_collaborator: { user_id: fanny.id }
+        end.to_not change { CookbookCollaborator.count }
       end
     end
 

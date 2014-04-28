@@ -5,7 +5,9 @@ $(document).on('opened', '[data-reveal]', function () {
     multiple: true,
     width: '80%',
     ajax: {
-      url: '/collaborators.json',
+      url: function () {
+        return $('#new_cookbook_collaborator').attr('action');
+      },
       dataType: 'json',
       quietMillis: 200,
       data: function (term, page) {
