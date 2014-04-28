@@ -48,7 +48,11 @@ class CclaSignaturesController < ApplicationController
   def create
     @ccla_signature = CclaSignature.new(ccla_signature_params)
 
-    if @ccla_signature.sign!
+    begin
+      @ccla_signature.sign!
+    rescue ActiveRecord::RecordInvalid
+      render 'new'
+    else
       if Supermarket::Config.cla_signature_notification_email.present?
         ClaSignatureMailer.delay.ccla_signature_notification_email(@ccla_signature)
       end
@@ -56,8 +60,6 @@ class CclaSignaturesController < ApplicationController
       Curry::CommitAuthorVerificationWorker.perform_async(current_user.id)
 
       redirect_to @ccla_signature, notice: 'Successfully signed CCLA.'
-    else
-      render 'new'
     end
   end
 
