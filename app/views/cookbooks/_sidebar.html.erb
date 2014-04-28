@@ -9,9 +9,9 @@
   <div class="collaborators_avatar">
     <% collaborators.each do |collaborator| %>
       <div>
-        <%= link_to gravatar_for(collaborator, size: 80), collaborator, title: collaborator.name %>
+        <%= link_to gravatar_for(collaborator, size: 80, show_name: true), collaborator, title: collaborator.name %>
         <% if policy(collaborator.collaborator_for_cookbook(cookbook)).destroy? %>
-          <%= link_to 'x', cookbook_collaborator_path(cookbook, collaborator), remote: true, method: :delete %>
+          <%= link_to ' - remove', cookbook_collaborator_path(cookbook, collaborator), remote: true, method: :delete %>
         <% end %>
       </div>
     <% end %>
