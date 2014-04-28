@@ -21,8 +21,10 @@ describe 'GET /api/v1/cookbooks/:cookbook' do
     end
 
     before do
-      share_cookbook('redis-test', custom_metadata: { version: '0.1.0' })
-      share_cookbook('redis-test', custom_metadata: { version: '0.2.0' })
+      user = create(:user)
+
+      share_cookbook('redis-test', user, custom_metadata: { version: '0.1.0' })
+      share_cookbook('redis-test', user, custom_metadata: { version: '0.2.0' })
 
       get json_body['uri']
     end

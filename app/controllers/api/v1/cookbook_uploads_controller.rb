@@ -5,6 +5,8 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
   before_filter :require_upload_params, only: :create
   before_filter :authenticate_user!
 
+  attr_reader :current_user
+
   #
   # POST /api/v1/cookbooks
   #
@@ -36,7 +38,9 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
   # @see CookbookUpload::Parameters
   #
   def create
-    cookbook_upload = CookbookUpload.new(upload_params)
+    cookbook_upload = CookbookUpload.new(current_user, upload_params)
+    authorize! cookbook_upload.cookbook
+
     cookbook_upload.finish do |errors, cookbook|
       if errors.any?
         error(
@@ -68,6 +72,8 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
   #
   def destroy
     @cookbook = Cookbook.with_name(params[:cookbook]).first!
+    authorize! @cookbook
+
     @latest_cookbook_version_url = api_v1_cookbook_version_url(
       @cookbook, @cookbook.latest_cookbook_version
     )
@@ -93,6 +99,13 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
     error(
       error_code: t('api.error_codes.authentication_failed'),
       error_messages: t('api.error_messages.authentication_request_error')
+    )
+  end
+
+  rescue_from NotAuthorizedError do |error|
+    error(
+      error_code: t('api.error_codes.unauthorized'),
+      error_messages: t('api.error_messages.unauthorized_error')
     )
   end
 

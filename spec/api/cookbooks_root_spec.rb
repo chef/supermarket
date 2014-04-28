@@ -37,8 +37,10 @@ describe 'GET /api/v1/cookbooks' do
     end
 
     before do
-      share_cookbook('redis-test')
-      share_cookbook('redisio-test')
+      user = create(:user)
+
+      share_cookbook('redis-test', user)
+      share_cookbook('redisio-test', user)
     end
 
     it 'returns a JSON template with the cookbooks' do

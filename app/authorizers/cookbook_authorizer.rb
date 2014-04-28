@@ -1,19 +1,43 @@
 class CookbookAuthorizer < Authorizer::Base
   #
+  # Owners and collaborators of a cookbook can publish new versions of a cookbook.
+  #
+  def create?
+    owner_or_collaborator?
+  end
+
+  #
+  # Owners of a cookbook can destroy a cookbook.
+  #
+  def destroy?
+    owner?
+  end
+
+  #
   # Owners of a cookbook are the only ones that can add collaborators.
   #
   # @return [Boolean]
   #
   def create_collaborator?
-    record.owner == user
+    owner?
   end
 
   #
-  # Owners and collaborators of a cookbook can manage the cookbook's urls
+  # Owners and collaborators of a cookbook can manage the cookbook's urls.
   #
   # @return [Boolean]
   #
   def manage_cookbook_urls?
-    record.owner == user || record.collaborators.include?(user)
+    owner_or_collaborator?
+  end
+
+  private
+
+  def owner?
+    record.owner == user
+  end
+
+  def owner_or_collaborator?
+    owner? || record.collaborators.include?(user)
   end
 end

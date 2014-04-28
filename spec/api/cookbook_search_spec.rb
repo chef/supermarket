@@ -20,8 +20,10 @@ describe 'GET /api/v1/search' do
   end
 
   before do
-    share_cookbook('redis-test')
-    share_cookbook('redisio-test')
+    user = create(:user)
+
+    share_cookbook('redis-test', user)
+    share_cookbook('redisio-test', user)
   end
 
   it 'returns a 200' do

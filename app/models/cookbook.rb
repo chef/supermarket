@@ -100,8 +100,8 @@ class Cookbook < ActiveRecord::Base
   end
 
   #
-  # Saves a new version of the cookbook as specified by the given metadata and
-  # tarball
+  # Saves a new version of the cookbook as specified by the given metadata, tarball
+  # and readme. If it's a new cookbook the user specified becomes the owner.
   #
   # @raise [ActiveRecord::RecordInvalid] if the new version fails validation
   # @raise [ActiveRecord::RecordNotUnique] if the new version is a duplicate of
@@ -111,6 +111,7 @@ class Cookbook < ActiveRecord::Base
   #
   # @param metadata [CookbookUpload::Metadata] the cookbook metadata
   # @param tarball [File] the cookbook artifact
+  # @param readme [File] the cookbook readme
   #
   def publish_version!(metadata, tarball, readme)
     dependency_names = metadata.dependencies.keys
