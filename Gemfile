@@ -28,7 +28,7 @@ gem 'validate_url'
 gem 'chef', require: false
 gem 'aws-sdk'
 
-gem 'sentry-raven', github: 'getsentry/raven-ruby', require: false
+gem 'sentry-raven', '~> 0.8.0', require: false
 gem 'statsd-ruby', require: 'statsd'
 gem 'analytics-ruby', require: false
 
