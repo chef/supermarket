@@ -1,6 +1,10 @@
 require 'cookbook_upload'
+require 'mixlib/authentication/signatureverification'
 
 class Api::V1::CookbookUploadsController < Api::V1Controller
+  before_filter :require_upload_params, only: :create
+  before_filter :authenticate_user!
+
   #
   # POST /api/v1/cookbooks
   #
@@ -54,6 +58,30 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
     end
   end
 
+  #
+  # DELETE /api/v1/cookbooks/:cookbook
+  #
+  # Destroys the specified cookbook. If it does not exist, return a 404.
+  #
+  # @example
+  #   DELETE /api/v1/cookbooks/redis
+  #
+  def destroy
+    @cookbook = Cookbook.with_name(params[:cookbook]).first!
+    @latest_cookbook_version_url = api_v1_cookbook_version_url(
+      @cookbook, @cookbook.latest_cookbook_version
+    )
+
+    @cookbook.destroy
+
+    if @cookbook.destroyed?
+      SegmentIO.track_server_event(
+        'cookbook_deleted',
+        cookbook: @cookbook.name
+      )
+    end
+  end
+
   rescue_from ActionController::ParameterMissing do |e|
     error(
       error_code: t('api.error_codes.invalid_data'),
@@ -61,10 +89,17 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
     )
   end
 
+  rescue_from Mixlib::Authentication::AuthenticationError do |e|
+    error(
+      error_code: t('api.error_codes.authentication_failed'),
+      error_messages: t('api.error_messages.authentication_request_error')
+    )
+  end
+
   private
 
-  def error(body)
-    render json: body, status: 400
+  def error(body, status = 400)
+    render json: body, status: status
   end
 
   #
@@ -80,5 +115,44 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
       cookbook: params.require(:cookbook),
       tarball: params.require(:tarball)
     }
+  end
+
+  alias_method :require_upload_params, :upload_params
+
+  #
+  # Finds a user specified in the request header or renders an error if
+  # the user doesn't exist. Then attempts to authorize the signed request
+  # against the users public key or renders an error if it fails.
+  #
+  def authenticate_user!
+    username = request.headers['X-Ops-Userid']
+    user = Account.for('chef_oauth2').where(username: username).first.try(:user)
+
+    unless user
+      return error(
+        {
+          error_code: t('api.error_codes.authentication_failed'),
+          error_messages: t('api.error_messages.invalid_username', username: username)
+        },
+        401
+      )
+    end
+
+    auth = Mixlib::Authentication::SignatureVerification.new.authenticate_user_request(
+      request,
+      OpenSSL::PKey::RSA.new(user.public_key)
+    )
+
+    if auth
+      @current_user = user
+    else
+      error(
+        {
+          error_code: t('api.error_codes.authentication_failed'),
+          error_messages: t('api.error_messages.authentication_key_error')
+        },
+        401
+      )
+    end
   end
 end
