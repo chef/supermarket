@@ -28,10 +28,10 @@
       </div>
       <div class="cookbook_partial_sidebar_urls">
         <% if cookbook.source_url.present? %>
-          <%= link_to 'View Source', cookbook.source_url %>
+          <%= link_to 'View Source', cookbook.source_url, class: 'button tiny secondary radius' %>
         <% end %>
         <% if cookbook.issues_url.present? %>
-          <%= link_to 'View Issues', cookbook.issues_url %>
+          <%= link_to 'View Issues', cookbook.issues_url, class: 'button tiny secondary radius' %>
         <% end %>
       </div>
     </div>

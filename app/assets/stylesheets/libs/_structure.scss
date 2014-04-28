@@ -37,6 +37,18 @@ body {
   }
 }
 
+@media #{$mobile-only} {
+  .page {
+    padding: rem-calc(20);
+  }
+}
+
+@media #{$small-only} {
+  .page {
+    padding: rem-calc(20);
+  }
+}
+
 .footer {
   color: #999;
   font-size: rem-calc(11);

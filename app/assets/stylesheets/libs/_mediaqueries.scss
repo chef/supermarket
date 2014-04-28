@@ -2,24 +2,3 @@
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 
 }
-
-@media #{$mobile-only} {
-  .page { padding: rem-calc(20); }
-  .alert-box .close { margin-top: rem-calc(-17); }
-  .footer { margin-top: rem-calc(40); padding: rem-calc(20 0); }
-}
-
-@media #{$small-only} {
-  .page { padding: rem-calc(40 70 70); }
-  .alert-box .close { margin-top: rem-calc(-17); }
-  .footer { margin-top: rem-calc(40); padding: rem-calc(20 0); }
-}
-
-@media #{$medium-only} {
-  .page { padding: rem-calc(40 70 70); }
-  .alert-box .close { margin-top: rem-calc(-14); }
-}
-
-@media #{$xlarge-up} {
-  .globalheader, .container { max-width: rem-calc(1280); }
-}
