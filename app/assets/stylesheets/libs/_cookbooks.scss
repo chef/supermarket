@@ -1095,7 +1095,37 @@ pre {
 }
 
 .collaborators_avatar {
+  @include clearfix;
   margin-bottom: rem-calc(20);
+
+  img {
+    display: block;
+  }
+
+  a {
+    color: $asbestos;
+    display: block;
+    float: left;
+    margin: rem-calc(0 10 10 0);
+
+    &:visited {
+      color: $asbestos;
+    }
+
+    &.fa {
+      color: $asbestos;
+      float: none;
+      margin: 0;
+
+      &:before {
+        margin-right: rem-calc(5);
+      }
+    }
+  }
+}
+
+.addcontributor {
+  margin-bottom: rem-calc(40);
 }
 
 // Cookbook category color classes

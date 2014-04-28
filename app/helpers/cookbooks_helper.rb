@@ -1,5 +1,21 @@
 module CookbooksHelper
   #
+  # Determine whether or not the user has permission to transfer ownership or
+  # destroy the cookbook and yield those values to the block.
+  #
+  # @param cookbook [Cookbook]
+  # @param collaborator [User]
+  #
+  # @yieldparam transfer [Boolean] permission to transfer ownership
+  # @yieldparam destroy [Boolean] permission to destroy
+  #
+  def collaboration_permissions_for(cookbook, collaborator)
+    transfer = policy(collaborator.collaborator_for_cookbook(cookbook)).transfer?
+    destroy = policy(collaborator.collaborator_for_cookbook(cookbook)).destroy?
+    yield transfer, destroy
+  end
+
+  #
   # If we have a linked cookbook for this dependency, allow the user to get to
   # it. Otherwise, just show the name
   #

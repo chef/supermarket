@@ -1,15 +1,17 @@
 class CollaboratorsController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :create, :destroy]
-  before_filter :find_cookbook, only: [:new, :create, :destroy]
+  before_filter :authenticate_user!
+  before_filter :find_cookbook
+  before_filter :find_user, only: [:destroy, :transfer]
+  before_filter :find_cookbook_collaborator, only: [:destroy, :transfer]
   skip_before_filter :verify_authenticity_token, only: [:destroy]
 
   #
-  # GET /collaborators?q=jimmy
+  # GET /cookbooks/:cookbook_id/collaborators?q=jimmy
   #
   # Searches for someone by username.
   #
   def index
-    @collaborators = User.limit(20)
+    @collaborators = eligible_collaborators.limit(20)
 
     if params[:q]
       @collaborators = @collaborators.search(params[:q])
@@ -38,7 +40,7 @@ class CollaboratorsController < ApplicationController
   def create
     authorize!(@cookbook, :create_collaborator?)
     collaborator_params = params.require(:cookbook_collaborator).permit(:user_id)
-    users = User.where(id: collaborator_params[:user_id].split(','))
+    users = eligible_collaborators.where(id: collaborator_params[:user_id].split(','))
 
     users.each do |user|
       cookbook_collaborator = CookbookCollaborator.create! cookbook: @cookbook, user: user
@@ -56,17 +58,31 @@ class CollaboratorsController < ApplicationController
   def destroy
     respond_to do |format|
       format.js do
-        user = User.find(params[:id])
-        cookbook_collaborator = CookbookCollaborator.with_cookbook_and_user(@cookbook, user)
-
-        if cookbook_collaborator.nil?
+        if @cookbook_collaborator.nil?
           head :not_found
         else
-          authorize!(cookbook_collaborator)
-          cookbook_collaborator.destroy
+          authorize!(@cookbook_collaborator)
+          @cookbook_collaborator.destroy
           head :ok
         end
       end
+    end
+  end
+
+  #
+  # PUT /cookbooks/:cookbook_id/collaborators/:id/transfer
+  #
+  # Transfers ownership of the cookbook to a collaborator, thereby demoting the
+  # owner to a collaborator.
+  #
+  def transfer
+    if @cookbook_collaborator.nil?
+      not_found!
+    else
+      authorize!(@cookbook_collaborator)
+      @cookbook_collaborator.transfer_ownership
+
+      redirect_to cookbook_path(@cookbook), notice: 'Owner changed'
     end
   end
 
@@ -79,5 +95,34 @@ class CollaboratorsController < ApplicationController
   #
   def find_cookbook
     @cookbook = Cookbook.with_name(params[:cookbook_id]).first!
+  end
+
+  #
+  # Find a user from the +id+ param
+  #
+  # @return [User]
+  #
+  def find_user
+    @user = User.with_username(params[:id]).first
+  end
+
+  #
+  # Find the CookbookCollaborator from an existing Cookbook and User
+  #
+  # @return [CookbookCollaborator]
+  #
+  def find_cookbook_collaborator
+    @cookbook_collaborator = CookbookCollaborator.with_cookbook_and_user(@cookbook, @user)
+  end
+
+  #
+  # Finds eligible collaborators, namely users that are not the cookbook owner
+  # and are not already collaborators
+  #
+  # @return [Array<User>]
+  #
+  def eligible_collaborators
+    ineligible_users = [@cookbook.collaborators, @cookbook.owner].flatten
+    User.where('users.id NOT IN (?)', ineligible_users)
   end
 end
