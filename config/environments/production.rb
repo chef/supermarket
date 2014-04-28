@@ -92,4 +92,9 @@ Supermarket::Application.configure do
   else
     config.action_mailer.delivery_method = :sendmail
   end
+
+  # Configure Paperclip storage options
+  if Supermarket::Config.s3
+    config.paperclip_defaults = { storage: 's3', s3_credentials: Supermarket::Config.s3 }
+  end
 end
