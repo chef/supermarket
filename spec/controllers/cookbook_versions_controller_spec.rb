@@ -64,11 +64,9 @@ describe CookbookVersionsController do
     end
 
     it "provides the cookbook's maintainer to the view" do
-      create(:user) # TODO: replace with real maintainer
-
       get :show, cookbook_id: cookbook.name, version: version.version
 
-      expect(assigns(:maintainer)).to_not be_nil
+      expect(assigns(:owner)).to_not be_nil
     end
 
     it "provides the cookbook's collaborators to the view" do

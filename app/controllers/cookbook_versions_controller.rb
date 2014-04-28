@@ -26,9 +26,10 @@ class CookbookVersionsController < ApplicationController
   #
   def show
     @cookbook_versions = @cookbook.cookbook_versions
-    @maintainer = User.first
-    @collaborators = [User.first]
+    @owner = @cookbook.owner
+    @collaborators = @cookbook.collaborators
     @supported_platforms = @version.supported_platforms
+    @owner_collaborator = CookbookCollaborator.new cookbook: @cookbook, user: @owner
   end
 
   private
