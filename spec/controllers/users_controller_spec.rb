@@ -5,7 +5,7 @@ describe UsersController do
 
   describe 'GET #show' do
     it 'assigns a user' do
-      get :show, id: user.id
+      get :show, id: user.username
 
       expect(assigns[:user]).to eql(user)
     end
