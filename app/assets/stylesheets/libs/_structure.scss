@@ -2,7 +2,11 @@
 html, body { height: 100%; min-height: 100%; }
 
 @media #{$mobile-only} {
-  html, body { font-size: 62.5%; }
+  html, body { font-size: 70%; }
+}
+
+@media #{$small-only} {
+  html, body { font-size: 70%; }
 }
 
 @media #{$medium-only} {
@@ -30,6 +34,18 @@ body {
 
   &.nobg {
     background-color: transparent;
+  }
+}
+
+@media #{$mobile-only} {
+  .page {
+    padding: rem-calc(20);
+  }
+}
+
+@media #{$small-only} {
+  .page {
+    padding: rem-calc(20);
   }
 }
 

@@ -29,10 +29,21 @@
 
 @media #{$mobile-only} {
   .cookbook_search {
-    margin-bottom: rem-calc(20);
-    padding: rem-calc(32 55);
+    padding: rem-calc(32 20 30);
 
     .fa {
+      left: rem-calc(41);
+      top: rem-calc(51);
+    }
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_search {
+    padding: rem-calc(32 20 15);
+
+    .fa {
+      left: rem-calc(41);
       top: rem-calc(51);
     }
   }
@@ -418,6 +429,18 @@ input[type="search"].cookbook_search_textfield {
   }
 }
 
+@media #{$mobile-only} {
+  .cookbook_content_heading {
+    margin: rem-calc(0 0 20 0);
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_content_heading {
+    margin: rem-calc(0 0 20 0);
+  }
+}
+
 .versions_count {
   color: darken($primary_gray, 10%);
   font: {
@@ -542,17 +565,31 @@ input[type="search"].cookbook_search_textfield {
   }
 }
 
+@media #{$mobile-only} {
+  .cookbook_partial_content {
+    @include grid-column($columns: 12, $collapse: true);
+    padding: rem-calc(20 30 30);
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_partial_content {
+    @include grid-column($columns: 12, $collapse: true);
+    padding: rem-calc(20 30 30);
+  }
+}
+
 pre {
-  color: $primary_blue;
-  padding: rem-calc(8 20);
+  background-color: darken($primary_blue, 5%);
+  @include border-radius(rem-calc(3));
+  color: $silver;
+  cursor: text;
   font: {
     size: rem-calc(16);
     weight: $normal;
   }
   line-height: rem-calc(24);
-  border: rem-calc(1) solid $cookbook_partial_sidebar;
-  cursor: text;
-  @include border-radius(rem-calc(3));
+  padding: rem-calc(8 20);
 
   .cookbook_show_content & {
     margin-bottom: rem-calc(20);
@@ -588,6 +625,7 @@ pre {
   }
 
   .cookbook_partial_sidebar_urls a {
+    background-color: transparent;
     color: $concrete;
     @include inline-block;
     font: rem-calc(12) $accent_font;
@@ -601,13 +639,104 @@ pre {
     }
 
     &:hover {
+      background-color: transparent;
       color: lighten($concrete, 10%);
       text-decoration: none;
     }
   }
 }
 
+@media #{$mobile-only} {
+  .cookbook_partial_sidebar {
+    border-bottom: 1px solid $cookbook_border;
+    @include grid-column($columns: 12, $collapse: true);
+    padding: rem-calc(20 30);
+    text-align: left;
 
+    .cookbook_owner {
+      @include grid-column($columns: 3, $collapse: true);
+
+      .gravatar {
+        @include inline-block;
+        margin: rem-calc(0 10 0 0);
+      }
+
+      h5 {
+        @include inline-block;
+        margin: 0;
+      }
+    }
+
+    .cookbook_partial_sidebar_urls {
+      @include grid-column($columns: 9, $collapse: true);
+
+      a {
+        background-color: darken($cookbook_partial_sidebar, 20%);
+        color: white;
+        float: right;
+        font-size: rem-calc(16);
+        margin: rem-calc(13 0 0 20);
+        padding: rem-calc(10 20);
+        text-decoration: none;
+
+        &:hover {
+          background-color: darken($cookbook_partial_sidebar, 10%);
+          color: white;
+        }
+      }
+    }
+  }
+
+  .cookbook_footer {
+    display: none;
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_partial_sidebar {
+    border-bottom: 1px solid $cookbook_border;
+    @include grid-column($columns: 12, $collapse: true);
+    padding: rem-calc(20 30);
+    text-align: left;
+
+    .cookbook_owner {
+      @include grid-column($columns: 3, $collapse: true);
+
+      .gravatar {
+        @include inline-block;
+        margin: rem-calc(0 10 0 0);
+      }
+
+      h5 {
+        @include inline-block;
+        margin: 0;
+      }
+    }
+
+    .cookbook_partial_sidebar_urls {
+      @include grid-column($columns: 9, $collapse: true);
+
+      a {
+        background-color: darken($cookbook_partial_sidebar, 20%);
+        color: white;
+        float: right;
+        font-size: rem-calc(16);
+        margin: rem-calc(13 0 0 20);
+        padding: rem-calc(10 20);
+        text-decoration: none;
+
+        &:hover {
+          background-color: darken($cookbook_partial_sidebar, 10%);
+          color: white;
+        }
+      }
+    }
+  }
+
+  .cookbook_footer {
+    display: none;
+  }
+}
 
 .cookbook_footer {
   background-color: $cookbook_partial_sidebar_footer;
@@ -678,15 +807,13 @@ pre {
 
 @media #{$mobile-only} {
   .cookbook_dates {
-    display: block;
-    margin-top: rem-calc(5);
+    display: none;
   }
 }
 
 @media #{$small-only} {
   .cookbook_dates {
-    display: block;
-    margin-top: rem-calc(5);
+    display: none;
   }
 }
 
@@ -765,9 +892,37 @@ pre {
   z-index: 1;
 }
 
+@media #{$mobile-only} {
+  .cookbook_show {
+    background-image: none;
+    background-color: white;
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_show {
+    background-image: none;
+    background-color: white;
+  }
+}
+
 .cookbook_show_content {
   @include grid-column($columns: 8);
   padding: rem-calc(55);
+}
+
+@media #{$mobile-only} {
+  .cookbook_show_content {
+    @include grid-column($columns: 12);
+    padding: rem-calc(55);
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_show_content {
+    @include grid-column($columns: 12);
+    padding: rem-calc(55 55 10 55);
+  }
 }
 
 .cookbook_show_sidebar {
@@ -819,6 +974,20 @@ pre {
     @include border-radius(rem-calc(40));
     height: rem-calc(40);
     width: rem-calc(40);
+  }
+}
+
+@media #{$mobile-only} {
+  .cookbook_show_sidebar {
+    @include grid-column($columns: 12);
+    padding: rem-calc(0 55 55);
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_show_sidebar {
+    @include grid-column($columns: 12);
+    padding: rem-calc(0 55 55);
   }
 }
 
@@ -901,16 +1070,6 @@ pre {
 
 .manage-cookbook-urls {
   padding-bottom: rem-calc(40);
-}
-
-pre.prettyprint {
-  background-color: darken($primary_blue, 5%);
-  @include border-radius(rem-calc(3));
-  color: $silver;
-  font-size: rem-calc(12);
-  margin-bottom: rem-calc(20);
-  padding: rem-calc(15 20);
-  width: 100%;
 }
 
 .owner_avatar {

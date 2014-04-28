@@ -52,27 +52,41 @@
   h1 {
     border: 0;
     color: $body-font-color;
+    font-size: rem-calc(36);
     margin: rem-calc(0 0 30 0);
     padding: 0;
   }
 
   h2 {
     color: $body-font-color;
-    margin: rem-calc(0 0 24 0);
+    font-size: rem-calc(30);
+    margin: rem-calc(48 0 24 0);
   }
 
   h3 {
     color: $body-font-color;
-    margin: rem-calc(0 0 16 0);
+    font-size: rem-calc(24);
+    margin: rem-calc(32 0 16 0);
   }
 
   h4 {
     color: $body-font-color;
-    margin: rem-calc(0 0 14 0);
+    font-size: rem-calc(18);
+    margin: rem-calc(24 0 14 0);
+  }
+
+  p {
+    margin-bottom: rem-calc(32);
   }
 
   code {
-    color: $primary_gray;
+    color: $secondary_red;
+    font-weight: $normal;
+  }
+
+  pre code {
+    color: $silver;
+    font-weight: $normal;
   }
 
   table {

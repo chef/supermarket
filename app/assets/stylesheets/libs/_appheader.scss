@@ -161,6 +161,18 @@
   }
 }
 
+@media #{$mobile-only} {
+  .usermenu {
+    margin-right: rem-calc(-30);
+  }
+}
+
+@media #{$small-only} {
+  .usermenu {
+    margin-right: rem-calc(-30);
+  }
+}
+
 .appnav .userdropdown {
   background-color: white;
   @include border-bottom-radius(rem-calc(5));
