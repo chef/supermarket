@@ -57,6 +57,4 @@ describe 'api/v1/cookbook_versions/show' do
     expect(file_url.relative?).to eql(false)
     expect(file_url.to_s).to include('cookbooks/redis/versions/1_2_0/download')
   end
-
-  it "displays the cookbook version's average rating"
 end

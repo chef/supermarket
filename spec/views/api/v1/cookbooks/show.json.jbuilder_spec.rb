@@ -130,7 +130,4 @@ describe 'api/v1/cookbooks/show' do
     expect(DateTime.parse(json_body['created_at']).to_i).
       to be_within(1).of(cookbook.created_at.to_i)
   end
-
-  # TODO: add this when ratings are implemented
-  it "displays the cookbook's average rating"
 end
