@@ -38,9 +38,8 @@ class CclaSignature < ActiveRecord::Base
 
   #
   # Creates an associated organization and an admin contributor for said
-  # organization then saves the signature.
-  #
-  # @return [Boolean]
+  # organization then saves the signature. Raises an exception and rolls
+  # the database back if any record is unable to save.
   #
   def sign!
     transaction do

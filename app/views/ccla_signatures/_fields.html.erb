@@ -22,7 +22,8 @@
 <fieldset class="contact">
   <legend>Contact</legend>
   <div class="company-field">
-    <%= f.text_field :company, placeholder: 'Company', title: 'Company' %>
+    <%= f.text_field :company, placeholder: 'Company *', title: 'Company', required: '' %>
+    <small class="error">Company is required.</small>
   </div>
   <div class="phone-field">
     <%= f.telephone_field :phone, placeholder: 'Phone *', title: 'Phone', required: '', pattern: 'alpha_numeric' %>
