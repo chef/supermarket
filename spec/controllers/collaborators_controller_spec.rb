@@ -78,7 +78,7 @@ describe CollaboratorsController do
         sign_in fanny
 
         expect do
-          delete :destroy, cookbook_id: cookbook.to_param, id: hank.id , format: :js
+          delete :destroy, cookbook_id: cookbook.to_param, id: hank, format: :js
         end.to change { CookbookCollaborator.count }.by(-1)
         expect(response).to be_success
       end
@@ -87,7 +87,7 @@ describe CollaboratorsController do
         sign_in hank
 
         expect do
-          delete :destroy, cookbook_id: cookbook.to_param, id: hank.id, format: :js
+          delete :destroy, cookbook_id: cookbook.to_param, id: hank, format: :js
         end.to change { CookbookCollaborator.count }.by(-1)
         expect(response).to be_success
       end
@@ -96,7 +96,7 @@ describe CollaboratorsController do
         sign_in hanky
 
         expect do
-          delete :destroy, cookbook_id: cookbook.to_param, id: hank.id, format: :js
+          delete :destroy, cookbook_id: cookbook.to_param, id: hank, format: :js
         end.to_not change { CookbookCollaborator.count }
         expect(response).to_not be_success
       end
@@ -105,7 +105,7 @@ describe CollaboratorsController do
         sign_in fanny
 
         expect do
-          delete :destroy, cookbook_id: cookbook.to_param, id: hanky.id, format: :js
+          delete :destroy, cookbook_id: cookbook.to_param, id: hanky, format: :js
         end.to_not change { CookbookCollaborator.count }
         expect(response).to_not be_success
       end
@@ -115,7 +115,7 @@ describe CollaboratorsController do
         sign_in fanny
 
         expect do
-          delete :destroy, cookbook_id: redis.to_param, id: hank.id, format: :js
+          delete :destroy, cookbook_id: redis.to_param, id: hank, format: :js
         end.to_not change { CookbookCollaborator.count }
         expect(response).to_not be_success
       end

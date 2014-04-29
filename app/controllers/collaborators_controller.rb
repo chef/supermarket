@@ -56,7 +56,7 @@ class CollaboratorsController < ApplicationController
   def destroy
     respond_to do |format|
       format.js do
-        user = User.find(params[:id])
+        user = User.with_username(params[:id]).first
         cookbook_collaborator = CookbookCollaborator.with_cookbook_and_user(@cookbook, user)
 
         if cookbook_collaborator.nil?
