@@ -18,10 +18,6 @@ class User < ActiveRecord::Base
   # --------------------
   validates_presence_of :email
 
-  # Scope
-  # --------------------
-  scope :with_email, ->(email) { where(email: email) }
-
   # Search
   # --------------------
   pg_search_scope(

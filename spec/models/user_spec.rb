@@ -321,14 +321,4 @@ describe User do
       end
     end
   end
-
-  describe '.with_email' do
-    it 'finds users with the given email address' do
-      user = create(:user, email: 'with_email@example.com')
-      user2 = create(:user, email: 'with_email2@example.com')
-
-      expect(User.with_email('with_email@example.com')).to include(user)
-      expect(User.with_email('with_email@example.com')).to_not include(user2)
-    end
-  end
 end
