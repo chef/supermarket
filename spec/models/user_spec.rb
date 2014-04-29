@@ -280,7 +280,7 @@ describe User do
       end
 
       it "sets the user's public key, name, and email" do
-        user = User.find_or_create_from_chef_oauth(auth)
+        user = User.find_or_create_from_chef_oauth(auth).reload
 
         expect(user.public_key).to eql(auth['info']['public_key'])
         expect(user.first_name).to eql(auth['info']['first_name'])
@@ -288,8 +288,18 @@ describe User do
         expect(user.email).to eql(auth['info']['email'])
       end
 
+      it "sets the chef account's oauth information" do
+        user = User.find_or_create_from_chef_oauth(auth).reload
+        account = user.chef_account
+
+        expect(account.username).to eql(auth['info']['username'])
+        expect(account.uid).to eql(auth['uid'])
+        expect(account.oauth_token).to eql(auth['credentials']['token'])
+        expect(user.email).to eql(auth['info']['email'])
+      end
+
       it 'ties the user and account together' do
-        user = User.find_or_create_from_chef_oauth(auth)
+        user = User.find_or_create_from_chef_oauth(auth).reload
 
         expect(user.accounts.reload.count).to eql(1)
       end
@@ -313,11 +323,25 @@ describe User do
           auth[:info][:public_key] = 'ssh-rsa blahblahblah'
         end
 
-        user = User.find_or_create_from_chef_oauth(new_auth)
+        user = User.find_or_create_from_chef_oauth(new_auth).reload
 
         expect(user.first_name).to eql('Sous')
         expect(user.last_name).to eql('Chef')
         expect(user.public_key).to eql('ssh-rsa blahblahblah')
+      end
+
+      it "updates the chef account's oauth information" do
+        new_auth = auth.dup.tap do |auth|
+          auth[:credentials][:token] = 'cool_token'
+        end
+
+        user = User.find_or_create_from_chef_oauth(new_auth).reload
+        account = user.chef_account
+
+        expect(account.username).to eql(auth['info']['username'])
+        expect(account.uid).to eql(auth['uid'])
+        expect(account.oauth_token).to eql('cool_token')
+        expect(user.email).to eql(auth['info']['email'])
       end
     end
   end
