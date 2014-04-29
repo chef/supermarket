@@ -279,12 +279,13 @@ describe User do
         end.to change(User, :count).by(1)
       end
 
-      it "sets the user's public key and name" do
+      it "sets the user's public key, name, and email" do
         user = User.find_or_create_from_chef_oauth(auth)
 
         expect(user.public_key).to eql(auth['info']['public_key'])
         expect(user.first_name).to eql(auth['info']['first_name'])
         expect(user.last_name).to eql(auth['info']['last_name'])
+        expect(user.email).to eql(auth['info']['email'])
       end
 
       it 'ties the user and account together' do
