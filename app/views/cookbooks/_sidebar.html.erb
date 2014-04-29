@@ -13,6 +13,9 @@
         <% if policy(collaborator.collaborator_for_cookbook(cookbook)).destroy? %>
           <%= link_to ' - remove', cookbook_collaborator_path(cookbook, collaborator), remote: true, method: :delete %>
         <% end %>
+        <% if policy(collaborator.collaborator_for_cookbook(cookbook)).transfer_ownership? %>
+          <%= link_to ' | transfer', transfer_cookbook_collaborator_path(cookbook, collaborator), method: :put %>
+        <% end %>
       </div>
     <% end %>
 

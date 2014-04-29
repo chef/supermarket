@@ -1,6 +1,8 @@
 class CollaboratorsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_cookbook
+  before_filter :find_user, only: [:destroy, :transfer]
+  before_filter :find_cookbook_collaborator, only: [:destroy, :transfer]
   skip_before_filter :verify_authenticity_token, only: [:destroy]
 
   #
@@ -56,17 +58,31 @@ class CollaboratorsController < ApplicationController
   def destroy
     respond_to do |format|
       format.js do
-        user = User.with_username(params[:id]).first
-        cookbook_collaborator = CookbookCollaborator.with_cookbook_and_user(@cookbook, user)
-
-        if cookbook_collaborator.nil?
+        if @cookbook_collaborator.nil?
           head :not_found
         else
-          authorize!(cookbook_collaborator)
-          cookbook_collaborator.destroy
+          authorize!(@cookbook_collaborator)
+          @cookbook_collaborator.destroy
           head :ok
         end
       end
+    end
+  end
+
+  #
+  # PUT /cookbooks/:cookbook_id/collaborators/:id/transfer
+  #
+  # Transfers ownership of the cookbook to a collaborator, thereby demoting the
+  # owner to a collaborator.
+  #
+  def transfer
+    if @cookbook_collaborator.nil?
+      not_found!
+    else
+      authorize!(@cookbook_collaborator)
+      @cookbook_collaborator.transfer_ownership
+
+      redirect_to cookbook_path(@cookbook), notice: 'Owner changed'
     end
   end
 
@@ -79,6 +95,24 @@ class CollaboratorsController < ApplicationController
   #
   def find_cookbook
     @cookbook = Cookbook.with_name(params[:cookbook_id]).first!
+  end
+
+  #
+  # Find a user from the +id+ param
+  #
+  # @return [User]
+  #
+  def find_user
+    @user = User.with_username(params[:id]).first
+  end
+
+  #
+  # Find the CookbookCollaborator from an existing Cookbook and User
+  #
+  # @return [CookbookCollaborator]
+  #
+  def find_cookbook_collaborator
+    @cookbook_collaborator = CookbookCollaborator.with_cookbook_and_user(@cookbook, @user)
   end
 
   #

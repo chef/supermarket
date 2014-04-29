@@ -19,7 +19,11 @@ Supermarket::Application.routes.draw do
   get 'cookbooks/categories', to: redirect('/cookbooks')
 
   resources :cookbooks, only: [:index, :show, :update] do
-    resources :collaborators, only: [:index, :new, :create, :destroy]
+    resources :collaborators, only: [:index, :new, :create, :destroy] do
+      member do
+        put :transfer
+      end
+    end
 
     member do
       get :download
