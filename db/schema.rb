@@ -264,6 +264,4 @@ ActiveRecord::Schema.define(version: 20140429160831) do
     t.boolean  "email_notifications", default: true
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-
 end
