@@ -8,8 +8,8 @@ describe GithubExtractor do
   its(:first_name)  { should eq('John') }
   its(:last_name)   { should eq('Doe') }
   its(:email)       { should eq('johndoe@example.com') }
-  its(:username)    { should eq('johndoe') }
+  its(:username)    { should eq('github_johndoe') }
   its(:image_url)   { should eq('https://image-url.com') }
-  its(:uid)         { should eq('12345') }
+  its(:uid)         { should eq('github_johndoe') }
   its(:oauth_token) { should eq('oauth_token') }
 end

@@ -3,10 +3,9 @@ module FeatureHelpers
   # If +user+ is not passed it, the mock_auth defaults to the one specified in
   # the spec_helper
   #
-  def sign_in(user = nil)
-    if user
-      configure_mock_auth(user)
-    end
+  def sign_in(user)
+    OmniAuthControl.stub_chef!(user)
+    OmniAuthControl.stub_github!(user)
 
     visit '/'
     follow_relation 'sign_in'
@@ -212,21 +211,4 @@ module FeatureHelpers
     find('.usermenu').hover
     yield
   end
-end
-
-def configure_mock_auth(user)
-  OmniAuth.config.mock_auth[:chef_oauth2] = OmniAuth::AuthHash.new(
-    provider: 'chef_oauth2',
-    uid: user.accounts.for('chef_oauth2').first.uid,
-    info: {
-      nickname: 'johndoe',
-      email: user.email,
-      name: user.name,
-      public_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKVuZCyYt/gLXeclgnEibmM0+o1hPNaGGls6/lFNJYa1VvoN7dNdvXIdC6cPcBAijZp/LJI6u2w0dIjo7H2lw8aYF1TgmrYzeuCy+OZjXvfk6ZCi2ls3AILsxfw8S74Gd06JB+nwYJmusF/b01Bn1ua9ywaIUpKf5ewP0aM/2nAcJn/1C+q/JyRSK0DrfajV+Tiw0jufblzx6mfvSMtFUresEAKnsmu1QJYH6aNAvBWIiz/Sh7uIBA5tHHCP43G/95tPP9wXw2Capp/aOX+PViwkGuh8ebJaYjPhV35jGGXFdUPkcHj/i14bxUVKFjUkcLataLW7DvcO4LQfZtRt0p'
-    },
-    credentials: {
-      token: 'oauth_token',
-      expires: false
-    }
-  )
 end

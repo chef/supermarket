@@ -5,10 +5,11 @@ class Account < ActiveRecord::Base
 
   # Validations
   # --------------------
-  validates_presence_of :user
-  validates_presence_of :uid
-  validates_presence_of :provider
-  validates_presence_of :oauth_token
+  validates :user, presence: true
+  validates :uid, presence: true
+  validates :provider, presence: true
+  validates :oauth_token, presence: true
+  validates :provider, uniqueness: { scope: :username }
 
   # Scope
   # --------------------

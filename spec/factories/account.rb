@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :account do
     association   :user
-    uid           { SecureRandom.hex(10) }
+    uid           { username }
     sequence(:username) { |n| "johndoe#{n}" }
     provider      'github'
     oauth_token   { SecureRandom.hex(15) }
