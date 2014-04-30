@@ -18,10 +18,6 @@ class User < ActiveRecord::Base
   # --------------------
   validates_presence_of :email
 
-  # Scope
-  # --------------------
-  scope :with_email, ->(email) { where(email: email) }
-
   # Search
   # --------------------
   pg_search_scope(
@@ -215,7 +211,7 @@ class User < ActiveRecord::Base
   #                user.
   #
   def self.find_by_github_login(github_login)
-    account = Account.for('github').where(username: github_login).first
+    account = Account.for('github').with_username(github_login).first
 
     account.try(:user) || User.new
   end
@@ -239,26 +235,29 @@ class User < ActiveRecord::Base
   def self.find_or_create_from_chef_oauth(auth)
     extractor = ChefOauth2Extractor.new(auth)
 
-    account = Account.where(extractor.signature).first_or_initialize do |new_account|
-      new_account.username      = extractor.username
-      new_account.oauth_token   = extractor.oauth_token
-      new_account.oauth_secret  = extractor.oauth_secret
-      new_account.oauth_expires = extractor.oauth_expires
+    account = Account.where(extractor.signature).first_or_initialize
+
+    if account.new_record?
+      account.user = User.new
     end
 
-    oauth_attributes = {
+    account.assign_attributes(
+      username: extractor.username,
+      oauth_token: extractor.oauth_token,
+      oauth_secret: extractor.oauth_secret,
+      oauth_expires: extractor.oauth_expires
+    )
+
+    account.user.assign_attributes(
       public_key: extractor.public_key,
       first_name: extractor.first_name,
-      last_name: extractor.last_name
-    }
+      last_name: extractor.last_name,
+      email: extractor.email
+    )
 
-    if account.user.nil?
-      user = User.with_email(extractor.email).first_or_create(oauth_attributes)
-
-      account.user = user
+    transaction do
       account.save
-    else
-      account.user.update_attributes(oauth_attributes)
+      account.user.save
     end
 
     account.user
