@@ -40,7 +40,8 @@ class Cookbook < ActiveRecord::Base
   has_many :cookbook_followers, dependent: :destroy
   has_one :latest_cookbook_version, -> { order(id: :desc) }, class_name: 'CookbookVersion'
   belongs_to :category
-  belongs_to :owner, class_name: 'User', foreign_key: 'user_id'
+  belongs_to :owner, class_name: 'User', foreign_key: :user_id
+  belongs_to :replacement, class_name: 'Cookbook', foreign_key: :replacement_id
   has_many :cookbook_collaborators
   has_many :collaborators, through: :cookbook_collaborators, source: :user
 
@@ -60,6 +61,7 @@ class Cookbook < ActiveRecord::Base
     allow_blank: true,
     allow_nil: true
   }
+  validates :replacement, presence: true, if: :deprecated?
 
   #
   # Returns the name of the +Cookbook+ parameterized.
