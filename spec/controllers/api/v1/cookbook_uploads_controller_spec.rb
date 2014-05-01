@@ -74,7 +74,7 @@ describe Api::V1::CookbookUploadsController do
 
         expect(JSON.parse(response.body)).to eql(
           'error_code' => I18n.t('api.error_codes.unauthorized'),
-          'error_messages' => I18n.t('api.error_messages.unauthorized_error')
+          'error_messages' => [I18n.t('api.error_messages.unauthorized_upload_error')]
         )
       end
 
@@ -131,19 +131,10 @@ describe Api::V1::CookbookUploadsController do
       let!(:cookbook) { create(:cookbook) }
       let(:unshare) { delete :destroy, cookbook: cookbook.name, format: :json }
 
-      it 'renders an error informing the user that the cookbook name has been taken' do
+      it 'returns a 403' do
         unshare
 
-        expect(JSON.parse(response.body)).to eql(
-          'error_code' => I18n.t('api.error_codes.unauthorized'),
-          'error_messages' => I18n.t('api.error_messages.unauthorized_error')
-        )
-      end
-
-      it 'returns a 400' do
-        unshare
-
-        expect(response.status.to_i).to eql(400)
+        expect(response.status.to_i).to eql(403)
       end
     end
 

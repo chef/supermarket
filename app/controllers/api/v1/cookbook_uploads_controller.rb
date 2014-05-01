@@ -39,25 +39,33 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
   #
   def create
     cookbook_upload = CookbookUpload.new(current_user, upload_params)
-    authorize! cookbook_upload.cookbook
 
-    cookbook_upload.finish do |errors, cookbook|
-      if errors.any?
-        error(
-          error: t('api.error_codes.invalid_data'),
-          error_messages: errors.full_messages
-        )
-      else
-        @cookbook = cookbook
+    begin
+      authorize! cookbook_upload.cookbook
+    rescue
+      error(
+        error_code: t('api.error_codes.unauthorized'),
+        error_messages: [t('api.error_messages.unauthorized_upload_error')]
+      )
+    else
+      cookbook_upload.finish do |errors, cookbook|
+        if errors.any?
+          error(
+            error: t('api.error_codes.invalid_data'),
+            error_messages: errors.full_messages
+          )
+        else
+          @cookbook = cookbook
 
-        CookbookNotifyWorker.perform_async(@cookbook.id)
+          CookbookNotifyWorker.perform_async(@cookbook.id)
 
-        SegmentIO.track_server_event(
-          'cookbook_version_published',
-          cookbook: @cookbook.name
-        )
+          SegmentIO.track_server_event(
+            'cookbook_version_published',
+            cookbook: @cookbook.name
+          )
 
-        render :create, status: 201
+          render :create, status: 201
+        end
       end
     end
   end
@@ -72,19 +80,24 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
   #
   def destroy
     @cookbook = Cookbook.with_name(params[:cookbook]).first!
-    authorize! @cookbook
 
-    @latest_cookbook_version_url = api_v1_cookbook_version_url(
-      @cookbook, @cookbook.latest_cookbook_version
-    )
-
-    @cookbook.destroy
-
-    if @cookbook.destroyed?
-      SegmentIO.track_server_event(
-        'cookbook_deleted',
-        cookbook: @cookbook.name
+    begin
+      authorize! @cookbook
+    rescue
+      error({}, 403)
+    else
+      @latest_cookbook_version_url = api_v1_cookbook_version_url(
+        @cookbook, @cookbook.latest_cookbook_version
       )
+
+      @cookbook.destroy
+
+      if @cookbook.destroyed?
+        SegmentIO.track_server_event(
+          'cookbook_deleted',
+          cookbook: @cookbook.name
+        )
+      end
     end
   end
 
@@ -99,13 +112,6 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
     error(
       error_code: t('api.error_codes.authentication_failed'),
       error_messages: [t('api.error_messages.authentication_request_error')]
-    )
-  end
-
-  rescue_from NotAuthorizedError do |error|
-    error(
-      error_code: t('api.error_codes.unauthorized'),
-      error_messages: [t('api.error_messages.unauthorized_error')]
     )
   end
 

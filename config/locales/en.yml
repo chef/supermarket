@@ -37,4 +37,4 @@ en:
       invalid_username: "Could not find user '%{username}'"
       authentication_request_error: "Authentication failed due to an invalid signed request."
       authentication_key_error: "Authentication failed due to an invalid public/private key pair. If you've changed your keys recently try logging out and logging back in to Supermarket."
-      unauthorized_error: "You're not authorized to modify this cookbook."
+      unauthorized_upload_error: "You're not authorized to upload this cookbook."
