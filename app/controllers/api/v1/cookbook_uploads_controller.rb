@@ -91,21 +91,21 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
   rescue_from ActionController::ParameterMissing do |e|
     error(
       error_code: t('api.error_codes.invalid_data'),
-      error_messages: t("api.error_messages.missing_#{e.param}")
+      error_messages: [t("api.error_messages.missing_#{e.param}")]
     )
   end
 
   rescue_from Mixlib::Authentication::AuthenticationError do |e|
     error(
       error_code: t('api.error_codes.authentication_failed'),
-      error_messages: t('api.error_messages.authentication_request_error')
+      error_messages: [t('api.error_messages.authentication_request_error')]
     )
   end
 
   rescue_from NotAuthorizedError do |error|
     error(
       error_code: t('api.error_codes.unauthorized'),
-      error_messages: t('api.error_messages.unauthorized_error')
+      error_messages: [t('api.error_messages.unauthorized_error')]
     )
   end
 
@@ -145,7 +145,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
       return error(
         {
           error_code: t('api.error_codes.authentication_failed'),
-          error_messages: t('api.error_messages.invalid_username', username: username)
+          error_messages: [t('api.error_messages.invalid_username', username: username)]
         },
         401
       )
@@ -162,7 +162,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
       error(
         {
           error_code: t('api.error_codes.authentication_failed'),
-          error_messages: t('api.error_messages.authentication_key_error')
+          error_messages: [t('api.error_messages.authentication_key_error')]
         },
         401
       )
