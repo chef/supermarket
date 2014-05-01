@@ -10,7 +10,7 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
   #   GET /api/v1/cookbooks/redis/versions/1_1_0
   #
   def show
-    @cookbook = Cookbook.find_by!(name: params[:cookbook])
+    @cookbook = Cookbook.with_name(params[:cookbook]).first!
     @cookbook_version = @cookbook.get_version!(params[:version])
   end
 end

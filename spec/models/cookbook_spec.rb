@@ -243,6 +243,26 @@ describe Cookbook do
     end
   end
 
+  describe '.with_name' do
+    it 'is case-insensitive' do
+      cookbook = create(:cookbook, name: 'CookBook')
+
+      expect(Cookbook.with_name('Cookbook')).to include(cookbook)
+    end
+
+    it 'can locate multiple cookbooks at once' do
+      cookbook = create(:cookbook, name: 'CookBook')
+      mybook = create(:cookbook, name: 'MYBook')
+
+      scope = Cookbook.with_name(%w(Cookbook MyBook))
+
+      bad_scope = Cookbook.where(name: %w(cookbook mybook)).count
+
+      expect(scope).to include(cookbook)
+      expect(scope).to include(mybook)
+    end
+  end
+
   describe '#followed_by?' do
     it 'returns true if the user passed follows the cookbook' do
       user = create(:user)
