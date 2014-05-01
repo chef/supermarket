@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429160831) do
+ActiveRecord::Schema.define(version: 20140430213310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(version: 20140429160831) do
     t.string   "issues_url"
     t.integer  "cookbook_followers_count", default: 0
     t.integer  "user_id"
+    t.integer  "replacement_id"
   end
 
   add_index "cookbooks", ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true, using: :btree

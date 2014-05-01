@@ -54,6 +54,18 @@ describe Cookbook do
       expect(cookbook.errors[:name]).to be_empty
     end
 
+    it 'requires deprecated cookbooks to specify a replacement' do
+      cookbook = Cookbook.new(deprecated: true)
+      cookbook.valid?
+
+      expect(cookbook.errors[:replacement]).to_not be_empty
+
+      cookbook.replacement = Cookbook.new
+      cookbook.valid?
+
+      expect(cookbook.errors[:replacement]).to be_empty
+    end
+
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:maintainer) }
     it { should validate_presence_of(:description) }
