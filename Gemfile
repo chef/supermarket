@@ -28,6 +28,7 @@ gem 'validate_url'
 gem 'chef', require: false
 gem 'mixlib-authentication'
 gem 'aws-sdk'
+gem 'newrelic_rpm'
 
 gem 'sentry-raven', '~> 0.8.0', require: false
 gem 'statsd-ruby', require: 'statsd'
