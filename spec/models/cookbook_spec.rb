@@ -67,8 +67,6 @@ describe Cookbook do
     end
 
     it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:maintainer) }
-    it { should validate_presence_of(:description) }
     it { should validate_presence_of(:cookbook_versions) }
     it { should validate_presence_of(:category) }
   end
@@ -111,7 +109,6 @@ describe Cookbook do
       create(
         :cookbook,
         name: 'kiwi',
-        maintainer: 'fruit',
         cookbook_versions_count: 0,
         cookbook_versions: [kiwi_0_2_0, kiwi_0_1_0]
       )
@@ -178,9 +175,15 @@ describe Cookbook do
       create(
         :cookbook,
         name: 'redis',
-        maintainer: 'tokein',
         category: create(:category, name: 'datastore'),
-        description: 'Redis: a fast, flexible datastore offering an extremely useful set of data structure primitives'
+        cookbook_versions: [
+          create(
+            :cookbook_version,
+            description: 'Redis: a fast, flexible datastore offering an extremely useful set of data structure primitives',
+            maintainer: 'tokein'
+          )
+        ],
+        cookbook_versions_count: 0
       )
     end
 
@@ -188,9 +191,15 @@ describe Cookbook do
       create(
         :cookbook,
         name: 'redisio',
-        maintainer: 'fruit',
         category: create(:category, name: 'datastore'),
-        description: 'Installs/Configures redis'
+        cookbook_versions: [
+          create(
+            :cookbook_version,
+            description: 'Installs/Configures redis',
+            maintainer: 'fruit'
+          )
+        ],
+        cookbook_versions_count: 0
       )
     end
 

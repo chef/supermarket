@@ -5,8 +5,6 @@ describe 'api/v1/cookbook_uploads/create' do
     create(
       :cookbook,
       name: 'redis',
-      maintainer: 'slime',
-      description: 'great cookbook',
       source_url: 'http://example.com',
       deprecated: false
     )

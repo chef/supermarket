@@ -24,8 +24,14 @@ describe 'api/v1/cookbooks/index' do
         create(
           :cookbook,
           name: 'test',
-          description: 'test cookbook',
-          maintainer: 'Chef Software, Inc.'
+          cookbook_versions: [
+            create(
+              :cookbook_version,
+              description: 'test cookbook',
+              maintainer: 'Chef Software, Inc.'
+            )
+          ],
+          cookbook_versions_count: 0
         )
       ]
     )

@@ -21,7 +21,6 @@ describe 'cookbooks/show.atom.builder' do
     create(
       :cookbook,
       name: 'Kiwi',
-      maintainer: 'fruit',
       cookbook_versions_count: 0,
       cookbook_versions: [kiwi_0_2_0, kiwi_0_1_0]
     )

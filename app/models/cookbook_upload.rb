@@ -85,7 +85,6 @@ class CookbookUpload
   def cookbook
     Cookbook.with_name(@params.metadata.name).first_or_initialize.tap do |book|
       book.name = @params.metadata.name
-      book.description = @params.metadata.description
       book.category = category
     end
   end

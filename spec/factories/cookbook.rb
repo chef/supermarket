@@ -3,8 +3,6 @@ FactoryGirl.define do
     association :category
     association :owner, factory: :user
     sequence(:name) { |n| "redis-#{n}" }
-    description 'An awesome cookbook!'
-    maintainer 'Chef Software, Inc'
     source_url 'http://example.com'
     issues_url 'http://example.com/issues'
     deprecated false

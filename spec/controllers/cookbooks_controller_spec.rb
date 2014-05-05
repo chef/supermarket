@@ -82,8 +82,6 @@ describe CookbooksController do
         create(
           :cookbook,
           name: 'AmazingCookbook',
-          maintainer: 'john@example.com',
-          description: 'Makes you a pirate',
           category: create(:category, name: 'Databases')
         )
       end
@@ -92,35 +90,12 @@ describe CookbooksController do
         create(
           :cookbook,
           name: 'OKCookbook',
-          maintainer: 'jack@example.com',
-          description: 'Makes you a pigeon',
           category: create(:category, name: 'Other')
         )
       end
 
-      it 'only returns @cookbooks that match the name' do
+      it 'only returns @cookbooks that match the query parameter' do
         get :index, q: 'amazing'
-
-        expect(assigns[:cookbooks]).to include(amazing_cookbook)
-        expect(assigns[:cookbooks]).to_not include(ok_cookbook)
-      end
-
-      it 'only returns @cookbooks that match the maintainer' do
-        get :index, q: 'john'
-
-        expect(assigns[:cookbooks]).to include(amazing_cookbook)
-        expect(assigns[:cookbooks]).to_not include(ok_cookbook)
-      end
-
-      it 'only returns @cookbooks that match the description' do
-        get :index, q: 'pirate'
-
-        expect(assigns[:cookbooks]).to include(amazing_cookbook)
-        expect(assigns[:cookbooks]).to_not include(ok_cookbook)
-      end
-
-      it 'only returns @cookbooks that match the category' do
-        get :index, q: 'databases'
 
         expect(assigns[:cookbooks]).to include(amazing_cookbook)
         expect(assigns[:cookbooks]).to_not include(ok_cookbook)
