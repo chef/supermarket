@@ -5,12 +5,13 @@ VAGRANTFILE_API_VERSION = '2'
 VM_MEMORY = ENV['VM_MEMORY'] || '4096'
 VM_CPUS = ENV['VM_CPUS'] || '2'
 VM_NFS = (!ENV['VM_NFS'].nil? && %w(1 true yes).include?(ENV['VM_NFS']))
+VM_PORT = (ENV['PORT'] || '3000').to_i
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.omnibus.chef_version = '11.8.0'
 
   config.vm.network :private_network, ip: '172.0.1.50'
-  config.vm.network :forwarded_port, guest: 3000, host: ENV['PORT'].to_i || 3000
+  config.vm.network :forwarded_port, guest: 3000, host: VM_PORT
   config.vm.synced_folder './', '/supermarket', nfs: VM_NFS
   config.vm.synced_folder './', '/vagrant', disabled: true
 
@@ -43,7 +44,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       },
       supermarket: {
         host: 'localhost',
-        port: ENV['PORT'] || '3000'
+        port: VM_PORT
       }
     }
 
