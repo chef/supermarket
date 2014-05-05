@@ -18,12 +18,11 @@ class Cookbook < ActiveRecord::Base
   pg_search_scope(
     :search,
     against: {
-      name: 'A',
-      description: 'B',
-      maintainer: 'D'
+      name: 'A'
     },
     associated_against: {
-      category: :name
+      category: :name,
+      latest_cookbook_version: [:description, :maintainer]
     },
     using: {
       tsearch: { prefix: true, dictionary: 'english' }
@@ -45,12 +44,14 @@ class Cookbook < ActiveRecord::Base
   has_many :cookbook_collaborators
   has_many :collaborators, through: :cookbook_collaborators, source: :user
 
+  # Delegations
+  # --------------------
+  delegate :maintainer, :description, to: :latest_cookbook_version
+
   # Validations
   # --------------------
   validates :name, presence: true, uniqueness: { case_sensitive: false }, format: /\A[\w_-]+\z/i
   validates :lowercase_name, presence: true, uniqueness: true
-  validates :maintainer, presence: true
-  validates :description, presence: true
   validates :cookbook_versions, presence: true
   validates :category, presence: true
   validates :source_url, url: {
@@ -116,11 +117,10 @@ class Cookbook < ActiveRecord::Base
     existing_cookbooks = Cookbook.where(name: dependency_names)
 
     transaction do
-      self.maintainer = metadata.maintainer
-      self.description = metadata.description
-
       cookbook_version = cookbook_versions.build(
         cookbook: self,
+        maintainer: metadata.maintainer,
+        description: metadata.description,
         license: metadata.license,
         version: metadata.version,
         tarball: tarball,

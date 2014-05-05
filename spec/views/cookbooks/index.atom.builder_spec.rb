@@ -8,14 +8,26 @@ describe 'cookbooks/index.atom.builder' do
         create(
           :cookbook,
           name: 'test',
-          description: 'test cookbook',
-          maintainer: 'Chef Software, Inc.'
+          cookbook_versions: [
+            create(
+              :cookbook_version,
+              description: 'test cookbook',
+              maintainer: 'Chef Software, Inc.'
+            )
+          ],
+          cookbook_versions_count: 0
         ),
         create(
           :cookbook,
           name: 'test-2',
-          description: 'test cookbook',
-          maintainer: 'Chef Software, Inc.'
+          cookbook_versions: [
+            create(
+              :cookbook_version,
+              description: 'test cookbook',
+              maintainer: 'Chef Software, Inc.'
+            )
+          ],
+          cookbook_versions_count: 0
         )
       ]
     )

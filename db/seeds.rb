@@ -125,8 +125,6 @@ if Rails.env.development?
     cookbook = Cookbook.where(
       name: name
     ).first_or_initialize(
-      maintainer: Faker::Name.name,
-      description: Faker::Lorem.sentences(1).first,
       source_url: 'http://example.com',
       issues_url: 'http://example.com',
       category: category,
@@ -138,6 +136,8 @@ if Rails.env.development?
     cookbook_version = cookbook.cookbook_versions.where(
       version: '0.1.0'
     ).first_or_create(
+      maintainer: Faker::Name.name,
+      description: Faker::Lorem.sentences(1).first,
       license: 'MIT',
       tarball: File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz'),
       readme: File.read('README.md'),

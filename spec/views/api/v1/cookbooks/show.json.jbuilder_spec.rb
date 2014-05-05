@@ -5,8 +5,6 @@ describe 'api/v1/cookbooks/show' do
     create(
       :cookbook,
       name: 'redis',
-      maintainer: 'slime',
-      description: 'great cookbook',
       source_url: 'http://example.com',
       issues_url: 'http://example.com',
       deprecated: false
@@ -17,6 +15,8 @@ describe 'api/v1/cookbooks/show' do
     create(
       :cookbook_version,
       cookbook: cookbook,
+      maintainer: 'slime',
+      description: 'great cookbook',
       version: '1.1.0'
     )
   end
@@ -25,6 +25,8 @@ describe 'api/v1/cookbooks/show' do
     create(
       :cookbook_version,
       cookbook: cookbook,
+      maintainer: 'slime',
+      description: 'great cookbook',
       version: '1.1.0'
     )
   end
