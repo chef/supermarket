@@ -85,6 +85,9 @@ production:
     bucket: <%= ENV['S3_BUCKET'] %>
     access_key_id: <%= ENV['S3_ACCESS_KEY_ID'] %>
     secret_access_key: <%= ENV['S3_SECRET_ACCESS_KEY'] %>
+  new_relic:
+    license_key: <%= ENV['NEW_RELIC_LICENSE_KEY'] %>
+    app_name: <%= ENV['NEW_RELIC_APP_NAME'] %>
 
 test:
   icla_version: '99999-2621/LEGAL14767024.1'
