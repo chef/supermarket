@@ -5,13 +5,13 @@
 
   <section class="cookbook_body">
     <div class="order_cookbooks_by right">
-      Filter by
+      Sort by
       <%= link_to_sorted_cookbooks 'Most Downloaded', 'most_downloaded' %>
       <%= link_to_sorted_cookbooks 'Most Followed', 'most_followed' %>
 
     </div>
     <h1 class="cookbook_content_heading">
-      <%= feed_title %>
+      <%= pluralize(@cookbooks.count, 'Cookbook') %>
       <small>
         <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
       </small>

@@ -20,19 +20,6 @@ module CookbooksHelper
   end
 
   #
-  # Return a title for cookbook feeds based on the parameters
-  # that are currently set.
-  #
-  # @example
-  #   <%= feed_title %>
-  #
-  # @return [String] a title based on the current paramters or All
-  #
-  def feed_title
-    (params.fetch(:category, nil) || params.fetch(:order, nil) || 'All').titleize
-  end
-
-  #
   # Return the correct state for a cookbook follow/unfollow button.
   #
   # @example
@@ -102,9 +89,10 @@ module CookbooksHelper
   # @return [String] the generated anchor tag
   #
   def link_to_sorted_cookbooks(linked_text, ordering)
-    class_name = params[:order] == ordering ? 'active ' : ''
-    class_name += 'button radius secondary'
-
-    link_to linked_text, params.merge(order: ordering), class: class_name
+    if params[:order] == ordering
+      link_to linked_text, params.except(:order), class: 'button radius secondary active'
+    else
+      link_to linked_text, params.merge(order: ordering), class: 'button radius secondary'
+    end
   end
 end
