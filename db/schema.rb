@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140505141342) do
+ActiveRecord::Schema.define(version: 20140505164715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,8 +90,10 @@ ActiveRecord::Schema.define(version: 20140505141342) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "legacy_id"
   end
 
+  add_index "cookbook_collaborators", ["legacy_id"], name: "index_cookbook_collaborators_on_legacy_id", unique: true, using: :btree
   add_index "cookbook_collaborators", ["user_id", "cookbook_id"], name: "index_cookbook_collaborators_on_user_id_and_cookbook_id", unique: true, using: :btree
 
   create_table "cookbook_dependencies", force: true do |t|
@@ -111,9 +113,11 @@ ActiveRecord::Schema.define(version: 20140505141342) do
     t.integer  "user_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "legacy_id"
   end
 
   add_index "cookbook_followers", ["cookbook_id", "user_id"], name: "index_cookbook_followers_on_cookbook_id_and_user_id", unique: true, using: :btree
+  add_index "cookbook_followers", ["legacy_id"], name: "index_cookbook_followers_on_legacy_id", unique: true, using: :btree
 
   create_table "cookbook_versions", force: true do |t|
     t.integer  "cookbook_id"
@@ -133,8 +137,10 @@ ActiveRecord::Schema.define(version: 20140505141342) do
     t.boolean  "dependencies_imported", default: false
     t.string   "maintainer"
     t.text     "description"
+    t.integer  "legacy_id"
   end
 
+  add_index "cookbook_versions", ["legacy_id"], name: "index_cookbook_versions_on_legacy_id", unique: true, using: :btree
   add_index "cookbook_versions", ["version", "cookbook_id"], name: "index_cookbook_versions_on_version_and_cookbook_id", unique: true, using: :btree
   add_index "cookbook_versions", ["version"], name: "index_cookbook_versions_on_version", using: :btree
 
@@ -151,8 +157,10 @@ ActiveRecord::Schema.define(version: 20140505141342) do
     t.integer  "cookbook_followers_count", default: 0
     t.integer  "user_id"
     t.integer  "replacement_id"
+    t.integer  "legacy_id"
   end
 
+  add_index "cookbooks", ["legacy_id"], name: "index_cookbooks_on_legacy_id", unique: true, using: :btree
   add_index "cookbooks", ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true, using: :btree
   add_index "cookbooks", ["name"], name: "index_cookbooks_on_name", using: :btree
   add_index "cookbooks", ["user_id"], name: "index_cookbooks_on_user_id", using: :btree
@@ -246,9 +254,11 @@ ActiveRecord::Schema.define(version: 20140505141342) do
     t.integer  "cookbook_version_id",                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "legacy_id"
   end
 
   add_index "supported_platforms", ["cookbook_version_id"], name: "index_supported_platforms_on_cookbook_version_id", using: :btree
+  add_index "supported_platforms", ["legacy_id"], name: "index_supported_platforms_on_legacy_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
@@ -263,6 +273,9 @@ ActiveRecord::Schema.define(version: 20140505141342) do
     t.string   "twitter_username"
     t.text     "public_key"
     t.boolean  "email_notifications", default: true
+    t.integer  "legacy_id"
   end
+
+  add_index "users", ["legacy_id"], name: "index_users_on_legacy_id", unique: true, using: :btree
 
 end
