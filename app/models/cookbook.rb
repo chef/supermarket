@@ -1,7 +1,25 @@
 class Cookbook < ActiveRecord::Base
   include PgSearch
 
-  scope :with_name, ->(name) { where('lower(name) = ?', name.to_s.downcase) }
+  #
+  # Query cookbooks by case-insensitive name.
+  #
+  # @param name [String, Array<String>] a single name, or a collection of names
+  #
+  # @example
+  #   Cookbook.with_name('redis').first
+  #     #<Cookbook name: "redis"...>
+  #   Cookbook.with_name(['redis', 'apache2']).to_a
+  #     [#<Cookbook name: "redis"...>, #<Cookbook name: "apache2"...>]
+  #
+  # @todo: query and index by +LOWER(name)+ when ruby schema dumps support such
+  #   a thing.
+  #
+  scope :with_name, lambda { |names|
+    lowercase_names = Array(names).map { |name| name.to_s.downcase }
+
+    where(lowercase_name: lowercase_names)
+  }
   scope :recently_updated, -> { where('updated_at > ?', Time.now - 2.weeks) }
 
   scope :ordered_by, lambda { |ordering|
@@ -114,7 +132,7 @@ class Cookbook < ActiveRecord::Base
   #
   def publish_version!(metadata, tarball, readme)
     dependency_names = metadata.dependencies.keys
-    existing_cookbooks = Cookbook.where(name: dependency_names)
+    existing_cookbooks = Cookbook.with_name(dependency_names)
 
     transaction do
       cookbook_version = cookbook_versions.build(
