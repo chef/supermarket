@@ -2,23 +2,6 @@ require 'spec_helper'
 require 'nokogiri'
 
 describe CookbooksHelper do
-  describe '#feed_title_for' do
-    it 'returns a title for a category' do
-      helper.stub(:params) { { category: 'other' } }
-      expect(helper.feed_title).to eql('Other')
-    end
-
-    it 'returns a title for a sort order' do
-      helper.stub(:params) { { order: 'updated_at' } }
-      expect(helper.feed_title).to eql('Updated At')
-    end
-
-    it 'returns a fallback title' do
-      helper.stub(:params) { {} }
-      expect(helper.feed_title).to eql('All')
-    end
-  end
-
   describe '#follow_button_for' do
     it "returns a follow button if current user doesn't follow the given cookbook" do
       cookbook = double(
@@ -62,7 +45,7 @@ describe CookbooksHelper do
         helper.link_to_sorted_cookbooks('Excellent', 'excellent')
       ).css('a').first
 
-      expect(link['class']).to eql('active button radius secondary')
+      expect(link['class']).to match(/active/)
     end
 
     it 'returns a non-active link if the :order param is not the given ordering' do
