@@ -31,8 +31,7 @@ describe CookbookUpload::Parameters do
         name: 'redis-test',
         version: '0.1.0',
         license: 'All rights reserved',
-        description: 'Installs/Configures redis-test',
-        maintainer: 'YOUR_COMPANY_NAME'
+        description: 'Installs/Configures redis-test'
       )
 
       expect(params.metadata).to eql(redis_metadata)

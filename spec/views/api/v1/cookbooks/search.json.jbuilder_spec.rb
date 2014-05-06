@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe 'api/v1/cookbooks/search' do
-  let(:cookbook) { create(:cookbook, name: 'redis') }
+  let(:cookbook_record) { create(:cookbook, name: 'redis') }
 
   before do
-    assign(:results, [cookbook])
+    assign(:results, [cookbook_record])
     assign(:start, 1)
   end
 
@@ -21,7 +21,7 @@ describe 'api/v1/cookbooks/search' do
     cookbook = json_body['items'].first
 
     expect(cookbook['cookbook_name']).to eql('redis')
-    expect(cookbook['cookbook_maintainer']).to eql('Chef Software, Inc')
+    expect(cookbook['cookbook_maintainer']).to eql(cookbook_record.owner.username)
     expect(cookbook['cookbook_description']).to eql('An awesome cookbook!')
     expect(cookbook['cookbook']).to eql('http://test.host/api/v1/cookbooks/redis')
   end

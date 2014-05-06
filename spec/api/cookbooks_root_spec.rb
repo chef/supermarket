@@ -21,7 +21,7 @@ describe 'GET /api/v1/cookbooks' do
     let(:redis_test_signature) do
       {
         'cookbook_name' => 'redis-test',
-        'cookbook_maintainer' => 'Chef Software, Inc',
+        'cookbook_maintainer' => user.username,
         'cookbook_description' => 'Installs/Configures redis-test',
         'cookbook' => 'http://www.example.com/api/v1/cookbooks/redis-test'
       }
@@ -30,15 +30,15 @@ describe 'GET /api/v1/cookbooks' do
     let(:redisio_test_signature) do
       {
         'cookbook_name' => 'redisio-test',
-        'cookbook_maintainer' => 'Chef Software, Inc',
+        'cookbook_maintainer' => user.username,
         'cookbook_description' => 'Installs/Configures redisio-test',
         'cookbook' => 'http://www.example.com/api/v1/cookbooks/redisio-test'
       }
     end
 
-    before do
-      user = create(:user)
+    let(:user) { create(:user) }
 
+    before do
       share_cookbook('redis-test', user)
       share_cookbook('redisio-test', user)
     end

@@ -2,11 +2,13 @@ require 'spec_helper'
 
 describe 'GET /api/v1/cookbooks/:cookbook' do
   context 'when the cookbook exists' do
+    let(:user) { create(:user) }
+
     let(:cookbook_signature) do
       {
         'name' => 'redis-test',
         'category' => 'Other',
-        'maintainer' => 'Chef Software, Inc',
+        'maintainer' => user.username,
         'latest_version' => 'http://www.example.com/api/v1/cookbooks/redis-test/versions/0_2_0',
         'external_url' => nil,
         'versions' =>
@@ -21,8 +23,6 @@ describe 'GET /api/v1/cookbooks/:cookbook' do
     end
 
     before do
-      user = create(:user)
-
       share_cookbook('redis-test', user, custom_metadata: { version: '0.1.0' })
       share_cookbook('redis-test', user, custom_metadata: { version: '0.2.0' })
 

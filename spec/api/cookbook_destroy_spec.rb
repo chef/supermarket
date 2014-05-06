@@ -7,7 +7,7 @@ describe 'DELETE /api/v1/cookbooks/:cookbook' do
     let(:cookbook_metadata_signature) do
       {
         'name' => 'redis-test',
-        'maintainer' => 'Chef Software, Inc',
+        'maintainer' => user.username,
         'external_url' => nil,
         'description' => 'Installs/Configures redis-test',
         'average_rating' => nil,
