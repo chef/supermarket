@@ -32,11 +32,6 @@ class CookbookUpload
     #
 
     #
-    # @!attribute [r] maintainer
-    #   @return [String] The cookbook maintainer's name(s)
-    #
-
-    #
     # @!attribute [r] license
     #   @return [String] The cookbook license
     #
@@ -60,7 +55,6 @@ class CookbookUpload
       attribute :name, String, default: ''
       attribute :version, String, default: ''
       attribute :description, String, default: ''
-      attribute :maintainer, String, default: ''
       attribute :license, String, default: ''
       attribute :platforms, Hash[String => String]
       attribute :dependencies, Hash[String => String]

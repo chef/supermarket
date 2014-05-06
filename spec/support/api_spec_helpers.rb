@@ -97,7 +97,6 @@ module ApiSpecHelpers
       name: cookbook_name,
       version: '1.0.0',
       description: "Installs/Configures #{cookbook_name}",
-      maintainer: 'Chef Software, Inc',
       license: 'MIT',
       platforms: {
         'ubuntu' => '>= 12.0.0'

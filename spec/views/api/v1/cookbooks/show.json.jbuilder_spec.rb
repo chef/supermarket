@@ -15,7 +15,6 @@ describe 'api/v1/cookbooks/show' do
     create(
       :cookbook_version,
       cookbook: cookbook,
-      maintainer: 'slime',
       description: 'great cookbook',
       version: '1.1.0'
     )
@@ -25,7 +24,6 @@ describe 'api/v1/cookbooks/show' do
     create(
       :cookbook_version,
       cookbook: cookbook,
-      maintainer: 'slime',
       description: 'great cookbook',
       version: '1.1.0'
     )
@@ -67,7 +65,7 @@ describe 'api/v1/cookbooks/show' do
     render
 
     cookbook_maintainer = json_body['maintainer']
-    expect(cookbook_maintainer).to eql('slime')
+    expect(cookbook_maintainer).to eql(cookbook.owner.username)
   end
 
   it "displays the cookbook's description" do

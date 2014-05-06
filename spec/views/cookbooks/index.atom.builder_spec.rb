@@ -1,36 +1,30 @@
 require 'spec_helper'
 
 describe 'cookbooks/index.atom.builder' do
-  before do
-    assign(
-      :cookbooks,
-      [
-        create(
-          :cookbook,
-          name: 'test',
-          cookbook_versions: [
-            create(
-              :cookbook_version,
-              description: 'test cookbook',
-              maintainer: 'Chef Software, Inc.'
-            )
-          ],
-          cookbook_versions_count: 0
-        ),
-        create(
-          :cookbook,
-          name: 'test-2',
-          cookbook_versions: [
-            create(
-              :cookbook_version,
-              description: 'test cookbook',
-              maintainer: 'Chef Software, Inc.'
-            )
-          ],
-          cookbook_versions_count: 0
-        )
-      ]
+  let(:test_cookbook) do
+    create(
+      :cookbook,
+      name: 'test',
+      cookbook_versions: [
+        create(:cookbook_version, description: 'test cookbook')
+      ],
+      cookbook_versions_count: 0
     )
+  end
+
+  let(:test_cookbook2) do
+    create(
+      :cookbook,
+      name: 'test-2',
+      cookbook_versions: [
+        create(:cookbook_version, description: 'test cookbook')
+      ],
+      cookbook_versions_count: 0
+    )
+  end
+
+  before do
+    assign(:cookbooks, [test_cookbook, test_cookbook2])
   end
 
   it 'displays the feed title' do
@@ -57,7 +51,7 @@ describe 'cookbooks/index.atom.builder' do
     cookbook = xml_body['feed']['entry'].first
 
     expect(cookbook['title']).to eql('test')
-    expect(cookbook['maintainer']).to eql('Chef Software, Inc.')
+    expect(cookbook['maintainer']).to eql(test_cookbook.owner.username)
     expect(cookbook['description']).to eql('test cookbook')
     expect(cookbook['link']['href']).to eql('http://test.host/cookbooks/test')
   end
