@@ -28,6 +28,20 @@ describe CookbookUpload do
       end.to change(user.owned_cookbooks, :count).by(1)
     end
 
+    it "doesn't change the owner if a collaborator uploads a new version" do
+      tarball_one = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
+      tarball_two = File.open('spec/support/cookbook_fixtures/redis-test-v2.tgz')
+
+      CookbookUpload.new(user, cookbook: cookbook, tarball: tarball_one).finish
+
+      collaborator = create(:user)
+
+      CookbookUpload.new(collaborator, cookbook: cookbook, tarball: tarball_two).finish do |_, result|
+        expect(result.owner).to eql(user)
+        expect(result.owner).to_not eql(collaborator)
+      end
+    end
+
     it 'updates the existing cookbook if the given name is a duplicate' do
       tarball_one = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
       tarball_two = File.open('spec/support/cookbook_fixtures/redis-test-v2.tgz')
