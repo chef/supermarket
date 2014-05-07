@@ -4,14 +4,14 @@
     <%= f.text_field :prefix, placeholder: 'Prefix',  title: 'Prefix' %>
   </div>
   <div class="firstname-field">
-    <%= f.text_field :first_name, placeholder: 'First Name *', title: 'First Name', required: '', pattern: 'alpha_numeric' %>
+    <%= f.text_field :first_name, placeholder: 'First Name *', title: 'First Name', required: '' %>
     <small class="error">First Name is required.</small>
   </div>
   <div class="middlename-field">
     <%= f.text_field :middle_name, placeholder: 'Middle Name', title: 'Middle Name' %>
   </div>
   <div class="lastname-field">
-    <%= f.text_field :last_name, placeholder: 'Last Name *', title: 'Last Name', required: '', pattern: 'alpha_numeric' %>
+    <%= f.text_field :last_name, placeholder: 'Last Name *', title: 'Last Name', required: '' %>
     <small class="error">Last Name is required.</small>
   </div>
   <div class="suffix-field">
@@ -26,7 +26,7 @@
     <small class="error">Company is required.</small>
   </div>
   <div class="phone-field">
-    <%= f.telephone_field :phone, placeholder: 'Phone *', title: 'Phone', required: '', pattern: 'alpha_numeric' %>
+    <%= f.telephone_field :phone, placeholder: 'Phone *', title: 'Phone', required: '' %>
     <small class="error">Telephone number is required.</small>
   </div>
   <div class="email-field">
@@ -38,26 +38,26 @@
 <fieldset class="address">
   <legend>Address</legend>
   <div class="addressline1-field">
-    <%= f.text_field :address_line_1, placeholder: 'Address Line 1 *', title: 'Address Line 1', required: '', pattern: 'alpha_numeric' %>
+    <%= f.text_field :address_line_1, placeholder: 'Address Line 1 *', title: 'Address Line 1', required: '' %>
     <small class="error">Address is required.</small>
   </div>
   <div class="addressline2-field">
     <%= f.text_field :address_line_2, placeholder: 'Address Line 2', title: 'Address Line 2' %>
   </div>
   <div class="city-field">
-    <%= f.text_field :city, placeholder: 'City *', title: 'City', required: '', pattern: 'alpha_numeric' %>
+    <%= f.text_field :city, placeholder: 'City *', title: 'City', required: '' %>
     <small class="error">City is required.</small>
   </div>
   <div class="stateprovince-field">
-    <%= f.text_field :state, placeholder: 'State or Province *', title: 'State or Province', required: '', pattern: 'alpha_numeric' %>
+    <%= f.text_field :state, placeholder: 'State or Province *', title: 'State or Province', required: '' %>
     <small class="error">State or province is required.</small>
   </div>
   <div class="postcalcode-field">
-    <%= f.text_field :zip, placeholder: 'Postal Code *', title: 'Postal Code', required: '', pattern: 'alpha_numeric' %>
+    <%= f.text_field :zip, placeholder: 'Postal Code *', title: 'Postal Code', required: '' %>
     <small class="error">Postal code is required.</small>
   </div>
   <div class="country-field">
-    <%= f.text_field :country, placeholder: 'Country *', title: 'Country', required: '', pattern: 'alpha_numeric' %>
+    <%= f.text_field :country, placeholder: 'Country *', title: 'Country', required: '' %>
     <small class="error">Country is required.</small>
   </div>
 </fieldset>
@@ -67,7 +67,7 @@
 <%= f.hidden_field :ccla_id %>
 
 <div class="tos-field">
-  <%= f.check_box :agreement, required: '', pattern: 'alpha_numeric' %>
+  <%= f.check_box :agreement, required: '' %>
   <%= label_tag :ccla_signature_agreement, "I've read & accept the agreement terms" %>
   <small class="error">Accepting the agreement terms is required.</small>
 </div>

@@ -10,8 +10,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery-2.1.0.min
-//= require jquery/rails
+//= require jquery
+//= require rails
+//= require jquery.cookie
 //= require placeholder
 //= require fastclick
 //= require modernizr
@@ -22,6 +23,11 @@
 //= require flash
 //= require select2.min
 //= require collaborators
+
+// Hack to resolve bug with Foundation. Resolved in master
+// here: https://github.com/zurb/foundation/issues/4684 so
+// this can go away when Foundation 5.2.3 is released.
+Foundation.global.namespace = '';
 
 $(function(){
   $(document).foundation();
