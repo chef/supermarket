@@ -1,12 +1,14 @@
 require 'spec_helper'
 
 describe 'GET /api/v1/search' do
+  let(:user) { create(:user) }
+
   let(:redis_test_signature) do
     {
       'cookbook_name' => 'redis-test',
       'cookbook_description' => 'Installs/Configures redis-test',
       'cookbook' => 'http://www.example.com/api/v1/cookbooks/redis-test',
-      'cookbook_maintainer' => 'Chef Software, Inc'
+      'cookbook_maintainer' => user.username
     }
   end
 
@@ -15,13 +17,13 @@ describe 'GET /api/v1/search' do
       'cookbook_name' => 'redisio-test',
       'cookbook_description' => 'Installs/Configures redisio-test',
       'cookbook' => 'http://www.example.com/api/v1/cookbooks/redisio-test',
-      'cookbook_maintainer' => 'Chef Software, Inc'
+      'cookbook_maintainer' => user.username
     }
   end
 
   before do
-    share_cookbook('redis-test')
-    share_cookbook('redisio-test')
+    share_cookbook('redis-test', user)
+    share_cookbook('redisio-test', user)
   end
 
   it 'returns a 200' do

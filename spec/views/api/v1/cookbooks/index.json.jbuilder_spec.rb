@@ -17,31 +17,29 @@ describe 'api/v1/cookbooks/index' do
     expect(json_body['total']).to eql(9001)
   end
 
-  it 'displays an array of cookbooks' do
-    assign(
-      :cookbooks,
-      [
+  let(:cookbook_record) do
+    create(
+      :cookbook,
+      name: 'test',
+      cookbook_versions: [
         create(
-          :cookbook,
-          name: 'test',
-          cookbook_versions: [
-            create(
-              :cookbook_version,
-              description: 'test cookbook',
-              maintainer: 'Chef Software, Inc.'
-            )
-          ],
-          cookbook_versions_count: 0
+          :cookbook_version,
+          description: 'test cookbook'
         )
-      ]
+      ],
+      cookbook_versions_count: 0
     )
+  end
+
+  it 'displays an array of cookbooks' do
+    assign(:cookbooks, [cookbook_record])
 
     render
 
     cookbook = json_body['items'].first
 
     expect(cookbook['cookbook_name']).to eql('test')
-    expect(cookbook['cookbook_maintainer']).to eql('Chef Software, Inc.')
+    expect(cookbook['cookbook_maintainer']).to eql(cookbook_record.owner.username)
     expect(cookbook['cookbook_description']).to eql('test cookbook')
     expect(cookbook['cookbook']).to eql('http://test.host/api/v1/cookbooks/test')
   end

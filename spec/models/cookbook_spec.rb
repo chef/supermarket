@@ -138,7 +138,6 @@ describe Cookbook do
         license: 'MIT',
         version: cookbook.latest_cookbook_version.version + '-beta',
         description: 'Description',
-        maintainer: 'Jane Doe',
         platforms: {
           'ubuntu' => '= 12.04',
           'debian' => '>= 0.0.0'
@@ -179,8 +178,7 @@ describe Cookbook do
         cookbook_versions: [
           create(
             :cookbook_version,
-            description: 'Redis: a fast, flexible datastore offering an extremely useful set of data structure primitives',
-            maintainer: 'tokein'
+            description: 'Redis: a fast, flexible datastore offering an extremely useful set of data structure primitives'
           )
         ],
         cookbook_versions_count: 0
@@ -195,8 +193,7 @@ describe Cookbook do
         cookbook_versions: [
           create(
             :cookbook_version,
-            description: 'Installs/Configures redis',
-            maintainer: 'fruit'
+            description: 'Installs/Configures redis'
           )
         ],
         cookbook_versions_count: 0
@@ -209,10 +206,8 @@ describe Cookbook do
     end
 
     it 'returns cookbooks with a similar maintainer' do
-      expect(Cookbook.search('fruit')).to include(redisio)
-      expect(Cookbook.search('fruit')).to_not include(redis)
-      expect(Cookbook.search('tokein')).to include(redis)
-      expect(Cookbook.search('tokein')).to_not include(redisio)
+      expect(Cookbook.search('johndoe')).to include(redisio)
+      expect(Cookbook.search('janesmith')).to_not include(redisio)
     end
 
     it 'returns cookbooks with a similar category' do

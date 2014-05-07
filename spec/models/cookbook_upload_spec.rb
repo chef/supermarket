@@ -13,23 +13,42 @@ describe CookbookUpload do
       JSON.dump('category' => 'Other')
     end
 
-    it 'creates a new cookbook if the given name is original' do
-      tarball = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
+    let(:user) do
+      create(:user)
+    end
 
-      upload = CookbookUpload.new(cookbook: cookbook, tarball: tarball)
+    it 'creates a new cookbook if the given name is original and assigns it to a user' do
+      tarball = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
+      user = create(:user)
+
+      upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
 
       expect do
         upload.finish
-      end.to change(Cookbook, :count).by(1)
+      end.to change(user.owned_cookbooks, :count).by(1)
+    end
+
+    it "doesn't change the owner if a collaborator uploads a new version" do
+      tarball_one = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
+      tarball_two = File.open('spec/support/cookbook_fixtures/redis-test-v2.tgz')
+
+      CookbookUpload.new(user, cookbook: cookbook, tarball: tarball_one).finish
+
+      collaborator = create(:user)
+
+      CookbookUpload.new(collaborator, cookbook: cookbook, tarball: tarball_two).finish do |_, result|
+        expect(result.owner).to eql(user)
+        expect(result.owner).to_not eql(collaborator)
+      end
     end
 
     it 'updates the existing cookbook if the given name is a duplicate' do
       tarball_one = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
       tarball_two = File.open('spec/support/cookbook_fixtures/redis-test-v2.tgz')
 
-      CookbookUpload.new(cookbook: cookbook, tarball: tarball_one).finish
+      CookbookUpload.new(user, cookbook: cookbook, tarball: tarball_one).finish
 
-      update = CookbookUpload.new(cookbook: cookbook, tarball: tarball_two)
+      update = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball_two)
 
       expect do
         update.finish
@@ -41,13 +60,14 @@ describe CookbookUpload do
       tarball_two = File.open('spec/support/cookbook_fixtures/redis-test-v2.tgz')
 
       cookbook_record = CookbookUpload.new(
+        user,
         cookbook: cookbook,
         tarball: tarball_one
       ).finish do |_, result|
         result
       end
 
-      update = CookbookUpload.new(cookbook: cookbook, tarball: tarball_two)
+      update = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball_two)
 
       expect do
         update.finish
@@ -57,14 +77,14 @@ describe CookbookUpload do
     it 'yields empty errors if the cookbook and tarball are workable' do
       tarball = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
 
-      upload = CookbookUpload.new(cookbook: cookbook, tarball: tarball)
+      upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
       errors = upload.finish { |e, _| e }
 
       expect(errors).to be_empty
     end
 
     it 'yields an error if the cookbook is not valid JSON' do
-      upload = CookbookUpload.new(cookbook: 'ack!', tarball: 'tarball')
+      upload = CookbookUpload.new(user, cookbook: 'ack!', tarball: 'tarball')
       errors = upload.finish { |e, _| e }
 
       expect(errors.full_messages).
@@ -72,7 +92,7 @@ describe CookbookUpload do
     end
 
     it 'yields an error if the tarball does not seem to be an uploaded File' do
-      upload = CookbookUpload.new(cookbook: '{}', tarball: 'cool')
+      upload = CookbookUpload.new(user, cookbook: '{}', tarball: 'cool')
       errors = upload.finish { |e, _| e }
 
       expect(errors.full_messages).
@@ -82,7 +102,7 @@ describe CookbookUpload do
     it 'yields an error if the tarball is not GZipped' do
       tarball = File.open('spec/support/cookbook_fixtures/not-actually-gzipped.tgz')
 
-      upload = CookbookUpload.new(cookbook: '{}', tarball: tarball)
+      upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
       errors = upload.finish { |e, _| e }
 
       expect(errors.full_messages).
@@ -92,7 +112,7 @@ describe CookbookUpload do
     it 'yields an error if the tarball has no metadata.json entry' do
       tarball = File.open('spec/support/cookbook_fixtures/no-metadata-or-readme.tgz')
 
-      upload = CookbookUpload.new(cookbook: '{}', tarball: tarball)
+      upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
       errors = upload.finish { |e, _| e }
 
       expect(errors.full_messages).
@@ -102,7 +122,7 @@ describe CookbookUpload do
     it 'yields an error if the tarball has no README entry' do
       tarball = File.open('spec/support/cookbook_fixtures/no-metadata-or-readme.tgz')
 
-      upload = CookbookUpload.new(cookbook: '{}', tarball: tarball)
+      upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
       errors = upload.finish { |e, _| e }
 
       expect(errors.full_messages).
@@ -112,7 +132,7 @@ describe CookbookUpload do
     it "yields an error if the tarball's metadata.json is not actually JSON" do
       tarball = File.open('spec/support/cookbook_fixtures/invalid-metadata-json.tgz')
 
-      upload = CookbookUpload.new(cookbook: '{}', tarball: tarball)
+      upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
       errors = upload.finish { |e, _| e }
 
       expect(errors.full_messages).
@@ -129,7 +149,7 @@ describe CookbookUpload do
         file.rewind
       end
 
-      upload = CookbookUpload.new(cookbook: '{}', tarball: tarball)
+      upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
       errors = upload.finish { |e, _| e }
 
       expect(errors.full_messages).
@@ -146,7 +166,7 @@ describe CookbookUpload do
         file.rewind
       end
 
-      upload = CookbookUpload.new(cookbook: '{}', tarball: tarball)
+      upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
       errors = upload.finish { |e, _| e }
 
       expect(errors.full_messages).
@@ -156,7 +176,7 @@ describe CookbookUpload do
     it 'yields an error if the cookbook parameters do not specify a category' do
       tarball = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
 
-      upload = CookbookUpload.new(cookbook: '{}', tarball: tarball)
+      upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
       errors = upload.finish { |e, _| e }
 
       error_message = I18n.t(
@@ -171,6 +191,7 @@ describe CookbookUpload do
       tarball = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
 
       upload = CookbookUpload.new(
+        user,
         cookbook: '{"category": "Kewl"}',
         tarball: tarball
       )

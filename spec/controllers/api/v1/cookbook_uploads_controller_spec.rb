@@ -12,6 +12,7 @@ describe Api::V1::CookbookUploadsController do
         allow_any_instance_of(CookbookUpload).
           to receive(:finish).
           and_yield([], double('Cookbook', name: 'cookbook', id: 1))
+        auto_authorize!(Cookbook, 'create')
       end
 
       it 'sends the cookbook to the view' do
@@ -42,6 +43,7 @@ describe Api::V1::CookbookUploadsController do
         allow_any_instance_of(CookbookUpload).
           to receive(:finish).
           and_yield(errors, double('Cookbook'))
+        auto_authorize!(Cookbook, 'create')
       end
 
       it 'renders the error messages' do
@@ -50,6 +52,29 @@ describe Api::V1::CookbookUploadsController do
         expect(JSON.parse(response.body)).to eql(
           'error' => I18n.t('api.error_codes.invalid_data'),
           'error_messages' => ['This cookbook is no good']
+        )
+      end
+
+      it 'returns a 400' do
+        post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+
+        expect(response.status.to_i).to eql(400)
+      end
+    end
+
+    context 'when the user is not authorized to upload an existing cookbook' do
+      before do
+        allow_any_instance_of(CookbookUpload).
+          to receive(:finish).
+          and_yield([], double('Cookbook', name: 'cookbook', id: 1))
+      end
+
+      it 'renders an error informing the the user that they may not modify the cookbook' do
+        post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+
+        expect(JSON.parse(response.body)).to eql(
+          'error_code' => I18n.t('api.error_codes.unauthorized'),
+          'error_messages' => [I18n.t('api.error_messages.unauthorized_upload_error')]
         )
       end
 
@@ -81,6 +106,7 @@ describe Api::V1::CookbookUploadsController do
     context 'when a cookbook exists' do
       let!(:cookbook) { create(:cookbook) }
       let(:unshare) { delete :destroy, cookbook: cookbook.name, format: :json }
+      before { auto_authorize!(Cookbook, 'destroy') }
 
       it 'sends the cookbook to the view' do
         unshare
@@ -98,6 +124,17 @@ describe Api::V1::CookbookUploadsController do
 
       it 'destroys all associated cookbook versions' do
         expect { unshare }.to change(CookbookVersion, :count).by(-2)
+      end
+    end
+
+    context 'when the user is not authorized to destroy the cookbook' do
+      let!(:cookbook) { create(:cookbook) }
+      let(:unshare) { delete :destroy, cookbook: cookbook.name, format: :json }
+
+      it 'returns a 403' do
+        unshare
+
+        expect(response.status.to_i).to eql(403)
       end
     end
 

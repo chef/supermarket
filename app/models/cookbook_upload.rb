@@ -4,13 +4,15 @@ class CookbookUpload
   #
   # Creates a new +CookbookUpload+.
   #
+  # @param user [User] the user uploading the cookbook
   # @param params [Hash] the upload parameters
   # @option params [String] :cookbook a JSON string which contains cookbook
   #   data. In particular, it should contain a +"category"+ key when
   #   deserialized
   # @option params [File] :tarball the cookbook tarball artifact
   #
-  def initialize(params)
+  def initialize(user, params)
+    @user = user
     @params = Parameters.new(params)
   end
 
@@ -48,6 +50,22 @@ class CookbookUpload
     end
   end
 
+  #
+  # The cookbook specified by the uploaded metadata. If no such cookbook
+  # exists, the returned cookbook will only exist in-memory. The owner
+  # is assigned to the user uploading the cookbook if it's a new cookbook otherwise
+  # the owner will remain unchanged.
+  #
+  # @return [Cookbook]
+  #
+  def cookbook
+    Cookbook.with_name(@params.metadata.name).first_or_initialize.tap do |book|
+      book.name = @params.metadata.name
+      book.category = category
+      book.owner = @user unless book.persisted?
+    end
+  end
+
   private
 
   def valid?
@@ -73,19 +91,6 @@ class CookbookUpload
 
         e.add(:base, message)
       end
-    end
-  end
-
-  #
-  # The cookbook specified by the uploaded metadata. If no such cookbook
-  # exists, the returned cookbook will only exist in-memory.
-  #
-  # @return [Cookbook]
-  #
-  def cookbook
-    Cookbook.with_name(@params.metadata.name).first_or_initialize.tap do |book|
-      book.name = @params.metadata.name
-      book.category = category
     end
   end
 

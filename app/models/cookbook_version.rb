@@ -12,7 +12,6 @@ class CookbookVersion < ActiveRecord::Base
   # Validations
   # --------------------
   validates :license, presence: true
-  validates :maintainer, presence: true
   validates :description, presence: true
   validates :version, presence: true, uniqueness: { scope: :cookbook }
   validates_attachment(

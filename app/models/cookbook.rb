@@ -40,7 +40,8 @@ class Cookbook < ActiveRecord::Base
     },
     associated_against: {
       category: :name,
-      latest_cookbook_version: [:description, :maintainer]
+      latest_cookbook_version: :description,
+      chef_account: :username
     },
     using: {
       tsearch: { prefix: true, dictionary: 'english' }
@@ -58,13 +59,14 @@ class Cookbook < ActiveRecord::Base
   has_one :latest_cookbook_version, -> { order(id: :desc) }, class_name: 'CookbookVersion'
   belongs_to :category
   belongs_to :owner, class_name: 'User', foreign_key: :user_id
+  has_one :chef_account, through: :owner
   belongs_to :replacement, class_name: 'Cookbook', foreign_key: :replacement_id
   has_many :cookbook_collaborators
   has_many :collaborators, through: :cookbook_collaborators, source: :user
 
   # Delegations
   # --------------------
-  delegate :maintainer, :description, to: :latest_cookbook_version
+  delegate :description, to: :latest_cookbook_version
 
   # Validations
   # --------------------
@@ -118,8 +120,8 @@ class Cookbook < ActiveRecord::Base
   end
 
   #
-  # Saves a new version of the cookbook as specified by the given metadata and
-  # tarball
+  # Saves a new version of the cookbook as specified by the given metadata, tarball
+  # and readme. If it's a new cookbook the user specified becomes the owner.
   #
   # @raise [ActiveRecord::RecordInvalid] if the new version fails validation
   # @raise [ActiveRecord::RecordNotUnique] if the new version is a duplicate of
@@ -129,6 +131,7 @@ class Cookbook < ActiveRecord::Base
   #
   # @param metadata [CookbookUpload::Metadata] the cookbook metadata
   # @param tarball [File] the cookbook artifact
+  # @param readme [File] the cookbook readme
   #
   def publish_version!(metadata, tarball, readme)
     dependency_names = metadata.dependencies.keys
@@ -137,7 +140,6 @@ class Cookbook < ActiveRecord::Base
     transaction do
       cookbook_version = cookbook_versions.build(
         cookbook: self,
-        maintainer: metadata.maintainer,
         description: metadata.description,
         license: metadata.license,
         version: metadata.version,
@@ -194,6 +196,15 @@ class Cookbook < ActiveRecord::Base
   #
   def cookbook_dependencies
     latest_cookbook_version.cookbook_dependencies
+  end
+
+  #
+  # The username of this cookbook's owner
+  #
+  # @return [String]
+  #
+  def maintainer
+    owner.username
   end
 
   private

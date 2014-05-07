@@ -8,21 +8,20 @@ module ApiSpecHelpers
   # Shares a cookbook with a given name and options using the /api/v1/cookbooks API.
   #
   # @param cookbook_name [String] the name of the cookbook to be shared
+  # @param user [User] the user that's sharing the cookbook
   # @param opts [Hash] options that determine the contents of the tarball, signed header and request payload
   #
   # @option opts [Hash] :custom_metadata Custom values/attributes for the cookbook metadata
-  # @option opts [Boolean] :with_invalid_user Make request as an invalid user
   # @option opts [Boolean] :with_invalid_public_key Make request with an invalid public key
   # @option opts [Array] :omitted_headers Any headers to omit from the signed request
   # @option opts [String] :category The category to share the cookbook to
   # @option opts [String] :payload a JSON representation of the request body
   #
-  def share_cookbook(cookbook_name, opts = {})
+  def share_cookbook(cookbook_name, user, opts = {})
     cookbooks_path = '/api/v1/cookbooks'
 
     tarball = cookbook_upload(cookbook_name, opts.fetch(:custom_metadata, {}))
     private_key = private_key(opts.fetch(:with_invalid_private_key, false))
-    user = user(opts.fetch(:with_invalid_user, false))
 
     header = Mixlib::Authentication::SignedHeaderAuth.signing_object(
       http_method: 'post',
@@ -44,8 +43,9 @@ module ApiSpecHelpers
   # Unshares a cookbook with a given name using the /api/v1/cookbooks/:cookbook API.
   #
   # @param cookbook_name [String] the name of the cookbook to be unshared
+  # @param user [User] the user that's unsharing the cookbook
   #
-  def unshare_cookbook(cookbook_name)
+  def unshare_cookbook(cookbook_name, user)
     cookbook_path = "/api/v1/cookbooks/#{cookbook_name}"
 
     header = Mixlib::Authentication::SignedHeaderAuth.signing_object(
@@ -84,16 +84,6 @@ module ApiSpecHelpers
 
   private
 
-  def user(invalid = false)
-    if invalid
-      double(:user, username: 'invalid-user')
-    else
-      user = create(:user)
-      user.accounts << create(:account, provider: 'chef_oauth2')
-      user
-    end
-  end
-
   def private_key(invalid = false)
     key_name = invalid ? 'invalid_private_key.pem' : 'valid_private_key.pem'
 
@@ -107,7 +97,6 @@ module ApiSpecHelpers
       name: cookbook_name,
       version: '1.0.0',
       description: "Installs/Configures #{cookbook_name}",
-      maintainer: 'Chef Software, Inc',
       license: 'MIT',
       platforms: {
         'ubuntu' => '>= 12.0.0'

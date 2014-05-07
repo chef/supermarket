@@ -8,6 +8,8 @@ describe CookbookAuthorizer do
 
     subject { described_class.new(user, record) }
 
+    it { should permit(:create) }
+    it { should permit(:destroy) }
     it { should permit(:create_collaborator) }
     it { should permit(:manage_cookbook_urls) }
   end
@@ -22,6 +24,8 @@ describe CookbookAuthorizer do
     end
 
     it { should_not permit(:create_collaborator) }
+    it { should_not permit(:destroy) }
+    it { should permit(:create) }
     it { should permit(:manage_cookbook_urls) }
   end
 
@@ -30,6 +34,8 @@ describe CookbookAuthorizer do
 
     subject { described_class.new(user, record) }
 
+    it { should_not permit(:create) }
+    it { should_not permit(:destroy) }
     it { should_not permit(:create_collaborator) }
     it { should_not permit(:manage_cookbook_urls) }
   end
