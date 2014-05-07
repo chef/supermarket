@@ -24,6 +24,11 @@
 //= require select2.min
 //= require collaborators
 
+// Hack to resolve bug with Foundation. Resolved in master
+// here: https://github.com/zurb/foundation/issues/4684 so
+// this can go away when Foundation 5.2.3 is released.
+Foundation.global.namespace = '';
+
 $(function(){
   $(document).foundation();
 
