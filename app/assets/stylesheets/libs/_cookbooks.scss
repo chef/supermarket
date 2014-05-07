@@ -654,7 +654,7 @@ pre {
     text-align: left;
 
     .cookbook_owner {
-      @include grid-column($columns: 3, $collapse: true);
+      @include grid-column($columns: 6, $collapse: true);
 
       .gravatar {
         @include inline-block;
@@ -668,13 +668,13 @@ pre {
     }
 
     .cookbook_partial_sidebar_urls {
-      @include grid-column($columns: 9, $collapse: true);
+      @include grid-column($columns: 6, $collapse: true);
 
       a {
         background-color: darken($cookbook_partial_sidebar, 20%);
         color: white;
         float: right;
-        font-size: rem-calc(16);
+        font-size: rem-calc(14);
         margin: rem-calc(13 0 0 20);
         padding: rem-calc(10 20);
         text-decoration: none;
@@ -700,7 +700,7 @@ pre {
     text-align: left;
 
     .cookbook_owner {
-      @include grid-column($columns: 3, $collapse: true);
+      @include grid-column($columns: 6, $collapse: true);
 
       .gravatar {
         @include inline-block;
@@ -714,13 +714,13 @@ pre {
     }
 
     .cookbook_partial_sidebar_urls {
-      @include grid-column($columns: 9, $collapse: true);
+      @include grid-column($columns: 6, $collapse: true);
 
       a {
         background-color: darken($cookbook_partial_sidebar, 20%);
         color: white;
         float: right;
-        font-size: rem-calc(16);
+        font-size: rem-calc(14);
         margin: rem-calc(13 0 0 20);
         padding: rem-calc(10 20);
         text-decoration: none;
