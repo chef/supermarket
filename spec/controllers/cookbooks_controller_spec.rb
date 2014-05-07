@@ -25,7 +25,7 @@ describe CookbooksController do
       let!(:cookbook_1) do
         create(
           :cookbook,
-          name: 'great',
+          name: 'mysql',
           updated_at: 1.year.ago,
           created_at: 1.year.ago,
           download_count: 100,
@@ -36,7 +36,7 @@ describe CookbooksController do
       let!(:cookbook_2) do
         create(
           :cookbook,
-          name: 'cookbook',
+          name: 'mysql-admin-tools',
           updated_at: 1.day.ago,
           created_at: 2.years.ago,
           download_count: 50,
@@ -61,6 +61,11 @@ describe CookbooksController do
 
       it 'orders @cookbooks by download_followers_count' do
         get :index, order: 'most_downloaded'
+        expect(assigns[:cookbooks].first).to eql(cookbook_1)
+      end
+
+      it 'correctly orders @cookbooks when also searching' do
+        get :index, order: 'most_followed', q: 'mysql'
         expect(assigns[:cookbooks].first).to eql(cookbook_1)
       end
     end
