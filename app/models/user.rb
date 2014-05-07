@@ -18,6 +18,11 @@ class User < ActiveRecord::Base
   # --------------------
   validates_presence_of :email
 
+  # Scope
+  # --------------------
+  scope :with_email, ->(email) { where(email: email) }
+  scope :with_username, ->(username) { joins(:chef_account).where('accounts.username' => username) }
+
   # Search
   # --------------------
   pg_search_scope(

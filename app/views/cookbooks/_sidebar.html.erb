@@ -8,22 +8,27 @@
   </div>
   <div class="collaborators_avatar">
     <% collaborators.each do |collaborator| %>
-      <div>
-        <%= link_to gravatar_for(collaborator, size: 80), collaborator, title: collaborator.name %>
-        <% if policy(collaborator.collaborator_for_cookbook(cookbook)).destroy? %>
-          <%= link_to 'x', cookbook_collaborator_path(cookbook, collaborator), remote: true, method: :delete %>
+      <%= link_to gravatar_for(collaborator, size: 80), collaborator, title: collaborator.name, data: { :dropdown => 'contributoroptions', :options => 'is_hover:true'} %>
+      <% collaboration_permissions_for(cookbook, collaborator) do |transfer, destroy| %>
+        <% if transfer || destroy %>
+          <ul id="contributoroptions" data-dropdown-content class="f-dropdown">
+            <% if transfer %>
+              <li><%= link_to 'Transfer Ownership', transfer_cookbook_collaborator_path(cookbook, collaborator), class: 'fa fa-random', method: :put %></li>
+            <% end %>
+            <% if destroy %>
+              <li><%= link_to 'Remove Contributor', cookbook_collaborator_path(cookbook, collaborator), class: 'fa fa-times-circle', remote: true, method: :delete %></li>
+            <% end %>
+          </ul>
         <% end %>
-      </div>
-    <% end %>
-
-    <% if policy(@owner_collaborator).create? %>
-      <div>
-        <%= link_to 'Add', new_cookbook_collaborator_path(cookbook), 'data-reveal-id' => 'collaborators', 'data-reveal-ajax' => true %>
-        <div id="collaborators" class="reveal-modal small" data-reveal>
-        </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
+
+  <% if policy(@owner_collaborator).create? %>
+    <%= link_to 'Add Contributor', new_cookbook_collaborator_path(cookbook), class: 'button secondary radius tiny addcontributor', 'data-reveal-id' => 'collaborators', 'data-reveal-ajax' => true %>
+    <div id="collaborators" class="reveal-modal small" data-reveal>
+    </div>
+  <% end %>
 
   <h3>
     <% if policy(cookbook).manage_cookbook_urls? %>

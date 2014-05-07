@@ -3,9 +3,11 @@ $(document).on('opened', '[data-reveal]', function () {
     placeholder: 'Search for a collaborator',
     minimumInputLength: 3,
     multiple: true,
-    width: '80%',
+    width: '100%',
     ajax: {
-      url: '/collaborators.json',
+      url: function () {
+        return $('#new_cookbook_collaborator').attr('action');
+      },
       dataType: 'json',
       quietMillis: 200,
       data: function (term, page) {

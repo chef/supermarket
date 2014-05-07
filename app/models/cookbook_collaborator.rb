@@ -21,4 +21,16 @@ class CookbookCollaborator < ActiveRecord::Base
   def self.with_cookbook_and_user(cookbook, user)
     where(cookbook_id: cookbook.id, user_id: user.id).first
   end
+
+  #
+  # Transfers ownership of this cookbook to this user. The existing owner is
+  # automatically demoted to a collaborator.
+  #
+  def transfer_ownership
+    transaction do
+      CookbookCollaborator.create cookbook: cookbook, user: cookbook.owner
+      cookbook.update_attribute(:owner, user)
+      destroy
+    end
+  end
 end
