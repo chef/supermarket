@@ -31,13 +31,13 @@ class CookbooksController < ApplicationController
       @cookbooks = Cookbook.includes(:latest_cookbook_version)
     end
 
+    @cookbooks = @cookbooks.ordered_by(params[:order])
+
     if params[:q]
       @cookbooks = @cookbooks.search(params[:q])
     end
 
-    order, page = params[:order], params[:page]
-
-    @cookbooks = @cookbooks.ordered_by(order).page(page).per(20)
+    @cookbooks = @cookbooks.page(params[:page]).per(20)
 
     respond_to do |format|
       format.html
