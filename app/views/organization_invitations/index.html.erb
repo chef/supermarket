@@ -67,7 +67,7 @@
                     <%= f.check_box :admin, class: 'auto trigger' %>
                   <% end %>
                 <% else %>
-                  <input type="checkbox" disabled>
+                  <%= tag(:input, type: 'checkbox', disabled: true, checked: contributor.admin?) %>
                 <% end %>
               </td>
               <td><%= "Active" %></td>
