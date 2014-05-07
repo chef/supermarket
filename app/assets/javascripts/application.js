@@ -10,8 +10,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery-2.1.0.min
-//= require jquery/rails
+//= require jquery
+//= require rails
+//= require jquery.cookie
 //= require placeholder
 //= require fastclick
 //= require modernizr
