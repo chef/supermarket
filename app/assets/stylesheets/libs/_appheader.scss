@@ -239,3 +239,57 @@
     }
   }
 }
+
+// styles for the beta banner
+
+.beta_banner_header {
+  background-color: $secondary-blue;
+  cursor: pointer;
+  height: rem-calc(60);
+  padding: rem-calc(12 0);
+  text-align: center;
+  transition: background-color 100ms ease-out 0s;
+
+  &:hover,
+  &:focus {
+    background-color: darken($secondary-blue, 20%);
+  }
+
+  h3 {
+    color: white;
+  }
+}
+
+.beta_banner_content {
+  @include grid-row();
+  background-color: lighten($primary_blue, 10%);
+  display: none;
+}
+
+.beta_info {
+  @include grid-column(6, $collapse: true);
+  padding: rem-calc(8 64 8 64);
+
+
+  a {
+    color: white;
+    text-decoration: underline;
+  }
+
+  h3 {
+    color: white;
+    margin: rem-calc(14 0);
+    text-transform: uppercase;
+  }
+
+  p {
+    color: white;
+  }
+}
+
+@media #{$mobile-only} {
+  .beta_info{
+    @include grid-column(12, $collapse: true);
+    padding: rem-calc(4 32);
+  }
+}
