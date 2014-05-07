@@ -1,6 +1,6 @@
 <li>
-  <div class="cookbook">
-    <div class="cookbook_partial_content">
+  <div class="cookbook" data-equalizer>
+    <div class="cookbook_partial_content" data-equalizer-watch>
       <span class="cookbook_dates">
         <i class="fa fa-clock-o"></i> Updated <%= cookbook.updated_at.to_s(:long) %><br />
         <small>Created <%= cookbook.created_at.to_s(:long) %></small>
@@ -16,7 +16,7 @@
       <code><pre>cookbook '<%= cookbook.name %>', '~> <%= cookbook.latest_cookbook_version.version %>'</pre></code>
     </div>
 
-    <div class="cookbook_partial_sidebar">
+    <div class="cookbook_partial_sidebar" data-equalizer-watch>
       <div class="cookbook_owner">
         <%= link_to cookbook.owner do %>
           <%= gravatar_for cookbook.owner, size: 128 %>
