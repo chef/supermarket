@@ -17,7 +17,7 @@
   color: adjust-lightness($concrete, 10%);
   display: block;
   height: rem-calc(100);
-  left: rem-calc(-55);
+  left: 0;
   line-height: rem-calc(100);
   @include single-transition(color, $speed: 100ms);
   position: absolute;

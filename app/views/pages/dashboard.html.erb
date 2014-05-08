@@ -1,5 +1,71 @@
 <%= provide :title, 'Dashboard' %>
 
-<div class="page">
-  <h1>Dashboard</h1>
+<div class="dashboard">
+  <div class="dashboard_content">
+    <div class="activity_heading">
+      <h3>Followed Cookbooks Activity</h3>
+      <% if @followed_cookbook_activity.any? %>
+        <%= link_to "You're Following #{pluralize(current_user.followed_cookbooks.count, 'Cookbook')}", '#', class: 'hardcoded' %>
+      <% end %>
+    </div>
+    <% if @followed_cookbook_activity.any? %>
+      <ul class="activity_list">
+        <% @followed_cookbook_activity.each do |cookbook_version| %>
+          <li>
+            <div>
+              <%= link_to gravatar_for(cookbook_version.owner), cookbook_version.owner %>
+              <%= link_to cookbook_version.owner.username, cookbook_version.owner %> released <span>v<%= cookbook_version.version %></span> of the <%= link_to cookbook_version.name, cookbook_version.cookbook %> cookbook
+            </div>
+            <small class="date"><%= cookbook_version.created_at.to_s(:longish) %></small>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <div class="explore_cookbooks">
+        <h2>Looks like you're not following any cookbooks yet!</h2>
+        <p>Search for cookbooks and follow them to get notified when new versions are released.</p>
+        <%= link_to 'Explore Cookbooks', cookbooks_path, class: 'button radius' %>
+      </div>
+    <% end %>
+  </div>
+  <div class="dashboard_sidebar">
+    <h4>Your Cookbooks</h4>
+    <% if @cookbooks.any? %>
+      <ul class="cookbook_listing hide_owner">
+        <%= render partial: 'cookbooks/simple_cookbook', collection: @cookbooks, as: 'cookbook' %>
+      </ul>
+      <%= link_to 'View All of Your Cookbooks', '#', class: 'button radius small expand hardcoded' %>
+    <% else %>
+      <p><strong>Looking to upload your cookbooks?</strong></p>
+      <ol>
+        <li>Ensure you have a Chef repo configured with your private key</li>
+        <li>Install the <%= link_to 'Supermarket Knife plugin', 'https://github.com/cwebberOps/knife-supermarket' %></li>
+        <li>Share your cookbook with <code>knife supermarket share some-cookbook other</code></li>
+      </ol>
+    <% end %>
+
+    <h4>Cookbooks You Collaborate On</h4>
+    <% if @collaborated_cookbooks.any? %>
+      <ul class="cookbook_listing">
+        <% @collaborated_cookbooks.each do |cookbook| %>
+          <%= render partial: 'cookbooks/simple_cookbook', collection: @collaborated_cookbooks, as: 'cookbook' %>
+        <% end %>
+      </ul>
+      <%= link_to 'View All Collaborated Cookbooks', '#', class: 'button radius small expand hardcoded' %>
+    <% else %>
+      <p>
+        Cookbook owners can specify other users as collaborators, allowing them to manage and upload new versions of a cookbook.
+      </p>
+    <% end %>
+
+    <h5>Resources</h5>
+    <ul class="resources">
+      <li><%= link_to 'Join IRC', 'irc://irc.freenode.net/chef' %></li>
+      <li><%= link_to 'View botbot IRC Logs', 'https://botbot.me/freenode/chef' %></li>
+      <li><%= link_to 'Getting Started with Chef and Cookbooks', 'https://wiki.opscode.com/display/ChefCN/Creating+New+Cookbooks' %></li>
+      <li><%= link_to 'Join the Mailing List', 'https://groups.google.com/forum/#!forum/chef-supermarket' %></li>
+      <li><%= link_to 'Read the Docs', 'http://docs.opscode.com' %></li>
+      <li><%= link_to 'Contribute to Supermarket', 'https://github.com/opscode/supermarket' %></li>
+    </ul>
+  </div>
 </div>

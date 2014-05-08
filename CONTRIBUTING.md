@@ -75,3 +75,5 @@ of the added dependencies conflict  with the project's whitelisted licenses.
 style guide. You can run Rubocop by runninng the `rubocop` command. Rubocop will
 let you know what the offences are and where they occur. It is also worth noting
 that Travis CI runs Rubocop, and the build will fail if Rubocop fails.
+
+All SCSS declarations should be alphabetized.

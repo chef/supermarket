@@ -29,6 +29,10 @@ class CookbookVersion < ActiveRecord::Base
     }
   )
 
+  # Delegations
+  # --------------------
+  delegate :name, :owner, to: :cookbook
+
   #
   # Returns the verison of the +CookbookVersion+ with underscores replacing the
   # dots.
