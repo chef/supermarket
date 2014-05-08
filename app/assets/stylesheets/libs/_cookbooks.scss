@@ -565,6 +565,17 @@ input[type="search"].cookbook_search_textfield {
   }
 }
 
+.cookbook_no_search_results {
+  @include grid-column($columns: 12, $collapse: true);
+  background-color: white;
+  border: 1px solid $cookbook_border;
+  padding: rem-calc(30 30);
+
+  ul {
+    margin-bottom: 0;
+  }
+}
+
 @media #{$mobile-only} {
   .cookbook_partial_content {
     @include grid-column($columns: 12, $collapse: true);
