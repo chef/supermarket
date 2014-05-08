@@ -267,8 +267,8 @@
 }
 
 .beta_info {
-  @include grid-column(6, $collapse: true);
-  padding: rem-calc(8 64 8 64);
+  @include grid-column(4, $collapse: true);
+  padding: rem-calc(8 32 8 32);
 
 
   a {
