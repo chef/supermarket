@@ -272,8 +272,8 @@
 
 
   a {
-    color: white;
-    text-decoration: underline;
+    color: $secondary-blue;
+    text-decoration: none;
   }
 
   h3 {
@@ -284,6 +284,11 @@
 
   p {
     color: white;
+  }
+
+  code {
+    color: white;
+    font-weight: normal;
   }
 }
 
