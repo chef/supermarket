@@ -22,5 +22,10 @@ class PagesController < ApplicationController
   #
   def dashboard
     authenticate_user!
+
+    if current_user.present?
+      @owned_cookbooks = current_user.owned_cookbooks
+      @collaborated_cookbooks = current_user.collaborated_cookbooks
+    end
   end
 end
