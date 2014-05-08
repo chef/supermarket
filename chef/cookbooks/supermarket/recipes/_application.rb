@@ -21,24 +21,6 @@ include_recipe 'supermarket::_apt'
 
 app = data_bag_item(:apps, 'supermarket')
 
-group 'supermarket' do
-  system true
-end
-
-user 'supermarket' do
-  gid 'supermarket'
-  system true
-  home node['supermarket']['home']
-  comment 'Supermarket'
-  shell '/bin/false'
-end
-
-template "#{node['supermarket']['home']}/shared/.env" do
-  variables(app: app)
-  notifies :restart, 'service[unicorn]'
-  notifies :restart, 'service[sidekiq]'
-end
-
 deploy_revision node['supermarket']['home'] do
   repo 'https://github.com/opscode/supermarket.git'
   revision app['revision']
@@ -47,6 +29,7 @@ deploy_revision node['supermarket']['home'] do
   migrate true
   migration_command 'bundle exec rake db:migrate'
   environment 'RAILS_ENV' => 'production'
+  action app['deploy_action'] || 'deploy'
 
   symlink_before_migrate '.env' => '.env'
 
@@ -56,6 +39,12 @@ deploy_revision node['supermarket']['home'] do
         mode 0777
         recursive true
       end
+    end
+
+    template "#{release_path}/config/database.yml"
+
+    template "#{node['supermarket']['home']}/shared/.env" do
+      variables(app: app)
     end
 
     execute 'bundle install' do

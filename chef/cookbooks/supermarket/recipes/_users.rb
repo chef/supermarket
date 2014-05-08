@@ -1,6 +1,6 @@
 #
 # Author:: Tristan O'Neil (<tristanoneil@gmail.com>)
-# Attributes:: supermarket
+# Recipe:: users
 #
 # Copyright 2014 Chef Software, Inc.
 #
@@ -17,15 +17,14 @@
 # limitations under the License.
 #
 
-default['postgres']['user'] = 'supermarket'
-default['postgres']['database'] = 'supermarket_production'
-default['postgres']['auth_method'] = 'peer'
+group 'supermarket' do
+  system true
+end
 
-default['redis']['maxmemory'] = '64mb'
-
-default['supermarket']['cla_signature_notification_email'] = 'notifications@example.com'
-default['supermarket']['from_email'] = 'donotreply@example.com'
-default['supermarket']['home'] = '/srv/supermarket'
-default['supermarket']['host'] = 'supermarket.getchef.com'
-default['supermarket']['sidekiq']['concurrency'] = '25'
-default['supermarket']['database']['pool'] = 25
+user 'supermarket' do
+  gid 'supermarket'
+  system true
+  home node['supermarket']['home']
+  comment 'Supermarket'
+  shell '/bin/false'
+end

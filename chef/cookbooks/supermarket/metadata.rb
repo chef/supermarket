@@ -1,5 +1,5 @@
 name 'supermarket'
-version '1.2.3'
+version '1.2.4'
 maintainer 'Chef Software, Inc.'
 maintainer_email 'cookbooks@getchef.com'
 license 'Apache v2.0'

@@ -25,7 +25,7 @@ package 'libpq-dev'
 
 execute 'postgres[user]' do
   user 'postgres'
-  command "echo 'CREATE ROLE #{node['postgres']['user']} WITH LOGIN CREATEDB;' | psql"
+  command "echo 'CREATE ROLE #{node['postgres']['user']} WITH LOGIN;' | psql"
   not_if  "echo 'SELECT 1 FROM pg_roles WHERE rolname = \'#{node['postgres']['user']}\';' | psql | grep -q 1"
 end
 
@@ -33,6 +33,23 @@ execute 'postgres[database]' do
   user 'postgres'
   command "echo 'CREATE DATABASE #{node['postgres']['database']};' | psql"
   not_if  "echo 'SELECT 1 FROM pg_database WHERE datname = \'#{node['postgres']['database']}\';' | psql | grep -q 1"
+end
+
+execute 'postgres[privileges]' do
+  user 'postgres'
+  command "echo 'GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA #{node['postgres']['database']} TO #{node['postgres']['user']};' | psql"
+end
+
+execute 'postgres[extensions][plpgsql]' do
+  user 'postgres'
+  command "echo 'CREATE EXTENSION IF NOT EXISTS plpgsql' | psql"
+  not_if "echo '\dx' | psql #{node['postgres']['database']} | grep plpgsql"
+end
+
+execute 'postgres[extensions][pg_trgm]' do
+  user 'postgres'
+  command "echo 'CREATE EXTENSION IF NOT EXISTS pg_trgm' | psql"
+  not_if "echo '\dx' | psql #{node['postgres']['database']} | grep pg_trgm"
 end
 
 template '/etc/postgresql/9.1/main/pg_hba.conf' do
