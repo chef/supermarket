@@ -13,4 +13,15 @@ class CookbookMailer < ActionMailer::Base
 
     mail(to: @to, subject: "A New Version of #{@cookbook.name} Has Been Released.")
   end
+
+  #
+  # Create notification email to a cookbook's collaborators and followers
+  # explaining that the cookbook has been deleted
+  #
+  # @param name [String] the name of the cookbook
+  # @param email [String] the user to notify
+  #
+  def cookbook_deleted_email(name, email)
+    mail(to: email, subject: 'Chef Supermarket - A cookbook has been deleted.')
+  end
 end

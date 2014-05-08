@@ -4,10 +4,33 @@ describe Cookbook do
   context 'associations' do
     it { should have_many(:cookbook_versions) }
     it { should have_many(:cookbook_followers) }
+    it { should have_many(:followers) }
     it { should belong_to(:category) }
     it { should belong_to(:owner) }
     it { should have_many(:cookbook_collaborators) }
     it { should have_many(:collaborators) }
+
+    context 'dependent deletions' do
+      let!(:cookbook) { create(:cookbook) }
+      let!(:follower) { create(:cookbook_follower, cookbook: cookbook, user: create(:user)) }
+      let!(:collaborator) { create(:cookbook_collaborator, cookbook: cookbook, user: create(:user)) }
+
+      before do
+        cookbook.reload
+      end
+
+      it 'should not destroy followers when deleted' do
+        expect(cookbook.cookbook_followers.size).to eql(1)
+        cookbook.destroy
+        expect { follower.reload }.to_not raise_error
+      end
+
+      it 'should not destroy collaborators when deleted' do
+        expect(cookbook.cookbook_collaborators.size).to eql(1)
+        cookbook.destroy
+        expect { collaborator.reload }.to_not raise_error
+      end
+    end
   end
 
   context 'validations' do

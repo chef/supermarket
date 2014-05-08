@@ -125,6 +125,11 @@ describe Api::V1::CookbookUploadsController do
       it 'destroys all associated cookbook versions' do
         expect { unshare }.to change(CookbookVersion, :count).by(-2)
       end
+
+      it 'kicks off a deletion process in a worker' do
+        expect(CookbookDeletionWorker).to receive(:perform_async)
+        unshare
+      end
     end
 
     context 'when the user is not authorized to destroy the cookbook' do
