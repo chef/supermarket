@@ -54,19 +54,19 @@ class CookbooksController < ApplicationController
     @recently_updated_cookbooks = Cookbook.
       includes(:latest_cookbook_version).
       ordered_by('recently_updated').
-      limit(3)
-    @recently_added_cookbooks = Cookbook.
-      includes(:latest_cookbook_version).
-      ordered_by('recently_added').
-      limit(3)
+      limit(5)
     @most_downloaded_cookbooks = Cookbook.
       includes(:latest_cookbook_version).
       ordered_by('most_downloaded').
-      limit(3)
+      limit(5)
     @most_followed_cookbooks = Cookbook.
       includes(:latest_cookbook_version).
       ordered_by('most_followed').
-      limit(3)
+      limit(5)
+
+    @cookbook_count = Cookbook.count
+    @download_count = Cookbook.sum(:download_count)
+    @user_count = User.count
   end
 
   #

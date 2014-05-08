@@ -1,0 +1,5 @@
+.gravatar {
+  @include border-radius(rem-calc(40));
+  height: rem-calc(40);
+  width: rem-calc(40);
+}
