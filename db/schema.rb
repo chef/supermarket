@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140505164715) do
+ActiveRecord::Schema.define(version: 20140508191053) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -119,8 +119,6 @@ ActiveRecord::Schema.define(version: 20140505164715) do
     t.integer  "cookbook_id"
     t.string   "license"
     t.string   "version"
-    t.string   "file_url"
-    t.string   "file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "tarball_file_name"
@@ -131,7 +129,6 @@ ActiveRecord::Schema.define(version: 20140505164715) do
     t.text     "readme",                default: "",    null: false
     t.string   "readme_extension",      default: "",    null: false
     t.boolean  "dependencies_imported", default: false
-    t.string   "maintainer"
     t.text     "description"
     t.integer  "legacy_id"
   end
