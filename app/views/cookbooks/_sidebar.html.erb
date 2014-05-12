@@ -16,7 +16,7 @@
               <li><%= link_to 'Transfer Ownership', transfer_cookbook_collaborator_path(cookbook, collaborator), class: 'fa fa-random', method: :put %></li>
             <% end %>
             <% if destroy %>
-              <li><%= link_to 'Remove Contributor', cookbook_collaborator_path(cookbook, collaborator), class: 'fa fa-times-circle', remote: true, method: :delete %></li>
+              <li><%= link_to contributor_removal_text(cookbook), cookbook_collaborator_path(cookbook, collaborator), class: 'fa fa-times-circle', remote: true, method: :delete %></li>
             <% end %>
           </ul>
         <% end %>
