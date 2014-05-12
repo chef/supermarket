@@ -1,5 +1,17 @@
 module CookbooksHelper
   #
+  # Returns a string that will be unique within the DOM, suitable for use as an
+  # id attribute for a DOM element
+  #
+  # @param contributor [User] the contributor
+  #
+  # @return [String] the unique DOM id
+  #
+  def contributor_options_id(contributor)
+    "contributor-options-#{contributor.id}"
+  end
+
+  #
   # Show the appropriate text for removing contributors from a cookbook. Owners
   # should see "Remove Contributor", while contributors should see "Remove
   # Myself".
