@@ -207,6 +207,10 @@ class Cookbook < ActiveRecord::Base
     owner.username
   end
 
+  def to_s
+    name
+  end
+
   private
 
   #

@@ -2,4 +2,55 @@
 
 <div class="page">
   <h1>Dashboard</h1>
+
+  <div class="row">
+    <div class="small-12 medium-4 columns">
+      <div class="owned_cookbooks">
+        <h2>Your Cookbooks</h2>
+        <ul class="simple_cookbooks">
+          <% @owned_cookbooks.each do |cookbook| %>
+            <%= render 'cookbooks/simple_cookbook', cookbook: cookbook %>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="collaborated_cookbooks">
+        <h2>Cookbooks You Collaborate On</h2>
+        <ul class="simple_cookbooks">
+          <% @collaborated_cookbooks.each do |cookbook| %>
+            <%= render 'cookbooks/simple_cookbook', cookbook: cookbook %>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="community_links">
+        <h2>Community Links</h2>
+        <ul>
+          <li>
+            <a href="http://docs.opscode.com/community_guidelines.html">Community Guidelines</a>
+          </li>
+          <li>
+            <a href="https://wiki.opscode.com/display/ChefCN/Creating+New+Cookbooks">Share your cookbooks</a>
+          </li>
+          <li>
+            <a href="irc://irc.freenode.net/chef">Chat on IRC at #chef on irc.freenode.net</a>
+          </li>
+          <li>
+            <a href="https://groups.google.com/forum/#!forum/chef-supermarket">Join the Supermarket Mailing List</a>
+          </li>
+          <li>
+            <a href="https://github.com/opscode/supermarket">Contribute to Supermarket</a>
+          </li>
+          <li>
+            <a href="http://docs.opscode.com/community_contributions.html">How to Contribute</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="small-12 medium-8 columns">
+      <h2>Activity Feed</h2>
+      <p>The activity feed for your favorite social network, Supermarket, is coming soon. Wahoo!</p>
+    </div>
+  </div>
 </div>
