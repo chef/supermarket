@@ -137,33 +137,148 @@ input[type="search"].cookbook_search_textfield {
 
 // Cookbook stats bar
 .cookbooks_stats {
-  background-color: adjust-lightness($secondary_gray, 35%);
-  @include border-radius(rem-calc(5));
-  padding: rem-calc(15 0 25);
-  margin: rem-calc(0 0 35 0);
+  padding: rem-calc(12 0 36);
+  text-align: center;
 
-  ul {
-    @include grid-row();
-    list-style: none;
+  .stat {
+    color: adjust-lightness($primary_gray, 20%);
+    font-family: $accent_font;
+    font-size: rem-calc(36);
+    padding: rem-calc(0 24);
+
+    .number {
+      color: $primary-gray;
+    }
+  }
+}
+
+// Cookbook directory styles
+
+.cookbooks_columns {
+  @include grid-row();
+  margin-bottom: rem-calc(36);
+}
+
+.cookbooks_column {
+  @include grid-column($columns: 4, $collapse: true);
+  padding: rem-calc(12);
+
+  &.first {
+    padding-left: rem-calc(0);
+  }
+
+  &.last {
+    padding-right: rem-calc(0);
+  }
+
+  .cookbooks_column_content {
+    background-color: white;
+    border: 1px solid $cookbook_border;
+    text-align: center;
+
+    .button.expand {
+      margin: rem-calc(16 0);
+      width: 90%;
+    }
+
+    .title {
+      border-bottom: 1px solid $cookbook_border;
+      font-size: rem-calc(24);
+      margin: 0;
+      padding: rem-calc(16 0);
+    }
+  }
+}
+
+@media #{$mobile-only} {
+  .cookbooks_column {
+    @include grid-column($columns: 12, $collapse: true);
+    padding: rem-calc(12);
+  }
+}
+
+
+.learn_about_cookbooks {
+  @include grid-row();
+  background-color: white;
+  border: rem-calc(1) solid $cookbook_border;
+  padding: rem-calc(24 32);
+}
+
+.learn_about_cookbooks_content {
+  @include grid-column($columns: 7, $collapse: true);
+  padding-right: rem-calc(96);
+}
+
+.learn_about_cookbooks_sidebar {
+  @include grid-column($columns: 5, $collapse: true);
+}
+
+@media #{$mobile-only} {
+  .learn_about_cookbooks_content {
+    @include grid-column($columns: 12, $collapse: true);
+    padding-right: 0;
+  }
+
+  .learn_about_cookbooks_sidebar {
+    @include grid-column($columns: 12, $collapse: true);
+  }
+}
+
+// simple cookbook style
+
+.cookbook_listing {
+  text-align: left;
+
+  .simple_cookbook {
+    border-top: rem-calc(1) solid $cookbook_border;
     margin: 0;
-    padding: 0;
+    padding: rem-calc(12 16);
 
-    li {
-      @include grid-column($columns: 3, $collapse: true);
-      text-align: center;
+    &:last-child {
+      border-bottom: rem-calc(1) solid $cookbook_border;
+      margin-bottom: 0;
+    }
 
-      h3 {
-        color: $primary_gray;
-        font-size: rem-calc(36);
-        margin: 0;
+    span {
+      color: $primary-gray;
+      font-family: $accent_font;
+    }
 
-        small {
-          color: adjust-lightness($primary_gray, 20%);
-          display: block;
-          font: $bold rem-calc(10) $default_font;
-          text-transform: uppercase;
+    .gravatar {
+      @include inline-block;
+      margin-right: rem-calc(8);
+    }
+
+    .name {
+      font-size: rem-calc(20);
+      margin-right: rem-calc(8);
+
+      a {
+        @include single-transition($speed: 100ms);
+        color: $primary_blue;
+        text-decoration: none;
+
+        &:hover {
+          color: lighten($primary_blue, 20%);
+          text-decoration: none;
+        }
+
+        &:visited {
+          color: $primary_blue;
+          text-decoration: none;
         }
       }
+    }
+
+    .followers {
+      float: right;
+      font-size: rem-calc(14);
+      padding-top: rem-calc(6);
+    }
+
+    .version {
+      font-size: rem-calc(14);
     }
   }
 }

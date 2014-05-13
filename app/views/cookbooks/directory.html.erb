@@ -2,52 +2,117 @@
 <%= provide(:description, "Browse and search Chef cookbooks.") %>
 
 <div class="page nobg">
-  <section class="cookbook_body">
-    <article class="cookbook_content">
-      <div class="recently-updated">
-        <h2 class="cookbook_content_heading">
-          Recently Updated
-          <small>
-            <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, cookbooks_path(order: 'recently_updated', format: 'atom'), class: 'rss_feed_link show-for-medium-up' %>
-          </small>
-          <%= link_to 'View All', cookbooks_path(order: 'recently_updated'), class: 'button radius small right' %>
-        </h2>
-        <ul class="cookbook_listing"><%= render @recently_updated_cookbooks %></ul>
-      </div>
-
-      <div class="recently-added">
-        <h2 class="cookbook_content_heading">
-          Recently Added
-          <small>
-            <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, cookbooks_path(order: 'recently_added', format: 'atom'), class: 'rss_feed_link show-for-medium-up' %>
-          </small>
-          <%= link_to 'View All', cookbooks_path(order: 'recently_added'), class: 'button radius small right' %>
-        </h2>
-        <ul class="cookbook_listing"><%= render @recently_added_cookbooks %></ul>
-      </div>
-
-      <div class="most-downloaded">
-        <h2 class="cookbook_content_heading">
-          Most Downloaded
-          <small>
-            <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, cookbooks_path(order: 'most_downloaded', format: 'atom'), class: 'rss_feed_link show-for-medium-up' %>
-          </small>
-          <%= link_to 'View All', cookbooks_path(order: 'most_downloaded'), class: 'button radius small right' %>
-        </h2>
-        <ul class="cookbook_listing"><%= render @most_downloaded_cookbooks %></ul>
-      </div>
-
-      <div class="most-followed">
-        <h2 class="cookbook_content_heading">
-          Most Followed
-          <small>
-            <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, cookbooks_path(order: 'most_followed', format: 'atom'), class: 'rss_feed_link show-for-medium-up' %>
-          </small>
-          <%= link_to 'View All', cookbooks_path(order: 'most_followed'), class: 'button radius small right' %>
-        </h2>
-        <ul class="cookbook_listing"><%= render @most_followed_cookbooks %></ul>
-      </div>
-    </article>
-
+  <section class="cookbooks_stats">
+    <span class="stat"><span class="number"><%= number_with_delimiter @cookbook_count, delimiter: ',' %></span> Cookbooks</span>
+    <span class="stat"><span class="number"><%= number_with_delimiter @download_count, delimiter: ',' %></span> Downloads</span>
+    <span class="stat"><span class="number"><%= number_with_delimiter @user_count, delimiter: ',' %></span> Chefs</span>
   </section>
+
+  <div class="cookbooks_columns">
+    <div class="cookbooks_column first recently-updated">
+      <div class="cookbooks_column_content">
+        <h2 class="title">Recently Updated</h2>
+        <ul class="cookbook_listing">
+          <% @recently_updated_cookbooks.each do |cookbook| %>
+            <%= render "simple_cookbook", cookbook: cookbook %>
+          <% end %>
+        </ul>
+        <%= link_to 'View All', cookbooks_path(order: 'recently_updated'), class: 'button radius expand' %>
+      </div>
+    </div>
+
+    <div class="cookbooks_column most-downloaded">
+      <div class="cookbooks_column_content">
+        <h2 class="title">Most Downloaded</h2>
+        <ul class="cookbook_listing">
+          <% @most_downloaded_cookbooks.each do |cookbook| %>
+            <%= render "simple_cookbook", cookbook: cookbook %>
+          <% end %>
+        </ul>
+        <%= link_to 'View All', cookbooks_path(order: 'most_downloaded'), class: 'button radius expand' %>
+      </div>
+    </div>
+
+    <div class="cookbooks_column last most-followed">
+      <div class="cookbooks_column_content">
+        <h2 class="title">Most Followed</h2>
+        <ul class="cookbook_listing">
+          <% @most_followed_cookbooks.each do |cookbook| %>
+            <%= render "simple_cookbook", cookbook: cookbook %>
+          <% end %>
+        </ul>
+        <%= link_to 'View All', cookbooks_path(order: 'most_followed'), class: 'button radius expand' %>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="text-center">Learn About Cookbooks</h2>
+
+  <div class="learn_about_cookbooks">
+    <div class="learn_about_cookbooks_content">
+      <h3>What is a cookbook?</h3>
+      <p>A cookbook is the fundamental unit of configuration and policy
+      distribution in Chef. Each cookbook defines a scenario, such as everything
+      needed to install and configure MySQL, and then it contains all of the
+      components that are required to support that scenario. Chef maintains a
+      collection of cookbooks that are important to Chef and are widely used by
+      the Chef community.</p>
+
+      <h3>How do I use a cookbook?</h3>
+      <p>Interact with cookbooks by using the <code>knife cookbook</code> commands.
+      With <code>knife cookbook</code>, you can create, delete, show, list,
+      download and upload cookbooks. Read the <a href="http://docs.opscode.com/knife_cookbook.html">
+      knife cookbook commands documentation</a> for more information.</p>
+
+      <h3>How do I share a cookbook?</h3>
+      <p>In order to share and interact with cookbooks on Supermarket, use the
+      <code>knife cookbook site</code> commands. <a href="http://docs.opscode.com/knife_cookbook_site.html">
+      The documentation</a> for <code>knife cookbook site</code> explains how to
+      download, share, unshare, search, install and list cookbooks on Supermarket.
+      You can also interact with the <a href="http://docs.opscode.com/api_cookbooks_site.html">
+      Supermarket API</a> directly.</p>
+    </div>
+
+    <div class="learn_about_cookbooks_sidebar">
+      <h3>Cookbook Resources</h3>
+
+      <ul>
+        <li>
+          <a href="http://docs.opscode.com/essentials_cookbooks.html">About cookbooks</a>
+        </li>
+
+        <li>
+          <a href="http://docs.opscode.com/essentials_cookbook_recipes.html">About recipes</a>
+        </li>
+
+        <li>
+          <a href="http://docs.opscode.com/api_cookbooks_site.html">Supermarket cookbooks API documentation</a>
+        </li>
+
+        <li>
+          <a href="http://berkshelf.com/">Berkshelf documentation</a>
+        </li>
+
+        <li>
+          <a href="http://docs.opscode.com/chef/knife.html">knife documentation</a>
+        </li>
+
+        <li>
+          <a href="http://docs.opscode.com/kitchen.html">test-kitchen documentation</a>
+        </li>
+
+        <li>
+          <a href="http://docs.opscode.com/foodcritic.html">Foodcritic documentation</a>
+        </li>
+
+        <li>
+          <a href="http://www.getchef.com/downloads/chef-dk/">Chef Development Kit (Chef DK)</a>
+        </li>
+
+        <li>
+          <a href="https://github.com/opscode-cookbooks">Cookbooks maintained and supported by Chef Software, Inc.</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

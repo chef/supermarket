@@ -62,20 +62,9 @@
 
   <h3 class="text-center">Supermarket Stats</h3>
 
-  <section class="cookbooks_stats show-for-medium-up">
-    <ul>
-      <li>
-        <h3><%= @recently_updated_count %> <small>Recently Updated</small></h3>
-      </li>
-      <li>
-        <h3><%= @cookbook_count %> <small>Cookbooks</small></h3>
-      </li>
-      <li>
-        <h3><%= @download_count %> <small>Downloads</small></h3>
-      </li>
-      <li>
-        <h3><%= @user_count %> <small>Chefs</small></h3>
-      </li>
-    </ul>
+  <section class="cookbooks_stats">
+    <span class="stat"><span class="number"><%= number_with_delimiter @cookbook_count, delimiter: ',' %></span> Cookbooks</span>
+    <span class="stat"><span class="number"><%= number_with_delimiter @download_count, delimiter: ',' %></span> Downloads</span>
+    <span class="stat"><span class="number"><%= number_with_delimiter @user_count, delimiter: ',' %></span> Chefs</span>
   </section>
 </div>

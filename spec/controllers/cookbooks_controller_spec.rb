@@ -158,10 +158,6 @@ describe CookbooksController do
       expect(assigns[:recently_updated_cookbooks]).to_not be_nil
     end
 
-    it 'assigns @recently_added_cookbooks' do
-      expect(assigns[:recently_added_cookbooks]).to_not be_nil
-    end
-
     it 'assigns @most_downloaded_cookbooks' do
       expect(assigns[:most_downloaded_cookbooks]).to_not be_nil
     end
@@ -172,6 +168,18 @@ describe CookbooksController do
 
     it 'assigns @categories' do
       expect(assigns[:categories]).to_not be_nil
+    end
+
+    it 'sends cookbook count to the view' do
+      expect(assigns[:cookbook_count]).to_not be_nil
+    end
+
+    it 'sends download count to the view' do
+      expect(assigns[:download_count]).to_not be_nil
+    end
+
+    it 'sends user count to the view' do
+      expect(assigns[:user_count]).to_not be_nil
     end
   end
 

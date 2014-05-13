@@ -1,0 +1,15 @@
+<li class="simple_cookbook">
+  <%= link_to cookbook.owner, title: cookbook.owner.username do %>
+    <%= gravatar_for cookbook.owner %>
+  <% end %>
+
+  <span class="name">
+    <%= link_to cookbook.name, cookbook, rel: 'cookbook' %>
+  </span>
+
+  <span class="version"><%= cookbook.latest_cookbook_version.version %></span>
+
+  <span class="followers">
+    <%= pluralize cookbook.cookbook_followers_count, 'Followers' %>
+  </span>
+</li>
