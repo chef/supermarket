@@ -8,24 +8,26 @@
   </div>
   <div class="collaborators_avatar">
     <% collaborators.each do |collaborator| %>
-      <%= link_to gravatar_for(collaborator, size: 80), collaborator, title: collaborator.name, data: { :dropdown => 'contributoroptions', :options => 'is_hover:true'} %>
-      <% collaboration_permissions_for(cookbook, collaborator) do |transfer, destroy| %>
-        <% if transfer || destroy %>
-          <ul id="contributoroptions" data-dropdown-content class="f-dropdown">
-            <% if transfer %>
-              <li><%= link_to 'Transfer Ownership', transfer_cookbook_collaborator_path(cookbook, collaborator), class: 'fa fa-random', method: :put %></li>
-            <% end %>
-            <% if destroy %>
-              <li><%= link_to 'Remove Contributor', cookbook_collaborator_path(cookbook, collaborator), class: 'fa fa-times-circle', remote: true, method: :delete %></li>
-            <% end %>
-          </ul>
+      <div class="gravatar-container">
+        <%= link_to gravatar_for(collaborator, size: 80), collaborator, title: collaborator.name, data: { :dropdown => contributor_options_id(collaborator), :options => 'is_hover:true'} %>
+        <% collaboration_permissions_for(cookbook, collaborator) do |transfer, destroy| %>
+          <% if transfer || destroy %>
+            <ul id="<%= contributor_options_id(collaborator) %>" data-dropdown-content class="f-dropdown">
+              <% if transfer %>
+                <li><%= link_to 'Transfer Ownership', transfer_cookbook_collaborator_path(cookbook, collaborator), class: 'fa fa-random', rel: 'transfer-cookbook-ownership', method: :put %></li>
+              <% end %>
+              <% if destroy %>
+                <li><%= link_to contributor_removal_text(cookbook), cookbook_collaborator_path(cookbook, collaborator), class: 'fa fa-times-circle', rel: 'remove-cookbook-collaborator', remote: true, method: :delete %></li>
+              <% end %>
+            </ul>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     <% end %>
   </div>
 
   <% if policy(@owner_collaborator).create? %>
-    <%= link_to 'Add Contributor', new_cookbook_collaborator_path(cookbook), class: 'button secondary radius tiny addcontributor', 'data-reveal-id' => 'collaborators', 'data-reveal-ajax' => true %>
+    <%= link_to 'Add Contributor', new_cookbook_collaborator_path(cookbook), class: 'button secondary radius tiny addcontributor', rel: 'add-collaborator', 'data-reveal-id' => 'collaborators', 'data-reveal-ajax' => true %>
     <div id="collaborators" class="reveal-modal small" data-reveal>
     </div>
   <% end %>

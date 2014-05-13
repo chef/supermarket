@@ -7,6 +7,6 @@ $(function() {
   });
 
   $('a[data-remote]').on('ajax:success', function(e, data, status, xhr) {
-    $(this).parent().remove();
+    $(this).parents('.gravatar-container').remove();
   });
 });
