@@ -55,7 +55,8 @@ class Cookbook < ActiveRecord::Base
   # Associations
   # --------------------
   has_many :cookbook_versions, -> { order(id: :desc) }, dependent: :destroy
-  has_many :cookbook_followers, dependent: :destroy
+  has_many :cookbook_followers
+  has_many :followers, through: :cookbook_followers, source: :user
   has_one :latest_cookbook_version, -> { order(id: :desc) }, class_name: 'CookbookVersion'
   belongs_to :category
   belongs_to :owner, class_name: 'User', foreign_key: :user_id

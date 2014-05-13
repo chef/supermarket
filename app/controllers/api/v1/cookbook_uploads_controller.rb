@@ -93,6 +93,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
       @cookbook.destroy
 
       if @cookbook.destroyed?
+        CookbookDeletionWorker.perform_async(@cookbook.as_json)
         SegmentIO.track_server_event(
           'cookbook_deleted',
           cookbook: @cookbook.name
