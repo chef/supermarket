@@ -26,6 +26,16 @@ describe CookbookVersion do
         duplicate_version.save(validate: false)
       end.to raise_error(ActiveRecord::RecordNotUnique)
     end
+
+    it 'validates that the version number is semantically correct' do
+      cookbook = create(:cookbook)
+      cookbook_version = build(:cookbook_version, cookbook: cookbook, version: 'hahano')
+      expect(cookbook_version).to_not be_valid
+      expect(cookbook_version.errors[:version]).to_not be_empty
+      cookbook_version.version = '8.7.6'
+      expect(cookbook_version).to be_valid
+      expect(cookbook_version.errors[:version]).to be_empty
+    end
   end
 
   context 'attachments' do

@@ -33,7 +33,7 @@ class Api::V1::CookbooksController < Api::V1Controller
       @cookbook, @cookbook.latest_cookbook_version
     )
 
-    @cookbook_versions_urls = @cookbook.cookbook_versions.map do |version|
+    @cookbook_versions_urls = @cookbook.sorted_cookbook_versions.map do |version|
       api_v1_cookbook_version_url(@cookbook, version)
     end
   end

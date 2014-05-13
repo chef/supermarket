@@ -24,11 +24,11 @@ class CookbooksController < ApplicationController
   def index
     if params[:category]
       @cookbooks = Cookbook.
-        includes(:latest_cookbook_version).
+        includes(:cookbook_versions).
         joins(:category).
         where('categories.slug = ?', params[:category])
     else
-      @cookbooks = Cookbook.includes(:latest_cookbook_version)
+      @cookbooks = Cookbook.includes(:cookbook_versions)
     end
 
     @cookbooks = @cookbooks.ordered_by(params[:order])
@@ -52,15 +52,15 @@ class CookbooksController < ApplicationController
   #
   def directory
     @recently_updated_cookbooks = Cookbook.
-      includes(:latest_cookbook_version).
+      includes(:cookbook_versions).
       ordered_by('recently_updated').
       limit(5)
     @most_downloaded_cookbooks = Cookbook.
-      includes(:latest_cookbook_version).
+      includes(:cookbook_versions).
       ordered_by('most_downloaded').
       limit(5)
     @most_followed_cookbooks = Cookbook.
-      includes(:latest_cookbook_version).
+      includes(:cookbook_versions).
       ordered_by('most_followed').
       limit(5)
 
@@ -76,7 +76,7 @@ class CookbooksController < ApplicationController
   #
   def show
     @latest_version = @cookbook.latest_cookbook_version
-    @cookbook_versions = @cookbook.cookbook_versions
+    @cookbook_versions = @cookbook.sorted_cookbook_versions
     @owner = @cookbook.owner
     @collaborators = @cookbook.collaborators
     @supported_platforms = @cookbook.supported_platforms

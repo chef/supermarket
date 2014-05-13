@@ -33,6 +33,30 @@ describe Cookbook do
     end
   end
 
+  context 'ordering versions' do
+    let(:toast) { create(:cookbook) }
+
+    before do
+      toast.cookbook_versions.each(&:destroy)
+      create(:cookbook_version, cookbook: toast, version: '0.1.0')
+      create(:cookbook_version, cookbook: toast, version: '10.0.0')
+      create(:cookbook_version, cookbook: toast, version: '9.9.9')
+      create(:cookbook_version, cookbook: toast, version: '9.10.0')
+      create(:cookbook_version, cookbook: toast, version: '0.2.0')
+      toast.reload
+    end
+
+    it 'should order versions based on the version number' do
+      versions = toast.sorted_cookbook_versions.map(&:version)
+      expect(toast.cookbook_versions.size).to eql(5)
+      expect(versions).to eql(['10.0.0', '9.10.0', '9.9.9', '0.2.0', '0.1.0'])
+    end
+
+    it 'should use the one with the largest version number for #latest_cookbook_version' do
+      expect(toast.latest_cookbook_version.version).to eql('10.0.0')
+    end
+  end
+
   context 'validations' do
     it 'validates the uniqueness of name' do
       create(:cookbook)
@@ -159,7 +183,7 @@ describe Cookbook do
     let(:metadata) do
       CookbookUpload::Metadata.new(
         license: 'MIT',
-        version: cookbook.latest_cookbook_version.version + '-beta',
+        version: '9.9.9',
         description: 'Description',
         platforms: {
           'ubuntu' => '= 12.04',
