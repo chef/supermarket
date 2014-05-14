@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140508191053) do
+ActiveRecord::Schema.define(version: 20140514200102) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140508191053) do
     t.string   "provider"
   end
 
+  add_index "accounts", ["uid", "provider"], name: "index_accounts_on_uid_and_provider", unique: true, using: :btree
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
   add_index "accounts", ["username", "provider"], name: "index_accounts_on_username_and_provider", unique: true, using: :btree
 
