@@ -1,48 +1,66 @@
 <%= provide(:title, "#{@user.name}") %>
 
-<div class="page">
-  <div class="user">
-    <div class="profile">
-      <div class="avatar">
-        <%= gravatar_for @user, size: 200 %>
-      </div>
-      <div class="info">
-        <h2><%= @user.name %></h2>
+<div class="profile">
+  <div class="profile_sidebar">
+    <%= gravatar_for @user, size: 180 %>
+    <h3><%= @user.name %></h3>
+    <h4><%= @user.username %></h4>
+    <ul>
+      <% if @user.company.present? %>
+        <li data-tooltip class="has-tip" title="The company <%= @user.name %> associates with.">
+          <span class="fa fa-briefcase"></span> <%= @user.company %>
+        </li>
+      <% end %>
 
-        <ul>
-          <% if @user.company.present? %>
-            <li data-tooltip class="has-tip" title="The company <%= @user.name %> associates with.">
-              <span class="fa fa-building"></span> <%= @user.company %>
-            </li>
-          <% end %>
+      <% if @user.twitter_username.present? %>
+        <li data-tooltip class="has-tip" title="<%= @user.name %>'s Twitter Username.">
+          <a href="https://twitter.com/<%= @user.twitter_username %>"><i class="fa fa-twitter"></i> <%= @user.twitter_username %></a>
+        </li>
+      <% end %>
 
-          <% if @user.twitter_username.present? %>
-            <li data-tooltip class="has-tip" title="<%= @user.name %>'s Twitter Username.">
-              <a href="https://twitter.com/<%= @user.twitter_username %>"><i class="fa fa-twitter"></i> <%= @user.twitter_username %></a>
-            </li>
-          <% end %>
+      <% if @user.irc_nickname.present? %>
+        <li data-tooltip class="has-tip" title="<%= @user.name %>'s IRC Nickname.">
+          <i class="fa fa-comment"></i> <%= @user.irc_nickname %>
+        </li>
+      <% end %>
 
-          <% if @user.irc_nickname.present? %>
-            <li data-tooltip class="has-tip" title="<%= @user.name %>'s IRC Nickname.">
-              <i class="fa fa-comment"></i> <%= @user.irc_nickname %>
-            </li>
-          <% end %>
+      <% if @user.jira_username.present? %>
+        <li data-tooltip class="has-tip" title="<%= @user.name %>'s Jira Username.">
+          <i class="fa fa-ticket"></i> <%= @user.jira_username %>
+        </li>
+      <% end %>
 
-          <% if @user.jira_username.present? %>
-            <li data-tooltip class="has-tip" title="<%= @user.name %>'s Jira Username.">
-              <i class="fa fa-ticket"></i> <%= @user.jira_username %>
-            </li>
-          <% end %>
+      <li data-tooltip class="has-tip" title="When <%= @user.name %> joined the Chef Community site.">
+        <i class="fa fa-clock-o"></i> Joined <%= time_ago_in_words(@user.created_at) %> ago.
+      </li>
+    </ul>
 
-          <li data-tooltip class="has-tip" title="When <%= @user.name %> joined the Chef Community site.">
-            <i class="fa fa-clock-o"></i> Joined <%= time_ago_in_words(@user.created_at) %> ago.
-          </li>
-        </ul>
+    <ul class="user_stats">
+      <li><h3><%= @user.owned_cookbooks.count %> <span>Cookbooks</span></h3></li>
+      <li><h3><%= @user.collaborated_cookbooks.count %> <span>Collaborations</span></h3></li>
+      <li><h3><%= @user.followed_cookbooks.count %> <span>Follows</span></h3></li>
+    </ul>
 
-        <% if current_user == @user %>
-          <%= link_to 'Manage Profile', edit_profile_path, class: 'button radius tiny', rel: 'manage_profile' %>
-        <% end %>
-      </div>
+    <%= link_to 'Manage Profile', edit_profile_path, class: 'button medium expand radius', rel: 'manage_profile' %>
+  </div>
+  <div class="profile_content">
+    <div class="heading">
+      <h1><%= @user.name %>'s Cookbooks</h1>
+
+      <dl class="tabs radius">
+        <dd class="<%= 'active' unless params[:tab] %>"><%= link_to 'Owns', @user %></dd>
+        <dd class="<%= 'active' if params[:tab] == 'collaborates' %>"><%= link_to 'Collaborates', user_path(@user, tab: 'collaborates') %></dd>
+        <dd class="<%= 'active' if params[:tab] == 'follows' %>"><%= link_to 'Follows', user_path(@user, tab: 'follows') %></dd>
+      </dl>
     </div>
+
+    <% if @cookbooks.any? %>
+      <ul class="cookbook_listing">
+        <%= render partial: 'cookbooks/cookbook', collection: @cookbooks %>
+      </ul>
+    <% else %>
+      <h3>No cookbooks to be found. Why not browse for some cookbooks instead?</h3>
+      <%= link_to 'Browse Cookbooks', cookbooks_path, class: 'button radius' %>
+    <% end %>
   </div>
 </div>
