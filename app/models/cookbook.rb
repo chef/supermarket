@@ -40,7 +40,7 @@ class Cookbook < ActiveRecord::Base
     },
     associated_against: {
       category: :name,
-      latest_cookbook_version: :description,
+      cookbook_versions: :description,
       chef_account: :username
     },
     using: {
@@ -54,10 +54,9 @@ class Cookbook < ActiveRecord::Base
 
   # Associations
   # --------------------
-  has_many :cookbook_versions, -> { order(id: :desc) }, dependent: :destroy
+  has_many :cookbook_versions, dependent: :destroy
   has_many :cookbook_followers
   has_many :followers, through: :cookbook_followers, source: :user
-  has_one :latest_cookbook_version, -> { order(id: :desc) }, class_name: 'CookbookVersion'
   belongs_to :category
   belongs_to :owner, class_name: 'User', foreign_key: :user_id
   has_one :chef_account, through: :owner
@@ -84,6 +83,24 @@ class Cookbook < ActiveRecord::Base
     allow_nil: true
   }
   validates :replacement, presence: true, if: :deprecated?
+
+  #
+  # Sorts cookbook versions according to their semantic version
+  #
+  # @return [Array<CookbookVersion>] the sorted CookbookVersion records
+  #
+  def sorted_cookbook_versions
+    @sorted_cookbook_versions ||= cookbook_versions.sort_by { |v| Semverse::Version.new(v.version) }.reverse
+  end
+
+  #
+  # The most recent CookbookVersion, based on the semantic version number
+  #
+  # @return [CookbookVersion] the most recent CookbookVersion
+  #
+  def latest_cookbook_version
+    @latest_cookbook_version ||= sorted_cookbook_versions.first
+  end
 
   #
   # Returns the name of the +Cookbook+ parameterized.

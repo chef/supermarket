@@ -11,21 +11,21 @@ describe 'api/v1/cookbooks/show' do
     )
   end
 
-  let(:cookbook_version_1_0_0) do
+  let(:cookbook_version_2_0_0) do
     create(
       :cookbook_version,
       cookbook: cookbook,
       description: 'great cookbook',
-      version: '1.1.0'
+      version: '2.0.0'
     )
   end
 
-  let(:cookbook_version_1_1_0) do
+  let(:cookbook_version_2_1_0) do
     create(
       :cookbook_version,
       cookbook: cookbook,
       description: 'great cookbook',
-      version: '1.1.0'
+      version: '2.1.0'
     )
   end
 
@@ -36,22 +36,19 @@ describe 'api/v1/cookbooks/show' do
     )
 
     assign(
-      :latest_cookbook_version,
-      cookbook_version_1_1_0
-    )
-
-    assign(
       :latest_cookbook_version_url,
-      'http://test.host/api/v1/cookbooks/redis/versions/1_1_0'
+      'http://test.host/api/v1/cookbooks/redis/versions/2_1_0'
     )
 
     assign(
       :cookbook_versions_urls,
       [
-        'http://test.host/api/v1/cookbooks/redis/versions/1_0_0',
-        'http://test.host/api/v1/cookbooks/redis/versions/1_1_0'
+        'http://test.host/api/v1/cookbooks/redis/versions/2_0_0',
+        'http://test.host/api/v1/cookbooks/redis/versions/2_1_0'
       ]
     )
+
+    cookbook.stub(:latest_cookbook_version) { cookbook_version_2_1_0 }
   end
 
   it "displays the cookbook's name" do
@@ -87,7 +84,7 @@ describe 'api/v1/cookbooks/show' do
 
     latest_version_url = json_body['latest_version']
     expect(latest_version_url).
-      to eql('http://test.host/api/v1/cookbooks/redis/versions/1_1_0')
+      to eql('http://test.host/api/v1/cookbooks/redis/versions/2_1_0')
   end
 
   it "displays the cookbook's external url" do
@@ -110,8 +107,8 @@ describe 'api/v1/cookbooks/show' do
     versions = json_body['versions']
     expect(versions).to eql(
         [
-          'http://test.host/api/v1/cookbooks/redis/versions/1_0_0',
-          'http://test.host/api/v1/cookbooks/redis/versions/1_1_0'
+          'http://test.host/api/v1/cookbooks/redis/versions/2_0_0',
+          'http://test.host/api/v1/cookbooks/redis/versions/2_1_0'
         ]
     )
   end

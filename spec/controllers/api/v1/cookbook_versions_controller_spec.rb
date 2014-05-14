@@ -31,9 +31,10 @@ describe Api::V1::CookbookVersionsController do
     end
 
     it 'handles the latest version of a cookbook' do
+      latest_version = redis.latest_cookbook_version
       get :show, cookbook: 'redis', version: 'latest', format: :json
 
-      expect(assigns[:cookbook_version]).to eql(redis_1_0_0)
+      expect(assigns[:cookbook_version]).to eql(latest_version)
     end
 
     it 'handles specific versions of a cookbook' do

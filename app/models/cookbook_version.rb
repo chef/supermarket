@@ -14,6 +14,7 @@ class CookbookVersion < ActiveRecord::Base
   validates :license, presence: true
   validates :description, presence: true
   validates :version, presence: true, uniqueness: { scope: :cookbook }
+  validate :semantic_version
   validates_attachment(
     :tarball,
     presence: true,
@@ -41,5 +42,19 @@ class CookbookVersion < ActiveRecord::Base
   #
   def to_param
     version.gsub(/\./, '_')
+  end
+
+  private
+
+  #
+  # Ensure that the version string we've been given conforms to semantic
+  # versioning at http://semver.org
+  #
+  def semantic_version
+    begin
+      Semverse::Version.new(version)
+    rescue Semverse::InvalidVersionFormat
+      errors.add(:version, 'is formatted incorrectly')
+    end
   end
 end

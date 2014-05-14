@@ -20,3 +20,5 @@ Documentation:
   Enabled: false
 DotPosition:
   Enabled: false
+RedundantBegin:
+  Enabled: false
