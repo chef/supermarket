@@ -176,7 +176,7 @@ GEM
       tilt
     method_source (0.8.2)
     mime-types (1.25.1)
-    mini_portile (0.5.3)
+    mini_portile (0.6.0)
     minitest (4.7.5)
     mixlib-authentication (1.3.0)
       mixlib-log
@@ -195,8 +195,8 @@ GEM
       net-ssh (>= 2.6.5)
       net-ssh-gateway (>= 1.2.0)
     newrelic_rpm (3.8.0.218)
-    nokogiri (1.6.1)
-      mini_portile (~> 0.5.0)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
     oauth2 (0.9.3)
       faraday (>= 0.8, < 0.10)
       jwt (~> 0.1.8)
