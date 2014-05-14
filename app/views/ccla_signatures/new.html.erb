@@ -8,7 +8,7 @@
       You have been asked to sign an CCLA as part of the <%= link_to 'Community Contribution process', 'http://docs.opscode.com/community_contributions.html', target: :blank %>. Please read the document below and complete the form to file your CCLA.
     </p>
 
-    <div class="signature">
+    <div class="signature small-5 columns">
       <%= form_for(@ccla_signature, data: { abide: true }) do |f| %>
         <%= render 'application/form_errors', record: @ccla_signature %>
         <%= render 'fields', f: f %>
@@ -19,7 +19,7 @@
       <% end %>
     </div>
 
-    <div class="agreement">
+    <div class="agreement small-7 columns">
       <div class="panel">
         <header><%= render_markdown(@ccla_signature.ccla.head) %></header>
         <section>

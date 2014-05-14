@@ -1,0 +1,54 @@
+@import 'common';
+
+// Select2 Customizations
+.select2-container-multi .select2-choices .select2-search-field input {
+  padding: rem-calc(8) !important;
+}
+
+.select2-container-multi .select2-choices {
+    min-height: rem-calc(37) !important;
+}
+
+.select2-container-multi .select2-choices .select2-search-choice {
+  line-height: rem-calc(13);
+  margin: rem-calc(2 0 3 3);
+  padding: rem-calc(8 10 8 26);
+}
+
+@media #{$mobile-only} {
+  .select2-container-multi .select2-choices .select2-search-choice {
+    margin: rem-calc(1 0 3 3);
+  }
+}
+
+@media #{$small-only} {
+  .select2-container-multi .select2-choices .select2-search-choice {
+    margin: rem-calc(1 0 3 3);
+  }
+}
+
+.select2-search-choice-close {
+  left: rem-calc(8);
+  top: rem-calc(8);
+}
+
+@media #{$mobile-only} {
+  .select2-search-choice-close {
+    left: rem-calc(6);
+    top: rem-calc(6);
+  }
+}
+
+@media #{$small-only} {
+  .select2-search-choice-close {
+    left: rem-calc(6);
+    top: rem-calc(6);
+  }
+}
+
+@media #{$medium-only} {
+  .select2-search-choice-close {
+    left: rem-calc(6);
+    top: rem-calc(5);
+  }
+}

@@ -37,20 +37,27 @@
             </ul>
         </aside>
 
-        <header class="globalheader">
-          <div class="logo_and_nav_toggle">
-            <a class="left-off-canvas-toggle fa fa-bars"><span class="hide">Menu</span></a>
+        <header class="globalheader row">
+          <a class="left-off-canvas-toggle fa fa-bars"><span class="hide">Menu</span></a>
+
+          <div class="logo_and_nav_toggle small-6 medium-2 columns">
             <h2 class="logochef"><%= link_to root_path do %><span>Chef Supermarket</span><% end %></h2>
           </div>
           <%= render partial: 'appheader' %>
         </header>
-        <div class="container">
-          <%= render partial: 'flash' %>
-          <%= render partial: 'beta_banner' %>
-          <%= render partial: 'cookbooks/search' %>
 
-          <%= yield %>
+        <div class="container row">
+          <div class="small-12 columns">
+            <%= render partial: 'beta_banner' %>
+            <%= render partial: 'flash' %>
+            <%= render partial: 'cookbooks/search' %>
+
+            <div class="row">
+              <%= yield %>
+            </div>
+          </div>
         </div>
+
         <footer class="footer">
           &copy; 2008 - <%= Time.new.year %> Chef. All Rights Reserved.
         </footer>

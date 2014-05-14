@@ -1,0 +1,115 @@
+@import 'common';
+
+// these are some foundation overrides
+
+.row {
+  max-width: 100%;
+}
+
+button,
+.button {
+  font-family: $accent-font;
+  background-color: $secondary-blue;
+
+  &:hover,
+  &:focus {
+    background-color: darken($secondary-blue, 20%);
+  }
+}
+
+// Basic structural elements
+html, body { height: 100%; min-height: 100%; }
+
+@media #{$mobile-only} {
+  html, body { font-size: 70%; }
+}
+
+@media #{$small-only} {
+  html, body { font-size: 70%; }
+}
+
+@media #{$medium-only} {
+  html, body { font-size: 75%; }
+}
+
+@media #{$xlarge-up} {
+  html, body { font-size: 110%; }
+}
+
+body {
+  background-color: $clouds;
+  margin: 0;
+}
+
+hr {
+  border-width: 2px;
+  border-style: solid;
+  border-color: $clouds;
+}
+
+.container {
+  min-height: 100%;
+}
+
+.page {
+  background-color: white;
+  padding: rem-calc(40 55 55);
+  width: 100%;
+
+  &.nobg {
+    background-color: transparent;
+  }
+}
+
+@media #{$mobile-only} {
+  .page {
+    padding: rem-calc(20);
+  }
+}
+
+@media #{$small-only} {
+  .page {
+    padding: rem-calc(20);
+  }
+}
+
+.globalheader {
+  padding-left: rem-calc(55);
+  padding-right: rem-calc(55);
+}
+
+.footer {
+  color: #999;
+  font-size: rem-calc(11);
+  padding: rem-calc(40);
+  text-align: center;
+}
+
+.hardcoded {
+  border: 2px solid #E00404;
+}
+
+// Breadcrumbs
+.breadcrumbs {
+  background-color: white;
+  border: 0;
+  padding: 0;
+  position: absolute;
+  top: rem-calc(30);
+  left: rem-calc(70);
+  z-index: 1;
+
+  * {
+    color: $concrete;
+    text-decoration: underline;
+    text-transform: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:last-child {
+      text-decoration: none;
+    }
+  }
+}

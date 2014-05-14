@@ -1,6 +1,6 @@
 <li>
-  <div class="cookbook" data-equalizer>
-    <div class="cookbook_partial_content" data-equalizer-watch>
+  <div class="cookbook row" data-equalizer>
+    <div class="cookbook_partial_content medium-12 large-9 columns" data-equalizer-watch>
       <span class="cookbook_dates">
         <i class="fa fa-clock-o"></i> Updated <%= cookbook.updated_at.to_s(:longish) %><br />
       </span>
@@ -15,28 +15,30 @@
       <code><pre>cookbook '<%= cookbook.name %>', '~> <%= cookbook.latest_cookbook_version.version %>'</pre></code>
     </div>
 
-    <div class="cookbook_partial_sidebar" data-equalizer-watch>
-      <div class="cookbook_owner">
-        <%= link_to cookbook.owner do %>
-          <%= gravatar_for cookbook.owner, size: 128 %>
-          <h5>
-            <%= cookbook.owner.username %>
-            <small><%= cookbook.owner.name %></small>
-          </h5>
-        <% end %>
-      </div>
-      <div class="cookbook_partial_sidebar_urls">
-        <% if cookbook.source_url.present? %>
-          <%= link_to 'View Source', cookbook.source_url, class: 'button tiny secondary radius' %>
-        <% end %>
-        <% if cookbook.issues_url.present? %>
-          <%= link_to 'View Issues', cookbook.issues_url, class: 'button tiny secondary radius' %>
-        <% end %>
+    <div class="cookbook_partial_sidebar small-12 medium-3 columns" data-equalizer-watch>
+      <div class="row">
+        <div class="cookbook_owner small-3 columns">
+          <%= link_to cookbook.owner do %>
+            <%= gravatar_for cookbook.owner, size: 128 %>
+            <h5>
+              <%= cookbook.owner.username %>
+              <small><%= cookbook.owner.name %></small>
+            </h5>
+          <% end %>
+        </div>
+        <div class="cookbook_partial_sidebar_urls small-9 columns">
+          <% if cookbook.source_url.present? %>
+            <%= link_to 'View Source', cookbook.source_url, class: 'button tiny secondary radius' %>
+          <% end %>
+          <% if cookbook.issues_url.present? %>
+            <%= link_to 'View Issues', cookbook.issues_url, class: 'button tiny secondary radius' %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-  <div class="cookbook_footer">
-    <div class="cookbook_partial_content_footer">
+  <div class="cookbook_footer row">
+    <div class="cookbook_partial_content_footer small-9 columns">
       <ul class="cookbook_platforms show-for-medium-up">
         <% if cookbook.supported_platforms.present? %>
           <% cookbook.supported_platforms.each do |platform| %>
@@ -52,13 +54,13 @@
       </ul>
       <h5>Supported Platforms</h5>
     </div>
-    <div class="cookbook_partial_sidebar_footer">
-      <ul class="cookbook_stats">
-        <li>
+    <div class="cookbook_partial_sidebar_footer small-3 columns">
+      <ul class="cookbook_stats row">
+        <li class="small-6 columns">
           <%= cookbook.download_count %>
           <h5>Downloads</h5>
         </li>
-        <li>
+        <li class="small-6 columns">
           <%= cookbook.cookbook_followers_count %>
           <h5>Followers</h5>
         </li>

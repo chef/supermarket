@@ -1,0 +1,274 @@
+@import "common";
+@import "compass/css3/background-size";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/transition";
+
+// Global Header
+// Header wrapping element and row
+.globalheader {
+  background-color: white;
+  height: rem-calc(100);
+  //padding: rem-calc(0 55);
+}
+
+@media #{$mobile-only} {
+  .globalheader {
+    position: relative;
+  }
+}
+
+.left-off-canvas-toggle {
+  color: adjust-lightness($concrete, 10%);
+  display: block;
+  height: rem-calc(100);
+  left: 0;
+  line-height: rem-calc(100);
+  @include single-transition(color, 100ms);
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: rem-calc(55);
+  z-index: 1;
+
+  &:before { display: block; margin-top: rem-calc(43); }
+
+  &:visited { color: adjust-lightness($concrete, 10%); }
+  &:hover { color: adjust-lightness($concrete, 20%); }
+}
+
+// Global chef elements
+.off-canvas-list li a:hover {
+  background-color: #222;
+}
+
+.logochef {
+  background: url(image-path('logo-supermarket.svg')) no-repeat;
+  @include background-size(rem-calc(140) rem-calc(36));
+  float: left;
+  height: rem-calc(36);
+  margin: rem-calc(32 0 0 0);
+  width: rem-calc(140);
+
+  .no-svg & {
+    background: url(image-path('logo-supermarket.png')) no-repeat;
+  }
+
+  a {
+    display: block;
+    height: rem-calc(36);
+    width: rem-calc(140);
+
+    span { display: none; }
+  }
+}
+
+// App-specific elements
+.appnav {
+  height: 100%;
+
+  ul {
+    margin: 0;
+
+    li {
+      float: left;
+      list-style: none;
+      margin-right: rem-calc(40);
+
+      &.sign_in_create_account {
+        float: right;
+        margin: rem-calc(0 0 0 40);
+
+        a {
+          color: lighten($concrete, 5%);
+          font: rem-calc(12) $accent_font;
+          line-height: rem-calc(102);
+
+          &:hover, &:active {
+            color: lighten($concrete, 15%);
+          }
+        }
+      }
+
+      a {
+        color: darken($concrete, 5%);
+        display: block;
+        float: left;
+        font: rem-calc(14) $accent_font;
+        line-height: rem-calc(102);
+        @include single-transition(color, 100ms);
+        text-decoration: none;
+        text-transform: uppercase;
+
+        &:hover, &:active {
+          color: lighten($concrete, 10%);
+        }
+      }
+    }
+  }
+}
+
+.usermenu {
+  color: darken($concrete, 5%);
+  cursor: pointer;
+  float: right;
+  font: rem-calc(14) $accent_font;
+  height: rem-calc(100);
+  line-height: rem-calc(102);
+  margin-left: rem-calc(20);
+  position: relative;
+  @include single-transition(color, 100ms);
+  z-index: 101;
+
+  &:hover {
+    .userdropdown { display: block; }
+  }
+
+  .gravatar {
+    @include border-radius(rem-calc(40));
+    float: left;
+    height: rem-calc(40);
+    margin: rem-calc(30 10 0 0);
+    width: rem-calc(40);
+  }
+
+  .fa {
+    font-size: rem-calc(16);
+    margin-left: rem-calc(5);
+  }
+}
+
+@media #{$mobile-only} {
+  .usermenu {
+    margin-right: rem-calc(-30);
+  }
+}
+
+@media #{$small-only} {
+  .usermenu {
+    margin-right: rem-calc(-30);
+  }
+}
+
+.appnav .userdropdown {
+  background-color: white;
+  @include border-bottom-radius(rem-calc(5));
+  @include box-shadow(rgba(0,0,0,.2) 0 rem-calc(5) rem-calc(10));
+  display: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: rem-calc(-20);
+  top: rem-calc(100);
+  width: rem-calc(200);
+  z-index: 101;
+
+  &:after {
+    bottom: 100%;
+    border: solid transparent;
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #ffffff;
+    border-width: rem-calc(10);
+    content: " ";
+    height: 0;
+    position: absolute;
+    pointer-events: none;
+    right: 0;
+    width: 0;
+  }
+
+  li {
+    border-bottom: 1px solid #ecedef;
+    float: none;
+    list-style: none;
+    margin: 0;
+
+    &:last-child { border: none; }
+
+    a {
+      color: $concrete;
+      display: block;
+      float: none;
+      font-size: rem-calc(12);
+      line-height: rem-calc(16);
+      padding: rem-calc(10);
+      text-decoration: none;
+
+      &:hover, &:active {
+        color: lighten($concrete, 10%);
+      }
+
+      &:before {
+        font-family: "fontawesome";
+        margin-right: rem-calc(7);
+      }
+    }
+  }
+}
+
+@media #{$mobile-only} {
+  .userdropdown {
+    width: rem-calc(250);
+
+    li a {
+      font-size: rem-calc(18);
+      padding: rem-calc(20);
+    }
+  }
+}
+
+// styles for the beta banner
+
+.beta_banner_header {
+  background-color: $secondary-blue;
+  cursor: pointer;
+  height: rem-calc(60);
+  padding: rem-calc(12 0);
+  text-align: center;
+  transition: background-color 100ms ease-out 0s;
+
+  &:hover,
+  &:focus {
+    background-color: darken($secondary-blue, 20%);
+  }
+
+  h3 {
+    color: white;
+  }
+}
+
+.beta_banner_content {
+  background-color: lighten($primary_blue, 10%);
+  display: none;
+}
+
+.beta_info {
+  padding: rem-calc(8 32 8 32);
+
+
+  a {
+    color: $secondary-blue;
+    text-decoration: none;
+  }
+
+  h3 {
+    color: white;
+    margin: rem-calc(14 0);
+    text-transform: uppercase;
+  }
+
+  p {
+    color: white;
+  }
+
+  code {
+    color: white;
+    font-weight: normal;
+  }
+}
+
+@media #{$mobile-only} {
+  .beta_info{
+    padding: rem-calc(4 32);
+  }
+}

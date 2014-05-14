@@ -1,0 +1,17 @@
+@import "common";
+
+.cookbooks_stats {
+  padding: rem-calc(12 0 36);
+  text-align: center;
+
+  .stat {
+    color: adjust-lightness($primary_gray, 20%);
+    font-family: $accent_font;
+    font-size: rem-calc(36);
+    padding: rem-calc(0 24);
+
+    .number {
+      color: $primary-gray;
+    }
+  }
+}

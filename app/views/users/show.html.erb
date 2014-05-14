@@ -1,7 +1,7 @@
 <%= provide(:title, "#{@user.name}") %>
 
-<div class="profile">
-  <div class="profile_sidebar">
+<div class="profile row">
+  <div class="profile_sidebar small-12 medium-3 columns">
     <%= gravatar_for @user, size: 180 %>
     <h3><%= @user.name %></h3>
     <h4><%= @user.username %></h4>
@@ -35,7 +35,7 @@
       </li>
     </ul>
 
-    <ul class="user_stats">
+    <ul class="user_stats small-block-grid-3">
       <li><h3><%= @user.owned_cookbooks.count %> <span>Cookbooks</span></h3></li>
       <li><h3><%= @user.collaborated_cookbooks.count %> <span>Collaborations</span></h3></li>
       <li><h3><%= @user.followed_cookbooks.count %> <span>Follows</span></h3></li>
@@ -43,7 +43,7 @@
 
     <%= link_to 'Manage Profile', edit_profile_path, class: 'button medium expand radius', rel: 'manage_profile' %>
   </div>
-  <div class="profile_content">
+  <div class="profile_content small-12 medium-9 columns">
     <div class="heading">
       <h1><%= @user.name %>'s Cookbooks</h1>
 

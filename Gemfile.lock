@@ -448,6 +448,7 @@ DEPENDENCIES
   sidetiq!
   spring
   spring-commands-rspec
+  sprockets-rails
   statsd-ruby
   uglifier (~> 2.2)
   unicorn

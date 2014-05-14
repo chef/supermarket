@@ -1,11 +1,11 @@
-<div class="heading">
-  <div class="left">
+<div class="heading row">
+  <div class="left small-8 columns">
     <h1>Approved Contributors</h1>
     <h4><%= @icla_signatures ? @icla_signatures.count : IclaSignature.by_user.count %> Contributors</h4>
     <h4><%= @ccla_signatures ? @ccla_signatures.count : CclaSignature.by_organization.count %> Companies</h4>
   </div>
 
-  <div class="right">
+  <div class="right small-4 columns">
     <a href="#" data-dropdown="drop" class="button dropdown small radius">Become a Contributor</a>
     <ul id="drop" data-dropdown-content class="f-dropdown">
       <% if !current_user || !current_user.signed_icla? %>

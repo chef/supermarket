@@ -1,0 +1,81 @@
+@import "common";
+@import "compass/css3/box-sizing";
+
+.cookbook_platforms {
+  @include box-sizing(border-box);
+  @include clearfix;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  .cookbook_show_sidebar & {
+    @include clearfix;
+    margin-top: rem-calc(-15);
+    padding: rem-calc(0 0 20 20);
+  }
+}
+
+li.cookbook_platform_icon {
+  float: left;
+  font: {
+    family: "platform_icons";
+    size: rem-calc(18);
+    weight: $normal;
+  }
+  height: rem-calc(16);
+  line-height: rem-calc(18);
+  margin: rem-calc(0 10 10 0);
+  width: rem-calc(16);
+
+  &:last-child {
+    margin-bottom: rem-calc(10);
+  }
+
+  &[data-icon]:before {
+    color: $primary_gray;
+    content: attr(data-icon);
+  }
+
+  &.has-tip { border: none; }
+
+  span { display: none; }
+
+  .cookbook_show_sidebar & {
+    font-size: rem-calc(20);
+
+    &[data-icon]:before {
+      color: adjust-lightness($primary_gray, 20%);
+    }
+  }
+}
+
+li.cookbook_no_platform_icon {
+  float: left;
+  font: {
+    size: rem-calc(18);
+    weight: $normal;
+  }
+  height: rem-calc(16);
+  line-height: rem-calc(18);
+  margin: rem-calc(0 10 10 0);
+  width: rem-calc(16);
+  color: $primary_gray;
+
+  &:hover {
+    color: $primary_gray;
+  }
+
+  &:last-child {
+    margin-bottom: rem-calc(10);
+  }
+
+  &.has-tip { border: none; }
+
+  .cookbook_show_sidebar & {
+    font-size: rem-calc(20);
+
+    &[data-icon]:before {
+      color: adjust-lightness($primary_gray, 20%);
+    }
+  }
+}
