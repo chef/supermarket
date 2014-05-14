@@ -17,6 +17,7 @@ gem 'dotenv'
 gem 'coveralls', require: false
 gem 'octokit', github: 'octokit/octokit.rb', require: false
 gem 'sidekiq'
+gem 'sidetiq', github: 'tobiassvn/sidetiq', ref: '4f7d7da'
 gem 'premailer-rails', group: [:development, :production]
 gem 'nokogiri'
 gem 'jbuilder'
