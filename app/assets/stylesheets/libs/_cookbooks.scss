@@ -240,7 +240,7 @@ input[type="search"].cookbook_search_textfield {
     display: none;
   }
 
-  li {
+  li.simple_cookbook {
     border-bottom: rem-calc(2) solid lighten($secondary_gray, 32%);
     vertical-align: bottom;
     display: table-row;
