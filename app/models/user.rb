@@ -250,7 +250,8 @@ class User < ActiveRecord::Base
       username: extractor.username,
       oauth_token: extractor.oauth_token,
       oauth_secret: extractor.oauth_secret,
-      oauth_expires: extractor.oauth_expires
+      oauth_expires: extractor.oauth_expires,
+      oauth_refresh_token: extractor.oauth_refresh_token
     )
 
     account.user.assign_attributes(

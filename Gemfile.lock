@@ -6,6 +6,16 @@ GIT
       sawyer (~> 0.5.3)
 
 GIT
+  remote: git://github.com/tobiassvn/sidetiq.git
+  revision: 4f7d7daea3873443b17bf2f3da61619532bbeba2
+  ref: 4f7d7da
+  specs:
+    sidetiq (0.5.0)
+      celluloid (>= 0.14.1)
+      ice_cube (~> 0.11.0)
+      sidekiq (>= 2.16.0)
+
+GIT
   remote: https://github.com/opscode/omniauth-chef-oauth2.git
   revision: b32648f3b6440590fcd3a9f6b008e05d36909c5b
   specs:
@@ -147,6 +157,7 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.6.9)
+    ice_cube (0.11.3)
     ice_nine (0.11.0)
     ipaddress (0.8.0)
     jbuilder (2.0.5)
@@ -434,6 +445,7 @@ DEPENDENCIES
   sentry-raven (~> 0.8.0)
   shoulda-matchers
   sidekiq
+  sidetiq!
   spring
   spring-commands-rspec
   statsd-ruby

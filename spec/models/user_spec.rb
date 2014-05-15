@@ -295,6 +295,8 @@ describe User do
         expect(account.username).to eql(auth['info']['username'])
         expect(account.uid).to eql(auth['uid'])
         expect(account.oauth_token).to eql(auth['credentials']['token'])
+        expect(account.oauth_expires).to be_within(1.second).of(Time.now)
+        expect(account.oauth_refresh_token).to eql(auth['credentials']['refresh_token'])
         expect(user.email).to eql(auth['info']['email'])
       end
 
@@ -331,8 +333,11 @@ describe User do
       end
 
       it "updates the chef account's oauth information" do
+        expiry = 1.hour.from_now
         new_auth = auth.dup.tap do |auth|
           auth[:credentials][:token] = 'cool_token'
+          auth[:credentials][:expires_at] = expiry.to_i
+          auth[:credentials][:refresh_token] = 'fresh_refresh'
         end
 
         user = User.find_or_create_from_chef_oauth(new_auth).reload
@@ -341,6 +346,8 @@ describe User do
         expect(account.username).to eql(auth['info']['username'])
         expect(account.uid).to eql(auth['uid'])
         expect(account.oauth_token).to eql('cool_token')
+        expect(account.oauth_expires).to be_within(1.second).of(expiry)
+        expect(account.oauth_refresh_token).to eql('fresh_refresh')
         expect(user.email).to eql(auth['info']['email'])
       end
     end

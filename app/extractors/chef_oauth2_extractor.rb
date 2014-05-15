@@ -30,6 +30,24 @@ class ChefOauth2Extractor < Extractor::Base
   end
 
   #
+  # The time at which the provided OAuth token expires
+  #
+  # @return [Time]
+  #
+  def oauth_expires
+    Time.at(auth['credentials']['expires_at'])
+  end
+
+  #
+  # The token to be used to refresh this user's OAuth token
+  #
+  # @return [String]
+  #
+  def oauth_refresh_token
+    auth['credentials']['refresh_token']
+  end
+
+  #
   # The public_key for Chef server
   #
   def public_key

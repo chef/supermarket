@@ -21,8 +21,10 @@ ActiveRecord::Schema.define(version: 20140514200102) do
     t.string   "oauth_secret"
     t.datetime "oauth_expires"
     t.string   "provider"
+    t.string   "oauth_refresh_token"
   end
 
+  add_index "accounts", ["oauth_expires"], name: "index_accounts_on_oauth_expires", using: :btree
   add_index "accounts", ["uid", "provider"], name: "index_accounts_on_uid_and_provider", unique: true, using: :btree
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
   add_index "accounts", ["username", "provider"], name: "index_accounts_on_username_and_provider", unique: true, using: :btree

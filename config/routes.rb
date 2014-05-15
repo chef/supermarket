@@ -5,6 +5,7 @@ Supermarket::Application.routes.draw do
 
   namespace :api, defaults: { format: :json }  do
     namespace :v1 do
+      get 'health' => 'health#show'
       get 'cookbooks' => 'cookbooks#index'
       get 'search' => 'cookbooks#search'
       get 'cookbooks/:cookbook' => 'cookbooks#show', as: :cookbook
