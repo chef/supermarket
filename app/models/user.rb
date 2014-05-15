@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :organizations, through: :contributors
   has_many :owned_cookbooks, class_name: 'Cookbook', foreign_key: 'user_id'
   has_many :cookbook_collaborators
+  has_many :cookbook_followers
+  has_many :followed_cookbooks, through: :cookbook_followers, source: :cookbook
   has_many :collaborated_cookbooks, through: :cookbook_collaborators, source: :cookbook
   has_one  :chef_account, -> { self.for('chef_oauth2') }, class_name: 'Account'
 
@@ -50,6 +52,15 @@ class User < ActiveRecord::Base
   #
   def collaborator_for_cookbook(cookbook)
     cookbook_collaborators.where(cookbook_id: cookbook.id).first
+  end
+
+  #
+  # Returns all +CookbookVersion+ instances that +User+ follows.
+  #
+  # @return [CookbookVersion]
+  #
+  def followed_cookbook_versions
+    CookbookVersion.joins(:cookbook).merge(followed_cookbooks)
   end
 
   #

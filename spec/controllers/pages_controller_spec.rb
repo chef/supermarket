@@ -51,11 +51,16 @@ describe PagesController do
     context 'user is signed in' do
       before { sign_in user }
 
-      # xit until cookbook ownership and contributors is in place
-      xit 'assigns cookbooks' do
+      it 'assigns cookbooks' do
         get :dashboard
 
         expect(assigns[:cookbooks]).to_not be_nil
+      end
+
+      it 'assigns collaborated cookbooks' do
+        get :dashboard
+
+        expect(assigns[:collaborated_cookbooks]).to_not be_nil
       end
     end
 

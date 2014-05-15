@@ -7,6 +7,8 @@ describe User do
     it { should have_many(:owned_cookbooks) }
     it { should have_many(:cookbook_collaborators) }
     it { should have_many(:collaborated_cookbooks) }
+    it { should have_many(:cookbook_followers) }
+    it { should have_many(:followed_cookbooks) }
   end
 
   context 'validations' do
@@ -127,6 +129,19 @@ describe User do
       )
 
       expect(user.signed_cla?).to be_false
+    end
+  end
+
+  describe '#followed_cookbook_versions' do
+    it 'returns all cookbook versions of a followed cookbook' do
+      user = create(:user)
+      redis = create(:cookbook)
+      yum = create(:cookbook)
+      create(:cookbook_follower, user: user, cookbook: redis)
+      create(:cookbook_follower, user: user, cookbook: yum)
+
+      expect(user.followed_cookbook_versions).to include(*redis.cookbook_versions)
+      expect(user.followed_cookbook_versions).to include(*yum.cookbook_versions)
     end
   end
 
