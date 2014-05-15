@@ -252,8 +252,9 @@ This is because of the Bundler config in `.bundle/config`.
 
         $ bundle exec rake db:setup
 
-1. Add Postgres extension required for full text search to work.
+1. Add required Postgres extensions.
 
+        $ psql supermarket_development -c 'create extension plpgsql'
         $ psql supermarket_development -c 'create extension pg_trgm'
 
 1. Start the server:
