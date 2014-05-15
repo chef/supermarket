@@ -158,6 +158,16 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
       )
     end
 
+    if user.public_key.nil?
+      return error(
+        {
+          error_code: t('api.error_codes.authentication_failed'),
+          error_messages: [t('api.error_messages.missing_public_key_error', current_host: request.base_url)]
+        },
+        401
+      )
+    end
+
     auth = Mixlib::Authentication::SignatureVerification.new.authenticate_user_request(
       request,
       OpenSSL::PKey::RSA.new(user.public_key)
