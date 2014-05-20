@@ -4,6 +4,9 @@
   "secret_key_base": "someSecret",
   "revision": "master",
   "sentry_url": "someSentryUrl",
+  "redis_url": "redis://127.0.0.1:6379",
+  "database": {
+  },
   "smtp": {
     "address": "someaddress.com",
     "port": 123,
