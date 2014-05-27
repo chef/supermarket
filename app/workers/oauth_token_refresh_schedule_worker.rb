@@ -9,7 +9,10 @@ class OauthTokenRefreshScheduleWorker
   end
 
   #
-  # Queue jobs for OauthTokenRefreshWorker
+  # Queue jobs for OauthTokenRefreshWorker.
+  #
+  # Accounts whose OAuth tokens will expire in the next 25 minutes will have
+  # their tokens refreshed.
   #
   # @param last_occurrence [Float] the time at which the previously-scheduled
   #   OauthTokenRefreshScheduleWorker ran.
@@ -22,7 +25,7 @@ class OauthTokenRefreshScheduleWorker
   #   otherwise unused.
   #
   def perform(last_occurrence, current_occurrence)
-    lower_bound = Time.at(current_occurrence.floor - 1) + 20.minutes
+    lower_bound = Time.at(current_occurrence.floor)
     upper_bound = Time.at(current_occurrence.ceil + 1) + 25.minutes
 
     Account.
