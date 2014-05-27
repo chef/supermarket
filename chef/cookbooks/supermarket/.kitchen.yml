@@ -13,5 +13,8 @@ platforms:
 suites:
   - name: default
     data_bags_path: ../../data_bags
+    role_path: roles
     run_list:
-      - recipe[supermarket::default]
+      - role[redis]
+      - role[database]
+      - role[web]

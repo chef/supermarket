@@ -1,5 +1,11 @@
 production:
-  username: <%= node['postgres']['user'] %>
+  <% if @app['database']['host'] %>
+  host: <%= @app['database']['host'] %>
+  <% end %>
+  username: <%= @app['database']['username'] || node['postgres']['user'] %>
+  <% if @app['database']['password'] %>
+  password: <%= @app['database']['password'] %>
+  <% end %>
   adapter: postgresql
-  database: <%= node['postgres']['database'] %>
-  pool: <%= node['supermarket']['database']['pool'] %>
+  database: <%= @app['database']['name'] || node['postgres']['database'] %>
+  pool: <%= @app['database']['pool'] || node['supermarket']['database']['pool'] %>

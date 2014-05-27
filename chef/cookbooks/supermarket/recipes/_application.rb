@@ -41,7 +41,9 @@ deploy_revision node['supermarket']['home'] do
       end
     end
 
-    template "#{release_path}/config/database.yml"
+    template "#{release_path}/config/database.yml" do
+      variables(app: app)
+    end
 
     template "#{node['supermarket']['home']}/shared/.env" do
       variables(app: app)
