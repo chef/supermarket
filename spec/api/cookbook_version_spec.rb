@@ -30,7 +30,7 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
       it 'returns a version of the cookbook' do
         get '/api/v1/cookbooks/redis-test/versions/latest'
 
-        expect(signature(json_body)).to eql(cookbook_version_signature)
+        expect(signature(json_body)).to include(cookbook_version_signature)
       end
     end
 
@@ -53,7 +53,7 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
       it 'returns a version of the cookbook' do
         get json_body['versions'].find { |v| v =~ /0_1_0/ }
 
-        expect(signature(json_body)).to eql(cookbook_version_signature)
+        expect(signature(json_body)).to include(cookbook_version_signature)
       end
     end
 
