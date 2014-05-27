@@ -1,7 +1,7 @@
 <%= provide(:title, "#{@user.name}") %>
 
-<div class="profile">
-  <div class="profile_sidebar">
+<div class="profile" data-equalizer>
+  <div class="profile_sidebar" data-equalizer-watch>
     <%= gravatar_for @user, size: 180 %>
     <h3><%= @user.name %></h3>
     <h4><%= @user.username %></h4>
@@ -43,7 +43,7 @@
 
     <%= link_to 'Manage Profile', edit_profile_path, class: 'button medium expand radius', rel: 'manage_profile' %>
   </div>
-  <div class="profile_content">
+  <div class="profile_content" data-equalizer-watch>
     <div class="heading">
       <h1><%= @user.name %>'s Cookbooks</h1>
 

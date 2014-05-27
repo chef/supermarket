@@ -1,7 +1,7 @@
 <%= provide :title, 'Dashboard' %>
 
-<div class="dashboard">
-  <div class="dashboard_content">
+<div class="dashboard" data-equalizer>
+  <div class="dashboard_content" data-equalizer-watch>
     <div class="activity_heading">
       <h3>Followed Cookbooks Activity</h3>
       <% if @followed_cookbook_activity.any? %>
@@ -28,7 +28,7 @@
       </div>
     <% end %>
   </div>
-  <div class="dashboard_sidebar">
+  <div class="dashboard_sidebar" data-equalizer-watch>
     <h4>Your Cookbooks</h4>
     <% if @cookbooks.any? %>
       <ul class="cookbook_listing hide_owner">
