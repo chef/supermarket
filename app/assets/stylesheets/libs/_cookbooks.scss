@@ -1,8 +1,17 @@
 // Cookbooks
 
-#versions {
+#versions li:hover {
+  background: white;
+}
+
+#versions ul {
   max-height: 200px;
   overflow-y: scroll;
+  margin: 0;
+
+  li:hover {
+    background: #eee;
+  }
 }
 
 // Cookbooks search
@@ -1111,7 +1120,6 @@ pre {
 
 .version_dropdown {
   @include inline-block;
-  margin: rem-calc(-5 10 0);
 }
 
 .previouspage {
