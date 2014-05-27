@@ -41,10 +41,12 @@ module Supermarket
 
     # Include vendor fonts in the asset pipeline
     config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'stylesheets')
 
-    # Ensure fonts are precompiled during asset compilation
-    config.assets.precompile += %w(*.svg *.eot *.woff *.ttf)
+    # Include vendor images in the asset pipeline
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'images')
+
+    # Ensure fonts and images are precompiled during asset compilation
+    config.assets.precompile += %w(*.svg *.eot *.woff *.ttf *.gif *.png)
 
     # Ensurer mailer assets are precompiled during asset compilation
     config.assets.precompile += %w(mailers.css)
