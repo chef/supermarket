@@ -1,0 +1,1 @@
+json.(@metrics, *@metrics.keys)
