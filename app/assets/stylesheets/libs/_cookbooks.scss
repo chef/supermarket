@@ -606,6 +606,7 @@ input[type="search"].cookbook_search_textfield {
   border-right: 1px solid $cookbook_border;
   @include grid-column($columns: 9, $collapse: true);
   padding: rem-calc(20 30 30);
+  min-height: rem-calc(190);
 
   .gravatar {
     background-color: $primary_gray;
@@ -994,7 +995,6 @@ pre {
 
 // Cookbook show
 .cookbook_show {
-  @include background-image(linear-gradient(left, white, white 65.4%, lighten($clouds, 4%) 65.4%, lighten($clouds, 4%) 100%));
   @include grid-row();
   position: relative;
   z-index: 1;
@@ -1015,6 +1015,7 @@ pre {
 }
 
 .cookbook_show_content {
+  background: #fff;
   @include grid-column($columns: 8);
   padding: rem-calc(55);
 }
@@ -1034,6 +1035,7 @@ pre {
 }
 
 .cookbook_show_sidebar {
+  background: $sidebar_blue;
   @include grid-column($columns: 4);
   padding: rem-calc(55);
 

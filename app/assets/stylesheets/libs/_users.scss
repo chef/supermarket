@@ -3,8 +3,8 @@
 }
 
 .profile {
-  @include background-image(linear-gradient(right, white, white 75.4%, lighten($clouds, 4%) 75.4%, lighten($clouds, 4%) 100%));
   @include grid-row();
+  background: white;
 }
 
 .profile_content {
@@ -34,6 +34,7 @@
   @include grid-column($columns: 3, $collapse: true);
   text-align: center;
   padding: rem-calc(40);
+  background: $sidebar_blue;
 
   .gravatar {
     margin-bottom: rem-calc(20);
