@@ -1,0 +1,116 @@
+@import "common";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/transition";
+
+.cookbook_search {
+  background-color: $primary_blue;
+  border: none;
+  padding: rem-calc(48 55 32);
+  position: relative;
+  z-index: 1;
+
+  .fa {
+    color: lighten($primary_gray, 5%);
+    font: {
+      family: "fontawesome" !important;
+      size: rem-calc(24);
+    }
+    left: rem-calc(75);
+    position: absolute;
+    top: rem-calc(67);
+    z-index: 2;
+  }
+}
+
+@media #{$mobile-only} {
+  .cookbook_search {
+    padding: rem-calc(32 20 30);
+
+    .fa {
+      left: rem-calc(41);
+      top: rem-calc(51);
+    }
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_search {
+    padding: rem-calc(32 20 15);
+
+    .fa {
+      left: rem-calc(41);
+      top: rem-calc(51);
+    }
+  }
+}
+
+@media #{$mobile-only} {
+  .search_button {
+    display: none;
+  }
+}
+
+input[type="search"].cookbook_search_textfield {
+  background-color: darken($primary_blue, 7%);
+  border: none;
+  @include border-left-radius(rem-calc(3));
+  @include box-shadow(none);
+  color: $clouds;
+  font: rem-calc(30) $accent_font;
+  height: rem-calc(64);
+  line-height: rem-calc(44);
+  padding: rem-calc(0 0 0 60);
+
+  &::-webkit-input-placeholder {
+     color: $clouds;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+     color: $clouds;
+  }
+
+  &::-moz-placeholder {  /* Firefox 19+ */
+     color: $clouds;
+  }
+
+  &:-ms-input-placeholder {
+     color: $clouds;
+  }
+}
+
+@media #{$mobile-only} {
+  input[type="search"].cookbook_search_textfield {
+    @include border-radius(rem-calc(40));
+    font-size: rem-calc(24);
+    margin: 0;
+  }
+}
+
+.cookbook_search_button {
+  background-color: lighten($primary_blue, 10%);
+  @include border-right-radius(rem-calc(3));
+  color: white;
+  font-size: rem-calc(24);
+  height: rem-calc(64);
+  line-height: rem-calc(44);
+  padding: rem-calc(0 20);
+  @include single-transition(100ms);
+  text-align: center;
+  width: 100%;
+
+  &:hover, &:active, &:focus {
+    background-color: lighten($primary_blue, 20%);
+    color: white;
+  }
+}
+
+.cookbook_no_search_results {
+  background-color: white;
+  border: 1px solid $cookbook_border;
+  padding: rem-calc(30 30);
+
+  ul {
+    margin-bottom: 0;
+  }
+}

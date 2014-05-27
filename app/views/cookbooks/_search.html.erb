@@ -1,11 +1,13 @@
-<%= form_tag cookbooks_path, class: 'cookbook_search', method: :get do %>
-  <i class="fa fa-search"></i>
-  <div class="search_field">
-    <%= search_field_tag :q, params[:q], placeholder: 'Search Cookbooks', class: 'cookbook_search_textfield' %>
-  </div>
-  <div class="search_button">
-    <%= button_tag(type: 'submit', class: 'cookbook_search_button') do %>
-      GO
-    <% end %>
-  </div>
-<% end %>
+<div class="row">
+	<%= form_tag cookbooks_path, class: 'cookbook_search row', method: :get do %>
+	  <i class="fa fa-search"></i>
+	  <div class="search_field small-12 medium-11 large-10 columns">
+	    <%= search_field_tag :q, params[:q], placeholder: 'Search Cookbooks', class: 'cookbook_search_textfield' %>
+	  </div>
+	  <div class="search_button show-for-medium-up medium-1 large-2 columns">
+	    <%= button_tag(type: 'submit', class: 'cookbook_search_button') do %>
+	      GO
+	    <% end %>
+	  </div>
+	<% end %>
+</div>

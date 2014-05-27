@@ -1,0 +1,126 @@
+@import "common";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+
+.activity_heading {
+  border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
+  @include clearfix;
+
+  a {
+    float: right;
+    text-decoration: underline;
+    font: $bold rem-calc(12) $default_font;
+  }
+
+  h3 {
+    float: left;
+    margin-bottom: rem-calc(20);
+  }
+}
+
+.activity_list {
+  list-style-type: none;
+  margin: 0;
+  display: table;
+  border-collapse: collapse;
+  width: 100%;
+
+  a {
+    text-decoration: underline;
+  }
+
+  li {
+    padding: rem-calc(10 0 10 0);
+    border-bottom: rem-calc(2) solid lighten($secondary_gray, 36%);
+    vertical-align: bottom;
+    display: table-row;
+
+    > * {
+      display: table-cell;
+      padding: rem-calc(10 0 10 0);
+    }
+
+    .date {
+      text-align: right;
+    }
+  }
+}
+
+.dashboard {
+  @include background-image(linear-gradient(left, white, white 74.4%, lighten($clouds, 4%) 74.4%, lighten($clouds, 4%) 100%));
+  position: relative;
+  z-index: 1;
+  color: $secondary_gray;
+
+  .gravatar {
+    @include border-radius(rem-calc(40));
+    display: inline-block;
+    height: rem-calc(40);
+    width: rem-calc(40);
+    margin-right: rem-calc(10);
+  }
+}
+
+.dashboard_content {
+  padding: rem-calc(55);
+}
+
+.dashboard_sidebar {
+  padding: rem-calc(55 25 55 25);
+
+  .button {
+    margin-bottom: rem-calc(40);
+  }
+
+  .cookbook_listing {
+    margin-bottom: rem-calc(40);
+  }
+
+  h4, h5 {
+    border-bottom: rem-calc(2) solid lighten($secondary_gray, 30%);
+    padding-bottom: rem-calc(8);
+    margin-bottom: 0;
+  }
+
+  ol {
+    font-size: rem-calc(14);
+    line-height: rem-calc(20);
+    margin-bottom: rem-calc(30);
+
+    li {
+      margin-bottom: rem-calc(10);
+    }
+  }
+
+  p {
+    margin: rem-calc(20 0 20 0);
+    font-size: rem-calc(14);
+  }
+
+  ul.resources {
+    margin-top: rem-calc(10);
+    list-style-type: square;
+
+    font: {
+      size: rem-calc(12);
+    }
+
+    a {
+      text-decoration: underline;
+      color: $secondary_gray;
+    }
+  }
+}
+
+.explore_cookbooks {
+  margin-top: rem-calc(50);
+  text-align: center;
+
+  .button {
+    width: rem-calc(350);
+  }
+
+  h2 {
+    margin-bottom: 0;
+  }
+}

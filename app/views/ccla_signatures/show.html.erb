@@ -1,28 +1,30 @@
 <%= provide(:title, "CCLA Signature") %>
 
-<div class="cla page">
-  <h1>Corporate Contributor License Agreement for <%= @ccla_signature.organization.name %> <small>(CCLA)</small></h1>
-    <dl class="tabs">
-      <dd class="active"><%= link_to 'Signature', @ccla_signature %></dd>
-      <dd><%= link_to 'Contributors', organization_invitations_path(@ccla_signature.organization) %></dd>
-    </dl>
+<div class="page">
+  <div class="cla row">
+    <h1>Corporate Contributor License Agreement for <%= @ccla_signature.organization.name %> <small>(CCLA)</small></h1>
+      <dl class="tabs">
+        <dd class="active"><%= link_to 'Signature', @ccla_signature %></dd>
+        <dd><%= link_to 'Contributors', organization_invitations_path(@ccla_signature.organization) %></dd>
+      </dl>
 
-    <div class="signature">
-      <%= form_for(@ccla_signature.dup, url: { action: :re_sign }, data: { abide: true }) do |f| %>
-        <%= render 'application/form_errors', record: @ccla_signature %>
-        <%= render 'fields', f: f %>
+      <div class="signature small-5 columns">
+        <%= form_for(@ccla_signature.dup, url: { action: :re_sign }, data: { abide: true }) do |f| %>
+          <%= render 'application/form_errors', record: @ccla_signature %>
+          <%= render 'fields', f: f %>
 
-        <section>
-          <%= f.submit 'Sign CCLA', class: 'radius button expand' %>
-        </section>
-      <% end %>
-    </div>
+          <section>
+            <%= f.submit 'Sign CCLA', class: 'radius button expand' %>
+          </section>
+        <% end %>
+      </div>
 
-    <div class="agreement">
-      <div class="panel">
-        <%= render_markdown(@ccla_signature.ccla.head) %>
-        <%= render_markdown(@ccla_signature.ccla.body) %>
-        <footer><%= @ccla_signature.ccla.version %></footer>
+      <div class="agreement small-7 columns">
+        <div class="panel">
+          <%= render_markdown(@ccla_signature.ccla.head) %>
+          <%= render_markdown(@ccla_signature.ccla.body) %>
+          <footer><%= @ccla_signature.ccla.version %></footer>
+        </div>
       </div>
     </div>
   </div>

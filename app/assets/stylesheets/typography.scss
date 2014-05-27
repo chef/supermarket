@@ -1,0 +1,95 @@
+@import "common";
+@import "compass/css3/border-radius";
+@import "compass/css3/transition";
+
+// Typography defaults and overrides to foundation settings
+
+h1, h2, h3, h4, h5, h6 {
+  color: $secondary_blue;
+  color: $header-font-color;
+  font-family: $accent_font;
+  font-weight: $normal;
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
+  font-size: rem-calc(24);
+  padding-bottom: rem-calc(5);
+}
+
+h2 {
+	font-size: rem-calc(20);
+}
+
+h3 {
+	font-size: rem-calc(18);
+}
+
+h4 {
+	font-size: rem-calc(14);
+}
+
+h5 {
+	font-size: rem-calc(12);
+}
+
+h6 {
+	font-size: rem-calc(10);
+}
+
+button, .button {
+  @include single-transition(background-color, 100ms);
+}
+
+body, p, li, blockquote {
+	font-family: $default_font;
+	color: $body-font-color;
+}
+
+small {
+  font-size: 60%;
+  color: scale-color($header-font-color, $lightness: 35%);
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: rem-calc(24);
+
+  .aside {
+    font-size: rem-calc(14);
+    line-height: 1.35;
+    font-style: italic;
+  }
+}
+
+blockquote {
+  font-color: scale-color($header-font-color, $lightness: 35%);
+  padding: rem-calc(9 20 0 19);
+  border: 1px solid #ddd;
+
+  .cite {
+    font-size: rem-calc(13);
+    color: scale-color($header-font-color, $lightness: 23%);
+
+    a {
+      color: scale-color($header-font-color, $lightness: 23%)
+    }
+  }
+}
+
+pre {
+  background-color: darken($primary_blue, 5%);
+  @include border-radius(rem-calc(3));
+  color: $silver;
+  cursor: text;
+  font: {
+    size: rem-calc(16);
+    weight: $normal;
+  }
+  line-height: rem-calc(24);
+  padding: rem-calc(8 20);
+}

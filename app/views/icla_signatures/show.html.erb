@@ -1,10 +1,10 @@
 <%= provide(:title, "ICLA Signature") %>
 
 <div class="page">
-  <div class="cla">
+  <div class="cla row">
     <h1>Individual Contributor License Agreement <small>(ICLA)</small></h1>
 
-    <div class="signature">
+    <div class="signature small-5 columns">
       <%= form_for(@icla_signature.dup, url: { action: :re_sign }, html: { 'data-abide' => true }) do |f| %>
         <%= render 'application/form_errors', record: @icla_signature %>
         <%= render 'fields', f: f %>
@@ -15,7 +15,7 @@
       <% end %>
     </div>
 
-    <div class="agreement">
+    <div class="agreement small-7 columns">
       <div class="panel">
         <%= render_markdown(@icla_signature.icla.head) %>
         <%= render_markdown(@icla_signature.icla.body) %>

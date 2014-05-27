@@ -36,6 +36,7 @@ gem 'sentry-raven', '~> 0.8.0', require: false
 gem 'statsd-ruby', require: 'statsd'
 gem 'analytics-ruby', require: false
 
+gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'sass-rails',   '~> 4.0.1'
 gem 'compass-rails'
 gem 'uglifier',     '~> 2.2'

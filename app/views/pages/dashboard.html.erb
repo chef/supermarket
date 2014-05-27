@@ -1,7 +1,7 @@
 <%= provide :title, 'Dashboard' %>
 
-<div class="dashboard">
-  <div class="dashboard_content">
+<div class="dashboard row">
+  <div class="dashboard_content small-12 medium-9 columns">
     <div class="activity_heading">
       <h3>Followed Cookbooks Activity</h3>
       <% if @followed_cookbook_activity.any? %>
@@ -28,7 +28,7 @@
       </div>
     <% end %>
   </div>
-  <div class="dashboard_sidebar">
+  <div class="dashboard_sidebar small-12 medium-3 columns">
     <h4>Your Cookbooks</h4>
     <% if @cookbooks.any? %>
       <ul class="cookbook_listing hide_owner">

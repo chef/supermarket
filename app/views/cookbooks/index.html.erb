@@ -3,7 +3,7 @@
 
 <div class="page nobg">
 
-  <section class="cookbook_body">
+  <section class="cookbook_body row">
     <div class="order_cookbooks_by right">
       Sort by
       <%= link_to_sorted_cookbooks 'Most Downloaded', 'most_downloaded' %>
@@ -23,7 +23,7 @@
         <ul class="cookbook_listing"><%= render @cookbooks %></ul>
         <%= paginate @cookbooks %>
       <% else %>
-        <div class="cookbook_no_search_results">
+        <div class="cookbook_no_search_results large-12 columns">
           <p>Sorry, no cookbooks matched your search for <strong><%= params[:q] %></strong>. Search currently only supports searching by cookbook name.</p>
 
           <h3>Search Suggestions:</h3>

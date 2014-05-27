@@ -1,0 +1,258 @@
+@import "common";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-sizing";
+@import "compass/css3/inline-block";
+@import "compass/css3/transition";
+
+.cookbook {
+  background-color: $cookbook_partial_sidebar;
+  border-top: 1px solid $cookbook_border;
+  border-right: 1px solid $cookbook_border;
+  border-left: 1px solid $cookbook_border;
+}
+
+.cookbook_partial_content {
+  background-color: white;
+  border-right: 1px solid $cookbook_border;
+  padding: rem-calc(20 30 30);
+
+  .gravatar {
+    background-color: $primary_gray;
+    border: rem-calc(3) solid white;
+    @include border-radius(rem-calc(24));
+    @include box-sizing(content-box);
+    left: rem-calc(-14);
+    height: rem-calc(24);
+    position: absolute;
+    top: rem-calc(31);
+    width: rem-calc(24);
+  }
+
+  @media #{$mobile-only} {
+    .gravatar {
+      height: rem-calc(20);
+      left: rem-calc(-10);
+      top: rem-calc(20);
+      width: rem-calc(20);
+    }
+  }
+
+  @media #{$small-only} {
+    .gravatar {
+      height: rem-calc(20);
+      left: rem-calc(-10);
+      top: rem-calc(20);
+      width: rem-calc(20);
+    }
+  }
+
+  .cookbook_title {
+    font-size: rem-calc(36);
+    color: $primary_blue;
+    margin: rem-calc(0 0 13 0);
+
+    @include dark-links;
+    a {
+      color: $primary_blue;
+      @include single-transition(100ms);
+      text-decoration: none;
+
+      &:visited {
+        color: $primary_blue;
+        text-decoration: none;
+      }
+
+      &:hover {
+        color: lighten($primary_blue, 20%);
+        text-decoration: none;
+      }
+    }
+
+    small {
+      color: $secondary_gray;
+      @include inline-block;
+      font: {
+        size: rem-calc(16);
+        weight: $normal;
+      }
+      margin: rem-calc(7 0 0 8);
+    }
+  }
+
+  p {
+    color: $concrete;
+    font-size: rem-calc(18);
+    margin: rem-calc(0 0 20 0);
+  }
+}
+
+@media #{$mobile-only} {
+  .cookbook_partial_content {
+    padding: rem-calc(20 30 30);
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_partial_content {
+    padding: rem-calc(20 30 30);
+  }
+}
+
+.cookbook_partial_sidebar {
+  text-align: center;
+
+  .gravatar {
+    @include border-radius(rem-calc(64));
+    display: block;
+    height: rem-calc(64);
+    margin: rem-calc(20) auto rem-calc(10) auto;
+    width: rem-calc(64);
+  }
+
+  h5 {
+    color: $asbestos;
+    font: {
+      size: rem-calc(16);
+      weight: $normal;
+    }
+    margin: rem-calc(0 0 20 0);
+
+    small {
+      color: $concrete;
+      display: block;
+      font-size: rem-calc(12);
+      margin-top: rem-calc(7);
+    }
+  }
+
+  .cookbook_partial_sidebar_urls a {
+    background-color: transparent;
+    color: $concrete;
+    @include inline-block;
+    font: rem-calc(12) $accent_font;
+    padding: rem-calc(0 10);
+    @include single-transition(100ms);
+    text-decoration: underline;
+
+    &:visited {
+      color: $concrete;
+      text-decoration: none;
+    }
+
+    &:hover {
+      background-color: transparent;
+      color: lighten($concrete, 10%);
+      text-decoration: none;
+    }
+  }
+}
+
+@media #{$mobile-only} {
+  .cookbook_partial_sidebar {
+    border-bottom: 1px solid $cookbook_border;
+    padding: rem-calc(20 30);
+    text-align: left;
+
+    .cookbook_owner {
+      .gravatar {
+        @include inline-block;
+        margin: rem-calc(0 10 0 0);
+      }
+
+      h5 {
+        @include inline-block;
+        margin: 0;
+      }
+    }
+
+    .cookbook_partial_sidebar_urls {
+      a {
+        background-color: darken($cookbook_partial_sidebar, 20%);
+        color: white;
+        float: right;
+        font-size: rem-calc(16);
+        margin: rem-calc(13 0 0 20);
+        padding: rem-calc(10 20);
+        text-decoration: none;
+
+        &:hover {
+          background-color: darken($cookbook_partial_sidebar, 10%);
+          color: white;
+        }
+      }
+    }
+  }
+
+  .cookbook_footer {
+    display: none;
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_partial_sidebar {
+    border-bottom: 1px solid $cookbook_border;
+    padding: rem-calc(20 30);
+    text-align: left;
+
+    .cookbook_owner {
+      .gravatar {
+        @include inline-block;
+        margin: rem-calc(0 10 0 0);
+      }
+
+      h5 {
+        @include inline-block;
+        margin: 0;
+      }
+    }
+
+    .cookbook_partial_sidebar_urls {
+      a {
+        background-color: darken($cookbook_partial_sidebar, 20%);
+        color: white;
+        float: right;
+        font-size: rem-calc(16);
+        margin: rem-calc(13 0 0 20);
+        padding: rem-calc(10 20);
+        text-decoration: none;
+
+        &:hover {
+          background-color: darken($cookbook_partial_sidebar, 10%);
+          color: white;
+        }
+      }
+    }
+  }
+
+  .cookbook_footer {
+    display: none;
+  }
+}
+
+.cookbook_footer {
+  background-color: $cookbook_partial_sidebar_footer;
+  border-right: 1px solid $cookbook_border;
+  border-bottom: 1px solid $cookbook_border;
+  border-left: 1px solid $cookbook_border;
+}
+
+.cookbook_partial_content_footer {
+  background-color: $cookbook_footer;
+  border-top: 1px solid $cookbook_border;
+  border-right: 1px solid $cookbook_border;
+  min-height: rem-calc(62);
+  padding: rem-calc(15 30);
+
+  h5 {
+    color: $concrete;
+    font: {
+      size: rem-calc(10);
+      weight: $normal;
+    }
+    margin: 0;
+  }
+}
+
+.cookbook_partial_sidebar_footer {
+  border-top: 1px solid $cookbook_border;
+}

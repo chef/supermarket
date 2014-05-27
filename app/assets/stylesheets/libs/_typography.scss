@@ -1,9 +1,0 @@
-// Typography defaults and overrides to foundation settings
-h1 {
-  border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
-  padding-bottom: rem-calc(5);
-}
-
-button, .button {
-  @include single-transition(background-color, $speed: 100ms);
-}
