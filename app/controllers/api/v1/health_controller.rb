@@ -1,6 +1,10 @@
 require 'sidekiq/api'
 
 class Api::V1::HealthController < Api::V1Controller
+  REACHABLE = 'reachable'
+  UNKNOWN = 'unknown'
+  UNREACHABLE = 'unreachable'
+
   #
   # GET /api/v1/health
   #
@@ -8,9 +12,9 @@ class Api::V1::HealthController < Api::V1Controller
   #
   def show
     @supermarket_health = {}
-    @postgresql_health = { status: 'reachable' }
-    @sidekiq_health = { status: 'reachable' }
-    @redis_health = { status: 'reachable' }
+    @postgresql_health = { status: REACHABLE }
+    @sidekiq_health = { status: REACHABLE }
+    @redis_health = { status: REACHABLE }
 
     begin
       expired_ocid_tokens = Account.
@@ -32,9 +36,9 @@ class Api::V1::HealthController < Api::V1Controller
         @postgresql_health.store(:connections, connections)
       end
     rescue ActiveRecord::ConnectionTimeoutError
-      @postgresql_health.store(:status, 'unknown')
+      @postgresql_health.store(:status, UNKNOWN)
     rescue PG::ConnectionBad
-      @postgresql_health.store(:status, 'unreachable')
+      @postgresql_health.store(:status, UNREACHABLE)
     end
 
     begin
@@ -70,11 +74,11 @@ class Api::V1::HealthController < Api::V1Controller
         @redis_health.store(key, redis_info[key].to_i)
       end
     rescue Redis::TimeoutError
-      @sidekiq_health.store(:status, 'unknown')
-      @redis_health.store(:status, 'unknown')
+      @sidekiq_health.store(:status, UNKNOWN)
+      @redis_health.store(:status, UNKNOWN)
     rescue Redis::CannotConnectError
-      @sidekiq_health.store(:status, 'unreachable')
-      @redis_health.store(:status, 'unreachable')
+      @sidekiq_health.store(:status, UNREACHABLE)
+      @redis_health.store(:status, UNREACHABLE)
     end
   end
 end
