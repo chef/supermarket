@@ -63,6 +63,24 @@ describe 'POST /api/v1/cookbooks' do
     end
   end
 
+  context 'the user is a fresh import from the existing community site' do
+    let(:imported_user) { create(:user, public_key: nil) }
+
+    before { share_cookbook('redis-test', imported_user) }
+
+    it 'returns a 401' do
+      expect(response.status.to_i).to eql(401)
+    end
+
+    it 'returns an error code' do
+      expect(json_body['error_code']).to_not be_nil
+    end
+
+    it 'returns an error message' do
+      expect(json_body['error_messages']).to_not be_nil
+    end
+  end
+
   context 'invalid signing headers are sent' do
     before(:each) { share_cookbook('redis-test', user, omitted_headers: ['X-Ops-Sign']) }
 
