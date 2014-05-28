@@ -29,7 +29,13 @@ class OauthTokenRefreshWorker
       oauth_expires: Time.at(refreshed_token.expires_at),
       oauth_refresh_token: refreshed_token.refresh_token
     )
-  rescue ActiveRecord::RecordNotFound, OAuth2::Error => e
+  rescue ActiveRecord::RecordNotFound => e
     logger.error(e.message) unless Rails.env.test?
+  rescue OAuth2::Error => e
+    if e.response.status.to_i >= 500
+      raise e
+    else
+      logger.error(e.message) unless Rails.env.test?
+    end
   end
 end
