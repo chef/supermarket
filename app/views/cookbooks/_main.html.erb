@@ -4,14 +4,18 @@
     <small class="version_dropdown">
       <%= link_to version.version, '#', 'data-dropdown' => 'versions', class: 'button radius tiny dropdown secondary', rel: 'cookbook_versions' %>
       <ul id="versions" data-dropdown-content class="f-dropdown">
-        <% cookbook_versions.each do |cookbook_version| %>
-          <li>
-            <%= link_to cookbook_version_path(cookbook, cookbook_version), rel: 'cookbook_version' do %>
-              <%= cookbook_version.version %>
-              <% if cookbook_version == version %><i class="fa fa-check right"></i><% end %>
+        <li>
+          <ul>
+            <% cookbook_versions.each do |cookbook_version| %>
+              <li>
+                <%= link_to cookbook_version_path(cookbook, cookbook_version), rel: 'cookbook_version' do %>
+                  <%= cookbook_version.version %>
+                  <% if cookbook_version == version %><i class="fa fa-check right"></i><% end %>
+                <% end %>
+              </li>
             <% end %>
-          </li>
-        <% end %>
+          </ul>
+        </li>
       </ul>
     </small>
     <small class="versions_count">
