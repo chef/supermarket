@@ -177,32 +177,6 @@ body {
   }
 }
 
-// Breadcrumbs
-.breadcrumbs {
-  background-color: white;
-  border: 0;
-  padding: 0;
-  position: absolute;
-  top: rem-calc(30);
-  left: rem-calc(70);
-  z-index: 1;
-
-  * {
-    color: $concrete;
-    text-decoration: underline;
-    text-transform: none;
-
-    &:hover {
-      text-decoration: none;
-    }
-
-    &:last-child {
-      text-decoration: none;
-    }
-  }
-}
-
-
 // Select2 Customizations
 .select2-container-multi .select2-choices .select2-search-field input {
   padding: rem-calc(8) !important;
