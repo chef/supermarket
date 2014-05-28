@@ -1,3 +1,5 @@
+@import "common";
+
 // Typography defaults and overrides to foundation settings
 h1 {
   border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);

@@ -1,3 +1,5 @@
+@import "common";
+
 .gravatar {
   @include border-radius(rem-calc(100));
 }

@@ -1,3 +1,5 @@
+@import "common";
+
 .activity_heading {
   border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
   @include clearfix;

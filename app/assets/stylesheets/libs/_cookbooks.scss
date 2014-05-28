@@ -1,3 +1,5 @@
+@import "common";
+
 // Cookbooks
 
 #versions li:hover {
@@ -697,21 +699,23 @@ input[type="search"].cookbook_search_textfield {
   }
 }
 
-pre {
-  background-color: darken($primary_blue, 5%);
-  @include border-radius(rem-calc(3));
-  color: $silver;
-  cursor: text;
-  font: {
-    size: rem-calc(16);
-    weight: $normal;
+.cookbook_show {
+  pre {
+    background-color: darken($primary_blue, 5%);
+    @include border-radius(rem-calc(3));
+    color: $silver;
+    cursor: text;
+    font: {
+      size: rem-calc(16);
+      weight: $normal;
+    }
+    line-height: rem-calc(24);
+    padding: rem-calc(8 20);
   }
-  line-height: rem-calc(24);
-  padding: rem-calc(8 20);
+}
 
-  .cookbook_show_content & {
-    margin-bottom: rem-calc(20);
-  }
+.cookbook_show_content pre {
+  margin-bottom: rem-calc(20);
 }
 
 .cookbook_partial_sidebar {
