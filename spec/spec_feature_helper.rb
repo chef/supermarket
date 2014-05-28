@@ -7,7 +7,11 @@ require 'capybara/poltergeist'
 Capybara.register_driver :quiet_ghost do |app|
   error_logger = Logger.new(STDERR).tap { |l| l.level = Logger::ERROR }
 
-  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: error_logger)
+  Capybara::Poltergeist::Driver.new(
+    app,
+    phantomjs_logger: error_logger,
+    timeout: 60
+  )
 end
 
 Capybara.javascript_driver = :quiet_ghost
