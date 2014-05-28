@@ -65,14 +65,22 @@ module CookbooksHelper
   end
 
   #
-  # Return the correct state for a cookbook follow/unfollow button.
+  # Return the correct state for a cookbook follow/unfollow button. If given a
+  # block, the result of the block will become the button's text.
   #
   # @example
   #   <%= follow_button_for(@cookbook) %>
+  #   <%= follow_button_for(@cookbook) do |following| %>
+  #     <%= following ? 'Stop Following' : 'Follow' %>
+  #   <% end %>
+  #
+  # @param cookbook [Cookbook] the Cookbook to follow or unfollow
+  # @yieldparam following [Boolean] whether or not the +current_user+ is
+  #   following the given +Cookbook+
   #
   # @return [String] a link based on the following state for the current cookbook.
   #
-  def follow_button_for(cookbook)
+  def follow_button_for(cookbook, &block)
     fa_icon = content_tag(:i, '', class: 'fa fa-users')
     followers_count = cookbook.cookbook_followers_count.to_s
     followers_count_span = content_tag(
@@ -90,7 +98,11 @@ module CookbooksHelper
         title: 'You must be signed in to follow a cookbook.',
         'data-tooltip' => true
       ) do
-        follow_html
+        if block
+          block.call(false)
+        else
+          follow_html
+        end
       end
     end
 
@@ -104,7 +116,11 @@ module CookbooksHelper
         'data-cookbook' => cookbook.name,
         'data-disable-with' => 'Unfollowing'
       ) do
-        unfollow_html
+        if block
+          block.call(true)
+        else
+          unfollow_html
+        end
       end
     else
       link_to(
@@ -116,7 +132,11 @@ module CookbooksHelper
         'data-cookbook' => cookbook.name,
         'data-disable-with' => 'Following'
       ) do
-        follow_html
+        if block
+          block.call(false)
+        else
+          follow_html
+        end
       end
     end
   end

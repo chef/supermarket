@@ -614,62 +614,13 @@ input[type="search"].cookbook_search_textfield {
 
 .cookbook_partial_content {
   background-color: white;
-  border-right: 1px solid $cookbook_border;
-  @include grid-column($columns: 9, $collapse: true);
+  border-bottom: 1px solid $cookbook_border;
+  @include grid-column($columns: 12, $collapse: true);
   padding: rem-calc(20 30 30);
-  min-height: rem-calc(190);
-
-  .gravatar {
-    background-color: $primary_gray;
-    border: rem-calc(3) solid white;
-    @include border-radius(rem-calc(24));
-    @include box-sizing(content-box);
-    left: rem-calc(-14);
-    height: rem-calc(24);
-    position: absolute;
-    top: rem-calc(31);
-    width: rem-calc(24);
-  }
-
-  @media #{$mobile-only} {
-    .gravatar {
-      height: rem-calc(20);
-      left: rem-calc(-10);
-      top: rem-calc(20);
-      width: rem-calc(20);
-    }
-  }
-
-  @media #{$small-only} {
-    .gravatar {
-      height: rem-calc(20);
-      left: rem-calc(-10);
-      top: rem-calc(20);
-      width: rem-calc(20);
-    }
-  }
-
-  .cookbook_title {
-    font-size: rem-calc(36);
-    color: $primary_blue;
-    margin: rem-calc(0 0 13 0);
-
-    @include dark-links;
-
-    small {
-      color: $secondary_gray;
-      @include inline-block;
-      font: {
-        size: rem-calc(16);
-        weight: $normal;
-      }
-      margin: rem-calc(7 0 0 8);
-    }
-  }
 
   p {
     color: $concrete;
-    font-size: rem-calc(18);
+    font-size: rem-calc(16);
     margin: rem-calc(0 0 20 0);
   }
 }
@@ -718,66 +669,9 @@ input[type="search"].cookbook_search_textfield {
   margin-bottom: rem-calc(20);
 }
 
-.cookbook_partial_sidebar {
-  @include grid-column($columns: 3, $collapse: true);
-  text-align: center;
-
-  .gravatar {
-    @include border-radius(rem-calc(64));
-    display: block;
-    height: rem-calc(64);
-    margin: rem-calc(20) auto rem-calc(10) auto;
-    width: rem-calc(64);
-  }
-
-  h5 {
-    color: $asbestos;
-    font: {
-      size: rem-calc(16);
-      weight: $normal;
-    }
-    margin: rem-calc(0 0 20 0);
-
-    small {
-      color: $concrete;
-      display: block;
-      font-size: rem-calc(12);
-      margin-top: rem-calc(7);
-    }
-  }
-
-  .cookbook_partial_sidebar_urls a {
-    background-color: transparent;
-    color: $concrete;
-    @include inline-block;
-    font: rem-calc(12) $accent_font;
-    padding: rem-calc(0 10);
-    @include single-transition($speed: 100ms);
-    text-decoration: underline;
-
-    &:visited {
-      color: $concrete;
-      text-decoration: none;
-    }
-
-    &:hover {
-      background-color: transparent;
-      color: lighten($concrete, 10%);
-      text-decoration: none;
-    }
-  }
-}
-
 @media #{$mobile-only} {
-  .cookbook_partial_sidebar {
-    border-bottom: 1px solid $cookbook_border;
-    @include grid-column($columns: 12, $collapse: true);
-    padding: rem-calc(20 30);
-    text-align: left;
-
+  .cookbook_partial_content_header {
     .cookbook_owner {
-      @include grid-column($columns: 3, $collapse: true);
-
       .gravatar {
         @include inline-block;
         margin: rem-calc(0 10 0 0);
@@ -786,25 +680,6 @@ input[type="search"].cookbook_search_textfield {
       h5 {
         @include inline-block;
         margin: 0;
-      }
-    }
-
-    .cookbook_partial_sidebar_urls {
-      @include grid-column($columns: 9, $collapse: true);
-
-      a {
-        background-color: darken($cookbook_partial_sidebar, 20%);
-        color: white;
-        float: right;
-        font-size: rem-calc(16);
-        margin: rem-calc(13 0 0 20);
-        padding: rem-calc(10 20);
-        text-decoration: none;
-
-        &:hover {
-          background-color: darken($cookbook_partial_sidebar, 10%);
-          color: white;
-        }
       }
     }
   }
@@ -815,15 +690,8 @@ input[type="search"].cookbook_search_textfield {
 }
 
 @media #{$small-only} {
-  .cookbook_partial_sidebar {
-    border-bottom: 1px solid $cookbook_border;
-    @include grid-column($columns: 12, $collapse: true);
-    padding: rem-calc(20 30);
-    text-align: left;
-
+  .cookbook_partial_content_header {
     .cookbook_owner {
-      @include grid-column($columns: 3, $collapse: true);
-
       .gravatar {
         @include inline-block;
         margin: rem-calc(0 10 0 0);
@@ -834,30 +702,83 @@ input[type="search"].cookbook_search_textfield {
         margin: 0;
       }
     }
-
-    .cookbook_partial_sidebar_urls {
-      @include grid-column($columns: 9, $collapse: true);
-
-      a {
-        background-color: darken($cookbook_partial_sidebar, 20%);
-        color: white;
-        float: right;
-        font-size: rem-calc(16);
-        margin: rem-calc(13 0 0 20);
-        padding: rem-calc(10 20);
-        text-decoration: none;
-
-        &:hover {
-          background-color: darken($cookbook_partial_sidebar, 10%);
-          color: white;
-        }
-      }
-    }
   }
 
   .cookbook_footer {
     display: none;
   }
+}
+
+.cookbook_header {
+  background-color: white;
+  border-top: 1px solid $cookbook_border;
+  border-right: 1px solid $cookbook_border;
+  border-left: 1px solid $cookbook_border;
+  @include grid-row();
+}
+
+.cookbook_partial_content_header {
+  background-color: white;
+  @include grid-column($columns: 12, $collapse: true);
+  min-height: rem-calc(62);
+  padding: rem-calc(15 30);
+
+  .cookbook_owner {
+    float: right;
+
+    h5 {
+      display: inline;
+      margin-bottom: 0;
+    }
+
+    .gravatar {
+      background-color: $primary_gray;
+      border: rem-calc(3) solid white;
+      @include box-shadow(rgba(0,0,0,.2) 0 rem-calc(1) rem-calc(1));
+      @include border-radius(rem-calc(24));
+      @include box-sizing(content-box);
+      width: rem-calc(24);
+    }
+
+    @media #{$mobile-only} {
+      .gravatar {
+        width: rem-calc(20);
+      }
+    }
+
+    @media #{$small-only} {
+      .gravatar {
+        width: rem-calc(20);
+      }
+    }
+  }
+
+  .cookbook_title {
+    font-size: rem-calc(16);
+    line-height: rem-calc(16);
+    color: $primary_blue;
+    float: left;
+    margin: rem-calc(10 0 0);
+
+    @include dark-links;
+
+    .fa {
+      color: $silver;
+      @include inline-block;
+      font-size: rem-calc(16);
+      margin: rem-calc(-2 0 0 16);
+    }
+
+    small {
+      color: $secondary_gray;
+      @include inline-block;
+      font: {
+        size: rem-calc(12);
+        weight: $normal;
+      }
+    }
+  }
+
 }
 
 .cookbook_footer {
@@ -870,9 +791,7 @@ input[type="search"].cookbook_search_textfield {
 
 .cookbook_partial_content_footer {
   background-color: $cookbook_footer;
-  border-top: 1px solid $cookbook_border;
-  border-right: 1px solid $cookbook_border;
-  @include grid-column($columns: 9, $collapse: true);
+  @include grid-column($columns: 12, $collapse: true);
   min-height: rem-calc(62);
   padding: rem-calc(15 30);
 
@@ -882,13 +801,13 @@ input[type="search"].cookbook_search_textfield {
       size: rem-calc(10);
       weight: $normal;
     }
-    margin: 0;
+    text-transform: uppercase;
+    margin: rem-calc(0 0 4);
   }
-}
 
-.cookbook_partial_sidebar_footer {
-  border-top: 1px solid $cookbook_border;
-  @include grid-column($columns: 3, $collapse: true);
+  .cookbook_platforms_content {
+    float: left;
+  }
 }
 
 @media #{$mobile-only} {
@@ -905,17 +824,17 @@ input[type="search"].cookbook_search_textfield {
 
 .cookbook_dates {
   color: $concrete;
-  float: right;
   font: $normal rem-calc(12) $accent_font;
-  line-height: rem-calc(18);
-  margin-top: rem-calc(10);
+  line-height: rem-calc(16);
+  float: left;
+  margin: rem-calc(10 0 0);
   text-align: right;
 
   .fa {
     color: $silver;
     @include inline-block;
     font-size: rem-calc(16);
-    margin-top: rem-calc(-2);
+    margin: rem-calc(-2 0 0 16);
   }
 
   small {
@@ -963,28 +882,35 @@ input[type="search"].cookbook_search_textfield {
 }
 
 .cookbook_stats {
-  @include grid-row($behavior: nest-collapse);
   list-style: none;
+  float: right;
   margin: 0;
-  padding-top: rem-calc(14);
 
   li {
     color: $primary_gray;
-    font: $normal rem-calc(18) $accent_font;
-    @include grid-column($columns: 6, $collapse: true);
-    margin: 0;
+    font-size: rem-calc(10);
+    display: inline;
+    margin: rem-calc(0 16 0 0);
     text-align: center;
 
     &:last-child {
       margin: 0;
     }
 
+    .fa {
+      @include inline-block;
+      font-size: rem-calc(16);
+      margin: rem-calc(-2 8 0 16);
+    }
+
     h5 {
-      color: $concrete;
+      color: $primary_gray;
       font: {
         size: rem-calc(10);
         weight: $normal;
       }
+      text-transform: none;
+      display: inline;
       margin: 0;
     }
   }
@@ -1325,11 +1251,11 @@ li.cookbook_platform_icon {
   }
   height: rem-calc(16);
   line-height: rem-calc(18);
-  margin: rem-calc(0 10 10 0);
+  margin: rem-calc(0 10 0 0);
   width: rem-calc(16);
 
   &:last-child {
-    margin-bottom: rem-calc(10);
+    margin-bottom: rem-calc(0);
   }
 
   &[data-icon]:before {
@@ -1358,7 +1284,7 @@ li.cookbook_no_platform_icon {
   }
   height: rem-calc(16);
   line-height: rem-calc(18);
-  margin: rem-calc(0 10 10 0);
+  margin: rem-calc(0 10 0 0);
   width: rem-calc(16);
   color: $primary_gray;
 
@@ -1367,7 +1293,7 @@ li.cookbook_no_platform_icon {
   }
 
   &:last-child {
-    margin-bottom: rem-calc(10);
+    margin-bottom: rem-calc(0);
   }
 
   &.has-tip { border: none; }
