@@ -34,7 +34,7 @@ describe 'GET /api/v1/cookbooks/:cookbook' do
     end
 
     it 'returns the cookbook' do
-      expect(signature(json_body)).to eql(cookbook_signature)
+      expect(signature(json_body)).to include(cookbook_signature)
     end
   end
 

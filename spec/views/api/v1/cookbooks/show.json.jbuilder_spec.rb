@@ -1,38 +1,43 @@
 require 'spec_helper'
 
 describe 'api/v1/cookbooks/show' do
-  let(:cookbook) do
+  let!(:cookbook) do
     create(
       :cookbook,
       name: 'redis',
       source_url: 'http://example.com',
       issues_url: 'http://example.com',
-      deprecated: false
+      deprecated: false,
+      download_count: 34
     )
   end
 
-  let(:cookbook_version_2_0_0) do
+  let!(:cookbook_version_2_0_0) do
     create(
       :cookbook_version,
       cookbook: cookbook,
       description: 'great cookbook',
-      version: '2.0.0'
+      version: '2.0.0',
+      download_count: 20
     )
   end
 
-  let(:cookbook_version_2_1_0) do
+  let!(:cookbook_version_2_1_0) do
     create(
       :cookbook_version,
       cookbook: cookbook,
       description: 'great cookbook',
-      version: '2.1.0'
+      version: '2.1.0',
+      download_count: 14
     )
   end
 
   before do
+    create(:cookbook_follower, cookbook: cookbook, user: create(:user))
+
     assign(
       :cookbook,
-      cookbook
+      cookbook.reload
     )
 
     assign(
@@ -48,62 +53,46 @@ describe 'api/v1/cookbooks/show' do
       ]
     )
 
-    cookbook.stub(:latest_cookbook_version) { cookbook_version_2_1_0 }
+    render
   end
 
   it "displays the cookbook's name" do
-    render
-
     cookbook_name = json_body['name']
     expect(cookbook_name).to eql('redis')
   end
 
   it "displays the cookbook's maintainer" do
-    render
-
     cookbook_maintainer = json_body['maintainer']
     expect(cookbook_maintainer).to eql(cookbook.owner.username)
   end
 
   it "displays the cookbook's description" do
-    render
-
     cookbook_description = json_body['description']
     expect(cookbook_description).to eql('great cookbook')
   end
 
   it "displays the cookbook's category" do
-    render
-
     cookbook_category = json_body['category']
     expect(cookbook_category).to eql('Other')
   end
 
   it "displays the url to cookbook's latest version" do
-    render
-
     latest_version_url = json_body['latest_version']
     expect(latest_version_url).
       to eql('http://test.host/api/v1/cookbooks/redis/versions/2_1_0')
   end
 
   it "displays the cookbook's external url" do
-    render
-
     external_url = json_body['external_url']
     expect(external_url).to eql('http://example.com')
   end
 
   it "displays the cookbook's deprecation status" do
-    render
-
     deprecated = json_body['deprecated']
     expect(deprecated).to eql(false)
   end
 
   it "displays the cookbook's versions" do
-    render
-
     versions = json_body['versions']
     expect(versions).to eql(
         [
@@ -115,16 +104,25 @@ describe 'api/v1/cookbooks/show' do
 
   # let's roll with when the latest cookbook was last updated_at
   it 'displays the date the cookbook was last updated at' do
-    render
-
     expect(DateTime.parse(json_body['updated_at']).to_i).
       to be_within(1).of(cookbook.updated_at.to_i)
   end
 
   it 'displays the date the cookbook was created at' do
-    render
-
     expect(DateTime.parse(json_body['created_at']).to_i).
       to be_within(1).of(cookbook.created_at.to_i)
+  end
+
+  it 'displays the total download count' do
+    expect(json_body['metrics']['downloads']['total']).to eql(34)
+  end
+
+  it 'displays the download count by version' do
+    expect(json_body['metrics']['downloads']['versions']['2.0.0']).to eql(20)
+    expect(json_body['metrics']['downloads']['versions']['2.1.0']).to eql(14)
+  end
+
+  it 'displays the total followers' do
+    expect(json_body['metrics']['followers']).to eql(1)
   end
 end
