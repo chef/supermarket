@@ -76,4 +76,43 @@ style guide. You can run Rubocop by runninng the `rubocop` command. Rubocop will
 let you know what the offences are and where they occur. It is also worth noting
 that Travis CI runs Rubocop, and the build will fail if Rubocop fails.
 
-All SCSS declarations should be alphabetized.
+We adhere to the following SCSS style guidelines.
+
+- Alphabetize SCSS attributes within each declaration with the exception of includes, all `@include` statements should be grouped and come before all other attributes.
+- HTML elements such as h1, h2, p, etc. should come first per file, classes second and IDs after.
+- Media queries should only contain a single declaration and should be declared immediately following the original.
+- For nested styles pretzels should come first then the same guidelines as above apply after.
+- Be mindful of nesting, nest only when necessary and avoid deeply nested elements.
+
+Here's an example of SCSS that adheres to these guidelines.
+
+```scss
+.activity_heading {
+  @include clearfix;
+  border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
+
+  a {
+    float: right;
+    font: $bold rem-calc(12) $default_font;
+    text-decoration: underline;
+  }
+
+  h3 {
+    float: left;
+    margin-bottom: rem-calc(20);
+  }
+
+  .followers {
+    text-decoration: underline;
+  }
+
+  #follower-count {
+    font-size: rem-calc(20);
+  }
+
+  @media #{$small-only} {
+    font-size: rem-calc(10);
+  }
+}
+
+```
