@@ -9,7 +9,7 @@
 
 .profile_content {
   @include grid-column($columns: 9);
-  padding-top: rem-calc(40);
+  padding: rem-calc(40);
 
   .heading {
     @include clearfix;
@@ -18,51 +18,65 @@
 
     h1 {
       border-bottom: none;
-      margin: 0;
       float: left;
+      margin: 0;
     }
 
     .tabs {
-      float: right;
       border-bottom: none;
+      float: right;
       margin-bottom: rem-calc(-1) !important;
     }
   }
 }
 
+@media #{$mobile-only} {
+  .profile_content {
+    @include grid-column($columns: 12);
+  }
+}
+
+@media #{$small-only} {
+  .profile_content {
+    @include grid-column($columns: 12);
+  }
+}
+
 .profile_sidebar {
   @include grid-column($columns: 3, $collapse: true);
-  text-align: center;
-  padding: rem-calc(40);
   background: $sidebar_blue;
-
-  .gravatar {
-    margin-bottom: rem-calc(20);
-  }
+  padding: rem-calc(40);
+  text-align: center;
 
   h3, h4, h5 {
     margin: 0;
   }
 
+  h4 img {
+    margin-right: 5px;
+  }
+
   ul {
+    border-top: rem-calc(2) solid lighten($secondary_gray, 30%);
     list-style-type: none;
     text-align: left;
     margin: rem-calc(20 0 0 0);
     padding-top: rem-calc(20);
-    border-top: rem-calc(2) solid lighten($secondary_gray, 30%);
 
     .fa {
-      padding-right: rem-calc(5);
       color: $secondary_gray;
+      padding-right: rem-calc(5);
     }
 
     .has-tip, a {
-      color: saturate(lighten($primary_gray, 20%), 13%);
       border-bottom: none;
-      font: {
-        size: rem-calc(14);
-      }
+      color: saturate(lighten($primary_gray, 20%), 13%);
+      font-size: rem-calc(14);
     }
+  }
+
+  .gravatar {
+    margin-bottom: rem-calc(20);
   }
 
   .user_stats {
@@ -72,8 +86,8 @@
 
     h3 {
       margin: 0;
-      text-align: center;
       padding: rem-calc(10 0 10 0);
+      text-align: center;
 
       span {
         display: block;
@@ -82,12 +96,24 @@
     }
 
     li {
-      border-right: rem-calc(1) solid lighten($secondary_gray, 30%);
       background: #fff;
+      border-right: rem-calc(1) solid lighten($secondary_gray, 30%);
 
       &:last-child {
         border-right: none;
       }
     }
+  }
+}
+
+@media #{$mobile-only} {
+  .profile_sidebar {
+    @include grid-column($columns: 12);
+  }
+}
+
+@media #{$small-only} {
+  .profile_sidebar {
+    @include grid-column($columns: 12);
   }
 }
