@@ -3,6 +3,15 @@ en:
     signed_in:  "Welcome back %{name}!"
     signed_out: "Goodbye"
     must_be_signed_in: "You must be signed in to do that."
+  profile:
+    no_cookbooks:
+      owns: "%{username} doesn't own any cookbooks."
+      collaborates: "%{username} doesn't collaborate on any cookbooks."
+      follows: "%{username} doesn't follow any cookbooks."
+    current_user_no_cookbooks:
+      owns: "You don't own any cookbooks."
+      collaborates: "You aren't a collaborator on any cookbooks."
+      follows: "You don't follow any cookbooks."
   requires_linked_github: "You need to link your GitHub account."
   organization_invitations:
     invite:

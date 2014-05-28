@@ -4,7 +4,7 @@
   <div class="profile_sidebar" data-equalizer-watch>
     <%= gravatar_for @user, size: 180 %>
     <h3><%= @user.name %></h3>
-    <h4><%= @user.username %></h4>
+    <h4><%= image_tag "chef-icon.png" %><%= @user.username %></h4>
     <ul>
       <% if @user.company.present? %>
         <li data-tooltip class="has-tip" title="The company <%= @user.name %> associates with.">
@@ -14,7 +14,13 @@
 
       <% if @user.twitter_username.present? %>
         <li data-tooltip class="has-tip" title="<%= @user.name %>'s Twitter Username.">
-          <a href="https://twitter.com/<%= @user.twitter_username %>"><i class="fa fa-twitter"></i> <%= @user.twitter_username %></a>
+          <a href="https://twitter.com/<%= @user.twitter_username %>" target="_blank"><i class="fa fa-twitter"></i> <%= @user.twitter_username %></a>
+        </li>
+      <% end %>
+
+      <% @user.accounts.for(:github).each do |account| %>
+        <li data-tooltip class="has-tip" title="<%= @user.name %>'s GitHub Username.">
+          <a href="https://github.com/<%= account.username %>" target="_blank"><i class="fa fa-github"></i> <%= account.username %></a>
         </li>
       <% end %>
 
@@ -59,8 +65,11 @@
         <%= render partial: 'cookbooks/cookbook', collection: @cookbooks %>
       </ul>
     <% else %>
-      <h3>No cookbooks to be found. Why not browse for some cookbooks instead?</h3>
-      <%= link_to 'Browse Cookbooks', cookbooks_path, class: 'button radius' %>
+      <% if current_user %>
+        <h3><%= t("profile.current_user_no_cookbooks.#{params[:tab] || 'owns'}") %></h3>
+      <% else %>
+        <h3><%= t("profile.no_cookbooks.#{params[:tab] || 'owns'}", username: @user.username) %></h3>
+      <% end %>
     <% end %>
   </div>
 </div>

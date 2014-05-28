@@ -1,11 +1,11 @@
 .activity_heading {
-  border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
   @include clearfix;
+  border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
 
   a {
     float: right;
-    text-decoration: underline;
     font: $bold rem-calc(12) $default_font;
+    text-decoration: underline;
   }
 
   h3 {
@@ -15,10 +15,10 @@
 }
 
 .activity_list {
+  border-collapse: collapse;
+  display: table;
   list-style-type: none;
   margin: 0;
-  display: table;
-  border-collapse: collapse;
   width: 100%;
 
   a {
@@ -26,10 +26,10 @@
   }
 
   li {
-    padding: rem-calc(10 0 10 0);
     border-bottom: rem-calc(2) solid lighten($secondary_gray, 36%);
-    vertical-align: bottom;
     display: table-row;
+    padding: rem-calc(10 0 10 0);
+    vertical-align: bottom;
 
     > * {
       display: table-cell;
@@ -43,24 +43,36 @@
 }
 
 .dashboard {
-  background: white;
   @include grid-row();
+  background: white;
+  color: $secondary_gray;
   position: relative;
   z-index: 1;
-  color: $secondary_gray;
 
   .gravatar {
     @include border-radius(rem-calc(40));
     display: inline-block;
     height: rem-calc(40);
-    width: rem-calc(40);
     margin-right: rem-calc(10);
+    width: rem-calc(40);
   }
 }
 
 .dashboard_content {
   @include grid-column($columns: 9);
   padding: rem-calc(55);
+}
+
+@media #{$mobile-only} {
+  .dashboard_content {
+    @include grid-column($columns: 12);
+  }
+}
+
+@media #{$small-only} {
+  .dashboard_content {
+    @include grid-column($columns: 12);
+  }
 }
 
 .dashboard_sidebar {
@@ -78,8 +90,8 @@
 
   h4, h5 {
     border-bottom: rem-calc(2) solid lighten($secondary_gray, 30%);
-    padding-bottom: rem-calc(8);
     margin-bottom: 0;
+    padding-bottom: rem-calc(8);
   }
 
   ol {
@@ -93,22 +105,31 @@
   }
 
   p {
-    margin: rem-calc(20 0 20 0);
     font-size: rem-calc(14);
+    margin: rem-calc(20 0 20 0);
   }
 
   ul.resources {
-    margin-top: rem-calc(10);
     list-style-type: square;
-
-    font: {
-      size: rem-calc(12);
-    }
+    margin-top: rem-calc(10);
+    font-size: rem-calc(12);
 
     a {
-      text-decoration: underline;
       color: $secondary_gray;
+      text-decoration: underline;
     }
+  }
+}
+
+@media #{$mobile-only} {
+  .dashboard_sidebar {
+    @include grid-column($columns: 12);
+  }
+}
+
+@media #{$small-only} {
+  .dashboard_sidebar {
+    @include grid-column($columns: 12);
   }
 }
 
