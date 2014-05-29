@@ -28,7 +28,8 @@ class Api::V1::CookbooksController < Api::V1Controller
   #   GET /api/v1/cookbooks/redis
   #
   def show
-    @cookbook = Cookbook.with_name(params[:cookbook]).first!
+    @cookbook = Cookbook.with_name(params[:cookbook]).
+      includes(:cookbook_versions).first!
     @latest_cookbook_version_url = api_v1_cookbook_version_url(
       @cookbook, @cookbook.latest_cookbook_version
     )
