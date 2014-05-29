@@ -1,28 +1,20 @@
-@import "compass/typography/vertical_rhythm";
-@import "compass/css3";
-@import "compass/utilities";
-
-// Variables
-@import "libs/variables";
-
-// Import Foundation Settings
-@import "settings";
-
-// Import Normalize
-@import "normalize";
-
-// Import the Foundation framework
-@import "foundation";
-
-// UI
-@import "mixins/mixins";
-@import "libs/typography";
-@import "libs/appheader";
-@import "libs/structure";
-@import "libs/cookbooks";
-@import "libs/users";
-@import "libs/tabs";
-@import "libs/dashboard";
-@import "libs/alerts";
-
-@import "select2";
+/**
+* Use sprockets for stylesheets
+*
+* Third-party Libraries
+*
+*= require normalize
+*= require foundation
+*= require select2
+*
+* Supermarket Styles
+*
+*= require libs/_typography
+*= require libs/_appheader
+*= require libs/_cookbooks
+*= require libs/_users
+*= require libs/_tabs
+*= require libs/_dashboard
+*= require libs/_alerts
+*= require libs/_structure
+*/
