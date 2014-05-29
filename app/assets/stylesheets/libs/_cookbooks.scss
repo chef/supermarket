@@ -640,6 +640,14 @@ input[type="search"].cookbook_search_textfield {
   .cookbook_partial_content {
     @include grid-column($columns: 12, $collapse: true);
     padding: rem-calc(20 30 30);
+
+    code {
+      display: none
+    }
+
+    > p {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -650,7 +658,7 @@ input[type="search"].cookbook_search_textfield {
   }
 }
 
-.cookbook_show {
+.cookbook, .cookbook_show {
   pre {
     background-color: darken($primary_blue, 5%);
     @include border-radius(rem-calc(3));
@@ -685,7 +693,14 @@ input[type="search"].cookbook_search_textfield {
   }
 
   .cookbook_footer {
-    display: none;
+    .cookbook_platforms_content {
+      display: none;
+    }
+
+    .cookbook_stats {
+      float: left;
+      margin: rem-calc(-2 0 0 0);
+    }
   }
 }
 
@@ -705,7 +720,14 @@ input[type="search"].cookbook_search_textfield {
   }
 
   .cookbook_footer {
-    display: none;
+    .cookbook_platforms_content {
+      display: none;
+    }
+
+    .cookbook_stats {
+      float: left;
+      margin: rem-calc(-2 0 0 0);
+    }
   }
 }
 
