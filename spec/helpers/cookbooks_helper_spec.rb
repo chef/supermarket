@@ -53,6 +53,17 @@ describe CookbooksHelper do
 
       expect(helper.follow_button_for(cookbook)).to match(/sign-in-to-follow/)
     end
+
+    it 'uses the result of a passed block for the button text' do
+      cookbook = double(:cookbook, cookbook_followers_count: 100, name: 'redis')
+      helper.stub(:current_user) { false }
+
+      block = proc { 'awesome text' }
+
+      result = helper.follow_button_for(cookbook, &block)
+
+      expect(result).to match(/awesome text/)
+    end
   end
 
   describe '#link_to_sorted_cookbooks' do

@@ -1,66 +1,64 @@
 <li>
-  <div class="cookbook">
-    <div class="cookbook_partial_content">
+  <div class="cookbook_header">
+    <div class="cookbook_partial_content_header">
+      <h2 class="cookbook_title">
+        <%= link_to cookbook, rel: 'cookbook' do %><%= cookbook.name %><% end %>
+        <i class="fa fa-file"></i>
+        <small><%= cookbook.latest_cookbook_version.version %></small>
+      </h2>
       <span class="cookbook_dates">
         <i class="fa fa-clock-o"></i> Updated <%= cookbook.updated_at.to_s(:longish) %><br />
       </span>
-
-      <h2 class="cookbook_title">
-        <%= link_to cookbook, rel: 'cookbook' do %><%= cookbook.name %><% end %>
-        <small><%= cookbook.latest_cookbook_version.version %></small>
-      </h2>
-      <p>
-        <%= cookbook.description %>
-      </p>
-      <code><pre>cookbook '<%= cookbook.name %>', '~> <%= cookbook.latest_cookbook_version.version %>'</pre></code>
-    </div>
-
-    <div class="cookbook_partial_sidebar">
       <div class="cookbook_owner">
         <%= link_to cookbook.owner do %>
           <%= gravatar_for cookbook.owner, size: 128 %>
-          <h5>
-            <%= cookbook.owner.username %>
-            <small><%= cookbook.owner.name %></small>
-          </h5>
-        <% end %>
-      </div>
-      <div class="cookbook_partial_sidebar_urls">
-        <% if cookbook.source_url.present? %>
-          <%= link_to 'View Source', cookbook.source_url, class: 'button tiny secondary radius' %>
-        <% end %>
-        <% if cookbook.issues_url.present? %>
-          <%= link_to 'View Issues', cookbook.issues_url, class: 'button tiny secondary radius' %>
+          <h5><%= cookbook.owner.username %></h5>
         <% end %>
       </div>
     </div>
   </div>
+  <div class="cookbook">
+    <div class="cookbook_partial_content">
+      <p>
+        <%= cookbook.description %>
+      </p>
+      <code><pre>cookbook '<%= cookbook.name %>', '~&gt; <%= cookbook.latest_cookbook_version.version %>'</pre></code>
+    </div>
+  </div>
   <div class="cookbook_footer">
     <div class="cookbook_partial_content_footer">
-      <ul class="cookbook_platforms show-for-medium-up">
-        <% if cookbook.supported_platforms.present? %>
-          <% cookbook.supported_platforms.each do |platform| %>
-            <li class="cookbook_platform_icon has-tip" title="<%= platform.name %> <%= platform.version_constraint %>" data-tooltip data-icon="<%= supported_platform_icon(platform) %>">
-              <span><%= platform.name %></span>
+      <div class="cookbook_platforms_content">
+        <h5>Supported Platforms</h5>
+        <ul class="cookbook_platforms show-for-medium-up">
+          <% if cookbook.supported_platforms.present? %>
+            <% cookbook.supported_platforms.each do |platform| %>
+              <li class="cookbook_platform_icon has-tip" title="<%= platform.name %> <%= platform.version_constraint %>" data-tooltip data-icon="<%= supported_platform_icon(platform) %>">
+                <span><%= platform.name %></span>
+              </li>
+            <% end %>
+          <% else %>
+            <li data-tooltip class="has-tip cookbook_no_platform_icon" title="Not specified">
+              <span class="fa fa-question-circle"></span>
             </li>
           <% end %>
-        <% else %>
-          <li data-tooltip class="has-tip cookbook_no_platform_icon" title="Not specified">
-            <span class="fa fa-question-circle"></span>
-          </li>
-        <% end %>
-      </ul>
-      <h5>Supported Platforms</h5>
-    </div>
-    <div class="cookbook_partial_sidebar_footer">
+        </ul>
+      </div>
+
       <ul class="cookbook_stats">
         <li>
+          <i class="fa fa-inbox"></i>
           <%= cookbook.download_count %>
-          <h5>Downloads</h5>
+          <h5><%= "Download".pluralize(cookbook.download_count) %></h5>
         </li>
         <li>
+          <i class="fa fa-group"></i>
           <%= cookbook.cookbook_followers_count %>
-          <h5>Followers</h5>
+          <h5><%= "Follower".pluralize(cookbook.cookbook_followers_count) %></h5>
+        </li>
+        <li>
+          <%= follow_button_for(cookbook) do |following| %>
+            <%= following ? "Unfollow" : "Follow" %>
+          <% end %>
         </li>
       </ul>
     </div>
