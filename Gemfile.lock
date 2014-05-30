@@ -287,7 +287,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
     raindrops (0.13.0)
-    rake (10.3.1)
+    rake (10.3.2)
     redcarpet (3.1.1)
     redis (3.0.7)
     redis-namespace (1.4.1)
