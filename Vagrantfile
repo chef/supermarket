@@ -8,7 +8,8 @@ VM_NFS = (!ENV['VM_NFS'].nil? && %w(1 true yes).include?(ENV['VM_NFS']))
 VM_PORT = (ENV['PORT'] || '3000').to_i
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.omnibus.chef_version = '11.8.0'
+  config.omnibus.chef_version = :latest
+  config.berkshelf.enabled = true
 
   config.vm.network :private_network, ip: '172.0.1.50'
   config.vm.network :forwarded_port, guest: 3000, host: VM_PORT
@@ -30,7 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = 'chef/cookbooks'
+    #chef.cookbooks_path = 'chef/cookbooks'
     chef.data_bags_path = 'chef/data_bags'
 
     chef.formatter = 'doc'
