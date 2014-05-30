@@ -31,7 +31,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provision :chef_solo do |chef|
-    #chef.cookbooks_path = 'chef/cookbooks'
     chef.data_bags_path = 'chef/data_bags'
 
     chef.formatter = 'doc'
