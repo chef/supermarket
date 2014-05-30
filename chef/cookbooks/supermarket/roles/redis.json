@@ -1,7 +1,0 @@
-{
-  "name": "redis",
-  "description": "This role sets up redis for Supermarket Sidekiq jobs.",
-  "run_list": [
-    "recipe[supermarket::_redis]"
-   ]
-}

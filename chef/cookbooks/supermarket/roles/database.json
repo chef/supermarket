@@ -1,7 +1,0 @@
-{
-  "name": "database",
-  "description": "This role sets up postgres for use by Supermarket.",
-  "run_list": [
-    "recipe[supermarket::_postgres]"
-   ]
-}

@@ -1,7 +1,0 @@
-DEPENDENCIES
-  supermarket
-    path: .
-    metadata: true
-
-GRAPH
-  supermarket (1.2.5)
