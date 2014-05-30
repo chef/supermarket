@@ -132,6 +132,12 @@ Supermarket includes a collection of Chef cookbooks and a preconfigured
   vagrant plugin install vagrant-omnibus
   ```
 
+1. Install the `vagrant-berkshelf` plugin:
+
+  ```
+  vagrant plugin install vagrant-berkshelf --plugin-version '>= 2.0.1'
+  ```
+
 1. Run the server:
 
   ```
