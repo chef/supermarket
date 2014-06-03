@@ -61,6 +61,18 @@ describe Api::V1::CookbookVersionsController do
       expect(response.status.to_i).to eql(302)
     end
 
+    it 'logs the web download count for the cookbook version' do
+      expect do
+        get :download, cookbook: cookbook.name, version: version.to_param, format: :json
+      end.to change { version.reload.api_download_count }.by(1)
+    end
+
+    it 'logs the web download count for the cookbook' do
+      expect do
+        get :download, cookbook: cookbook.name, version: version.to_param, format: :json
+      end.to change { cookbook.reload.api_download_count }.by(1)
+    end
+
     it '404s when the cookbook does not exist' do
       get :download, cookbook: 'snarfle', version: '100.1.1', format: :json
 
