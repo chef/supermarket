@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514200102) do
+ActiveRecord::Schema.define(version: 20140603165912) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 20140514200102) do
     t.boolean  "dependencies_imported", default: false
     t.text     "description"
     t.integer  "legacy_id"
+    t.integer  "web_download_count",    default: 0
   end
 
   add_index "cookbook_versions", ["legacy_id"], name: "index_cookbook_versions_on_legacy_id", unique: true, using: :btree
@@ -154,6 +155,7 @@ ActiveRecord::Schema.define(version: 20140514200102) do
     t.integer  "user_id"
     t.integer  "replacement_id"
     t.integer  "legacy_id"
+    t.integer  "web_download_count",       default: 0
   end
 
   add_index "cookbooks", ["legacy_id"], name: "index_cookbooks_on_legacy_id", unique: true, using: :btree
