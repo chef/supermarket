@@ -26,6 +26,12 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
     CookbookVersion.increment_counter(:api_download_count, @cookbook_version.id)
     Cookbook.increment_counter(:api_download_count, @cookbook.id)
 
+    SegmentIO.track_server_event(
+      'cookbook_version_api_download',
+      cookbook: @cookbook.name,
+      version: @cookbook_version.version
+    )
+
     redirect_to @cookbook_version.tarball.url
   end
 end
