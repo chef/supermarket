@@ -19,7 +19,8 @@ describe 'api/v1/cookbook_versions/show' do
 
   before do
     create(:cookbook_dependency, cookbook_version: cookbook_version, cookbook: apt, name: 'apt', version_constraint: '>= 1.0.0')
-    create(:supported_platform, cookbook_version: cookbook_version, name: 'ubuntu', version_constraint: '= 12.04')
+    platform = create(:supported_platform, name: 'ubuntu', version_constraint: '= 12.04')
+    create(:cookbook_version_platform, cookbook_version: cookbook_version, supported_platform: platform)
 
     assign(:cookbook, cookbook)
     assign(:cookbook_version, cookbook_version)

@@ -179,7 +179,6 @@ describe Cookbook do
     let(:cookbook) { create(:cookbook) }
     let(:tarball) { File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz') }
     let(:readme) { CookbookUpload::Readme.new(contents: '', extension: '') }
-
     let(:metadata) do
       CookbookUpload::Metadata.new(
         license: 'MIT',

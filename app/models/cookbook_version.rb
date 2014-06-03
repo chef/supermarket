@@ -1,7 +1,8 @@
 class CookbookVersion < ActiveRecord::Base
   # Associations
   # --------------------
-  has_many :supported_platforms, dependent: :destroy
+  has_many :cookbook_version_platforms
+  has_many :supported_platforms, through: :cookbook_version_platforms
   has_many :cookbook_dependencies, dependent: :destroy
   belongs_to :cookbook
 
@@ -55,6 +56,16 @@ class CookbookVersion < ActiveRecord::Base
   #
   def download_count
     web_download_count + api_download_count
+  end
+
+  # Create a link between a SupportedPlatform and a CookbookVersion
+  #
+  # @param name [String] platform name
+  # @param version [String] platform version
+  #
+  def add_supported_platform(name, version)
+    platform = SupportedPlatform.for_name_and_version(name, version)
+    CookbookVersionPlatform.create! supported_platform: platform, cookbook_version: self
   end
 
   private

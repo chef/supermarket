@@ -178,10 +178,7 @@ class Cookbook < ActiveRecord::Base
       save!
 
       metadata.platforms.each do |name, version_constraint|
-        cookbook_version.supported_platforms.create!(
-          name: name,
-          version_constraint: version_constraint
-        )
+        cookbook_version.add_supported_platform(name, version_constraint)
       end
 
       metadata.dependencies.each do |name, version_constraint|

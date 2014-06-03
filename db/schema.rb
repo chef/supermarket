@@ -118,6 +118,15 @@ ActiveRecord::Schema.define(version: 20140603202553) do
   add_index "cookbook_followers", ["cookbook_id", "user_id"], name: "index_cookbook_followers_on_cookbook_id_and_user_id", unique: true, using: :btree
   add_index "cookbook_followers", ["legacy_id"], name: "index_cookbook_followers_on_legacy_id", unique: true, using: :btree
 
+  create_table "cookbook_version_platforms", force: true do |t|
+    t.integer  "cookbook_version_id"
+    t.integer  "supported_platform_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cookbook_version_platforms", ["cookbook_version_id", "supported_platform_id"], name: "index_cvp_on_cvi_and_spi", unique: true, using: :btree
+
   create_table "cookbook_versions", force: true do |t|
     t.integer  "cookbook_id"
     t.string   "license"
@@ -249,7 +258,7 @@ ActiveRecord::Schema.define(version: 20140603202553) do
   create_table "supported_platforms", force: true do |t|
     t.string   "name",                                     null: false
     t.string   "version_constraint",  default: ">= 0.0.0", null: false
-    t.integer  "cookbook_version_id",                      null: false
+    t.integer  "cookbook_version_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "legacy_id"
