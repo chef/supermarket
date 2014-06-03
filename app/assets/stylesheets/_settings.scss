@@ -96,6 +96,8 @@ $xlarge-only: "#{$screen} and (min-width:#{lower-bound($xlarge-range)}) and (max
 $xxlarge-up: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)})";
 $xxlarge-only: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (max-width:#{upper-bound($xxlarge-range)})";
 
+$redonkulous-up: "#{$screen} and (min-width:127em)";
+
 // Legacy
 // $small: $medium-up;
 // $medium: $medium-up;
