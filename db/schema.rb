@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603171633) do
+ActiveRecord::Schema.define(version: 20140603202553) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -128,7 +128,6 @@ ActiveRecord::Schema.define(version: 20140603171633) do
     t.string   "tarball_content_type"
     t.integer  "tarball_file_size"
     t.datetime "tarball_updated_at"
-    t.integer  "download_count",        default: 0
     t.text     "readme",                default: "",    null: false
     t.string   "readme_extension",      default: "",    null: false
     t.boolean  "dependencies_imported", default: false
@@ -150,7 +149,6 @@ ActiveRecord::Schema.define(version: 20140603171633) do
     t.boolean  "deprecated",               default: false
     t.integer  "category_id",                              null: false
     t.string   "lowercase_name"
-    t.integer  "download_count",           default: 0
     t.string   "issues_url"
     t.integer  "cookbook_followers_count", default: 0
     t.integer  "user_id"
