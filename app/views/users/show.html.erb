@@ -67,7 +67,7 @@
         <%= render partial: 'cookbooks/cookbook', collection: @cookbooks %>
       </ul>
     <% else %>
-      <% if current_user %>
+      <% if @user == current_user %>
         <h3><%= t("profile.current_user_no_cookbooks.#{params[:tab] || 'owns'}") %></h3>
       <% else %>
         <h3><%= t("profile.no_cookbooks.#{params[:tab] || 'owns'}", username: @user.username) %></h3>
