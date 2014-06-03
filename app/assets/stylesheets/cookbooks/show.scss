@@ -1,0 +1,280 @@
+@import "common";
+
+// Styles for the cookbook show
+
+.cookbook_show {
+  @include grid-row();
+  position: relative;
+  z-index: 1;
+}
+
+@media #{$mobile-only} {
+  .cookbook_show {
+    background-image: none;
+    background-color: white;
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_show {
+    background-image: none;
+    background-color: white;
+  }
+}
+
+.cookbook_show_content {
+  background: #fff;
+  @include grid-column($columns: 8);
+  padding: rem-calc(55);
+}
+
+@media #{$mobile-only} {
+  .cookbook_show_content {
+    @include grid-column($columns: 12);
+    padding: rem-calc(55);
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_show_content {
+    @include grid-column($columns: 12);
+    padding: rem-calc(55 55 10 55);
+  }
+}
+
+.cookbook_show_sidebar {
+  background: $sidebar_blue;
+  @include grid-column($columns: 4);
+  padding: rem-calc(55);
+
+  .fa {
+    color: $silver;
+    margin-right: rem-calc(5);
+  }
+
+  h3, h4 {
+    color: adjust-lightness($primary_gray, 10%);
+    font: {
+      size: rem-calc(12);
+      weight: $bold;
+    }
+    text-transform: uppercase;
+
+    small {
+      color: adjust-lightness($primary_gray, 20%);
+      display: block;
+      font: $normal rem-calc(12) $default_font;
+      margin: rem-calc(5 0 0 20);
+      text-transform: none;
+    }
+  }
+
+  h3 {
+    border-bottom: rem-calc(2) solid $clouds;
+    padding-bottom: rem-calc(10);
+    margin-bottom: rem-calc(25);
+  }
+
+  p {
+    color: adjust-lightness($primary_gray, 20%);
+    font: $normal rem-calc(12) $default_font;
+    margin: rem-calc(-15 0 24 20);
+  }
+
+  .gravatar {
+    @include border-radius(rem-calc(72));
+    height: rem-calc(72);
+    margin: rem-calc(0 15 15 0);
+    width: rem-calc(72);
+  }
+
+  .collaborators_avatar .gravatar {
+    @include border-radius(rem-calc(40));
+    height: rem-calc(40);
+    width: rem-calc(40);
+  }
+}
+
+@media #{$mobile-only} {
+  .cookbook_show_sidebar {
+    @include grid-column($columns: 12);
+    padding: rem-calc(0 55 55);
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_show_sidebar {
+    @include grid-column($columns: 12);
+    padding: rem-calc(0 55 55);
+  }
+}
+
+.cookbook_show_heading {
+  border: none;
+  font-size: rem-calc(30);
+  margin-bottom: rem-calc(38);
+  position: relative;
+  z-index: 1;
+}
+
+.version_dropdown {
+  @include inline-block;
+}
+
+#versions li:hover {
+  background: white;
+}
+
+#versions ul {
+  max-height: 200px;
+  overflow-y: scroll;
+  margin: 0;
+
+  li:hover {
+    background: #eee;
+  }
+}
+
+.previouspage {
+  @include box-sizing(border-box);
+  color: $silver;
+  display: block;
+  font-size: rem-calc(18);
+  left: rem-calc(-48);
+  padding: rem-calc(15);
+  position: absolute;
+  @include single-transition($speed: 100ms);
+  text-align: center;
+  top: 0;
+  z-index: 1;
+  &:hover {
+    color: darken($silver, 10%);
+  }
+}
+
+.followbutton {
+  color: $concrete;
+  float: right;
+  font: {
+    size: rem-calc(10);
+    weight: $bold;
+  }
+
+  .button {
+    padding: rem-calc(12 20 10);
+
+    i:before {
+      margin-right: rem-calc(5);
+    }
+
+    .cookbook_follow_count {
+      @include inline-block;
+      background-color: darken($primary-color, 5%);
+      @include border-radius(rem-calc(2));
+      color: $clouds;
+      font: {
+        size: rem-calc(10);
+        weight: $bold;
+      }
+      line-height: rem-calc(10);
+      margin: rem-calc(-2 -10 0 10);
+      padding: rem-calc(5 5 3);
+      @include single-transition($speed: 100ms);
+    }
+
+    &:hover {
+      .cookbook_follow_count {
+        background-color: darken($primary-color, 20%);
+      }
+    }
+  }
+}
+
+.button.show-cookbook-urls-manage {
+  margin-top: rem-calc(-7);
+  padding: rem-calc(7 10);
+}
+
+.cookbook-urls {
+  padding-bottom: rem-calc(20);
+}
+
+.manage-cookbook-urls {
+  padding-bottom: rem-calc(40);
+}
+
+.owner_avatar {
+  @include clearfix;
+  font: {
+    size: rem-calc(18);
+    weight: $bold;
+  }
+
+  .gravatar {
+    float: left;
+    margin-top: rem-calc(-15);
+  }
+
+  small {
+    display: block;
+    font: {
+      size: rem-calc(14);
+      weight: $normal;
+    }
+    margin-top: rem-calc(5);
+  }
+}
+
+.collaborators_avatar {
+  @include clearfix;
+  margin-bottom: rem-calc(20);
+
+  img {
+    display: block;
+  }
+
+  a {
+    color: $asbestos;
+    display: block;
+    float: left;
+    margin: rem-calc(0 10 10 0);
+
+    &:visited {
+      color: $asbestos;
+    }
+
+    &.fa {
+      color: $asbestos;
+      float: none;
+      margin: 0;
+
+      &:before {
+        margin-right: rem-calc(5);
+      }
+    }
+  }
+}
+
+.addcontributor {
+  margin-bottom: rem-calc(40);
+}
+
+.cookbook_show_content pre {
+  margin-bottom: rem-calc(20);
+}
+
+.rss_feed_link {
+  color: darken($primary_gray, 10%);
+  font: {
+    size: rem-calc(12);
+    weight: $bold;
+  }
+  @include inline-block;
+  margin-left: rem-calc(15);
+
+  .fa-rss { color: $primary_orange; }
+
+  .cookbook_show_heading & {
+    margin: rem-calc(-6 0 0 0);
+  }
+}

@@ -1,0 +1,54 @@
+@import "common";
+
+// Styles for the simple cookbook
+
+.cookbook_listing {
+  list-style-type: none;
+  margin: rem-calc(0 0 20 0);
+  display: table;
+  border-collapse: collapse;
+  width: 100%;
+  color: $secondary_gray;
+
+  &.hide_owner .owner {
+    display: none;
+  }
+
+  li.simple_cookbook {
+    border-bottom: rem-calc(2) solid lighten($secondary_gray, 32%);
+    vertical-align: bottom;
+    display: table-row;
+    @include dark-links;
+
+    > * {
+      display: table-cell;
+      padding: rem-calc(10 0 10 0);
+      text-align: left;
+    }
+
+    .followers {
+      font-size: rem-calc(10);
+      text-align: right;
+    }
+
+    .gravatar {
+      height: rem-calc(30);
+      width: rem-calc(30);
+    }
+
+    .owner {
+      width: rem-calc(50);
+    }
+
+    .name_version {
+      font: $bold rem-calc(20) $default_font;
+    }
+
+    small {
+      font: {
+        size: rem-calc(12);
+        weight: $bold;
+      }
+    }
+  }
+}

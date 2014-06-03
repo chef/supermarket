@@ -11,7 +11,7 @@
 *
 *= require typography
 *= require appheader
-*= require cookbooks
+*= require_tree ./cookbooks
 *= require users
 *= require tabs
 *= require dashboard

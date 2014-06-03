@@ -1,0 +1,89 @@
+@import "common";
+
+// Styles for the cookbooks directory
+
+.cookbooks_columns {
+  @include grid-row();
+  margin-bottom: rem-calc(36);
+}
+
+.cookbooks_column {
+  @include grid-column($columns: 4, $collapse: true);
+  padding: rem-calc(12);
+
+  &.first {
+    padding-left: rem-calc(0);
+  }
+
+  &.last {
+    padding-right: rem-calc(0);
+  }
+
+  .cookbooks_column_content {
+    background-color: white;
+    border: 1px solid $cookbook_border;
+    text-align: center;
+    padding: rem-calc(10);
+
+    .button.expand {
+      margin: rem-calc(16 0);
+      width: 90%;
+    }
+
+    .title {
+      border-bottom: 1px solid $cookbook_border;
+      font-size: rem-calc(24);
+      margin: 0;
+      padding: rem-calc(16 0);
+    }
+  }
+}
+
+@media #{$mobile-only} {
+  .cookbooks_column {
+    @include grid-column($columns: 12, $collapse: true);
+    padding: rem-calc(12);
+  }
+}
+
+
+.learn_about_cookbooks {
+  @include grid-row();
+  background-color: white;
+  border: rem-calc(1) solid $cookbook_border;
+  padding: rem-calc(24 32);
+}
+
+.learn_about_cookbooks_content {
+  @include grid-column($columns: 7, $collapse: true);
+  padding-right: rem-calc(96);
+}
+
+.learn_about_cookbooks_sidebar {
+  @include grid-column($columns: 5, $collapse: true);
+}
+
+@media #{$mobile-only} {
+  .learn_about_cookbooks_content {
+    @include grid-column($columns: 12, $collapse: true);
+    padding-right: 0;
+  }
+
+  .learn_about_cookbooks_sidebar {
+    @include grid-column($columns: 12, $collapse: true);
+  }
+}
+
+.cookbook_listing {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin-bottom: rem-calc(20);
+
+    &:last-child {
+      margin-bottom: rem-calc(40);
+    }
+  }
+}
