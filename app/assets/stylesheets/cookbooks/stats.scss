@@ -1,0 +1,35 @@
+@import "common";
+
+// Styles for the cookbook stats bar
+
+.cookbooks_stats {
+  padding: rem-calc(12 0 36);
+  text-align: center;
+
+  .stat {
+    color: adjust-lightness($primary_gray, 20%);
+    font-family: $accent_font;
+    font-size: rem-calc(36);
+    padding: rem-calc(0 24);
+
+    .number {
+      color: $primary-gray;
+    }
+  }
+}
+
+@media #{$mobile-only} {
+  .cookbook_stats {
+    @include inline-block;
+    margin: rem-calc(-7 0 0 20);
+    padding: 0;
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_stats {
+    @include inline-block;
+    margin: rem-calc(-7 0 0 20);
+    padding: 0;
+  }
+}

@@ -1,0 +1,53 @@
+@import "variables";
+
+// Cookbook category color classes
+
+.category_applications {
+  border-color: $category_applications;
+  color: $category_applications;
+}
+
+.category_databases {
+  border-color: $category_databases;
+  color: $category_databases;
+}
+
+.category_monitoring_and_trending {
+  border-color: $category_monitoring_and_trending;
+  color: $category_monitoring_and_trending;
+}
+
+.category_networking {
+  border-color: $category_networking;
+  color: $category_networking;
+}
+
+.category_package_management {
+  border-color: $category_package_management;
+  color: $category_package_management;
+}
+
+.category_process_management {
+  border-color: $category_process_management;
+  color: $category_process_management;
+}
+
+.category_programming_languages {
+  border-color: $category_programming_languages;
+  color: $category_programming_languages;
+}
+
+.category_utilities {
+  border-color: $category_utilities;
+  color: $category_utilities;
+}
+
+.category_web_servers {
+  border-color: $category_web_servers;
+  color: $category_web_servers;
+}
+
+.category_other {
+  border-color: $category_other;
+  color: $category_other;
+}

@@ -9,12 +9,12 @@
 *
 * Supermarket Styles
 *
-*= require libs/_typography
-*= require libs/_appheader
-*= require libs/_cookbooks
-*= require libs/_users
-*= require libs/_tabs
-*= require libs/_dashboard
-*= require libs/_alerts
-*= require libs/_structure
+*= require typography
+*= require appheader
+*= require_tree ./cookbooks
+*= require_tree ./users
+*= require tabs
+*= require dashboard
+*= require alerts
+*= require structure
 */

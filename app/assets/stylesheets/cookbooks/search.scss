@@ -1,0 +1,189 @@
+@import "common";
+
+// Styles for the Cookbooks search interface
+
+.cookbook_search {
+  background-color: $primary_blue;
+  border: none;
+  @include grid-row();
+  padding: rem-calc(48 55 32);
+  position: relative;
+  z-index: 1;
+
+  .fa {
+    color: lighten($primary_gray, 5%);
+    font: {
+      family: "fontawesome" !important;
+      size: rem-calc(24);
+    }
+    left: rem-calc(75);
+    position: absolute;
+    top: rem-calc(67);
+    z-index: 2;
+  }
+}
+
+@media #{$mobile-only} {
+  .cookbook_search {
+    padding: rem-calc(32 20 30);
+
+    .fa {
+      left: rem-calc(41);
+      top: rem-calc(51);
+    }
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_search {
+    padding: rem-calc(32 20 15);
+
+    .fa {
+      left: rem-calc(41);
+      top: rem-calc(51);
+    }
+  }
+}
+
+.search_field {
+  @include grid-column($columns: 11, $collapse: true);
+}
+
+@media #{$small-only} {
+  .search_field {
+    @include grid-column($columns: 10, $collapse: true);
+  }
+}
+
+@media #{$mobile-only} {
+  .search_field {
+    @include grid-column($columns: 12, $collapse: true);
+  }
+}
+
+.search_button {
+  @include grid-column($columns: 1, $collapse: true);
+}
+
+@media #{$small-only} {
+  .search_button {
+    @include grid-column($columns: 2, $collapse: true);
+  }
+}
+
+@media #{$mobile-only} {
+  .search_button {
+    display: none;
+  }
+}
+
+input[type="search"].cookbook_search_textfield {
+  background-color: darken($primary_blue, 7%);
+  border: none;
+  @include border-left-radius(rem-calc(3));
+  @include box-shadow(none);
+  color: $clouds;
+  font: rem-calc(30) $accent_font;
+  height: rem-calc(64);
+  line-height: rem-calc(44);
+  padding: rem-calc(0 0 0 60);
+
+  &::-webkit-input-placeholder {
+     color: $clouds;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+     color: $clouds;
+  }
+
+  &::-moz-placeholder {  /* Firefox 19+ */
+     color: $clouds;
+  }
+
+  &:-ms-input-placeholder {
+     color: $clouds;
+  }
+}
+
+.cookbook_no_search_results {
+  @include grid-column($columns: 12, $collapse: true);
+  background-color: white;
+  border: 1px solid $cookbook_border;
+  padding: rem-calc(30 30);
+
+  ul {
+    margin-bottom: 0;
+  }
+}
+
+@media #{$mobile-only} {
+  input[type="search"].cookbook_search_textfield {
+    @include border-radius(rem-calc(40));
+    font-size: rem-calc(24);
+    margin: 0;
+  }
+}
+
+.cookbook_search_button {
+  background-color: lighten($primary_blue, 10%);
+  @include border-right-radius(rem-calc(3));
+  color: white;
+  font-size: rem-calc(24);
+  height: rem-calc(64);
+  line-height: rem-calc(44);
+  padding: rem-calc(0 20);
+  @include single-transition($speed: 100ms);
+  text-align: center;
+  width: 100%;
+
+  &:hover, &:active, &:focus {
+    background-color: lighten($primary_blue, 20%);
+    color: white;
+  }
+}
+
+.order_cookbooks_by {
+  color: $primary_gray;
+  font: {
+    family: $accent_font;
+    size: rem-calc(14);
+  }
+  line-height: rem-calc(36);
+
+  a.button {
+    background-color: darken($clouds, 5%);
+    color: $concrete;
+    @include inline-block;
+    font: {
+      size: rem-calc(14);
+      weight: $normal;
+    }
+    margin-left: rem-calc(6);
+    padding: rem-calc(9 20);
+    @include single-transition($speed: 100ms);
+    text-transform: none;
+
+    &:hover {
+      background-color: darken($clouds, 10%);
+      color: darken($concrete, 5%);
+    }
+
+    &.dropdown {
+      padding-right: rem-calc(57);
+
+      &:before {
+        border-color: $concrete rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+      }
+    }
+
+    &.active {
+      background-color: $primary-color;
+      @include border-radius(rem-calc(3));
+      color: white;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+}
