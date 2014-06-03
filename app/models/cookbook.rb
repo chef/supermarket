@@ -234,6 +234,15 @@ class Cookbook < ActiveRecord::Base
     owner.username
   end
 
+  #
+  # The total number of times this cookbook has been downloaded
+  #
+  # @return [Fixnum]
+  #
+  def download_count
+    web_download_count + api_download_count
+  end
+
   private
 
   #

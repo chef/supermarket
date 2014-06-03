@@ -343,6 +343,14 @@ describe Cookbook do
     end
   end
 
+  describe '#download_count' do
+    it 'is the sum of web_download_count and api_download_count' do
+      cookbook = Cookbook.new(web_download_count: 1, api_download_count: 10)
+
+      expect(cookbook.download_count).to eql(11)
+    end
+  end
+
   describe '.total_download_count' do
     it 'is the total number of downloads across all cookbooks' do
       2.times do
