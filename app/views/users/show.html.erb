@@ -47,7 +47,9 @@
       <li><h3><%= @user.followed_cookbooks.count %> <span>Follows</span></h3></li>
     </ul>
 
-    <%= link_to 'Manage Profile', edit_profile_path, class: 'button medium expand radius', rel: 'manage_profile' %>
+    <% if @user == current_user %>
+      <%= link_to 'Manage Profile', edit_profile_path, class: 'button medium expand radius', rel: 'manage_profile' %>
+    <% end %>
   </div>
   <div class="profile_content" data-equalizer-watch>
     <div class="heading">
