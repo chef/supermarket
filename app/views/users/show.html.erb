@@ -47,7 +47,9 @@
       <li><h3><%= @user.followed_cookbooks.count %> <span>Follows</span></h3></li>
     </ul>
 
-    <%= link_to 'Manage Profile', edit_profile_path, class: 'button medium expand radius', rel: 'manage_profile' %>
+    <% if @user == current_user %>
+      <%= link_to 'Manage Profile', edit_profile_path, class: 'button medium expand radius', rel: 'manage_profile' %>
+    <% end %>
   </div>
   <div class="profile_content" data-equalizer-watch>
     <div class="heading">
@@ -65,7 +67,7 @@
         <%= render partial: 'cookbooks/cookbook', collection: @cookbooks %>
       </ul>
     <% else %>
-      <% if current_user %>
+      <% if @user == current_user %>
         <h3><%= t("profile.current_user_no_cookbooks.#{params[:tab] || 'owns'}") %></h3>
       <% else %>
         <h3><%= t("profile.no_cookbooks.#{params[:tab] || 'owns'}", username: @user.username) %></h3>
