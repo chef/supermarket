@@ -10,7 +10,7 @@ Capybara.register_driver :quiet_ghost do |app|
   Capybara::Poltergeist::Driver.new(
     app,
     phantomjs_logger: error_logger,
-    timeout: 60
+    timeout: 90
   )
 end
 
