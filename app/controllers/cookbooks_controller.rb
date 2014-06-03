@@ -65,7 +65,7 @@ class CookbooksController < ApplicationController
       limit(5)
 
     @cookbook_count = Cookbook.count
-    @download_count = Cookbook.sum(:download_count)
+    @download_count = Cookbook.total_download_count
     @user_count = User.count
   end
 

@@ -85,6 +85,15 @@ class Cookbook < ActiveRecord::Base
   validates :replacement, presence: true, if: :deprecated?
 
   #
+  # The total number of times a cookbook has been downloaded from Supermarket
+  #
+  # @return [Fixnum]
+  #
+  def self.total_download_count
+    sum(:api_download_count) + sum(:web_download_count)
+  end
+
+  #
   # Sorts cookbook versions according to their semantic version
   #
   # @return [Array<CookbookVersion>] the sorted CookbookVersion records

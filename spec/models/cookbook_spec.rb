@@ -342,4 +342,14 @@ describe Cookbook do
       expect(cookbook.followed_by?(user)).to be_false
     end
   end
+
+  describe '.total_download_count' do
+    it 'is the total number of downloads across all cookbooks' do
+      2.times do
+        create(:cookbook, web_download_count: 10, api_download_count: 100)
+      end
+
+      expect(Cookbook.total_download_count).to eql(220)
+    end
+  end
 end
