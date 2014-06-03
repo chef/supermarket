@@ -12,7 +12,7 @@
 *= require typography
 *= require appheader
 *= require_tree ./cookbooks
-*= require users
+*= require_tree ./users
 *= require tabs
 *= require dashboard
 *= require alerts
