@@ -54,10 +54,10 @@ describe Api::V1::CookbookVersionsController do
     let(:cookbook) { create(:cookbook) }
     let(:version) { create(:cookbook_version, cookbook: cookbook) }
 
-    it '302s to the cookbook version download URL' do
+    it '302s to the cookbook version file URL' do
       get :download, cookbook: cookbook.name, version: version.to_param, format: :json
 
-      expect(response).to redirect_to(cookbook_version_download_url(cookbook, version))
+      expect(response).to redirect_to(version.tarball.url)
       expect(response.status.to_i).to eql(302)
     end
 

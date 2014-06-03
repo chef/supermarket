@@ -26,6 +26,6 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
     CookbookVersion.increment_counter(:api_download_count, @cookbook_version.id)
     Cookbook.increment_counter(:api_download_count, @cookbook.id)
 
-    redirect_to cookbook_version_download_url(@cookbook, @cookbook_version)
+    redirect_to @cookbook_version.tarball.url
   end
 end
