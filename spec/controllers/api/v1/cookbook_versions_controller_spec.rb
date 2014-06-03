@@ -49,4 +49,28 @@ describe Api::V1::CookbookVersionsController do
       expect(response.status.to_i).to eql(404)
     end
   end
+
+  describe '#download' do
+    let(:cookbook) { create(:cookbook) }
+    let(:version) { create(:cookbook_version, cookbook: cookbook) }
+
+    it '302s to the cookbook version download URL' do
+      get :download, cookbook: cookbook.name, version: version.to_param, format: :json
+
+      expect(response).to redirect_to(cookbook_version_download_url(cookbook, version))
+      expect(response.status.to_i).to eql(302)
+    end
+
+    it '404s when the cookbook does not exist' do
+      get :download, cookbook: 'snarfle', version: '100.1.1', format: :json
+
+      expect(response.status.to_i).to eql(404)
+    end
+
+    it '404s when the cookbook version does not exist' do
+      get :download, cookbook: cookbook.name, version: '100.1.1', format: :json
+
+      expect(response.status.to_i).to eql(404)
+    end
+  end
 end

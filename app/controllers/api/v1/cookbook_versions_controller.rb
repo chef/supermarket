@@ -13,4 +13,16 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
     @cookbook = Cookbook.with_name(params[:cookbook]).first!
     @cookbook_version = @cookbook.get_version!(params[:version])
   end
+
+  #
+  # GET /api/v1/cookbooks/:cookbook/versions/:version/download
+  #
+  # Redirects the user to the cookbook artifact
+  #
+  def download
+    @cookbook = Cookbook.with_name(params[:cookbook]).first!
+    @cookbook_version = @cookbook.get_version!(params[:version])
+
+    redirect_to cookbook_version_download_url(@cookbook, @cookbook_version)
+  end
 end
