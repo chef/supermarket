@@ -28,7 +28,8 @@ describe CookbooksController do
           name: 'mysql',
           updated_at: 1.year.ago,
           created_at: 1.year.ago,
-          download_count: 100,
+          web_download_count: 1,
+          api_download_count: 100,
           cookbook_followers_count: 100
         )
       end
@@ -39,7 +40,8 @@ describe CookbooksController do
           name: 'mysql-admin-tools',
           updated_at: 1.day.ago,
           created_at: 2.years.ago,
-          download_count: 50,
+          web_download_count: 1,
+          api_download_count: 50,
           cookbook_followers_count: 50
         )
       end
@@ -54,7 +56,7 @@ describe CookbooksController do
         expect(assigns[:cookbooks].first).to eql(cookbook_1)
       end
 
-      it 'orders @cookbooks by download_count' do
+      it 'orders @cookbooks by their download count' do
         get :index, order: 'most_followed'
         expect(assigns[:cookbooks].first).to eql(cookbook_1)
       end
