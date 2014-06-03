@@ -8,7 +8,8 @@ describe 'api/v1/cookbooks/show' do
       source_url: 'http://example.com',
       issues_url: 'http://example.com',
       deprecated: false,
-      download_count: 34
+      web_download_count: 2,
+      api_download_count: 32
     )
   end
 
@@ -18,7 +19,8 @@ describe 'api/v1/cookbooks/show' do
       cookbook: cookbook,
       description: 'great cookbook',
       version: '2.0.0',
-      download_count: 20
+      web_download_count: 1,
+      api_download_count: 19
     )
   end
 
@@ -28,7 +30,8 @@ describe 'api/v1/cookbooks/show' do
       cookbook: cookbook,
       description: 'great cookbook',
       version: '2.1.0',
-      download_count: 14
+      web_download_count: 1,
+      api_download_count: 13
     )
   end
 

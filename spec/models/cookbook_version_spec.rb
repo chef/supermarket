@@ -70,4 +70,15 @@ describe CookbookVersion do
         to end_with("cookbook_versions/tarballs/#{id}/original/redis-test-v1.tgz")
     end
   end
+
+  context '#download_count' do
+    it 'is the sum of web_download_count and api_download_count' do
+      cookbook_version = CookbookVersion.new(
+        web_download_count: 1,
+        api_download_count: 10
+      )
+
+      expect(cookbook_version.download_count).to eql(11)
+    end
+  end
 end
