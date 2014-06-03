@@ -8,11 +8,11 @@ html, body { height: 100%; min-height: 100%; }
 }
 
 @media #{$small-only} {
-  html, body { font-size: 70%; }
+  html, body { font-size: 74%; }
 }
 
 @media #{$medium-only} {
-  html, body { font-size: 75%; }
+  html, body { font-size: 85%; }
 }
 
 @media #{$xlarge-up} {

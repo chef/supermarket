@@ -23,28 +23,26 @@
 }
 
 .cookbook_show_content {
-  background: #fff;
   @include grid-column($columns: 8);
+  background: #fff;
   padding: rem-calc(55);
 }
 
 @media #{$mobile-only} {
   .cookbook_show_content {
     @include grid-column($columns: 12);
-    padding: rem-calc(55);
   }
 }
 
 @media #{$small-only} {
   .cookbook_show_content {
     @include grid-column($columns: 12);
-    padding: rem-calc(55 55 10 55);
   }
 }
 
 .cookbook_show_sidebar {
-  background: $sidebar_blue;
   @include grid-column($columns: 4);
+  background: $sidebar_blue;
   padding: rem-calc(55);
 
   .fa {
@@ -71,8 +69,8 @@
 
   h3 {
     border-bottom: rem-calc(2) solid $clouds;
-    padding-bottom: rem-calc(10);
     margin-bottom: rem-calc(25);
+    padding-bottom: rem-calc(10);
   }
 
   p {
@@ -98,14 +96,12 @@
 @media #{$mobile-only} {
   .cookbook_show_sidebar {
     @include grid-column($columns: 12);
-    padding: rem-calc(0 55 55);
   }
 }
 
 @media #{$small-only} {
   .cookbook_show_sidebar {
     @include grid-column($columns: 12);
-    padding: rem-calc(0 55 55);
   }
 }
 
@@ -115,6 +111,58 @@
   margin-bottom: rem-calc(38);
   position: relative;
   z-index: 1;
+
+  @media #{$mobile-only} {
+    small {
+      display: block;
+      float: none;
+      margin: rem-calc(5 0 5 0);
+    }
+  }
+
+  @media #{$mobile-only} {
+    .button {
+      width: 100%;
+    }
+  }
+
+  @media #{$mobile-only} {
+    .versions_count, .rss {
+      display: none;
+    }
+  }
+
+  @media #{$small-only} {
+    small {
+      display: block;
+      float: none;
+      margin: rem-calc(5 0 5 0);
+    }
+  }
+
+  @media #{$small-only} {
+    .button {
+      width: 100%;
+    }
+  }
+
+  @media #{$small-only} {
+    .versions_count, .rss {
+      display: none;
+    }
+  }
+}
+
+@media #{$mobile-only} {
+  .cookbook_show_heading {
+    margin-bottom: rem-calc(25);
+  }
+}
+
+@media #{$small-only} {
+  .cookbook_show_heading {
+    margin-bottom: rem-calc(15);
+  }
 }
 
 .version_dropdown {
@@ -127,8 +175,8 @@
 
 #versions ul {
   max-height: 200px;
-  overflow-y: scroll;
   margin: 0;
+  overflow-y: scroll;
 
   li:hover {
     background: #eee;
@@ -137,16 +185,17 @@
 
 .previouspage {
   @include box-sizing(border-box);
+  @include single-transition($speed: 100ms);
   color: $silver;
   display: block;
   font-size: rem-calc(18);
   left: rem-calc(-48);
   padding: rem-calc(15);
   position: absolute;
-  @include single-transition($speed: 100ms);
   text-align: center;
   top: 0;
   z-index: 1;
+
   &:hover {
     color: darken($silver, 10%);
   }
@@ -169,8 +218,9 @@
 
     .cookbook_follow_count {
       @include inline-block;
-      background-color: darken($primary-color, 5%);
+      @include single-transition($speed: 100ms);
       @include border-radius(rem-calc(2));
+      background-color: darken($primary-color, 5%);
       color: $clouds;
       font: {
         size: rem-calc(10);
@@ -179,7 +229,6 @@
       line-height: rem-calc(10);
       margin: rem-calc(-2 -10 0 10);
       padding: rem-calc(5 5 3);
-      @include single-transition($speed: 100ms);
     }
 
     &:hover {
@@ -190,9 +239,12 @@
   }
 }
 
-.button.show-cookbook-urls-manage {
-  margin-top: rem-calc(-7);
-  padding: rem-calc(7 10);
+.show-cookbook-urls-manage {
+  font-size: rem-calc(18);
+
+  &.active .fa {
+    color: $secondary_blue;
+  }
 }
 
 .cookbook-urls {
@@ -227,7 +279,6 @@
 
 .collaborators_avatar {
   @include clearfix;
-  margin-bottom: rem-calc(20);
 
   img {
     display: block;
@@ -255,8 +306,8 @@
   }
 }
 
-.addcontributor {
-  margin-bottom: rem-calc(40);
+.manage_cookbook {
+  margin-bottom: rem-calc(20);
 }
 
 .cookbook_show_content pre {

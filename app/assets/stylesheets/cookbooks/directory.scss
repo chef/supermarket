@@ -8,16 +8,7 @@
 }
 
 .cookbooks_column {
-  @include grid-column($columns: 4, $collapse: true);
-  padding: rem-calc(12);
-
-  &.first {
-    padding-left: rem-calc(0);
-  }
-
-  &.last {
-    padding-right: rem-calc(0);
-  }
+  @include grid-column($columns: 4);
 
   .cookbooks_column_content {
     background-color: white;
@@ -41,36 +32,50 @@
 
 @media #{$mobile-only} {
   .cookbooks_column {
-    @include grid-column($columns: 12, $collapse: true);
-    padding: rem-calc(12);
+    @include grid-column($columns: 12);
+    margin-bottom: rem-calc(20);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
+@media #{$small-only} {
+  .cookbooks_column {
+    @include grid-column($columns: 12);
+    margin-bottom: rem-calc(20);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
 
 .learn_about_cookbooks {
   @include grid-row();
-  background-color: white;
-  border: rem-calc(1) solid $cookbook_border;
-  padding: rem-calc(24 32);
+  background: white;
+  border: 1px solid $cookbook_border;
+  margin: rem-calc(0 15 0 15);
+  padding: rem-calc(20);
+  width: auto;
 }
 
 .learn_about_cookbooks_content {
-  @include grid-column($columns: 7, $collapse: true);
-  padding-right: rem-calc(96);
+  @include grid-column($columns: 7);
 }
 
 .learn_about_cookbooks_sidebar {
-  @include grid-column($columns: 5, $collapse: true);
+  @include grid-column($columns: 5);
 }
 
 @media #{$mobile-only} {
   .learn_about_cookbooks_content {
-    @include grid-column($columns: 12, $collapse: true);
-    padding-right: 0;
+    @include grid-column($columns: 12);
   }
 
   .learn_about_cookbooks_sidebar {
-    @include grid-column($columns: 12, $collapse: true);
+    @include grid-column($columns: 12);
   }
 }
 
