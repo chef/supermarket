@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514200102) do
+ActiveRecord::Schema.define(version: 20140603202553) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -128,12 +128,13 @@ ActiveRecord::Schema.define(version: 20140514200102) do
     t.string   "tarball_content_type"
     t.integer  "tarball_file_size"
     t.datetime "tarball_updated_at"
-    t.integer  "download_count",        default: 0
     t.text     "readme",                default: "",    null: false
     t.string   "readme_extension",      default: "",    null: false
     t.boolean  "dependencies_imported", default: false
     t.text     "description"
     t.integer  "legacy_id"
+    t.integer  "web_download_count",    default: 0
+    t.integer  "api_download_count",    default: 0
   end
 
   add_index "cookbook_versions", ["legacy_id"], name: "index_cookbook_versions_on_legacy_id", unique: true, using: :btree
@@ -148,12 +149,13 @@ ActiveRecord::Schema.define(version: 20140514200102) do
     t.boolean  "deprecated",               default: false
     t.integer  "category_id",                              null: false
     t.string   "lowercase_name"
-    t.integer  "download_count",           default: 0
     t.string   "issues_url"
     t.integer  "cookbook_followers_count", default: 0
     t.integer  "user_id"
     t.integer  "replacement_id"
     t.integer  "legacy_id"
+    t.integer  "web_download_count",       default: 0
+    t.integer  "api_download_count",       default: 0
   end
 
   add_index "cookbooks", ["legacy_id"], name: "index_cookbooks_on_legacy_id", unique: true, using: :btree

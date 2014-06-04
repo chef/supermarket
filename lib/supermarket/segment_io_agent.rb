@@ -17,6 +17,7 @@ module Supermarket
     #
     def initialize(config)
       @enabled = config.segment_io_write_key.to_s.size > 0
+      @last_event = {}
 
       if enabled?
         require 'analytics-ruby'
@@ -33,6 +34,12 @@ module Supermarket
     #
     attr_reader :enabled
 
+    #
+    # @!attribute [r] last_event
+    #   @return [Hash] the most recent event tracked
+    #
+    attr_reader :last_event
+
     alias_method :enabled?, :enabled
 
     #
@@ -43,6 +50,8 @@ module Supermarket
     # @param properties [Hash] the properties, if any, associated with the event
     #
     def track_server_event(name, properties = {})
+      @last_event = { name: name, properties: properties }
+
       if enabled?
         @segment_io.track(
           user_id: 'web_server',

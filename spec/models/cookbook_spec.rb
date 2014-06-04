@@ -290,8 +290,8 @@ describe Cookbook do
     end
 
     it 'orders by download_count descending when given "most_downloaded"' do
-      great.update_attributes(download_count: 100)
-      cookbook.update_attributes(download_count: 50)
+      great.update_attributes(web_download_count: 1, api_download_count: 100)
+      cookbook.update_attributes(web_download_count: 5, api_download_count: 70)
 
       expect(Cookbook.ordered_by('most_downloaded').map(&:name)).
         to eql(%w(great cookbook))
@@ -340,6 +340,24 @@ describe Cookbook do
       cookbook = create(:cookbook)
 
       expect(cookbook.followed_by?(user)).to be_false
+    end
+  end
+
+  describe '#download_count' do
+    it 'is the sum of web_download_count and api_download_count' do
+      cookbook = Cookbook.new(web_download_count: 1, api_download_count: 10)
+
+      expect(cookbook.download_count).to eql(11)
+    end
+  end
+
+  describe '.total_download_count' do
+    it 'is the total number of downloads across all cookbooks' do
+      2.times do
+        create(:cookbook, web_download_count: 10, api_download_count: 100)
+      end
+
+      expect(Cookbook.total_download_count).to eql(220)
     end
   end
 end

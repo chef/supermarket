@@ -12,7 +12,7 @@ class PagesController < ApplicationController
 
     @recently_updated_count = Cookbook.recently_updated.count
     @cookbook_count = Cookbook.count
-    @download_count = Cookbook.sum(:download_count)
+    @download_count = Cookbook.total_download_count
     @user_count = User.count
   end
 

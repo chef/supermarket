@@ -48,6 +48,15 @@ class CookbookVersion < ActiveRecord::Base
     version.gsub(/\./, '_')
   end
 
+  #
+  # The total number of times this version has been downloaded
+  #
+  # @return [Fixnum]
+  #
+  def download_count
+    web_download_count + api_download_count
+  end
+
   private
 
   #

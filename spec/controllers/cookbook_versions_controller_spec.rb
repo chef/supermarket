@@ -12,16 +12,28 @@ describe CookbookVersionsController do
       expect(response.status.to_i).to eql(302)
     end
 
-    it 'logs the download count for the cookbook version' do
+    it 'logs the web download count for the cookbook version' do
       expect do
         get :download, cookbook_id: cookbook.name, version: version.to_param
-      end.to change { version.reload.download_count }.by(1)
+      end.to change { version.reload.web_download_count }.by(1)
     end
 
-    it 'logs the download count for the cookbook' do
+    it 'logs the web download count for the cookbook' do
       expect do
         get :download, cookbook_id: cookbook.name, version: version.to_param
-      end.to change { cookbook.reload.download_count }.by(1)
+      end.to change { cookbook.reload.web_download_count }.by(1)
+    end
+
+    it 'tracks the download in SegmentIO' do
+      get :download, cookbook_id: cookbook.name, version: version.to_param
+
+      expect(SegmentIO.last_event).to eql(
+        name: 'cookbook_version_web_download',
+        properties: {
+          cookbook: cookbook.name,
+          version: version.version
+        }
+      )
     end
 
     it '404s when the cookbook does not exist' do

@@ -7,11 +7,11 @@ class CookbookVersionsController < ApplicationController
   # Redirects the user to the cookbook artifact
   #
   def download
-    CookbookVersion.increment_counter(:download_count, @version.id)
-    Cookbook.increment_counter(:download_count, @cookbook.id)
+    CookbookVersion.increment_counter(:web_download_count, @version.id)
+    Cookbook.increment_counter(:web_download_count, @cookbook.id)
 
     SegmentIO.track_server_event(
-      'cookbook_version_downloaded',
+      'cookbook_version_web_download',
       cookbook: @cookbook.name,
       version: @version.version
     )

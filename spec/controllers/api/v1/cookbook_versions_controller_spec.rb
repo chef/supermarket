@@ -49,4 +49,52 @@ describe Api::V1::CookbookVersionsController do
       expect(response.status.to_i).to eql(404)
     end
   end
+
+  describe '#download' do
+    let(:cookbook) { create(:cookbook) }
+    let(:version) { create(:cookbook_version, cookbook: cookbook) }
+
+    it '302s to the cookbook version file URL' do
+      get :download, cookbook: cookbook.name, version: version.to_param, format: :json
+
+      expect(response).to redirect_to(version.tarball.url)
+      expect(response.status.to_i).to eql(302)
+    end
+
+    it 'logs the web download count for the cookbook version' do
+      expect do
+        get :download, cookbook: cookbook.name, version: version.to_param, format: :json
+      end.to change { version.reload.api_download_count }.by(1)
+    end
+
+    it 'logs the web download count for the cookbook' do
+      expect do
+        get :download, cookbook: cookbook.name, version: version.to_param, format: :json
+      end.to change { cookbook.reload.api_download_count }.by(1)
+    end
+
+    it 'tracks the download in SegmentIO' do
+      get :download, cookbook: cookbook.name, version: version.to_param, format: :json
+
+      expect(SegmentIO.last_event).to eql(
+        name: 'cookbook_version_api_download',
+        properties: {
+          cookbook: cookbook.name,
+          version: version.version
+        }
+      )
+    end
+
+    it '404s when the cookbook does not exist' do
+      get :download, cookbook: 'snarfle', version: '100.1.1', format: :json
+
+      expect(response.status.to_i).to eql(404)
+    end
+
+    it '404s when the cookbook version does not exist' do
+      get :download, cookbook: cookbook.name, version: '100.1.1', format: :json
+
+      expect(response.status.to_i).to eql(404)
+    end
+  end
 end

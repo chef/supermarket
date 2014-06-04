@@ -26,7 +26,7 @@ class Cookbook < ActiveRecord::Base
     order({
       'recently_updated' => 'updated_at DESC',
       'recently_added' => 'created_at DESC',
-      'most_downloaded' => 'download_count DESC',
+      'most_downloaded' => '(web_download_count + api_download_count) DESC',
       'most_followed' => 'cookbook_followers_count DESC'
     }.fetch(ordering, 'name ASC'))
   }
@@ -83,6 +83,15 @@ class Cookbook < ActiveRecord::Base
     allow_nil: true
   }
   validates :replacement, presence: true, if: :deprecated?
+
+  #
+  # The total number of times a cookbook has been downloaded from Supermarket
+  #
+  # @return [Fixnum]
+  #
+  def self.total_download_count
+    sum(:api_download_count) + sum(:web_download_count)
+  end
 
   #
   # Sorts cookbook versions according to their semantic version
@@ -223,6 +232,15 @@ class Cookbook < ActiveRecord::Base
   #
   def maintainer
     owner.username
+  end
+
+  #
+  # The total number of times this cookbook has been downloaded
+  #
+  # @return [Fixnum]
+  #
+  def download_count
+    web_download_count + api_download_count
   end
 
   private
