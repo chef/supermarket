@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603202553) do
+ActiveRecord::Schema.define(version: 20140604195117) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -256,16 +256,15 @@ ActiveRecord::Schema.define(version: 20140603202553) do
   end
 
   create_table "supported_platforms", force: true do |t|
-    t.string   "name",                                     null: false
-    t.string   "version_constraint",  default: ">= 0.0.0", null: false
-    t.integer  "cookbook_version_id"
+    t.string   "name",                                    null: false
+    t.string   "version_constraint", default: ">= 0.0.0", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "legacy_id"
   end
 
-  add_index "supported_platforms", ["cookbook_version_id"], name: "index_supported_platforms_on_cookbook_version_id", using: :btree
   add_index "supported_platforms", ["legacy_id"], name: "index_supported_platforms_on_legacy_id", unique: true, using: :btree
+  add_index "supported_platforms", ["name", "version_constraint"], name: "index_supported_platforms_on_name_and_version_constraint", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"

@@ -3,6 +3,7 @@ require 'spec_helper'
 describe SupportedPlatform do
   context 'validations' do
     it { should validate_presence_of(:name) }
+    it { should validate_uniqueness_of(:name).scoped_to(:version_constraint) }
 
     it 'allows ">= 0.0.0" as a version constraint' do
       platform = SupportedPlatform.new(version_constraint: '>= 0.0.0')
