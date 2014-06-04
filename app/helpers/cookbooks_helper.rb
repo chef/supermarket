@@ -114,7 +114,7 @@ module CookbooksHelper
         class: 'button radius tiny follow',
         id: 'unfollow_cookbook',
         'data-cookbook' => cookbook.name,
-        'data-disable-with' => 'Unfollowing'
+        remote: true
       ) do
         if block
           block.call(true)
@@ -130,7 +130,7 @@ module CookbooksHelper
         class: 'button radius tiny follow',
         id: 'follow_cookbook',
         'data-cookbook' => cookbook.name,
-        'data-disable-with' => 'Following'
+        remote: true
       ) do
         if block
           block.call(false)

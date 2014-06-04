@@ -14,7 +14,7 @@ describe 'cookbook following' do
     end
   end
 
-  it 'allows a user to follow a cookbook' do
+  it 'allows a user to follow a cookbook', use_poltergeist: true do
     within '.cookbook_show_content' do
       follow_relation 'follow'
     end
@@ -22,7 +22,7 @@ describe 'cookbook following' do
     expect(page).to have_xpath("//a[starts-with(@rel, 'unfollow')]")
   end
 
-  it 'allows a user to unfollow a cookbook' do
+  it 'allows a user to unfollow a cookbook', use_poltergeist: true do
     within '.cookbook_show_content' do
       follow_relation 'follow'
     end

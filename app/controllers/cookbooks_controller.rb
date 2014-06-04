@@ -123,7 +123,7 @@ class CookbooksController < ApplicationController
   def follow
     @cookbook.cookbook_followers.create(user: current_user)
 
-    redirect_to :back
+    head 200
   end
 
   #
@@ -133,10 +133,10 @@ class CookbooksController < ApplicationController
   #
   def unfollow
     cookbook_follower = @cookbook.cookbook_followers.
-      where(user: current_user).first
-    cookbook_follower.try(:destroy)
+      where(user: current_user).first!
+    cookbook_follower.destroy
 
-    redirect_to @cookbook
+    head 200
   end
 
   private
