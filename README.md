@@ -293,3 +293,12 @@ Deployment
 
         ssh some-user@someserver.com
         chef-client
+
+Jobs
+----
+
+### Sitemap Refresher
+
+There is a Sidetiq job that gets run daily at midnight which refreshes
+Supermarket's sitemap. It is using the
+[sitemap_generator](https://github.com/kjvarga/sitemap_generator) gem.
