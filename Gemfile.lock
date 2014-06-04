@@ -342,6 +342,8 @@ GEM
       multi_json
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
+    sitemap_generator (5.0.4)
+      builder
     slop (3.5.0)
     spring (1.1.2)
     spring-commands-rspec (1.0.1)
@@ -446,6 +448,7 @@ DEPENDENCIES
   shoulda-matchers
   sidekiq
   sidetiq!
+  sitemap_generator
   spring
   spring-commands-rspec
   statsd-ruby
