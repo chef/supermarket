@@ -98,8 +98,8 @@ Supermarket::Application.routes.draw do
   delete 'signout'  => redirect('/sign-out'), as: nil
   delete 'sign-out' => 'sessions#destroy', as: :sign_out
 
-  # when linking a github account
-  match 'auth/github/callback' => 'accounts#create', as: :auth_callback, via: [:get, :post]
+  # when linking an oauth account
+  match 'auth/:provider/callback' => 'accounts#create', as: :auth_callback, via: [:get, :post]
 
   # this is what a logged in user sees after login
   get 'dashboard' => 'pages#dashboard'
