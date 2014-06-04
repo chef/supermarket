@@ -8,7 +8,10 @@ module FeatureHelpers
     OmniAuthControl.stub_github!(user)
 
     visit '/'
-    follow_relation 'sign_in'
+
+    within '.appnav' do
+      follow_relation 'sign_in'
+    end
   end
 
   def sign_out
@@ -105,7 +108,9 @@ module FeatureHelpers
       follow_relation 'view_profile'
     end
 
-    follow_relation 'manage_profile'
+    within '.profile_sidebar' do
+      follow_relation 'manage_profile'
+    end
   end
 
   def manage_agreements
@@ -203,12 +208,22 @@ module FeatureHelpers
     all("[rel*=#{rel}]")
   end
 
+  def follow_first_relation(rel)
+    all("[rel*=#{rel}]").first.click
+  end
+
   def submit_form
     find('[type=submit]').click
   end
 
   def in_user_menu
-    find('.usermenu').hover
-    yield
+    begin
+      find('.usermenu').hover
+      yield
+    rescue NotImplementedError
+      within('.usermenu') do
+        yield
+      end
+    end
   end
 end

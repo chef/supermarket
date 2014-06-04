@@ -15,14 +15,21 @@ describe 'cookbook following' do
   end
 
   it 'allows a user to follow a cookbook' do
-    follow_relation 'follow'
+    within '.cookbook_show_content' do
+      follow_relation 'follow'
+    end
 
     expect(page).to have_xpath("//a[starts-with(@rel, 'unfollow')]")
   end
 
   it 'allows a user to unfollow a cookbook' do
-    follow_relation 'follow'
-    follow_relation 'unfollow'
+    within '.cookbook_show_content' do
+      follow_relation 'follow'
+    end
+
+    within '.cookbook_show_content' do
+      follow_relation 'unfollow'
+    end
 
     expect(page).to have_xpath("//a[starts-with(@rel, 'follow')]")
   end
