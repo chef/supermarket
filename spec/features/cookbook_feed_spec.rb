@@ -5,7 +5,10 @@ describe 'cookbook feed' do
     create(:cookbook, name: 'AmazingCookbook')
 
     visit '/'
-    click_link 'Cookbooks'
+
+    within '.appnav' do
+      click_link 'Cookbooks'
+    end
 
     within '.cookbook_search' do
       fill_in 'q', with: 'Amazing'

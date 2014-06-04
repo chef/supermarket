@@ -14,7 +14,7 @@ describe 'Removing members from a CCLA' do
     expect_to_see_success_message
   end
 
-  example 'admins can remove other, non-admin members' do
+  example 'admins can remove other, non-admin members', use_poltergeist: true do
     sign_ccla_and_invite_contributor_to('Acme')
     sign_out
     sign_in(create(:user))

@@ -5,7 +5,10 @@ describe 'cookbook directory' do
     create_list(:cookbook, 5)
 
     visit '/'
-    click_link 'Cookbooks'
+
+    within '.appnav' do
+      click_link 'Cookbooks'
+    end
   end
 
   it 'lists the three most recently updated cookbooks' do
