@@ -20,6 +20,7 @@ class ProfileController < ApplicationController
   # Display the edit form for the current_user
   #
   def edit
+    @user = current_user
   end
 
   private

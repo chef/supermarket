@@ -1,14 +1,19 @@
 <%= provide(:title, "Manage Profile") %>
 
-<div class="page">
-  <div class="user">
-    <h1>Manage Profile</h1>
-    <dl class="tabs radius" data-tab>
-      <dd class="active"><a href="#profile" rel="manage_profile">Edit Profile</a></dd>
-      <dd><a href="#github-accounts" rel="manage_github_accounts">GitHub Accounts</a></dd>
-      <dd><a href="#agreements" rel="manage_agreements">Agreements</a></dd>
-      <dd><a href="#collaborations" rel="manage_collaborations">Collaborations</a></dd>
-    </dl>
+<div class="manage_profile" data-equalizer>
+  <%= render 'users/sidebar' %>
+
+  <div class="manage_profile_content" data-equalizer-watch>
+    <div class="heading">
+      <h1>Manage Profile</h1>
+
+      <dl class="tabs radius" data-tab>
+        <dd class="active"><a href="#profile" rel="manage_profile">Edit Profile</a></dd>
+        <dd><a href="#github-accounts" rel="manage_github_accounts">GitHub Accounts</a></dd>
+        <dd><a href="#agreements" rel="manage_agreements">Agreements</a></dd>
+        <dd><a href="#collaborations" rel="manage_collaborations">Collaborations</a></dd>
+      </dl>
+    </div>
 
     <div class="tabs-content">
       <div class="content active" id="profile">

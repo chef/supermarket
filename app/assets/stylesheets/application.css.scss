@@ -13,6 +13,7 @@
 *= require appheader
 *= require_tree ./cookbooks
 *= require_tree ./users
+*= require_tree ./profile
 *= require tabs
 *= require dashboard
 *= require alerts
