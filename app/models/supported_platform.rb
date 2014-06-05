@@ -8,7 +8,7 @@ class SupportedPlatform < ActiveRecord::Base
 
   # Validations
   # --------------------
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { scope: :version_constraint }
   validates :version_constraint, chef_version_constraint: true
 
   #
