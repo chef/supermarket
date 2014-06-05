@@ -40,13 +40,13 @@
               <%= label_tag :user_email_notifications, "Receive email notifications." %>
             </div>
             <div class="jirausername-field">
-              <p class="gravatar">
+              <label class="gravatar">
                 <%= gravatar_for current_user, size: 30 %>
                 Avatars are powered by <%= link_to 'Gravatar', 'https://www.gravatar.com' %>
-              </p>
+              </label>
             </div>
           </fieldset>
-          <%= f.submit 'Update Profile', class: 'button primary expand radius' %>
+          <%= f.submit 'Update Profile', class: 'button primary radius' %>
         <% end %>
       </div>
       <div class="content" id="github-accounts">
@@ -55,19 +55,20 @@
           <% current_user.accounts.for('github').each do |account| %>
             <tr>
               <td><i class="fa fa-github"></i> <%= account.username %></td>
-              <td class="text-right"><%= link_to 'Disconnect GitHub', user_account_url(current_user, account), method: :delete, rel: 'disconnect_github' %></td>
+              <td class="text-right"><%= link_to 'Disconnect This Account', user_account_url(current_user, account), method: :delete, rel: 'disconnect_github', class: 'button tiny alert radius' %></td>
             </tr>
           <% end %>
         </table>
 
-        <%= link_to '<i class="fa fa-github"></i> Connect GitHub'.html_safe, auth_path(:github), class: 'button radius', rel: 'connect_github' %>
+        <%= link_to '<i class="fa fa-github"></i> Connect GitHub Account'.html_safe, auth_path(:github), class: 'button radius', rel: 'connect_github' %>
       </div>
       <div class="content" id="agreements">
+        <p>Manage your signed agreements.</p>
         <table>
           <% if current_user.signed_icla? %>
             <tr>
               <td>Signed ICLA</td>
-              <td class="text-right"><%= link_to "Edit ICLA", current_user.latest_icla_signature %></td>
+              <td class="text-right"><%= link_to "Edit ICLA", current_user.latest_icla_signature, class: 'button tiny secondary radius' %></td>
             </tr>
           <% end %>
 
@@ -76,15 +77,16 @@
               <tr>
                 <td>Admin of <%= contributor.organization.name %>
                 <td class="text-right">
-                  <%= link_to "Edit CCLA", contributor.organization.latest_ccla_signature %>
-                  <span> or</span>
-                  <%= link_to "Manage Contributors", organization_invitations_url(contributor.organization), rel: 'invite_contributors' %>
+                  <ul class="button-group radius right">
+                    <li><%= link_to "Edit CCLA", contributor.organization.latest_ccla_signature, class: 'button tiny secondary' %></li>
+                    <li><%= link_to "Manage Contributors", organization_invitations_url(contributor.organization), rel: 'invite_contributors', class: 'button tiny secondary' %></li>
+                  </ul>
                 </td>
               </tr>
             <% else %>
               <tr>
                 <td>Contributor of <%= contributor.organization.name %></td>
-                <td class="text-right"><%= link_to "View CCLA", contributor.organization.latest_ccla_signature %></td>
+                <td class="text-right"><%= link_to "View CCLA", contributor.organization.latest_ccla_signature, class: 'button tiny secondary radius' %></td>
               </tr>
             <% end %>
           <% end %>
@@ -93,7 +95,7 @@
       <div class="content" id="collaborations">
         <% current_user.collaborated_cookbooks.each do |cookbook| %>
           <div>
-            <%= link_to cookbook.name, cookbook_path(cookbook) %> <%= link_to 'REMOVE MYSELF', cookbook_collaborator_path(cookbook, current_user), remote: true, method: :delete %>
+            <%= link_to cookbook.name, cookbook_path(cookbook) %> <%= link_to 'REMOVE MYSELF', cookbook_collaborator_path(cookbook, current_user), remote: true, method: :delete, class: 'button tiny alert radius' %>
           </div>
         <% end %>
       </div>

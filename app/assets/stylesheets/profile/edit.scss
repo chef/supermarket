@@ -12,7 +12,6 @@
   .heading {
     @include clearfix;
     border-bottom: rem-calc(2) solid lighten($secondary_gray, 30%);
-    margin-bottom: rem-calc(30);
 
     h1 {
       border-bottom: none;
