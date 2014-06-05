@@ -93,11 +93,15 @@
         </table>
       </div>
       <div class="content" id="collaborations">
+        <p>Manage your collaborations.</p>
+        <table>
         <% current_user.collaborated_cookbooks.each do |cookbook| %>
-          <div>
-            <%= link_to cookbook.name, cookbook_path(cookbook) %> <%= link_to 'REMOVE MYSELF', cookbook_collaborator_path(cookbook, current_user), remote: true, method: :delete, class: 'button tiny alert radius' %>
-          </div>
+          <tr>
+            <td><%= link_to cookbook.name, cookbook_path(cookbook) %></td>
+            <td class="text-right"><%= link_to 'Remove Myself as a Contributor', cookbook_collaborator_path(cookbook, current_user), remote: true, method: :delete, class: 'button tiny alert radius' %></td>
+          </tr>
         <% end %>
+      </table>
       </div>
     </div>
   </div>
