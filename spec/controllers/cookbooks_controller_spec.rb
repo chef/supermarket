@@ -269,7 +269,6 @@ describe CookbooksController do
 
   describe 'PUT #follow' do
     let(:cookbook) { create(:cookbook) }
-    before { request.env['HTTP_REFERER'] = cookbook_url(cookbook) }
 
     context 'a user is signed in' do
       before { sign_in create(:user) }
@@ -280,10 +279,10 @@ describe CookbooksController do
         end.to change(cookbook.cookbook_followers, :count).by(1)
       end
 
-      it 'redirects back' do
+      it 'returns a 200' do
         put :follow, id: cookbook
 
-        expect(response).to redirect_to(:back)
+        expect(response.status.to_i).to eql(200)
       end
     end
 
@@ -308,7 +307,6 @@ describe CookbooksController do
 
   describe 'DELETE #unfollow' do
     let(:cookbook) { create(:cookbook) }
-    before { request.env['HTTP_REFERER'] = cookbook_url(cookbook) }
 
     context 'the signed in user follows the specified cookbook' do
       before do
@@ -323,10 +321,10 @@ describe CookbooksController do
         end.to change(cookbook.cookbook_followers, :count).by(-1)
       end
 
-      it 'redirects back' do
+      it 'redirects 200' do
         delete :follow, id: cookbook
 
-        expect(response).to redirect_to(:back)
+        expect(response.status.to_i).to eql(200)
       end
     end
 
@@ -339,10 +337,10 @@ describe CookbooksController do
         end.to_not change(cookbook.cookbook_followers, :count)
       end
 
-      it 'redirects back' do
-        delete :follow, id: cookbook
+      it 'returns a 404' do
+        delete :unfollow, id: cookbook
 
-        expect(response).to redirect_to(:back)
+        expect(response.status.to_i).to eql(404)
       end
     end
   end
