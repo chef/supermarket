@@ -16,6 +16,18 @@
       color: $primary-gray;
     }
   }
+
+  @media #{$mobile-only} {
+    .stat {
+      font-size: rem-calc(16);
+    }
+  }
+
+  @media #{$small-only} {
+    .stat {
+      font-size: rem-calc(20);
+    }
+  }
 }
 
 @media #{$mobile-only} {

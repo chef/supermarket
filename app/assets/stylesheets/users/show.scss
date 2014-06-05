@@ -24,10 +24,23 @@
       margin: 0;
     }
 
+    @media #{$mobile-only} {
+      h1 {
+        float: none;
+        margin-bottom: rem-calc(30);
+      }
+    }
+
     .tabs {
       border-bottom: none;
       float: right;
       margin-bottom: rem-calc(-1) !important;
+    }
+
+    @media #{$mobile-only} {
+      .tabs {
+        float: none;
+      }
     }
   }
 }

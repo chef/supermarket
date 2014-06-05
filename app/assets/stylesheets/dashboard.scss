@@ -42,6 +42,12 @@
       text-align: right;
     }
   }
+
+  @media #{$mobile-only} {
+    li {
+      font-size: rem-calc(13);
+    }
+  }
 }
 
 .dashboard {

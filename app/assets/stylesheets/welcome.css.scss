@@ -1,0 +1,48 @@
+@import "common";
+
+.sign_up_in {
+  border-bottom: solid 1px $cookbook_border;
+  padding: rem-calc(50);
+
+  p {
+    margin: 0;
+  }
+
+  @media #{$mobile-only} {
+    .button {
+      width: 100%;
+
+      &:first-child {
+        margin-bottom: rem-calc(10);
+      }
+    }
+  }
+
+  @media #{$small-only} {
+    .button {
+      width: 100%;
+
+      &:first-child {
+        margin-bottom: rem-calc(10);
+      }
+    }
+  }
+}
+
+.welcome_resources {
+  @include grid-row();
+  border-bottom: solid 1px $cookbook_border;
+  background: white;
+  margin-bottom: rem-calc(40);
+  padding: rem-calc(40);
+
+  div {
+    @include grid-column($columns: 4);
+  }
+
+  @media #{$mobile-only} {
+    div {
+      @include grid-column($columns: 12);
+    }
+  }
+}
