@@ -15,10 +15,10 @@
   }
 
   li.simple_cookbook {
+    @include dark-links;
     border-bottom: rem-calc(2) solid lighten($secondary_gray, 32%);
     vertical-align: bottom;
     display: table-row;
-    @include dark-links;
 
     > * {
       display: table-cell;

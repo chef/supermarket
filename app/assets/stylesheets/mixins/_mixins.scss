@@ -13,7 +13,6 @@
 @mixin dark-links {
   a {
     color: $primary_blue;
-    @include single-transition($speed: 100ms);
     text-decoration: none;
 
     &:visited {
