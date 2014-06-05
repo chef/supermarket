@@ -88,6 +88,11 @@ input[type="search"].cookbook_search_textfield {
   line-height: rem-calc(44);
   padding: rem-calc(0 0 0 60);
 
+  &:focus {
+    background-color: darken($primary_blue, 7%);
+    color: $clouds;
+  }
+
   &::-webkit-input-placeholder {
      color: $clouds;
   }

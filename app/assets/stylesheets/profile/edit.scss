@@ -1,0 +1,40 @@
+@import "common";
+
+.manage_profile {
+  @include grid-row();
+  background: white;
+}
+
+.manage_profile_content {
+  @include grid-column($columns: 9);
+  padding: rem-calc(40);
+
+  .heading {
+    @include clearfix;
+    border-bottom: rem-calc(2) solid lighten($secondary_gray, 30%);
+
+    h1 {
+      border-bottom: none;
+      float: left;
+      margin: 0;
+    }
+
+    .tabs {
+      border-bottom: none;
+      float: right;
+      margin-bottom: rem-calc(-1) !important;
+    }
+  }
+}
+
+@media #{$mobile-only} {
+  .manage_profile_content {
+    @include grid-column($columns: 12);
+  }
+}
+
+@media #{$small-only} {
+  .manage_profile_content {
+    @include grid-column($columns: 12);
+  }
+}

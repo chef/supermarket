@@ -377,7 +377,7 @@ $button-font-sml: rem-calc(14);
 // $form-label-font-size: rem-calc(14);
 // $form-label-font-weight: normal;
 // $form-label-font-color: scale-color(#000, $lightness: 30%);
-// $form-label-bottom-margin: rem-calc(8);
+$form-label-bottom-margin: rem-calc(8);
 // $input-font-family: inherit;
 // $input-font-color: rgba(0,0,0,0.75);
 // $input-font-size: rem-calc(14);
@@ -395,13 +395,13 @@ $button-font-sml: rem-calc(14);
 // $fieldset-border-style: solid;
 $fieldset-border-width: 0;
 // $fieldset-border-color: #ddd;
-$fieldset-padding: rem-calc(20 0);
-$fieldset-margin: rem-calc(0);
+$fieldset-padding: 0;
+$fieldset-margin: rem-calc(0 0 20);
 
 // We use these to style the legends when you use them
 $legend-bg: #fff;
-$legend-font-weight: bold;
-$legend-padding: rem-calc(0 3);
+$legend-font-weight: 600;
+$legend-padding: rem-calc(0 0 10);
 
 // We use these to style the prefix and postfix input elements
 // $input-prefix-bg: scale-color(#fff, $lightness: -5%);
