@@ -1,124 +1,48 @@
-Supermarket
-===========
-[![Code Climate](https://codeclimate.com/github/opscode/supermarket.png)](https://codeclimate.com/github/opscode/supermarket) [![Build Status](https://travis-ci.org/opscode/supermarket.png?branch=master)](https://travis-ci.org/opscode/supermarket) [![Dependency Status](https://gemnasium.com/opscode/supermarket.png)](https://gemnasium.com/opscode/supermarket) [![Coverage Status](https://coveralls.io/repos/opscode/supermarket/badge.png?branch=master)](https://coveralls.io/r/opscode/supermarket?branch=master) [![Inline docs](http://inch-pages.github.io/github/opscode/supermarket.png)](http://inch-pages.github.io/github/opscode/supermarket)
+# Supermarket
 
-Supermarket is Chef's new community project. Here is a rough roadmap that corresponds to the main outcomes we hope to achieve through improving the Chef community experience:
+[![Code Climate](https://codeclimate.com/github/opscode/supermarket.png)](https://codeclimate.com/github/opscode/supermarket) [![Build Status](https://travis-ci.org/opscode/supermarket.png?branch=master)](https://travis-ci.org/opscode/supermarket) [![Dependency Status](https://gemnasium.com/opscode/supermarket.png)](https://gemnasium.com/opscode/supermarket) [![Coverage Status](https://coveralls.io/repos/opscode/supermarket/badge.png?branch=master)](https://coveralls.io/r/opscode/supermarket?branch=master) [![Inline docs](http://inch-pages.github.io/github/opscode/supermarket.png)](http://inch-pages.github.io/github/opscode/supermarket) [![Gitter chat](https://badges.gitter.im/opscode/supermarket.png)](https://gitter.im/opscode/supermarket)
 
-- ~~Better facilitation for signing and managing Contribor License Agreements (CLA). [#2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)~~
-- ~~Storing community member information and presenting it in a more user friendly and manageable way. [#2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)~~
-- [*In Progress*] Establishing a low barrier to entry for individuals to contribute and improve the community experience. [#2](https://github.com/opscode/supermarket/issues?milestone=2&state=open)
-- [*In Progress*] Improving the Cookbooks API to provide more relevant information about individual cookbooks. [#3](https://github.com/opscode/supermarket/issues?milestone=3&state=open)
-- Better organized documentation for various Chef projects. [#4]
-- Chef Server cookbook API. [#4]
-- Dependency API. [#4]
-- Incorporating other community contributions like knife plugins, ohai plugins, and related Chef packages. [#5]
-- Improved Cookbook ratings using automatic multifactor metascore instead of voting. [#6]
+Supermarket is Chef's new community project with the goals of being the
+community repository for cookbooks, an easy to contribute to project, and
+the behind-the-firewall solution to serving cookbooks.
 
+The goal of this README is to introduce you to the project and get you up and
+running. More information about Supermarket can be found in [the
+wiki](https://github.com/opscode/supermarket/wiki). Supermarket is currently
+pre-release and under active development. [View the
+roadmap](https://github.com/opscode/supermarket/wiki/Roadmap), and
+[follow along with the project development in
+Trello](https://trello.com/b/IGLbkBWL/supermarket). Supermarket has
+[an open project chat on Gitter](https://gitter.im/opscode/supermarket)
+and [a mailing list](https://groups.google.com/forum/#!forum/chef-supermarket).
 
-Project Status
---------------
+If you want to contribute to Supermarket, read the [contributor's
+workflow](https://github.com/opscode/supermarket/blob/master/CONTRIBUTING.md)
+for license information and helpful tips to get you started. There are project artifacts such as planning docs, wireframes, recorded
+demos, and team retrospectives in a [public Google Drive
+folder](https://drive.google.com/a/gofullstack.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8)
+and on [InVision](https://projects.invisionapp.com/share/VMOMTJ36#/screens).
 
-This project is currently in heavy active development and is a pre-release.
+If you have questions, feature ideas, or other suggestions, please [open a
+GitHub Issue](https://github.com/opscode/supermarket/issues/new).
 
-[You can follow along with the project development in
-Trello.](https://trello.com/b/IGLbkBWL/supermarket)
-
-Talk To Us
-----------
-
-We have an open project chat on Gitter. There are usually active developers available for collaboration during normal weekly business hours.
-
-[![Gitter chat](https://badges.gitter.im/opscode/supermarket.png)](https://gitter.im/opscode/supermarket)
-
-Contributing
-------------
-
-We'd love for you to be involved. Read the [contributor's workflow](https://github.com/opscode/supermarket/blob/master/CONTRIBUTING.md) for license information and helpful tips before you get started.
-
-There are some project artifacts such as planning docs, wireframes, recorded demos, and team retrospectives in a [public Google Drive folder](https://drive.google.com/a/gofullstack.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8) and
-on [InVision](https://projects.invisionapp.com/share/VMOMTJ36#/screens).
-
-If you have questions, feature ideas, or other suggestions, please [create a Github Issue](https://github.com/opscode/supermarket/issues?state=open) and we'll respond in a timely manner.
-
-
-Continuous Integration
-------------
-Supermarket is using Travis CI. [View build info](https://travis-ci.org/opscode/supermarket)
-
-
-OmniAuth
---------
-
-Supermarket uses [OmniAuth](https://github.com/intridea/omniauth) for
-linking OAuth accounts to users. You need to create and
-register Supermarket as an application and setup the keys in the `.env` file.
-
-To register GitHub as an OmniAuth sign in method:
-
-1. [Register your application](https://github.com/settings/applications/new)
-2. Make sure the Authorization callback URL has the app's URL with the /auth/github/callback path
-3. Add the following to your `.env`:
-
-  ```yaml
-  GITHUB_KEY: MY_KEY
-  GITHUB_SECRET: MY_SECRET
-  ```
-
-where `MY_KEY` and `MY_SECRET` are the values given when you created the application.
-
-### Adding Additional Providers
-
-You can add support for additional OAUTH providers by creating an extractor object in `app/extractors`.
-
-Since each OmniAuth provider returns a different set of information, you often end up with nested case statements to account for all the different providers. Supermarket accounts for this behavior using Extractor objects. Each OmniAuth provider must have an associated Extractor object that extracts the correct information from the OmniAuth response hash into a object with a unified interface.
-
-Requirements
-------------
+## Requirements
 
 - Ruby 2.0.0
 - PostgreSQL 9.3+
+- Redis 2.4+
 
-Tests
------
+## Development
 
-Run the entire test suite (rspec, rubocop and mocha) with:
+### Configuring
 
-``` sh
-bundle exec rake spec:all
-```
+Configure the [dotenv](https://github.com/bkeepers/dotenv) keys and secrets to .
+See `.env.example` for required keys and secrets to get up and running.
+[`docs/CONFIGURING.md`](https://github.com/opscode/supermarket/blob/master/docs/CONFIGURING.md)
+goes into detail about the not so straight forward configuration that needs
+to happen to get Supermarket working locally.
 
-### Acceptance tests
-
-Acceptance tests are run with [Capybara](https://github.com/jnicklas/capybara). Run `rake spec:features` to run the specs in spec/features. The default `rake spec` also runs these.
-
-When writing a feature, use `require 'spec_feature_helper'` instead of `spec_helper` to require the extra configuration and libraries needed to run the feature specs.
-
-The specs run using [PhantomJS](http://phantomjs.org/), which must be installed.
-
-### JavaScript Tests
-
-The JavaScript specs are run with [Karma](http://karma-runner.github.io) and use the [Mocha](http://visionmedia.github.io/mocha/) test framework and the [Chai Assertion Library](http://chaijs.com/)
-
-The specs live in spec/javascripts. Run `rake spec:javascripts` to run the specs, and `rake spec:javascripts:watch` to run them continuously and watch for changes.
-
-[Node.js](http://nodejs.org/) is required to run the JavaScript tests.
-
-Other Stuff We Need to Document
--------------------------------
-
-- System dependencies
-- Configuration
-- Database creation
-- Database initialization
-- How to run the test suite
-- Services (job queues, cache servers, search engines, etc.)
-- Deployment instructions
-
-
-Development
------------
-
-## Using Vagrant (Beginner)
+### Using Vagrant (Beginner)
 
 Supermarket includes a collection of Chef cookbooks and a preconfigured
 `Vagrantfile` to make it easy to get up an running without modifying your local system.
@@ -129,13 +53,13 @@ Supermarket includes a collection of Chef cookbooks and a preconfigured
 1. Install the `vagrant-omnibus` plugin:
 
   ```
-  vagrant plugin install vagrant-omnibus
+  $ vagrant plugin install vagrant-omnibus
   ```
 
 1. Install the `vagrant-berkshelf` plugin:
 
   ```
-  vagrant plugin install vagrant-berkshelf --plugin-version '>= 2.0.1'
+  $ vagrant plugin install vagrant-berkshelf --plugin-version '>= 2.0.1'
   ```
 
 1. Run the server:
@@ -150,8 +74,6 @@ The next time you want to start the application, you only need to run:
 $ ./bin/supermarket server
 ```
 
-### Notes
-
 #### About Vagrant
 
 Vagrant uses VirtualBox to run a VM that has access to the application project
@@ -163,52 +85,8 @@ the VM a break.
 You can [read more about Vagrant teardown in the Vagrant
 docs](http://docs.vagrantup.com/v2/getting-started/teardown.html).
 
-#### Changing the VM Defaults
-
-By default, the VM uses NFS mounted folders, 4GB of RAM, and 2 CPUs. If you are
-constrained in any of these areas, you can override these defaults by specifying
-the environment variables:
-
-``` sh
-$ VM_MEMORY=2048 VM_CPUS=1 VM_NFS=false ./bin/supermarket server
-```
-
-By default, Supermarket will be forwarded locally to port 3000. If for some reason
-port 3000 is already occupied on your computer you may override this:
-
-``` sh
-$ PORT=5000 ./bin/supermarket server
-```
-
-Supermarket would then be accessible by visiting http://localhost:5000 in this case.
-
-These variables must be set the _first_ time you run any supermarket command.
-After that, they will be persisted. To change them, you'll need to destroy the
-Vagrant machine (`vagrant destroy`) and run the command again.
-
-If your operating system supports NFS mounted folders, you may be asked to
-supply your administrative password. Please note, sometimes VirtualBox explodes
-when trying to mount NFS shares (specifically on OSX Mavericks); although it
-will make the application significantly slower, disabling NFS folder sharing can
-alleviate an error like:
-
-```text
-There was an error while executing `VBoxManage`, a CLI used by Vagrant
-for controlling VirtualBox. The command and stderr is shown below.
-
-Command: ["hostonlyif", "create"]
-
-Stderr: 0%...
-Progress state: NS_ERROR_FAILURE
-VBoxManage: error: Failed to create the host-only adapter
-VBoxManage: error: VBoxNetAdpCtl: Error while adding new interface: failed to open /dev/vboxnetctl: No such file or directory
-
-VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005), component HostNetworkInterface, interface IHostNetworkInterface
-VBoxManage: error: Context: "int handleCreate(HandlerArg*, int, int*)" at line 68 of file VBoxManageHostonly.cpp
-```
-
-Running `sudo /Library/StartupItems/VirtualBox/VirtualBox restart` can help fix
-this problem, but sometimes you just can't use NFS mounts with VirtualBox.
+[Read more about changing the Vagrant VM defaults in the wiki.]
+(https://github.com/opscode/supermarket/wiki/Changing-the-Vagrant-VM-Defaults)
 
 #### Guest Additions
 
@@ -216,10 +94,10 @@ If you get an error about Guest Additions, install the `vagrant-vbguest` vagrant
 plugin:
 
 ```
-vagrant plugin install vagrant-vbguest
+$ vagrant plugin install vagrant-vbguest
 ```
 
-### Switching from Vagrant to Local Environment Development
+#### Switching from Vagrant to Local Environment Development
 
 If you want to switch from Vagrant to your developing locally, you have two
 options:
@@ -234,7 +112,7 @@ This is because of the Bundler config in `.bundle/config`.
    directory.
 
 
-## Local Environment (Advanced)
+### Local Environment (Advanced)
 
 1. Install Ruby 2.0 (latest patch) using your favorite Ruby manager
 1. Install Postgres (from [homebrew](http://brew.sh/) or the [app](http://postgresapp.com/))
@@ -242,63 +120,81 @@ This is because of the Bundler config in `.bundle/config`.
 1. Make sure both Postgres and the Redis server are running
 1. Install bundler
 
-        $ gem install bundler
+  ```
+  $ gem install bundler
+  ```
 
 1. Install required gems:
 
-        $ bundle
-
-1. Configure the [dotenv](https://github.com/bkeepers/dotenv) keys and secrets.
-   See `.env.example` for required keys and secrets to get up and running.
-   [`docs/CONFIGURING.md`](https://github.com/opscode/supermarket/blob/master/docs/CONFIGURING.md)
-   goes into detail about the not so straight forward configuration that needs
-   to happen to get Supermarket working locally.
+  ```
+  $ bundle
+  ```
 
 1. Create the database, migrate the database and seed the database:
 
-        $ bundle exec rake db:setup
+  ```
+  $ bundle exec rake db:setup
+  ```
 
 1. Add required Postgres extensions.
 
-        $ psql supermarket_development -c 'create extension plpgsql'
-        $ psql supermarket_development -c 'create extension pg_trgm'
+  ```
+  $ psql supermarket_development -c 'create extension plpgsql'
+  $ psql supermarket_development -c 'create extension pg_trgm'
+  ```
 
 1. Start the server:
 
-        $ foreman start
+  ```
+  $ foreman start
+  ```
 
-Deployment
------------
-### Deploying with Chef
+## Tests
 
-1. Upload the supermarket cookbook to your Chef server.
+Run the entire test suite (rspec, rubocop and mocha) with:
 
-        $ knife cookbook upload supermarket -o path-to-supermarket-repo/chef/cookbooks
+``` sh
+$ bundle exec rake spec:all
+```
 
-1. Bootstrap a server as a new node.
+### Acceptance Tests
 
-        $ knife bootstrap someserver.com -u some-user -N some-node
+Acceptance tests are run with [Capybara](https://github.com/jnicklas/capybara).
+Run `rake spec:features` to run the specs in spec/features. The default `rake
+spec` also runs these.
 
-1. Change the defaults in `chef/data_bags/apps/supermarket.json` and upload this databag to your Chef server.
+When writing a feature, use `require 'spec_feature_helper'` instead of
+`spec_helper` to require the extra configuration and libraries needed to run the
+feature specs.
 
-        $ knife data bag from file apps path-to-supermarket-repo/chef/data_bags
+When writing feature specs, the Rack::Test driver is used by default. If the
+Poltergeist driver is required to be used (for example, an acceptance test
+that uses AJAX), add the `use_poltergeist: true` metadata to the spec. See
+[the remove_members_from_ccla_spec.rb spec]
+(https://github.com/opscode/supermarket/blob/master/spec/features/remove_members_from_ccla_spec.rb#L17)
+for an example.
 
-1. Add the supermarket cookbook to your newly bootstraped nodes run list.
+Some specs run using [PhantomJS](http://phantomjs.org/), which must be
+installed for the test suite to pass.
 
-        $ knife node run_list add some-node 'recipe[supermarket]'
+### JavaScript Tests
 
-1. Override any default attributes found in `chef/cookbooks/supermarket/attributes/default.rb` in a role or environment as needed.
+The JavaScript specs are run with [Karma](http://karma-runner.github.io) and use
+the [Mocha](http://visionmedia.github.io/mocha/) test framework and the [Chai
+Assertion Library](http://chaijs.com/)
 
-1. SSH into your node and run `chef-client` this will deploy supermarket.
+The specs live in spec/javascripts. Run `rake spec:javascripts` to run the
+specs, and `rake spec:javascripts:watch` to run them continuously and watch for
+changes.
 
-        ssh some-user@someserver.com
-        chef-client
+[Node.js](http://nodejs.org/) is required to run the JavaScript tests.
 
-Jobs
-----
+## Background Jobs
 
-### Sitemap Refresher
+[Read about Supermarket's background jobs in the wiki]
+(https://github.com/opscode/supermarket/wiki/Background-Jobs).
 
-There is a Sidetiq job that gets run daily at midnight which refreshes
-Supermarket's sitemap. It is using the
-[sitemap_generator](https://github.com/kjvarga/sitemap_generator) gem.
+## Deployment
+
+[Read about Deployment instructions in the wiki.]
+(https://github.com/opscode/supermarket/wiki/Deployment)
