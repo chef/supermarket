@@ -3,34 +3,48 @@ require 'spec_feature_helper'
 describe 'cookbook following' do
   before do
     sign_in(create(:user))
-    owner = create(:user)
-    cookbook = create(:cookbook, owner: owner)
+    cookbook = create_list(:cookbook, 2)
+  end
 
-    visit '/'
-    follow_relation 'cookbooks'
+  context 'from the cookbook partial' do
+    before do
+      visit '/cookbooks'
+      follow_first_relation 'follow'
+    end
 
-    within '.recently-updated' do
-      follow_relation 'cookbook'
+    it 'allows a user to follow a cookbook', use_poltergeist: true do
+      expect(page).to have_xpath("//a[starts-with(@rel, 'unfollow')]")
     end
   end
 
-  it 'allows a user to follow a cookbook', use_poltergeist: true do
-    within '.cookbook_show_content' do
-      follow_relation 'follow'
+  context 'from the cookbook show view' do
+    before do
+      visit '/'
+      follow_relation 'cookbooks'
+
+      within '.recently-updated' do
+        follow_first_relation 'cookbook'
+      end
     end
 
-    expect(page).to have_xpath("//a[starts-with(@rel, 'unfollow')]")
-  end
+    it 'allows a user to follow a cookbook', use_poltergeist: true do
+      within '.cookbook_show_content' do
+        follow_relation 'follow'
+      end
 
-  it 'allows a user to unfollow a cookbook', use_poltergeist: true do
-    within '.cookbook_show_content' do
-      follow_relation 'follow'
+      expect(page).to have_xpath("//a[starts-with(@rel, 'unfollow')]")
     end
 
-    within '.cookbook_show_content' do
-      follow_relation 'unfollow'
-    end
+    it 'allows a user to unfollow a cookbook', use_poltergeist: true  do
+      within '.cookbook_show_content' do
+        follow_relation 'follow'
+      end
 
-    expect(page).to have_xpath("//a[starts-with(@rel, 'follow')]")
+      within '.cookbook_show_content' do
+        follow_relation 'unfollow'
+      end
+
+      expect(page).to have_xpath("//a[starts-with(@rel, 'follow')]")
+    end
   end
 end

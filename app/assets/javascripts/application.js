@@ -19,6 +19,7 @@
 //= require foundation.min
 //= require checkbox
 //= require cookbookShow
+//= require cookbookFollowing
 //= require betaBanner
 //= require expandContributors
 //= require flash
