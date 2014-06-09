@@ -13,6 +13,8 @@ class DataImportWorker
   # Invokes the supermarket:migrate Rake task
   #
   def perform
+    return unless ENV['COMMUNITY_SITE_DATABASE_URL'].present?
+
     migration = Rake::Task['supermarket:migrate']
 
     supermarket_tasks(migration).each(&:reenable)
