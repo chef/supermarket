@@ -39,12 +39,14 @@ Supermarket::Application.routes.draw do
   resources :icla_signatures, path: 'icla-signatures' do
     collection do
       post :re_sign, path: 're-sign'
+      get :agreement
     end
   end
 
   resources :ccla_signatures, path: 'ccla-signatures' do
     collection do
       post :re_sign, path: 're-sign'
+      get :agreement
     end
   end
 

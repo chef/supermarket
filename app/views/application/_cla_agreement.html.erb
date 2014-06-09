@@ -1,0 +1,9 @@
+<div class="agreement">
+  <div class="panel">
+    <header><%= render_markdown(@cla_agreement.head) %></header>
+    <section>
+      <%= render_markdown(@cla_agreement.body) %>
+      <footer><%= @cla_agreement.version %></footer>
+    </section>
+  </div>
+</div>
