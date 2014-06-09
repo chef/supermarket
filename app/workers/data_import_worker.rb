@@ -6,7 +6,9 @@ class DataImportWorker
   include Sidetiq::Schedulable
 
   recurrence do
-    daily.hour_of_day(3, 9, 15, 21)
+    hours = (0..23).step(3)
+
+    daily.hour_of_day(*hours)
   end
 
   #
