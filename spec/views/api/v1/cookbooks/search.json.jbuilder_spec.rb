@@ -4,6 +4,7 @@ describe 'api/v1/cookbooks/search' do
   let(:cookbook_record) { create(:cookbook, name: 'redis') }
 
   before do
+    assign(:total, 1)
     assign(:results, [cookbook_record])
     assign(:start, 1)
   end

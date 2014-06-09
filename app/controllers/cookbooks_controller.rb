@@ -27,6 +27,7 @@ class CookbooksController < ApplicationController
       @cookbooks = @cookbooks.search(params[:q])
     end
 
+    @number_of_cookbooks = @cookbooks.count(:all)
     @cookbooks = @cookbooks.page(params[:page]).per(20)
 
     respond_to do |format|

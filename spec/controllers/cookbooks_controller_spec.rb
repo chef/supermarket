@@ -8,11 +8,9 @@ describe CookbooksController do
         expect(assigns[:cookbooks]).to_not be_nil
       end
 
-      it 'paginates @cookbooks' do
-        create_list(:cookbook, 30)
+      it 'assigns @number_of_cookbooks' do
         get :index
-
-        expect(assigns[:cookbooks].count).to eql(20)
+        expect(assigns[:number_of_cookbooks]).to_not be_nil
       end
     end
 

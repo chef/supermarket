@@ -24,7 +24,7 @@ describe CollaboratorsController do
     it 'returns only collaborators matching the query string' do
       get :index, cookbook_id: cookbook, q: 'hank', format: :json
       collaborators = assigns[:collaborators]
-      expect(collaborators.size).to eql(2)
+      expect(collaborators.count(:all)).to eql(2)
       expect(collaborators.first).to eql(hank)
       expect(response).to be_success
     end

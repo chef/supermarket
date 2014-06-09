@@ -144,6 +144,12 @@ describe Api::V1::CookbooksController do
       expect(assigns[:results]).to include(redis)
     end
 
+    it 'sends the total number of search results to the view' do
+      get :search, q: 'redis', format: :json
+
+      expect(assigns[:total]).to eql(2)
+    end
+
     it 'searches based on the query' do
       get :search, q: 'postgres', format: :json
 
@@ -178,7 +184,7 @@ describe Api::V1::CookbooksController do
 
       get :search, q: 'jam', items: 5, format: :json
       cookbooks = assigns[:results]
-      expect(cookbooks.size).to eql 5
+      expect(cookbooks.count(:all)).to eql 5
     end
   end
 end

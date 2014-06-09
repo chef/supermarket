@@ -55,6 +55,8 @@ class Api::V1::CookbooksController < Api::V1Controller
     @results = Cookbook.search(
       params.fetch(:q, nil)
     ).offset(@start).limit(@items)
+
+    @total = @results.count(:all)
   end
 
   private
