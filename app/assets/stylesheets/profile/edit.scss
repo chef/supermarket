@@ -1,4 +1,5 @@
 @import "common";
+@import "foundation/components/grid";
 
 .manage_profile {
   @include grid-row();

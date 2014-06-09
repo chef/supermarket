@@ -1,16 +1,4 @@
-// These are the scss stylesheets that need to be imported in every stylesheet
-
-@import "variables";
-@import "compass/typography/vertical_rhythm";
-@import "compass/css3";
-@import "compass/utilities";
-@import "settings";
 @import "foundation/functions";
-@import "foundation/components/block-grid";
-@import "foundation/components/grid";
-@import "foundation/components/global";
-@import "foundation/components/type";
-@import "foundation/components/buttons";
-@import "foundation/components/offcanvas";
-@import "foundation/components/forms";
+@import "variables";
 @import "mixins/mixins";
+

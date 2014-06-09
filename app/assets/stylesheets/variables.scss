@@ -1,4 +1,4 @@
-// Chef Color Palette
+// Chef Default Colors
 $primary_orange: #f8971d;
 $primary_gray: #5c6f7c;
 $primary_blue: #1e3b4c;
@@ -8,6 +8,48 @@ $secondary_green: #73cbc8;
 $secondary_yellow: #fcb713;
 $secondary_red: #7c3a00;
 $sidebar_blue: #f8f9fa;
+$body-bg: #ecf0f1;
+$body-font-color: #222;
+$primary-color: #79bde8;
+$header-font-color: saturate(lighten($primary_gray, 20%), 13%);
+
+// Layout Defaults
+$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$row-width: 100%;
+$column-gutter: rem-calc(30);
+$total-columns: 12;
+
+// Media Query Breaks
+$mobile-range: (0em, 32em);
+$small-range: (32.063em, 55em);
+$medium-range: (55.063em, 64em);
+$large-range: (64.063em, 90em);
+$xlarge-range: (90.063em, 120em);
+$xxlarge-range: (120.063em);
+
+$screen: "only screen";
+
+$landscape: "#{$screen} and (orientation: landscape)";
+$portrait: "#{$screen} and (orientation: portrait)";
+
+$mobile-only: "#{$screen} and (max-width: #{upper-bound($mobile-range)})";
+
+$small-up: $screen;
+$small-only: "#{$screen} and (min-width:#{lower-bound($small-range)}) and (max-width:#{upper-bound($small-range)})";
+
+$medium-up: "#{$screen} and (min-width:#{lower-bound($medium-range)})";
+$medium-only: "#{$screen} and (min-width:#{lower-bound($medium-range)}) and (max-width:#{upper-bound($medium-range)})";
+
+$large-up: "#{$screen} and (min-width:#{lower-bound($large-range)})";
+$large-only: "#{$screen} and (min-width:#{lower-bound($large-range)}) and (max-width:#{upper-bound($large-range)})";
+
+$xlarge-up: "#{$screen} and (min-width:#{lower-bound($xlarge-range)})";
+$xlarge-only: "#{$screen} and (min-width:#{lower-bound($xlarge-range)}) and (max-width:#{upper-bound($xlarge-range)})";
+
+$xxlarge-up: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)})";
+$xxlarge-only: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (max-width:#{upper-bound($xxlarge-range)})";
+
+$redonkulous-up: "#{$screen} and (min-width:127em)";
 
 // Category Colors
 $category_applications: #b1dcf0;

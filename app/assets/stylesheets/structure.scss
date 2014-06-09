@@ -1,31 +1,50 @@
 @import "common";
+@import "foundation/components/grid";
+@import "compass/css3/transition";
 
 // Basic structural elements
 html, body { height: 100%; min-height: 100%; }
 
 @media #{$mobile-only} {
-  html, body { font-size: 70%; }
+  html, body, h1, h2, h3, h4, h5, h6 { font-size: 70%; }
 }
 
 @media #{$small-only} {
-  html, body { font-size: 74%; }
+   html, body, h1, h2, h3, h4, h5, h6 { font-size: 74%; }
 }
 
 @media #{$medium-only} {
-  html, body { font-size: 85%; }
+  html, body, h1, h2, h3, h4, h5, h6 { font-size: 85%; }
 }
 
 @media #{$xlarge-up} {
-  html, body { font-size: 110%; }
+  html, body, h1, h2, h3, h4, h5, h6 { font-size: 110%; }
 }
 
 @media #{$redonkulous-up} {
-  html, body { font-size: 130%; }
+  html, body, h1, h2, h3, h4, h5, h6 { font-size: 130%; }
 }
 
 body {
   background-color: $clouds;
   margin: 0;
+}
+
+hr {
+  border: 2px solid #ecedef;
+  margin-bottom: rem-calc(20);
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: rem-calc(0 0 20);
+
+  legend {
+    background: white;
+    font-weight: 600;
+    padding-bottom: rem-calc(10);
+  }
 }
 
 .container {
@@ -64,6 +83,23 @@ body {
 
 .hardcoded {
   border: 2px solid #E00404;
+}
+
+button, .button {
+  @include single-transition(background-color, $duration: 100ms);
+  background: $secondary_blue;
+  margin-bottom: rem-calc(0);
+  font-family: $accent_font;
+
+  &.small {
+    font-size: rem-calc(14);
+  }
+}
+
+.tooltip {
+  background: $primary_blue;
+  padding: rem-calc(5 10);
+  font-size: rem-calc(10);
 }
 
 // User Elements
@@ -234,4 +270,12 @@ body {
     left: rem-calc(6);
     top: rem-calc(5);
   }
+}
+
+.left-off-canvas-menu {
+  background: #1a3241;
+}
+
+ul.off-canvas-list li a {
+  border-bottom: 1px solid #132631;
 }

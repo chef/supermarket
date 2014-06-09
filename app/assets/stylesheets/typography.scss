@@ -1,11 +1,56 @@
 @import "common";
 
-// Typography defaults and overrides to foundation settings
+h1, h2, h3, h4, h5, h6 {
+  font-family: join("Montserrat", $body-font-family);
+  font-weight: 400;
+  color: saturate(lighten($primary_gray, 20%), 13%);
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+}
+
 h1 {
   border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
   padding-bottom: rem-calc(5);
+  font-size: rem-calc(24);
 }
 
-button, .button {
-  @include single-transition(background-color, $speed: 100ms);
+h2 {
+  font-size: rem-calc(20);
+}
+
+h3 {
+  font-size: rem-calc(18);
+}
+
+h4 {
+  font-size: rem-calc(14);
+}
+
+h5 {
+  font-size: rem-calc(12);
+}
+
+h6 {
+  font-size: rem-calc(10);
+}
+
+small {
+  font-size: 60%;
+  color: scale-color($header-font-color, $lightness: 35%);
+}
+
+a {
+  color: $secondary_blue;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: rem-calc(24);
+}
+
+blockquote {
+  color: scale-color($header-font-color, $lightness: 35%);
+  padding: rem-calc(9 20 0 19);
+  border: solid 1px #ddd;
 }
