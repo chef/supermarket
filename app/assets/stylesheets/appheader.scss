@@ -298,6 +298,14 @@
   }
 }
 
+@media #{$medium-only} {
+  .beta_banner_header {
+    h3 {
+      padding-top: rem-calc(6);
+    }
+  }
+}
+
 @media #{$mobile-only} {
   .beta_info{
     @include grid-column(12, $collapse: true);
