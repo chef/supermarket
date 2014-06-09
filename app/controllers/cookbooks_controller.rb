@@ -4,14 +4,12 @@ class CookbooksController < ApplicationController
   before_filter :store_location_then_authenticate_user!, only: [:follow, :unfollow]
 
   #
-  # GET /cookbooks(/categories/:category)
+  # GET /cookbooks
   #
   # Return all cookbooks. Cookbooks are sorted alphabetically by name.
   # Optionally a category can be specified to return only cookbooks for a
   # given category. Cookbooks can also be returned as an atom feed if the atom
   # format is specified.
-  #
-  # Pass in a query param to search for specific cookbooks
   #
   # @example
   #   GET /cookbooks?q=redis
@@ -22,15 +20,7 @@ class CookbooksController < ApplicationController
   #   GET /cookbooks?order=recently_updated
   #
   def index
-    if params[:category]
-      @cookbooks = Cookbook.
-        includes(:cookbook_versions).
-        joins(:category).
-        where('categories.slug = ?', params[:category])
-    else
-      @cookbooks = Cookbook.includes(:cookbook_versions)
-    end
-
+    @cookbooks = Cookbook.includes(:cookbook_versions)
     @cookbooks = @cookbooks.ordered_by(params[:order])
 
     if params[:q]
