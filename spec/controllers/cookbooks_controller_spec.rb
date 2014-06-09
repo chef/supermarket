@@ -14,11 +14,6 @@ describe CookbooksController do
 
         expect(assigns[:cookbooks].count).to eql(20)
       end
-
-      it 'assigns @categories' do
-        get :index
-        expect(assigns[:categories]).to_not be_nil
-      end
     end
 
     context 'there is an order parameter' do
@@ -69,18 +64,6 @@ describe CookbooksController do
       it 'correctly orders @cookbooks when also searching' do
         get :index, order: 'most_followed', q: 'mysql'
         expect(assigns[:cookbooks].first).to eql(cookbook_1)
-      end
-    end
-
-    context 'there is a category parameter' do
-      let!(:databases_cookbook) { create(:cookbook, category: create(:category, name: 'Databases')) }
-      let!(:other_cookbook) { create(:cookbook, category: create(:category, name: 'Other')) }
-
-      it 'only returns @cookbooks with the specified category' do
-        get :index, category: 'other'
-
-        expect(assigns[:cookbooks]).to include(other_cookbook)
-        expect(assigns[:cookbooks]).to_not include(databases_cookbook)
       end
     end
 
