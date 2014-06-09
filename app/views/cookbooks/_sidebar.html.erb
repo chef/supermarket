@@ -28,7 +28,7 @@
 
   <div class="manage_cookbook">
     <% if policy(@owner_collaborator).create? %>
-      <%= link_to 'Add Contributor', new_cookbook_collaborator_path(cookbook), class: 'button secondary radius tiny addcontributor', rel: 'add-collaborator', 'data-reveal-id' => 'collaborators', 'data-reveal-ajax' => true %>
+      <%= link_to 'Add Collaborator', new_cookbook_collaborator_path(cookbook), class: 'button secondary radius tiny addcontributor', rel: 'add-collaborator', 'data-reveal-id' => 'collaborators', 'data-reveal-ajax' => true %>
       <div id="collaborators" class="reveal-modal small" data-reveal>
       </div>
     <% end %>

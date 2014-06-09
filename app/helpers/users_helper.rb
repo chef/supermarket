@@ -25,4 +25,17 @@ module UsersHelper
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
     image_tag(gravatar_url, alt: user.name, class: 'gravatar')
   end
+
+  #
+  # Outputs pluralized stats with contextually appropriate markup
+  #
+  # @param count [Integer] how many there are
+  # @param thing [String] the thing that we have some of
+  #
+  # @return [String] the pluralized string with appropriate formatting
+  #
+  def pluralized_stats(count, thing)
+    new_count, new_thing = pluralize(count, thing).split(' ')
+    raw "#{new_count} #{content_tag(:span, new_thing)}"
+  end
 end
