@@ -1,5 +1,6 @@
 class InvitationMailer < ActionMailer::Base
   layout 'mailer'
+  include ApplicationHelper
 
   #
   # Creates invitation email to invite users to a +CclaSignature+ via
@@ -11,6 +12,6 @@ class InvitationMailer < ActionMailer::Base
     @invitation = invitation
     @to = invitation.email
 
-    mail(to: @to, subject: "You've been invited to sign #{@invitation.organization.name}'s CCLA")
+    mail(to: @to, subject: "You've been invited to sign #{posessivize(@invitation.organization.name)} CCLA")
   end
 end

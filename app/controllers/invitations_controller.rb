@@ -2,6 +2,7 @@ class InvitationsController < ApplicationController
   before_filter :find_invitation
   before_filter :store_location_then_authenticate_user!
   before_filter :require_linked_github_account!, only: [:accept]
+  include ApplicationHelper
 
   def show
     @organization = @invitation.organization
@@ -20,7 +21,7 @@ class InvitationsController < ApplicationController
         #{@contributor.organization.name}"
     else
       redirect_to current_user, alert: "You've already signed
-        #{@invitation.organization.name}'s CCLA, please sign in as a
+        #{posessivize(@invitation.organization.name)} CCLA, please sign in as a
         different user to accept or if this invitation was sent
         in error no action is required."
     end

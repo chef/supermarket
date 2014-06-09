@@ -10,25 +10,25 @@
     <% end %>
 
     <% if @user.twitter_username.present? %>
-      <li data-tooltip class="has-tip" title="<%= @user.name %>'s Twitter Username.">
+      <li data-tooltip class="has-tip" title="<%= posessivize(@user.name) %> Twitter Username.">
         <a href="https://twitter.com/<%= @user.twitter_username %>" target="_blank"><i class="fa fa-twitter"></i> <%= @user.twitter_username %></a>
       </li>
     <% end %>
 
     <% @user.accounts.for(:github).each do |account| %>
-      <li data-tooltip class="has-tip" title="<%= @user.name %>'s GitHub Username.">
+      <li data-tooltip class="has-tip" title="<%= posessivize(@user.name) %> GitHub Username.">
         <a href="https://github.com/<%= account.username %>" target="_blank"><i class="fa fa-github"></i> <%= account.username %></a>
       </li>
     <% end %>
 
     <% if @user.irc_nickname.present? %>
-      <li data-tooltip class="has-tip" title="<%= @user.name %>'s IRC Nickname.">
+      <li data-tooltip class="has-tip" title="<%= posessivize(@user.name) %> IRC Nickname.">
         <i class="fa fa-comment"></i> <%= @user.irc_nickname %>
       </li>
     <% end %>
 
     <% if @user.jira_username.present? %>
-      <li data-tooltip class="has-tip" title="<%= @user.name %>'s Jira Username.">
+      <li data-tooltip class="has-tip" title="<%= posessivize(@user.name) %> Jira Username.">
         <i class="fa fa-ticket"></i> <%= @user.jira_username %>
       </li>
     <% end %>
@@ -39,9 +39,9 @@
   </ul>
 
   <ul class="user_stats">
-    <li><h3><%= @user.owned_cookbooks.count %> <span>Cookbooks</span></h3></li>
-    <li><h3><%= @user.collaborated_cookbooks.count %> <span>Collaborations</span></h3></li>
-    <li><h3><%= @user.followed_cookbooks.count %> <span>Follows</span></h3></li>
+    <li><h3><%= pluralized_stats(@user.owned_cookbooks.count, 'Cookbook') %></h3></li>
+    <li><h3><%= pluralized_stats(@user.collaborated_cookbooks.count, 'Collaboration') %></h3></li>
+    <li><h3><%= pluralized_stats(@user.followed_cookbooks.count, 'Follow') %></h3></li>
   </ul>
 
   <% if @user == current_user %>

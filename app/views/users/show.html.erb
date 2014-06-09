@@ -5,7 +5,7 @@
 
   <div class="profile_content" data-equalizer-watch>
     <div class="heading">
-      <h1><%= @user.name %>'s Cookbooks</h1>
+      <h1><%= posessivize(@user.name) %> Cookbooks</h1>
 
       <dl class="tabs radius">
         <dd class="<%= 'active' unless params[:tab] %>"><%= link_to 'Owns', @user %></dd>
