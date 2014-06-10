@@ -32,8 +32,7 @@ class Cookbook < ActiveRecord::Base
   }
 
   scope :owned_by, lambda { |username|
-    user = User.with_username(username).first
-    where(user_id: user.id)
+    joins(owner: :chef_account).where('accounts.username = ?', username)
   }
 
   # Search
