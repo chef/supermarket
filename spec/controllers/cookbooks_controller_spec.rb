@@ -21,8 +21,6 @@ describe CookbooksController do
         create(
           :cookbook,
           name: 'mysql',
-          updated_at: 1.year.ago,
-          created_at: 1.year.ago,
           web_download_count: 1,
           api_download_count: 100,
           cookbook_followers_count: 100
@@ -33,8 +31,6 @@ describe CookbooksController do
         create(
           :cookbook,
           name: 'mysql-admin-tools',
-          updated_at: 1.day.ago,
-          created_at: 2.years.ago,
           web_download_count: 1,
           api_download_count: 50,
           cookbook_followers_count: 50
@@ -42,13 +38,14 @@ describe CookbooksController do
       end
 
       it 'orders @cookbooks by updated at' do
+        cookbook_2.touch
         get :index, order: 'recently_updated'
         expect(assigns[:cookbooks].first).to eql(cookbook_2)
       end
 
-      it 'orders @cookbooks by created at' do
+      it 'orders @cookbooks with the most recently created first' do
         get :index, order: 'recently_added'
-        expect(assigns[:cookbooks].first).to eql(cookbook_1)
+        expect(assigns[:cookbooks].first).to eql(cookbook_2)
       end
 
       it 'orders @cookbooks by their download count' do

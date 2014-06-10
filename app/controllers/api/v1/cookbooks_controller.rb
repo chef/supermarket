@@ -9,14 +9,17 @@ class Api::V1::CookbooksController < Api::V1Controller
   # returned is 100.
   #
   # Pass in the start and items params to specify the index at which to start
-  # and how many to return.
+  # and how many to return. You can also pass in an order param to specify how
+  # you'd like the the collection ordered. Possible values are
+  # recently_updated, recently_added, most_downloaded, most_followed
   #
   # @example
   #   GET /api/v1/cookbooks?start=5&items=15
+  #   GET /api/v1/cookbooks?order=recently_updated
   #
   def index
     @total = Cookbook.count
-    @cookbooks = Cookbook.order('name ASC').limit(@items).offset(@start)
+    @cookbooks = Cookbook.ordered_by(@order).limit(@items).offset(@start)
   end
 
   #
@@ -66,5 +69,6 @@ class Api::V1::CookbooksController < Api::V1Controller
   def init_params
     @start = params.fetch(:start, 0).to_i
     @items = [params.fetch(:items, 10).to_i, 100].min
+    @order = params.fetch(:order, 'name ASC').to_s
   end
 end

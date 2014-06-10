@@ -25,7 +25,7 @@ class Cookbook < ActiveRecord::Base
   scope :ordered_by, lambda { |ordering|
     order({
       'recently_updated' => 'updated_at DESC',
-      'recently_added' => 'created_at DESC',
+      'recently_added' => 'id DESC',
       'most_downloaded' => '(web_download_count + api_download_count) DESC',
       'most_followed' => 'cookbook_followers_count DESC'
     }.fetch(ordering, 'name ASC'))
