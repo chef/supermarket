@@ -100,11 +100,9 @@ O Generic
 */
 @font-face {
   font-family: "platform_icons";
-  src: url(image-path('platform_icons.ttf'));
-  src: url(image-path('platform_icons?#iefix')) format('embedded-opentype'),
-       url(image-path('platform_icons.woff')) format('woff'),
-       url(image-path('platform_icons.ttf')) format('truetype'),
-       url(image-path('platform_icons.svg#platform_icons')) format('svg');
+  src: url(asset-path('platform_icons.woff')) format('woff'),
+       url(asset-path('platform_icons.ttf')) format('truetype'),
+       url(asset-path('platform_icons.svg')) format('svg');
   font-weight: normal;
   font-style: normal;
 }

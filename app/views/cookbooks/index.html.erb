@@ -11,7 +11,7 @@
 
     </div>
     <h1 class="cookbook_content_heading">
-      <%= pluralize(@cookbooks.count, 'Cookbook') %>
+      <%= pluralize(@number_of_cookbooks, 'Cookbook') %>
       <small>
         <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
       </small>

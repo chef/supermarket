@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'rails', '~> 4.0.5'
+gem 'rails', '~> 4.1.1'
 
 gem 'magiconf'
 gem 'omniauth'
@@ -56,7 +56,7 @@ group :test do
   gem 'capybara'
   gem 'factory_girl'
   gem 'poltergeist'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers', ref: '380d18f0621c66a79445ebc6dcc0048fcc969911'
   gem 'database_cleaner'
   gem 'vcr', require: false
   gem 'webmock', require: false

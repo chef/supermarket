@@ -1,5 +1,5 @@
 json.start @start
-json.total @results.count
+json.total @total
 json.items @results do |cookbook|
   json.cookbook_name cookbook.name
   json.cookbook_maintainer cookbook.maintainer

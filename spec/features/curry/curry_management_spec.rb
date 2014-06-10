@@ -37,7 +37,7 @@ describe 'Curry management', uses_secrets: true do
       end
 
       VCR.use_cassette('curry_remove_repo', record: :once) do
-        follow_relation 'remove_repository'
+        follow_first_relation 'remove_repository'
       end
 
       expect_to_see_success_message

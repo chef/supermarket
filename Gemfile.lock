@@ -6,6 +6,14 @@ GIT
       sawyer (~> 0.5.3)
 
 GIT
+  remote: git://github.com/thoughtbot/shoulda-matchers.git
+  revision: 380d18f0621c66a79445ebc6dcc0048fcc969911
+  ref: 380d18f0621c66a79445ebc6dcc0048fcc969911
+  specs:
+    shoulda-matchers (2.6.1)
+      activesupport (>= 3.0.0)
+
+GIT
   remote: git://github.com/tobiassvn/sidetiq.git
   revision: 4f7d7daea3873443b17bf2f3da61619532bbeba2
   ref: 4f7d7da
@@ -26,35 +34,37 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (4.0.5)
-      actionpack (= 4.0.5)
+    actionmailer (4.1.1)
+      actionpack (= 4.1.1)
+      actionview (= 4.1.1)
       mail (~> 2.5.4)
-    actionpack (4.0.5)
-      activesupport (= 4.0.5)
-      builder (~> 3.1.0)
-      erubis (~> 2.7.0)
+    actionpack (4.1.1)
+      actionview (= 4.1.1)
+      activesupport (= 4.1.1)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    activemodel (4.0.5)
-      activesupport (= 4.0.5)
-      builder (~> 3.1.0)
-    activerecord (4.0.5)
-      activemodel (= 4.0.5)
-      activerecord-deprecated_finders (~> 1.0.2)
-      activesupport (= 4.0.5)
-      arel (~> 4.0.0)
-    activerecord-deprecated_finders (1.0.3)
-    activesupport (4.0.5)
+    actionview (4.1.1)
+      activesupport (= 4.1.1)
+      builder (~> 3.1)
+      erubis (~> 2.7.0)
+    activemodel (4.1.1)
+      activesupport (= 4.1.1)
+      builder (~> 3.1)
+    activerecord (4.1.1)
+      activemodel (= 4.1.1)
+      activesupport (= 4.1.1)
+      arel (~> 5.0.0)
+    activesupport (4.1.1)
       i18n (~> 0.6, >= 0.6.9)
-      minitest (~> 4.2)
-      multi_json (~> 1.3)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
       thread_safe (~> 0.1)
-      tzinfo (~> 0.3.37)
+      tzinfo (~> 1.1)
     addressable (2.3.6)
     analytics-ruby (1.0.0)
     and_feathers (1.0.0.pre.1)
     and_feathers-gzipped_tarball (1.0.0.pre)
-    arel (4.0.2)
+    arel (5.0.1.20140414130214)
     ast (1.1.0)
     aws-sdk (1.38.0)
       json (~> 1.4)
@@ -64,7 +74,7 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    builder (3.1.4)
+    builder (3.2.2)
     byebug (2.7.0)
       columnize (~> 0.3)
       debugger-linecache (~> 1.2)
@@ -153,7 +163,7 @@ GEM
     highline (1.6.21)
     hike (1.2.3)
     htmlentities (4.3.1)
-    httparty (0.13.0)
+    httparty (0.13.1)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.6.9)
@@ -172,7 +182,7 @@ GEM
     kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
-    license_finder (1.0.0.0)
+    license_finder (1.1.0)
       bundler
       httparty
       sequel
@@ -188,7 +198,7 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.6.0)
-    minitest (4.7.5)
+    minitest (5.3.4)
     mixlib-authentication (1.3.0)
       mixlib-log
     mixlib-cli (1.4.0)
@@ -196,7 +206,7 @@ GEM
     mixlib-log (1.6.0)
     mixlib-shellout (1.3.0)
     moneta (0.6.0)
-    multi_json (1.10.0)
+    multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     net-ssh (2.8.0)
@@ -251,7 +261,7 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
-    polyglot (0.3.4)
+    polyglot (0.3.5)
     powerpack (0.0.9)
     premailer (1.8.2)
       css_parser (>= 1.3.5)
@@ -272,17 +282,19 @@ GEM
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (4.0.5)
-      actionmailer (= 4.0.5)
-      actionpack (= 4.0.5)
-      activerecord (= 4.0.5)
-      activesupport (= 4.0.5)
+    rails (4.1.1)
+      actionmailer (= 4.1.1)
+      actionpack (= 4.1.1)
+      actionview (= 4.1.1)
+      activemodel (= 4.1.1)
+      activerecord (= 4.1.1)
+      activesupport (= 4.1.1)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.0.5)
-      sprockets-rails (~> 2.0.0)
-    railties (4.0.5)
-      actionpack (= 4.0.5)
-      activesupport (= 4.0.5)
+      railties (= 4.1.1)
+      sprockets-rails (~> 2.0)
+    railties (4.1.1)
+      actionpack (= 4.1.1)
+      activesupport (= 4.1.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
@@ -328,9 +340,7 @@ GEM
       faraday (>= 0.7.6)
       hashie (>= 1.1.0)
       uuidtools
-    sequel (4.9.0)
-    shoulda-matchers (2.5.0)
-      activesupport (>= 3.0.0)
+    sequel (4.11.0)
     sidekiq (3.0.0)
       celluloid (>= 0.15.2)
       connection_pool (>= 2.0.0)
@@ -353,7 +363,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.0.1)
+    sprockets-rails (2.1.3)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
@@ -363,14 +373,15 @@ GEM
     term-ansicolor (1.3.0)
       tins (~> 1.0)
     thor (0.19.1)
-    thread_safe (0.3.3)
+    thread_safe (0.3.4)
     tilt (1.4.1)
     timers (1.1.0)
     tins (1.1.0)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.39)
+    tzinfo (1.2.1)
+      thread_safe (~> 0.1)
     uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
@@ -438,14 +449,14 @@ DEPENDENCIES
   premailer-rails
   pundit
   quiet_assets
-  rails (~> 4.0.5)
+  rails (~> 4.1.1)
   redcarpet
   rspec-rails
   rubocop
   sass-rails (~> 4.0.1)
   semverse
   sentry-raven (~> 0.8.0)
-  shoulda-matchers
+  shoulda-matchers!
   sidekiq
   sidetiq!
   sitemap_generator
