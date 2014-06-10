@@ -2,20 +2,53 @@ require 'spec_helper'
 
 describe Api::V1::CookbooksController do
   let!(:slow_cooking) do
-    create(:cookbook, name: 'slow_cooking')
+    create(:cookbook, name: 'slow_cooking', web_download_count: 12, api_download_count: 15)
   end
 
   let!(:sashimi) do
-    create(:cookbook, name: 'sashimi')
+    create(:cookbook, name: 'sashimi', web_download_count: 11, api_download_count: 14)
   end
 
   describe '#index' do
-    it 'orders the cookbooks by their name' do
+    it 'orders the cookbooks by their name by default' do
       get :index, format: :json
 
       cookbook_names = assigns[:cookbooks].map(&:name)
 
       expect(cookbook_names).to eql(%W(sashimi slow_cooking))
+    end
+
+    it 'allows ordering by recently updated' do
+      slow_cooking.touch
+      get :index, order: :recently_updated, format: :json
+      cookbooks = assigns[:cookbooks]
+      expect(cookbooks.first).to eql(slow_cooking)
+      expect(cookbooks.last).to eql(sashimi)
+    end
+
+    it 'allows ordering by recently added' do
+      get :index, order: :recently_added, format: :json
+      cookbooks = assigns[:cookbooks]
+      expect(cookbooks.first).to eql(sashimi)
+      expect(cookbooks.last).to eql(slow_cooking)
+    end
+
+    it 'allows ordering by most downloaded' do
+      get :index, order: :most_downloaded, format: :json
+      cookbooks = assigns[:cookbooks]
+      expect(cookbooks.first).to eql(slow_cooking)
+      expect(cookbooks.last).to eql(sashimi)
+    end
+
+    it 'allows ordering by most followed' do
+      create(:cookbook_follower, cookbook: slow_cooking, user: create(:user))
+      create(:cookbook_follower, cookbook: slow_cooking, user: create(:user))
+      create(:cookbook_follower, cookbook: sashimi, user: create(:user))
+
+      get :index, order: :most_followed, format: :json
+      cookbooks = assigns[:cookbooks]
+      expect(cookbooks.first).to eql(slow_cooking)
+      expect(cookbooks.last).to eql(sashimi)
     end
 
     it 'uses the start param to offset the cookbooks sent to the view' do
