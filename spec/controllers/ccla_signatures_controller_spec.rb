@@ -1,204 +1,227 @@
 require 'spec_helper'
 
 describe CclaSignaturesController do
-  describe 'GET #index' do
-    let(:ccla_signature) { create(:ccla_signature) }
-    before { get :index }
-
-    it { should respond_with(200) }
-    it { should render_template('index') }
-
-    it 'assigns @ccla_signatures' do
-      expect(assigns(:ccla_signatures)).to include(ccla_signature)
-    end
-  end
-
-  describe 'GET #show' do
-    let(:ccla_signature) { create(:ccla_signature) }
-    before { sign_in(create(:user)) }
-
-    context 'user is authorized to view CCLA Signature' do
-      before do
-        auto_authorize!(CclaSignature, 'show')
-        get :show, id: ccla_signature.id
-      end
-
-      it 'assigns @ccla_signature' do
-        expect(assigns(:ccla_signature)).to_not be_nil
-      end
+  context 'routes not requiring authentication' do
+    describe 'GET #index' do
+      let(:ccla_signature) { create(:ccla_signature) }
+      before { get :index }
 
       it { should respond_with(200) }
-    end
+      it { should render_template('index') }
 
-    context 'user is not authorized to view CCLA Signature' do
-      before do
-        get :show, id: ccla_signature.id
-      end
-
-      it { should respond_with(404) }
-    end
-  end
-
-  describe 'GET #new' do
-    let(:user) { create(:user) }
-
-    context 'when the user has no linked GitHub accounts' do
-      before do
-        user.accounts.clear
-        sign_in user
-
-        get :new
-      end
-
-      it 'redirects the user to their profile' do
-        expect(response).to redirect_to(link_github_profile_path)
-      end
-
-      it 'prompts the user to link their GitHub account' do
-        expect(flash[:notice]).
-          to eql(I18n.t('requires_linked_github'))
-      end
-
-      it 'stores the signature page as the "stored location" for the user' do
-        expect(controller.stored_location).to eql(new_ccla_signature_path)
+      it 'assigns @ccla_signatures' do
+        expect(assigns(:ccla_signatures)).to include(ccla_signature)
       end
     end
 
-    context 'when the user has linked GitHub accounts' do
-      let!(:ccla) { create(:ccla) }
-
+    describe 'GET #agreement' do
       before do
-        user.accounts << create(:account, provider: 'github')
-        sign_in user
-
-        get :new
+        create(:ccla)
+        get :agreement
       end
 
-      it { should respond_with(200) }
-      it { should render_template('new') }
-
-      it 'assigns @ccla_signature' do
-        expect(assigns(:ccla_signature)).to_not be_nil
+      it 'should assign @cla_agreement' do
+        expect(assigns(:cla_agreement)).to_not be_nil
       end
 
-      it 'ensures the signature will sign the latest CCLA' do
-        expect(assigns(:ccla_signature).ccla).to eql(ccla)
+      it 'should work' do
+        expect(response).to be_success
+      end
+
+      it 'should render the agreement template' do
+        expect(response).to render_template('agreement')
       end
     end
   end
 
-  describe 'post #create' do
-    let(:user) { create(:user) }
-    let(:payload) { attributes_for(:ccla_signature, user_id: user.id) }
-    before { sign_in user }
+  context 'routes requiring authentication' do
+    describe 'GET #show' do
+      let(:ccla_signature) { create(:ccla_signature) }
+      before { sign_in(create(:user)) }
 
-    context 'when the user has no linked github accounts' do
-      before do
-        user.accounts.clear
+      context 'user is authorized to view CCLA Signature' do
+        before do
+          auto_authorize!(CclaSignature, 'show')
+          get :show, id: ccla_signature.id
+        end
 
-        post :create, ccla_signature: {
-          first_name: 'my',
-          last_name: 'doge'
-        }
+        it 'assigns @ccla_signature' do
+          expect(assigns(:ccla_signature)).to_not be_nil
+        end
+
+        it { should respond_with(200) }
       end
 
-      it 'directs the user to link their github account' do
-        expect(response).to redirect_to(link_github_profile_path)
-      end
+      context 'user is not authorized to view CCLA Signature' do
+        before do
+          get :show, id: ccla_signature.id
+        end
 
-      it 'prompts the user to link their github account' do
-        expect(flash[:notice]).
-          to eql(I18n.t('requires_linked_github'))
-      end
-
-      it 'stores the previous url before directed to link github' do
-        expect(controller.stored_location).to eql(ccla_signatures_path)
+        it { should respond_with(404) }
       end
     end
 
-    context 'when the user has a linked github account' do
-      before do
-        user.accounts << create(:account, provider: 'github')
+    describe 'GET #new' do
+      let(:user) { create(:user) }
 
-        allow(Curry::CommitAuthorVerificationWorker).to receive(:perform_async)
-      end
+      context 'when the user has no linked GitHub accounts' do
+        before do
+          user.accounts.clear
+          sign_in user
 
-      it 'creates a ccla signature for the current user' do
-        expect { post :create, ccla_signature: payload }
-        .to change(user.ccla_signatures, :count).by(1)
-      end
+          get :new
+        end
 
-      it 'creates an organization' do
-        expect { post :create, ccla_signature: payload }
-        .to change(Organization, :count).by(1)
-      end
+        it 'redirects the user to their profile' do
+          expect(response).to redirect_to(link_github_profile_path)
+        end
 
-      it 'adds the current user to the newly-created organization' do
-        expect { post :create, ccla_signature: payload }
-        .to change(user.organizations, :count).by(1)
-      end
+        it 'prompts the user to link their GitHub account' do
+          expect(flash[:notice]).
+            to eql(I18n.t('requires_linked_github'))
+        end
 
-      it 'sends a notification that the ccla has been signed' do
-        Sidekiq::Testing.inline! do
-          expect { post :create, ccla_signature: payload }
-          .to change(ActionMailer::Base.deliveries, :count).by(1)
+        it 'stores the signature page as the "stored location" for the user' do
+          expect(controller.stored_location).to eql(new_ccla_signature_path)
         end
       end
 
-      it "changes the user's commit author records to have signed a CLA" do
-        expect(Curry::CommitAuthorVerificationWorker).
-          to receive(:perform_async).
-          with(user.id)
+      context 'when the user has linked GitHub accounts' do
+        let!(:ccla) { create(:ccla) }
 
-        post :create, ccla_signature: payload
-      end
-    end
-  end
+        before do
+          user.accounts << create(:account, provider: 'github')
+          sign_in user
 
-  describe 'post #re_sign' do
-    let(:user) { create(:user) }
-    let(:organization) { create(:organization) }
-    let(:payload) { attributes_for(:ccla_signature, user_id: user.id, organization_id: organization.id) }
-    before { sign_in user }
+          get :new
+        end
 
-    context 'when the user has no linked github accounts' do
-      before do
-        user.accounts.clear
+        it { should respond_with(200) }
+        it { should render_template('new') }
 
-        post :re_sign, ccla_signature: {
-          first_name: 'my',
-          last_name: 'doge'
-        }
-      end
+        it 'assigns @ccla_signature' do
+          expect(assigns(:ccla_signature)).to_not be_nil
+        end
 
-      it 'directs the user to link their github account' do
-        expect(response).to redirect_to(link_github_profile_path)
-      end
-
-      it 'prompts the user to link their github account' do
-        expect(flash[:notice]).
-          to eql(I18n.t('requires_linked_github'))
-      end
-
-      it 'stores the previous url before directed to link github' do
-        expect(controller.stored_location).
-          to eql(re_sign_ccla_signatures_path)
+        it 'ensures the signature will sign the latest CCLA' do
+          expect(assigns(:ccla_signature).ccla).to eql(ccla)
+        end
       end
     end
 
-    context 'when the user has a linked github account' do
-      before do
-        user.accounts << create(:account, provider: 'github')
+    describe 'post #create' do
+      let(:user) { create(:user) }
+      let(:payload) { attributes_for(:ccla_signature, user_id: user.id) }
+      before { sign_in user }
+
+      context 'when the user has no linked github accounts' do
+        before do
+          user.accounts.clear
+
+          post :create, ccla_signature: {
+            first_name: 'my',
+            last_name: 'doge'
+          }
+        end
+
+        it 'directs the user to link their github account' do
+          expect(response).to redirect_to(link_github_profile_path)
+        end
+
+        it 'prompts the user to link their github account' do
+          expect(flash[:notice]).
+            to eql(I18n.t('requires_linked_github'))
+        end
+
+        it 'stores the previous url before directed to link github' do
+          expect(controller.stored_location).to eql(ccla_signatures_path)
+        end
       end
 
-      it 'creates a ccla signature for the current user' do
-        expect { post :re_sign, ccla_signature: payload }
-        .to change(user.ccla_signatures, :count).by(1)
+      context 'when the user has a linked github account' do
+        before do
+          user.accounts << create(:account, provider: 'github')
+
+          allow(Curry::CommitAuthorVerificationWorker).to receive(:perform_async)
+        end
+
+        it 'creates a ccla signature for the current user' do
+          expect { post :create, ccla_signature: payload }
+          .to change(user.ccla_signatures, :count).by(1)
+        end
+
+        it 'creates an organization' do
+          expect { post :create, ccla_signature: payload }
+          .to change(Organization, :count).by(1)
+        end
+
+        it 'adds the current user to the newly-created organization' do
+          expect { post :create, ccla_signature: payload }
+          .to change(user.organizations, :count).by(1)
+        end
+
+        it 'sends a notification that the ccla has been signed' do
+          Sidekiq::Testing.inline! do
+            expect { post :create, ccla_signature: payload }
+            .to change(ActionMailer::Base.deliveries, :count).by(1)
+          end
+        end
+
+        it "changes the user's commit author records to have signed a CLA" do
+          expect(Curry::CommitAuthorVerificationWorker).
+            to receive(:perform_async).
+            with(user.id)
+
+          post :create, ccla_signature: payload
+        end
+      end
+    end
+
+    describe 'post #re_sign' do
+      let(:user) { create(:user) }
+      let(:organization) { create(:organization) }
+      let(:payload) { attributes_for(:ccla_signature, user_id: user.id, organization_id: organization.id) }
+      before { sign_in user }
+
+      context 'when the user has no linked github accounts' do
+        before do
+          user.accounts.clear
+
+          post :re_sign, ccla_signature: {
+            first_name: 'my',
+            last_name: 'doge'
+          }
+        end
+
+        it 'directs the user to link their github account' do
+          expect(response).to redirect_to(link_github_profile_path)
+        end
+
+        it 'prompts the user to link their github account' do
+          expect(flash[:notice]).
+            to eql(I18n.t('requires_linked_github'))
+        end
+
+        it 'stores the previous url before directed to link github' do
+          expect(controller.stored_location).
+            to eql(re_sign_ccla_signatures_path)
+        end
       end
 
-      it 'maintains the original signing organization' do
-        expect { post :re_sign, ccla_signature: payload }
-        .to change(organization.ccla_signatures, :count).by(1)
+      context 'when the user has a linked github account' do
+        before do
+          user.accounts << create(:account, provider: 'github')
+        end
+
+        it 'creates a ccla signature for the current user' do
+          expect { post :re_sign, ccla_signature: payload }
+          .to change(user.ccla_signatures, :count).by(1)
+        end
+
+        it 'maintains the original signing organization' do
+          expect { post :re_sign, ccla_signature: payload }
+          .to change(organization.ccla_signatures, :count).by(1)
+        end
       end
     end
   end

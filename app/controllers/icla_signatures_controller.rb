@@ -1,6 +1,6 @@
 class IclaSignaturesController < ApplicationController
   before_filter :redirect_if_signed!, only: [:new, :create]
-  before_filter :authenticate_user!, except: [:index]
+  before_filter :authenticate_user!, except: [:index, :agreement]
   before_filter :require_linked_github_account!, only: [:new, :create, :re_sign]
 
   #
@@ -76,6 +76,17 @@ class IclaSignaturesController < ApplicationController
     else
       render 'show'
     end
+  end
+
+  #
+  # GET /icla-signatures/agreement
+  #
+  # Views the actual text of the ICLA agreement in a format that's suitable for
+  # printing.
+  #
+  def agreement
+    @cla_agreement = Icla.latest
+    render layout: false
   end
 
   private
