@@ -1,12 +1,13 @@
 require 'spec_helper'
 
 describe Api::V1::CookbooksController do
+  let!(:clive) { create(:user) }
   let!(:slow_cooking) do
     create(:cookbook, name: 'slow_cooking', web_download_count: 12, api_download_count: 15)
   end
 
   let!(:sashimi) do
-    create(:cookbook, name: 'sashimi', web_download_count: 11, api_download_count: 14)
+    create(:cookbook, name: 'sashimi', web_download_count: 11, api_download_count: 14, owner: clive)
   end
 
   describe '#index' do
@@ -49,6 +50,13 @@ describe Api::V1::CookbooksController do
       cookbooks = assigns[:cookbooks]
       expect(cookbooks.first).to eql(slow_cooking)
       expect(cookbooks.last).to eql(sashimi)
+    end
+
+    it 'allows filtering cookbooks by owner' do
+      get :index, user: clive.username, format: :json
+      cookbooks = assigns[:cookbooks]
+      expect(cookbooks.size).to eql(1)
+      expect(cookbooks.first).to eql(sashimi)
     end
 
     it 'uses the start param to offset the cookbooks sent to the view' do

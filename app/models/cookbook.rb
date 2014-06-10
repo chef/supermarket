@@ -31,6 +31,11 @@ class Cookbook < ActiveRecord::Base
     }.fetch(ordering, 'name ASC'))
   }
 
+  scope :owned_by, lambda { |username|
+    user = User.with_username(username).first
+    where(user_id: user.id)
+  }
+
   # Search
   # --------------------
   pg_search_scope(
