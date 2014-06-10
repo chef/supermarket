@@ -6,6 +6,14 @@ GIT
       sawyer (~> 0.5.3)
 
 GIT
+  remote: git://github.com/thoughtbot/shoulda-matchers.git
+  revision: 380d18f0621c66a79445ebc6dcc0048fcc969911
+  ref: 380d18f0621c66a79445ebc6dcc0048fcc969911
+  specs:
+    shoulda-matchers (2.6.1)
+      activesupport (>= 3.0.0)
+
+GIT
   remote: git://github.com/tobiassvn/sidetiq.git
   revision: 4f7d7daea3873443b17bf2f3da61619532bbeba2
   ref: 4f7d7da
@@ -333,8 +341,6 @@ GEM
       hashie (>= 1.1.0)
       uuidtools
     sequel (4.11.0)
-    shoulda-matchers (2.6.1)
-      activesupport (>= 3.0.0)
     sidekiq (3.0.0)
       celluloid (>= 0.15.2)
       connection_pool (>= 2.0.0)
@@ -450,7 +456,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.1)
   semverse
   sentry-raven (~> 0.8.0)
-  shoulda-matchers
+  shoulda-matchers!
   sidekiq
   sidetiq!
   sitemap_generator
