@@ -44,6 +44,12 @@
     <li><h3><%= pluralized_stats(@user.followed_cookbooks.count, 'Follow') %></h3></li>
   </ul>
 
+  <% if policy(@user).make_admin? %>
+    <%= link_to 'Make Admin', make_admin_user_path(@user), method: 'put', class: 'button medium expand radius', rel: 'make_admin' %>
+  <% elsif current_user.try(:is?, :admin) %>
+    <button class="button medium expand radius secondary disabled">Admin</button>
+  <% end %>
+
   <% if @user == current_user %>
     <% if params[:controller] == "profile" %>
       <%= link_to 'View Profile', @user, class: 'button medium expand radius', rel: 'view_profile' %>

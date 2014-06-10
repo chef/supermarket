@@ -56,6 +56,10 @@ Supermarket::Application.routes.draw do
   end
 
   resources :users, only: [:show] do
+    member do
+      put :make_admin
+    end
+
     resources :accounts, only: [:destroy]
   end
 
