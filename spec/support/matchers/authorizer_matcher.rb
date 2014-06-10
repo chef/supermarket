@@ -1,4 +1,4 @@
-RSpec::Matchers.define :permit do |action|
+RSpec::Matchers.define :permit_authorization do |action|
   match do |authorizer|
     authorizer.public_send("#{action}?")
   end
