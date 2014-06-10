@@ -31,6 +31,10 @@ class Cookbook < ActiveRecord::Base
     }.fetch(ordering, 'name ASC'))
   }
 
+  scope :owned_by, lambda { |username|
+    joins(owner: :chef_account).where('accounts.username = ?', username)
+  }
+
   # Search
   # --------------------
   pg_search_scope(

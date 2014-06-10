@@ -9,17 +9,24 @@ class Api::V1::CookbooksController < Api::V1Controller
   # returned is 100.
   #
   # Pass in the start and items params to specify the index at which to start
-  # and how many to return. You can also pass in an order param to specify how
+  # and how many to return. You can pass in an order param to specify how
   # you'd like the the collection ordered. Possible values are
-  # recently_updated, recently_added, most_downloaded, most_followed
+  # recently_updated, recently_added, most_downloaded, most_followed. Finally,
+  # you can pass in a user param to only show cookbooks that are owned by
+  # a specific username.
   #
   # @example
   #   GET /api/v1/cookbooks?start=5&items=15
   #   GET /api/v1/cookbooks?order=recently_updated
+  #   GET /api/v1/cookbooks?user=timmy
   #
   def index
     @total = Cookbook.count
     @cookbooks = Cookbook.ordered_by(@order).limit(@items).offset(@start)
+
+    if params[:user]
+      @cookbooks = @cookbooks.owned_by(params[:user])
+    end
   end
 
   #
@@ -66,7 +73,7 @@ class Api::V1::CookbooksController < Api::V1Controller
 
   #
   # This creates instance variables for +start+ and +items+, which are shared
-  # between the index and search methods.
+  # between the index and search methods. Also +order+ which is for ordering.
   #
   def init_params
     @start = params.fetch(:start, 0).to_i

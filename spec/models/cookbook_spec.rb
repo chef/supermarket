@@ -305,6 +305,15 @@ describe Cookbook do
     end
   end
 
+  describe '.owned_by' do
+    let!(:hank) { create(:user) }
+    let!(:tasty) { create(:cookbook, owner: hank) }
+
+    it 'finds cookbooks owned by a username' do
+      expect(Cookbook.owned_by(hank.username).first).to eql(tasty)
+    end
+  end
+
   describe '.with_name' do
     it 'is case-insensitive' do
       cookbook = create(:cookbook, name: 'CookBook')
