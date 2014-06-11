@@ -1,6 +1,6 @@
 class CookbooksController < ApplicationController
   before_filter :assign_categories
-  before_filter :assign_cookbook, only: [:show, :update, :follow, :unfollow]
+  before_filter :assign_cookbook, only: [:show, :update, :follow, :unfollow, :transfer_ownership]
   before_filter :store_location_then_authenticate_user!, only: [:follow, :unfollow]
 
   #
@@ -130,6 +130,18 @@ class CookbooksController < ApplicationController
     head 200
   end
 
+  #
+  # PUT /cookbooks/:cookbook/transfer_ownership
+  #
+  # Transfers ownership of cookbook to another user and redirects
+  # back to the cookbook.
+  #
+  def transfer_ownership
+    authorize! @cookbook
+    @cookbook.update_attributes(transfer_ownership_params)
+    redirect_to @cookbook, notice: t('cookbook.transfered_ownership', cookbook: @cookbook.name, user: @cookbook.owner.username)
+  end
+
   private
 
   def assign_categories
@@ -147,5 +159,9 @@ class CookbooksController < ApplicationController
 
   def cookbook_urls_params
     params.require(:cookbook).permit(:source_url, :issues_url)
+  end
+
+  def transfer_ownership_params
+    params.require(:cookbook).permit(:user_id)
   end
 end

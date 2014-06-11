@@ -30,6 +30,7 @@ Supermarket::Application.routes.draw do
       get :download
       put :follow
       delete :unfollow
+      put :transfer_ownership
     end
 
     get 'versions/:version/download' => 'cookbook_versions#download', as: :version_download

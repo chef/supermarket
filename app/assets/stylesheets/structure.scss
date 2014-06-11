@@ -234,6 +234,23 @@ button, .button {
   padding: rem-calc(8 10 8 26);
 }
 
+.select2-container .select2-choice {
+  height: rem-calc(37);
+  border-radius: 0;
+}
+
+.select2-container .select2-choice .select2-arrow {
+  border-radius: 0;
+}
+
+.select2-chosen {
+  margin-top: 3px;
+}
+
+.select2-container .select2-choice .select2-arrow b {
+  background-size: 60px 60px !important;
+}
+
 @media #{$mobile-only} {
   .select2-container-multi .select2-choices .select2-search-choice {
     margin: rem-calc(1 0 3 3);

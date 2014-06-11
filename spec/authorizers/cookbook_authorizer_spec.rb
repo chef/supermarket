@@ -39,4 +39,17 @@ describe CookbookAuthorizer do
     it { should_not permit_authorization(:create_collaborator) }
     it { should_not permit_authorization(:manage_cookbook_urls) }
   end
+
+  context 'as an admin' do
+    let(:record) { build(:cookbook) }
+    let(:user) { build(:admin) }
+
+    subject { described_class.new(user, record) }
+
+    it { should permit_authorization(:transfer_ownership) }
+    it { should_not permit_authorization(:create) }
+    it { should_not permit_authorization(:destroy) }
+    it { should_not permit_authorization(:create_collaborator) }
+    it { should_not permit_authorization(:manage_cookbook_urls) }
+  end
 end

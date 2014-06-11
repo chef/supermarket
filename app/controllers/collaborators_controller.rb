@@ -8,10 +8,14 @@ class CollaboratorsController < ApplicationController
   #
   # GET /cookbooks/:cookbook_id/collaborators?q=jimmy
   #
-  # Searches for someone by username.
+  # Searches for someone by username, either potential collaborators or owners.
   #
   def index
-    @collaborators = eligible_collaborators.limit(20)
+    if params[:include_collaborators].present?
+      @collaborators = eligible_owners.limit(20)
+    else
+      @collaborators = eligible_collaborators.limit(20)
+    end
 
     if params[:q]
       @collaborators = @collaborators.search(params[:q])
@@ -124,5 +128,15 @@ class CollaboratorsController < ApplicationController
   def eligible_collaborators
     ineligible_users = [@cookbook.collaborators, @cookbook.owner].flatten
     User.where('users.id NOT IN (?)', ineligible_users)
+  end
+
+  #
+  # Finds eligible owners for cookbook ownership transfering,
+  # any user that's not currently the owner.
+  #
+  # @return [Array<User>]
+  #
+  def eligible_owners
+    User.where('users.id != ?', @cookbook.user_id)
   end
 end

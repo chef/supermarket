@@ -2,22 +2,24 @@ require 'spec_helper'
 
 describe CollaboratorsController do
   let!(:fanny) { create(:user) }
-  let!(:hank) { create(:user, first_name: 'hank') }
-  let!(:hanky) { create(:user, first_name: 'hanky') }
+  let!(:hank) { create(:user, first_name: 'Hank') }
+  let!(:hanky) { create(:user, first_name: 'Hanky') }
   let!(:cookbook) { create(:cookbook, owner: fanny) }
+  let!(:existing_collaborator) { create(:user, collaborated_cookbooks: [cookbook]) }
 
   describe 'GET #index' do
     before do
       sign_in fanny
     end
 
-    it 'returns all collaborators by default' do
+    it 'returns all users except for existing collaborators and owners by default' do
       get :index, cookbook_id: cookbook, format: :json
       collaborators = assigns[:collaborators]
       expect(collaborators.size).to eql(2)
       expect(collaborators).to include(hank)
       expect(collaborators).to include(hanky)
       expect(collaborators).to_not include(fanny)
+      expect(collaborators).to_not include(existing_collaborator)
       expect(response).to be_success
     end
 
@@ -27,6 +29,11 @@ describe CollaboratorsController do
       expect(collaborators.count(:all)).to eql(2)
       expect(collaborators.first).to eql(hank)
       expect(response).to be_success
+    end
+
+    it 'returns existing collaborators if include_collaborators param is included' do
+      get :index, cookbook_id: cookbook, format: :json, include_collaborators: true
+      expect(assigns[:collaborators]).to include(existing_collaborator)
     end
   end
 

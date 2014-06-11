@@ -322,4 +322,33 @@ describe CookbooksController do
       end
     end
   end
+
+  describe 'PUT #transfer_ownership' do
+    let(:cookbook) { create(:cookbook) }
+    let(:new_owner) { create(:user) }
+
+    context 'the current user is an admin' do
+      before { sign_in(create(:admin)) }
+
+      it 'changes the cookbooks owner' do
+        put :transfer_ownership, id: cookbook, cookbook: { user_id: new_owner.id }
+        cookbook.reload
+        expect(cookbook.owner).to eql(new_owner)
+      end
+
+      it 'redirects back to the cookbook' do
+        put :transfer_ownership, id: cookbook, cookbook: { user_id: new_owner.id }
+        expect(response).to redirect_to(assigns[:cookbook])
+      end
+    end
+
+    context 'the current user is not an admin' do
+      before { sign_in(create(:user)) }
+
+      it 'returns a 404' do
+        put :transfer_ownership, id: cookbook, cookbook: { user_id: new_owner.id }
+        expect(response.status.to_i).to eql(404)
+      end
+    end
+  end
 end

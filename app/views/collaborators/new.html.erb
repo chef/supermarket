@@ -4,7 +4,7 @@
 <%= form_for [@cookbook, @collaborator], url: cookbook_collaborators_path(@cookbook) do |f| %>
   <div class="row collapse">
     <div class="small-10 columns">
-      <%= f.hidden_field :user_id %>
+      <%= f.hidden_field :user_id, class: 'collaborators multiple', 'data-url' => cookbook_collaborators_path(@cookbook) %>
     </div>
     <div class="small-2 columns">
       <%= f.submit 'Add', class: 'button postfix' %>

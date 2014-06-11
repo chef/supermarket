@@ -32,6 +32,26 @@
       <div id="collaborators" class="reveal-modal small" data-reveal>
       </div>
     <% end %>
+
+    <% if policy(cookbook).transfer_ownership? %>
+      <%= link_to 'Transfer Ownership', '#', class: 'button secondary radius tiny', rel: 'transfer_ownership', 'data-reveal-id' => 'transfer' %>
+
+      <div id="transfer" class="reveal-modal small" data-reveal>
+        <h1>Transfer Ownership</h1>
+        <a class="close-reveal-modal">&#215;</a>
+
+        <%= form_for cookbook, url: { action: 'transfer_ownership' }, method: :put do |f| %>
+          <div class="row collapse">
+            <div class="small-9 columns">
+              <%= f.hidden_field :user_id, class: 'collaborators', 'data-url' => cookbook_collaborators_path(cookbook, include_collaborators: true) %>
+            </div>
+            <div class="small-3 columns">
+              <%= f.submit 'Transfer', class: 'button postfix' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <h3>
