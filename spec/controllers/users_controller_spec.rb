@@ -24,4 +24,32 @@ describe UsersController do
       expect(assigns[:cookbooks]).to include(followed_cookbook)
     end
   end
+
+  describe 'PUT #make_admin' do
+    let(:user) { create(:user) }
+
+    context 'the current user is an admin' do
+      before { sign_in(create(:user, roles: 'admin')) }
+
+      it 'adds the admin role to a user' do
+        put :make_admin, id: user
+        user.reload
+        expect(user.roles).to include('admin')
+      end
+
+      it 'redirects back to a user' do
+        put :make_admin, id: user
+        expect(response).to redirect_to(assigns[:user])
+      end
+    end
+
+    context 'the current user is not an admin' do
+      before { sign_in(create(:user)) }
+
+      it 'renders 404' do
+        put :make_admin, id: user
+        expect(response.status.to_i).to eql(404)
+      end
+    end
+  end
 end

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :assign_user
+
   #
   # GET /users/:id
   #
@@ -8,8 +10,6 @@ class UsersController < ApplicationController
   # the user owns.
   #
   def show
-    @user = Account.for('chef_oauth2').with_username(params[:id]).first!.user
-
     case params[:tab]
     when 'collaborates'
       @cookbooks = @user.collaborated_cookbooks
@@ -18,5 +18,23 @@ class UsersController < ApplicationController
     else
       @cookbooks = @user.owned_cookbooks
     end
+  end
+
+  #
+  # PUT /users/:id/make_admin
+  #
+  # Assigns the admin role to a given user then redirects back to
+  # the users profile.
+  #
+  def make_admin
+    authorize! @user
+    @user.update_attributes(roles: 'admin')
+    redirect_to @user, notice: t('user.made_admin', name: @user.username)
+  end
+
+  private
+
+  def assign_user
+    @user = Account.for('chef_oauth2').with_username(params[:id]).first!.user
   end
 end

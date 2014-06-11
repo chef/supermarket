@@ -97,6 +97,10 @@
     margin-bottom: rem-calc(20);
   }
 
+  .button {
+    margin-bottom: rem-calc(20);
+  }
+
   .user_stats {
     @include block-grid(3, $spacing: 0);
     border: rem-calc(1) solid lighten($secondary_gray, 30%);
