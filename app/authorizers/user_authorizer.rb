@@ -7,4 +7,11 @@ class UserAuthorizer < Authorizer::Base
   def make_admin?
     user.is?(:admin) && !record.is?(:admin)
   end
+
+  #
+  # Admins can revoke other admin users admin role.
+  #
+  def revoke_admin?
+    user.is?(:admin) && user != record
+  end
 end

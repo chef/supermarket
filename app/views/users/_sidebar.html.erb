@@ -46,8 +46,8 @@
 
   <% if policy(@user).make_admin? %>
     <%= link_to 'Make Admin', make_admin_user_path(@user), method: 'put', class: 'button medium expand radius', rel: 'make_admin' %>
-  <% elsif current_user.try(:is?, :admin) %>
-    <button class="button medium expand radius secondary disabled">Admin</button>
+  <% elsif policy(current_user).revoke_admin? %>
+    <%= link_to 'Revoke Admin', revoke_admin_user_path(@user), method: 'delete', class: 'button medium expand radius', rel: 'revoke_admin' %>
   <% end %>
 
   <% if @user == current_user %>

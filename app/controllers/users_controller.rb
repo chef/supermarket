@@ -28,8 +28,22 @@ class UsersController < ApplicationController
   #
   def make_admin
     authorize! @user
-    @user.update_attributes(roles: 'admin')
+    @user.roles = @user.roles + ['admin']
+    @user.save
     redirect_to @user, notice: t('user.made_admin', name: @user.username)
+  end
+
+  #
+  # DELETE /users/:id/revoke_admin
+  #
+  # Revokes the admin role to a given user then redirects back to
+  # the users profile.
+  #
+  def revoke_admin
+    authorize! @user
+    @user.roles = @user.roles - ['admin']
+    @user.save
+    redirect_to @user, notice: t('user.revoked_admin', name: @user.username)
   end
 
   private
