@@ -1,4 +1,4 @@
-require 'supermarket/community_site'
+require 'supermarket/import'
 
 class Api::V1::MetricsController < Api::V1Controller
   #
@@ -16,12 +16,44 @@ class Api::V1::MetricsController < Api::V1Controller
     }
 
     if ENV['COMMUNITY_SITE_DATABASE_URL'].present?
-      @metrics.update(
-        opscode_community_site_cookbook_versions: Supermarket::CommunitySite::CookbookVersionRecord.count,
-        opscode_community_site_cookbooks: Supermarket::CommunitySite::CookbookRecord.count,
-        opscode_community_site_follows: Supermarket::CommunitySite::FollowingRecord.count,
-        opscode_community_site_users: Supermarket::CommunitySite::UserRecord.count
-      )
+      migration_metrics = {
+        collaborators: {
+          supermarket: imported(CookbookCollaborator).count,
+          community_site: Supermarket::Import::Collaboration.ids.count
+        },
+        cookbooks: {
+          supermarket: imported(Cookbook).count,
+          community_site: Supermarket::Import::Cookbook.ids.count
+        },
+        cookbook_versions: {
+          supermarket: imported(CookbookVersion).where(dependencies_imported: true).count,
+          community_site: Supermarket::Import::CookbookVersion.ids.count
+        },
+        deprecated_cookbooks: {
+          supermarket: imported(Cookbook).where(deprecated: true).count,
+          community_site: Supermarket::Import::DeprecatedCookbook.ids.count
+        },
+        followings: {
+          supermarket: imported(CookbookFollower).count,
+          community_site: Supermarket::Import::Following.ids.count
+        },
+        users: {
+          supermarket: imported(User).count,
+          community_site: Supermarket::Import::User.ids.count
+        },
+        platforms: {
+          supermarket: imported(CookbookVersionPlatform).count,
+          community_site: Supermarket::Import::PlatformVersion.ids.count
+        }
+      }
+
+      @metrics[:migration] = migration_metrics
     end
+  end
+
+  private
+
+  def imported(model)
+    model.where('legacy_id IS NOT ?', nil)
   end
 end
