@@ -248,13 +248,23 @@
 
 // styles for the beta banner
 
+.beta_banner {
+  background: white;
+}
+
+.beta_banner_header_wrapper {
+  display: table;
+  width: 100%;
+}
+
 .beta_banner_header {
   background-color: $secondary-blue;
   cursor: pointer;
+  display: table-cell;
   height: rem-calc(60);
-  padding: rem-calc(12 0);
   text-align: center;
   transition: background-color 100ms ease-out 0s;
+  vertical-align: middle;
 
   &:hover,
   &:focus {
@@ -263,6 +273,7 @@
 
   h3 {
     color: white;
+    margin: 0;
   }
 }
 
