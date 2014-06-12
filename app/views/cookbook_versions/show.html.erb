@@ -1,5 +1,5 @@
 <%= provide(:title, "#{@cookbook.name} Cookbook") %>
-<%= provide(:description, @cookbook.description) %>
+<%= provide(:description, "#{@cookbook.name} Cookbook (#{@version.version}) #{@version.supported_platforms.map(&:name).join(', ')}".strip) %>
 
 <div class="cookbook_show" data-equalizer>
   <%= render 'cookbooks/main', cookbook: @cookbook, version: @version, cookbook_versions: @cookbook_versions %>
