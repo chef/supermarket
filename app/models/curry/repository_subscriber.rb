@@ -51,7 +51,11 @@ module Curry
     # @raise [Octokit::Error] if unsubscribing from the hub fails
     #
     def unsubscribe
-      client.unsubscribe(topic, @repository.callback_url)
+      begin
+        client.unsubscribe(topic, @repository.callback_url)
+      rescue Octokit::UnprocessableEntity => e
+        Rails.logger.info e
+      end
 
       @repository.destroy
     end
