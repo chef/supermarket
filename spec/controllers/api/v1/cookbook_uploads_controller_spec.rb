@@ -32,6 +32,11 @@ describe Api::V1::CookbookUploadsController do
           post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
         end.to change(CookbookNotifyWorker.jobs, :size).by(1)
       end
+
+      it 'regenerates the universe cache' do
+        expect(Rails.cache).to receive(:delete).with(Api::V1::UniverseController::CACHE_KEY)
+        post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+      end
     end
 
     context 'when the upload fails' do
@@ -128,6 +133,11 @@ describe Api::V1::CookbookUploadsController do
 
       it 'kicks off a deletion process in a worker' do
         expect(CookbookDeletionWorker).to receive(:perform_async)
+        unshare
+      end
+
+      it 'regenerates the universe cache' do
+        expect(Rails.cache).to receive(:delete).with(Api::V1::UniverseController::CACHE_KEY)
         unshare
       end
     end

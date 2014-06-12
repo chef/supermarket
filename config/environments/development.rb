@@ -26,4 +26,7 @@ Supermarket::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  # Don't cache anything
+  config.cache_store = :null_store
 end

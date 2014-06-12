@@ -32,6 +32,8 @@ gem 'aws-sdk'
 gem 'newrelic_rpm'
 gem 'semverse'
 gem 'sitemap_generator'
+gem 'redis-rails'
+gem 'yajl-ruby'
 
 gem 'sentry-raven', '~> 0.8.0', require: false
 gem 'statsd-ruby', require: 'statsd'
