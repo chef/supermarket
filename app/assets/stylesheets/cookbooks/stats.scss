@@ -21,12 +21,14 @@
   @media #{$mobile-only} {
     .stat {
       font-size: rem-calc(16);
+      padding: rem-calc(0 18);
     }
   }
 
   @media #{$small-only} {
     .stat {
       font-size: rem-calc(20);
+      padding: rem-calc(0 18);
     }
   }
 }
