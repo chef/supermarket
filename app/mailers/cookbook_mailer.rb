@@ -21,7 +21,7 @@ class CookbookMailer < ActionMailer::Base
   # @param name [String] the name of the cookbook
   # @param email [String] the user to notify
   #
-  def cookbook_deleted_email(name, email)
+  def cookbook_deleted_email(_name, email)
     mail(to: email, subject: 'Chef Supermarket - A cookbook has been deleted.')
   end
 end

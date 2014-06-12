@@ -86,19 +86,19 @@ module FeatureHelpers
     invite_contributor('contributor@example.com')
   end
 
-  def accept_invitation_to_become_admin_of(organization)
+  def accept_invitation_to_become_admin_of(_organization)
     receive_and_respond_to_invitation_with('accept')
     connect_github_account
     expect_to_see_success_message
   end
 
-  def accept_invitation_to_become_contributor_of(organization)
+  def accept_invitation_to_become_contributor_of(_organization)
     receive_and_respond_to_invitation_with('accept')
     connect_github_account
     expect_to_see_success_message
   end
 
-  def decline_invitation_to_join(organization)
+  def decline_invitation_to_join(_organization)
     receive_and_respond_to_invitation_with('decline')
     expect_to_see_success_message
   end
@@ -164,7 +164,7 @@ module FeatureHelpers
     visit path
   end
 
-  def remove_contributor_from(organization)
+  def remove_contributor_from(_organization)
     follow_relation 'remove_contributor'
   end
 

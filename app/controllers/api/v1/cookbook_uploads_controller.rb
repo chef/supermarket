@@ -109,7 +109,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
     )
   end
 
-  rescue_from Mixlib::Authentication::AuthenticationError do |e|
+  rescue_from Mixlib::Authentication::AuthenticationError do |_e|
     error(
       error_code: t('api.error_codes.authentication_failed'),
       error_messages: [t('api.error_messages.authentication_request_error')]

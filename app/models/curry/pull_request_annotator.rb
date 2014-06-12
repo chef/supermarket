@@ -120,11 +120,11 @@ class Curry::PullRequestAnnotator
   #
   def failure_message
     parts = []
-    parts << %{
+    parts << %(
       Hi. Your friendly Curry bot here. Just letting you know that there are
       commit authors in this Pull Request who appear to not have signed a Chef
       CLA.
-    }.squish
+    ).squish
 
     unknown_commit_authors_with_email_count = @pull_request.unknown_commit_authors.with_known_email.count
 

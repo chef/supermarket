@@ -69,8 +69,8 @@ module ApiSpecHelpers
 
   def error_404
     {
-       'error_messages' => ['Resource does not exist'],
-       'error_code' => 'NOT_FOUND'
+      'error_messages' => ['Resource does not exist'],
+      'error_code' => 'NOT_FOUND'
     }
   end
 

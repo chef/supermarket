@@ -24,7 +24,7 @@ class OauthTokenRefreshScheduleWorker
   #   only required in the sense that +perform+ must have an arity of 2. It is
   #   otherwise unused.
   #
-  def perform(last_occurrence, current_occurrence)
+  def perform(_last_occurrence, current_occurrence)
     lower_bound = Time.at(current_occurrence.floor)
     upper_bound = Time.at(current_occurrence.ceil + 1) + 25.minutes
 

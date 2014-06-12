@@ -11,7 +11,7 @@ describe 'POST /api/v1/cookbooks' do
     end
 
     it 'returns the URI for the newly created cookbook' do
-      expect(json_body['uri']).to match(%r(api/v1/cookbooks/redis))
+      expect(json_body['uri']).to match(%r{api/v1/cookbooks/redis})
     end
   end
 

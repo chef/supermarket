@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     render 'exceptions/404', options
   end
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     stored_location || root_path
   end
 
