@@ -71,7 +71,7 @@ class CookbookVersion < ActiveRecord::Base
   private
 
   #
-  # Ensure that the version string we've been given conforms to semantic
+  # Ensure that the version string we have been given conforms to semantic
   # versioning at http://semver.org
   #
   def semantic_version

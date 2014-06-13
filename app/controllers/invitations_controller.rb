@@ -20,7 +20,7 @@ class InvitationsController < ApplicationController
       redirect_to current_user, notice: "Successfully joined
         #{@contributor.organization.name}"
     else
-      redirect_to current_user, alert: "You've already signed
+      redirect_to current_user, alert: "You have already signed
         #{posessivize(@invitation.organization.name)} CCLA, please sign in as a
         different user to accept or if this invitation was sent
         in error no action is required."
