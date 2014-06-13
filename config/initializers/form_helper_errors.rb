@@ -3,7 +3,7 @@
 #
 # See http://stackoverflow.com/a/8380400/161787
 
-ActionView::Base.field_error_proc = proc do |html_tag, instance|
+ActionView::Base.field_error_proc = proc do |html_tag, _instance|
   class_attr_index = html_tag.index 'class="'
 
   if class_attr_index

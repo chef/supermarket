@@ -25,7 +25,7 @@ module Authorizer
     # @raise [RuntimeError]
     #   in development and test, when an undefined method is called
     #
-    def method_missing(m, *args, &block)
+    def method_missing(m, *_args, &_block)
       if Rails.env.development? || Rails.env.test?
         raise "#{self.class.name} does not define #{m}!"
       else

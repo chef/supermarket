@@ -11,10 +11,10 @@ end
 require 'rails'
 
 %w(
-    active_record
-    action_controller
-    action_mailer
-    sprockets
+  active_record
+  action_controller
+  action_mailer
+  sprockets
 ).each do |framework|
   begin
     require "#{framework}/railtie"

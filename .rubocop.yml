@@ -1,9 +1,9 @@
-inherit_from: rubocop-todo.yml
+inherit_from: .rubocop_todo.yml
 AllCops:
   Exclude:
-    - db/**
-    - vendor/**
-    - node_modules/**
+    - db/**/*
+    - vendor/**/*
+    - node_modules/**/*
 IfUnlessModifier:
   Enabled: false
 Loop:

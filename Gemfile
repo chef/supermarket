@@ -65,7 +65,7 @@ group :test do
 end
 
 group :development, :test do
-  gem 'rubocop'
+  gem 'rubocop', '>= 0.23.0'
   gem 'mail_view'
   gem 'quiet_assets'
   gem 'rspec-rails'

@@ -1,4 +1,4 @@
-Paperclip.interpolates(:compatible_id) do |attachment, style|
+Paperclip.interpolates(:compatible_id) do |attachment, _style|
   attachment.instance.legacy_id || attachment.instance.id
 end
 
