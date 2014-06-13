@@ -10,19 +10,19 @@
     <% collaborators.each do |collaborator| %>
       <div class="gravatar-container">
         <%= link_to gravatar_for(collaborator, size: 80), collaborator, title: collaborator.name, data: { :dropdown => contributor_options_id(collaborator)} %>
-      </div>
-      <% collaboration_permissions_for(cookbook, collaborator) do |transfer, destroy| %>
-        <% if transfer || destroy %>
-          <ul id="<%= contributor_options_id(collaborator) %>" data-dropdown-content class="f-dropdown">
-            <% if transfer %>
-              <li><%= link_to '<i class="fa fa-random"></i> Transfer Ownership'.html_safe, transfer_cookbook_collaborator_path(cookbook, collaborator), rel: 'transfer-cookbook-ownership', method: :put %></li>
-            <% end %>
-            <% if destroy %>
-              <li><%= link_to "<i class='fa fa-times-circle'></i> #{contributor_removal_text(cookbook)}".html_safe, cookbook_collaborator_path(cookbook, collaborator), rel: 'remove-cookbook-collaborator', remote: true, method: :delete %></li>
-            <% end %>
-          </ul>
+        <% collaboration_permissions_for(cookbook, collaborator) do |transfer, destroy| %>
+          <% if transfer || destroy %>
+            <ul id="<%= contributor_options_id(collaborator) %>" data-dropdown-content class="f-dropdown">
+              <% if transfer %>
+                <li><%= link_to '<i class="fa fa-random"></i> Transfer Ownership'.html_safe, transfer_cookbook_collaborator_path(cookbook, collaborator), rel: 'transfer-cookbook-ownership', method: :put %></li>
+              <% end %>
+              <% if destroy %>
+                <li><%= link_to "<i class='fa fa-times-circle'></i> #{contributor_removal_text(cookbook)}".html_safe, cookbook_collaborator_path(cookbook, collaborator), rel: 'remove-cookbook-collaborator', remote: true, method: :delete %></li>
+              <% end %>
+            </ul>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     <% end %>
   </div>
 
