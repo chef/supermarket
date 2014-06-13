@@ -281,15 +281,14 @@
 }
 
 .collaborators_avatar {
-  @include clearfix;
   margin-bottom: rem-calc(20);
 
-  img {
-    display: block;
+  .gravatar-container {
+    @include inline-block;
   }
 
-  li a:hover {
-    background: lighten($secondary_gray, 30%);
+  .f-dropdown {
+    margin: rem-calc(15 0 0 -5);
   }
 }
 
