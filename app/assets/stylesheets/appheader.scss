@@ -267,7 +267,6 @@
     color: white;
     margin: 0;
     padding: rem-calc(15 0 15 0);
-    vertical-align: middle;
   }
 }
 
@@ -303,16 +302,8 @@
   }
 }
 
-@media #{$medium-only} {
-  .beta_banner_header {
-    h3 {
-      padding-top: rem-calc(6);
-    }
-  }
-}
-
 @media #{$mobile-only} {
-  .beta_info{
+  .beta_info {
     @include grid-column(12, $collapse: true);
     padding: rem-calc(4 32);
   }
