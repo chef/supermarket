@@ -18,6 +18,7 @@
     <% if @cookbooks.any? %>
       <ul class="cookbook_listing">
         <%= render partial: 'cookbooks/cookbook', collection: @cookbooks %>
+        <%= paginate @cookbooks %>
       </ul>
     <% else %>
       <% if @user == current_user %>

@@ -18,6 +18,8 @@ class UsersController < ApplicationController
     else
       @cookbooks = @user.owned_cookbooks
     end
+
+    @cookbooks = @cookbooks.order(:name).page(params[:page]).per(20)
   end
 
   #
