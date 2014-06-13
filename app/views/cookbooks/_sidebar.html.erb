@@ -14,10 +14,10 @@
           <% if transfer || destroy %>
             <ul id="<%= contributor_options_id(collaborator) %>" data-dropdown-content class="f-dropdown">
               <% if transfer %>
-                <li><%= link_to 'Transfer Ownership', transfer_cookbook_collaborator_path(cookbook, collaborator), class: 'fa fa-random', rel: 'transfer-cookbook-ownership', method: :put %></li>
+                <li><%= link_to '<i class="fa fa-random"></i> Transfer Ownership'.html_safe, transfer_cookbook_collaborator_path(cookbook, collaborator), rel: 'transfer-cookbook-ownership', method: :put %></li>
               <% end %>
               <% if destroy %>
-                <li><%= link_to contributor_removal_text(cookbook), cookbook_collaborator_path(cookbook, collaborator), class: 'fa fa-times-circle', rel: 'remove-cookbook-collaborator', remote: true, method: :delete %></li>
+                <li><%= link_to "<i class='fa fa-times-circle'></i> #{contributor_removal_text(cookbook)}".html_safe, cookbook_collaborator_path(cookbook, collaborator), rel: 'remove-cookbook-collaborator', remote: true, method: :delete %></li>
               <% end %>
             </ul>
           <% end %>
