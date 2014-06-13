@@ -12,6 +12,6 @@ class InvitationMailer < ActionMailer::Base
     @invitation = invitation
     @to = invitation.email
 
-    mail(to: @to, subject: "You've been invited to sign #{posessivize(@invitation.organization.name)} CCLA")
+    mail(to: @to, subject: "You have been invited to sign #{posessivize(@invitation.organization.name)} CCLA")
   end
 end
