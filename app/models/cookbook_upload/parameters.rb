@@ -153,7 +153,9 @@ class CookbookUpload
 
         Zlib::GzipReader.open(tarball.path) do |gzip|
           Gem::Package::TarReader.new(gzip) do |tar|
-            entry = tar.find { |e| e.header.name.include?('metadata.json') }
+            entry = tar.find do |e|
+              e.full_name.downcase.match(%r{^(\.\/)?[^\/]+\/metadata.json})
+            end
 
             if entry
               metadata = Metadata.new(JSON.parse(entry.read))
@@ -186,6 +188,7 @@ class CookbookUpload
     #
     def extract_tarball_readme(&block)
       readme = nil
+      effective_cookbook_name = metadata.name.downcase
       errors = ActiveModel::Errors.new([])
 
       begin
@@ -193,7 +196,9 @@ class CookbookUpload
 
         Zlib::GzipReader.open(tarball.path) do |gzip|
           Gem::Package::TarReader.new(gzip) do |tar|
-            entry = tar.find { |e| e.header.name.downcase.include?('readme') }
+            entry = tar.find do |e|
+              e.full_name.downcase.include?("#{effective_cookbook_name}/readme")
+            end
 
             if entry
               extension = entry.header.name.split('.').last.strip

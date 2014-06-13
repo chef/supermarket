@@ -1,4 +1,7 @@
 require 'isolated_spec_helper'
+
+require 'and_feathers'
+require 'and_feathers/gzipped_tarball'
 require 'cookbook_upload/parameters'
 
 describe CookbookUpload::Parameters do
@@ -35,6 +38,26 @@ describe CookbookUpload::Parameters do
       )
 
       expect(params.metadata).to eql(redis_metadata)
+    end
+
+    it 'is extracted from the top-level metadata.json' do
+      tarball = Tempfile.new('multiple-metadata', 'tmp').tap do |file|
+        io = AndFeathers.build('multiple-metadata') do |base|
+          base.file('metadata.json') do
+            JSON.dump(name: 'multiple')
+          end
+          base.file('PaxHeader/metadata.json') do
+            JSON.dump(name: 'PaxHeader-multiple')
+          end
+        end.to_io(AndFeathers::GzippedTarball, :reverse_each)
+
+        file.write(io.read)
+        file.rewind
+      end
+
+      params = params(cookbook: '{}', tarball: tarball)
+
+      expect(params.metadata.name).to eql('multiple')
     end
 
     it 'is blank if the tarball parameter is not a file' do
@@ -76,6 +99,26 @@ describe CookbookUpload::Parameters do
 
       expect(params.readme.contents).to_not be_empty
       expect(params.readme.extension).to eql('md')
+    end
+
+    it 'is extracted from the top-level README' do
+      tarball = Tempfile.new('multiple-readme', 'tmp').tap do |file|
+        io = AndFeathers.build('multiple-readme') do |base|
+          base.file('metadata.json') { JSON.dump(name: 'multiple-readme') }
+          base.file('README') { 'readme' }
+          base.file('PaxHeader/metadata.json') do
+            JSON.dump(name: 'multiple-readme')
+          end
+          base.file('PaxHeader/README') { 'impostor readme' }
+        end.to_io(AndFeathers::GzippedTarball, :reverse_each)
+
+        file.write(io.read)
+        file.rewind
+      end
+
+      params = params(cookbook: '{}', tarball: tarball)
+
+      expect(params.readme.contents).to eql('readme')
     end
 
     it 'is blank if the tarball parameter is not a file' do
