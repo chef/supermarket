@@ -8,7 +8,11 @@ module MarkdownHelper
 
   # Render markdown
   def render_markdown(text)
-    Redcarpet::Markdown.new(TargetBlankRenderer, autolink: true).render(
+    Redcarpet::Markdown.new(
+      TargetBlankRenderer,
+      autolink: true,
+      fenced_code_blocks: true
+    ).render(
       text.to_s
     ).html_safe
   end
