@@ -46,7 +46,7 @@
 
   <% if policy(@user).make_admin? %>
     <%= link_to 'Make Admin', make_admin_user_path(@user), method: 'put', class: 'button medium expand radius', rel: 'make_admin' %>
-  <% elsif policy(current_user).revoke_admin? %>
+  <% elsif policy(@user).revoke_admin? %>
     <%= link_to 'Revoke Admin', revoke_admin_user_path(@user), method: 'delete', class: 'button medium expand radius', rel: 'revoke_admin' %>
   <% end %>
 
