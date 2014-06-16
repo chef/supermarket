@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140616182942) do
+ActiveRecord::Schema.define(version: 20140616193006) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 20140616182942) do
   end
 
   add_index "cookbook_dependencies", ["cookbook_id"], name: "index_cookbook_dependencies_on_cookbook_id", using: :btree
+  add_index "cookbook_dependencies", ["cookbook_version_id", "name", "version_constraint"], name: "cookbook_dependencies_unique_by_name_and_constraint", unique: true, using: :btree
   add_index "cookbook_dependencies", ["cookbook_version_id"], name: "index_cookbook_dependencies_on_cookbook_version_id", using: :btree
 
   create_table "cookbook_followers", force: true do |t|

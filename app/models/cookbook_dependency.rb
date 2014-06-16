@@ -8,7 +8,7 @@ class CookbookDependency < ActiveRecord::Base
 
   # Validations
   # --------------------
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { scope: [:version_constraint, :cookbook_version_id] }
   validates :cookbook_version, presence: true
   validates :version_constraint, chef_version_constraint: true
 end

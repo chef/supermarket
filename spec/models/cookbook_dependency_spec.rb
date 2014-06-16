@@ -27,5 +27,21 @@ describe CookbookDependency do
       expect(platform.errors[:version_constraint]).
         to include('is not a valid Chef version constraint')
     end
+
+    it 'must have a unique name and version constraint per CookbookVersion' do
+      version = create(:cookbook).cookbook_versions.first
+
+      version.cookbook_dependencies.create!(
+        name: 'test',
+        version_constraint: '>= 0.0.0'
+      )
+
+      expect do
+        version.cookbook_dependencies.create!(
+          name: 'test',
+          version_constraint: '>= 0.0.0'
+        )
+      end.to raise_error(ActiveRecord::RecordInvalid)
+    end
   end
 end
