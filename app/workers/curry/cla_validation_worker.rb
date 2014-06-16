@@ -13,7 +13,10 @@ class Curry::ClaValidationWorker
       Curry::PullRequestAnnotator.new(pull_request).annotate
     end
 
-  rescue ActiveRecord::RecordNotFound
-    nil
+  rescue ActiveRecord::RecordNotFound => e
+    Rails.logger.info e
+
+  rescue Octokit::NotFound => e
+    Rails.logger.info e
   end
 end
