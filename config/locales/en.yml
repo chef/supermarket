@@ -4,6 +4,7 @@ en:
     signed_out: "Goodbye"
     must_be_signed_in: "You must be signed in to do that."
     made_admin: "%{name} is now an admin."
+    revoked_admin: "%{name} is no longer an admin."
   profile:
     no_cookbooks:
       owns: "%{username} doesn't own any cookbooks."
