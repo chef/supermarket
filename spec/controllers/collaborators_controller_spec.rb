@@ -2,27 +2,42 @@ require 'spec_helper'
 
 describe CollaboratorsController do
   let!(:fanny) { create(:user) }
-  let!(:hank) { create(:user, first_name: 'hank') }
-  let!(:hanky) { create(:user, first_name: 'hanky') }
+  let!(:hank) { create(:user, first_name: 'Hank') }
+  let!(:hanky) { create(:user, first_name: 'Hanky') }
   let!(:cookbook) { create(:cookbook, owner: fanny) }
+  let!(:existing_collaborator) { create(:user, collaborated_cookbooks: [cookbook]) }
 
   describe 'GET #index' do
     before do
       sign_in fanny
     end
 
-    it 'returns all collaborators by default' do
+    it 'returns no users if elgible for parameter is not present' do
       get :index, cookbook_id: cookbook, format: :json
+      collaborators = assigns[:collaborators]
+      expect(collaborators.size).to eql(0)
+    end
+
+    it 'returns all users eligible for collaboration' do
+      get :index, cookbook_id: cookbook, format: :json, eligible_for: 'collaboration'
       collaborators = assigns[:collaborators]
       expect(collaborators.size).to eql(2)
       expect(collaborators).to include(hank)
       expect(collaborators).to include(hanky)
       expect(collaborators).to_not include(fanny)
+      expect(collaborators).to_not include(existing_collaborator)
       expect(response).to be_success
     end
 
+    it 'returns all users eligible for ownership' do
+      get :index, cookbook_id: cookbook, format: :json, eligible_for: 'ownership'
+      collaborators = assigns[:collaborators]
+      expect(collaborators.size).to eql(3)
+      expect(collaborators).to include(existing_collaborator)
+    end
+
     it 'returns only collaborators matching the query string' do
-      get :index, cookbook_id: cookbook, q: 'hank', format: :json
+      get :index, cookbook_id: cookbook, q: 'hank', format: :json, eligible_for: 'collaboration'
       collaborators = assigns[:collaborators]
       expect(collaborators.count(:all)).to eql(2)
       expect(collaborators.first).to eql(hank)

@@ -31,6 +31,15 @@ class CookbookAuthorizer < Authorizer::Base
     owner_or_collaborator?
   end
 
+  #
+  # Admins can transfer ownership of a cookbook to another user.
+  #
+  # @return [Boolean]
+  #
+  def transfer_ownership?
+    user.is?(:admin)
+  end
+
   private
 
   def owner?

@@ -1,12 +1,11 @@
 $(document).on('opened', '[data-reveal]', function () {
-  $('#cookbook_collaborator_user_id').select2({
+  var settings =  {
     placeholder: 'Search for a collaborator',
     minimumInputLength: 3,
-    multiple: true,
     width: '100%',
     ajax: {
       url: function () {
-        return $('#new_cookbook_collaborator').attr('action');
+        return $(this).data('url');
       },
       dataType: 'json',
       quietMillis: 200,
@@ -23,5 +22,8 @@ $(document).on('opened', '[data-reveal]', function () {
     formatResult: function(collaborator, container) {
       return collaborator.first_name + ' ' + collaborator.last_name + ' (' + collaborator.username + ')';
     }
-  });
+  }
+
+  $('.collaborators').select2(settings);
+  $('.collaborators.multiple').select2($.extend(settings, {multiple: true}));
 });
