@@ -13,7 +13,7 @@
 }
 
 .profile_content {
-  @include grid-column($columns: 9);
+  @include grid-column($columns: 8);
   padding: rem-calc(40);
 
   .heading {
@@ -60,8 +60,20 @@
   }
 }
 
+@media #{$xlarge-up} {
+  .profile_content {
+    @include grid-column($columns: 9);
+  }
+}
+
+@media #{$redonkulous-up} {
+  .profile_content {
+    @include grid-column($columns: 9);
+  }
+}
+
 .profile_sidebar {
-  @include grid-column($columns: 3, $collapse: true);
+  @include grid-column($columns: 4, $collapse: true);
   background: $sidebar_blue;
   padding: rem-calc(40);
   text-align: center;
@@ -137,5 +149,17 @@
 @media #{$small-only} {
   .profile_sidebar {
     @include grid-column($columns: 12);
+  }
+}
+
+@media #{$xlarge-up} {
+  .profile_sidebar {
+    @include grid-column($columns: 3);
+  }
+}
+
+@media #{$redonkulous-up} {
+  .profile_sidebar {
+    @include grid-column($columns: 3);
   }
 }

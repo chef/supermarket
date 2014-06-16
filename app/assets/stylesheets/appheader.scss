@@ -189,7 +189,7 @@
   position: absolute;
   right: rem-calc(-20);
   top: rem-calc(100);
-  width: rem-calc(200);
+  width: rem-calc(220);
   z-index: 101;
 
   &:after {
@@ -249,22 +249,14 @@
 // styles for the beta banner
 
 .beta_banner {
-  background: white;
-}
-
-.beta_banner_header_wrapper {
-  display: table;
+  background-color: $secondary-blue;
   width: 100%;
 }
 
 .beta_banner_header {
-  background-color: $secondary-blue;
   cursor: pointer;
-  display: table-cell;
-  height: rem-calc(60);
   text-align: center;
   transition: background-color 100ms ease-out 0s;
-  vertical-align: middle;
 
   &:hover,
   &:focus {
@@ -274,6 +266,7 @@
   h3 {
     color: white;
     margin: 0;
+    padding: rem-calc(15 0 15 0);
   }
 }
 
@@ -309,16 +302,8 @@
   }
 }
 
-@media #{$medium-only} {
-  .beta_banner_header {
-    h3 {
-      padding-top: rem-calc(6);
-    }
-  }
-}
-
 @media #{$mobile-only} {
-  .beta_info{
+  .beta_info {
     @include grid-column(12, $collapse: true);
     padding: rem-calc(4 32);
   }
