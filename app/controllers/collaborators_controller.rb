@@ -8,13 +8,16 @@ class CollaboratorsController < ApplicationController
   #
   # GET /cookbooks/:cookbook_id/collaborators?q=jimmy
   #
-  # Searches for someone by username, either potential collaborators or owners.
+  # Searches for someone by username, limited to potential collaborators or owners.
   #
   def index
-    if params[:include_collaborators].present?
+    case params[:eligible_for]
+    when 'collaboration'
+      @collaborators = eligible_collaborators.limit(20)
+    when 'ownership'
       @collaborators = eligible_owners.limit(20)
     else
-      @collaborators = eligible_collaborators.limit(20)
+      @collaborators = User.none
     end
 
     if params[:q]

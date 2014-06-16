@@ -43,7 +43,7 @@
         <%= form_for cookbook, url: { action: 'transfer_ownership' }, method: :put do |f| %>
           <div class="row collapse">
             <div class="small-9 columns">
-              <%= f.hidden_field :user_id, class: 'collaborators', 'data-url' => cookbook_collaborators_path(cookbook, include_collaborators: true) %>
+              <%= f.hidden_field :user_id, class: 'collaborators', 'data-url' => cookbook_collaborators_path(cookbook, eligible_for: 'ownership') %>
             </div>
             <div class="small-3 columns">
               <%= f.submit 'Transfer', class: 'button postfix' %>

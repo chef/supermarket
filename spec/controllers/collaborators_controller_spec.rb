@@ -12,8 +12,14 @@ describe CollaboratorsController do
       sign_in fanny
     end
 
-    it 'returns all users except for existing collaborators and owners by default' do
+    it 'returns no users if elgible for parameter is not present' do
       get :index, cookbook_id: cookbook, format: :json
+      collaborators = assigns[:collaborators]
+      expect(collaborators.size).to eql(0)
+    end
+
+    it 'returns all users eligible for collaboration' do
+      get :index, cookbook_id: cookbook, format: :json, eligible_for: 'collaboration'
       collaborators = assigns[:collaborators]
       expect(collaborators.size).to eql(2)
       expect(collaborators).to include(hank)
@@ -23,17 +29,19 @@ describe CollaboratorsController do
       expect(response).to be_success
     end
 
+    it 'returns all users eligible for ownership' do
+      get :index, cookbook_id: cookbook, format: :json, eligible_for: 'ownership'
+      collaborators = assigns[:collaborators]
+      expect(collaborators.size).to eql(3)
+      expect(collaborators).to include(existing_collaborator)
+    end
+
     it 'returns only collaborators matching the query string' do
-      get :index, cookbook_id: cookbook, q: 'hank', format: :json
+      get :index, cookbook_id: cookbook, q: 'hank', format: :json, eligible_for: 'collaboration'
       collaborators = assigns[:collaborators]
       expect(collaborators.count(:all)).to eql(2)
       expect(collaborators.first).to eql(hank)
       expect(response).to be_success
-    end
-
-    it 'returns existing collaborators if include_collaborators param is included' do
-      get :index, cookbook_id: cookbook, format: :json, include_collaborators: true
-      expect(assigns[:collaborators]).to include(existing_collaborator)
     end
   end
 
