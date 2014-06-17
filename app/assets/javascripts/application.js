@@ -39,15 +39,4 @@ $(function(){
   jQuery.extend(window.Foundation.libs.abide.settings.patterns, {
     'password': /[a-zA-Z]+/,
   });
-
-  // Match side menu to page height
-  $(function() {
-    var timer;
-    $(window).resize(function() {
-      clearTimeout(timer);
-      timer = setTimeout(function() {
-        $('.inner-wrap').css("min-height", $(window).height() + "px" );
-      }, 40);
-    }).resize();
-  });
 });
