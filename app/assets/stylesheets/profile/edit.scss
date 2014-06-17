@@ -7,7 +7,7 @@
 }
 
 .manage_profile_content {
-  @include grid-column($columns: 9);
+  @include grid-column($columns: 8);
   padding: rem-calc(40);
 
   .heading {
@@ -37,5 +37,17 @@
 @media #{$small-only} {
   .manage_profile_content {
     @include grid-column($columns: 12);
+  }
+}
+
+@media #{$xlarge-up} {
+  .manage_profile_content {
+    @include grid-column($columns: 9);
+  }
+}
+
+@media #{$redonkulous-up} {
+  .manage_profile_content {
+    @include grid-column($columns: 9);
   }
 }
