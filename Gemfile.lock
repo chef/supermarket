@@ -72,7 +72,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.6)
     analytics-ruby (1.0.0)
-    and_feathers (1.0.0.pre.1)
+    and_feathers (1.0.0.pre.2)
     and_feathers-gzipped_tarball (1.0.0.pre)
     arel (5.0.1.20140414130214)
     ast (2.0.0)
