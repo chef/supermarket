@@ -23,12 +23,6 @@ describe PagesController do
         expect(assigns[:cookbook_count]).to_not be_nil
       end
 
-      it 'sends download count to the view' do
-        get :welcome
-
-        expect(assigns[:download_count]).to_not be_nil
-      end
-
       it 'sends user count to the view' do
         get :welcome
 
