@@ -221,13 +221,13 @@ describe Cookbook do
         :cookbook,
         name: 'redis',
         category: create(:category, name: 'datastore'),
+        owner: create(:user, chef_account: create(:account, provider: 'chef_oauth2', username: 'johndoe')),
         cookbook_versions: [
           create(
             :cookbook_version,
             description: 'Redis: a fast, flexible datastore offering an extremely useful set of data structure primitives'
           )
-        ],
-        cookbook_versions_count: 0
+        ]
       )
     end
 
@@ -236,10 +236,11 @@ describe Cookbook do
         :cookbook,
         name: 'redisio',
         category: create(:category, name: 'datastore'),
+        owner: create(:user, chef_account: create(:account, provider: 'chef_oauth2', username: 'fanny')),
         cookbook_versions: [
           create(
             :cookbook_version,
-            description: 'Installs/Configures redis'
+            description: 'Installs/Configures redis. Created by the formidable johndoe, johndoe is pretty awesome.'
           )
         ],
         cookbook_versions_count: 0
@@ -251,19 +252,24 @@ describe Cookbook do
       expect(Cookbook.search('redis')).to include(redisio)
     end
 
+    it 'returns cookbooks with a similar description' do
+      expect(Cookbook.search('fast')).to include(redis)
+      expect(Cookbook.search('fast')).to_not include(redisio)
+    end
+
     it 'returns cookbooks with a similar maintainer' do
       expect(Cookbook.search('johndoe')).to include(redisio)
       expect(Cookbook.search('janesmith')).to_not include(redisio)
     end
 
-    it 'returns cookbooks with a similar category' do
-      expect(Cookbook.search('datastore')).to include(redisio)
-      expect(Cookbook.search('datastore')).to include(redis)
+    it 'weights cookbook name over cookbook description' do
+      expect(Cookbook.search('redis')[0]).to eql(redis)
+      expect(Cookbook.search('redis')[1]).to eql(redisio)
     end
 
-    it 'returns cookbooks with a similar description' do
-      expect(Cookbook.search('fast')).to include(redis)
-      expect(Cookbook.search('fast')).to_not include(redisio)
+    it 'weights cookbook maintainer over cookbook description' do
+      expect(Cookbook.search('johndoe')[0]).to eql(redis)
+      expect(Cookbook.search('johndoe')[1]).to eql(redisio)
     end
   end
 

@@ -23,7 +23,7 @@ class Cookbook < ActiveRecord::Base
   scope :recently_updated, -> { where('updated_at > ?', Time.now - 2.weeks) }
 
   scope :ordered_by, lambda { |ordering|
-    order({
+    reorder({
       'recently_updated' => 'updated_at DESC',
       'recently_added' => 'id DESC',
       'most_downloaded' => '(web_download_count + api_download_count) DESC',
@@ -43,12 +43,12 @@ class Cookbook < ActiveRecord::Base
       name: 'A'
     },
     associated_against: {
-      category: :name,
-      cookbook_versions: :description,
-      chef_account: :username
+      cookbook_versions: { description: 'C' },
+      chef_account: { username: 'B' }
     },
     using: {
-      tsearch: { prefix: true, dictionary: 'english' }
+      tsearch: { dictionary: 'english' },
+      trigram: { threshold: 0.05 }
     }
   )
 
