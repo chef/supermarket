@@ -27,7 +27,8 @@ class CookbookVersion < ActiveRecord::Base
                      'application/x-compressed', 'application/download',
                      'application/x-gtar-compressed', 'application/zip',
                      'application/x-bzip', 'application/x-zip-compressed',
-                     'application/cap', 'application/x-tar-gz']
+                     'application/cap', 'application/x-tar-gz',
+                     'application/postscript']
     }
   )
 
