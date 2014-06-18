@@ -7,7 +7,7 @@
         <small><%= cookbook.latest_cookbook_version.version %></small>
       </h2>
       <span class="cookbook_dates">
-        <i class="fa fa-clock-o"></i> Updated <%= cookbook.updated_at.to_s(:longish) %><br />
+        <i class="fa fa-clock-o"></i> Updated <%= cookbook.latest_cookbook_version.created_at.to_s(:longish) %><br />
       </span>
       <div class="cookbook_owner">
         <%= link_to cookbook.owner do %>
