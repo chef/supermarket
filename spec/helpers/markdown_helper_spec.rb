@@ -21,4 +21,15 @@ $ bundle exec rake spec:all
         to match(Regexp.quote('<a href="http://getchef.com" target="_blank">http://getchef.com</a>'))
     end
   end
+
+  it 'renders tables' do
+    table = <<-EOH
+| name | version |
+| ---- | ------- |
+| apt  | 0.25    |
+| yum  | 0.75    |
+    EOH
+
+    expect(helper.render_markdown(table)).to match(/<table>/)
+  end
 end
