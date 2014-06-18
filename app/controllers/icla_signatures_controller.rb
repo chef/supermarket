@@ -37,7 +37,6 @@ class IclaSignaturesController < ApplicationController
     @icla_signature.first_name = current_user.first_name
     @icla_signature.last_name = current_user.last_name
     @icla_signature.email = current_user.email
-    @icla_signature.company = current_user.company
   end
 
   #
@@ -101,7 +100,6 @@ class IclaSignaturesController < ApplicationController
       :suffix,
       :email,
       :phone,
-      :company,
       :address_line_1,
       :address_line_2,
       :city,

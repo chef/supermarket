@@ -30,7 +30,6 @@ module FeatureHelpers
     within '.new_icla_signature' do
       fill_in 'icla_signature_first_name', with: 'John'
       fill_in 'icla_signature_last_name', with: 'Doe'
-      fill_in 'icla_signature_company', with: 'Chef'
       fill_in 'icla_signature_email', with: 'john@example.com'
       fill_in 'icla_signature_phone', with: '(555) 555-5555'
       fill_in 'icla_signature_address_line_1', with: '1 Chef Way'

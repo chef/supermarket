@@ -2,4 +2,4 @@
 <%= link_to "View Signed CCLA", ccla_signature_url(@ccla_signature), class: "button signedcla" %>
 <p><%= @ccla_signature.name %> signed a CCLA on behalf of <%= @ccla_signature.company %>.</p>
 
-<%= render 'signature', signature: @ccla_signature %>
+<%= render 'ccla_signature', signature: @ccla_signature %>
