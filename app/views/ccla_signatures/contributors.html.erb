@@ -5,14 +5,14 @@
     <h1>Contributors on Behalf of <%= @ccla_signature.organization.name %></h1>
 
     <!-- request to sign on behalf of organization button could go here -->
+
     <%= link_to "Return to list of CCLA Signing Companies", ccla_signatures_path, class: "button radius tiny" %>
 
-    <!-- if the current user is an organization admin then display this cool stuff -->
-    <% if current_user && @ccla_signature.organization.admins.include?(current_user.contributors.where(organization: @ccla_signature.organization).first) %>
+    <% if current_user && policy(@ccla_signature).manage_contributors? %>
       <%= link_to "Manage Contributors", organization_invitations_url(@ccla_signature.organization), class: "button radius tiny" %>
     <% end %>
 
-    <% if current_user && @ccla_signature.organization.contributors.include?(current_user.contributors.where(organization: @ccla_signature.organization).first) %>
+    <% if current_user && policy(@ccla_signature).show? %>
       <%= link_to "View CCLA Signature", @ccla_signature.organization.latest_ccla_signature, class: "button radius tiny" %>
     <% end %>
 
