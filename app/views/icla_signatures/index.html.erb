@@ -8,7 +8,6 @@
       <thead>
         <tr>
           <th>Contributor</th>
-          <th>Company</th>
           <th>Date</th>
           <th>GitHub</th>
           <th>Jira</th>
@@ -17,8 +16,7 @@
       <tbody>
         <% @icla_signatures.each do |icla_signature| %>
           <tr>
-            <td><%= link_to icla_signature.user.name, icla_signature.user %></td>
-            <td><%= icla_signature.company %></td>
+            <td><%= link_to "#{icla_signature.user.first_name} #{icla_signature.user.last_name}", icla_signature.user %></td>
             <td><%= icla_signature.signed_at.to_date.to_s(:long) %></td>
             <td>
               <% icla_signature.user.accounts.for('github').each do |account| %>
