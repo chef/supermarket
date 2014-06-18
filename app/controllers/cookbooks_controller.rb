@@ -21,10 +21,13 @@ class CookbooksController < ApplicationController
   #
   def index
     @cookbooks = Cookbook.includes(:cookbook_versions)
-    @cookbooks = @cookbooks.ordered_by(params[:order])
 
     if params[:q]
       @cookbooks = @cookbooks.search(params[:q])
+    end
+
+    if params[:order]
+      @cookbooks = @cookbooks.ordered_by(params[:order])
     end
 
     @number_of_cookbooks = @cookbooks.count(:all)
