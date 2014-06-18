@@ -49,6 +49,10 @@ Supermarket::Application.routes.draw do
       post :re_sign, path: 're-sign'
       get :agreement
     end
+
+    member do
+      get :contributors
+    end
   end
 
   namespace :curry do

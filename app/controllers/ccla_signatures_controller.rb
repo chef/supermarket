@@ -1,5 +1,5 @@
 class CclaSignaturesController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :agreement]
+  before_filter :authenticate_user!, except: [:index, :agreement, :contributors]
   before_filter :require_linked_github_account!, only: [:new, :create, :re_sign]
 
   #
@@ -89,6 +89,15 @@ class CclaSignaturesController < ApplicationController
   def agreement
     @cla_agreement = Ccla.latest
     render layout: false
+  end
+
+  #
+  # GET /ccla-signatures/:id/contributors
+  #
+  # Display all contributors on behalf of the CCLA organization
+  #
+  def contributors
+    @ccla_signature = CclaSignature.find(params[:id])
   end
 
   private

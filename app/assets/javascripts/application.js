@@ -21,7 +21,6 @@
 //= require cookbookShow
 //= require cookbookFollowing
 //= require betaBanner
-//= require expandContributors
 //= require flash
 //= require select2.min
 //= require collaborators
