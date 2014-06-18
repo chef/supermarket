@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/gofullstack/chef-legacy.git
-  revision: 5aedd00acc4ed1615c145d4aa411edf14de3db6a
-  ref: v1.2.0
+  revision: 3a27451f99f06b93b178b10e660e0b65f4dbfa99
+  ref: v1.3.0
   specs:
     chef-legacy (1.0.0)
       connection_pool
