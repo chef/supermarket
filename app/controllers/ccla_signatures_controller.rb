@@ -3,9 +3,9 @@ class CclaSignaturesController < ApplicationController
   before_filter :require_linked_github_account!, only: [:new, :create, :re_sign]
 
   #
-  # GET /icla-signatures
+  # GET /ccla-signatures
   #
-  # Displays a list of all users who have a signed ICLA.
+  # Displays a list of all users who have a signed CCLA.
   #
   def index
     @ccla_signatures = CclaSignature.by_organization
