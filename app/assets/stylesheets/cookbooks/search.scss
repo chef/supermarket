@@ -6,13 +6,35 @@
 
 // Styles for the Cookbooks search interface
 
-.cookbook_search {
+.search_bar {
   background-color: $primary_blue;
   border: none;
+  padding: rem-calc(50 55);
+}
+
+@media #{$mobile-only} {
+  .search_bar {
+    padding: rem-calc(20);
+  }
+}
+
+@media #{$small-only} {
+  .search_bar {
+    padding: rem-calc(20);
+  }
+}
+
+@media #{$xlarge-up} {
+  .search_bar {
+    padding: rem-calc(40 0);
+  }
+}
+
+.search_form {
   @include grid-row();
-  padding: rem-calc(48 55 32);
   position: relative;
   z-index: 1;
+  max-width: $max-width;
 
   .fa {
     color: lighten($primary_gray, 5%);
@@ -20,32 +42,10 @@
       family: "fontawesome" !important;
       size: rem-calc(24);
     }
-    left: rem-calc(75);
+    left: rem-calc(25);
     position: absolute;
-    top: rem-calc(67);
+    top: rem-calc(20);
     z-index: 2;
-  }
-}
-
-@media #{$mobile-only} {
-  .cookbook_search {
-    padding: rem-calc(32 20 30);
-
-    .fa {
-      left: rem-calc(41);
-      top: rem-calc(51);
-    }
-  }
-}
-
-@media #{$small-only} {
-  .cookbook_search {
-    padding: rem-calc(32 20 15);
-
-    .fa {
-      left: rem-calc(41);
-      top: rem-calc(51);
-    }
   }
 }
 
@@ -90,6 +90,7 @@ input[type="search"].cookbook_search_textfield {
   font: rem-calc(30) $accent_font;
   height: rem-calc(64);
   line-height: rem-calc(44);
+  margin: 0;
   padding: rem-calc(0 0 0 60);
 
   &:focus {
@@ -200,7 +201,7 @@ input[type="search"].cookbook_search_textfield {
     a.button {
       @include inline-block;
       width: 100%;
-      margin-bottom: rem-calc(5);
+      margin: rem-calc(0 0 5 0);
     }
   }
 }

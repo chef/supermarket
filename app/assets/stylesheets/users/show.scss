@@ -22,27 +22,24 @@
     margin-bottom: rem-calc(30);
 
     h1 {
-      border-bottom: none;
-      float: left;
+      display: inline-block;
       margin: 0;
+      border-bottom: none;
     }
 
-    @media #{$mobile-only} {
+    @media #{$large-down} {
       h1 {
-        float: none;
-        margin-bottom: rem-calc(30);
+        margin-bottom: rem-calc(20);
       }
     }
 
     .tabs {
       border-bottom: none;
-      float: right;
-      margin-bottom: rem-calc(-1) !important;
     }
 
-    @media #{$mobile-only} {
+    @media #{$xlarge-up} {
       .tabs {
-        float: none;
+        float: right;
       }
     }
   }

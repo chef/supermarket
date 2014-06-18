@@ -8,9 +8,13 @@
 // Header wrapping element and row
 .globalheader {
   background-color: white;
-  @include grid-row();
   height: rem-calc(100);
   padding: rem-calc(0 55);
+
+  .inner_wrap {
+    @include grid-row();
+    max-width: $max-width;
+  }
 }
 
 @media #{$mobile-only} {
@@ -45,13 +49,13 @@
 
 @media #{$mobile-only} {
   .logo_and_nav_toggle {
-    @include grid-column(6, $collapse: true);
+    @include grid-column(4, $collapse: true);
   }
 }
 
 @media #{$small-only} {
   .logo_and_nav_toggle {
-    @include grid-column(6, $collapse: true);
+    @include grid-column(4, $collapse: true);
   }
 }
 
@@ -127,13 +131,13 @@
 
 @media #{$mobile-only} {
   .appnav {
-    @include grid-column(6, $collapse: true);
+    @include grid-column(8, $collapse: true);
   }
 }
 
 @media #{$small-only} {
   .appnav {
-    @include grid-column(6, $collapse: true);
+    @include grid-column(8, $collapse: true);
   }
 }
 
@@ -169,13 +173,13 @@
 
 @media #{$mobile-only} {
   .usermenu {
-    margin-right: rem-calc(-30);
+    margin: rem-calc(0 -30 0 0);
   }
 }
 
 @media #{$small-only} {
   .usermenu {
-    margin-right: rem-calc(-30);
+    margin: rem-calc(0 -30 0 0);
   }
 }
 
