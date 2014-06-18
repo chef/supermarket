@@ -59,7 +59,7 @@ class CclaSignaturesController < ApplicationController
 
       Curry::CommitAuthorVerificationWorker.perform_async(current_user.id)
 
-      redirect_to organization_invitations_path(@ccla_signature.organization), notice: 'Successfully signed CCLA.'
+      redirect_to organization_invitations_path(@ccla_signature.organization), notice: 'You successfully signed the CCLA.'
     end
   end
 
@@ -74,7 +74,7 @@ class CclaSignaturesController < ApplicationController
     @ccla_signature = CclaSignature.new(ccla_signature_params)
 
     if @ccla_signature.save
-      redirect_to organization_invitations_path(@ccla_signature.organization), notice: 'Successfully re-signed CCLA.'
+      redirect_to organization_invitations_path(@ccla_signature.organization), notice: 'You successfully re-signed the CCLA.'
     else
       render 'show'
     end
