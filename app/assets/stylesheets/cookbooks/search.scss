@@ -195,4 +195,18 @@ input[type="search"].cookbook_search_textfield {
       }
     }
   }
+
+  @media #{$mobile-only} {
+    a.button {
+      @include inline-block;
+      width: 100%;
+      margin-bottom: rem-calc(5);
+    }
+  }
+}
+
+@media #{$mobile-only} {
+  .order_cookbooks_by {
+    padding: 0;
+  }
 }
