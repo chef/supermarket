@@ -129,6 +129,14 @@
       }
     }
 
+    a {
+      display: block;
+
+      &:hover {
+        background: lighten($primary_gray, 50%);
+      }
+    }
+
     li {
       background: #fff;
       border-right: rem-calc(1) solid lighten($secondary_gray, 30%);

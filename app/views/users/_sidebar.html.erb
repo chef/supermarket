@@ -39,9 +39,21 @@
   </ul>
 
   <ul class="user_stats">
-    <li><h3><%= pluralized_stats(@user.owned_cookbooks.count, 'Cookbook') %></h3></li>
-    <li><h3><%= pluralized_stats(@user.collaborated_cookbooks.count, 'Collaboration') %></h3></li>
-    <li><h3><%= pluralized_stats(@user.followed_cookbooks.count, 'Follow') %></h3></li>
+    <li>
+      <%= link_to user_path(@user) do %>
+        <h3><%= pluralized_stats(@user.owned_cookbooks.count, 'Cookbook') %></h3>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to user_path(@user, tab: 'collaborates') do %>
+        <h3><%= pluralized_stats(@user.collaborated_cookbooks.count, 'Collaboration') %></h3>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to user_path(@user, tab: 'follows') do %>
+        <h3><%= pluralized_stats(@user.followed_cookbooks.count, 'Follow') %></h3>
+      <% end %>
+    </li>
   </ul>
 
   <% if policy(@user).make_admin? %>
