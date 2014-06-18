@@ -55,7 +55,7 @@ class IclaSignaturesController < ApplicationController
 
       Curry::CommitAuthorVerificationWorker.perform_async(current_user.id)
 
-      redirect_to @icla_signature, notice: 'Successfully signed ICLA.'
+      redirect_to icla_signatures_path, notice: 'Successfully signed ICLA.'
     else
       render 'new'
     end
@@ -72,7 +72,7 @@ class IclaSignaturesController < ApplicationController
     @icla_signature = IclaSignature.new(icla_signature_params)
 
     if @icla_signature.save
-      redirect_to @icla_signature, notice: 'Successfully re-signed ICLA.'
+      redirect_to icla_signatures_path, notice: 'Successfully re-signed ICLA.'
     else
       render 'show'
     end
