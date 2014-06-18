@@ -27,7 +27,13 @@ class Api::V1::MetricsController < Api::V1Controller
         },
         cookbook_versions: {
           supermarket: imported(CookbookVersion).where(dependencies_imported: true).count,
-          community_site: Supermarket::Import::CookbookVersion.ids.count
+          community_site: Supermarket::Import::CookbookVersion.ids.count,
+          verification: {
+            pending: imported(CookbookVersion).where(verification_state: 'pending').count,
+            in_progress: imported(CookbookVersion).where(verification_state: 'in_progress').count,
+            succeeded: imported(CookbookVersion).where(verification_state: 'succeeded').count,
+            failed: imported(CookbookVersion).where(verification_state: 'failed').count
+          }
         },
         deprecated_cookbooks: {
           supermarket: imported(Cookbook).where(deprecated: true).count,
