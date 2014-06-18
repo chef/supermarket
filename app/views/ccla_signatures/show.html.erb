@@ -8,6 +8,8 @@
     </dl>
 
     <div class="signature">
+      <p>The CCLA was signed on <%= @ccla_signature.signed_at.to_s(:longish) %>. Update the signature below if any of the organization's information has changed.<p>
+
       <%= form_for(@ccla_signature.dup, url: { action: :re_sign }, data: { abide: true }) do |f| %>
         <%= render 'application/form_errors', record: @ccla_signature %>
         <%= render 'fields', f: f %>
