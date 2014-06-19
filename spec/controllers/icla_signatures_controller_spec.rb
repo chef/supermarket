@@ -80,7 +80,6 @@ describe IclaSignaturesController do
           expect(icla_signature.first_name).to eq(admin.first_name)
           expect(icla_signature.last_name).to eq(admin.last_name)
           expect(icla_signature.email).to eq(admin.email)
-          expect(icla_signature.company).to eq(admin.company)
         end
       end
 
@@ -152,7 +151,7 @@ describe IclaSignaturesController do
 
           it 'redirects to the icla signature' do
             post :create, icla_signature: payload
-            expect(response).to redirect_to(IclaSignature.last)
+            expect(response).to redirect_to(icla_signatures_path)
           end
 
           it "changes the user's commit author records to have signed a CLA" do
@@ -216,7 +215,7 @@ describe IclaSignaturesController do
 
           it 'redirects to the icla signature' do
             post :re_sign, icla_signature: payload
-            expect(response).to redirect_to(IclaSignature.last)
+            expect(response).to redirect_to(icla_signatures_path)
           end
         end
 

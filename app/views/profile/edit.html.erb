@@ -67,26 +67,26 @@
         <table>
           <% if current_user.signed_icla? %>
             <tr>
-              <td>Signed ICLA</td>
-              <td class="text-right"><%= link_to "Edit ICLA", current_user.latest_icla_signature, class: 'button tiny secondary radius' %></td>
+              <td>Signed ICLA on <%= current_user.latest_icla_signature.signed_at.to_s(:longish) %></td>
+              <td class="text-right"><%= link_to "Update ICLA Signature", current_user.latest_icla_signature, class: 'button tiny secondary radius' %></td>
             </tr>
           <% end %>
 
           <% current_user.contributors.each do |contributor| %>
             <% if contributor.admin? %>
               <tr>
-                <td>Admin of <%= contributor.organization.name %>
+                <td>Admin of <%= contributor.organization.name %>, signed CCLA on <%= contributor.organization.latest_ccla_signature.signed_at.to_s(:longish) %></td>
                 <td class="text-right">
                   <ul class="button-group radius right">
-                    <li><%= link_to "Edit CCLA", contributor.organization.latest_ccla_signature, class: 'button tiny secondary' %></li>
+                    <li><%= link_to "Update CCLA Signature", contributor.organization.latest_ccla_signature, class: 'button tiny secondary' %></li>
                     <li><%= link_to "Manage Contributors", organization_invitations_url(contributor.organization), rel: 'invite_contributors', class: 'button tiny secondary' %></li>
                   </ul>
                 </td>
               </tr>
             <% else %>
               <tr>
-                <td>Contributor of <%= contributor.organization.name %></td>
-                <td class="text-right"><%= link_to "View CCLA", contributor.organization.latest_ccla_signature, class: 'button tiny secondary radius' %></td>
+                <td>Contributor on behalf of <%= contributor.organization.name %>, signed CCLA on <%= contributor.organization.latest_ccla_signature.signed_at.to_s(:longish) %></td>
+                <td class="text-right"><%= link_to "View CCLA Signature", contributor.organization.latest_ccla_signature, class: 'button tiny secondary radius' %></td>
               </tr>
             <% end %>
           <% end %>

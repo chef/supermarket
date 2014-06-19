@@ -9,7 +9,6 @@ FactoryGirl.define do
     suffix 'Sr.'
     phone '1234567890'
     email 'jdoe@example.com'
-    company 'Deer Corporation'
 
     address_line_1 '123 Some Street'
     address_line_2 'Apartment #5'

@@ -2,4 +2,4 @@
 <%= link_to "View Signed ICLA", icla_signature_url(@icla_signature), class: "button signedcla" %>
 <p><%= @icla_signature.name %> signed an ICLA.</p>
 
-<%= render 'signature', signature: @icla_signature %>
+<%= render 'icla_signature', signature: @icla_signature %>

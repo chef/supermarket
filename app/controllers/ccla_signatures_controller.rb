@@ -1,11 +1,11 @@
 class CclaSignaturesController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :agreement]
+  before_filter :authenticate_user!, except: [:index, :agreement, :contributors]
   before_filter :require_linked_github_account!, only: [:new, :create, :re_sign]
 
   #
-  # GET /icla-signatures
+  # GET /ccla-signatures
   #
-  # Displays a list of all users who have a signed ICLA.
+  # Displays a list of all users who have a signed CCLA.
   #
   def index
     @ccla_signatures = CclaSignature.by_organization
@@ -59,7 +59,7 @@ class CclaSignaturesController < ApplicationController
 
       Curry::CommitAuthorVerificationWorker.perform_async(current_user.id)
 
-      redirect_to @ccla_signature, notice: 'Successfully signed CCLA.'
+      redirect_to organization_invitations_path(@ccla_signature.organization), notice: 'You successfully signed the CCLA.'
     end
   end
 
@@ -74,7 +74,7 @@ class CclaSignaturesController < ApplicationController
     @ccla_signature = CclaSignature.new(ccla_signature_params)
 
     if @ccla_signature.save
-      redirect_to @ccla_signature, notice: 'Successfully re-signed CCLA.'
+      redirect_to organization_invitations_path(@ccla_signature.organization), notice: 'You successfully re-signed the CCLA.'
     else
       render 'show'
     end
@@ -89,6 +89,15 @@ class CclaSignaturesController < ApplicationController
   def agreement
     @cla_agreement = Ccla.latest
     render layout: false
+  end
+
+  #
+  # GET /ccla-signatures/:id/contributors
+  #
+  # Display all contributors on behalf of the CCLA organization
+  #
+  def contributors
+    @ccla_signature = CclaSignature.find(params[:id])
   end
 
   private

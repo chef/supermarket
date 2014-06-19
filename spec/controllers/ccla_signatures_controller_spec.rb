@@ -32,6 +32,26 @@ describe CclaSignaturesController do
         expect(response).to render_template('agreement')
       end
     end
+
+    describe 'GET #contributors' do
+      let(:ccla_signature) { create(:ccla_signature) }
+
+      before do
+        get :contributors, id: ccla_signature.id
+      end
+
+      it 'should assign @ccla_signature' do
+        expect(assigns(:ccla_signature)).to_not be_nil
+      end
+
+      it 'should work' do
+        expect(response).to be_success
+      end
+
+      it 'should render the contributors template' do
+        expect(response).to render_template('contributors')
+      end
+    end
   end
 
   context 'routes requiring authentication' do

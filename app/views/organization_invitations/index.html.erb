@@ -4,10 +4,7 @@
   <div class="cla">
     <h1>Corporate Contributor License Agreement for <%= @organization.name %> <small>(CCLA)</small></h1>
 
-    <dl class="tabs">
-      <dd><%= link_to 'Signature', @organization.latest_ccla_signature  %></dd>
-      <dd class="active"><%= link_to 'Contributors', organization_invitations_path(@organization) %></dd>
-    </dl>
+    <%= render "ccla_signatures/organization_tabs", ccla_signature: @organization.latest_ccla_signature %>
 
     <div class="contributors">
       <%= form_for([@organization, @invitation], data: { abide: true }) do |f| %>

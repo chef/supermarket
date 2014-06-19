@@ -1,0 +1,40 @@
+<%= provide(:title, "Contributors on Behalf of #{@ccla_signature.organization.name}") %>
+
+<div class="page">
+  <div class="contributors">
+    <h1>Contributors on Behalf of <%= @ccla_signature.organization.name %></h1>
+
+    <% if current_user &&  policy(@ccla_signature).show? %>
+      <%= render "organization_tabs", ccla_signature: @ccla_signature %>
+    <% else %>
+      <%= link_to "Return to list of CCLA Signing Companies", ccla_signatures_path, class: "button radius tiny" %>
+    <% end %>
+
+
+    <table>
+      <thead>
+        <tr class="text-left contributor-<%= @ccla_signature.id %>">
+          <th>Name</th>
+          <th>Date</th>
+          <th>GitHub</th>
+          <th>Jira</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @ccla_signature.organization.contributors.each do |contributor| %>
+          <tr class="contributor-<%= @ccla_signature.id %>">
+            <td><%= link_to contributor.user.name, contributor.user %> <%= "[admin]" if contributor.admin? %></td>
+            <td><%= contributor.created_at.to_date.to_s(:long) %></td>
+            <td>
+              <% contributor.user.accounts.for('github').each do |account| %>
+                <%= link_to account.username, "https://www.github.com/#{account.username}", target: :blank %>
+              <% end %>
+            </td>
+            <td><%= contributor.user.jira_username %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
