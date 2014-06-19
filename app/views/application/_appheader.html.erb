@@ -15,12 +15,6 @@
         <li><%= link_to 'View Profile', current_user, class: 'fa fa-user', rel: 'view_profile' %></li>
         <li><%= link_to 'Manage Profile', edit_profile_path, class: 'fa fa-cog', rel: 'manage_profile' %></li>
 
-        <% unless current_user.signed_icla? %>
-          <li><%= link_to 'Sign ICLA', new_icla_signature_path, class: 'fa fa-file-text', rel: 'sign_icla' %></li>
-        <% end %>
-
-        <li><%= link_to 'Sign CCLA', new_ccla_signature_path, class: 'fa fa-file-text', rel: 'sign_ccla' %></li>
-
         <% if current_user && current_user.is?(:admin) %>
           <li>
             <%= link_to "Watched Repositories", curry_repositories_url, :class => 'fa fa-github', rel: 'manage_repositories' %>
