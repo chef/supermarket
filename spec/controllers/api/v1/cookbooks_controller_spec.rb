@@ -147,15 +147,15 @@ describe Api::V1::CookbooksController do
       it 'sends the cookbook_versions_urls to the view' do
         get :show, cookbook: 'sashimi', format: :json
 
-        expect(assigns[:cookbook_versions_urls]).to include('http://test.host/api/v1/cookbooks/sashimi/versions/2_1_0')
-        expect(assigns[:cookbook_versions_urls]).to include('http://test.host/api/v1/cookbooks/sashimi/versions/1_1_0')
+        expect(assigns[:cookbook_versions_urls]).to include('http://test.host/api/v1/cookbooks/sashimi/versions/2.1.0')
+        expect(assigns[:cookbook_versions_urls]).to include('http://test.host/api/v1/cookbooks/sashimi/versions/1.1.0')
       end
 
       it 'sends the latest_cookbook_version_url to the view' do
         get :show, cookbook: 'sashimi', format: :json
 
         expect(assigns[:latest_cookbook_version_url]).
-          to eql('http://test.host/api/v1/cookbooks/sashimi/versions/2_1_0')
+          to eql('http://test.host/api/v1/cookbooks/sashimi/versions/2.1.0')
       end
     end
 

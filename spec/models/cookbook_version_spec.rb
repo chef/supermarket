@@ -42,14 +42,6 @@ describe CookbookVersion do
     it { should have_attached_file(:tarball) }
   end
 
-  context '#to_param' do
-    it 'returns the version in underscore format' do
-      cookbook_version = CookbookVersion.new(version: '1.1.0')
-
-      expect(cookbook_version.to_param).to eql('1_1_0')
-    end
-  end
-
   context 'the tarball URL' do
     it 'contains the community site ID if it is present' do
       cookbook_version = create(:cookbook_version, legacy_id: 101)

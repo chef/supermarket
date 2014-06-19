@@ -165,6 +165,10 @@ describe Cookbook do
       expect(kiwi.get_version!('0_1_0')).to eql(kiwi_0_1_0)
     end
 
+    it 'returns the cookbook version specified even if dots are used' do
+      expect(kiwi.get_version!('0.1.0')).to eql(kiwi_0_1_0)
+    end
+
     it "returns the highest version when the version is 'latest'" do
       expect(kiwi.get_version!('latest')).to eql(kiwi_0_2_0)
     end

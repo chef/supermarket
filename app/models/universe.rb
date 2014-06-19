@@ -6,7 +6,7 @@ module Universe
   #
   # @return [Hash] the universe hash
   #
-  def generate(opts={})
+  def generate(opts = {})
     host = Supermarket::Config.host
     protocol = opts.fetch(:ssl, false) ? 'https' : 'http'
 
@@ -77,6 +77,6 @@ module Universe
   # @return [String] Cookbook download URL
   #
   def download_path(cookbook, version, host, protocol)
-    "#{protocol}://#{host}/api/v1/cookbooks/#{cookbook}/versions/#{version.gsub('.', '_')}/download"
+    "#{protocol}://#{host}/api/v1/cookbooks/#{cookbook}/versions/#{version}/download"
   end
 end
