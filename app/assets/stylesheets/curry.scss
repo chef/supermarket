@@ -1,0 +1,56 @@
+@import "foundation/components/grid";
+@import "common";
+
+.curry {
+  @include grid-row();
+
+  .add {
+    @include grid-column($columns: 4);
+    background: $sidebar_blue;
+    padding: rem-calc(55);
+
+    p {
+      color: $secondary_gray;
+      font-size: rem-calc(14);
+    }
+
+    form {
+      margin-bottom: rem-calc(40);
+    }
+  }
+
+  @media #{$mobile-only} {
+    .add {
+      @include grid-column($columns: 12);
+    }
+  }
+
+  @media #{$small-only} {
+    .add {
+      @include grid-column($columns: 12);
+    }
+  }
+
+  .watched {
+    @include grid-column($columns: 8);
+    background: #fff;
+    padding: rem-calc(55);
+
+    table {
+      text-align: left;
+      width: 100%;
+    }
+  }
+
+  @media #{$mobile-only} {
+    .watched {
+      @include grid-column($columns: 12);
+    }
+  }
+
+  @media #{$small-only} {
+    .watched {
+      @include grid-column($columns: 12);
+    }
+  }
+}
