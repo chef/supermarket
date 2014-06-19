@@ -18,7 +18,7 @@
         </section>
       <% end %>
     <% else %>
-      <p>The CCLA was signed on <%= @ccla_signature.signed_at.to_s(:longish) %>. It can only be updated by adins of the <%= @ccla_signature.company %> company.</p>
+      <p>The CCLA was signed on <%= @ccla_signature.signed_at.to_s(:longish) %>. It can only be updated by admins of the <%= @ccla_signature.company %> organization.</p>
 
         <%= form_for(@ccla_signature.dup) do |f| %>
           <%= render 'read_only_fields', f: f %>
