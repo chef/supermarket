@@ -1,0 +1,11 @@
+<dl class="tabs">
+  <% if policy(ccla_signature).show? %>
+    <dd class="<%= "active" if current_page?(ccla_signature_path(ccla_signature)) %>"><%= link_to 'View Signature', ccla_signature %></dd>
+  <% end %>
+
+  <dd class="<%= "active" if current_page?(contributors_ccla_signature_path(ccla_signature)) %>"><%= link_to "View Contributors", contributors_ccla_signature_path(ccla_signature) %></dd>
+
+  <% if policy(ccla_signature).manage_contributors? %>
+    <dd class="<%= "active" if current_page?(organization_invitations_path(ccla_signature.organization)) %>"><%= link_to 'Manage Contributors', organization_invitations_path(ccla_signature.organization) %></dd>
+  <% end %>
+</dl>
