@@ -4,7 +4,12 @@
   <h1>Corporate Contributor License Agreement for <%= @ccla_signature.organization.name %> <small>(CCLA)</small></h1>
     <dl class="tabs">
       <dd class="active"><%= link_to 'Signature', @ccla_signature %></dd>
-      <dd><%= link_to 'Contributors', organization_invitations_path(@ccla_signature.organization) %></dd>
+
+      <dd><%= link_to "View Contributors", contributors_ccla_signature_path(@ccla_signature) %></dd>
+
+      <% if policy(@ccla_signature).manage_contributors? %>
+        <dd><%= link_to 'Manage Contributors', organization_invitations_path(@ccla_signature.organization) %></dd>
+      <% end %>
     </dl>
 
     <div class="signature">
