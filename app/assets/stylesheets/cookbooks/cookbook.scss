@@ -307,7 +307,13 @@
     .fa {
       @include inline-block;
       font-size: rem-calc(16);
-      margin: rem-calc(-2 8 0 16);
+      margin: rem-calc(-2 8 0 10);
+    }
+
+    @media #{$mobile-only} {
+      .fa {
+        margin: rem-calc(-2 4 0 0);
+      }
     }
 
     h5 {
@@ -319,6 +325,18 @@
       text-transform: none;
       display: inline;
       margin: 0;
+    }
+  }
+
+  @media #{$mobile-only} {
+    li {
+      margin: rem-calc(0 10 0 0);
+    }
+  }
+
+  @media #{$mobile-only} {
+    .follow {
+      padding: rem-calc(8);
     }
   }
 }
