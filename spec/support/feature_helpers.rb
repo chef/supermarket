@@ -125,9 +125,9 @@ module FeatureHelpers
   def invite_admin(email)
     manage_contributors
 
-    within '.new_invitation' do
-      fill_in 'invitation_email', with: email
-      check 'invitation_admin'
+    within '.new_invitations' do
+      fill_in 'invitations_emails', with: email
+      check 'invitations_admin'
 
       Sidekiq::Testing.inline! do
         submit_form
@@ -140,8 +140,8 @@ module FeatureHelpers
   def invite_contributor(email)
     manage_contributors
 
-    within '.new_invitation' do
-      fill_in 'invitation_email', with: email
+    within '.new_invitations' do
+      fill_in 'invitations_emails', with: email
 
       Sidekiq::Testing.inline! do
         submit_form

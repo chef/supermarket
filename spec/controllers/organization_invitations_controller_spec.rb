@@ -60,27 +60,28 @@ describe OrganizationInvitationsController do
 
       it 'creates the invitation' do
         expect do
-          post :create, organization_id: organization.id,
-                        invitation: { email: 'chef@example.com' }
+          post :create,
+               organization_id: organization.id,
+               invitations: { emails: 'chef@example.com' }
         end.to change(organization.invitations, :count).by(1)
+      end
+
+      it 'creates multiple invitations' do
+        expect do
+          post :create,
+               organization_id: organization.id,
+               invitations: { emails: 'chef@example.com, chef_2@example.com, chef_3@example.com' }
+        end.to change(organization.invitations, :count).by(3)
       end
 
       it 'sends the invitation' do
         Sidekiq::Testing.inline! do
           expect do
-            post :create, organization_id: organization.id,
-                          invitation: { email: 'chef@example.com' }
+            post :create,
+                 organization_id: organization.id,
+                 invitations: { emails: 'chef@example.com' }
           end.to change(ActionMailer::Base.deliveries, :size).by(1)
         end
-      end
-
-      it 'displays an alert if the invitation did not save' do
-        post :create,
-             organization_id: organization.id,
-             invitation: { email: '' }
-
-        expect(flash.now[:alert]).
-          to eql(I18n.t('organization_invitations.invite.failure'))
       end
     end
 
@@ -89,13 +90,14 @@ describe OrganizationInvitationsController do
         expect do
           post :create,
                organization_id: organization.id,
-               invitation: { email: 'chef@example.com' }
+               invitations: { emails: 'chef@example.com' }
         end.to_not change(Invitation, :count)
       end
 
       it 'responds with 404' do
-        post :create, organization_id: organization.id,
-                      invitation: { email: 'chef@example.com' }
+        post :create,
+             organization_id: organization.id,
+             invitations: { emails: 'chef@example.com' }
 
         should respond_with(404)
       end
@@ -112,7 +114,7 @@ describe OrganizationInvitationsController do
         patch :update,
               organization_id: organization.id,
               id: invitation.token,
-              invitation: { admin: false }
+              invitations: { admin: false }
 
         invitation.reload
 
@@ -125,7 +127,7 @@ describe OrganizationInvitationsController do
         patch :update,
               organization_id: organization.id,
               id: invitation.token,
-              invitation: { admin: false }
+              invitations: { admin: false }
 
         invitation.reload
 
@@ -136,7 +138,7 @@ describe OrganizationInvitationsController do
         patch :update,
               organization_id: organization.id,
               id: invitation.token,
-              invitation: { admin: false }
+              invitations: { admin: false }
 
         should respond_with(404)
       end

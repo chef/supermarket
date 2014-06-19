@@ -11,9 +11,6 @@ class OrganizationInvitationsController < ApplicationController
     @pending_invitations = @organization.invitations.pending
     @declined_invitations = @organization.invitations.declined
     @contributors = @organization.contributors
-    @invitation = Invitation.new(organization: @organization)
-
-    authorize! @invitation
   end
 
   #
@@ -23,19 +20,19 @@ class OrganizationInvitationsController < ApplicationController
   # organization.
   #
   def create
-    @invitation = @organization.invitations.new(invitation_params)
+    invitation_params[:emails].split(',').each do |email|
+      @invitation = @organization.invitations.new(
+        email: email,
+        admin: invitation_params[:admin]
+      )
 
-    authorize! @invitation
+      authorize! @invitation
 
-    if @invitation.save
+      @invitation.save
       InvitationMailer.delay.invitation_email(@invitation)
-
-      redirect_to organization_invitations_path(@organization),
-                  notice: "Invited #{@invitation.email} to #{@organization.name}"
-    else
-      redirect_to organization_invitations_path(@organization),
-                  alert: t('organization_invitations.invite.failure')
     end
+
+    redirect_to organization_invitations_path(@organization), notice: 'Successfully sent invitations.'
   end
 
   #
@@ -88,7 +85,7 @@ class OrganizationInvitationsController < ApplicationController
   private
 
   def invitation_params
-    params.require(:invitation).permit(:email, :admin)
+    params.require(:invitations).permit(:emails, :admin)
   end
 
   def find_organization

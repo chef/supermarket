@@ -7,26 +7,21 @@
     <%= render "ccla_signatures/organization_tabs", ccla_signature: @organization.latest_ccla_signature %>
 
     <div class="contributors">
-      <%= form_for([@organization, @invitation], data: { abide: true }) do |f| %>
-        <%= render 'application/form_errors', record: @invitation %>
-        <div class="row collapse">
-          <div class="small-10 columns">
-            <%= f.email_field :email, placeholder: 'Contributor Email', title: 'Contributor Email', autofocus: true, require: true, pattern: 'email' %>
-            <small class="error">A valid email is required.</small>
-          </div>
-          <div class="small-2 columns">
-            <%= f.submit 'Send Invite', class: 'button primary radius postfix' %>
-          </div>
+      <%= form_tag organization_invitations_path(@organization), data: { abide: true }, class: 'new_invitations' do %>
+        <div>
+          <%= text_area_tag 'invitations[emails]', '', required: true, placeholder: 'Contributor Emails (Comma Separated)' %>
+          <small class="error">You must have at least one email</small>
         </div>
-        <div class="row collapse">
-          <div class="small-12 columns">
-            <%= f.check_box :admin  %>
-            <label for="invitation_admin">Make this user an admin of the <%= @organization.name %> CCLA.</label>
-          </div>
-        </div>
+
+        <%= label_tag do %>
+          <%= check_box_tag 'invitations[admin]' %>
+          Admin
+        <% end %>
+        <%= submit_tag 'Send Invitation (s)', class: 'button radius' %>
       <% end %>
-      <br>
+
       <h2>Contributors</h2>
+
       <table width="100%">
         <thead>
           <tr>
