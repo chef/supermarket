@@ -5,3 +5,23 @@
   top: 0;
   margin-bottom: 0;
 }
+
+.alert-box.success {
+  border-color: #43AC6A;
+}
+
+.alert-box.alert {
+  border-color: #F04124;
+}
+
+.alert-box.warning {
+  border-color: #F08A24;
+}
+
+.alert-box.secondary {
+  border-color: #E7E7E7;
+}
+
+.alert-box.info {
+  border-color: #A0D3E8;
+}
