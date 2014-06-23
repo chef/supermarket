@@ -98,15 +98,20 @@
         </table>
       </div>
       <div class="content" id="collaborations">
-        <p>Manage your collaborations.</p>
-        <table>
-        <% current_user.collaborated_cookbooks.each do |cookbook| %>
-          <tr>
-            <td><%= link_to cookbook.name, cookbook_path(cookbook) %></td>
-            <td class="text-right"><%= link_to 'Remove Myself as a Contributor', cookbook_collaborator_path(cookbook, current_user), remote: true, method: :delete, class: 'button tiny alert radius' %></td>
-          </tr>
+        <p>The cookbooks you are a collaborator on.</p>
+
+        <% if current_user.collaborated_cookbooks.empty? %>
+          <p>You are currently not a collaborator on any cookbooks. Once you are, they will be listed here.</p>
+        <% else %>
+          <table>
+            <% current_user.collaborated_cookbooks.each do |cookbook| %>
+              <tr>
+                <td><%= link_to cookbook.name, cookbook_path(cookbook) %></td>
+                <td class="text-right"><%= link_to 'Remove Myself as a Contributor', cookbook_collaborator_path(cookbook, current_user), remote: true, method: :delete, class: 'button tiny alert radius' %></td>
+              </tr>
+            <% end %>
+          </table>
         <% end %>
-      </table>
       </div>
     </div>
   </div>
