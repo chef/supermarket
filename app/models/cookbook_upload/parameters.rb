@@ -140,7 +140,7 @@ class CookbookUpload
       errors = ActiveModel::Errors.new([])
 
       begin
-        path = archive.find(%r{^(\.\/)?[^\/]+\/metadata.json}).first
+        path = archive.find(%r{\A(\.\/)?[^\/]+\/metadata\.json\Z}).first
 
         if path
           metadata = Metadata.new(JSON.parse(archive.read(path)))
