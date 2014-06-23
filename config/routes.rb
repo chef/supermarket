@@ -100,6 +100,7 @@ Supermarket::Application.routes.draw do
   end
 
   get 'become-a-contributor' => 'contributors#become_a_contributor'
+  get 'contributors' => 'contributors#index'
 
   # when signing in or up with chef account
   match 'auth/chef_oauth2/callback' => 'sessions#create', as: :auth_session_callback, via: [:get, :post]

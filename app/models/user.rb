@@ -218,6 +218,19 @@ class User < ActiveRecord::Base
   end
 
   #
+  # Returns a unique +ActiveRecord::Relation+ of all users who have signed
+  # either the ICLA or CCLA.
+  #
+  # @return [ActiveRecord::Relation] the users who have signed the cla
+  #
+  def self.all_cla_signers
+    (
+      User.joins(:icla_signatures).where('icla_signatures.id is not null').all +
+      User.joins(:ccla_signatures).where('ccla_signatures.id is not null').all
+    ).uniq
+  end
+
+  #
   # Find a user from a GitHub login. If there is no user with that GitHub login,
   # return a new user.
   #

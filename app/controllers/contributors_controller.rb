@@ -35,6 +35,15 @@ class ContributorsController < ApplicationController
   def become_a_contributor
   end
 
+  #
+  # GET /contributors
+  #
+  # Display all of the users who have singed an ICLA or CCLA.
+  #
+  def index
+    @all_signers = User.all_cla_signers
+  end
+
   private
 
   def find_contributor
