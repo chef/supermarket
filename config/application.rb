@@ -82,7 +82,8 @@ module Supermarket
     # Set default URL for ActionMailer
     config.action_mailer.default_url_options = {
       host: Supermarket::Config.host,
-      port: Supermarket::Config.port
+      port: Supermarket::Config.port,
+      protocol: ENV['PROTOCOL']
     }
 
     config.action_mailer.asset_host = Supermarket::Config.port ? "#{Supermarket::Config.host}:#{Supermarket::Config.port}" : Supermarket::Config.host
