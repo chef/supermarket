@@ -70,11 +70,11 @@
               <td class="text-right"><%= link_to "Update ICLA Signature", current_user.latest_icla_signature, class: 'button tiny secondary radius' %></td>
             </tr>
           <% else %>
-            <p>You have not signed the Individual Contributor License Agreement (ICLA) yet. If you are interested in contributing to Chef's open source projects as an individual, <%= link_to "you must sign the ICLA", new_icla_signature_path %>.
+            <p>You have not signed the Individual Contributor License Agreement (ICLA) yet. If you are interested in contributing to Chef's open source projects as an individual, <%= link_to "you must sign the ICLA", new_icla_signature_path %>.</p>
           <% end %>
 
           <% if current_user.contributors.empty? %>
-            <p>You have not signed the Corporate Contributor License Agreement (CCLA) on behalf of a company yet. If you want to contribute to Chef's open source projects on behalf of your company, <%= link_to "ask an admin of your company to invite you", ccla_signatures_path %>. If your company has not yet signed the CCLA, <%= link_to "you can create a new CCLA signature", new_ccla_signature_path %>.
+            <p>You have not signed the Corporate Contributor License Agreement (CCLA) on behalf of a company yet. If you want to contribute to Chef's open source projects on behalf of your company, <%= link_to "ask an admin of your company to invite you", ccla_signatures_path %>. If your company has not yet signed the CCLA, <%= link_to "you can create a new CCLA signature", new_ccla_signature_path %>.</p>
           <% end %>
 
           <% current_user.contributors.each do |contributor| %>
