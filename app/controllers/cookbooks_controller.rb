@@ -30,6 +30,10 @@ class CookbooksController < ApplicationController
       @cookbooks = @cookbooks.ordered_by(params[:order])
     end
 
+    if params[:order].blank? && params[:q].blank?
+      @cookbooks = @cookbooks.order(:name)
+    end
+
     @number_of_cookbooks = @cookbooks.count(:all)
     @cookbooks = @cookbooks.page(params[:page]).per(20)
 
