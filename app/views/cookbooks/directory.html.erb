@@ -7,8 +7,8 @@
     <span class="stat"><span class="number"><%= number_with_delimiter @user_count, delimiter: ',' %></span> Chefs</span>
   </section>
 
-  <div class="cookbooks_columns">
-    <div class="cookbooks_column first recently-updated">
+  <ul class="cookbooks_columns">
+    <li class="cookbooks_column first recently-updated">
       <div class="cookbooks_column_content">
         <h2 class="title">Recently Updated</h2>
         <ul class="cookbook_listing">
@@ -18,9 +18,9 @@
         </ul>
         <%= link_to 'View All', cookbooks_path(order: 'recently_updated'), class: 'button radius expand' %>
       </div>
-    </div>
+    </li>
 
-    <div class="cookbooks_column most-downloaded">
+    <li class="cookbooks_column most-downloaded">
       <div class="cookbooks_column_content">
         <h2 class="title">Most Downloaded</h2>
         <ul class="cookbook_listing">
@@ -30,9 +30,9 @@
         </ul>
         <%= link_to 'View All', cookbooks_path(order: 'most_downloaded'), class: 'button radius expand' %>
       </div>
-    </div>
+    </li>
 
-    <div class="cookbooks_column last most-followed">
+    <li class="cookbooks_column last most-followed">
       <div class="cookbooks_column_content">
         <h2 class="title">Most Followed</h2>
         <ul class="cookbook_listing">
@@ -42,8 +42,8 @@
         </ul>
         <%= link_to 'View All', cookbooks_path(order: 'most_followed'), class: 'button radius expand' %>
       </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 
   <h2 class="text-center">Learn About Cookbooks</h2>
 

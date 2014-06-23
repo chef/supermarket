@@ -1,16 +1,27 @@
 @import "common";
 @import "foundation/components/grid";
+@import "foundation/components/block-grid";
 
 // Styles for the cookbooks directory
 
 .cookbooks_columns {
-  @include grid-row();
+  @include block-grid(3);
   margin-bottom: rem-calc(36);
 }
 
-.cookbooks_column {
-  @include grid-column($columns: 4);
+@media #{$mobile-only} {
+  .cookbooks_columns {
+    @include block-grid(1);
+  }
+}
 
+@media #{$small-only} {
+  .cookbooks_columns {
+    @include block-grid(1);
+  }
+}
+
+.cookbooks_column {
   .cookbooks_column_content {
     background-color: white;
     border: 1px solid $cookbook_border;
@@ -33,7 +44,6 @@
 
 @media #{$mobile-only} {
   .cookbooks_column {
-    @include grid-column($columns: 12);
     margin-bottom: rem-calc(20);
 
     &:last-child {
@@ -44,7 +54,6 @@
 
 @media #{$small-only} {
   .cookbooks_column {
-    @include grid-column($columns: 12);
     margin-bottom: rem-calc(20);
 
     &:last-child {
@@ -57,7 +66,6 @@
   @include grid-row();
   background: white;
   border: 1px solid $cookbook_border;
-  margin: rem-calc(0 15 0 15);
   padding: rem-calc(20);
   width: auto;
 }

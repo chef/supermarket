@@ -38,17 +38,20 @@
         </aside>
 
         <header class="globalheader">
-          <div class="logo_and_nav_toggle">
-            <a class="left-off-canvas-toggle fa fa-bars"><span class="hide">Menu</span></a>
-            <h2 class="logochef"><%= link_to root_path do %><span>Chef Supermarket</span><% end %></h2>
+          <a class="left-off-canvas-toggle fa fa-bars"><span class="hide">Menu</span></a>
+          <div class="inner_wrap">
+            <div class="logo_and_nav_toggle">
+              <h2 class="logochef"><%= link_to root_path do %><span>Chef Supermarket</span><% end %></h2>
+            </div>
+            <%= render partial: 'appheader' %>
           </div>
-          <%= render partial: 'appheader' %>
         </header>
-        <div class="container">
-          <%= render partial: 'beta_banner' %>
-          <%= render partial: 'flash' %>
-          <%= render partial: 'cookbooks/search' %>
 
+        <%= render partial: 'beta_banner' %>
+        <%= render partial: 'flash' %>
+        <%= render partial: 'cookbooks/search' %>
+
+        <div class="container">
           <%= yield %>
         </div>
         <footer class="footer">

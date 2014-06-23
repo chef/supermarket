@@ -21,10 +21,6 @@ html, body { height: 100%; min-height: 100%; }
   html, body, h1, h2, h3, h4, h5, h6 { font-size: 110%; }
 }
 
-@media #{$redonkulous-up} {
-  html, body, h1, h2, h3, h4, h5, h6 { font-size: 130%; }
-}
-
 body {
   background-color: $clouds;
   margin: 0;
@@ -50,11 +46,12 @@ fieldset {
 .container {
   @include grid-row();
   min-height: 100%;
+  max-width: $max-width;
 }
 
 .page {
-  background-color: white;
   @include grid-column(12);
+  background-color: white;
   padding: rem-calc(40 55 55);
 
   &.nobg {
@@ -71,6 +68,12 @@ fieldset {
 @media #{$small-only} {
   .page {
     padding: rem-calc(20);
+  }
+}
+
+@media #{$xlarge-up} {
+  .nobg.page {
+    padding: rem-calc(40 0);
   }
 }
 

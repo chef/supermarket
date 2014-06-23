@@ -10,7 +10,7 @@ describe 'cookbook feed' do
       click_link 'Cookbooks'
     end
 
-    within '.cookbook_search' do
+    within '.search_form' do
       fill_in 'q', with: 'Amazing'
       submit_form
     end
