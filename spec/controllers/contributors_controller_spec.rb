@@ -77,4 +77,12 @@ describe ContributorsController do
       end
     end
   end
+
+  describe 'GET #become_a_contributor' do
+    it 'responds with a 200' do
+      get :become_a_contributor
+
+      expect(response.status.to_i).to eql(200)
+    end
+  end
 end

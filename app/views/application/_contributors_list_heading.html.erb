@@ -6,13 +6,7 @@
   </div>
 
   <div class="right">
-    <a href="#" data-dropdown="drop" class="button dropdown small radius">Become a Contributor</a>
-    <ul id="drop" data-dropdown-content class="f-dropdown">
-      <% if !current_user || !current_user.signed_icla? %>
-        <li><%= link_to 'As an Individual', new_icla_signature_path %></li>
-      <% end %>
-      <li><%= link_to 'As a Company', new_ccla_signature_path %></li>
-    </ul>
+    <%= link_to "Become a Contributor", become_a_contributor_path, class:"button small radius" %>
   </div>
 </div>
 

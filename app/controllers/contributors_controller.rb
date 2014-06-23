@@ -1,5 +1,5 @@
 class ContributorsController < ApplicationController
-  before_filter :find_contributor
+  before_filter :find_contributor, only: [:update, :destroy]
 
   #
   # PATCH /organizations/:organization_id/contributors/:id
@@ -25,6 +25,14 @@ class ContributorsController < ApplicationController
     @contributor.destroy
 
     redirect_to :back, notice: 'Contributor removed.'
+  end
+
+  #
+  # GET /become-a-contributor
+  #
+  # Display information related to becoming a contributor.
+  #
+  def become_a_contributor
   end
 
   private
