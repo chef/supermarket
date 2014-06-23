@@ -22,11 +22,11 @@ class CookbooksController < ApplicationController
   def index
     @cookbooks = Cookbook.includes(:cookbook_versions)
 
-    if params[:q]
+    if params[:q].present?
       @cookbooks = @cookbooks.search(params[:q])
     end
 
-    if params[:order]
+    if params[:order].present?
       @cookbooks = @cookbooks.ordered_by(params[:order])
     end
 
