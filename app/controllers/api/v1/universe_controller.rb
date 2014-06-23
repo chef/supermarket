@@ -10,7 +10,7 @@ class Api::V1::UniverseController < Api::V1Controller
   #
   def index
     universe = Rails.cache.fetch(CACHE_KEY) do
-      Universe.generate(ssl: request.ssl?)
+      Universe.generate(protocol: (request.ssl? ? 'https' : 'http'))
     end
 
     render json: MultiJson.dump(universe)

@@ -1,4 +1,13 @@
 module Universe
+  COOKBOOK = 'cookbook'.freeze
+  VERSION = 'version'.freeze
+  DEPENDENCY = 'dependency'.freeze
+  DEPENDENCY_CONSTRAINT = 'dependency_constraint'.freeze
+  LOCATION_PATH = 'location_path'.freeze
+  LOCATION_TYPE = 'location_type'.freeze
+  DEPENDENCIES = 'dependencies'.freeze
+  SUPERMARKET = 'supermarket'.freeze
+
   module_function
 
   #
@@ -7,9 +16,6 @@ module Universe
   # @return [Hash] the universe hash
   #
   def generate(opts = {})
-    host = Supermarket::Config.host
-    protocol = opts.fetch(:ssl, false) ? 'https' : 'http'
-
     #
     # So yeah, why are we using SQL here instead of our friend ActiveRecord?
     # Turns out, when you're retrieving a lot of objects at once, and joining
@@ -20,6 +26,7 @@ module Universe
     # instead of using the Rails URL helpers, because the URL helpers are slow,
     # and we're calling it in a loop.
     #
+
     sql = %(
       SELECT cookbook_versions.version,
         cookbooks.name AS cookbook,
@@ -33,33 +40,20 @@ module Universe
     cookbooks = ActiveRecord::Base.connection.execute(sql).to_a
 
     cookbooks.reduce({}) do |result, row|
-      name = row['cookbook']
-      version = row['version']
+      name = row[COOKBOOK]
+      version = row[VERSION]
+      dependency = row[DEPENDENCY]
+      dependency_constraint = row[DEPENDENCY_CONSTRAINT]
 
-      dhash = if row['dependency'].present? && row['dependency_constraint'].present?
-                { row['dependency'] => row['dependency_constraint'] }
-              else
-                {}
-              end
-
-      vhash = {
-        version => {
-          'location_path' => download_path(name, version, host, protocol),
-          'location_type' => 'supermarket',
-          'dependencies' => dhash
-        }
+      result[name] ||= {}
+      result[name][version] ||= {
+        LOCATION_TYPE => SUPERMARKET,
+        LOCATION_PATH => download_path(name, version, opts),
+        DEPENDENCIES => {}
       }
 
-      if result.key?(name)
-        existing_vhash = result[name]
-
-        if existing_vhash.key?(version)
-          result[name][version]['dependencies'].merge!(dhash)
-        else
-          result[name].merge!(vhash)
-        end
-      else
-        result[name] = vhash
+      if dependency && dependency_constraint
+        result[name][version][DEPENDENCIES][dependency] = dependency_constraint
       end
 
       result
@@ -71,12 +65,15 @@ module Universe
   #
   # @param cookbook [String] name of the cookbook
   # @param version [String] cookbook version
-  # @param host [String] Rails host
-  # @param protocol [String] http or https
+  # @param opts [Hash] an options hash containing optional overrides for host, port and
+  # protocol
   #
   # @return [String] Cookbook download URL
   #
-  def download_path(cookbook, version, host, protocol)
-    "#{protocol}://#{host}/api/v1/cookbooks/#{cookbook}/versions/#{version}/download"
+  def download_path(cookbook, version, opts = {})
+    host = opts.fetch(:host, ENV['HOST'])
+    port = opts.fetch(:port, ENV['PORT'])
+    protocol = opts.fetch(:protocol, 'http')
+    "#{protocol}://#{host}:#{port}/api/v1/cookbooks/#{cookbook}/versions/#{version}/download"
   end
 end
