@@ -15,4 +15,11 @@ describe Curry::Repository do
       repository.destroy
     end.to change(Curry::PullRequest, :count).by(-1)
   end
+
+  it 'assigns name and owner based on full_name' do
+    repository = Curry::Repository.new(full_name: 'opscode/supermarket')
+
+    expect(repository.owner).to eql('opscode')
+    expect(repository.name).to eql('supermarket')
+  end
 end

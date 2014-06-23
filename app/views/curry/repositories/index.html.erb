@@ -1,43 +1,39 @@
 <%= provide(:title, "Manage Subscribed Repositories") %>
 
-<div class="page">
-  <div class="title">
-    <span class="fa fa-eye"></span>Watched Repositories
+<div class="curry" data-equalizer>
+  <div class="watched" data-equalizer-watch>
+    <h1 class="title">Repositories Watched by Curry</h1>
+    <table>
+      <tr>
+        <th>Repository</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @repositories.each do |repository| %>
+        <tr class="repository">
+          <td>
+            <%= "#{repository.owner}/#{repository.name}" %>
+          </td>
+          <td>
+            <%= link_to "Remove Repository", repository, method: :delete, rel: 'remove_repository' %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
   </div>
 
-  <table class="green">
-    <tr>
-      <th>Repository</th>
-      <th>Actions</th>
-    </tr>
+  <div class="add" data-equalizer-watch>
+    <h1>Add A Repository</h1>
 
-    <% @repositories.each do |repository| %>
-      <tr class="repository">
-        <td>
-          <%= "#{repository.owner}/#{repository.name}" %>
-        </td>
-        <td>
-          <%= link_to "Remove Repository", repository, method: :delete, rel: 'remove_repository' %>
-        </td>
-      </tr>
+    <%= form_for(@repository) do |f| %>
+      <%= f.text_field :full_name, placeholder: 'opscode/supermarket' %>
+      <%= f.submit "Add Repository", class: 'button radius primary expand' %>
     <% end %>
-  </table>
 
-  <%= form_for(@repository) do |f| %>
-    <fieldset>
-      <div>
-        <%= f.label :owner, "GitHub Repository Owner" %>
-        <%= f.text_field :owner %><br/>
-      </div>
+    <h3>About Curry</h3>
+    <p>Curry subscribes to repositories on GitHub in order to determine if any committers in a pull request need to sign a CLA. By adding a repository, Curry will be notified whenever a pull request is opened or updated. Curry will then leave a comment with the list of committers who need to sign a CLA. If all is well, Curry will add a label to the pull request letting you know all committers have signed a CLA.</p>
 
-      <div>
-        <%= f.label :name, "GitHub Repository Name" %>
-        <%= f.text_field :name %><br/>
-      </div>
+    <p>Whenever a new CLA is signed, Curry knows to check and see if that person has any open pull requests on the repositories that Curry subscribes to. If that person is a committer on any open pull requests, Curry will re-evaluate those pull requests and add a label if all is well.</p>
 
-      <div>
-        <%= f.submit "Add Repository", class: 'button primary' %>
-      </div>
-    </fieldset>
-  <% end %>
+  </div>
 </div>

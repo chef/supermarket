@@ -59,7 +59,7 @@ class Curry::RepositoriesController < ApplicationController
   # The permitted strong params for a repository.
   #
   def repository_params
-    params.require(:curry_repository).permit(:owner, :name)
+    params.require(:curry_repository).permit(:full_name)
   end
 
   #

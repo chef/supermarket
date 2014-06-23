@@ -8,6 +8,12 @@ class Curry::Repository < ActiveRecord::Base
   has_many :pull_requests, dependent: :destroy
 
   def full_name
-    [owner, name].join('/')
+    if owner.present? && name.present?
+      [owner, name].join('/')
+    end
+  end
+
+  def full_name=(full_name)
+    self.owner, self.name = full_name.split('/')
   end
 end
