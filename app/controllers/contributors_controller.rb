@@ -33,6 +33,7 @@ class ContributorsController < ApplicationController
   # Display information related to becoming a contributor.
   #
   def become_a_contributor
+    store_location!
   end
 
   #

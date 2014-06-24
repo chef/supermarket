@@ -4,11 +4,15 @@
 <div class="become_a_contributor"  data-equalizer>
   <div class="become_a_contributor_content" data-equalizer-watch>
     <h1>Become a Contributor</h1>
-    <p>Information on how to become a contributor to Chef Software, Inc.'s open source projects.</p>
 
-    <p>View all contributors [link to all table here]</p>
+    <p>In order to become a contributor to Chef Software, Inc.'s open source projects, you must sign the Contributor License Agreement (CLA). The CLA comes in two different varieties - one for individuals (ICLA) and one for coporations (CCLA). The ICLA and CCLA makes everyone's rights clear. Read more about the CLA in the <a href="http://docs.opscode.com/community_contributions.html#about-clas-and-cclas" target="_blank">Community Contributions</a> and <a href="https://github.com/opscode/chef/blob/master/CONTRIBUTING.md#contributor-license-agreement-cla" target="_blank">chef CONTRIBUTING.md</a> documents.</p>
+
+    <p>Before signing a CLA, <%= link_to "you must link your GitHub account", link_github_profile_path %> to your Supermarket account. Supermarket uses GitHub's API to check the CLA signature status of committers in a pull request. If there are any committers in a pull request that have not signed a CLA, the pull request cannot be merged.</p>
+
+    <p>You are now ready to sign the ICLA or CCLA. If you want to sign the ICLA, <%= link_to "all you need to do is sign it", new_icla_signature_path %>. If you want to sign the CCLA on behalf of your company, <%= link_to "check to see if your company has already signed the CCLA", ccla_signatures_path %>. If they have, ask an admin of the company to invite you to sign the CCLA. If your company has not signed the CCLA and you are authorized to do so, <%= link_to "create a new CCLA signature for your company", new_ccla_signature_path %>. Once you sign the CCLA, you will be able to invite other co-workers to sign the CCLA on behalf of your company.</p>
+
+    <p>You can view <%= link_to "all of the contributors", contributors_path %> and <%= link_to "the companies that have signed the CCLA", ccla_signatures_path %>. You can also view printable versions of the <%= link_to "ICLA", agreement_icla_signatures_path %> and <%= link_to "CCLA", agreement_ccla_signatures_path %>.</p>
   </div>
 
   <%= render "contributors/sidebar" %>
 </div>
-
