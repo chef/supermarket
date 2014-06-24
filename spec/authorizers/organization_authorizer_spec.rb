@@ -5,6 +5,14 @@ describe OrganizationAuthorizer do
 
   subject { described_class.new(user, record) }
 
+  context 'as a supermarket admin' do
+    let(:user) { create(:user, roles: 'admin') }
+
+    it { should permit_authorization(:view_cclas) }
+    it { should permit_authorization(:resign_ccla) }
+    it { should permit_authorization(:manage_contributors) }
+  end
+
   context 'as an organization admin' do
     let(:user) do
       create(
@@ -14,7 +22,9 @@ describe OrganizationAuthorizer do
       .user
     end
 
-    it { should permit_authorization(:manage_invitations) }
+    it { should permit_authorization(:view_cclas) }
+    it { should permit_authorization(:resign_ccla) }
+    it { should permit_authorization(:manage_contributors) }
   end
 
   context 'as an organization contributor' do
@@ -26,6 +36,8 @@ describe OrganizationAuthorizer do
       ).user
     end
 
-    it { should_not permit_authorization(:manage_invitations) }
+    it { should permit_authorization(:view_cclas) }
+    it { should_not permit_authorization(:resign_ccla) }
+    it { should_not permit_authorization(:manage_contributors) }
   end
 end

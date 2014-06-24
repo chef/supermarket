@@ -61,7 +61,7 @@ describe CclaSignaturesController do
 
       context 'user is authorized to view CCLA Signature' do
         before do
-          auto_authorize!(CclaSignature, 'show')
+          auto_authorize!(Organization, 'view_cclas')
           get :show, id: ccla_signature.id
         end
 
@@ -201,7 +201,10 @@ describe CclaSignaturesController do
       let(:user) { create(:user) }
       let(:organization) { create(:organization) }
       let(:payload) { attributes_for(:ccla_signature, user_id: user.id, organization_id: organization.id) }
-      before { sign_in user }
+      before do
+        sign_in user
+        auto_authorize!(Organization, 'resign_ccla')
+      end
 
       context 'when the user has no linked github accounts' do
         before do

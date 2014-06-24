@@ -18,7 +18,7 @@ class CclaSignaturesController < ApplicationController
   #
   def show
     @ccla_signature = CclaSignature.find(params[:id])
-    authorize! @ccla_signature
+    authorize! @ccla_signature.organization, :view_cclas?
   end
 
   #
@@ -72,6 +72,7 @@ class CclaSignaturesController < ApplicationController
   #
   def re_sign
     @ccla_signature = CclaSignature.new(ccla_signature_params)
+    authorize! @ccla_signature.organization, :resign_ccla?
 
     if @ccla_signature.save
       redirect_to organization_invitations_path(@ccla_signature.organization), notice: 'You successfully re-signed the CCLA.'

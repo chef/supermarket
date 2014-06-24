@@ -8,7 +8,7 @@ describe OrganizationInvitationsController do
   describe 'GET #index' do
     context 'user is authorized to view invitations' do
       before do
-        auto_authorize!(Organization, 'manage_invitations')
+        auto_authorize!(Organization, 'manage_contributors')
         get :index, organization_id: organization.id
       end
 
@@ -56,7 +56,7 @@ describe OrganizationInvitationsController do
 
   describe 'POST #create' do
     context 'user is authorized to create an Invitation' do
-      before { auto_authorize!(Organization, 'manage_invitations') }
+      before { auto_authorize!(Organization, 'manage_contributors') }
 
       it 'creates the invitation' do
         expect do
@@ -108,7 +108,7 @@ describe OrganizationInvitationsController do
     let(:invitation) { create(:invitation, admin: true) }
 
     context 'user is authorized to update an Invitation' do
-      before { auto_authorize!(Organization, 'manage_invitations') }
+      before { auto_authorize!(Organization, 'manage_contributors') }
 
       it 'updates an invitation' do
         patch :update,
@@ -150,7 +150,7 @@ describe OrganizationInvitationsController do
     before { request.env['HTTP_REFERER'] = 'the_previous_path' }
 
     context 'user is authorized to resend Invitation' do
-      before { auto_authorize!(Organization, 'manage_invitations') }
+      before { auto_authorize!(Organization, 'manage_contributors') }
 
       it 'resends the invitation' do
         Sidekiq::Testing.inline! do
@@ -181,7 +181,7 @@ describe OrganizationInvitationsController do
     before { request.env['HTTP_REFERER'] = 'the_previous_path' }
 
     context 'user is authorized to resend Invitation' do
-      before { auto_authorize!(Organization, 'manage_invitations') }
+      before { auto_authorize!(Organization, 'manage_contributors') }
 
       it 'destroys the invitation' do
         expect { delete :revoke, organization_id: organization.id, id: invitation.token }

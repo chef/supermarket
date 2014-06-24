@@ -79,6 +79,6 @@ class OrganizationInvitationsController < ApplicationController
 
   def find_and_authorize_organization!
     @organization = current_user.organizations.find(params[:organization_id])
-    authorize! @organization, :manage_invitations?
+    authorize! @organization, :manage_contributors?
   end
 end
