@@ -1,27 +1,6 @@
 @import "common";
 @import "foundation/components/grid";
 
-#contribute_sidebar {
-  @include grid-column(3);
-  background: $sidebar_blue;
-  padding: rem-calc(35 25 35 25);
-
-  p {
-    font-size: 80%;
-  }
-}
-
-.become_a_contributor {
-  @include grid-row($behavior: nest);
-
-  .become_a_contributor_content {
-    @include grid-column(9);
-
-    background-color: white;
-    padding: rem-calc(35 25 35 25);
-  }
-}
-
 // CLA Elements
 .cla {
   @include grid-row($behavior: nest);
@@ -100,4 +79,120 @@
   @include grid-column(9);
   background-color: white;
   padding: rem-calc(35 25 35 25);
+}
+
+
+@media #{$mobile-only} {
+  .signers {
+    @include grid-column($columns: 12);
+    padding: rem-calc(35 25 35 25);
+
+    .heading {
+      .left {
+        width: 100%;
+      }
+      .right {
+        width: 100%;
+        padding-bottom: rem-calc(16);
+
+        .button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media #{$small-only} {
+  .signers {
+    @include grid-column($columns: 12);
+    padding: rem-calc(35 25 35 25);
+  }
+}
+
+@media #{$xlarge-up} {
+  .signers {
+    @include grid-column($columns: 9);
+  }
+}
+
+@media #{$redonkulous-up} {
+  .signers {
+    @include grid-column($columns: 9);
+  }
+}
+
+#contribute_sidebar {
+  @include grid-column(3);
+  background: $sidebar_blue;
+  padding: rem-calc(35 25 35 25);
+
+  p {
+    font-size: 80%;
+  }
+}
+
+
+@media #{$mobile-only} {
+  #contribute_sidebar {
+    @include grid-column($columns: 12);
+    padding: rem-calc(35 25 35 25);
+  }
+}
+
+@media #{$small-only} {
+  #contribute_sidebar {
+    @include grid-column($columns: 12);
+    padding: rem-calc(35 25 35 25);
+  }
+}
+
+@media #{$xlarge-up} {
+  #contribute_sidebar {
+    @include grid-column($columns: 3);
+  }
+}
+
+@media #{$redonkulous-up} {
+  #contribute_sidebar {
+    @include grid-column($columns: 3);
+  }
+}
+
+
+.become_a_contributor {
+  @include grid-row($behavior: nest);
+
+  .become_a_contributor_content {
+    @include grid-column(9);
+
+    background-color: white;
+    padding: rem-calc(35 25 35 25);
+  }
+
+  @media #{$mobile-only} {
+    .become_a_contributor_content {
+      @include grid-column($columns: 12);
+      padding: rem-calc(35 25 35 25);
+    }
+  }
+
+  @media #{$small-only} {
+    .become_a_contributor_content {
+      @include grid-column($columns: 12);
+      padding: rem-calc(35 25 35 25);
+    }
+  }
+
+  @media #{$xlarge-up} {
+    .become_a_contributor_content {
+      @include grid-column($columns: 9);
+    }
+  }
+
+  @media #{$redonkulous-up} {
+    .become_a_contributor_content {
+      @include grid-column($columns: 9);
+    }
+  }
 }
