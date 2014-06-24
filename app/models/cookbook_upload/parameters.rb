@@ -1,8 +1,8 @@
 require 'active_model/errors'
+require 'cookbook_upload/archive'
 require 'cookbook_upload/metadata'
 require 'cookbook_upload/readme'
 require 'json'
-require 'rubygems/package'
 require 'set'
 
 class CookbookUpload
@@ -14,20 +14,10 @@ class CookbookUpload
     attr_reader :tarball
 
     #
-    # Indicates that the uploaded tarball has no metdata.json entry
+    # @!attribute [r] archive
+    #   @return [Archive] An interface to +tarball+
     #
-    MissingMetadata = Class.new(RuntimeError)
-
-    #
-    # Indicates that the uploaded tarball has no README entry
-    #
-    MissingReadme = Class.new(RuntimeError)
-
-    #
-    # Indicates that the uploaded tarball may not be an upload, since it does
-    # not have a +path+
-    #
-    TarballHasNoPath = Class.new(RuntimeError)
+    attr_reader :archive
 
     #
     # Creates a new set of cookbook upload parameters
@@ -43,6 +33,7 @@ class CookbookUpload
     def initialize(params)
       @cookbook_data = params.fetch(:cookbook)
       @tarball = params.fetch(:tarball)
+      @archive = Archive.new(@tarball)
     end
 
     #
@@ -149,30 +140,30 @@ class CookbookUpload
       errors = ActiveModel::Errors.new([])
 
       begin
-        raise TarballHasNoPath unless tarball.respond_to?(:path)
+        paths = archive.find(%r{\A(\.\/)?[^\/]+\/metadata\.json})
 
-        Zlib::GzipReader.open(tarball.path) do |gzip|
-          Gem::Package::TarReader.new(gzip) do |tar|
-            entry = tar.find do |e|
-              e.full_name.downcase.match(%r{^(\.\/)?[^\/]+\/metadata.json})
-            end
-
-            if entry
-              metadata = Metadata.new(JSON.parse(entry.read))
-            else
-              raise MissingMetadata
-            end
+        json, non_json = paths.partition do |path|
+          begin
+            JSON.parse(archive.read(path))
+          rescue JSON::ParserError
+            false
           end
         end
-      rescue JSON::ParserError
-        errors.add(:base, I18n.t('api.error_messages.metadata_not_json'))
-      rescue MissingMetadata
-        errors.add(:base, I18n.t('api.error_messages.missing_metadata'))
+
+        if json.empty?
+          if non_json.any?
+            errors.add(:base, I18n.t('api.error_messages.metadata_not_json'))
+          else
+            errors.add(:base, I18n.t('api.error_messages.missing_metadata'))
+          end
+        else
+          metadata = Metadata.new(JSON.parse(archive.read(json.first)))
+        end
       rescue Virtus::CoercionError
         errors.add(:base, I18n.t('api.error_messages.invalid_metadata'))
-      rescue Zlib::GzipFile::Error
-        errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
-      rescue TarballHasNoPath
+      rescue Archive::Error
+        errors.add(:base, I18n.t('api.error_messages.tarball_not_archive'))
+      rescue Archive::NoPath
         errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
       end
 
@@ -187,34 +178,24 @@ class CookbookUpload
     # @yieldparam metadata [Readme] the cookbook's README
     #
     def extract_tarball_readme(&block)
+      cookbook = metadata.name
       readme = nil
-      effective_cookbook_name = metadata.name.downcase
       errors = ActiveModel::Errors.new([])
 
       begin
-        raise TarballHasNoPath unless tarball.respond_to?(:path)
+        path = archive.find(%r{\A(\.\/)?#{cookbook}\/readme(\.\w+)?\Z}i).first
 
-        Zlib::GzipReader.open(tarball.path) do |gzip|
-          Gem::Package::TarReader.new(gzip) do |tar|
-            entry = tar.find do |e|
-              e.full_name.downcase.include?("#{effective_cookbook_name}/readme")
-            end
-
-            if entry
-              extension = entry.header.name.split('.').last.strip
-              contents = entry.read
-
-              readme = Readme.new(contents: contents, extension: extension)
-            else
-              raise MissingReadme
-            end
-          end
+        if path
+          readme = Readme.new(
+            contents: archive.read(path),
+            extension: path.split('.').last.strip
+          )
+        else
+          errors.add(:base, I18n.t('api.error_messages.missing_readme'))
         end
-      rescue MissingReadme
-        errors.add(:base, I18n.t('api.error_messages.missing_readme'))
-      rescue Zlib::GzipFile::Error
-        errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
-      rescue TarballHasNoPath
+      rescue Archive::Error
+        errors.add(:base, I18n.t('api.error_messages.tarball_not_archive'))
+      rescue Archive::NoPath
         errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
       end
 

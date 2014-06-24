@@ -34,6 +34,7 @@ gem 'semverse'
 gem 'sitemap_generator'
 gem 'redis-rails'
 gem 'yajl-ruby'
+gem 'libarchive', github: 'bcobb/winebarrel-libarchive-ruby-clone', ref: 'format-security-fix'
 
 gem 'sentry-raven', '~> 0.8.0', require: false
 gem 'statsd-ruby', require: 'statsd'

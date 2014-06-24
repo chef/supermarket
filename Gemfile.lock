@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/bcobb/winebarrel-libarchive-ruby-clone.git
+  revision: a5a748c731415cb622282350dc92c82f8de77e5d
+  ref: format-security-fix
+  specs:
+    libarchive (0.1.2)
+
+GIT
   remote: git://github.com/gofullstack/chef-legacy.git
   revision: 3a27451f99f06b93b178b10e660e0b65f4dbfa99
   ref: v1.3.0
@@ -460,6 +467,7 @@ DEPENDENCIES
   jbuilder
   kaminari
   launchy
+  libarchive!
   license_finder
   magiconf
   mail_view
