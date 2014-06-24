@@ -1,4 +1,6 @@
 Supermarket::Application.routes.draw do
+  VERSION_PATTERN = /latest|([0-9_\-\.]+)/
+
   if Rails.env.development?
     mount MailPreview => 'mail_view'
   end
@@ -10,14 +12,15 @@ Supermarket::Application.routes.draw do
       get 'cookbooks' => 'cookbooks#index'
       get 'search' => 'cookbooks#search'
       get 'cookbooks/:cookbook' => 'cookbooks#show', as: :cookbook
-      get 'cookbooks/:cookbook/versions/:version' => 'cookbook_versions#show', as: :cookbook_version
-      get 'cookbooks/:cookbook/versions/:version/download' => 'cookbook_versions#download', as: :cookbook_version_download
+      get 'cookbooks/:cookbook/versions/:version' => 'cookbook_versions#show', as: :cookbook_version, constraints: { version: VERSION_PATTERN }
+      get 'cookbooks/:cookbook/versions/:version/download' => 'cookbook_versions#download', as: :cookbook_version_download, constraints: { version: VERSION_PATTERN }
       post 'cookbooks' => 'cookbook_uploads#create'
       delete 'cookbooks/:cookbook' => 'cookbook_uploads#destroy'
     end
   end
 
   get 'cookbooks/directory' => 'cookbooks#directory'
+  get 'universe' => 'api/v1/universe#index', defaults: { format: :json }
 
   resources :cookbooks, only: [:index, :show, :update] do
     resources :collaborators, only: [:index, :new, :create, :destroy] do
@@ -33,8 +36,8 @@ Supermarket::Application.routes.draw do
       put :transfer_ownership
     end
 
-    get 'versions/:version/download' => 'cookbook_versions#download', as: :version_download
-    get 'versions/:version' => 'cookbook_versions#show', as: :version
+    get 'versions/:version/download' => 'cookbook_versions#download', as: :version_download, constraints: { version: VERSION_PATTERN }
+    get 'versions/:version' => 'cookbook_versions#show', as: :version, constraints: { version: VERSION_PATTERN }
   end
 
   resources :icla_signatures, path: 'icla-signatures' do

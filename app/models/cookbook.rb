@@ -126,12 +126,12 @@ class Cookbook < ActiveRecord::Base
 
   #
   # Return the specified +CookbookVersion+. Raises an
-  # +ActiveRecord::RecordNotFound+ if the version does not exist. The first line
-  # of the method translates the version from a parameter friendly verison
-  # (2_0_1) to a dot version (2.0.1).
+  # +ActiveRecord::RecordNotFound+ if the version does not exist. Versions can
+  # be specified with either underscores or dots.
   #
   # @example
   #   cookbook.get_version!("1_0_0")
+  #   cookbook.get_version!("1.0.0")
   #   cookbook.get_version!("latest")
   #
   # @param version [String] the version of the Cookbook to find. Pass in
@@ -141,7 +141,7 @@ class Cookbook < ActiveRecord::Base
   # @return [CookbookVersion] the +CookbookVersion+ with the version specified
   #
   def get_version!(version)
-    version.gsub!(/_/, '.')
+    version.gsub!('_', '.')
 
     if version == 'latest'
       latest_cookbook_version

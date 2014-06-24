@@ -22,3 +22,5 @@ DotPosition:
   Enabled: false
 RedundantBegin:
   Enabled: false
+EachWithObject:
+  Enabled: false

@@ -9,8 +9,3 @@ json.set! :dependencies do
     json.set! dependency.name, dependency.version_constraint
   end
 end
-json.set! :platforms do
-  @cookbook_version.supported_platforms.each do |platform|
-    json.set! platform.name, platform.version_constraint
-  end
-end

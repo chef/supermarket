@@ -9,12 +9,12 @@ describe 'GET /api/v1/cookbooks/:cookbook' do
         'name' => 'redis-test',
         'category' => 'Other',
         'maintainer' => user.username,
-        'latest_version' => 'http://www.example.com/api/v1/cookbooks/redis-test/versions/0_2_0',
+        'latest_version' => 'http://www.example.com/api/v1/cookbooks/redis-test/versions/0.2.0',
         'external_url' => nil,
         'versions' =>
           [
-            'http://www.example.com/api/v1/cookbooks/redis-test/versions/0_2_0',
-            'http://www.example.com/api/v1/cookbooks/redis-test/versions/0_1_0'
+            'http://www.example.com/api/v1/cookbooks/redis-test/versions/0.2.0',
+            'http://www.example.com/api/v1/cookbooks/redis-test/versions/0.1.0'
           ],
         'description' => 'Installs/Configures redis-test',
         'average_rating' => nil,

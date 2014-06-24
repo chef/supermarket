@@ -37,17 +37,16 @@ class CookbookVersion < ActiveRecord::Base
   delegate :name, :owner, to: :cookbook
 
   #
-  # Returns the verison of the +CookbookVersion+ with underscores replacing the
-  # dots.
+  # Returns the verison of the +CookbookVersion+
   #
   # @example
   #   cookbook_version = CookbookVersion.new(version: '1.0.2')
-  #   cookbook_version.to_param # => '1_0_2'
+  #   cookbook_version.to_param # => '1.0.2'
   #
   # @return [String] the version of the +CookbookVersion+
   #
   def to_param
-    version.gsub(/\./, '_')
+    version
   end
 
   #

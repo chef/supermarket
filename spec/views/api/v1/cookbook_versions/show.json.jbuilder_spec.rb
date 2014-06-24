@@ -32,11 +32,6 @@ describe 'api/v1/cookbook_versions/show' do
     expect(dependencies['apt']).to eql('>= 1.0.0')
   end
 
-  it "displays the cookbook version's supported platforms" do
-    platforms = json_body['platforms']
-    expect(platforms['ubuntu']).to eql('= 12.04')
-  end
-
   it "displays the cookbook version's license" do
     cookbook_version_license = json_body['license']
     expect(cookbook_version_license).to eql('MIT')
@@ -60,6 +55,6 @@ describe 'api/v1/cookbook_versions/show' do
     file_url = URI(json_body['file'])
 
     expect(file_url.relative?).to eql(false)
-    expect(file_url.to_s).to include('cookbooks/redis/versions/1_2_0/download')
+    expect(file_url.to_s).to include('cookbooks/redis/versions/1.2.0/download')
   end
 end
