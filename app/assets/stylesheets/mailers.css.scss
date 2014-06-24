@@ -59,7 +59,11 @@ a { color: #404248; }
 /* Chef Styles */
 #wrapper { background-color: #eeeeee; }
 
-.content { margin-bottom: 30px; }
+.content {
+  margin-bottom: 30px;
+  width: 80%;
+  max-width: 720px;
+}
 
 .header {
   height: 120px;
@@ -112,6 +116,11 @@ a { color: #404248; }
 .icon {
   display: inline-block;
   margin: 4px 8px -2px 0;
+  background: #ECEDEF;
+  padding: 2px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-border-radius:4px;
 }
 
 .panel {
@@ -162,11 +171,12 @@ a { color: #404248; }
 .button:hover, .button-small:hover { opacity: .8; }
 .button:hover, .button-small:hover{ opacity:.8; }
 .lightbutton { background-color: #a0a9ba; }
-.signedcla { background-color: #f79005; float: right; margin: -35px 0 0 0; }
+.signedcla { background-color: #f79005; }
 
 .accept {
   background-color: #43AC6A;
   padding: 0 50px;
+  margin-bottom: 10px;
 }
 
 .decline {
