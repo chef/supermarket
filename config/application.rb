@@ -86,7 +86,7 @@ module Supermarket
       protocol: ENV['PROTOCOL']
     }
 
-    config.action_mailer.asset_host = Supermarket::Config.port ? "#{Supermarket::Config.host}:#{Supermarket::Config.port}" : Supermarket::Config.host
+    config.action_mailer.asset_host = ENV['PORT'].present? ? "#{ENV['PROTOCOL']}://#{ENV['HOST']}:#{ENV['PORT']}" : "#{ENV['PROTOCOL']}://#{ENV['HOST']}"
 
     # Set default from email for ActionMailer
     ActionMailer::Base.default from: Supermarket::Config.from_email
