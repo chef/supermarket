@@ -1,6 +1,6 @@
 class OrganizationInvitationsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_organization
+  before_filter :find_and_authorize_organization!
 
   #
   # GET /organizations/:organization_id/invitations
@@ -11,9 +11,6 @@ class OrganizationInvitationsController < ApplicationController
     @pending_invitations = @organization.invitations.pending
     @declined_invitations = @organization.invitations.declined
     @contributors = @organization.contributors
-    @invitation = Invitation.new(organization: @organization)
-
-    authorize! @invitation
   end
 
   #
@@ -23,19 +20,17 @@ class OrganizationInvitationsController < ApplicationController
   # organization.
   #
   def create
-    @invitation = @organization.invitations.new(invitation_params)
+    invitation_params[:emails].split(',').each do |email|
+      @invitation = @organization.invitations.new(
+        email: email,
+        admin: invitation_params[:admin]
+      )
 
-    authorize! @invitation
-
-    if @invitation.save
+      @invitation.save
       InvitationMailer.delay.invitation_email(@invitation)
-
-      redirect_to organization_invitations_path(@organization),
-                  notice: "Invited #{@invitation.email} to #{@organization.name}"
-    else
-      redirect_to organization_invitations_path(@organization),
-                  alert: t('organization_invitations.invite.failure')
     end
+
+    redirect_to organization_invitations_path(@organization), notice: 'Successfully sent invitations.'
   end
 
   #
@@ -45,9 +40,6 @@ class OrganizationInvitationsController < ApplicationController
   #
   def update
     @invitation = Invitation.with_token!(params[:id])
-
-    authorize! @invitation
-
     @invitation.update_attributes(invitation_params)
 
     head 204
@@ -60,9 +52,6 @@ class OrganizationInvitationsController < ApplicationController
   #
   def resend
     @invitation = Invitation.with_token!(params[:id])
-
-    authorize! @invitation
-
     InvitationMailer.delay.invitation_email(@invitation)
 
     redirect_to :back, notice: "Successfully resent
@@ -76,9 +65,6 @@ class OrganizationInvitationsController < ApplicationController
   #
   def revoke
     @invitation = Invitation.with_token!(params[:id])
-
-    authorize! @invitation
-
     @invitation.destroy
 
     redirect_to :back, notice: "Successfully revoked
@@ -88,10 +74,11 @@ class OrganizationInvitationsController < ApplicationController
   private
 
   def invitation_params
-    params.require(:invitation).permit(:email, :admin)
+    params.require(:invitations).permit(:emails, :admin)
   end
 
-  def find_organization
+  def find_and_authorize_organization!
     @organization = current_user.organizations.find(params[:organization_id])
+    authorize! @organization, :manage_contributors?
   end
 end

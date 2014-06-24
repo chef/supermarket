@@ -8,7 +8,7 @@ describe OrganizationInvitationsController do
   describe 'GET #index' do
     context 'user is authorized to view invitations' do
       before do
-        auto_authorize!(Invitation, 'index')
+        auto_authorize!(Organization, 'manage_contributors')
         get :index, organization_id: organization.id
       end
 
@@ -56,31 +56,32 @@ describe OrganizationInvitationsController do
 
   describe 'POST #create' do
     context 'user is authorized to create an Invitation' do
-      before { auto_authorize!(Invitation, 'create') }
+      before { auto_authorize!(Organization, 'manage_contributors') }
 
       it 'creates the invitation' do
         expect do
-          post :create, organization_id: organization.id,
-                        invitation: { email: 'chef@example.com' }
+          post :create,
+               organization_id: organization.id,
+               invitations: { emails: 'chef@example.com' }
         end.to change(organization.invitations, :count).by(1)
+      end
+
+      it 'creates multiple invitations' do
+        expect do
+          post :create,
+               organization_id: organization.id,
+               invitations: { emails: 'chef@example.com, chef_2@example.com, chef_3@example.com' }
+        end.to change(organization.invitations, :count).by(3)
       end
 
       it 'sends the invitation' do
         Sidekiq::Testing.inline! do
           expect do
-            post :create, organization_id: organization.id,
-                          invitation: { email: 'chef@example.com' }
+            post :create,
+                 organization_id: organization.id,
+                 invitations: { emails: 'chef@example.com' }
           end.to change(ActionMailer::Base.deliveries, :size).by(1)
         end
-      end
-
-      it 'displays an alert if the invitation did not save' do
-        post :create,
-             organization_id: organization.id,
-             invitation: { email: '' }
-
-        expect(flash.now[:alert]).
-          to eql(I18n.t('organization_invitations.invite.failure'))
       end
     end
 
@@ -89,13 +90,14 @@ describe OrganizationInvitationsController do
         expect do
           post :create,
                organization_id: organization.id,
-               invitation: { email: 'chef@example.com' }
+               invitations: { emails: 'chef@example.com' }
         end.to_not change(Invitation, :count)
       end
 
       it 'responds with 404' do
-        post :create, organization_id: organization.id,
-                      invitation: { email: 'chef@example.com' }
+        post :create,
+             organization_id: organization.id,
+             invitations: { emails: 'chef@example.com' }
 
         should respond_with(404)
       end
@@ -106,13 +108,13 @@ describe OrganizationInvitationsController do
     let(:invitation) { create(:invitation, admin: true) }
 
     context 'user is authorized to update an Invitation' do
-      before { auto_authorize!(Invitation, 'update') }
+      before { auto_authorize!(Organization, 'manage_contributors') }
 
       it 'updates an invitation' do
         patch :update,
               organization_id: organization.id,
               id: invitation.token,
-              invitation: { admin: false }
+              invitations: { admin: false }
 
         invitation.reload
 
@@ -125,7 +127,7 @@ describe OrganizationInvitationsController do
         patch :update,
               organization_id: organization.id,
               id: invitation.token,
-              invitation: { admin: false }
+              invitations: { admin: false }
 
         invitation.reload
 
@@ -136,7 +138,7 @@ describe OrganizationInvitationsController do
         patch :update,
               organization_id: organization.id,
               id: invitation.token,
-              invitation: { admin: false }
+              invitations: { admin: false }
 
         should respond_with(404)
       end
@@ -148,7 +150,7 @@ describe OrganizationInvitationsController do
     before { request.env['HTTP_REFERER'] = 'the_previous_path' }
 
     context 'user is authorized to resend Invitation' do
-      before { auto_authorize!(Invitation, 'resend') }
+      before { auto_authorize!(Organization, 'manage_contributors') }
 
       it 'resends the invitation' do
         Sidekiq::Testing.inline! do
@@ -179,7 +181,7 @@ describe OrganizationInvitationsController do
     before { request.env['HTTP_REFERER'] = 'the_previous_path' }
 
     context 'user is authorized to resend Invitation' do
-      before { auto_authorize!(Invitation, 'revoke') }
+      before { auto_authorize!(Organization, 'manage_contributors') }
 
       it 'destroys the invitation' do
         expect { delete :revoke, organization_id: organization.id, id: invitation.token }
