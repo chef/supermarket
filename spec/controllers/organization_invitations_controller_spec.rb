@@ -144,7 +144,7 @@ describe OrganizationInvitationsController do
         patch :update,
               organization_id: organization.id,
               id: invitation.token,
-              invitations: { admin: false }
+              invitation: { admin: false }
 
         invitation.reload
 
@@ -157,7 +157,7 @@ describe OrganizationInvitationsController do
         patch :update,
               organization_id: organization.id,
               id: invitation.token,
-              invitations: { admin: false }
+              invitation: { admin: false }
 
         invitation.reload
 
@@ -168,7 +168,7 @@ describe OrganizationInvitationsController do
         patch :update,
               organization_id: organization.id,
               id: invitation.token,
-              invitations: { admin: false }
+              invitation: { admin: false }
 
         should respond_with(404)
       end
