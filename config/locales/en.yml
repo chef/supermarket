@@ -18,8 +18,9 @@ en:
       follows: "You don't follow any cookbooks."
   requires_linked_github: "You need to link your GitHub account."
   organization_invitations:
-    invite:
-      failure: "Your invitation was unable to be sent. Did you specify an email address?"
+    invites:
+      success: "Successfully sent invitations"
+      warning: "The following invitations were invalid %{invites} all others however were valid and sent."
   curry:
     repositories:
       subscribe:

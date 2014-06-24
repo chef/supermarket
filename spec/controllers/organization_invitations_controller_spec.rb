@@ -107,11 +107,11 @@ describe OrganizationInvitationsController do
       end
 
       it 'adds the invalid addresses to a warning flash message' do
-          post :create,
-               organization_id: organization.id,
-               invitations: { emails: 'chef@example.com, joe, jim, chef_2@example.com' }
+        post :create,
+             organization_id: organization.id,
+             invitations: { emails: 'chef@example.com, joe, jim, chef_2@example.com' }
 
-          expect(flash['warning']).to match(/joe, jim/)
+        expect(flash['warning']).to match(/joe, jim/)
       end
     end
 

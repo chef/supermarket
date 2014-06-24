@@ -37,9 +37,13 @@ class OrganizationInvitationsController < ApplicationController
     end
 
     if invalid_invitations.empty?
-      redirect_to organization_invitations_path(@organization), notice: 'Successfully sent invitations.'
+      redirect_to organization_invitations_path(@organization),
+                  notice: t('organization_invitations.invites.success')
     else
-      redirect_to organization_invitations_path(@organization), flash: { warning: "The following invitations were invalid: #{invalid_invitations.map(&:email).join(', ')} all others however were valid and sent." }
+      redirect_to organization_invitations_path(@organization), flash: {
+        warning: t('organization_invitations.invites.warning',
+                   invites: invalid_invitations.map(&:email).join(', '))
+      }
     end
   end
 
