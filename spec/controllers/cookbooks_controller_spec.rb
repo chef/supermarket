@@ -3,9 +3,18 @@ require 'spec_helper'
 describe CookbooksController do
   describe 'GET #index' do
     context 'there are no parameters' do
+      let!(:postgresql) { create(:cookbook, name: 'postgresql') }
+      let!(:mysql) { create(:cookbook, name: 'mysql') }
+
       it 'assigns @cookbooks' do
         get :index
         expect(assigns[:cookbooks]).to_not be_nil
+      end
+
+      it 'orders @cookbooks alphabetically by name' do
+        get :index
+        expect(assigns[:cookbooks][0]).to eql(mysql)
+        expect(assigns[:cookbooks][1]).to eql(postgresql)
       end
 
       it 'assigns @number_of_cookbooks' do
