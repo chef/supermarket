@@ -9,7 +9,8 @@ end
       s3_credentials: Supermarket::Config.s3,
       url: ':s3_path_url',
       path: path,
-      bucket: Supermarket::Config.s3['bucket']
+      bucket: Supermarket::Config.s3['bucket'],
+      s3_protocol: ENV['PROTOCOL']
     )
   else
     ::Paperclip::Attachment.default_options.update(
