@@ -10,7 +10,6 @@ class PagesController < ApplicationController
   def welcome
     redirect_to dashboard_path if current_user.present?
 
-    @recently_updated_count = Cookbook.recently_updated.count
     @cookbook_count = Cookbook.count
     @user_count = User.count
   end

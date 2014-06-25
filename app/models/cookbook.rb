@@ -20,7 +20,6 @@ class Cookbook < ActiveRecord::Base
 
     where(lowercase_name: lowercase_names)
   }
-  scope :recently_updated, -> { where('updated_at > ?', Time.now - 2.weeks) }
 
   scope :ordered_by, lambda { |ordering|
     reorder({
