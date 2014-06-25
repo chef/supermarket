@@ -11,6 +11,8 @@ describe 'Changing a invitations role on a CCLA' do
       uncheck 'invitation[admin]'
     end
 
+    sleep 5
+
     visit current_path
 
     expect(all('#invitation_admin:checked').size).to eql(0)

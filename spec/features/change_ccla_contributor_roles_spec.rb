@@ -15,6 +15,8 @@ describe 'Changing a contributors role on a CCLA' do
       uncheck 'contributor_admin'
     end
 
+    sleep 5
+
     visit current_path
 
     expect(all('#contributor_admin:checked').size).to eql(0)
