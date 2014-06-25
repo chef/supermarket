@@ -1,66 +1,68 @@
 <%= provide :title, 'Welcome - The resource for Chef cookbooks' %>
 <%= provide :description, "Supermarket is Chef's open-source community platform. Find, explore and view Chef cookbooks for all of your ops needs." %>
 
-<section class="sign_up_in">
-  <h2 class="text-center">Welcome to Supermarket. Find, explore and view Chef cookbooks for all of your ops needs.</h2>
+<div class="page">
+  <section class="sign_up_in">
+    <h2 class="text-center">Welcome to Supermarket. Find, explore and view Chef cookbooks for all of your ops needs.</h2>
 
-  <p class="text-center">
-    <%= link_to 'Sign Up For a Chef Account', 'https://manage.opscode.com/signup?ref=community', class: 'button radius' %>
-    <%= link_to 'Sign In With Your Chef Account', sign_in_path, class: 'button radius' %>
-  </p>
-</section>
+    <p class="text-center">
+      <%= link_to 'Sign Up For a Chef Account', 'https://manage.opscode.com/signup?ref=community', class: 'button radius' %>
+      <%= link_to 'Sign In With Your Chef Account', sign_in_path, class: 'button radius' %>
+    </p>
+  </section>
 
-<section class="welcome_resources">
-  <div>
-    <h2>Explore</h2>
+  <section class="welcome_resources">
+    <div>
+      <h2>Explore</h2>
 
-    <ul>
-      <li>
-        <%= link_to "Browse Cookbooks", cookbooks_path %>
-      </li>
-      <li>
-        <a href="http://www.getchef.com/blog/" target="_blank">Read the Chef Blog</a>
-      </li>
-    </ul>
-  </div>
-  <div>
-    <h2>Learn</h2>
-    <ul>
-      <li>
-        <a href="https://learnchef.opscode.com/" target="_blank">Learn Chef</a>
-      </li>
-      <li>
-        <a href="http://docs.opscode.com/" target="_blank">Read the Chef Docs</a>
-      </li>
-      <li>
-        <a href="http://docs.opscode.com/community_guidelines.html" target="_blank">Community Guidelines</a>
-      </li>
-      <li>
-        <a href="http://docs.opscode.com/community_contributions.html" target="_blank">How to Contribute</a>
-      </li>
-    </ul>
-  </div>
-  <div>
-    <h2>Share</h2>
-    <ul>
-      <li>
-        <a href="https://wiki.opscode.com/display/ChefCN/Creating+New+Cookbooks" target="_blank">Share your cookbooks</a>
-      </li>
-      <li>
-        <a href="irc://irc.freenode.net/chef">Chat on IRC at #chef on irc.freenode.net</a>
-      </li>
-      <li>
-        <a href="https://groups.google.com/forum/#!forum/chef-supermarket" target="_blank">Join the Supermarket Mailing List</a>
-      </li>
-      <li>
-        <a href="https://github.com/opscode/supermarket" target="_blank">Contribute to Supermarket</a>
-      </li>
-    </ul>
-  </div>
-</section>
+      <ul>
+        <li>
+          <%= link_to "Browse Cookbooks", cookbooks_path %>
+        </li>
+        <li>
+          <a href="http://www.getchef.com/blog/" target="_blank">Read the Chef Blog</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h2>Learn</h2>
+      <ul>
+        <li>
+          <a href="https://learnchef.opscode.com/" target="_blank">Learn Chef</a>
+        </li>
+        <li>
+          <a href="http://docs.opscode.com/" target="_blank">Read the Chef Docs</a>
+        </li>
+        <li>
+          <a href="http://docs.opscode.com/community_guidelines.html" target="_blank">Community Guidelines</a>
+        </li>
+        <li>
+          <a href="http://docs.opscode.com/community_contributions.html" target="_blank">How to Contribute</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h2>Share</h2>
+      <ul>
+        <li>
+          <a href="https://wiki.opscode.com/display/ChefCN/Creating+New+Cookbooks" target="_blank">Share your cookbooks</a>
+        </li>
+        <li>
+          <a href="irc://irc.freenode.net/chef">Chat on IRC at #chef on irc.freenode.net</a>
+        </li>
+        <li>
+          <a href="https://groups.google.com/forum/#!forum/chef-supermarket" target="_blank">Join the Supermarket Mailing List</a>
+        </li>
+        <li>
+          <a href="https://github.com/opscode/supermarket" target="_blank">Contribute to Supermarket</a>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-<section class="cookbooks_stats">
-  <h2>Community Stats</h3>
-  <span class="stat"><span class="number"><%= number_with_delimiter @cookbook_count, delimiter: ',' %></span> Cookbooks</span>
-  <span class="stat"><span class="number"><%= number_with_delimiter @user_count, delimiter: ',' %></span> Chefs</span>
-</section>
+  <section class="cookbooks_stats">
+    <h2>Community Stats</h3>
+    <span class="stat"><span class="number"><%= number_with_delimiter @cookbook_count, delimiter: ',' %></span> Cookbooks</span>
+    <span class="stat"><span class="number"><%= number_with_delimiter @user_count, delimiter: ',' %></span> Chefs</span>
+  </section>
+</div>

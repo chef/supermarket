@@ -2,8 +2,7 @@
 @import "foundation/components/grid";
 
 .sign_up_in {
-  border-bottom: solid 1px $cookbook_border;
-  padding: rem-calc(50);
+  padding-bottom: rem-calc(55);
 
   p {
     margin: 0;
@@ -32,8 +31,8 @@
 
 .welcome_resources {
   @include grid-row();
-  border-bottom: solid 1px $cookbook_border;
-  background: white;
+  border: 1px $cookbook_border;
+  border-style: solid none solid none;
   margin-bottom: rem-calc(40);
   padding: rem-calc(40);
 
