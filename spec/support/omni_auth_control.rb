@@ -1,4 +1,6 @@
 module OmniAuthControl
+  EXPIRATION = Time.now.to_i
+
   def self.stub_github!(user = User.new)
     OmniAuth.config.mock_auth[:github] = github_hash(user)
   end
@@ -47,7 +49,7 @@ module OmniAuthControl
       credentials: {
         token: 'oauth_token',
         refresh_token: 'refresh_token',
-        expires_at: Time.now.to_i,
+        expires_at: EXPIRATION,
         expires: true
       }
     )

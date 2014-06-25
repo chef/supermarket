@@ -350,10 +350,12 @@ describe User do
         user = User.find_or_create_from_chef_oauth(auth).reload
         account = user.chef_account
 
+        expected_expiration = Time.at(OmniAuthControl::EXPIRATION)
+
         expect(account.username).to eql(auth['info']['username'])
         expect(account.uid).to eql(auth['uid'])
         expect(account.oauth_token).to eql(auth['credentials']['token'])
-        expect(account.oauth_expires).to be_within(1.second).of(Time.now)
+        expect(account.oauth_expires).to eql(expected_expiration)
         expect(account.oauth_refresh_token).to eql(auth['credentials']['refresh_token'])
         expect(user.email).to eql(auth['info']['email'])
       end
@@ -401,10 +403,13 @@ describe User do
         user = User.find_or_create_from_chef_oauth(new_auth).reload
         account = user.chef_account
 
+        expected_expiration = expiry.utc.to_i
+        actual_expiration = account.oauth_expires.utc.to_i
+
         expect(account.username).to eql(auth['info']['username'])
         expect(account.uid).to eql(auth['uid'])
         expect(account.oauth_token).to eql('cool_token')
-        expect(account.oauth_expires).to be_within(1.second).of(expiry)
+        expect(actual_expiration).to eql(expected_expiration)
         expect(account.oauth_refresh_token).to eql('fresh_refresh')
         expect(user.email).to eql(auth['info']['email'])
       end

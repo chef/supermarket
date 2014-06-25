@@ -22,11 +22,11 @@ class OrganizationInvitationsController < ApplicationController
   def create
     invalid_invitations = []
 
-    invitation_params[:emails].split(',').each do |email|
+    invitations_params[:emails].split(',').each do |email|
       email = email.strip
       invitation = @organization.invitations.new(
         email: email,
-        admin: invitation_params[:admin]
+        admin: invitations_params[:admin]
       )
 
       if invitation.save
@@ -54,7 +54,7 @@ class OrganizationInvitationsController < ApplicationController
   #
   def update
     @invitation = Invitation.with_token!(params[:id])
-    @invitation.update_attributes(invitation_params)
+    @invitation.update_attributes(invitation_admin_params)
 
     head 204
   end
@@ -87,7 +87,11 @@ class OrganizationInvitationsController < ApplicationController
 
   private
 
-  def invitation_params
+  def invitation_admin_params
+    params.require(:invitation).permit(:admin)
+  end
+
+  def invitations_params
     params.require(:invitations).permit(:emails, :admin)
   end
 

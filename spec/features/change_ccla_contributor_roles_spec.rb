@@ -1,7 +1,7 @@
 require 'spec_feature_helper'
 
 describe 'Changing a contributors role on a CCLA' do
-  example 'admins can change other users roles' do
+  example 'admins can change other users roles', use_poltergeist: true do
     sign_ccla_and_invite_admin_to('Acme')
     sign_out
 
@@ -14,6 +14,8 @@ describe 'Changing a contributors role on a CCLA' do
     within 'table' do
       uncheck 'contributor_admin'
     end
+
+    sleep 5
 
     visit current_path
 
