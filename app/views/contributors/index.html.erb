@@ -8,30 +8,12 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Signed ICLA, CCLA or Both</th>
-          <th>GitHub</th>
-          <th>Jira</th>
         </tr>
       </thead>
       <tbody>
         <% @all_signers.each do |user| %>
           <tr>
-            <td><%= user.name %></td>
-            <td>
-              <% if user.signed_icla? && !user.signed_ccla? %>
-                ICLA
-              <% elsif !user.signed_icla? && user.signed_ccla? %>
-                CCLA
-              <% elsif user.signed_icla? && user.signed_ccla? %>
-                Both
-              <% end %>
-            </td>
-            <td>
-              <% user.accounts.for('github').each do |account| %>
-                <%= link_to account.username, "https://www.github.com/#{account.username}", target: :blank %>
-              <% end %>
-            </td>
-            <td><%= user.jira_username %></td>
+            <td><%= link_to user.name, user %></td>
           </tr>
         <% end %>
       </tbody>

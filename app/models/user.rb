@@ -224,10 +224,14 @@ class User < ActiveRecord::Base
   # @return [ActiveRecord::Relation] the users who have signed the cla
   #
   def self.all_cla_signers
-    (
-      User.joins(:icla_signatures).where('icla_signatures.id is not null').all +
-      User.joins(:ccla_signatures).where('ccla_signatures.id is not null').all
-    ).uniq
+    sql = %(
+      SELECT users.* FROM users
+      LEFT JOIN icla_signatures ON icla_signatures.user_id = users.id
+      LEFT JOIN ccla_signatures ON ccla_signatures.user_id = users.id
+      WHERE icla_signatures.id IS NOT NULL OR ccla_signatures.id IS NOT NULL
+    )
+
+    User.find_by_sql(sql).uniq
   end
 
   #

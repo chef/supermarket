@@ -64,6 +64,7 @@ describe User do
 
     before do
       create(:icla_signature, user: jim)
+      create(:icla_signature, user: jimmy)
       create(:ccla_signature, user: jimmy)
       create(:ccla_signature, user: jimmy)
     end
