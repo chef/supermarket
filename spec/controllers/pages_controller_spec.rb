@@ -11,12 +11,6 @@ describe PagesController do
         expect(response.status.to_i).to eql(200)
       end
 
-      it 'sends recently updated cookbook count to the view' do
-        get :welcome
-
-        expect(assigns[:recently_updated_count]).to_not be_nil
-      end
-
       it 'sends cookbook count to the view' do
         get :welcome
 
