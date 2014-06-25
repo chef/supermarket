@@ -20,17 +20,31 @@ class OrganizationInvitationsController < ApplicationController
   # organization.
   #
   def create
+    invalid_invitations = []
+
     invitation_params[:emails].split(',').each do |email|
-      @invitation = @organization.invitations.new(
+      email = email.strip
+      invitation = @organization.invitations.new(
         email: email,
         admin: invitation_params[:admin]
       )
 
-      @invitation.save
-      InvitationMailer.delay.invitation_email(@invitation)
+      if invitation.save
+        InvitationMailer.delay.invitation_email(invitation)
+      else
+        invalid_invitations << invitation
+      end
     end
 
-    redirect_to organization_invitations_path(@organization), notice: 'Successfully sent invitations.'
+    if invalid_invitations.empty?
+      redirect_to organization_invitations_path(@organization),
+                  notice: t('organization_invitations.invites.success')
+    else
+      redirect_to organization_invitations_path(@organization), flash: {
+        warning: t('organization_invitations.invites.warning',
+                   invites: invalid_invitations.map(&:email).join(', '))
+      }
+    end
   end
 
   #

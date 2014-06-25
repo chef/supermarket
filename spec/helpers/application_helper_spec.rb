@@ -32,4 +32,18 @@ describe ApplicationHelper do
       expect(posessivize(nil)).to be_nil
     end
   end
+
+  describe '#flash_message_class_for' do
+    it 'should return a flass message class for notice flash messages' do
+      expect(flash_message_class_for('notice')).to eql('success')
+    end
+
+    it 'should return a flass message class for alert flash messages' do
+      expect(flash_message_class_for('alert')).to eql('alert')
+    end
+
+    it 'should return a flass message class for warning flash messages' do
+      expect(flash_message_class_for('warning')).to eql('warning')
+    end
+  end
 end

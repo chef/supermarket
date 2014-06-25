@@ -24,4 +24,19 @@ module ApplicationHelper
       name + "'s"
     end
   end
+
+  #
+  # Returns flash message class for a given flash message name
+  #
+  # @param name [String]
+  #
+  # @return [String]
+  #
+  def flash_message_class_for(name)
+    {
+      'notice' => 'success',
+      'alert' => 'alert',
+      'warning' => 'warning'
+    }.fetch(name)
+  end
 end

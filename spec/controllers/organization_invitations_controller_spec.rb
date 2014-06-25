@@ -74,14 +74,44 @@ describe OrganizationInvitationsController do
         end.to change(organization.invitations, :count).by(3)
       end
 
-      it 'sends the invitation' do
+      it 'sends the invitations' do
         Sidekiq::Testing.inline! do
           expect do
             post :create,
                  organization_id: organization.id,
-                 invitations: { emails: 'chef@example.com' }
-          end.to change(ActionMailer::Base.deliveries, :size).by(1)
+                 invitations: { emails: 'chef@example.com, chef_2@example.com' }
+          end.to change(ActionMailer::Base.deliveries, :size).by(2)
         end
+      end
+    end
+
+    context 'an invalid email address is entered' do
+      before { auto_authorize!(Organization, 'manage_contributors') }
+
+      it 'creates invitations for the valid email addresses' do
+        expect do
+          post :create,
+               organization_id: organization.id,
+               invitations: { emails: 'chef@example.com, joe, jim, chef_2@example.com' }
+        end.to change(organization.invitations, :count).by(2)
+      end
+
+      it 'sends invitations to the valid email addresses' do
+        Sidekiq::Testing.inline! do
+          expect do
+            post :create,
+                 organization_id: organization.id,
+                 invitations: { emails: 'chef@example.com, joe, jim, chef_2@example.com' }
+          end.to change(ActionMailer::Base.deliveries, :size).by(2)
+        end
+      end
+
+      it 'adds the invalid addresses to a warning flash message' do
+        post :create,
+             organization_id: organization.id,
+             invitations: { emails: 'chef@example.com, joe, jim, chef_2@example.com' }
+
+        expect(flash['warning']).to match(/joe, jim/)
       end
     end
 
