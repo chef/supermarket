@@ -26,8 +26,8 @@ class Cookbook < ActiveRecord::Base
     reorder({
       'recently_updated' => 'updated_at DESC',
       'recently_added' => 'id DESC',
-      'most_downloaded' => '(web_download_count + api_download_count) DESC',
-      'most_followed' => 'cookbook_followers_count DESC'
+      'most_downloaded' => '(web_download_count + api_download_count) DESC, id ASC',
+      'most_followed' => 'cookbook_followers_count DESC, id ASC'
     }.fetch(ordering, 'name ASC'))
   }
 
