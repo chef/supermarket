@@ -62,10 +62,10 @@
       </div>
     </div>
 
+    <%= javascript_include_tag 'application' %>
+
     <% if Supermarket::Config.segment_io_write_key %>
       <%= render partial: 'segment.io' %>
     <% end %>
-
-    <%= javascript_include_tag "application" %>
   </body>
 </html>
