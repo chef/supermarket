@@ -1,22 +1,17 @@
 <div class="heading">
   <div class="left">
     <h1>Contributors</h1>
-    <h4><%= @icla_signatures ? @icla_signatures.count : IclaSignature.by_user.count %> Contributors</h4>
-    <h4><%= @ccla_signatures ? @ccla_signatures.count : CclaSignature.by_organization.count %> Companies</h4>
+    <h4><%= @icla_signatures ? @icla_signatures.count : IclaSignature.by_user.count %> ICLA Signatures</h4>
+    <h4><%= @ccla_signatures ? @ccla_signatures.count : CclaSignature.by_organization.count %> CCLA Signing Companies</h4>
   </div>
 
   <div class="right">
-    <a href="#" data-dropdown="drop" class="button dropdown small radius">Become a Contributor</a>
-    <ul id="drop" data-dropdown-content class="f-dropdown">
-      <% if !current_user || !current_user.signed_icla? %>
-        <li><%= link_to 'As an Individual', new_icla_signature_path %></li>
-      <% end %>
-      <li><%= link_to 'As a Company', new_ccla_signature_path %></li>
-    </ul>
+    <%= link_to "Become a Contributor", become_a_contributor_path, class:"button small radius" %>
   </div>
 </div>
 
 <dl class="tabs">
-  <dd class="<%= "active" if !current_page?(ccla_signatures_path) %>"><%= link_to 'Individuals', icla_signatures_path %></dd>
+  <dd class="<%= "active" if current_page?(contributors_path) %>"><%= link_to 'All', contributors_path %></dd>
+  <dd class="<%= "active" if current_page?(icla_signatures_path) %>"><%= link_to 'Individuals', icla_signatures_path %></dd>
   <dd class="<%= "active" if current_page?(ccla_signatures_path) %>"><%= link_to 'Companies', ccla_signatures_path %></dd>
 </dl>

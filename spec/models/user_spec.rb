@@ -34,6 +34,49 @@ describe User do
     end
   end
 
+  describe '.all_cla_signers' do
+    let!(:jimmy) do
+      create(
+        :user,
+        first_name: 'Jimmy',
+        last_name: 'Jammy',
+        email: 'jimmyjammy@example.com'
+      )
+    end
+
+    let!(:jim) do
+      create(
+        :user,
+        first_name: 'Jim',
+        last_name: 'McJimmerton',
+        email: 'jimmcjimmerton@example.com'
+      )
+    end
+
+    let!(:yojimbo) do
+      create(
+        :user,
+        first_name: 'Yo',
+        last_name: 'Jimbo',
+        email: 'yojimbo@example.com'
+      )
+    end
+
+    before do
+      create(:icla_signature, user: jim)
+      create(:icla_signature, user: jimmy)
+      create(:ccla_signature, user: jimmy)
+      create(:ccla_signature, user: jimmy)
+    end
+
+    it 'returns users with a similar first name' do
+      expect(User.all_cla_signers).to include(jimmy)
+      expect(User.all_cla_signers).to include(jim)
+      expect(User.all_cla_signers).to_not include(yojimbo)
+      expect(User.all_cla_signers.count(jimmy)).to eql(1)
+    end
+  end
+
   describe '.search' do
     let!(:jimmy) do
       create(

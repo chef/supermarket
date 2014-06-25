@@ -1,7 +1,7 @@
 <%= provide(:title, "CCLA Signatures") %>
 
-<div class="page">
-  <div class="contributors">
+<div class="cla_signers_list"  data-equalizer>
+  <div class="contributors signers" data-equalizer-watch>
     <%= render 'contributors_list_heading' %>
 
     <table>
@@ -23,4 +23,6 @@
       </tbody>
     </table>
   </div>
+
+  <%= render "contributors/sidebar" %>
 </div>

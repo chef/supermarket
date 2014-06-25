@@ -77,4 +77,26 @@ describe ContributorsController do
       end
     end
   end
+
+  describe 'GET #become_a_contributor' do
+    it 'responds with a 200' do
+      get :become_a_contributor
+
+      expect(response.status.to_i).to eql(200)
+    end
+  end
+
+  describe 'GET #index' do
+    it 'responds with a 200' do
+      get :index
+
+      expect(response.status.to_i).to eql(200)
+    end
+
+    it 'assigns all_signers' do
+      get :index
+
+      expect(assigns[:all_signers]).to_not be_nil
+    end
+  end
 end
