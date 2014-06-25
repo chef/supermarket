@@ -7,8 +7,8 @@ GIT
 
 GIT
   remote: git://github.com/gofullstack/chef-legacy.git
-  revision: f875db26ec37bf0ec9278603e7145bb8da8e2332
-  ref: v1.4.0
+  revision: 80bdcc160fcb4adb8614a0f8df7128cfb7a3c1e4
+  ref: v1.4.1
   specs:
     chef-legacy (1.0.0)
       connection_pool
