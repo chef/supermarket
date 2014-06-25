@@ -313,6 +313,22 @@ describe Cookbook do
       expect(Cookbook.ordered_by('most_followed').map(&:name)).
         to eql(%w(great cookbook))
     end
+
+    it 'orders secondarily by id when cookbook follower counts are equal' do
+      great.update_attributes(cookbook_followers_count: 100)
+      cookbook.update_attributes(cookbook_followers_count: 100)
+
+      expect(Cookbook.ordered_by('most_followed').map(&:name)).
+        to eql(%w(great cookbook))
+    end
+
+    it 'orders secondarily by id when download counts are equal' do
+      great.update_attributes(web_download_count: 5, api_download_count: 100)
+      cookbook.update_attributes(web_download_count: 5, api_download_count: 100)
+
+      expect(Cookbook.ordered_by('most_followed').map(&:name)).
+        to eql(%w(great cookbook))
+    end
   end
 
   describe '.owned_by' do
