@@ -229,16 +229,20 @@ class User < ActiveRecord::Base
 
   #
   # Returns a unique +ActiveRecord::Relation+ of all users who have signed
-  # either the ICLA or CCLA.
+  # either the ICLA or CCLA or are a contributor on behalf of one or
+  # more +Organization+s.
   #
   # @return [ActiveRecord::Relation] the users who have signed the cla
   #
-  def self.all_cla_signers
+  def self.authorized_contributors
     sql = %(
       SELECT users.* FROM users
       LEFT JOIN icla_signatures ON icla_signatures.user_id = users.id
       LEFT JOIN ccla_signatures ON ccla_signatures.user_id = users.id
-      WHERE icla_signatures.id IS NOT NULL OR ccla_signatures.id IS NOT NULL
+      LEFT JOIN contributors ON contributors.user_id = users.id
+      WHERE icla_signatures.id IS NOT NULL
+        OR ccla_signatures.id IS NOT NULL
+        OR contributors.id IS NOT NULL
     )
 
     User.find_by_sql(sql).uniq

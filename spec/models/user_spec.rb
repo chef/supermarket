@@ -49,7 +49,7 @@ describe User do
     end
   end
 
-  describe '.all_cla_signers' do
+  describe '.authorized_contributors' do
     let!(:jimmy) do
       create(
         :user,
@@ -77,18 +77,29 @@ describe User do
       )
     end
 
+    let!(:tidus) do
+      create(
+        :user,
+        first_name: 'Tidus',
+        last_name: 'Nomura',
+        email: 'tidus@example.com'
+      )
+    end
+
     before do
       create(:icla_signature, user: jim)
       create(:icla_signature, user: jimmy)
       create(:ccla_signature, user: jimmy)
       create(:ccla_signature, user: jimmy)
+      create(:contributor, user: tidus)
     end
 
     it 'returns users with a similar first name' do
-      expect(User.all_cla_signers).to include(jimmy)
-      expect(User.all_cla_signers).to include(jim)
-      expect(User.all_cla_signers).to_not include(yojimbo)
-      expect(User.all_cla_signers.count(jimmy)).to eql(1)
+      expect(User.authorized_contributors).to include(jimmy)
+      expect(User.authorized_contributors).to include(jim)
+      expect(User.authorized_contributors).to include(tidus)
+      expect(User.authorized_contributors).to_not include(yojimbo)
+      expect(User.authorized_contributors.count(jimmy)).to eql(1)
     end
   end
 
