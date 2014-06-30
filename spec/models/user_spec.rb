@@ -34,6 +34,21 @@ describe User do
     end
   end
 
+  describe '#contributor?' do
+    it 'is true when the user belongs to one or more organizations' do
+      user = create(:user)
+      create(:contributor, user: user)
+
+      expect(user.contributor?).to be_true
+    end
+
+    it 'is false when the user does not belong to any organizations' do
+      user = create(:user)
+
+      expect(user.contributor?).to be_false
+    end
+  end
+
   describe '.all_cla_signers' do
     let!(:jimmy) do
       create(

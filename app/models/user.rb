@@ -140,6 +140,16 @@ class User < ActiveRecord::Base
   end
 
   #
+  # Determine if the user is a contributor on behalf of one or more
+  # +Organization+s
+  #
+  # @return [Boolean]
+  #
+  def contributor?
+    organizations.any?
+  end
+
+  #
   # The name of the current user.
   #
   # @example
