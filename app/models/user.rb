@@ -95,7 +95,7 @@ class User < ActiveRecord::Base
   # @return [Boolean]
   #
   def signed_icla?
-    !icla_signatures.empty?
+    icla_signatures.any?
   end
 
   #
@@ -127,7 +127,7 @@ class User < ActiveRecord::Base
   # @return [Boolean]
   #
   def signed_ccla?
-    !ccla_signatures.empty?
+    ccla_signatures.any?
   end
 
   #
