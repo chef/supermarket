@@ -86,7 +86,11 @@ Supermarket::Application.routes.draw do
     end
   end
 
-  resources :organizations, only: [] do
+  resources :organizations, only: [:index, :show, :destroy] do
+    member do
+      put :combine
+    end
+
     resources :contributors, only: [:update, :destroy], controller: :contributors
 
     resources :invitations, only: [:index, :create, :update],

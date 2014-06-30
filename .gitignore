@@ -50,7 +50,7 @@ public/system
 *.rdb
 
 # Ignore the generated sitemap
-public/sitemap.xml.gz
+public/sitemap*
 
 # Ignore local configuration
 .env.development

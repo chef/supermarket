@@ -24,6 +24,41 @@ class OrganizationAuthorizer < Authorizer::Base
     organization_or_supermarket_admin?
   end
 
+  # Supermarket admins can manage organizations
+  #
+  # @return [Boolean]
+  #
+  def manage_organization?
+    user.is?(:admin)
+  end
+
+  #
+  # Supermarket admins can see the page to manage organizations
+  #
+  # @return [Boolean]
+  #
+  def show?
+    manage_organization?
+  end
+
+  #
+  # Supermarket admins can delete organizations
+  #
+  # @return [Boolean]
+  #
+  def destroy?
+    manage_organization?
+  end
+
+  #
+  # Supermarket admins can combine organizations
+  #
+  # @return [Boolean]
+  #
+  def combine?
+    manage_organization?
+  end
+
   private
 
   def organization_or_supermarket_admin?

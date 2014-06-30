@@ -1,10 +1,12 @@
 class Organization < ActiveRecord::Base
+  attr_accessor :combine_with_id
+
   # Associations
   # --------------------
-  has_many :contributors
+  has_many :contributors, dependent: :destroy
   has_many :users, through: :contributors
-  has_many :invitations
-  has_many :ccla_signatures
+  has_many :invitations, dependent: :destroy
+  has_many :ccla_signatures, dependent: :destroy
 
   #
   # Returns all admin contributors.
@@ -23,6 +25,7 @@ class Organization < ActiveRecord::Base
   def name
     latest_ccla_signature.company
   end
+  alias_method :company, :name
 
   #
   # Retrieve the latest CCLA signature if they have signed a CCLA.
@@ -31,5 +34,23 @@ class Organization < ActiveRecord::Base
   #
   def latest_ccla_signature
     ccla_signatures.order(:signed_at).last
+  end
+
+  #
+  # Combine two organizations together by copying CCLA signatures, invitations
+  # and contributors from one to the other. This also destroys the organzation
+  # that's passed in.
+  #
+  # @param organization [Organization] The organization that we want to combine
+  # with this one
+  #
+  def combine!(organization)
+    [:ccla_signatures, :invitations, :contributors].each do |assoc|
+      organization.send(assoc).each do |thing|
+        thing.update_attribute(:organization_id, id)
+      end
+    end
+
+    organization.reload.destroy
   end
 end

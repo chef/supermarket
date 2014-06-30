@@ -1,0 +1,24 @@
+<%= provide(:title, "CCLA Invitations for #{@organization.name}") %>
+
+<div class="page">
+  <div class="cla">
+    <h1><%= @organization.name %> Organization Management</h1>
+
+    <%= render "ccla_signatures/organization_tabs", ccla_signature: @organization.latest_ccla_signature %>
+
+    <%= link_to 'Delete this Organization', organization_path(@organization), method: :delete, data: { confirm: 'This will permanently delete this organization and all of its signatures. Are you sure?' } %>
+
+    <br><br> <!-- aww yisss -->
+
+    <%= form_for @organization, url: { action: 'combine' }, method: :put do |f| %>
+      <div class="row collapse">
+        <div class="small-9 columns">
+          <%= f.hidden_field :combine_with_id, class: 'transfer-ccla-organization', 'data-url' => organizations_path %>
+        </div>
+        <div class="small-3 columns">
+          <%= f.submit 'Combine', class: 'button postfix' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
