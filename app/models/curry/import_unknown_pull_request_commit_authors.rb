@@ -27,8 +27,8 @@ class Curry::ImportUnknownPullRequestCommitAuthors
   # Loop through all of the commit authors with GitHub login or email address
   # that have not signed a CLA. Create a record for them if one does not exist.
   #
-  def import
-    unknown_emails.each do |email|
+  def import_unauthorized_commit_authors
+    emails_of_non_github_verified_committers.each do |email|
       commit_author = Curry::CommitAuthor.with_email(email).first_or_create!
 
       @pull_request.pull_request_commit_authors.where(
@@ -36,7 +36,7 @@ class Curry::ImportUnknownPullRequestCommitAuthors
       ).first_or_create!
     end
 
-    unknown_github_logins.each do |login|
+    unauthorized_github_logins.each do |login|
       commit_author = Curry::CommitAuthor.with_login(login).first_or_create!
 
       @pull_request.pull_request_commit_authors.where(
@@ -61,19 +61,19 @@ class Curry::ImportUnknownPullRequestCommitAuthors
   #
   # @return [Array<String>]
   #
-  def unknown_emails
+  def emails_of_non_github_verified_committers
     pull_request_commits.reject(&:author).map(&:commit).map do |commit|
       commit.author.email
     end.uniq
   end
 
   #
-  # Returns each GitHub login which is not known to have signed a CLA from the
-  # pull request
+  # Returns each GitHub login which is not known to be authorized to
+  # contribute within pull request
   #
   # @return [Array<String>]
   #
-  def unknown_github_logins
+  def unauthorized_github_logins
     pull_request_commits.select(&:author).map(&:author).reject do |author|
       authorized_to_contribute?(author.login)
     end.map(&:login).uniq

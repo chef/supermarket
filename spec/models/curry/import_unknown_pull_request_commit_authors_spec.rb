@@ -15,7 +15,7 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
     importer = Curry::ImportUnknownPullRequestCommitAuthors.new(pull_request)
 
     expect do
-      importer.import
+      importer.import_unauthorized_commit_authors
     end.to change(pull_request.reload.unknown_commit_authors, :count).by(2)
   end
 
@@ -25,7 +25,7 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
     importer = Curry::ImportUnknownPullRequestCommitAuthors.new(pull_request)
 
     expect do
-      2.times { importer.import }
+      2.times { importer.import_unauthorized_commit_authors }
     end.to change(pull_request.reload.unknown_commit_authors, :count).by(2)
   end
 
@@ -49,7 +49,7 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
     create(:icla_signature, user: user)
 
     expect do
-      importer.import
+      importer.import_unauthorized_commit_authors
     end.to change(pull_request.reload.commit_authors, :count).by(1)
   end
 
@@ -68,7 +68,7 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
     create(:contributor, user: user)
 
     expect do
-      importer.import
+      importer.import_unauthorized_commit_authors
     end.to change(pull_request.reload.commit_authors, :count).by(1)
   end
 end
