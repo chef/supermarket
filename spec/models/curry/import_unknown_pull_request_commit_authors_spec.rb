@@ -30,6 +30,11 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
   end
 
   it 'does not import known commit authors' do
+    # NOTE: there is implicit state at work here. The
+    # import_unknown_pull_request_commit_authors VCR cassette contains a
+    # response for a Pull Request with two commit authors. This spec creates an
+    # account in the test database for one of those users. As such, the import
+    # should only create one commit author record
     repository = create(:repository, owner: 'gofullstack', name: 'paprika')
     pull_request = create(:pull_request, repository: repository)
     importer = Curry::ImportUnknownPullRequestCommitAuthors.new(pull_request)
