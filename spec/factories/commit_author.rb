@@ -2,6 +2,6 @@ FactoryGirl.define do
   factory :commit_author, class: Curry::CommitAuthor do
     email nil
     login nil
-    signed_cla false
+    authorized_to_contribute false
   end
 end

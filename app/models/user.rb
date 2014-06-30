@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
   #
   def verified_commit_author_identities
     accounts.for(:github).map do |account|
-      Curry::CommitAuthor.with_login(account.username).where(signed_cla: true)
+      Curry::CommitAuthor.with_login(account.username).where(authorized_to_contribute: true)
     end.flatten
   end
 
@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
   #
   def unverified_commit_author_identities
     accounts.for(:github).map do |account|
-      Curry::CommitAuthor.with_login(account.username).where(signed_cla: false)
+      Curry::CommitAuthor.with_login(account.username).where(authorized_to_contribute: false)
     end.flatten
   end
 

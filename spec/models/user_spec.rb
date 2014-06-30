@@ -238,7 +238,7 @@ describe User do
   describe '#verified_commit_author_identities' do
 
     it "returns the user's commit author identities who have signed a CLA" do
-      commit_author = create(:commit_author, login: 'joedoe', signed_cla: true)
+      commit_author = create(:commit_author, login: 'joedoe', authorized_to_contribute: true)
       user = create(:user)
       account = create(
         :account,
@@ -252,7 +252,7 @@ describe User do
     end
 
     it "does not return the user's commit author identities who have not signed a CLA" do
-      commit_author = create(:commit_author, login: 'joedoe', signed_cla: false)
+      commit_author = create(:commit_author, login: 'joedoe', authorized_to_contribute: false)
       user = create(:user)
       account = create(
         :account,
@@ -269,7 +269,7 @@ describe User do
   describe '#unverified_commit_author_identities' do
 
     it "returns the user's commit author identities who have not signed a CLA" do
-      commit_author = create(:commit_author, login: 'joedoe', signed_cla: false)
+      commit_author = create(:commit_author, login: 'joedoe', authorized_to_contribute: false)
       user = create(:user)
       account = create(
         :account,
@@ -283,7 +283,7 @@ describe User do
     end
 
     it "does not return the user's commit author identities who have signed a CLA" do
-      commit_author = create(:commit_author, login: 'joedoe', signed_cla: true)
+      commit_author = create(:commit_author, login: 'joedoe', authorized_to_contribute: true)
       user = create(:user)
       account = create(
         :account,

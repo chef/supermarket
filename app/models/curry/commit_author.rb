@@ -9,12 +9,12 @@ class Curry::CommitAuthor < ActiveRecord::Base
   scope :with_login, ->(login) { where(login: login) }
 
   #
-  # Update the commit author's signed_cla? flag to true
+  # Update the commit author's authorized_to_contribute? flag to true
   #
   # @return [Boolean]
   #
   def sign_cla!
-    self.signed_cla = true
+    self.authorized_to_contribute = true
     save!
   end
 end
