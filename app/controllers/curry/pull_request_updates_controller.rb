@@ -17,7 +17,7 @@ class Curry::PullRequestUpdatesController < ApplicationController
     )
 
     if pull_request_update.persisted? && !pull_request_update.closing?
-      Curry::ImportUnknownPullRequestCommitAuthorsWorker.perform_async(
+      Curry::ImportPullRequestCommitAuthorsWorker.perform_async(
         pull_request_update.pull_request.id
       )
     end

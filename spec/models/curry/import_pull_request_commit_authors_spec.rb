@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'vcr_helper'
 
-describe Curry::ImportUnknownPullRequestCommitAuthors do
+describe Curry::ImportPullRequestCommitAuthors do
   around(:each) do |example|
     VCR.use_cassette('import_unknown_pull_request_commit_authors', record: :once) do
       example.run
@@ -12,7 +12,7 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
     # NOTE: This is a repository created to be in _this_ state
     repository = create(:repository, owner: 'gofullstack', name: 'paprika')
     pull_request = create(:pull_request, repository: repository)
-    importer = Curry::ImportUnknownPullRequestCommitAuthors.new(pull_request)
+    importer = Curry::ImportPullRequestCommitAuthors.new(pull_request)
 
     expect do
       importer.import_unauthorized_commit_authors
@@ -22,7 +22,7 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
   it 'does not duplicate existing unknown commit authors' do
     repository = create(:repository, owner: 'gofullstack', name: 'paprika')
     pull_request = create(:pull_request, repository: repository)
-    importer = Curry::ImportUnknownPullRequestCommitAuthors.new(pull_request)
+    importer = Curry::ImportPullRequestCommitAuthors.new(pull_request)
 
     expect do
       2.times { importer.import_unauthorized_commit_authors }
@@ -37,7 +37,7 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
     # should only create one commit author record
     repository = create(:repository, owner: 'gofullstack', name: 'paprika')
     pull_request = create(:pull_request, repository: repository)
-    importer = Curry::ImportUnknownPullRequestCommitAuthors.new(pull_request)
+    importer = Curry::ImportPullRequestCommitAuthors.new(pull_request)
 
     user = create(:user)
     account = create(
@@ -56,7 +56,7 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
   it "does not import commit authors known to be an organization's contributors" do
     repository = create(:repository, owner: 'gofullstack', name: 'paprika')
     pull_request = create(:pull_request, repository: repository)
-    importer = Curry::ImportUnknownPullRequestCommitAuthors.new(pull_request)
+    importer = Curry::ImportPullRequestCommitAuthors.new(pull_request)
 
     user = create(:user)
     account = create(

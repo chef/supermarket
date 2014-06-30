@@ -4,7 +4,7 @@
 # authored commits with a non GitHub-verified email. Once the import is
 # complete. This worker runs the job to annotate the given Pull Request.
 #
-class Curry::ImportUnknownPullRequestCommitAuthorsWorker
+class Curry::ImportPullRequestCommitAuthorsWorker
   include Sidekiq::Worker
 
   #
@@ -17,7 +17,7 @@ class Curry::ImportUnknownPullRequestCommitAuthorsWorker
     pull_request = Curry::PullRequest.find(pull_request_id)
 
     if pull_request.repository.present?
-      Curry::ImportUnknownPullRequestCommitAuthors.new(
+      Curry::ImportPullRequestCommitAuthors.new(
         pull_request
       ).import_unauthorized_commit_authors
 

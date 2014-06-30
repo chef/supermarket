@@ -1,14 +1,14 @@
 require 'octokit'
 
 #
-# +Curry::ImportUnknownPullRequestCommitAuthors+ uses Octokit to go through a
+# +Curry::ImportPullRequestCommitAuthors+ uses Octokit to go through a
 # pull request's commit authors to see if they have signed CLAs. If the commit
 # author has not signed a Supermarket CLA, a record is created for that commit
 # author.
 #
-class Curry::ImportUnknownPullRequestCommitAuthors
+class Curry::ImportPullRequestCommitAuthors
   #
-  # Create a new instance of +Curry::ImportUnknownPullRequestCommitAuthors+.
+  # Create a new instance of +Curry::ImportPullRequestCommitAuthors+.
   # This creates an instance of +Octokit::Client+ to interact with the GitHub
   # API.
   #
