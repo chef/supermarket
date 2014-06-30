@@ -7,6 +7,7 @@ module Universe
   LOCATION_TYPE = 'location_type'.freeze
   DEPENDENCIES = 'dependencies'.freeze
   SUPERMARKET = 'supermarket'.freeze
+  OPSCODE = 'opscode'.freeze
 
   module_function
 
@@ -47,7 +48,7 @@ module Universe
 
       result[name] ||= {}
       result[name][version] ||= {
-        LOCATION_TYPE => SUPERMARKET,
+        LOCATION_TYPE => OPSCODE,
         LOCATION_PATH => download_path(name, version, opts),
         DEPENDENCIES => {}
       }
