@@ -6,7 +6,6 @@ module Universe
   LOCATION_PATH = 'location_path'.freeze
   LOCATION_TYPE = 'location_type'.freeze
   DEPENDENCIES = 'dependencies'.freeze
-  SUPERMARKET = 'supermarket'.freeze
   OPSCODE = 'opscode'.freeze
 
   module_function
@@ -74,7 +73,11 @@ module Universe
   def download_path(cookbook, version, opts = {})
     host = opts.fetch(:host, ENV['HOST'])
     port = opts.fetch(:port, ENV['PORT'])
+    # port may be nil or empty, and if so we don't want to have a port
+    # string, but if not, then we want to prepend a colon for the URI
+    # we return.
+    port_string = port.nil? || port.empty? ? '' : ":#{port}"
     protocol = opts.fetch(:protocol, 'http')
-    "#{protocol}://#{host}:#{port}/api/v1/cookbooks/#{cookbook}/versions/#{version}/download"
+    "#{protocol}://#{host}#{port_string}/api/v1"
   end
 end

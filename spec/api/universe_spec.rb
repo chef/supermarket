@@ -50,7 +50,7 @@ describe 'GET /universe' do
   it 'returns https URLs when necessary' do
     get '/universe', { format: :json }, 'HTTPS' => 'on'
     expect(response).to be_success
-    expect(json_body['redis']['1.2.0']['location_path']).to match(%r{https.*/api/v1/cookbooks/redis/versions/1.2.0/download})
+    expect(json_body['redis']['1.2.0']['location_path']).to match(%r{https.*/api/v1})
   end
 
   it 'lists out cookbooks, their versions, and dependencies' do
@@ -60,12 +60,12 @@ describe 'GET /universe' do
     expect(body['redis'].keys).to include('1.2.0', '1.3.0')
     expect(body['redis']['1.2.0'].keys).to include('dependencies', 'location_type', 'location_path')
     expect(body['redis']['1.2.0']['dependencies']).to eql('apt' => '>= 1.0.0', 'narf' => '>= 1.1.0')
-    expect(body['redis']['1.2.0']['location_type']).to eql('supermarket')
-    expect(body['redis']['1.2.0']['location_path']).to match(%r{/api/v1/cookbooks/redis/versions/1.2.0/download})
+    expect(body['redis']['1.2.0']['location_type']).to eql('opscode')
+    expect(body['redis']['1.2.0']['location_path']).to match(%r{/api/v1})
     expect(body['redis']['1.3.0'].keys).to include('dependencies', 'location_type', 'location_path')
     expect(body['redis']['1.3.0']['dependencies']).to eql('apt' => '>= 1.0.0')
-    expect(body['redis']['1.3.0']['location_type']).to eql('supermarket')
-    expect(body['redis']['1.3.0']['location_path']).to match(%r{/api/v1/cookbooks/redis/versions/1.3.0/download})
+    expect(body['redis']['1.3.0']['location_type']).to eql('opscode')
+    expect(body['redis']['1.3.0']['location_path']).to match(%r{/api/v1})
     expect(body['apt']['1.1.0']['dependencies']).to eql({})
   end
 end
