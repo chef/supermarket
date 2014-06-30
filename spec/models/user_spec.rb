@@ -314,9 +314,11 @@ describe User do
 
   describe '#username' do
     it 'returns the chef username for the user' do
-      account = create(:account, username: 'fanny', provider: 'chef_oauth2')
+      user = create(:user)
+      account = user.accounts.for('chef_oauth2').first
+      account.update_attributes(username: 'fanny')
 
-      expect(account.user.username).to eql('fanny')
+      expect(user.username).to eql('fanny')
     end
 
     it 'returns a blank string if the user has unlinked their Chef ID' do
