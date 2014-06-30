@@ -29,7 +29,7 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
     end.to change(pull_request.reload.unknown_commit_authors, :count).by(2)
   end
 
-  it 'does not import known commit authors' do
+  it 'does not import commit authors known to have signed an ICLA' do
     # NOTE: there is implicit state at work here. The
     # import_unknown_pull_request_commit_authors VCR cassette contains a
     # response for a Pull Request with two commit authors. This spec creates an
@@ -46,7 +46,26 @@ describe Curry::ImportUnknownPullRequestCommitAuthors do
       username: 'brettchalupa',
       provider: 'github'
     )
-    signature = create(:icla_signature, user: user)
+    create(:icla_signature, user: user)
+
+    expect do
+      importer.import
+    end.to change(pull_request.reload.commit_authors, :count).by(1)
+  end
+
+  it "does not import commit authors known to be an organization's contributors" do
+    repository = create(:repository, owner: 'gofullstack', name: 'paprika')
+    pull_request = create(:pull_request, repository: repository)
+    importer = Curry::ImportUnknownPullRequestCommitAuthors.new(pull_request)
+
+    user = create(:user)
+    account = create(
+      :account,
+      user: user,
+      username: 'brettchalupa',
+      provider: 'github'
+    )
+    create(:contributor, user: user)
 
     expect do
       importer.import

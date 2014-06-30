@@ -75,18 +75,23 @@ class Curry::ImportUnknownPullRequestCommitAuthors
   #
   def unknown_github_logins
     pull_request_commits.select(&:author).map(&:author).reject do |author|
-      signed_a_cla?(author.login)
+      authorized_to_contribute?(author.login)
     end.map(&:login).uniq
   end
 
   #
-  # Determine if the given GitHub login has signed a CLA
+  # Determine if the +User+ for a given GitHub login is authorized to contribute to
+  # repositories that Supermarket is subscribed to. A +User+ is authorized to
+  # contribute if they have an +IclaSignature+, +CclaSignature+ or are a
+  # +Contributor+ on behalf of an +Organization+.
   #
   # @param [String] github_login
   #
   # @return [Boolean]
   #
-  def signed_a_cla?(github_login)
-    User.find_by_github_login(github_login).signed_cla?
+  def authorized_to_contribute?(github_login)
+    user = User.find_by_github_login(github_login)
+
+    user.signed_cla? || user.organizations.any?
   end
 end
