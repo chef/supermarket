@@ -118,27 +118,6 @@ class User < ActiveRecord::Base
     ccla_signatures.order(:signed_at).last
   end
 
-  # Determine if the current user signed the Corporate Contributor License
-  # Agreement.
-  #
-  # @todo Expand this functionality to search for the most recently active
-  #       CCLA and return some sort of history instead.
-  #
-  # @return [Boolean]
-  #
-  def signed_ccla?
-    ccla_signatures.any?
-  end
-
-  #
-  # Determine if the current user signed any CLAs.
-  #
-  # @return [Boolean]
-  #
-  def signed_cla?
-    signed_icla? || signed_ccla?
-  end
-
   #
   # Determine if the user is a contributor on behalf of one or more
   # +Organization+s

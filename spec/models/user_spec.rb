@@ -158,49 +158,6 @@ describe User do
     end
   end
 
-  describe '#signed_ccla?' do
-    it 'is true when there is a ccla signature' do
-      user = build(:user, ccla_signatures: [build(:ccla_signature)])
-      expect(user.signed_ccla?).to be_true
-    end
-
-    it 'is false when there is not a ccla signature' do
-      user = build(:user, ccla_signatures: [])
-      expect(user.signed_ccla?).to be_false
-    end
-  end
-
-  describe '#signed_cla' do
-    it 'is it true when there is an ccla signature and a icla signature' do
-      user = build(
-        :user,
-        ccla_signatures: [build(:ccla_signature)],
-        icla_signatures: [build(:icla_signature)]
-      )
-
-      expect(user.signed_cla?).to be_true
-    end
-
-    it 'is it true when there is an ccla signature' do
-      user = build(
-        :user,
-        ccla_signatures: [build(:ccla_signature)]
-      )
-
-      expect(user.signed_cla?).to be_true
-    end
-
-    it 'is it true when there is no ccla or icla signature' do
-      user = build(
-        :user,
-        icla_signatures: [],
-        ccla_signatures: []
-      )
-
-      expect(user.signed_cla?).to be_false
-    end
-  end
-
   describe '#followed_cookbook_versions' do
     it 'returns all cookbook versions of a followed cookbook' do
       user = create(:user)
