@@ -21,6 +21,10 @@ describe InvitationsController do
   end
 
   describe 'GET #accept' do
+    before do
+      allow(Curry::CommitAuthorVerificationWorker).to receive(:perform_async)
+    end
+
     it 'creates a new Contributor' do
       create(:account, user: user)
       expect { get :accept, id: invitation.token }
@@ -65,6 +69,16 @@ describe InvitationsController do
         get :accept, id: invitation_1.token
         get :accept, id: invitation_2.token
       end.to_not change(Contributor, :count).by(2)
+    end
+
+    it "changes the user's commit author records to have signed a CLA" do
+      create(:account, user: user, provider: 'github')
+
+      expect(Curry::CommitAuthorVerificationWorker).
+        to receive(:perform_async).
+        with(user.id)
+
+      get :accept, id: invitation.token
     end
   end
 
