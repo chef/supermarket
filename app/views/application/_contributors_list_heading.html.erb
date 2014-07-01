@@ -13,5 +13,5 @@
 <dl class="tabs">
   <dd class="<%= "active" if current_page?(contributors_path) %>"><%= link_to 'All', contributors_path %></dd>
   <dd class="<%= "active" if current_page?(icla_signatures_path) %>"><%= link_to 'Individuals', icla_signatures_path, rel: 'individual-contributors' %></dd>
-  <dd class="<%= "active" if current_page?(ccla_signatures_path) %>"><%= link_to 'Companies', ccla_signatures_path, rel: 'company-contributors' %></dd>
+  <dd class="<%= "active" if current_page?(ccla_signatures_path) %>"><%= link_to 'Companies', ccla_signatures_path, rel: 'companies' %></dd>
 </dl>

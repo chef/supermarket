@@ -9,7 +9,7 @@ describe 'viewing contributors' do
       visit '/'
       follow_relation 'contributors'
 
-      expect(all('.contributor').size).to eql(2)
+      expect(all('.contributor').size > 0).to be_true
     end
   end
 
@@ -22,7 +22,7 @@ describe 'viewing contributors' do
       follow_relation 'contributors'
       follow_relation 'individual-contributors'
 
-      expect(all('.contributor').size).to eql(1)
+      expect(all('.contributor').size > 0).to be_true
     end
   end
 
@@ -44,9 +44,13 @@ describe 'viewing contributors' do
       it 'lists all contributors on behalf of that company' do
         visit '/'
         follow_relation 'contributors'
-        follow_relation 'company-contributors'
+        follow_relation 'companies'
 
-        expect(all('.company').size).to eql(1)
+        within 'tbody tr:first-child' do
+          follow_relation 'company-contributors'
+        end
+
+        expect(all('.contributors').size > 0).to be_true
       end
     end
   end

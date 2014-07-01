@@ -23,7 +23,7 @@
 
       <tbody>
         <% @ccla_signature.organization.contributors.each do |contributor| %>
-          <tr class="contributor-<%= @ccla_signature.id %>">
+          <tr class="contributor contributor-<%= @ccla_signature.id %>">
             <td><%= link_to contributor.user.name, contributor.user %> <%= "[admin]" if contributor.admin? %></td>
             <td><%= contributor.created_at.to_date.to_s(:long) %></td>
             <td>
