@@ -70,7 +70,12 @@ module Universe
   #
   # @return [String] Cookbook download URL
   #
-  def download_path(cookbook, version, opts = {})
+  # squelch rubocop finding:
+  # W: Unused method argument - cookbook. If it's necessary, use _ or
+  # _cookbook as an argument name to indicate that it won't be used.
+  # W: Unused method argument - version. If it's necessary, use _ or
+  # _version as an argument name to indicate that it won't be used.
+  def download_path(_cookbook, _version, opts = {})
     host = opts.fetch(:host, ENV['HOST'])
     port = opts.fetch(:port, ENV['PORT'])
     # port may be nil or empty, and if so we don't want to have a port
