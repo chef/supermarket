@@ -16,7 +16,8 @@ describe Universe do
 
   it 'does not print the port if it is not set' do
     opts = {
-      host: 'narf.com'
+      host: 'narf.com',
+      port: nil
     }
 
     expect(Universe.download_path(cookbook.name, version.version, opts)).to eql('http://narf.com/api/v1')
