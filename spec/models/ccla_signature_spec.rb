@@ -68,4 +68,13 @@ describe CclaSignature do
       end
     end
   end
+
+  describe '.search' do
+    let!(:ihop) { create(:ccla_signature, company: 'International House of Pancakes') }
+    let!(:bhop) { create(:ccla_signature, company: "Bob's House of Pancakes") }
+
+    it 'returns ccla signatures with a similar company' do
+      expect(CclaSignature.search('pancakes')).to include(ihop, bhop)
+    end
+  end
 end

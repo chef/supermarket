@@ -10,7 +10,7 @@ class OrganizationsController < ApplicationController
   #
   def index
     organizations = if params[:q]
-                      CclaSignature.where('company like ?', "%#{params[:q]}%")
+                      CclaSignature.search(params[:q])
                     else
                       Organization.includes(:ccla_signatures)
                     end
