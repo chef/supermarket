@@ -17,6 +17,9 @@ class InvitationsController < ApplicationController
 
     if @contributor.save
       @invitation.accept
+
+      Curry::CommitAuthorVerificationWorker.perform_async(current_user.id)
+
       redirect_to current_user, notice: "Successfully joined
         #{@contributor.organization.name}"
     else

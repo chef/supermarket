@@ -34,7 +34,22 @@ describe User do
     end
   end
 
-  describe '.all_cla_signers' do
+  describe '#contributor?' do
+    it 'is true when the user belongs to one or more organizations' do
+      user = create(:user)
+      create(:contributor, user: user)
+
+      expect(user.contributor?).to be_true
+    end
+
+    it 'is false when the user does not belong to any organizations' do
+      user = create(:user)
+
+      expect(user.contributor?).to be_false
+    end
+  end
+
+  describe '.authorized_contributors' do
     let!(:jimmy) do
       create(
         :user,
@@ -62,18 +77,29 @@ describe User do
       )
     end
 
+    let!(:tidus) do
+      create(
+        :user,
+        first_name: 'Tidus',
+        last_name: 'Nomura',
+        email: 'tidus@example.com'
+      )
+    end
+
     before do
       create(:icla_signature, user: jim)
       create(:icla_signature, user: jimmy)
       create(:ccla_signature, user: jimmy)
       create(:ccla_signature, user: jimmy)
+      create(:contributor, user: tidus)
     end
 
     it 'returns users with a similar first name' do
-      expect(User.all_cla_signers).to include(jimmy)
-      expect(User.all_cla_signers).to include(jim)
-      expect(User.all_cla_signers).to_not include(yojimbo)
-      expect(User.all_cla_signers.count(jimmy)).to eql(1)
+      expect(User.authorized_contributors).to include(jimmy)
+      expect(User.authorized_contributors).to include(jim)
+      expect(User.authorized_contributors).to include(tidus)
+      expect(User.authorized_contributors).to_not include(yojimbo)
+      expect(User.authorized_contributors.count(jimmy)).to eql(1)
     end
   end
 
@@ -129,49 +155,6 @@ describe User do
 
       user = create(:user, icla_signatures: [one_year_ago, one_month_ago])
       expect(user.latest_icla_signature).to eql(one_month_ago)
-    end
-  end
-
-  describe '#signed_ccla?' do
-    it 'is true when there is a ccla signature' do
-      user = build(:user, ccla_signatures: [build(:ccla_signature)])
-      expect(user.signed_ccla?).to be_true
-    end
-
-    it 'is false when there is not a ccla signature' do
-      user = build(:user, ccla_signatures: [])
-      expect(user.signed_ccla?).to be_false
-    end
-  end
-
-  describe '#signed_cla' do
-    it 'is it true when there is an ccla signature and a icla signature' do
-      user = build(
-        :user,
-        ccla_signatures: [build(:ccla_signature)],
-        icla_signatures: [build(:icla_signature)]
-      )
-
-      expect(user.signed_cla?).to be_true
-    end
-
-    it 'is it true when there is an ccla signature' do
-      user = build(
-        :user,
-        ccla_signatures: [build(:ccla_signature)]
-      )
-
-      expect(user.signed_cla?).to be_true
-    end
-
-    it 'is it true when there is no ccla or icla signature' do
-      user = build(
-        :user,
-        icla_signatures: [],
-        ccla_signatures: []
-      )
-
-      expect(user.signed_cla?).to be_false
     end
   end
 
@@ -238,7 +221,7 @@ describe User do
   describe '#verified_commit_author_identities' do
 
     it "returns the user's commit author identities who have signed a CLA" do
-      commit_author = create(:commit_author, login: 'joedoe', signed_cla: true)
+      commit_author = create(:commit_author, login: 'joedoe', authorized_to_contribute: true)
       user = create(:user)
       account = create(
         :account,
@@ -252,7 +235,7 @@ describe User do
     end
 
     it "does not return the user's commit author identities who have not signed a CLA" do
-      commit_author = create(:commit_author, login: 'joedoe', signed_cla: false)
+      commit_author = create(:commit_author, login: 'joedoe', authorized_to_contribute: false)
       user = create(:user)
       account = create(
         :account,
@@ -269,7 +252,7 @@ describe User do
   describe '#unverified_commit_author_identities' do
 
     it "returns the user's commit author identities who have not signed a CLA" do
-      commit_author = create(:commit_author, login: 'joedoe', signed_cla: false)
+      commit_author = create(:commit_author, login: 'joedoe', authorized_to_contribute: false)
       user = create(:user)
       account = create(
         :account,
@@ -283,7 +266,7 @@ describe User do
     end
 
     it "does not return the user's commit author identities who have signed a CLA" do
-      commit_author = create(:commit_author, login: 'joedoe', signed_cla: true)
+      commit_author = create(:commit_author, login: 'joedoe', authorized_to_contribute: true)
       user = create(:user)
       account = create(
         :account,
@@ -299,9 +282,11 @@ describe User do
 
   describe '#username' do
     it 'returns the chef username for the user' do
-      account = create(:account, username: 'fanny', provider: 'chef_oauth2')
+      user = create(:user)
+      account = user.accounts.for('chef_oauth2').first
+      account.update_attributes(username: 'fanny')
 
-      expect(account.user.username).to eql('fanny')
+      expect(user.username).to eql('fanny')
     end
 
     it 'returns a blank string if the user has unlinked their Chef ID' do

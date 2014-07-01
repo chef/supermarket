@@ -11,6 +11,6 @@ class Curry::PullRequest < ActiveRecord::Base
   scope :numbered, ->(number) { where(number: number.to_s) }
 
   def unknown_commit_authors
-    commit_authors.where(signed_cla: false)
+    commit_authors.where(authorized_to_contribute: false)
   end
 end

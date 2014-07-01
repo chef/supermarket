@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
   #
   def verified_commit_author_identities
     accounts.for(:github).map do |account|
-      Curry::CommitAuthor.with_login(account.username).where(signed_cla: true)
+      Curry::CommitAuthor.with_login(account.username).where(authorized_to_contribute: true)
     end.flatten
   end
 
@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
   #
   def unverified_commit_author_identities
     accounts.for(:github).map do |account|
-      Curry::CommitAuthor.with_login(account.username).where(signed_cla: false)
+      Curry::CommitAuthor.with_login(account.username).where(authorized_to_contribute: false)
     end.flatten
   end
 
@@ -95,7 +95,7 @@ class User < ActiveRecord::Base
   # @return [Boolean]
   #
   def signed_icla?
-    !icla_signatures.empty?
+    icla_signatures.any?
   end
 
   #
@@ -118,25 +118,14 @@ class User < ActiveRecord::Base
     ccla_signatures.order(:signed_at).last
   end
 
-  # Determine if the current user signed the Corporate Contributor License
-  # Agreement.
   #
-  # @todo Expand this functionality to search for the most recently active
-  #       CCLA and return some sort of history instead.
+  # Determine if the user is a contributor on behalf of one or more
+  # +Organization+s
   #
   # @return [Boolean]
   #
-  def signed_ccla?
-    !ccla_signatures.empty?
-  end
-
-  #
-  # Determine if the current user signed any CLAs.
-  #
-  # @return [Boolean]
-  #
-  def signed_cla?
-    signed_icla? || signed_ccla?
+  def contributor?
+    contributors.any?
   end
 
   #
@@ -219,16 +208,20 @@ class User < ActiveRecord::Base
 
   #
   # Returns a unique +ActiveRecord::Relation+ of all users who have signed
-  # either the ICLA or CCLA.
+  # either the ICLA or CCLA or are a contributor on behalf of one or
+  # more +Organization+s.
   #
   # @return [ActiveRecord::Relation] the users who have signed the cla
   #
-  def self.all_cla_signers
+  def self.authorized_contributors
     sql = %(
       SELECT users.* FROM users
       LEFT JOIN icla_signatures ON icla_signatures.user_id = users.id
       LEFT JOIN ccla_signatures ON ccla_signatures.user_id = users.id
-      WHERE icla_signatures.id IS NOT NULL OR ccla_signatures.id IS NOT NULL
+      LEFT JOIN contributors ON contributors.user_id = users.id
+      WHERE icla_signatures.id IS NOT NULL
+        OR ccla_signatures.id IS NOT NULL
+        OR contributors.id IS NOT NULL
     )
 
     User.find_by_sql(sql).uniq

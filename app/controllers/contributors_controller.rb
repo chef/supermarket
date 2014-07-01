@@ -39,10 +39,10 @@ class ContributorsController < ApplicationController
   #
   # GET /contributors
   #
-  # Display all of the users who have singed an ICLA or CCLA.
+  # Display all of the users who are authorized to contribute
   #
   def index
-    @all_signers = User.all_cla_signers
+    @all_signers = User.authorized_contributors
   end
 
   private

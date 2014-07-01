@@ -1,14 +1,14 @@
 require 'octokit'
 
 #
-# +Curry::ImportUnknownPullRequestCommitAuthors+ uses Octokit to go through a
+# +Curry::ImportPullRequestCommitAuthors+ uses Octokit to go through a
 # pull request's commit authors to see if they have signed CLAs. If the commit
 # author has not signed a Supermarket CLA, a record is created for that commit
 # author.
 #
-class Curry::ImportUnknownPullRequestCommitAuthors
+class Curry::ImportPullRequestCommitAuthors
   #
-  # Create a new instance of +Curry::ImportUnknownPullRequestCommitAuthors+.
+  # Create a new instance of +Curry::ImportPullRequestCommitAuthors+.
   # This creates an instance of +Octokit::Client+ to interact with the GitHub
   # API.
   #
@@ -27,8 +27,8 @@ class Curry::ImportUnknownPullRequestCommitAuthors
   # Loop through all of the commit authors with GitHub login or email address
   # that have not signed a CLA. Create a record for them if one does not exist.
   #
-  def import
-    unknown_emails.each do |email|
+  def import_unauthorized_commit_authors
+    emails_of_non_github_verified_committers.each do |email|
       commit_author = Curry::CommitAuthor.with_email(email).first_or_create!
 
       @pull_request.pull_request_commit_authors.where(
@@ -36,7 +36,7 @@ class Curry::ImportUnknownPullRequestCommitAuthors
       ).first_or_create!
     end
 
-    unknown_github_logins.each do |login|
+    unauthorized_github_logins.each do |login|
       commit_author = Curry::CommitAuthor.with_login(login).first_or_create!
 
       @pull_request.pull_request_commit_authors.where(
@@ -61,32 +61,37 @@ class Curry::ImportUnknownPullRequestCommitAuthors
   #
   # @return [Array<String>]
   #
-  def unknown_emails
+  def emails_of_non_github_verified_committers
     pull_request_commits.reject(&:author).map(&:commit).map do |commit|
       commit.author.email
     end.uniq
   end
 
   #
-  # Returns each GitHub login which is not known to have signed a CLA from the
-  # pull request
+  # Returns each GitHub login which is not known to be authorized to
+  # contribute within pull request
   #
   # @return [Array<String>]
   #
-  def unknown_github_logins
+  def unauthorized_github_logins
     pull_request_commits.select(&:author).map(&:author).reject do |author|
-      signed_a_cla?(author.login)
+      authorized_to_contribute?(author.login)
     end.map(&:login).uniq
   end
 
   #
-  # Determine if the given GitHub login has signed a CLA
+  # Determine if the +User+ for a given GitHub login is authorized to contribute to
+  # repositories that Supermarket is subscribed to. A +User+ is authorized to
+  # contribute if they have an +IclaSignature+, +CclaSignature+ or are a
+  # +Contributor+ on behalf of an +Organization+.
   #
   # @param [String] github_login
   #
   # @return [Boolean]
   #
-  def signed_a_cla?(github_login)
-    User.find_by_github_login(github_login).signed_cla?
+  def authorized_to_contribute?(github_login)
+    user = User.find_by_github_login(github_login)
+
+    user.signed_icla? || user.contributor?
   end
 end

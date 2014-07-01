@@ -8,7 +8,7 @@ describe Curry::CommitAuthorVerificationWorker do
     account = create(:account, user: user, provider: 'github', username: 'eviltrout')
 
     pull_request = create(:pull_request)
-    pull_request.commit_authors.create!(login: 'eviltrout', signed_cla: false)
+    pull_request.commit_authors.create!(login: 'eviltrout', authorized_to_contribute: false)
 
     expect do
       worker = Curry::CommitAuthorVerificationWorker.new

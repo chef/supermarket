@@ -3,20 +3,20 @@ require 'spec_helper'
 describe Curry::CommitAuthor do
   describe 'database default values' do
 
-    it 'sets signed_cla to false' do
+    it 'sets authorized_to_contribute to false' do
       commit_author = Curry::CommitAuthor.create!
 
-      expect(commit_author.reload.signed_cla).to eql(false)
+      expect(commit_author.reload.authorized_to_contribute).to eql(false)
     end
 
   end
 
   describe '#sign_cla!' do
-    it 'updates signed_cla to true' do
-      commit_author = create(:commit_author, signed_cla: false)
+    it 'updates authorized_to_contribute to true' do
+      commit_author = create(:commit_author, authorized_to_contribute: false)
       commit_author.sign_cla!
 
-      expect(commit_author.reload.signed_cla).to be_true
+      expect(commit_author.reload.authorized_to_contribute).to be_true
     end
   end
 
