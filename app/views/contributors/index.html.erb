@@ -12,7 +12,7 @@
       </thead>
       <tbody>
         <% @all_signers.each do |user| %>
-          <tr>
+          <tr class="contributor">
             <td><%= link_to user.name, user %></td>
           </tr>
         <% end %>

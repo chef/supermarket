@@ -3,7 +3,7 @@
 
   <ul>
     <% Curry::Repository.all.each do |repository| %>
-      <li><%= link_to repository.full_name, "https://github.com/#{repository.owner}/#{repository.name}", target: "_blank" %></li>
+      <li class="repository"><%= link_to repository.full_name, "https://github.com/#{repository.owner}/#{repository.name}", target: "_blank" %></li>
     <% end %>
   </ul>
 
@@ -21,14 +21,14 @@
     <ul>
       <% if current_user.signed_icla? %>
         <li>
-          <%= link_to "Signed ICLA on #{current_user.latest_icla_signature.signed_at.to_s(:longish)}", current_user.latest_icla_signature %>
+          <%= link_to "Signed ICLA on #{current_user.latest_icla_signature.signed_at.to_s(:longish)}", current_user.latest_icla_signature, rel: 'icla-signature' %>
         </li>
       <% end %>
 
 
       <% current_user.contributors.each do |contributor| %>
         <li>
-          <%= link_to "Signed CCLA on behalf of #{contributor.organization.name} on #{contributor.organization.latest_ccla_signature.signed_at.to_s(:longish)}", contributor.organization.latest_ccla_signature %>
+          <%= link_to "Signed CCLA on behalf of #{contributor.organization.name} on #{contributor.organization.latest_ccla_signature.signed_at.to_s(:longish)}", contributor.organization.latest_ccla_signature, rel: 'ccla-membership' %>
         </li>
       <% end %>
     </ul>

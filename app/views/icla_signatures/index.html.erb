@@ -15,7 +15,7 @@
       </thead>
       <tbody>
         <% @icla_signatures.each do |icla_signature| %>
-          <tr>
+          <tr class="contributor">
             <td><%= link_to "#{icla_signature.user.first_name} #{icla_signature.user.last_name}", icla_signature.user %></td>
             <td><%= icla_signature.signed_at.to_date.to_s(:long) %></td>
             <td>
