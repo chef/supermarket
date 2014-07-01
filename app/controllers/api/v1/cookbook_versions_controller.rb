@@ -27,6 +27,7 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
 
     SegmentIO.track_server_event(
       'cookbook_version_api_download',
+      current_user,
       cookbook: @cookbook.name,
       version: @cookbook_version.version
     )
