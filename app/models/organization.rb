@@ -45,12 +45,12 @@ class Organization < ActiveRecord::Base
   # with this one
   #
   def combine!(organization)
-    [:ccla_signatures, :invitations, :contributors].each do |assoc|
-      organization.send(assoc).each do |thing|
-        thing.update_attribute(:organization_id, id)
+    transaction do
+      [:ccla_signatures, :invitations, :contributors].each do |assoc|
+        organization.send(assoc).update_all(organization_id: id)
       end
-    end
 
-    organization.reload.destroy
+      organization.reload.destroy
+    end
   end
 end
