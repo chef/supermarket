@@ -32,7 +32,7 @@ describe Supermarket::SegmentIoAgent do
   end
 
   it 'tracks what user triggered the event' do
-    config = double('Supermarket::Config', segment_io_write_key: nil)
+    config = {}
     agent = Supermarket::SegmentIoAgent.new(config)
     agent.track_server_event('tick', double('User', id: 123), time: 1)
 
