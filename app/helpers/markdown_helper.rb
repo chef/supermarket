@@ -2,9 +2,9 @@ module MarkdownHelper
   #
   # Make auto-links target=_blank
   #
-  class TargetBlankRenderer < Redcarpet::Render::HTML
+  class SupermarketRenderer < Redcarpet::Render::HTML
     def initialize(extensions = {})
-      super extensions.merge(link_attributes: { target: '_blank' })
+      super extensions.merge(link_attributes: { target: '_blank' }, with_toc_data: true, hard_wrap: true)
     end
   end
 
@@ -17,10 +17,13 @@ module MarkdownHelper
   #
   def render_markdown(text)
     Redcarpet::Markdown.new(
-      TargetBlankRenderer,
+      SupermarketRenderer,
       autolink: true,
       fenced_code_blocks: true,
-      tables: true
+      tables: true,
+      no_intra_emphasis: true,
+      strikethrough: true,
+      superscript: true
     ).render(
       text
     ).html_safe
