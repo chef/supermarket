@@ -76,7 +76,7 @@ module Universe
     # port may be nil or empty, and if so we don't want to have a port
     # string, but if not, then we want to prepend a colon for the URI
     # we return.
-    port_string = port.nil? || port.empty? ? '' : ":#{port}"
+    port_string = port.nil? || port.to_s.empty? ? '' : ":#{port}"
     protocol = opts.fetch(:protocol, 'http')
     "#{protocol}://#{host}#{port_string}/api/v1"
   end

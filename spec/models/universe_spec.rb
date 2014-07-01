@@ -5,17 +5,6 @@ describe Universe do
   let(:routes) { Rails.application.routes.url_helpers }
   let(:version) { cookbook.cookbook_versions.first }
 
-  it 'generates routes that are the same as Rails' do
-    route = routes.api_v1_cookbook_version_download_url(
-      cookbook,
-      version,
-      host: ENV['HOST'],
-      port: ENV['PORT']
-    )
-
-    expect(Universe.download_path(cookbook.name, version.version)).to eql(route)
-  end
-
   it 'allows you to customize things' do
     opts = {
       host: 'narf.com',
