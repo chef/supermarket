@@ -15,7 +15,6 @@ describe 'viewing contributors' do
 
   context 'individual contributors' do
     it 'lists all folks who have signed the ICLA' do
-      create(:ccla_signature)
       create(:icla_signature)
 
       visit '/'
@@ -27,21 +26,10 @@ describe 'viewing contributors' do
   end
 
   context 'companies' do
-    before do
-      create(:ccla_signature)
-      create(:icla_signature)
-    end
-
-    it 'lists all companies who have signed the CCLA' do
-      visit '/'
-      follow_relation 'contributors'
-      follow_relation 'company-contributors'
-
-      expect(all('.company').size).to eql(1)
-    end
-
     context "viewing a company's contributors" do
       it 'lists all contributors on behalf of that company' do
+        create(:ccla_signature)
+
         visit '/'
         follow_relation 'contributors'
         follow_relation 'companies'
