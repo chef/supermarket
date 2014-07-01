@@ -125,7 +125,7 @@ class User < ActiveRecord::Base
   # @return [Boolean]
   #
   def contributor?
-    organizations.any?
+    contributors.any?
   end
 
   #
