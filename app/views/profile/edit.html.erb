@@ -74,7 +74,7 @@
           <% end %>
 
           <% if current_user.contributors.empty? %>
-            <p>You have not signed the Corporate Contributor License Agreement (CCLA) on behalf of a company yet. If you want to contribute to Chef's open source projects on behalf of your company, <%= link_to "ask an admin of your company to invite you", ccla_signatures_path %>. If your company has not yet signed the CCLA, <%= link_to "you can create a new CCLA signature", new_ccla_signature_path %>.</p>
+            <p>You are not a member of a Corporate Contributor License Agreement (CCLA). If you want to contribute to Chef's open source projects on behalf of your company, <%= link_to "ask an admin of your company to invite you", ccla_signatures_path %> to join your company's CCLA. If your company has not yet signed the CCLA, <%= link_to "an authorized individual must first sign the CCLA", new_ccla_signature_path %>.</p>
           <% end %>
 
           <% current_user.contributors.each do |contributor| %>
