@@ -78,18 +78,20 @@ Supermarket::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  # If SMTP is setup use those settings otherwise just use sendmail
-  if Supermarket::Config.smtp
-    config.action_mailer.delivery_method = :smtp
+  %w(SMTP_ADDRESS SMTP_PORT SMTP_USER_NAME SMTP_PASSWORD).tap do |keys|
+    # If SMTP is setup use those settings otherwise just use sendmail
+    if keys.any? { |key| ENV.fetch(key, nil).present? }
+      config.action_mailer.delivery_method = :smtp
 
-    config.action_mailer.smtp_settings = {
-      address: Supermarket::Config.smtp['address'],
-      port: Supermarket::Config.smtp['port'],
-      user_name: Supermarket::Config.smtp['user_name'],
-      password: Supermarket::Config.smtp['password'],
-      authentication: 'plain'
-    }
-  else
-    config.action_mailer.delivery_method = :sendmail
+      config.action_mailer.smtp_settings = {
+        address: ENV['SMTP_ADDRESS'],
+        port: ENV['SMTP_PORT'],
+        user_name: ENV['SMTP_USER_NAME'],
+        password: ENV['SMTP_PASSWORD'],
+        authentication: 'plain'
+      }
+    else
+      config.action_mailer.delivery_method = :sendmail
+    end
   end
 end

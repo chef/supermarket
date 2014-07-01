@@ -163,6 +163,8 @@ GEM
     diff-lcs (1.2.5)
     docile (1.1.3)
     dotenv (0.10.0)
+    dotenv-rails (0.10.0)
+      dotenv (= 0.10.0)
     equalizer (0.0.9)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -206,7 +208,6 @@ GEM
       sqlite3
       thor
       xml-simple
-    magiconf (1.0.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -402,7 +403,6 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     sqlite3 (1.3.9)
-    statsd-ruby (1.2.1)
     systemu (2.5.2)
     term-ansicolor (1.3.0)
       tins (~> 1.0)
@@ -460,7 +460,7 @@ DEPENDENCIES
   compass-rails
   coveralls
   database_cleaner
-  dotenv
+  dotenv-rails
   factory_girl
   faker
   foreman
@@ -469,7 +469,6 @@ DEPENDENCIES
   launchy
   libarchive!
   license_finder
-  magiconf
   mail_view
   mixlib-authentication
   newrelic_rpm
@@ -499,7 +498,6 @@ DEPENDENCIES
   sitemap_generator
   spring
   spring-commands-rspec
-  statsd-ruby
   uglifier (~> 2.2)
   unicorn
   unicorn-rails

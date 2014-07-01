@@ -53,7 +53,7 @@ class CclaSignaturesController < ApplicationController
     rescue ActiveRecord::RecordInvalid
       render 'new'
     else
-      if Supermarket::Config.cla_signature_notification_email.present?
+      if ENV['CLA_SIGNATURE_NOTIFICATION_EMAIL'].present?
         ClaSignatureMailer.delay.ccla_signature_notification_email(@ccla_signature)
       end
 

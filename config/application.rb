@@ -1,13 +1,5 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'dotenv'
-
-Dotenv.load('.env', '.env.production').tap do |env|
-  if env.empty?
-    fail 'Cannot run Supermarket without a .env file. To get started, `cp .env.example .env`'
-  end
-end
-
 require 'rails'
 
 %w(
@@ -76,19 +68,20 @@ module Supermarket
     # true.
     config.i18n.enforce_available_locales = false
 
-    # Allow magiconf to work with application configuration
-    Magiconf.setup!
-
     # Set default URL for ActionMailer
     config.action_mailer.default_url_options = {
-      host: Supermarket::Config.host,
-      port: Supermarket::Config.port,
+      host: ENV['HOST'],
+      port: ENV['PORT'],
       protocol: ENV['PROTOCOL']
     }
 
-    config.action_mailer.asset_host = ENV['PORT'].present? ? "#{ENV['PROTOCOL']}://#{ENV['HOST']}:#{ENV['PORT']}" : "#{ENV['PROTOCOL']}://#{ENV['HOST']}"
+    if ENV['PORT'].present?
+      config.action_mailer.asset_host = "#{ENV['PROTOCOL']}://#{ENV['HOST']}:#{ENV['PORT']}"
+    else
+      config.action_mailer.asset_host = "#{ENV['PROTOCOL']}://#{ENV['HOST']}"
+    end
 
     # Set default from email for ActionMailer
-    ActionMailer::Base.default from: Supermarket::Config.from_email
+    ActionMailer::Base.default from: ENV['FROM_EMAIL']
   end
 end

@@ -5,9 +5,13 @@ describe Icla do
 
   describe '.latest' do
     it 'should get the Icla with the configured version' do
-      Supermarket::Config.stub(:icla_version).and_return('1')
+      version = ENV['ICLA_VERSION']
+      ENV['ICLA_VERSION'] = '1'
+
       expect(Icla).to receive(:find_by_version).with('1')
       Icla.latest
+
+      ENV['ICLA_VERSION'] = version
     end
   end
 end

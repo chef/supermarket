@@ -5,7 +5,7 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
   describe '#annotate' do
     let(:octokit) do
       Octokit::Client.new(
-        access_token: Supermarket::Config.github['access_token']
+        access_token: ENV['GITHUB_ACCESS_TOKEN']
       )
     end
 
@@ -63,7 +63,7 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
           pull_request.number
         )
 
-        label_text = Supermarket::Config.curry.fetch('success_label')
+        label_text = ENV['CURRY_SUCCESS_LABEL']
 
         expect(labels.map(&:name)).to include(label_text)
       end
@@ -94,7 +94,7 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
         octokit.add_labels_to_an_issue(
           repository.full_name,
           pull_request.number,
-          [Supermarket::Config.curry.fetch('success_label')]
+          [ENV['CURRY_SUCCESS_LABEL']]
         )
 
         pull_request.commit_authors.create!(login: 'brettchalupa')
@@ -108,7 +108,7 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
           pull_request.number
         )
 
-        label_text = Supermarket::Config.curry.fetch('success_label')
+        label_text = ENV['CURRY_SUCCESS_LABEL']
 
         expect(labels.map(&:name)).to_not include(label_text)
       end

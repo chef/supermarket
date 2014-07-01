@@ -3,6 +3,6 @@ class Icla < ActiveRecord::Base
 
   # Get the latest version based on the config value
   def self.latest
-    find_by_version(Supermarket::Config.icla_version)
+    find_by_version(ENV['ICLA_VERSION'])
   end
 end

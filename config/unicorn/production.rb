@@ -22,7 +22,7 @@ after_fork do |_server, _worker|
     puts 'Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT'
   end
 
-  ::SegmentIO = Supermarket::SegmentIoAgent.new(Supermarket::Config)
+  ::SegmentIO = Supermarket::SegmentIoAgent.new(ENV)
 
   puts "=> SegmentIO is #{SegmentIO.enabled? ? 'enabled' : 'disabled'}"
 

@@ -19,7 +19,7 @@ class Curry::ImportUnknownPullRequestCommitAuthors
     @repository = @pull_request.repository
 
     @octokit = Octokit::Client.new(
-      access_token: Supermarket::Config.github['access_token']
+      access_token: ENV['GITHUB_ACCESS_TOKEN']
     )
   end
 

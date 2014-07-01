@@ -3,7 +3,6 @@ ruby '2.0.0'
 
 gem 'rails', '~> 4.1.1'
 
-gem 'magiconf'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-chef-oauth2', git: 'https://github.com/opscode/omniauth-chef-oauth2.git'
@@ -13,7 +12,7 @@ gem 'unicorn'
 gem 'unicorn-rails'
 gem 'foreman'
 gem 'pundit'
-gem 'dotenv'
+gem 'dotenv-rails'
 gem 'coveralls', require: false
 gem 'octokit', github: 'octokit/octokit.rb', require: false
 gem 'sidekiq'
@@ -37,7 +36,6 @@ gem 'yajl-ruby'
 gem 'libarchive', github: 'bcobb/winebarrel-libarchive-ruby-clone', ref: 'format-security-fix'
 
 gem 'sentry-raven', '~> 0.8.0', require: false
-gem 'statsd-ruby', require: 'statsd'
 gem 'analytics-ruby', require: false
 
 gem 'sass-rails',   '~> 4.0.1'

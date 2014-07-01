@@ -8,7 +8,7 @@ class ClaSignatureMailer < ActionMailer::Base
   #
   def ccla_signature_notification_email(ccla_signature)
     @ccla_signature = ccla_signature
-    @to = Supermarket::Config.cla_signature_notification_email
+    @to = ENV['CLA_SIGNATURE_NOTIFICATION_EMAIL']
 
     mail(to: @to, subject: 'New CCLA Signed')
   end
@@ -20,7 +20,7 @@ class ClaSignatureMailer < ActionMailer::Base
   #
   def icla_signature_notification_email(icla_signature)
     @icla_signature = icla_signature
-    @to = Supermarket::Config.cla_signature_notification_email
+    @to = ENV['CLA_SIGNATURE_NOTIFICATION_EMAIL']
 
     mail(to: @to, subject: 'New ICLA Signed')
   end

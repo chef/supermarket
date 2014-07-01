@@ -1,14 +1,14 @@
 Rails.application.config.middleware.use(OmniAuth::Builder) do
   provider(
     :github,
-    Supermarket::Config.omniauth['github']['key'],
-    Supermarket::Config.omniauth['github']['secret']
+    ENV['GITHUB_KEY'],
+    ENV['GITHUB_SECRET']
   )
 
   provider(
     :chef_oauth2,
-    Supermarket::Config.omniauth['chef_oauth2']['app_id'],
-    Supermarket::Config.omniauth['chef_oauth2']['secret']
+    ENV['CHEF_OAUTH2_APP_ID'],
+    ENV['CHEF_OAUTH2_SECRET']
   )
 end
 

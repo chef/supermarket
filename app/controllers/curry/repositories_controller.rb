@@ -78,10 +78,10 @@ class Curry::RepositoriesController < ApplicationController
   #   from a subscribed repository's pull requests
   #
   def pubsubhubbub_callback_url
-    if Supermarket::Config.pubsubhubbub['callback_url'].blank?
+    if ENV['PUBSUBHUBBUB_CALLBACK_URL'].blank?
       curry_pull_request_updates_url
     else
-      Supermarket::Config.pubsubhubbub['callback_url']
+      ENV['PUBSUBHUBBUB_CALLBACK_URL']
     end
   end
 end

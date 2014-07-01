@@ -13,7 +13,7 @@ attributes = {}
   ).read
 end
 
-Icla.where(version: Supermarket::Config.icla_version).
+Icla.where(version: ENV['ICLA_VERSION']).
   first_or_create!.
   update_attributes(attributes)
 
@@ -30,7 +30,7 @@ Icla.where(version: Supermarket::Config.icla_version).
   ).read
 end
 
-Ccla.where(version: Supermarket::Config.ccla_version).
+Ccla.where(version: ENV['CCLA_VERSION']).
   first_or_create!.
   update_attributes(attributes)
 

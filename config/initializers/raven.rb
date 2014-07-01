@@ -1,8 +1,8 @@
-if Supermarket::Config.sentry_url.present? && !Rails.env.test?
+if ENV['SENTRY_URL'].present? && !Rails.env.test?
   require 'raven'
   require 'raven/sidekiq'
 
   Raven.configure do |config|
-    config.dsn = Supermarket::Config.sentry_url
+    config.dsn = ENV['SENTRY_URL']
   end
 end

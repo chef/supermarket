@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'vcr_helper'
 
 describe Curry::RepositorySubscriber do
-  let(:hub_callback) { Supermarket::Config.pubsubhubbub['callback_url'] }
+  let(:hub_callback) { ENV['PUBSUBHUBBUB_CALLBACK_URL'] }
 
   describe '#subscribe' do
     around(:each) do |example|
@@ -80,7 +80,7 @@ describe Curry::RepositorySubscriber do
 
     let(:client) do
       Octokit::Client.new(
-        access_token: Supermarket::Config.github['access_token']
+        access_token: ENV['GITHUB_ACCESS_TOKEN']
       )
     end
 

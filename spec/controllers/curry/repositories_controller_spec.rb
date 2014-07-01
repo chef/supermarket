@@ -40,8 +40,8 @@ describe Curry::RepositoriesController do
       context 'when the environment has no set PubSubHubbub callback url' do
 
         it 'subscribes using the PR update endpoint as the callback url' do
-          callback = Supermarket::Config.pubsubhubbub['callback_url']
-          Supermarket::Config.pubsubhubbub['callback_url'] = ''
+          callback = ENV['PUBSUBHUBBUB_CALLBACK_URL']
+          ENV['PUBSUBHUBBUB_CALLBACK_URL'] = ''
 
           expect_any_instance_of(Curry::RepositorySubscriber).
             to receive(:subscribe).
@@ -52,7 +52,7 @@ describe Curry::RepositoriesController do
             name: 'paprika'
           }
 
-          Supermarket::Config.pubsubhubbub['callback_url'] = callback
+          ENV['PUBSUBHUBBUB_CALLBACK_URL'] = callback
         end
       end
 
