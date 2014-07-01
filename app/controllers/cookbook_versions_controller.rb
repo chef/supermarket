@@ -12,6 +12,7 @@ class CookbookVersionsController < ApplicationController
 
     SegmentIO.track_server_event(
       'cookbook_version_web_download',
+      current_user,
       cookbook: @cookbook.name,
       version: @version.version
     )

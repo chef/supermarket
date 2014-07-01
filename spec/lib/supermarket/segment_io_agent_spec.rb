@@ -26,8 +26,16 @@ describe Supermarket::SegmentIoAgent do
   it 'keeps track of the last event tracked' do
     config = double('Supermarket::Config', segment_io_write_key: nil)
     agent = Supermarket::SegmentIoAgent.new(config)
-    agent.track_server_event('tick', time: 1)
+    agent.track_server_event('tick', nil, time: 1)
 
-    expect(agent.last_event).to eql(name: 'tick', properties: { time: 1 })
+    expect(agent.last_event).to eql(name: 'tick', user_id: 'anonymous', properties: { time: 1 })
+  end
+
+  it 'tracks what user triggered the event' do
+    config = double('Supermarket::Config', segment_io_write_key: nil)
+    agent = Supermarket::SegmentIoAgent.new(config)
+    agent.track_server_event('tick', double('User', id: 123), time: 1)
+
+    expect(agent.last_event[:user_id]).to eql(123)
   end
 end

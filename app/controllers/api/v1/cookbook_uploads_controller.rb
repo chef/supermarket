@@ -61,6 +61,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
 
           SegmentIO.track_server_event(
             'cookbook_version_published',
+            current_user,
             cookbook: @cookbook.name
           )
 
@@ -98,6 +99,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
         CookbookDeletionWorker.perform_async(@cookbook.as_json)
         SegmentIO.track_server_event(
           'cookbook_deleted',
+          current_user,
           cookbook: @cookbook.name
         )
 

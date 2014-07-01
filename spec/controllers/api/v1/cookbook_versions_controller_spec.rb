@@ -78,6 +78,7 @@ describe Api::V1::CookbookVersionsController do
 
       expect(SegmentIO.last_event).to eql(
         name: 'cookbook_version_api_download',
+        user_id: 'anonymous',
         properties: {
           cookbook: cookbook.name,
           version: version.version

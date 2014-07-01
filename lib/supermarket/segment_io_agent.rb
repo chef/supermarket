@@ -44,17 +44,19 @@ module Supermarket
 
     #
     # Tracks an event with the given +name+ and +properties+ as having been
-    # performed by the "web_server" user.
+    # performed by a user or anonymous.
     #
     # @param name [String] the name of the event
+    # @param user [User] the user that triggered the event
     # @param properties [Hash] the properties, if any, associated with the event
     #
-    def track_server_event(name, properties = {})
-      @last_event = { name: name, properties: properties }
+    def track_server_event(name, user, properties = {})
+      user_id = user ? user.id : 'anonymous'
+      @last_event = { name: name, user_id: user_id, properties: properties }
 
       if enabled?
         @segment_io.track(
-          user_id: 'web_server',
+          user_id: user_id,
           event: name,
           properties: properties
         )

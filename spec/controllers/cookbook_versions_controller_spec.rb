@@ -4,6 +4,8 @@ describe CookbookVersionsController do
   describe '#download' do
     let(:cookbook) { create(:cookbook) }
     let(:version) { create(:cookbook_version, cookbook: cookbook) }
+    let(:user) { create(:user) }
+    before { sign_in user }
 
     it '302s to the latest cookbook version file' do
       get :download, cookbook_id: cookbook.name, version: version.to_param
@@ -29,6 +31,7 @@ describe CookbookVersionsController do
 
       expect(SegmentIO.last_event).to eql(
         name: 'cookbook_version_web_download',
+        user_id: user.id,
         properties: {
           cookbook: cookbook.name,
           version: version.version
