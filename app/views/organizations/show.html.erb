@@ -6,19 +6,19 @@
 
     <%= render "ccla_signatures/organization_tabs", ccla_signature: @organization.latest_ccla_signature %>
 
-    <%= link_to 'Delete this Organization', organization_path(@organization), method: :delete, data: { confirm: 'This will permanently delete this organization and all of its signatures. Are you sure?' } %>
-
-    <br><br> <!-- aww yisss -->
+    <p>As an admin you may combine an organization with another in the event that a duplicate organization was created in error. Note that all contributors will be transferred to the selected organization and this organization will be deleted. Alternatively you can simply delete this organization.</p>
 
     <%= form_for @organization, url: { action: 'combine' }, method: :put do |f| %>
       <div class="row collapse">
-        <div class="small-9 columns">
+        <div class="small-10 columns">
           <%= f.hidden_field :combine_with_id, class: 'transfer-ccla-organization', 'data-url' => organizations_path %>
         </div>
-        <div class="small-3 columns">
-          <%= f.submit 'Combine', class: 'button postfix' %>
+        <div class="small-2 columns">
+          <%= f.submit 'Combine', class: 'button postfix radius' %>
         </div>
       </div>
     <% end %>
+
+    <%= link_to 'Delete this Organization', organization_path(@organization), method: :delete, data: { confirm: 'This will permanently delete this organization and all of its signatures. Are you sure?' }, class: 'button alert radius small' %>
   </div>
 </div>
