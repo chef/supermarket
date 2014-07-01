@@ -12,12 +12,14 @@ describe Universe do
       protocol: 'https'
     }
 
-    route = routes.api_v1_cookbook_version_download_url(
-      cookbook,
-      version,
-      opts
-    )
+    expect(Universe.download_path(cookbook.name, version.version, opts)).to eql('https://narf.com:6060/api/v1')
+  end
 
-    expect(Universe.download_path(cookbook.name, version.version, opts)).to eql(route)
+  it 'does not print the port if it is not set' do
+    opts = {
+      host: 'narf.com'
+    }
+
+    expect(Universe.download_path(cookbook.name, version.version, opts)).to eql('http://narf.com/api/v1')
   end
 end
