@@ -73,6 +73,12 @@ describe Curry::RepositoriesController do
           expect(flash[:notice]).
             to eql(I18n.t('curry.repositories.subscribe.success'))
         end
+
+        it 'starts the subscription worker' do
+          expect do
+            post :create, curry_repository: { owner: 'gofullstack', name: 'paprika' }
+          end.to change(Curry::RepositorySubscriptionWorker.jobs, :size).by(1)
+        end
       end
 
       context 'when creating a repository fails' do

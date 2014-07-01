@@ -22,6 +22,8 @@ class Curry::RepositoriesController < ApplicationController
     subscriber = Curry::RepositorySubscriber.new(repository)
 
     if subscriber.subscribe(pubsubhubbub_callback_url)
+      Curry::RepositorySubscriptionWorker.perform_async(repository.id)
+
       redirect_to curry_repositories_url,
                   notice: t('curry.repositories.subscribe.success')
     else
