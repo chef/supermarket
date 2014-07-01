@@ -1,6 +1,14 @@
 require File.expand_path('../boot', __FILE__)
 
+require 'dotenv'
+
 require 'rails'
+
+Dotenv.load('.env', ".env.#{Rails.env}").tap do |env|
+  if env.empty?
+    fail 'Cannot run Supermarket without a .env file.'
+  end
+end
 
 %w(
   active_record
