@@ -56,5 +56,13 @@ describe 'viewing contributors' do
   end
 
   context 'the sidebar' do
+    it 'lists all the repositories Supermarket is subscribed to' do
+      create(:repository)
+
+      visit '/'
+      follow_relation 'contributors'
+
+      expect(all('.repository').size > 0).to be_true
+    end
   end
 end

@@ -3,7 +3,7 @@
 
   <ul>
     <% Curry::Repository.all.each do |repository| %>
-      <li><%= link_to repository.full_name, "https://github.com/#{repository.owner}/#{repository.name}", target: "_blank" %></li>
+      <li class="repository"><%= link_to repository.full_name, "https://github.com/#{repository.owner}/#{repository.name}", target: "_blank" %></li>
     <% end %>
   </ul>
 
