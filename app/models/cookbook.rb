@@ -69,7 +69,7 @@ class Cookbook < ActiveRecord::Base
 
   # Delegations
   # --------------------
-  delegate :description, to: :latest_cookbook_version
+  delegate :description, to: :latest_cookbook_version, allow_nil: true
 
   # Validations
   # --------------------

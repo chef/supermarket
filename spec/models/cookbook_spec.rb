@@ -118,6 +118,21 @@ describe Cookbook do
     it { should validate_presence_of(:category) }
   end
 
+  describe '#description' do
+    it 'is delegated to the latest cookbook version' do
+      cookbook = Cookbook.new
+      cookbook.cookbook_versions << create(:cookbook_version, description: 'Best cookbook eva')
+
+      expect(cookbook.description).to eql('Best cookbook eva')
+    end
+
+    it 'returns nil if latest cookbook version is nil' do
+      cookbook = Cookbook.new
+
+      expect(cookbook.description).to eql(nil)
+    end
+  end
+
   describe '#lowercase_name' do
     it 'is set as part of the saving lifecycle' do
       cookbook = Cookbook.new(name: 'Apache')
