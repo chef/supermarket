@@ -1,10 +1,10 @@
 <%= provide(:title, "#{@user.username}") %>
 <%= provide(:description, "The Supermarket profile for #{@user.username}.") %>
 
-<div class="view_profile" data-equalizer>
+<div class="page profile" data-equalizer>
   <%= render 'sidebar' %>
 
-  <div class="profile_content" data-equalizer-watch>
+  <div class="main" data-equalizer-watch>
     <div class="heading">
       <h1><%= posessivize(@user.name) %> Cookbooks</h1>
 
@@ -15,17 +15,21 @@
       </dl>
     </div>
 
-    <% if @cookbooks.any? %>
-      <ul class="cookbook_listing">
-        <%= render partial: 'cookbooks/cookbook', collection: @cookbooks %>
-        <%= paginate @cookbooks %>
-      </ul>
-    <% else %>
-      <% if @user == current_user %>
-        <h3><%= t("profile.current_user_no_cookbooks.#{params[:tab] || 'owns'}") %></h3>
-      <% else %>
-        <h3><%= t("profile.no_cookbooks.#{params[:tab] || 'owns'}", username: @user.username) %></h3>
-      <% end %>
-    <% end %>
+    <div class="tabs-content">
+      <div class="content active">
+        <% if @cookbooks.any? %>
+          <ul class="cookbook_listing">
+            <%= render partial: 'cookbooks/cookbook', collection: @cookbooks %>
+            <%= paginate @cookbooks %>
+          </ul>
+        <% else %>
+          <% if @user == current_user %>
+            <p><%= t("profile.current_user_no_cookbooks.#{params[:tab] || 'owns'}") %></p>
+          <% else %>
+            <p><%= t("profile.no_cookbooks.#{params[:tab] || 'owns'}", username: @user.username) %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

@@ -6,7 +6,7 @@
 
 .cookbooks_columns {
   @include block-grid(3);
-  margin-bottom: rem-calc(36);
+  margin: rem-calc(55 0);
 }
 
 @media #{$mobile-only} {
@@ -35,7 +35,6 @@
 
     .title {
       border-bottom: 1px solid $cookbook_border;
-      font-size: rem-calc(24);
       margin: 0;
       padding: rem-calc(16 0);
     }

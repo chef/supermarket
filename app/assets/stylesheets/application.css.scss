@@ -12,13 +12,11 @@
 *= require typography
 *= require appheader
 *= require_tree ./cookbooks
-*= require_tree ./users
 *= require_tree ./profile
 *= require tabs
 *= require dashboard
 *= require contribute
 *= require welcome
-*= require curry
 *= require alerts
 *= require structure
 */

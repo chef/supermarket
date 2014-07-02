@@ -1,6 +1,6 @@
 <%= provide(:title, "Accept Invitation to #{@organization.name}") %>
 
-<div class="page">
+<div class="page withspace">
   <h1>Accept invitation to <%= @organization.name %></h1>
 
   <%= link_to 'Accept', accept_invitation_path(@invitation), class: 'button accept radius' %>

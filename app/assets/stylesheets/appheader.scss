@@ -127,6 +127,12 @@
       }
     }
   }
+
+  @media #{$small-down} {
+    ul.mainnav li {
+      display: none;
+    }
+  }
 }
 
 @media #{$mobile-only} {

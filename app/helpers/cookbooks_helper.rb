@@ -55,7 +55,7 @@ module CookbooksHelper
   def dependency_link(dep)
     name_and_version = "#{dep.name} #{dep.version_constraint}"
 
-    content_tag(:p) do
+    content_tag(:td) do
       if dep.cookbook
         link_to name_and_version, cookbook_url(dep.cookbook), rel: 'cookbook_dependency'
       else

@@ -1,9 +1,9 @@
 <%= provide(:title, "Manage Profile") %>
 
-<div class="manage_profile" data-equalizer>
+<div class="page profile" data-equalizer>
   <%= render 'users/sidebar' %>
 
-  <div class="manage_profile_content" data-equalizer-watch>
+  <div class="main" data-equalizer-watch>
     <div class="heading">
       <h1>Manage Profile</h1>
 
@@ -20,7 +20,7 @@
         <%= form_for(current_user, url: profile_path, html: { 'data-abide' => true }) do |f| %>
           <%= render 'application/form_errors', record: current_user %>
 
-          <p>Your email, password and name are maintained and managed by your Chef account. <a href="https://www.getchef.com/account">Edit them here.</a> They will be updated the next time you sign in to Supermarket.</p>
+          <p>Your email, password and name are maintained and managed by your Chef account. <a href="https://www.getchef.com/account">Edit them here.</a> They will be updated the next time you sign in to Supermarket. Avatars are powered by <%= link_to 'Gravatar', 'https://www.gravatar.com' %>.</p>
 
           <fieldset>
             <div class="company-field">
@@ -38,12 +38,6 @@
             <div class="emailnotification-field">
               <%= f.check_box :email_notifications %>
               <%= label_tag :user_email_notifications, "Receive email notifications." %>
-            </div>
-            <div class="jirausername-field">
-              <label class="gravatar">
-                <%= gravatar_for current_user, size: 30 %>
-                Avatars are powered by <%= link_to 'Gravatar', 'https://www.gravatar.com' %>
-              </label>
             </div>
           </fieldset>
           <%= f.submit 'Update Profile', class: 'button primary radius' %>

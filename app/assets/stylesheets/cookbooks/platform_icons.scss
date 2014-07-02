@@ -9,12 +9,6 @@
   list-style: none;
   margin: 0;
   padding: 0;
-
-  .cookbook_show_sidebar & {
-    @include clearfix;
-    margin-top: rem-calc(-15);
-    padding: rem-calc(0 0 20 20);
-  }
 }
 
 li.cookbook_platform_icon {

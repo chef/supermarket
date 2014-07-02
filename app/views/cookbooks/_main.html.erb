@@ -1,8 +1,18 @@
-<div class="cookbook_show_content" data-equalizer-watch>
-  <h1 class="cookbook_show_heading">
+<div class="main" data-equalizer-watch>
+    <small class="rss">
+      <%= link_to cookbook_path(cookbook, format: 'atom'), class: 'rss_feed_link' do %>
+        <i class="fa fa-rss"></i> RSS
+      <% end %>
+    </small>
+  <h1 class="heading">
     <%= cookbook.name %>
     <small class="version_dropdown">
-      <%= link_to version.version, '#', 'data-dropdown' => 'versions', class: 'button radius tiny dropdown secondary', rel: 'cookbook_versions' %>
+      <%= link_to '#', 'data-dropdown' => 'versions', class: 'button radius tiny dropdown secondary', rel: 'cookbook_versions' do %>
+        <span class="versions_count">
+          <%= pluralize "(#{cookbook_versions.count})", 'Version' %>
+        </span>
+        <%= version.version %>
+      <% end %>
       <ul id="versions" data-dropdown-content class="f-dropdown">
         <li>
           <ul>
@@ -18,20 +28,12 @@
         </li>
       </ul>
     </small>
-    <small class="versions_count">
-      <%= pluralize cookbook_versions.count, 'Version' %>
-    </small>
-    <small class="rss">
-      <%= link_to cookbook_path(cookbook, format: 'atom'), class: 'rss_feed_link' do %>
-        <i class="fa fa-rss"></i> RSS
-      <% end %>
-    </small>
     <small class="followbutton">
       <%= follow_button_for(cookbook) %>
     </small>
   </h1>
 
-  <code><pre>knife cookbook site install <%= cookbook.name %></pre></code>
+  <pre class="install">knife cookbook site install <%= cookbook.name %></pre>
 
   <p><%= cookbook.description %></p>
 
@@ -44,7 +46,11 @@
       <%= render_readme(version.readme, version.readme_extension) %>
     </div>
     <div class="content" id="dependencies">
-      <%= render partial: 'cookbooks/dependency', collection: cookbook.cookbook_dependencies %>
+      <table>
+        <tbody>
+          <%= render partial: 'cookbooks/dependency', collection: cookbook.cookbook_dependencies %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

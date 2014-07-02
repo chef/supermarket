@@ -1,4 +1,4 @@
-<div class="cookbook_show_sidebar" data-equalizer-watch>
+<div class="sidebar" data-equalizer-watch>
   <div class="owner_avatar">
     <%= link_to owner do %>
       <%= gravatar_for owner, size: 144 %>
@@ -46,7 +46,7 @@
               <%= f.hidden_field :user_id, class: 'collaborators', 'data-url' => cookbook_collaborators_path(cookbook, eligible_for: 'ownership') %>
             </div>
             <div class="small-3 columns">
-              <%= f.submit 'Transfer', class: 'button postfix' %>
+              <%= f.submit 'Transfer', class: 'button radius postfix' %>
             </div>
           </div>
         <% end %>

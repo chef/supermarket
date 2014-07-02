@@ -2,6 +2,30 @@
 @import "foundation/components/grid";
 @import "compass/css3/border-radius";
 
+.dashboard {
+  .gravatar {
+    @include border-radius(rem-calc(40));
+    display: inline-block;
+    height: rem-calc(40);
+    margin-right: rem-calc(10);
+    width: rem-calc(40);
+  }
+
+  .sidebar {
+    .button {
+      margin-bottom: rem-calc(40);
+    }
+
+    h4, h5 {
+      margin-bottom: 0;
+    }
+
+    .cookbook_listing {
+      margin: rem-calc(0 0 40 0);
+    }
+  }
+}
+
 .activity_heading {
   @include clearfix;
   border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
@@ -10,6 +34,12 @@
     float: right;
     font: $bold rem-calc(12) $default_font;
     text-decoration: underline;
+  }
+
+  @media #{$mobile-only} {
+    a {
+      display: none;
+    }
   }
 
   h3 {
@@ -46,100 +76,9 @@
   }
 
   @media #{$mobile-only} {
-    li {
-      font-size: rem-calc(13);
+    .gravatar {
+      display: none;
     }
-  }
-}
-
-.dashboard {
-  @include grid-row();
-  background: white;
-  color: $secondary_gray;
-  position: relative;
-  z-index: 1;
-
-  .gravatar {
-    @include border-radius(rem-calc(40));
-    display: inline-block;
-    height: rem-calc(40);
-    margin-right: rem-calc(10);
-    width: rem-calc(40);
-  }
-}
-
-.dashboard_content {
-  @include grid-column($columns: 9);
-  padding: rem-calc(55);
-}
-
-@media #{$mobile-only} {
-  .dashboard_content {
-    @include grid-column($columns: 12);
-  }
-}
-
-@media #{$small-only} {
-  .dashboard_content {
-    @include grid-column($columns: 12);
-  }
-}
-
-.dashboard_sidebar {
-  @include grid-column($columns: 3);
-  background: $sidebar_blue;
-  padding: rem-calc(55 25 55 25);
-
-  .button {
-    margin-bottom: rem-calc(40);
-  }
-
-  .cookbook_listing {
-    margin-bottom: rem-calc(40);
-  }
-
-  h4, h5 {
-    border-bottom: rem-calc(2) solid lighten($secondary_gray, 30%);
-    margin-bottom: 0;
-    padding-bottom: rem-calc(8);
-  }
-
-  ol {
-    font-size: rem-calc(14);
-    line-height: rem-calc(20);
-    margin-bottom: rem-calc(30);
-
-    li {
-      margin-bottom: rem-calc(10);
-    }
-  }
-
-  p {
-    font-size: rem-calc(14);
-    margin: rem-calc(20 0 20 0);
-  }
-
-  ul.resources {
-    list-style-type: square;
-    margin-top: rem-calc(10);
-    font-size: rem-calc(12);
-
-    a {
-      color: $secondary_gray;
-      text-decoration: underline;
-    }
-  }
-}
-
-@media #{$mobile-only} {
-  .dashboard_sidebar {
-    @include grid-column($columns: 12);
-  }
-}
-
-@media #{$small-only} {
-  .dashboard_sidebar {
-    @include grid-column($columns: 12);
   }
 }
 

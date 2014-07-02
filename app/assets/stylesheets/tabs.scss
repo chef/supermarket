@@ -12,7 +12,7 @@
   dd {
     &:last-child { border-right: none; }
 
-    margin-bottom: -2px !important;
+    margin-bottom: -1px !important;
 
     a {
       background-color: transparent;
@@ -47,57 +47,25 @@
       }
     }
   }
-}
 
-.tabs-content {
-  padding-top: rem-calc(20);
-
-  // mostly readme content formatting
-  h1 {
-    border: 0;
-    color: $body-font-color;
-    font-size: rem-calc(36);
-    margin: rem-calc(0 0 30 0);
-    padding: 0;
+  @media #{$small-down} {
+    dd a {
+      font-size: 60%;
+      padding: rem-calc(8 7 0 7);
+    }
   }
 
-  h2 {
-    color: $body-font-color;
-    font-size: rem-calc(30);
-    margin: rem-calc(48 0 24 0);
+  @media #{$medium-only} {
+    dd a {
+      font-size: 80%;
+      padding: rem-calc(14 12 10 12);
+    }
   }
 
-  h3 {
-    color: $body-font-color;
-    font-size: rem-calc(24);
-    margin: rem-calc(32 0 16 0);
-  }
-
-  h4 {
-    color: $body-font-color;
-    font-size: rem-calc(18);
-    margin: rem-calc(24 0 14 0);
-  }
-
-  p {
-    margin-bottom: rem-calc(32);
-  }
-
-  code {
-    color: $secondary_red;
-    font-weight: $normal;
-  }
-
-  pre code {
-    color: $silver;
-    font-weight: $normal;
-  }
-
-  table {
-    width: 100%;
-
-    th {
-      text-align: left;
+  @media #{$large-only} {
+    dd a {
+      font-size: 80%;
+      padding: rem-calc(14 12 10 12);
     }
   }
 }

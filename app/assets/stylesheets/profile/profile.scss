@@ -1,0 +1,91 @@
+@import "common";
+@import "compass/css3/border-radius";
+@import "foundation/components/grid";
+@import "foundation/components/block-grid";
+
+.profile {
+  .heading {
+    h1 {
+      border-bottom: none;
+    }
+  }
+
+  .sidebar {
+    text-align: center;
+
+    a {
+      text-decoration: none !important;
+    }
+
+    h3, h4, h5 {
+      margin: 0;
+      border-bottom: none;
+    }
+
+    h4 img {
+      margin-right: 5px;
+    }
+
+    ul {
+      border-top: rem-calc(2) solid lighten($secondary_gray, 30%);
+      list-style-type: none;
+      text-align: left;
+      margin: rem-calc(20 0 0 0);
+      padding-top: rem-calc(20);
+
+      .fa {
+        color: $secondary_gray;
+        padding-right: rem-calc(5);
+      }
+
+      .has-tip, a {
+        border-bottom: none;
+        color: saturate(lighten($primary_gray, 20%), 13%);
+        font-size: rem-calc(14);
+      }
+    }
+
+    .gravatar {
+      margin-bottom: rem-calc(20);
+    }
+
+    .button {
+      margin-bottom: rem-calc(20);
+    }
+
+    .user_stats {
+      @include block-grid(3, $spacing: 0);
+      border: rem-calc(1) solid lighten($secondary_gray, 30%);
+      margin: rem-calc(20 0 20 0);
+
+      h3 {
+        margin: 0;
+        padding: rem-calc(10 0 10 0);
+        text-align: center;
+
+        span {
+          display: block;
+          font-size: rem-calc(11);
+        }
+      }
+
+      a {
+        display: block;
+
+        &:hover {
+          background: lighten($primary_gray, 50%);
+        }
+      }
+
+      li {
+        background: #fff;
+        border-right: rem-calc(1) solid lighten($secondary_gray, 30%);
+        margin-bottom: 0;
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+  }
+}

@@ -1,12 +1,12 @@
 <%= provide(:title, "CCLA Invitations for #{@organization.name}") %>
 
-<div class="page">
-  <div class="cla">
-    <h1>Corporate Contributor License Agreement for <%= @organization.name %> <small>(CCLA)</small></h1>
+<div class="page withspace contribute">
+  <h1>Corporate Contributor License Agreement for <%= @organization.name %> <small>(CCLA)</small></h1>
 
-    <%= render "ccla_signatures/organization_tabs", ccla_signature: @organization.latest_ccla_signature %>
+  <%= render "ccla_signatures/organization_tabs", ccla_signature: @organization.latest_ccla_signature %>
 
-    <div class="contributors">
+  <div class="tabs-content">
+    <div class="content active">
       <%= form_tag organization_invitations_path(@organization), data: { abide: true }, class: 'new_invitations' do %>
         <div>
           <%= text_area_tag 'invitations[emails]', '', required: true, placeholder: 'Contributor Emails (Comma Separated)' %>
@@ -20,7 +20,7 @@
         <%= submit_tag 'Send Invitation (s)', class: 'button radius' %>
       <% end %>
 
-      <h2>Contributors</h2>
+      <h4>Contributors</h4>
 
       <table width="100%">
         <thead>

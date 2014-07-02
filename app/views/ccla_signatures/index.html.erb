@@ -1,27 +1,31 @@
 <%= provide(:title, "CCLA Signatures") %>
 
-<div class="cla_signers_list"  data-equalizer>
-  <div class="contributors signers" data-equalizer-watch>
+<div class="page contribute"  data-equalizer>
+  <div class="main" data-equalizer-watch>
     <%= render 'contributors_list_heading' %>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Company</th>
-          <th>Date</th>
-          <th colspan="2">Contributors</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @ccla_signatures.each do |ccla_signature| %>
-          <tr class="company">
-            <td><%= ccla_signature.company %></td>
-            <td><%= ccla_signature.signed_at.to_date.to_s(:long) %></td>
-            <td colspan="2" width="25%"><%= link_to "View Contributors", contributors_ccla_signature_path(ccla_signature), class: "button radius tiny", rel: "company-contributors" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="tabs-content">
+      <div class="content active">
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Date</th>
+              <th colspan="2">Contributors</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @ccla_signatures.each do |ccla_signature| %>
+              <tr class="company">
+                <td><%= ccla_signature.company %></td>
+                <td><%= ccla_signature.signed_at.to_date.to_s(:long) %></td>
+                <td colspan="2" width="25%"><%= link_to "View Contributors", contributors_ccla_signature_path(ccla_signature), class: "button radius tiny", rel: "company-contributors" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
   <%= render "contributors/sidebar" %>

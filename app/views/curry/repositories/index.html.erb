@@ -1,7 +1,7 @@
 <%= provide(:title, "Manage Subscribed Repositories") %>
 
-<div class="curry" data-equalizer>
-  <div class="watched" data-equalizer-watch>
+<div class="page" data-equalizer>
+  <div class="main" data-equalizer-watch>
     <h1 class="title">Repositories Watched by Curry</h1>
     <table>
       <tr>
@@ -22,7 +22,7 @@
     </table>
   </div>
 
-  <div class="add" data-equalizer-watch>
+  <div class="sidebar" data-equalizer-watch>
     <h1>Add A Repository</h1>
 
     <%= form_for(@repository) do |f| %>

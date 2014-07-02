@@ -1,10 +1,8 @@
 @import "common";
-@import "compass/css3/inline-block";
 
 // Styles for the cookbook stats bar
 
 .cookbooks_stats {
-  padding: rem-calc(12 0 36);
   text-align: center;
 
   .stat {
@@ -47,18 +45,8 @@
   }
 }
 
-@media #{$mobile-only} {
-  .cookbook_stats {
-    @include inline-block;
-    margin: rem-calc(-7 0 0 20);
-    padding: 0;
-  }
-}
-
-@media #{$small-only} {
-  .cookbook_stats {
-    @include inline-block;
-    margin: rem-calc(-7 0 0 20);
-    padding: 0;
+@media #{$small-down} {
+  .cookbooks_stats {
+    margin-bottom: rem-calc(20);
   }
 }
