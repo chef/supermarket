@@ -46,9 +46,13 @@ class Organization < ActiveRecord::Base
   #
   def combine!(organization)
     transaction do
-      [:ccla_signatures, :invitations, :contributors].each do |assoc|
+      [:ccla_signatures, :invitations].each do |assoc|
         organization.send(assoc).update_all(organization_id: id)
       end
+
+      organization.contributors.
+        where('user_id NOT IN (?)', contributors.pluck(:user_id)).
+        update_all(organization_id: id)
 
       organization.reload.destroy
     end

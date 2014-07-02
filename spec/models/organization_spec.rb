@@ -66,5 +66,15 @@ describe Organization do
       org1.reload
       expect(org1.invitations).to include(invitation1, invitation2)
     end
+
+    it 'should not allow duplicate contributors' do
+      jimmy = create(:user)
+      create(:contributor, organization: org1, user: jimmy)
+      create(:contributor, organization: org2, user: jimmy)
+      org1.combine!(org2)
+      org1.reload
+      how_many_jimmys = org1.contributors.select { |c| c.user.id == jimmy.id }.size
+      expect(how_many_jimmys).to eql(1)
+    end
   end
 end

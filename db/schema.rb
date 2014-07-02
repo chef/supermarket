@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630175717) do
+ActiveRecord::Schema.define(version: 20140702171009) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20140630175717) do
   end
 
   add_index "contributors", ["organization_id"], name: "index_contributors_on_organization_id", using: :btree
+  add_index "contributors", ["user_id", "organization_id"], name: "index_contributors_on_user_id_and_organization_id", unique: true, using: :btree
   add_index "contributors", ["user_id"], name: "index_contributors_on_user_id", using: :btree
 
   create_table "cookbook_collaborators", force: true do |t|
