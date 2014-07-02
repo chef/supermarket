@@ -5,6 +5,7 @@ module Universe
   DEPENDENCY_CONSTRAINT = 'dependency_constraint'.freeze
   LOCATION_PATH = 'location_path'.freeze
   LOCATION_TYPE = 'location_type'.freeze
+  DOWNLOAD_URL = 'download_url'.freeze
   DEPENDENCIES = 'dependencies'.freeze
   OPSCODE = 'opscode'.freeze
 
@@ -44,11 +45,14 @@ module Universe
       version = row[VERSION]
       dependency = row[DEPENDENCY]
       dependency_constraint = row[DEPENDENCY_CONSTRAINT]
+      url_base = protocol_host_port(opts)
+      location_path = "#{url_base}/api/v1"
 
       result[name] ||= {}
       result[name][version] ||= {
         LOCATION_TYPE => OPSCODE,
-        LOCATION_PATH => download_path(name, version, opts),
+        LOCATION_PATH => location_path,
+        DOWNLOAD_URL => download_url(name, version, url_base),
         DEPENDENCIES => {}
       }
 
@@ -61,21 +65,29 @@ module Universe
   end
 
   #
-  # Construct a download path URL by hand for performance reasons
+  # Construct a full download URL
   #
   # @param cookbook [String] name of the cookbook
   # @param version [String] cookbook version
   # @param opts [Hash] an options hash containing optional overrides for host, port and
   # protocol
   #
-  # @return [String] Cookbook download URL
+  # @return [String] Cookbook's full download URL
+  def download_url(cookbook, version, url_base)
+    "#{url_base}/api/v1/cookbooks/#{cookbook}/versions/#{version}/download"
+  end
+
   #
-  # squelch rubocop finding:
-  # W: Unused method argument - cookbook. If it's necessary, use _ or
-  # _cookbook as an argument name to indicate that it won't be used.
-  # W: Unused method argument - version. If it's necessary, use _ or
-  # _version as an argument name to indicate that it won't be used.
-  def download_path(_cookbook, _version, opts = {})
+  # Construct the protocol, host, and port portion of the URLs used
+  # for location_path and download_url
+  #
+  # @param cookbook [String] name of the cookbook
+  # @param version [String] cookbook version
+  # @param opts [Hash] an options hash containing optional overrides for host, port and
+  # protocol
+  #
+  # @return [String] protocol://host:port
+  def protocol_host_port(opts = {})
     host = opts.fetch(:host, ENV['HOST'])
     port = opts.fetch(:port, ENV['PORT'])
     # port may be nil or empty, and if so we don't want to have a port
@@ -83,6 +95,6 @@ module Universe
     # we return.
     port_string = port.nil? || port.to_s.empty? ? '' : ":#{port}"
     protocol = opts.fetch(:protocol, 'http')
-    "#{protocol}://#{host}#{port_string}/api/v1"
+    "#{protocol}://#{host}#{port_string}"
   end
 end
