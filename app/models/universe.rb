@@ -52,7 +52,7 @@ module Universe
       result[name][version] ||= {
         LOCATION_TYPE => OPSCODE,
         LOCATION_PATH => location_path,
-        DOWNLOAD_URL => download_url(name, version, url_base, opts),
+        DOWNLOAD_URL => download_url(name, version, url_base),
         DEPENDENCIES => {}
       }
 
