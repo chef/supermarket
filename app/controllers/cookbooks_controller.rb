@@ -119,8 +119,7 @@ class CookbooksController < ApplicationController
   #
   def follow
     @cookbook.cookbook_followers.create(user: current_user)
-
-    head 200
+    redirect_to @cookbook, notice: t('cookbook.follow', cookbook: @cookbook.name)
   end
 
   #
@@ -132,8 +131,7 @@ class CookbooksController < ApplicationController
     cookbook_follower = @cookbook.cookbook_followers.
       where(user: current_user).first!
     cookbook_follower.destroy
-
-    head 200
+    redirect_to @cookbook, notice: t('cookbook.unfollow', cookbook: @cookbook.name)
   end
 
   #
