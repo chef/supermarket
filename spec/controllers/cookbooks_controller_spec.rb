@@ -262,10 +262,9 @@ describe CookbooksController do
         end.to change(cookbook.cookbook_followers, :count).by(1)
       end
 
-      it 'returns a 200' do
+      it 'redirects back to the cookbook' do
         put :follow, id: cookbook
-
-        expect(response.status.to_i).to eql(200)
+        expect(response).to redirect_to(assigns[:cookbook])
       end
     end
 
@@ -304,10 +303,9 @@ describe CookbooksController do
         end.to change(cookbook.cookbook_followers, :count).by(-1)
       end
 
-      it 'redirects 200' do
+      it 'redirects back to the cookbook' do
         delete :follow, id: cookbook
-
-        expect(response.status.to_i).to eql(200)
+        expect(response).to redirect_to(assigns[:cookbook])
       end
     end
 
