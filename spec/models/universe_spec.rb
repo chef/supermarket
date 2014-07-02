@@ -11,8 +11,8 @@ describe Universe do
       protocol: 'https'
     }
 
-    expect(Universe.location_path(opts)).to eql('https://narf.example.com:6060/api/v1')
-    expect(Universe.download_url(cookbook, version, opts)).to eql('https://narf.example.com:6060/api/v1/cookbooks/redis/versions/1.3.1/download')
+    expect(Universe.protocol_host_port(opts)).to eql('https://narf.example.com:6060')
+    expect(Universe.download_url(cookbook, version, 'https://narf.example.com:6060')).to eql('https://narf.example.com:6060/api/v1/cookbooks/redis/versions/1.3.1/download')
   end
 
   it 'does not print the port if it is not set' do
@@ -21,7 +21,7 @@ describe Universe do
       port: nil
     }
 
-    expect(Universe.location_path(opts)).to eql('http://narf.example.com/api/v1')
-    expect(Universe.download_url(cookbook, version, opts)).to eql('http://narf.example.com/api/v1/cookbooks/redis/versions/1.3.1/download')
+    expect(Universe.protocol_host_port(opts)).to eql('http://narf.example.com')
+    expect(Universe.download_url(cookbook, version, 'http://narf.example.com')).to eql('http://narf.example.com/api/v1/cookbooks/redis/versions/1.3.1/download')
   end
 end

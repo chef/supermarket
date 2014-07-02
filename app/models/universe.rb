@@ -45,12 +45,14 @@ module Universe
       version = row[VERSION]
       dependency = row[DEPENDENCY]
       dependency_constraint = row[DEPENDENCY_CONSTRAINT]
+      url_base = protocol_host_port(opts)
+      location_path = "#{url_base}/api/v1"
 
       result[name] ||= {}
       result[name][version] ||= {
         LOCATION_TYPE => OPSCODE,
-        LOCATION_PATH => location_path(opts),
-        DOWNLOAD_URL => download_url(name, version, opts),
+        LOCATION_PATH => location_path,
+        DOWNLOAD_URL => download_url(name, version, url_base, opts),
         DEPENDENCIES => {}
       }
 
@@ -63,20 +65,6 @@ module Universe
   end
 
   #
-  # Construct a location path URL by hand for performance reasons
-  #
-  # @param cookbook [String] name of the cookbook
-  # @param version [String] cookbook version
-  # @param opts [Hash] an options hash containing optional overrides for host, port and
-  # protocol
-  #
-  # @return [String] Cookbook location path URL
-  #
-  def location_path(opts = {})
-    "#{protocol_host_port(opts)}/api/v1"
-  end
-
-  #
   # Construct a full download URL
   #
   # @param cookbook [String] name of the cookbook
@@ -85,8 +73,8 @@ module Universe
   # protocol
   #
   # @return [String] Cookbook's full download URL
-  def download_url(cookbook, version, opts = {})
-    "#{protocol_host_port(opts)}/api/v1/cookbooks/#{cookbook}/versions/#{version}/download"
+  def download_url(cookbook, version, url_base)
+    "#{url_base}/api/v1/cookbooks/#{cookbook}/versions/#{version}/download"
   end
 
   #
