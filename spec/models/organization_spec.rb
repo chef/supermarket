@@ -76,5 +76,14 @@ describe Organization do
       how_many_jimmys = org1.contributors.select { |c| c.user.id == jimmy.id }.size
       expect(how_many_jimmys).to eql(1)
     end
+
+    it 'should strip admin privileges on incoming contributors' do
+      jimmy = create(:user)
+      create(:contributor, organization: org2, user: jimmy, admin: true)
+      org1.combine!(org2)
+      org1.reload
+      jimmeh = org1.contributors.where(user_id: jimmy.id).first
+      expect(jimmeh.admin).to be_false
+    end
   end
 end

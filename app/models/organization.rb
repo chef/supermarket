@@ -52,7 +52,7 @@ class Organization < ActiveRecord::Base
 
       organization.contributors.
         where('user_id NOT IN (?)', contributors.pluck(:user_id)).
-        update_all(organization_id: id)
+        update_all(organization_id: id, admin: false)
 
       organization.reload.destroy
     end
