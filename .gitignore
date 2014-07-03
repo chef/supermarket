@@ -54,3 +54,4 @@ public/sitemap*
 
 # Ignore local configuration
 .env.development
+.env.test
