@@ -72,4 +72,27 @@ describe Curry::ImportPullRequestCommitAuthors do
       importer.import_commit_authors
     end.to change(pull_request.reload.commit_authors, :count).by(2)
   end
+
+  it "keeps a commit author's authorized_to_contribute status up-to-date" do
+    repository = create(:repository, owner: 'gofullstack', name: 'paprika')
+    pull_request = create(:pull_request, repository: repository)
+
+    importer = Curry::ImportPullRequestCommitAuthors.new(pull_request)
+    importer.import_commit_authors
+
+    user = create(:user)
+    account = create(
+      :account,
+      user: user,
+      username: 'brettchalupa',
+      provider: 'github'
+    )
+    create(:icla_signature, user: user)
+
+    importer.import_commit_authors
+
+    brett = pull_request.commit_authors.with_login('brettchalupa').first!
+
+    expect(brett).to be_authorized_to_contribute
+  end
 end
