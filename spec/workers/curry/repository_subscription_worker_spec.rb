@@ -37,4 +37,15 @@ describe Curry::RepositorySubscriptionWorker do
 
     expect(Curry::ImportPullRequestCommitAuthorsWorker.jobs.size).to eql(number_of_pull_requests_in_the_cassette)
   end
+
+  it 'does not add pull requests which are already tracked' do
+    repository = create(:repository, owner: 'gofullstack', name: 'paprika')
+    repository.pull_requests.create!(number: '10')
+
+    expect do
+      VCR.use_cassette('curry_repository_subscription', record: :once) do
+        Curry::RepositorySubscriptionWorker.new.perform(repository.id)
+      end
+    end.to change(repository.pull_requests, :count).by(number_of_pull_requests_in_the_cassette - 1)
+  end
 end
