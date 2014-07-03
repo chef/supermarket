@@ -54,3 +54,4 @@ public/sitemap.xml.gz
 
 # Ignore local configuration
 .env.development
+.env.test
