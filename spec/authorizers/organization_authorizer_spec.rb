@@ -11,6 +11,10 @@ describe OrganizationAuthorizer do
     it { should permit_authorization(:view_cclas) }
     it { should permit_authorization(:resign_ccla) }
     it { should permit_authorization(:manage_contributors) }
+    it { should permit_authorization(:manage_organization) }
+    it { should permit_authorization(:show) }
+    it { should permit_authorization(:destroy) }
+    it { should permit_authorization(:combine) }
   end
 
   context 'as an organization admin' do
@@ -39,5 +43,16 @@ describe OrganizationAuthorizer do
     it { should permit_authorization(:view_cclas) }
     it { should_not permit_authorization(:resign_ccla) }
     it { should_not permit_authorization(:manage_contributors) }
+  end
+
+  context 'as a non-admin' do
+    let(:user) { build(:user) }
+
+    subject { described_class.new(user, record) }
+
+    it { should_not permit_authorization(:manage_organization) }
+    it { should_not permit_authorization(:show) }
+    it { should_not permit_authorization(:destroy) }
+    it { should_not permit_authorization(:combine) }
   end
 end

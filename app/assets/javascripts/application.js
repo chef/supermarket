@@ -24,6 +24,7 @@
 //= require flash
 //= require select2.min
 //= require collaborators
+//= require organizations
 
 // Hack to resolve bug with Foundation. Resolved in master
 // here: https://github.com/zurb/foundation/issues/4684 so

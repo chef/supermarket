@@ -1,4 +1,6 @@
 class CclaSignature < ActiveRecord::Base
+  include PgSearch
+
   # Associations
   # --------------------
   belongs_to :user
@@ -31,6 +33,17 @@ class CclaSignature < ActiveRecord::Base
   # Callbacks
   # --------------------
   before_create -> (record) { record.signed_at = Time.now }
+
+  # Search
+  # --------------------
+  pg_search_scope(
+    :search,
+    against: :company,
+    using: {
+      tsearch: { dictionary: 'english' },
+      trigram: { threshold: 0.05 }
+    }
+  )
 
   def name
     "#{first_name} #{last_name}"
