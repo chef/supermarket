@@ -1,25 +1,28 @@
 <%= provide(:title, "All Signatures") %>
 
-<div class="cla_signers_list"  data-equalizer>
-  <div class="contributors signers" data-equalizer-watch>
+<div class="page contribute" data-equalizer>
+  <div class="main" data-equalizer-watch>
     <%= render 'contributors_list_heading' %>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @all_signers.each do |user| %>
-          <tr class="contributor">
-            <td><%= link_to user.name, user %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="tabs-content">
+      <div class="content active">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @all_signers.each do |user| %>
+              <tr class="contributor">
+                <td><%= link_to user.name, user %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
   <%= render "contributors/sidebar" %>
 </div>
-

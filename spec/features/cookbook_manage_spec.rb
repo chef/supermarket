@@ -9,7 +9,7 @@ describe "updating a cookbook's issues and source urls" do
 
     visit cookbook_path(cookbook)
 
-    within '.cookbook_show_sidebar' do
+    within '.sidebar' do
       follow_relation 'edit-cookbook-urls'
       fill_in 'cookbook_source_url', with: 'http://example.com/source'
       fill_in 'cookbook_issues_url', with: 'http://example.com/tissues'
@@ -25,7 +25,7 @@ describe "updating a cookbook's issues and source urls" do
 
     visit cookbook_path(cookbook)
 
-    within '.cookbook_show_sidebar' do
+    within '.sidebar' do
       follow_relation 'edit-cookbook-urls'
       fill_in 'cookbook_source_url', with: 'example'
       fill_in 'cookbook_source_url', with: 'example'

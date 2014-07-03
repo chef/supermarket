@@ -28,7 +28,7 @@ describe 'cookbook following' do
     end
 
     it 'allows a user to follow a cookbook', use_poltergeist: true do
-      within '.cookbook_show_content' do
+      within '.cookbook_show' do
         follow_relation 'follow'
       end
 
@@ -36,11 +36,11 @@ describe 'cookbook following' do
     end
 
     it 'allows a user to unfollow a cookbook', use_poltergeist: true  do
-      within '.cookbook_show_content' do
+      within '.cookbook_show' do
         follow_relation 'follow'
       end
 
-      within '.cookbook_show_content' do
+      within '.cookbook_show' do
         follow_relation 'unfollow'
       end
 

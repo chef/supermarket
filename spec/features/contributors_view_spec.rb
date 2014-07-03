@@ -28,17 +28,17 @@ describe 'viewing contributors' do
   context 'companies' do
     context "viewing a company's contributors" do
       it 'lists all contributors on behalf of that company' do
-        create(:ccla_signature)
+        create(:organization, contributors: [create(:contributor)])
 
         visit '/'
         follow_relation 'contributors'
         follow_relation 'companies'
 
-        within 'tbody tr:first-child' do
+        within 'tbody tr:last-child' do
           follow_relation 'company-contributors'
         end
 
-        expect(all('.contributors').size > 0).to be_true
+        expect(all('.contributor').size > 0).to be_true
       end
     end
   end
@@ -63,7 +63,7 @@ describe 'viewing contributors' do
       visit '/'
       follow_relation 'contributors'
 
-      within '#contribute_sidebar' do
+      within '.sidebar' do
         expect(relations('icla-signature').size > 0).to be_true
         expect(relations('ccla-membership').size > 0).to be_true
       end

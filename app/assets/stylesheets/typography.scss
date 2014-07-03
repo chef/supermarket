@@ -9,9 +9,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
-  padding-bottom: rem-calc(5);
-  font-size: rem-calc(24);
+  font-size: rem-calc(25);
 }
 
 h2 {
@@ -44,7 +42,6 @@ a {
 }
 
 p {
-  font-size: 1rem;
   line-height: 1.8;
   margin-bottom: rem-calc(24);
 }

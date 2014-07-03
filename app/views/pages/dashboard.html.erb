@@ -1,7 +1,7 @@
 <%= provide :title, 'Dashboard' %>
 
-<div class="dashboard" data-equalizer>
-  <div class="dashboard_content" data-equalizer-watch>
+<div class="page dashboard" data-equalizer>
+  <div class="main" data-equalizer-watch>
     <div class="activity_heading">
       <h3>Followed Cookbooks Activity</h3>
       <% if @followed_cookbook_activity.any? %>
@@ -28,8 +28,8 @@
       </div>
     <% end %>
   </div>
-  <div class="dashboard_sidebar" data-equalizer-watch>
-    <h4>Your Cookbooks</h4>
+  <div class="sidebar" data-equalizer-watch>
+    <h3>Your Cookbooks</h3>
     <% if @cookbooks.any? %>
       <ul class="cookbook_listing hide_owner">
         <%= render partial: 'cookbooks/simple_cookbook', collection: @cookbooks, as: 'cookbook' %>
@@ -44,7 +44,7 @@
       </ol>
     <% end %>
 
-    <h4>Cookbooks You Collaborate On</h4>
+    <h3>Cookbooks You Collaborate On</h3>
     <% if @collaborated_cookbooks.any? %>
       <ul class="cookbook_listing">
         <% @collaborated_cookbooks.each do |cookbook| %>
@@ -58,7 +58,7 @@
       </p>
     <% end %>
 
-    <h5>Resources</h5>
+    <h4>Resources</h4>
     <ul class="resources">
       <li><%= link_to 'Join IRC', 'irc://irc.freenode.net/chef' %></li>
       <li><%= link_to 'View botbot IRC Logs', 'https://botbot.me/freenode/chef', target: 'blank' %></li>

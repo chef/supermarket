@@ -1,17 +1,22 @@
 <div class="heading">
-  <div class="left">
-    <h1>Contributors</h1>
-    <h4><%= @icla_signatures ? @icla_signatures.count : IclaSignature.by_user.count %> ICLA Signatures</h4>
-    <h4><%= @ccla_signatures ? @ccla_signatures.count : CclaSignature.by_organization.count %> CCLA Signing Companies</h4>
-  </div>
-
-  <div class="right">
-    <%= link_to "Become a Contributor", become_a_contributor_path, class:"button small radius" %>
-  </div>
+  <h1 class="left">Contributors</h1>
+  <%= link_to "Become a Contributor", become_a_contributor_path, class: "button tiny radius right" %>
 </div>
 
 <dl class="tabs">
-  <dd class="<%= "active" if current_page?(contributors_path) %>"><%= link_to 'All', contributors_path %></dd>
-  <dd class="<%= "active" if current_page?(icla_signatures_path) %>"><%= link_to 'Individuals', icla_signatures_path, rel: 'individual-contributors' %></dd>
-  <dd class="<%= "active" if current_page?(ccla_signatures_path) %>"><%= link_to 'Companies', ccla_signatures_path, rel: 'companies' %></dd>
+  <dd class="<%= "active" if current_page?(contributors_path) %>">
+    <%= link_to contributors_path do %>
+      All <span><%= @icla_signatures && @ccla_signatures ? (@icla_signatures.count + @ccla_signatures.count) : (IclaSignature.count + CclaSignature.count) %></span>
+    <% end %>
+  </dd>
+  <dd class="<%= "active" if current_page?(icla_signatures_path) %>">
+    <%= link_to icla_signatures_path, rel: 'individual-contributors' do %>
+      Individuals <span><%= @icla_signatures ? @icla_signatures.count : IclaSignature.by_user.count %></span>
+    <% end %>
+  </dd>
+  <dd class="<%= "active" if current_page?(ccla_signatures_path) %>">
+    <%= link_to ccla_signatures_path, rel: 'companies' do %>
+      Companies <span><%= @ccla_signatures ? @ccla_signatures.count : CclaSignature.by_organization.count %></span>
+    <% end %>
+  </dd>
 </dl>

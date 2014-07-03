@@ -330,13 +330,14 @@
 
   @media #{$mobile-only} {
     li {
-      margin: rem-calc(0 10 0 0);
+      margin: rem-calc(0 8 0 0);
     }
   }
 
   @media #{$mobile-only} {
     .follow {
-      padding: rem-calc(8);
+      font-size: rem-calc(2);
+      padding: rem-calc(6);
     }
   }
 }
@@ -540,9 +541,10 @@
   color: $silver;
   margin: rem-calc(0 0 40 0);
   padding: 0;
-  font-size: 140%;
 
-  small { @include inline-block; }
+  small {
+    margin-left: rem-calc(10);
+  }
 
   .label {
     color: lighten($primary_gray, 20%);

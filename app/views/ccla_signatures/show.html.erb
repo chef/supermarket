@@ -1,36 +1,40 @@
 <%= provide(:title, "CCLA Signature for #{@ccla_signature.company}") %>
 
-<div class="cla page">
+<div class="page withspace contribute">
   <h1>Corporate Contributor License Agreement for <%= @ccla_signature.organization.name %> <small>(CCLA)</small></h1>
 
   <%= render "organization_tabs", ccla_signature: @ccla_signature %>
 
-  <div class="signature">
-    <% if policy(@ccla_signature.organization).resign_ccla? %>
-      <p>The CCLA was signed on <%= @ccla_signature.signed_at.to_s(:longish) %>. Update the signature below if any of the organization's information has changed.<p>
+  <div class="tabs-content">
+    <div class="content active">
+      <div class="signature">
+        <% if policy(@ccla_signature.organization).resign_ccla? %>
+          <p>The CCLA was signed on <%= @ccla_signature.signed_at.to_s(:longish) %>. Update the signature below if any of the organization's information has changed.<p>
 
-      <%= form_for(@ccla_signature.dup, url: { action: :re_sign }, data: { abide: true }) do |f| %>
-        <%= render 'application/form_errors', record: @ccla_signature %>
-        <%= render 'fields', f: f %>
+          <%= form_for(@ccla_signature.dup, url: { action: :re_sign }, data: { abide: true }) do |f| %>
+            <%= render 'application/form_errors', record: @ccla_signature %>
+            <%= render 'fields', f: f %>
 
-        <section>
-          <%= f.submit 'Re-sign CCLA', class: 'radius button expand' %>
-        </section>
-      <% end %>
-    <% else %>
-      <p>The CCLA was signed on <%= @ccla_signature.signed_at.to_s(:longish) %>. It can only be updated by admins of the <%= @ccla_signature.company %> organization.</p>
+            <section>
+              <%= f.submit 'Re-sign CCLA', class: 'radius button expand' %>
+            </section>
+          <% end %>
+        <% else %>
+          <p>The CCLA was signed on <%= @ccla_signature.signed_at.to_s(:longish) %>. It can only be updated by admins of the <%= @ccla_signature.company %> organization.</p>
 
-        <%= form_for(@ccla_signature.dup) do |f| %>
-          <%= render 'read_only_fields', f: f %>
+            <%= form_for(@ccla_signature.dup) do |f| %>
+              <%= render 'read_only_fields', f: f %>
+            <% end %>
         <% end %>
-    <% end %>
-  </div>
+      </div>
 
-  <div class="agreement">
-    <div class="panel">
-      <%= render_markdown(@ccla_signature.ccla.head) %>
-      <%= render_markdown(@ccla_signature.ccla.body) %>
-      <footer><%= @ccla_signature.ccla.version %></footer>
+      <div class="agreement">
+        <div class="panel">
+          <%= render_markdown(@ccla_signature.ccla.head) %>
+          <%= render_markdown(@ccla_signature.ccla.body) %>
+          <footer><%= @ccla_signature.ccla.version %></footer>
+        </div>
+      </div>
     </div>
   </div>
 </div>
