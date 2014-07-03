@@ -3,12 +3,18 @@ require 'octokit'
 class Curry::RepositorySubscriptionWorker
   include Sidekiq::Worker
 
+  def initialize(config_options = {})
+    @config_options = {
+      access_token: ENV['GITHUB_ACCESS_TOKEN'],
+      auto_paginate: true,
+      per_page: 100
+    }.merge(config_options)
+  end
+
   def perform(repository_id)
     repository = Curry::Repository.find(repository_id)
 
-    client = Octokit::Client.new(
-      access_token: ENV['GITHUB_ACCESS_TOKEN']
-    )
+    client = Octokit::Client.new(@config_options)
 
     repository_pull_requests = client.pull_requests(repository.full_name, state: 'open')
 

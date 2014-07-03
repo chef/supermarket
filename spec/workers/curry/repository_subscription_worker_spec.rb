@@ -27,4 +27,14 @@ describe Curry::RepositorySubscriptionWorker do
 
     expect(Curry::ImportPullRequestCommitAuthorsWorker.jobs.size).to eql(number_of_pull_requests_in_the_cassette)
   end
+
+  it 'paginates pull request listings' do
+    repository = create(:repository, owner: 'gofullstack', name: 'paprika')
+
+    VCR.use_cassette('curry_repository_subscription_pagination', record: :once) do
+      Curry::RepositorySubscriptionWorker.new(per_page: 4).perform(repository.id)
+    end
+
+    expect(Curry::ImportPullRequestCommitAuthorsWorker.jobs.size).to eql(number_of_pull_requests_in_the_cassette)
+  end
 end
