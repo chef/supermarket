@@ -166,7 +166,7 @@ fieldset {
     margin: rem-calc(20 0 20 0);
   }
 
-  p a, ul:not(.f-dropdown) a, ol a {
+  p a, p a:visited, ul:not(.f-dropdown) a, ul:not(.f-dropdown) a:visited, ol a, ol a:visited {
     color: $secondary_gray;
     text-decoration: underline;
   }
