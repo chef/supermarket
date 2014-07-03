@@ -26,16 +26,4 @@
       organization: $(this).data('organization')
     });
   });
-
-  analytics.trackLink($('#follow_cookbook'), function() {
-    analytics.track('Followed Cookbook', {
-      cookbook: $(this).data('cookbook')
-    });
-  });
-
-  analytics.trackLink($('#unfollow_cookbook'), function() {
-    analytics.track('Unfollowed Cookbook', {
-      cookbook: $(this).data('cookbook')
-    });
-  });
 </script>
