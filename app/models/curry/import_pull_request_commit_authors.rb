@@ -27,7 +27,7 @@ class Curry::ImportPullRequestCommitAuthors
   # for them if one does not exist, and set their +authorized_to_contribute+
   # bit regardless.
   #
-  def import_unauthorized_commit_authors
+  def import_commit_authors
     emails_of_non_github_verified_committers.each do |email|
       commit_author = Curry::CommitAuthor.with_email(email).first_or_create!
 

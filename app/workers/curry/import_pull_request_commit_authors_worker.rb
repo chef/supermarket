@@ -19,7 +19,7 @@ class Curry::ImportPullRequestCommitAuthorsWorker
     if pull_request.repository.present?
       Curry::ImportPullRequestCommitAuthors.new(
         pull_request
-      ).import_unauthorized_commit_authors
+      ).import_commit_authors
 
       Curry::ClaValidationWorker.perform_async(pull_request_id)
     end

@@ -4,14 +4,14 @@ describe Curry::ImportPullRequestCommitAuthorsWorker do
   before do
     allow(Curry::ClaValidationWorker).to receive(:perform_async)
     allow_any_instance_of(Curry::ImportPullRequestCommitAuthors).
-      to receive(:import_unauthorized_commit_authors)
+      to receive(:import_commit_authors)
   end
 
   let(:pull_request) { create(:pull_request) }
 
   it 'imports commit authors from the given Pull Request' do
     expect_any_instance_of(Curry::ImportPullRequestCommitAuthors).
-      to receive(:import_unauthorized_commit_authors)
+      to receive(:import_commit_authors)
 
     worker = Curry::ImportPullRequestCommitAuthorsWorker.new
     worker.perform(pull_request.id)
