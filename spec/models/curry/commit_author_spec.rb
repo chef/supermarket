@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Curry::CommitAuthor do
+  describe 'validations' do
+    it { should validate_uniqueness_of(:email) }
+    it { should validate_uniqueness_of(:login) }
+  end
+
   describe 'database default values' do
 
     it 'sets authorized_to_contribute to false' do
