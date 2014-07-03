@@ -29,12 +29,11 @@ describe Curry::ImportPullRequestCommitAuthors do
     end.to change(pull_request.reload.unknown_commit_authors, :count).by(2)
   end
 
-  it 'does not import commit authors known to have signed an ICLA' do
+  it 'imports commit authors known to have signed an ICLA' do
     # NOTE: there is implicit state at work here. The
     # import_unknown_pull_request_commit_authors VCR cassette contains a
-    # response for a Pull Request with two commit authors. This spec creates an
-    # account in the test database for one of those users. As such, the import
-    # should only create one commit author record
+    # response for a Pull Request with two commit authors. We set up an account
+    # and an ICLA signature for one of them (brettchalupa)
     repository = create(:repository, owner: 'gofullstack', name: 'paprika')
     pull_request = create(:pull_request, repository: repository)
     importer = Curry::ImportPullRequestCommitAuthors.new(pull_request)
@@ -48,9 +47,11 @@ describe Curry::ImportPullRequestCommitAuthors do
     )
     create(:icla_signature, user: user)
 
-    expect do
-      importer.import_unauthorized_commit_authors
-    end.to change(pull_request.reload.commit_authors, :count).by(1)
+    importer.import_unauthorized_commit_authors
+
+    brett = pull_request.commit_authors.with_login('brettchalupa').first!
+
+    expect(brett).to be_authorized_to_contribute
   end
 
   it "does not import commit authors known to be an organization's contributors" do
@@ -69,6 +70,6 @@ describe Curry::ImportPullRequestCommitAuthors do
 
     expect do
       importer.import_unauthorized_commit_authors
-    end.to change(pull_request.reload.commit_authors, :count).by(1)
+    end.to change(pull_request.reload.commit_authors, :count).by(2)
   end
 end

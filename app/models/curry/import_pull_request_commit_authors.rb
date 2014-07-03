@@ -2,8 +2,7 @@ require 'octokit'
 
 #
 # +Curry::ImportPullRequestCommitAuthors+ uses Octokit to go through a
-# pull request's commit authors to see if they have signed CLAs. If the commit
-# author has not signed a Supermarket CLA, a record is created for that commit
+# pull request's commit authors and creates or updates a record for each commit
 # author.
 #
 class Curry::ImportPullRequestCommitAuthors
@@ -24,8 +23,9 @@ class Curry::ImportPullRequestCommitAuthors
   end
 
   #
-  # Loop through all of the commit authors with GitHub login or email address
-  # that have not signed a CLA. Create a record for them if one does not exist.
+  # Loop through all of the commit authors on the Pull Request. Create a record
+  # for them if one does not exist, and set their +authorized_to_contribute+
+  # bit regardless.
   #
   def import_unauthorized_commit_authors
     emails_of_non_github_verified_committers.each do |email|
@@ -36,8 +36,10 @@ class Curry::ImportPullRequestCommitAuthors
       ).first_or_create!
     end
 
-    unauthorized_github_logins.each do |login|
-      commit_author = Curry::CommitAuthor.with_login(login).first_or_create!
+    github_logins.each do |login|
+      commit_author = Curry::CommitAuthor.with_login(login).first_or_initialize
+      commit_author.authorized_to_contribute = authorized_to_contribute?(login)
+      commit_author.save!
 
       @pull_request.pull_request_commit_authors.where(
         commit_author_id: commit_author.id
@@ -68,15 +70,12 @@ class Curry::ImportPullRequestCommitAuthors
   end
 
   #
-  # Returns each GitHub login which is not known to be authorized to
-  # contribute within pull request
+  # Returns the list of GitHub logins contributing to the pull request
   #
   # @return [Array<String>]
   #
-  def unauthorized_github_logins
-    pull_request_commits.select(&:author).map(&:author).reject do |author|
-      authorized_to_contribute?(author.login)
-    end.map(&:login).uniq
+  def github_logins
+    pull_request_commits.select(&:author).map(&:author).map(&:login).uniq
   end
 
   #
