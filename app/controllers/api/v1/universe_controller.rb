@@ -13,6 +13,8 @@ class Api::V1::UniverseController < Api::V1Controller
       Universe.generate(protocol: (request.ssl? ? 'https' : 'http'))
     end
 
+    SegmentIO.track_server_event('universe_api_visit', current_user)
+
     render json: MultiJson.dump(universe)
   end
 end
