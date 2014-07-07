@@ -34,6 +34,13 @@ class Cookbook < ActiveRecord::Base
     joins(owner: :chef_account).where('accounts.username = ?', username)
   }
 
+  scope :index, lambda { |opts = {}|
+    includes(:cookbook_versions, owner: :chef_account)
+    .ordered_by(opts.fetch(:order, 'name ASC'))
+    .limit(opts.fetch(:limit, 10))
+    .offset(opts.fetch(:start, 0))
+  }
+
   # Search
   # --------------------
   pg_search_scope(
