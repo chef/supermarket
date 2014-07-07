@@ -204,5 +204,26 @@ describe CookbookUpload do
 
       expect(errors.full_messages).to include(error_message)
     end
+
+    it 'yields an error if the version uniqueness database constraint is violated' do
+      tarball = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
+      user = create(:user)
+
+      CookbookUpload.new(user, cookbook: cookbook, tarball: tarball).finish
+
+      allow_any_instance_of(ActiveRecord::Validations::UniquenessValidator).
+        to receive(:validate_each)
+
+      upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
+
+      errors = upload.finish { |e, _| e }
+
+      message = %{
+        redis-test (0.1.0) already exists. A cookbook's version number must be
+        unique.
+      }.squish
+
+      expect(errors.full_messages).to include(message)
+    end
   end
 end

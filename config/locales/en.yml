@@ -48,6 +48,7 @@ en:
       invalid_version_constraint: "Platform '%{name}' has invalid version constraint '%{version_constraint}'"
       invalid_metadata: "The metadata is formatted incorrectly."
       invalid_platforms: "The list of supported platforms must be a JSON object."
+      version_not_unique: "%{name} (%{version}) already exists. A cookbook's version number must be unique."
       invalid_username: "Could not find user '%{username}'"
       authentication_request_error: "Authentication failed due to an invalid signed request."
       authentication_key_error: "Authentication failed due to an invalid public/private key pair. If you've changed your keys recently try logging out and logging back in to Supermarket."

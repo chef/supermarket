@@ -34,10 +34,15 @@ class CookbookUpload
           book.publish_version!(@params.metadata, @params.tarball, @params.readme)
         end
       rescue ActiveRecord::RecordNotUnique
-        upload_errors.add(
-          :base,
-          I18n.t('api.error_messages.version_not_unique')
+        metadata = @params.metadata
+
+        version_not_unique = I18n.t(
+          'api.error_messages.version_not_unique',
+          name: metadata.name,
+          version: metadata.version
         )
+
+        upload_errors.add(:base, version_not_unique)
       rescue ActiveRecord::RecordInvalid => e
         e.record.errors.full_messages.each do |message|
           upload_errors.add(:base, message)
