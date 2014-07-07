@@ -3,13 +3,6 @@
 #
 class DataImportWorker
   include Sidekiq::Worker
-  include Sidetiq::Schedulable
-
-  recurrence do
-    hours = (0..23).step(3)
-
-    daily.hour_of_day(*hours)
-  end
 
   #
   # Invokes the supermarket:migrate Rake task
