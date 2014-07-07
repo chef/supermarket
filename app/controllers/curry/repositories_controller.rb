@@ -62,7 +62,13 @@ class Curry::RepositoriesController < ApplicationController
   # process.
   #
   def evaluate
-    redirect_to curry_repositories_url, notice: t('curry.repositories.evaluate')
+    repository = Curry::Repository.find(params[:id])
+
+    Curry::RepositorySubscriptionWorker.perform_async(repository.id)
+
+    notice = t('curry.repositories.evaluate', name: repository.full_name)
+
+    redirect_to curry_repositories_url, notice: notice
   end
 
   private

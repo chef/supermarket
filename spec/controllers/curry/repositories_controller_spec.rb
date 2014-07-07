@@ -148,4 +148,24 @@ describe Curry::RepositoriesController do
       expect(response).to redirect_to(curry_repositories_url)
     end
   end
+
+  describe 'POST #evaluate' do
+    it 'kicks off the RepositorySubscriptionWorker' do
+      sign_in(create(:admin))
+
+      repository = create(:repository)
+
+      expect do
+        post :evaluate, id: repository.id
+      end.to change(Curry::RepositorySubscriptionWorker.jobs, :count).by(1)
+    end
+
+    it '404s when such a repository does not exist' do
+      sign_in(create(:admin))
+
+      post :evaluate, id: -1
+
+      expect(response).to render_template('exceptions/404')
+    end
+  end
 end

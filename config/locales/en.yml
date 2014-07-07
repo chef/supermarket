@@ -23,7 +23,7 @@ en:
       warning: "The following invitations were invalid %{invites} all others however were valid and sent."
   curry:
     repositories:
-      evaluate: "Curry is now evaluating all open Pull Requests"
+      evaluate: "Curry is now evaluating all open Pull Requests on %{name}"
       subscribe:
         failure: "That repository does not exist on GitHub."
         success: "Supermarket is now monitoring this repository"
