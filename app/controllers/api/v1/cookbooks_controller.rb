@@ -22,7 +22,7 @@ class Api::V1::CookbooksController < Api::V1Controller
   #
   def index
     @total = Cookbook.count
-    @cookbooks = Cookbook.ordered_by(@order).limit(@items).offset(@start)
+    @cookbooks = Cookbook.includes(:cookbook_versions, owner: :chef_account).ordered_by(@order).limit(@items).offset(@start)
 
     if params[:user]
       @cookbooks = @cookbooks.owned_by(params[:user])
