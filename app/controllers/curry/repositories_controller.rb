@@ -55,6 +55,16 @@ class Curry::RepositoriesController < ApplicationController
     redirect_to curry_repositories_url
   end
 
+  #
+  # POST /curry/repositories/:id/evaluate
+  #
+  # Runs each open Pull Request in the repository through Curry's verification
+  # process.
+  #
+  def evaluate
+    redirect_to curry_repositories_url, notice: t('curry.repositories.evaluate')
+  end
+
   private
 
   #

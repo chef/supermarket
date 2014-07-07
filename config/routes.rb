@@ -59,7 +59,12 @@ Supermarket::Application.routes.draw do
   end
 
   namespace :curry do
-    resources :repositories, only: [:index, :create, :destroy]
+    resources :repositories, only: [:index, :create, :destroy] do
+      member do
+        post :evaluate
+      end
+    end
+
     resources :pull_request_updates, only: [:create]
   end
 

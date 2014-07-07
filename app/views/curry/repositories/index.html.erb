@@ -6,7 +6,7 @@
     <table>
       <tr>
         <th>Repository</th>
-        <th>Actions</th>
+        <th colspan="2">Actions</th>
       </tr>
 
       <% @repositories.each do |repository| %>
@@ -16,6 +16,9 @@
           </td>
           <td>
             <%= link_to "Remove Repository", repository, method: :delete, rel: 'remove_repository' %>
+          </td>
+          <td>
+            <%= link_to "Evaluate Repository", evaluate_curry_repository_path(repository), method: :post, rel: 'evaluate_repository' %>
           </td>
         </tr>
       <% end %>

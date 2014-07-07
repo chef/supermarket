@@ -42,4 +42,24 @@ describe 'Curry management', uses_secrets: true do
       expect_to_see_success_message
     end
   end
+
+  describe 'when a Chef Admin evaluates a repository' do
+    it 'shows success' do
+      sign_in(create(:admin))
+
+      manage_repositories
+
+      within '.new_curry_repository' do
+        fill_in 'curry_repository_full_name', with: 'gofullstack/paprika'
+
+        VCR.use_cassette('curry_add_repo', record: :once) do
+          submit_form
+        end
+      end
+
+      follow_first_relation 'evaluate_repository'
+
+      expect_to_see_success_message
+    end
+  end
 end
