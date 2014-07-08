@@ -65,6 +65,37 @@ module Universe
   end
 
   #
+  # Track a hit to the /universe endpoint
+  #
+  # The query below does a conditional insert/update. If a record doesn't
+  # already exist in the hits table, then it will insert one, with an initial
+  # hit count of 1. If a record already exists, then it
+  # will increment the hit counter for 'universe'. Having all this in 1 query
+  # is a bit dense, logic-wise, but it does eliminate needing to query first
+  # and then conditionally insert/update.
+  #
+  # Again, doing this in raw sql instead of AR for performance reasons.
+  #
+  def track_hit
+    sql = %(WITH upd AS
+            (UPDATE hits SET total=total+1 WHERE label='universe' RETURNING *)
+            INSERT INTO hits (label, total)
+            SELECT 'universe', 1 WHERE NOT EXISTS (SELECT * FROM upd))
+    ActiveRecord::Base.connection.execute(sql)
+  end
+
+  #
+  # Show how many hits to the /universe endpoint
+  #
+  # Again, doing this in raw sql instead of AR for performance reasons.
+  #
+  def show_hits
+    sql = "SELECT total FROM hits WHERE label='universe'"
+    result = ActiveRecord::Base.connection.execute(sql).to_a.first
+    result.nil? ? 0 : result['total'].to_i
+  end
+
+  #
   # Construct a full download URL
   #
   # @param cookbook [String] name of the cookbook

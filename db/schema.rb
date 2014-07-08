@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140703185344) do
+ActiveRecord::Schema.define(version: 20140707215332) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -219,6 +219,13 @@ ActiveRecord::Schema.define(version: 20140703185344) do
     t.datetime "updated_at"
     t.string   "callback_url"
   end
+
+  create_table "hits", force: true do |t|
+    t.string  "label",             null: false
+    t.integer "total", default: 0, null: false
+  end
+
+  add_index "hits", ["label"], name: "index_hits_on_label", unique: true, using: :btree
 
   create_table "icla_signatures", force: true do |t|
     t.integer  "user_id"
