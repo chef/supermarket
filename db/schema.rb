@@ -221,10 +221,11 @@ ActiveRecord::Schema.define(version: 20140707215332) do
   end
 
   create_table "hits", force: true do |t|
-    t.integer  "universe",   default: 0, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "label",             null: false
+    t.integer "total", default: 0, null: false
   end
+
+  add_index "hits", ["label"], name: "index_hits_on_label", unique: true, using: :btree
 
   create_table "icla_signatures", force: true do |t|
     t.integer  "user_id"
