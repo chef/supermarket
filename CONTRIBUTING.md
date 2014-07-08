@@ -74,7 +74,6 @@ style guide. You can run Rubocop by runninng the `rubocop` command. Rubocop will
 let you know what the offences are and where they occur. It is also worth noting
 that Travis CI runs Rubocop, and the build will fail if Rubocop fails.
 
-
 ### CSS
 
 [Foundation](http://foundation.zurb.com) is used as a CSS framework and for
@@ -85,7 +84,7 @@ apply to Supermarket. One exception is the use of the grid presentational classe
 (row, x columns, etc.) are eschewed in favor of using the SCSS grid mixins. You can
 find more information about the SCSS grid mixins [here](http://foundation.zurb.com/docs/components/grid.html).
 
-We adhere to the following SCSS style guidelines.
+We adhere to the following SCSS style guidelines:
 
 - Alphabetize SCSS attributes within each declaration with the exception of includes, all `@include` statements should be grouped and come before all other attributes.
 - HTML elements such as h1, h2, p, etc. should come first per file, classes second and IDs after.
@@ -93,7 +92,7 @@ We adhere to the following SCSS style guidelines.
 - For nested styles pretzels should come first then the same guidelines as above apply after.
 - Be mindful of nesting, nest only when necessary and avoid deeply nested elements.
 
-Here's an example of SCSS that adheres to these guidelines.
+Here's an example of SCSS that adheres to these guidelines:
 
 ```scss
 .activity_heading {
@@ -123,5 +122,4 @@ Here's an example of SCSS that adheres to these guidelines.
     font-size: rem-calc(10);
   }
 }
-
 ```
