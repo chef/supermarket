@@ -92,11 +92,12 @@
         </table>
       </div>
       <div class="content" id="collaborations">
-        <p>The cookbooks you are a collaborator on.</p>
 
         <% if current_user.collaborated_cookbooks.empty? %>
           <p>You are currently not a collaborator on any cookbooks. Once you are, they will be listed here.</p>
         <% else %>
+          <p>The cookbooks you are a collaborator on.</p>
+
           <table>
             <% current_user.collaborated_cookbooks.each do |cookbook| %>
               <tr>
