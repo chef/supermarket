@@ -14,6 +14,7 @@ class Api::V1::UniverseController < Api::V1Controller
     end
 
     SegmentIO.track_server_event('universe_api_visit', current_user)
+    Universe.track_hit
 
     render json: MultiJson.dump(universe)
   end

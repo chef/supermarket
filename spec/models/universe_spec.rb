@@ -24,4 +24,15 @@ describe Universe do
     expect(Universe.protocol_host_port(opts)).to eql('http://narf.example.com')
     expect(Universe.download_url(cookbook, version, 'http://narf.example.com')).to eql('http://narf.example.com/api/v1/cookbooks/redis/versions/1.3.1/download')
   end
+
+  describe 'tracking hits' do
+    it 'returns 0 if there are no records' do
+      expect(Universe.show_hits).to eql(0)
+    end
+
+    it 'tracks and displays hits to /universe' do
+      2.times { Universe.track_hit }
+      expect(Universe.show_hits).to eql(2)
+    end
+  end
 end

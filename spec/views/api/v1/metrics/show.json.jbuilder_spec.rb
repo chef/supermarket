@@ -7,7 +7,10 @@ describe 'api/v1/metrics/show' do
            total_cookbook_versions: 4,
            total_cookbooks: 3,
            total_follows: 2,
-           total_users: 6
+           total_users: 6,
+           total_hits: {
+             '/universe' => 3
+           }
     )
   end
 
@@ -19,5 +22,6 @@ describe 'api/v1/metrics/show' do
     expect(json_body['total_cookbooks']).to eql(3)
     expect(json_body['total_follows']).to eql(2)
     expect(json_body['total_users']).to eql(6)
+    expect(json_body['total_hits']).to include('/universe' => 3)
   end
 end

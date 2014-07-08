@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140703185344) do
+ActiveRecord::Schema.define(version: 20140707215332) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -218,6 +218,12 @@ ActiveRecord::Schema.define(version: 20140703185344) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "callback_url"
+  end
+
+  create_table "hits", force: true do |t|
+    t.integer  "universe",   default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "icla_signatures", force: true do |t|

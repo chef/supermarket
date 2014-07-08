@@ -10,7 +10,8 @@ class Api::V1::MetricsController < Api::V1Controller
       total_cookbook_versions: CookbookVersion.count,
       total_cookbooks: Cookbook.count,
       total_follows: CookbookFollower.count,
-      total_users: User.count
+      total_users: User.count,
+      total_hits: { '/universe' => Universe.show_hits }
     }
   end
 end
