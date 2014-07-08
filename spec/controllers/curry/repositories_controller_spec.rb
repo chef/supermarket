@@ -73,6 +73,12 @@ describe Curry::RepositoriesController do
           expect(flash[:notice]).
             to eql(I18n.t('curry.repositories.subscribe.success'))
         end
+
+        it 'starts the subscription worker' do
+          expect do
+            post :create, curry_repository: { owner: 'gofullstack', name: 'paprika' }
+          end.to change(Curry::RepositorySubscriptionWorker.jobs, :size).by(1)
+        end
       end
 
       context 'when creating a repository fails' do
@@ -140,6 +146,26 @@ describe Curry::RepositoriesController do
       expect(flash[:alert]).
         to eql(I18n.t('curry.repositories.unsubscribe.failure'))
       expect(response).to redirect_to(curry_repositories_url)
+    end
+  end
+
+  describe 'POST #evaluate' do
+    it 'kicks off the RepositorySubscriptionWorker' do
+      sign_in(create(:admin))
+
+      repository = create(:repository)
+
+      expect do
+        post :evaluate, id: repository.id
+      end.to change(Curry::RepositorySubscriptionWorker.jobs, :count).by(1)
+    end
+
+    it '404s when such a repository does not exist' do
+      sign_in(create(:admin))
+
+      post :evaluate, id: -1
+
+      expect(response).to render_template('exceptions/404')
     end
   end
 end

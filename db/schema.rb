@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702171009) do
+ActiveRecord::Schema.define(version: 20140703185344) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -186,10 +186,15 @@ ActiveRecord::Schema.define(version: 20140702171009) do
     t.boolean  "authorized_to_contribute", default: false, null: false
   end
 
+  add_index "curry_commit_authors", ["email"], name: "index_curry_commit_authors_on_email", unique: true, using: :btree
+  add_index "curry_commit_authors", ["login"], name: "index_curry_commit_authors_on_login", unique: true, using: :btree
+
   create_table "curry_pull_request_commit_authors", force: true do |t|
     t.integer "pull_request_id",  null: false
     t.integer "commit_author_id", null: false
   end
+
+  add_index "curry_pull_request_commit_authors", ["commit_author_id", "pull_request_id"], name: "curry_pr_commit_author_ids", unique: true, using: :btree
 
   create_table "curry_pull_request_updates", force: true do |t|
     t.datetime "created_at"
@@ -204,6 +209,8 @@ ActiveRecord::Schema.define(version: 20140702171009) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "curry_pull_requests", ["number", "repository_id"], name: "index_curry_pull_requests_on_number_and_repository_id", unique: true, using: :btree
 
   create_table "curry_repositories", force: true do |t|
     t.string   "owner"

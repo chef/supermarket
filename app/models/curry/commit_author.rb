@@ -2,6 +2,9 @@ class Curry::CommitAuthor < ActiveRecord::Base
   has_many :pull_request_commit_authors
   has_many :pull_requests, through: :pull_request_commit_authors
 
+  validates :email, uniqueness: { allow_nil: true }
+  validates :login, uniqueness: { allow_nil: true }
+
   scope :with_known_email, -> { where('email IS NOT ?', nil) }
   scope :with_known_login, -> { where('login IS NOT ?', nil) }
 

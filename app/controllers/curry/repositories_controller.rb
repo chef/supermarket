@@ -22,6 +22,8 @@ class Curry::RepositoriesController < ApplicationController
     subscriber = Curry::RepositorySubscriber.new(repository)
 
     if subscriber.subscribe(pubsubhubbub_callback_url)
+      Curry::RepositorySubscriptionWorker.perform_async(repository.id)
+
       redirect_to curry_repositories_url,
                   notice: t('curry.repositories.subscribe.success')
     else
@@ -51,6 +53,22 @@ class Curry::RepositoriesController < ApplicationController
     end
 
     redirect_to curry_repositories_url
+  end
+
+  #
+  # POST /curry/repositories/:id/evaluate
+  #
+  # Runs each open Pull Request in the repository through Curry's verification
+  # process.
+  #
+  def evaluate
+    repository = Curry::Repository.find(params[:id])
+
+    Curry::RepositorySubscriptionWorker.perform_async(repository.id)
+
+    notice = t('curry.repositories.evaluate', name: repository.full_name)
+
+    redirect_to curry_repositories_url, notice: notice
   end
 
   private

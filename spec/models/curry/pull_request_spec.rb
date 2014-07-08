@@ -4,6 +4,16 @@ describe Curry::PullRequest do
   describe 'validations' do
     it { should validate_presence_of(:number) }
     it { should validate_presence_of(:repository_id) }
+
+    it 'ensures pull request numbers are unique per repository' do
+      pr = create(:pull_request)
+      repo = pr.repository
+
+      errors = repo.pull_requests.new(number: pr.number).tap(&:save).errors
+
+      expect(errors[:number]).to be_present
+      expect(errors[:number]).to include('has already been taken')
+    end
   end
 
   describe '#unknown_commit_authors' do
