@@ -49,11 +49,15 @@
 }
 
 .cookbook, .cookbook_show {
-  pre {
+  code, pre {
     background-color: darken($primary_blue, 5%);
     @include border-radius(rem-calc(3));
     color: $silver;
     cursor: text;
+    padding: rem-calc(2 5);
+  }
+
+  pre {
     font: {
       size: rem-calc(16);
       weight: $normal;
