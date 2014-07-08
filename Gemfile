@@ -42,8 +42,6 @@ gem 'sass-rails',   '~> 4.0.1'
 gem 'compass-rails'
 gem 'uglifier',     '~> 2.2'
 
-gem 'chef-legacy', github: 'gofullstack/chef-legacy', ref: 'v1.4.1'
-
 group :doc do
   gem 'yard', require: false
 end

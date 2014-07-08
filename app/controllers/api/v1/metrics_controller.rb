@@ -1,5 +1,3 @@
-require 'supermarket/import'
-
 class Api::V1::MetricsController < Api::V1Controller
   #
   # GET /api/v1/metrics
@@ -14,52 +12,5 @@ class Api::V1::MetricsController < Api::V1Controller
       total_follows: CookbookFollower.count,
       total_users: User.count
     }
-
-    if ENV['COMMUNITY_SITE_DATABASE_URL'].present?
-      migration_metrics = {
-        collaborators: {
-          supermarket: imported(CookbookCollaborator).count,
-          community_site: Supermarket::Import::Collaboration.ids.count
-        },
-        cookbooks: {
-          supermarket: imported(Cookbook).count,
-          community_site: Supermarket::Import::Cookbook.ids.count
-        },
-        cookbook_versions: {
-          supermarket: imported(CookbookVersion).where(dependencies_imported: true).count,
-          community_site: Supermarket::Import::CookbookVersion.ids.count,
-          verification: {
-            pending: imported(CookbookVersion).where(verification_state: 'pending').count,
-            in_progress: imported(CookbookVersion).where(verification_state: 'in_progress').count,
-            succeeded: imported(CookbookVersion).where(verification_state: 'succeeded').count,
-            failed: imported(CookbookVersion).where(verification_state: 'failed').count
-          }
-        },
-        deprecated_cookbooks: {
-          supermarket: imported(Cookbook).where(deprecated: true).count,
-          community_site: Supermarket::Import::DeprecatedCookbook.ids.count
-        },
-        followings: {
-          supermarket: imported(CookbookFollower).count,
-          community_site: Supermarket::Import::Following.ids.count
-        },
-        users: {
-          supermarket: imported(User).count,
-          community_site: Supermarket::Import::User.ids.count
-        },
-        platforms: {
-          supermarket: imported(CookbookVersionPlatform).count,
-          community_site: Supermarket::Import::PlatformVersion.ids.count
-        }
-      }
-
-      @metrics[:migration] = migration_metrics
-    end
-  end
-
-  private
-
-  def imported(model)
-    model.where('legacy_id IS NOT ?', nil)
   end
 end

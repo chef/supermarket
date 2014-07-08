@@ -6,16 +6,6 @@ GIT
     libarchive (0.1.2)
 
 GIT
-  remote: git://github.com/gofullstack/chef-legacy.git
-  revision: 80bdcc160fcb4adb8614a0f8df7128cfb7a3c1e4
-  ref: v1.4.1
-  specs:
-    chef-legacy (1.0.0)
-      connection_pool
-      mysql2
-      ruby-progressbar
-
-GIT
   remote: git://github.com/octokit/octokit.rb.git
   revision: 79ea382f0d9159aafe346a07c6a9a77526efd2f3
   specs:
@@ -225,7 +215,6 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mysql2 (0.3.16)
     net-ssh (2.8.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
@@ -454,7 +443,6 @@ DEPENDENCIES
   byebug
   capybara
   chef
-  chef-legacy!
   compass-rails
   coveralls
   database_cleaner
