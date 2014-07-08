@@ -14,7 +14,7 @@ class AccountsController < ApplicationController
       redirect_to after_link_location, notice: "Successfully
         connected #{request.env['omniauth.auth']['provider']}."
     else
-      redirect_to edit_profile_path(current_user), alert: "Something went wrong
+      redirect_to edit_profile_path, alert: "Something went wrong
         while connecting #{request.env['omniauth.auth']['provider']}"
     end
   end
@@ -34,6 +34,6 @@ class AccountsController < ApplicationController
   private
 
   def after_link_location
-    stored_location || edit_profile_path(current_user)
+    stored_location || edit_profile_path
   end
 end
