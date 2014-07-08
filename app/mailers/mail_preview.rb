@@ -16,6 +16,10 @@ if Rails.env.development?
       CookbookMailer.follower_notification_email(cookbook_follower)
     end
 
+    def cookbook_deleted_notification_email
+      CookbookMailer.cookbook_deleted_email(cookbook.name, user.email)
+    end
+
     private
 
     def organization
