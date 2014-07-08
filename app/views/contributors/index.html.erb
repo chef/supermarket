@@ -9,13 +9,23 @@
         <table>
           <thead>
             <tr>
-              <th>Name</th>
+              <th>Chef Username</th>
+              <th>GitHub</th>
             </tr>
           </thead>
           <tbody>
             <% @all_signers.each do |user| %>
               <tr class="contributor">
-                <td><%= link_to user.name, user %></td>
+                <td><%= link_to user.username, user %></td>
+                <td>
+                  <% user.accounts.for(:github).each_with_index do |account, index| %>
+                    <% if index == user.accounts.for(:github).count - 1 %>
+                      <a href="https://github.com/<%= account.username %>" target="_blank"><%= account.username %></a>
+                    <% else %>
+                      <a href="https://github.com/<%= account.username %>" target="_blank"><%= account.username %></a>,
+                    <% end %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           </tbody>
