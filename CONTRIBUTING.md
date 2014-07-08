@@ -4,7 +4,7 @@ Thanks for your interest in contributing to Supermarket!
 
 The basic process:
 * Sign a Chef CLA (see below)
-* Create a git topic branch for your patch and push it to github
+* Create a git topic branch for your patch and push it to GitHub
 * Open a pull request
 
 The Apache License and Chef Contributor Lincense Agreements
@@ -21,9 +21,7 @@ check with our lawyers about small patches.
 
 It only takes a few minutes to complete a CLA, and you retain the copyright to your contribution.
 
-You can complete our contributor agreement (CLA) [
-online](https://secure.echosign.com/public/hostedForm?formid=PJIF5694K6L).  If you're contributing on behalf of your employer, have
-your employer fill out our [Corporate CLA](https://secure.echosign.com/public/hostedForm?formid=PIE6C7AX856) instead.
+You can [become a contributor by signing the ICLA or by contributing on behalf of your company](http://supermarket.getchef.com/become-a-contributor).
 
 For more information about licensing, copyright, and CLAs see Chef's [Community Contributions](http://docs.opscode.com/community_contributions.html) page.
 
@@ -76,7 +74,6 @@ style guide. You can run Rubocop by runninng the `rubocop` command. Rubocop will
 let you know what the offences are and where they occur. It is also worth noting
 that Travis CI runs Rubocop, and the build will fail if Rubocop fails.
 
-
 ### CSS
 
 [Foundation](http://foundation.zurb.com) is used as a CSS framework and for
@@ -87,7 +84,7 @@ apply to Supermarket. One exception is the use of the grid presentational classe
 (row, x columns, etc.) are eschewed in favor of using the SCSS grid mixins. You can
 find more information about the SCSS grid mixins [here](http://foundation.zurb.com/docs/components/grid.html).
 
-We adhere to the following SCSS style guidelines.
+We adhere to the following SCSS style guidelines:
 
 - Alphabetize SCSS attributes within each declaration with the exception of includes, all `@include` statements should be grouped and come before all other attributes.
 - HTML elements such as h1, h2, p, etc. should come first per file, classes second and IDs after.
@@ -95,7 +92,7 @@ We adhere to the following SCSS style guidelines.
 - For nested styles pretzels should come first then the same guidelines as above apply after.
 - Be mindful of nesting, nest only when necessary and avoid deeply nested elements.
 
-Here's an example of SCSS that adheres to these guidelines.
+Here's an example of SCSS that adheres to these guidelines:
 
 ```scss
 .activity_heading {
@@ -125,5 +122,4 @@ Here's an example of SCSS that adheres to these guidelines.
     font-size: rem-calc(10);
   }
 }
-
 ```
