@@ -4,7 +4,7 @@ Thanks for your interest in contributing to Supermarket!
 
 The basic process:
 * Sign a Chef CLA (see below)
-* Create a git topic branch for your patch and push it to github
+* Create a git topic branch for your patch and push it to GitHub
 * Open a pull request
 
 The Apache License and Chef Contributor Lincense Agreements
