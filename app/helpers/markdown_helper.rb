@@ -3,8 +3,29 @@ module MarkdownHelper
   # Make auto-links target=_blank
   #
   class SupermarketRenderer < Redcarpet::Render::HTML
+    include ActionView::Helpers::TagHelper
+
     def initialize(extensions = {})
       super extensions.merge(link_attributes: { target: '_blank' }, with_toc_data: true, hard_wrap: true)
+    end
+
+    #
+    # Create an image tag with a protocol-relative URL
+    #
+    # @param url [String] the image URL
+    # @param title [String, nil] the image title
+    # @param alt [String, nil] the image's alternative text
+    #
+    # @return [String] an image tag
+    #
+    def image(url, title, alt)
+      options = {
+        src: relative_url = url.sub(/\Ahttps?:/, ''),
+        alt: String(alt),
+        title: title
+      }
+
+      tag(:img, options, true)
     end
   end
 
