@@ -32,7 +32,7 @@ core functionality of Supermarket.
 
 If you would like to override the defaults in a particular Rails environment,
 dotenv will give the settings in `.env.#{Rails.env}` precedence over those in
-`.env`. Supermarket explicitly ignores `.env.development and `.env.test`. This
+`.env`. Supermarket explicitly ignores `.env.development` and `.env.test`. This
 means that you could, for example, specify an oc-id app ID and secret for local
 development in a way that does not soil your working directory by placing the
 following in `.env.development`:
