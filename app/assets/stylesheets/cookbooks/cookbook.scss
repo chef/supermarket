@@ -86,10 +86,6 @@
     }
 
     .gravatar {
-      background-color: $primary_gray;
-      border: rem-calc(3) solid white;
-      @include box-shadow(rgba(0,0,0,.2) 0 rem-calc(1) rem-calc(1));
-      @include border-radius(rem-calc(24));
       @include box-sizing(content-box);
       width: rem-calc(24);
     }
