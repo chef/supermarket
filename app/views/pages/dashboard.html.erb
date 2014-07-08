@@ -39,9 +39,10 @@
       <p><strong>Looking to upload your cookbooks?</strong></p>
       <ol>
         <li>Ensure you have a Chef repo configured with your private key</li>
-        <li>Install the <%= link_to 'Supermarket Knife plugin', 'https://github.com/cwebberOps/knife-supermarket' %></li>
-        <li>Share your cookbook with <code>knife supermarket share some-cookbook other</code></li>
+        <li>Share your cookbook with <code>knife cookbook site share COOKBOOK_NAME CATEGORY (options)</code></li>
       </ol>
+
+      <p><a href="http://docs.opscode.com/knife_cookbook_site.html#share" target="_blank">Read the full share docs.</a></p>
     <% end %>
 
     <h3>Cookbooks You Collaborate On</h3>
