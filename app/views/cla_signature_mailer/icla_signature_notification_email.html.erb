@@ -1,5 +1,5 @@
-<h1>A new ICLA has been signed.</h1>
-<p><%= @icla_signature.name %> signed an ICLA.</p>
-<%= link_to "View Signed ICLA", icla_signature_url(@icla_signature), class: "button signedcla" %>
+<h1>The ICLA has been signed by a new user.</h1>
+<p><%= @icla_signature.name %> signed the ICLA.</p>
+<%= link_to "View ICLA Signature", icla_signature_url(@icla_signature), class: "button signedcla" %>
 
 <%= render 'icla_signature', signature: @icla_signature %>
