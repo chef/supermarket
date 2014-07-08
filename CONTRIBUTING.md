@@ -21,9 +21,7 @@ check with our lawyers about small patches.
 
 It only takes a few minutes to complete a CLA, and you retain the copyright to your contribution.
 
-You can complete our contributor agreement (CLA) [
-online](https://secure.echosign.com/public/hostedForm?formid=PJIF5694K6L).  If you're contributing on behalf of your employer, have
-your employer fill out our [Corporate CLA](https://secure.echosign.com/public/hostedForm?formid=PIE6C7AX856) instead.
+You can [become a contributor by signing the ICLA or by contributing on behalf of your company](http://supermarket.getchef.com/become-a-contributor).
 
 For more information about licensing, copyright, and CLAs see Chef's [Community Contributions](http://docs.opscode.com/community_contributions.html) page.
 
