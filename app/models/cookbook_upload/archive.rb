@@ -1,4 +1,4 @@
-require 'libarchive'
+require 'rubygems/package'
 
 class CookbookUpload
   #
@@ -39,10 +39,10 @@ class CookbookUpload
     def find(pattern)
       matches = []
 
-      each do |entry, _|
-        next unless entry.pathname.match(pattern)
+      each do |entry|
+        next unless entry.full_name.match(pattern)
 
-        matches << entry.pathname
+        matches << entry.full_name
       end
 
       matches
@@ -59,10 +59,10 @@ class CookbookUpload
     def read(path)
       match = nil
 
-      each do |entry, archive|
-        next unless entry.pathname == path
+      each do |entry|
+        next unless entry.full_name == path
 
-        match = archive.read_data
+        match = entry.read
 
         break
       end
@@ -78,31 +78,24 @@ class CookbookUpload
     # @raise [NoPath] if the source has no path
     # @raise [Error] if the source is not a compatible archive
     #
-    # @yieldparam [::Archive::Entry] entry
-    # @yieldparam [::Archive::Reader] archive
+    # @yieldparam [::Gem::Package::TarReader::Entry] entry
     #
     # @example
     #   archive = CookbookUpload::Archive.new(tarball)
-    #   archive.each do |entry, archive|
-    #     puts "#{entry.pathname} has the following content:\n#{archive.read_data}"
+    #   archive.each do |entry|
+    #     puts "#{entry.full_name} has the following content:\n#{entry.read}"
     #   end
     #
     def each
       raise NoPath unless @source.respond_to?(:path)
 
       begin
-        ::Archive.read_open_filename(@source.path) do |archive|
-          loop do
-            entry = archive.next_header
-
-            if entry
-              yield entry, archive
-            else
-              break
-            end
+        Zlib::GzipReader.open(@source.path) do |gzip|
+          Gem::Package::TarReader.new(gzip) do |tar|
+            tar.each { |entry| yield entry }
           end
         end
-      rescue ::Archive::Error => e
+      rescue Zlib::GzipFile::Error => e
         raise Error, e.message
       end
     end
