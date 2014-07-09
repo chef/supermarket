@@ -24,6 +24,12 @@
     font-size: rem-calc(16);
     margin: rem-calc(0 0 20 0);
   }
+
+  code.cookbook_install {
+    display: block;
+    font-weight: normal;
+    padding: rem-calc(8 16 8 16);
+  }
 }
 
 @media #{$mobile-only} {
