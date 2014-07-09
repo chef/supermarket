@@ -23,7 +23,8 @@ class CookbookMailer < ActionMailer::Base
   #
   def cookbook_deleted_email(name, email)
     @name = name
+    @to = email
 
-    mail(to: email, subject: "Chef Supermarket - The #{name} cookbook has been deleted.")
+    mail(to: @to, subject: "Chef Supermarket - The #{name} cookbook has been deleted.")
   end
 end
