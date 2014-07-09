@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707215332) do
+ActiveRecord::Schema.define(version: 20140709140311) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -90,10 +90,8 @@ ActiveRecord::Schema.define(version: 20140707215332) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "legacy_id"
   end
 
-  add_index "cookbook_collaborators", ["legacy_id"], name: "index_cookbook_collaborators_on_legacy_id", unique: true, using: :btree
   add_index "cookbook_collaborators", ["user_id", "cookbook_id"], name: "index_cookbook_collaborators_on_user_id_and_cookbook_id", unique: true, using: :btree
 
   create_table "cookbook_dependencies", force: true do |t|
@@ -114,22 +112,18 @@ ActiveRecord::Schema.define(version: 20140707215332) do
     t.integer  "user_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "legacy_id"
   end
 
   add_index "cookbook_followers", ["cookbook_id", "user_id"], name: "index_cookbook_followers_on_cookbook_id_and_user_id", unique: true, using: :btree
-  add_index "cookbook_followers", ["legacy_id"], name: "index_cookbook_followers_on_legacy_id", unique: true, using: :btree
 
   create_table "cookbook_version_platforms", force: true do |t|
     t.integer  "cookbook_version_id"
     t.integer  "supported_platform_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "legacy_id"
   end
 
   add_index "cookbook_version_platforms", ["cookbook_version_id", "supported_platform_id"], name: "index_cvp_on_cvi_and_spi", unique: true, using: :btree
-  add_index "cookbook_version_platforms", ["legacy_id"], name: "index_cookbook_version_platforms_on_legacy_id", unique: true, using: :btree
 
   create_table "cookbook_versions", force: true do |t|
     t.integer  "cookbook_id"
@@ -141,18 +135,16 @@ ActiveRecord::Schema.define(version: 20140707215332) do
     t.string   "tarball_content_type"
     t.integer  "tarball_file_size"
     t.datetime "tarball_updated_at"
-    t.text     "readme",                default: "",        null: false
-    t.string   "readme_extension",      default: "",        null: false
+    t.text     "readme",                default: "",    null: false
+    t.string   "readme_extension",      default: "",    null: false
     t.boolean  "dependencies_imported", default: false
     t.text     "description"
     t.integer  "legacy_id"
     t.integer  "web_download_count",    default: 0
     t.integer  "api_download_count",    default: 0
-    t.string   "verification_state",    default: "pending", null: false
   end
 
   add_index "cookbook_versions", ["legacy_id"], name: "index_cookbook_versions_on_legacy_id", unique: true, using: :btree
-  add_index "cookbook_versions", ["verification_state"], name: "index_cookbook_versions_on_verification_state", using: :btree
   add_index "cookbook_versions", ["version", "cookbook_id"], name: "index_cookbook_versions_on_version_and_cookbook_id", unique: true, using: :btree
   add_index "cookbook_versions", ["version"], name: "index_cookbook_versions_on_version", using: :btree
 
@@ -168,12 +160,10 @@ ActiveRecord::Schema.define(version: 20140707215332) do
     t.integer  "cookbook_followers_count", default: 0
     t.integer  "user_id"
     t.integer  "replacement_id"
-    t.integer  "legacy_id"
     t.integer  "web_download_count",       default: 0
     t.integer  "api_download_count",       default: 0
   end
 
-  add_index "cookbooks", ["legacy_id"], name: "index_cookbooks_on_legacy_id", unique: true, using: :btree
   add_index "cookbooks", ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true, using: :btree
   add_index "cookbooks", ["name"], name: "index_cookbooks_on_name", using: :btree
   add_index "cookbooks", ["user_id"], name: "index_cookbooks_on_user_id", using: :btree
@@ -296,9 +286,6 @@ ActiveRecord::Schema.define(version: 20140707215332) do
     t.string   "twitter_username"
     t.text     "public_key"
     t.boolean  "email_notifications", default: true
-    t.integer  "legacy_id"
   end
-
-  add_index "users", ["legacy_id"], name: "index_users_on_legacy_id", unique: true, using: :btree
 
 end

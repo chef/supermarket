@@ -16,7 +16,7 @@ before_install:
 before_script:
   - psql -c 'create database supermarket_test;' -U postgres
   - psql supermarket_test -c 'create extension pg_trgm' -U postgres
-  - bundle exec rake db:migrate
+  - bundle exec rake db:schema:load
 bundler_args: --without development --jobs 7
 script:
   - bundle exec rake spec
