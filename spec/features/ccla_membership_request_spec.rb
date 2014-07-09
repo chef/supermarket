@@ -1,7 +1,7 @@
 require 'spec_feature_helper'
 
 describe 'a request to join a CCLA' do
-  it 'can be accepted via email by CCLA admins' do
+  it 'can be accepted via email by CCLA admins', use_poltergeist: true do
     create(:ccla)
     sign_in(create(:user))
     sign_ccla('Acme')
@@ -11,7 +11,7 @@ describe 'a request to join a CCLA' do
 
     follow_relation 'contributors'
     follow_relation 'companies'
-    follow_relation 'contributor_request'
+    follow_relation 'contributor-request'
 
     sign_out
 
