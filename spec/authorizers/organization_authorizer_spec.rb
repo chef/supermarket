@@ -29,6 +29,10 @@ describe OrganizationAuthorizer do
     it { should permit_authorization(:view_cclas) }
     it { should permit_authorization(:resign_ccla) }
     it { should permit_authorization(:manage_contributors) }
+    it { should_not permit_authorization(:manage_organization) }
+    it { should_not permit_authorization(:show) }
+    it { should_not permit_authorization(:destroy) }
+    it { should_not permit_authorization(:combine) }
   end
 
   context 'as an organization contributor' do
@@ -43,13 +47,20 @@ describe OrganizationAuthorizer do
     it { should permit_authorization(:view_cclas) }
     it { should_not permit_authorization(:resign_ccla) }
     it { should_not permit_authorization(:manage_contributors) }
+    it { should_not permit_authorization(:manage_organization) }
+    it { should_not permit_authorization(:show) }
+    it { should_not permit_authorization(:destroy) }
+    it { should_not permit_authorization(:combine) }
   end
 
-  context 'as a non-admin' do
+  context 'as a totally random person' do
     let(:user) { build(:user) }
 
     subject { described_class.new(user, record) }
 
+    it { should_not permit_authorization(:view_cclas) }
+    it { should_not permit_authorization(:resign_ccla) }
+    it { should_not permit_authorization(:manage_contributors) }
     it { should_not permit_authorization(:manage_organization) }
     it { should_not permit_authorization(:show) }
     it { should_not permit_authorization(:destroy) }

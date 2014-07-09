@@ -12,7 +12,7 @@
       <%= form_for @organization, url: { action: 'combine' }, method: :put do |f| %>
         <div class="row collapse">
           <div class="small-10 columns">
-            <%= f.hidden_field :combine_with_id, class: 'transfer-ccla-organization', 'data-url' => organizations_path %>
+            <%= f.hidden_field :combine_with_id, class: 'transfer-ccla-organization', 'data-url' => organizations_path(exclude_id: @organization) %>
           </div>
           <div class="small-2 columns">
             <%= f.submit 'Combine', class: 'button postfix radius' %>

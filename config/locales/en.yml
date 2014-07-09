@@ -17,6 +17,9 @@ en:
       collaborates: "You aren't a collaborator on any cookbooks."
       follows: "You don't follow any cookbooks."
   requires_linked_github: "You need to link your GitHub account."
+  organizations:
+    combined: "%{org_to_combine} was successfully merged into %{combined_with}."
+    deleted: "%{organization} was successfully deleted."
   organization_invitations:
     invites:
       success: "Successfully sent invitations"
