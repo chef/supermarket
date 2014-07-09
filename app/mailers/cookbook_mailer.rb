@@ -11,7 +11,7 @@ class CookbookMailer < ActionMailer::Base
     @cookbook = cookbook_follower.cookbook
     @to = cookbook_follower.user.email
 
-    mail(to: @to, subject: "A New Version of #{@cookbook.name} Has Been Released.")
+    mail(to: @to, subject: "A new version of the #{@cookbook.name} cookbook has been released")
   end
 
   #
@@ -25,6 +25,6 @@ class CookbookMailer < ActionMailer::Base
     @name = name
     @to = email
 
-    mail(to: @to, subject: "Chef Supermarket - The #{name} cookbook has been deleted.")
+    mail(to: @to, subject: "The #{name} cookbook has been deleted")
   end
 end

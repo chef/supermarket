@@ -12,6 +12,6 @@ class CollaboratorMailer < ActionMailer::Base
     user = cookbook_collaborator.user
     @to = user.email
 
-    mail(to: @to, subject: "You have been added as a collaborator to the #{@cookbook.name} cookbook!")
+    mail(to: @to, subject: "You have been added as a collaborator to the #{@cookbook.name} cookbook")
   end
 end
