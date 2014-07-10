@@ -73,6 +73,15 @@ ActiveRecord::Schema.define(version: 20140715221702) do
     t.datetime "updated_at"
   end
 
+  create_table "contributor_requests", force: true do |t|
+    t.integer  "organization_id", null: false
+    t.integer  "user_id",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contributor_requests", ["organization_id", "user_id"], name: "index_contributor_requests_on_organization_id_and_user_id", unique: true, using: :btree
+
   create_table "contributors", force: true do |t|
     t.integer  "user_id"
     t.integer  "organization_id"

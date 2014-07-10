@@ -11,6 +11,11 @@ class ContributorRequestsController < ApplicationController
       raise NotAuthorizedError
     end
 
+    ContributorRequest.create!(
+      user_id: current_user.id,
+      organization_id: organization.id
+    )
+
     redirect_to :back
   end
 end

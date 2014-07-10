@@ -37,5 +37,22 @@ describe ContributorRequestsController do
 
       expect(response).to render_template('exceptions/404')
     end
+
+    it 'creates a ContributorRequest for users new to the Organization' do
+      contributing_user = create(:user)
+      ccla_signature = create(:ccla_signature)
+      organization = ccla_signature.organization
+
+      sign_in(contributing_user)
+
+      contributor_requests = ContributorRequest.where(
+        organization_id: organization.id,
+        user_id: contributing_user.id
+      )
+
+      expect do
+        post :create, ccla_signature_id: ccla_signature.id
+      end.to change(contributor_requests, :count).from(0).to(1)
+    end
   end
 end
