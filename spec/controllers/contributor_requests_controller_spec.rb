@@ -7,10 +7,9 @@ describe ContributorRequestsController do
     end
 
     let(:contributing_user) { create(:user) }
+    let!(:ccla_signature) { create(:ccla_signature) }
 
     it 'requires authentication' do
-      ccla_signature = create(:ccla_signature)
-
       post :create, ccla_signature_id: ccla_signature.id
 
       expect(response).to redirect_to(sign_in_url)
@@ -25,7 +24,6 @@ describe ContributorRequestsController do
     end
 
     it 'does not allow existing contributors to make requests' do
-      ccla_signature = create(:ccla_signature)
       create(
         :contributor,
         organization: ccla_signature.organization,
@@ -40,13 +38,10 @@ describe ContributorRequestsController do
     end
 
     it 'creates a ContributorRequest for users new to the Organization' do
-      ccla_signature = create(:ccla_signature)
-      organization = ccla_signature.organization
-
       sign_in(contributing_user)
 
       contributor_requests = ContributorRequest.where(
-        organization_id: organization.id,
+        organization_id: ccla_signature.organization_id,
         user_id: contributing_user.id
       )
 
@@ -56,8 +51,6 @@ describe ContributorRequestsController do
     end
 
     it 'queues a job to send emails regarding the request' do
-      ccla_signature = create(:ccla_signature)
-
       sign_in(contributing_user)
 
       expect do
