@@ -99,14 +99,14 @@ describe CookbookUpload do
         to include(I18n.t('api.error_messages.tarball_has_no_path'))
     end
 
-    it 'yields an error if the tarball is not GZipped' do
-      tarball = File.open('spec/support/cookbook_fixtures/not-actually-gzipped.tgz')
+    it 'yields an error if the tarball is not an archive' do
+      tarball = File.open('spec/support/cookbook_fixtures/not-an-archive.tgz')
 
       upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
       errors = upload.finish { |e, _| e }
 
       expect(errors.full_messages).
-        to include(I18n.t('api.error_messages.tarball_not_gzipped'))
+        to include(I18n.t('api.error_messages.tarball_not_archive'))
     end
 
     it 'yields an error if the tarball has no metadata.json entry' do
