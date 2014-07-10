@@ -21,5 +21,21 @@ describe ContributorRequestsController do
 
       expect(response.code.to_i).to eql(404)
     end
+
+    it 'does not allow existing contributors to make requests' do
+      contributing_user = create(:user)
+      ccla_signature = create(:ccla_signature)
+      create(
+        :contributor,
+        organization: ccla_signature.organization,
+        user: contributing_user
+      )
+
+      sign_in(contributing_user)
+
+      post :create, ccla_signature_id: ccla_signature.id
+
+      expect(response).to render_template('exceptions/404')
+    end
   end
 end
