@@ -6,6 +6,8 @@ describe ContributorRequestsController do
       request.env['HTTP_REFERER'] = '/'
     end
 
+    let(:contributing_user) { create(:user) }
+
     it 'requires authentication' do
       ccla_signature = create(:ccla_signature)
 
@@ -15,7 +17,7 @@ describe ContributorRequestsController do
     end
 
     it '404s if the given CCLA Signature does not exist' do
-      sign_in(create(:user))
+      sign_in(contributing_user)
 
       post :create, ccla_signature_id: -1
 
@@ -23,7 +25,6 @@ describe ContributorRequestsController do
     end
 
     it 'does not allow existing contributors to make requests' do
-      contributing_user = create(:user)
       ccla_signature = create(:ccla_signature)
       create(
         :contributor,
@@ -39,7 +40,6 @@ describe ContributorRequestsController do
     end
 
     it 'creates a ContributorRequest for users new to the Organization' do
-      contributing_user = create(:user)
       ccla_signature = create(:ccla_signature)
       organization = ccla_signature.organization
 
@@ -56,7 +56,6 @@ describe ContributorRequestsController do
     end
 
     it 'queues a job to send emails regarding the request' do
-      contributing_user = create(:user)
       ccla_signature = create(:ccla_signature)
 
       sign_in(contributing_user)
