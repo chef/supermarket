@@ -57,5 +57,13 @@ describe ContributorRequestsController do
         post :create, ccla_signature_id: ccla_signature.id
       end.to change(ContributorRequestNotifier.jobs, :count).by(1)
     end
+
+    it 'redirects back on success' do
+      sign_in(contributing_user)
+
+      post :create, ccla_signature_id: ccla_signature.id
+
+      expect(response).to redirect_to('/')
+    end
   end
 end
