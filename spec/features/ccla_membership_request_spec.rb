@@ -15,10 +15,11 @@ describe 'a request to join a CCLA' do
 
     sign_out
 
-    pending 'implementation of the request email'
-
     request = ActionMailer::Base.deliveries.first
     html = Nokogiri::HTML(request)
+
+    pending 'request email content'
+
     url = html.css('a.accept').first.attribute('href').value
     path = URI(url).path
 
