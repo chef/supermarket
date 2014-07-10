@@ -11,7 +11,11 @@ class Api::V1::MetricsController < Api::V1Controller
       total_cookbooks: Cookbook.count,
       total_follows: CookbookFollower.count,
       total_users: User.count,
-      total_hits: { '/universe' => Universe.show_hits }
+      total_hits: { '/universe' => Universe.show_hits },
+      dependency_rebuilding: {
+        total: CookbookVersion.where('legacy_id IS NOT NULL').count,
+        done: VerifiedCookbookVersion.count
+      }
     }
   end
 end

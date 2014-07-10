@@ -60,6 +60,26 @@ describe CookbookUpload::Parameters do
       expect(params.metadata.name).to eql('multiple')
     end
 
+    it 'is not extracted from metadata.json~' do
+      tarball = Tempfile.new('weird-metadata', 'tmp').tap do |file|
+        io = AndFeathers.build('weird-metadata') do |base|
+          base.file('metadata.json') do
+            JSON.dump(name: 'correct')
+          end
+          base.file('metadata.json~') do
+            'this is not json'
+          end
+        end.to_io(AndFeathers::GzippedTarball, :reverse_each)
+
+        file.write(io.read)
+        file.rewind
+      end
+
+      params = params(cookbook: '{}', tarball: tarball)
+
+      expect(params.metadata.name).to eql('correct')
+    end
+
     it 'is blank if the tarball parameter is not a file' do
       params = params(cookbook: '{}', tarball: 'tarball!')
 

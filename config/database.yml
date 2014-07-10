@@ -2,6 +2,7 @@ development:
   adapter: postgresql
   database: supermarket_development
   host: localhost
+  pool: 30
 
 test:
   adapter: postgresql

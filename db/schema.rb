@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140709140311) do
+ActiveRecord::Schema.define(version: 20140710140138) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -287,5 +287,13 @@ ActiveRecord::Schema.define(version: 20140709140311) do
     t.text     "public_key"
     t.boolean  "email_notifications", default: true
   end
+
+  create_table "verified_cookbook_versions", force: true do |t|
+    t.integer  "cookbook_version_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "verified_cookbook_versions", ["cookbook_version_id"], name: "index_verified_cookbook_versions_on_cookbook_version_id", unique: true, using: :btree
 
 end

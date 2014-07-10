@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/bcobb/winebarrel-libarchive-ruby-clone.git
+  revision: a5a748c731415cb622282350dc92c82f8de77e5d
+  ref: format-security-fix
+  specs:
+    libarchive (0.1.2)
+
+GIT
   remote: git://github.com/octokit/octokit.rb.git
   revision: 79ea382f0d9159aafe346a07c6a9a77526efd2f3
   specs:
@@ -446,6 +453,7 @@ DEPENDENCIES
   jbuilder
   kaminari
   launchy
+  libarchive!
   license_finder
   mail_view
   mixlib-authentication
