@@ -13,5 +13,13 @@ describe ContributorRequestsController do
 
       expect(response).to redirect_to(sign_in_url)
     end
+
+    it '404s if the given CCLA Signature does not exist' do
+      sign_in(create(:user))
+
+      post :create, ccla_signature_id: -1
+
+      expect(response.code.to_i).to eql(404)
+    end
   end
 end
