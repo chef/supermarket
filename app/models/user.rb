@@ -212,6 +212,10 @@ class User < ActiveRecord::Base
   # either the ICLA or CCLA or are a contributor on behalf of one or
   # more +Organization+s.
   #
+  # NOTE: this does not eager load the accounts for users. Do not make any calls
+  # that use the user's accounts, like
+  # +User.authorized_contributors.first.username+
+  #
   # @return [ActiveRecord::Relation] the users who have signed the cla
   #
   def self.authorized_contributors
