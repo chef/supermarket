@@ -19,7 +19,7 @@ describe 'a request to join a CCLA' do
 
     request = ActionMailer::Base.deliveries.first
     html = Nokogiri::HTML(request)
-    url = html.css("a.accept").first.attribute('href').value
+    url = html.css('a.accept').first.attribute('href').value
     path = URI(url).path
 
     visit path
