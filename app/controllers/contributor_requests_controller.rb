@@ -11,10 +11,12 @@ class ContributorRequestsController < ApplicationController
       raise NotAuthorizedError
     end
 
-    ContributorRequest.create!(
+    contributor_request = ContributorRequest.create!(
       user_id: current_user.id,
       organization_id: organization.id
     )
+
+    ContributorRequestNotifier.perform_async(contributor_request.id)
 
     redirect_to :back
   end

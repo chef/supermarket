@@ -54,5 +54,16 @@ describe ContributorRequestsController do
         post :create, ccla_signature_id: ccla_signature.id
       end.to change(contributor_requests, :count).from(0).to(1)
     end
+
+    it 'queues a job to send emails regarding the request' do
+      contributing_user = create(:user)
+      ccla_signature = create(:ccla_signature)
+
+      sign_in(contributing_user)
+
+      expect do
+        post :create, ccla_signature_id: ccla_signature.id
+      end.to change(ContributorRequestNotifier.jobs, :count).by(1)
+    end
   end
 end
