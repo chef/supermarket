@@ -68,8 +68,9 @@ describe ContributorRequestsController do
   end
 
   describe '#accept' do
+    let!(:contributor_request) { create(:contributor_request) }
+
     it '404s if the current user is not an org admin' do
-      contributor_request = create(:contributor_request)
       non_admin_user = create(:user)
 
       sign_in(non_admin_user)
@@ -81,9 +82,7 @@ describe ContributorRequestsController do
 
     it 'redirects to the organization if the current user is an org admin' do
       admin_user = create(:user)
-      contributor_request = create(:contributor_request).tap do |r|
-        r.organization.admins.create(user: admin_user)
-      end
+      contributor_request.organization.admins.create(user: admin_user)
 
       ccla_signature = contributor_request.ccla_signature
 
@@ -97,9 +96,7 @@ describe ContributorRequestsController do
 
     it 'adds the requestor to the requested organization' do
       admin_user = create(:user)
-      contributor_request = create(:contributor_request).tap do |r|
-        r.organization.admins.create(user: admin_user)
-      end
+      contributor_request.organization.admins.create(user: admin_user)
 
       contributors = Contributor.where(
         organization_id: contributor_request.organization_id,
