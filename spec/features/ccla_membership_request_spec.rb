@@ -2,8 +2,9 @@ require 'spec_feature_helper'
 
 describe 'a request to join a CCLA' do
   it 'can be accepted via email by CCLA admins', use_poltergeist: true do
+    admin_user = create(:user)
     create(:ccla)
-    sign_in(create(:user))
+    sign_in(admin_user)
     sign_ccla('Acme')
     sign_out
 
@@ -11,14 +12,21 @@ describe 'a request to join a CCLA' do
 
     follow_relation 'contributors'
     follow_relation 'companies'
-    follow_relation 'contributor-request'
+
+    Sidekiq::Testing.inline! do
+      follow_relation 'contributor-request'
+    end
 
     sign_out
 
-    request = ActionMailer::Base.deliveries.first
-    html = Nokogiri::HTML(request)
+    sign_in(admin_user)
 
     pending 'request email content'
+    message = ActionMailer::Base.deliveries.first.parts.find do |part|
+      part.content_type.include?('text/html')
+    end
+
+    html = Nokogiri::HTML(message.body.to_s)
 
     url = html.css('a.accept').first.attribute('href').value
     path = URI(url).path
