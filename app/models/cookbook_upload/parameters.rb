@@ -140,29 +140,19 @@ class CookbookUpload
       errors = ActiveModel::Errors.new([])
 
       begin
-        paths = archive.find(%r{\A(\.\/)?[^\/]+\/metadata\.json})
+        path = archive.find(%r{\A(\.\/)?[^\/]+\/metadata\.json\Z}).first
 
-        json, non_json = paths.partition do |path|
-          begin
-            JSON.parse(archive.read(path))
-          rescue JSON::ParserError
-            false
-          end
-        end
-
-        if json.empty?
-          if non_json.any?
-            errors.add(:base, I18n.t('api.error_messages.metadata_not_json'))
-          else
-            errors.add(:base, I18n.t('api.error_messages.missing_metadata'))
-          end
+        if path
+          metadata = Metadata.new(JSON.parse(archive.read(path)))
         else
-          metadata = Metadata.new(JSON.parse(archive.read(json.first)))
+          errors.add(:base, I18n.t('api.error_messages.missing_metadata'))
         end
+      rescue JSON::ParserError
+        errors.add(:base, I18n.t('api.error_messages.metadata_not_json'))
       rescue Virtus::CoercionError
         errors.add(:base, I18n.t('api.error_messages.invalid_metadata'))
       rescue Archive::Error
-        errors.add(:base, I18n.t('api.error_messages.tarball_not_archive'))
+        errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
       rescue Archive::NoPath
         errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
       end
@@ -194,7 +184,7 @@ class CookbookUpload
           errors.add(:base, I18n.t('api.error_messages.missing_readme'))
         end
       rescue Archive::Error
-        errors.add(:base, I18n.t('api.error_messages.tarball_not_archive'))
+        errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
       rescue Archive::NoPath
         errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
       end
