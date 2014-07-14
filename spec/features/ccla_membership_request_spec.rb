@@ -21,7 +21,6 @@ describe 'a request to join a CCLA' do
 
     sign_in(admin_user)
 
-    pending 'request email content'
     message = ActionMailer::Base.deliveries.first.parts.find do |part|
       part.content_type.include?('text/html')
     end
@@ -32,6 +31,8 @@ describe 'a request to join a CCLA' do
     path = URI(url).path
 
     visit path
+
+    pending 'implementation of the acceptance logic'
 
     expect_to_see_success_message
 
