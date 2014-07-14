@@ -9,6 +9,7 @@ describe User do
     it { should have_many(:collaborated_cookbooks) }
     it { should have_many(:cookbook_followers) }
     it { should have_many(:followed_cookbooks) }
+    it { should have_many(:tools) }
   end
 
   context 'validations' do
