@@ -28,8 +28,20 @@ class ContributorRequestsController < ApplicationController
       id: params[:id]
     ).first!
 
+    ccla_signature = contributor_request.ccla_signature
+
     if contributor_request.presiding_admins.include?(current_user)
-      redirect_to root_url
+      destination = contributors_ccla_signature_path(ccla_signature)
+      username = contributor_request.user.username
+      organization_name = contributor_request.organization.name
+
+      notice = t(
+        'contributor_requests.accept.success',
+        username: username,
+        organization: organization_name
+      )
+
+      redirect_to destination, notice: notice
     else
       raise NotAuthorizedError
     end

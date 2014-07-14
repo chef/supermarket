@@ -32,8 +32,6 @@ describe 'a request to join a CCLA' do
 
     visit path
 
-    pending 'implementation of the acceptance logic'
-
     expect_to_see_success_message
 
     ActionMailer::Base.deliveries.clear
