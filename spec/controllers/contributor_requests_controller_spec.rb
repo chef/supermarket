@@ -66,4 +66,17 @@ describe ContributorRequestsController do
       expect(response).to redirect_to('/')
     end
   end
+
+  describe '#accept' do
+    it '404s if the current user is not an admin of the requested organization' do
+      contributor_request = create(:contributor_request)
+      non_admin_user = create(:user)
+
+      sign_in(non_admin_user)
+
+      get :accept, ccla_signature_id: contributor_request.ccla_signature_id, id: contributor_request.id
+
+      expect(response.code.to_i).to eql(404)
+    end
+  end
 end

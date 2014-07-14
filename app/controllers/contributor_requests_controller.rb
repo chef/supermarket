@@ -23,7 +23,16 @@ class ContributorRequestsController < ApplicationController
   end
 
   def accept
-    redirect_to root_url
+    contributor_request = ContributorRequest.where(
+      ccla_signature_id: params[:ccla_signature_id],
+      id: params[:id]
+    ).first!
+
+    if contributor_request.presiding_admins.include?(current_user)
+      redirect_to root_url
+    else
+      raise NotAuthorizedError
+    end
   end
 
   def decline
