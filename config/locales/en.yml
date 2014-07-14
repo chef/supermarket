@@ -5,6 +5,8 @@ en:
     must_be_signed_in: "You must be signed in to do that."
     made_admin: "%{name} is now an admin."
     revoked_admin: "%{name} is no longer an admin."
+  account:
+    already_connected: "The %{provider} account (%{username}) you're trying to link is already linked to another Supermarket user."
   cookbook:
     transfered_ownership: "%{cookbook} transfered to %{user}."
   profile:

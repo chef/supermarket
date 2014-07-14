@@ -10,7 +10,14 @@ describe Account do
     it { should validate_presence_of(:uid) }
     it { should validate_presence_of(:provider) }
     it { should validate_presence_of(:oauth_token) }
-    it { should validate_uniqueness_of(:provider).scoped_to(:username) }
+
+    it 'validates the uniqueness of username scoped to provider with a custom error message' do
+      create(:account, provider: 'github', username: 'johndoe')
+      account = build(:account, provider: 'github', username: 'johndoe')
+      account.save
+
+      expect(account.errors.full_messages.to_s).to match(/The Github account \(johndoe\)/)
+    end
   end
 
   context 'scopes' do

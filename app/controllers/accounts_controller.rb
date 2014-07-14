@@ -14,8 +14,7 @@ class AccountsController < ApplicationController
       redirect_to after_link_location, notice: "Successfully
         connected #{request.env['omniauth.auth']['provider']}."
     else
-      redirect_to edit_profile_path, alert: "Something went wrong
-        while connecting #{request.env['omniauth.auth']['provider']}"
+      redirect_to edit_profile_path, alert: account.errors.full_messages.join(', ')
     end
   end
 
