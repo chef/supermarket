@@ -78,6 +78,8 @@ Supermarket::Application.routes.draw do
     resources :accounts, only: [:destroy]
   end
 
+  resources :tools, only: [:new, :index]
+
   resource :profile, controller: 'profile', only: [:update, :edit] do
     collection do
       patch :change_password

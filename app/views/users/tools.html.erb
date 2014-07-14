@@ -10,7 +10,7 @@
 
       <dl class="tabs radius">
         <dd class="<%= 'active' unless params[:tab] %>"><%= link_to 'Maintains', @user %></dd>
-        <dd class="<%= 'active' if params[:tab] == 'add_tool' %>"><%= link_to 'Add Tool', user_add_tool_path(@user, tab: 'add_tool') %></dd>
+        <dd class="<%= 'active' if params[:tab] == 'add_tool' %>"><%= link_to 'Add Tool', new_tool_path %></dd>
       </dl>
     </div>
 
