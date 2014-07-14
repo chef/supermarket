@@ -10,7 +10,7 @@ class Api::V1::UniverseController < Api::V1Controller
   #
   def index
     universe = Rails.cache.fetch(CACHE_KEY) do
-      Universe.generate(protocol: (request.ssl? ? 'https' : 'http'))
+      Universe.generate(protocol: ENV.fetch('PROTOCOL', 'http'))
     end
 
     SegmentIO.track_server_event('universe_api_visit', current_user)
