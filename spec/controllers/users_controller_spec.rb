@@ -33,9 +33,11 @@ describe UsersController do
     end
 
     it 'assigns tools' do
+      create(:tool, user: user)
+
       get :tools, id: user.username
 
-      expect(assigns[:tools]).to be_present
+      expect(assigns[:tools].to_a).to eql(user.tools.to_a)
     end
   end
 
