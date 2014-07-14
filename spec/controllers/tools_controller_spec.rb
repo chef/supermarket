@@ -23,4 +23,44 @@ describe ToolsController do
     context 'when not signed in' do
     end
   end
+
+  describe 'POST #create' do
+    context 'when signed in' do
+      let(:user) { create(:user) }
+
+      before do
+        sign_in(user)
+      end
+
+      it 'creates a tool' do
+        expect do
+          post(
+            :create,
+            tool: {
+              name: 'butter',
+              type: 'Ohai Plugin',
+              description: 'Great plugin.',
+              source_url: 'http://example.com',
+              instructions: 'Use with care'
+            }
+          )
+        end.to change { Tool.count }.by(1)
+      end
+
+      it "redirects the user to the tool owner's profile tools tab" do
+        post(
+          :create,
+          tool: {
+            name: 'butter',
+            type: 'Ohai Plugin',
+            description: 'Great plugin.',
+            source_url: 'http://example.com',
+            instructions: 'Use with care'
+          }
+        )
+
+        expect(response).to redirect_to(tools_user_path(user))
+      end
+    end
+  end
 end

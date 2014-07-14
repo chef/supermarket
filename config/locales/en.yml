@@ -26,6 +26,8 @@ en:
     invites:
       success: "Successfully sent invitations"
       warning: "The following invitations were invalid %{invites} all others however were valid and sent."
+  tool:
+    created: "The %{name} tool was successfully created."
   curry:
     repositories:
       evaluate: "Curry is now evaluating all open Pull Requests on %{name}"

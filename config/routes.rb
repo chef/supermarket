@@ -78,7 +78,7 @@ Supermarket::Application.routes.draw do
     resources :accounts, only: [:destroy]
   end
 
-  resources :tools, only: [:new, :index]
+  resources :tools, only: [:new, :create, :index]
 
   resource :profile, controller: 'profile', only: [:update, :edit] do
     collection do
