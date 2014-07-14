@@ -31,17 +31,26 @@ class ContributorRequestsController < ApplicationController
     ccla_signature = contributor_request.ccla_signature
 
     if contributor_request.presiding_admins.include?(current_user)
-      destination = contributors_ccla_signature_path(ccla_signature)
-      username = contributor_request.user.username
-      organization_name = contributor_request.organization.name
-
-      notice = t(
-        'contributor_requests.accept.success',
-        username: username,
-        organization: organization_name
+      organization = contributor_request.organization
+      contributor = organization.contributors.new(
+        user: contributor_request.user
       )
 
-      redirect_to destination, notice: notice
+      if contributor.save
+        destination = contributors_ccla_signature_path(ccla_signature)
+        username = contributor_request.user.username
+        organization_name = contributor_request.organization.name
+
+        notice = t(
+          'contributor_requests.accept.success',
+          username: username,
+          organization: organization_name
+        )
+
+        redirect_to destination, notice: notice
+      else
+        # TODO: gracefully handle incidental uniqueness violations
+      end
     else
       raise NotAuthorizedError
     end

@@ -94,5 +94,25 @@ describe ContributorRequestsController do
       expect(response).
         to redirect_to(contributors_ccla_signature_path(ccla_signature))
     end
+
+    it 'adds the requestor to the requested organization' do
+      admin_user = create(:user)
+      contributor_request = create(:contributor_request).tap do |r|
+        r.organization.admins.create(user: admin_user)
+      end
+
+      contributors = Contributor.where(
+        organization_id: contributor_request.organization_id,
+        user_id: contributor_request.user_id
+      )
+
+      ccla_signature = contributor_request.ccla_signature
+
+      sign_in admin_user
+
+      expect do
+        get :accept, ccla_signature_id: ccla_signature.id, id: contributor_request.id
+      end.to change(contributors, :count).by(1)
+    end
   end
 end
