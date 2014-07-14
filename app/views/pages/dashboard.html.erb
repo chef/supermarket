@@ -48,9 +48,7 @@
     <h3>Cookbooks You Collaborate On</h3>
     <% if @collaborated_cookbooks.any? %>
       <ul class="cookbook_listing">
-        <% @collaborated_cookbooks.each do |cookbook| %>
-          <%= render partial: 'cookbooks/simple_cookbook', collection: @collaborated_cookbooks, as: 'cookbook' %>
-        <% end %>
+        <%= render partial: 'cookbooks/simple_cookbook', collection: @collaborated_cookbooks, as: 'cookbook' %>
       </ul>
       <%= link_to 'View All Collaborated Cookbooks', user_path(current_user, tab: 'collaborates'), class: 'button radius small expand' %>
     <% else %>
