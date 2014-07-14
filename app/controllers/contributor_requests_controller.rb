@@ -21,4 +21,11 @@ class ContributorRequestsController < ApplicationController
 
     redirect_to :back
   end
+
+  def accept
+    redirect_to root_url
+  end
+
+  def decline
+  end
 end

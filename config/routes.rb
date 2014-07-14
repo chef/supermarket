@@ -57,7 +57,12 @@ Supermarket::Application.routes.draw do
       get :contributors
     end
 
-    resources :contributor_requests, only: [:create]
+    resources :contributor_requests, only: [:create] do
+      member do
+        get :accept
+        get :decline
+      end
+    end
   end
 
   namespace :curry do
