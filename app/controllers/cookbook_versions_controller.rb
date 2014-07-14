@@ -26,7 +26,7 @@ class CookbookVersionsController < ApplicationController
   # Displays information about this particular cookbook version
   #
   def show
-    @cookbook_versions = @cookbook.cookbook_versions
+    @cookbook_versions = @cookbook.sorted_cookbook_versions
     @owner = @cookbook.owner
     @collaborators = @cookbook.collaborators
     @supported_platforms = @version.supported_platforms
