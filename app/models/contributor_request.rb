@@ -1,5 +1,6 @@
 class ContributorRequest < ActiveRecord::Base
   belongs_to :organization
+  belongs_to :ccla_signature
   belongs_to :user
 
   #
