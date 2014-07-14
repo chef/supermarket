@@ -1,9 +1,19 @@
 class ContributorRequestMailer < ActionMailer::Base
   layout 'mailer'
 
-  def incoming_request_email(admin, _contributor_request)
+  def incoming_request_email(admin, contributor_request)
     @to = admin.email
+    @contributor_request = contributor_request
+    @ccla_signature = contributor_request.ccla_signature
 
-    mail(to: @to, subject: 'So-and-so wants to join your thing')
+    @username = @contributor_request.user
+    @organization_name = @contributor_request.organization.name
+
+    subject = %(
+      #{@username} has requested to join #{@organization_name} as a
+      contributor
+    ).squish
+
+    mail(to: @to, subject: subject)
   end
 end
