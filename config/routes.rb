@@ -70,6 +70,7 @@ Supermarket::Application.routes.draw do
 
   resources :users, only: [:show] do
     member do
+      get :tools
       put :make_admin
       delete :revoke_admin
     end
