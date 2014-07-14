@@ -25,7 +25,6 @@ class Organization < ActiveRecord::Base
   def name
     latest_ccla_signature.company
   end
-  alias_method :company, :name
 
   #
   # Retrieve the latest CCLA signature if they have signed a CCLA.

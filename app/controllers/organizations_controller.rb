@@ -9,16 +9,14 @@ class OrganizationsController < ApplicationController
   # Lists out all organizations.
   #
   def index
-    organizations = if params[:q]
-                      CclaSignature.search(params[:q])
-                    else
-                      Organization.includes(:ccla_signatures)
-                    end
+    @ccla_signatures = if params[:q]
+                         CclaSignature.search(params[:q])
+                       else
+                         CclaSignature.all
+                       end
 
-    respond_to do |format|
-      format.json do
-        render json: organizations.to_json(only: [:id], methods: [:company])
-      end
+    if params[:exclude_id]
+      @ccla_signatures = @ccla_signatures.where('organization_id <> ?', params[:exclude_id])
     end
   end
 
@@ -39,9 +37,10 @@ class OrganizationsController < ApplicationController
   #
   def destroy
     authorize! @organization
+    organization_name = @organization.name
     @organization.destroy
 
-    redirect_to root_path
+    redirect_to ccla_signatures_path, notice: t('organizations.deleted', organization: organization_name)
   end
 
   #
@@ -52,9 +51,10 @@ class OrganizationsController < ApplicationController
   def combine
     authorize! @organization
     org_to_combine = Organization.find(params[:organization][:combine_with_id])
+    org_to_combine_name = org_to_combine.name
     @organization.combine!(org_to_combine)
 
-    redirect_to @organization
+    redirect_to ccla_signatures_path, notice: t('organizations.combined', org_to_combine: org_to_combine_name, combined_with: @organization.name)
   end
 
   private

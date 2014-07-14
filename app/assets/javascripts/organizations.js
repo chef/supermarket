@@ -17,10 +17,10 @@ $(function () {
       }
     },
     formatSelection: function(obj, container) {
-      return obj.company;
+      return obj.name;
     },
-    formatResult: function(obj, container) {
-      return obj.company;
+    formatResult: function(obj, container, query) {
+      return obj.name + ', signed on ' + obj.signed_at;
     }
   }
 
