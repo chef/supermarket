@@ -9,4 +9,14 @@ class ContributorRequestAuthorizer < Authorizer::Base
   def create?
     record.organization.contributors.where(user_id: user.id).empty?
   end
+
+  #
+  # Only admins of the organization which the requestor would like to join may
+  # accept a request to join that organization
+  #
+  # @return [Boolean]
+  #
+  def accept?
+    record.presiding_admins.include?(user)
+  end
 end
