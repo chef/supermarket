@@ -44,17 +44,17 @@ class ContributorRequest < ActiveRecord::Base
   # @return [Boolean] whether or not acceptance succeeded
   #
   def accept
-    transaction do
-      self.organization.contributors.create!(
-        user: self.user
-      )
+    if !declined?
+      transaction do
+        self.organization.contributors.where(
+          user: self.user
+        ).first_or_create!
 
-      self.update_attributes!(state: 'accepted')
+        self.update_attributes!(state: 'accepted')
+      end
     end
   rescue
     false
-  else
-    true
   end
 
   #

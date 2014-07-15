@@ -37,35 +37,27 @@ class ContributorRequestsController < ApplicationController
     organization_name = contributor_request.organization.name
 
     if contributor_request.pending?
-      if contributor_request.accept
+      followup = proc do
         ContributorRequestMailer.delay.request_accepted_email(contributor_request)
-
-        notice = t(
-          'contributor_requests.accept.success',
-          username: username,
-          organization: organization_name
-        )
-      else
-        notice = t(
-          'contributor_requests.already.declined',
-          username: username,
-          organization: organization_name
-        )
       end
     else
-      if contributor_request.accepted?
-        notice = t(
-          'contributor_requests.accept.success',
-          username: username,
-          organization: organization_name
-        )
-      else
-        notice = t(
-          'contributor_requests.already.declined',
-          username: username,
-          organization: organization_name
-        )
-      end
+      followup = proc {}
+    end
+
+    if contributor_request.accept
+      followup.call
+
+      notice = t(
+        'contributor_requests.accept.success',
+        username: username,
+        organization: organization_name
+      )
+    else
+      notice = t(
+        'contributor_requests.already.declined',
+        username: username,
+        organization: organization_name
+      )
     end
 
     redirect_to destination, notice: notice
