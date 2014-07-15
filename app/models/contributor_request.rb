@@ -44,12 +44,14 @@ class ContributorRequest < ActiveRecord::Base
   # @return [Boolean] whether or not acceptance succeeded
   #
   def accept
-    if !declined?
+    if pending?
       transaction do
-        organization.contributors.where(user: user).first_or_create!
+        organization.contributors.create!(user: user)
 
         update_attributes!(state: 'accepted')
       end
+    elsif accepted?
+      true
     end
   rescue
     false
@@ -61,8 +63,10 @@ class ContributorRequest < ActiveRecord::Base
   # @return [Boolean] whether or not declining succeeded
   #
   def decline
-    if !accepted?
+    if pending?
       update_attributes(state: 'declined')
+    elsif declined?
+      true
     end
   end
 end
