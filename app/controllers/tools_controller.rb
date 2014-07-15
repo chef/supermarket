@@ -1,4 +1,6 @@
 class ToolsController < ApplicationController
+  before_filter :authenticate_user!, except: [:index]
+
   #
   # GET /tools/new
   #
