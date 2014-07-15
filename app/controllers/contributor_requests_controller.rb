@@ -7,15 +7,15 @@ class ContributorRequestsController < ApplicationController
       find(params[:ccla_signature_id])
     organization = ccla_signature.organization
 
-    if organization.contributors.where(user_id: current_user.id).any?
-      raise NotAuthorizedError
-    end
-
-    contributor_request = ContributorRequest.create!(
-      user_id: current_user.id,
-      organization_id: organization.id,
-      ccla_signature_id: ccla_signature.id
+    contributor_request = ContributorRequest.new(
+      user: current_user,
+      organization: organization,
+      ccla_signature: ccla_signature
     )
+
+    authorize! contributor_request
+
+    contributor_request.save!
 
     ContributorRequestNotifier.perform_async(contributor_request.id)
 
