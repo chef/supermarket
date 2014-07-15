@@ -19,4 +19,14 @@ class ContributorRequestAuthorizer < Authorizer::Base
   def accept?
     record.presiding_admins.include?(user)
   end
+
+  #
+  # Only admins of the organization which the requestor would like to join may
+  # decline a request to join that organization
+  #
+  # @return [Boolean]
+  #
+  def decline?
+    accept?
+  end
 end
