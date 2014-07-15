@@ -26,6 +26,10 @@ class ToolsController < ApplicationController
     end
   end
 
+  #
+  # This currently does nothing. It exists to make the form for adding a +Tool+
+  # work. This will probably need to exist in a real way.
+  #
   def index
   end
 
