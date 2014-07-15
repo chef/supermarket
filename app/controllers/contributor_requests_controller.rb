@@ -50,7 +50,7 @@ class ContributorRequestsController < ApplicationController
 
         redirect_to destination, notice: notice
       else
-        # TODO: gracefully handle incidental uniqueness violations
+        # TODO: gracefully handle a beaten-to-the-punch scenario
       end
     else
       destination = contributors_ccla_signature_path(ccla_signature)
