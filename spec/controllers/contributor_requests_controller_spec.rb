@@ -131,7 +131,7 @@ describe ContributorRequestsController do
       end.to_not change(contributors, :count)
     end
 
-    it 'marks the request as accepted' do
+    it 'marks the request as accepted if the request is pending' do
       admin_user = create(:user)
       contributor_request.organization.admins.create(user: admin_user)
 
@@ -142,6 +142,20 @@ describe ContributorRequestsController do
       get :accept, ccla_signature_id: ccla_signature.id, id: contributor_request.id
 
       expect(contributor_request.reload.state).to eql('accepted')
+    end
+
+    it 'does not mark the request as accepted if the request is declined' do
+      admin_user = create(:user)
+      contributor_request.organization.admins.create(user: admin_user)
+      contributor_request.update_attributes!(state: 'declined')
+
+      ccla_signature = contributor_request.ccla_signature
+
+      sign_in admin_user
+
+      get :accept, ccla_signature_id: ccla_signature.id, id: contributor_request.id
+
+      expect(contributor_request.reload.state).to eql('declined')
     end
   end
 
@@ -190,7 +204,7 @@ describe ContributorRequestsController do
       end.to_not change(contributors, :count)
     end
 
-    it 'marks the request state as declined' do
+    it 'marks the request state as declined if the request is pending' do
       admin_user = create(:user)
       contributor_request.organization.admins.create(user: admin_user)
 
@@ -201,6 +215,20 @@ describe ContributorRequestsController do
       get :decline, ccla_signature_id: ccla_signature.id, id: contributor_request.id
 
       expect(contributor_request.reload.state).to eql('declined')
+    end
+
+    it 'does not mark the request state as declined if the request has been accepted' do
+      admin_user = create(:user)
+      contributor_request.organization.admins.create(user: admin_user)
+      contributor_request.update_attributes!(state: 'accepted')
+
+      ccla_signature = contributor_request.ccla_signature
+
+      sign_in admin_user
+
+      get :decline, ccla_signature_id: ccla_signature.id, id: contributor_request.id
+
+      expect(contributor_request.reload.state).to eql('accepted')
     end
   end
 end

@@ -14,7 +14,7 @@ en:
       success: "%{username} is now authorized to contribute on behalf of %{organization}"
     decline:
       success: "%{username} has not been authorized to contribute on behalf of %{organization}"
-    tardy:
+    already:
       accepted: "%{username} has already been authorized to contribute on behalf of %{organization}"
       declined: "%{username} has already been declined authorization to contribute on behalf of %{organization}"
   profile:

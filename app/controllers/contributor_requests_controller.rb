@@ -67,7 +67,7 @@ class ContributorRequestsController < ApplicationController
           )
         else
           notice = t(
-            'contributor_requests.tardy.declined',
+            'contributor_requests.already.declined',
             username: username,
             organization: organization_name
           )
@@ -93,13 +93,29 @@ class ContributorRequestsController < ApplicationController
       username = contributor_request.user.username
       organization_name = contributor_request.organization.name
 
-      contributor_request.update_attributes!(state: 'declined')
+      if contributor_request.state == 'pending'
+        contributor_request.update_attributes!(state: 'declined')
 
-      notice = t(
-        'contributor_requests.decline.success',
-        username: username,
-        organization: organization_name
-      )
+        notice = t(
+          'contributor_requests.decline.success',
+          username: username,
+          organization: organization_name
+        )
+      else
+        if contributor_request.state == 'declined'
+          notice = t(
+            'contributor_requests.decline.success',
+            username: username,
+            organization: organization_name
+          )
+        else
+          notice = t(
+            'contributor_requests.already.accepted',
+            username: username,
+            organization: organization_name
+          )
+        end
+      end
 
       redirect_to destination, notice: notice
     else
