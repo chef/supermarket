@@ -112,4 +112,50 @@ describe ContributorRequestsController do
       end.to change(contributors, :count).by(1)
     end
   end
+
+  describe '#decline' do
+    let!(:contributor_request) { create(:contributor_request) }
+
+    it '404s if the current user is not an org admin' do
+      non_admin_user = create(:user)
+
+      sign_in(non_admin_user)
+
+      get :decline, ccla_signature_id: contributor_request.ccla_signature_id, id: contributor_request.id
+
+      expect(response.code.to_i).to eql(404)
+    end
+
+    it 'redirects to the organization if the current user is an org admin' do
+      admin_user = create(:user)
+      contributor_request.organization.admins.create(user: admin_user)
+
+      ccla_signature = contributor_request.ccla_signature
+
+      sign_in admin_user
+
+      get :decline, ccla_signature_id: ccla_signature.id, id: contributor_request.id
+
+      expect(response).
+        to redirect_to(contributors_ccla_signature_path(ccla_signature))
+    end
+
+    it 'does not add the requestor to the requested organization' do
+      admin_user = create(:user)
+      contributor_request.organization.admins.create(user: admin_user)
+
+      contributors = Contributor.where(
+        organization_id: contributor_request.organization_id,
+        user_id: contributor_request.user_id
+      )
+
+      ccla_signature = contributor_request.ccla_signature
+
+      sign_in admin_user
+
+      expect do
+        get :decline, ccla_signature_id: ccla_signature.id, id: contributor_request.id
+      end.to_not change(contributors, :count)
+    end
+  end
 end

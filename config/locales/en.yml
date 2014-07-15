@@ -12,6 +12,8 @@ en:
   contributor_requests:
     accept:
       success: "%{username} is now authorized to contribute on behalf of %{organization}"
+    decline:
+      success: "%{username} has not been authorized to contribute on behalf of %{organization}"
   profile:
     no_cookbooks:
       owns: "%{username} doesn't own any cookbooks."

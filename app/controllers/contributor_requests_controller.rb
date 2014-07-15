@@ -57,5 +57,27 @@ class ContributorRequestsController < ApplicationController
   end
 
   def decline
+    contributor_request = ContributorRequest.where(
+      ccla_signature_id: params[:ccla_signature_id],
+      id: params[:id]
+    ).first!
+
+    ccla_signature = contributor_request.ccla_signature
+
+    if contributor_request.presiding_admins.include?(current_user)
+      destination = contributors_ccla_signature_path(ccla_signature)
+      username = contributor_request.user.username
+      organization_name = contributor_request.organization.name
+
+      notice = t(
+        'contributor_requests.decline.success',
+        username: username,
+        organization: organization_name
+      )
+
+      redirect_to destination, notice: notice
+    else
+      raise NotAuthorizedError
+    end
   end
 end
