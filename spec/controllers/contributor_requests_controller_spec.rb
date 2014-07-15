@@ -130,6 +130,19 @@ describe ContributorRequestsController do
         get :accept, ccla_signature_id: ccla_signature.id, id: contributor_request.id
       end.to_not change(contributors, :count)
     end
+
+    it 'marks the request as accepted' do
+      admin_user = create(:user)
+      contributor_request.organization.admins.create(user: admin_user)
+
+      ccla_signature = contributor_request.ccla_signature
+
+      sign_in admin_user
+
+      get :accept, ccla_signature_id: ccla_signature.id, id: contributor_request.id
+
+      expect(contributor_request.reload.state).to eql('accepted')
+    end
   end
 
   describe '#decline' do
@@ -175,6 +188,19 @@ describe ContributorRequestsController do
       expect do
         get :decline, ccla_signature_id: ccla_signature.id, id: contributor_request.id
       end.to_not change(contributors, :count)
+    end
+
+    it 'marks the request state as declined' do
+      admin_user = create(:user)
+      contributor_request.organization.admins.create(user: admin_user)
+
+      ccla_signature = contributor_request.ccla_signature
+
+      sign_in admin_user
+
+      get :decline, ccla_signature_id: ccla_signature.id, id: contributor_request.id
+
+      expect(contributor_request.reload.state).to eql('declined')
     end
   end
 end

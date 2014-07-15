@@ -42,6 +42,8 @@ class ContributorRequestsController < ApplicationController
           username = contributor_request.user.username
           organization_name = contributor_request.organization.name
 
+          contributor_request.update_attributes!(state: 'accepted')
+
           notice = t(
             'contributor_requests.accept.success',
             username: username,
@@ -59,7 +61,7 @@ class ContributorRequestsController < ApplicationController
 
         if contributor_request.state == 'accepted'
           notice = t(
-            'contributor_requests.tardy.accepted',
+            'contributor_requests.accept.success',
             username: username,
             organization: organization_name
           )
@@ -90,6 +92,8 @@ class ContributorRequestsController < ApplicationController
       destination = contributors_ccla_signature_path(ccla_signature)
       username = contributor_request.user.username
       organization_name = contributor_request.organization.name
+
+      contributor_request.update_attributes!(state: 'declined')
 
       notice = t(
         'contributor_requests.decline.success',
