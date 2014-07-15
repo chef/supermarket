@@ -46,7 +46,11 @@ class ContributorRequestsController < ApplicationController
           organization: organization_name
         )
       else
-        # TODO: gracefully handle a beaten-to-the-punch scenario
+        notice = t(
+          'contributor_requests.already.declined',
+          username: username,
+          organization: organization_name
+        )
       end
     else
       if contributor_request.accepted?
@@ -91,7 +95,11 @@ class ContributorRequestsController < ApplicationController
           organization: organization_name
         )
       else
-        # TODO: gracefully handle a beaten-to-the-punch scenario
+        notice = t(
+          'contributor_requests.already.accepted',
+          username: username,
+          organization: organization_name
+        )
       end
     else
       if contributor_request.declined?
