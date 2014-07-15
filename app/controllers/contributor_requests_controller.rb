@@ -31,15 +31,13 @@ class ContributorRequestsController < ApplicationController
     authorize! contributor_request
 
     ccla_signature = contributor_request.ccla_signature
+    destination = contributors_ccla_signature_path(ccla_signature)
+
+    username = contributor_request.user.username
+    organization_name = contributor_request.organization.name
 
     if contributor_request.pending?
-      organization = contributor_request.organization
-
       if contributor_request.accept
-        destination = contributors_ccla_signature_path(ccla_signature)
-        username = contributor_request.user.username
-        organization_name = contributor_request.organization.name
-
         ContributorRequestMailer.delay.request_accepted_email(contributor_request)
 
         notice = t(
@@ -47,16 +45,10 @@ class ContributorRequestsController < ApplicationController
           username: username,
           organization: organization_name
         )
-
-        redirect_to destination, notice: notice
       else
         # TODO: gracefully handle a beaten-to-the-punch scenario
       end
     else
-      destination = contributors_ccla_signature_path(ccla_signature)
-      username = contributor_request.user.username
-      organization_name = contributor_request.organization.name
-
       if contributor_request.accepted?
         notice = t(
           'contributor_requests.accept.success',
@@ -70,9 +62,9 @@ class ContributorRequestsController < ApplicationController
           organization: organization_name
         )
       end
-
-      redirect_to destination, notice: notice
     end
+
+    redirect_to destination, notice: notice
   end
 
   def decline
@@ -84,8 +76,8 @@ class ContributorRequestsController < ApplicationController
     authorize! contributor_request
 
     ccla_signature = contributor_request.ccla_signature
-
     destination = contributors_ccla_signature_path(ccla_signature)
+
     username = contributor_request.user.username
     organization_name = contributor_request.organization.name
 
