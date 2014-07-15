@@ -44,6 +44,8 @@ class ContributorRequestsController < ApplicationController
 
           contributor_request.update_attributes!(state: 'accepted')
 
+          ContributorRequestMailer.delay.request_accepted_email(contributor_request)
+
           notice = t(
             'contributor_requests.accept.success',
             username: username,

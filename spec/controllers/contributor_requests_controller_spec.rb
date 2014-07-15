@@ -71,11 +71,13 @@ describe ContributorRequestsController do
     let!(:contributor_request) { create(:contributor_request) }
 
     def accept!
-      get(
-        :accept,
-        ccla_signature_id: contributor_request.ccla_signature_id,
-        id: contributor_request.id
-      )
+      Sidekiq::Testing.inline! do
+        get(
+          :accept,
+          ccla_signature_id: contributor_request.ccla_signature_id,
+          id: contributor_request.id
+        )
+      end
     end
 
     context 'when not signed in as an org admin' do
@@ -133,6 +135,18 @@ describe ContributorRequestsController do
 
           expect(response).to redirect_to(destination)
         end
+
+        it 'sends an email to the requestor' do
+          requestor_delivery_count = lambda do
+            ActionMailer::Base.deliveries.select do |message|
+              message.to.include?(contributor_request.user.email)
+            end.count
+          end
+
+          expect do
+            accept!
+          end.to change(&requestor_delivery_count).by(1)
+        end
       end
 
       context 'for declined requests' do
@@ -170,6 +184,18 @@ describe ContributorRequestsController do
 
           expect(response).to redirect_to(destination)
         end
+
+        it 'does not send an email to the requestor' do
+          requestor_delivery_count = lambda do
+            ActionMailer::Base.deliveries.select do |message|
+              message.to.include?(contributor_request.user.email)
+            end.count
+          end
+
+          expect do
+            accept!
+          end.to_not change(&requestor_delivery_count)
+        end
       end
 
       context 'for accepted requests' do
@@ -198,6 +224,18 @@ describe ContributorRequestsController do
           expect(flash[:notice]).to eql(notice)
 
           expect(response).to redirect_to(destination)
+        end
+
+        it 'does not send an email to the requestor' do
+          requestor_delivery_count = lambda do
+            ActionMailer::Base.deliveries.select do |message|
+              message.to.include?(contributor_request.user.email)
+            end.count
+          end
+
+          expect do
+            accept!
+          end.to_not change(&requestor_delivery_count)
         end
       end
     end

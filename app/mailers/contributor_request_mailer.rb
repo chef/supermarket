@@ -16,4 +16,13 @@ class ContributorRequestMailer < ActionMailer::Base
 
     mail(to: @to, subject: subject)
   end
+
+  def request_accepted_email(contributor_request)
+    @to = contributor_request.user.email
+    @organization_name = contributor_request.organization.name
+
+    subject = "Your request to join #{@organization_name} has been accepted!"
+
+    mail(to: @to, subject: subject)
+  end
 end
