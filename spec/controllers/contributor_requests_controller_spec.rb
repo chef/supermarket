@@ -94,7 +94,7 @@ describe ContributorRequestsController do
         to redirect_to(contributors_ccla_signature_path(ccla_signature))
     end
 
-    it 'adds the requestor to the requested organization if the request is pending' do
+    it 'fulfills pending requests' do
       admin_user = create(:user)
       contributor_request.organization.admins.create(user: admin_user)
 
@@ -110,9 +110,19 @@ describe ContributorRequestsController do
       expect do
         get :accept, ccla_signature_id: ccla_signature.id, id: contributor_request.id
       end.to change(contributors, :count).by(1)
+
+      expect(contributor_request.reload.state).to eql('accepted')
+
+      notice = I18n.t(
+        'contributor_requests.accept.success',
+        username: contributor_request.user.username,
+        organization: contributor_request.organization.name
+      )
+
+      expect(flash[:notice]).to eql(notice)
     end
 
-    it 'does not add the requestor if the request has been declined' do
+    it 'does not fulfill declined requests' do
       admin_user = create(:user)
       contributor_request.organization.admins.create(user: admin_user)
       contributor_request.update_attributes!(state: 'declined')
@@ -129,33 +139,48 @@ describe ContributorRequestsController do
       expect do
         get :accept, ccla_signature_id: ccla_signature.id, id: contributor_request.id
       end.to_not change(contributors, :count)
-    end
-
-    it 'marks the request as accepted if the request is pending' do
-      admin_user = create(:user)
-      contributor_request.organization.admins.create(user: admin_user)
-
-      ccla_signature = contributor_request.ccla_signature
-
-      sign_in admin_user
-
-      get :accept, ccla_signature_id: ccla_signature.id, id: contributor_request.id
-
-      expect(contributor_request.reload.state).to eql('accepted')
-    end
-
-    it 'does not mark the request as accepted if the request is declined' do
-      admin_user = create(:user)
-      contributor_request.organization.admins.create(user: admin_user)
-      contributor_request.update_attributes!(state: 'declined')
-
-      ccla_signature = contributor_request.ccla_signature
-
-      sign_in admin_user
-
-      get :accept, ccla_signature_id: ccla_signature.id, id: contributor_request.id
 
       expect(contributor_request.reload.state).to eql('declined')
+
+      notice = I18n.t(
+        'contributor_requests.already.declined',
+        username: contributor_request.user.username,
+        organization: contributor_request.organization.name
+      )
+
+      expect(flash[:notice]).to eql(notice)
+    end
+
+    it 'handles redundant requests with grace' do
+      admin_user = create(:user)
+      contributor_request.organization.admins.create(user: admin_user)
+      contributor_request.organization.contributors.create(
+        user: contributor_request.user
+      )
+      contributor_request.update_attributes!(state: 'accepted')
+
+      contributors = Contributor.where(
+        organization_id: contributor_request.organization_id,
+        user_id: contributor_request.user_id
+      )
+
+      ccla_signature = contributor_request.ccla_signature
+
+      sign_in admin_user
+
+      expect do
+        get :accept, ccla_signature_id: ccla_signature.id, id: contributor_request.id
+      end.to_not change(contributors, :count)
+
+      expect(contributor_request.reload.state).to eql('accepted')
+
+      notice = I18n.t(
+        'contributor_requests.accept.success',
+        username: contributor_request.user.username,
+        organization: contributor_request.organization.name
+      )
+
+      expect(flash[:notice]).to eql(notice)
     end
   end
 
@@ -186,7 +211,7 @@ describe ContributorRequestsController do
         to redirect_to(contributors_ccla_signature_path(ccla_signature))
     end
 
-    it 'does not add the requestor to the requested organization' do
+    it 'fulfulls pending requests' do
       admin_user = create(:user)
       contributor_request.organization.admins.create(user: admin_user)
 
@@ -202,22 +227,19 @@ describe ContributorRequestsController do
       expect do
         get :decline, ccla_signature_id: ccla_signature.id, id: contributor_request.id
       end.to_not change(contributors, :count)
-    end
-
-    it 'marks the request state as declined if the request is pending' do
-      admin_user = create(:user)
-      contributor_request.organization.admins.create(user: admin_user)
-
-      ccla_signature = contributor_request.ccla_signature
-
-      sign_in admin_user
-
-      get :decline, ccla_signature_id: ccla_signature.id, id: contributor_request.id
 
       expect(contributor_request.reload.state).to eql('declined')
+
+      notice = I18n.t(
+        'contributor_requests.decline.success',
+        username: contributor_request.user.username,
+        organization: contributor_request.organization.name
+      )
+
+      expect(flash[:notice]).to eql(notice)
     end
 
-    it 'does not mark the request state as declined if the request has been accepted' do
+    it 'does not fulfull accepted requests' do
       admin_user = create(:user)
       contributor_request.organization.admins.create(user: admin_user)
       contributor_request.update_attributes!(state: 'accepted')
@@ -229,6 +251,36 @@ describe ContributorRequestsController do
       get :decline, ccla_signature_id: ccla_signature.id, id: contributor_request.id
 
       expect(contributor_request.reload.state).to eql('accepted')
+
+      notice = I18n.t(
+        'contributor_requests.already.accepted',
+        username: contributor_request.user.username,
+        organization: contributor_request.organization.name
+      )
+
+      expect(flash[:notice]).to eql(notice)
+    end
+
+    it 'handles redundant requests with grace' do
+      admin_user = create(:user)
+      contributor_request.organization.admins.create(user: admin_user)
+      contributor_request.update_attributes!(state: 'declined')
+
+      ccla_signature = contributor_request.ccla_signature
+
+      sign_in admin_user
+
+      get :decline, ccla_signature_id: ccla_signature.id, id: contributor_request.id
+
+      expect(contributor_request.reload.state).to eql('declined')
+
+      notice = I18n.t(
+        'contributor_requests.decline.success',
+        username: contributor_request.user.username,
+        organization: contributor_request.organization.name
+      )
+
+      expect(flash[:notice]).to eql(notice)
     end
   end
 end
