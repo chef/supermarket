@@ -1,7 +1,7 @@
 <div class="sidebar" data-equalizer-watch>
   <h3>Chef's Open Source Projects</h3>
 
-  <ul>
+  <ul class="pretty">
     <% Curry::Repository.all.each do |repository| %>
       <li class="repository"><%= link_to repository.full_name, "https://github.com/#{repository.owner}/#{repository.name}", target: "_blank" %></li>
     <% end %>
@@ -18,7 +18,7 @@
       <p>You have not signed the Individual Contributor License Agreement (ICLA) yet. If you are interested in contributing to Chef's open source projects as an individual, <%= link_to "you must sign the ICLA", new_icla_signature_path %>.</p>
     <% end %>
 
-    <ul>
+    <ul class="pretty">
       <% if current_user.signed_icla? %>
         <li>
           <%= link_to "Signed ICLA on #{current_user.latest_icla_signature.signed_at.to_s(:longish)}", current_user.latest_icla_signature, rel: 'icla-signature' %>
