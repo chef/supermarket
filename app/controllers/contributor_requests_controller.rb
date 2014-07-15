@@ -90,15 +90,15 @@ class ContributorRequestsController < ApplicationController
     organization_name = contributor_request.organization.name
 
     if contributor_request.pending?
-      contributor_request.update_attributes!(state: 'declined')
+      if contributor_request.decline
+        ContributorRequestMailer.delay.request_declined_email(contributor_request)
 
-      ContributorRequestMailer.delay.request_declined_email(contributor_request)
-
-      notice = t(
-        'contributor_requests.decline.success',
-        username: username,
-        organization: organization_name
-      )
+        notice = t(
+          'contributor_requests.decline.success',
+          username: username,
+          organization: organization_name
+        )
+      end
     else
       if contributor_request.declined?
         notice = t(

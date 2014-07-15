@@ -56,4 +56,13 @@ class ContributorRequest < ActiveRecord::Base
   else
     true
   end
+
+  #
+  # Declines the request
+  #
+  # @return [Boolean] whether or not declining succeeded
+  #
+  def decline
+    self.update_attributes(state: 'declined')
+  end
 end
