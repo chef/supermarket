@@ -16,7 +16,7 @@ class ContributorRequest < ActiveRecord::Base
   # @return [Boolean]
   #
   def pending?
-    'pending' == self.state
+    'pending' == state
   end
 
   #
@@ -25,7 +25,7 @@ class ContributorRequest < ActiveRecord::Base
   # @return [Boolean]
   #
   def accepted?
-    'accepted' == self.state
+    'accepted' == state
   end
 
   #
@@ -34,7 +34,7 @@ class ContributorRequest < ActiveRecord::Base
   # @return [Boolean]
   #
   def declined?
-    'declined' == self.state
+    'declined' == state
   end
 
   #
@@ -46,11 +46,9 @@ class ContributorRequest < ActiveRecord::Base
   def accept
     if !declined?
       transaction do
-        self.organization.contributors.where(
-          user: self.user
-        ).first_or_create!
+        organization.contributors.where(user: user).first_or_create!
 
-        self.update_attributes!(state: 'accepted')
+        update_attributes!(state: 'accepted')
       end
     end
   rescue
@@ -64,7 +62,7 @@ class ContributorRequest < ActiveRecord::Base
   #
   def decline
     if !accepted?
-      self.update_attributes(state: 'declined')
+      update_attributes(state: 'declined')
     end
   end
 end
