@@ -98,6 +98,8 @@ class ContributorRequestsController < ApplicationController
       if contributor_request.state == 'pending'
         contributor_request.update_attributes!(state: 'declined')
 
+        ContributorRequestMailer.delay.request_declined_email(contributor_request)
+
         notice = t(
           'contributor_requests.decline.success',
           username: username,
