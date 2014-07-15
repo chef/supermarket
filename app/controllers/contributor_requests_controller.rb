@@ -34,16 +34,11 @@ class ContributorRequestsController < ApplicationController
 
     if contributor_request.pending?
       organization = contributor_request.organization
-      contributor = organization.contributors.new(
-        user: contributor_request.user
-      )
 
-      if contributor.save
+      if contributor_request.accept
         destination = contributors_ccla_signature_path(ccla_signature)
         username = contributor_request.user.username
         organization_name = contributor_request.organization.name
-
-        contributor_request.update_attributes!(state: 'accepted')
 
         ContributorRequestMailer.delay.request_accepted_email(contributor_request)
 

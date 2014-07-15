@@ -18,4 +18,24 @@ class ContributorRequest < ActiveRecord::Base
   def pending?
     'pending' == self.state
   end
+
+  #
+  # Accepts the request, adding the requestor to the requested organization,
+  # and updating the status of this request.
+  #
+  # @return [Boolean] whether or not acceptance succeeded
+  #
+  def accept
+    transaction do
+      self.organization.contributors.create!(
+        user: self.user
+      )
+
+      self.update_attributes!(state: 'accepted')
+    end
+  rescue
+    false
+  else
+    true
+  end
 end
