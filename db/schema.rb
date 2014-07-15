@@ -74,11 +74,12 @@ ActiveRecord::Schema.define(version: 20140715221702) do
   end
 
   create_table "contributor_requests", force: true do |t|
-    t.integer  "organization_id",   null: false
-    t.integer  "user_id",           null: false
+    t.integer  "organization_id",                       null: false
+    t.integer  "user_id",                               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "ccla_signature_id", null: false
+    t.integer  "ccla_signature_id",                     null: false
+    t.string   "state",             default: "pending", null: false
   end
 
   add_index "contributor_requests", ["organization_id", "user_id"], name: "index_contributor_requests_on_organization_id_and_user_id", unique: true, using: :btree

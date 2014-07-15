@@ -94,7 +94,7 @@ describe ContributorRequestsController do
         to redirect_to(contributors_ccla_signature_path(ccla_signature))
     end
 
-    it 'adds the requestor to the requested organization' do
+    it 'adds the requestor to the requested organization if the request is pending' do
       admin_user = create(:user)
       contributor_request.organization.admins.create(user: admin_user)
 
@@ -110,6 +110,25 @@ describe ContributorRequestsController do
       expect do
         get :accept, ccla_signature_id: ccla_signature.id, id: contributor_request.id
       end.to change(contributors, :count).by(1)
+    end
+
+    it 'does not add the requestor if the request has been declined' do
+      admin_user = create(:user)
+      contributor_request.organization.admins.create(user: admin_user)
+      contributor_request.update_attributes!(state: 'declined')
+
+      contributors = Contributor.where(
+        organization_id: contributor_request.organization_id,
+        user_id: contributor_request.user_id
+      )
+
+      ccla_signature = contributor_request.ccla_signature
+
+      sign_in admin_user
+
+      expect do
+        get :accept, ccla_signature_id: ccla_signature.id, id: contributor_request.id
+      end.to_not change(contributors, :count)
     end
   end
 

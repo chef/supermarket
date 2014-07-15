@@ -31,25 +31,47 @@ class ContributorRequestsController < ApplicationController
     ccla_signature = contributor_request.ccla_signature
 
     if contributor_request.presiding_admins.include?(current_user)
-      organization = contributor_request.organization
-      contributor = organization.contributors.new(
-        user: contributor_request.user
-      )
+      if contributor_request.state == 'pending'
+        organization = contributor_request.organization
+        contributor = organization.contributors.new(
+          user: contributor_request.user
+        )
 
-      if contributor.save
+        if contributor.save
+          destination = contributors_ccla_signature_path(ccla_signature)
+          username = contributor_request.user.username
+          organization_name = contributor_request.organization.name
+
+          notice = t(
+            'contributor_requests.accept.success',
+            username: username,
+            organization: organization_name
+          )
+
+          redirect_to destination, notice: notice
+        else
+          # TODO: gracefully handle incidental uniqueness violations
+        end
+      else
         destination = contributors_ccla_signature_path(ccla_signature)
         username = contributor_request.user.username
         organization_name = contributor_request.organization.name
 
-        notice = t(
-          'contributor_requests.accept.success',
-          username: username,
-          organization: organization_name
-        )
+        if contributor_request.state == 'accepted'
+          notice = t(
+            'contributor_requests.tardy.accepted',
+            username: username,
+            organization: organization_name
+          )
+        else
+          notice = t(
+            'contributor_requests.tardy.declined',
+            username: username,
+            organization: organization_name
+          )
+        end
 
         redirect_to destination, notice: notice
-      else
-        # TODO: gracefully handle incidental uniqueness violations
       end
     else
       raise NotAuthorizedError
