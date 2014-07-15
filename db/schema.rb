@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140709140311) do
+ActiveRecord::Schema.define(version: 20140714150938) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -272,6 +272,19 @@ ActiveRecord::Schema.define(version: 20140709140311) do
   end
 
   add_index "supported_platforms", ["name", "version_constraint"], name: "index_supported_platforms_on_name_and_version_constraint", unique: true, using: :btree
+
+  create_table "tools", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "type"
+    t.text     "description"
+    t.string   "source_url"
+    t.text     "instructions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tools", ["user_id"], name: "index_tools_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"

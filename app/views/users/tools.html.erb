@@ -1,0 +1,36 @@
+<%= provide(:title, "#{@user.username}") %>
+<%= provide(:description, "#{@user.username}'s Chef tools and plugins.") %>
+
+<div class="page profile" data-equalizer>
+  <%= render 'sidebar' %>
+
+  <div class="main" data-equalizer-watch>
+    <div class="heading">
+      <h1><%= posessivize(@user.name) %> Tools & Plugins</h1>
+
+      <dl class="tabs radius">
+        <dd class="<%= 'active' if current_page?(tools_user_path(@user)) %>"><%= link_to 'Maintains', tools_user_path(@user), rel: 'view_tools' %></dd>
+        <% if @user == current_user %>
+          <dd class="<%= 'active' if current_page?(new_tool_path) %>"><%= link_to 'Add Tool', new_tool_path, rel: 'add_tool' %></dd>
+        <% end %>
+      </dl>
+    </div>
+
+    <div class="tabs-content">
+      <div class="content active">
+        <% if @tools.any? %>
+          <ul class="tools_listing">
+            <%= render partial: 'tools/tool', collection: @tools%>
+            <%= paginate @tools %>
+          </ul>
+        <% else %>
+          <% if @user == current_user %>
+            <p><%= t("profile.current_user_no_tools") %></p>
+          <% else %>
+            <p><%= t("profile.no_tools", username: @user.username) %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

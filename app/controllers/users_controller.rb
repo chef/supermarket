@@ -23,6 +23,15 @@ class UsersController < ApplicationController
   end
 
   #
+  # GET /users/:id/tools
+  #
+  # Display a user and their tools.
+  #
+  def tools
+    @tools = @user.tools.page(params[:page]).per(20)
+  end
+
+  #
   # PUT /users/:id/make_admin
   #
   # Assigns the admin role to a given user then redirects back to

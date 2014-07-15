@@ -25,6 +25,22 @@ describe UsersController do
     end
   end
 
+  describe 'GET #tools' do
+    it 'assigns a user' do
+      get :tools, id: user.username
+
+      expect(assigns[:user]).to eql(user)
+    end
+
+    it "assigns a user's tools" do
+      create(:tool, user: user)
+
+      get :tools, id: user.username
+
+      expect(assigns[:tools].to_a).to eql(user.tools.to_a)
+    end
+  end
+
   describe 'PUT #make_admin' do
     let(:user) { create(:user) }
 

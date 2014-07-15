@@ -18,6 +18,8 @@ en:
       owns: "You don't own any cookbooks."
       collaborates: "You aren't a collaborator on any cookbooks."
       follows: "You don't follow any cookbooks."
+    no_tools: "%{username} does not maintain any tools."
+    current_user_no_tools: "You do not maintain any tools."
   requires_linked_github: "You need to link your GitHub account."
   organizations:
     combined: "%{org_to_combine} was successfully merged into %{combined_with}."
@@ -26,6 +28,8 @@ en:
     invites:
       success: "Successfully sent invitations"
       warning: "The following invitations were invalid %{invites} all others however were valid and sent."
+  tool:
+    created: "The %{name} tool was successfully created."
   curry:
     repositories:
       evaluate: "Curry is now evaluating all open Pull Requests on %{name}"

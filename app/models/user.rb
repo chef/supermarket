@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :cookbook_followers
   has_many :followed_cookbooks, through: :cookbook_followers, source: :cookbook
   has_many :collaborated_cookbooks, through: :cookbook_collaborators, source: :cookbook
+  has_many :tools
   has_one :chef_account, -> { self.for('chef_oauth2') }, class_name: 'Account'
 
   # Validations
