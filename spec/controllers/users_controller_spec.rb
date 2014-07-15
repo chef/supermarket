@@ -32,7 +32,7 @@ describe UsersController do
       expect(assigns[:user]).to eql(user)
     end
 
-    it 'assigns tools' do
+    it "assigns a user's tools" do
       create(:tool, user: user)
 
       get :tools, id: user.username
