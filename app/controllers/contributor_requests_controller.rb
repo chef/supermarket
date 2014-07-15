@@ -98,6 +98,8 @@ class ContributorRequestsController < ApplicationController
           username: username,
           organization: organization_name
         )
+      else
+        # TODO: gracefully handle a beaten-to-the-punch scenario
       end
     else
       if contributor_request.declined?
