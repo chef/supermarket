@@ -32,7 +32,7 @@ class ContributorRequestsController < ApplicationController
 
     ccla_signature = contributor_request.ccla_signature
 
-    if contributor_request.state == 'pending'
+    if contributor_request.pending?
       organization = contributor_request.organization
       contributor = organization.contributors.new(
         user: contributor_request.user
@@ -94,7 +94,7 @@ class ContributorRequestsController < ApplicationController
     username = contributor_request.user.username
     organization_name = contributor_request.organization.name
 
-    if contributor_request.state == 'pending'
+    if contributor_request.pending?
       contributor_request.update_attributes!(state: 'declined')
 
       ContributorRequestMailer.delay.request_declined_email(contributor_request)

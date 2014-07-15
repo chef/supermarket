@@ -9,4 +9,13 @@ class ContributorRequest < ActiveRecord::Base
   def presiding_admins
     organization.admins.includes(:user).map(&:user)
   end
+
+  #
+  # Is this request pending approval or denial?
+  #
+  # @return [Boolean]
+  #
+  def pending?
+    'pending' == self.state
+  end
 end
