@@ -100,7 +100,7 @@ class ContributorRequestsController < ApplicationController
         organization: organization_name
       )
     else
-      if contributor_request.state == 'declined'
+      if contributor_request.declined?
         notice = t(
           'contributor_requests.decline.success',
           username: username,

@@ -29,6 +29,15 @@ class ContributorRequest < ActiveRecord::Base
   end
 
   #
+  # Has this request been declined?
+  #
+  # @return [Boolean]
+  #
+  def declined?
+    'declined' == self.state
+  end
+
+  #
   # Accepts the request, adding the requestor to the requested organization,
   # and updating the status of this request.
   #
