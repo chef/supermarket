@@ -57,7 +57,7 @@ class ContributorRequestsController < ApplicationController
       username = contributor_request.user.username
       organization_name = contributor_request.organization.name
 
-      if contributor_request.state == 'accepted'
+      if contributor_request.accepted?
         notice = t(
           'contributor_requests.accept.success',
           username: username,

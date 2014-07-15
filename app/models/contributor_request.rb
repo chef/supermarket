@@ -20,6 +20,15 @@ class ContributorRequest < ActiveRecord::Base
   end
 
   #
+  # Has this request been accepted?
+  #
+  # @return [Boolean]
+  #
+  def accepted?
+    'accepted' == self.state
+  end
+
+  #
   # Accepts the request, adding the requestor to the requested organization,
   # and updating the status of this request.
   #
