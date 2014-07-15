@@ -8,8 +8,10 @@
     <div class="heading">
       <h1><%= posessivize(@user.name) %> Cookbooks</h1>
 
-      <%= link_to "Cookbooks", @user, class: 'button radius secondary', rel: "view_cookbooks" %>
-      <%= link_to "Tools & Plugins", tools_user_path(@user), class: 'button radius secondary', rel: "view_tools" %>
+      <% if ENV['TOOLS_ENABLED'] == "true" %>
+        <%= link_to "Cookbooks", @user, class: 'button radius secondary', rel: "view_cookbooks" %>
+        <%= link_to "Tools & Plugins", tools_user_path(@user), class: 'button radius secondary', rel: "view_tools" %>
+      <% end %>
 
       <dl class="tabs radius">
         <dd class="<%= 'active' unless params[:tab] %>"><%= link_to 'Owns', @user %></dd>

@@ -96,3 +96,11 @@ its configuration.
 
 * `NEW_RELIC_LICENSE_KEY`
 * `NEW_RELIC_APP_NAME`, which defaults to `Supermarket`
+
+## Supermarket Feature Configuration
+
+Certain features of Supermarket can be enabled or disabled.
+
+* `TOOLS_ENABLED`, which defaults to `true`, will be disabled if set to anything
+  other than `true`. This disables the ability to add and view Chef tools &
+  plugins.

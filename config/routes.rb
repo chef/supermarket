@@ -70,7 +70,10 @@ Supermarket::Application.routes.draw do
 
   resources :users, only: [:show] do
     member do
-      get :tools
+      if ENV['TOOLS_ENABLED'] == 'true'
+        get :tools
+      end
+
       put :make_admin
       delete :revoke_admin
     end
@@ -78,7 +81,9 @@ Supermarket::Application.routes.draw do
     resources :accounts, only: [:destroy]
   end
 
-  resources :tools, only: [:new, :create, :index]
+  if ENV['TOOLS_ENABLED'] == 'true'
+    resources :tools, only: [:new, :create, :index]
+  end
 
   resource :profile, controller: 'profile', only: [:update, :edit] do
     collection do
