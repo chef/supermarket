@@ -2,6 +2,7 @@ class ContributorRequest < ActiveRecord::Base
   belongs_to :organization
   belongs_to :ccla_signature
   belongs_to :user
+  has_one :contributor_request_response
 
   #
   # The users who preside over this request
@@ -16,7 +17,7 @@ class ContributorRequest < ActiveRecord::Base
   # @return [Boolean]
   #
   def pending?
-    'pending' == state
+    contributor_request_response.blank?
   end
 
   #
@@ -25,7 +26,7 @@ class ContributorRequest < ActiveRecord::Base
   # @return [Boolean]
   #
   def accepted?
-    'accepted' == state
+    contributor_request_response.try(:decision) == 'accepted'
   end
 
   #
@@ -34,7 +35,7 @@ class ContributorRequest < ActiveRecord::Base
   # @return [Boolean]
   #
   def declined?
-    'declined' == state
+    contributor_request_response.try(:decision) == 'declined'
   end
 
   #
@@ -48,7 +49,7 @@ class ContributorRequest < ActiveRecord::Base
       transaction do
         organization.contributors.create!(user: user)
 
-        update_attributes!(state: 'accepted')
+        create_contributor_request_response!(decision: 'accepted')
       end
     elsif accepted?
       true
@@ -64,7 +65,7 @@ class ContributorRequest < ActiveRecord::Base
   #
   def decline
     if pending?
-      update_attributes(state: 'declined')
+      create_contributor_request_response!(decision: 'declined')
     elsif declined?
       true
     end
