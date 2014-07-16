@@ -116,10 +116,10 @@ describe ContributorRequestsController do
           end.to change(contributors, :count).by(1)
         end
 
-        it 'sets the request state to accepted' do
+        it 'marks the request as accepted' do
           accept!
 
-          expect(contributor_request.reload.state).to eql('accepted')
+          expect(contributor_request.reload).to be_accepted
         end
 
         it 'redirects with success to the CCLA detail' do
@@ -151,7 +151,7 @@ describe ContributorRequestsController do
 
       context 'for declined requests' do
         before do
-          contributor_request.update_attributes!(state: 'declined')
+          contributor_request.decline
         end
 
         it 'does not add the user to the organization' do
@@ -165,10 +165,10 @@ describe ContributorRequestsController do
           end.to_not change(contributors, :count)
         end
 
-        it 'does not change the request state to declined' do
+        it 'does not mark the request as accepted' do
           accept!
 
-          expect(contributor_request.reload.state).to eql('declined')
+          expect(contributor_request.reload).to be_declined
         end
 
         it 'redirects to the CCLA detail with an informative notice' do
@@ -200,16 +200,13 @@ describe ContributorRequestsController do
 
       context 'for accepted requests' do
         before do
-          contributor_request.organization.contributors.create(
-            user: contributor_request.user
-          )
-          contributor_request.update_attributes!(state: 'accepted')
+          contributor_request.accept
         end
 
-        it 'keeps the request state as accepted' do
+        it 'keeps the request marked as accepted' do
           accept!
 
-          expect(contributor_request.reload.state).to eql('accepted')
+          expect(contributor_request.reload).to be_accepted
         end
 
         it 'shows the same message as if this was the original acceptance' do
@@ -293,7 +290,7 @@ describe ContributorRequestsController do
         it 'marks the request as declined' do
           decline!
 
-          expect(contributor_request.reload.state).to eql('declined')
+          expect(contributor_request.reload).to be_declined
         end
 
         it 'redirects to the CCLA detail with a notice' do
@@ -325,13 +322,13 @@ describe ContributorRequestsController do
 
       context 'for accepted requests' do
         before do
-          contributor_request.update_attributes!(state: 'accepted')
+          contributor_request.accept
         end
 
         it 'does not mark the request as declined' do
           decline!
 
-          expect(contributor_request.reload.state).to eql('accepted')
+          expect(contributor_request.reload).to be_accepted
         end
 
         it 'redirects to the CCLA detail with a notice' do
@@ -363,13 +360,13 @@ describe ContributorRequestsController do
 
       context 'for declined requests' do
         before do
-          contributor_request.update_attributes!(state: 'declined')
+          contributor_request.decline
         end
 
         it 'keeps the request marked as declined' do
           decline!
 
-          expect(contributor_request.reload.state).to eql('declined')
+          expect(contributor_request.reload).to be_declined
         end
 
         it 'redirects to the CCLA detail with the same notice as the first decline' do
