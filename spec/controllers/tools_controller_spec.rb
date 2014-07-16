@@ -74,6 +74,12 @@ describe ToolsController do
       sign_in(user)
     end
 
+    it 'assigns user' do
+      post :create, tool: { name: 'butter' }
+
+      expect(assigns(:user)).to_not be_nil
+    end
+
     it 'creates a tool' do
       expect do
         post(

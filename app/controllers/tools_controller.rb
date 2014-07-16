@@ -41,12 +41,13 @@ class ToolsController < ApplicationController
   # Create a new +Tool+
   #
   def create
-    tool = current_user.tools.build(tool_params)
+    @tool = current_user.tools.build(tool_params)
+    @user = current_user
 
-    if tool.save
+    if @tool.save
       redirect_to(
-        tools_user_path(tool.owner),
-        notice: t('tool.created', name: tool.name)
+        tools_user_path(@tool.owner),
+        notice: t('tool.created', name: @tool.name)
       )
     else
       render :new
