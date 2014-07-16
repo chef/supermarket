@@ -1,0 +1,19 @@
+<%= provide(:title, "Cookbooks") %>
+<%= provide(:description, "Browse and search Chef cookbooks.") %>
+
+<div class="page nobg">
+  <section>
+    <h1 class="tools_content_heading">
+      Tools &amp; Plugins
+      <small>
+        <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
+      </small>
+    </h1>
+  </section>
+  <article>
+  <% if @tools.present? %>
+    <ul class="listings"><%= render @tools %></ul>
+    <%= paginate @tools %>
+  <% end %>
+  </article>
+</div>

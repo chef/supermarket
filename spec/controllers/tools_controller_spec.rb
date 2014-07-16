@@ -1,6 +1,20 @@
 require 'spec_helper'
 
 describe ToolsController do
+  describe 'GET #index' do
+    it 'responds with a 200' do
+      get :index
+
+      expect(response.status.to_i).to eql(200)
+    end
+
+    it 'assigns tools' do
+      get :index
+
+      expect(assigns(:tools)).to_not be_nil
+    end
+  end
+
   describe 'GET #new' do
     before do
       sign_in(create(:user))

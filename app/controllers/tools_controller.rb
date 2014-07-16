@@ -2,6 +2,15 @@ class ToolsController < ApplicationController
   before_filter :authenticate_user!, except: [:index]
 
   #
+  # GET /tools
+  #
+  # Lists all +Tool+ instances.
+  #
+  def index
+    @tools = Tool.page(params[:page]).per(20)
+  end
+
+  #
   # GET /tools/new
   #
   # Display the form for creating a new +Tool+.
@@ -27,13 +36,6 @@ class ToolsController < ApplicationController
     else
       render :new
     end
-  end
-
-  #
-  # This currently does nothing. It exists to make the form for adding a +Tool+
-  # work. This will probably need to exist in a real way.
-  #
-  def index
   end
 
   private
