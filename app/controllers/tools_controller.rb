@@ -8,6 +8,7 @@ class ToolsController < ApplicationController
   #
   def new
     @tool = current_user.tools.new
+    @user = current_user
   end
 
   #

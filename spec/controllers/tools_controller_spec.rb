@@ -17,6 +17,12 @@ describe ToolsController do
 
       expect(assigns(:tool)).to_not be_nil
     end
+
+    it 'assigns user' do
+      get :new
+
+      expect(assigns(:user)).to_not be_nil
+    end
   end
 
   describe 'POST #create' do
