@@ -150,6 +150,36 @@ if Rails.env.development?
   end
 
   #
+  # Default knife plugins (tools) for use in development.
+  #
+  %w(knife-supermarket knife-ec2 knife-openstack knife-cloud knife-rackspace).each do |name|
+    tool = Tool.where(
+      name: name
+    ).first_or_create(
+      type: 'knife_plugin',
+      description: 'Great knife plugin.',
+      source_url: 'http://example.com',
+      instructions: "gem install #{name}",
+      user: user
+    )
+  end
+
+  #
+  # Default ohai plugins (tools) for use in development.
+  #
+  %w(dell dpkg ipmi ladvd rpm).each do |name|
+    tool = Tool.where(
+      name: name
+    ).first_or_create(
+      type: 'ohai_plugin',
+      description: 'Great ohai plugin.',
+      source_url: 'http://example.com',
+      instructions: "Install the plugin in /etc/chef/ohai_plugins.",
+      user: user
+    )
+  end
+
+  #
   # Default cookbook folower for use in development.
   #
   CookbookFollower.where(
