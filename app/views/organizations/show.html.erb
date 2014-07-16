@@ -7,7 +7,7 @@
 
   <div class="tabs-content">
     <div class="content active">
-      <p>As an admin you may combine an organization with another in the event that a duplicate organization was created in error. Note that all contributors will be transferred to the selected organization and this organization will be deleted. Alternatively you can simply delete this organization.</p>
+      <p>Select an organization that you would like to merge into this organization. All contributors will be transferred to this organization. Admins of the merged organization will be stripped of their admin role. Alternatively, you can delete this organization.</p>
 
       <%= form_for @organization, url: { action: 'combine' }, method: :put do |f| %>
         <div class="row collapse">
