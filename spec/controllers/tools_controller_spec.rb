@@ -80,7 +80,7 @@ describe ToolsController do
           :create,
           tool: {
             name: 'butter',
-            type: 'Ohai Plugin',
+            type: 'ohai_plugin',
             description: 'Great plugin.',
             source_url: 'http://example.com',
             instructions: 'Use with care'
@@ -94,7 +94,7 @@ describe ToolsController do
         :create,
         tool: {
           name: 'butter',
-          type: 'Ohai Plugin',
+          type: 'ohai_plugin',
           description: 'Great plugin.',
           source_url: 'http://example.com',
           instructions: 'Use with care'

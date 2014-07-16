@@ -10,6 +10,7 @@ class Tool < ActiveRecord::Base
   # Validations
   # --------------------
   validates :name, uniqueness: { case_sensitive: false }
+  validates :type, inclusion: { in: ALLOWED_TYPES }
 
   # Callbacks
   # --------------------

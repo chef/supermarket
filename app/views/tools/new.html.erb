@@ -24,12 +24,10 @@
         </div>
 
         <div class="type-field">
-          <%= f.radio_button :type, "knife_plugin", checked: true %>
-          <label for="tool_type_knife_plugin">Knife Plugin</label>
-          <%= f.radio_button :type, "ohai_plugin" %>
-          <label for="tool_type_ohai_plugin">Ohai Plugin</label>
-          <%= f.radio_button :type, "chef_tool" %>
-          <label for="tool_type_chef_tool">Chef Tool</label>
+          <% Tool::ALLOWED_TYPES.each do |type| %>
+            <%= f.radio_button :type, type %>
+            <label for="tool_type_<%= type %>"><%= type.titleize %></label>
+          <% end %>
         </div>
 
         <div class="description-field">
