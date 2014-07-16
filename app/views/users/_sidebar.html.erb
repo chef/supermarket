@@ -1,7 +1,7 @@
 <div class="profile_sidebar sidebar" data-equalizer-watch>
   <%= gravatar_for @user, size: 180 %>
   <h3><%= @user.name %></h3>
-  <h4><%= image_tag "chef-icon.png" %><%= @user.username %></h4>
+  <h4><%= image_tag "chef-icon.png" %> <%= @user.username %></h4>
 
   <% if @user.authorized_to_contribute? %>
     <h4><i class="fa fa-check"></i> Authorized to Contribute</h4>
