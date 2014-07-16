@@ -42,32 +42,46 @@ class ContributorRequest < ActiveRecord::Base
   # Accepts the request, adding the requestor to the requested organization,
   # and updating the status of this request.
   #
-  # @return [Boolean] whether or not acceptance succeeded
+  # @yield [ContributorRequestTransition] the resulting transition
+  # @return [ContributorRequestTransition] the resulting transition
   #
   def accept
-    if pending?
-      transaction do
-        organization.contributors.create!(user: user)
+    transaction do
+      organization.contributors.create!(user: user)
 
-        create_contributor_request_response!(decision: 'accepted')
-      end
-    elsif accepted?
-      true
+      ContributorRequestResponse.create!(
+        contributor_request_id: id,
+        decision: 'accepted'
+      )
     end
-  rescue
-    false
+  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
+    ContributorRequestTransition.accept(self, false).tap do |transition|
+      yield transition if block_given?
+    end
+  else
+    ContributorRequestTransition.accept(self, true).tap do |transition|
+      yield transition if block_given?
+    end
   end
 
   #
   # Declines the request
   #
-  # @return [Boolean] whether or not declining succeeded
+  # @yield [ContributorRequestTransition] the resulting transition
+  # @return [ContributorRequestTransition] the resulting transition
   #
   def decline
-    if pending?
-      create_contributor_request_response!(decision: 'declined')
-    elsif declined?
-      true
+    ContributorRequestResponse.create!(
+      contributor_request_id: id,
+      decision: 'declined'
+    )
+  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
+    ContributorRequestTransition.decline(self, false).tap do |transition|
+      yield transition if block_given?
+    end
+  else
+    ContributorRequestTransition.decline(self, true).tap do |transition|
+      yield transition if block_given?
     end
   end
 end
