@@ -1,4 +1,6 @@
 class Tool < ActiveRecord::Base
+  ALLOWED_TYPES = %w(knife_plugin ohai_plugin chef_tool)
+
   self.inheritance_column = nil
 
   # Associations

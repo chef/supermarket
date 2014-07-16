@@ -1,14 +1,25 @@
-<%= provide(:title, "Cookbooks") %>
-<%= provide(:description, "Browse and search Chef cookbooks.") %>
+<%= provide(:title, 'Tools & Plugins') %>
+<%= provide(:description, 'Browse and search Chef tools and plugins.') %>
 
 <div class="page nobg">
-  <section>
-    <h1 class="tools_content_heading">
+  <section class="cookbook_body">
+    <h1 class="cookbook_content_heading">
       Tools &amp; Plugins
       <small>
         <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom', order: 'created_at'), class: 'rss_feed_link show-for-medium-up' %>
       </small>
     </h1>
+    <div class="order_cookbooks_by">
+      <%= link_to '#', 'data-dropdown' => 'type', class: 'button radius tiny dropdown secondary', rel: 'cookbook_versions' do %>
+        <%= params[:type].present? ? params[:type].titleize : 'All' %>
+      <% end %>
+      <ul id="type" data-dropdown-content class="f-dropdown">
+        <li><%= link_to 'All', tools_path %></li>
+        <% Tool::ALLOWED_TYPES.each do |type| %>
+          <li><%= link_to type.titleize, type: type %></li>
+        <% end %>
+      </ul>
+    </div>
   </section>
   <article>
   <% if @tools.present? %>

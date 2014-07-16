@@ -14,6 +14,16 @@ describe ToolsController do
       expect(assigns(:tools)).to_not be_nil
     end
 
+    it 'only displays tools of a certain type with a type parameter present' do
+      knife_plugin = create(:tool, type: 'knife_plugin')
+      ohai_plugin = create(:tool, type: 'ohai_plugin')
+
+      get :index, type: 'knife_plugin'
+
+      expect(assigns(:tools)).to include(knife_plugin)
+      expect(assigns(:tools)).to_not include(ohai_plugin)
+    end
+
     it 'orders tools alphabetically' do
       ohai = create(:tool, name: 'ohai')
       supermarket = create(:tool, name: 'supermarket')

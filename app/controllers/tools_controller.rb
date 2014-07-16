@@ -13,6 +13,12 @@ class ToolsController < ApplicationController
       @tools = Tool.order(:name)
     end
 
+    if Tool::ALLOWED_TYPES.include?(params[:type])
+      @tools = @tools.where(type: params[:type])
+    end
+
+    @tools = @tools.page(params[:page]).per(20)
+
     respond_to do |format|
       format.html
       format.atom
