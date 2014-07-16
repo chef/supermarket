@@ -1,6 +1,7 @@
 @import "common";
 @import "foundation/components/grid";
 @import "compass/css3/transition";
+@import "compass/css3/border-radius";
 
 // Basic structural elements
 html, body { height: 100%; min-height: 100%; }
@@ -37,6 +38,23 @@ fieldset {
     font-weight: 600;
     padding-bottom: rem-calc(10);
   }
+}
+
+code, pre {
+  @include border-radius(rem-calc(3));
+  background-color: darken($primary_blue, 5%);
+  color: $silver;
+  cursor: text;
+  padding: rem-calc(2 5);
+}
+
+pre {
+  font: {
+    size: rem-calc(16);
+    weight: $normal;
+  }
+  line-height: rem-calc(24);
+  padding: rem-calc(8 20);
 }
 
 .container {

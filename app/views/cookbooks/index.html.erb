@@ -16,7 +16,7 @@
       <%= link_to_sorted_cookbooks 'Most Followed', 'most_followed' %>
     </div>
 
-    <article class="cookbook_content cookbook_content_category_listing">
+    <article>
       <% if @cookbooks.present? %>
         <ul class="cookbook_listing"><%= render @cookbooks %></ul>
         <%= paginate @cookbooks %>

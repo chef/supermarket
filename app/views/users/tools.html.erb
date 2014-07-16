@@ -19,7 +19,7 @@
     <div class="tabs-content">
       <div class="content active">
         <% if @tools.any? %>
-          <ul class="tools_listing">
+          <ul class="listings">
             <%= render partial: 'tools/tool', collection: @tools%>
             <%= paginate @tools %>
           </ul>
