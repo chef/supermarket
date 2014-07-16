@@ -49,24 +49,26 @@ if Rails.env.development?
   # Default account for use in development.
   #
   Account.where(
+    username: 'johndoe',
+    provider: 'github'
+  ).first_or_create!(
     user: user,
     uid: '123',
-    username: 'johndoe',
-    provider: 'github',
     oauth_token: '123',
     oauth_secret: '123',
     oauth_expires: Date.parse('Tue, 20 Feb 2024')
-  ).first_or_create!
+  )
 
   Account.where(
+    username: 'johndoe',
+    provider: 'chef_oauth2'
+  ).first_or_create!(
     user: user,
     uid: '456',
-    username: 'johndoe',
-    provider: 'chef_oauth2',
     oauth_token: '123',
     oauth_secret: '123',
     oauth_expires: Date.parse('Tue, 20 Feb 2024')
-  ).first_or_create!
+  )
 
   #
   # Default ICLA Signature for use in development.
