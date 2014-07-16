@@ -26,17 +26,17 @@
       margin-right: 5px;
     }
 
+    .fa {
+      color: $secondary_gray;
+      padding-right: rem-calc(5);
+    }
+
     ul {
       border-top: rem-calc(2) solid lighten($secondary_gray, 30%);
       list-style-type: none;
       text-align: left;
       margin: rem-calc(20 0 0 0);
       padding-top: rem-calc(20);
-
-      .fa {
-        color: $secondary_gray;
-        padding-right: rem-calc(5);
-      }
 
       .has-tip, a {
         border-bottom: none;

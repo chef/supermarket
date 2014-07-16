@@ -91,6 +91,6 @@ class Curry::ImportPullRequestCommitAuthors
   def authorized_to_contribute?(github_login)
     user = User.find_by_github_login(github_login)
 
-    user.signed_icla? || user.contributor?
+    user.authorized_to_contribute?
   end
 end

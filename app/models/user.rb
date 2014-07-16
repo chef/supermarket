@@ -130,6 +130,14 @@ class User < ActiveRecord::Base
   end
 
   #
+  # A user is authorized to contribute if they have signed the ICLA or are a
+  # contributor on behalf of one or more organizations.
+  #
+  def authorized_to_contribute?
+    signed_icla? || contributor?
+  end
+
+  #
   # The name of the current user.
   #
   # @example
