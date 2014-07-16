@@ -246,65 +246,6 @@
   }
 }
 
-// Cookbooks body column
-.cookbook_content {
-  @include grid-row();
-}
-
-.cookbook_content_heading {
-  @include grid-column($columns: 4, $collapse: true);
-  border: 0;
-  color: $silver;
-  margin: rem-calc(0 0 40 0);
-  padding: 0;
-
-  small {
-    margin-left: rem-calc(10);
-  }
-
-  .label {
-    color: lighten($primary_gray, 20%);
-    font: $bold rem-calc(12) $accent_font;
-    margin-left: rem-calc(10);
-    padding: rem-calc(4 10);
-
-    &.secondary { background-color: lighten($secondary_gray, 35%); }
-  }
-}
-
-@media #{$mobile-only} {
-  .cookbook_content_heading {
-    @include grid-column($columns: 12);
-    text-align: center;
-    margin-bottom: 0;
-  }
-}
-
-.order_cookbooks_by {
-  @include grid-column($columns: 8, $collapse: true);
-  text-align: right;
-
-  @media #{$mobile-only} {
-    span {
-      display: none;
-    }
-  }
-
-  @media #{$small-only} {
-    span {
-      display: none;
-    }
-  }
-}
-
-@media #{$mobile-only} {
-  .order_cookbooks_by {
-    @include grid-column($columns: 12);
-    text-align: center;
-    margin: rem-calc(20 0 20 0);
-  }
-}
-
 .versions_count {
   color: darken($primary_gray, 10%);
   font: {

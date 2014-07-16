@@ -5,16 +5,14 @@
   <%= render 'sidebar' %>
 
   <div class="main" data-equalizer-watch>
-    <div class="heading">
-      <h1><%= posessivize(@user.name) %> Tools & Plugins</h1>
+    <%= render 'heading', user: @user, title: "#{posessivize(@user.name)} Tools" %>
 
-      <dl class="tabs radius">
-        <dd class="<%= 'active' if current_page?(tools_user_path(@user)) %>"><%= link_to 'Maintains', tools_user_path(@user), rel: 'view_tools' %></dd>
-        <% if @user == current_user %>
-          <dd class="<%= 'active' if current_page?(new_tool_path) %>"><%= link_to 'Add Tool', new_tool_path, rel: 'add_tool' %></dd>
-        <% end %>
-      </dl>
-    </div>
+    <dl class="tabs radius">
+      <dd class="<%= 'active' if current_page?(tools_user_path(@user)) %>"><%= link_to 'Maintains', tools_user_path(@user), rel: 'view_tools' %></dd>
+      <% if @user == current_user %>
+        <dd class="<%= 'active' if current_page?(new_tool_path) %>"><%= link_to 'Add Tool', new_tool_path, rel: 'add_tool' %></dd>
+      <% end %>
+    </dl>
 
     <div class="tabs-content">
       <div class="content active">
