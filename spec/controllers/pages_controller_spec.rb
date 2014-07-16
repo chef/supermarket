@@ -50,6 +50,12 @@ describe PagesController do
 
         expect(assigns[:collaborated_cookbooks]).to_not be_nil
       end
+
+      it 'assigns tools' do
+        get :dashboard
+
+        expect(assigns[:tools]).to_not be_nil
+      end
     end
 
     context 'user is not signed in' do

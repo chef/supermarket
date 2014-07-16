@@ -57,6 +57,18 @@
       </p>
     <% end %>
 
+    <% if ENV['TOOLS_ENABLED'] == 'true' %>
+      <h3>Tools You Maintain</h3>
+      <% if @tools.any? %>
+        <ul class="tools_listing">
+          <%= render partial: 'tools/simple_tool', collection: @tools, as: 'tool' %>
+        </ul>
+        <%= link_to 'View All Tools You Maintain', tools_user_path(current_user), class: 'button radius small expand' %>
+      <% else %>
+        <p>It looks like you have not added any Tools to Supermarket. <%= link_to "Add your Tools", new_tool_path %> if you maintain any knife plugins, ohai plugins or chef tools.</p>
+      <% end %>
+    <% end %>
+
     <h4>Resources</h4>
     <ul class="pretty">
       <li><%= link_to 'Join IRC', 'irc://irc.freenode.net/chef' %></li>
