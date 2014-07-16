@@ -8,9 +8,7 @@ describe Tool do
   context 'validations' do
     it { should validate_presence_of(:name) }
     it { should ensure_inclusion_of(:type).in_array(Tool::ALLOWED_TYPES) }
-  end
 
-  context 'validations' do
     it 'validates the uniqueness of name' do
       create(:tool)
       expect(subject).to validate_uniqueness_of(:name).case_insensitive
