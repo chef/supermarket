@@ -45,6 +45,20 @@ describe IclaSignature do
       it 'should order the signatures ascending by signed at date' do
         expect(IclaSignature.by_user.first).to eql(user_one_signature)
       end
+
+      it 'eager loads the associated users and their associated accounts' do
+        signatures = IclaSignature.by_user.to_a
+        signature = signatures.first
+
+        user = User.find(signature.user_id)
+        account = user.accounts.first
+
+        user.destroy
+        account.destroy
+
+        expect(signatures.map(&:user)).to include(user)
+        expect(signatures.map(&:user).flat_map(&:accounts)).to include(account)
+      end
     end
 
     context 'when a user has re-signed an ICLA' do

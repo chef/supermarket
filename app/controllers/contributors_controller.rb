@@ -42,7 +42,7 @@ class ContributorsController < ApplicationController
   # Display all of the users who are authorized to contribute
   #
   def index
-    @all_signers = User.authorized_contributors
+    @contributor_list = ContributorList.new(User.authorized_contributors)
   end
 
   private

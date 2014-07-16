@@ -210,19 +210,26 @@ class User < ActiveRecord::Base
   #
   # Returns a unique +ActiveRecord::Relation+ of all users who have signed
   # either the ICLA or CCLA or are a contributor on behalf of one or
-  # more +Organization+s.
+  # more +Organization+s. Sorts the users by their Chef account username.
+  #
+  # NOTE: this does not eager load the accounts for users. Do not make any calls
+  # that use the user's accounts, like
+  # +User.authorized_contributors.first.username+
   #
   # @return [ActiveRecord::Relation] the users who have signed the cla
   #
   def self.authorized_contributors
     sql = %(
       SELECT users.* FROM users
+      INNER JOIN accounts ON accounts.user_id = users.id
       LEFT JOIN icla_signatures ON icla_signatures.user_id = users.id
       LEFT JOIN ccla_signatures ON ccla_signatures.user_id = users.id
       LEFT JOIN contributors ON contributors.user_id = users.id
-      WHERE icla_signatures.id IS NOT NULL
-        OR ccla_signatures.id IS NOT NULL
-        OR contributors.id IS NOT NULL
+      WHERE accounts.provider = 'chef_oauth2'
+      AND (icla_signatures.id IS NOT NULL
+          OR ccla_signatures.id IS NOT NULL
+          OR contributors.id IS NOT NULL)
+      ORDER BY accounts.username
     )
 
     User.find_by_sql(sql).uniq

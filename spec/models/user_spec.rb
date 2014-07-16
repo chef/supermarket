@@ -95,12 +95,27 @@ describe User do
       create(:contributor, user: tidus)
     end
 
-    it 'returns users with a similar first name' do
+    it 'returns users who have signed a CCLA, ICLA or are a contributor to a CCLA organization' do
       expect(User.authorized_contributors).to include(jimmy)
       expect(User.authorized_contributors).to include(jim)
       expect(User.authorized_contributors).to include(tidus)
       expect(User.authorized_contributors).to_not include(yojimbo)
       expect(User.authorized_contributors.count(jimmy)).to eql(1)
+    end
+
+    it 'returns a unique set of users' do
+      ids = User.authorized_contributors.map(&:id)
+
+      expect(ids).to eql(ids.uniq)
+    end
+
+    it 'sorts the users by their chef account username alphabetically ascending' do
+      sorted_users_array = [jimmy, jim, tidus].sort_by { |u| u.username }
+      authorized_contributors = User.authorized_contributors.select do |user|
+        sorted_users_array.include?(user)
+      end
+
+      expect(authorized_contributors).to eql(sorted_users_array)
     end
   end
 
