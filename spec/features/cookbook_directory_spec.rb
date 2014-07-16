@@ -13,19 +13,19 @@ describe 'cookbook directory' do
 
   it 'lists the three most recently updated cookbooks' do
     within '.recently-updated' do
-      expect(all('.simple_cookbook').size).to eql(5)
+      expect(all('.simple_listing li').size).to eql(5)
     end
   end
 
   it 'lists the three most downloaded cookbooks' do
     within '.most-downloaded' do
-      expect(all('.simple_cookbook').size).to eql(5)
+      expect(all('.simple_listing li').size).to eql(5)
     end
   end
 
   it 'lists the three most followed cookbooks' do
     within '.most-followed' do
-      expect(all('.simple_cookbook').size).to eql(5)
+      expect(all('.simple_listing li').size).to eql(5)
     end
   end
 end

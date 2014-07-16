@@ -11,7 +11,7 @@
     <li class="cookbooks_column first recently-updated">
       <div class="cookbooks_column_content">
         <h2 class="title">Recently Updated</h2>
-        <ul class="cookbook_listing">
+        <ul class="simple_listing">
           <% @recently_updated_cookbooks.each do |cookbook| %>
             <%= render "simple_cookbook", cookbook: cookbook %>
           <% end %>
@@ -23,7 +23,7 @@
     <li class="cookbooks_column most-downloaded">
       <div class="cookbooks_column_content">
         <h2 class="title">Most Downloaded</h2>
-        <ul class="cookbook_listing">
+        <ul class="simple_listing">
           <% @most_downloaded_cookbooks.each do |cookbook| %>
             <%= render "simple_cookbook", cookbook: cookbook %>
           <% end %>
@@ -35,7 +35,7 @@
     <li class="cookbooks_column last most-followed">
       <div class="cookbooks_column_content">
         <h2 class="title">Most Followed</h2>
-        <ul class="cookbook_listing">
+        <ul class="simple_listing">
           <% @most_followed_cookbooks.each do |cookbook| %>
             <%= render "simple_cookbook", cookbook: cookbook %>
           <% end %>

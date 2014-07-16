@@ -18,7 +18,7 @@
   </div>
 
   <% if @cookbooks.present? %>
-    <ul class="listings"><%= render @cookbooks %></ul>
+    <ul class="listing"><%= render @cookbooks %></ul>
     <%= paginate @cookbooks %>
   <% else %>
     <div class="no-results">

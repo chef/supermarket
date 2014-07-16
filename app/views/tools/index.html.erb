@@ -27,7 +27,7 @@
   </div>
 
   <% if @tools.present? %>
-    <ul class="listings"><%= render @tools %></ul>
+    <ul class="listing"><%= render @tools %></ul>
     <%= paginate @tools %>
   <% else %>
     <div class="no-results">

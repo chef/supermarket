@@ -2,169 +2,170 @@
 @import "foundation/components/grid";
 @import "compass/css3/inline-block";
 
-.listings {
+.listing {
   list-style-type: none;
   margin: rem-calc(0 0 20 0);
-}
 
-.listing {
-  margin-bottom: rem-calc(20);
+  li {
+    margin-bottom: rem-calc(20);
 
-  .header {
-    @include grid-row();
-    background-color: white;
-    border-top: 1px solid $cookbook_border;
-    border-right: 1px solid $cookbook_border;
-    border-left: 1px solid $cookbook_border;
-  }
+    .header {
+      @include grid-row();
+      background-color: white;
+      border-top: 1px solid $cookbook_border;
+      border-right: 1px solid $cookbook_border;
+      border-left: 1px solid $cookbook_border;
+    }
 
-  .header-content {
-    @include grid-column($columns: 12, $collapse: true);
-    background-color: white;
-    min-height: rem-calc(62);
-    padding: rem-calc(15 30);
+    .header-content {
+      @include grid-column($columns: 12, $collapse: true);
+      background-color: white;
+      min-height: rem-calc(62);
+      padding: rem-calc(15 30);
 
-    .owner {
-      float: right;
+      .owner {
+        float: right;
 
-      h5 {
-        display: inline;
-        margin-bottom: 0;
+        h5 {
+          display: inline;
+          margin-bottom: 0;
+        }
+
+        .gravatar {
+          @include box-sizing(content-box);
+          width: rem-calc(24);
+        }
+
+        @media #{$small-down} {
+          .gravatar {
+            width: rem-calc(20);
+          }
+        }
       }
 
-      .gravatar {
-        @include box-sizing(content-box);
-        width: rem-calc(24);
+      .title {
+        @include dark-links;
+        font-size: rem-calc(16);
+        line-height: rem-calc(16);
+        color: $primary_blue;
+        float: left;
+        margin: rem-calc(10 0 0);
+
+        .fa {
+          @include inline-block;
+          color: $silver;
+          font-size: rem-calc(16);
+          margin: rem-calc(-2 0 0 16);
+        }
+
+        small {
+          @include inline-block;
+          color: $secondary_gray;
+          font: {
+            size: rem-calc(12);
+            weight: $normal;
+          }
+        }
+      }
+
+      .meta {
+        color: $concrete;
+        font: $normal rem-calc(12) $accent_font;
+        line-height: rem-calc(16);
+        float: left;
+        margin: rem-calc(10 0 0);
+        text-align: right;
+
+        .fa {
+          @include inline-block;
+          color: $silver;
+          font-size: rem-calc(16);
+          margin: rem-calc(-2 0 0 16);
+        }
+
+        small {
+          color: lighten($silver, 5%);
+          font: {
+            size: rem-calc(10);
+            weight: $normal;
+          }
+        }
       }
 
       @media #{$small-down} {
-        .gravatar {
-          width: rem-calc(20);
+        .meta {
+          display: none;
         }
       }
     }
 
-    .title {
-      @include dark-links;
-      font-size: rem-calc(16);
-      line-height: rem-calc(16);
-      color: $primary_blue;
-      float: left;
-      margin: rem-calc(10 0 0);
-
-      .fa {
-        @include inline-block;
-        color: $silver;
-        font-size: rem-calc(16);
-        margin: rem-calc(-2 0 0 16);
-      }
-
-      small {
-        @include inline-block;
-        color: $secondary_gray;
-        font: {
-          size: rem-calc(12);
-          weight: $normal;
-        }
+    @media #{$mobile-only} {
+      .header-content {
+        padding: rem-calc(15 10 10 20);
       }
     }
 
-    .meta {
-      color: $concrete;
-      font: $normal rem-calc(12) $accent_font;
-      line-height: rem-calc(16);
-      float: left;
-      margin: rem-calc(10 0 0);
-      text-align: right;
+    @media #{$small-only} {
+      .header-content {
+        padding: rem-calc(15 10 10 20);
+      }
+    }
 
-      .fa {
-        @include inline-block;
-        color: $silver;
+    .body {
+      @include grid-row();
+      background-color: $cookbook_partial_sidebar;
+      border-top: 1px solid $cookbook_border;
+      border-right: 1px solid $cookbook_border;
+      border-left: 1px solid $cookbook_border;
+    }
+
+    .body-content {
+      @include grid-column($columns: 12, $collapse: true);
+      background-color: white;
+      border-bottom: 1px solid $cookbook_border;
+      padding: rem-calc(20 30 30);
+
+      p {
+        color: $concrete;
         font-size: rem-calc(16);
-        margin: rem-calc(-2 0 0 16);
+        margin: rem-calc(0 0 20 0);
       }
 
-      small {
-        color: lighten($silver, 5%);
+      code.install {
+        display: block;
+        font-weight: normal;
+        padding: rem-calc(8 16 8 16);
+      }
+    }
+
+    .bottom {
+      @include grid-row();
+      background-color: $cookbook_partial_sidebar_footer;
+      border-right: 1px solid $cookbook_border;
+      border-bottom: 1px solid $cookbook_border;
+      border-left: 1px solid $cookbook_border;
+    }
+
+    .bottom-content {
+      background-color: $cookbook_footer;
+      @include grid-column($columns: 12, $collapse: true);
+      min-height: rem-calc(62);
+      padding: rem-calc(15 30);
+
+      h5 {
+        color: $concrete;
         font: {
           size: rem-calc(10);
           weight: $normal;
         }
+        text-transform: uppercase;
+        margin: rem-calc(0 0 4);
       }
-    }
 
-    @media #{$small-down} {
-      .meta {
-        display: none;
+      .cookbook_platforms_content {
+        float: left;
       }
-    }
-  }
-
-  @media #{$mobile-only} {
-    .header-content {
-      padding: rem-calc(15 10 10 20);
-    }
-  }
-
-  @media #{$small-only} {
-    .header-content {
-      padding: rem-calc(15 10 10 20);
-    }
-  }
-
-  .body {
-    @include grid-row();
-    background-color: $cookbook_partial_sidebar;
-    border-top: 1px solid $cookbook_border;
-    border-right: 1px solid $cookbook_border;
-    border-left: 1px solid $cookbook_border;
-  }
-
-  .body-content {
-    @include grid-column($columns: 12, $collapse: true);
-    background-color: white;
-    border-bottom: 1px solid $cookbook_border;
-    padding: rem-calc(20 30 30);
-
-    p {
-      color: $concrete;
-      font-size: rem-calc(16);
-      margin: rem-calc(0 0 20 0);
-    }
-
-    code.install {
-      display: block;
-      font-weight: normal;
-      padding: rem-calc(8 16 8 16);
-    }
-  }
-
-  .bottom {
-    @include grid-row();
-    background-color: $cookbook_partial_sidebar_footer;
-    border-right: 1px solid $cookbook_border;
-    border-bottom: 1px solid $cookbook_border;
-    border-left: 1px solid $cookbook_border;
-  }
-
-  .bottom-content {
-    background-color: $cookbook_footer;
-    @include grid-column($columns: 12, $collapse: true);
-    min-height: rem-calc(62);
-    padding: rem-calc(15 30);
-
-    h5 {
-      color: $concrete;
-      font: {
-        size: rem-calc(10);
-        weight: $normal;
-      }
-      text-transform: uppercase;
-      margin: rem-calc(0 0 4);
-    }
-
-    .cookbook_platforms_content {
-      float: left;
     }
   }
 }
+

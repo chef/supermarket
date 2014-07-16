@@ -323,7 +323,7 @@ pre {
     }
   }
 
-  @media #{$small-only} {
+  @media #{$small-down} {
     .buttons {
       @include grid-column($columns: 12);
       text-align: center;

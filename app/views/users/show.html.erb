@@ -16,7 +16,7 @@
     <div class="tabs-content">
       <div class="content active">
         <% if @cookbooks.any? %>
-          <ul class="cookbook_listing">
+          <ul class="listing">
             <%= render partial: 'cookbooks/cookbook', collection: @cookbooks %>
             <%= paginate @cookbooks %>
           </ul>

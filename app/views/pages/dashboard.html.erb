@@ -31,7 +31,7 @@
   <div class="sidebar" data-equalizer-watch>
     <h3>Your Cookbooks</h3>
     <% if @cookbooks.any? %>
-      <ul class="cookbook_listing hide_owner">
+      <ul class="simple_listing hide_owner">
         <%= render partial: 'cookbooks/simple_cookbook', collection: @cookbooks, as: 'cookbook' %>
       </ul>
       <%= link_to 'View All of Your Cookbooks', current_user, class: 'button radius small expand' %>
@@ -47,7 +47,7 @@
 
     <h3>Cookbooks You Collaborate On</h3>
     <% if @collaborated_cookbooks.any? %>
-      <ul class="cookbook_listing">
+      <ul class="simple_listing">
         <%= render partial: 'cookbooks/simple_cookbook', collection: @collaborated_cookbooks, as: 'cookbook' %>
       </ul>
       <%= link_to 'View All Collaborated Cookbooks', user_path(current_user, tab: 'collaborates'), class: 'button radius small expand' %>
@@ -60,7 +60,7 @@
     <% if ENV['TOOLS_ENABLED'] == 'true' %>
       <h3>Tools You Maintain</h3>
       <% if @tools.any? %>
-        <ul class="tools_listing">
+        <ul class="simple_listing">
           <%= render partial: 'tools/simple_tool', collection: @tools, as: 'tool' %>
         </ul>
         <%= link_to 'View All Tools You Maintain', tools_user_path(current_user), class: 'button radius small expand' %>

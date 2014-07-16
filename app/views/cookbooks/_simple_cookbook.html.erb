@@ -1,6 +1,6 @@
-<li class="simple_cookbook">
+<li>
   <div class="owner"><%= link_to gravatar_for(cookbook.owner), cookbook.owner %></div>
-  <div class="name_version">
+  <div class="name">
     <%= link_to cookbook.name, cookbook, rel: 'cookbook' %>
     <small><%= cookbook.latest_cookbook_version.version %></small>
   </div>
