@@ -59,6 +59,16 @@ class OrganizationAuthorizer < Authorizer::Base
     manage_organization?
   end
 
+  #
+  # Only users who don't already belong to the organization can join
+  #
+  # @return [Boolean]
+  #
+  def request_to_join?
+    record.contributors.where(user_id: user.id).empty? &&
+      record.contributor_requests.where(user_id: user.id).empty?
+  end
+
   private
 
   def organization_or_supermarket_admin?

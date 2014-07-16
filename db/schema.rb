@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715221702) do
+ActiveRecord::Schema.define(version: 20140716123948) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -72,6 +72,25 @@ ActiveRecord::Schema.define(version: 20140715221702) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "contributor_request_responses", force: true do |t|
+    t.integer  "contributor_request_id", null: false
+    t.string   "decision",               null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contributor_request_responses", ["contributor_request_id"], name: "index_contributor_request_responses_on_contributor_request_id", unique: true, using: :btree
+
+  create_table "contributor_requests", force: true do |t|
+    t.integer  "organization_id",   null: false
+    t.integer  "user_id",           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "ccla_signature_id", null: false
+  end
+
+  add_index "contributor_requests", ["organization_id", "user_id"], name: "index_contributor_requests_on_organization_id_and_user_id", unique: true, using: :btree
 
   create_table "contributors", force: true do |t|
     t.integer  "user_id"

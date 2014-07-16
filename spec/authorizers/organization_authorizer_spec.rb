@@ -15,6 +15,7 @@ describe OrganizationAuthorizer do
     it { should permit_authorization(:show) }
     it { should permit_authorization(:destroy) }
     it { should permit_authorization(:combine) }
+    it { should permit_authorization(:request_to_join) }
   end
 
   context 'as an organization admin' do
@@ -33,6 +34,7 @@ describe OrganizationAuthorizer do
     it { should_not permit_authorization(:show) }
     it { should_not permit_authorization(:destroy) }
     it { should_not permit_authorization(:combine) }
+    it { should_not permit_authorization(:request_to_join) }
   end
 
   context 'as an organization contributor' do
@@ -51,6 +53,7 @@ describe OrganizationAuthorizer do
     it { should_not permit_authorization(:show) }
     it { should_not permit_authorization(:destroy) }
     it { should_not permit_authorization(:combine) }
+    it { should_not permit_authorization(:request_to_join) }
   end
 
   context 'as a totally random person' do
@@ -65,5 +68,18 @@ describe OrganizationAuthorizer do
     it { should_not permit_authorization(:show) }
     it { should_not permit_authorization(:destroy) }
     it { should_not permit_authorization(:combine) }
+    it { should permit_authorization(:request_to_join) }
+  end
+
+  context 'as someone who already requested to join' do
+    let(:user) { create(:user) }
+
+    before do
+      create(:contributor_request, user: user, organization: record)
+    end
+
+    subject { described_class.new(user, record) }
+
+    it { should_not permit_authorization(:request_to_join) }
   end
 end
