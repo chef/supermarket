@@ -82,7 +82,7 @@ Supermarket::Application.routes.draw do
   end
 
   if ENV['TOOLS_ENABLED'] == 'true'
-    resources :tools, only: [:new, :create, :index]
+    resources :tools, only: [:index, :show, :new, :create]
   end
 
   resource :profile, controller: 'profile', only: [:update, :edit] do

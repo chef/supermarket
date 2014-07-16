@@ -7,7 +7,16 @@ class ToolsController < ApplicationController
   # Lists all +Tool+ instances.
   #
   def index
-    @tools = Tool.page(params[:page]).per(20)
+    if params[:order] == 'created_at'
+      @tools = Tool.order(:created_at)
+    else
+      @tools = Tool.order(:name)
+    end
+
+    respond_to do |format|
+      format.html
+      format.atom
+    end
   end
 
   #

@@ -13,6 +13,24 @@ describe ToolsController do
 
       expect(assigns(:tools)).to_not be_nil
     end
+
+    it 'orders tools alphabetically' do
+      ohai = create(:tool, name: 'ohai')
+      supermarket = create(:tool, name: 'supermarket')
+
+      get :index
+
+      expect(assigns[:tools]).to match_array([ohai, supermarket])
+    end
+
+    it 'orders tools based on created at date' do
+      supermarket = create(:tool, created_at: 1.day.ago)
+      ohai = create(:tool, created_at: 10.days.ago)
+
+      get :index, order: 'created_at'
+
+      expect(assigns[:tools]).to match_array([supermarket, ohai])
+    end
   end
 
   describe 'GET #new' do

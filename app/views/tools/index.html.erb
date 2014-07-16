@@ -6,7 +6,7 @@
     <h1 class="tools_content_heading">
       Tools &amp; Plugins
       <small>
-        <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
+        <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom', order: 'created_at'), class: 'rss_feed_link show-for-medium-up' %>
       </small>
     </h1>
   </section>
