@@ -8,7 +8,7 @@ class Curry::RepositoriesController < ApplicationController
   # Displays the Curry::Repositories index
   #
   def index
-    @repositories = Curry::Repository.all
+    @repositories = Curry::Repository.all.sort_by { |r| r.full_name }
     @repository = Curry::Repository.new
   end
 
@@ -28,7 +28,7 @@ class Curry::RepositoriesController < ApplicationController
                   notice: t('curry.repositories.subscribe.success')
     else
       @repository = subscriber.repository
-      @repositories = Curry::Repository.all
+      @repositories = Curry::Repository.all.sort_by { |r| r.full_name }
 
       flash.now[:alert] = t('curry.repositories.subscribe.failure')
 
