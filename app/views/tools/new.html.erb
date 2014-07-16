@@ -1,37 +1,53 @@
 <%= provide(:title, "Add new Tool") %>
 
-<div class="page withspace">
-  <h1>Add a New Tool</h1>
+<div class="page profile" data-equalizer>
+  <%= render 'users/sidebar' %>
 
-  <%= form_for(@tool, data: { abide: true }) do |f| %>
-    <div class="name-field">
-      <%= f.text_field :name, placeholder: 'Name *', title: 'Name', required: '' %>
-      <small class="error">Name is required.</small>
+  <div class="main" data-equalizer-watch>
+    <div class="heading">
+      <h1><%= posessivize(@user.name) %> Tools & Plugins</h1>
+
+      <dl class="tabs radius">
+        <dd class="<%= 'active' if current_page?(tools_user_path(@user)) %>"><%= link_to 'Maintains', tools_user_path(@user), rel: 'view_tools' %></dd>
+        <% if @user == current_user %>
+          <dd class="<%= 'active' if current_page?(new_tool_path) %>"><%= link_to 'Add Tool', new_tool_path, rel: 'add_tool' %></dd>
+        <% end %>
+      </dl>
     </div>
 
-    <div class="type-field">
-      <%= f.radio_button :type, "knife_plugin", checked: true %>
-      <label for="tool_type_knife_plugin">Knife Plugin</label>
-      <%= f.radio_button :type, "ohai_plugin" %>
-      <label for="tool_type_ohai_plugin">Ohai Plugin</label>
-      <%= f.radio_button :type, "chef_tool" %>
-      <label for="tool_type_chef_tool">Chef Tool</label>
-    </div>
+    <div class="tabs-content">
+      <div class="content active">
+      <%= form_for(@tool, data: { abide: true }) do |f| %>
+        <div class="name-field">
+          <%= f.text_field :name, placeholder: 'Name *', title: 'Name', required: '' %>
+          <small class="error">Name is required.</small>
+        </div>
 
-    <div class="description-field">
-      <%= f.text_area :description, placeholder: 'Description', title: 'Description' %>
-    </div>
+        <div class="type-field">
+          <%= f.radio_button :type, "knife_plugin", checked: true %>
+          <label for="tool_type_knife_plugin">Knife Plugin</label>
+          <%= f.radio_button :type, "ohai_plugin" %>
+          <label for="tool_type_ohai_plugin">Ohai Plugin</label>
+          <%= f.radio_button :type, "chef_tool" %>
+          <label for="tool_type_chef_tool">Chef Tool</label>
+        </div>
 
-    <div class="sourl_url-field">
-      <%= f.text_field :source_url, placeholder: 'Source URL', title: 'Source URL' %>
-    </div>
+        <div class="description-field">
+          <%= f.text_area :description, placeholder: 'Description', title: 'Description', rows: 4 %>
+        </div>
 
-    <div class="instructions-field">
-      <%= f.text_area :instructions, placeholder: 'Install & Usage Instructions', title: 'Instructions' %>
-    </div>
+        <div class="sourl_url-field">
+          <%= f.text_field :source_url, placeholder: 'Source URL', title: 'Source URL' %>
+        </div>
 
-    <section>
-      <%= f.submit 'Add Tool', class: 'radius button expand' %>
-    </section>
-  <% end %>
+        <div class="instructions-field">
+          <%= f.text_area :instructions, placeholder: 'Install & Usage Instructions', title: 'Instructions', rows: 6 %>
+        </div>
+
+        <section>
+          <%= f.submit 'Add Tool', class: 'radius button expand' %>
+        </section>
+      <% end %>
+    </div>
+  </div>
 </div>
