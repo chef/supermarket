@@ -353,8 +353,6 @@ describe Cookbook do
 
       scope = Cookbook.with_name(%w(Cookbook MyBook))
 
-      bad_scope = Cookbook.where(name: %w(cookbook mybook)).count
-
       expect(scope).to include(cookbook)
       expect(scope).to include(mybook)
     end
