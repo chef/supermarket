@@ -36,6 +36,18 @@ describe CookbookVersion do
       expect(cookbook_version).to be_valid
       expect(cookbook_version.errors[:version]).to be_empty
     end
+
+    it 'includes a descriptive error message when content type validation fails' do
+      cookbook = create(:cookbook)
+      cookbook_version = build(
+        :cookbook_version,
+        cookbook: cookbook,
+        tarball: File.open('spec/support/cookbook_fixtures/not-a-tarball.txt')
+      )
+
+      expect(cookbook_version).to_not be_valid
+      expect(cookbook_version.errors[:tarball].first).to eql('Tarball content type can not be text/plain.')
+    end
   end
 
   context 'attachments' do
