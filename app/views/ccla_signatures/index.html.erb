@@ -19,10 +19,7 @@
               <tr class="company">
                 <td><%= ccla_signature.company %></td>
                 <td><%= ccla_signature.signed_at.to_date.to_s(:long) %></td>
-                <td width="25%"><%= link_to "View Contributors", contributors_ccla_signature_path(ccla_signature), class: "button radius tiny", rel: "company-contributors" %></td>
-                <td width="25%">
-                  <%= link_to "Join CCLA", ccla_signature_contributor_requests_path(ccla_signature), class: "button radius tiny", rel: "contributor-request", method: :post %>
-                </td>
+                <td colspan="2" width="25%"><%= link_to "View Contributors", contributors_ccla_signature_path(ccla_signature), class: "button radius tiny", rel: "company-contributors" %></td>
               </tr>
             <% end %>
           </tbody>
