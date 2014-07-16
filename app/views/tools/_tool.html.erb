@@ -7,10 +7,10 @@
       <span class="meta">
         <i class="fa fa-wrench"></i> <%= tool.type.titleize %>
       </span>
-      <div class="user">
-        <%= link_to tool.user do %>
-          <%= gravatar_for tool.user, size: 128 %>
-          <h5><%= tool.user.username %></h5>
+      <div class="owner">
+        <%= link_to tool.owner do %>
+          <%= gravatar_for tool.owner, size: 128 %>
+          <h5><%= tool.maintainer %></h5>
         <% end %>
       </div>
     </div>

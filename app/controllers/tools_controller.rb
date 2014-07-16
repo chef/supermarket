@@ -30,7 +30,7 @@ class ToolsController < ApplicationController
 
     if tool.save
       redirect_to(
-        tools_user_path(tool.user),
+        tools_user_path(tool.owner),
         notice: t('tool.created', name: tool.name)
       )
     else
@@ -49,8 +49,7 @@ class ToolsController < ApplicationController
       :type,
       :description,
       :source_url,
-      :instructions,
-      :user_id
+      :instructions
     )
   end
 end

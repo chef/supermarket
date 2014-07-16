@@ -9,10 +9,10 @@
       <span class="meta">
         <i class="fa fa-clock-o"></i> Updated <%= cookbook.updated_at.to_s(:longish) %><br />
       </span>
-      <div class="user">
+      <div class="owner">
         <%= link_to cookbook.owner do %>
           <%= gravatar_for cookbook.owner, size: 128 %>
-          <h5><%= cookbook.owner.username %></h5>
+          <h5><%= cookbook.maintainer %></h5>
         <% end %>
       </div>
     </div>

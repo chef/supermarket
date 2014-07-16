@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :tool do
-    association :user
+    association :owner, factory: :user
     name 'butter'
     type 'ohai_plugin'
     description 'Great plugin for ohai.'

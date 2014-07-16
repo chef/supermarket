@@ -33,7 +33,7 @@ describe UsersController do
     end
 
     it "assigns a user's tools" do
-      create(:tool, user: user)
+      create(:tool, owner: user)
 
       get :tools, id: user.username
 

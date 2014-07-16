@@ -3,7 +3,7 @@ class Tool < ActiveRecord::Base
 
   # Associations
   # --------------------
-  belongs_to :user
+  belongs_to :owner, class_name: 'User', foreign_key: :user_id
 
   # Validations
   # --------------------
@@ -32,6 +32,15 @@ class Tool < ActiveRecord::Base
 
     where(lowercase_name: lowercase_names)
   }
+
+  #
+  # The username of this tools's owner
+  #
+  # @return [String]
+  #
+  def maintainer
+    owner.username
+  end
 
   private
 
