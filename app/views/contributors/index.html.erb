@@ -14,12 +14,12 @@
             </tr>
           </thead>
           <tbody>
-            <% @all_signers.each do |user| %>
+            <% @contributor_list.each do |user, chef_account, github_accounts| %>
               <tr class="contributor">
-                <td><%= link_to user.username, user %></td>
+                <td><%= link_to chef_account.username, user_path(id: chef_account.username) %></td>
                 <td>
-                  <% user.accounts.for(:github).each_with_index do |account, index| %>
-                    <% if index == user.accounts.for(:github).count - 1 %>
+                  <% github_accounts.each_with_index do |account, index| %>
+                    <% if index == github_accounts.count - 1 %>
                       <a href="https://github.com/<%= account.username %>" target="_blank"><%= account.username %></a>
                     <% else %>
                       <a href="https://github.com/<%= account.username %>" target="_blank"><%= account.username %></a>,
