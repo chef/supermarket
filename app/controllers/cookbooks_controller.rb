@@ -151,8 +151,8 @@ class CookbooksController < ApplicationController
   #
   # PUT /cookbooks/:cookbook/deprecate
   #
-  # Deprecates the cookbook, sets the replacement cookbook and redirects back to
-  # the deprecated cookbook.
+  # Deprecates the cookbook, sets the replacement cookbook, kicks off a notifier
+  # to send emails and redirects back to the deprecated cookbook.
   #
   def deprecate
     authorize! @cookbook
@@ -162,6 +162,8 @@ class CookbooksController < ApplicationController
     ).first!
 
     @cookbook.deprecate(replacement_cookbook)
+
+    CookbookDeprecatedNotifier.perform_async(@cookbook.id)
 
     redirect_to(
       @cookbook,

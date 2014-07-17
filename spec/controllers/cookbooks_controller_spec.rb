@@ -391,6 +391,18 @@ describe CookbooksController do
 
         expect(response).to redirect_to(cookbook)
       end
+
+      it 'starts the cookbook deprecated notifier worker' do
+        expect do
+          put(
+            :deprecate,
+            id: cookbook,
+            cookbook: {
+              replacement: replacement_cookbook
+            }
+          )
+        end.to change(CookbookDeprecatedNotifier.jobs, :size).by(1)
+      end
     end
 
     context 'not the cookbook owner' do
