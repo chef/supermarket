@@ -87,6 +87,7 @@ if Rails.env.development?
   # Default Organization for use in development.
   #
   organization = Organization.first_or_create
+  organization.admins.where(user_id: user.id).first_or_create
 
   #
   # Default CCLA Signature for use in development.

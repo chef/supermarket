@@ -216,6 +216,19 @@ class User < ActiveRecord::Base
   end
 
   #
+  # Determines if the user has an outstanding request to join the given
+  # +organization+
+  #
+  # @return [Boolean]
+  #
+  def requested_to_join?(organization)
+    ContributorRequest.where(
+      organization_id: organization.id,
+      user_id: id
+    ).any?
+  end
+
+  #
   # Returns a unique +ActiveRecord::Relation+ of all users who have signed
   # either the ICLA or CCLA or are a contributor on behalf of one or
   # more +Organization+s. Sorts the users by their Chef account username.
