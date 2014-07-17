@@ -1,35 +1,35 @@
-<li id="<%= cookbook.name %>" class="cookbook_partial">
-  <div class="cookbook_header">
-    <div class="cookbook_partial_content_header">
-      <h2 class="cookbook_title">
+<li id="<%= cookbook.name %>">
+  <div class="header">
+    <div class="header-content">
+      <h2 class="title">
         <%= link_to cookbook, rel: 'cookbook' do %><%= cookbook.name %><% end %>
         <i class="fa fa-file"></i>
         <small><%= cookbook.latest_cookbook_version.version %></small>
       </h2>
-      <span class="cookbook_dates">
+      <span class="meta">
         <i class="fa fa-clock-o"></i> Updated <%= cookbook.updated_at.to_s(:longish) %><br />
       </span>
-      <div class="cookbook_owner">
+      <div class="owner">
         <%= link_to cookbook.owner do %>
           <%= gravatar_for cookbook.owner, size: 128 %>
-          <h5><%= cookbook.owner.username %></h5>
+          <h5><%= cookbook.maintainer %></h5>
         <% end %>
       </div>
     </div>
   </div>
-  <div class="cookbook">
-    <div class="cookbook_partial_content">
+  <div class="body">
+    <div class="body-content">
       <p>
         <%= cookbook.description %>
       </p>
-      <code class="cookbook_install">cookbook '<%= cookbook.name %>', '~&gt; <%= cookbook.latest_cookbook_version.version %>'</code>
+      <code class="install">cookbook '<%= cookbook.name %>', '~&gt; <%= cookbook.latest_cookbook_version.version %>'</code>
     </div>
   </div>
-  <div class="cookbook_footer">
-    <div class="cookbook_partial_content_footer">
-      <div class="cookbook_platforms_content">
+  <div class="bottom">
+    <div class="bottom-content">
+      <div class="cookbook_platforms_content show-for-medium-up">
         <h5>Supported Platforms</h5>
-        <ul class="cookbook_platforms show-for-medium-up">
+        <ul class="cookbook_platforms">
           <% if cookbook.supported_platforms.present? %>
             <% cookbook.supported_platforms.each do |platform| %>
               <li class="cookbook_platform_icon has-tip" title="<%= platform.name %> <%= platform.version_constraint %>" data-tooltip data-icon="<%= supported_platform_icon(platform) %>">

@@ -1,10 +1,10 @@
 @import "common";
 
-// Styles for the simple cookbook
+// Styles for the simple listings
 
-.cookbook_listing {
+.simple_listing {
   list-style-type: none;
-  margin: rem-calc(0 0 20 0);
+  margin: rem-calc(0 0 20 0) !important;
   display: table;
   border-collapse: collapse;
   width: 100%;
@@ -14,7 +14,7 @@
     display: none;
   }
 
-  li.simple_cookbook {
+  li {
     @include dark-links;
     border-bottom: rem-calc(2) solid lighten($secondary_gray, 32%);
     vertical-align: bottom;
@@ -40,7 +40,7 @@
       width: rem-calc(50);
     }
 
-    .name_version {
+    .name {
       font: $bold rem-calc(17) $default_font;
     }
 

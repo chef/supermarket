@@ -2,10 +2,6 @@
 @import "foundation/components/grid";
 
 .contribute {
-  .heading {
-    @include clearfix();
-  }
-
   .sidebar {
     .button {
       margin-bottom: rem-calc(40);

@@ -4,32 +4,30 @@
   <%= render 'users/sidebar' %>
 
   <div class="main" data-equalizer-watch>
-    <div class="heading">
-      <h1><%= posessivize(@user.name) %> Tools & Plugins</h1>
+    <%= render 'users/heading', user: @user, title: "#{posessivize(@user.name)} Tools" %>
 
-      <dl class="tabs radius">
-        <dd class="<%= 'active' if current_page?(tools_user_path(@user)) %>"><%= link_to 'Maintains', tools_user_path(@user), rel: 'view_tools' %></dd>
-        <% if @user == current_user %>
-          <dd class="<%= 'active' if current_page?(new_tool_path) %>"><%= link_to 'Add Tool', new_tool_path, rel: 'add_tool' %></dd>
-        <% end %>
-      </dl>
-    </div>
+    <dl class="tabs radius">
+      <dd class="<%= 'active' if current_page?(tools_user_path(@user)) %>"><%= link_to 'Maintains', tools_user_path(@user), rel: 'view_tools' %></dd>
+      <% if @user == current_user %>
+        <dd class="<%= 'active' if current_page?(new_tool_path) %>"><%= link_to 'Add Tool', new_tool_path, rel: 'add_tool' %></dd>
+      <% end %>
+    </dl>
 
     <div class="tabs-content">
       <div class="content active">
       <%= form_for(@tool, data: { abide: true }) do |f| %>
+        <%= render 'application/form_errors', record: @tool %>
+
         <div class="name-field">
           <%= f.text_field :name, placeholder: 'Name *', title: 'Name', required: '' %>
           <small class="error">Name is required.</small>
         </div>
 
         <div class="type-field">
-          <%= f.radio_button :type, "knife_plugin", checked: true %>
-          <label for="tool_type_knife_plugin">Knife Plugin</label>
-          <%= f.radio_button :type, "ohai_plugin" %>
-          <label for="tool_type_ohai_plugin">Ohai Plugin</label>
-          <%= f.radio_button :type, "chef_tool" %>
-          <label for="tool_type_chef_tool">Chef Tool</label>
+          <% Tool::ALLOWED_TYPES.each_with_index do |type, index| %>
+            <%= f.radio_button :type, type, index == 0 ? { checked: true } : {} %>
+            <label for="tool_type_<%= type %>"><%= type.titleize %></label>
+          <% end %>
         </div>
 
         <div class="description-field">

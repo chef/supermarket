@@ -15,6 +15,6 @@ describe 'cookbook feed' do
       submit_form
     end
 
-    expect(all('.cookbook').size).to eql(1)
+    expect(all('.listing').size).to eql(1)
   end
 end

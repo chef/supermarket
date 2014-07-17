@@ -1,6 +1,8 @@
 @import "common";
 @import "foundation/components/grid";
 @import "compass/css3/transition";
+@import "compass/css3/border-radius";
+@import "compass/css3/inline-block";
 
 // Basic structural elements
 html, body { height: 100%; min-height: 100%; }
@@ -39,6 +41,23 @@ fieldset {
   }
 }
 
+code, pre {
+  @include border-radius(rem-calc(3));
+  background-color: darken($primary_blue, 5%);
+  color: $silver;
+  cursor: text;
+  padding: rem-calc(2 5);
+}
+
+pre {
+  font: {
+    size: rem-calc(16);
+    weight: $normal;
+  }
+  line-height: rem-calc(24);
+  padding: rem-calc(8 20);
+}
+
 .container {
   @include grid-row();
   min-height: 100%;
@@ -54,6 +73,10 @@ fieldset {
 
   &.nobg {
     background-color: transparent;
+
+    .heading-with-buttons .title {
+      color: $silver;
+    }
   }
 
   &.withspace {
@@ -201,6 +224,112 @@ fieldset {
   .sidebar {
     @include grid-column($columns: 4);
     padding: rem-calc(55 25 55 25);
+  }
+}
+
+.heading-with-buttons {
+  @include grid-row();
+
+  .title {
+    @include grid-column($columns: 5, $collapse: true);
+    border: 0;
+    padding: 0;
+
+    small {
+      margin-left: rem-calc(10);
+    }
+
+    .label {
+      color: lighten($primary_gray, 20%);
+      font: $bold rem-calc(12) $accent_font;
+      margin-left: rem-calc(10);
+      padding: rem-calc(4 10);
+
+      &.secondary { background-color: lighten($secondary_gray, 35%); }
+    }
+  }
+
+  @media #{$small-down} {
+    .title {
+      @include grid-column($columns: 12);
+      text-align: center;
+      margin-bottom: 0;
+    }
+  }
+
+  .buttons {
+    @include grid-column($columns: 7, $collapse: true);
+    text-align: right;
+    color: $primary_gray;
+    font: {
+      family: $accent_font;
+      size: rem-calc(14);
+    }
+    line-height: rem-calc(36);
+
+    @media #{$small-down} {
+      span {
+        display: none
+      }
+    }
+
+    a.button {
+      @include single-transition($delay: 100ms);
+      @include inline-block;
+      background-color: darken($clouds, 5%);
+      color: $concrete;
+      font: {
+        size: rem-calc(14);
+        weight: $normal;
+      }
+      margin-left: rem-calc(6);
+      padding: rem-calc(9 20);
+      text-transform: none;
+
+      &:hover {
+        background-color: darken($clouds, 10%);
+        color: darken($concrete, 5%);
+      }
+
+      &.dropdown {
+        padding-right: rem-calc(57);
+
+        &:before {
+          border-color: $concrete rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+        }
+      }
+
+      &.active {
+        background-color: $primary-color;
+        @include border-radius(rem-calc(3));
+        color: white;
+
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+    }
+
+    @media #{$small-down} {
+      a.button {
+        @include inline-block;
+        width: 100%;
+        margin: rem-calc(0 0 5 0);
+      }
+    }
+
+    .f-dropdown li a {
+      text-align: left;
+    }
+  }
+
+  @media #{$small-down} {
+    .buttons {
+      @include grid-column($columns: 12);
+      text-align: center;
+      margin: rem-calc(20 0 20 0);
+      padding: 0;
+    }
   }
 }
 

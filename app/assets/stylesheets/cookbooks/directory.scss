@@ -86,17 +86,3 @@
     @include grid-column($columns: 12);
   }
 }
-
-.cookbook_listing {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  li {
-    margin-bottom: rem-calc(20);
-
-    &:last-child {
-      margin-bottom: rem-calc(40);
-    }
-  }
-}

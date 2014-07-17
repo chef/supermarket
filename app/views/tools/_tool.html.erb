@@ -1,1 +1,31 @@
-<%= tool.name %>
+<li class="listing">
+  <div class="header">
+    <div class="header-content">
+      <h2 class="title">
+        <%= link_to tool, rel: 'tool' do %><%= tool.name %><% end %>
+      </h2>
+      <span class="meta">
+        <i class="fa fa-wrench"></i> <%= tool.type.titleize %>
+      </span>
+      <div class="owner">
+        <%= link_to tool.owner do %>
+          <%= gravatar_for tool.owner, size: 128 %>
+          <h5><%= tool.maintainer %></h5>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="body-content">
+      <p>
+        <%= tool.description %>
+      </p>
+      <code class="install"><%= tool.instructions %></code>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="bottom-content">
+      <%= link_to 'Source', tool.source_url, class: 'button tiny radius', target: '_blank' %>
+    </div>
+  </div>
+</li>

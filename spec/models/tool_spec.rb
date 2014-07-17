@@ -2,10 +2,13 @@ require 'spec_helper'
 
 describe Tool do
   context 'associations' do
-    it { should belong_to(:user) }
+    it { should belong_to(:owner) }
   end
 
   context 'validations' do
+    it { should validate_presence_of(:name) }
+    it { should ensure_inclusion_of(:type).in_array(Tool::ALLOWED_TYPES) }
+
     it 'validates the uniqueness of name' do
       create(:tool)
       expect(subject).to validate_uniqueness_of(:name).case_insensitive

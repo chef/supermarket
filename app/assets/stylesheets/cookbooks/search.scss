@@ -115,11 +115,19 @@ input[type="search"].cookbook_search_textfield {
   }
 }
 
-.cookbook_no_search_results {
+.no-results {
   @include grid-column($columns: 12, $collapse: true);
   background-color: white;
   border: 1px solid $cookbook_border;
   padding: rem-calc(30 30);
+
+  p {
+    margin: 0;
+  }
+
+  h3 {
+    margin-top: rem-calc(24);
+  }
 
   ul {
     margin-bottom: 0;
@@ -149,65 +157,5 @@ input[type="search"].cookbook_search_textfield {
   &:hover, &:active, &:focus {
     background-color: lighten($primary_blue, 20%);
     color: white;
-  }
-}
-
-.order_cookbooks_by {
-  color: $primary_gray;
-  font: {
-    family: $accent_font;
-    size: rem-calc(14);
-  }
-  line-height: rem-calc(36);
-
-  a.button {
-    background-color: darken($clouds, 5%);
-    color: $concrete;
-    @include inline-block;
-    font: {
-      size: rem-calc(14);
-      weight: $normal;
-    }
-    margin-left: rem-calc(6);
-    padding: rem-calc(9 20);
-    @include single-transition($speed: 100ms);
-    text-transform: none;
-
-    &:hover {
-      background-color: darken($clouds, 10%);
-      color: darken($concrete, 5%);
-    }
-
-    &.dropdown {
-      padding-right: rem-calc(57);
-
-      &:before {
-        border-color: $concrete rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
-      }
-    }
-
-    &.active {
-      background-color: $primary-color;
-      @include border-radius(rem-calc(3));
-      color: white;
-
-      &:hover {
-        background-color: darken($primary-color, 10%);
-      }
-    }
-  }
-
-  @media #{$mobile-only} {
-    a.button {
-      @include inline-block;
-      width: 100%;
-      margin: rem-calc(0 0 5 0);
-    }
-  }
-}
-
-@media #{$mobile-only} {
-  .order_cookbooks_by {
-    padding: 0;
   }
 }

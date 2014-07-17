@@ -31,7 +31,7 @@ $(function() {
    * Binds an ajax:success event to the cookbook partial follow button and replaces
    * the partial in question with server side rendered HTML.
    */
-  $('body').delegate('.cookbook_partial .follow', 'ajax:success', function(e, data, status, xhr) {
+  $('body').delegate('.listing .follow', 'ajax:success', function(e, data, status, xhr) {
     var cookbookId = '#' + $(this).data('cookbook');
     trackFollows(this);
 

@@ -1,13 +1,16 @@
 class Tool < ActiveRecord::Base
+  ALLOWED_TYPES = %w(knife_plugin ohai_plugin chef_tool)
+
   self.inheritance_column = nil
 
   # Associations
   # --------------------
-  belongs_to :user
+  belongs_to :owner, class_name: 'User', foreign_key: :user_id
 
   # Validations
   # --------------------
-  validates :name, uniqueness: { case_sensitive: false }
+  validates :name, uniqueness: { case_sensitive: false }, presence: true
+  validates :type, inclusion: { in: ALLOWED_TYPES }
 
   # Callbacks
   # --------------------
@@ -32,6 +35,15 @@ class Tool < ActiveRecord::Base
 
     where(lowercase_name: lowercase_names)
   }
+
+  #
+  # The username of this tools's owner
+  #
+  # @return [String]
+  #
+  def maintainer
+    owner.username
+  end
 
   private
 

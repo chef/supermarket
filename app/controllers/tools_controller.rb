@@ -2,6 +2,30 @@ class ToolsController < ApplicationController
   before_filter :authenticate_user!, except: [:index]
 
   #
+  # GET /tools
+  #
+  # Lists all +Tool+ instances.
+  #
+  def index
+    if params[:order] == 'created_at'
+      @tools = Tool.order(:created_at)
+    else
+      @tools = Tool.order(:name)
+    end
+
+    if Tool::ALLOWED_TYPES.include?(params[:type])
+      @tools = @tools.where(type: params[:type])
+    end
+
+    @tools = @tools.page(params[:page]).per(20)
+
+    respond_to do |format|
+      format.html
+      format.atom
+    end
+  end
+
+  #
   # GET /tools/new
   #
   # Display the form for creating a new +Tool+.
@@ -17,23 +41,17 @@ class ToolsController < ApplicationController
   # Create a new +Tool+
   #
   def create
-    tool = current_user.tools.build(tool_params)
+    @tool = current_user.tools.build(tool_params)
+    @user = current_user
 
-    if tool.save
+    if @tool.save
       redirect_to(
-        tools_user_path(tool.user),
-        notice: t('tool.created', name: tool.name)
+        tools_user_path(@tool.owner),
+        notice: t('tool.created', name: @tool.name)
       )
     else
       render :new
     end
-  end
-
-  #
-  # This currently does nothing. It exists to make the form for adding a +Tool+
-  # work. This will probably need to exist in a real way.
-  #
-  def index
   end
 
   private
@@ -47,8 +65,7 @@ class ToolsController < ApplicationController
       :type,
       :description,
       :source_url,
-      :instructions,
-      :user_id
+      :instructions
     )
   end
 end

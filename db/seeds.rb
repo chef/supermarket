@@ -49,24 +49,26 @@ if Rails.env.development?
   # Default account for use in development.
   #
   Account.where(
+    username: 'johndoe',
+    provider: 'github'
+  ).first_or_create!(
     user: user,
     uid: '123',
-    username: 'johndoe',
-    provider: 'github',
     oauth_token: '123',
     oauth_secret: '123',
     oauth_expires: Date.parse('Tue, 20 Feb 2024')
-  ).first_or_create!
+  )
 
   Account.where(
+    username: 'johndoe',
+    provider: 'chef_oauth2'
+  ).first_or_create!(
     user: user,
     uid: '456',
-    username: 'johndoe',
-    provider: 'chef_oauth2',
     oauth_token: '123',
     oauth_secret: '123',
     oauth_expires: Date.parse('Tue, 20 Feb 2024')
-  ).first_or_create!
+  )
 
   #
   # Default ICLA Signature for use in development.
@@ -146,6 +148,36 @@ if Rails.env.development?
 
     cookbook.cookbook_versions << cookbook_version
     cookbook.save!
+  end
+
+  #
+  # Default knife plugins (tools) for use in development.
+  #
+  %w(knife-supermarket knife-ec2 knife-openstack knife-cloud knife-rackspace).each do |name|
+    tool = Tool.where(
+      name: name
+    ).first_or_create(
+      type: 'knife_plugin',
+      description: 'Great knife plugin.',
+      source_url: 'http://example.com',
+      instructions: "gem install #{name}",
+      user: user
+    )
+  end
+
+  #
+  # Default ohai plugins (tools) for use in development.
+  #
+  %w(dell dpkg ipmi ladvd rpm).each do |name|
+    tool = Tool.where(
+      name: name
+    ).first_or_create(
+      type: 'ohai_plugin',
+      description: 'Great ohai plugin.',
+      source_url: 'http://example.com',
+      instructions: "Install the plugin in /etc/chef/ohai_plugins.",
+      user: user
+    )
   end
 
   #
