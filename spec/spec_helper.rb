@@ -45,6 +45,9 @@ RSpec.configure do |config|
   # View helpers
   config.include ViewSpecHelpers, type: :view
 
+  # ENV-munging helpers
+  config.include EnvHelpers
+
   # Prohibit using the should syntax
   config.expect_with :rspec do |spec|
     spec.syntax = :expect

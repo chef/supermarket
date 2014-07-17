@@ -57,7 +57,7 @@ Supermarket::Application.routes.draw do
       get :contributors
     end
 
-    resources :contributor_requests, only: [:create] do
+    resources :contributor_requests, only: [:create], constraints: proc { ENV['JOIN_CCLA_ENABLED'] } do
       member do
         get :accept
         get :decline
