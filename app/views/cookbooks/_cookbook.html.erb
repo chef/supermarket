@@ -9,6 +9,11 @@
       <span class="meta">
         <i class="fa fa-clock-o"></i> Updated <%= cookbook.updated_at.to_s(:longish) %><br />
       </span>
+      <% if cookbook.deprecated? %>
+        <span class="meta">
+          <i class="fa fa-exclamation-triangle"></i> Deprecated in favor of <%= link_to cookbook.replacement.name, cookbook.replacement %>
+        </span>
+      <% end %>
       <div class="owner">
         <%= link_to cookbook.owner do %>
           <%= gravatar_for cookbook.owner, size: 128 %>
