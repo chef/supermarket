@@ -27,4 +27,26 @@ class CookbookMailer < ActionMailer::Base
 
     mail(to: @to, subject: "The #{name} cookbook has been deleted")
   end
+
+  #
+  # Sends notification email to a cookbook's collaborators and followers
+  # explaining that the cookbook has been deprecated in favor of another
+  # cookbook
+  #
+  # @param cookbook [Cookbook] the cookbook
+  # @param replacement_cookbook [Cookbook] the replacement cookbook
+  # @param email [String] the user to notify
+  #
+  def cookbook_deprecated_email(cookbook, replacement_cookbook, email)
+    @cookbook = cookbook
+    @replacement_cookbook = replacement_cookbook
+    @to = email
+
+    subject = %(
+      The #{@cookbook.name} cookbook has been deprecated in favor
+      of the #{@replacement_cookbook.name} cookbook
+    ).squish
+
+    mail(to: @to, subject: subject)
+  end
 end
