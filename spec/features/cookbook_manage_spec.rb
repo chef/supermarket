@@ -13,7 +13,10 @@ describe "updating a cookbook's issues and source urls" do
       follow_relation 'edit-cookbook-urls'
       fill_in 'cookbook_source_url', with: 'http://example.com/source'
       fill_in 'cookbook_issues_url', with: 'http://example.com/tissues'
-      submit_form
+
+      within '.cookbook-details' do
+        submit_form
+      end
     end
 
     expect(find('.source-url')[:href]).to eql('http://example.com/source')
@@ -31,6 +34,8 @@ describe "updating a cookbook's issues and source urls" do
       fill_in 'cookbook_source_url', with: 'example'
     end
 
-    expect(find('.edit_cookbook').all('.error').count).to eql(2)
+    within '.cookbook-details' do
+      expect(find('.edit_cookbook').all('.error').count).to eql(2)
+    end
   end
 end
