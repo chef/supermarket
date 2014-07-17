@@ -1,0 +1,10 @@
+<h1>A request to join your CCLA awaits your approval</h1>
+<p><%= link_to @username, @user %> has requested to join <%= @organization_name %> as an authorized contributor. You can accept or decline this request by clicking either button below.</p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td class="panel">
+      <%= link_to 'Accept', accept_ccla_signature_contributor_request_url(@ccla_signature, @contributor_request), class: 'button accept' %>
+      <%= link_to 'Decline', decline_ccla_signature_contributor_request_url(@ccla_signature, @contributor_request), class: 'button decline' %>
+    </td>
+  </tr>
+</table>

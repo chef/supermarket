@@ -20,6 +20,7 @@
 //= require checkbox
 //= require cookbookShow
 //= require cookbookFollowing
+//= require joinOrganization
 //= require betaBanner
 //= require flash
 //= require select2.min

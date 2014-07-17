@@ -1,0 +1,7 @@
+Chef Supermarket - A request to join your CCLA is pending
+_________________________________________________________
+
+<%= @username %> (<%= user_url(@user) %>) has requested to join <%= @organization_name %> as an authorized contributor. You can accept or decline this request by following either link below:
+
+Accept: <%= accept_ccla_signature_contributor_request_url(@ccla_signature, @contributor_request) %>
+Decline: <%= decline_ccla_signature_contributor_request_url(@ccla_signature, @contributor_request) %>

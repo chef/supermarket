@@ -4,6 +4,7 @@ class Organization < ActiveRecord::Base
   # Associations
   # --------------------
   has_many :contributors, dependent: :destroy
+  has_many :contributor_requests, dependent: :destroy
   has_many :users, through: :contributors
   has_many :invitations, dependent: :destroy
   has_many :ccla_signatures, dependent: :destroy

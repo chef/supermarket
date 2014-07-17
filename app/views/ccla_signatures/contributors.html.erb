@@ -3,7 +3,17 @@
 <div class="page withspace contribute">
   <h1>Contributors on Behalf of <%= @ccla_signature.organization.name %></h1>
 
-  <% if current_user &&  policy(@ccla_signature.organization).view_cclas? %>
+  <% if ENV['JOIN_CCLA_ENABLED'] %>
+    <% if current_user && policy(@ccla_signature.organization).request_to_join? %>
+      <p>
+        <%= link_to "Join this CCLA", ccla_signature_contributor_requests_path(@ccla_signature), class: "button radius tiny join", rel: "contributor-request", method: :post, remote: true %>
+      </p>
+    <% elsif current_user && current_user.requested_to_join?(@ccla_signature.organization) %>
+      <%= render partial: 'pending_approval' %>
+    <% end %>
+  <% end %>
+
+  <% if current_user && policy(@ccla_signature.organization).view_cclas? %>
     <%= render "organization_tabs", ccla_signature: @ccla_signature %>
   <% else %>
     <%= link_to "Return to list of CCLA Signing Companies", ccla_signatures_path, class: "button radius tiny" %>

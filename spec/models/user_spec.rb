@@ -331,6 +331,29 @@ describe User do
     end
   end
 
+  describe '#requested_to_join?' do
+    it 'is false if this user has not requested to join the given organization' do
+      user = create(:user)
+      organization = create(:organization)
+
+      expect(user.requested_to_join?(organization)).to be_false
+    end
+
+    it 'is true if this user has requested to join the given organization' do
+      user = create(:user)
+      ccla_signature = create(:ccla_signature)
+      organization = ccla_signature.organization
+
+      ContributorRequest.create!(
+        user: user,
+        ccla_signature: ccla_signature,
+        organization: organization
+      )
+
+      expect(user.requested_to_join?(organization)).to be_true
+    end
+  end
+
   describe '.find_by_github_login' do
     it 'returns the user with that GitHub login' do
       user = create(:user)
