@@ -40,6 +40,16 @@ class CookbookAuthorizer < Authorizer::Base
     user.is?(:admin)
   end
 
+  #
+  # Owners of a cookbook and Supermarket admins can deprecate a cookbook if
+  # that cookbook is not already deprecated.
+  #
+  # @return [Boolean]
+  #
+  def deprecate?
+    !record.deprecated? && (owner? || user.is?(:admin))
+  end
+
   private
 
   def owner?

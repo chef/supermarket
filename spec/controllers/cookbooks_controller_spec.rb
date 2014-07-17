@@ -356,4 +356,57 @@ describe CookbooksController do
       end
     end
   end
+
+  describe 'PUT #deprecate' do
+    let(:user) { create(:user) }
+    let(:cookbook) { create(:cookbook, owner: user) }
+    let(:replacement_cookbook) { create(:cookbook) }
+
+    context 'cookbook owner' do
+      before { sign_in(user) }
+
+      it 'deprecates the cookbook and sets the replacement' do
+        put(
+          :deprecate,
+          id: cookbook,
+          cookbook: {
+            replacement: replacement_cookbook
+          }
+        )
+
+        cookbook.reload
+
+        expect(cookbook.deprecated).to eql(true)
+        expect(cookbook.replacement).to eql(replacement_cookbook)
+      end
+
+      it 'redirects back to the cookbook' do
+        put(
+          :deprecate,
+          id: cookbook,
+          cookbook: {
+            replacement: replacement_cookbook
+          }
+        )
+
+        expect(response).to redirect_to(cookbook)
+      end
+    end
+
+    context 'not the cookbook owner' do
+      before { sign_in(create(:user)) }
+
+      it 'returns a 404' do
+        put(
+          :deprecate,
+          id: cookbook,
+          cookbook: {
+            replacement: replacement_cookbook
+          }
+        )
+
+        expect(response.status.to_i).to eql(404)
+      end
+    end
+  end
 end

@@ -1,9 +1,15 @@
 <div class="main" data-equalizer-watch>
-    <small class="rss">
-      <%= link_to cookbook_path(cookbook, format: 'atom'), class: 'rss_feed_link' do %>
-        <i class="fa fa-rss"></i> RSS
-      <% end %>
-    </small>
+  <% if cookbook.deprecated? %>
+    <div class="deprecation-notice">
+      <h2 class="deprecation-copy"><i class="fa fa-exclamation-triangle"></i> <%= cookbook.name %> has been deprecated in favor of <%= link_to cookbook.replacement.name, cookbook.replacement %></h2>
+    </div>
+  <% end %>
+
+  <small class="rss">
+    <%= link_to cookbook_path(cookbook, format: 'atom'), class: 'rss_feed_link' do %>
+      <i class="fa fa-rss"></i> RSS
+    <% end %>
+  </small>
   <h1 class="heading">
     <%= cookbook.name %>
     <small class="version_dropdown">

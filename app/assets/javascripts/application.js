@@ -25,6 +25,7 @@
 //= require flash
 //= require select2.min
 //= require collaborators
+//= require cookbookDeprecate
 //= require organizations
 
 // Hack to resolve bug with Foundation. Resolved in master

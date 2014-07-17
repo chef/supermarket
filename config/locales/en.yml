@@ -9,6 +9,7 @@ en:
     already_connected: "The %{provider} account (%{username}) you're trying to link is already linked to another Supermarket user."
   cookbook:
     transfered_ownership: "%{cookbook} transfered to %{user}."
+    deprecated: "%{cookbook} deprecated in favor of %{replacement_cookbook}."
   profile:
     no_cookbooks:
       owns: "%{username} doesn't own any cookbooks."

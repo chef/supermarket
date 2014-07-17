@@ -135,6 +135,26 @@ describe Cookbook do
     end
   end
 
+  describe '#deprecate' do
+    it 'sets the deprecated attribute to true' do
+      cookbook = Cookbook.new(name: 'Spicy Curry')
+      replacement_cookbook = Cookbook.new(name: 'Mild Curry')
+
+      cookbook.deprecate(replacement_cookbook)
+
+      expect(cookbook.deprecated?).to eql(true)
+    end
+
+    it 'sets the replacement' do
+      cookbook = Cookbook.new(name: 'Spicy Curry')
+      replacement_cookbook = Cookbook.new(name: 'Mild Curry')
+
+      cookbook.deprecate(replacement_cookbook)
+
+      expect(cookbook.replacement).to eql(replacement_cookbook)
+    end
+  end
+
   describe '#get_version!' do
     let!(:kiwi_0_1_0) do
       create(

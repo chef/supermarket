@@ -52,6 +52,26 @@
         <% end %>
       </div>
     <% end %>
+
+    <% if policy(cookbook).deprecate? %>
+      <%= link_to 'Deprecate', '#', class: 'button secondary radius tiny deprecate', rel: 'deprecate', 'data-reveal-id' => 'deprecate' %>
+
+      <div id="deprecate" class="reveal-modal small" data-reveal>
+        <h1>Deprecate Cookbook</h1>
+        <a class="close-reveal-modal">&#215;</a>
+
+        <%= form_for cookbook, url: deprecate_cookbook_path(cookbook), method: :put do |f| %>
+          <div class="row collapse">
+            <div class="small-9 columns">
+              <%= f.hidden_field :replacement, class: 'cookbook-deprecate', 'data-url' => api_v1_search_path %>
+            </div>
+            <div class="small-3 columns">
+              <%= f.submit 'Deprecate', class: 'button radius postfix' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <h3>

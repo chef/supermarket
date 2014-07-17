@@ -1,6 +1,6 @@
 class CookbooksController < ApplicationController
   before_filter :assign_categories
-  before_filter :assign_cookbook, only: [:show, :update, :follow, :unfollow, :transfer_ownership]
+  before_filter :assign_cookbook, only: [:show, :update, :follow, :unfollow, :transfer_ownership, :deprecate]
   before_filter :store_location_then_authenticate_user!, only: [:follow, :unfollow]
 
   #
@@ -148,6 +148,31 @@ class CookbooksController < ApplicationController
     redirect_to @cookbook, notice: t('cookbook.transfered_ownership', cookbook: @cookbook.name, user: @cookbook.owner.username)
   end
 
+  #
+  # PUT /cookbooks/:cookbook/deprecate
+  #
+  # Deprecates the cookbook, sets the replacement cookbook and redirects back to
+  # the deprecated cookbook.
+  #
+  def deprecate
+    authorize! @cookbook
+
+    replacement_cookbook = Cookbook.with_name(
+      cookbook_deprecation_params[:replacement]
+    ).first!
+
+    @cookbook.deprecate(replacement_cookbook)
+
+    redirect_to(
+      @cookbook,
+      notice: t(
+        'cookbook.deprecated',
+        cookbook: @cookbook.name,
+        replacement_cookbook: replacement_cookbook.name
+      )
+    )
+  end
+
   private
 
   def assign_categories
@@ -169,5 +194,9 @@ class CookbooksController < ApplicationController
 
   def transfer_ownership_params
     params.require(:cookbook).permit(:user_id)
+  end
+
+  def cookbook_deprecation_params
+    params.require(:cookbook).permit(:replacement)
   end
 end

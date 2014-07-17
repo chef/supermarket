@@ -4,6 +4,22 @@
 @import "compass/css3/inline-block";
 
 .cookbook_show {
+  .deprecation-notice {
+    @include single-transition($speed: 100ms);
+    @include border-radius(rem-calc(2));
+
+    border: 4px solid $secondary_yellow;
+    display: block;
+    margin: rem-calc(0 0 18 0);
+    text-align: center;
+
+    .deprecation-copy {
+      color: $secondary-yellow;
+      padding: rem-calc(18 9 18 9);
+      margin: 0;
+    }
+  }
+
   .sidebar {
     .fa {
       color: $silver;
