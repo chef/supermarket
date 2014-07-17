@@ -1,0 +1,6 @@
+<dl class="tabs radius">
+  <dd class="<%= 'active' if active == 'maintains' %>"><%= link_to 'Maintains', tools_user_path(@user), rel: 'view_tools' %></dd>
+  <% if @user == current_user %>
+    <dd class='<%= 'active' if active == 'add' %>'><%= link_to 'Add Tool', new_tool_path, rel: 'add_tool' %></dd>
+  <% end %>
+</dl>

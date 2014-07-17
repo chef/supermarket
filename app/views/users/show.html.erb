@@ -5,7 +5,7 @@
   <%= render 'sidebar' %>
 
   <div class="main" data-equalizer-watch>
-      <%= render 'heading', user: @user, title: "#{posessivize(@user.name)} Cookbooks" %>
+      <%= render 'heading', user: @user, title: "#{posessivize(@user.name)} Cookbooks", active: 'cookbooks' %>
 
       <dl class="tabs radius">
         <dd class="<%= 'active' unless params[:tab] %>"><%= link_to 'Owns', @user %></dd>

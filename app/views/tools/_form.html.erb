@@ -1,0 +1,36 @@
+<%= form_for(@tool, data: { abide: true }) do |f| %>
+  <%= render 'application/form_errors', record: @tool %>
+
+  <div class="name-field">
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: 'Name *', title: 'Name', required: '' %>
+    <small class="error">Name is required.</small>
+  </div>
+
+  <div class="type-field">
+    <% Tool::ALLOWED_TYPES.each_with_index do |type, index| %>
+      <%= f.radio_button :type, type, index == 0 ? { checked: true } : {} %>
+      <label for="tool_type_<%= type %>"><%= type.titleize %></label>
+    <% end %>
+  </div>
+
+  <div class="description-field">
+    <%= f.label :description %>
+    <%= f.text_area :description, placeholder: 'Description', title: 'Description', rows: 4 %>
+  </div>
+
+  <div class="sourl_url-field">
+    <%= f.label :source_url, 'Source URL' %>
+    <%= f.text_field :source_url, placeholder: 'Source URL', title: 'Source URL' %>
+  </div>
+
+  <div class="instructions-field">
+    <%= f.label :instructions %>
+    <%= f.text_area :instructions, placeholder: 'Install & Usage Instructions', title: 'Instructions', rows: 6 %>
+  </div>
+
+  <section>
+    <%= f.submit class: 'radius button' %>
+    <%= link_to 'Cancel', tools_user_path(@user), class: 'radius button alert' %>
+  </section>
+<% end %>

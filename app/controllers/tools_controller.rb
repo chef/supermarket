@@ -54,6 +54,39 @@ class ToolsController < ApplicationController
     end
   end
 
+  #
+  # GET /tools/:id/edit
+  #
+  # Display the form for editing an existing +Tool+.
+  #
+  def edit
+    @tool = Tool.find(params[:id])
+    @user = current_user
+
+    authorize! @tool
+  end
+
+  #
+  # PATCH /tools/:id
+  #
+  # Updates an existing +Tool+.
+  #
+  def update
+    @tool = Tool.find(params[:id])
+    @user = current_user
+
+    authorize! @tool
+
+    if @tool.update_attributes(tool_params)
+      redirect_to(
+        tools_user_path(@tool.owner),
+        notice: t('tool.updated', name: @tool.name)
+      )
+    else
+      render :edit
+    end
+  end
+
   private
 
   #

@@ -30,6 +30,7 @@ en:
       warning: "The following invitations were invalid %{invites} all others however were valid and sent."
   tool:
     created: "The %{name} tool was successfully created."
+    updated: "The %{name} tool was successfully updated."
   curry:
     repositories:
       evaluate: "Curry is now evaluating all open Pull Requests on %{name}"

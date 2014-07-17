@@ -110,4 +110,81 @@ describe ToolsController do
       expect(response).to redirect_to(tools_user_path(user))
     end
   end
+
+  describe 'GET #edit' do
+    let(:user) { create(:user) }
+    let(:tool) { create(:tool, owner: user) }
+
+    before do
+      sign_in(user)
+    end
+
+    it 'responds with a 200' do
+      get :edit, id: tool
+
+      expect(response.status.to_i).to eql(200)
+    end
+
+    it 'assigns tool' do
+      get :edit, id: tool
+
+      expect(assigns(:tool)).to_not be_nil
+    end
+
+    it 'assigns user' do
+      get :edit, id: tool
+
+      expect(assigns(:user)).to_not be_nil
+    end
+
+    it '404s if the user is not authorized to edit the tool' do
+      sign_in(create(:user))
+
+      get :edit, id: tool
+
+      expect(response.status.to_i).to eql(404)
+    end
+  end
+
+  describe 'PATCH #update' do
+    let(:user) { create(:user) }
+    let(:tool) { create(:tool, name: 'butter', owner: user) }
+
+    before do
+      sign_in(user)
+    end
+
+    it 'assigns user' do
+      put :update, id: tool, tool: { name: 'margarine' }
+
+      expect(assigns(:user)).to_not be_nil
+    end
+
+    it 'updates a tool' do
+      put :update, id: tool, tool: { name: 'margarine' }
+
+      tool.reload
+      expect(tool.name).to eql('margarine')
+    end
+
+    it "redirects the user to the tool owner's profile tools tab" do
+      put :update, id: tool, tool: { name: 'margarine' }
+
+      expect(response).to redirect_to(tools_user_path(user))
+    end
+
+    it 'renders the edit form when the tool is invalid' do
+      put :update, id: tool, tool: { name: '' }
+
+      expect(response).to render_template('tools/edit')
+    end
+
+    it '404s if the user is not authorized to update the tool' do
+      sign_in(create(:user))
+
+      put :update, id: tool, tool: { name: 'margarine' }
+
+      expect(response.status.to_i).to eql(404)
+    end
+  end
 end

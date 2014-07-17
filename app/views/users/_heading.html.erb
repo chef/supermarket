@@ -3,8 +3,8 @@
 
   <% if ENV['TOOLS_ENABLED'] == "true" %>
     <div class="buttons">
-      <%= link_to "Cookbooks", user, class: "button radius secondary #{'active' if current_page?(user_path(user))}", rel: "view_cookbooks" %>
-      <%= link_to "Tools & Plugins", tools_user_path(user), class: "button radius secondary #{'active' if current_page?(tools_user_path(user)) || current_page?(new_tool_path)}", rel: "view_tools" %>
+      <%= link_to "Cookbooks", user, class: "button radius secondary #{'active' if active == 'cookbooks'}", rel: "view_cookbooks" %>
+      <%= link_to "Tools & Plugins", tools_user_path(user), class: "button radius secondary #{'active' if active == 'tools'}", rel: "view_tools" %>
     </div>
   <% end %>
 </div>
