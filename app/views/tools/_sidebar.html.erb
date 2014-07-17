@@ -1,0 +1,19 @@
+<div class="sidebar" data-equalizer-watch>
+  <div class="avatar">
+    <%= link_to owner do %>
+      <%= gravatar_for owner, size: 144 %>
+      <%= tool.maintainer %>
+      <small><%= owner.name %></small>
+    <% end %>
+  </div>
+
+  <h3>Details</h3>
+  <div class="tool-details">
+    <div class="tool-urls">
+      <%= link_to 'Source', tool.source_url, class: 'button secondary radius tiny source-url' %>
+    </div>
+  </div>
+
+  <h3>Other tools by <%= owner.name %></h3>
+  <%= render partial: 'other_tool', collection: @other_tools %>
+</div>

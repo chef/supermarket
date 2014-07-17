@@ -45,6 +45,15 @@ class Tool < ActiveRecord::Base
     owner.username
   end
 
+  #
+  # Returns other tools owned by the owner of this tool
+  #
+  # @return [ActiveRecord::Relation<Tool>] an ActiveRecord::Relation of Tools
+  #
+  def others_from_this_owner
+    Tool.where('user_id = ? AND id <> ?', user_id, id)
+  end
+
   private
 
   #

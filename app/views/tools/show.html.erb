@@ -1,0 +1,7 @@
+<%= provide(:title, @tool.name) %>
+<%= provide(:description, @tool.name) %>
+
+<div class="page tool_show" data-equalizer>
+  <%= render 'main', tool: @tool %>
+  <%= render 'sidebar', tool: @tool, owner: @tool.owner %>
+</div>

@@ -1,5 +1,5 @@
 class ToolsController < ApplicationController
-  before_filter :authenticate_user!, except: [:index]
+  before_filter :authenticate_user!, except: [:index, :show]
 
   #
   # GET /tools
@@ -33,6 +33,16 @@ class ToolsController < ApplicationController
   def new
     @tool = current_user.tools.new
     @user = current_user
+  end
+
+  #
+  # GET /tools/:id
+  #
+  # Display the detail page for a +Tool+.
+  #
+  def show
+    @tool = Tool.find(params[:id])
+    @other_tools = @tool.others_from_this_owner
   end
 
   #
