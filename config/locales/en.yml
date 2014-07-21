@@ -41,6 +41,7 @@ en:
     created: "The %{name} tool has been successfully created."
     updated: "The %{name} tool has been successfully updated."
     deleted: "The %{name} tool was successfully deleted."
+    confirm_deletion: "Are you sure you want to delete %{name}? It cannot be undone."
   curry:
     repositories:
       evaluate: "Curry is now evaluating all open Pull Requests on %{name}."

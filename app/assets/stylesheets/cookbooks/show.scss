@@ -21,111 +21,14 @@
   }
 
   .sidebar {
-    .fa {
-      color: $silver;
-      margin-right: rem-calc(5);
-    }
-
-    h3, h4 {
-      color: adjust-lightness($primary_gray, 10%);
-      font: {
-        size: rem-calc(12);
-        weight: $bold;
-      }
-      text-transform: uppercase;
-
-      small {
-        color: adjust-lightness($primary_gray, 20%);
-        display: block;
-        font: $normal rem-calc(12) $default_font;
-        margin: rem-calc(5 0 0 20);
-        text-transform: none;
-      }
-    }
-
-    h3 {
-      border-bottom: rem-calc(2) solid $clouds;
-      margin-bottom: rem-calc(30);
-      padding-bottom: rem-calc(10);
-    }
-
-    h4 {
-      border-bottom: none;
-      margin: rem-calc(10 0 0 0);
-    }
-
-    p {
-      color: adjust-lightness($primary_gray, 20%);
-      font: $normal rem-calc(12) $default_font;
-      margin: rem-calc(0 0 24 20);
-    }
-
-    .gravatar {
-      height: rem-calc(72);
-      margin: rem-calc(0 15 15 0);
-      width: rem-calc(72);
-    }
-
-    .cookbook_platforms {
-      list-style-type: none;
-      margin: rem-calc(5 0 0 20);
-      padding: 0;
-    }
-
     .collaborators_avatar .gravatar {
       @include border-radius(rem-calc(40));
       height: rem-calc(40);
       width: rem-calc(40);
     }
 
-    .manage-cookbook-urls {
-      margin-bottom: rem-calc(30);
-    }
-
     .button_download_cookbook {
       margin-top: rem-calc(20);
-    }
-
-    @media #{$medium-down} {
-      .button {
-        display: block;
-        margin-top: rem-calc(10);
-        width: 100%
-      }
-    }
-  }
-
-  .heading {
-    border: none;
-    font-size: rem-calc(30);
-    margin-bottom: rem-calc(38);
-    position: relative;
-    z-index: 1;
-
-    @media #{$small-down} {
-      small {
-        display: block;
-        float: none;
-        margin: rem-calc(5 0 5 0);
-      }
-    }
-
-    @media #{$small-down} {
-      .button {
-        width: 100%;
-      }
-    }
-  }
-
-  @media #{$mobile-only} {
-    .heading {
-      margin-bottom: rem-calc(25);
-    }
-  }
-
-  @media #{$small-only} {
-    .heading {
-      margin-bottom: rem-calc(15);
     }
   }
 
@@ -174,10 +77,6 @@
         text-align: left;
       }
     }
-  }
-
-  pre.install {
-    margin-bottom: rem-calc(30);
   }
 
   .version_dropdown {
@@ -245,32 +144,6 @@
     }
   }
 
-  .cookbook-urls {
-    margin-bottom: rem-calc(30);
-  }
-
-  .owner_avatar {
-    @include clearfix;
-    font: {
-      size: rem-calc(18);
-      weight: $bold;
-    }
-
-    .gravatar {
-      float: left;
-      margin-top: rem-calc(-15);
-    }
-
-    small {
-      display: block;
-      font: {
-        size: rem-calc(14);
-        weight: $normal;
-      }
-      margin-top: rem-calc(5);
-    }
-  }
-
   .collaborators_avatar {
     margin-bottom: rem-calc(20);
 
@@ -286,24 +159,5 @@
       list-style-type: none;
       margin-bottom: 0;
     }
-  }
-
-  .manage_cookbook {
-    margin-bottom: rem-calc(30);
-  }
-}
-
-.rss_feed_link {
-  display: block;
-  color: darken($primary_gray, 10%);
-  font: {
-    size: rem-calc(12);
-    weight: $bold;
-  }
-
-  .fa-rss { color: $primary_orange; }
-
-  .heading & {
-    margin: rem-calc(-6 0 0 0);
   }
 }
