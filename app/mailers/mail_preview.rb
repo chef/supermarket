@@ -36,6 +36,16 @@ if Rails.env.development?
       ContributorRequestMailer.incoming_request_email(admin, contributor_request)
     end
 
+    def request_accepted_email
+      contributor_request = ContributorRequest.where(
+        user_id: user.id,
+        organization_id: organization.id,
+        ccla_signature_id: ccla_signature.id
+      ).first_or_create
+
+      ContributorRequestMailer.request_accepted_email(contributor_request)
+    end
+
     private
 
     def organization

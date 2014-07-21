@@ -10,6 +10,11 @@ en:
   cookbook:
     transfered_ownership: "%{cookbook} transfered to %{user}."
     deprecated: "%{cookbook} deprecated in favor of %{replacement_cookbook}."
+  contributor_requests:
+    accept:
+      success: "%{username} is now authorized to contribute on behalf of %{organization}."
+    already:
+      declined: "%{username} has already been declined authorization to contribute on behalf of %{organization}."
   profile:
     no_cookbooks:
       owns: "%{username} doesn't own any cookbooks."

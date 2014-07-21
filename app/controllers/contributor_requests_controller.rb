@@ -31,14 +31,41 @@ class ContributorRequestsController < ApplicationController
   #
   # GET /ccla-signatures/:ccla_signature_id/contributor_requests/:id/accept
   #
-  # @todo Implement this.
   # @note This is an _unsafe_ GET.
   #
   # Accepts the given request to join the organization which holds the given
   # CCLA Signature.
   #
   def accept
-    redirect_to root_url
+    contributor_request = ContributorRequest.where(
+      ccla_signature_id: params[:ccla_signature_id],
+      id: params[:id]
+    ).first!
+
+    authorize! contributor_request
+
+    contributor_request.accept do
+      ContributorRequestMailer.delay.request_accepted_email(contributor_request)
+    end
+
+    if contributor_request.accepted?
+      notice = I18n.t(
+        'contributor_requests.accept.success',
+        username: contributor_request.user.username,
+        organization: contributor_request.organization.name
+      )
+    else
+      notice = I18n.t(
+        'contributor_requests.already.declined',
+        username: contributor_request.user.username,
+        organization: contributor_request.organization.name
+      )
+    end
+
+    redirect_to(
+      contributors_ccla_signature_path(contributor_request.ccla_signature),
+      notice: notice
+    )
   end
 
   #

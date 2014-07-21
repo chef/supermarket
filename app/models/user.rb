@@ -225,7 +225,7 @@ class User < ActiveRecord::Base
     ContributorRequest.where(
       organization_id: organization.id,
       user_id: id
-    ).any?
+    ).first.try(:pending?)
   end
 
   #
