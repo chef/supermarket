@@ -11,15 +11,13 @@
       </span>
 
       <% if cookbook.deprecated? %>
-        <% if cookbook.replacement.present? %>
-          <span class="meta">
+        <span class="meta">
+          <% if cookbook.replacement.present? %>
             <i class="fa fa-exclamation-triangle"></i> Deprecated in favor of <%= link_to cookbook.replacement.name, cookbook.replacement %>
-          </span>
-        <% else %>
-          <span class="meta">
+          <% else %>
             <i class="fa fa-exclamation-triangle"></i> Deprecated
-          </span>
-        <% end %>
+          <% end %>
+        </span>
       <% end %>
 
       <div class="owner">

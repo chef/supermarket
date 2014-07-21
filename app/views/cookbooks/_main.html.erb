@@ -1,14 +1,14 @@
 <div class="main" data-equalizer-watch>
   <% if cookbook.deprecated? %>
-    <% if cookbook.replacement.present? %>
-      <div class="deprecation-notice">
-        <h2 class="deprecation-copy"><i class="fa fa-exclamation-triangle"></i> <%= cookbook.name %> has been deprecated in favor of <%= link_to cookbook.replacement.name, cookbook.replacement %></h2>
-      </div>
-    <% else %>
-      <div class="deprecation-notice">
-        <h2 class="deprecation-copy"><i class="fa fa-exclamation-triangle"></i> <%= cookbook.name %> has been deprecated</h2>
-      </div>
-    <% end %>
+    <div class="deprecation-notice">
+      <h2 class="deprecation-copy">
+        <% if cookbook.replacement.present? %>
+          <i class="fa fa-exclamation-triangle"></i> <%= cookbook.name %> has been deprecated in favor of <%= link_to cookbook.replacement.name, cookbook.replacement %>
+        <% else %>
+          <i class="fa fa-exclamation-triangle"></i> <%= cookbook.name %> has been deprecated
+        <% end %>
+      </h2>
+    </div>
   <% end %>
 
   <small class="rss">
