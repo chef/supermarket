@@ -1,24 +1,24 @@
 en:
   user:
-    signed_in:  "Welcome back %{name}!"
-    signed_out: "Goodbye"
+    signed_in:  "Welcome back %{name}."
+    signed_out: "You have successfully signed out."
     must_be_signed_in: "You must be signed in to do that."
     made_admin: "%{name} is now an admin."
     revoked_admin: "%{name} is no longer an admin."
   account:
-    already_connected: "The %{provider} account (%{username}) you're trying to link is already linked to another Supermarket user."
+    already_connected: "The %{provider} account (%{username}) you are trying to link is already linked to another Supermarket user."
   cookbook:
-    transfered_ownership: "%{cookbook} transfered to %{user}."
+    transfered_ownership: "%{cookbook} transferred to %{user}."
     deprecated: "%{cookbook} deprecated in favor of %{replacement_cookbook}."
   profile:
     no_cookbooks:
-      owns: "%{username} doesn't own any cookbooks."
-      collaborates: "%{username} doesn't collaborate on any cookbooks."
-      follows: "%{username} doesn't follow any cookbooks."
+      owns: "%{username} does not own any cookbooks."
+      collaborates: "%{username} does not collaborate on any cookbooks."
+      follows: "%{username} does not follow any cookbooks."
     current_user_no_cookbooks:
-      owns: "You don't own any cookbooks."
-      collaborates: "You aren't a collaborator on any cookbooks."
-      follows: "You don't follow any cookbooks."
+      owns: "You do not own any cookbooks."
+      collaborates: "You are not a collaborator on any cookbooks."
+      follows: "You do not follow any cookbooks."
     no_tools: "%{username} does not maintain any tools."
     current_user_no_tools: "You do not maintain any tools."
   requires_linked_github: "You need to link your GitHub account."
@@ -28,19 +28,19 @@ en:
   organization_invitations:
     invites:
       success: "Successfully sent invitations"
-      warning: "The following invitations were invalid %{invites} all others however were valid and sent."
+      warning: "The following invitations were invalid %{invites}. All others were valid and sent."
   tool:
-    created: "The %{name} tool was successfully created."
-    updated: "The %{name} tool was successfully updated."
+    created: "The %{name} tool has been successfully created."
+    updated: "The %{name} tool has been successfully updated."
   curry:
     repositories:
-      evaluate: "Curry is now evaluating all open Pull Requests on %{name}"
+      evaluate: "Curry is now evaluating all open Pull Requests on %{name}."
       subscribe:
         failure: "That repository does not exist on GitHub."
-        success: "Supermarket is now monitoring this repository"
+        success: "Supermarket is now monitoring this repository."
       unsubscribe:
-        failure: "The repository was destroyed, but there was an issue unsubscribing from the repo."
-        success: "The repository was destroyed and Supermarket has been unsubscribed from the repo."
+        failure: "The repository has been destroyed, but there was an issue unsubscribing from the repo."
+        success: "The repository has been destroyed, and Supermarket has been unsubscribed from the repo."
   api:
     error_codes:
       missing_required_data: "MISSING_REQUIRED_DATA"
@@ -48,21 +48,21 @@ en:
       authentication_failed: "AUTHENTICATION_FAILED"
       unauthorized: "UNAUTHORIZED"
     error_messages:
-      missing_cookbook: "Mulipart POST must include a part named 'cookbook'"
-      cookbook_not_json: "Mulipart POST part 'cookbook' must be a valid JSON string"
-      missing_tarball: "Mulipart POST must include a part named 'tarball'"
-      tarball_has_no_path: "Multipart POST part 'tarball' must be a file"
-      non_existent_category: "Category '%{category_name}' does not exist"
-      tarball_not_gzipped: "Multipart POST part 'tarball' must be GZipped"
-      missing_metadata: "Multipart POST part 'tarball' must contain a metadata.json entry"
-      missing_readme: "Multipart POST part 'tarball' must contain a README"
-      metadata_not_json: "Tarball entry named 'metadata.json' could not be parsed as JSON"
-      invalid_version_constraint: "Platform '%{name}' has invalid version constraint '%{version_constraint}'"
+      missing_cookbook: "Mulipart POST must include a part named 'cookbook'."
+      cookbook_not_json: "Mulipart POST part 'cookbook' must be a valid JSON string."
+      missing_tarball: "Mulipart POST must include a part named 'tarball'."
+      tarball_has_no_path: "Multipart POST part 'tarball' must be a file."
+      non_existent_category: "Category '%{category_name}' does not exist."
+      tarball_not_gzipped: "Multipart POST part 'tarball' must be GZipped."
+      missing_metadata: "Multipart POST part 'tarball' must contain a metadata.json entry."
+      missing_readme: "Multipart POST part 'tarball' must contain a README."
+      metadata_not_json: "Tarball entry named 'metadata.json' could not be parsed as JSON."
+      invalid_version_constraint: "Platform '%{name}' has invalid version constraint '%{version_constraint}'."
       invalid_metadata: "The metadata is formatted incorrectly."
       invalid_platforms: "The list of supported platforms must be a JSON object."
       version_not_unique: "%{name} (%{version}) already exists. A cookbook's version number must be unique."
-      invalid_username: "Could not find user '%{username}'"
+      invalid_username: "Could not find user '%{username}'."
       authentication_request_error: "Authentication failed due to an invalid signed request."
-      authentication_key_error: "Authentication failed due to an invalid public/private key pair. If you've changed your keys recently try logging out and logging back in to Supermarket."
-      unauthorized_upload_error: "You're not authorized to upload this cookbook."
+      authentication_key_error: "Authentication failed due to an invalid public/private key pair. If you have changed your keys recently try logging out and logging back in to Supermarket."
+      unauthorized_upload_error: "You are not authorized to upload this cookbook."
       missing_public_key_error: "Before you can perform knife activities that require authentication, you must log into %{current_host} and grant it permission to access your Chef account information."
