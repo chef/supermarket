@@ -45,6 +45,15 @@ class Tool < ActiveRecord::Base
     owner.username
   end
 
+  #
+  # The unique identifier to use for +Tool+ routes.
+  #
+  # @return [String]
+  #
+  def to_param
+    name.parameterize
+  end
+
   private
 
   #

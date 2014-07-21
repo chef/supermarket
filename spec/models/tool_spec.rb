@@ -35,4 +35,12 @@ describe Tool do
       expect(scope).to include(tool, mytool)
     end
   end
+
+  describe '#to_param' do
+    it 'returns the tools name parameterize' do
+      tool = create(:tool, name: 'better butter')
+
+      expect(tool.to_param).to eql('better-butter')
+    end
+  end
 end
