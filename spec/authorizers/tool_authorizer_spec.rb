@@ -10,6 +10,7 @@ describe ToolAuthorizer do
 
     it { should permit_authorization(:edit) }
     it { should permit_authorization(:update) }
+    it { should permit_authorization(:destroy) }
   end
 
   context 'as a supermarket admin' do
@@ -20,6 +21,7 @@ describe ToolAuthorizer do
 
     it { should permit_authorization(:edit) }
     it { should permit_authorization(:update) }
+    it { should permit_authorization(:destroy) }
   end
 
   context 'not as the tool owner' do
@@ -29,5 +31,6 @@ describe ToolAuthorizer do
 
     it { should_not permit_authorization(:edit) }
     it { should_not permit_authorization(:update) }
+    it { should_not permit_authorization(:destroy) }
   end
 end
