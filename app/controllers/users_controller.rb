@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   # Display a user and their tools.
   #
   def tools
-    @tools = @user.tools.page(params[:page]).per(20)
+    @tools = @user.tools.order(:name).page(params[:page]).per(20)
   end
 
   #
