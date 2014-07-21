@@ -14,15 +14,15 @@
       <%= link_to '#', 'data-dropdown' => 'type', class: 'button radius tiny dropdown secondary' do %>
         <%= params[:type].present? ? params[:type].titleize : 'All' %>
       <% end %>
+      <% if current_user %>
+        <%= link_to 'Add Tool', new_tool_path, class: 'button radius tiny secondary' %>
+      <% end %>
       <ul id="type" data-dropdown-content class="f-dropdown">
         <li><%= link_to 'All', tools_path %></li>
         <% Tool::ALLOWED_TYPES.each do |type| %>
           <li><%= link_to type.titleize, type: type %></li>
         <% end %>
       </ul>
-      <% if current_user %>
-        <%= link_to 'Add Tool', new_tool_path, class: 'button radius tiny secondary' %>
-      <% end %>
     </div>
   </div>
 
