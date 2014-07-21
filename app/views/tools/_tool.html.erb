@@ -2,7 +2,7 @@
   <div class="header">
     <div class="header-content">
       <h2 class="title">
-        <%= link_to tool, rel: 'tool' do %><%= tool.name %><% end %>
+        <%= link_to tool.name, tool, rel: 'view_tool' %>
       </h2>
       <span class="meta">
         <i class="fa fa-wrench"></i> <%= tool.type.titleize %>
@@ -26,6 +26,10 @@
   <div class="bottom">
     <div class="bottom-content">
       <%= link_to 'Source', tool.source_url, class: 'button tiny radius', target: '_blank' %>
+
+      <% if policy(tool).update? %>
+        <%= link_to 'Edit', edit_tool_path(tool), class: 'button tiny radius secondary', rel: 'edit_tool' %>
+      <% end %>
     </div>
   </div>
 </li>

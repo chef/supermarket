@@ -1,14 +1,16 @@
-<%= provide(:title, "Add new Tool") %>
+<%= provide(:title, "Edit #{@tool.name}") %>
 
 <div class="page profile" data-equalizer>
   <%= render 'users/sidebar' %>
 
   <div class="main" data-equalizer-watch>
     <%= render 'users/heading', user: @user, title: "#{posessivize(@user.name)} Tools", active: 'tools' %>
-    <%= render 'tabs', active: 'add' %>
+    <%= render 'tabs', active: 'maintains' %>
 
     <div class="tabs-content">
       <div class="content active">
+        <h3>Editing <%= @tool.name %> <small><%= link_to 'View Tool', @tool %></small></h3>
+
         <%= render 'form' %>
       </div>
     </div>

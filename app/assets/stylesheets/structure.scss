@@ -340,6 +340,35 @@ pre {
   text-align: center;
 }
 
+input.error, textarea.error {
+  margin-bottom: rem-calc(20);
+}
+
+.panel.alert {
+  background: lighten($primary_red, 8%);
+  border: solid 1px darken($primary_red, 5%);
+  color: white;
+  padding: rem-calc(15 20);
+  margin-bottom: rem-calc(24);
+
+  p {
+    color: white;
+    margin-bottom: rem-calc(10);
+    font-size: rem-calc(14);
+  }
+
+  ul {
+    list-style-type: square;
+    font-size: rem-calc(14);
+  }
+}
+
+@media #{$small-down} {
+  .panel.alert {
+    padding: rem-calc(5 10);
+  }
+}
+
 .hardcoded {
   border: 2px solid #E00404;
 }
