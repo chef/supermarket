@@ -26,4 +26,34 @@ class ContributorRequestMailer < ActionMailer::Base
 
     mail(to: @to, subject: subject)
   end
+
+  #
+  # Delivers a notification that the given +contributor_request+ has been
+  # accepted
+  #
+  # @param contributor_request [ContributorRequest] the accepted request
+  #
+  def request_accepted_email(contributor_request)
+    @to = contributor_request.user.email
+    @organization_name = contributor_request.organization.name
+
+    subject = "Your request to join #{@organization_name} has been accepted!"
+
+    mail(to: @to, subject: subject)
+  end
+
+  #
+  # Delivers a notification that the given +contributor_request+ has been
+  # declined
+  #
+  # @param contributor_request [ContributorRequest] the accepted request
+  #
+  def request_declined_email(contributor_request)
+    @to = contributor_request.user.email
+    @organization_name = contributor_request.organization.name
+
+    subject = "Your request to join #{@organization_name} has been declined"
+
+    mail(to: @to, subject: subject)
+  end
 end

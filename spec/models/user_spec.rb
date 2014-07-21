@@ -352,6 +352,34 @@ describe User do
 
       expect(user.requested_to_join?(organization)).to be_true
     end
+
+    it "is false if this user's request has been declined" do
+      user = create(:user)
+      ccla_signature = create(:ccla_signature)
+      organization = ccla_signature.organization
+
+      ContributorRequest.create!(
+        user: user,
+        ccla_signature: ccla_signature,
+        organization: organization
+      ).decline
+
+      expect(user.requested_to_join?(organization)).to be_false
+    end
+
+    it "is false if this user's request has been accepted" do
+      user = create(:user)
+      ccla_signature = create(:ccla_signature)
+      organization = ccla_signature.organization
+
+      ContributorRequest.create!(
+        user: user,
+        ccla_signature: ccla_signature,
+        organization: organization
+      ).accept
+
+      expect(user.requested_to_join?(organization)).to be_false
+    end
   end
 
   describe '.find_by_github_login' do
