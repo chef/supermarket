@@ -21,7 +21,31 @@ feature 'cookbook owners can deprecate a cookbook' do
     expect_to_see_success_message
   end
 
-  it 'changes the link to the new cookbook' do
+  it 'displays a deprecation notice on the cookbook show with the replacment' do
     expect(page).to have_content(replacement_cookbook.name)
+  end
+
+  it 'displays a deprecation notice on the cookbook partial with link to replacement' do
+    visit user_path(cookbook.owner)
+
+    expect(page).to have_content(replacement_cookbook.name)
+  end
+
+  context 'when cookbook replacement is deleted' do
+    before do
+      replacement_cookbook.destroy
+    end
+
+    it 'displays a simple deprecation notice on the cookbook show' do
+      visit(current_path)
+
+      expect(page).to_not have_content(replacement_cookbook.name)
+    end
+
+    it 'displays a simple deprecation notice on the cookbook partial' do
+      visit user_path(cookbook.owner)
+
+      expect(page).to_not have_content(replacement_cookbook.name)
+    end
   end
 end
