@@ -4,23 +4,6 @@ class OrganizationsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:index]
 
   #
-  # GET /organizations
-  #
-  # Lists out all organizations.
-  #
-  def index
-    @ccla_signatures = if params[:q]
-                         CclaSignature.search(params[:q])
-                       else
-                         CclaSignature.all
-                       end
-
-    if params[:exclude_id]
-      @ccla_signatures = @ccla_signatures.where('organization_id <> ?', params[:exclude_id])
-    end
-  end
-
-  #
   # GET /organizations/:id
   #
   # Shows the management page for an organization, allowing deletion and

@@ -10,17 +10,20 @@ $(function () {
       dataType: 'json',
       quietMillis: 200,
       data: function (term, page) {
-        return { q: term };
+        return {q: term};
       },
       results: function (data, page) {
         return {results: data};
       }
     },
     formatSelection: function(obj, container) {
-      return obj.name;
+      return obj.company + ', signed on ' + obj.signed_at;
     },
     formatResult: function(obj, container, query) {
-      return obj.name + ', signed on ' + obj.signed_at;
+      return obj.company + ', signed on ' + obj.signed_at;
+    },
+    id: function(obj) {
+      return obj.organization_id
     }
   }
 
