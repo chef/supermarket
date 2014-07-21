@@ -16,16 +16,16 @@ describe CookbookDeprecatedNotifier do
 
     users_to_email = [
       cookbook.owner,
-      cookbook_collaborator,
-      cookbook_followers[0]
+      cookbook_collaborator.user,
+      cookbook_followers[0].user
     ]
 
-    expect do
-      Sidekiq::Testing.inline! do
-        CookbookDeprecatedNotifier.new.perform(cookbook.id)
-      end
-    end.to change(ActionMailer::Base.deliveries, :size).by(
-      users_to_email.size
-    )
+    Sidekiq::Testing.inline! do
+      CookbookDeprecatedNotifier.new.perform(cookbook.id)
+    end
+
+    recipients = ActionMailer::Base.deliveries.map(&:to).flatten.sort
+
+    expect(recipients).to eql(users_to_email.map(&:email).sort)
   end
 end
