@@ -20,6 +20,10 @@ if Rails.env.development?
       CookbookMailer.cookbook_deleted_email(cookbook.name, user.email)
     end
 
+    def cookbook_deprecated_notification_email
+      CookbookMailer.cookbook_deprecated_email(cookbook, cookbook_other, user.email)
+    end
+
     def contributor_request_email
       contributor_request = ContributorRequest.where(
         user_id: user.id,
@@ -56,6 +60,10 @@ if Rails.env.development?
 
     def cookbook
       Cookbook.first!
+    end
+
+    def cookbook_other
+      Cookbook.last!
     end
 
     def cookbook_follower
