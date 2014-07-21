@@ -9,6 +9,19 @@ class CclaSignaturesController < ApplicationController
   #
   def index
     @ccla_signatures = CclaSignature.by_organization
+
+    if params[:q]
+      @ccla_signatures = @ccla_signatures.search(params[:q])
+    end
+
+    if params[:exclude_id]
+      @ccla_signatures = @ccla_signatures.where('organization_id <> ?', params[:exclude_id])
+    end
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   #

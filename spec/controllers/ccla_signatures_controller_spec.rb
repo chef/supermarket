@@ -3,14 +3,42 @@ require 'spec_helper'
 describe CclaSignaturesController do
   context 'routes not requiring authentication' do
     describe 'GET #index' do
-      let(:ccla_signature) { create(:ccla_signature) }
-      before { get :index }
+      let!(:org1) { create(:organization) }
+      let!(:org2) { create(:organization) }
+      let!(:ccla_signature1) { create(:ccla_signature, organization: org1, company: 'International House of Pancakes') }
+      let!(:ccla_signature2) { create(:ccla_signature, organization: org2, company: "Bob's House of Pancakes") }
 
-      it { should respond_with(200) }
-      it { should render_template('index') }
+      context 'the format is html' do
+        before { get :index }
 
-      it 'assigns @ccla_signatures' do
-        expect(assigns(:ccla_signatures)).to include(ccla_signature)
+        it { should respond_with(200) }
+        it { should render_template('index') }
+
+        it 'assigns @ccla_signatures' do
+          expect(assigns(:ccla_signatures)).to include(ccla_signature1)
+        end
+      end
+
+      context 'the format is json' do
+        it 'succeeds' do
+          get :index, format: :json
+          expect(response).to be_success
+        end
+
+        it 'assigns organizations' do
+          get :index, format: :json
+          expect(assigns(:ccla_signatures)).to include(ccla_signature1, ccla_signature2)
+        end
+
+        it 'filters organizations when you pass in a search parameter' do
+          get :index, q: 'international', format: :json
+          expect(assigns(:ccla_signatures)).to include(ccla_signature1)
+        end
+
+        it 'excludes the current organization from search results' do
+          get :index, exclude_id: org1.id, format: :json
+          expect(assigns(:ccla_signatures).to_a).to_not include(ccla_signature1)
+        end
       end
     end
 

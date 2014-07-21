@@ -107,7 +107,7 @@ Supermarket::Application.routes.draw do
     end
   end
 
-  resources :organizations, only: [:index, :show, :destroy] do
+  resources :organizations, only: [:show, :destroy] do
     member do
       put :combine
     end
