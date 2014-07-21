@@ -197,4 +197,135 @@ describe ContributorRequestsController do
       end
     end
   end
+
+  describe '#decline' do
+    let!(:contributor_request) { create(:contributor_request) }
+
+    def decline!
+      Sidekiq::Testing.inline! do
+        get(
+          :decline,
+          ccla_signature_id: contributor_request.ccla_signature_id,
+          id: contributor_request.id
+        )
+      end
+    end
+
+    context 'when not signed in as an org admin' do
+      it '404s' do
+        non_admin_user = create(:user)
+
+        sign_in(non_admin_user)
+
+        decline!
+
+        expect(response.code.to_i).to eql(404)
+      end
+    end
+
+    context 'when signed in as an org admin' do
+      let(:destination) do
+        contributors_ccla_signature_path(contributor_request.ccla_signature)
+      end
+
+      before do
+        admin_user = create(:user)
+        contributor_request.organization.admins.create(user: admin_user)
+
+        sign_in(admin_user)
+      end
+
+      context 'for pending requests' do
+        it 'redirects to the CCLA detail with a notice' do
+          decline!
+
+          notice = I18n.t(
+            'contributor_requests.decline.success',
+            username: contributor_request.user.username,
+            organization: contributor_request.organization.name
+          )
+
+          expect(flash[:notice]).to eql(notice)
+
+          expect(response).to redirect_to(destination)
+        end
+
+        it 'sends an email to the requestor' do
+          requestor_delivery_count = lambda do
+            ActionMailer::Base.deliveries.select do |message|
+              message.to.include?(contributor_request.user.email)
+            end.count
+          end
+
+          expect do
+            decline!
+          end.to change(&requestor_delivery_count).by(1)
+        end
+      end
+
+      context 'for accepted requests' do
+        before do
+          contributor_request.accept
+        end
+
+        it 'redirects to the CCLA detail with a notice' do
+          decline!
+
+          notice = I18n.t(
+            'contributor_requests.already.accepted',
+            username: contributor_request.user.username,
+            organization: contributor_request.organization.name
+          )
+
+          expect(flash[:notice]).to eql(notice)
+
+          expect(response).to redirect_to(destination)
+        end
+
+        it 'does not send an email to the requestor' do
+          requestor_delivery_count = lambda do
+            ActionMailer::Base.deliveries.select do |message|
+              message.to.include?(contributor_request.user.email)
+            end.count
+          end
+
+          expect do
+            decline!
+          end.to_not change(&requestor_delivery_count)
+        end
+      end
+
+      context 'for declined requests' do
+        before do
+          contributor_request.decline
+        end
+
+        it 'redirects to the CCLA detail with the same notice as the first decline' do
+          decline!
+
+          notice = I18n.t(
+            'contributor_requests.decline.success',
+            username: contributor_request.user.username,
+            organization: contributor_request.organization.name
+          )
+
+          expect(flash[:notice]).to eql(notice)
+
+          expect(response).to redirect_to(destination)
+        end
+
+        it 'does not send an email to the requestor' do
+          requestor_delivery_count = lambda do
+            ActionMailer::Base.deliveries.select do |message|
+              message.to.include?(contributor_request.user.email)
+            end.count
+          end
+
+          expect do
+            decline!
+          end.to_not change(&requestor_delivery_count)
+        end
+      end
+    end
+  end
 end

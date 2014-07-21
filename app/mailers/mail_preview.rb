@@ -46,6 +46,16 @@ if Rails.env.development?
       ContributorRequestMailer.request_accepted_email(contributor_request)
     end
 
+    def request_declined_email
+      contributor_request = ContributorRequest.where(
+        user_id: user.id,
+        organization_id: organization.id,
+        ccla_signature_id: ccla_signature.id
+      ).first_or_create
+
+      ContributorRequestMailer.request_declined_email(contributor_request)
+    end
+
     private
 
     def organization
