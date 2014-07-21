@@ -51,7 +51,7 @@ class Tool < ActiveRecord::Base
   # @return [ActiveRecord::Relation<Tool>] an ActiveRecord::Relation of Tools
   #
   def others_from_this_owner
-    Tool.where('user_id = ? AND id <> ?', user_id, id)
+    Tool.where('user_id = ? AND id <> ?', user_id, id).order(:name)
   end
 
   private
