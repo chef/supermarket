@@ -274,8 +274,6 @@ pre {
     }
 
     a.button {
-      @include single-transition($delay: 100ms);
-      @include inline-block;
       background-color: darken($clouds, 5%);
       color: $concrete;
       font: {

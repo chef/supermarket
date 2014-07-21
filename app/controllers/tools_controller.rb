@@ -87,6 +87,23 @@ class ToolsController < ApplicationController
     end
   end
 
+  #
+  # DELETE /tools/:id
+  #
+  # Deletes a +Tool+.
+  #
+  def destroy
+    @tool = Tool.find(params[:id])
+
+    authorize! @tool
+
+    @tool.destroy
+    redirect_to(
+      tools_user_path(@tool.owner),
+      notice: t('tool.deleted', name: @tool.name)
+    )
+  end
+
   private
 
   #

@@ -1,4 +1,4 @@
-<li class="listing">
+<li>
   <div class="header">
     <div class="header-content">
       <h2 class="title">
@@ -29,6 +29,10 @@
 
       <% if policy(tool).update? %>
         <%= link_to 'Edit', edit_tool_path(tool), class: 'button tiny radius secondary', rel: 'edit_tool' %>
+      <% end %>
+
+      <% if policy(tool).destroy? %>
+        <%= link_to 'Delete', tool_path(tool), method: :delete, class: 'button tiny radius alert', 'data-confirm' => "Are you sure you want to delete #{tool.name}? It cannot be undone.", rel: 'delete_tool' %>
       <% end %>
     </div>
   </div>

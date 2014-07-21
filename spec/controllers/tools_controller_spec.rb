@@ -187,4 +187,32 @@ describe ToolsController do
       expect(response.status.to_i).to eql(404)
     end
   end
+
+  describe 'PATCH #destroy' do
+    let(:user) { create(:user) }
+    let!(:tool) { create(:tool, name: 'butter', owner: user) }
+
+    before do
+      sign_in(user)
+    end
+
+    it 'deletes a tool' do
+      expect do
+        delete :destroy, id: tool
+      end.to change { Tool.count }.by(-1)
+    end
+
+    it "redirects the user to the tool owner's profile tools tab" do
+      delete :destroy, id: tool
+      expect(response).to redirect_to(tools_user_path(user))
+    end
+
+    it '404s if the user is not authorized to delete the tool' do
+      sign_in(create(:user))
+
+      delete :destroy, id: tool
+
+      expect(response.status.to_i).to eql(404)
+    end
+  end
 end
