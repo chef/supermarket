@@ -161,7 +161,7 @@ if Rails.env.development?
       description: 'Great knife plugin.',
       source_url: 'http://example.com',
       instructions: "gem install #{name}",
-      user: user
+      owner: user
     )
   end
 
@@ -176,7 +176,7 @@ if Rails.env.development?
       description: 'Great ohai plugin.',
       source_url: 'http://example.com',
       instructions: "Install the plugin in /etc/chef/ohai_plugins.",
-      user: user
+      owner: user
     )
   end
 

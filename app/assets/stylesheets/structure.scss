@@ -331,6 +331,17 @@ pre {
   }
 }
 
+.rss_feed_link {
+  display: block;
+  color: darken($primary_gray, 10%);
+  font: {
+    size: rem-calc(12);
+    weight: $bold;
+  }
+
+  .fa-rss { color: $primary_orange; }
+}
+
 .footer {
   color: #999;
   font-size: rem-calc(11);

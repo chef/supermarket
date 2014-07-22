@@ -35,4 +35,13 @@ describe Tool do
       expect(scope).to include(tool, mytool)
     end
   end
+
+  describe '.others_from_this_owner' do
+    it 'should find other tools by this owner' do
+      user = create(:user)
+      tool = create(:tool, name: 'DINGUS', owner: user)
+      mytool = create(:tool, name: 'OH YES', owner: user)
+      expect(tool.others_from_this_owner.to_a).to eql([mytool])
+    end
+  end
 end

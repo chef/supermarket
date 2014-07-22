@@ -43,6 +43,23 @@ describe ToolsController do
     end
   end
 
+  describe 'GET #show' do
+    let(:tool) { create(:tool) }
+    before { get :show, id: tool }
+
+    it 'responds with a 200' do
+      expect(response).to be_success
+    end
+
+    it 'assigns a new tool' do
+      expect(assigns(:tool)).to_not be_nil
+    end
+
+    it 'assigns other tools' do
+      expect(assigns(:other_tools)).to_not be_nil
+    end
+  end
+
   describe 'GET #new' do
     before do
       sign_in(create(:user))
