@@ -71,6 +71,18 @@ describe CookbooksController do
       end
     end
 
+    context 'there is a featured parameter' do
+      let!(:featured) { create(:cookbook, featured: true) }
+      let!(:unfeatured) { create(:cookbook, featured: false) }
+
+      it 'only returns @cookbooks that are featured' do
+        get :index, featured: true
+
+        expect(assigns[:cookbooks]).to include(featured)
+        expect(assigns[:cookbooks]).to_not include(unfeatured)
+      end
+    end
+
     context 'there is a query parameter' do
       let!(:amazing_cookbook) do
         create(
@@ -153,6 +165,10 @@ describe CookbooksController do
 
     it 'assigns @most_followed_cookbooks' do
       expect(assigns[:most_followed_cookbooks]).to_not be_nil
+    end
+
+    it 'assigns @featured_cookbooks' do
+      expect(assigns[:featured_cookbooks]).to_not be_nil
     end
 
     it 'assigns @categories' do
@@ -472,7 +488,7 @@ describe CookbooksController do
       expect(response).to redirect_to(unfeatured)
     end
 
-    it '404s if the user is not authorized to edit the tool' do
+    it '404s if the user is not authorized to feature/unfeature a cookbook' do
       sign_in(create(:user))
 
       put :toggle_featured, id: unfeatured

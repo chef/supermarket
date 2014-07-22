@@ -26,6 +26,10 @@ class CookbooksController < ApplicationController
       @cookbooks = @cookbooks.search(params[:q])
     end
 
+    if params[:featured].present?
+      @cookbooks = @cookbooks.featured
+    end
+
     if params[:order].present?
       @cookbooks = @cookbooks.ordered_by(params[:order])
     end
@@ -60,6 +64,11 @@ class CookbooksController < ApplicationController
     @most_followed_cookbooks = Cookbook.
       includes(:cookbook_versions).
       ordered_by('most_followed').
+      limit(5)
+    @featured_cookbooks = Cookbook.
+      includes(:cookbook_versions).
+      featured.
+      order(:name).
       limit(5)
 
     @cookbook_count = Cookbook.count
