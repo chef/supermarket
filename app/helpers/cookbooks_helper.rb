@@ -75,12 +75,13 @@ module CookbooksHelper
   #   <% end %>
   #
   # @param cookbook [Cookbook] the Cookbook to follow or unfollow
+  # @param params [Hash] any additional query params to add to the follow button
   # @yieldparam following [Boolean] whether or not the +current_user+ is
   #   following the given +Cookbook+
   #
   # @return [String] a link based on the following state for the current cookbook.
   #
-  def follow_button_for(cookbook, &block)
+  def follow_button_for(cookbook, params = {}, &block)
     fa_icon = content_tag(:i, '', class: 'fa fa-users')
     followers_count = cookbook.cookbook_followers_count.to_s
     followers_count_span = content_tag(
@@ -91,7 +92,7 @@ module CookbooksHelper
 
     unless current_user
       return link_to(
-        follow_cookbook_path(cookbook),
+        follow_cookbook_path(cookbook, params),
         method: 'put',
         rel: 'sign-in-to-follow',
         class: 'button radius tiny follow',
@@ -108,7 +109,7 @@ module CookbooksHelper
 
     if cookbook.followed_by?(current_user)
       link_to(
-        unfollow_cookbook_path(cookbook),
+        unfollow_cookbook_path(cookbook, params),
         method: 'delete',
         rel: 'unfollow',
         class: 'button radius tiny follow',
@@ -124,7 +125,7 @@ module CookbooksHelper
       end
     else
       link_to(
-        follow_cookbook_path(cookbook),
+        follow_cookbook_path(cookbook, params),
         method: 'put',
         rel: 'follow',
         class: 'button radius tiny follow',

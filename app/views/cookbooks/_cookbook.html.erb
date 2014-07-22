@@ -1,4 +1,4 @@
-<li id="<%= cookbook.name %>">
+<li>
   <div class="header">
     <div class="header-content">
       <h2 class="title">
@@ -61,16 +61,7 @@
           <%= cookbook.download_count %>
           <h5><%= "Download".pluralize(cookbook.download_count) %></h5>
         </li>
-        <li>
-          <i class="fa fa-group"></i>
-          <%= cookbook.cookbook_followers_count %>
-          <h5><%= "Follower".pluralize(cookbook.cookbook_followers_count) %></h5>
-        </li>
-        <li>
-          <%= follow_button_for(cookbook) do |following| %>
-            <%= following ? "Unfollow" : "Follow" %>
-          <% end %>
-        </li>
+        <%= render 'cookbooks/follow_button_list', cookbook: cookbook %>
       </ul>
     </div>
   </div>
