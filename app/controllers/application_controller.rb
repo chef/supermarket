@@ -23,11 +23,7 @@ class ApplicationController < ActionController::Base
       options[:notice] = error.message
     end
 
-    respond_to do |format|
-      format.any do
-        render 'exceptions/404.html.erb', options
-      end
-    end
+    render 'exceptions/404.html.erb', options
   end
 
   def after_sign_in_path_for(_resource)
