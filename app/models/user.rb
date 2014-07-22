@@ -240,20 +240,15 @@ class User < ActiveRecord::Base
   # @return [ActiveRecord::Relation] the users who have signed the cla
   #
   def self.authorized_contributors
-    sql = %(
-      SELECT users.* FROM users
-      INNER JOIN accounts ON accounts.user_id = users.id
-      LEFT JOIN icla_signatures ON icla_signatures.user_id = users.id
-      LEFT JOIN ccla_signatures ON ccla_signatures.user_id = users.id
-      LEFT JOIN contributors ON contributors.user_id = users.id
-      WHERE accounts.provider = 'chef_oauth2'
-      AND (icla_signatures.id IS NOT NULL
-          OR ccla_signatures.id IS NOT NULL
-          OR contributors.id IS NOT NULL)
-      ORDER BY accounts.username
-    )
-
-    User.find_by_sql(sql).uniq
+    User.includes(:accounts).
+      joins('LEFT JOIN icla_signatures ON icla_signatures.user_id = users.id').
+      joins('LEFT JOIN ccla_signatures ON ccla_signatures.user_id = users.id').
+      joins('LEFT JOIN contributors ON contributors.user_id = users.id').
+      where('accounts.provider = ?', 'chef_oauth2').
+      where('icla_signatures.id IS NOT NULL OR ccla_signatures.id
+            IS NOT NULL OR contributors.id IS NOT NULL').
+      order('accounts.username').
+      distinct
   end
 
   #
