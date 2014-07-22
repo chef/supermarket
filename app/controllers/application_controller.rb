@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
   rescue_from(
     NotAuthorizedError,
     ActiveRecord::RecordNotFound,
-    ActionController::UnknownFormat
+    ActionController::UnknownFormat,
+    ActionView::MissingTemplate
   ) do |error|
     not_found!(error)
   end
