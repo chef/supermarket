@@ -32,12 +32,12 @@ $(function() {
    * the partial in question with server side rendered HTML.
    */
   $('body').delegate('.listing .follow', 'ajax:success', function(e, data, status, xhr) {
-    var cookbookId = '#' + $(this).data('cookbook');
+    var followCountId = '#' + $(this).data('cookbook') + '-follow-count';
+    var followButtonId = '#' + $(this).data('cookbook') + '-follow-button';
     trackFollows(this);
 
-    $.get(window.location.href, function(response) {
-      $(cookbookId).replaceWith($(response).find(cookbookId));
-    }, 'html');
+    $(followCountId).replaceWith($(data).filter(followCountId));
+    $(followButtonId).replaceWith($(data).filter(followButtonId));
   });
 
   /*
@@ -46,9 +46,6 @@ $(function() {
    */
   $('body').delegate('.cookbook_show .follow', 'ajax:success', function(e, data, status, xhr) {
     trackFollows(this);
-
-    $.get(window.location.href, function(response) {
-      $('.followbutton').replaceWith($(response).find('.followbutton'));
-    }, 'html');
+    $('.followbutton').replaceWith(data);
   });
 });

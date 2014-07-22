@@ -35,6 +35,18 @@ describe CookbooksHelper do
       expect(helper.follow_button_for(cookbook)).to match(/follow/)
     end
 
+    it 'returns a follow button with query params if any are given' do
+      cookbook = double(
+        :cookbook,
+        followed_by?: false,
+        cookbook_followers_count: 100,
+        name: 'redis'
+      )
+      helper.stub(:current_user) { true }
+
+      expect(helper.follow_button_for(cookbook, list: true)).to match(/\?list=true/)
+    end
+
     it 'returns an unfollow button if the current user follows the given cookbook' do
       cookbook = double(
         :cookbook,

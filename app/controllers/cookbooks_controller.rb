@@ -120,7 +120,7 @@ class CookbooksController < ApplicationController
   def follow
     @cookbook.cookbook_followers.create(user: current_user)
 
-    head 200
+    render_follow_button
   end
 
   #
@@ -133,7 +133,7 @@ class CookbooksController < ApplicationController
       where(user: current_user).first!
     cookbook_follower.destroy
 
-    head 200
+    render_follow_button
   end
 
   #
@@ -200,5 +200,17 @@ class CookbooksController < ApplicationController
 
   def cookbook_deprecation_params
     params.require(:cookbook).permit(:replacement)
+  end
+
+  def render_follow_button
+    # In order to refresh the follower count the cookbook must be
+    # reloaded before rendering.
+    @cookbook.reload
+
+    if params[:list].present?
+      render partial: 'follow_button_list', locals: { cookbook: @cookbook }
+    else
+      render partial: 'follow_button_show', locals: { cookbook: @cookbook }
+    end
   end
 end

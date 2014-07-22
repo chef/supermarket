@@ -1,0 +1,10 @@
+<li id="<%= cookbook.name %>-follow-count">
+  <i class="fa fa-group"></i>
+  <%= cookbook.cookbook_followers_count %>
+  <h5><%= "Follower".pluralize(cookbook.cookbook_followers_count) %></h5>
+</li>
+<li id="<%= cookbook.name %>-follow-button">
+  <%= follow_button_for(cookbook, list: true) do |following| %>
+    <%= following ? "Unfollow" : "Follow" %>
+  <% end %>
+</li>

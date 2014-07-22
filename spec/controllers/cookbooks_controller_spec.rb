@@ -267,6 +267,18 @@ describe CookbooksController do
 
         expect(response.status.to_i).to eql(200)
       end
+
+      it 'renders the show follow button partial' do
+        put :follow, id: cookbook
+
+        expect(response).to render_template('cookbooks/_follow_button_show')
+      end
+
+      it 'renders the list follow button partial if the list param is present' do
+        put :follow, id: cookbook, list: true
+
+        expect(response).to render_template('cookbooks/_follow_button_list')
+      end
     end
 
     context 'a user is not signed in' do
@@ -308,6 +320,18 @@ describe CookbooksController do
         delete :follow, id: cookbook
 
         expect(response.status.to_i).to eql(200)
+      end
+
+      it 'renders the show follow button partial' do
+        delete :follow, id: cookbook
+
+        expect(response).to render_template('cookbooks/_follow_button_show')
+      end
+
+      it 'renders the list follow button partial if the list param is present' do
+        put :follow, id: cookbook, list: true
+
+        expect(response).to render_template('cookbooks/_follow_button_list')
       end
     end
 
