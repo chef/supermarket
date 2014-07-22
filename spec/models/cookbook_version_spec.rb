@@ -46,7 +46,8 @@ describe CookbookVersion do
       )
 
       expect(cookbook_version).to_not be_valid
-      expect(cookbook_version.errors[:tarball].first).to eql('Tarball content type can not be text/plain.')
+      expect(cookbook_version.errors[:tarball].first).to eql('can not be text/plain.')
+      expect(cookbook_version.errors.full_messages.first).to eql('Tarball content type can not be text/plain.')
     end
   end
 

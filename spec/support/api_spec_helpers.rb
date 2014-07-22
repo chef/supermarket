@@ -20,7 +20,7 @@ module ApiSpecHelpers
   def share_cookbook(cookbook_name, user, opts = {})
     cookbooks_path = '/api/v1/cookbooks'
 
-    tarball = cookbook_upload(cookbook_name, opts.fetch(:custom_metadata, {}))
+    tarball = cookbook_upload(cookbook_name, opts)
     private_key = private_key(opts.fetch(:with_invalid_private_key, false))
 
     header = Mixlib::Authentication::SignedHeaderAuth.signing_object(
@@ -92,7 +92,9 @@ module ApiSpecHelpers
     )
   end
 
-  def cookbook_upload(cookbook_name, custom_metadata)
+  def cookbook_upload(cookbook_name, opts = {})
+    custom_metadata = opts.fetch(:custom_metadata, {})
+
     metadata = {
       name: cookbook_name,
       version: '1.0.0',
@@ -118,6 +120,7 @@ module ApiSpecHelpers
       file.rewind
     end
 
-    fixture_file_upload(tarball.path, 'application/x-gzip')
+    content_type = opts.fetch(:content_type, 'application/x-gzip')
+    fixture_file_upload(tarball.path, content_type)
   end
 end

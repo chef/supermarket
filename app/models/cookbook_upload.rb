@@ -44,7 +44,7 @@ class CookbookUpload
 
         upload_errors.add(:base, version_not_unique)
       rescue ActiveRecord::RecordInvalid => e
-        e.record.errors.full_messages.each do |message|
+        gather_associated_errors(e.record, []).each do |message|
           upload_errors.add(:base, message)
         end
       end
@@ -75,6 +75,40 @@ class CookbookUpload
 
   def valid?
     errors.empty?
+  end
+
+  #
+  # This recursively gathers up error information for associations on cookbooks
+  # that we're interested in during the upload process. Without this, you get
+  # generic errors like "CookbookVersion is invalid" instead of the actual
+  # error.
+  #
+  # @param record [ActiveRecord::Base] one of our model objects
+  # @param error_array [Array<String>] an array of error strings to return
+  #
+  # @return [Array<String>] an array of error strings
+  #
+  def gather_associated_errors(record, error_array)
+    associations = [
+      :cookbook_versions,
+      :supported_platforms,
+      :cookbook_dependencies
+    ]
+
+    associations.each do |association|
+      next unless record.respond_to?(association)
+
+      record.send(association).select { |v| v.errors.present? }.each do |val|
+        val.errors.each do |attribute, error|
+          message = val.errors.full_message(attribute, error)
+          error_array << message unless message =~ /Tarball can not be/
+        end
+
+        gather_associated_errors(val, error_array)
+      end
+    end
+
+    error_array
   end
 
   #

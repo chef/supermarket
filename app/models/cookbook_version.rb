@@ -29,7 +29,7 @@ class CookbookVersion < ActiveRecord::Base
                      'application/x-bzip', 'application/x-zip-compressed',
                      'application/cap', 'application/x-tar-gz',
                      'application/postscript', 'application/x-targz'],
-      message: ->(_, info) { "#{info[:attribute]} can not be #{info[:value]}." }
+      message: ->(_, info) { "can not be #{info[:value]}." }
     }
   )
 
