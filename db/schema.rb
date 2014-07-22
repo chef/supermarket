@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717181555) do
+ActiveRecord::Schema.define(version: 20140722123525) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -222,11 +222,11 @@ ActiveRecord::Schema.define(version: 20140717181555) do
   add_index "curry_pull_requests", ["number", "repository_id"], name: "index_curry_pull_requests_on_number_and_repository_id", unique: true, using: :btree
 
   create_table "curry_repositories", force: true do |t|
-    t.string   "owner"
-    t.string   "name"
+    t.string   "owner",        null: false
+    t.string   "name",         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "callback_url"
+    t.string   "callback_url", null: false
   end
 
   create_table "hits", force: true do |t|
