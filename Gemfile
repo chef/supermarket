@@ -33,6 +33,7 @@ gem 'semverse'
 gem 'sitemap_generator'
 gem 'redis-rails'
 gem 'yajl-ruby'
+gem 'utf8-cleaner'
 
 gem 'sentry-raven', '~> 0.8.0', require: false
 gem 'analytics-ruby', require: false
