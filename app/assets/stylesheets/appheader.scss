@@ -157,7 +157,6 @@
   margin-left: rem-calc(20);
   position: relative;
   @include single-transition(color, $speed: 100ms);
-  z-index: 101;
 
   &:hover {
     .userdropdown { display: block; }
