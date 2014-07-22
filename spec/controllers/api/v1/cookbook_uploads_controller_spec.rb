@@ -34,7 +34,7 @@ describe Api::V1::CookbookUploadsController do
       end
 
       it 'regenerates the universe cache' do
-        expect(Rails.cache).to receive(:delete).with(Api::V1::UniverseController::CACHE_KEY)
+        expect(UniverseCache).to receive(:delete)
         post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
       end
     end
@@ -137,7 +137,7 @@ describe Api::V1::CookbookUploadsController do
       end
 
       it 'regenerates the universe cache' do
-        expect(Rails.cache).to receive(:delete).with(Api::V1::UniverseController::CACHE_KEY)
+        expect(UniverseCache).to receive(:delete)
         unshare
       end
     end

@@ -65,7 +65,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
             cookbook: @cookbook.name
           )
 
-          Rails.cache.delete(Api::V1::UniverseController::CACHE_KEY)
+          UniverseCache.delete
 
           render :create, status: 201
         end
@@ -103,7 +103,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
           cookbook: @cookbook.name
         )
 
-        Rails.cache.delete(Api::V1::UniverseController::CACHE_KEY)
+        UniverseCache.delete
       end
     end
   end
