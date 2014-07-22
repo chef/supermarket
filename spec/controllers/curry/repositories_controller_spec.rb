@@ -165,7 +165,7 @@ describe Curry::RepositoriesController do
 
       post :evaluate, id: -1
 
-      expect(response).to render_template('exceptions/404')
+      expect(response).to render_template('exceptions/404.html.erb')
     end
   end
 end

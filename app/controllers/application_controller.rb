@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
   rescue_from(
     NotAuthorizedError,
     ActiveRecord::RecordNotFound,
-    ActionController::UnknownFormat
+    ActionController::UnknownFormat,
+    ActionView::MissingTemplate
   ) do |error|
     not_found!(error)
   end
@@ -22,7 +23,11 @@ class ApplicationController < ActionController::Base
       options[:notice] = error.message
     end
 
-    render 'exceptions/404', options
+    respond_to do |format|
+      format.any do
+        render 'exceptions/404.html.erb', options
+      end
+    end
   end
 
   def after_sign_in_path_for(_resource)
