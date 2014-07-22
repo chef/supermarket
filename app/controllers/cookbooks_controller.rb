@@ -170,18 +170,26 @@ class CookbooksController < ApplicationController
       cookbook_deprecation_params[:replacement]
     ).first!
 
-    @cookbook.deprecate(replacement_cookbook)
+    if @cookbook.deprecate(replacement_cookbook)
+      CookbookDeprecatedNotifier.perform_async(@cookbook.id)
 
-    CookbookDeprecatedNotifier.perform_async(@cookbook.id)
-
-    redirect_to(
-      @cookbook,
-      notice: t(
-        'cookbook.deprecated',
-        cookbook: @cookbook.name,
-        replacement_cookbook: replacement_cookbook.name
+      redirect_to(
+        @cookbook,
+        notice: t(
+          'cookbook.deprecated',
+          cookbook: @cookbook.name,
+          replacement_cookbook: replacement_cookbook.name
+        )
       )
-    )
+    else
+      redirect_to(
+        @cookbook,
+        notice: t(
+          'cookbook.deprecate_failure',
+          cookbook: @cookbook.name
+        )
+      )
+    end
   end
 
   #
