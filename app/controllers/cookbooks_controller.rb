@@ -1,6 +1,6 @@
 class CookbooksController < ApplicationController
   before_filter :assign_categories
-  before_filter :assign_cookbook, only: [:show, :update, :follow, :unfollow, :transfer_ownership, :deprecate, :toggle_featured]
+  before_filter :assign_cookbook, only: [:show, :update, :follow, :unfollow, :transfer_ownership, :deprecate, :toggle_featured, :deprecate_search]
   before_filter :store_location_then_authenticate_user!, only: [:follow, :unfollow]
 
   #
@@ -203,6 +203,29 @@ class CookbooksController < ApplicationController
         state: "#{@cookbook.featured? ? 'featured' : 'unfeatured'}"
       )
     )
+  end
+
+  # GET /cookbooks/:id/deprecate_search?q=QUERY
+  #
+  # Return cookbooks with a name that contains the specified query. Takes the
+  # +q+ parameter for the query. Only returns cookbook elgible for replacement -
+  # cookbooks that are not deprecated and not the cookbook being deprecated.
+  #
+  # @example
+  #   GET /cookbooks/redis/deprecate_search?q=redisio
+  #
+  def deprecate_search
+    @results = Cookbook.search(params.fetch(:q))
+
+    @results.to_a.delete(@cookbook)
+
+    @results = @results.select do |cookbook|
+      !cookbook.deprecated?
+    end
+
+    respond_to do |format|
+      format.json
+    end
   end
 
   private
