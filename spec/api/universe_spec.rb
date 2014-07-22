@@ -55,6 +55,22 @@ describe 'GET /universe' do
     expect(json_body['redis']['1.2.0']['download_url']).to match(%r{http://.*/api/v1/cookbooks/redis/versions/1.2.0/download})
   end
 
+  it 'has an http specific cache key' do
+    expect(Rails.cache).to receive(:fetch).with('http-universe')
+
+    with_env('PROTOCOL' => 'http') do
+      get '/universe', format: :json
+    end
+  end
+
+  it 'has an https specific cache key' do
+    expect(Rails.cache).to receive(:fetch).with('https-universe')
+
+    with_env('PROTOCOL' => 'https') do
+      get '/universe', format: :json
+    end
+  end
+
   it "returns https URLs when ENV['PROTOCOL']=https" do
     with_env('PROTOCOL' => 'https') do
       get '/universe', format: :json
