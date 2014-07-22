@@ -72,6 +72,10 @@
         <% end %>
       </div>
     <% end %>
+
+    <% if policy(cookbook).toggle_featured? %>
+      <%= link_to "#{cookbook.featured ? 'Unfeature' : 'Feature'}", toggle_featured_cookbook_path(cookbook), method: 'put', class: "button radius tiny #{cookbook.featured ? 'alert' : 'secondary'}", rel: 'toggle_featured' %>
+    <% end %>
   </div>
 
   <h3>

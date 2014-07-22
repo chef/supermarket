@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722123525) do
+ActiveRecord::Schema.define(version: 20140722193001) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -181,6 +181,7 @@ ActiveRecord::Schema.define(version: 20140722123525) do
     t.integer  "replacement_id"
     t.integer  "web_download_count",       default: 0
     t.integer  "api_download_count",       default: 0
+    t.boolean  "featured",                 default: false
   end
 
   add_index "cookbooks", ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true, using: :btree

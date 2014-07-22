@@ -445,4 +445,39 @@ describe CookbooksController do
       end
     end
   end
+
+  describe 'PUT #toggle_featured' do
+    let(:admin) { create(:admin) }
+    let(:unfeatured) { create(:cookbook, featured: false) }
+    let(:featured) { create(:cookbook, featured: true) }
+    before { sign_in(admin) }
+
+    it 'sets a cookbook as featured if it is not already featured' do
+      put :toggle_featured, id: unfeatured
+
+      unfeatured.reload
+      expect(unfeatured.featured).to eql(true)
+    end
+
+    it 'sets a cookbook as not featured if it is already featured' do
+      put :toggle_featured, id: featured
+
+      featured.reload
+      expect(featured.featured).to eql(false)
+    end
+
+    it 'redirects back to the cookbook' do
+      put :toggle_featured, id: unfeatured
+
+      expect(response).to redirect_to(unfeatured)
+    end
+
+    it '404s if the user is not authorized to edit the tool' do
+      sign_in(create(:user))
+
+      put :toggle_featured, id: unfeatured
+
+      expect(response.status.to_i).to eql(404)
+    end
+  end
 end

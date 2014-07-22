@@ -1,6 +1,6 @@
 class CookbooksController < ApplicationController
   before_filter :assign_categories
-  before_filter :assign_cookbook, only: [:show, :update, :follow, :unfollow, :transfer_ownership, :deprecate]
+  before_filter :assign_cookbook, only: [:show, :update, :follow, :unfollow, :transfer_ownership, :deprecate, :toggle_featured]
   before_filter :store_location_then_authenticate_user!, only: [:follow, :unfollow]
 
   #
@@ -171,6 +171,27 @@ class CookbooksController < ApplicationController
         'cookbook.deprecated',
         cookbook: @cookbook.name,
         replacement_cookbook: replacement_cookbook.name
+      )
+    )
+  end
+
+  #
+  # PUT /cookbooks/:cookbook/toggle_featured
+  #
+  # Allows a Supermarket admin to set a cookbook as featured or
+  # unfeatured (if it is already featured).
+  #
+  def toggle_featured
+    authorize! @cookbook
+
+    @cookbook.update_attribute(:featured, !@cookbook.featured)
+
+    redirect_to(
+      @cookbook,
+      notice: t(
+        'cookbook.featured',
+        cookbook: @cookbook.name,
+        state: "#{@cookbook.featured? ? 'featured' : 'unfeatured'}"
       )
     )
   end

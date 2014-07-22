@@ -6,6 +6,7 @@ FactoryGirl.define do
     source_url 'http://example.com'
     issues_url 'http://example.com/issues'
     deprecated false
+    featured false
 
     ignore do
       cookbook_versions_count 2
