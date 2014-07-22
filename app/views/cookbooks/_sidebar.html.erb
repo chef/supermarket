@@ -74,6 +74,9 @@
 
       <div id="deprecate" class="reveal-modal small" data-reveal>
         <h1>Deprecate Cookbook</h1>
+
+        <p>You can deprecate your cookbook if you are no longer maintaining it. You must select a replacement cookbook in order to deprecate your cookbook.</p>
+
         <a class="close-reveal-modal">&#215;</a>
 
         <%= form_for cookbook, url: deprecate_cookbook_path(cookbook), method: :put do |f| %>
