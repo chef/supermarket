@@ -118,7 +118,6 @@ describe User do
       expect(User.authorized_contributors).to include(jim)
       expect(User.authorized_contributors).to include(tidus)
       expect(User.authorized_contributors).to_not include(yojimbo)
-      expect(User.authorized_contributors.count(jimmy)).to eql(1)
     end
 
     it 'returns a unique set of users' do

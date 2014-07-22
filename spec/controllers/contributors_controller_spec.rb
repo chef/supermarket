@@ -93,6 +93,12 @@ describe ContributorsController do
       expect(response.status.to_i).to eql(200)
     end
 
+    it 'assigns contributors' do
+      get :index
+
+      expect(assigns[:contributors]).to_not be_nil
+    end
+
     it 'assigns contributor_list' do
       get :index
 
