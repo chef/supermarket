@@ -73,19 +73,6 @@ describe Api::V1::CookbookVersionsController do
       end.to change { cookbook.reload.api_download_count }.by(1)
     end
 
-    it 'tracks the download in SegmentIO' do
-      get :download, cookbook: cookbook.name, version: version.to_param, format: :json
-
-      expect(SegmentIO.last_event).to eql(
-        name: 'cookbook_version_api_download',
-        user_id: 'anonymous',
-        properties: {
-          cookbook: cookbook.name,
-          version: version.version
-        }
-      )
-    end
-
     it '404s when the cookbook does not exist' do
       get :download, cookbook: 'snarfle', version: '100.1.1', format: :json
 
