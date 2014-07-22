@@ -24,6 +24,7 @@ class OrganizationAuthorizer < Authorizer::Base
     organization_or_supermarket_admin?
   end
 
+  #
   # Supermarket admins can manage organizations
   #
   # @return [Boolean]
@@ -67,6 +68,14 @@ class OrganizationAuthorizer < Authorizer::Base
   def request_to_join?
     record.contributors.where(user_id: user.id).empty? &&
       record.contributor_requests.where(user_id: user.id).empty?
+  end
+
+  #
+  # A user who is an organization admin or a Supermarket admin can
+  # manage the requests to join
+  #
+  def manage_requests_to_join?
+    organization_or_supermarket_admin?
   end
 
   private

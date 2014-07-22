@@ -57,4 +57,19 @@ class Organization < ActiveRecord::Base
       organization.reload.destroy
     end
   end
+
+  #
+  # Returns the pending +ContributorRequest+s for the user. Eager loads the
+  # associated +User+ # because it is used in the views to display and link to
+  # the +User+.
+  #
+  # @return [Array<ContributorRequest>] array of pending +ContributorRequest+s
+  #
+  def pending_requests_to_join
+    ContributorRequest.includes(
+      :user
+    ).where(
+      organization: self
+    ).select { |cr| cr.pending? }
+  end
 end

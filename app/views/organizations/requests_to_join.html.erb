@@ -1,0 +1,19 @@
+<%= provide(:title, "Requests to Join #{@organization.name}") %>
+
+<div class="page withspace contribute">
+  <h1><%= @organization.name %> Organization Management</h1>
+
+  <%= render "ccla_signatures/organization_tabs", ccla_signature: @organization.latest_ccla_signature %>
+
+  <div class="tabs-content">
+    <div class="content active">
+      <p>Users who have requested to join and contribute on behalf of this organization.</p>
+
+      <ul class="pending-requests">
+        <% @pending_requests.each do |request| %>
+          <li class="pending-request"><%= link_to request.user.name, request.user %> requested to join on <%= request.created_at.to_s(:longish) %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -86,4 +86,25 @@ describe Organization do
       expect(jimmeh.admin).to be_false
     end
   end
+
+  describe '#pending_requests_to_join' do
+    it 'returns the contributor requests for that organization that are pending' do
+      organization = create(:organization)
+      pending_request = create(
+        :contributor_request,
+        organization: organization
+      )
+
+      accepted_request = create(
+        :contributor_request,
+        organization: organization
+      )
+      accepted_request.accept
+
+      requests = organization.pending_requests_to_join
+
+      expect(requests).to include(pending_request)
+      expect(requests).to_not include(accepted_request)
+    end
+  end
 end

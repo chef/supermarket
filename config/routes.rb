@@ -110,6 +110,10 @@ Supermarket::Application.routes.draw do
   resources :organizations, only: [:show, :destroy] do
     member do
       put :combine
+
+      if ENV['JOIN_CCLA_ENABLED'] == 'true'
+        get :requests_to_join
+      end
     end
 
     resources :contributors, only: [:update, :destroy], controller: :contributors
