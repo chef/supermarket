@@ -40,7 +40,8 @@
         </li>
       </ul>
     </small>
-    <%= render 'follow_button_show', cookbook: @cookbook %>
+
+    <%= render 'cookbooks/follow_button_show', cookbook: @cookbook %>
   </h1>
 
   <pre class="install">knife cookbook site install <%= cookbook.name %></pre>
