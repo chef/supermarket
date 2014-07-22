@@ -137,7 +137,7 @@
     <p><%= version.license %></p>
 
     <h4 class="cookbook_show_sidebar_downloads">
-      <i class="fa fa-download"></i> <%= version.download_count %> Latest Version Downloads
+      <i class="fa fa-download"></i> <%= version.download_count %> Downloads of Version <%= version.version %>
       <small><%= cookbook.download_count %> Total Downloads</small>
     </h4>
     <%= link_to "Download Cookbook", download_cookbook_path(cookbook), class: 'button secondary radius expand button_download_cookbook' %>
