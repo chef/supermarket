@@ -17,6 +17,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def not_found!(error = nil)
+    raise error if error && Rails.env.development?
+
     options = { status: 404 }
 
     if error
