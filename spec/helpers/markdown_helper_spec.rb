@@ -33,13 +33,13 @@ $ bundle exec rake spec:all
     expect(helper.render_markdown(table)).to match(/<table>/)
   end
 
-  it 'adds br tags on hard wraps' do
+  it "doesn't adds br tags on hard wraps" do
     markdown = <<-EOH
-This is a hard
+There is no hard
 wrap.
     EOH
 
-    expect(helper.render_markdown(markdown)).to match(/<br>/)
+    expect(helper.render_markdown(markdown)).to_not match(/<br>/)
   end
 
   it "doesn't emphasize underscored words" do

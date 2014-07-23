@@ -4,7 +4,7 @@ module MarkdownHelper
   #
   class SupermarketRenderer < Redcarpet::Render::HTML
     def initialize(extensions = {})
-      super extensions.merge(link_attributes: { target: '_blank' }, with_toc_data: true, hard_wrap: true)
+      super extensions.merge(link_attributes: { target: '_blank' }, with_toc_data: true)
     end
   end
 
