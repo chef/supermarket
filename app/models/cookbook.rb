@@ -187,6 +187,7 @@ class Cookbook < ActiveRecord::Base
         readme_extension: readme.extension
       )
 
+      self.updated_at = Time.now
       save!
 
       metadata.platforms.each do |name, version_constraint|
