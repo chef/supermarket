@@ -18,7 +18,7 @@ Capybara.javascript_driver = :quiet_ghost
 
 # Use JS driver for all features
 RSpec.configure do |config|
-  config.before(:each) do
+  config.before(:each) do |example|
     if example.metadata[:type] == :feature && example.metadata[:use_poltergeist] == true
       Capybara.current_driver = :quiet_ghost
     else

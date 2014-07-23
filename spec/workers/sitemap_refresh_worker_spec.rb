@@ -11,6 +11,6 @@ describe SitemapRefreshWorker do
     end
 
     SitemapRefreshWorker.new.perform
-    expect(File.exist?(sitemap_file_path)).to be_true
+    expect(File.exist?(sitemap_file_path)).to be true
   end
 end

@@ -67,7 +67,7 @@ group :development, :test do
   gem 'rubocop', '>= 0.23.0'
   gem 'mail_view'
   gem 'quiet_assets'
-  gem 'rspec-rails', '~> 2.14.2'
+  gem 'rspec-rails', '~> 3.0.2'
   gem 'byebug'
   gem 'launchy'
   gem 'and_feathers', '>= 1.0.0.pre', require: false

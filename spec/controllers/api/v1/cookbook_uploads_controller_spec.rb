@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Api::V1::CookbookUploadsController do
   before do
-    subject.stub(:authenticate_user!) { true }
-    subject.stub(:current_user) { create(:user) }
+    allow(subject).to receive(:authenticate_user!) { true }
+    allow(subject).to receive(:current_user) { create(:user) }
   end
 
   describe '#create' do

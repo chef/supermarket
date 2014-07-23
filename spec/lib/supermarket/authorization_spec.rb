@@ -30,14 +30,14 @@ describe Supermarket::Authorization do
 
   describe '#authorize!' do
     it 'raises an error if the user is not authorized' do
-      subject.stub(:params).and_return(action: 'edit')
+      allow(subject).to receive(:params).and_return(action: 'edit')
 
       expect { subject.authorize!(read_only_object) }
       .to raise_error(Supermarket::Authorization::NotAuthorizedError)
     end
 
     it 'does nothing with the user is authorized' do
-      subject.stub(:params).and_return(action: 'show')
+      allow(subject).to receive(:params).and_return(action: 'show')
       expect { subject.authorize!(read_only_object) }.to_not raise_error
     end
   end

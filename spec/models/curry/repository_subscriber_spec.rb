@@ -19,7 +19,7 @@ describe Curry::RepositorySubscriber do
       end
 
       it "returns true when able to subscribe to the repository's hub" do
-        expect(subscriber.subscribe(hub_callback)).to be_true
+        expect(subscriber.subscribe(hub_callback)).to be true
       end
 
       it 'saves a repository record in the act of subscribing' do
@@ -48,7 +48,7 @@ describe Curry::RepositorySubscriber do
       end
 
       it "returns false when unable to subscribe to the repository's hub" do
-        expect(subscriber.subscribe(hub_callback)).to be_false
+        expect(subscriber.subscribe(hub_callback)).to be false
       end
 
       it 'does not save repositories to which it cannot subscribe' do
@@ -87,7 +87,7 @@ describe Curry::RepositorySubscriber do
     it "returns true when able to unsubscribe to the repository's hub" do
       subscriber.subscribe(hub_callback)
 
-      expect(subscriber.unsubscribe).to be_true
+      expect(subscriber.unsubscribe).to be_truthy
     end
 
     it 'unsubscribes the PubSubHubbub hook' do

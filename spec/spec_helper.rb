@@ -7,7 +7,6 @@ end
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
 require 'paperclip/matchers'
 require 'sidekiq/testing'
 
@@ -57,6 +56,7 @@ RSpec.configure do |config|
   # is focused, then all tests are executed.
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
+  config.infer_spec_type_from_file_location!
 
   # Skip specs that require secure environment variables when running them
   # with Travis CI.

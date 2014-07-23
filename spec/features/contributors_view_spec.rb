@@ -9,7 +9,7 @@ describe 'viewing contributors' do
       visit '/'
       follow_relation 'contributors'
 
-      expect(all('.contributor').size > 0).to be_true
+      expect(all('.contributor').size > 0).to be true
     end
   end
 
@@ -21,7 +21,7 @@ describe 'viewing contributors' do
       follow_relation 'contributors'
       follow_relation 'individual-contributors'
 
-      expect(all('.contributor').size > 0).to be_true
+      expect(all('.contributor').size > 0).to be true
     end
   end
 
@@ -38,7 +38,7 @@ describe 'viewing contributors' do
           follow_relation 'company-contributors'
         end
 
-        expect(all('.contributor').size > 0).to be_true
+        expect(all('.contributor').size > 0).to be true
       end
     end
   end
@@ -50,7 +50,7 @@ describe 'viewing contributors' do
       visit '/'
       follow_relation 'contributors'
 
-      expect(all('.repository').size > 0).to be_true
+      expect(all('.repository').size > 0).to be true
     end
 
     it "lists user's agreements when signed in" do
@@ -64,8 +64,8 @@ describe 'viewing contributors' do
       follow_relation 'contributors'
 
       within '.sidebar' do
-        expect(relations('icla-signature').size > 0).to be_true
-        expect(relations('ccla-membership').size > 0).to be_true
+        expect(relations('icla-signature').size > 0).to be true
+        expect(relations('ccla-membership').size > 0).to be true
       end
     end
   end

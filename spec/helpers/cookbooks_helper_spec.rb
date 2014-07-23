@@ -12,12 +12,12 @@ describe CookbooksHelper do
     end
 
     it 'returns "Remove Contributor" if you are the owner' do
-      helper.stub(:current_user) { sally }
+      allow(helper).to receive(:current_user) { sally }
       expect(helper.contributor_removal_text(cookbook)).to eql('Remove Contributor')
     end
 
     it 'returns "Remove Myself" if you are a contributor' do
-      helper.stub(:current_user) { hank }
+      allow(helper).to receive(:current_user) { hank }
       expect(helper.contributor_removal_text(cookbook)).to eql('Remove Myself')
     end
   end
@@ -30,7 +30,7 @@ describe CookbooksHelper do
         cookbook_followers_count: 100,
         name: 'redis'
       )
-      helper.stub(:current_user) { true }
+      allow(helper).to receive(:current_user) { true }
 
       expect(helper.follow_button_for(cookbook)).to match(/follow/)
     end
@@ -42,7 +42,7 @@ describe CookbooksHelper do
         cookbook_followers_count: 100,
         name: 'redis'
       )
-      helper.stub(:current_user) { true }
+      allow(helper).to receive(:current_user) { true }
 
       expect(helper.follow_button_for(cookbook, list: true)).to match(/\?list=true/)
     end
@@ -54,21 +54,21 @@ describe CookbooksHelper do
         cookbook_followers_count: 100,
         name: 'redis'
       )
-      helper.stub(:current_user) { true }
+      allow(helper).to receive(:current_user) { true }
 
       expect(helper.follow_button_for(cookbook)).to match(/unfollow/)
     end
 
     it 'returns a call to action follow button if there is no current user' do
       cookbook = double(:cookbook, cookbook_followers_count: 100, name: 'redis')
-      helper.stub(:current_user) { false }
+      allow(helper).to receive(:current_user) { false }
 
       expect(helper.follow_button_for(cookbook)).to match(/sign-in-to-follow/)
     end
 
     it 'uses the result of a passed block for the button text' do
       cookbook = double(:cookbook, cookbook_followers_count: 100, name: 'redis')
-      helper.stub(:current_user) { false }
+      allow(helper).to receive(:current_user) { false }
 
       block = proc { 'awesome text' }
 
@@ -80,7 +80,7 @@ describe CookbooksHelper do
 
   describe '#link_to_sorted_cookbooks' do
     it 'returns an active link if the :order param is the given ordering' do
-      helper.stub(:params) do
+      allow(helper).to receive(:params) do
         { order: 'excellent', controller: 'cookbooks', action: 'index' }
       end
 
@@ -92,7 +92,7 @@ describe CookbooksHelper do
     end
 
     it 'returns a non-active link if the :order param is not the given ordering' do
-      helper.stub(:params) do
+      allow(helper).to receive(:params) do
         { order: 'excellent', controller: 'cookbooks', action: 'index' }
       end
 
@@ -104,7 +104,7 @@ describe CookbooksHelper do
     end
 
     it 'generates a link to the current page with the given ordering' do
-      helper.stub(:params) do
+      allow(helper).to receive(:params) do
         { order: 'excellent', controller: 'cookbooks', action: 'index' }
       end
 

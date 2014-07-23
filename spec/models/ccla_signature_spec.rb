@@ -34,7 +34,7 @@ describe CclaSignature do
     end
 
     it 'saves the ccla signature' do
-      expect(ccla_signature.persisted?).to be_true
+      expect(ccla_signature.persisted?).to be true
     end
   end
 

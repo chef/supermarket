@@ -47,7 +47,7 @@ describe SupportedPlatform do
       first = SupportedPlatform.where(name: name, version_constraint: version).first
       expect(first).to be_nil
       second = SupportedPlatform.for_name_and_version(name, version)
-      expect(second.persisted?).to be_true
+      expect(second.persisted?).to be true
       expect(second.name).to eql('ubuntu')
       expect(second.version_constraint).to eql('= 12.04')
     end
