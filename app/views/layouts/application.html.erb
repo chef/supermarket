@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
     <title><%= [content_for(:title), 'Chef Supermarket'].compact.join(' - ').html_safe %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Supermarket" %>">
+    <% if ENV['NO_CRAWL'] == "true" %>
+      <meta name="robots" content="noindex, nofollow">
+    <% end %>
     <link rel="shortcut icon" href="<%= image_url('favicon.ico') %>" type="image/x-icon">
     <link rel="icon" href="<%= image_url('favicon.ico') %>" type="image/x-icon">
     <link rel="apple-touch-icon" href="<%= image_url('apple-touch-icon.png') %>"/>
