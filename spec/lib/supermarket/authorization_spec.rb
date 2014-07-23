@@ -2,7 +2,7 @@ require 'spec_helper'
 
 class ReadOnly
   class Policy
-    def initialize(*_) ; end
+    def initialize(*_); end
 
     def show?
       true
