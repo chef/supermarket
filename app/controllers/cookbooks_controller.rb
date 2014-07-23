@@ -1,6 +1,6 @@
 class CookbooksController < ApplicationController
   before_filter :assign_categories
-  before_filter :assign_cookbook, only: [:show, :update, :follow, :unfollow, :transfer_ownership, :deprecate, :toggle_featured]
+  before_filter :assign_cookbook, only: [:show, :update, :follow, :unfollow, :transfer_ownership, :deprecate, :toggle_featured, :deprecate_search]
   before_filter :store_location_then_authenticate_user!, only: [:follow, :unfollow]
 
   #
@@ -170,18 +170,26 @@ class CookbooksController < ApplicationController
       cookbook_deprecation_params[:replacement]
     ).first!
 
-    @cookbook.deprecate(replacement_cookbook)
+    if @cookbook.deprecate(replacement_cookbook)
+      CookbookDeprecatedNotifier.perform_async(@cookbook.id)
 
-    CookbookDeprecatedNotifier.perform_async(@cookbook.id)
-
-    redirect_to(
-      @cookbook,
-      notice: t(
-        'cookbook.deprecated',
-        cookbook: @cookbook.name,
-        replacement_cookbook: replacement_cookbook.name
+      redirect_to(
+        @cookbook,
+        notice: t(
+          'cookbook.deprecated',
+          cookbook: @cookbook.name,
+          replacement_cookbook: replacement_cookbook.name
+        )
       )
-    )
+    else
+      redirect_to(
+        @cookbook,
+        notice: t(
+          'cookbook.deprecate_failure',
+          cookbook: @cookbook.name
+        )
+      )
+    end
   end
 
   #
@@ -203,6 +211,23 @@ class CookbooksController < ApplicationController
         state: "#{@cookbook.featured? ? 'featured' : 'unfeatured'}"
       )
     )
+  end
+
+  # GET /cookbooks/:id/deprecate_search?q=QUERY
+  #
+  # Return cookbooks with a name that contains the specified query. Takes the
+  # +q+ parameter for the query. Only returns cookbook elgible for replacement -
+  # cookbooks that are not deprecated and not the cookbook being deprecated.
+  #
+  # @example
+  #   GET /cookbooks/redis/deprecate_search?q=redisio
+  #
+  def deprecate_search
+    @results = @cookbook.deprecate_search(params.fetch(:q, nil))
+
+    respond_to do |format|
+      format.json
+    end
   end
 
   private

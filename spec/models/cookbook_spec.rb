@@ -155,6 +155,34 @@ describe Cookbook do
     end
   end
 
+  describe '#deprecate_search' do
+    let!(:postgresql) { create(:cookbook, name: 'postgresql') }
+    let!(:postgres) { create(:cookbook, name: 'postgres') }
+    let!(:postgresql_lol) do
+      create(
+        :cookbook,
+        name: 'postgresql_lol',
+        deprecated: 'true',
+        replacement: create(:cookbook)
+      )
+    end
+
+    it 'returns relevant cookbooks' do
+      results = postgresql.deprecate_search('postgres')
+      expect(results).to include(postgres)
+    end
+
+    it 'does not return the cookbook being deprecated' do
+      results = postgresql.deprecate_search('postgres')
+      expect(results).to_not include(postgresql)
+    end
+
+    it 'only returns non-deprecated cookbooks' do
+      results = postgresql.deprecate_search('postgres')
+      expect(results).to_not include(postgresql_lol)
+    end
+  end
+
   describe '#get_version!' do
     let!(:kiwi_0_1_0) do
       create(

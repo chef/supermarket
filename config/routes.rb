@@ -36,6 +36,7 @@ Supermarket::Application.routes.draw do
       put :transfer_ownership
       put :deprecate
       put :toggle_featured
+      get :deprecate_search
     end
 
     get 'versions/:version/download' => 'cookbook_versions#download', as: :version_download, constraints: { version: VERSION_PATTERN }

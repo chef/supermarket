@@ -496,4 +496,32 @@ describe CookbooksController do
       expect(response.status.to_i).to eql(404)
     end
   end
+
+  describe 'GET #deprecate_search' do
+    let!(:postgresql) { create(:cookbook, name: 'postgresql') }
+
+    it 'responds with a 200' do
+      get :deprecate_search, id: postgresql, q: 'postgresql', format: :json
+
+      expect(response.status.to_i).to eql(200)
+    end
+
+    it 'responds with JSON' do
+      get :deprecate_search, id: postgresql, q: 'postgresql', format: :json
+
+      expect(response.content_type).to eql('application/json')
+    end
+
+    it 'assigns results' do
+      get :deprecate_search, id: postgresql, q: 'postgresql', format: :json
+
+      expect(assigns[:results]).to_not be_nil
+    end
+
+    it 'defaults q to nil if not passed in' do
+      get :deprecate_search, id: postgresql, format: :json
+
+      expect(response.status.to_i).to eql(200)
+    end
+  end
 end
