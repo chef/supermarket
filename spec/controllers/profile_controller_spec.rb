@@ -73,6 +73,12 @@ describe ProfileController do
 
         expect(response).to render_template('edit')
       end
+
+      it 'assigns pending requests' do
+        get :edit
+
+        expect(assigns[:pending_requests]).to_not be_nil
+      end
     end
 
     context 'user is not authenticated' do

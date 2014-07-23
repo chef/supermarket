@@ -40,6 +40,17 @@ class OrganizationsController < ApplicationController
     redirect_to ccla_signatures_path, notice: t('organizations.combined', org_to_combine: org_to_combine_name, combined_with: @organization.name)
   end
 
+  #
+  # GET /organizations/:id/requests_to_join
+  #
+  # Shows a list of users who have requested to join the organization
+  #
+  def requests_to_join
+    authorize! @organization, :manage_requests_to_join?
+
+    @pending_requests = @organization.pending_requests_to_join
+  end
+
   private
 
   def find_organization

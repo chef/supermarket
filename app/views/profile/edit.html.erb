@@ -88,6 +88,20 @@
             <% end %>
           <% end %>
         </table>
+
+        <% if @pending_requests.present? %>
+          <hr />
+          <h2>Pending Requests To Join a Company</h2>
+
+          <p>Requests to join a company to contribute on behalf of.</p>
+
+          <ul class="pending-requests">
+            <% @pending_requests.each do |request| %>
+              <li class="pending-request">You requested to join <%= link_to request.organization.name, contributors_ccla_signature_path(request.organization) %> on <%= request.created_at.to_s(:longish) %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
       </div>
       <div class="content" id="collaborations">
 

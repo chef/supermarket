@@ -14,4 +14,16 @@ describe 'editing the current user profile' do
 
     expect_to_see_success_message
   end
+
+  it 'displays the pending requests for the user' do
+    user = create(:user)
+    create(:contributor_request, user: user)
+
+    sign_in(user)
+    manage_profile
+
+    within '.pending-requests' do
+      expect(page).to have_selector('.pending-request')
+    end
+  end
 end

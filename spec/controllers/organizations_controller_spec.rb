@@ -76,4 +76,23 @@ describe OrganizationsController do
       expect(request.flash[:notice]).to_not be_nil
     end
   end
+
+  describe 'GET #requests_to_join' do
+    before do
+      sign_in admin
+      get :requests_to_join, id: org1
+    end
+
+    it 'assigns the organization' do
+      expect(assigns(:organization)).to eql(org1)
+    end
+
+    it 'assigns the pending requests to join the organization' do
+      expect(assigns(:pending_requests)).to_not be_nil
+    end
+
+    it 'succeeds' do
+      expect(response).to be_success
+    end
+  end
 end

@@ -16,6 +16,7 @@ describe OrganizationAuthorizer do
     it { should permit_authorization(:destroy) }
     it { should permit_authorization(:combine) }
     it { should permit_authorization(:request_to_join) }
+    it { should permit_authorization(:manage_requests_to_join) }
   end
 
   context 'as an organization admin' do
@@ -30,6 +31,7 @@ describe OrganizationAuthorizer do
     it { should permit_authorization(:view_cclas) }
     it { should permit_authorization(:resign_ccla) }
     it { should permit_authorization(:manage_contributors) }
+    it { should permit_authorization(:manage_requests_to_join) }
     it { should_not permit_authorization(:manage_organization) }
     it { should_not permit_authorization(:show) }
     it { should_not permit_authorization(:destroy) }
@@ -54,6 +56,7 @@ describe OrganizationAuthorizer do
     it { should_not permit_authorization(:destroy) }
     it { should_not permit_authorization(:combine) }
     it { should_not permit_authorization(:request_to_join) }
+    it { should_not permit_authorization(:manage_requests_to_join) }
   end
 
   context 'as a totally random person' do
@@ -68,6 +71,7 @@ describe OrganizationAuthorizer do
     it { should_not permit_authorization(:show) }
     it { should_not permit_authorization(:destroy) }
     it { should_not permit_authorization(:combine) }
+    it { should_not permit_authorization(:manage_requests_to_join) }
     it { should permit_authorization(:request_to_join) }
   end
 

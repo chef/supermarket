@@ -484,4 +484,20 @@ describe User do
       end
     end
   end
+
+  describe '#pending_contributor_requests' do
+    it 'returns the contributor_requests for that user that are pending' do
+      user = create(:user)
+
+      accepted_contributor_request = create(:contributor_request, user: user)
+      accepted_contributor_request.accept
+
+      pending_contributor_request = create(:contributor_request, user: user)
+
+      pending_requests = user.pending_contributor_requests
+
+      expect(pending_requests.to_a).to include(pending_contributor_request)
+      expect(pending_requests.to_a).to_not include(accepted_contributor_request)
+    end
+  end
 end
