@@ -237,6 +237,13 @@ describe Cookbook do
       expect(dependencies.map(&:version_constraint)).
         to match_array(['= 1.2.3', '~> 2.1.3'])
     end
+
+    it 'bumps the updated at date' do
+      original_date = cookbook.updated_at
+      cookbook.publish_version!(metadata, tarball, readme)
+
+      expect(cookbook.updated_at).to be > original_date
+    end
   end
 
   describe '.search' do
