@@ -223,7 +223,7 @@ class CookbooksController < ApplicationController
   #   GET /cookbooks/redis/deprecate_search?q=redisio
   #
   def deprecate_search
-    @results = @cookbook.deprecate_search(params.fetch(:q))
+    @results = @cookbook.deprecate_search(params.fetch(:q, nil))
 
     respond_to do |format|
       format.json

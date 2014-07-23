@@ -517,5 +517,11 @@ describe CookbooksController do
 
       expect(assigns[:results]).to_not be_nil
     end
+
+    it 'defaults q to nil if not passed in' do
+      get :deprecate_search, id: postgresql, format: :json
+
+      expect(response.status.to_i).to eql(200)
+    end
   end
 end
