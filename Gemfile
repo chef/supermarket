@@ -25,7 +25,7 @@ gem 'paperclip'
 gem 'virtus', require: false
 gem 'kaminari'
 gem 'validate_url'
-gem 'chef', require: false
+gem 'chef', '~> 11.10.4', require: false
 gem 'mixlib-authentication'
 gem 'aws-sdk'
 gem 'newrelic_rpm'
@@ -36,7 +36,7 @@ gem 'yajl-ruby'
 gem 'utf8-cleaner'
 
 gem 'sentry-raven', '~> 0.8.0', require: false
-gem 'analytics-ruby', require: false
+gem 'analytics-ruby', '~> 1.0.0', require: false
 
 gem 'sass-rails',   '~> 4.0.1'
 gem 'compass-rails'
@@ -67,7 +67,7 @@ group :development, :test do
   gem 'rubocop', '>= 0.23.0'
   gem 'mail_view'
   gem 'quiet_assets'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.14.2'
   gem 'byebug'
   gem 'launchy'
   gem 'and_feathers', '>= 1.0.0.pre', require: false
