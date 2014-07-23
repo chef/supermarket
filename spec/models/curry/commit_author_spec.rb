@@ -21,7 +21,7 @@ describe Curry::CommitAuthor do
       commit_author = create(:commit_author, authorized_to_contribute: false)
       commit_author.sign_cla!
 
-      expect(commit_author.reload.authorized_to_contribute).to be_true
+      expect(commit_author.reload.authorized_to_contribute).to be true
     end
   end
 

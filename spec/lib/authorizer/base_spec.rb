@@ -21,7 +21,7 @@ describe Authorizer::Base do
 
   describe '#method_missing' do
     context 'in development' do
-      before { Rails.env.stub(:development?).and_return(true) }
+      before { allow(Rails.env).to receive(:development?).and_return(true) }
 
       it 'raises an exception if a method is undefined' do
         expect { described_class.new(user, record).create? }
@@ -30,12 +30,12 @@ describe Authorizer::Base do
     end
 
     context 'in production' do
-      before { Rails.env.stub(:development?).and_return(false) }
-      before { Rails.env.stub(:test?).and_return(false) }
+      before { allow(Rails.env).to receive(:development?).and_return(false) }
+      before { allow(Rails.env).to receive(:test?).and_return(false) }
 
       it 'returns false' do
         instance = described_class.new(user, record)
-        expect(instance.create?).to be_false
+        expect(instance.create?).to be false
       end
     end
   end

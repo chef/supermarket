@@ -148,7 +148,7 @@ describe OrganizationInvitationsController do
 
         invitation.reload
 
-        expect(invitation.admin).to be_false
+        expect(invitation.admin).to be false
       end
     end
 
@@ -161,7 +161,7 @@ describe OrganizationInvitationsController do
 
         invitation.reload
 
-        expect(invitation.admin).to be_true
+        expect(invitation.admin).to be true
       end
 
       it 'responds wtih 404' do
@@ -194,7 +194,7 @@ describe OrganizationInvitationsController do
       it "doesn't resend the invitation" do
         Sidekiq::Testing.inline! do
           expect { patch :resend, organization_id: organization.id, id: invitation.token }
-          .to_not change(ActionMailer::Base.deliveries, :size).by(1)
+          .to change(ActionMailer::Base.deliveries, :size).by(0)
         end
       end
 
@@ -222,7 +222,7 @@ describe OrganizationInvitationsController do
     context 'user is not authorized to revoke Invitation' do
       it "doesn't revoke the invitation" do
         expect { delete :revoke, organization_id: organization.id, id: invitation.token }
-        .to_not change(Invitation, :count).by(-1)
+        .to change(Invitation, :count).by(0)
       end
 
       it 'responds with 404' do

@@ -3,11 +3,11 @@ RSpec::Matchers.define :permit_authorization do |action|
     authorizer.public_send("#{action}?")
   end
 
-  failure_message_for_should do |authorizer|
+  failure_message do |authorizer|
     "#{authorizer.class} does not permit #{action} on #{authorizer.record} for #{authorizer.user.inspect}!"
   end
 
-  failure_message_for_should_not do |authorizer|
+  failure_message_when_negated do |authorizer|
     "#{authorizer.class} does not forbid #{action} on #{authorizer.record} for #{authorizer.user.inspect}!"
   end
 end

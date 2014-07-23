@@ -26,12 +26,12 @@ describe User do
   describe '#signed_icla?' do
     it 'is true when there is an icla signature' do
       user = build(:user, icla_signatures: [build(:icla_signature)])
-      expect(user.signed_icla?).to be_true
+      expect(user.signed_icla?).to be true
     end
 
     it 'is false when there is not an icla signature' do
       user = build(:user, icla_signatures: [])
-      expect(user.signed_icla?).to be_false
+      expect(user.signed_icla?).to be false
     end
   end
 
@@ -40,13 +40,13 @@ describe User do
       user = create(:user)
       create(:contributor, user: user)
 
-      expect(user.contributor?).to be_true
+      expect(user.contributor?).to be true
     end
 
     it 'is false when the user does not belong to any organizations' do
       user = create(:user)
 
-      expect(user.contributor?).to be_false
+      expect(user.contributor?).to be false
     end
   end
 
@@ -57,14 +57,14 @@ describe User do
 
       icla_signing_user = build(:user, icla_signatures: [build(:icla_signature)])
 
-      expect(contributor_user.authorized_to_contribute?).to be_true
-      expect(icla_signing_user.authorized_to_contribute?).to be_true
+      expect(contributor_user.authorized_to_contribute?).to be true
+      expect(icla_signing_user.authorized_to_contribute?).to be true
     end
 
     it 'is false when the user has not signed the ICLA and is not a contributor to one or more organizations' do
       user = create(:user)
 
-      expect(user.authorized_to_contribute?).to be_false
+      expect(user.authorized_to_contribute?).to be false
     end
   end
 
@@ -210,7 +210,7 @@ describe User do
       user = contributor.user
       organization = contributor.organization
 
-      expect(user.admin_of_organization?(organization)).to be_true
+      expect(user.admin_of_organization?(organization)).to be true
     end
 
     it 'is false when the user is not an admin of the given organization' do
@@ -218,7 +218,7 @@ describe User do
       user = contributor.user
       organization = contributor.organization
 
-      expect(user.admin_of_organization?(organization)).to be_false
+      expect(user.admin_of_organization?(organization)).to be false
     end
   end
 
@@ -335,7 +335,7 @@ describe User do
       user = create(:user)
       organization = create(:organization)
 
-      expect(user.requested_to_join?(organization)).to be_false
+      expect(user.requested_to_join?(organization)).to be_falsey
     end
 
     it 'is true if this user has requested to join the given organization' do
@@ -349,7 +349,7 @@ describe User do
         organization: organization
       )
 
-      expect(user.requested_to_join?(organization)).to be_true
+      expect(user.requested_to_join?(organization)).to be true
     end
 
     it "is false if this user's request has been declined" do
@@ -363,7 +363,7 @@ describe User do
         organization: organization
       ).decline
 
-      expect(user.requested_to_join?(organization)).to be_false
+      expect(user.requested_to_join?(organization)).to be false
     end
 
     it "is false if this user's request has been accepted" do
@@ -377,7 +377,7 @@ describe User do
         organization: organization
       ).accept
 
-      expect(user.requested_to_join?(organization)).to be_false
+      expect(user.requested_to_join?(organization)).to be false
     end
   end
 
@@ -390,7 +390,7 @@ describe User do
     end
 
     it 'returns a new user if there is no user with that GitHub login' do
-      expect(User.find_by_github_login('trex').persisted?).to be_false
+      expect(User.find_by_github_login('trex').persisted?).to be false
     end
   end
 

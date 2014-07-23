@@ -68,7 +68,7 @@ describe InvitationsController do
       expect do
         get :accept, id: invitation_1.token
         get :accept, id: invitation_2.token
-      end.to_not change(Contributor, :count).by(2)
+      end.to change(Contributor, :count).by(1)
     end
 
     it "changes the user's commit author records to have signed a CLA" do

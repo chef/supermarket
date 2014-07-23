@@ -394,14 +394,14 @@ describe Cookbook do
       cookbook = create(:cookbook)
       create(:cookbook_follower, user: user, cookbook: cookbook)
 
-      expect(cookbook.followed_by?(user)).to be_true
+      expect(cookbook.followed_by?(user)).to be true
     end
 
     it "returns false if the user passed doesn't follow the cookbook" do
       user = create(:user)
       cookbook = create(:cookbook)
 
-      expect(cookbook.followed_by?(user)).to be_false
+      expect(cookbook.followed_by?(user)).to be false
     end
   end
 

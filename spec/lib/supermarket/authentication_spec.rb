@@ -9,14 +9,14 @@ describe Supermarket::Authentication do
 
   describe '#current_user' do
     it 'returns nil if there is no session' do
-      subject.stub(:session).and_return({})
+      allow(subject).to receive(:session).and_return({})
       expect(subject.current_user).to be_nil
     end
 
     it 'finds the user by the session' do
       user = double(:user)
-      User.stub(:find_by_id).with(1).and_return(user)
-      subject.stub(:session).and_return(user_id: 1)
+      allow(User).to receive(:find_by_id).with(1).and_return(user)
+      allow(subject).to receive(:session).and_return(user_id: 1)
 
       expect(subject.current_user).to be(user)
     end
@@ -24,13 +24,13 @@ describe Supermarket::Authentication do
 
   describe '#signed_in?' do
     it 'returns true when there is a current_user' do
-      subject.stub(:current_user).and_return(true)
-      expect(subject.signed_in?).to be_true
+      allow(subject).to receive(:current_user).and_return(true)
+      expect(subject.signed_in?).to be true
     end
 
     it 'returns false when there is no current_user' do
-      subject.stub(:current_user).and_return(false)
-      expect(subject.signed_in?).to be_false
+      allow(subject).to receive(:current_user).and_return(false)
+      expect(subject.signed_in?).to be false
     end
   end
 end

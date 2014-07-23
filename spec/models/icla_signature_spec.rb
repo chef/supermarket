@@ -24,7 +24,7 @@ describe IclaSignature do
   context 'callbacks' do
     it 'sets the value of signed_at' do
       time = Time.at(680_241_600)
-      Time.stub(:now).and_return(time)
+      allow(Time).to receive(:now).and_return(time)
 
       icla_signature = create(:icla_signature)
       expect(icla_signature.signed_at).to eq(time)

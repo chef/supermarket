@@ -5,7 +5,7 @@ describe SessionsController do
     let(:auth_hash) { OmniAuth.config.mock_auth[:chef_oauth2] }
 
     before do
-      User.stub(:find_or_create_from_chef_oauth).and_return(double(id: 1, name: 'John Doe'))
+      allow(User).to receive(:find_or_create_from_chef_oauth).and_return(double(id: 1, name: 'John Doe'))
       request.env['omniauth.auth'] = auth_hash
     end
 

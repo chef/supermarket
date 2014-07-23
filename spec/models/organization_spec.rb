@@ -83,7 +83,7 @@ describe Organization do
       org1.combine!(org2)
       org1.reload
       jimmeh = org1.contributors.where(user_id: jimmy.id).first
-      expect(jimmeh.admin).to be_false
+      expect(jimmeh.admin).to be false
     end
   end
 

@@ -5,7 +5,7 @@ describe Contributor do
     it 'is false when the contributor is not an admin' do
       contributor = create(:contributor, admin: false)
 
-      expect(contributor.only_admin?).to be_false
+      expect(contributor.only_admin?).to be false
     end
 
     it 'is false when the contributor is not the only admin' do
@@ -16,7 +16,7 @@ describe Contributor do
         admin: true
       )
 
-      expect(admin_contributor.only_admin?).to be_false
+      expect(admin_contributor.only_admin?).to be false
     end
 
     it 'is true when the contributor is the only admin' do
@@ -27,7 +27,7 @@ describe Contributor do
         admin: false
       )
 
-      expect(admin_contributor.only_admin?).to be_true
+      expect(admin_contributor.only_admin?).to be true
     end
   end
 end

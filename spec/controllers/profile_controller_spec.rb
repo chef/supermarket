@@ -24,7 +24,7 @@ describe ProfileController do
       end
 
       it 'uses strong parameters' do
-        fake_user = stub_model(User)
+        fake_user = double(User)
 
         expect(fake_user).to receive(:update_attributes).with(
           'email' => 'bob@example.com',
@@ -37,7 +37,7 @@ describe ProfileController do
           'email_notifications' => true
         )
 
-        controller.stub(:current_user) { fake_user }
+        allow(controller).to receive(:current_user) { fake_user }
 
         patch :update, user: attributes_for(
           :user,
