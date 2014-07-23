@@ -184,6 +184,15 @@ pre {
     }
   }
 
+  .f-dropdown {
+    list-style-type: none;
+    margin: rem-calc(10 0 0 0);
+
+    li {
+      margin: 0;
+    }
+  }
+
   p {
     font-size: rem-calc(14);
     margin: rem-calc(20 0 20 0);

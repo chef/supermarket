@@ -26,15 +26,26 @@
     <% end %>
   </div>
 
-  <div class="manage_cookbook">
+  <a href="#" data-dropdown="manage" class="button radius secondary small dropdown">Manage Cookbook</a>
+  <ul class="manage_cookbook f-dropdown" id="manage" data-dropdown-content>
     <% if policy(@owner_collaborator).create? %>
-      <%= link_to 'Add Collaborator', new_cookbook_collaborator_path(cookbook), class: 'button secondary radius tiny addcontributor', rel: 'add-collaborator', 'data-reveal-id' => 'collaborators', 'data-reveal-ajax' => true %>
+      <li>
+        <%= link_to new_cookbook_collaborator_path(cookbook), class: 'addcontributor', rel: 'add-collaborator', 'data-reveal-id' => 'collaborators', 'data-reveal-ajax' => true do %>
+          <i class="fa fa-plus-square"></i>
+          Add Collaborator
+        <% end %>
+      </li>
       <div id="collaborators" class="reveal-modal small" data-reveal>
       </div>
     <% end %>
 
     <% if policy(cookbook).transfer_ownership? %>
-      <%= link_to 'Transfer Ownership', '#', class: 'button secondary radius tiny', rel: 'transfer_ownership', 'data-reveal-id' => 'transfer' %>
+      <li>
+        <%= link_to '#', rel: 'transfer_ownership', 'data-reveal-id' => 'transfer' do %>
+          <i class="fa fa-random"></i>
+          Transfer Ownership
+        <% end %>
+      </li>
 
       <div id="transfer" class="reveal-modal small" data-reveal>
         <h1>Transfer Ownership</h1>
@@ -54,7 +65,12 @@
     <% end %>
 
     <% if policy(cookbook).deprecate? %>
-      <%= link_to 'Deprecate', '#', class: 'button secondary radius tiny deprecate', rel: 'deprecate', 'data-reveal-id' => 'deprecate' %>
+      <li>
+        <%= link_to '#', class: 'deprecate', rel: 'deprecate', 'data-reveal-id' => 'deprecate' do %>
+          <i class="fa fa-archive"></i>
+          Deprecate
+        <% end %>
+      </li>
 
       <div id="deprecate" class="reveal-modal small" data-reveal>
         <h1>Deprecate Cookbook</h1>
@@ -74,9 +90,14 @@
     <% end %>
 
     <% if policy(cookbook).toggle_featured? %>
-      <%= link_to "#{cookbook.featured ? 'Unfeature' : 'Feature'}", toggle_featured_cookbook_path(cookbook), method: 'put', class: "button radius tiny #{cookbook.featured ? 'alert' : 'secondary'}", rel: 'toggle_featured' %>
+      <li>
+        <%= link_to toggle_featured_cookbook_path(cookbook), method: 'put', rel: 'toggle_featured' do %>
+          <i class="fa fa-star"></i>
+          <%= cookbook.featured? ? 'Unfeature' : 'Feature' %>
+        <% end %>
+      </li>
     <% end %>
-  </div>
+  </ul>
 
   <h3>
     <% if policy(cookbook).manage_cookbook_urls? %>
