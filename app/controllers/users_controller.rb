@@ -60,6 +60,6 @@ class UsersController < ApplicationController
   private
 
   def assign_user
-    @user = Account.for('chef_oauth2').with_username(params[:id]).first!.user
+    @user = Account.for('chef_oauth2').joins(:user).with_username(params[:id]).first!.user
   end
 end
