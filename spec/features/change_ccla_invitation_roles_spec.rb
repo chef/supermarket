@@ -11,7 +11,7 @@ describe 'Changing a invitations role on a CCLA' do
       uncheck 'invitation[admin]'
     end
 
-    sleep 5
+    wait_for { all('.success').present? }
 
     visit current_path
 

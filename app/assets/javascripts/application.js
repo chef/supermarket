@@ -21,6 +21,7 @@
 //= require cookbookShow
 //= require cookbookFollowing
 //= require joinOrganization
+//= require organizationRoles
 //= require betaBanner
 //= require flash
 //= require select2.min
