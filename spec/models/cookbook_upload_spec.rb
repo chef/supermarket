@@ -19,7 +19,6 @@ describe CookbookUpload do
 
     it 'creates a new cookbook if the given name is original and assigns it to a user' do
       tarball = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
-      user = create(:user)
 
       upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
 
@@ -224,6 +223,14 @@ describe CookbookUpload do
       }.squish
 
       expect(errors.full_messages).to include(message)
+    end
+
+    it 'yields an error if any of the associated models have errors' do
+      tarball = File.open('spec/support/cookbook_fixtures/invalid-platforms-and-dependencies.tgz')
+      upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
+      errors = upload.finish { |e, _| e }
+
+      expect(errors).to_not be_empty
     end
   end
 end

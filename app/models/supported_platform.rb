@@ -1,6 +1,8 @@
 require 'active_model/validations/chef_version_constraint_validator'
 
 class SupportedPlatform < ActiveRecord::Base
+  include SeriousErrors
+
   # Associations
   # --------------------
   has_many :cookbook_version_platforms

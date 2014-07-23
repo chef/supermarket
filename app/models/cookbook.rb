@@ -124,6 +124,23 @@ class Cookbook < ActiveRecord::Base
   end
 
   #
+  # Return all of the cookbook errors as well as full error messages for any of
+  # the CookbookVersions
+  #
+  # @return [Array<String>] all the error messages
+  #
+  def seriously_all_of_the_errors
+    messages = errors.full_messages.reject { |e| e == 'Cookbook versions is invalid' }
+
+    cookbook_versions.each do |version|
+      almost_everything = version.errors.full_messages.reject { |x| x =~ /Tarball can not be/ }
+      messages += almost_everything
+    end
+
+    messages
+  end
+
+  #
   # Returns the name of the +Cookbook+ parameterized.
   #
   # @return [String] the name of the +Cookbook+ parameterized

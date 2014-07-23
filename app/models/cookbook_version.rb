@@ -1,4 +1,6 @@
 class CookbookVersion < ActiveRecord::Base
+  include SeriousErrors
+
   # Associations
   # --------------------
   has_many :cookbook_version_platforms
