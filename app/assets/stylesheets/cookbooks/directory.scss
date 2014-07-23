@@ -7,57 +7,45 @@
 .cookbooks_columns {
   @include block-grid(3);
   margin: rem-calc(55 0);
+
+  &.four_up {
+    @include block-grid(4);
+    margin: rem-calc(55 0);
+  }
 }
 
-@media #{$mobile-only} {
-  .cookbooks_columns {
+@media #{$small-down} {
+  .cookbooks_columns, {
     @include block-grid(1);
-  }
-}
 
-@media #{$small-only} {
-  .cookbooks_columns {
-    @include block-grid(1);
-  }
-}
-
-.cookbooks_column {
-  .cookbooks_column_content {
-    background-color: white;
-    border: 1px solid $cookbook_border;
-    text-align: center;
-    padding: rem-calc(10);
-
-    .button.expand {
-      margin: rem-calc(16 0);
-      width: 90%;
-    }
-
-    .title {
-      border-bottom: 1px solid $cookbook_border;
-      margin: 0;
-      padding: rem-calc(16 0);
+    &.four_up {
+      @include block-grid(1);
     }
   }
 }
 
-@media #{$mobile-only} {
-  .cookbooks_column {
-    margin-bottom: rem-calc(20);
-
-    &:last-child {
-      margin-bottom: 0;
-    }
+@media #{$medium-only} {
+  .cookbooks_columns.four_up {
+    @include block-grid(2);
+    margin: rem-calc(55 0);
   }
 }
 
-@media #{$small-only} {
-  .cookbooks_column {
-    margin-bottom: rem-calc(20);
+.cookbooks_column_content {
+  background-color: white;
+  border: 1px solid $cookbook_border;
+  text-align: center;
+  padding: rem-calc(10);
 
-    &:last-child {
-      margin-bottom: 0;
-    }
+  .button.expand {
+    margin: rem-calc(16 0);
+    width: 90%;
+  }
+
+  .title {
+    border-bottom: 1px solid $cookbook_border;
+    margin: 0;
+    padding: rem-calc(16 0);
   }
 }
 

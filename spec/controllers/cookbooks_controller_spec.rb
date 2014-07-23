@@ -71,6 +71,18 @@ describe CookbooksController do
       end
     end
 
+    context 'there is a featured parameter' do
+      let!(:featured) { create(:cookbook, featured: true) }
+      let!(:unfeatured) { create(:cookbook, featured: false) }
+
+      it 'only returns @cookbooks that are featured' do
+        get :index, featured: true
+
+        expect(assigns[:cookbooks]).to include(featured)
+        expect(assigns[:cookbooks]).to_not include(unfeatured)
+      end
+    end
+
     context 'there is a query parameter' do
       let!(:amazing_cookbook) do
         create(
@@ -153,6 +165,10 @@ describe CookbooksController do
 
     it 'assigns @most_followed_cookbooks' do
       expect(assigns[:most_followed_cookbooks]).to_not be_nil
+    end
+
+    it 'assigns @featured_cookbooks' do
+      expect(assigns[:featured_cookbooks]).to_not be_nil
     end
 
     it 'assigns @categories' do
@@ -443,6 +459,41 @@ describe CookbooksController do
 
         expect(response.status.to_i).to eql(404)
       end
+    end
+  end
+
+  describe 'PUT #toggle_featured' do
+    let(:admin) { create(:admin) }
+    let(:unfeatured) { create(:cookbook, featured: false) }
+    let(:featured) { create(:cookbook, featured: true) }
+    before { sign_in(admin) }
+
+    it 'sets a cookbook as featured if it is not already featured' do
+      put :toggle_featured, id: unfeatured
+
+      unfeatured.reload
+      expect(unfeatured.featured).to eql(true)
+    end
+
+    it 'sets a cookbook as not featured if it is already featured' do
+      put :toggle_featured, id: featured
+
+      featured.reload
+      expect(featured.featured).to eql(false)
+    end
+
+    it 'redirects back to the cookbook' do
+      put :toggle_featured, id: unfeatured
+
+      expect(response).to redirect_to(unfeatured)
+    end
+
+    it '404s if the user is not authorized to feature/unfeature a cookbook' do
+      sign_in(create(:user))
+
+      put :toggle_featured, id: unfeatured
+
+      expect(response.status.to_i).to eql(404)
     end
   end
 end

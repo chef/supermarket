@@ -41,6 +41,8 @@ class Cookbook < ActiveRecord::Base
     .offset(opts.fetch(:start, 0))
   }
 
+  scope :featured, -> { where(featured: true) }
+
   # Search
   # --------------------
   pg_search_scope(

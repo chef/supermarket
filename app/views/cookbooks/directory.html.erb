@@ -7,7 +7,21 @@
     <span class="stat"><span class="number"><%= number_with_delimiter @user_count, delimiter: ',' %></span> Chefs</span>
   </section>
 
-  <ul class="cookbooks_columns">
+  <ul class="cookbooks_columns <%= 'four_up' if @featured_cookbooks.any? %>">
+    <% if @featured_cookbooks.any? %>
+      <li class="cookbooks_column last most-followed">
+        <div class="cookbooks_column_content">
+          <h2 class="title">Featured</h2>
+          <ul class="simple_listing">
+            <% @featured_cookbooks.each do |cookbook| %>
+              <%= render "simple_cookbook", cookbook: cookbook %>
+            <% end %>
+          </ul>
+          <%= link_to 'View All', cookbooks_path(featured: true), class: 'button radius expand' %>
+        </div>
+      </li>
+    <% end %>
+
     <li class="cookbooks_column first recently-updated">
       <div class="cookbooks_column_content">
         <h2 class="title">Recently Updated</h2>

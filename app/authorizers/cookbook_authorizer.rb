@@ -50,6 +50,15 @@ class CookbookAuthorizer < Authorizer::Base
     !record.deprecated? && (owner? || user.is?(:admin))
   end
 
+  #
+  # Admins can toggle a cookbook as featured.
+  #
+  # @return [Boolean]
+  #
+  def toggle_featured?
+    user.is?(:admin)
+  end
+
   private
 
   def owner?

@@ -378,6 +378,16 @@ describe Cookbook do
     end
   end
 
+  describe '.featured' do
+    let(:featured) { create(:cookbook, featured: true) }
+    let(:unfeatured) { create(:cookbook, featured: false) }
+
+    it 'only returns featured cookbooks' do
+      expect(Cookbook.featured).to include(featured)
+      expect(Cookbook.featured).to_not include(unfeatured)
+    end
+  end
+
   describe '#followed_by?' do
     it 'returns true if the user passed follows the cookbook' do
       user = create(:user)
