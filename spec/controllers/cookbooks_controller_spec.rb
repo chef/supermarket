@@ -498,15 +498,7 @@ describe CookbooksController do
   end
 
   describe 'GET #deprecate_search' do
-    let(:postgresql) { create(:cookbook, name: 'postgresql') }
-    let(:postgresql_lol) do
-      create(
-        :cookbook,
-        name: 'postgresql_lol',
-        deprecated: 'true',
-        replacement: create(:cookbook)
-      )
-    end
+    let!(:postgresql) { create(:cookbook, name: 'postgresql') }
 
     it 'responds with a 200' do
       get :deprecate_search, id: postgresql, q: 'postgresql', format: :json
@@ -524,20 +516,6 @@ describe CookbooksController do
       get :deprecate_search, id: postgresql, q: 'postgresql', format: :json
 
       expect(assigns[:results]).to_not be_nil
-    end
-
-    it 'does not return the cookbook being deprecated' do
-      get :deprecate_search, id: postgresql, q: 'postgresql', format: :json
-
-      results = assigns[:results]
-      expect(results).to_not include(postgresql)
-    end
-
-    it 'only returns non-deprecated cookbooks' do
-      get :deprecate_search, id: postgresql, q: 'postgresql', format: :json
-
-      results = assigns[:results]
-      expect(results).to_not include(postgresql_lol)
     end
   end
 end

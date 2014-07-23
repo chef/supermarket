@@ -267,6 +267,20 @@ class Cookbook < ActiveRecord::Base
     save
   end
 
+  #
+  # Searches for cookbooks based on the +query+ parameter. Returns results that
+  # are elgible for deprecation (not deprecated and not this cookbook).
+  #
+  # @param query [String] the search term
+  #
+  # @return [Array<Cookbook> the +Cookbook+ search results
+  #
+  def deprecate_search(query)
+    Cookbook.search(query).reject do |cookbook|
+      cookbook.deprecated? || cookbook == self
+    end
+  end
+
   private
 
   #
