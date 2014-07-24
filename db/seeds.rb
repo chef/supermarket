@@ -34,6 +34,90 @@ Ccla.where(version: ENV['CCLA_VERSION']).
   first_or_create!.
   update_attributes(attributes)
 
+if ENV['SEED_CLA_DATA']
+  #
+  # Add 100 new individual contributors
+  #
+  existing_contributors = User.authorized_contributors.map(&:id)
+
+  individual_contributors = User.where.not(id: existing_contributors).first(100)
+
+  ActiveRecord::Base.transaction do
+    individual_contributors.each.with_index do |user, index|
+      IclaSignature.create!(
+        user: user,
+        icla: Icla.first,
+        first_name: user.first_name || 'Anonymous',
+        last_name: user.last_name || "Contributor #{index}",
+        email: user.email,
+        phone: '(555) 555-5555',
+        address_line_1: '1 Main St.',
+        city: 'Whoville',
+        state: 'NY',
+        zip: '12345',
+        country: 'USA',
+        agreement: '1'
+      )
+    end
+  end
+
+  #
+  # Add 25 new CCLA signatures
+  #
+  existing_contributors += individual_contributors.map(&:id)
+
+  ccla_signers = User.where.not(id: existing_contributors).first(25)
+  ccla_signatures = ccla_signers.map.with_index do |user, index|
+    CclaSignature.new(
+      user: user,
+      ccla: Ccla.first,
+      first_name: user.first_name || 'Anonymous',
+      last_name: user.last_name || 'Contributor',
+      email: user.email,
+      phone: '(555) 555-5555',
+      company: "Contributing Company #{index}",
+      address_line_1: '1 Main St.',
+      city: 'Whoville',
+      state: 'NY',
+      zip: '12345',
+      country: 'USA',
+      agreement: '1'
+    )
+  end
+
+  ActiveRecord::Base.transaction do
+    ccla_signatures.map! { |signature| signature.tap(&:sign!) }
+  end
+
+  #
+  # Add 50 of the new individual contributors as contributors on behalf of one
+  # of the new CCLA signatures
+  #
+  existing_contributors += ccla_signers.map(&:id)
+
+  ActiveRecord::Base.transaction do
+    individual_contributors.shuffle.first(50).each.with_index do |user, index|
+      ccla_signatures[index % ccla_signatures.size].tap do |ccla_signature|
+        ccla_signature.organization.contributors.create!(user: user)
+      end
+    end
+  end
+
+  #
+  # Add 100 new corporate contributors contributors on behalf of one of the new
+  # CCLA signatures
+  #
+  corporate_contributors = User.where.not(id: existing_contributors).first(100)
+
+  ActiveRecord::Base.transaction do
+    corporate_contributors.each.with_index do |user, index|
+      ccla_signatures[index % ccla_signatures.size].tap do |ccla_signature|
+        ccla_signature.organization.contributors.create!(user: user)
+      end
+    end
+  end
+end
+
 if Rails.env.development?
 
   #
