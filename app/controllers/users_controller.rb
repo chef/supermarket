@@ -32,6 +32,16 @@ class UsersController < ApplicationController
   end
 
   #
+  # GET /users/:id/followed_cookbook_activity
+  #
+  # Displays a feed of cookbook activity for the
+  # cookbooks the specified user follows.
+  #
+  def followed_cookbook_activity
+    @followed_cookbook_activity = @user.followed_cookbook_versions.limit(50)
+  end
+
+  #
   # PUT /users/:id/make_admin
   #
   # Assigns the admin role to a given user then redirects back to

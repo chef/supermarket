@@ -86,6 +86,7 @@ Supermarket::Application.routes.draw do
 
       put :make_admin
       delete :revoke_admin
+      get :followed_cookbook_activity, format: :atom
     end
 
     resources :accounts, only: [:destroy]

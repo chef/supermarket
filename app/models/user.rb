@@ -61,7 +61,9 @@ class User < ActiveRecord::Base
   # @return [CookbookVersion]
   #
   def followed_cookbook_versions
-    CookbookVersion.joins(:cookbook).merge(followed_cookbooks)
+    CookbookVersion.joins(:cookbook).
+      merge(followed_cookbooks).
+      order('created_at DESC')
   end
 
   #

@@ -24,6 +24,6 @@ class PagesController < ApplicationController
     @cookbooks = current_user.owned_cookbooks.limit(5)
     @collaborated_cookbooks = current_user.collaborated_cookbooks.limit(5)
     @tools = current_user.tools.limit(5)
-    @followed_cookbook_activity = current_user.followed_cookbook_versions.order('created_at DESC').limit(50)
+    @followed_cookbook_activity = current_user.followed_cookbook_versions.limit(50)
   end
 end

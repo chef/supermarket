@@ -2,11 +2,16 @@
 
 <div class="page dashboard" data-equalizer>
   <div class="main" data-equalizer-watch>
-    <div class="activity_heading">
-      <h3>Followed Cookbooks Activity</h3>
-      <% if @followed_cookbook_activity.any? %>
-        <%= link_to "You're Following #{pluralize(current_user.followed_cookbooks.count, 'Cookbook')}", user_path(current_user, tab: 'follows') %>
-      <% end %>
+    <div class="heading-with-buttons">
+      <h3 class="title">
+        Followed Cookbooks Activity
+        <small><%= link_to '<i class="fa fa-rss"></i> rss'.html_safe, followed_cookbook_activity_user_path(current_user, format: 'atom'), class: 'rss_feed_link show-for-medium-up' %></small>
+      </h3>
+      <div class="buttons">
+        <% if @followed_cookbook_activity.any? %>
+          <%= link_to "You're Following #{pluralize(current_user.followed_cookbooks.count, 'Cookbook')}", user_path(current_user, tab: 'follows') %>
+        <% end %>
+      </div>
     </div>
     <% if @followed_cookbook_activity.any? %>
       <ul class="activity_list">
