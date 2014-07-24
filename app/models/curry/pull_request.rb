@@ -4,6 +4,7 @@ class Curry::PullRequest < ActiveRecord::Base
 
   has_many :pull_request_commit_authors, dependent: :destroy
   has_many :commit_authors, through: :pull_request_commit_authors
+  has_many :comments, class_name: 'Curry::PullRequestComment'
 
   validates :number, presence: true, uniqueness: { scope: :repository_id }
   validates :repository_id, presence: true

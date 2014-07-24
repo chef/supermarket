@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723175211) do
+ActiveRecord::Schema.define(version: 20140724193305) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -198,6 +198,17 @@ ActiveRecord::Schema.define(version: 20140723175211) do
 
   add_index "curry_commit_authors", ["email"], name: "index_curry_commit_authors_on_email", unique: true, using: :btree
   add_index "curry_commit_authors", ["login"], name: "index_curry_commit_authors_on_login", unique: true, using: :btree
+
+  create_table "curry_pull_request_comments", force: true do |t|
+    t.integer  "github_id",                                null: false
+    t.integer  "pull_request_id",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "unauthorized_commit_authors", default: [],              array: true
+  end
+
+  add_index "curry_pull_request_comments", ["github_id"], name: "index_curry_pull_request_comments_on_github_id", unique: true, using: :btree
+  add_index "curry_pull_request_comments", ["pull_request_id"], name: "index_curry_pull_request_comments_on_pull_request_id", using: :btree
 
   create_table "curry_pull_request_commit_authors", force: true do |t|
     t.integer "pull_request_id",  null: false

@@ -89,6 +89,71 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
       end
     end
 
+    it 'records the act of leaving a comment' do
+      VCR.use_cassette('pull_request_annotation_adds_comment', record: :once) do
+        pull_request.commit_authors.create!(login: 'brettchalupa')
+        pull_request.commit_authors.create!(
+          email: 'brian+bcobb+brettchalupa@gofullstack.com'
+        )
+
+        annotator = Curry::PullRequestAnnotator.new(pull_request)
+
+        annotator.annotate
+
+        comments = octokit.issue_comments(
+          repository.full_name,
+          pull_request.number
+        )
+
+        comment_id = comments.first.id
+
+        expect(pull_request.comments.with_github_id(comment_id).count).to eql(1)
+      end
+    end
+
+    it 'records the set of unauthorized commit authors along with the comment' do
+      VCR.use_cassette('pull_request_annotation_adds_comment', record: :once) do
+        pull_request.commit_authors.create!(login: 'brettchalupa')
+        pull_request.commit_authors.create!(
+          email: 'brian+bcobb+brettchalupa@gofullstack.com'
+        )
+
+        annotator = Curry::PullRequestAnnotator.new(pull_request)
+
+        annotator.annotate
+
+        comments = octokit.issue_comments(
+          repository.full_name,
+          pull_request.number
+        )
+
+        comment = pull_request.comments.with_github_id(comments.first.id).first!
+
+        expect(comment.mentioned_commit_authors).
+          to eql(Set.new(['brettchalupa', 'brian+bcobb+brettchalupa@gofullstack.com']))
+      end
+    end
+
+    it 'does not leave a new comment if the unauthorized commit authors have not changed' do
+      VCR.use_cassette('pull_request_annotation_updates_comment', record: :once) do
+        pull_request.commit_authors.create!(login: 'brettchalupa')
+        pull_request.commit_authors.create!(
+          email: 'brian+bcobb+brettchalupa@gofullstack.com'
+        )
+
+        annotator = Curry::PullRequestAnnotator.new(pull_request)
+
+        2.times { annotator.annotate }
+
+        comments = octokit.issue_comments(
+          repository.full_name,
+          pull_request.number
+        )
+
+        expect(comments.count).to eql(1)
+      end
+    end
+
     it 'removes the label before adding a comment' do
       VCR.use_cassette('pull_request_annotation_removes_label', record: :once) do
         octokit.add_labels_to_an_issue(
