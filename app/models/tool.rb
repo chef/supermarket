@@ -15,6 +15,7 @@ class Tool < ActiveRecord::Base
   # Callbacks
   # --------------------
   before_validation :copy_name_to_lowercase_name
+  before_validation :strip_name_whitespace
 
   #
   # Query tools by case-insensitive name.
@@ -66,5 +67,13 @@ class Tool < ActiveRecord::Base
   #
   def copy_name_to_lowercase_name
     self.lowercase_name = name.to_s.downcase
+  end
+
+  #
+  # Mostly for purposes of uniqueness validation, names shouldn't
+  # contain leading or trailing whitespace.
+  #
+  def strip_name_whitespace
+    self.name = name.to_s.strip
   end
 end

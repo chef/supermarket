@@ -22,6 +22,13 @@ describe Tool do
     end
   end
 
+  describe '#name' do
+    it "doesn't contain leading or trailing whitespace" do
+      tool = create(:tool, name: ' Dingus ')
+      expect(tool.name).to eql('Dingus')
+    end
+  end
+
   describe '.with_name' do
     it 'is case-insensitive' do
       tool = create(:tool, name: 'DINGUS')
