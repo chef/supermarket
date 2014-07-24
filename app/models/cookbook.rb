@@ -257,15 +257,23 @@ class Cookbook < ActiveRecord::Base
   # Sets the cookbook's deprecated attribute to true, assigns the replacement
   # cookbook if specified and saves the cookbook.
   #
+  # A cookbook can only be replaced with a cookbook that is not deprecated.
+  #
   # @param replacement_cookbook [Cookbook] the cookbook to succeed this cookbook
   #   once deprecated
   #
-  # @return [Boolean] whether or not the cookbook was successfully saved
+  # @return [Boolean] whether or not the cookbook was successfully deprecated
+  #   and  saved
   #
   def deprecate(replacement_cookbook)
-    self.deprecated = true
-    self.replacement = replacement_cookbook
-    save
+    if replacement_cookbook.deprecated?
+      errors.add(:base, I18n.t('cookbook.deprecate_with_deprecated_failure'))
+      return false
+    else
+      self.deprecated = true
+      self.replacement = replacement_cookbook
+      save
+    end
   end
 
   #
