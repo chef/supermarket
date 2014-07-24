@@ -11,6 +11,10 @@ class Tool < ActiveRecord::Base
   # --------------------
   validates :name, uniqueness: { case_sensitive: false }, presence: true
   validates :type, inclusion: { in: ALLOWED_TYPES }
+  validates :source_url, url: {
+    allow_blank: true,
+    allow_nil: true
+  }
 
   # Callbacks
   # --------------------

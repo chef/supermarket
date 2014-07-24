@@ -13,6 +13,13 @@ describe Tool do
       create(:tool)
       expect(subject).to validate_uniqueness_of(:name).case_insensitive
     end
+
+    it 'validates that source_url is a http(s) url' do
+      tool = build(:tool, source_url: 'com.http.com')
+
+      expect(tool).to_not be_valid
+      expect(tool.errors[:source_url]).to_not be_nil
+    end
   end
 
   describe '#lowercase_name' do

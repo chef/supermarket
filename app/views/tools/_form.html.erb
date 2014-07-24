@@ -21,7 +21,8 @@
 
   <div class="sourl_url-field">
     <%= f.label :source_url, 'Source URL' %>
-    <%= f.text_field :source_url, placeholder: 'Source URL', title: 'Source URL' %>
+    <%= f.text_field :source_url, placeholder: 'Source URL', title: 'Source URL', pattern: 'url'  %>
+    <small class="error">Must be formatted as a URL.</small>
   </div>
 
   <div class="instructions-field">
