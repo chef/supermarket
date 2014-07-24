@@ -1,5 +1,7 @@
-module UniverseCache
-  module_function
+class UniverseCache
+  def initialize(protocol)
+    @raw_protocol = protocol
+  end
 
   #
   # Fetch something from the cache
@@ -30,11 +32,12 @@ module UniverseCache
   end
 
   #
-  # Returns the protocol to use, based on the environment variables
+  # Returns the protocol in a way appropriate for cache key usage, e.g. for
+  # a protocol string of "http://", this method will return "http"
   #
-  # @return [String] HTTP protocol to use
+  # @return [String] the protocol string
   #
   def protocol
-    ENV.fetch('PROTOCOL', 'http')
+    @protocol ||= @raw_protocol[0..-4]
   end
 end

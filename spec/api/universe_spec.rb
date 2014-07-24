@@ -58,23 +58,17 @@ describe 'GET /universe' do
   it 'has an http specific cache key' do
     expect(Rails.cache).to receive(:fetch).with('http-universe')
 
-    with_env('PROTOCOL' => 'http') do
-      get '/universe', format: :json
-    end
+    get '/universe', format: :json
   end
 
   it 'has an https specific cache key' do
     expect(Rails.cache).to receive(:fetch).with('https-universe')
 
-    with_env('PROTOCOL' => 'https') do
-      get '/universe', format: :json
-    end
+    get '/universe', { format: :json }, 'HTTPS' => 'on'
   end
 
   it "returns https URLs when ENV['PROTOCOL']=https" do
-    with_env('PROTOCOL' => 'https') do
-      get '/universe', format: :json
-    end
+    get '/universe', { format: :json }, 'HTTPS' => 'on'
 
     expect(response).to be_success
     expect(json_body['redis']['1.2.0']['location_path']).to match(%r{https://.*/api/v1})

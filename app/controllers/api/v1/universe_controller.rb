@@ -7,13 +7,19 @@ class Api::V1::UniverseController < Api::V1Controller
   # dependency/platform information.
   #
   def index
-    universe = UniverseCache.fetch do
-      Universe.generate(protocol: UniverseCache.protocol)
+    universe = universe_cache.fetch do
+      Universe.generate(protocol: universe_cache.protocol)
     end
 
     SegmentIO.track_server_event('universe_api_visit', current_user)
     Universe.track_hit
 
     render json: MultiJson.dump(universe)
+  end
+
+  private
+
+  def universe_cache
+    UniverseCache.new(request.protocol)
   end
 end
