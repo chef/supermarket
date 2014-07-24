@@ -225,4 +225,19 @@ module FeatureHelpers
       end
     end
   end
+
+  #
+  # Wait about five seconds for a condition to be true
+  #
+  def wait_for(&condition)
+    ticks = 0
+
+    loop do
+      sleep 1
+      ticks += 1
+
+      break if ticks > 5
+      break if condition.call
+    end
+  end
 end

@@ -15,7 +15,7 @@ describe 'Changing a contributors role on a CCLA' do
       uncheck 'contributor_admin'
     end
 
-    sleep 5
+    wait_for { all('.success').present? }
 
     visit current_path
 
