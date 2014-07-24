@@ -44,7 +44,7 @@ class CookbookUpload
 
         upload_errors.add(:base, version_not_unique)
       rescue ActiveRecord::RecordInvalid => e
-        e.record.errors.full_messages.each do |message|
+        e.record.seriously_all_of_the_errors.each do |message|
           upload_errors.add(:base, message)
         end
       end
