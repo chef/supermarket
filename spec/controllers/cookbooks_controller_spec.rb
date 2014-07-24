@@ -399,41 +399,14 @@ describe CookbooksController do
 
   describe 'PUT #deprecate' do
     let(:user) { create(:user) }
-    let(:cookbook) { create(:cookbook, owner: user) }
-    let(:replacement_cookbook) { create(:cookbook) }
+    let!(:cookbook) { create(:cookbook, owner: user) }
+    let!(:replacement_cookbook) { create(:cookbook) }
 
     context 'cookbook owner' do
-      before { sign_in(user) }
+      context 'valid replacement' do
+        before { sign_in(user) }
 
-      it 'deprecates the cookbook and sets the replacement' do
-        put(
-          :deprecate,
-          id: cookbook,
-          cookbook: {
-            replacement: replacement_cookbook
-          }
-        )
-
-        cookbook.reload
-
-        expect(cookbook.deprecated).to eql(true)
-        expect(cookbook.replacement).to eql(replacement_cookbook)
-      end
-
-      it 'redirects back to the cookbook' do
-        put(
-          :deprecate,
-          id: cookbook,
-          cookbook: {
-            replacement: replacement_cookbook
-          }
-        )
-
-        expect(response).to redirect_to(cookbook)
-      end
-
-      it 'starts the cookbook deprecated notifier worker' do
-        expect do
+        it 'deprecates the cookbook and sets the replacement' do
           put(
             :deprecate,
             id: cookbook,
@@ -441,7 +414,80 @@ describe CookbooksController do
               replacement: replacement_cookbook
             }
           )
-        end.to change(CookbookDeprecatedNotifier.jobs, :size).by(1)
+
+          cookbook.reload
+
+          expect(cookbook.deprecated).to eql(true)
+          expect(cookbook.replacement).to eql(replacement_cookbook)
+        end
+
+        it 'redirects back to the cookbook w/ success notice' do
+          put(
+            :deprecate,
+            id: cookbook,
+            cookbook: {
+              replacement: replacement_cookbook
+            }
+          )
+
+          expect(response).to redirect_to(cookbook)
+
+          expect(flash[:notice]).to eql(
+            I18n.t(
+              'cookbook.deprecated',
+              cookbook: cookbook.name,
+              replacement_cookbook: replacement_cookbook.name
+            )
+          )
+        end
+
+        it 'starts the cookbook deprecated notifier worker' do
+          expect do
+            put(
+              :deprecate,
+              id: cookbook,
+              cookbook: {
+                replacement: replacement_cookbook
+              }
+            )
+          end.to change(CookbookDeprecatedNotifier.jobs, :size).by(1)
+        end
+      end
+
+      context 'replacement cookbook already deprecated' do
+        before { sign_in(user) }
+        let!(:deprecated_cookbook) do
+          create(:cookbook, deprecated: true, replacement: create(:cookbook))
+        end
+
+        it 'fails to deprecate and set replacement' do
+          put(
+            :deprecate,
+            id: cookbook,
+            cookbook: {
+              replacement: deprecated_cookbook
+            }
+          )
+
+          cookbook.reload
+
+          expect(cookbook.deprecated).to eql(false)
+          expect(cookbook.replacement).to eql(nil)
+        end
+
+        it 'redirects back to the cookbook w/ an error notice' do
+          put(
+            :deprecate,
+            id: cookbook,
+            cookbook: {
+              replacement: deprecated_cookbook
+            }
+          )
+
+          expect(response).to redirect_to(cookbook)
+          expect(flash[:notice]).
+            to eql(I18n.t('cookbook.deprecate_with_deprecated_failure'))
+        end
       end
     end
 

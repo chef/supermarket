@@ -182,13 +182,7 @@ class CookbooksController < ApplicationController
         )
       )
     else
-      redirect_to(
-        @cookbook,
-        notice: t(
-          'cookbook.deprecate_failure',
-          cookbook: @cookbook.name
-        )
-      )
+      redirect_to @cookbook, notice: @cookbook.errors.full_messages.join(', ')
     end
   end
 
