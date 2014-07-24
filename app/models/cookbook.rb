@@ -277,9 +277,7 @@ class Cookbook < ActiveRecord::Base
   # @return [Array<Cookbook> the +Cookbook+ search results
   #
   def deprecate_search(query)
-    Cookbook.search(query).reject do |cookbook|
-      cookbook.deprecated? || cookbook == self
-    end
+    Cookbook.search(query).where(deprecated: false).where.not(id: id)
   end
 
   private
