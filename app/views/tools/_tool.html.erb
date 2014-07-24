@@ -15,17 +15,21 @@
       </div>
     </div>
   </div>
-  <div class="body">
-    <div class="body-content">
-      <p>
-        <%= tool.description %>
-      </p>
-      <code class="install"><%= tool.instructions %></code>
+  <% if tool.description.present? || tool.instructions.present? %>
+    <div class="body">
+      <div class="body-content">
+        <%= simple_format tool.description %>
+        <% if tool.instructions.present? %>
+          <code class="install"><%= tool.instructions %></code>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
   <div class="bottom">
     <div class="bottom-content">
-      <%= link_to 'View Source', tool.source_url, class: 'button tiny radius secondary', target: '_blank' %>
+      <% if tool.source_url.present? %>
+        <%= link_to 'View Source', tool.source_url, class: 'button tiny radius secondary', target: '_blank' %>
+      <% end %>
 
       <% if policy(tool).update? %>
         <%= link_to 'Edit', edit_tool_path(tool), class: 'button tiny radius secondary', rel: 'edit_tool' %>
