@@ -2,7 +2,7 @@ class ContributorRequest < ActiveRecord::Base
   belongs_to :organization
   belongs_to :ccla_signature
   belongs_to :user
-  has_one :contributor_request_response
+  has_one :contributor_request_response, dependent: :destroy
 
   validates :organization, presence: true
   validates :ccla_signature, presence: true
