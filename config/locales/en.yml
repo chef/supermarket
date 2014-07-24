@@ -11,7 +11,7 @@ en:
     transfered_ownership: "%{cookbook} transferred to %{user}."
     deprecated: "%{cookbook} deprecated in favor of %{replacement_cookbook}."
     featured: "%{cookbook} is now %{state}."
-    deprecate_failure: "%{cookbook} failed to deprecate."
+    deprecate_with_deprecated_failure: "This cookbook cannot be deprecated in favor of a deprecated cookbook."
   contributor_requests:
     accept:
       success: "%{username} is now authorized to contribute on behalf of %{organization}."
