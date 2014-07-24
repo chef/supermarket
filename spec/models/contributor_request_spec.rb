@@ -5,6 +5,7 @@ describe ContributorRequest do
     it { should belong_to(:user) }
     it { should belong_to(:ccla_signature) }
     it { should belong_to(:organization) }
+    it { should have_one(:contributor_request_response).dependent(:destroy) }
   end
 
   context 'validations' do

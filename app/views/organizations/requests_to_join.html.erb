@@ -9,11 +9,19 @@
     <div class="content active">
       <p>Users who have requested to join and contribute on behalf of this organization.</p>
 
-      <ul class="pending-requests">
+      <table class="pending-requests">
         <% @pending_requests.each do |request| %>
-          <li class="pending-request"><%= link_to request.user.name, request.user %> requested to join on <%= request.created_at.to_s(:longish) %></li>
-      <% end %>
-      </ul>
+          <tr class="pending-request">
+            <td><%= link_to request.user.name, request.user %> requested to join on <%= request.created_at.to_s(:longish) %></td>
+            <td class="right">
+              <ul class="button-group radius right">
+                <li><%= link_to 'Accept Request', accept_ccla_signature_contributor_request_path(request.ccla_signature, request), class: 'button secondary tiny' %></li>
+                <li><%= link_to 'Decline Request', decline_ccla_signature_contributor_request_path(request.ccla_signature, request), class: 'button alert tiny' %></li>
+              </ul>
+            </td>
+          </tr>
+        <% end %>
+      </table>
     </div>
   </div>
 </div>
