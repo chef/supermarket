@@ -92,6 +92,8 @@ class Curry::PullRequestAnnotator
         potential_comment.github_id = comment.id
         potential_comment.save!
       end
+    else
+      most_recent_comment.touch
     end
   end
 

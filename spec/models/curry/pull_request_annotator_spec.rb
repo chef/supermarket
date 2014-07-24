@@ -154,6 +154,22 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
       end
     end
 
+    it "updates the previous comment's updated_at timestamp instead of leaving a duplicate comment" do
+      VCR.use_cassette('pull_request_annotation_updates_comment', record: :once) do
+        pull_request.commit_authors.create!(login: 'brettchalupa')
+        pull_request.commit_authors.create!(
+          email: 'brian+bcobb+brettchalupa@gofullstack.com'
+        )
+
+        annotator = Curry::PullRequestAnnotator.new(pull_request)
+        annotator.annotate
+
+        expect do
+          annotator.annotate
+        end.to change { pull_request.reload.comments.last.updated_at }
+      end
+    end
+
     it 'removes the label before adding a comment' do
       VCR.use_cassette('pull_request_annotation_removes_label', record: :once) do
         octokit.add_labels_to_an_issue(
