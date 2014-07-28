@@ -1,5 +1,4 @@
 class CookbooksController < ApplicationController
-  before_filter :assign_categories
   before_filter :assign_cookbook, except: [:index, :directory]
   before_filter :store_location_then_authenticate_user!, only: [:follow, :unfollow]
 
@@ -244,10 +243,6 @@ class CookbooksController < ApplicationController
   end
 
   private
-
-  def assign_categories
-    @categories ||= Category.all
-  end
 
   def assign_cookbook
     @cookbook ||= Cookbook.with_name(params[:id]).first!

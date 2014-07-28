@@ -171,10 +171,6 @@ describe CookbooksController do
       expect(assigns[:featured_cookbooks]).to_not be_nil
     end
 
-    it 'assigns @categories' do
-      expect(assigns[:categories]).to_not be_nil
-    end
-
     it 'sends cookbook count to the view' do
       expect(assigns[:cookbook_count]).to_not be_nil
     end
