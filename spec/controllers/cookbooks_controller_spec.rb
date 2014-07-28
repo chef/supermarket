@@ -508,6 +508,44 @@ describe CookbooksController do
     end
   end
 
+  describe 'DELETE #undeprecate' do
+    let(:user) { create(:user) }
+    let!(:cookbook) do
+      create(:cookbook,
+             owner: user,
+             deprecated: true,
+             replacement: create(:cookbook)
+            )
+    end
+    before { sign_in(user) }
+
+    it 'unsets a cookbook as deprecated' do
+      delete :undeprecate, id: cookbook
+
+      expect(cookbook.reload.deprecated).to be false
+    end
+
+    it 'sets a cookbooks replacement to nil' do
+      delete :undeprecate, id: cookbook
+
+      expect(cookbook.reload.replacement).to be_nil
+    end
+
+    it 'redirects back to the cookbook' do
+      delete :undeprecate, id: cookbook
+
+      expect(response).to redirect_to(cookbook)
+    end
+
+    it '404s if the user is not authorized to undeprecate the cookbook' do
+      sign_in(create(:user))
+
+      delete :undeprecate, id: cookbook
+
+      expect(response.status.to_i).to eql(404)
+    end
+  end
+
   describe 'PUT #toggle_featured' do
     let(:admin) { create(:admin) }
     let(:unfeatured) { create(:cookbook, featured: false) }

@@ -1,6 +1,6 @@
 class CookbooksController < ApplicationController
   before_filter :assign_categories
-  before_filter :assign_cookbook, only: [:show, :update, :follow, :unfollow, :transfer_ownership, :deprecate, :toggle_featured, :deprecate_search]
+  before_filter :assign_cookbook, except: [:index, :directory]
   before_filter :store_location_then_authenticate_user!, only: [:follow, :unfollow]
 
   #
@@ -184,6 +184,25 @@ class CookbooksController < ApplicationController
     else
       redirect_to @cookbook, notice: @cookbook.errors.full_messages.join(', ')
     end
+  end
+
+  #
+  # DELETE /cookbooks/:cookbook/deprecate
+  #
+  # Un-deprecates the cookbook and sets its replacement cookbook to nil.
+  #
+  def undeprecate
+    authorize! @cookbook
+
+    @cookbook.update_attributes(deprecated: false, replacement: nil)
+
+    redirect_to(
+      @cookbook,
+      notice: t(
+        'cookbook.undeprecated',
+        cookbook: @cookbook.name
+      )
+    )
   end
 
   #

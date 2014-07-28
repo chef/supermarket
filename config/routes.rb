@@ -35,6 +35,7 @@ Supermarket::Application.routes.draw do
       delete :unfollow
       put :transfer_ownership
       put :deprecate
+      delete :deprecate, action: 'undeprecate'
       put :toggle_featured
       get :deprecate_search
     end

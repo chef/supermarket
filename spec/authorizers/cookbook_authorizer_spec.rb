@@ -60,4 +60,13 @@ describe CookbookAuthorizer do
     it { should_not permit_authorization(:create_collaborator) }
     it { should_not permit_authorization(:manage_cookbook_urls) }
   end
+
+  context 'as a cookbook owner acting on a deprecated cookbook' do
+    let(:record) { build(:cookbook, owner: user, deprecated: true) }
+
+    subject { described_class.new(user, record) }
+
+    it { should permit_authorization(:undeprecate) }
+    it { should_not permit_authorization(:deprecate) }
+  end
 end
