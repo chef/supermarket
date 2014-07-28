@@ -40,8 +40,6 @@ class Curry::PullRequestAnnotator
   # carry out the annotation if the PR is still open.
   #
   def annotate
-    remove_existing_label
-
     if all_commit_authors_are_cla_signers?
       add_success_label
 
@@ -49,6 +47,8 @@ class Curry::PullRequestAnnotator
         leave_all_authorized_comment
       end
     else
+      remove_existing_label
+
       leave_failure_comment
     end
   end

@@ -1,85 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://api.github.com/repos/gofullstack/paprika/issues/1/labels
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/vnd.github.v3+json
-      User-Agent:
-      - Octokit Ruby Gem 3.2.0
-      Authorization:
-      - token <TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Mon, 28 Jul 2014 15:44:41 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Status:
-      - 200 OK
-      X-Ratelimit-Limit:
-      - '5000'
-      X-Ratelimit-Remaining:
-      - '4903'
-      X-Ratelimit-Reset:
-      - '1406563309'
-      Cache-Control:
-      - private, max-age=60, s-maxage=60
-      Last-Modified:
-      - Mon, 28 Jul 2014 15:44:40 GMT
-      Etag:
-      - '"804b40dd96f57470f34acdd0e6423399"'
-      X-Oauth-Scopes:
-      - public_repo, write:repo_hook
-      X-Accepted-Oauth-Scopes:
-      - ''
-      Vary:
-      - Accept, Authorization, Cookie, X-GitHub-OTP
-      - Accept-Encoding
-      X-Github-Media-Type:
-      - github.v3; format=json
-      Link:
-      - <https://api.github.com/repositories/16483215/issues/1/labels?page=0>; rel="last"
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Frame-Options:
-      - deny
-      Content-Security-Policy:
-      - default-src 'none'
-      Content-Length:
-      - '2'
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Expose-Headers:
-      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
-        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
-      Access-Control-Allow-Origin:
-      - '*'
-      X-Github-Request-Id:
-      - 18C45CB0:7B32:B5151D5:53D66FE9
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
-      X-Content-Type-Options:
-      - nosniff
-      X-Served-By:
-      - c436b2b44345c72ff906059f604991e7
-    body:
-      encoding: UTF-8
-      string: '[]'
-    http_version: 
-  recorded_at: Mon, 28 Jul 2014 15:44:44 GMT
-- request:
     method: post
     uri: https://api.github.com/repos/gofullstack/paprika/issues/1/labels
     body:
@@ -102,7 +23,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 28 Jul 2014 15:44:41 GMT
+      - Mon, 28 Jul 2014 19:47:27 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -112,9 +33,9 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4902'
+      - '4964'
       X-Ratelimit-Reset:
-      - '1406563309'
+      - '1406580371'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
@@ -142,7 +63,7 @@ http_interactions:
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 18C45CB0:7B31:93BDEC4:53D66FE9
+      - 18C45CB0:7DF5:4E50786:53D6A8CF
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains
       X-Content-Type-Options:
@@ -154,7 +75,7 @@ http_interactions:
       string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/labels/Signed+CLA","name":"Signed
         CLA","color":"8ED41E"}]'
     http_version: 
-  recorded_at: Mon, 28 Jul 2014 15:44:44 GMT
+  recorded_at: Mon, 28 Jul 2014 19:47:30 GMT
 - request:
     method: get
     uri: https://api.github.com/repos/gofullstack/paprika/issues/1/comments
@@ -178,7 +99,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 28 Jul 2014 15:44:41 GMT
+      - Mon, 28 Jul 2014 19:47:28 GMT
       Content-Type:
       - application/json; charset=utf-8
       Status:
@@ -186,9 +107,9 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4901'
+      - '4963'
       X-Ratelimit-Reset:
-      - '1406563309'
+      - '1406580371'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
@@ -220,18 +141,18 @@ http_interactions:
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 18C45CB0:7B30:6F43264:53D66FE9
+      - 18C45CB0:7DF8:B782D9A:53D6A8CF
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains
       X-Content-Type-Options:
       - nosniff
       X-Served-By:
-      - d818ddef80f4c7d10683dd483558952a
+      - a1d8c69b807c8e21f06cad9da377d1b0
     body:
       encoding: UTF-8
       string: '[]'
     http_version: 
-  recorded_at: Mon, 28 Jul 2014 15:44:44 GMT
+  recorded_at: Mon, 28 Jul 2014 19:47:31 GMT
 - request:
     method: get
     uri: https://api.github.com/repos/gofullstack/paprika/issues/1/labels
@@ -255,7 +176,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 28 Jul 2014 15:44:42 GMT
+      - Mon, 28 Jul 2014 19:47:28 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -265,13 +186,13 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4900'
+      - '4962'
       X-Ratelimit-Reset:
-      - '1406563309'
+      - '1406580371'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Last-Modified:
-      - Mon, 28 Jul 2014 15:44:41 GMT
+      - Mon, 28 Jul 2014 19:47:27 GMT
       Etag:
       - '"9e0f713c4aaf54f15db23497aa31b638"'
       X-Oauth-Scopes:
@@ -297,17 +218,17 @@ http_interactions:
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 18C45CB0:7B32:B5153C0:53D66FEA
+      - 18C45CB0:7DF4:2BDB9D5:53D6A8D0
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains
       X-Content-Type-Options:
       - nosniff
       X-Served-By:
-      - c046d59f93ede9ab52d5ac29f1ed70f7
+      - c436b2b44345c72ff906059f604991e7
     body:
       encoding: UTF-8
       string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/labels/Signed+CLA","name":"Signed
         CLA","color":"8ED41E"}]'
     http_version: 
-  recorded_at: Mon, 28 Jul 2014 15:44:45 GMT
+  recorded_at: Mon, 28 Jul 2014 19:47:31 GMT
 recorded_with: VCR 2.9.2
