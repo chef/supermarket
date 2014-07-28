@@ -73,15 +73,41 @@ class Curry::PullRequestAnnotator
   end
 
   #
-  # Uses Octokit to add a comment to the Pull Request noting which
-  # GitHub users have not signed a CLA
+  # Uses Octokit to add a comment to the Pull Request noting which GitHub users
+  # have not signed a CLA. Only leaves a comment if the set of unauthorized
+  # commit authors has changed since the last comment.
   #
   def leave_failure_comment
-    @octokit.add_comment(
-      @repository.full_name,
-      @pull_request.number,
-      failure_message
+    most_recent_comment = @pull_request.comments.last || Curry::PullRequestComment.new
+    potential_comment = @pull_request.comments.new(
+      unauthorized_commit_authors: unauthorized_commit_emails_and_logins
     )
+
+    if potential_comment.mentioned_commit_authors != most_recent_comment.mentioned_commit_authors
+      @octokit.add_comment(
+        @repository.full_name,
+        @pull_request.number,
+        failure_message
+      ).tap do |comment|
+        potential_comment.github_id = comment.id
+        potential_comment.save!
+      end
+    else
+      most_recent_comment.touch
+    end
+  end
+
+  #
+  # The combined list of unauthorized commit author email addresses and GitHub
+  # logins
+  #
+  # @return [Array<String>]
+  #
+  def unauthorized_commit_emails_and_logins
+    [
+      @pull_request.unknown_commit_authors.with_known_email.map(&:email),
+      @pull_request.unknown_commit_authors.with_known_login.map(&:login)
+    ].flatten
   end
 
   #

@@ -16,6 +16,10 @@ describe Curry::PullRequest do
     end
   end
 
+  describe 'associations' do
+    it { should have_many(:comments) }
+  end
+
   describe '#unknown_commit_authors' do
     it 'only returns commit authors who have not signed a CLA' do
       pull_request = create(:pull_request)
