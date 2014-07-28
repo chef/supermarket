@@ -92,6 +92,15 @@
       </div>
     <% end %>
 
+    <% if policy(cookbook).undeprecate? %>
+      <li>
+        <%= link_to deprecate_cookbook_path(cookbook), method: 'delete', rel: 'undeprecate' do %>
+            <i class="fa fa-archive"></i>
+            Undo Deprecation
+        <% end %>
+      </li>
+    <% end %>
+
     <% if policy(cookbook).toggle_featured? %>
       <li>
         <%= link_to toggle_featured_cookbook_path(cookbook), method: 'put', rel: 'toggle_featured' do %>
