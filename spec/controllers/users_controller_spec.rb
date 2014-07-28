@@ -51,6 +51,20 @@ describe UsersController do
     end
   end
 
+  describe 'GET #followed_cookbook_activity' do
+    it 'assigns a user' do
+      get :tools, id: user.username
+
+      expect(assigns[:user]).to eql(user)
+    end
+
+    it "assigns a user's followed cookbook activity" do
+      get :followed_cookbook_activity, id: user.username
+
+      expect(assigns[:followed_cookbook_activity]).to_not be_nil
+    end
+  end
+
   describe 'PUT #make_admin' do
     let(:user) { create(:user) }
 

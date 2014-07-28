@@ -20,27 +20,22 @@
       margin-bottom: 0;
     }
   }
-}
 
-.activity_heading {
-  @include clearfix;
-  border-bottom: rem-calc(2) solid lighten($secondary_gray, 35%);
-
-  a {
-    float: right;
-    font: $bold rem-calc(12) $default_font;
+  .buttons a {
     text-decoration: underline;
   }
 
-  @media #{$mobile-only} {
+  @media #{$small-down} {
     a {
       display: none;
     }
   }
 
-  h3 {
-    float: left;
-    margin-bottom: rem-calc(20);
+  @media #{$large-down} {
+    .heading-with-buttons .title small {
+      display: inline-block;
+      margin-left: 0;
+    }
   }
 }
 
