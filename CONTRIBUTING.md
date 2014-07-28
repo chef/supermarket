@@ -23,7 +23,7 @@ It only takes a few minutes to complete a CLA, and you retain the copyright to y
 
 You can [become a contributor by signing the ICLA or by contributing on behalf of your company](http://supermarket.getchef.com/become-a-contributor).
 
-For more information about licensing, copyright, and CLAs see Chef's [Community Contributions](http://docs.opscode.com/community_contributions.html) page.
+For more information about licensing, copyright, and CLAs see Chef's [Community Contributions](http://docs.getchef.com/community_contributions.html) page.
 
 Working with the community
 --------------------------
@@ -31,8 +31,8 @@ These resources will help you learn more about Chef and connect to other members
 
 * [chef](http://lists.opscode.com/sympa/info/chef) and [chef-dev](http://lists.opscode.com/sympa/info/chef-dev) mailing lists
 * #chef and #chef-hacking IRC channels on irc.freenode.net
-* [Chef docs](http://docs.opscode.com)
-* Chef [product page](http://www.opscode.com/chef)
+* [Chef docs](http://docs.getchef.com)
+* Chef [product page](http://www.getchef.com/chef)
 
 
 Overview
@@ -45,7 +45,7 @@ If you're experienced with the toolchain, here are the steps for submitting a pa
         $ git checkout -b my_feature
 
 1. Make your changes, writing excellent commit messages and adding appropiate test coverage
-1. Open a [Pull Request](https://opscode.com/opscode/supermarket/pull) against the supermarket master branch on GitHub
+1. Open a [Pull Request](https://github.com/opscode/supermarket/pull) against the supermarket master branch on GitHub
 
 
 Helpful Tips
