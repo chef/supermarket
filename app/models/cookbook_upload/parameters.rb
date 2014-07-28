@@ -165,7 +165,7 @@ class CookbookUpload
     #
     # @yieldparam errors [ActiveModel::Errors] any errors that occurred while
     #   extracting the README
-    # @yieldparam metadata [Readme] the cookbook's README
+    # @yieldparam readme [Readme] the cookbook's README
     #
     def extract_tarball_readme(&block)
       cookbook = metadata.name
