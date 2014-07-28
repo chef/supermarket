@@ -4,10 +4,15 @@ atom_feed language: 'en-US' do |feed|
 
   @followed_cookbook_activity.each do |cookbook_version|
     feed.entry cookbook_version, url: cookbook_version_url(cookbook_version.cookbook, cookbook_version.version) do |entry|
-      entry.title cookbook_version.cookbook.name
-      entry.maintainer cookbook_version.cookbook.maintainer
-      entry.description cookbook_version.description
-      entry.version cookbook_version.version
+      entry.title t('cookbook.activity',
+                    maintainer: cookbook_version.cookbook.maintainer,
+                    version: cookbook_version.version,
+                    cookbook: cookbook_version.cookbook.name
+                   )
+      entry.author do |author|
+        author.name cookbook_version.cookbook.maintainer
+        author.uri user_url(cookbook_version.cookbook.owner)
+      end
     end
   end
 end

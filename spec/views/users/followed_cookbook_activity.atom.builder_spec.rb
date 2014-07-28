@@ -55,10 +55,9 @@ describe 'users/followed_cookbook_activity.atom.builder' do
 
     activity = xml_body['feed']['entry'].first
 
-    expect(activity['title']).to eql(test_cookbook.name)
-    expect(activity['maintainer']).to eql(test_cookbook.maintainer)
-    expect(activity['description']).to eql(test_cookbook.description)
-    expect(activity['version']).to eql(test_cookbook.cookbook_versions.first.version)
+    expect(activity['title']).to match(/#{test_cookbook.name}/)
+    expect(activity['author']['name']).to eql(test_cookbook.maintainer)
+    expect(activity['author']['uri']).to eql(user_url(test_cookbook.owner))
     expect(activity['link']['href']).
       to eql(cookbook_version_url(test_cookbook, test_cookbook.cookbook_versions.first.version))
   end
