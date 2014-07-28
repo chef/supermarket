@@ -8,7 +8,7 @@
       <div class="buttons">
         <% if current_user && policy(@ccla_signature.organization).request_to_join? %>
           <p>
-            <%= link_to "Join this CCLA", ccla_signature_contributor_requests_path(@ccla_signature), class: "button radius tiny join", rel: "contributor-request", method: :post, remote: true %>
+            <%= link_to "Request to join this CCLA", ccla_signature_contributor_requests_path(@ccla_signature), class: "button radius tiny join", rel: "contributor-request", method: :post, remote: true %>
           </p>
         <% elsif current_user && current_user.requested_to_join?(@ccla_signature.organization) %>
           <%= render partial: 'pending_approval' %>
