@@ -19,7 +19,11 @@
           <li>
             <div>
               <%= link_to gravatar_for(cookbook_version.owner), cookbook_version.owner %>
-              <%= link_to cookbook_version.owner.username, cookbook_version.owner %> released <span>v<%= cookbook_version.version %></span> of the <%= link_to cookbook_version.name, cookbook_version.cookbook %> cookbook
+              <%= t('cookbook.activity',
+                    maintainer: link_to(cookbook_version.cookbook.maintainer, cookbook_version.owner),
+                    version: cookbook_version.version,
+                    cookbook: link_to(cookbook_version.name, cookbook_version.cookbook)
+                   ).html_safe %>
             </div>
             <small class="date"><%= cookbook_version.created_at.to_s(:longish) %></small>
           </li>

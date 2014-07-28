@@ -12,6 +12,7 @@ en:
     deprecated: "%{cookbook} deprecated in favor of %{replacement_cookbook}."
     featured: "%{cookbook} is now %{state}."
     deprecate_with_deprecated_failure: "This cookbook cannot be deprecated in favor of a deprecated cookbook."
+    activity: "%{maintainer} released v%{version} of the %{cookbook} cookbook."
   contributor_requests:
     accept:
       success: "%{username} is now authorized to contribute on behalf of %{organization}."
