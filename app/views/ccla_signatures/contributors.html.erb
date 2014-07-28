@@ -13,8 +13,8 @@
         <% elsif current_user && current_user.requested_to_join?(@ccla_signature.organization) %>
           <%= render partial: 'pending_approval' %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 
   <% if current_user && policy(@ccla_signature.organization).view_cclas? %>
