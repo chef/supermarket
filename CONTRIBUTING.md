@@ -7,7 +7,7 @@ The basic process:
 * Create a git topic branch for your patch and push it to GitHub
 * Open a pull request
 
-The Apache License and Chef Contributor Lincense Agreements
+The Apache License and Chef Contributor License Agreements
 -----------------------------------------------------------
 Licensing is very important to open source projects, it helps ensure the software continues to be available under the terms that the author desired.
 Chef uses the Apache 2.0 license to strike a balance between open contribution and allowing you to use the software however you would like to.
