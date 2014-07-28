@@ -80,9 +80,7 @@ Supermarket::Application.routes.draw do
 
   resources :users, only: [:show] do
     member do
-      if ENV['TOOLS_ENABLED'] == 'true'
-        get :tools
-      end
+      get :tools, constraints: proc { ENV['TOOLS_ENABLED'] == 'true' }
 
       put :make_admin
       delete :revoke_admin
@@ -92,9 +90,7 @@ Supermarket::Application.routes.draw do
     resources :accounts, only: [:destroy]
   end
 
-  if ENV['TOOLS_ENABLED'] == 'true'
-    resources :tools
-  end
+  resources :tools, constraints: proc { ENV['TOOLS_ENABLED'] == 'true' }
 
   resource :profile, controller: 'profile', only: [:update, :edit] do
     collection do
@@ -114,9 +110,7 @@ Supermarket::Application.routes.draw do
     member do
       put :combine
 
-      if ENV['JOIN_CCLA_ENABLED'] == 'true'
-        get :requests_to_join
-      end
+      get :requests_to_join, constraints: proc { ENV['JOIN_CCLA_ENABLED'] == 'true' }
     end
 
     resources :contributors, only: [:update, :destroy], controller: :contributors
