@@ -14,6 +14,14 @@ class CookbookAuthorizer < Authorizer::Base
   end
 
   #
+  # Owners of a cookbook, collaborators of a cookbook and Supermarket admins can
+  # manage a cookbook.
+  #
+  def manage?
+    owner_or_collaborator? || user.is?(:admin)
+  end
+
+  #
   # Owners of a cookbook are the only ones that can add collaborators.
   #
   # @return [Boolean]
