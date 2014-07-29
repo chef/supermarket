@@ -62,11 +62,13 @@ class Api::V1::CookbooksController < Api::V1Controller
   #   GET /api/v1/search?q=redis&start=3&items=5
   #
   def search
-    @results = Cookbook.search(
-      params.fetch(:q, nil)
-    ).offset(@start).limit(@items)
+    @search = Cookbook.search do
+      fulltext params[:q]
+      paginate page: @start, per_page: @items
+    end
 
-    @total = @results.count(:all)
+    @results = @search.results
+    @total = @search.total
   end
 
   private
@@ -77,7 +79,7 @@ class Api::V1::CookbooksController < Api::V1Controller
   #
   def init_params
     @start = params.fetch(:start, 0).to_i
-    @items = [params.fetch(:items, 10).to_i, 100].min
+    @items = Integer([params.fetch(:items, 10).to_i, 100].min)
     @order = params.fetch(:order, 'name ASC').to_s
   end
 end

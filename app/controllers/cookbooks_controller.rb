@@ -20,26 +20,35 @@ class CookbooksController < ApplicationController
   #   GET /cookbooks?order=recently_updated
   #
   def index
-    @cookbooks = Cookbook.includes(:cookbook_versions)
+    @search = Cookbook.search do
+      fulltext params[:q] do
+        phrase_slop 1
+      end
 
-    if params[:q].present?
-      @cookbooks = @cookbooks.search(params[:q])
+      if params[:order].blank? && params[:q].blank?
+        order_by :name
+      end
+
+      if params[:featured].present?
+        with :featured, true
+      end
+
+      case params[:order]
+      when 'recently_updated'
+        order_by :updated_at, :desc
+      when 'recently_added'
+        order_by :id, :desc
+      when 'most_downloaded'
+        order_by :total_downloads, :desc
+      when 'most_followed'
+        order_by :cookbook_followers_count, :desc
+      end
+
+      paginate page: params[:page], per_page: 50
     end
 
-    if params[:featured].present?
-      @cookbooks = @cookbooks.featured
-    end
-
-    if params[:order].present?
-      @cookbooks = @cookbooks.ordered_by(params[:order])
-    end
-
-    if params[:order].blank? && params[:q].blank?
-      @cookbooks = @cookbooks.order(:name)
-    end
-
-    @number_of_cookbooks = @cookbooks.count(:all)
-    @cookbooks = @cookbooks.page(params[:page]).per(20)
+    @cookbooks = @search.results
+    @number_of_cookbooks = @search.total
 
     respond_to do |format|
       format.html

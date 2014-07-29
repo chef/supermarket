@@ -194,7 +194,7 @@ describe Cookbook do
     end
   end
 
-  describe '#deprecate_search' do
+  describe '#deprecate_search', search: true do
     let!(:postgresql) { create(:cookbook, name: 'postgresql') }
     let!(:postgres) { create(:cookbook, name: 'postgres') }
     let!(:postgresql_lol) do
@@ -204,6 +204,11 @@ describe Cookbook do
         deprecated: 'true',
         replacement: create(:cookbook)
       )
+    end
+
+    before do
+      Cookbook.reindex
+      Sunspot.commit
     end
 
     it 'returns relevant cookbooks' do
@@ -313,13 +318,13 @@ describe Cookbook do
     end
   end
 
-  describe '.search' do
+  describe '.search', search: true do
     let!(:redis) do
       create(
         :cookbook,
         name: 'redis',
         category: create(:category, name: 'datastore'),
-        owner: create(:user, chef_account: create(:account, provider: 'chef_oauth2', username: 'johndoe')),
+        owner: create(:user, chef_account: create(:account, provider: 'chef_oauth2', username: 'johndoe'), create_chef_account: false),
         cookbook_versions: [
           create(
             :cookbook_version,
@@ -334,7 +339,7 @@ describe Cookbook do
         :cookbook,
         name: 'redisio',
         category: create(:category, name: 'datastore'),
-        owner: create(:user, chef_account: create(:account, provider: 'chef_oauth2', username: 'fanny')),
+        owner: create(:user, chef_account: create(:account, provider: 'chef_oauth2', username: 'fanny'), create_chef_account: false),
         cookbook_versions: [
           create(
             :cookbook_version,
@@ -345,29 +350,54 @@ describe Cookbook do
       )
     end
 
+    before do
+      Cookbook.reindex
+      Sunspot.commit
+    end
+
     it 'returns cookbooks with a similar name' do
-      expect(Cookbook.search('redis')).to include(redis)
-      expect(Cookbook.search('redis')).to include(redisio)
+      results = Cookbook.search do
+        fulltext 'redis'
+      end.results
+
+      expect(results).to include(redis)
+      expect(results).to include(redisio)
     end
 
     it 'returns cookbooks with a similar description' do
-      expect(Cookbook.search('fast')).to include(redis)
-      expect(Cookbook.search('fast')).to_not include(redisio)
+      results = Cookbook.search do
+        fulltext 'fast'
+      end.results
+
+      expect(results).to include(redis)
+      expect(results).to_not include(redisio)
     end
 
     it 'returns cookbooks with a similar maintainer' do
-      expect(Cookbook.search('johndoe')).to include(redisio)
-      expect(Cookbook.search('janesmith')).to_not include(redisio)
+      results = Cookbook.search do
+        fulltext 'fanny'
+      end.results
+
+      expect(results).to include(redisio)
+      expect(results).to_not include(redis)
     end
 
     it 'weights cookbook name over cookbook description' do
-      expect(Cookbook.search('redis')[0]).to eql(redis)
-      expect(Cookbook.search('redis')[1]).to eql(redisio)
+      results = Cookbook.search do
+        fulltext 'redis'
+      end.results
+
+      expect(results[0]).to eql(redis)
+      expect(results[1]).to eql(redisio)
     end
 
     it 'weights cookbook maintainer over cookbook description' do
-      expect(Cookbook.search('johndoe')[0]).to eql(redis)
-      expect(Cookbook.search('johndoe')[1]).to eql(redisio)
+      results = Cookbook.search do
+        fulltext 'johndoe'
+      end.results
+
+      expect(results[0]).to eql(redis)
+      expect(results[1]).to eql(redisio)
     end
   end
 
