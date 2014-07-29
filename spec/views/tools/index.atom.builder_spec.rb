@@ -43,8 +43,9 @@ describe 'tools/index.atom.builder' do
     cookbook = xml_body['feed']['entry'].first
 
     expect(cookbook['title']).to eql(test_tool.name)
-    expect(cookbook['maintainer']).to eql(test_tool.maintainer)
-    expect(cookbook['description']).to eql(test_tool.description)
+    expect(cookbook['content']).to eql(test_tool.description)
     expect(cookbook['link']['href']).to eql(tool_url(test_tool))
+    expect(cookbook['author']['name']).to eql(test_tool.maintainer)
+    expect(cookbook['author']['uri']).to eql(user_url(test_tool.owner))
   end
 end

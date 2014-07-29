@@ -5,8 +5,12 @@ atom_feed language: 'en-US' do |feed|
   @tools.each do |tool|
     feed.entry tool do |entry|
       entry.title tool.name
-      entry.maintainer tool.maintainer
-      entry.description tool.description
+      entry.content tool.description
+
+      entry.author do |author|
+        author.name tool.maintainer
+        author.uri user_url(tool.owner)
+      end
     end
   end
 end
