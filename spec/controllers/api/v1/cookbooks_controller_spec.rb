@@ -168,10 +168,15 @@ describe Api::V1::CookbooksController do
     end
   end
 
-  describe '#search' do
+  describe '#search', search: true do
     let!(:redis) { create(:cookbook, name: 'redis') }
     let!(:redis_2) { create(:cookbook, name: 'redis-2') }
     let!(:postgres) { create(:cookbook, name: 'postgres') }
+
+    before do
+      Cookbook.reindex
+      Sunspot.commit
+    end
 
     it 'responds with a 200' do
       get :search, format: :json
@@ -218,14 +223,17 @@ describe Api::V1::CookbooksController do
       expect(cookbook_names).to eql(['redis-2'])
     end
 
-    it 'handles the items param' do
+    it 'handles the items param', focus: true do
       6.times do |index|
         create(:cookbook, name: "jam#{index}")
       end
 
+      Cookbook.reindex
+      Sunspot.commit
+
       get :search, q: 'jam', items: 5, format: :json
       cookbooks = assigns[:results]
-      expect(cookbooks.count(:all)).to eql 5
+      expect(cookbooks.count).to eql 5
     end
   end
 end

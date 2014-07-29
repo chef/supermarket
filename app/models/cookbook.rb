@@ -1,6 +1,4 @@
 class Cookbook < ActiveRecord::Base
-  include PgSearch
-
   #
   # Query cookbooks by case-insensitive name.
   #
@@ -43,22 +41,24 @@ class Cookbook < ActiveRecord::Base
 
   scope :featured, -> { where(featured: true) }
 
-  # Search
-  # --------------------
-  pg_search_scope(
-    :search,
-    against: {
-      name: 'A'
-    },
-    associated_against: {
-      cookbook_versions: { description: 'C' },
-      chef_account: { username: 'B' }
-    },
-    using: {
-      tsearch: { dictionary: 'english' },
-      trigram: { threshold: 0.05 }
-    }
-  )
+  searchable do
+    text :name
+    string :name
+    integer :id
+    boolean :featured
+    boolean :deprecated
+    time :updated_at
+    integer :cookbook_followers_count
+    integer(:total_downloads) { |c| c.web_download_count + c.api_download_count }
+
+    text :cookbook_versions do
+      cookbook_versions.map { |cookbook_version| cookbook_version.description }
+    end
+
+    text :chef_account do
+      chef_account.username
+    end
+  end
 
   # Callbacks
   # --------------------
@@ -302,7 +302,11 @@ class Cookbook < ActiveRecord::Base
   # @return [Array<Cookbook> the +Cookbook+ search results
   #
   def deprecate_search(query)
-    Cookbook.search(query).where(deprecated: false).where.not(id: id)
+    Cookbook.search do
+      fulltext query
+      with :deprecated, false
+      without :id, id
+    end.results
   end
 
   private

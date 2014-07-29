@@ -1,10 +1,15 @@
 require 'spec_helper'
 
 describe CookbooksController do
-  describe 'GET #index' do
+  describe 'GET #index', search: true do
     context 'there are no parameters' do
       let!(:postgresql) { create(:cookbook, name: 'postgresql') }
       let!(:mysql) { create(:cookbook, name: 'mysql') }
+
+      before do
+        Cookbook.reindex
+        Sunspot.commit
+      end
 
       it 'assigns @cookbooks' do
         get :index
@@ -44,8 +49,15 @@ describe CookbooksController do
         )
       end
 
+      before do
+        Cookbook.reindex
+        Sunspot.commit
+      end
+
       it 'orders @cookbooks by updated at' do
-        cookbook_2.touch
+        cookbook_2.update_column(:updated_at, 3.days.from_now)
+        Sunspot.index! [cookbook_2]
+
         get :index, order: 'recently_updated'
         expect(assigns[:cookbooks].first).to eql(cookbook_2)
       end
@@ -75,6 +87,11 @@ describe CookbooksController do
       let!(:featured) { create(:cookbook, featured: true) }
       let!(:unfeatured) { create(:cookbook, featured: false) }
 
+      before do
+        Cookbook.reindex
+        Sunspot.commit
+      end
+
       it 'only returns @cookbooks that are featured' do
         get :index, featured: true
 
@@ -98,6 +115,11 @@ describe CookbooksController do
           name: 'OKCookbook',
           category: create(:category, name: 'Other')
         )
+      end
+
+      before do
+        Cookbook.reindex
+        Sunspot.commit
       end
 
       it 'only returns @cookbooks that match the query parameter' do

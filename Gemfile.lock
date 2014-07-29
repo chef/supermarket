@@ -261,6 +261,7 @@ GEM
       websocket-driver (>= 0.2.0)
     polyglot (0.3.5)
     powerpack (0.0.9)
+    pr_geohash (1.0.0)
     premailer (1.8.2)
       css_parser (>= 1.3.5)
       htmlentities (>= 4.0.0)
@@ -323,6 +324,8 @@ GEM
     rest-client (1.6.8)
       mime-types (~> 1.16)
       rdoc (>= 2.4.2)
+    rsolr (1.0.10)
+      builder (>= 2.1.2)
     rspec-core (3.0.3)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.3)
@@ -389,6 +392,16 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     sqlite3 (1.3.9)
+    sunspot (2.1.1)
+      pr_geohash (~> 1.0)
+      rsolr (~> 1.0.7)
+    sunspot_rails (2.1.1)
+      nokogiri
+      rails (>= 3)
+      sunspot (= 2.1.1)
+    sunspot_solr (2.1.1)
+    sunspot_test (0.4.0)
+      sunspot_rails (>= 1.2.1)
     systemu (2.5.2)
     term-ansicolor (1.3.0)
       tins (~> 1.0)
@@ -484,6 +497,9 @@ DEPENDENCIES
   sitemap_generator
   spring
   spring-commands-rspec
+  sunspot_rails
+  sunspot_solr
+  sunspot_test
   uglifier (~> 2.2)
   unicorn
   unicorn-rails
