@@ -215,6 +215,26 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
             to_not be_empty
         end
       end
+
+      it 'does not leave a success comment twice' do
+        VCR.use_cassette('pull_request_annotation_no_double_comment', record: :once) do
+          brett = pull_request.commit_authors.create!(login: 'brettchalupa')
+
+          annotator = Curry::PullRequestAnnotator.new(pull_request)
+          annotator.annotate
+
+          brett.sign_cla!
+
+          2.times { annotator.annotate }
+
+          comments = octokit.issue_comments(
+            repository.full_name,
+            pull_request.number
+          )
+
+          expect(comments.count).to eql(2)
+        end
+      end
     end
 
     it 'removes the label before adding a comment' do

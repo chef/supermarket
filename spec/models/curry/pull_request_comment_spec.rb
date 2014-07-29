@@ -18,4 +18,26 @@ describe Curry::PullRequestComment do
 
     expect(comment.unauthorized_commit_authors).to eql([])
   end
+
+  describe '#required_authorization?' do
+    it 'returns true if there were authorized contributors' do
+      comment = Curry::PullRequestComment.create(
+        github_id: 1,
+        pull_request_id: 1,
+        unauthorized_commit_authors: ['brian']
+      )
+
+      expect(comment.required_authorization?).to be true
+    end
+
+    it 'returns false if there were no authorized contributors' do
+      comment = Curry::PullRequestComment.create(
+        github_id: 1,
+        pull_request_id: 1,
+        unauthorized_commit_authors: []
+      )
+
+      expect(comment.required_authorization?).to be false
+    end
+  end
 end
