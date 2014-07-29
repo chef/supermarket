@@ -51,8 +51,9 @@ describe 'cookbooks/index.atom.builder' do
     cookbook = xml_body['feed']['entry'].first
 
     expect(cookbook['title']).to eql('test')
-    expect(cookbook['maintainer']).to eql(test_cookbook.owner.username)
-    expect(cookbook['description']).to eql('test cookbook')
+    expect(cookbook['author']['name']).to eql(test_cookbook.owner.username)
+    expect(cookbook['author']['uri']).to eql(user_url(test_cookbook.owner))
+    expect(cookbook['content']).to eql('test cookbook')
     expect(cookbook['link']['href']).to eql('http://test.host/cookbooks/test')
   end
 end
