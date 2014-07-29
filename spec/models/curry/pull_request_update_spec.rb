@@ -6,13 +6,21 @@ describe Curry::PullRequestUpdate do
     it { should validate_presence_of(:pull_request_id) }
   end
 
-  describe '#closing?' do
-    it 'is true when the action is "closed"' do
-      expect(Curry::PullRequestUpdate.new(action: 'closed').closing?).to be true
+  describe '#requires_action?' do
+    it 'is false when the action is "closed"' do
+      expect(Curry::PullRequestUpdate.new(action: 'closed').requires_action?).to be false
     end
 
-    it 'is false when the action is not "closed"' do
-      expect(Curry::PullRequestUpdate.new(action: 'opened').closing?).to be false
+    it 'is true when the action is "opened"' do
+      expect(Curry::PullRequestUpdate.new(action: 'opened').requires_action?).to be true
+    end
+
+    it 'is true when the action is "reopened"' do
+      expect(Curry::PullRequestUpdate.new(action: 'reopened').requires_action?).to be true
+    end
+
+    it 'is true when the action is "synchronize"' do
+      expect(Curry::PullRequestUpdate.new(action: 'synchronize').requires_action?).to be true
     end
   end
 end

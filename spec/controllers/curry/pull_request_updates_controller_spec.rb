@@ -18,7 +18,6 @@ describe Curry::PullRequestUpdatesController do
     end
 
     context 'when the action is not "closed"' do
-
       let(:payload) do
         File.read('spec/support/request_fixtures/github_open_pull_request.json')
       end
