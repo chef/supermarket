@@ -9,6 +9,8 @@ atom_feed language: 'en-US' do |feed|
                     version: cookbook_version.version,
                     cookbook: cookbook_version.cookbook.name
                    )
+      entry.content cookbook_version.description
+
       entry.author do |author|
         author.name cookbook_version.cookbook.maintainer
         author.uri user_url(cookbook_version.cookbook.owner)
