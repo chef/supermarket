@@ -26,94 +26,6 @@
     <% end %>
   </div>
 
-  <% if policy(cookbook).manage? %>
-    <a href="#" data-dropdown="manage" class="button radius secondary small dropdown">Manage Cookbook</a>
-
-    <ul class="manage_cookbook f-dropdown" id="manage" data-dropdown-content>
-      <% if policy(@owner_collaborator).create? %>
-        <li>
-          <%= link_to new_cookbook_collaborator_path(cookbook), class: 'addcontributor', rel: 'add-collaborator', 'data-reveal-id' => 'collaborators', 'data-reveal-ajax' => true do %>
-            <i class="fa fa-plus-square"></i>
-            Add Collaborator
-          <% end %>
-        </li>
-        <div id="collaborators" class="reveal-modal small" data-reveal>
-        </div>
-      <% end %>
-
-      <% if policy(cookbook).transfer_ownership? %>
-        <li>
-          <%= link_to '#', rel: 'transfer_ownership', 'data-reveal-id' => 'transfer' do %>
-            <i class="fa fa-random"></i>
-            Transfer Ownership
-          <% end %>
-        </li>
-
-        <div id="transfer" class="reveal-modal small" data-reveal>
-          <h1>Transfer Ownership</h1>
-          <a class="close-reveal-modal">&#215;</a>
-
-          <%= form_for cookbook, url: transfer_ownership_cookbook_path(cookbook), method: :put do |f| %>
-            <div class="row collapse">
-              <div class="small-9 columns">
-                <%= f.hidden_field :user_id, class: 'collaborators', 'data-url' => cookbook_collaborators_path(cookbook, eligible_for: 'ownership') %>
-              </div>
-              <div class="small-3 columns">
-                <%= f.submit 'Transfer', class: 'button radius postfix' %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-
-      <% if policy(cookbook).deprecate? %>
-        <li>
-          <%= link_to '#', class: 'deprecate', rel: 'deprecate', 'data-reveal-id' => 'deprecate' do %>
-            <i class="fa fa-archive"></i>
-            Deprecate
-          <% end %>
-        </li>
-
-        <div id="deprecate" class="reveal-modal small" data-reveal>
-          <h1>Deprecate Cookbook</h1>
-
-          <p>You can deprecate your cookbook if you are no longer maintaining it. You must select a replacement cookbook in order to deprecate your cookbook.</p>
-
-          <a class="close-reveal-modal">&#215;</a>
-
-          <%= form_for cookbook, url: deprecate_cookbook_path(cookbook), method: :put do |f| %>
-            <div class="row collapse">
-              <div class="small-9 columns">
-                <%= f.hidden_field :replacement, class: 'cookbook-deprecate', 'data-url' => deprecate_search_cookbook_path(cookbook) %>
-              </div>
-              <div class="small-3 columns">
-                <%= f.submit 'Deprecate', class: 'button radius postfix submit-deprecation', disabled: true %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-
-      <% if policy(cookbook).undeprecate? %>
-        <li>
-          <%= link_to deprecate_cookbook_path(cookbook), method: 'delete', rel: 'undeprecate' do %>
-              <i class="fa fa-archive"></i>
-              Undo Deprecation
-          <% end %>
-        </li>
-      <% end %>
-
-      <% if policy(cookbook).toggle_featured? %>
-        <li>
-          <%= link_to toggle_featured_cookbook_path(cookbook), method: 'put', rel: 'toggle_featured' do %>
-            <i class="fa fa-star"></i>
-            <%= cookbook.featured? ? 'Unfeature' : 'Feature' %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
-
   <h3>
     <% if policy(cookbook).manage_cookbook_urls? %>
       <%= link_to '#', class: 'show-cookbook-urls-manage', rel: 'edit-cookbook-urls' do %>
@@ -122,6 +34,10 @@
     <% end %>
     Details
   </h3>
+
+  <% if policy(cookbook).manage? %>
+    <%= render "cookbooks/manage_cookbook", cookbook: cookbook %>
+  <% end %>
 
   <div class="cookbook-details">
     <% if policy(cookbook).manage_cookbook_urls? %>
