@@ -54,7 +54,9 @@ describe 'cookbooks/show.atom.builder' do
 
     cookbook = xml_body['feed']['entry'].first
 
-    expect(cookbook['title']).to eql('0.2.0')
-    expect(cookbook['license']).to eql('MIT')
+    expect(cookbook['title']).to eql('Kiwi - v0.2.0')
+    expect(cookbook['content']).to eql(kiwi_0_2_0.description)
+    expect(cookbook['author']['name']).to eql(kiwi.owner.username)
+    expect(cookbook['author']['uri']).to eql(user_url(kiwi.owner))
   end
 end
