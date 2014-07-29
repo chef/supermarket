@@ -41,34 +41,6 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
       end
     end
 
-    it 'adds a label to the Pull Request when all commit authors have signed a CLA' do
-      VCR.use_cassette('pull_request_annotation_adds_label', record: :once) do
-        brett = create(:user)
-
-        brett.accounts.create!(
-          provider: 'github',
-          username: 'brettchalupa',
-          uid: 1,
-          oauth_token: 'TOKEN'
-        )
-        cla = create(:icla)
-        create(:icla_signature, user: brett)
-
-        annotator = Curry::PullRequestAnnotator.new(pull_request)
-
-        annotator.annotate
-
-        labels = octokit.labels_for_issue(
-          repository.full_name,
-          pull_request.number
-        )
-
-        label_text = ENV['CURRY_SUCCESS_LABEL']
-
-        expect(labels.map(&:name)).to include(label_text)
-      end
-    end
-
     it 'adds a comment to the Pull Request when not all commit authors have signed a CLA' do
       VCR.use_cassette('pull_request_annotation_adds_comment', record: :once) do
         pull_request.commit_authors.create!(login: 'brettchalupa')
@@ -167,6 +139,81 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
         expect do
           annotator.annotate
         end.to change { pull_request.reload.comments.last.updated_at }
+      end
+    end
+
+    context 'when all commit authors are authorized' do
+      it 'leaves a label and a comment when a PR transitions from unauthorized to authorized' do
+        VCR.use_cassette('pull_request_annotation_when_authors_become_authorized', record: :once) do
+          brett = pull_request.commit_authors.create!(login: 'brettchalupa')
+
+          annotator = Curry::PullRequestAnnotator.new(pull_request)
+          annotator.annotate
+
+          brett.sign_cla!
+
+          annotator.annotate
+
+          comments = octokit.issue_comments(
+            repository.full_name,
+            pull_request.number
+          )
+          labels = octokit.labels_for_issue(
+            repository.full_name,
+            pull_request.number
+          )
+
+          success_comment = %(
+            I have added the "#{ENV['CURRY_SUCCESS_LABEL']}"
+            label to this issue so it can easily be found in the future.
+          ).squish
+
+          expect(comments.last.body).to include(success_comment)
+          expect(labels.map(&:name)).to include(ENV['CURRY_SUCCESS_LABEL'])
+        end
+      end
+
+      it 'just adds the label when a PR is opened by authorized contributors' do
+        VCR.use_cassette('pull_request_annotation_authorized_from_start', record: :once) do
+          brett = pull_request.commit_authors.create!(login: 'brettchalupa')
+          brett.sign_cla!
+
+          annotator = Curry::PullRequestAnnotator.new(pull_request)
+          annotator.annotate
+
+          comments = octokit.issue_comments(
+            repository.full_name,
+            pull_request.number
+          )
+          labels = octokit.labels_for_issue(
+            repository.full_name,
+            pull_request.number
+          )
+
+          expect(comments).to be_empty
+          expect(labels.map(&:name)).to include(ENV['CURRY_SUCCESS_LABEL'])
+        end
+      end
+
+      it 'records the act of leaving a success comment' do
+        VCR.use_cassette('pull_request_annotation_when_authors_become_authorized', record: :once) do
+          brett = pull_request.commit_authors.create!(login: 'brettchalupa')
+
+          annotator = Curry::PullRequestAnnotator.new(pull_request)
+          annotator.annotate
+
+          brett.sign_cla!
+
+          annotator.annotate
+
+          comments = octokit.issue_comments(
+            repository.full_name,
+            pull_request.number
+          )
+
+          expect(pull_request.comments.with_github_id(comments.last.id)).
+            to_not be_empty
+        end
       end
     end
 

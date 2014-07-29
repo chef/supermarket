@@ -40,11 +40,15 @@ class Curry::PullRequestAnnotator
   # carry out the annotation if the PR is still open.
   #
   def annotate
-    remove_existing_label
-
     if all_commit_authors_are_cla_signers?
       add_success_label
+
+      if @pull_request.comments.any?
+        leave_all_authorized_comment
+      end
     else
+      remove_existing_label
+
       leave_failure_comment
     end
   end
@@ -70,6 +74,20 @@ class Curry::PullRequestAnnotator
       @pull_request.number,
       [ENV['CURRY_SUCCESS_LABEL']]
     )
+  end
+
+  #
+  # Uses Octokit to add a comment to the Pull Request noting that all
+  # commit authors have become authorized to contribute
+  #
+  def leave_all_authorized_comment
+    @octokit.add_comment(
+      @repository.full_name,
+      @pull_request.number,
+      all_authorized_message
+    ).tap do |comment|
+      @pull_request.comments.create(github_id: comment.id)
+    end
   end
 
   #
@@ -181,5 +199,24 @@ class Curry::PullRequestAnnotator
     ].join
 
     parts.join("\n\n")
+  end
+
+  #
+  # Build the all authorized message for
+  # +leave_all_authorized_comment+ to let folks know that all
+  # commit authors in the pull request have become authorized to
+  # contribute
+  #
+  # @return [String] the message to leave on the Pull Request
+  #
+  def all_authorized_message
+    %(
+      Hi. Your friendly Curry bot here. Just letting you know that all
+      commit authors have become authorized to contribute.
+
+      I have added the "#{ENV['CURRY_SUCCESS_LABEL']}" label to
+      this issue so it can easily be found in the
+      future.
+    ).squish
   end
 end

@@ -12,4 +12,10 @@ describe Curry::PullRequestComment do
       expect(scope.to_a).to eql(comments.first(1))
     end
   end
+
+  it 'defaults unauthorized_commit_authors to an empty array' do
+    comment = Curry::PullRequestComment.create(github_id: 1, pull_request_id: 1)
+
+    expect(comment.unauthorized_commit_authors).to eql([])
+  end
 end
