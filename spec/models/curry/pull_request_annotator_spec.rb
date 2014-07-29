@@ -215,6 +215,63 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
             to_not be_empty
         end
       end
+
+      it 'does not leave a success comment twice' do
+        VCR.use_cassette('pull_request_annotation_no_double_comment', record: :once) do
+          brett = pull_request.commit_authors.create!(login: 'brettchalupa')
+
+          annotator = Curry::PullRequestAnnotator.new(pull_request)
+          annotator.annotate
+
+          brett.sign_cla!
+
+          2.times { annotator.annotate }
+
+          comments = octokit.issue_comments(
+            repository.full_name,
+            pull_request.number
+          )
+
+          expect(comments.count).to eql(2)
+        end
+      end
+
+      it 'leaves two success comments if the authorization status fluctuates' do
+        VCR.use_cassette('pull_request_annotation_leaves_two_success_comments', record: :once) do
+          brett = pull_request.commit_authors.create!(login: 'brettchalupa')
+
+          annotator = Curry::PullRequestAnnotator.new(pull_request)
+          annotator.annotate
+
+          brett.sign_cla!
+
+          annotator.annotate
+
+          brian = pull_request.commit_authors.create!(login: 'bcobb')
+
+          annotator.annotate
+
+          brian.sign_cla!
+
+          annotator.annotate
+
+          comments = octokit.issue_comments(
+            repository.full_name,
+            pull_request.number
+          )
+
+          success_comment = %(
+            I have added the "#{ENV['CURRY_SUCCESS_LABEL']}"
+            label to this issue so it can easily be found in the future.
+          ).squish
+
+          success_comments = comments.select do |comment|
+            comment.body.include?(success_comment)
+          end
+
+          expect(success_comments.count).to eql(2)
+        end
+      end
     end
 
     it 'removes the label before adding a comment' do

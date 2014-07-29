@@ -43,7 +43,8 @@ class Curry::PullRequestAnnotator
     if all_commit_authors_are_cla_signers?
       add_success_label
 
-      if @pull_request.comments.any?
+      if @pull_request.comments.any? &&
+          @pull_request.comments.last.required_authorization?
         leave_all_authorized_comment
       end
     else
