@@ -55,3 +55,12 @@ public/sitemap*
 # Ignore local configuration
 .env.development
 .env.test
+
+# Ignore solr related items
+solr/test
+solr/development
+solr/default/data
+solr/pids
+solr/data
+/log/*.log.lck
+sunspot-solr.pid

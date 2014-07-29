@@ -34,6 +34,7 @@ gem 'sitemap_generator'
 gem 'redis-rails'
 gem 'yajl-ruby'
 gem 'utf8-cleaner'
+gem 'sunspot_rails'
 
 gem 'sentry-raven', '~> 0.8.0', require: false
 gem 'analytics-ruby', '~> 1.0.0', require: false
@@ -61,6 +62,7 @@ group :test do
   gem 'database_cleaner'
   gem 'vcr', require: false
   gem 'webmock', require: false
+  gem 'sunspot_test'
 end
 
 group :development, :test do
@@ -72,4 +74,5 @@ group :development, :test do
   gem 'launchy'
   gem 'and_feathers', '>= 1.0.0.pre', require: false
   gem 'and_feathers-gzipped_tarball', '>= 1.0.0.pre', require: false
+  gem 'sunspot_solr'
 end
