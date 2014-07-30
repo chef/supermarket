@@ -7,6 +7,7 @@ en:
     revoked_admin: "%{name} is no longer an admin."
   account:
     already_connected: "The %{provider} account (%{username}) you are trying to link is already linked to another Supermarket user."
+    disconnected: "Account disconnected."
   cookbook:
     transfered_ownership: "%{cookbook} transferred to %{user}."
     deprecated: "%{cookbook} deprecated in favor of %{replacement_cookbook}."
