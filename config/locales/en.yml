@@ -31,6 +31,10 @@ en:
     already:
       accepted: "%{username} has already been authorized to contribute on behalf of %{organization}."
       declined: "%{username} has already been declined authorization to contribute on behalf of %{organization}."
+  icla:
+    successful_signature: "You successfully signed the ICLA. Thank you!"
+    successful_resignature: "You successfully re-signed the ICLA."
+    duplicate_signature: "You have already signed the ICLA. You can view and update your signature within Mange Profile."
   profile:
     no_cookbooks:
       owns: "%{username} does not own any cookbooks."

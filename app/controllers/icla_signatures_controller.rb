@@ -54,7 +54,7 @@ class IclaSignaturesController < ApplicationController
 
       Curry::CommitAuthorVerificationWorker.perform_async(current_user.id)
 
-      redirect_to icla_signatures_path, notice: 'You successfully signed the ICLA. Thank you!'
+      redirect_to icla_signatures_path, notice: t('icla.successful_signature')
     else
       render 'new'
     end
@@ -71,7 +71,7 @@ class IclaSignaturesController < ApplicationController
     @icla_signature = IclaSignature.new(icla_signature_params)
 
     if @icla_signature.save
-      redirect_to icla_signatures_path, notice: 'You successfully re-signed the ICLA.'
+      redirect_to icla_signatures_path, notice: t('icla.successful_resignature')
     else
       render 'show'
     end
@@ -116,7 +116,7 @@ class IclaSignaturesController < ApplicationController
   #
   def redirect_if_signed!
     if signed_in? && current_user.signed_icla?
-      return redirect_to root_path, alert: 'You have already signed the ICLA. You can view and update your signature within Mange Profile.'
+      return redirect_to root_path, alert: t('icla.duplicate_signature')
     end
   end
 end
