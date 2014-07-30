@@ -54,7 +54,7 @@ class CollaboratorsController < ApplicationController
       CollaboratorMailer.delay.added_email(cookbook_collaborator)
     end
 
-    redirect_to cookbook_path(@cookbook), notice: 'Collaborators added'
+    redirect_to cookbook_path(@cookbook), notice: t('collaborator.added')
   end
 
   #
@@ -89,7 +89,10 @@ class CollaboratorsController < ApplicationController
       authorize!(@cookbook_collaborator)
       @cookbook_collaborator.transfer_ownership
 
-      redirect_to cookbook_path(@cookbook), notice: 'Owner changed'
+      redirect_to(
+        cookbook_path(@cookbook),
+        notice: t('collaborator.owner_changed')
+      )
     end
   end
 
