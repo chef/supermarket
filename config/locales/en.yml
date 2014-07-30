@@ -36,6 +36,7 @@ en:
     successful_resignature: "You successfully re-signed the ICLA."
     duplicate_signature: "You have already signed the ICLA. You can view and update your signature within Mange Profile."
   profile:
+    updated: "Profile successfully updated."
     no_cookbooks:
       owns: "%{username} does not own any cookbooks."
       collaborates: "%{username} does not collaborate on any cookbooks."
