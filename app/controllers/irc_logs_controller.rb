@@ -7,4 +7,38 @@ class IrcLogsController < ApplicationController
   def index
     redirect_to('https://botbot.me/dashboard/')
   end
+
+  #
+  # GET /chat/:channel/:date
+  #
+  # Redirects to the botbot.me channel log if the date is August 8th, 2013 or
+  # later (that is the first known day of botbot.me logging the IRC chat).
+  #
+  # Redirects to the GitHub repo of IRC logs stored in the previous community
+  # site if the date is before August 8th, 2013.
+  #
+  # If no date is specified (just the channel name) or the date that cannot be
+  # parsed with +Date.parse+, redirect to that botbot.me channel.
+  #
+  # @example
+  #
+  #   GET /chat/chef/2014-09-24
+  #
+  def show
+    botbot_base_url = 'https://botbot.me/freenode/'
+    github_repo_url = 'https://github.com/opscode/irc_log_archives'
+
+    channel = params[:channel]
+    date_str = params.fetch(:date, nil)
+    date = Date.parse(date_str) unless date_str.nil?
+    cutoff_date = Date.parse('2013-08-08')
+
+    if date_str.nil?
+      redirect_to(botbot_base_url + channel)
+    elsif date > cutoff_date
+      redirect_to(botbot_base_url + channel + '/' + date_str)
+    else
+      redirect_to(github_repo_url)
+    end
+  end
 end

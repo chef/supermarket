@@ -8,4 +8,30 @@ describe IrcLogsController do
       expect(response).to redirect_to('https://botbot.me/dashboard/')
     end
   end
+
+  describe 'GET #show' do
+    let(:botbot_base_url) { 'https://botbot.me/freenode/' }
+    let(:github_repo_url) do
+      'https://github.com/opscode/irc_log_archives'
+    end
+
+    it 'redirects to the botbot channel if the date is not specified' do
+      get :show, channel: 'chef'
+
+      expect(response).to redirect_to(botbot_base_url + 'chef')
+    end
+
+    it 'redirects to botbot if the date is after August 8th, 2013' do
+      get :show, channel: 'chef', date: '2014-09-24'
+
+      expect(response).to redirect_to(botbot_base_url + 'chef/2014-09-24')
+    end
+
+    it 'redirects to the GitHub repo archive if the date is before August 8th, 2013' do
+
+      get :show, channel: 'chef', date: '2012-09-24'
+
+      expect(response).to redirect_to(github_repo_url)
+    end
+  end
 end
