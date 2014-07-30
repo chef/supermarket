@@ -8,6 +8,9 @@ en:
   account:
     already_connected: "The %{provider} account (%{username}) you are trying to link is already linked to another Supermarket user."
     disconnected: "Account disconnected."
+  ccla:
+    successful_signature: "You successfully signed the CCLA."
+    successful_resignature: "You successfully re-signed the CCLA."
   cookbook:
     transfered_ownership: "%{cookbook} transferred to %{user}."
     deprecated: "%{cookbook} deprecated in favor of %{replacement_cookbook}."
