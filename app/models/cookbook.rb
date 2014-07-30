@@ -51,13 +51,15 @@ class Cookbook < ActiveRecord::Base
       name: 'A'
     },
     associated_against: {
-      cookbook_versions: { description: 'C' },
-      chef_account: { username: 'B' }
+      chef_account: { username: 'B' },
+      cookbook_versions: { description: 'C' }
     },
     using: {
-      tsearch: { dictionary: 'english' },
-      trigram: { threshold: 0.05 }
-    }
+      tsearch: { dictionary: 'english', only: [:username, :description], prefix: true },
+      trigram: { only: [:name] }
+    },
+    ranked_by: ':trigram + (0.5 * :tsearch)',
+    order_within_rank: 'cookbooks.name'
   )
 
   # Callbacks
