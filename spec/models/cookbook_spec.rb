@@ -319,7 +319,7 @@ describe Cookbook do
         :cookbook,
         name: 'redis',
         category: create(:category, name: 'datastore'),
-        owner: create(:user, chef_account: create(:account, provider: 'chef_oauth2', username: 'johndoe')),
+        owner: create(:user, chef_account: create(:account, provider: 'chef_oauth2', username: 'johndoe'), create_chef_account: false),
         cookbook_versions: [
           create(
             :cookbook_version,
@@ -334,7 +334,7 @@ describe Cookbook do
         :cookbook,
         name: 'redisio',
         category: create(:category, name: 'datastore'),
-        owner: create(:user, chef_account: create(:account, provider: 'chef_oauth2', username: 'fanny')),
+        owner: create(:user, chef_account: create(:account, provider: 'chef_oauth2', username: 'fanny'), create_chef_account: false),
         cookbook_versions: [
           create(
             :cookbook_version,

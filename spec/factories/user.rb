@@ -6,8 +6,14 @@ FactoryGirl.define do
 
     sequence(:email) { |n| "johndoe#{n}@example.com" }
 
-    after(:create) do |user, _evaluator|
-      create(:account, provider: 'chef_oauth2', user: user)
+    ignore do
+      create_chef_account true
+    end
+
+    after(:create) do |user, evaluator|
+      if evaluator.create_chef_account
+        create(:account, provider: 'chef_oauth2', user: user)
+      end
     end
 
     factory :admin, class: User do
