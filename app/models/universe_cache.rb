@@ -1,4 +1,13 @@
 class UniverseCache
+  #
+  # Flush both the http cache and the https cache
+  #
+  def self.flush
+    ['http://', 'https://'].each do |protocol|
+      new(protocol).delete
+    end
+  end
+
   def initialize(protocol)
     @raw_protocol = protocol
   end
