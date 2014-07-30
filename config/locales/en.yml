@@ -35,6 +35,11 @@ en:
     successful_signature: "You successfully signed the ICLA. Thank you!"
     successful_resignature: "You successfully re-signed the ICLA."
     duplicate_signature: "You have already signed the ICLA. You can view and update your signature within Mange Profile."
+  invitation:
+    accept:
+      success: "Successfully joined %{organization}"
+      duplicate: "You have already signed %{organization} CCLA. Please sign in as a different user to accept the invitation. If this invitation was sent in error, no action is required."
+    decline: "Declined invitation to join %{organization}"
   profile:
     updated: "Profile successfully updated."
     no_cookbooks:
