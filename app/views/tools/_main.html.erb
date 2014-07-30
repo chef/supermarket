@@ -4,7 +4,9 @@
     <small><%= tool.type.titleize %></small>
   </h1>
 
-  <pre class="install"><%= tool.instructions %></pre>
+  <% if tool.instructions.present? %>
+    <pre class="install"><%= tool.instructions %></pre>
+  <% end %>
 
-  <p><%= tool.description %></p>
+  <%= simple_format tool.description %>
 </div>

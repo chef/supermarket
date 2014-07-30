@@ -21,12 +21,14 @@
     </div>
   </div>
 
-  <div class="other">
-    <h3>Other tools by <%= owner.name %></h3>
-    <ul class="simple_listing">
-      <% @other_tools.each do |tool| %>
-        <%= render 'simple_tool', tool: tool %>
-      <% end %>
-    </ul>
-  </div>
+  <% if @other_tools.any? %>
+    <div class="other">
+      <h3>Other tools by <%= owner.name %></h3>
+      <ul class="simple_listing">
+        <% @other_tools.each do |tool| %>
+          <%= render 'simple_tool', tool: tool %>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 </div>
