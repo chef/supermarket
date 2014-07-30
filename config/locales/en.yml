@@ -55,6 +55,8 @@ en:
     invites:
       success: "Successfully sent invitations"
       warning: "The following invitations were invalid %{invites}. All others were valid and sent."
+    resend: "Successfully resent invitation for %{email}."
+    revoke: "Successfully revoked invitation for %{email}."
   tool:
     created: "The %{name} tool has been successfully created."
     updated: "The %{name} tool has been successfully updated."
