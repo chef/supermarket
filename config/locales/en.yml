@@ -57,11 +57,13 @@ en:
         success: "The repository has been destroyed, and Supermarket has been unsubscribed from the repo."
   api:
     error_codes:
+      not_found: "NOT_FOUND"
       missing_required_data: "MISSING_REQUIRED_DATA"
       invalid_data: "INVALID_DATA"
       authentication_failed: "AUTHENTICATION_FAILED"
       unauthorized: "UNAUTHORIZED"
     error_messages:
+      not_found: "Resource does not exist."
       missing_cookbook: "Mulipart POST must include a part named 'cookbook'."
       cookbook_not_json: "Mulipart POST part 'cookbook' must be a valid JSON string."
       missing_tarball: "Mulipart POST must include a part named 'tarball'."
