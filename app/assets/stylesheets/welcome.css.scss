@@ -1,5 +1,6 @@
 @import "common";
 @import "foundation/components/grid";
+@import "compass/css3/border-radius";
 
 .sign_up_in {
   padding-bottom: rem-calc(55);
@@ -44,5 +45,21 @@
     div {
       @include grid-column($columns: 12);
     }
+  }
+}
+
+.signout-message {
+  @include border-radius(rem-calc(2));
+
+  border: 4px solid $primary_red;
+  color: $primary_red;
+  display: block;
+  margin: rem-calc(0 0 32 0);
+  padding: rem-calc(18 9 18 9);
+
+  p {
+    font-size: rem-calc(18);
+    text-align: center;
+    margin: 0;
   }
 }

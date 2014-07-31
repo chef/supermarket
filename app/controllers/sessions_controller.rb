@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
   #
   def destroy
     reset_session
-    redirect_to redirect_path, notice: t('user.signed_out')
+    redirect_to root_path(signout: true), notice: t('user.signed_out')
   end
 
   private
