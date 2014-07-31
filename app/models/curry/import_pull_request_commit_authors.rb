@@ -16,10 +16,8 @@ class Curry::ImportPullRequestCommitAuthors
   def initialize(pull_request)
     @pull_request = pull_request
     @repository = @pull_request.repository
-
-    @octokit = Octokit::Client.new(
-      access_token: ENV['GITHUB_ACCESS_TOKEN']
-    )
+    @pull_request_commits = nil
+    @octokit = Octokit::Client.new(access_token: ENV['GITHUB_ACCESS_TOKEN'])
   end
 
   #
@@ -55,7 +53,10 @@ class Curry::ImportPullRequestCommitAuthors
   # @return [Array<Sawyer::Resource>]
   #
   def pull_request_commits
-    @octokit.pull_request_commits(@repository.full_name, @pull_request.number)
+    @pull_request_commits ||= @octokit.pull_request_commits(
+      @repository.full_name,
+      @pull_request.number
+    )
   end
 
   #
