@@ -7,6 +7,13 @@ en:
     revoked_admin: "%{name} is no longer an admin."
   account:
     already_connected: "The %{provider} account (%{username}) you are trying to link is already linked to another Supermarket user."
+    disconnected: "Account disconnected."
+  ccla:
+    successful_signature: "You successfully signed the CCLA."
+    successful_resignature: "You successfully re-signed the CCLA."
+  collaborator:
+    added: 'Collaborator added.'
+    owner_changed: 'Cookbook owner changed.'
   cookbook:
     transfered_ownership: "%{cookbook} transferred to %{user}."
     deprecated: "%{cookbook} deprecated in favor of %{replacement_cookbook}."
@@ -14,6 +21,8 @@ en:
     featured: "%{cookbook} is now %{state}."
     deprecate_with_deprecated_failure: "This cookbook cannot be deprecated in favor of a deprecated cookbook."
     activity: "%{maintainer} released v%{version} of the %{cookbook} cookbook."
+  contributor:
+    removed: "Contributor removed."
   contributor_requests:
     accept:
       success: "%{username} is now authorized to contribute on behalf of %{organization}."
@@ -22,7 +31,17 @@ en:
     already:
       accepted: "%{username} has already been authorized to contribute on behalf of %{organization}."
       declined: "%{username} has already been declined authorization to contribute on behalf of %{organization}."
+  icla:
+    successful_signature: "You successfully signed the ICLA. Thank you!"
+    successful_resignature: "You successfully re-signed the ICLA."
+    duplicate_signature: "You have already signed the ICLA. You can view and update your signature within Mange Profile."
+  invitation:
+    accept:
+      success: "Successfully joined %{organization}"
+      duplicate: "You have already signed %{organization} CCLA. Please sign in as a different user to accept the invitation. If this invitation was sent in error, no action is required."
+    decline: "Declined invitation to join %{organization}"
   profile:
+    updated: "Profile successfully updated."
     no_cookbooks:
       owns: "%{username} does not own any cookbooks."
       collaborates: "%{username} does not collaborate on any cookbooks."
@@ -41,6 +60,8 @@ en:
     invites:
       success: "Successfully sent invitations"
       warning: "The following invitations were invalid %{invites}. All others were valid and sent."
+    resend: "Successfully resent invitation for %{email}."
+    revoke: "Successfully revoked invitation for %{email}."
   tool:
     created: "The %{name} tool has been successfully created."
     updated: "The %{name} tool has been successfully updated."
@@ -57,11 +78,13 @@ en:
         success: "The repository has been destroyed, and Supermarket has been unsubscribed from the repo."
   api:
     error_codes:
+      not_found: "NOT_FOUND"
       missing_required_data: "MISSING_REQUIRED_DATA"
       invalid_data: "INVALID_DATA"
       authentication_failed: "AUTHENTICATION_FAILED"
       unauthorized: "UNAUTHORIZED"
     error_messages:
+      not_found: "Resource does not exist."
       missing_cookbook: "Mulipart POST must include a part named 'cookbook'."
       cookbook_not_json: "Mulipart POST part 'cookbook' must be a valid JSON string."
       missing_tarball: "Mulipart POST must include a part named 'tarball'."

@@ -11,8 +11,8 @@ class Api::V1Controller < ApplicationController
   def render_404
     render(
       json: {
-        error_messages: ['Resource does not exist'],
-        error_code: 'NOT_FOUND'
+        error_messages: [t('api.error_messages.not_found')],
+        error_code: t('api.error_codes.not_found')
       },
       status: 404
     )

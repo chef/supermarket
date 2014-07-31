@@ -20,20 +20,34 @@ class InvitationsController < ApplicationController
 
       Curry::CommitAuthorVerificationWorker.perform_async(current_user.id)
 
-      redirect_to current_user, notice: "Successfully joined
-        #{@contributor.organization.name}"
+      redirect_to(
+        current_user,
+        notice: t(
+          'invitation.accept.success',
+          organization: @contributor.organization.name
+        )
+      )
     else
-      redirect_to current_user, alert: "You have already signed
-        #{posessivize(@invitation.organization.name)} CCLA, please sign in as a
-        different user to accept or if this invitation was sent
-        in error no action is required."
+      redirect_to(
+        current_user,
+        alert: t(
+          'invitation.accept.duplicate',
+          organization: posessivize(@invitation.organization.name)
+        )
+      )
     end
   end
 
   def decline
     @invitation.decline
-    redirect_to current_user, notice: "Declined invitation to join
-      #{@invitation.organization.name}"
+
+    redirect_to(
+      current_user,
+      notice: t(
+        'invitation.decline',
+        organization: @invitation.organization.name
+      )
+    )
   end
 
   private
