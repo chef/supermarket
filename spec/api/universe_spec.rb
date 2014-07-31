@@ -98,4 +98,13 @@ describe 'GET /universe' do
       raise 'We should implement the universe using the supermarket location_type and location_path by 2014-09-30'
     end
   end
+
+  it 'can be filtered by cookbook names' do
+    get '/universe', format: :json, cookbooks: 'redis,apt'
+
+    body = json_body
+
+    expect(body.keys).to include('redis', 'apt')
+    expect(body.keys).to_not include('narf')
+  end
 end
