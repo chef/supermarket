@@ -1,3 +1,4 @@
+json.status 'ok'
 json.supermarket @supermarket_health
 json.sidekiq @sidekiq_health
 json.postgresql @postgresql_health

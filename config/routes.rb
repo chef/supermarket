@@ -21,6 +21,7 @@ Supermarket::Application.routes.draw do
 
   get 'cookbooks-directory' => 'cookbooks#directory'
   get 'universe' => 'api/v1/universe#index', defaults: { format: :json }
+  get 'status' => 'api/v1/health#show', defaults: { format: :json }
 
   resources :cookbooks, only: [:index, :show, :update] do
     resources :collaborators, only: [:index, :new, :create, :destroy] do
