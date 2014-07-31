@@ -65,7 +65,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
             cookbook: @cookbook.name
           )
 
-          universe_cache.delete
+          UniverseCache.flush
 
           render :create, status: 201
         end
@@ -103,7 +103,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
           cookbook: @cookbook.name
         )
 
-        universe_cache.delete
+        UniverseCache.flush
       end
     end
   end
@@ -123,10 +123,6 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
   end
 
   private
-
-  def universe_cache
-    UniverseCache.new(request.protocol)
-  end
 
   def error(body, status = 400)
     render json: body, status: status
