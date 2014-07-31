@@ -100,7 +100,7 @@ describe 'GET /universe' do
   end
 
   it 'can be filtered by cookbook names' do
-    post '/universe', format: :json, cookbooks: 'redis,apt'
+    get '/universe', format: :json, cookbooks: 'redis,apt'
 
     body = json_body
 
