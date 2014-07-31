@@ -3,12 +3,13 @@
 <ul class="manage_cookbook f-dropdown" id="manage" data-dropdown-content>
   <% if policy(@owner_collaborator).create? %>
     <li>
-      <%= link_to new_cookbook_collaborator_path(cookbook), class: 'addcontributor', rel: 'add-collaborator', 'data-reveal-id' => 'collaborators', 'data-reveal-ajax' => true do %>
+      <%= link_to '#', class: 'addcontributor', rel: 'add-collaborator', 'data-reveal-id' => 'collaborators' do %>
         <i class="fa fa-plus-square"></i>
         Add Collaborator
       <% end %>
     </li>
     <div id="collaborators" class="reveal-modal small" data-reveal>
+      <%= render 'collaborators/add', resource: @cookbook %>
     </div>
   <% end %>
 
@@ -27,7 +28,7 @@
       <%= form_for cookbook, url: transfer_ownership_cookbook_path(cookbook), method: :put do |f| %>
         <div class="row collapse">
           <div class="small-9 columns">
-            <%= f.hidden_field :user_id, class: 'collaborators', 'data-url' => cookbook_collaborators_path(cookbook, eligible_for: 'ownership') %>
+            <%= f.hidden_field :user_id, class: 'collaborators', 'data-url' => collaborators_path(ineligible_user_ids: Collaborator.ineligible_owners_for(cookbook).map(&:id)) %>
           </div>
           <div class="small-3 columns">
             <%= f.submit 'Transfer', class: 'button radius postfix' %>

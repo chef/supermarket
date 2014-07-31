@@ -9,8 +9,8 @@ describe CookbookDeletionWorker do
   let(:fanny) { create(:user, email_notifications: false) }
 
   before do
-    create(:cookbook_collaborator, cookbook: cookbook, user: sally)
-    create(:cookbook_collaborator, cookbook: cookbook, user: hank)
+    create(:cookbook_collaborator, resourceable: cookbook, user: sally)
+    create(:cookbook_collaborator, resourceable: cookbook, user: hank)
     create(:cookbook_follower, cookbook: cookbook, user: jimmy)
     create(:cookbook_follower, cookbook: cookbook, user: fanny)
   end
@@ -24,14 +24,14 @@ describe CookbookDeletionWorker do
   end
 
   it 'deletes all of the followers and collaborator relationships but not users' do
-    expect(CookbookCollaborator.count).to eql(2)
+    expect(Collaborator.count).to eql(2)
     expect(CookbookFollower.count).to eql(2)
 
     Sidekiq::Testing.inline! do
       worker.perform(cookbook.as_json)
     end
 
-    expect(CookbookCollaborator.count).to eql(0)
+    expect(Collaborator.count).to eql(0)
     expect(CookbookFollower.count).to eql(0)
 
     expect do

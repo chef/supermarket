@@ -28,7 +28,7 @@ class CookbookDeprecatedNotifier
   def users_to_email(cookbook)
     users_to_email = []
     users_to_email << cookbook.owner
-    users_to_email << cookbook.collaborators
+    users_to_email << cookbook.collaborator_users
     users_to_email << cookbook.followers
 
     users_to_email.flatten.uniq.select do |user|

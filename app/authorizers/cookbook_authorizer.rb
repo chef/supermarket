@@ -84,6 +84,6 @@ class CookbookAuthorizer < Authorizer::Base
   end
 
   def owner_or_collaborator?
-    owner? || record.collaborators.include?(user)
+    owner? || record.collaborator_users.include?(user)
   end
 end

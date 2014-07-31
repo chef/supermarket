@@ -6,7 +6,7 @@ describe 'cookbook collaboration' do
   let(:cookbook) { create(:cookbook, owner: sally) }
 
   before do
-    create(:cookbook_collaborator, cookbook: cookbook, user: suzie)
+    create(:cookbook_collaborator, resourceable: cookbook, user: suzie)
   end
 
   def navigate_to_cookbook

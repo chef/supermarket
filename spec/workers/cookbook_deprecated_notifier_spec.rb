@@ -4,7 +4,7 @@ describe CookbookDeprecatedNotifier do
   it 'sends emails to cookbook owner, collaborators and followers who want to receive emails' do
     cookbook = create(:cookbook)
     cookbook.deprecate(create(:cookbook))
-    cookbook_collaborator = create(:cookbook_collaborator, cookbook: cookbook)
+    cookbook_collaborator = create(:cookbook_collaborator, resourceable: cookbook)
     cookbook_followers = [
       create(:cookbook_follower, cookbook: cookbook),
       create(

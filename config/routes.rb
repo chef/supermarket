@@ -24,12 +24,6 @@ Supermarket::Application.routes.draw do
   get 'status' => 'api/v1/health#show', defaults: { format: :json }
 
   resources :cookbooks, only: [:index, :show, :update] do
-    resources :collaborators, only: [:index, :new, :create, :destroy] do
-      member do
-        put :transfer
-      end
-    end
-
     member do
       get :download
       put :follow
@@ -49,6 +43,12 @@ Supermarket::Application.routes.draw do
     collection do
       post :re_sign, path: 're-sign'
       get :agreement
+    end
+  end
+
+  resources :collaborators, only: [:index, :new, :create, :destroy] do
+    member do
+      put :transfer
     end
   end
 

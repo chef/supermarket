@@ -8,7 +8,7 @@ describe CookbooksHelper do
     let(:cookbook) { create(:cookbook, owner: sally) }
 
     before do
-      create(:cookbook_collaborator, cookbook: cookbook, user: hank)
+      create(:cookbook_collaborator, resourceable: cookbook, user: hank)
     end
 
     it 'returns "Remove Contributor" if you are the owner' do
