@@ -16,38 +16,85 @@ class Curry::ImportPullRequestCommitAuthors
   def initialize(pull_request)
     @pull_request = pull_request
     @repository = @pull_request.repository
-
-    @octokit = Octokit::Client.new(
-      access_token: ENV['GITHUB_ACCESS_TOKEN']
-    )
+    @pull_request_commits = nil
+    @octokit = Octokit::Client.new(access_token: ENV['GITHUB_ACCESS_TOKEN'])
   end
 
   #
   # Loop through all of the commit authors on the Pull Request. Create a record
   # for them if one does not exist, and set their +authorized_to_contribute+
-  # bit regardless.
+  # bit regardless. Additionally, remove commit authors who were formerly
+  # associated with this Pull Request.
   #
   def import_commit_authors
-    emails_of_non_github_verified_committers.each do |email|
-      commit_author = Curry::CommitAuthor.with_email(email).first_or_create!
+    ActiveRecord::Base.transaction do
+      original_commit_authors = @pull_request.commit_authors.to_a
 
-      @pull_request.pull_request_commit_authors.where(
-        commit_author_id: commit_author.id
-      ).first_or_create!
-    end
+      commit_authors_identified_by_email_address.each do |commit_author|
+        @pull_request.pull_request_commit_authors.where(
+          commit_author_id: commit_author
+        ).first_or_create!
+      end
 
-    github_logins.each do |login|
-      commit_author = Curry::CommitAuthor.with_login(login).first_or_initialize
-      commit_author.authorized_to_contribute = authorized_to_contribute?(login)
-      commit_author.save!
+      commit_authors_identified_by_github_login.each do |commit_author|
+        @pull_request.pull_request_commit_authors.where(
+          commit_author_id: commit_author
+        ).first_or_create!
+      end
 
-      @pull_request.pull_request_commit_authors.where(
-        commit_author_id: commit_author.id
-      ).first_or_create!
+      former_commit_authors(original_commit_authors).each do |commit_author|
+        @pull_request.commit_authors.delete(commit_author)
+      end
     end
   end
 
   private
+
+  #
+  # Commit authors who authored commits that are only identifiable by the
+  # author's email address
+  #
+  # @return [Array<Curry::CommitAuthor>]
+  #
+  def commit_authors_identified_by_email_address
+    emails_of_non_github_verified_committers.map do |email|
+      Curry::CommitAuthor.with_email(email).first_or_create!
+    end
+  end
+
+  #
+  # Commit authors who authored commits with a GitHub-verified email address,
+  # and are thus identifiable by GitHub login
+  #
+  # @return [Array<Curry::CommitAuthor>]
+  #
+  def commit_authors_identified_by_github_login
+    github_logins.map do |login|
+      commit_author = Curry::CommitAuthor.with_login(login).first_or_initialize
+      commit_author.authorized_to_contribute = authorized_to_contribute?(login)
+      commit_author.tap(&:save!)
+    end
+  end
+
+  #
+  # The +Curry::CommitAuthor+ records among +original_commit_authors+ who are
+  # no longer associated with this Pull Request
+  #
+  # @param original_commit_authors [Array<Curry::CommitAuthor>]
+  #
+  # @return [Array<Curry::CommitAuthor>]
+  #
+  def former_commit_authors(original_commit_authors)
+    email_authors = original_commit_authors.select(&:email).reject do |author|
+      emails_of_non_github_verified_committers.include?(author.email)
+    end
+
+    github_authors = original_commit_authors.select(&:login).reject do |author|
+      github_logins.include?(author.login)
+    end
+
+    email_authors + github_authors
+  end
 
   #
   # Returns the commits from the pull request
@@ -55,7 +102,10 @@ class Curry::ImportPullRequestCommitAuthors
   # @return [Array<Sawyer::Resource>]
   #
   def pull_request_commits
-    @octokit.pull_request_commits(@repository.full_name, @pull_request.number)
+    @pull_request_commits ||= @octokit.pull_request_commits(
+      @repository.full_name,
+      @pull_request.number
+    )
   end
 
   #
