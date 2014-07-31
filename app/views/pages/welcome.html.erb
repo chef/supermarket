@@ -2,6 +2,12 @@
 <%= provide :description, "Supermarket is Chef's open-source community platform. Find, explore and view Chef cookbooks for all of your ops needs." %>
 
 <div class="page withspace">
+  <% if params[:signout] == "true" %>
+    <div class="signout-message">
+      <p>You have been signed out of Supermarket but are still signed in to your Chef account. Visit <a href="https://id.opscode.com">https://id.opscode.com</a> to sign out completely.</p>
+    </div>
+  <% end %>
+
   <section class="sign_up_in">
     <h2 class="text-center">Welcome to Supermarket. Find, explore and view Chef cookbooks for all of your ops needs.</h2>
 
