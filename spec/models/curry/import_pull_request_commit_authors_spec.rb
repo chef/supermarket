@@ -95,4 +95,35 @@ describe Curry::ImportPullRequestCommitAuthors do
 
     expect(brett).to be_authorized_to_contribute
   end
+
+  context 'when commit authors become uninvolved with a Pull Request' do
+    it 'removes the uninvolved commit authors from the Pull Request' do
+      repository = create(:repository, owner: 'gofullstack', name: 'paprika')
+      pull_request = create(:pull_request, repository: repository)
+      pull_request.commit_authors.create!(login: 'squashed_away')
+      pull_request.commit_authors.create!(email: 'squashed_away@example.com')
+      pull_request.commit_authors.create!(email: 'squashed_away_too@example.com')
+
+      importer = Curry::ImportPullRequestCommitAuthors.new(pull_request)
+
+      expect do
+        importer.import_commit_authors
+      end.to change(pull_request.reload.unknown_commit_authors, :count).by(-1)
+    end
+
+    it 'does not remove the commit author record altogether' do
+      repository = create(:repository, owner: 'gofullstack', name: 'paprika')
+      pull_request = create(:pull_request, repository: repository)
+      pull_request.commit_authors.create!(login: 'squashed_away')
+      pull_request.commit_authors.create!(email: 'squashed_away@example.com')
+      pull_request.commit_authors.create!(email: 'squashed_away_too@example.com')
+
+      importer = Curry::ImportPullRequestCommitAuthors.new(pull_request)
+
+      expect do
+        importer.import_commit_authors
+      end.to change(Curry::CommitAuthor, :count).by(2)
+    end
+  end
+
 end
