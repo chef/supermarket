@@ -1,4 +1,4 @@
-class CookbookCollaboratorAuthorizer < Authorizer::Base
+class CollaboratorAuthorizer < Authorizer::Base
   #
   # Owners of a cookbook are the only ones that can transfer ownership and they
   # can only transfer it to someone that's already a collaborator on
@@ -7,7 +7,7 @@ class CookbookCollaboratorAuthorizer < Authorizer::Base
   # @return [Boolean]
   #
   def transfer?
-    record.cookbook.owner == user && record.persisted?
+    record.resourceable.owner == user && record.persisted?
   end
 
   #
@@ -16,7 +16,7 @@ class CookbookCollaboratorAuthorizer < Authorizer::Base
   # @return [Boolean]
   #
   def create?
-    record.cookbook.owner == user
+    record.resourceable.owner == user
   end
 
   #

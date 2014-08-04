@@ -5,7 +5,7 @@ describe User do
     it { should have_many(:accounts) }
     it { should have_many(:icla_signatures) }
     it { should have_many(:owned_cookbooks) }
-    it { should have_many(:cookbook_collaborators) }
+    it { should have_many(:collaborators) }
     it { should have_many(:collaborated_cookbooks) }
     it { should have_many(:cookbook_followers) }
     it { should have_many(:followed_cookbooks) }
@@ -14,13 +14,6 @@ describe User do
 
   context 'validations' do
     it { should validate_presence_of(:email) }
-  end
-
-  it 'should find a cookbook collaborator given a cookbook' do
-    user = create(:user)
-    cookbook = create(:cookbook)
-    cookbook_collaborator = CookbookCollaborator.create! cookbook: cookbook, user: user
-    expect(user.reload.collaborator_for_cookbook(cookbook)).to eql(cookbook_collaborator)
   end
 
   describe '#signed_icla?' do

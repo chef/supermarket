@@ -23,7 +23,7 @@ describe CookbookAuthorizer do
     subject { described_class.new(user, record) }
 
     before do
-      create(:cookbook_collaborator, user: user, cookbook: record)
+      create(:cookbook_collaborator, user: user, resourceable: record)
     end
 
     it { should_not permit_authorization(:create_collaborator) }

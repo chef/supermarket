@@ -1,24 +1,18 @@
 class CollaboratorsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_cookbook
-  before_filter :find_user, only: [:destroy, :transfer]
-  before_filter :find_cookbook_collaborator, only: [:destroy, :transfer]
+  before_filter :find_collaborator, only: [:destroy, :transfer]
   skip_before_filter :verify_authenticity_token, only: [:destroy]
 
   #
-  # GET /cookbooks/:cookbook_id/collaborators?q=jimmy
+  # GET /collaborators?q=jimmy&ineligible_user_ids=[1,2,3]
   #
-  # Searches for someone by username, limited to potential collaborators or owners.
+  # Searches for someone by username, limited to potential collaborators or owners
+  # for a given resource.
   #
   def index
-    case params[:eligible_for]
-    when 'collaboration'
-      @collaborators = eligible_collaborators.limit(20)
-    when 'ownership'
-      @collaborators = eligible_owners.limit(20)
-    else
-      @collaborators = User.none
-    end
+    @collaborators = User.includes(:chef_account).
+      where.not(id: params[:ineligible_user_ids]).
+      limit(20)
 
     if params[:q]
       @collaborators = @collaborators.search(params[:q])
@@ -30,119 +24,88 @@ class CollaboratorsController < ApplicationController
   end
 
   #
-  # GET /cookbooks/:cookbook_id/collaborators/new
+  # POST /collaborators
   #
-  # Displays a search box for adding collaborators
-  #
-  def new
-    @collaborator = CookbookCollaborator.new
-    render layout: false
-  end
-
-  #
-  # POST /cookbooks/:cookbook_id/collaborators
-  #
-  # Add a collaborator to a cookbook.
+  # Add a collaborator to a resource.
   #
   def create
-    authorize!(@cookbook, :create_collaborator?)
-    collaborator_params = params.require(:cookbook_collaborator).permit(:user_id)
-    users = eligible_collaborators.where(id: collaborator_params[:user_id].split(','))
+    if %w(Cookbook Tool).include?(collaborator_params[:resourceable_type])
+      resource = collaborator_params[:resourceable_type].constantize.find(
+        collaborator_params[:resourceable_id]
+      )
 
-    users.each do |user|
-      cookbook_collaborator = CookbookCollaborator.create! cookbook: @cookbook, user: user
-      CollaboratorMailer.delay.added_email(cookbook_collaborator)
+      user_ids = collaborator_params.delete(:user_ids).split(',') -
+        Collaborator.ineligible_collaborators_for(resource).map(&:id).map(&:to_s)
+
+      User.where(id: user_ids).each do |user|
+        collaborator = Collaborator.new(
+          collaborator_params.merge(user_id: user.id)
+        )
+
+        authorize! collaborator
+        collaborator.save!
+
+        CollaboratorMailer.delay.added_email(collaborator)
+      end
+
+      redirect_to resource, notice: t('collaborator.added')
+    else
+      not_found!
     end
-
-    redirect_to cookbook_path(@cookbook), notice: t('collaborator.added')
   end
 
   #
-  # DELETE /cookbooks/:cookbook_id/collaborators/:id
+  # DELETE /collaborators/:id
   #
   # Remove a single collaborator.
   #
   def destroy
     respond_to do |format|
       format.js do
-        if @cookbook_collaborator.nil?
-          head :not_found
-        else
-          authorize!(@cookbook_collaborator)
-          @cookbook_collaborator.destroy
-          head :ok
-        end
+        authorize!(@collaborator)
+
+        @collaborator.destroy
+        head :ok
       end
     end
   end
 
   #
-  # PUT /cookbooks/:cookbook_id/collaborators/:id/transfer
+  # PUT /collaborators/:id/transfer
   #
-  # Transfers ownership of the cookbook to a collaborator, thereby demoting the
+  # Transfers ownership of the resource to a collaborator, thereby demoting the
   # owner to a collaborator.
   #
   def transfer
-    if @cookbook_collaborator.nil?
-      not_found!
-    else
-      authorize!(@cookbook_collaborator)
-      @cookbook_collaborator.transfer_ownership
+    authorize!(@collaborator)
 
-      redirect_to(
-        cookbook_path(@cookbook),
-        notice: t('collaborator.owner_changed')
-      )
-    end
+    @collaborator.transfer_ownership
+
+    redirect_to(
+      @collaborator.resourceable,
+      notice: t('collaborator.owner_changed')
+    )
   end
 
   private
-
-  #
-  # Find a cookbook from the +cookbook_id+ param
-  #
-  # @return [Cookbook]
-  #
-  def find_cookbook
-    @cookbook = Cookbook.with_name(params[:cookbook_id]).first!
-  end
-
-  #
-  # Find a user from the +id+ param
-  #
-  # @return [User]
-  #
-  def find_user
-    @user = User.with_username(params[:id]).first
-  end
 
   #
   # Find the CookbookCollaborator from an existing Cookbook and User
   #
   # @return [CookbookCollaborator]
   #
-  def find_cookbook_collaborator
-    @cookbook_collaborator = CookbookCollaborator.with_cookbook_and_user(@cookbook, @user)
+  def find_collaborator
+    @collaborator = Collaborator.find(params[:id])
   end
 
   #
-  # Finds eligible collaborators, namely users that are not the cookbook owner
-  # and are not already collaborators
+  # Params used when creating one or more +Collaborator+.
   #
-  # @return [Array<User>]
-  #
-  def eligible_collaborators
-    ineligible_users = [@cookbook.collaborators, @cookbook.owner].flatten
-    User.where('users.id NOT IN (?)', ineligible_users)
-  end
-
-  #
-  # Finds eligible owners for cookbook ownership transfering,
-  # any user that's not currently the owner.
-  #
-  # @return [Array<User>]
-  #
-  def eligible_owners
-    User.where('users.id != ?', @cookbook.user_id)
+  def collaborator_params
+    params.require(:collaborator).permit([
+      :resourceable_type,
+      :resourceable_id,
+      :user_ids
+    ])
   end
 end

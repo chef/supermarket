@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe CookbookCollaboratorAuthorizer do
+describe CollaboratorAuthorizer do
   let(:sally) { create(:user) }
   let(:hank) { create(:user) }
   let(:cookbook) { create(:cookbook, owner: sally) }
-  let(:cookbook_collaborator) { create(:cookbook_collaborator, cookbook: cookbook, user: hank) }
+  let(:cookbook_collaborator) { create(:cookbook_collaborator, resourceable: cookbook, user: hank) }
 
   context 'as the cookbook owner' do
     subject { described_class.new(sally, cookbook_collaborator) }

@@ -7,13 +7,13 @@ describe Cookbook do
     it { should have_many(:followers) }
     it { should belong_to(:category) }
     it { should belong_to(:owner) }
-    it { should have_many(:cookbook_collaborators) }
     it { should have_many(:collaborators) }
+    it { should have_many(:collaborator_users) }
 
     context 'dependent deletions' do
       let!(:cookbook) { create(:cookbook) }
       let!(:follower) { create(:cookbook_follower, cookbook: cookbook, user: create(:user)) }
-      let!(:collaborator) { create(:cookbook_collaborator, cookbook: cookbook, user: create(:user)) }
+      let!(:collaborator) { create(:cookbook_collaborator, resourceable: cookbook, user: create(:user)) }
 
       before do
         cookbook.reload
@@ -26,7 +26,7 @@ describe Cookbook do
       end
 
       it 'should not destroy collaborators when deleted' do
-        expect(cookbook.cookbook_collaborators.size).to eql(1)
+        expect(cookbook.collaborators.size).to eql(1)
         cookbook.destroy
         expect { collaborator.reload }.to_not raise_error
       end

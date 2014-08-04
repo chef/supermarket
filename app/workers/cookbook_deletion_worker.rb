@@ -10,9 +10,9 @@ class CookbookDeletionWorker
   #
   def perform(cookbook)
     id = cookbook['id']
-    followers_or_collaborators = [CookbookFollower, CookbookCollaborator].reduce([]) do |acc, klass|
-      acc + klass.where(cookbook_id: id).includes(:user)
-    end
+    followers_or_collaborators = CookbookFollower.where(cookbook_id: id).includes(:user) +
+      Collaborator.where(resourceable_id: id, resourceable_type: 'Cookbook').includes(:user)
+
     users = followers_or_collaborators.map(&:user).uniq.select(&:email_notifications)
 
     users.each do |user|
