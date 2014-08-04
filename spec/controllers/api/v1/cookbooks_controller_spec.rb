@@ -112,6 +112,18 @@ describe Api::V1::CookbooksController do
 
       expect(assigns[:total]).to eql(2)
     end
+
+    it 'returns a 400 if start is negative' do
+      get :index, start: -1, format: :json
+
+      expect(response.status).to eql(400)
+    end
+
+    it 'returns a 400 if items is negative' do
+      get :index, items: -1, format: :json
+
+      expect(response.status).to eql(400)
+    end
   end
 
   describe '#show' do
