@@ -11,6 +11,23 @@ describe ToolAuthorizer do
     it { should permit_authorization(:edit) }
     it { should permit_authorization(:update) }
     it { should permit_authorization(:destroy) }
+    it { should permit_authorization(:create_collaborator) }
+  end
+
+  context 'as a tool collaborator' do
+    let(:record) { create(:tool) }
+
+    subject { described_class.new(user, record) }
+
+    before do
+      create(:tool_collaborator, user: user, resourceable: record)
+    end
+
+    it { should_not permit_authorization(:destroy) }
+    it { should_not permit_authorization(:create_collaborator) }
+    it { should permit_authorization(:edit) }
+    it { should permit_authorization(:update) }
+    it { should permit_authorization(:manage) }
   end
 
   context 'as a supermarket admin' do
@@ -19,6 +36,7 @@ describe ToolAuthorizer do
 
     subject { described_class.new(user, record) }
 
+    it { should_not permit_authorization(:create_collaborator) }
     it { should permit_authorization(:edit) }
     it { should permit_authorization(:update) }
     it { should permit_authorization(:destroy) }
@@ -32,5 +50,6 @@ describe ToolAuthorizer do
     it { should_not permit_authorization(:edit) }
     it { should_not permit_authorization(:update) }
     it { should_not permit_authorization(:destroy) }
+    it { should_not permit_authorization(:create_collaborator) }
   end
 end

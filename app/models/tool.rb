@@ -6,6 +6,8 @@ class Tool < ActiveRecord::Base
   # Associations
   # --------------------
   belongs_to :owner, class_name: 'User', foreign_key: :user_id
+  has_many :collaborators, as: :resourceable
+  has_many :collaborator_users, through: :collaborators, source: :user
 
   # Validations
   # --------------------
