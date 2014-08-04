@@ -11,6 +11,7 @@ class Tool < ActiveRecord::Base
   # --------------------
   validates :name, uniqueness: { case_sensitive: false }, presence: true
   validates :type, inclusion: { in: ALLOWED_TYPES }
+  validates :slug, presence: true, uniqueness: { case_sensitive: false }, format: /\A[\w_-]+\z/i
   validates :source_url, url: {
     allow_blank: true,
     allow_nil: true
@@ -20,6 +21,7 @@ class Tool < ActiveRecord::Base
   # --------------------
   before_validation :copy_name_to_lowercase_name
   before_validation :strip_name_whitespace
+  before_validation :lowercase_slug
 
   #
   # Query tools by case-insensitive name.
@@ -59,6 +61,15 @@ class Tool < ActiveRecord::Base
     Tool.where('user_id = ? AND id <> ?', user_id, id).order(:name)
   end
 
+  #
+  # Returns the slug of the +Tool+.
+  #
+  # @return [String] the slug of the +Tool+
+  #
+  def to_param
+    slug
+  end
+
   private
 
   #
@@ -79,5 +90,12 @@ class Tool < ActiveRecord::Base
   #
   def strip_name_whitespace
     self.name = name.to_s.strip
+  end
+
+  #
+  # Slugs should always be lowercase.
+  #
+  def lowercase_slug
+    self.slug = slug.to_s.downcase
   end
 end

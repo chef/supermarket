@@ -7,6 +7,12 @@
     <small class="error">Name is required.</small>
   </div>
 
+  <div class="slug-field">
+    <%= f.label :slug %>
+    <%= f.text_field :slug, placeholder: 'Slug *', title: 'Slug', required: '' %>
+    <small class="error">Slug is required.</small>
+  </div>
+
   <div class="type-field">
     <% Tool::ALLOWED_TYPES.each_with_index do |type, index| %>
       <%= f.radio_button :type, type, index == 0 ? { checked: true } : {} %>

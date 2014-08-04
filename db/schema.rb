@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140724193305) do
+ActiveRecord::Schema.define(version: 20140730174846) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -314,9 +314,11 @@ ActiveRecord::Schema.define(version: 20140724193305) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "lowercase_name"
+    t.string   "slug"
   end
 
   add_index "tools", ["lowercase_name"], name: "index_tools_on_lowercase_name", unique: true, using: :btree
+  add_index "tools", ["slug"], name: "index_tools_on_slug", unique: true, using: :btree
   add_index "tools", ["user_id"], name: "index_tools_on_user_id", using: :btree
 
   create_table "users", force: true do |t|

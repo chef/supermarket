@@ -103,6 +103,7 @@ describe ToolsController do
           :create,
           tool: {
             name: 'butter',
+            slug: 'butter',
             type: 'ohai_plugin',
             description: 'Great plugin.',
             source_url: 'http://example.com',
@@ -117,6 +118,7 @@ describe ToolsController do
         :create,
         tool: {
           name: 'butter',
+          slug: 'butter',
           type: 'ohai_plugin',
           description: 'Great plugin.',
           source_url: 'http://example.com',

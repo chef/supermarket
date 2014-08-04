@@ -1,5 +1,6 @@
 class ToolsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :assign_tool, only: [:show, :update, :edit, :destroy]
 
   #
   # GET /tools
@@ -41,7 +42,6 @@ class ToolsController < ApplicationController
   # Display the detail page for a +Tool+.
   #
   def show
-    @tool = Tool.find(params[:id])
     @other_tools = @tool.others_from_this_owner
   end
 
@@ -70,7 +70,6 @@ class ToolsController < ApplicationController
   # Display the form for editing an existing +Tool+.
   #
   def edit
-    @tool = Tool.find(params[:id])
     @user = current_user
 
     authorize! @tool
@@ -82,7 +81,6 @@ class ToolsController < ApplicationController
   # Updates an existing +Tool+.
   #
   def update
-    @tool = Tool.find(params[:id])
     @user = current_user
 
     authorize! @tool
@@ -103,8 +101,6 @@ class ToolsController < ApplicationController
   # Deletes a +Tool+.
   #
   def destroy
-    @tool = Tool.find(params[:id])
-
     authorize! @tool
 
     @tool.destroy
@@ -122,10 +118,18 @@ class ToolsController < ApplicationController
   def tool_params
     params.require(:tool).permit(
       :name,
+      :slug,
       :type,
       :description,
       :source_url,
       :instructions
     )
+  end
+
+  #
+  # Assigns a +Tool+ based on the slug.
+  #
+  def assign_tool
+    @tool = Tool.find_by(slug: params[:id])
   end
 end
