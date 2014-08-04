@@ -124,10 +124,6 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
 
   private
 
-  def error(body, status = 400)
-    render json: body, status: status
-  end
-
   #
   # The parameters required to upload a cookbook
   #
