@@ -15,18 +15,13 @@ require 'octokit'
 #
 class Curry::PullRequestAnnotator
   #
-  # The initializer for a new instance of a Pull Request Annotator. Requires a
-  # +Curry::PullRequest+, which is used to find the +Curry::Repository+
-  # for the Pull Request. An instance of +Octokit::Client+ is also created.
+  # Creates a new annotator for the given +Curry::PullRequest+
   #
   # @param [PullRequest] pull_request
   #
   def initialize(pull_request)
     @pull_request = pull_request
-    @repository = @pull_request.repository
-    @octokit = Octokit::Client.new(
-      access_token: ENV['GITHUB_ACCESS_TOKEN']
-    )
+    @octokit = Octokit::Client.new(access_token: ENV['GITHUB_ACCESS_TOKEN'])
   end
 
   #
@@ -40,184 +35,35 @@ class Curry::PullRequestAnnotator
   # carry out the annotation if the PR is still open.
   #
   def annotate
-    if all_commit_authors_are_cla_signers?
-      add_success_label
+    actions = []
 
-      if @pull_request.comments.any? &&
-          @pull_request.comments.last.required_authorization?
-        leave_all_authorized_comment
-      end
-    else
-      remove_existing_label
+    unauthorized_commit_authors = @pull_request.unknown_commit_authors.to_a
+    comment = @pull_request.comments.last || Curry::PullRequestComment.new
 
-      leave_failure_comment
-    end
-  end
+    if unauthorized_commit_authors.empty?
+      actions << Curry::AddAuthorizedLabel.new(@octokit, @pull_request)
 
-  private
-
-  #
-  # Determine if all of the commit authors in the Pull Request are CLA signers.
-  #
-  # @return [Boolean]
-  #
-  def all_commit_authors_are_cla_signers?
-    @pull_request.unknown_commit_authors.count.zero?
-  end
-
-  #
-  # Uses Octokit to add a label to the Pull Request noting that all
-  # commit authors have signed a CLA
-  #
-  def add_success_label
-    @octokit.add_labels_to_an_issue(
-      @repository.full_name,
-      @pull_request.number,
-      [ENV['CURRY_SUCCESS_LABEL']]
-    )
-  end
-
-  #
-  # Uses Octokit to add a comment to the Pull Request noting that all
-  # commit authors have become authorized to contribute
-  #
-  def leave_all_authorized_comment
-    @octokit.add_comment(
-      @repository.full_name,
-      @pull_request.number,
-      all_authorized_message
-    ).tap do |comment|
-      @pull_request.comments.create(github_id: comment.id)
-    end
-  end
-
-  #
-  # Uses Octokit to add a comment to the Pull Request noting which GitHub users
-  # have not signed a CLA. Only leaves a comment if the set of unauthorized
-  # commit authors has changed since the last comment.
-  #
-  def leave_failure_comment
-    most_recent_comment = @pull_request.comments.last || Curry::PullRequestComment.new
-    potential_comment = @pull_request.comments.new(
-      unauthorized_commit_authors: unauthorized_commit_emails_and_logins
-    )
-
-    if potential_comment.mentioned_commit_authors != most_recent_comment.mentioned_commit_authors
-      @octokit.add_comment(
-        @repository.full_name,
-        @pull_request.number,
-        failure_message
-      ).tap do |comment|
-        potential_comment.github_id = comment.id
-        potential_comment.save!
-      end
-    else
-      most_recent_comment.touch
-    end
-  end
-
-  #
-  # The combined list of unauthorized commit author email addresses and GitHub
-  # logins
-  #
-  # @return [Array<String>]
-  #
-  def unauthorized_commit_emails_and_logins
-    [
-      @pull_request.unknown_commit_authors.with_known_email.map(&:email),
-      @pull_request.unknown_commit_authors.with_known_login.map(&:login)
-    ].flatten
-  end
-
-  #
-  # Removes the label indicating that all commit authors have signed a CLA
-  #
-  def remove_existing_label
-    if existing_labels.include?(ENV['CURRY_SUCCESS_LABEL'])
-      begin
-        @octokit.remove_label(
-          @repository.full_name,
-          @pull_request.number,
-          ENV['CURRY_SUCCESS_LABEL']
+      if comment.required_authorization?
+        actions << Curry::AuthorizedCommitAuthorComment.new(
+          @octokit,
+          @pull_request,
+          unauthorized_commit_authors
         )
-      rescue Octokit::NotFound
-        Rails.logger.info 'Octokit not found.'
+      end
+    else
+      actions << Curry::RemoveAuthorizedLabel.new(@octokit, @pull_request)
+
+      if comment.addressed_only?(unauthorized_commit_authors)
+        actions << Curry::UpdateUnauthorizedCommitAuthorComment.new(comment)
+      else
+        actions << Curry::UnauthorizedCommitAuthorComment.new(
+          @octokit,
+          @pull_request,
+          unauthorized_commit_authors
+        )
       end
     end
-  end
 
-  #
-  # Returns the labels the pull request currently has
-  #
-  def existing_labels
-    @octokit.labels_for_issue(
-      @repository.full_name,
-      @pull_request.number
-    ).map(&:name)
-  end
-
-  #
-  # Build the failure message for +leave_failure_comment+ by mapping all of the
-  # unsigned commiters and joining them with '@' and their GitHub login to ping
-  # them on GitHub when the comment is left.
-  #
-  # @return [String] the message to leave on the Pull Request
-  #
-  def failure_message
-    parts = []
-    parts << %(
-      Hi. Your friendly Curry bot here. Just letting you know that there are
-      commit authors in this Pull Request who appear to not have signed a Chef
-      CLA.
-    ).squish
-
-    unknown_commit_authors_with_email_count = @pull_request.unknown_commit_authors.with_known_email.count
-
-    if unknown_commit_authors_with_email_count > 0
-      parts << %{
-        There are #{unknown_commit_authors_with_email_count} commit author(s)
-        whose commits are authored by a non GitHub-verified email address in
-        this Pull Request. Chef will have to verify by hand that they have
-        signed a Chef CLA.
-      }.squish
-    end
-
-    unknown_commit_authors_with_login = @pull_request.unknown_commit_authors.with_known_login
-
-    if unknown_commit_authors_with_login.count > 0
-      parts << 'The following GitHub users do not appear to have signed a CLA:'
-
-      list = unknown_commit_authors_with_login.map do |commit_author|
-        "* @#{commit_author.login}"
-      end.join("\n")
-
-      parts << list
-    end
-
-    parts << [
-      '[Please sign the CLA here.]',
-      "(#{ENV['CURRY_CLA_LOCATION']})"
-    ].join
-
-    parts.join("\n\n")
-  end
-
-  #
-  # Build the all authorized message for
-  # +leave_all_authorized_comment+ to let folks know that all
-  # commit authors in the pull request have become authorized to
-  # contribute
-  #
-  # @return [String] the message to leave on the Pull Request
-  #
-  def all_authorized_message
-    %(
-      Hi. Your friendly Curry bot here. Just letting you know that all
-      commit authors have become authorized to contribute.
-
-      I have added the "#{ENV['CURRY_SUCCESS_LABEL']}" label to
-      this issue so it can easily be found in the
-      future.
-    ).squish
+    actions.each(&:call)
   end
 end
