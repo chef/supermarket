@@ -1,0 +1,23 @@
+<a href="#" data-dropdown="manage" class="button radius secondary small dropdown">Manage Tool</a>
+
+<ul class="manage_cookbook f-dropdown" id="manage" data-dropdown-content>
+  <% if policy(tool).edit? %>
+    <li>
+      <%= link_to edit_tool_path(tool) do %>
+        <i class="fa fa-pencil"></i>
+        Edit
+      <% end %>
+    </li>
+  <% end %>
+
+  <% if policy(tool).destroy? %>
+    <li>
+      <%= link_to tool_path(tool), method: :delete, 'data-confirm' => t('tool.confirm_deletion', name: tool.name), rel: 'delete_tool' do %>
+        <i class="fa fa-trash-o"></i>
+        Delete
+      <% end %>
+    </li>
+  <% end %>
+
+  <%= render 'resources/add_collaborator_menu_item', resource: tool %>
+</ul>

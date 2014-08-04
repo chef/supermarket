@@ -43,6 +43,7 @@ class ToolsController < ApplicationController
   #
   def show
     @other_tools = @tool.others_from_this_owner
+    @collaborators = @tool.collaborators
   end
 
   #

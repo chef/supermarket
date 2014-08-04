@@ -1,4 +1,6 @@
 @import "common";
+@import "compass/css3/inline-block";
+@import "compass/css3/border-radius";
 
 .resource {
   .sidebar {
@@ -45,6 +47,29 @@
       height: rem-calc(72);
       margin: rem-calc(0 15 15 0);
       width: rem-calc(72);
+    }
+
+    .collaborators_avatar {
+      margin-bottom: rem-calc(20);
+
+      ul li {
+        list-style-type: none;
+        margin-bottom: 0;
+      }
+
+      .gravatar-container {
+        @include inline-block;
+      }
+
+      .f-dropdown {
+        margin: rem-calc(15 0 0 -5);
+      }
+
+      .gravatar {
+        @include border-radius(rem-calc(40));
+        height: rem-calc(40);
+        width: rem-calc(40);
+      }
     }
 
     .button {

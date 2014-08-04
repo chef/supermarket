@@ -1,29 +1,21 @@
 <div class="sidebar" data-equalizer-watch>
-  <div class="owner_avatar">
-    <%= link_to owner do %>
-      <%= gravatar_for owner, size: 144 %>
-      <%= tool.maintainer %>
-      <small><%= owner.name %></small>
-    <% end %>
-  </div>
+  <%= render 'resources/owner', resource: tool %>
+  <%= render 'resources/collaborators', collaborators: collaborators, resource: tool %>
+
+  <% if policy(tool).manage? %>
+    <%= render 'manage_tool', tool: tool %>
+  <% end %>
 
   <h3>Details</h3>
   <div class="tool-details">
     <div class="tool-urls">
       <%= link_to 'View Source', tool.source_url, class: 'button secondary radius tiny source-url' %>
-      <% if policy(@tool).edit? %>
-        <%= link_to 'Edit', edit_tool_path(@tool), class: 'button secondary radius tiny' %>
-      <% end %>
-
-      <% if policy(tool).destroy? %>
-        <%= link_to 'Delete', tool_path(tool), method: :delete, class: 'button tiny radius alert', 'data-confirm' => t('tool.confirm_deletion', name: tool.name), rel: 'delete_tool' %>
-      <% end %>
     </div>
   </div>
 
-  <% if @other_tools.any? %>
+  <% if other_tools.any? %>
     <div class="other">
-      <h3>Other tools by <%= owner.name %></h3>
+      <h3>Other tools by <%= tool.owner.name %></h3>
       <ul class="simple_listing">
         <% @other_tools.each do |tool| %>
           <%= render 'simple_tool', tool: tool %>

@@ -21,12 +21,6 @@
   }
 
   .sidebar {
-    .collaborators_avatar .gravatar {
-      @include border-radius(rem-calc(40));
-      height: rem-calc(40);
-      width: rem-calc(40);
-    }
-
     .button_download_cookbook {
       margin-top: rem-calc(20);
     }
@@ -141,23 +135,6 @@
 
     &.active .fa {
       color: $secondary_blue;
-    }
-  }
-
-  .collaborators_avatar {
-    margin-bottom: rem-calc(20);
-
-    .gravatar-container {
-      @include inline-block;
-    }
-
-    .f-dropdown {
-      margin: rem-calc(15 0 0 -5);
-    }
-
-    ul li {
-      list-style-type: none;
-      margin-bottom: 0;
     }
   }
 }

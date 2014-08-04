@@ -1,7 +1,7 @@
 <a href="#" data-dropdown="manage" class="button radius secondary small dropdown">Manage Cookbook</a>
 
 <ul class="manage_cookbook f-dropdown" id="manage" data-dropdown-content>
-  <% if policy(@owner_collaborator).create? %>
+  <% if policy(cookbook).create_collaborator? %>
     <li>
       <%= link_to '#', class: 'addcontributor', rel: 'add-collaborator', 'data-reveal-id' => 'collaborators' do %>
         <i class="fa fa-plus-square"></i>
