@@ -103,3 +103,4 @@ en:
       authentication_key_error: "Authentication failed due to an invalid public/private key pair. If you have changed your keys recently try logging out and logging back in to Supermarket."
       unauthorized_upload_error: "You are not authorized to upload this cookbook."
       missing_public_key_error: "Before you can perform knife activities that require authentication, you must log into %{current_host} and grant it permission to access your Chef account information."
+      negative_parameter: "Start and item parameters must be positive numbers but they are start: %{start} and items: %{items}."

@@ -78,6 +78,16 @@ class Api::V1::CookbooksController < Api::V1Controller
   def init_params
     @start = params.fetch(:start, 0).to_i
     @items = [params.fetch(:items, 10).to_i, 100].min
+
+    if @start < 0 || @items < 0
+      return error(
+        error_code: t('api.error_codes.invalid_data'),
+        error_messages: [t('api.error_messages.negative_parameter',
+                           start: params.fetch(:start, 'not provided'),
+                           items: params.fetch(:items, 'not provided'))]
+      )
+    end
+
     @order = params.fetch(:order, 'name ASC').to_s
   end
 end

@@ -9,12 +9,19 @@ class Api::V1Controller < ApplicationController
   # user know the resource does not exist.
   #
   def render_404
-    render(
-      json: {
+    error(
+      {
         error_messages: [t('api.error_messages.not_found')],
         error_code: t('api.error_codes.not_found')
       },
-      status: 404
+      404
     )
+  end
+
+  #
+  # Renders an JSON body with an error and a header with a given status.
+  #
+  def error(body, status = 400)
+    render json: body, status: status
   end
 end
