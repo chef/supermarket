@@ -30,15 +30,21 @@ class IrcLogsController < ApplicationController
 
     channel = params[:channel]
     date_str = params.fetch(:date, nil)
-    date = Date.parse(date_str) unless date_str.nil?
-    cutoff_date = Date.parse('2013-08-08')
 
-    if date_str.nil?
-      redirect_to(botbot_base_url + channel)
-    elsif date > cutoff_date
-      redirect_to(botbot_base_url + channel + '/' + date_str)
+    begin
+      date = Date.parse(date_str) unless date_str.nil?
+    rescue ArgumentError
+      not_found!
     else
-      redirect_to(github_repo_url)
+      cutoff_date = Date.parse('2013-08-08')
+
+      if date_str.nil?
+        redirect_to(botbot_base_url + channel)
+      elsif date > cutoff_date
+        redirect_to(botbot_base_url + channel + '/' + date_str)
+      else
+        redirect_to(github_repo_url)
+      end
     end
   end
 end
