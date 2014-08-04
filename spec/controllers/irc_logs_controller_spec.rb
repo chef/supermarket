@@ -28,10 +28,15 @@ describe IrcLogsController do
     end
 
     it 'redirects to the GitHub repo archive if the date is before August 8th, 2013' do
-
       get :show, channel: 'chef', date: '2012-09-24'
 
       expect(response).to redirect_to(github_repo_url)
+    end
+
+    it 'returns a 404 if an invalid date is given' do
+      get :show, channel: 'chef', date: '2012-08-'
+
+      expect(response.status).to eql(404)
     end
   end
 end
