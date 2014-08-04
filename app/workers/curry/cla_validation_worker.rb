@@ -1,3 +1,5 @@
+require 'octokit'
+
 class Curry::ClaValidationWorker
   include Sidekiq::Worker
 
