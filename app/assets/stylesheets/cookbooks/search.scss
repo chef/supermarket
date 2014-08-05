@@ -33,8 +33,40 @@
 .search_form {
   @include grid-row();
   position: relative;
-  z-index: 1;
   max-width: $max-width;
+}
+
+.search_toggle {
+  @include grid-column($columns: 1, $collapse: true);
+
+  .button {
+    @include border-left-radius(rem-calc(3));
+    height: rem-calc(64);
+    line-height: rem-calc(64);
+    padding: 0;
+    font-size: rem-calc(12);
+
+    i {
+      padding-left: rem-calc(5);
+    }
+  }
+}
+
+@media #{$small-only} {
+  .search_toggle {
+    @include grid-column($columns: 2, $collapse: true);
+  }
+}
+
+@media #{$mobile-only} {
+  .search_toggle {
+    display: none;
+  }
+}
+
+.search_field {
+  @include grid-column($columns: 10, $collapse: true);
+  position: relative;
 
   .fa {
     color: lighten($primary_gray, 5%);
@@ -49,13 +81,9 @@
   }
 }
 
-.search_field {
-  @include grid-column($columns: 11, $collapse: true);
-}
-
 @media #{$small-only} {
   .search_field {
-    @include grid-column($columns: 10, $collapse: true);
+    @include grid-column($columns: 8, $collapse: true);
   }
 }
 

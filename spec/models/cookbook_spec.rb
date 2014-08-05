@@ -9,6 +9,7 @@ describe Cookbook do
     it { should belong_to(:owner) }
     it { should have_many(:collaborators) }
     it { should have_many(:collaborator_users) }
+    it { should have_one(:chef_account) }
 
     context 'dependent deletions' do
       let!(:cookbook) { create(:cookbook) }

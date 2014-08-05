@@ -49,6 +49,13 @@ describe UsersController do
 
       expect(assigns[:tools].to_a).to eql(user.tools.to_a)
     end
+
+    it 'sets the default search context as tools' do
+      get :tools, id: user.username
+
+      expect(assigns[:search][:name]).to eql('Tools')
+      expect(assigns[:search][:path]).to eql(tools_path)
+    end
   end
 
   describe 'GET #followed_cookbook_activity' do
