@@ -44,19 +44,30 @@ describe ToolsController do
   end
 
   describe 'GET #show' do
-    let(:tool) { create(:tool) }
-    before { get :show, id: tool }
+    context 'when the tool exists' do
+      let(:tool) { create(:tool) }
 
-    it 'responds with a 200' do
-      expect(response).to be_success
+      before { get :show, id: tool }
+
+      it 'responds with a 200' do
+        expect(response).to be_success
+      end
+
+      it 'assigns a new tool' do
+        expect(assigns(:tool)).to_not be_nil
+      end
+
+      it 'assigns other tools' do
+        expect(assigns(:other_tools)).to_not be_nil
+      end
     end
 
-    it 'assigns a new tool' do
-      expect(assigns(:tool)).to_not be_nil
-    end
+    context 'when the tool does not exist' do
+      it '404s' do
+        get :show, id: 'dorfle'
 
-    it 'assigns other tools' do
-      expect(assigns(:other_tools)).to_not be_nil
+        expect(response.status.to_i).to eql(404)
+      end
     end
   end
 
