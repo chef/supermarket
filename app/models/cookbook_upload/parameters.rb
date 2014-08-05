@@ -83,6 +83,21 @@ class CookbookUpload
     end
 
     #
+    # The cookbook's changelog. May be empty.
+    #
+    # @return [Document]
+    #
+    def changelog
+      extract_tarball_changelog do |extraction_errors, changelog|
+        if extraction_errors.any?
+          Document.new
+        else
+          changelog
+        end
+      end
+    end
+
+    #
     # Determines if these parameters are valid.
     #
     # @return [TrueClass] if the parameters are valid
@@ -190,6 +205,38 @@ class CookbookUpload
       end
 
       block.call(errors, readme)
+    end
+
+    #
+    # Extracts the CHANGELOG from the tarball
+    #
+    # @yieldparam errors [ActiveModel::Errors] any errors that occurred while
+    #   extracting the CHANGELOG
+    # @yieldparam changelog [Document] the cookbook's CHANGELOG
+    #
+    def extract_tarball_changelog(&block)
+      cookbook = metadata.name
+      changelog = nil
+      errors = ActiveModel::Errors.new([])
+
+      begin
+        path = archive.find(%r{\A(\.\/)?#{cookbook}\/changelog(\.\w+)?\Z}i).first
+
+        if path
+          changelog = Document.new(
+            contents: archive.read(path),
+            extension: path.split('.').last.strip
+          )
+        else
+          changelog = Document.new
+        end
+      rescue Archive::Error
+        errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
+      rescue Archive::NoPath
+        errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
+      end
+
+      block.call(errors, changelog)
     end
 
     #

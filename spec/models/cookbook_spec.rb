@@ -271,6 +271,7 @@ describe Cookbook do
     let(:params) do
       tarball = build_cookbook_tarball('stuff') do |base|
         base.file('README.md') { 'readme' }
+        base.file('CHANGELOG.txt') { 'changelog' }
         base.file('metadata.json') do
           JSON.dump(
             name: 'stuff',
@@ -323,6 +324,13 @@ describe Cookbook do
 
       expect(cookbook.cookbook_versions.last.readme).to eql('readme')
       expect(cookbook.cookbook_versions.last.readme_extension).to eql('md')
+    end
+
+    it 'saves the CHANGELOG' do
+      cookbook.publish_version!(params)
+
+      expect(cookbook.cookbook_versions.last.changelog).to eql('changelog')
+      expect(cookbook.cookbook_versions.last.changelog_extension).to eql('txt')
     end
   end
 

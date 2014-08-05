@@ -193,6 +193,7 @@ class Cookbook < ActiveRecord::Base
     metadata = params.metadata
     tarball = params.tarball
     readme = params.readme
+    changelog = params.changelog
 
     dependency_names = metadata.dependencies.keys
     existing_cookbooks = Cookbook.with_name(dependency_names)
@@ -205,7 +206,9 @@ class Cookbook < ActiveRecord::Base
         version: metadata.version,
         tarball: tarball,
         readme: readme.contents,
-        readme_extension: readme.extension
+        readme_extension: readme.extension,
+        changelog: changelog.contents,
+        changelog_extension: changelog.extension
       )
 
       self.updated_at = Time.now
