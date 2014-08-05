@@ -269,7 +269,7 @@ describe Cookbook do
   describe '#publish_version!' do
     let(:cookbook) { create(:cookbook) }
     let(:tarball) { File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz') }
-    let(:readme) { CookbookUpload::Readme.new(contents: '', extension: '') }
+    let(:readme) { CookbookUpload::Readme.new(contents: 'readme', extension: 'md') }
     let(:metadata) do
       CookbookUpload::Metadata.new(
         license: 'MIT',
@@ -310,6 +310,13 @@ describe Cookbook do
       cookbook.publish_version!(metadata, tarball, readme)
 
       expect(cookbook.updated_at).to be > original_date
+    end
+
+    it 'saves the README' do
+      cookbook.publish_version!(metadata, tarball, readme)
+
+      expect(cookbook.cookbook_versions.last.readme).to eql('readme')
+      expect(cookbook.cookbook_versions.last.readme_extension).to eql('md')
     end
   end
 
