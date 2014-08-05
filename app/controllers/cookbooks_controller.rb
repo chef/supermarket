@@ -82,10 +82,8 @@ class CookbooksController < ApplicationController
   def show
     @latest_version = @cookbook.latest_cookbook_version
     @cookbook_versions = @cookbook.sorted_cookbook_versions
-    @owner = @cookbook.owner
     @collaborators = @cookbook.collaborators
     @supported_platforms = @cookbook.supported_platforms
-    @owner_collaborator = Collaborator.new resourceable: @cookbook, user: @owner
 
     respond_to do |format|
       format.atom

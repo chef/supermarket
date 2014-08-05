@@ -1,49 +1,5 @@
 module CookbooksHelper
   #
-  # Returns a string that will be unique within the DOM, suitable for use as an
-  # id attribute for a DOM element
-  #
-  # @param contributor [User] the contributor
-  #
-  # @return [String] the unique DOM id
-  #
-  def contributor_options_id(contributor)
-    "contributor-options-#{contributor.id}"
-  end
-
-  #
-  # Show the appropriate text for removing contributors from a cookbook. Owners
-  # should see "Remove Contributor", while contributors should see "Remove
-  # Myself".
-  #
-  # @param cookbook [Cookbook] the cookbook in question
-  #
-  # @return [String] the text for the removal link
-  #
-  def contributor_removal_text(cookbook)
-    if current_user == cookbook.owner
-      'Remove Contributor'
-    else
-      'Remove Myself'
-    end
-  end
-
-  #
-  # Determine whether or not the user has permission to transfer ownership or
-  # destroy the cookbook and yield those values to the block.
-  #
-  # @param collaborator [User]
-  #
-  # @yieldparam transfer [Boolean] permission to transfer ownership
-  # @yieldparam destroy [Boolean] permission to destroy
-  #
-  def collaboration_permissions_for(collaborator)
-    transfer = policy(collaborator).transfer?
-    destroy = policy(collaborator).destroy?
-    yield transfer, destroy
-  end
-
-  #
   # If we have a linked cookbook for this dependency, allow the user to get to
   # it. Otherwise, just show the name
   #

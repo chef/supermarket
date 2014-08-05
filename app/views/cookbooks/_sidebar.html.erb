@@ -1,30 +1,10 @@
 <div class="sidebar" data-equalizer-watch>
-  <div class="owner_avatar">
-    <%= link_to owner do %>
-      <%= gravatar_for owner, size: 144 %>
-      <%= owner.username %>
-      <small><%= owner.name %></small>
-    <% end %>
-  </div>
-  <div class="collaborators_avatar">
-    <% collaborators.each do |collaborator| %>
-      <div class="gravatar-container">
-        <%= link_to gravatar_for(collaborator.user, size: 80), collaborator.user, title: collaborator.user.name, data: { :dropdown => contributor_options_id(collaborator.user)} %>
-        <% collaboration_permissions_for(collaborator) do |transfer, destroy| %>
-          <% if transfer || destroy %>
-            <ul id="<%= contributor_options_id(collaborator.user) %>" data-dropdown-content class="f-dropdown">
-              <% if transfer %>
-                <li><%= link_to '<i class="fa fa-random"></i> Transfer Ownership'.html_safe, transfer_collaborator_path(collaborator), rel: 'transfer-cookbook-ownership', method: :put %></li>
-              <% end %>
-              <% if destroy %>
-                <li><%= link_to "<i class='fa fa-times-circle'></i> #{contributor_removal_text(cookbook)}".html_safe, collaborator_path(collaborator), rel: 'remove-cookbook-collaborator', remote: true, method: :delete %></li>
-              <% end %>
-            </ul>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+  <%= render 'resources/owner', resource: cookbook %>
+  <%= render 'resources/collaborators', collaborators: collaborators, resource: cookbook %>
+
+  <% if policy(cookbook).manage? %>
+    <%= render "cookbooks/manage_cookbook", cookbook: cookbook %>
+  <% end %>
 
   <h3>
     <% if policy(cookbook).manage_cookbook_urls? %>
@@ -34,10 +14,6 @@
     <% end %>
     Details
   </h3>
-
-  <% if policy(cookbook).manage? %>
-    <%= render "cookbooks/manage_cookbook", cookbook: cookbook %>
-  <% end %>
 
   <div class="cookbook-details">
     <% if policy(cookbook).manage_cookbook_urls? %>

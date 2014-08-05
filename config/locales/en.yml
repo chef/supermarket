@@ -13,7 +13,7 @@ en:
     successful_resignature: "You successfully re-signed the CCLA."
   collaborator:
     added: 'Collaborator added.'
-    owner_changed: 'Cookbook owner changed.'
+    owner_changed: 'You successfully transferred ownership of %{resource} to %{user}.'
   cookbook:
     transfered_ownership: "%{cookbook} transferred to %{user}."
     deprecated: "%{cookbook} deprecated in favor of %{replacement_cookbook}."

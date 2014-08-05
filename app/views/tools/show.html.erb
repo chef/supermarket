@@ -3,5 +3,5 @@
 
 <div class="page resource tool_show" data-equalizer>
   <%= render 'main', tool: @tool %>
-  <%= render 'sidebar', tool: @tool, owner: @tool.owner %>
+  <%= render 'sidebar', tool: @tool, collaborators: @collaborators, other_tools: @other_tools %>
 </div>

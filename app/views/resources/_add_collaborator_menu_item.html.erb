@@ -1,0 +1,11 @@
+<% if policy(resource).create_collaborator? %>
+  <li>
+    <%= link_to '#', class: 'addcontributor', rel: 'add-collaborator', 'data-reveal-id' => 'collaborators' do %>
+      <i class="fa fa-plus-square"></i>
+      Add Collaborator
+    <% end %>
+  </li>
+  <div id="collaborators" class="reveal-modal small" data-reveal>
+    <%= render 'collaborators/add', resource: resource %>
+  </div>
+<% end %>

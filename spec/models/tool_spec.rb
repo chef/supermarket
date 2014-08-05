@@ -3,6 +3,8 @@ require 'spec_helper'
 describe Tool do
   context 'associations' do
     it { should belong_to(:owner) }
+    it { should have_many(:collaborators) }
+    it { should have_many(:collaborator_users) }
   end
 
   context 'validations' do

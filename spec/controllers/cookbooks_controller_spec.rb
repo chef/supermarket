@@ -216,12 +216,6 @@ describe CookbooksController do
       expect(assigns(:cookbook_versions)).to_not be_empty
     end
 
-    it 'sends the maintainer to the view' do
-      get :show, id: cookbook.name
-
-      expect(assigns(:owner)).to_not be_nil
-    end
-
     it 'sends the collaborators to the view' do
       get :show, id: cookbook.name
 

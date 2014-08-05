@@ -83,7 +83,9 @@ class CollaboratorsController < ApplicationController
 
     redirect_to(
       @collaborator.resourceable,
-      notice: t('collaborator.owner_changed')
+      notice: t('collaborator.owner_changed',
+                resource: @collaborator.resourceable.name,
+                user: @collaborator.user.username)
     )
   end
 

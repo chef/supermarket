@@ -14,6 +14,7 @@ describe CookbookAuthorizer do
     it { should permit_authorization(:manage_cookbook_urls) }
     it { should permit_authorization(:deprecate) }
     it { should permit_authorization(:manage) }
+    it { should permit_authorization(:create_collaborator) }
     it { should_not permit_authorization(:toggle_featured) }
   end
 

@@ -2,26 +2,6 @@ require 'spec_helper'
 require 'nokogiri'
 
 describe CookbooksHelper do
-  describe '#contributor_removal_text' do
-    let(:sally) { create(:user) }
-    let(:hank) { create(:user) }
-    let(:cookbook) { create(:cookbook, owner: sally) }
-
-    before do
-      create(:cookbook_collaborator, resourceable: cookbook, user: hank)
-    end
-
-    it 'returns "Remove Contributor" if you are the owner' do
-      allow(helper).to receive(:current_user) { sally }
-      expect(helper.contributor_removal_text(cookbook)).to eql('Remove Contributor')
-    end
-
-    it 'returns "Remove Myself" if you are a contributor' do
-      allow(helper).to receive(:current_user) { hank }
-      expect(helper.contributor_removal_text(cookbook)).to eql('Remove Myself')
-    end
-  end
-
   describe '#follow_button_for' do
     it "returns a follow button if current user doesn't follow the given cookbook" do
       cookbook = double(
