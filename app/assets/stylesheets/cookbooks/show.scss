@@ -20,6 +20,54 @@
     }
   }
 
+  .installs {
+    margin-bottom: rem-calc(50);
+
+    dl {
+      margin: 0;
+    }
+
+    dd {
+      display: inline-block;
+      margin: 0;
+    }
+
+    .tabs-content {
+      border: solid 1px lighten($secondary_gray, 30%);
+      margin: 0;
+      padding: rem-calc(10);
+    }
+
+    .content {
+      padding: 0;
+    }
+
+    .install {
+      margin: 0;
+
+      &:nth-child(2) {
+        margin-top: rem-calc(10);
+      }
+    }
+
+    .button {
+      @include border-top-radius(rem-calc(2));
+      background: white;
+      border: none;
+      color: $concrete;
+      padding: rem-calc(8);
+      margin-right: rem-calc(-2);
+    }
+
+    .active .button {
+      border: 1px lighten($secondary_gray, 30%);
+      border-style: solid solid none solid;
+      border-bottom: solid 1px white;
+      color: $primary_blue;
+      margin-bottom: rem-calc(-1);
+    }
+  }
+
   .sidebar {
     .collaborators_avatar .gravatar {
       @include border-radius(rem-calc(40));
