@@ -1,7 +1,7 @@
 require 'active_model/errors'
 require 'cookbook_upload/archive'
 require 'cookbook_upload/metadata'
-require 'cookbook_upload/readme'
+require 'cookbook_upload/document'
 require 'json'
 require 'set'
 
@@ -70,12 +70,12 @@ class CookbookUpload
     #
     # The cookbook's readme. May be empty.
     #
-    # @return [Readme]
+    # @return [Document]
     #
     def readme
       extract_tarball_readme do |extraction_errors, readme|
         if extraction_errors.any?
-          Readme.new
+          Document.new
         else
           readme
         end
@@ -165,7 +165,7 @@ class CookbookUpload
     #
     # @yieldparam errors [ActiveModel::Errors] any errors that occurred while
     #   extracting the README
-    # @yieldparam readme [Readme] the cookbook's README
+    # @yieldparam readme [Document] the cookbook's README
     #
     def extract_tarball_readme(&block)
       cookbook = metadata.name
@@ -176,7 +176,7 @@ class CookbookUpload
         path = archive.find(%r{\A(\.\/)?#{cookbook}\/readme(\.\w+)?\Z}i).first
 
         if path
-          readme = Readme.new(
+          readme = Document.new(
             contents: archive.read(path),
             extension: path.split('.').last.strip
           )

@@ -124,7 +124,7 @@ describe CookbookUpload::Parameters do
     it 'is blank if the tarball parameter is not a file' do
       params = params(cookbook: '{}', tarball: 'tarball!')
 
-      expect(params.readme).to eql(CookbookUpload::Readme.new)
+      expect(params.readme).to eql(CookbookUpload::Document.new)
     end
 
     it 'is blank if the tarball parameter is not GZipped' do
@@ -132,7 +132,7 @@ describe CookbookUpload::Parameters do
 
       params = params(cookbook: '{}', tarball: file)
 
-      expect(params.readme).to eql(CookbookUpload::Readme.new)
+      expect(params.readme).to eql(CookbookUpload::Document.new)
     end
 
     it 'is blank if the tarball parameter has no README entry' do
