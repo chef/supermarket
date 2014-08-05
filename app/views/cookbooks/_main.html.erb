@@ -51,6 +51,9 @@
   <dl class="tabs" data-tab data-options="deep_linking:true">
     <dd class="active"><a href="#readme">README</a></dd>
     <dd><a href="#dependencies" rel="cookbook_dependencies">Dependencies</a></dd>
+    <% if version.changelog %>
+      <dd><a href="#changelog" rel="changelog">Changelog</a></dd>
+    <% end %>
   </dl>
   <div class="tabs-content">
     <div class="content active" id="readme">
@@ -63,5 +66,10 @@
         </tbody>
       </table>
     </div>
+    <% if version.changelog %>
+      <div class="content" id="changelog">
+        <%= render_readme(version.changelog, version.changelog_extension) %>
+      </div>
+    <% end %>
   </div>
 </div>
