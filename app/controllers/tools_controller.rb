@@ -130,6 +130,6 @@ class ToolsController < ApplicationController
   # Assigns a +Tool+ based on the slug.
   #
   def assign_tool
-    @tool = Tool.find_by(slug: params[:id])
+    @tool = Tool.find_by!(slug: params[:id])
   end
 end
