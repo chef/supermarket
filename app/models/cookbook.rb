@@ -187,11 +187,13 @@ class Cookbook < ActiveRecord::Base
   #
   # @return [TrueClass]
   #
-  # @param metadata [CookbookUpload::Metadata] the cookbook metadata
-  # @param tarball [File] the cookbook artifact
-  # @param readme [File] the cookbook readme
+  # @param params [CookbookUpload::Parameters] the upload parameters
   #
-  def publish_version!(metadata, tarball, readme)
+  def publish_version!(params)
+    metadata = params.metadata
+    tarball = params.tarball
+    readme = params.readme
+
     dependency_names = metadata.dependencies.keys
     existing_cookbooks = Cookbook.with_name(dependency_names)
 
