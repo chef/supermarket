@@ -44,9 +44,28 @@
     <%= render 'cookbooks/follow_button_show', cookbook: @cookbook %>
   </h1>
 
-  <pre class="install">knife cookbook site install <%= cookbook.name %></pre>
-
   <p><%= cookbook.description %></p>
+
+  <div class="installs">
+    <dl data-tab data-options="deep_linking:true; scroll_to_content: false;">
+      <dd class="active"><a href="#berkshelf" class="button tiny secondary">Bershelf</a></dd>
+      <dd><a href="#librarian" class="button tiny secondary">Librarian</a></dd>
+      <dd><a href="#knife" class="button tiny secondary">Knife</a></dd>
+    </dl>
+
+    <div class="tabs-content">
+      <div class="content active" id="berkshelf">
+        <pre class="install">cookbook '<%= cookbook.name %>', '~&gt; <%= cookbook.latest_cookbook_version.version %>'</pre>
+      </div>
+      <div class="content" id="librarian">
+        <pre class="install">cookbook '<%= cookbook.name %>', '~&gt; <%= cookbook.latest_cookbook_version.version %>'</pre>
+      </div>
+      <div class="content" id="knife">
+        <pre class="install">knife cookbook site install <%= cookbook.name %></pre>
+        <pre class="install">knife cookbook site download <%= cookbook.name %></pre>
+      </div>
+    </div>
+  </div>
 
   <dl class="tabs" data-tab data-options="deep_linking:true">
     <dd class="active"><a href="#readme">README</a></dd>
