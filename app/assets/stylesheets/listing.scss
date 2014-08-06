@@ -128,12 +128,13 @@
       p {
         color: $concrete;
         font-size: rem-calc(16);
-        margin: rem-calc(0 0 20 0);
+        margin: 0;
       }
 
       code.install {
         display: block;
         font-weight: normal;
+        margin-top: rem-calc(20);
         padding: rem-calc(8 16 8 16);
       }
     }
