@@ -1,7 +1,7 @@
 require 'active_model/errors'
 require 'cookbook_upload/archive'
 require 'cookbook_upload/metadata'
-require 'cookbook_upload/readme'
+require 'cookbook_upload/document'
 require 'json'
 require 'set'
 
@@ -70,14 +70,29 @@ class CookbookUpload
     #
     # The cookbook's readme. May be empty.
     #
-    # @return [Readme]
+    # @return [Document]
     #
     def readme
       extract_tarball_readme do |extraction_errors, readme|
         if extraction_errors.any?
-          Readme.new
+          Document.new
         else
           readme
+        end
+      end
+    end
+
+    #
+    # The cookbook's changelog. May be empty.
+    #
+    # @return [Document]
+    #
+    def changelog
+      extract_tarball_changelog do |extraction_errors, changelog|
+        if extraction_errors.any?
+          Document.new
+        else
+          changelog
         end
       end
     end
@@ -165,7 +180,7 @@ class CookbookUpload
     #
     # @yieldparam errors [ActiveModel::Errors] any errors that occurred while
     #   extracting the README
-    # @yieldparam readme [Readme] the cookbook's README
+    # @yieldparam readme [Document] the cookbook's README
     #
     def extract_tarball_readme(&block)
       cookbook = metadata.name
@@ -176,9 +191,9 @@ class CookbookUpload
         path = archive.find(%r{\A(\.\/)?#{cookbook}\/readme(\.\w+)?\Z}i).first
 
         if path
-          readme = Readme.new(
+          readme = Document.new(
             contents: archive.read(path),
-            extension: path.split('.').last.strip
+            extension: File.extname(path)[1..-1].to_s
           )
         else
           errors.add(:base, I18n.t('api.error_messages.missing_readme'))
@@ -190,6 +205,38 @@ class CookbookUpload
       end
 
       block.call(errors, readme)
+    end
+
+    #
+    # Extracts the CHANGELOG from the tarball
+    #
+    # @yieldparam errors [ActiveModel::Errors] any errors that occurred while
+    #   extracting the CHANGELOG
+    # @yieldparam changelog [Document] the cookbook's CHANGELOG
+    #
+    def extract_tarball_changelog(&block)
+      cookbook = metadata.name
+      changelog = nil
+      errors = ActiveModel::Errors.new([])
+
+      begin
+        path = archive.find(%r{\A(\.\/)?#{cookbook}\/changelog(\.\w+)?\Z}i).first
+
+        if path
+          changelog = Document.new(
+            contents: archive.read(path),
+            extension: File.extname(path)[1..-1].to_s
+          )
+        else
+          changelog = Document.new
+        end
+      rescue Archive::Error
+        errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
+      rescue Archive::NoPath
+        errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
+      end
+
+      block.call(errors, changelog)
     end
 
     #

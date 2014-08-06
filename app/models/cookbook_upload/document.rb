@@ -1,12 +1,12 @@
 require 'virtus'
 
 class CookbookUpload
-  class Readme
+  class Document
     include Virtus.value_object
 
     #
     # @!attribute [r] contents
-    #   @return [String] The text of the README
+    #   @return [String] The text of the Document
     #
 
     #
@@ -16,7 +16,7 @@ class CookbookUpload
 
     values do
       attribute :contents, String
-      attribute :extension, String
+      attribute :extension, String, default: ''
     end
   end
 end

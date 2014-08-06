@@ -1,10 +1,10 @@
 require 'isolated_spec_helper'
+require 'support/tarball_helpers'
 
-require 'and_feathers'
-require 'and_feathers/gzipped_tarball'
 require 'cookbook_upload/parameters'
 
 describe CookbookUpload::Parameters do
+  include TarballHelpers
 
   def params(hash)
     CookbookUpload::Parameters.new(hash)
@@ -124,7 +124,7 @@ describe CookbookUpload::Parameters do
     it 'is blank if the tarball parameter is not a file' do
       params = params(cookbook: '{}', tarball: 'tarball!')
 
-      expect(params.readme).to eql(CookbookUpload::Readme.new)
+      expect(params.readme).to eql(CookbookUpload::Document.new)
     end
 
     it 'is blank if the tarball parameter is not GZipped' do
@@ -132,7 +132,7 @@ describe CookbookUpload::Parameters do
 
       params = params(cookbook: '{}', tarball: file)
 
-      expect(params.readme).to eql(CookbookUpload::Readme.new)
+      expect(params.readme).to eql(CookbookUpload::Document.new)
     end
 
     it 'is blank if the tarball parameter has no README entry' do
@@ -140,7 +140,115 @@ describe CookbookUpload::Parameters do
 
       params = params(cookbook: '{}', tarball: tarball)
 
-      expect(params.readme).to eql(CookbookUpload::Readme.new)
+      expect(params.readme).to eql(CookbookUpload::Document.new)
+    end
+
+    it 'can have an extension' do
+      tarball = build_cookbook_tarball do |base|
+        base.file('README.markdown') { '# README' }
+      end
+
+      params = params(cookbook: '{}', tarball: tarball)
+
+      readme = CookbookUpload::Document.new(
+        contents: '# README',
+        extension: 'markdown'
+      )
+
+      expect(params.readme).to eql(readme)
+    end
+
+    it 'has a blank extension if the README has none' do
+      tarball = build_cookbook_tarball do |base|
+        base.file('README') { 'README' }
+      end
+
+      params = params(cookbook: '{}', tarball: tarball)
+
+      readme = CookbookUpload::Document.new(
+        contents: 'README',
+        extension: ''
+      )
+
+      expect(params.readme).to eql(readme)
+    end
+  end
+
+  describe '#changelog' do
+    it 'is extracted from the tarball' do
+      tarball = build_cookbook_tarball do |base|
+        base.file('CHANGELOG.md') { 'ch-ch-changes' }
+      end
+
+      params = params(cookbook: '{}', tarball: tarball)
+
+      expect(params.changelog.contents).to eql('ch-ch-changes')
+      expect(params.changelog.extension).to eql('md')
+    end
+
+    it 'is extracted from the top-level CHANGELOG' do
+      tarball = build_cookbook_tarball do |base|
+        base.file('CHANGELOG.md') { 'ch-ch-changes' }
+        base.file('PaxHeader/CHANGELOG.md') { 'not these changes' }
+      end
+
+      params = params(cookbook: '{}', tarball: tarball)
+
+      expect(params.changelog.contents).to eql('ch-ch-changes')
+    end
+
+    it 'is blank if the tarball parameter is not a file' do
+      params = params(cookbook: '{}', tarball: 'tarball')
+
+      expect(params.changelog).to eql(CookbookUpload::Document.new)
+    end
+
+    it 'is blank if the tarball parameter is not GZipped' do
+      file = Tempfile.open('notgzipped') { |f| f << 'metadata' }
+
+      params = params(cookbook: '{}', tarball: file)
+
+      expect(params.changelog).to eql(CookbookUpload::Document.new)
+    end
+
+    it 'is blank if the tarball parameter has no CHANGELOG entry' do
+      tarball = build_cookbook_tarball do |base|
+        base.file('README.md') { '# README' }
+      end
+
+      params = params(cookbook: '{}', tarball: tarball)
+
+      expect(params.changelog).to eql(CookbookUpload::Document.new)
+    end
+
+    it 'can have an extension' do
+      tarball = build_cookbook_tarball do |base|
+        base.file('CHANGELOG.markdown') { '# Markdown' }
+      end
+
+      params = params(cookbook: '{}', tarball: tarball)
+
+      changelog = CookbookUpload::Document.new(
+        contents: '# Markdown',
+        extension: 'markdown'
+      )
+
+      expect(params.changelog).to eql(changelog)
+    end
+
+    it 'has a blank extension if the CHANGELOG has none' do
+      tarball = build_cookbook_tarball do |base|
+        base.file('CHANGELOG') { 'Plain text' }
+      end
+
+      params = params(cookbook: '{}', tarball: tarball)
+
+      changelog = CookbookUpload::Document.new(
+        contents: 'Plain text',
+        extension: ''
+      )
+
+      expect(params.changelog).to eql(changelog)
     end
   end
 end

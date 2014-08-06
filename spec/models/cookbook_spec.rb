@@ -269,26 +269,33 @@ describe Cookbook do
 
   describe '#publish_version!' do
     let(:cookbook) { create(:cookbook) }
-    let(:tarball) { File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz') }
-    let(:readme) { CookbookUpload::Readme.new(contents: '', extension: '') }
-    let(:metadata) do
-      CookbookUpload::Metadata.new(
-        license: 'MIT',
-        version: '9.9.9',
-        description: 'Description',
-        platforms: {
-          'ubuntu' => '= 12.04',
-          'debian' => '>= 0.0.0'
-        },
-        dependencies: {
-          'apt' => '= 1.2.3',
-          'yum' => '~> 2.1.3'
-        }
-      )
+    let(:params) do
+      tarball = build_cookbook_tarball('stuff') do |base|
+        base.file('README.md') { 'readme' }
+        base.file('CHANGELOG.txt') { 'changelog' }
+        base.file('metadata.json') do
+          JSON.dump(
+            name: 'stuff',
+            license: 'MIT',
+            version: '9.9.9',
+            description: 'Description',
+            platforms: {
+              'ubuntu' => '= 12.04',
+              'debian' => '>= 0.0.0'
+            },
+            dependencies: {
+              'apt' => '= 1.2.3',
+              'yum' => '~> 2.1.3'
+            }
+          )
+        end
+      end
+
+      CookbookUpload::Parameters.new(cookbook: '{}', tarball: tarball)
     end
 
     it 'creates supported platforms from the metadata' do
-      cookbook.publish_version!(metadata, tarball, readme)
+      cookbook.publish_version!(params)
       supported_platforms = cookbook.reload.supported_platforms
 
       expect(supported_platforms.map(&:name)).to match_array(%w(debian ubuntu))
@@ -297,7 +304,7 @@ describe Cookbook do
     end
 
     it 'creates cookbook dependencies from the metadata' do
-      cookbook.publish_version!(metadata, tarball, readme)
+      cookbook.publish_version!(params)
 
       dependencies = cookbook.reload.cookbook_dependencies
 
@@ -308,9 +315,23 @@ describe Cookbook do
 
     it 'bumps the updated at date' do
       original_date = cookbook.updated_at
-      cookbook.publish_version!(metadata, tarball, readme)
+      cookbook.publish_version!(params)
 
       expect(cookbook.updated_at).to be > original_date
+    end
+
+    it 'saves the README' do
+      cookbook.publish_version!(params)
+
+      expect(cookbook.cookbook_versions.last.readme).to eql('readme')
+      expect(cookbook.cookbook_versions.last.readme_extension).to eql('md')
+    end
+
+    it 'saves the CHANGELOG' do
+      cookbook.publish_version!(params)
+
+      expect(cookbook.cookbook_versions.last.changelog).to eql('changelog')
+      expect(cookbook.cookbook_versions.last.changelog_extension).to eql('txt')
     end
   end
 

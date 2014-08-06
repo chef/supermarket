@@ -47,6 +47,9 @@ RSpec.configure do |config|
   # ENV-munging helpers
   config.include EnvHelpers
 
+  # Helpers to build in-memory archives
+  config.include TarballHelpers
+
   # Prohibit using the should syntax
   config.expect_with :rspec do |spec|
     spec.syntax = :expect
