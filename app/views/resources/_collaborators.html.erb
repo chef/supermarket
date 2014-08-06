@@ -1,9 +1,9 @@
 <div class="collaborators_avatar">
   <% collaborators.each do |collaborator| %>
     <div class="gravatar-container">
-      <%= link_to gravatar_for(collaborator.user, size: 80), collaborator.user, title: collaborator.user.name, data: { :dropdown => contributor_options_id(collaborator.user)} %>
       <% collaboration_permissions_for(collaborator) do |transfer, destroy| %>
         <% if transfer || destroy %>
+          <%= link_to gravatar_for(collaborator.user, size: 80), collaborator.user, title: collaborator.user.name, data: { :dropdown => contributor_options_id(collaborator.user)} %>
           <ul id="<%= contributor_options_id(collaborator.user) %>" data-dropdown-content class="f-dropdown">
             <% if transfer %>
               <li><%= link_to '<i class="fa fa-random"></i> Transfer Ownership'.html_safe, transfer_collaborator_path(collaborator), rel: 'transfer-cookbook-ownership', method: :put %></li>
@@ -12,6 +12,8 @@
               <li><%= link_to "<i class='fa fa-times-circle'></i> #{contributor_removal_text(resource.owner)}".html_safe, collaborator_path(collaborator), rel: 'remove-cookbook-collaborator', remote: true, method: :delete %></li>
             <% end %>
           </ul>
+        <% else %>
+          <%= link_to gravatar_for(collaborator.user, size: 80), collaborator.user, title: collaborator.user.username %>
         <% end %>
       <% end %>
     </div>
