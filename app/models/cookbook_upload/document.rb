@@ -16,7 +16,7 @@ class CookbookUpload
 
     values do
       attribute :contents, String
-      attribute :extension, String
+      attribute :extension, String, default: ''
     end
   end
 end
