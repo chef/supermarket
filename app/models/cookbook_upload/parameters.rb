@@ -193,7 +193,7 @@ class CookbookUpload
         if path
           readme = Document.new(
             contents: archive.read(path),
-            extension: path.split('.').last.strip
+            extension: File.extname(path)[1..-1].to_s
           )
         else
           errors.add(:base, I18n.t('api.error_messages.missing_readme'))
@@ -225,7 +225,7 @@ class CookbookUpload
         if path
           changelog = Document.new(
             contents: archive.read(path),
-            extension: path.split('.').last.strip
+            extension: File.extname(path)[1..-1].to_s
           )
         else
           changelog = Document.new

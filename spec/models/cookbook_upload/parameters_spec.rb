@@ -142,6 +142,36 @@ describe CookbookUpload::Parameters do
 
       expect(params.readme).to eql(CookbookUpload::Document.new)
     end
+
+    it 'can have an extension' do
+      tarball = build_cookbook_tarball do |base|
+        base.file('README.markdown') { '# README' }
+      end
+
+      params = params(cookbook: '{}', tarball: tarball)
+
+      readme = CookbookUpload::Document.new(
+        contents: '# README',
+        extension: 'markdown'
+      )
+
+      expect(params.readme).to eql(readme)
+    end
+
+    it 'has a blank extension if the README has none' do
+      tarball = build_cookbook_tarball do |base|
+        base.file('README') { 'README' }
+      end
+
+      params = params(cookbook: '{}', tarball: tarball)
+
+      readme = CookbookUpload::Document.new(
+        contents: 'README',
+        extension: ''
+      )
+
+      expect(params.readme).to eql(readme)
+    end
   end
 
   describe '#changelog' do
@@ -189,6 +219,36 @@ describe CookbookUpload::Parameters do
       params = params(cookbook: '{}', tarball: tarball)
 
       expect(params.changelog).to eql(CookbookUpload::Document.new)
+    end
+
+    it 'can have an extension' do
+      tarball = build_cookbook_tarball do |base|
+        base.file('CHANGELOG.markdown') { '# Markdown' }
+      end
+
+      params = params(cookbook: '{}', tarball: tarball)
+
+      changelog = CookbookUpload::Document.new(
+        contents: '# Markdown',
+        extension: 'markdown'
+      )
+
+      expect(params.changelog).to eql(changelog)
+    end
+
+    it 'has a blank extension if the CHANGELOG has none' do
+      tarball = build_cookbook_tarball do |base|
+        base.file('CHANGELOG') { 'Plain text' }
+      end
+
+      params = params(cookbook: '{}', tarball: tarball)
+
+      changelog = CookbookUpload::Document.new(
+        contents: 'Plain text',
+        extension: ''
+      )
+
+      expect(params.changelog).to eql(changelog)
     end
   end
 end
