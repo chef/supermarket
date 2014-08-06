@@ -20,7 +20,7 @@
       <ul id="type" data-dropdown-content class="f-dropdown">
         <li><%= link_to 'All', tools_path %></li>
         <% Tool::ALLOWED_TYPES.each do |type| %>
-          <li><%= link_to type.titleize, type: type %></li>
+          <li><%= link_to type.titleize, params.merge(type: type) %></li>
         <% end %>
       </ul>
     </div>

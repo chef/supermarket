@@ -1,4 +1,6 @@
 class Tool < ActiveRecord::Base
+  include PgSearch
+
   ALLOWED_TYPES = %w(knife_plugin ohai_plugin chef_tool)
 
   self.inheritance_column = nil
@@ -6,6 +8,7 @@ class Tool < ActiveRecord::Base
   # Associations
   # --------------------
   belongs_to :owner, class_name: 'User', foreign_key: :user_id
+  has_one :chef_account, through: :owner
   has_many :collaborators, as: :resourceable
   has_many :collaborator_users, through: :collaborators, source: :user
 
@@ -18,6 +21,25 @@ class Tool < ActiveRecord::Base
     allow_blank: true,
     allow_nil: true
   }
+
+  # Search
+  # --------------------
+  pg_search_scope(
+    :search,
+    against: {
+      name: 'A',
+      description: 'C'
+    },
+    associated_against: {
+      chef_account: { username: 'B' }
+    },
+    using: {
+      tsearch: { dictionary: 'english', only: [:username, :description], prefix: true },
+      trigram: { only: [:name] }
+    },
+    ranked_by: ':trigram + (0.5 * :tsearch)',
+    order_within_rank: 'tools.name'
+  )
 
   # Callbacks
   # --------------------

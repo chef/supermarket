@@ -41,6 +41,23 @@ describe ToolsController do
 
       expect(assigns[:tools]).to match_array([supermarket, ohai])
     end
+
+    it 'only returns @tools that match the query parameter' do
+      ohai = create(:tool, name: 'ohai')
+      supermarket = create(:tool, name: 'supermarket')
+
+      get :index, q: 'supermarket'
+
+      expect(assigns[:tools]).to include(supermarket)
+      expect(assigns[:tools]).to_not include(ohai)
+    end
+
+    it 'sets the default search context as tools' do
+      get :index
+
+      expect(assigns[:search][:name]).to eql('Tools')
+      expect(assigns[:search][:path]).to eql(tools_path)
+    end
   end
 
   describe 'GET #show' do

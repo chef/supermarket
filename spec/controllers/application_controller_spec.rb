@@ -39,5 +39,12 @@ describe ApplicationController do
       expect(response).to render_template('exceptions/404.html.erb')
       expect(response.status.to_i).to eql(404)
     end
+
+    it 'sets the default search context as cookbooks' do
+      get :index
+
+      expect(assigns[:search][:name]).to eql('Cookbooks')
+      expect(assigns[:search][:path]).to eql(cookbooks_path)
+    end
   end
 end

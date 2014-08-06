@@ -1,6 +1,7 @@
 class ToolsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :assign_tool, only: [:show, :update, :edit, :destroy]
+  before_filter :override_search
 
   #
   # GET /tools
@@ -12,6 +13,10 @@ class ToolsController < ApplicationController
       @tools = Tool.order(:created_at)
     else
       @tools = Tool.order(:name)
+    end
+
+    if params[:q].present?
+      @tools = @tools.search(params[:q])
     end
 
     if Tool::ALLOWED_TYPES.include?(params[:type])
@@ -132,5 +137,12 @@ class ToolsController < ApplicationController
   #
   def assign_tool
     @tool = Tool.find_by!(slug: params[:id])
+  end
+
+  #
+  # Override the default search settings.
+  #
+  def override_search
+    @search = { path: tools_path, name: 'Tools' }
   end
 end

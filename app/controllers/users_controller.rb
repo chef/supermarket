@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :assign_user
+  before_filter :override_search, only: [:tools]
 
   #
   # GET /users/:id
@@ -71,5 +72,9 @@ class UsersController < ApplicationController
 
   def assign_user
     @user = Account.for('chef_oauth2').joins(:user).with_username(params[:id]).first!.user
+  end
+
+  def override_search
+    @search = { path: tools_path, name: 'Tools' }
   end
 end

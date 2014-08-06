@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Tool do
   context 'associations' do
     it { should belong_to(:owner) }
+    it { should have_one(:chef_account) }
     it { should have_many(:collaborators) }
     it { should have_many(:collaborator_users) }
   end
@@ -61,6 +62,49 @@ describe Tool do
       tool = create(:tool, name: 'DINGUS', owner: user)
       mytool = create(:tool, name: 'OH YES', owner: user)
       expect(tool.others_from_this_owner.to_a).to eql([mytool])
+    end
+  end
+
+  describe '.search' do
+    let!(:berkshelf) do
+      create(
+        :tool,
+        name: 'Berkshelf',
+        description: 'Berkshelf is an okay Chef cookbook dependency manager.',
+        owner: create(
+          :user,
+          chef_account: create(:account, provider: 'chef_oauth2', username: 'johndoe'),
+          create_chef_account: false
+        )
+      )
+    end
+
+    let!(:better_berkshelf) do
+      create(
+        :tool,
+        name: 'Better Berkshelf',
+        description: 'Berkshelf is a Chef cookbook dependency manager.',
+        owner: create(
+          :user,
+          chef_account: create(:account, provider: 'chef_oauth2', username: 'fanny'),
+          create_chef_account: false
+        )
+      )
+    end
+
+    it 'returns tools with a similar name' do
+      expect(Tool.search('berkshelf')).to include(berkshelf)
+      expect(Tool.search('berkshelf')).to include(better_berkshelf)
+    end
+
+    it 'returns tools with a similar description' do
+      expect(Tool.search('okay')).to include(berkshelf)
+      expect(Tool.search('okay')).to_not include(better_berkshelf)
+    end
+
+    it 'returns tools with a similar maintainer' do
+      expect(Tool.search('johndoe')).to include(berkshelf)
+      expect(Tool.search('johndoe')).to_not include(better_berkshelf)
     end
   end
 end

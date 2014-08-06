@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_filter :define_search
 
   include Supermarket::Authorization
   include Supermarket::Authentication
@@ -12,6 +13,10 @@ class ApplicationController < ActionController::Base
     ActionView::MissingTemplate
   ) do |error|
     not_found!(error)
+  end
+
+  def define_search
+    @search = { path: cookbooks_path, name: 'Cookbooks' }
   end
 
   protected
