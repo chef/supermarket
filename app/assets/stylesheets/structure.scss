@@ -41,6 +41,10 @@ fieldset {
   }
 }
 
+textarea {
+  line-height: rem-calc(20);
+}
+
 code, pre {
   @include border-radius(rem-calc(3));
   background-color: darken($primary_blue, 5%);
