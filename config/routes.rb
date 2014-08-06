@@ -62,7 +62,7 @@ Supermarket::Application.routes.draw do
       get :contributors
     end
 
-    resources :contributor_requests, only: [:create], constraints: proc { ENV['JOIN_CCLA_ENABLED'] } do
+    resources :contributor_requests, only: [:create], constraints: proc { ROLLOUT.active?(:join_ccla) } do
       member do
         get :accept
         get :decline
@@ -82,7 +82,7 @@ Supermarket::Application.routes.draw do
 
   resources :users, only: [:show] do
     member do
-      get :tools, constraints: proc { ENV['TOOLS_ENABLED'] == 'true' }
+      get :tools, constraints: proc { ROLLOUT.active?(:tools) }
 
       put :make_admin
       delete :revoke_admin
@@ -92,7 +92,7 @@ Supermarket::Application.routes.draw do
     resources :accounts, only: [:destroy]
   end
 
-  resources :tools, constraints: proc { ENV['TOOLS_ENABLED'] == 'true' }
+  resources :tools, constraints: proc { ROLLOUT.active?(:tools) }
 
   resource :profile, controller: 'profile', only: [:update, :edit] do
     post :update_install_preference, format: :json
@@ -114,7 +114,7 @@ Supermarket::Application.routes.draw do
     member do
       put :combine
 
-      get :requests_to_join, constraints: proc { ENV['JOIN_CCLA_ENABLED'] == 'true' }
+      get :requests_to_join, constraints: proc { ROLLOUT.active?(:join_ccla) }
     end
 
     resources :contributors, only: [:update, :destroy], controller: :contributors

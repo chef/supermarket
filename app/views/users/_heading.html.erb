@@ -1,7 +1,7 @@
 <div class="heading-with-buttons">
   <h1 class="title"><%= title %></h1>
 
-  <% if ENV['TOOLS_ENABLED'] == "true" %>
+  <% if ROLLOUT.active?(:tools) %>
     <div class="buttons">
       <%= link_to "Cookbooks", user, class: "button radius secondary #{'active' if active == 'cookbooks'}", rel: "view_cookbooks" %>
       <%= link_to "Tools & Plugins", tools_user_path(user), class: "button radius secondary #{'active' if active == 'tools'}", rel: "view_tools" %>

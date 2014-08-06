@@ -326,6 +326,8 @@ GEM
       mime-types (~> 1.16)
       rdoc (>= 2.4.2)
     rinku (1.7.3)
+    rollout (2.0.0)
+      redis
     rspec-core (3.0.3)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.3)
@@ -478,6 +480,7 @@ DEPENDENCIES
   redcarpet
   redis-rails
   rinku
+  rollout
   rspec-rails (~> 3.0.2)
   rubocop (>= 0.23.0)
   sass-rails (~> 4.0.1)

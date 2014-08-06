@@ -5,7 +5,7 @@ describe 'contributor request routes' do
   let(:accept_route) { { get: '/ccla-signatures/1/contributor_requests/1/accept' } }
   let(:decline_route) { { get: '/ccla-signatures/1/contributor_requests/1/decline' } }
 
-  context "when ENV['JOIN_CCLA_ENABLED'] is present" do
+  context 'when join_ccla rollout feature is active' do
     it 'has a route to create requests' do
       route = {
         controller: 'contributor_requests',
@@ -39,11 +39,9 @@ describe 'contributor request routes' do
     end
   end
 
-  context "when ENV['JOIN_CCLA_ENABLED'] is not present" do
-    around do |example|
-      with_env('JOIN_CCLA_ENABLED' => nil) do
-        example.run
-      end
+  context 'when join_ccla rollout feature is deactivated' do
+    before do
+      ROLLOUT.deactivate(:join_ccla)
     end
 
     it 'has no route to create requests' do
