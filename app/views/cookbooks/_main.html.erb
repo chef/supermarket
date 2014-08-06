@@ -57,7 +57,7 @@
   </dl>
   <div class="tabs-content">
     <div class="content active" id="readme">
-      <%= render_readme(version.readme, version.readme_extension) %>
+      <%= render_document(version.readme, version.readme_extension) %>
     </div>
     <div class="content" id="dependencies">
       <table>
@@ -68,7 +68,7 @@
     </div>
     <% if version.changelog %>
       <div class="content" id="changelog">
-        <%= render_readme(version.changelog, version.changelog_extension) %>
+        <%= render_document(version.changelog, version.changelog_extension) %>
       </div>
     <% end %>
   </div>
