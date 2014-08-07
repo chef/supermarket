@@ -448,8 +448,8 @@ disabled look for disabled choices in the results dropdown
 }
 
 .select2-container-multi .select2-choices .select2-search-choice {
-  padding: .1875rem .5rem .1875rem 1.25rem;
-  margin: .25rem 0 0 .25rem;
+  padding: .1rem .5rem .1rem 1.25rem;
+  margin: .25rem 0 .25rem .25rem;
   position: relative;
 
   line-height: 1.5rem;
@@ -548,17 +548,4 @@ disabled look for disabled choices in the results dropdown
   width: 100px;
   height: 100px;
   overflow: scroll;
-}
-/* Retina-ize icons */
-
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)  {
-  .select2-search input, .select2-search-choice-close, .select2-container .select2-choice abbr, .select2-container .select2-choice .select2-arrow b {
-    background-image: url(<%= asset_path 'select2x2.png' %>) !important;
-    background-repeat: no-repeat !important;
-    background-size: 60px 40px !important;
-  }
-
-  .select2-search input {
-    background-position: 100% -21px !important;
-  }
 }
