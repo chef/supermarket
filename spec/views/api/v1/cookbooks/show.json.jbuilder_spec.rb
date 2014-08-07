@@ -7,7 +7,8 @@ describe 'api/v1/cookbooks/show' do
       name: 'redis',
       source_url: 'http://example.com',
       issues_url: 'http://example.com',
-      deprecated: false,
+      deprecated: true,
+      replacement: create(:cookbook),
       web_download_count: 2,
       api_download_count: 32
     )
@@ -92,7 +93,12 @@ describe 'api/v1/cookbooks/show' do
 
   it "displays the cookbook's deprecation status" do
     deprecated = json_body['deprecated']
-    expect(deprecated).to eql(false)
+    expect(deprecated).to eql(true)
+  end
+
+  it "displays the cookbook's replacement cookbook" do
+    replacement = json_body['replacement']
+    expect(replacement).to eql(api_v1_cookbook_url(cookbook.replacement))
   end
 
   it "displays the cookbook's versions" do

@@ -1,5 +1,8 @@
 json.partial! 'cookbook'
 json.deprecated @cookbook.deprecated
+if @cookbook.deprecated? && @cookbook.replacement.present?
+  json.replacement api_v1_cookbook_url(@cookbook.replacement)
+end
 json.versions Array(@cookbook_versions_urls)
 json.metrics do
   json.downloads do
