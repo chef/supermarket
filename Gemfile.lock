@@ -162,6 +162,8 @@ GEM
     hashie (2.1.2)
     highline (1.6.21)
     hike (1.2.3)
+    html_truncator (0.4.0)
+      nokogiri (~> 1.5)
     htmlentities (4.3.2)
     httparty (0.13.1)
       json (~> 1.8)
@@ -452,6 +454,7 @@ DEPENDENCIES
   factory_girl
   faker
   foreman
+  html_truncator
   jbuilder
   kaminari
   launchy
