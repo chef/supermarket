@@ -37,14 +37,15 @@
 }
 
 .search_toggle {
-  @include grid-column($columns: 1, $collapse: true);
+  @include grid-column($columns: 2, $collapse: true);
 
   .button {
     @include border-left-radius(rem-calc(3));
+    font-size: rem-calc(12);
     height: rem-calc(64);
     line-height: rem-calc(64);
+    overflow: hidden;
     padding: 0;
-    font-size: rem-calc(12);
 
     i {
       padding-left: rem-calc(5);
@@ -60,12 +61,12 @@
 
 @media #{$mobile-only} {
   .search_toggle {
-    display: none;
+    @include grid-column($columns: 3, $collapse: true);
   }
 }
 
 .search_field {
-  @include grid-column($columns: 10, $collapse: true);
+  @include grid-column($columns: 9, $collapse: true);
   position: relative;
 
   .fa {
@@ -89,7 +90,7 @@
 
 @media #{$mobile-only} {
   .search_field {
-    @include grid-column($columns: 12, $collapse: true);
+    @include grid-column($columns: 9, $collapse: true);
   }
 }
 
@@ -164,7 +165,6 @@ input[type="search"].cookbook_search_textfield {
 
 @media #{$mobile-only} {
   input[type="search"].cookbook_search_textfield {
-    @include border-radius(rem-calc(40));
     font-size: rem-calc(24);
     margin: 0;
   }
