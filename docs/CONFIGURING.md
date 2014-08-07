@@ -57,6 +57,8 @@ the test suite.
   artifacts.
 * `S3_ACCESS_KEY_ID` and `S3_SECRET_ACCESS_KEY` are the keys required to put
   files in the above bucket.
+* `CDN_URL` Used to configure a CDN URL for use with Paperclip. Downloads
+will be aliased with this URL, something like `static.getchef.com`.
 
 ## Configuring Curry
 

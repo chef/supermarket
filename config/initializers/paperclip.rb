@@ -8,18 +8,30 @@ end
   end
 
   if configured
-    ::Paperclip::Attachment.default_options.update(
+    options = {
       storage: 's3',
       s3_credentials: {
         bucket: ENV['S3_BUCKET'],
         access_key_id: ENV['S3_ACCESS_KEY_ID'],
         secret_access_key: ENV['S3_SECRET_ACCESS_KEY']
       },
-      url: ':s3_path_url',
       path: path,
       bucket: ENV['S3_BUCKET'],
       s3_protocol: ENV['PROTOCOL']
-    )
+    }
+
+    if ENV['CDN_URL'].present?
+      options = options.merge(
+        url: ':s3_alias_url',
+        s3_host_alias: ENV['CDN_URL']
+      )
+    else
+      options = options.merge(
+        url: ':s3_path_url'
+      )
+    end
+
+    ::Paperclip::Attachment.default_options.update(options)
   else
     ::Paperclip::Attachment.default_options.update(
       storage: :filesystem,
