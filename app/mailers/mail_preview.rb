@@ -56,6 +56,10 @@ if Rails.env.development?
       ContributorRequestMailer.request_declined_email(contributor_request)
     end
 
+    def collaborator_email
+      CollaboratorMailer.added_email(collaborator)
+    end
+
     private
 
     def organization
@@ -88,6 +92,10 @@ if Rails.env.development?
 
     def cookbook_follower
       CookbookFollower.where(user: user).first!
+    end
+
+    def collaborator
+      Collaborator.where(user: user, resourceable: cookbook).first_or_create!
     end
   end
 end
