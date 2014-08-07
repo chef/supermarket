@@ -95,6 +95,8 @@ Supermarket::Application.routes.draw do
   resources :tools, constraints: proc { ENV['TOOLS_ENABLED'] == 'true' }
 
   resource :profile, controller: 'profile', only: [:update, :edit] do
+    post :update_install_preference, format: :json
+
     collection do
       patch :change_password
       get :link_github, path: 'link-github'

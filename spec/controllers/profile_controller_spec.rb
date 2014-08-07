@@ -91,4 +91,30 @@ describe ProfileController do
       end
     end
   end
+
+  describe 'POST #update_install_preference' do
+    context 'user signed in' do
+      before { sign_in user }
+
+      it 'returns a 200 on successful update' do
+        post :update_install_preference, preference: 'knife'
+
+        expect(response.status.to_i).to eql(200)
+      end
+
+      it "updates the user's install preference" do
+        post :update_install_preference, preference: 'knife'
+
+        expect(user.install_preference).to eql('knife')
+      end
+    end
+
+    context 'user not signed in' do
+      it 'returns a 404' do
+        post :update_install_preference, preference: 'knife'
+
+        expect(response.status.to_i).to eql(404)
+      end
+    end
+  end
 end

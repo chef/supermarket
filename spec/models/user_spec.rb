@@ -493,4 +493,25 @@ describe User do
       expect(pending_requests.to_a).to_not include(accepted_contributor_request)
     end
   end
+
+  describe '#update_install_preference' do
+    it 'returns true if the user is saved' do
+      user = build(:user)
+
+      expect(user.update_install_preference('knife')).to be true
+    end
+
+    it 'returns false if the preference is not a valid one' do
+      user = build(:user)
+
+      expect(user.update_install_preference('wut')).to be false
+    end
+
+    it 'updates the install preference to what is specified' do
+      user = create(:user)
+      user.update_install_preference('knife')
+
+      expect(user.reload.install_preference).to eql('knife')
+    end
+  end
 end

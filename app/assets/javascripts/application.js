@@ -28,6 +28,7 @@
 //= require select2.min
 //= require collaborators
 //= require cookbookDeprecate
+//= require cookbookInstallTabs
 //= require organizations
 //= require tools
 //= require searchToggle
