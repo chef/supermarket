@@ -27,3 +27,9 @@ $(document).on('opened', '[data-reveal]', function () {
   $('.collaborators').select2(settings);
   $('.collaborators.multiple').select2($.extend(settings, {multiple: true}));
 });
+
+$(function() {
+  $('a[rel~="remove_collaboration"]').on('ajax:success', function(e, data, status, xhr) {
+    $(this).closest('tr').remove();
+  });
+});

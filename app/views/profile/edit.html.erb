@@ -106,15 +106,16 @@
       <div class="content" id="collaborations">
 
         <% if current_user.collaborated_cookbooks.empty? %>
-          <p>You are currently not a collaborator on any cookbooks. Once you are, they will be listed here.</p>
+          <p>You are currently not a collaborator on any resources. Once you are, they will be listed here.</p>
         <% else %>
-          <p>The cookbooks you are a collaborator on.</p>
+          <p>The resources you are a collaborator on.</p>
 
           <table>
-            <% current_user.collaborated_cookbooks.each do |cookbook| %>
+            <% current_user.collaborators.each do |collaborator| %>
               <tr>
-                <td><%= link_to cookbook.name, cookbook_path(cookbook) %></td>
-                <td class="text-right"><%= link_to 'Remove Myself as a Contributor', cookbook_collaborator_path(cookbook, current_user), remote: true, method: :delete, class: 'button tiny alert radius' %></td>
+                <td><%= link_to collaborator.resourceable.name, collaborator.resourceable %></td>
+                <td><%= collaborator.resourceable.class.name %></td>
+                <td class="text-right"><%= link_to 'Remove Myself as a Collaborator', collaborator_path(collaborator), remote: true, method: :delete, class: 'button tiny alert radius', rel: 'remove_collaboration' %></td>
               </tr>
             <% end %>
           </table>
