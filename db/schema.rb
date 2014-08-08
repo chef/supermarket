@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140805212826) do
+ActiveRecord::Schema.define(version: 20140807125138) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -337,6 +337,7 @@ ActiveRecord::Schema.define(version: 20140805212826) do
     t.string   "twitter_username"
     t.text     "public_key"
     t.boolean  "email_notifications", default: true
+    t.string   "install_preference"
   end
 
 end

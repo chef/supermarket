@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   include Authorizable
   include PgSearch
 
+  ALLOWED_INSTALL_PREFERENCES = %w(berkshelf knife librarian)
+
   # Associations
   # --------------------
   has_many :accounts
@@ -326,5 +328,23 @@ class User < ActiveRecord::Base
 
   def to_param
     username
+  end
+
+  #
+  # Updates the user's cookbook install preference to that specified in the
+  # parameter if that parameter is part of the
+  # +User::ALLOWED_INSTALL_PREFERENCES+.
+  #
+  # @param [String] preference - the value to update it to
+  #
+  # @return [Boolean] whether or not the user was successfully updated
+  #
+  def update_install_preference(preference)
+    if ALLOWED_INSTALL_PREFERENCES.include?(preference)
+      self.install_preference = preference
+      save
+    else
+      false
+    end
   end
 end

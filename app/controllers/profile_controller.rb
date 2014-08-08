@@ -1,5 +1,5 @@
 class ProfileController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:update_install_preference]
 
   #
   # PATCH /profile
@@ -24,6 +24,21 @@ class ProfileController < ApplicationController
     @pending_requests = @user.pending_contributor_requests
   end
 
+  #
+  # POST /profile/update_install_preference
+  #
+  # Update the current_user's install preference
+  #
+  def update_install_preference
+    if current_user.present?
+      current_user.update_install_preference(preference_param)
+
+      head(200)
+    else
+      head(404)
+    end
+  end
+
   private
 
   #
@@ -40,5 +55,9 @@ class ProfileController < ApplicationController
       :jira_username,
       :email_notifications
     )
+  end
+
+  def preference_param
+    params.require(:preference)
   end
 end
