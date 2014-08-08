@@ -28,15 +28,30 @@ module Universe
     # and we're calling it in a loop.
     #
 
-    sql = %(
-      SELECT cookbook_versions.version,
-        cookbooks.name AS cookbook,
-        cookbook_dependencies.name AS dependency,
-        cookbook_dependencies.version_constraint AS dependency_constraint
-      FROM cookbook_versions
-        INNER JOIN cookbooks ON cookbooks.id = cookbook_versions.cookbook_id
-        LEFT JOIN cookbook_dependencies ON cookbook_dependencies.cookbook_version_id = cookbook_versions.id
-    )
+    cookbooks_to_filter = opts.fetch(:cookbooks, nil)
+
+    if cookbooks_to_filter.present?
+      sql = %(
+        SELECT cookbook_versions.version,
+          cookbooks.name AS cookbook,
+          cookbook_dependencies.name AS dependency,
+          cookbook_dependencies.version_constraint AS dependency_constraint
+        FROM cookbook_versions
+          INNER JOIN cookbooks ON cookbooks.id = cookbook_versions.cookbook_id
+          LEFT JOIN cookbook_dependencies ON cookbook_dependencies.cookbook_version_id = cookbook_versions.id
+        WHERE cookbooks.name ~ '#{cookbooks_to_filter.gsub(',', '|')}'
+      )
+    else
+      sql = %(
+        SELECT cookbook_versions.version,
+          cookbooks.name AS cookbook,
+          cookbook_dependencies.name AS dependency,
+          cookbook_dependencies.version_constraint AS dependency_constraint
+        FROM cookbook_versions
+          INNER JOIN cookbooks ON cookbooks.id = cookbook_versions.cookbook_id
+          LEFT JOIN cookbook_dependencies ON cookbook_dependencies.cookbook_version_id = cookbook_versions.id
+      )
+    end
 
     cookbooks = ActiveRecord::Base.connection.execute(sql).to_a
 
