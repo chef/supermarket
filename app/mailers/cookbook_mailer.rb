@@ -1,5 +1,6 @@
 class CookbookMailer < ActionMailer::Base
   layout 'mailer'
+  add_template_helper(CookbookVersionsHelper)
 
   #
   # Creates notification email to a cookbook follower
