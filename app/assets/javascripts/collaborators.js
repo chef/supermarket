@@ -20,7 +20,11 @@ $(document).on('opened', '[data-reveal]', function () {
       return collaborator.username;
     },
     formatResult: function(collaborator, container) {
-      return collaborator.first_name + ' ' + collaborator.last_name + ' (' + collaborator.username + ')';
+      if(collaborator.first_name && collaborator.last_name) {
+        return collaborator.first_name + ' ' + collaborator.last_name + ' (' + collaborator.username + ')';
+      } else {
+        return collaborator.username;
+      }
     }
   }
 
