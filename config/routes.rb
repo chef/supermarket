@@ -16,6 +16,7 @@ Supermarket::Application.routes.draw do
       get 'cookbooks/:cookbook/versions/:version/download' => 'cookbook_versions#download', as: :cookbook_version_download, constraints: { version: VERSION_PATTERN }
       post 'cookbooks' => 'cookbook_uploads#create'
       delete 'cookbooks/:cookbook' => 'cookbook_uploads#destroy'
+      get 'users/:user' => 'users#show', as: :user
     end
   end
 
