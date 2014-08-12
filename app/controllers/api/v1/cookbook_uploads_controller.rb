@@ -59,6 +59,12 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
 
           CookbookNotifyWorker.perform_async(@cookbook.id)
 
+          if ROLLOUT.active?(:fieri) && ENV['FIERI_URL'].present?
+            FieriNotifyWorker.perform_async(
+              @cookbook.cookbook_versions.order('id DESC').first.id
+            )
+          end
+
           SegmentIO.track_server_event(
             'cookbook_version_published',
             current_user,

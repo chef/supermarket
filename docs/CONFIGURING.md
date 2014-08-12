@@ -59,6 +59,8 @@ the test suite.
   files in the above bucket.
 * `CDN_URL` Used to configure a CDN URL for use with Paperclip. Downloads
 will be aliased with this URL, something like `static.getchef.com`.
+* `FIERI_URL` is the URL Supermarket will `POST` to for Cookbook evaluation when
+  a cookbook is shared
 
 ## Configuring Curry
 
@@ -108,3 +110,5 @@ be enabled. Supermarket supports the following features.
 * `tools`, Enables the ability to add and view Chef tools and plugins.
 * `join_ccla`, Enables the ability for users to join CCLAs that they don't be long to.
 * `no_crawl`, Adds noindex, nofollow meta tags so search engines won't crawl Supermarket.
+* `fieri`, Enables the ability for Cookbook Versions to be evaluated by Fieri
+  when uploaded

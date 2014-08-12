@@ -11,7 +11,7 @@ describe Api::V1::CookbookUploadsController do
       before do
         allow_any_instance_of(CookbookUpload).
           to receive(:finish).
-          and_yield([], double('Cookbook', name: 'cookbook', id: 1))
+          and_yield([], create(:cookbook))
         auto_authorize!(Cookbook, 'create')
       end
 
@@ -31,6 +31,12 @@ describe Api::V1::CookbookUploadsController do
         expect do
           post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
         end.to change(CookbookNotifyWorker.jobs, :size).by(1)
+      end
+
+      it 'kicks off a FieriNotifyWorker' do
+        expect do
+          post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+        end.to change(FieriNotifyWorker.jobs, :size).by(1)
       end
 
       it 'regenerates the universe cache' do
