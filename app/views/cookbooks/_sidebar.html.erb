@@ -6,9 +6,9 @@
     <%= render "cookbooks/manage_cookbook", cookbook: cookbook %>
   <% end %>
 
-  <h3>
+  <h3 class="<%= 'show-cookbook-urls-manage' if policy(cookbook).manage_cookbook_urls? %>" rel="edit-cookbook-urls">
     <% if policy(cookbook).manage_cookbook_urls? %>
-      <%= link_to '#', class: 'show-cookbook-urls-manage', rel: 'edit-cookbook-urls' do %>
+      <%= link_to '#' do %>
          <i class="fa fa-gear"></i>
       <% end %>
     <% end %>
