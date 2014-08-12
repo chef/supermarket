@@ -179,9 +179,13 @@
   }
 
   .show-cookbook-urls-manage {
-    font-size: rem-calc(18);
+    cursor: pointer;
 
-    &.active .fa {
+    .fa {
+      font-size: rem-calc(18);
+    }
+
+    &.active, &.active .fa {
       color: $secondary_blue;
     }
   }
