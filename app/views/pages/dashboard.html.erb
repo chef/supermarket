@@ -66,7 +66,7 @@
       </p>
     <% end %>
 
-    <% if ENV['TOOLS_ENABLED'] == 'true' %>
+    <% if ROLLOUT.active?(:tools) %>
       <h3>Tools You Maintain</h3>
       <% if @tools.any? %>
         <ul class="simple_listing">
