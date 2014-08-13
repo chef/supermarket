@@ -85,4 +85,105 @@ describe Api::V1::CookbookVersionsController do
       expect(response.status.to_i).to eql(404)
     end
   end
+
+  describe '#evaluation' do
+    let(:cookbook) { create(:cookbook) }
+    let(:version) { create(:cookbook_version, cookbook: cookbook) }
+
+    context 'the request is authorized' do
+
+      context 'the cookbook version exists' do
+        context 'the required params are provided' do
+          it 'returns a 200' do
+            post(
+              :evaluation,
+              cookbook_name: cookbook.name,
+              cookbook_version: version.to_param,
+              foodcritic_failure: true,
+              foodcritic_failure: 'E066',
+              fieri_key: 'YOUR_FIERI_KEY',
+              format: :json
+            )
+
+            expect(response.status.to_i).to eql(200)
+          end
+
+          it "updates the cookbook version's food critic attributes" do
+            post(
+              :evaluation,
+              cookbook_name: cookbook.name,
+              cookbook_version: version.to_param,
+              foodcritic_failure: true,
+              foodcritic_feedback: 'E066',
+              fieri_key: 'YOUR_FIERI_KEY',
+              format: :json
+            )
+
+            expect(version.reload.foodcritic_failure).to eql(true)
+            expect(version.reload.foodcritic_feedback).to eql('E066')
+          end
+
+          context 'the required params are not provided' do
+            it 'returns a 400' do
+              post(
+                :evaluation,
+                cookbook_name: cookbook.name,
+                foodcritic_failure: 'false',
+                foodcritic_feedback: '',
+                fieri_key: 'YOUR_FIERI_KEY',
+                format: :json
+              )
+
+              expect(response.status.to_i).to eql(400)
+
+              expect(JSON.parse(response.body)).to eql(
+                'error_code' => I18n.t('api.error_codes.invalid_data'),
+                'error_messages' => [
+                  I18n.t('api.error_messages.missing_cookbook_version')
+                ]
+              )
+            end
+          end
+        end
+      end
+
+      context 'the cookbook version does not exist' do
+        it 'returns a 404' do
+          post(
+            :evaluation,
+            cookbook_name: cookbook.name,
+            cookbook_version: '1010101.1.1',
+            foodcritic_failure: true,
+            foodcritic_failure: 'E066',
+            fieri_key: 'YOUR_FIERI_KEY',
+            format: :json
+          )
+
+          expect(response.status.to_i).to eql(404)
+        end
+      end
+    end
+
+    context 'the request is not authorized' do
+      it 'renders a 401 error about unauthorized post' do
+        post(
+          :evaluation,
+          cookbook_name: cookbook.name,
+          cookbook_version: '1010101.1.1',
+          foodcritic_failure: true,
+          foodcritic_failure: 'E066',
+          fieri_key: 'not_the_key',
+          format: :json
+        )
+
+        expect(response.status.to_i).to eql(401)
+        expect(JSON.parse(response.body)).to eql(
+          'error_code' => I18n.t('api.error_codes.unauthorized'),
+          'error_messages' => [
+            I18n.t('api.error_messages.unauthorized_post_error')
+          ]
+        )
+      end
+    end
+  end
 end

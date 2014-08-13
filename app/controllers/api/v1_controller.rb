@@ -19,6 +19,21 @@ class Api::V1Controller < ApplicationController
   end
 
   #
+  # Render not authorized.
+  #
+  # @param messages [Array<String>] the error messages
+  #
+  def render_not_authorized(messages)
+    error(
+      {
+        error_code: t('api.error_codes.unauthorized'),
+        error_messages: messages
+      },
+      401
+    )
+  end
+
+  #
   # Renders an JSON body with an error and a header with a given status.
   #
   def error(body, status = 400)

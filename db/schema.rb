@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807125138) do
+ActiveRecord::Schema.define(version: 20140813155831) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -164,6 +164,8 @@ ActiveRecord::Schema.define(version: 20140807125138) do
     t.integer  "api_download_count",    default: 0
     t.text     "changelog"
     t.string   "changelog_extension",   default: "",    null: false
+    t.boolean  "foodcritic_failure"
+    t.text     "foodcritic_feedback"
   end
 
   add_index "cookbook_versions", ["legacy_id"], name: "index_cookbook_versions_on_legacy_id", unique: true, using: :btree
