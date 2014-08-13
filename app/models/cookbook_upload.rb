@@ -22,6 +22,8 @@ class CookbookUpload
   # @yieldparam errors [ActiveModel::Errors] errors which occured while
   #   finishing the upload. May be empty.
   # @yieldparam result [Cookbook, nil] the cookbook, if the upload succeeds
+  # @yieldparam cookbook_version [CookbookVersion, nil] the cookbook version, if
+  #   the upload succeeds
   #
   def finish
     result = nil
@@ -30,8 +32,10 @@ class CookbookUpload
       upload_errors = ActiveModel::Errors.new([])
 
       begin
+        cookbook_version = nil
+
         result = cookbook.tap do |book|
-          book.publish_version!(@params)
+          cookbook_version = book.publish_version!(@params)
         end
       rescue ActiveRecord::RecordNotUnique
         metadata = @params.metadata
@@ -49,9 +53,9 @@ class CookbookUpload
         end
       end
 
-      yield upload_errors, result if block_given?
+      yield upload_errors, result, cookbook_version if block_given?
     else
-      yield errors, result if block_given?
+      yield errors, result, cookbook_version if block_given?
     end
   end
 

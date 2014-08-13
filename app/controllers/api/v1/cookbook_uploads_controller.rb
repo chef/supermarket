@@ -48,7 +48,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
         error_messages: [t('api.error_messages.unauthorized_upload_error')]
       )
     else
-      cookbook_upload.finish do |errors, cookbook|
+      cookbook_upload.finish do |errors, cookbook, cookbook_version|
         if errors.any?
           error(
             error: t('api.error_codes.invalid_data'),
@@ -61,7 +61,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
 
           if ROLLOUT.active?(:fieri) && ENV['FIERI_URL'].present?
             FieriNotifyWorker.perform_async(
-              @cookbook.cookbook_versions.order('id DESC').first.id
+              cookbook_version.id
             )
           end
 
