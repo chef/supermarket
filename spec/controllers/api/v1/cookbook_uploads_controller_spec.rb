@@ -11,7 +11,11 @@ describe Api::V1::CookbookUploadsController do
       before do
         allow_any_instance_of(CookbookUpload).
           to receive(:finish).
-          and_yield([], double('Cookbook', name: 'cookbook', id: 1))
+          and_yield(
+            [],
+            double('Cookbook', name: 'cookbook', id: 1),
+            double('CookbookVersion', version: '1.1.1', id: 1, cookbook_id: 1)
+          )
         auto_authorize!(Cookbook, 'create')
       end
 
@@ -33,6 +37,12 @@ describe Api::V1::CookbookUploadsController do
         end.to change(CookbookNotifyWorker.jobs, :size).by(1)
       end
 
+      it 'kicks off a FieriNotifyWorker' do
+        expect do
+          post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+        end.to change(FieriNotifyWorker.jobs, :size).by(1)
+      end
+
       it 'regenerates the universe cache' do
         expect(UniverseCache).to receive(:flush)
         post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
@@ -47,7 +57,7 @@ describe Api::V1::CookbookUploadsController do
 
         allow_any_instance_of(CookbookUpload).
           to receive(:finish).
-          and_yield(errors, double('Cookbook'))
+          and_yield(errors, double('Cookbook'), double('CookbookVersion'))
         auto_authorize!(Cookbook, 'create')
       end
 
@@ -71,7 +81,11 @@ describe Api::V1::CookbookUploadsController do
       before do
         allow_any_instance_of(CookbookUpload).
           to receive(:finish).
-          and_yield([], double('Cookbook', name: 'cookbook', id: 1))
+          and_yield(
+            [],
+            double('Cookbook', name: 'cookbook', id: 1),
+            double('CookbookVersion', version: '1.1.1', id: 1, cookbook_id: 1)
+          )
       end
 
       it 'renders an error informing the the user that they may not modify the cookbook' do

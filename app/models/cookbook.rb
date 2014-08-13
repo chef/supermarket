@@ -185,7 +185,7 @@ class Cookbook < ActiveRecord::Base
   # @raise [ActiveRecord::RecordNotUnique] if the new version is a duplicate of
   #   an existing version for this cookbook
   #
-  # @return [TrueClass]
+  # @return [CookbookVersion] the Cookbook Version that was published
   #
   # @param params [CookbookUpload::Parameters] the upload parameters
   #
@@ -197,6 +197,8 @@ class Cookbook < ActiveRecord::Base
 
     dependency_names = metadata.dependencies.keys
     existing_cookbooks = Cookbook.with_name(dependency_names)
+
+    cookbook_version = nil
 
     transaction do
       cookbook_version = cookbook_versions.build(
@@ -227,7 +229,7 @@ class Cookbook < ActiveRecord::Base
       end
     end
 
-    true
+    cookbook_version
   end
 
   #

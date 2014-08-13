@@ -82,6 +82,15 @@ describe CookbookUpload do
       expect(errors).to be_empty
     end
 
+    it 'yields the cookbook version if the cookbook and tarball are workable' do
+      tarball = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
+
+      upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
+      version = upload.finish { |_, _, v| v }
+
+      expect(version).to be_present
+    end
+
     it 'yields an error if the cookbook is not valid JSON' do
       upload = CookbookUpload.new(user, cookbook: 'ack!', tarball: 'tarball')
       errors = upload.finish { |e, _| e }

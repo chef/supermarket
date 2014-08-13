@@ -333,6 +333,12 @@ describe Cookbook do
       expect(cookbook.cookbook_versions.last.changelog).to eql('changelog')
       expect(cookbook.cookbook_versions.last.changelog_extension).to eql('txt')
     end
+
+    it 'returns the cookbook version' do
+      cookbook_version = cookbook.publish_version!(params)
+
+      expect(cookbook_version).to eql(cookbook.cookbook_versions.last)
+    end
   end
 
   describe '.search' do
