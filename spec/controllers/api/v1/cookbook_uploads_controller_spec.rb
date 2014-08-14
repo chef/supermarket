@@ -97,10 +97,10 @@ describe Api::V1::CookbookUploadsController do
         )
       end
 
-      it 'returns a 400' do
+      it 'returns a 401' do
         post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
 
-        expect(response.status.to_i).to eql(400)
+        expect(response.status.to_i).to eql(401)
       end
     end
 
