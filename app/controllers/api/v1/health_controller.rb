@@ -84,5 +84,13 @@ class Api::V1::HealthController < Api::V1Controller
       @sidekiq_health.store(:status, UNREACHABLE)
       @redis_health.store(:status, UNREACHABLE)
     end
+
+    if @sidekiq_health.fetch(:status) == REACHABLE &&
+         @postgresql_health.fetch(:status) == REACHABLE &&
+         @redis_health.fetch(:status) == REACHABLE
+      @status = 'ok'
+    else
+      @status = 'not ok'
+    end
   end
 end
