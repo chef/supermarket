@@ -345,7 +345,8 @@ pre {
 }
 
 .rss_feed_link {
-  display: block;
+  display: inline-block;
+  padding: 3px 15px 3px 0;
   color: darken($primary_gray, 10%);
   font: {
     size: rem-calc(12);
