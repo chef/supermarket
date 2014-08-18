@@ -20,6 +20,7 @@ Supermarket::Application.routes.draw do
       post '/cookbook-verisons/evaluation' => 'cookbook_versions#evaluation', as: :cookbook_versions_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
 
       get 'tools/:tool' => 'tools#show', as: :tool
+      get 'tools' => 'tools#index', as: :tools
     end
   end
 

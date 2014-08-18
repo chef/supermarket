@@ -67,6 +67,19 @@ class Tool < ActiveRecord::Base
     where(lowercase_name: lowercase_names)
   }
 
+  scope :ordered_by, lambda { |ordering|
+    reorder({
+      'recently_added' => 'id DESC'
+    }.fetch(ordering, 'name ASC'))
+  }
+
+  scope :index, lambda { |opts = {}|
+    includes(owner: :chef_account)
+    .ordered_by(opts.fetch(:order, 'name ASC'))
+    .limit(opts.fetch(:limit, 10))
+    .offset(opts.fetch(:start, 0))
+  }
+
   #
   # The username of this tools's owner
   #
