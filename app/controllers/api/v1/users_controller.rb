@@ -16,5 +16,7 @@ class Api::V1::UsersController < Api::V1Controller
     @owned_cookbooks = @user.owned_cookbooks.order('name ASC')
     @collaborated_cookbooks = @user.collaborated_cookbooks.order('name ASC')
     @followed_cookbooks = @user.followed_cookbooks.order('name ASC')
+    @owned_tools = @user.tools.order('name ASC')
+    @collaborated_tools = @user.collaborated_tools.order('name ASC')
   end
 end

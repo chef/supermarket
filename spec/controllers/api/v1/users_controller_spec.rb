@@ -15,6 +15,10 @@ describe Api::V1::UsersController do
   let!(:apples) { create(:cookbook, name: 'apples') }
   let!(:postgres) { create(:cookbook, name: 'postgres') }
   let!(:ruby) { create(:cookbook, name: 'ruby') }
+  let!(:berkshelf) { create(:tool, name: 'berkshelf', owner: user) }
+  let!(:knife_supermarket) { create(:tool, name: 'knife_supermarket', owner: user) }
+  let!(:dull_knife) { create(:tool, name: 'dull_knife') }
+  let!(:xanadu) { create(:tool, name: 'xanadu') }
 
   describe '#show' do
     context 'when a user exists' do
@@ -55,6 +59,18 @@ describe Api::V1::UsersController do
         create(
           :cookbook_follower,
           cookbook: ruby,
+          user: user
+        )
+
+        create(
+          :tool_collaborator,
+          resourceable: dull_knife,
+          user: user
+        )
+
+        create(
+          :tool_collaborator,
+          resourceable: xanadu,
           user: user
         )
       end
@@ -123,6 +139,31 @@ describe Api::V1::UsersController do
         expect(assigns[:followed_cookbooks].to_a).to eql([postgres, ruby])
       end
 
+      it 'sends the owned tools to the view' do
+        get :show, user: 'clive', format: :json
+
+        expect(assigns[:owned_tools]).to include(berkshelf)
+        expect(assigns[:owned_tools]).to include(knife_supermarket)
+      end
+
+      it 'sorts the owned tools by name' do
+        get :show, user: 'clive', format: :json
+
+        expect(assigns[:owned_tools].to_a).to eql([berkshelf, knife_supermarket])
+      end
+
+      it 'sends the collaborated tools to the view' do
+        get :show, user: 'clive', format: :json
+
+        expect(assigns[:collaborated_tools]).to include(dull_knife)
+        expect(assigns[:collaborated_tools]).to include(xanadu)
+      end
+
+      it 'sorts the collaborated tools by name' do
+        get :show, user: 'clive', format: :json
+
+        expect(assigns[:collaborated_tools].to_a).to eql([dull_knife, xanadu])
+      end
     end
 
     context 'when a user does not exist' do

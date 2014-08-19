@@ -25,3 +25,17 @@ json.cookbooks do
     end
   end
 end
+
+json.tools do
+  json.set! :owns do
+    @owned_tools.each do |tool|
+      json.set! tool.name, api_v1_tool_url(tool.slug)
+    end
+  end
+
+  json.set! :collaborates do
+    @collaborated_tools.each do |tool|
+      json.set! tool.name, api_v1_tool_url(tool.slug)
+    end
+  end
+end
