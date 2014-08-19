@@ -107,6 +107,7 @@ Certain features of Supermarket can be enabled or disabled using `FEATURES`. The
 `FEATURES` ENV variable should be defined as a comma separated list of features to
 be enabled. Supermarket supports the following features.
 
+* `cla`, Enables the ability to sign the ICLA and CCLA, as well as Curry
 * `tools`, Enables the ability to add and view Chef tools and plugins.
 * `join_ccla`, Enables the ability for users to join CCLAs that they don't be long to.
 * `no_crawl`, Adds noindex, nofollow meta tags so search engines won't crawl Supermarket.

@@ -1,7 +1,7 @@
 class Tool < ActiveRecord::Base
   include PgSearch
 
-  ALLOWED_TYPES = %w(knife_plugin ohai_plugin chef_tool handler metal_driver)
+  ALLOWED_TYPES = %w(knife_plugin ohai_plugin chef_tool handler metal_driver kitchen_driver)
 
   self.inheritance_column = nil
 
@@ -65,6 +65,19 @@ class Tool < ActiveRecord::Base
     lowercase_names = Array(names).map { |name| name.to_s.downcase }
 
     where(lowercase_name: lowercase_names)
+  }
+
+  scope :ordered_by, lambda { |ordering|
+    reorder({
+      'recently_added' => 'id DESC'
+    }.fetch(ordering, 'name ASC'))
+  }
+
+  scope :index, lambda { |opts = {}|
+    includes(owner: :chef_account)
+    .ordered_by(opts.fetch(:order, 'name ASC'))
+    .limit(opts.fetch(:limit, 10))
+    .offset(opts.fetch(:start, 0))
   }
 
   #

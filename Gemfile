@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'rails', '~> 4.1.4'
+gem 'rails', '~> 4.1.5'
 
 gem 'omniauth'
 gem 'omniauth-github'

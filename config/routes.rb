@@ -20,6 +20,7 @@ Supermarket::Application.routes.draw do
       post '/cookbook-verisons/evaluation' => 'cookbook_versions#evaluation', as: :cookbook_versions_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
 
       get 'tools/:tool' => 'tools#show', as: :tool
+      get 'tools' => 'tools#index', as: :tools
     end
   end
 
@@ -43,7 +44,7 @@ Supermarket::Application.routes.draw do
     get 'versions/:version' => 'cookbook_versions#show', as: :version, constraints: { version: VERSION_PATTERN }
   end
 
-  resources :icla_signatures, path: 'icla-signatures' do
+  resources :icla_signatures, path: 'icla-signatures', constraints: proc { ROLLOUT.active?(:cla) } do
     collection do
       post :re_sign, path: 're-sign'
       get :agreement
@@ -56,7 +57,7 @@ Supermarket::Application.routes.draw do
     end
   end
 
-  resources :ccla_signatures, path: 'ccla-signatures' do
+  resources :ccla_signatures, path: 'ccla-signatures', constraints: proc { ROLLOUT.active?(:cla) } do
     collection do
       post :re_sign, path: 're-sign'
       get :agreement
@@ -74,7 +75,7 @@ Supermarket::Application.routes.draw do
     end
   end
 
-  namespace :curry do
+  namespace :curry, constraints: proc { ROLLOUT.active?(:cla) } do
     resources :repositories, only: [:index, :create, :destroy] do
       member do
         post :evaluate
@@ -107,23 +108,23 @@ Supermarket::Application.routes.draw do
     end
   end
 
-  resources :invitations, only: [:show] do
+  resources :invitations, constraints: proc { ROLLOUT.active?(:cla) }, only: [:show] do
     member do
       get :accept
       get :decline
     end
   end
 
-  resources :organizations, only: [:show, :destroy] do
+  resources :organizations, constraints: proc { ROLLOUT.active?(:cla) }, only: [:show, :destroy] do
     member do
       put :combine
 
       get :requests_to_join, constraints: proc { ROLLOUT.active?(:join_ccla) }
     end
 
-    resources :contributors, only: [:update, :destroy], controller: :contributors
+    resources :contributors, only: [:update, :destroy], controller: :contributors, constraints: proc { ROLLOUT.active?(:cla) }
 
-    resources :invitations, only: [:index, :create, :update],
+    resources :invitations, only: [:index, :create, :update], constraints: proc { ROLLOUT.active?(:cla) },
                             controller: :organization_invitations do
 
       member do
@@ -133,8 +134,8 @@ Supermarket::Application.routes.draw do
     end
   end
 
-  get 'become-a-contributor' => 'contributors#become_a_contributor'
-  get 'contributors' => 'contributors#index'
+  get 'become-a-contributor' => 'contributors#become_a_contributor', constraints: proc { ROLLOUT.active?(:cla) }
+  get 'contributors' => 'contributors#index', constraints: proc { ROLLOUT.active?(:cla) }
 
   get 'chat' => 'irc_logs#index'
   get 'chat/:channel' => 'irc_logs#show'
