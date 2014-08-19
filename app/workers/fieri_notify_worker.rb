@@ -21,7 +21,7 @@ class FieriNotifyWorker
     data = {
       'cookbook_name' => cookbook_version.name,
       'cookbook_version' => cookbook_version.version,
-      'cookbook_artrifact_url' => cookbook_version.tarball.url
+      'cookbook_artifact_url' => cookbook_version.tarball.url
     }
 
     response = Net::HTTP.post_form(uri, data)
