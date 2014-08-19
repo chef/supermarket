@@ -42,6 +42,15 @@ describe 'GET /api/v1/users/:user' do
             'ruby' => 'http://www.example.com/api/v1/cookbooks/ruby',
             'postgres' => 'http://www.example.com/api/v1/cookbooks/postgres'
           }
+        },
+        'tools' => {
+          'owns' => {
+            'berkshelf' => 'http://www.example.com/api/v1/tools/berkshelf',
+            'knife_supermarket' => 'http://www.example.com/api/v1/tools/knife_supermarket'
+          },
+          'collaborates' => {
+            'dull_knife' => 'http://www.example.com/api/v1/tools/dull_knife'
+          }
         }
       }
     end
@@ -71,6 +80,17 @@ describe 'GET /api/v1/users/:user' do
         user: user
       )
       create(:icla_signature, user: user)
+
+      create(:tool, name: 'berkshelf', owner: user, slug: 'berkshelf')
+      create(
+        :tool, name: 'knife_supermarket', owner: user, slug: 'knife_supermarket'
+      )
+
+      create(
+        :tool_collaborator,
+        resourceable: create(:tool, name: 'dull_knife', slug: 'dull_knife'),
+        user: user
+      )
     end
 
     it 'returns a 200' do
