@@ -121,13 +121,13 @@ describe Api::V1::ToolsController do
       let!(:berkshelf_tool) { create(:tool, name: 'berkshelf') }
 
       it 'responds with a 200' do
-        get :show, tool: berkshelf_tool.name, format: :json
+        get :show, tool: berkshelf_tool.slug, format: :json
 
         expect(response.status.to_i).to eql(200)
       end
 
       it 'sends the tool to the view' do
-        get :show, tool: berkshelf_tool.name, format: :json
+        get :show, tool: berkshelf_tool.slug, format: :json
 
         expect(assigns[:tool]).to eql(berkshelf_tool)
       end
