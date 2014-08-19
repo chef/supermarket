@@ -141,4 +141,66 @@ describe Api::V1::ToolsController do
       end
     end
   end
+
+  describe '#search' do
+    let!(:knife_tool) { create(:tool, name: 'knife-tool') }
+    let!(:berks_api) { create(:tool, name: 'berks-api') }
+    let!(:berkshelf) { create(:tool, name: 'berkshelf') }
+    let!(:wut_wut) { create(:tool, name: 'wut-wut') }
+
+    it 'responds with a 200' do
+      get :search, format: :json
+
+      expect(response.status.to_i).to eql(200)
+    end
+
+    it 'sends tool search result to the view' do
+      get :search, q: 'knife-tool', format: :json
+
+      expect(assigns[:results]).to include(knife_tool)
+    end
+
+    it 'sends the total number of search results to the view' do
+      get :search, q: 'berks', format: :json
+
+      expect(assigns[:total]).to eql(2)
+    end
+
+    it 'searches based on the query' do
+      get :search, q: 'knife-tool', format: :json
+
+      expect(assigns[:results]).to include(knife_tool)
+      expect(assigns[:results]).to_not include(wut_wut)
+    end
+
+    it 'sends start param to the view if it is present' do
+      get :search, q: 'berks', start: '1', format: :json
+
+      expect(assigns[:start]).to eql(1)
+    end
+
+    it 'defaults the start param to 0 if it is not present' do
+      get :search, q: 'berks', format: :json
+
+      expect(assigns[:start]).to eql(0)
+    end
+
+    it 'handles the start param' do
+      get :search, q: 'berks', start: 1, format: :json
+
+      tool_names = assigns[:results].map(&:name)
+
+      expect(tool_names).to eql(['berkshelf'])
+    end
+
+    it 'handles the items param' do
+      6.times do |index|
+        create(:tool, name: "jam#{index}")
+      end
+
+      get :search, q: 'jam', items: 5, format: :json
+      tools = assigns[:results]
+      expect(tools.count(:all)).to eql 5
+    end
+  end
 end

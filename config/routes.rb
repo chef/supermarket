@@ -21,6 +21,7 @@ Supermarket::Application.routes.draw do
 
       get 'tools/:tool' => 'tools#show', as: :tool
       get 'tools' => 'tools#index', as: :tools
+      get 'tools-search' => 'tools#search', as: :tools_search
     end
   end
 

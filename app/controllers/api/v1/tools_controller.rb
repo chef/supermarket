@@ -14,8 +14,8 @@ class Api::V1::ToolsController < Api::V1Controller
   # recently_added.
   #
   # @example
-  #   GET /api/v1/cookbooks?start=5&items=15
-  #   GET /api/v1/cookbooks?order=recently_added
+  #   GET /api/v1/tools?start=5&items=15
+  #   GET /api/v1/tools?order=recently_added
   #
   def index
     @total = Tool.count
@@ -32,5 +32,25 @@ class Api::V1::ToolsController < Api::V1Controller
   #
   def show
     @tool = Tool.find_by!(name: params[:tool])
+  end
+
+  #
+  # GET /api/v1/tools-search?q=QUERY
+  #
+  # Return tools with a name that contains the specified query. Takes the +q+
+  # parameter for the request. It also handles the start and items parameters
+  # for specifying where to start the search and how many items to return. Start
+  # defaults to 0. Items defaults to 10. Items has an upper limit of 100.
+  #
+  # @example
+  #   GET /api/v1/tools-search?q=berkshelf
+  #   GET /api/v1/tools-search?q=berkshelf&start=3&items=5
+  #
+  def search
+    @results = Tool.search(
+      params.fetch(:q, nil)
+    ).offset(@start).limit(@items)
+
+    @total = @results.count(:all)
   end
 end
