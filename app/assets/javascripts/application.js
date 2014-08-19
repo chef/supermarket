@@ -23,7 +23,7 @@
 //= require cookbookFollowing
 //= require joinOrganization
 //= require organizationRoles
-//= require betaBanner
+//= require announcementBanner
 //= require flash
 //= require select2.min
 //= require collaborators

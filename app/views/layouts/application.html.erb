@@ -53,7 +53,10 @@
           </div>
         </header>
 
-        <%= render partial: 'beta_banner' %>
+        <% if ROLLOUT.active?(:announcement) %>
+          <%= render partial: 'announcement_banner' %>
+        <% end %>
+
         <%= render partial: 'flash' %>
         <%= render partial: 'search' %>
 

@@ -112,4 +112,5 @@ be enabled. Supermarket supports the following features.
 * `join_ccla`, Enables the ability for users to join CCLAs that they don't be long to.
 * `no_crawl`, Adds noindex, nofollow meta tags so search engines won't crawl Supermarket.
 * `fieri`, Enables the ability for Cookbook Versions to be evaluated by Fieri
+* `announcement`, Enables the foldable annoucement banner that is displayed on all views.
   when uploaded
