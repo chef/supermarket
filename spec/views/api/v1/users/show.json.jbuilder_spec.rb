@@ -123,8 +123,8 @@ describe 'api/v1/users/show' do
   end
 
   it 'displays the cookbooks the user follows' do
-    collaborates_cookbooks = json_body['cookbooks']['follows']
-    expect(collaborates_cookbooks).to eql(
+    follows_cookbooks = json_body['cookbooks']['follows']
+    expect(follows_cookbooks).to eql(
       'postgres' => 'http://test.host/api/v1/cookbooks/postgres',
       'ruby' => 'http://test.host/api/v1/cookbooks/ruby'
     )
