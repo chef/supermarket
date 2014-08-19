@@ -1,7 +1,7 @@
 class Tool < ActiveRecord::Base
   include PgSearch
 
-  ALLOWED_TYPES = %w(knife_plugin ohai_plugin chef_tool handler metal_driver)
+  ALLOWED_TYPES = %w(knife_plugin ohai_plugin chef_tool handler metal_driver kitchen_driver)
 
   self.inheritance_column = nil
 
