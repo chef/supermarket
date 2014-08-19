@@ -38,21 +38,27 @@ class Curry::UnauthorizedCommitAuthorComment
   def comment_body
     [].tap do |parts|
       parts << %(
-        Hi. Your friendly Curry bot here. Just letting you know that there are
-        commit authors in this Pull Request who appear to not have signed a Chef
-        CLA.
+        Hi. I am an automated pull request bot named Curry. There are
+        commits in this pull request whose authors are not yet authorized to
+        contribute to Chef Software, Inc. projects or are using a non-GitHub
+        verified email address. To become authorized to contribute, you will
+        need to sign the Contributor License Agreement (CLA) as an individual or
+        on behalf of your company. [You can read more on Chef's
+        blog.](http://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)
       ).squish
 
       if @unauthorized_commit_authors.any?(&:email)
+        parts << '## Non-GitHub Verified Committers\n\n'
         parts << %(
           There are #{@unauthorized_commit_authors.count(&:email)} commit
           author(s) whose commits are authored by a non GitHub-verified email
-          address in this Pull Request. Chef will have to verify by hand that
-          they have signed a Chef CLA.
+          address. Chef will have to manually verify that they are authorized to
+          contribute.
         ).squish
       end
 
       if @unauthorized_commit_authors.any?(&:login)
+        parts << '## GitHub Users Who Are Not Authorized To Contribute\n\n'
         parts << 'The following GitHub users do not appear to have signed a CLA:'
 
         author_list = @unauthorized_commit_authors.
