@@ -1,0 +1,63 @@
+@import "common";
+@import "foundation/components/grid";
+
+.announcement_banner {
+  background-color: $secondary-blue;
+  width: 100%;
+}
+
+.announcement_banner_header {
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 100ms ease-out 0s;
+
+  &:hover,
+  &:focus {
+    background-color: darken($secondary-blue, 20%);
+  }
+
+  h3 {
+    color: white;
+    margin: 0;
+    padding: rem-calc(15 0 15 0);
+  }
+}
+
+.announcement_banner_content {
+  @include grid-row();
+  background-color: lighten($primary_blue, 10%);
+  display: none;
+}
+
+.announcement_info {
+  @include grid-column(4, $collapse: true);
+  padding: rem-calc(8 32 8 32);
+
+
+  a {
+    color: $secondary-blue;
+    text-decoration: none;
+  }
+
+  h3 {
+    color: white;
+    margin: rem-calc(14 0);
+    text-transform: uppercase;
+  }
+
+  p {
+    color: white;
+  }
+
+  code {
+    color: white;
+    font-weight: normal;
+  }
+}
+
+@media #{$mobile-only} {
+  .announcement_info {
+    @include grid-column(12, $collapse: true);
+    padding: rem-calc(4 32);
+  }
+}
