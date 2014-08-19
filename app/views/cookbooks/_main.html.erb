@@ -54,6 +54,15 @@
     <% if version.changelog %>
       <dd><a href="#changelog" rel="changelog">Changelog</a></dd>
     <% end %>
+    <% if ROLLOUT.active?(:fieri) %>
+      <% unless version.foodcritic_failure.nil? %>
+        <dd>
+          <a href="#foodcritic" rel="foodcritic">Foodcritic
+            <i class="fa <%= version.foodcritic_failure ? 'fa-times' : 'fa-check' %>" title="Foodcritic is <%= version.foodcritic_failure ? 'failing' : 'passing' %>" data-tooltip></i>
+          </a>
+        </dd>
+      <% end %>
+    <% end %>
   </dl>
   <div class="tabs-content">
     <div class="content active" id="readme">
@@ -70,6 +79,17 @@
       <div class="content" id="changelog">
         <%= render_document(version.changelog, version.changelog_extension) %>
       </div>
+    <% end %>
+    <% if ROLLOUT.active?(:fieri) %>
+      <% unless version.foodcritic_failure.nil? %>
+        <div class="content" id="foodcritic">
+          <% if version.foodcritic_feedback.present? %>
+            <pre><%= version.foodcritic_feedback.gsub(/\n/, '<br />').html_safe %></pre>
+          <% else %>
+            <p><%= version.version %> passed <%= link_to 'Foodcritic', 'http://acrmp.github.io/foodcritic', target: '_blank' %>.
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

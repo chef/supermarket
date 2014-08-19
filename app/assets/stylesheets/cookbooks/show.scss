@@ -20,6 +20,20 @@
     }
   }
 
+  .tabs {
+    .fa {
+      margin-left: rem-calc(5);
+    }
+
+    .fa-times {
+      color: $primary_red;
+    }
+
+    .fa-check {
+      color: $secondary_green;
+    }
+  }
+
   .installs {
     margin-bottom: rem-calc(50);
 
