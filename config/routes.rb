@@ -100,6 +100,7 @@ Supermarket::Application.routes.draw do
   end
 
   resources :tools, constraints: proc { ROLLOUT.active?(:tools) }
+  get 'tools-directory' => 'tools#directory', constraints: proc { ROLLOUT.active?(:tools) }
 
   resource :profile, controller: 'profile', only: [:update, :edit] do
     post :update_install_preference, format: :json

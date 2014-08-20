@@ -262,4 +262,12 @@ describe ToolsController do
       expect(response.status.to_i).to eql(404)
     end
   end
+
+  describe 'GET #directory' do
+    before { get :directory }
+
+    it 'assigns @recently_added_tools' do
+      expect(assigns[:recently_added_tools]).to_not be_nil
+    end
+  end
 end

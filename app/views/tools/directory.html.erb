@@ -1,0 +1,19 @@
+<%= provide(:title, "Tools Directory") %>
+<%= provide(:description, "Browse and search Chef tools and plugins.") %>
+
+<div class="page nobg">
+  <div class="tools_info">
+    <h2>About Tools</h2>
+  </div>
+  <div class="recently_added_tools">
+    <div class="cookbooks_column_content">
+      <h2 class="title">Recently Added Tools</h2>
+      <ul class="simple_listing">
+        <% @recently_added_tools.each do |tool| %>
+          <%= render "simple_tool", tool: tool %>
+        <% end %>
+      </ul>
+      <%= link_to 'View All Tools', cookbooks_path(featured: true), class: 'button radius expand' %>
+    </div>
+  </div>
+</div>

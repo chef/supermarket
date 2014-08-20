@@ -1,0 +1,13 @@
+@import "common";
+@import "foundation/components/grid";
+
+.tools_info {
+  @include grid-column($columns: 8);
+  background: white;
+  border: 1px solid $cookbook_border;
+  padding: rem-calc(20);
+}
+
+.recently_added_tools {
+  @include grid-column($columns: 4);
+}
