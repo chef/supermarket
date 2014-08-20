@@ -48,17 +48,17 @@ class Curry::UnauthorizedCommitAuthorComment
       ).squish
 
       if @unauthorized_commit_authors.any?(&:email)
-        parts << '## Non-GitHub Verified Committers\n\n'
+        parts << '## Non-GitHub Verified Committers'
         parts << %(
           There are #{@unauthorized_commit_authors.count(&:email)} commit
-          author(s) whose commits are authored by a non GitHub-verified email
+          author(s) whose commits are authored by a non-GitHub verified email
           address. Chef will have to manually verify that they are authorized to
           contribute.
         ).squish
       end
 
       if @unauthorized_commit_authors.any?(&:login)
-        parts << '## GitHub Users Who Are Not Authorized To Contribute\n\n'
+        parts << '## GitHub Users Who Are Not Authorized To Contribute'
         parts << 'The following GitHub users do not appear to have signed a CLA:'
 
         author_list = @unauthorized_commit_authors.
