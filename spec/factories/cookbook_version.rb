@@ -6,5 +6,6 @@ FactoryGirl.define do
     tarball { File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz') }
     readme '# redis cookbook'
     readme_extension 'md'
+    foodcritic_failure false
   end
 end
