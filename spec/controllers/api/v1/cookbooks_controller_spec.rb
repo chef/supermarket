@@ -180,6 +180,39 @@ describe Api::V1::CookbooksController do
     end
   end
 
+  describe '#foodcritic' do
+    context 'when a cookbook exists' do
+      before do
+        create(
+          :cookbook_version,
+          cookbook: sashimi,
+          version: '1.1.0',
+          license: 'MIT'
+        )
+      end
+
+      it 'responds with a 200' do
+        get :foodcritic, cookbook: 'sashimi', format: :json
+
+        expect(response.status.to_i).to eql(200)
+      end
+
+      it 'sends the cookbook to the view' do
+        get :foodcritic, cookbook: 'sashimi', format: :json
+
+        expect(assigns[:cookbook]).to eql(sashimi)
+      end
+    end
+
+    context 'when a cookbook does not exist' do
+      it 'responds with a 404' do
+        get :foodcritic, cookbook: 'mamimi', format: :json
+
+        expect(response.status.to_i).to eql(404)
+      end
+    end
+  end
+
   describe '#search' do
     let!(:redis) { create(:cookbook, name: 'redis') }
     let!(:redis_2) { create(:cookbook, name: 'redis-2') }

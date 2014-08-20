@@ -82,6 +82,7 @@ class Cookbook < ActiveRecord::Base
   # --------------------
   delegate :description, to: :latest_cookbook_version
   delegate :foodcritic_failure, to: :latest_cookbook_version
+  delegate :foodcritic_feedback, to: :latest_cookbook_version
 
   # Validations
   # --------------------
