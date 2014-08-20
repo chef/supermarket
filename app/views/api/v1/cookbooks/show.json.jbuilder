@@ -1,5 +1,6 @@
 json.partial! 'cookbook'
 json.deprecated @cookbook.deprecated
+json.foodcritic_failure @cookbook.foodcritic_failure
 if @cookbook.deprecated? && @cookbook.replacement.present?
   json.replacement api_v1_cookbook_url(@cookbook.replacement)
 end
