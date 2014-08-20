@@ -17,13 +17,13 @@ describe 'GET /api/v1/tools/:tool' do
     end
 
     it 'returns a 200' do
-      get "/api/v1/tools/#{tool.name}"
+      get "/api/v1/tools/#{tool.slug}"
 
       expect(response.status.to_i).to eql(200)
     end
 
     it 'returns the tool' do
-      get "/api/v1/tools/#{tool.name}"
+      get "/api/v1/tools/#{tool.slug}"
 
       expect(signature(json_body)).to include(tool_signature)
     end
