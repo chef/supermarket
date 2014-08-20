@@ -1,5 +1,6 @@
 class Api::V1::CookbooksController < Api::V1Controller
   before_filter :init_params, except: [:show]
+  before_filter :assign_cookbook, only: [:show, :foodcritic]
 
   #
   # GET /api/v1/cookbooks
@@ -38,8 +39,6 @@ class Api::V1::CookbooksController < Api::V1Controller
   #   GET /api/v1/cookbooks/redis
   #
   def show
-    @cookbook = Cookbook.with_name(params[:cookbook]).
-      includes(:cookbook_versions).first!
     @latest_cookbook_version_url = api_v1_cookbook_version_url(
       @cookbook, @cookbook.latest_cookbook_version
     )
@@ -47,6 +46,17 @@ class Api::V1::CookbooksController < Api::V1Controller
     @cookbook_versions_urls = @cookbook.sorted_cookbook_versions.map do |version|
       api_v1_cookbook_version_url(@cookbook, version)
     end
+  end
+
+  #
+  # GET /api/v1/cookbooks/:foodcritic
+  #
+  # Return the failure status and feedback from the cookbook's Foodcritic run.
+  #
+  # @example
+  #   GET /api/v1/cookbooks/redis/foodcritic
+  #
+  def foodcritic
   end
 
   #
@@ -67,5 +77,12 @@ class Api::V1::CookbooksController < Api::V1Controller
     ).offset(@start).limit(@items)
 
     @total = @results.count(:all)
+  end
+
+  private
+
+  def assign_cookbook
+    @cookbook = Cookbook.with_name(params[:cookbook]).
+      includes(:cookbook_versions).first!
   end
 end
