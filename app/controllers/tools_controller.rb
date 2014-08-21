@@ -1,5 +1,6 @@
 class ToolsController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :store_location!, only: [:new]
+  before_filter :authenticate_user!, except: [:index, :show, :directory]
   before_filter :assign_tool, only: [:show, :update, :edit, :destroy]
   before_filter :override_search
 
@@ -114,6 +115,15 @@ class ToolsController < ApplicationController
       tools_user_path(@tool.owner),
       notice: t('tool.deleted', name: @tool.name)
     )
+  end
+
+  #
+  # GET /tools-directory
+  #
+  # Displays general information about tools and the most recently added ones.
+  #
+  def directory
+    @recently_added_tools = Tool.ordered_by('recently_added').limit(5)
   end
 
   private

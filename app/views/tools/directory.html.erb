@@ -1,0 +1,33 @@
+<%= provide(:title, "Tools Directory") %>
+<%= provide(:description, "Browse and search Chef tools and plugins.") %>
+
+<div class="page nobg">
+  <div class="tools_info">
+    <%= link_to "Add Tool", new_tool_path, class: 'right tiny radius button' %>
+
+    <h2>About Tools</h2>
+    <p>Tools are software that improve Chef's ecosystem. An example of a tool is Foodcritic. Foodcritic is a Ruby gem that analyzes the code of a cookbook. Most tools are open source and available on GitHub.</p>
+
+    <p>If you have created a tool or plugin that interfaces with or improves Chef, <%= link_to "add it to Supermarket", new_tool_path %> to share it with the community.</p>
+
+    <h3>Types of Tools</h3>
+
+    <p>There are various types of tools, each serving a slightly different purpose. If your tool does not fall into one of the types below, <a href="https://github.com/opscode/supermarket/issues/new">open a GitHub issue requesting to add that type</a>.
+    <ul>
+      <% Tool::ALLOWED_TYPES.each do |type| %>
+        <li><%= link_to type.titleize, tools_path(type: type) %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="recently_added_tools">
+    <div class="cookbooks_column_content">
+      <h2 class="title">Recently Added Tools</h2>
+      <ul class="simple_listing">
+        <% @recently_added_tools.each do |tool| %>
+          <%= render "simple_tool", tool: tool %>
+        <% end %>
+      </ul>
+      <%= link_to 'View All Tools', tools_path(order: 'created_at'), class: 'button radius expand' %>
+    </div>
+  </div>
+</div>
