@@ -11,3 +11,13 @@
 .recently_added_tools {
   @include grid-column($columns: 4);
 }
+
+@media #{$small-down} {
+  .tools_info {
+    @include grid-column($columns: 12);
+  }
+
+  .recently_added_tools {
+    @include grid-column($columns: 12);
+  }
+}
