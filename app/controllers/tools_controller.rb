@@ -1,4 +1,5 @@
 class ToolsController < ApplicationController
+  before_filter :store_location!, only: [:new]
   before_filter :authenticate_user!, except: [:index, :show, :directory]
   before_filter :assign_tool, only: [:show, :update, :edit, :destroy]
   before_filter :override_search
