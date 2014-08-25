@@ -85,7 +85,7 @@ describe 'api/v1/cookbooks/show' do
   it "displays the url to cookbook's latest version" do
     latest_version_url = json_body['latest_version']
     expect(latest_version_url).
-      to eql('http://test.host/api/v1/cookbooks/redis/versions/2_1_0')
+      to eql('http://test.host/api/v1/cookbooks/redis/versions/2.1.0')
   end
 
   it "displays the cookbook's external url" do

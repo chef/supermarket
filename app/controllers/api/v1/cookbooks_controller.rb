@@ -1,6 +1,6 @@
 class Api::V1::CookbooksController < Api::V1Controller
-  before_filter :init_params, except: [:show]
-  before_filter :assign_cookbook, only: [:show, :foodcritic]
+  before_filter :init_params, only: [:index, :search]
+  before_filter :assign_cookbook, only: [:show, :foodcritic, :contingent]
 
   #
   # GET /api/v1/cookbooks
@@ -39,10 +39,6 @@ class Api::V1::CookbooksController < Api::V1Controller
   #   GET /api/v1/cookbooks/redis
   #
   def show
-    @latest_cookbook_version_url = api_v1_cookbook_version_url(
-      @cookbook, @cookbook.latest_cookbook_version
-    )
-
     @cookbook_versions_urls = @cookbook.sorted_cookbook_versions.map do |version|
       api_v1_cookbook_version_url(@cookbook, version)
     end
@@ -77,6 +73,20 @@ class Api::V1::CookbooksController < Api::V1Controller
     ).offset(@start).limit(@items)
 
     @total = @results.count(:all)
+  end
+
+  #
+  # GET /api/v1/cookbooks/:cookbook/contingent
+  #
+  # Returns cookbooks that are contingent upon the specified cookbook. If there
+  # are none, returns an empty array. If the specified cookbook can't be found,
+  # returns a 404.
+  #
+  # @example
+  #   GET /api/v1/cookbooks/apt/contingent
+  #
+  def contingent
+    @contingents = @cookbook.contingents
   end
 
   private

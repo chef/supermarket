@@ -1,4 +1,4 @@
-json.partial! 'cookbook'
+json.partial! 'cookbook', cookbook: @cookbook
 json.deprecated @cookbook.deprecated
 json.foodcritic_failure @cookbook.foodcritic_failure
 if @cookbook.deprecated? && @cookbook.replacement.present?
