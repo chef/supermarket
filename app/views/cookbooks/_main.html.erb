@@ -69,11 +69,15 @@
       <%= render_document(version.readme, version.readme_extension) %>
     </div>
     <div class="content" id="dependencies">
-      <table>
-        <tbody>
-          <%= render partial: 'cookbooks/dependency', collection: cookbook.cookbook_dependencies %>
-        </tbody>
-      </table>
+      <% if cookbook.cookbook_dependencies.present? %>
+        <table>
+          <tbody>
+            <%= render partial: 'cookbooks/dependency', collection: cookbook.cookbook_dependencies %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>This cookbook has no specified dependencies.</p>
+      <% end %>
     </div>
     <% if version.changelog %>
       <div class="content" id="changelog">
