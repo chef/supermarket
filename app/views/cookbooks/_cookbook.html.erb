@@ -58,8 +58,8 @@
       <ul class="cookbook_stats">
         <li>
           <i class="fa fa-inbox"></i>
-          <%= cookbook.download_count %>
-          <h5><%= "Download".pluralize(cookbook.download_count) %></h5>
+          <%= number_with_delimiter(cookbook.download_count) %>
+          <h5>Total Downloads</h5>
         </li>
         <%= render 'cookbooks/follow_button_list', cookbook: cookbook %>
       </ul>
