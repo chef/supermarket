@@ -40,7 +40,9 @@ module CookbooksHelper
     fa_icon = content_tag(:i, '', class: 'fa fa-users')
     followers_count = cookbook.cookbook_followers_count.to_s
     followers_count_span = content_tag(
-      :span, followers_count, class: 'cookbook_follow_count'
+      :span,
+      number_with_delimiter(followers_count),
+      class: 'cookbook_follow_count'
     )
     follow_html = fa_icon + 'Follow' + followers_count_span
     unfollow_html = fa_icon + 'Unfollow' + followers_count_span
