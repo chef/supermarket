@@ -58,6 +58,11 @@ pre {
     size: rem-calc(16);
     weight: $normal;
   }
+
+  code {
+    padding: rem-calc(0 0);
+  }
+
   line-height: rem-calc(24);
   padding: rem-calc(8 20);
 }
