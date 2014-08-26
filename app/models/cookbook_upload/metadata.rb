@@ -43,12 +43,23 @@ class CookbookUpload
     #   @example
     #     metadata.platforms == { 'ubuntu' => '>= 0.0.0' }
     #
+
     #
     # @!attribute [r] dependencies
     #   @return [Hash<String,String>] The cookbook dependencies
     #
     #   @example
     #     metadata.dependencies == { 'apt' => '~> 0.0.2' }
+    #
+
+    #
+    # @!attribute [r] source_url
+    #   @return [String] The cookbook source url
+    #
+
+    #
+    # @!attribute [r] issues_url
+    #   @return [String] The cookbook issues url
     #
 
     values do
@@ -58,6 +69,8 @@ class CookbookUpload
       attribute :license, String, default: ''
       attribute :platforms, Hash[String => String]
       attribute :dependencies, Hash[String => String]
+      attribute :source_url, String, default: ''
+      attribute :issues_url, String, default: ''
     end
   end
 end

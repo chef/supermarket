@@ -8,7 +8,7 @@ describe 'DELETE /api/v1/cookbooks/:cookbook' do
       {
         'name' => 'redis-test',
         'maintainer' => user.username,
-        'external_url' => nil,
+        'external_url' => '',
         'description' => 'Installs/Configures redis-test',
         'average_rating' => nil,
         'category' => 'Other',

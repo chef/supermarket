@@ -253,6 +253,8 @@ class Cookbook < ActiveRecord::Base
       )
 
       self.updated_at = Time.now
+      self.source_url = metadata.source_url
+      self.issues_url = metadata.issues_url
       save!
 
       metadata.platforms.each do |name, version_constraint|
