@@ -175,4 +175,69 @@ describe Api::V1::CookbookUploadsController do
       end
     end
   end
+
+  describe '#destroy_version' do
+    let!(:cookbook) { create(:cookbook) }
+    let!(:cookbook_version) { create(:cookbook_version, cookbook: cookbook) }
+    let(:unshare_version) do
+      delete(
+        :destroy_version,
+        cookbook: cookbook.name,
+        version: cookbook_version.version,
+        format: :json
+      )
+    end
+
+    context 'when a cookbook and cookbook version exists' do
+      before { auto_authorize!(Cookbook, 'destroy') }
+
+      it 'sends the cookbook to the view' do
+        unshare_version
+        expect(assigns[:cookbook]).to eql(cookbook)
+      end
+
+      it 'sends the cookbook version to the view' do
+        unshare_version
+        expect(assigns[:cookbook_version]).to eql(cookbook_version)
+      end
+
+      it 'responds with a 200' do
+        unshare_version
+        expect(response.status.to_i).to eql(200)
+      end
+
+      it 'destroys a cookbook version' do
+        expect { unshare_version }.to change(CookbookVersion, :count).by(-1)
+      end
+
+      it 'regenerates the universe cache' do
+        expect(UniverseCache).to receive(:flush)
+        unshare_version
+      end
+    end
+
+    context 'when the user is not authorized to destroy the cookbook veresion' do
+      it 'returns a 403' do
+        unshare_version
+
+        expect(response.status.to_i).to eql(403)
+      end
+    end
+
+    context 'when a cookbook does not exist' do
+      it 'responds with a 404' do
+        delete :destroy_version, cookbook: 'mamimi', version: '1.0.0', format: :json
+
+        expect(response.status.to_i).to eql(404)
+      end
+    end
+
+    context 'when a cookbook version does not exist' do
+      it 'responds with a 404' do
+        delete :destroy_version, cookbook: cookbook, version: '1.0.0', format: :json
+
+        expect(response.status.to_i).to eql(404)
+      end
+    end
+  end
 end

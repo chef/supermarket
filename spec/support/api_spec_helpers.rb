@@ -59,6 +59,27 @@ module ApiSpecHelpers
     delete cookbook_path, {}, header
   end
 
+  #
+  # Unshares a cookbook version with a given name using the /api/v1/cookbooks/:cookbook/versions/:version API.
+  #
+  # @param cookbook_name [String] the name of the cookbook version to be unshared
+  # @param cookbook_version [String] the version of the cookbook to be unshared
+  # @param user [User] the user that's unsharing the cookbook version
+  #
+  def unshare_cookbook_version(cookbook_name, version, user)
+    cookbook_version_path = "/api/v1/cookbooks/#{cookbook_name}/versions/#{version}"
+
+    header = Mixlib::Authentication::SignedHeaderAuth.signing_object(
+      http_method: 'delete',
+      path: cookbook_version_path,
+      user_id: user.username,
+      timestamp: Time.now.utc.iso8601,
+      body: ''
+    ).sign(private_key)
+
+    delete cookbook_version_path, {}, header
+  end
+
   def json_body
     JSON.parse(response.body)
   end
