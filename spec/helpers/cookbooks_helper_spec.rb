@@ -8,7 +8,7 @@ describe CookbooksHelper do
       version = create(:cookbook_version, cookbook: apt, version: '10.10.10')
       output = helper.contingent_link(apt.reload)
       expect(output).to match(/apt 10\.10\.10/)
-      expect(output).to match(/\/cookbooks\/apt/)
+      expect(output).to match(%r{/cookbooks/apt})
     end
   end
 
