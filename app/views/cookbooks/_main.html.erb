@@ -51,7 +51,6 @@
   <dl class="tabs" data-tab data-options="deep_linking:true">
     <dd class="active"><a href="#readme">README</a></dd>
     <dd><a href="#dependencies" rel="cookbook_dependencies">Dependencies</a></dd>
-    <dd><a href="#contingents" rel="cookbook_contingents">Contingents</a></dd>
     <% if version.changelog %>
       <dd><a href="#changelog" rel="changelog">Changelog</a></dd>
     <% end %>
@@ -70,6 +69,7 @@
       <%= render_document(version.readme, version.readme_extension) %>
     </div>
     <div class="content" id="dependencies">
+      <h3 class="dependent-header">Dependent cookbooks</h3>
       <% if cookbook.cookbook_dependencies.present? %>
         <table>
           <tbody>
@@ -79,8 +79,8 @@
       <% else %>
         <p>This cookbook has no specified dependencies.</p>
       <% end %>
-    </div>
-    <div class="content" id="contingents">
+
+      <h3 class="dependent-header">Contingent cookbooks</h3>
       <% if cookbook.contingents.present? %>
         <table>
           <tbody>
