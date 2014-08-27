@@ -17,7 +17,7 @@
     <% end %>
   </small>
   <h1 class="heading">
-    <%= cookbook.name %>
+    <span itemprop="name"><%= cookbook.name %></span>
     <small class="version_dropdown">
       <%= link_to '#', 'data-dropdown' => 'versions', class: 'button radius tiny dropdown secondary', rel: 'cookbook_versions' do %>
         <span class="versions_count">
@@ -44,7 +44,7 @@
     <%= render 'cookbooks/follow_button_show', cookbook: @cookbook %>
   </h1>
 
-  <p><%= cookbook.description %></p>
+  <p itemprop="description"><%= cookbook.description %></p>
 
   <%= render 'cookbooks/installs', cookbook: cookbook %>
 

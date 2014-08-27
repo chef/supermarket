@@ -1,16 +1,16 @@
-<li>
+<li itemscope itemtype="http://schema.org/Code">
   <div class="header">
     <div class="header-content">
       <h2 class="title">
-        <%= link_to tool.name, tool, rel: 'view_tool' %>
+        <%= link_to tool.name, tool, rel: 'view_tool', itemprop: 'name' %>
       </h2>
       <span class="meta">
-        <i class="fa fa-wrench"></i> <%= tool.type.titleize %>
+        <i class="fa fa-wrench"></i> <span itemprop="sampleType"><%= tool.type.titleize %></span>
       </span>
       <div class="owner">
         <%= link_to tool.owner do %>
           <%= gravatar_for tool.owner, size: 128 %>
-          <h5><%= tool.maintainer %></h5>
+          <h5 itemprop="author"><%= tool.maintainer %></h5>
         <% end %>
       </div>
     </div>
@@ -18,14 +18,14 @@
   <% if tool.description.present? || tool.instructions.present? %>
     <div class="body">
       <div class="body-content">
-        <%= simple_format tool.description %>
+        <%= simple_format tool.description, itemprop: 'description' %>
       </div>
     </div>
   <% end %>
   <div class="bottom">
     <div class="bottom-content">
       <% if tool.source_url.present? %>
-        <%= link_to 'View Source', tool.source_url, class: 'button tiny radius secondary', target: '_blank' %>
+        <%= link_to 'View Source', tool.source_url, class: 'button tiny radius secondary', target: '_blank', itemprop: 'codeRepository' %>
       <% end %>
 
       <% if policy(tool).update? %>

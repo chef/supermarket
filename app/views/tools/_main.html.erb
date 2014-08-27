@@ -1,10 +1,10 @@
 <div class="main" data-equalizer-watch>
   <h1 class="heading">
-    <%= tool.name %>
-    <small><%= tool.type.titleize %></small>
+    <span itemprop="name"><%= tool.name %></span>
+    <small itemprop="sampleType"><%= tool.type.titleize %></small>
   </h1>
 
-  <%= auto_link(simple_format(tool.description)) %>
+  <%= auto_link(simple_format(tool.description, itemprop: 'description')) %>
 
   <% if tool.instructions.present? %>
     <h3>Install & Usage Instructions</h3>

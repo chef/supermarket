@@ -1,7 +1,7 @@
 <%= provide(:title, @tool.name) %>
 <%= provide(:description, @tool.name) %>
 
-<div class="page resource tool_show" data-equalizer>
+<div class="page resource tool_show" data-equalizer itemscope itemtype="http://schema.org/Code">
   <%= render 'main', tool: @tool %>
   <%= render 'sidebar', tool: @tool, collaborators: @collaborators, other_tools: @other_tools %>
 </div>
