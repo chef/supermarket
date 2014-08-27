@@ -125,6 +125,28 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
     )
   end
 
+  #
+  # DELETE /api/v1/cookbooks/:cookbook/versions/:version
+  #
+  # Destroys the specified cookbook version. If it does not exist, return a 404.
+  #
+  # @example
+  #   DELETE /api/v1/cookbooks/redis/versions/1.0.0
+  #
+  def destroy_version
+    @cookbook = Cookbook.with_name(params[:cookbook]).first!
+    @cookbook_version = @cookbook.get_version!(params[:version])
+
+    begin
+      authorize! @cookbook, :destroy?
+    rescue
+      error({}, 403)
+    else
+      @cookbook_version.destroy
+      UniverseCache.flush
+    end
+  end
+
   private
 
   #
