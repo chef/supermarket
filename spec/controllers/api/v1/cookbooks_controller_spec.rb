@@ -208,7 +208,8 @@ describe Api::V1::CookbooksController do
       it 'sends the contingents to the view' do
         get :contingent, cookbook: 'slow_cooking', format: :json
 
-        expect(assigns[:contingents]).to include(sashimi)
+        contingents = assigns[:contingents]
+        expect(contingents.first.cookbook_version.cookbook).to eql(sashimi)
       end
     end
 

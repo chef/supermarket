@@ -17,9 +17,10 @@ describe 'GET /api/v1/cookbooks/:cookbook/contingent' do
     end
 
     it 'returns the cookbooks' do
-      expect(json_body.size).to eql(2)
-      expect(json_body.first['name']).to eql('apache')
-      expect(json_body.last['name']).to eql('nginx')
+      contingents = json_body['contingents']
+      expect(contingents.size).to eql(2)
+      expect(contingents.first['name']).to eql('apache')
+      expect(contingents.last['name']).to eql('nginx')
     end
   end
 

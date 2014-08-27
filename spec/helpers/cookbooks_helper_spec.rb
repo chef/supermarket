@@ -5,10 +5,12 @@ describe CookbooksHelper do
   describe '#contingent_link' do
     it 'links to a cookbook using the cookbook name and version' do
       apt = create(:cookbook, name: 'apt')
-      version = create(:cookbook_version, cookbook: apt, version: '10.10.10')
-      output = helper.contingent_link(apt.reload)
-      expect(output).to match(/apt 10\.10\.10/)
-      expect(output).to match(%r{/cookbooks/apt})
+      nginx = create(:cookbook, name: 'nginx')
+      version = create(:cookbook_version, cookbook: nginx, version: '10.10.10')
+      dependency = create(:cookbook_dependency, cookbook: apt, name: 'apt', cookbook_version: version)
+      output = helper.contingent_link(dependency)
+      expect(output).to match(/nginx 10\.10\.10/)
+      expect(output).to match(%r{/cookbooks/nginx})
     end
   end
 

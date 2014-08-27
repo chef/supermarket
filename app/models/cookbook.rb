@@ -264,15 +264,14 @@ class Cookbook < ActiveRecord::Base
   end
 
   #
-  # Returns all of the Cookbooks that are contingent upon this one.
+  # Returns all of the CookbookDependency records that are contingent upon this one.
   #
-  # @return [Array<Cookbook>]
+  # @return [Array<CookbookDependency>]
   #
   def contingents
     CookbookDependency.includes(cookbook_version: :cookbook)
       .where(cookbook_id: id)
-      .order('name')
-      .map { |cd| cd.cookbook_version.cookbook }
+      .sort_by { |cd| cd.cookbook_version.cookbook.name }
   end
 
   #

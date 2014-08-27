@@ -130,9 +130,9 @@ describe Cookbook do
   end
 
   describe '#contingents' do
-    let(:apt) { create(:cookbook) }
-    let(:nginx) { create(:cookbook) }
-    let(:apache) { create(:cookbook) }
+    let(:apt) { create(:cookbook, name: 'apt') }
+    let(:nginx) { create(:cookbook, name: 'nginx') }
+    let(:apache) { create(:cookbook, name: 'apache') }
 
     before do
       create(:cookbook_dependency, cookbook: apt, cookbook_version: nginx.latest_cookbook_version)
@@ -140,7 +140,8 @@ describe Cookbook do
     end
 
     it 'knows which cookbooks are contingent upon this one' do
-      expect(apt.contingents).to eql([apache, nginx])
+      cookbooks = apt.contingents.map { |c| c.cookbook_version.cookbook }
+      expect(cookbooks).to eql([apache, nginx])
     end
   end
 

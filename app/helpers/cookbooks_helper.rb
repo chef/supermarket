@@ -15,14 +15,15 @@ module CookbooksHelper
   #
   # Show the contingent cookbook name and version
   #
-  # @param contingent [Cookbook]
+  # @param contingent [CookbookDependency]
   #
   # @return [String] the link to the contingent cookbook
   #
-  def contingent_link(contingent)
-    version = contingent.latest_cookbook_version
-    txt = "#{contingent.name} #{version.version}"
-    link_to(txt, cookbook_path(contingent))
+  def contingent_link(dependency)
+    version = dependency.cookbook_version
+    cookbook = version.cookbook
+    txt = "#{cookbook.name} #{version.version}"
+    link_to(txt, cookbook_path(cookbook))
   end
 
   #
