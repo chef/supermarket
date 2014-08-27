@@ -1,6 +1,6 @@
 <li id="<%= cookbook.name %>-follow-count">
   <i class="fa fa-group"></i>
-  <%= number_with_delimiter(cookbook.cookbook_followers_count) %>
+  <span itemprop="interactionCount"><%= number_with_delimiter(cookbook.cookbook_followers_count) %></span>
   <h5><%= "Follower".pluralize(cookbook.cookbook_followers_count) %></h5>
 </li>
 <li id="<%= cookbook.name %>-follow-button">
