@@ -30,11 +30,11 @@
   <div class="tabs-content">
     <% if current_user && current_user.install_preference.present? %>
       <div class="content <%= current_user.install_preference == 'berkshelf' ? 'active' : '' %>" id="berkshelf">
-        <pre class="install">cookbook '<%= cookbook.name %>', '~&gt; <%= cookbook.latest_cookbook_version.version %>'</pre>
+        <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>'</pre>
       </div>
 
       <div class="content <%= current_user.install_preference == 'librarian' ? 'active' : '' %>" id="librarian">
-        <pre class="install">cookbook '<%= cookbook.name %>', '~&gt; <%= cookbook.latest_cookbook_version.version %>'</pre>
+        <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>'</pre>
       </div>
 
       <div class="content <%= current_user.install_preference == 'knife' ? 'active' : '' %>" id="knife">
@@ -43,11 +43,11 @@
       </div>
     <% else %>
       <div class="content active" id="berkshelf">
-        <pre class="install">cookbook '<%= cookbook.name %>', '~&gt; <%= cookbook.latest_cookbook_version.version %>'</pre>
+        <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>'</pre>
       </div>
 
       <div class="content" id="librarian">
-        <pre class="install">cookbook '<%= cookbook.name %>', '~&gt; <%= cookbook.latest_cookbook_version.version %>'</pre>
+        <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>'</pre>
       </div>
 
       <div class="content" id="knife">
