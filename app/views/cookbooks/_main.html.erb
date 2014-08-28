@@ -46,7 +46,7 @@
 
   <p itemprop="description"><%= cookbook.description %></p>
 
-  <%= render 'cookbooks/installs', cookbook: cookbook %>
+  <%= render 'cookbooks/installs', cookbook: cookbook, version: version %>
 
   <dl class="tabs" data-tab data-options="deep_linking:true">
     <dd class="active"><a href="#readme">README</a></dd>
