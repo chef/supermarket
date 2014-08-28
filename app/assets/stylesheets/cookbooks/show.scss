@@ -20,6 +20,36 @@
     }
   }
 
+  .accordion.contingents {
+    a {
+      margin-top: rem-calc(10);
+    }
+
+    .content {
+      padding: 0;
+    }
+
+    .fa {
+      margin-left: rem-calc(10);
+    }
+
+    .fa-plus {
+      display: inline;
+    }
+
+    .fa-minus {
+      display: none;
+    }
+
+    .active .fa-plus {
+      display: none;
+    }
+
+    .active .fa-minus {
+      display: inline;
+    }
+  }
+
   .tabs {
     .fa {
       margin-left: rem-calc(5);

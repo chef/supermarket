@@ -39,13 +39,7 @@
 Foundation.global.namespace = '';
 
 $(function(){
-  $(document).foundation({
-    tab: {
-      callback: function(tab) {
-        $(document).foundation('equalizer');
-      }
-    }
-  });
+  $(document).foundation();
 
   // Ensure client side validation isn't stronger
   // than serverside validation.
