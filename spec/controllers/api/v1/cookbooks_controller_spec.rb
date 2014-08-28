@@ -162,12 +162,54 @@ describe Api::V1::CookbooksController do
         expect(assigns[:cookbook_versions_urls]).to include('http://test.host/api/v1/cookbooks/sashimi/versions/2.1.0')
         expect(assigns[:cookbook_versions_urls]).to include('http://test.host/api/v1/cookbooks/sashimi/versions/1.1.0')
       end
+    end
 
-      it 'sends the latest_cookbook_version_url to the view' do
-        get :show, cookbook: 'sashimi', format: :json
+    context 'when a cookbook does not exist' do
+      it 'responds with a 404' do
+        get :show, cookbook: 'mamimi', format: :json
 
-        expect(assigns[:latest_cookbook_version_url]).
-          to eql('http://test.host/api/v1/cookbooks/sashimi/versions/2.1.0')
+        expect(response.status.to_i).to eql(404)
+      end
+    end
+  end
+
+  describe '#contingent' do
+    context 'when a cookbook exists' do
+      before do
+        create(
+          :cookbook_version,
+          cookbook: sashimi,
+          version: '1.1.0',
+          license: 'MIT'
+        )
+
+        v2 = create(
+          :cookbook_version,
+          cookbook: sashimi,
+          version: '2.1.0',
+          license: 'MIT'
+        )
+
+        create(:cookbook_dependency, cookbook: slow_cooking, cookbook_version: v2)
+      end
+
+      it 'responds with a 200' do
+        get :contingent, cookbook: 'sashimi', format: :json
+
+        expect(response.status.to_i).to eql(200)
+      end
+
+      it 'sends the cookbook to the view' do
+        get :contingent, cookbook: 'sashimi', format: :json
+
+        expect(assigns[:cookbook]).to eql(sashimi)
+      end
+
+      it 'sends the contingents to the view' do
+        get :contingent, cookbook: 'slow_cooking', format: :json
+
+        contingents = assigns[:contingents]
+        expect(contingents.first.cookbook_version.cookbook).to eql(sashimi)
       end
     end
 

@@ -2,6 +2,27 @@ require 'spec_helper'
 require 'nokogiri'
 
 describe CookbooksHelper do
+  describe '#contingent_link' do
+    it 'links to a cookbook using the cookbook name and version' do
+      apt = create(:cookbook, name: 'apt')
+      nginx = create(:cookbook, name: 'nginx')
+      version = create(:cookbook_version, cookbook: nginx, version: '10.10.10')
+      dependency = create(:cookbook_dependency, cookbook: apt, name: 'apt', cookbook_version: version)
+      output = helper.contingent_link(dependency)
+      expect(output).to match(/nginx 10\.10\.10/)
+      expect(output).to match(%r{/cookbooks/nginx})
+    end
+  end
+
+  describe '#latest_cookbook_version_url' do
+    it 'should return an api url to the latest cookbook version' do
+      apt = create(:cookbook, name: 'apt')
+      version = create(:cookbook_version, cookbook: apt, version: '10.10.10')
+      output = helper.latest_cookbook_version_url(apt.reload)
+      expect(output).to eql('http://test.host/api/v1/cookbooks/apt/versions/10.10.10')
+    end
+  end
+
   describe '#follow_button_for' do
     it "returns a follow button if current user doesn't follow the given cookbook" do
       cookbook = double(

@@ -264,6 +264,17 @@ class Cookbook < ActiveRecord::Base
   end
 
   #
+  # Returns all of the CookbookDependency records that are contingent upon this one.
+  #
+  # @return [Array<CookbookDependency>]
+  #
+  def contingents
+    CookbookDependency.includes(cookbook_version: :cookbook)
+      .where(cookbook_id: id)
+      .sort_by { |cd| cd.cookbook_version.cookbook.name }
+  end
+
+  #
   # The username of this cookbook's owner
   #
   # @return [String]

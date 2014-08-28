@@ -1,5 +1,32 @@
 module CookbooksHelper
   #
+  # Returns a URL for the latest version of the given cookbook
+  #
+  # @param cookbook [Cookbook]
+  #
+  # @return [String] the URL
+  #
+  def latest_cookbook_version_url(cookbook)
+    api_v1_cookbook_version_url(
+      cookbook, cookbook.latest_cookbook_version
+    )
+  end
+
+  #
+  # Show the contingent cookbook name and version
+  #
+  # @param contingent [CookbookDependency]
+  #
+  # @return [String] the link to the contingent cookbook
+  #
+  def contingent_link(dependency)
+    version = dependency.cookbook_version
+    cookbook = version.cookbook
+    txt = "#{cookbook.name} #{version.version}"
+    link_to(txt, cookbook_path(cookbook))
+  end
+
+  #
   # If we have a linked cookbook for this dependency, allow the user to get to
   # it. Otherwise, just show the name
   #

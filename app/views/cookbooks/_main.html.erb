@@ -69,6 +69,7 @@
       <%= render_document(version.readme, version.readme_extension) %>
     </div>
     <div class="content" id="dependencies">
+      <h3 class="dependent-header">Dependent cookbooks</h3>
       <% if cookbook.cookbook_dependencies.present? %>
         <table>
           <tbody>
@@ -77,6 +78,17 @@
         </table>
       <% else %>
         <p>This cookbook has no specified dependencies.</p>
+      <% end %>
+
+      <h3 class="dependent-header">Contingent cookbooks</h3>
+      <% if cookbook.contingents.present? %>
+        <table>
+          <tbody>
+            <%= render partial: 'cookbooks/contingent', collection: cookbook.contingents %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>There are no cookbooks that are contingent upon this one.</p>
       <% end %>
     </div>
     <% if version.changelog %>
