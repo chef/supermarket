@@ -82,11 +82,23 @@
 
       <h3 class="dependent-header">Contingent cookbooks</h3>
       <% if cookbook.contingents.present? %>
-        <table>
-          <tbody>
-            <%= render partial: 'cookbooks/contingent', collection: cookbook.contingents %>
-          </tbody>
-        </table>
+        <dl class="accordion contingents" data-accordion>
+          <% cookbook.contingents.group_by { |c| c.cookbook_version.cookbook.name }.each do |cookbook, contingents| %>
+            <dd class="accordion-navigation">
+              <a href="#panel-<%= cookbook %>">
+                <%= cookbook %>
+                <span class="right">Applicable Versions <i class="fa fa-plus"></i><i class="fa fa-minus"></i></span>
+              </a>
+              <div id="panel-<%= cookbook %>" class="content">
+                <table>
+                  <tbody>
+                    <%= render partial: 'cookbooks/contingent', collection: contingents %>
+                  </tbody>
+                </table>
+              </div>
+            </dd>
+          <% end %>
+        </dl>
       <% else %>
         <p>There are no cookbooks that are contingent upon this one.</p>
       <% end %>
