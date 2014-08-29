@@ -271,7 +271,12 @@ class Cookbook < ActiveRecord::Base
   def contingents
     CookbookDependency.includes(cookbook_version: :cookbook)
       .where(cookbook_id: id)
-      .sort_by { |cd| cd.cookbook_version.cookbook.name }
+      .sort_by do |cd|
+        [
+          cd.cookbook_version.cookbook.name,
+          Semverse::Version.new(cd.cookbook_version.version)
+        ]
+      end
   end
 
   #
