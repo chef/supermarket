@@ -4,6 +4,8 @@ AllCops:
     - db/**/*
     - vendor/**/*
     - node_modules/**/*
+HashSyntax:
+  Enabled: false
 IfUnlessModifier:
   Enabled: false
 Loop:
