@@ -7,9 +7,9 @@ Rails.application.config.middleware.use(OmniAuth::Builder) do
 
   # Use an alternate URL for the Chef OAuth2 service if one is provided
   client_options = {
-    :ssl => {
-      :verify => ENV['CHEF_OAUTH2_VERIFY_SSL'].present? &&
-                 ENV['CHEF_OAUTH2_VERIFY_SSL'] != 'false'
+    ssl: {
+      verify: ENV['CHEF_OAUTH2_VERIFY_SSL'].present? &&
+              ENV['CHEF_OAUTH2_VERIFY_SSL'] != 'false'
     }
   }
 
