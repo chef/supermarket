@@ -5,7 +5,7 @@ AllCops:
     - vendor/**/*
     - node_modules/**/*
 HashSyntax:
-  Enabled: false
+  Enabled: true
 IfUnlessModifier:
   Enabled: false
 Loop:
