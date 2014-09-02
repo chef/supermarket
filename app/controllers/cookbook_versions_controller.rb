@@ -9,7 +9,7 @@ class CookbookVersionsController < ApplicationController
   def download
     CookbookVersion.increment_counter(:web_download_count, @version.id)
     Cookbook.increment_counter(:web_download_count, @cookbook.id)
-    STATSD.increment 'web_downloads' if defined? STATSD
+    Supermarket::StatsD.increment('web_downloads')
 
     redirect_to @version.tarball.url
   end
