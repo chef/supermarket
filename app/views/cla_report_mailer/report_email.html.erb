@@ -1,0 +1,4 @@
+<h1>CLA Report for <%= @cla_report.created_at.to_s(:longish) %></h1>
+<p>A new CLA report was generated on <%= @cla_report.created_at.to_s(:longish) %> click the button below to download the report.</p>
+
+<%= link_to 'Download Report', @cla_report.csv.url, class: 'button' %>

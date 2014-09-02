@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140813155831) do
+ActiveRecord::Schema.define(version: 20140902191042) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -69,6 +69,19 @@ ActiveRecord::Schema.define(version: 20140813155831) do
     t.string   "version"
     t.text     "head"
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cla_reports", force: true do |t|
+    t.integer  "first_ccla_id"
+    t.integer  "last_ccla_id"
+    t.integer  "first_icla_id"
+    t.integer  "last_icla_id"
+    t.string   "csv_file_name"
+    t.string   "csv_content_type"
+    t.integer  "csv_file_size"
+    t.datetime "csv_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -60,6 +60,10 @@ if Rails.env.development?
       CollaboratorMailer.added_email(collaborator)
     end
 
+    def cla_report_email
+      ClaReportMailer.report_email(cla_report)
+    end
+
     private
 
     def organization
@@ -96,6 +100,10 @@ if Rails.env.development?
 
     def collaborator
       Collaborator.where(user: user, resourceable: cookbook).first_or_create!
+    end
+
+    def cla_report
+      ClaReport.generate || ClaReport.first
     end
   end
 end
