@@ -24,7 +24,7 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
 
     CookbookVersion.increment_counter(:api_download_count, @cookbook_version.id)
     Cookbook.increment_counter(:api_download_count, @cookbook.id)
-    STATSD.increment 'api_downloads' if defined? STATSD
+    Supermarket::StatsD.increment('api_downloads')
 
     redirect_to @cookbook_version.tarball.url
   end

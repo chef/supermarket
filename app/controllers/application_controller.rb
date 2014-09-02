@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include Supermarket::Authorization
   include Supermarket::Authentication
   include Supermarket::LocationStorage
+  include Supermarket::StatsD
 
   rescue_from(
     NotAuthorizedError,
