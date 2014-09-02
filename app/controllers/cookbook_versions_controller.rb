@@ -9,13 +9,7 @@ class CookbookVersionsController < ApplicationController
   def download
     CookbookVersion.increment_counter(:web_download_count, @version.id)
     Cookbook.increment_counter(:web_download_count, @cookbook.id)
-
-    SegmentIO.track_server_event(
-      'cookbook_version_web_download',
-      current_user,
-      cookbook: @cookbook.name,
-      version: @version.version
-    )
+    STATSD.increment 'web_downloads' if defined? STATSD
 
     redirect_to @version.tarball.url
   end
