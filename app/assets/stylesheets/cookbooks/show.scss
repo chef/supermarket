@@ -91,9 +91,8 @@
   #readme {
     padding-top: rem-calc(20);
 
-    p, ul, ol, h1, h2, h3, h4, h5, h6, h7, h8 {
+    p, ul, ol, li, h1, h2, h3, h4, h5, h6, h7, h8 {
       color: $body-font-color;
-      font-size: 90%;
     }
 
     ul {
@@ -108,14 +107,17 @@
 
     h2 {
       font-size: rem-calc(30);
+      margin-bottom: rem-calc(14);
     }
 
     h3 {
       font-size: rem-calc(24);
+      margin-bottom: rem-calc(12);
     }
 
     h4 {
       font-size: rem-calc(18);
+      margin-bottom: rem-calc(10);
     }
 
     pre {
