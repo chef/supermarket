@@ -47,8 +47,8 @@ textarea {
 
 code, pre {
   @include border-radius(rem-calc(3));
-  background-color: darken($primary_blue, 5%);
-  color: $silver;
+  background-color: $trinary_gray;
+  color: $body-font-color;
   cursor: text;
   padding: rem-calc(2 5);
 }
