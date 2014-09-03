@@ -20,6 +20,7 @@ module SupportedPlatformsHelper
       'mac_os_x' => 'G',
       'mac_os_x_server' => 'G',
       'oracle' => 'H',
+      'opensuse' => 'L',
       'redhat' => 'I',
       'scientific' => 'J',
       'smartos' => 'K',

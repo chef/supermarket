@@ -7,5 +7,11 @@ describe SupportedPlatformsHelper do
 
       expect(helper.supported_platform_icon(platform)).to eql('M')
     end
+
+    it 'returns L for opensuse' do
+      platform = SupportedPlatform.new(name: 'opensuse')
+
+      expect(helper.supported_platform_icon(platform)).to eql('L')
+    end
   end
 end
