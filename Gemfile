@@ -37,7 +37,11 @@ gem 'nokogiri'
 gem 'jbuilder'
 gem 'pg_search'
 gem 'paperclip'
-gem 'virtus', require: false
+
+# Pin virtus to a version before the handling of nil in collection coercion was
+# fixed.
+gem 'virtus', '1.0.2', require: false
+
 gem 'kaminari'
 gem 'validate_url'
 gem 'chef', '~> 11.10.4', require: false

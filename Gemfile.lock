@@ -429,11 +429,11 @@ GEM
       activemodel (>= 3.0.0)
       addressable
     vcr (2.9.2)
-    virtus (1.0.3)
+    virtus (1.0.2)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
-      descendants_tracker (~> 0.0, >= 0.0.3)
-      equalizer (~> 0.0, >= 0.0.9)
+      descendants_tracker (~> 0.0.3)
+      equalizer (~> 0.0.9)
     webmock (1.18.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -505,7 +505,7 @@ DEPENDENCIES
   utf8-cleaner
   validate_url
   vcr
-  virtus
+  virtus (= 1.0.2)
   webmock
   yajl-ruby
   yard
