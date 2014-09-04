@@ -25,6 +25,7 @@ core functionality of Supermarket.
   you use.
 * `STATSD_URL` and `STATSD_PORT` may be used to configure a StatsD server which Supermarket
   will report various statistics to, currently API and web download counts.
+* `CLA_REPORT_EMAIL` an email address where a monthly report of new CLA signers will be sent.
 
   **NOTE** oc-id is still a work-in-progress; as such, you may find that you are unable to register an application. If this is the case, see [#425](https://github.com/opscode/supermarket/issues/550) for a discussion on how to bypass OAuth for now.
 * `CCLA_VERSION` and `ICLA_VERSION` set the version of the current CCLA and

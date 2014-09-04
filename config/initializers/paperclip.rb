@@ -1,5 +1,5 @@
 Paperclip.interpolates(:compatible_id) do |attachment, _style|
-  attachment.instance.legacy_id || attachment.instance.id
+  attachment.instance.try(:legacy_id) || attachment.instance.id
 end
 
 ':class/:attachment/:compatible_id/:style/:basename.:extension'.tap do |path|
