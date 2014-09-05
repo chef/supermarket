@@ -24,3 +24,5 @@ RedundantBegin:
   Enabled: false
 EachWithObject:
   Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false

@@ -4,7 +4,7 @@ ruby '2.0.0'
 # Override the Bundler :github shortcut to use HTTPS instead of the git protocol
 # Note: Version 2.x of Bundler should do this by default
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
@@ -15,7 +15,7 @@ gem 'omniauth-github'
 
 # Use GitHub since omniauth-chef-oauth2 is not released on RubyGems
 gem 'omniauth-chef-oauth2',
-  git: 'https://github.com/opscode/omniauth-chef-oauth2.git'
+    git: 'https://github.com/opscode/omniauth-chef-oauth2.git'
 
 gem 'pg'
 gem 'redcarpet' # markdown parsing
@@ -82,8 +82,9 @@ group :test do
   # To prevent the validates_uniqueness matcher from raising a chef version
   # constraint error this pins shoulda-matchers at a commit where setting
   # default values for scopes was reverted
-  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers',
-    ref: '380d18f0621c66a79445ebc6dcc0048fcc969911'
+  gem 'shoulda-matchers',
+      github: 'thoughtbot/shoulda-matchers',
+      ref: '380d18f0621c66a79445ebc6dcc0048fcc969911'
 
   gem 'database_cleaner'
   gem 'vcr', require: false

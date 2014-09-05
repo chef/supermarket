@@ -70,6 +70,6 @@ class Organization < ActiveRecord::Base
       :user
     ).where(
       organization: self
-    ).select { |cr| cr.pending? }
+    ).select(&:pending?)
   end
 end

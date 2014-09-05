@@ -238,7 +238,7 @@ class User < ActiveRecord::Base
       :ccla_signature
     ).where(
       user: self
-    ).select { |cr| cr.pending? }
+    ).select(&:pending?)
   end
 
   #

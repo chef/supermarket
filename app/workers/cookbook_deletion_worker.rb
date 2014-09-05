@@ -19,6 +19,6 @@ class CookbookDeletionWorker
       CookbookMailer.delay.cookbook_deleted_email(cookbook['name'], user.email)
     end
 
-    followers_or_collaborators.each { |f| f.destroy }
+    followers_or_collaborators.each(&:destroy)
   end
 end

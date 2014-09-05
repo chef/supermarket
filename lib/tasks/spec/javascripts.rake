@@ -2,15 +2,15 @@
 namespace :spec do
   namespace :javascripts do
     task :deps do
-      system "cd #{Rails.root} && npm install" unless File.exists?(karma_bin)
+      system "cd #{Rails.root} && npm install" unless File.exist?(karma_bin)
     end
 
-    task :run => :deps do
+    task run: :deps do
       fail unless system "#{karma_command} --singleRun=true --reporters=dots"
     end
 
     desc 'Run JavaScript specs continuously'
-    task :watch => :deps do
+    task watch: :deps do
       system karma_command
     end
 

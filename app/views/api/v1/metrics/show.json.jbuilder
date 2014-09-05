@@ -1,1 +1,1 @@
-json.(@metrics, *@metrics.keys)
+json.call(@metrics, *@metrics.keys)
