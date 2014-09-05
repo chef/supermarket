@@ -1,27 +1,9 @@
 GIT
-  remote: git://github.com/octokit/octokit.rb.git
-  revision: 196a637daf352702d6250188af16b825ecc02abb
+  remote: https://github.com/octokit/octokit.rb.git
+  revision: aa43143cc8aaab0b589ec670b80b18fec6e2a838
   specs:
-    octokit (3.2.0)
+    octokit (3.3.1)
       sawyer (~> 0.5.3)
-
-GIT
-  remote: git://github.com/thoughtbot/shoulda-matchers.git
-  revision: 380d18f0621c66a79445ebc6dcc0048fcc969911
-  ref: 380d18f0621c66a79445ebc6dcc0048fcc969911
-  specs:
-    shoulda-matchers (2.6.1)
-      activesupport (>= 3.0.0)
-
-GIT
-  remote: git://github.com/tobiassvn/sidetiq.git
-  revision: 4f7d7daea3873443b17bf2f3da61619532bbeba2
-  ref: 4f7d7da
-  specs:
-    sidetiq (0.5.0)
-      celluloid (>= 0.14.1)
-      ice_cube (~> 0.11.0)
-      sidekiq (>= 2.16.0)
 
 GIT
   remote: https://github.com/opscode/omniauth-chef-oauth2.git
@@ -30,6 +12,24 @@ GIT
     omniauth-chef-oauth2 (1.0.0)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
+
+GIT
+  remote: https://github.com/thoughtbot/shoulda-matchers.git
+  revision: 380d18f0621c66a79445ebc6dcc0048fcc969911
+  ref: 380d18f0621c66a79445ebc6dcc0048fcc969911
+  specs:
+    shoulda-matchers (2.6.1)
+      activesupport (>= 3.0.0)
+
+GIT
+  remote: https://github.com/tobiassvn/sidetiq.git
+  revision: 4f7d7daea3873443b17bf2f3da61619532bbeba2
+  ref: 4f7d7da
+  specs:
+    sidetiq (0.5.0)
+      celluloid (>= 0.14.1)
+      ice_cube (~> 0.11.0)
+      sidekiq (>= 2.16.0)
 
 GEM
   remote: https://rubygems.org/
@@ -361,7 +361,7 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
-    sawyer (0.5.4)
+    sawyer (0.5.5)
       addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
     semverse (1.1.0)
