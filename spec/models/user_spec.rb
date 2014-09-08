@@ -120,7 +120,7 @@ describe User do
     end
 
     it 'sorts the users by their chef account username alphabetically ascending' do
-      sorted_users_array = [jimmy, jim, tidus].sort_by { |u| u.username }
+      sorted_users_array = [jimmy, jim, tidus].sort_by(&:username)
       authorized_contributors = User.authorized_contributors.select do |user|
         sorted_users_array.include?(user)
       end

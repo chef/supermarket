@@ -72,7 +72,7 @@ class Api::V1::HealthController < Api::V1Controller
         @sidekiq_health.store(:active_workers, workers.size)
       end
 
-      redis_info = Sidekiq.redis { |client| client.info }
+      redis_info = Sidekiq.redis(&:info)
 
       %w(uptime_in_seconds connected_clients used_memory used_memory_peak).each do |key|
         @redis_health.store(key, redis_info.fetch(key, -1).to_i)

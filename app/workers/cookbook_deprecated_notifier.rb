@@ -31,8 +31,6 @@ class CookbookDeprecatedNotifier
     users_to_email << cookbook.collaborator_users
     users_to_email << cookbook.followers
 
-    users_to_email.flatten.uniq.select do |user|
-      user.email_notifications?
-    end
+    users_to_email.flatten.uniq.select(&:email_notifications?)
   end
 end
