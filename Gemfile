@@ -11,11 +11,8 @@ end
 gem 'rails', '~> 4.1.5'
 
 gem 'omniauth'
+gem 'omniauth-chef-oauth2'
 gem 'omniauth-github'
-
-# Use GitHub since omniauth-chef-oauth2 is not released on RubyGems
-gem 'omniauth-chef-oauth2',
-    git: 'https://github.com/opscode/omniauth-chef-oauth2.git'
 
 gem 'pg'
 gem 'redcarpet' # markdown parsing
