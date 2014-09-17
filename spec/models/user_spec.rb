@@ -494,6 +494,34 @@ describe User do
     end
   end
 
+  describe '#name' do
+    it 'joins the first and last name with a space' do
+      user = create(:user, first_name: 'Jimmy', last_name: 'Smith')
+      expect(user.name).to eql('Jimmy Smith')
+    end
+
+    it 'displays the name correctly even if there is only a first name' do
+      user = create(:user, first_name: 'Jimmy', last_name: nil)
+      expect(user.name).to eql('Jimmy')
+    end
+
+    it 'displays the name correctly even if there is only a last name' do
+      user = create(:user, first_name: nil, last_name: 'Smith')
+      expect(user.name).to eql('Smith')
+    end
+
+    it 'displays the name correctly if there are multiple names for first or last name' do
+      user = create(:user, first_name: 'Jimmy Joe', last_name: 'Billy Bob')
+      expect(user.name).to eql('Jimmy Joe Billy Bob')
+    end
+
+    it 'displays the username if there are no names at all' do
+      user = create(:user, first_name: nil, last_name: nil, create_chef_account: false)
+      account = create(:account, username: 'superman', user: user, provider: 'chef_oauth2')
+      expect(user.name).to eql('superman')
+    end
+  end
+
   describe '#update_install_preference' do
     it 'returns true if the user is saved' do
       user = build(:user)

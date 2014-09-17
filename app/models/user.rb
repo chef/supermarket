@@ -140,7 +140,11 @@ class User < ActiveRecord::Base
   # @return [String]
   #
   def name
-    [first_name, last_name].join(' ')
+    if first_name || last_name
+      [first_name, last_name].join(' ').strip
+    else
+      username
+    end
   end
 
   #
