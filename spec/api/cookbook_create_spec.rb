@@ -88,6 +88,24 @@ describe 'POST /api/v1/cookbooks' do
     end
   end
 
+  context 'using integers for dependency versions' do
+    before do
+      share_cookbook('invalid-dependencies.tgz', user)
+    end
+
+    it 'returns a 400' do
+      expect(response.status.to_i).to eql(400)
+    end
+
+    it 'returns an error code' do
+      expect(json_body['error']).to_not be_nil
+    end
+
+    it 'returns an error message' do
+      expect(json_body['error_messages'].first).to match(/not a valid Chef version constraint/)
+    end
+  end
+
   context 'invalid signing headers are sent' do
     before(:each) { share_cookbook('redis-test', user, omitted_headers: ['X-Ops-Sign']) }
 

@@ -14,7 +14,7 @@ class CookbookVersion < ActiveRecord::Base
 
   # Validations
   # --------------------
-  validates :license, presence: true
+  validates :license, presence: true, length: { maximum: 255 }
   validates :description, presence: true
   validates :version, presence: true, uniqueness: { scope: :cookbook }
   validate :semantic_version
