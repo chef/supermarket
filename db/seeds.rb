@@ -118,6 +118,11 @@ if ENV['SEED_CLA_DATA']
   end
 end
 
+#
+# Default category
+#
+category = Category.where(name: 'Other').first_or_create!
+
 if Rails.env.development?
 
   #
@@ -199,11 +204,6 @@ if Rails.env.development?
     email: 'johndoe@example.com',
     organization: organization
   ).first_or_create!
-
-  #
-  # Default category for use in development.
-  #
-  category = Category.where(name: 'Other').first_or_create!
 
   #
   # Default cookbooks for use in development.
