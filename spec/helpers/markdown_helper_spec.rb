@@ -57,4 +57,27 @@ wrap.
   it 'superscripts text using ^ with a sup tag' do
     expect(helper.render_markdown('Supermarket^2')).to match(/<sup>/)
   end
+
+  it 'uses protocol-relative URLs for images served over HTTP' do
+    html = helper.render_markdown('![](http://img.example.com)')
+
+    expect(html).to include('<img alt="" src="//img.example.com">')
+  end
+
+  it 'uses protocol-relative URLs for images served over HTTPS' do
+    html = helper.render_markdown('![](https://img.example.com)')
+
+    expect(html).to include('<img alt="" src="//img.example.com">')
+  end
+
+  it 'escapes attribute values' do
+    html = helper.render_markdown('!["><"]("><" "><")')
+    attribute = '&quot;&gt;&lt;&quot;'
+
+    escaped_html = %(
+      <img alt="#{attribute}" src="#{attribute}" title="&gt;&lt;">
+    ).squish
+
+    expect(html).to include(escaped_html)
+  end
 end
