@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
   scope :with_email, ->(email) { where(email: email) }
   scope :with_username, ->(username) { joins(:chef_account).where('accounts.username' => username) }
 
+  # Callbacks
+  # --------------------
+  before_create :default_email_preferences
+
   # Search
   # --------------------
   pg_search_scope(
@@ -46,6 +50,10 @@ class User < ActiveRecord::Base
       trigram: { threshold: 0.2 }
     }
   )
+
+  bitmask :email_preferences,
+          as: [:new_version, :deleted, :deprecated],
+          zero_value: :none
 
   #
   # Returns all +CookbookVersion+ instances that +User+ follows.
@@ -351,5 +359,14 @@ class User < ActiveRecord::Base
     else
       false
     end
+  end
+
+  private
+
+  #
+  # This sets up a default preference of all emails for new users.
+  #
+  def default_email_preferences
+    self.email_preferences = [:new_version, :deleted, :deprecated] if email_preferences.blank?
   end
 end

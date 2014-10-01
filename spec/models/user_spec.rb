@@ -43,6 +43,26 @@ describe User do
     end
   end
 
+  describe 'email preferences' do
+    it 'allows users to express email preferences' do
+      user = create(:user)
+      user.email_preferences = []
+      user.save
+      user.reload
+
+      expect(user.email_preferences).to be_blank
+
+      user.email_preferences << :new_version
+      user.email_preferences << :deleted
+      user.save
+      user.reload
+
+      expect(user.email_preferences?(:new_version)).to eql(true)
+      expect(user.email_preferences?(:deleted)).to eql(true)
+      expect(user.email_preferences?(:deprecated)).to eql(false)
+    end
+  end
+
   describe '#authorized_to_contribute?' do
     it 'is true when the user has signed an ICLA or is a contributor to one or more organizations' do
       contributor_user = create(:user)

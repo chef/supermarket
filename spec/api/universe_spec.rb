@@ -94,8 +94,8 @@ describe 'GET /universe' do
   end
 
   it 'should use supermarket location_type in the future' do
-    unless Time.now < Time.at(1_412_035_199.0)
-      raise 'We should implement the universe using the supermarket location_type and location_path by 2014-09-30'
+    unless Time.now < Time.at(1420012800)
+      raise 'We should implement the universe using the supermarket location_type and location_path by 2014-12-31'
     end
   end
 end

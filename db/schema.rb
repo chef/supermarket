@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902191042) do
+ActiveRecord::Schema.define(version: 20140930215139) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -339,6 +339,16 @@ ActiveRecord::Schema.define(version: 20140902191042) do
   add_index "tools", ["slug"], name: "index_tools_on_slug", unique: true, using: :btree
   add_index "tools", ["user_id"], name: "index_tools_on_user_id", using: :btree
 
+  create_table "unsubscribe_requests", force: true do |t|
+    t.integer  "user_id",               null: false
+    t.string   "token",                 null: false
+    t.string   "email_preference_name", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "unsubscribe_requests", ["token"], name: "index_unsubscribe_requests_on_token", unique: true, using: :btree
+
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -353,6 +363,7 @@ ActiveRecord::Schema.define(version: 20140902191042) do
     t.text     "public_key"
     t.boolean  "email_notifications", default: true
     t.string   "install_preference"
+    t.integer  "email_preferences"
   end
 
 end

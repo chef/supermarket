@@ -13,10 +13,10 @@ class CookbookDeletionWorker
     followers_or_collaborators = CookbookFollower.where(cookbook_id: id).includes(:user) +
       Collaborator.where(resourceable_id: id, resourceable_type: 'Cookbook').includes(:user)
 
-    users = followers_or_collaborators.map(&:user).uniq.select(&:email_notifications)
+    users = followers_or_collaborators.map(&:user).uniq.select { |u| u.email_preferences?(:deleted) }
 
     users.each do |user|
-      CookbookMailer.delay.cookbook_deleted_email(cookbook['name'], user.email)
+      CookbookMailer.cookbook_deleted_email(cookbook['name'], user).deliver
     end
 
     followers_or_collaborators.each(&:destroy)

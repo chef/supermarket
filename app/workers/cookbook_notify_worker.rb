@@ -14,14 +14,15 @@ class CookbookNotifyWorker
 
     active_user_ids = User.joins(:accounts).
       where('provider = ? AND oauth_token != ?', 'chef_oauth2', 'imported').
+      with_email_preferences(:new_version).
       pluck(:id)
 
     emailable_cookbook_followers = cookbook.cookbook_followers.
       joins(:user).
-      where(users: { email_notifications: true, id: active_user_ids })
+      where(users: { id: active_user_ids })
 
     emailable_cookbook_followers.each do |cookbook_follower|
-      CookbookMailer.delay.follower_notification_email(cookbook_follower)
+      CookbookMailer.follower_notification_email(cookbook_follower).deliver
     end
   end
 end

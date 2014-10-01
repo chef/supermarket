@@ -3,10 +3,10 @@ require 'spec_helper'
 describe CookbookDeletionWorker do
   let(:cookbook) { create(:cookbook) }
   let(:worker) { CookbookDeletionWorker.new }
-  let(:sally) { create(:user, email_notifications: true) }
-  let(:hank) { create(:user, email_notifications: false) }
-  let(:jimmy) { create(:user, email_notifications: true) }
-  let(:fanny) { create(:user, email_notifications: false) }
+  let(:sally) { create(:user, email_preferences: [:deleted]) }
+  let(:hank) { create(:user, email_preferences: [:new_version]) }
+  let(:jimmy) { create(:user, email_preferences: [:deleted]) }
+  let(:fanny) { create(:user, email_preferences: [:deprecated]) }
 
   before do
     create(:cookbook_collaborator, resourceable: cookbook, user: sally)

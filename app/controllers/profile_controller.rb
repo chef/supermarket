@@ -53,7 +53,7 @@ class ProfileController < ApplicationController
       :twitter_username,
       :irc_nickname,
       :jira_username,
-      :email_notifications
+      email_preferences: []
     )
   end
 
