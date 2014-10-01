@@ -15,11 +15,11 @@ class CookbookDeprecatedNotifier
     replacement_cookbook = cookbook.replacement
 
     users_to_email(cookbook).each do |user|
-      CookbookMailer.delay.cookbook_deprecated_email(
+      CookbookMailer.cookbook_deprecated_email(
         cookbook,
         replacement_cookbook,
-        user.email
-      )
+        user
+      ).deliver
     end
   end
 
@@ -31,6 +31,6 @@ class CookbookDeprecatedNotifier
     users_to_email << cookbook.collaborator_users
     users_to_email << cookbook.followers
 
-    users_to_email.flatten.uniq.select(&:email_notifications?)
+    users_to_email.flatten.uniq.select { |u| u.email_preferences?(:deprecated) }
   end
 end

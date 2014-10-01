@@ -10,7 +10,7 @@ describe CookbookDeprecatedNotifier do
       create(
         :cookbook_follower,
         cookbook: cookbook,
-        user: create(:user, email_notifications: false)
+        user: create(:user, email_preferences: [:new_version, :deleted])
       )
     ]
 

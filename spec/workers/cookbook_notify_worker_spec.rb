@@ -7,7 +7,8 @@ describe CookbookNotifyWorker do
     create_list(:cookbook_follower, 3, cookbook: cookbook)
 
     cookbook.cookbook_followers.last.user.tap do |disinterested_user|
-      disinterested_user.update_attribute(:email_notifications, false)
+      disinterested_user.email_preferences.delete(:new_version)
+      disinterested_user.save
     end
 
     cookbook.cookbook_followers.first.user.tap do |imported_user|

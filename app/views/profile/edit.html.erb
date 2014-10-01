@@ -35,10 +35,14 @@
             <div class="jirausername-field">
               <%= f.text_field :jira_username, placeholder: 'JIRA Username', title: 'jira username' %>
             </div>
-            <div class="emailnotification-field">
-              <%= f.check_box :email_notifications %>
-              <%= label_tag :user_email_notifications, "Receive email notifications." %>
-            </div>
+          </fieldset>
+
+          <fieldset>
+            Email Preferences<br><br>
+            <%= email_preference(:email_preferences, :new_version) %>
+            <%= email_preference(:email_preferences, :deleted) %>
+            <%= email_preference(:email_preferences, :deprecated) %>
+            <%= hidden_field_tag 'user[email_preferences][]', 'none' %>
           </fieldset>
           <%= f.submit 'Update Profile', class: 'button primary radius' %>
         <% end %>

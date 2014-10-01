@@ -3,6 +3,7 @@ FactoryGirl.define do
     first_name 'John'
     last_name 'Doe'
     public_key { File.read('spec/support/key_fixtures/valid_public_key.pub') }
+    email_preferences [:new_version, :deleted, :deprecated]
 
     sequence(:email) { |n| "johndoe#{n}@example.com" }
 

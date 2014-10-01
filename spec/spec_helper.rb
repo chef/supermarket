@@ -21,6 +21,9 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 # Load factories from FactoryGirl
 FactoryGirl.find_definitions
 
+# Ensure Timecop is run in safe mode
+Timecop.safe_mode = true
+
 # Treat Sidekiq like ActionMailer. In most cases, tests which queue jobs should
 # only care that the job was queued, and not care about the result.
 Sidekiq::Testing.fake!

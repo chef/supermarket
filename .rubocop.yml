@@ -26,3 +26,5 @@ EachWithObject:
   Enabled: false
 Metrics/PerceivedComplexity:
   Enabled: false
+Style/NumericLiterals:
+  Enabled: false

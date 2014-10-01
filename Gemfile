@@ -59,6 +59,7 @@ gem 'analytics-ruby', '~> 1.0.0', require: false
 gem 'sass-rails',   '~> 4.0.1'
 gem 'compass-rails'
 gem 'uglifier',     '~> 2.2'
+gem 'bitmask_attributes'
 
 group :doc do
   gem 'yard', require: false
@@ -75,6 +76,7 @@ group :test do
   gem 'capybara'
   gem 'factory_girl'
   gem 'poltergeist'
+  gem 'timecop'
 
   # To prevent the validates_uniqueness matcher from raising a chef version
   # constraint error this pins shoulda-matchers at a commit where setting

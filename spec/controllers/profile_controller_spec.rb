@@ -25,8 +25,7 @@ describe ProfileController do
 
       it 'uses strong parameters' do
         fake_user = double(User)
-
-        expect(fake_user).to receive(:update_attributes).with(
+        attrs = {
           'email' => 'bob@example.com',
           'first_name' => 'Bob',
           'last_name' => 'Smith',
@@ -34,22 +33,14 @@ describe ProfileController do
           'twitter_username' => 'bobbo',
           'irc_nickname' => 'bobbo',
           'jira_username' => 'bobbo',
-          'email_notifications' => true
-        )
+          'email_preferences' => ['new_version']
+        }
+
+        expect(fake_user).to receive(:update_attributes).with(attrs)
 
         allow(controller).to receive(:current_user) { fake_user }
 
-        patch :update, user: attributes_for(
-          :user,
-          'email' => 'bob@example.com',
-          'first_name' => 'Bob',
-          'last_name' => 'Smith',
-          'company' => 'Acme',
-          'twitter_username' => 'bobbo',
-          'irc_nickname' => 'bobbo',
-          'jira_username' => 'bobbo',
-          'email_notifications' => true
-        )
+        patch :update, user: attributes_for(:user, attrs)
       end
     end
 

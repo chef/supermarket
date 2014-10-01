@@ -10,3 +10,5 @@
     <%= link_to 'View Full Changelog', cookbook_version_url(@cookbook, @cookbook.latest_cookbook_version, anchor: 'changelog'), class: 'button accept' %>
   <% end %>
 </div>
+
+<%= link_to 'Unsubscribe', unsubscribe_url(@unsubscribe_request) %>
