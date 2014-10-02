@@ -1,14 +1,20 @@
 require 'spec_helper'
 
 describe CookbookDeletionWorker do
-  let(:cookbook) { create(:cookbook) }
-  let(:worker) { CookbookDeletionWorker.new }
-  let(:sally) { create(:user, email_notifications: true) }
-  let(:hank) { create(:user, email_notifications: false) }
-  let(:jimmy) { create(:user, email_notifications: true) }
-  let(:fanny) { create(:user, email_notifications: false) }
+  let!(:system_email1) { create(:system_email, name: 'Cookbook deleted') }
+  let!(:system_email2) { create(:system_email, name: 'Cookbook deprecated') }
+  let!(:cookbook) { create(:cookbook) }
+  let!(:worker) { CookbookDeletionWorker.new }
+  let!(:sally) { create(:user) }
+  let!(:hank) { create(:user) }
+  let!(:jimmy) { create(:user) }
+  let!(:fanny) { create(:user) }
 
   before do
+    [hank, fanny].each do |person|
+      person.email_preference_for('Cookbook deleted').destroy
+    end
+
     create(:cookbook_collaborator, resourceable: cookbook, user: sally)
     create(:cookbook_collaborator, resourceable: cookbook, user: hank)
     create(:cookbook_follower, cookbook: cookbook, user: jimmy)

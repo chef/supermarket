@@ -123,6 +123,12 @@ end
 #
 category = Category.where(name: 'Other').first_or_create!
 
+[
+  'New cookbook version',
+  'Cookbook deleted',
+  'Cookbook deprecated'
+].each { |name| SystemEmail.where(name: name).first_or_create! }
+
 if Rails.env.development?
 
   #

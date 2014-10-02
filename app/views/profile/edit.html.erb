@@ -17,7 +17,7 @@
 
     <div class="tabs-content">
       <div class="content active" id="profile">
-        <%= form_for(current_user, url: profile_path, html: { 'data-abide' => true }) do |f| %>
+        <%= form_for(prep_email_preferences(current_user), url: profile_path, html: { 'data-abide' => true }) do |f| %>
           <%= render 'application/form_errors', record: current_user %>
 
           <p>Your email, password and name are maintained and managed by your Chef account. <a href="https://www.getchef.com/account">Edit them here.</a> They will be updated the next time you sign in to Supermarket. Avatars are powered by <%= link_to 'Gravatar', 'https://www.gravatar.com' %>.</p>
@@ -35,10 +35,16 @@
             <div class="jirausername-field">
               <%= f.text_field :jira_username, placeholder: 'JIRA Username', title: 'jira username' %>
             </div>
-            <div class="emailnotification-field">
-              <%= f.check_box :email_notifications %>
-              <%= label_tag :user_email_notifications, "Receive email notifications." %>
-            </div>
+          </fieldset>
+          <fieldset>
+            Email Preferences<br><br>
+            <%= f.fields_for :email_preferences, sorted_email_preferences(f.object) do |ff| %>
+              <div>
+                <%= ff.check_box :_destroy, { checked: ff.object.persisted? }, '0', '1' %>
+                <%= ff.label :_destroy, ff.object.system_email.name %>
+                <%= ff.hidden_field :system_email_id %>
+              </div>
+            <% end %>
           </fieldset>
           <%= f.submit 'Update Profile', class: 'button primary radius' %>
         <% end %>

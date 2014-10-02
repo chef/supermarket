@@ -16,12 +16,19 @@ class CookbookNotifyWorker
       where('provider = ? AND oauth_token != ?', 'chef_oauth2', 'imported').
       pluck(:id)
 
+    subscribed_user_ids = SystemEmail.find_by!(name: 'New cookbook version').
+      subscribed_users.
+      pluck(:id)
+
+    common_user_ids = active_user_ids & subscribed_user_ids
+    return if common_user_ids.blank?
+
     emailable_cookbook_followers = cookbook.cookbook_followers.
       joins(:user).
-      where(users: { email_notifications: true, id: active_user_ids })
+      where(users: { id: common_user_ids })
 
     emailable_cookbook_followers.each do |cookbook_follower|
-      CookbookMailer.delay.follower_notification_email(cookbook_follower)
+      CookbookMailer.follower_notification_email(cookbook_follower).deliver
     end
   end
 end

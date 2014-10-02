@@ -10,7 +10,9 @@ class CookbookMailer < ActionMailer::Base
   #
   def follower_notification_email(cookbook_follower)
     @cookbook = cookbook_follower.cookbook
-    @to = cookbook_follower.user.email
+    user = cookbook_follower.user
+    @email_preference = user.email_preference_for('New cookbook version')
+    @to = user.email
 
     mail(to: @to, subject: "A new version of the #{@cookbook.name} cookbook has been released")
   end
@@ -20,11 +22,12 @@ class CookbookMailer < ActionMailer::Base
   # explaining that the cookbook has been deleted
   #
   # @param name [String] the name of the cookbook
-  # @param email [String] the user to notify
+  # @param user [User] the user to notify
   #
-  def cookbook_deleted_email(name, email)
+  def cookbook_deleted_email(name, user)
     @name = name
-    @to = email
+    @email_preference = user.email_preference_for('Cookbook deleted')
+    @to = user.email
 
     mail(to: @to, subject: "The #{name} cookbook has been deleted")
   end
@@ -36,12 +39,13 @@ class CookbookMailer < ActionMailer::Base
   #
   # @param cookbook [Cookbook] the cookbook
   # @param replacement_cookbook [Cookbook] the replacement cookbook
-  # @param email [String] the user to notify
+  # @param user [User] the user to notify
   #
-  def cookbook_deprecated_email(cookbook, replacement_cookbook, email)
+  def cookbook_deprecated_email(cookbook, replacement_cookbook, user)
     @cookbook = cookbook
     @replacement_cookbook = replacement_cookbook
-    @to = email
+    @email_preference = user.email_preference_for('Cookbook deprecated')
+    @to = user.email
 
     subject = %(
       The #{@cookbook.name} cookbook has been deprecated in favor

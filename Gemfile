@@ -92,7 +92,7 @@ group :development, :test do
   gem 'rubocop', '>= 0.23.0'
   gem 'mail_view'
   gem 'quiet_assets'
-  gem 'rspec-rails', '~> 3.0.2'
+  gem 'rspec-rails', '~> 3.1.0'
   gem 'byebug'
   gem 'launchy'
 

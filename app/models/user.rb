@@ -18,11 +18,17 @@ class User < ActiveRecord::Base
   has_many :collaborated_cookbooks, through: :collaborators, source: :resourceable, source_type: 'Cookbook'
   has_many :tools
   has_many :collaborated_tools, through: :collaborators, source: :resourceable, source_type: 'Tool'
+  has_many :email_preferences
+  has_many :system_emails, through: :email_preferences
   has_one :chef_account, -> { self.for('chef_oauth2') }, class_name: 'Account'
 
   # Validations
   # --------------------
   validates_presence_of :email
+
+  # Callbacks
+  # --------------------
+  after_create :default_email_preferences
 
   # Scope
   # --------------------
@@ -46,6 +52,22 @@ class User < ActiveRecord::Base
       trigram: { threshold: 0.2 }
     }
   )
+
+  accepts_nested_attributes_for :email_preferences, allow_destroy: true
+
+  #
+  # Return the +EmailPreference+ for the name given. The name in question
+  # should be the name of an existing +SystemEmail+.
+  #
+  # @param name [String] the name of the +SystemEmail+ to find for this +User+
+  #
+  # @return [EmailPreference] the +EmailPreference+ that matches the
+  # +SystemEmail+ in question
+  #
+  def email_preference_for(name)
+    email_preferences.includes(:system_email).
+      where(system_emails: { name: name }).first
+  end
 
   #
   # Returns all +CookbookVersion+ instances that +User+ follows.
@@ -351,5 +373,14 @@ class User < ActiveRecord::Base
     else
       false
     end
+  end
+
+  private
+
+  #
+  # Subscribe new users to all emails by default
+  #
+  def default_email_preferences
+    EmailPreference.default_set_for_user(self) if email_preferences.blank?
   end
 end
