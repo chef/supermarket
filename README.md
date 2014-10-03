@@ -1,7 +1,11 @@
-supermarket Omnibus project
-===========================
+Chef Supermarket Omnibus project
+================================
+
 This project creates full-stack platform-specific packages for
-`supermarket`!
+[Chef Supermarket](https://supermarket.getchef.com).
+
+Issues for this project can be opened and tracked from the
+[Supermarket GitHub Issues page](https://github.com/opscode/supermarket/issues).
 
 Installation
 ------------

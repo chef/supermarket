@@ -15,26 +15,3 @@
 #
 
 name "supermarket"
-maintainer "Chef Supermarket Team <supermarket@getchef.com>"
-homepage "https://supermarket.getchef.com"
-
-# Defaults to C:/supermarket on Windows
-# and /opt/supermarket on all other platforms
-install_dir "#{default_root}/#{name}"
-
-build_version Omnibus::BuildVersion.semver
-build_iteration 1
-
-# Creates required build directories
-dependency "preparation"
-
-# supermarket dependencies/components
-dependency "supermarket"
-dependency "supermarket-cookbooks"
-dependency "supermarket-ctl"
-
-# Version manifest file
-dependency "version-manifest"
-
-exclude "**/.git"
-exclude "**/bundler/git"
