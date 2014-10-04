@@ -15,3 +15,26 @@
 #
 
 name "supermarket"
+default_version "master"
+
+dependency "bundler"
+dependency "git"
+dependency "postgresql"
+dependency "ruby"
+
+source git: "https://github.com/opscode/supermarket.git"
+
+build do
+  env = with_standard_compiler_flags(with_embedded_path)
+
+  bundle "install" \
+         " --jobs 4" \
+         " --path=#{install_dir}/embedded/service/gem" \
+         " --without development",
+         env: env
+  bundle "exec rake assets:precompile", env: env
+
+  sync project_dir, "#{install_dir}/embedded/service/supermarket/"
+  delete "#{install_dir}/embedded/service/supermarket/log"
+  delete "#{install_dir}/embedded/service/supermarket/tmp"
+end

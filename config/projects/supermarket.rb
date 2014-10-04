@@ -25,6 +25,9 @@ install_dir "#{default_root}/#{name}"
 build_version Omnibus::BuildVersion.semver
 build_iteration 1
 
+override :bundler, version: "1.7.3"
+override :ruby, version: "2.0.0-p576"
+
 # Creates required build directories
 dependency "preparation"
 
