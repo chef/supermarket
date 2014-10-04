@@ -15,7 +15,7 @@
 #
 
 name "supermarket"
-default_version "master"
+default_version "1.0.0"
 
 dependency "bundler"
 dependency "git"
