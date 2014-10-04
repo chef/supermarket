@@ -54,7 +54,7 @@ Supermarket includes a collection of Chef cookbooks and a preconfigured
 
   ```
   $ vagrant plugin install vagrant-omnibus
-  ```
+
 
 1. Install the `vagrant-berkshelf` plugin:
 
@@ -116,6 +116,8 @@ This is because of the Bundler config in `.bundle/config`.
 
 1. Install Ruby 2.0 (latest patch) using your favorite Ruby manager
 1. Install Postgres (from [homebrew](http://brew.sh/) or the [app](http://postgresapp.com/))
+   NOTE: This application requires Postgresql version 9.2.  Homebrew will install a later version by default.  To install the earlier version using homebrew see this [stack overflow](http:
+//stackoverflow.com/a/4158763)
 1. Install Redis (required to run background jobs)
 1. Make sure both Postgres and the Redis server are running
 1. Install bundler
