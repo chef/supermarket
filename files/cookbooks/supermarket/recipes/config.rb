@@ -21,3 +21,11 @@ directory '/etc/supermarket' do
   user 'root'
   group 'root'
 end
+
+template '/etc/supermarket/supermarket.rb' do
+  source 'supermarket.rb.erb'
+  user 'root'
+  group 'root'
+  mode '0644'
+  action :create_if_missing
+end
