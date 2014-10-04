@@ -29,7 +29,6 @@ build do
 
   bundle "install" \
          " --jobs 4" \
-         " --path=#{install_dir}/embedded/service/gem" \
          " --without development",
          env: env
   bundle "exec rake assets:precompile", env: env
