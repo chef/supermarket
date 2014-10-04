@@ -29,6 +29,7 @@ build do
 
   bundle "install" \
          " --jobs 4" \
+         " --path=vendor/bundle" \
          " --without development",
          env: env
   bundle "exec rake assets:precompile", env: env
