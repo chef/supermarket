@@ -1,0 +1,7 @@
+DEPENDENCIES
+  supermarket
+    path: .
+    metadata: true
+
+GRAPH
+  supermarket (0.1.0)
