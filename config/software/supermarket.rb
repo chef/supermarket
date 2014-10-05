@@ -20,6 +20,7 @@ default_version "1.0.0"
 dependency "bundler"
 dependency "git"
 dependency "postgresql"
+dependency "redis"
 dependency "ruby"
 
 source git: "https://github.com/opscode/supermarket.git"
@@ -32,7 +33,8 @@ build do
          " --path=vendor/bundle" \
          " --without development",
          env: env
-  bundle "exec rake assets:precompile", env: env
+  # This fails because we're installing Ruby C extensions in the wrong place!
+  #bundle "exec rake assets:precompile", env: env
 
   sync project_dir, "#{install_dir}/embedded/service/supermarket/"
   delete "#{install_dir}/embedded/service/supermarket/log"
