@@ -54,7 +54,7 @@ Supermarket includes a collection of Chef cookbooks and a preconfigured
 
   ```
   $ vagrant plugin install vagrant-omnibus
-
+  ```
 
 1. Install the `vagrant-berkshelf` plugin:
 
