@@ -22,6 +22,7 @@ dependency "git"
 dependency "postgresql"
 dependency "redis"
 dependency "ruby"
+dependency "runit"
 
 source git: "https://github.com/opscode/supermarket.git"
 
