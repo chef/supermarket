@@ -1,9 +1,0 @@
-#!/bin/bash
-#
-# Perform necessary supermarket removal steps
-# after package is uninstalled.
-#
-
-echo "supermarket has been uninstalled!"
-
-exit 0

@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2014 Chef Software, Inc.
 #
@@ -14,24 +15,16 @@
 # limitations under the License.
 #
 
-name "supermarket-ctl"
+# Ensure the calling environment (disapproval look Bundler) does not infect our
+# Ruby environment if called from a Ruby script.
+for ruby_env_var in RUBYOPT \
+                    BUNDLE_BIN_PATH \
+                    BUNDLE_GEMFILE \
+                    GEM_PATH \
+                    GEM_ROOT \
+                    GEM_HOME
+do
+  unset $ruby_env_var
+done
 
-dependency "omnibus-ctl"
-dependency "runit"
-
-source path: "#{project.files_path}/ctl-commands"
-
-build do
-  block do
-    erb source: "supermarket-ctl.erb",
-        dest: "#{install_dir}/bin/supermarket-ctl",
-        mode: 0755,
-        vars: {
-          embedded_bin: "#{install_dir}/embedded/bin",
-          embedded_service: "#{install_dir}/embedded/service",
-        }
-  end
-
-  # additional omnibus-ctl commands
-  sync "#{project_dir}", "#{install_dir}/embedded/service/omnibus-ctl/"
-end
+<%= embedded_bin %>/omnibus-ctl supermarket <%= embedded_service %>/omnibus-ctl $@
