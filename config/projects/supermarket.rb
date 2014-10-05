@@ -22,7 +22,10 @@ homepage "https://supermarket.getchef.com"
 # and /opt/supermarket on all other platforms
 install_dir "#{default_root}/#{name}"
 
-build_version Omnibus::BuildVersion.semver
+build_version do
+  source :git, from_dependency: 'supermarket'
+  output_format :semver
+end
 build_iteration 1
 
 override :bundler, version: "1.7.3"
