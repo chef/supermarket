@@ -17,12 +17,12 @@
 # limitations under the License.
 #
 
-directory '/etc/supermarket' do
+directory File.dirname(node['supermarket']['config_filename']) do
   user 'root'
   group 'root'
 end
 
-template '/etc/supermarket/supermarket.rb' do
+template node['supermarket']['config_filename'] do
   source 'supermarket.rb.erb'
   user 'root'
   group 'root'

@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: supermarket
-# Recipe:: default
+# Attributes:: default
 #
 # Copyright 2014 Chef Supermarket Team
 #
@@ -17,4 +17,5 @@
 # limitations under the License.
 #
 
-include_recipe 'supermarket::config'
+default['supermarket']['install_path'] = '/opt/supermarket'
+default['supermarket']['config_filename'] = '/etc/supermarket/supermarket.rb'
