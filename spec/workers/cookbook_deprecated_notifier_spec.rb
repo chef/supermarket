@@ -1,7 +1,12 @@
 require 'spec_helper'
 
 describe CookbookDeprecatedNotifier do
+  let!(:system_email1) { create(:system_email, name: 'Cookbook deleted') }
+  let!(:system_email2) { create(:system_email, name: 'Cookbook deprecated') }
+
   it 'sends emails to cookbook owner, collaborators and followers who want to receive emails' do
+    disinterested_user = create(:user)
+    disinterested_user.email_preference_for('Cookbook deprecated').destroy
     cookbook = create(:cookbook)
     cookbook.deprecate(create(:cookbook))
     cookbook_collaborator = create(:cookbook_collaborator, resourceable: cookbook)
@@ -10,7 +15,7 @@ describe CookbookDeprecatedNotifier do
       create(
         :cookbook_follower,
         cookbook: cookbook,
-        user: create(:user, email_notifications: false)
+        user: disinterested_user
       )
     ]
 

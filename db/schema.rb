@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902191042) do
+ActiveRecord::Schema.define(version: 20141002205024) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -259,6 +259,17 @@ ActiveRecord::Schema.define(version: 20140902191042) do
     t.string   "callback_url", null: false
   end
 
+  create_table "email_preferences", force: true do |t|
+    t.integer  "user_id",         null: false
+    t.integer  "system_email_id", null: false
+    t.string   "token",           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "email_preferences", ["token"], name: "index_email_preferences_on_token", unique: true, using: :btree
+  add_index "email_preferences", ["user_id", "system_email_id"], name: "index_email_preferences_on_user_id_and_system_email_id", unique: true, using: :btree
+
   create_table "hits", force: true do |t|
     t.string  "label",             null: false
     t.integer "total", default: 0, null: false
@@ -321,6 +332,12 @@ ActiveRecord::Schema.define(version: 20140902191042) do
   end
 
   add_index "supported_platforms", ["name", "version_constraint"], name: "index_supported_platforms_on_name_and_version_constraint", unique: true, using: :btree
+
+  create_table "system_emails", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "tools", force: true do |t|
     t.integer  "user_id"
