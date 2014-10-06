@@ -1,6 +1,8 @@
 ---
 driver:
   name: vagrant
+  synced_folders:
+    - ['../../../pkg', '/tmp/packages', 'create: true, type: :rsync']
 
 provisioner:
   name: chef_solo
@@ -12,5 +14,8 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[supermarket::default]
+      - recipe[supermarket::cookbook_test]
     attributes:
+      supermarket:
+        test:
+          deb_package_path: false

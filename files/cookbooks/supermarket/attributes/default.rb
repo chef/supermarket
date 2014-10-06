@@ -17,5 +17,36 @@
 # limitations under the License.
 #
 
-default['supermarket']['install_path'] = '/opt/supermarket'
+# Top-level attributes
 default['supermarket']['config_filename'] = '/etc/supermarket/supermarket.rb'
+default['supermarket']['install_path'] = '/opt/supermarket'
+default['supermarket']['log_directory'] = '/var/log/supermarket'
+default['supermarket']['var_directory'] = '/var/opt/supermarket'
+default['supermarket']['user'] = 'supermarket'
+default['supermarket']['group'] = 'supermarket'
+
+# Services
+#
+# Each service that runs is defined here. If enable = true is set, the service
+# should run, if not, it should be disabled.
+default['supermarket']['services']['redis']['enable'] = true
+
+# Enterprise
+#
+# The "enterprise" cookbook provides recipes and resources we can use for this
+# app.
+#
+default['enterprise']['name'] = 'supermarket'
+
+# Redis
+default['supermarket']['redis']['directory'] = node['supermarket']['var_directory'] + '/redis'
+default['supermarket']['redis']['log_directory'] = node['supermarket']['log_directory'] + '/redis'
+default['supermarket']['redis']['log_rotation']['file_maxbytes'] = 104857600
+default['supermarket']['redis']['log_rotation']['num_to_keep'] = 10
+default['supermarket']['redis']['port'] = 16379
+
+# Runit
+
+# This is missing from the enterprise cookbook
+# see (https://github.com/opscode-cookbooks/enterprise-chef-common/pull/17)
+default['runit']['svlogd_bin'] = node['supermarket']['install_path'] + '/embedded/bin/svlogd'

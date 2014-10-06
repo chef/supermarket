@@ -1,6 +1,4 @@
-#
-# Cookbook Name:: supermarket
-# Recipe:: default
+#!/bin/sh
 #
 # Copyright 2014 Chef Supermarket Team
 #
@@ -17,5 +15,11 @@
 # limitations under the License.
 #
 
-include_recipe 'supermarket::config'
-include_recipe 'supermarket::redis'
+exec 2>&1
+exec <%= node['runit']['chpst_bin'] %>\
+     -P \
+     -U <%= node['supermarket']['user'] %> \
+     -u <%= node['supermarket']['user'] %> \
+     env \
+     PATH=<%= node['supermarket']['install_path'] %>/embedded/bin:$PATH \
+     redis-server <%= node['supermarket']['redis']['directory'] %>/etc/redis.conf

@@ -17,15 +17,21 @@
 # limitations under the License.
 #
 
+user node['supermarket']['user']
+
+group node['supermarket']['group'] do
+  members [node['supermarket']['user']]
+end
+
 directory File.dirname(node['supermarket']['config_filename']) do
-  user 'root'
-  group 'root'
+  user node['supermarket']['user']
+  group node['supermarket']['group']
 end
 
 template node['supermarket']['config_filename'] do
   source 'supermarket.rb.erb'
-  user 'root'
-  group 'root'
-  mode '0644'
+  user node['supermarket']['user']
+  group node['supermarket']['group']
+  mode '0600'
   action :create_if_missing
 end

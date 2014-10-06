@@ -1,7 +1,23 @@
 DEPENDENCIES
+  enterprise
+    git: https://github.com/opscode-cookbooks/enterprise-chef-common.git
+    revision: bbbe5f85f13d5828b116cef72de9f31f7bec8a23
+    tag: 0.4.5
   supermarket
     path: .
     metadata: true
 
 GRAPH
-  supermarket (0.1.0)
+  build-essential (2.0.6)
+  enterprise (0.4.4)
+    runit (> 1.0.0)
+  runit (1.5.10)
+    build-essential (>= 0.0.0)
+    yum (~> 3.0)
+    yum-epel (>= 0.0.0)
+  supermarket (1.0.0)
+    enterprise (>= 0.0.0)
+    runit (>= 0.0.0)
+  yum (3.3.2)
+  yum-epel (0.5.1)
+    yum (~> 3.0)
