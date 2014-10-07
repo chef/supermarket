@@ -31,6 +31,17 @@ default['supermarket']['group'] = 'supermarket'
 # app.
 #
 default['enterprise']['name'] = 'supermarket'
+# enterprise uses install_path internally, but we use install_directory because
+# it's more consistent. Alias it here so both work.
+default['supermarket']['install_path'] = node['supermarket']['install_directory']
+
+# Postgres
+default['supermarket']['postgresql']['enable'] = false
+default['supermarket']['postgresql']['data_directory'] = "#{node['supermarket']['var_directory']}/postgresql/9.3/data"
+default['supermarket']['postgresql']['log_directory'] = "#{node['supermarket']['log_directory']}/postgresql"
+default['supermarket']['postgresql']['log_rotation']['file_maxbytes'] = 104857600
+default['supermarket']['postgresql']['log_rotation']['num_to_keep'] = 10
+default['supermarket']['postgresql']['username'] = node['supermarket']['user']
 
 # Redis
 default['supermarket']['redis']['enable'] = true

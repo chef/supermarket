@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: supermarket
-# Recipe:: default
+# Recipe:: postgresql
 #
 # Copyright 2014 Chef Supermarket Team
 #
@@ -18,5 +18,25 @@
 #
 
 include_recipe 'supermarket::config'
-include_recipe 'supermarket::postgresql'
-include_recipe 'supermarket::redis'
+include_recipe 'enterprise::runit'
+
+[node['supermarket']['postgresql']['data_directory'],
+ node['supermarket']['postgresql']['log_directory']].each do |dir|
+  directory dir do
+    owner node['supermarket']['user']
+    group node['supermarket']['group']
+    mode '0700'
+    recursive true
+  end
+end
+
+if node['supermarket']['postgresql']['enable']
+  component_runit_service 'postgresql' do
+    package 'supermarket'
+    control ['t']
+  end
+else
+  runit_service 'postgresql' do
+    action :disable
+  end
+end

@@ -29,6 +29,7 @@ end
 build_iteration 1
 
 override :bundler, version: "1.7.3"
+override :postgresql, version: "9.3.4"
 override :ruby, version: "2.0.0-p576"
 
 # Creates required build directories

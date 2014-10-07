@@ -1,0 +1,8 @@
+#!/bin/sh
+exec 2>&1
+exec chpst \
+       -P \
+       -U <%= node['supermarket']['postgresql']['user'] %> \
+       -u <%= node['supermarket']['postgresql']['user'] %> \
+     <%= node['supermarket']['install_directory']%>/embedded/bin/postgres \
+       -D <%= node['supermarket']['postgresql']['data_directory'] %>
