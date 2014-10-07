@@ -1,5 +1,9 @@
 describe 'supermarket::config' do
-  let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
+  let(:chef_run) do
+    ChefSpec::Runner.new do |node|
+      node.automatic['memory']['total'] = '16000MB'
+    end.converge(described_recipe)
+  end
 
   it 'creates the supermarket user' do
     expect(chef_run).to create_user('supermarket')

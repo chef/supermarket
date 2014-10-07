@@ -18,7 +18,7 @@
 #
 
 include_recipe 'supermarket::config'
-include_recipe 'sysctl::apply'
+include_recipe 'sysctl'
 include_recipe 'enterprise::runit'
 
 # Create directories

@@ -1,5 +1,10 @@
 describe 'supermarket::redis' do
-  let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
+  let(:chef_run) do
+    ChefSpec::Runner.new do |node|
+      node.automatic['memory']['total'] = '16000MB'
+    end.converge(described_recipe)
+  end
+
 
   before :each do
     stub_command("grep 'SUP:123456:respawn:/opt/supermarket/embedded/bin/runsvdir-start' /etc/inittab")
@@ -45,5 +50,9 @@ describe 'supermarket::redis' do
       group: 'supermarket',
       mode: '0700',
     )
+  end
+
+  it 'applies sysctl params' do
+    expect(chef_run).to apply_sysctl_param('vm.overcommit_memory')
   end
 end
