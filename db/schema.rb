@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141002205024) do
+ActiveRecord::Schema.define(version: 20141007195503) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -363,12 +363,11 @@ ActiveRecord::Schema.define(version: 20141002205024) do
     t.datetime "updated_at"
     t.string   "company"
     t.integer  "roles_mask"
-    t.string   "email",               default: "",   null: false
+    t.string   "email",              default: "", null: false
     t.string   "jira_username"
     t.string   "irc_nickname"
     t.string   "twitter_username"
     t.text     "public_key"
-    t.boolean  "email_notifications", default: true
     t.string   "install_preference"
   end
 
