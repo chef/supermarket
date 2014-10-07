@@ -19,7 +19,7 @@
 
 # Top-level attributes
 default['supermarket']['config_filename'] = '/etc/supermarket/supermarket.rb'
-default['supermarket']['install_path'] = '/opt/supermarket'
+default['supermarket']['install_directory'] = '/opt/supermarket'
 default['supermarket']['log_directory'] = '/var/log/supermarket'
 default['supermarket']['var_directory'] = '/var/opt/supermarket'
 default['supermarket']['user'] = 'supermarket'
@@ -44,4 +44,4 @@ default['supermarket']['redis']['port'] = 16379
 
 # This is missing from the enterprise cookbook
 # see (https://github.com/opscode-cookbooks/enterprise-chef-common/pull/17)
-default['runit']['svlogd_bin'] = "#{node['supermarket']['install_path']}/embedded/bin/svlogd"
+default['runit']['svlogd_bin'] = "#{node['supermarket']['install_directory']}/embedded/bin/svlogd"
