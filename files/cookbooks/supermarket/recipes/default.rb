@@ -18,5 +18,6 @@
 #
 
 include_recipe 'supermarket::config'
+include_recipe 'supermarket::ssl'
 include_recipe 'supermarket::postgresql'
 include_recipe 'supermarket::redis'

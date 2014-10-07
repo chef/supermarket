@@ -18,6 +18,10 @@
 #
 
 # Top-level attributes
+
+# The fully qualified domain name. Will use the node's fqdn if nothing is
+# specified.
+default['supermarket']['fqdn'] = node['fqdn']
 default['supermarket']['config_filename'] = '/etc/supermarket/supermarket.rb'
 default['supermarket']['install_directory'] = '/opt/supermarket'
 default['supermarket']['log_directory'] = '/var/log/supermarket'
@@ -74,3 +78,18 @@ default['supermarket']['redis']['port'] = 16379
 # This is missing from the enterprise cookbook
 # see (https://github.com/opscode-cookbooks/enterprise-chef-common/pull/17)
 default['runit']['svlogd_bin'] = "#{node['supermarket']['install_directory']}/embedded/bin/svlogd"
+
+# SSL
+
+# Paths to the SSL certificate and key files. If these are not provided we will
+# attempt to generate a self-signed certificate and use that instead.
+default['supermarket']['ssl']['certificate'] = nil
+default['supermarket']['ssl']['certificate_key'] = nil
+default['supermarket']['ssl']['directory'] = '/var/opt/supermarket/ssl'
+# These are used in creating a self-signed cert if you haven't brought your own.
+default['supermarket']['ssl']['country_name'] = "US"
+default['supermarket']['ssl']['state_name'] = "WA"
+default['supermarket']['ssl']['locality_name'] = "Seattle"
+default['supermarket']['ssl']['company_name'] = "My Supermarket"
+default['supermarket']['ssl']['organizational_unit_name'] = "Operations"
+default['supermarket']['ssl']['email_address'] = "you@example.com"

@@ -18,6 +18,7 @@ name "supermarket"
 default_version "1.0.0"
 
 dependency "bundler"
+dependency "cacerts"
 dependency "git"
 dependency "postgresql"
 dependency "redis"
