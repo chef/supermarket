@@ -31,9 +31,12 @@ default['supermarket']['group'] = 'supermarket'
 # app.
 #
 default['enterprise']['name'] = 'supermarket'
-# enterprise uses install_path internally, but we use install_directory because
+# Enterprise uses install_path internally, but we use install_directory because
 # it's more consistent. Alias it here so both work.
 default['supermarket']['install_path'] = node['supermarket']['install_directory']
+# An identifier used in /etc/inittab (default is 'SV'). Needs to be a unique
+# (for the file) sequence of 1-4 characters.
+default['supermarket']['sysvinit_id'] = 'SUP'
 
 # Postgres
 default['supermarket']['postgresql']['enable'] = false

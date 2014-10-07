@@ -2,7 +2,7 @@ describe 'supermarket::postgresql' do
   let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
 
   before :each do
-    stub_command("grep 'SV:123456:respawn:/opt/supermarket/embedded/bin/runsvdir-start' /etc/inittab")
+    stub_command("grep 'SUP:123456:respawn:/opt/supermarket/embedded/bin/runsvdir-start' /etc/inittab")
   end
 
   it 'creates /var/log/supermarket/postgresql' do
