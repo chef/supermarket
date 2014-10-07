@@ -39,12 +39,25 @@ default['supermarket']['install_path'] = node['supermarket']['install_directory'
 default['supermarket']['sysvinit_id'] = 'SUP'
 
 # Postgres
-default['supermarket']['postgresql']['enable'] = false
+default['supermarket']['postgresql']['enable'] = true
+default['supermarket']['postgresql']['username'] = node['supermarket']['user']
 default['supermarket']['postgresql']['data_directory'] = "#{node['supermarket']['var_directory']}/postgresql/9.3/data"
+# Logs
 default['supermarket']['postgresql']['log_directory'] = "#{node['supermarket']['log_directory']}/postgresql"
 default['supermarket']['postgresql']['log_rotation']['file_maxbytes'] = 104857600
 default['supermarket']['postgresql']['log_rotation']['num_to_keep'] = 10
-default['supermarket']['postgresql']['username'] = node['supermarket']['user']
+# DB settings
+default['supermarket']['postgresql']['checkpoint_completion_target'] = 0.5
+default['supermarket']['postgresql']['checkpoint_segments'] = 3
+default['supermarket']['postgresql']['checkpoint_timeout'] = '5min'
+default['supermarket']['postgresql']['checkpoint_warning'] = '30s'
+default['supermarket']['postgresql']['effective_cache_size'] = '128MB'
+default['supermarket']['postgresql']['listen_address'] = '127.0.0.1'
+default['supermarket']['postgresql']['max_connections'] = 350
+default['supermarket']['postgresql']['md5_auth_cidr_addresses'] = ['127.0.0.1/32', '::1/128']
+default['supermarket']['postgresql']['port'] = 15432
+default['supermarket']['postgresql']['shared_buffers'] = "#{(node['memory']['total'].to_i / 4) / (1024)}MB"
+default['supermarket']['postgresql']['work_mem'] = "8MB"
 
 # Redis
 default['supermarket']['redis']['enable'] = true

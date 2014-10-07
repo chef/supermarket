@@ -20,17 +20,18 @@
 include_recipe 'supermarket::config'
 include_recipe 'enterprise::runit'
 
-[node['supermarket']['postgresql']['data_directory'],
- node['supermarket']['postgresql']['log_directory']].each do |dir|
-  directory dir do
-    owner node['supermarket']['user']
-    group node['supermarket']['group']
-    mode '0700'
-    recursive true
-  end
+directory node['supermarket']['postgresql']['log_directory'] do
+  owner node['supermarket']['user']
+  group node['supermarket']['group']
+  mode '0700'
+  recursive true
 end
 
 if node['supermarket']['postgresql']['enable']
+  enterprise_pg_cluster node['supermarket']['postgresql']['data_directory'] do
+    notifies :restart, 'runit_service[postgresql]'
+  end
+
   component_runit_service 'postgresql' do
     package 'supermarket'
     control ['t']
