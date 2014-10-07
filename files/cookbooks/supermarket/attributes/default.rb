@@ -57,6 +57,8 @@ default['supermarket']['postgresql']['max_connections'] = 350
 default['supermarket']['postgresql']['md5_auth_cidr_addresses'] = ['127.0.0.1/32', '::1/128']
 default['supermarket']['postgresql']['port'] = 15432
 default['supermarket']['postgresql']['shared_buffers'] = "#{(node['memory']['total'].to_i / 4) / (1024)}MB"
+default['supermarket']['postgresql']['shmmax'] = 17179869184
+default['supermarket']['postgresql']['shmall'] = 4194304
 default['supermarket']['postgresql']['work_mem'] = "8MB"
 
 # Redis

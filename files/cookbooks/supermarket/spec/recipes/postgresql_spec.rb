@@ -16,4 +16,16 @@ describe 'supermarket::postgresql' do
       mode: '0700',
     )
   end
+
+  it 'sets shmmax sysctl param' do
+    expect(chef_run).to apply_sysctl_param('kernel.shmmax').with(
+      value: 17179869184
+    )
+  end
+
+  it 'sets shmall sysctl param' do
+    expect(chef_run).to apply_sysctl_param('kernel.shmall').with(
+      value: 4194304
+    )
+  end
 end

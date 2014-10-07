@@ -53,6 +53,8 @@ describe 'supermarket::redis' do
   end
 
   it 'applies sysctl params' do
-    expect(chef_run).to apply_sysctl_param('vm.overcommit_memory')
+    expect(chef_run).to apply_sysctl_param('vm.overcommit_memory').with(
+      value: 1
+    )
   end
 end
