@@ -18,6 +18,7 @@
 #
 
 include_recipe 'supermarket::config'
+include_recipe 'sysctl::apply'
 include_recipe 'enterprise::runit'
 
 # Create directories
@@ -39,6 +40,11 @@ template "#{node['supermarket']['redis']['directory']}/etc/redis.conf" do
   group node['supermarket']['group']
   mode '0600'
   notifies :restart, 'runit_service[redis]' if node['supermarket']['redis']['enable']
+end
+
+# Redis gives you a warning if you don't do this
+sysctl_param 'vm.overcommit_memory' do
+  value 1
 end
 
 if node['supermarket']['redis']['enable']
