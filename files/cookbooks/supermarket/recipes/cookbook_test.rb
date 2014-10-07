@@ -24,8 +24,11 @@
 
 # If attributes are defined for packages, install them
 test_attributes = node['supermarket']['test']
-if test_attributes['deb_package_path']
-  dpkg_package test_attributes['deb_package_path']
+if test_attributes['deb_package_path'] && node['platform_family'] == 'debian'
+  package test_attributes['deb_package_path']
+end
+if test_attributes['rpm_package_path'] && node['platform_family'] == 'rhel'
+  package test_attributes['rpm_package_path']
 end
 
 # Remove installed cookbooks and replace them with local versions

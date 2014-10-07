@@ -21,9 +21,9 @@ include_recipe 'supermarket::config'
 include_recipe 'enterprise::runit'
 
 # Create directories
-[node['supermarket']['redis']['directory'] + '/etc',
- node['supermarket']['redis']['directory'] + '/run',
- node['supermarket']['var_directory'] + '/lib/redis',
+["#{node['supermarket']['redis']['directory']}/etc",
+ "#{node['supermarket']['redis']['directory']}/run",
+ "#{node['supermarket']['var_directory']}/lib/redis",
  node['supermarket']['redis']['log_directory']].each do |dir|
   directory dir do
     owner node['supermarket']['user']
@@ -33,15 +33,15 @@ include_recipe 'enterprise::runit'
   end
 end
 
-template node['supermarket']['redis']['directory'] + '/etc/redis.conf' do
+template "#{node['supermarket']['redis']['directory']}/etc/redis.conf" do
   source 'redis.conf.erb'
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'
-  notifies :restart, 'runit_service[redis]'
+  notifies :restart, 'runit_service[redis]' if node['supermarket']['redis']['enable']
 end
 
-if node['supermarket']['services']['redis']['enable']
+if node['supermarket']['redis']['enable']
   component_runit_service 'redis' do
     package 'supermarket'
   end

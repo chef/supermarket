@@ -6,6 +6,8 @@ driver:
 
 provisioner:
   name: chef_solo
+  solo_rb:
+    ssl_verify_mode: verify_peer
 
 platforms:
   - name: ubuntu-10.04
@@ -19,3 +21,4 @@ suites:
       supermarket:
         test:
           deb_package_path: false
+          rpm_package_path: false
