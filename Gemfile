@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.1.3'
 
 # Override the Bundler :github shortcut to use HTTPS instead of the git protocol
 # Note: Version 2.x of Bundler should do this by default

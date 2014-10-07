@@ -8,7 +8,7 @@ notifications:
     on_failure: always  # options: [always|never|change] default: always
     on_start: false     # default: false
 rvm:
-  - 2.0.0
+  - 2.1.3
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq libxslt-dev libxml2-dev
