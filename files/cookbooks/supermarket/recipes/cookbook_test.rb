@@ -28,7 +28,9 @@ if test_attributes['deb_package_path'] && node['platform_family'] == 'debian'
   package test_attributes['deb_package_path']
 end
 if test_attributes['rpm_package_path'] && node['platform_family'] == 'rhel'
-  package test_attributes['rpm_package_path']
+  package test_attributes['rpm_package_path'] do
+    options "--nogpgcheck"
+  end
 end
 
 # Remove installed cookbooks and replace them with local versions
