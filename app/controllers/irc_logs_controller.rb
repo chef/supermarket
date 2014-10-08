@@ -5,7 +5,7 @@ class IrcLogsController < ApplicationController
   # Redirects to the botbot.me dashboard (list of IRC channels).
   #
   def index
-    redirect_to('https://botbot.me/dashboard/')
+    redirect_to('https://botbot.me/freenode/chef/')
   end
 
   #
