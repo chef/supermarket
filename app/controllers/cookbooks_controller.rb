@@ -125,6 +125,7 @@ class CookbooksController < ApplicationController
   #
   def follow
     @cookbook.cookbook_followers.create(user: current_user)
+    Supermarket::Metrics.increment 'cookbook.followed'
 
     render_follow_button
   end
@@ -138,6 +139,7 @@ class CookbooksController < ApplicationController
     cookbook_follower = @cookbook.cookbook_followers.
       where(user: current_user).first!
     cookbook_follower.destroy
+    Supermarket::Metrics.increment 'cookbook.unfollowed'
 
     render_follow_button
   end

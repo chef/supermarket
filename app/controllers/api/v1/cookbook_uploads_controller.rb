@@ -62,12 +62,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
             )
           end
 
-          SegmentIO.track_server_event(
-            'cookbook_version_published',
-            current_user,
-            cookbook: @cookbook.name
-          )
-
+          Supermarket::Metrics.increment 'cookbook.version.published'
           UniverseCache.flush
 
           render :create, status: 201
@@ -100,12 +95,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
 
       if @cookbook.destroyed?
         CookbookDeletionWorker.perform_async(@cookbook.as_json)
-        SegmentIO.track_server_event(
-          'cookbook_deleted',
-          current_user,
-          cookbook: @cookbook.name
-        )
-
+        Supermarket::Metrics.increment 'cookbook.deleted'
         UniverseCache.flush
       end
     end

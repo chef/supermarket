@@ -1,8 +1,5 @@
 module Supermarket
-  module StatsD
-    #
-    # Increment the stat passed in if STATSD is defined.
-    #
+  class Metrics
     def self.increment(stat)
       STATSD.increment(stat) if defined? STATSD
     end
