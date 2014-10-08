@@ -42,6 +42,13 @@ default['supermarket']['install_path'] = node['supermarket']['install_directory'
 # (for the file) sequence of 1-4 characters.
 default['supermarket']['sysvinit_id'] = 'SUP'
 
+# Nginx
+default['supermarket']['nginx']['enable'] = true
+default['supermarket']['nginx']['directory'] = "#{node['supermarket']['var_directory']}/nginx"
+default['supermarket']['nginx']['log_directory'] = "#{node['supermarket']['log_directory']}/nginx"
+default['supermarket']['nginx']['log_rotation']['file_maxbytes'] = 104857600
+default['supermarket']['nginx']['log_rotation']['num_to_keep'] = 10
+
 # Postgres
 default['supermarket']['postgresql']['enable'] = true
 default['supermarket']['postgresql']['username'] = node['supermarket']['user']
