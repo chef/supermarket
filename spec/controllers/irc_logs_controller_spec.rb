@@ -5,7 +5,7 @@ describe IrcLogsController do
     it 'redirects to the botbot dashboard' do
       get :index
 
-      expect(response).to redirect_to('https://botbot.me/dashboard/')
+      expect(response).to redirect_to('https://botbot.me/freenode/chef')
     end
   end
 
