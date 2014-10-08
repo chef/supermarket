@@ -43,7 +43,7 @@ else
   signing_conf = "#{node['supermarket']['ssl']['directory']}/ca/#{node['supermarket']['fqdn']}-ssl.conf"
 
   file keyfile do
-    content `#{node['supermarket']['install_directory']}/embedded/bin/openssl genrsa 2048`
+    content `#{node['supermarket']['ssl']['openssl_bin']} genrsa 2048`
     owner 'root'
     group 'root'
     mode '0640'
@@ -64,7 +64,7 @@ else
       r.owner 'root'
       r.group 'root'
       r.mode '0644'
-      r.content `#{node['supermarket']['install_directory']}/embedded/bin/openssl req -config '#{signing_conf}' -new -x509 -nodes -sha1 -days 3650 -key #{keyfile}`
+      r.content `#{node['supermarket']['ssl']['openssl_bin']} req -config '#{signing_conf}' -new -x509 -nodes -sha1 -days 3650 -key #{keyfile}`
       r.not_if { File.exists?(crtfile) }
       r.run_action(:create)
     end
@@ -73,7 +73,7 @@ else
   node.default['supermarket']['ssl']['certificate'] ||= crtfile
   node.default['supermarket']['ssl']['certificate_key'] ||= keyfile
 
-  link "#{ssl_dir}/cacert.pem" do
+  link "#{node['supermarket']['ssl']['directory']}/cacert.pem" do
     to crtfile
   end
 end
