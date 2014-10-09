@@ -21,8 +21,16 @@ describe 'supermarket::nginx' do
     )
   end
 
-  it 'creates /var/opt/supermarket/nginx/etc/nginx.d' do
-    expect(chef_run).to create_directory('/var/opt/supermarket/nginx/etc/nginx.d').with(
+  it 'creates /var/opt/supermarket/nginx/etc/conf.d' do
+    expect(chef_run).to create_directory('/var/opt/supermarket/nginx/etc/conf.d').with(
+      user: 'supermarket',
+      group: 'supermarket',
+      mode: '0700',
+    )
+  end
+
+  it 'creates /var/opt/supermarket/nginx/etc/sites_enabled' do
+    expect(chef_run).to create_directory('/var/opt/supermarket/nginx/etc/sites_enabled').with(
       user: 'supermarket',
       group: 'supermarket',
       mode: '0700',
@@ -35,6 +43,12 @@ describe 'supermarket::nginx' do
       owner: 'supermarket',
       group: 'supermarket',
       mode: '0600',
+    )
+  end
+
+  it 'symlinks the mime types' do
+    expect(chef_run.link('/var/opt/supermarket/nginx/mime.types')).to link_to(
+      '/opt/supermarket/embedded/conf/mime.types'
     )
   end
 

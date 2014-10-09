@@ -19,13 +19,19 @@
 
 [node['supermarket']['nginx']['log_directory'],
  "#{node['supermarket']['nginx']['directory']}/etc",
- "#{node['supermarket']['nginx']['directory']}/etc/nginx.d"].each do |dir|
+ "#{node['supermarket']['nginx']['directory']}/etc/conf.d",
+ "#{node['supermarket']['nginx']['directory']}/etc/sites_enabled"].each do |dir|
   directory dir do
     owner node['supermarket']['user']
     group node['supermarket']['group']
     mode '0700'
     recursive true
   end
+end
+
+# Link the mime.types
+link "#{node['supermarket']['nginx']['directory']}/mime.types" do
+  to "#{node['supermarket']['install_directory']}/embedded/conf/mime.types"
 end
 
 if node['supermarket']['nginx']['enable']
@@ -39,6 +45,7 @@ else
 end
 
 template "#{node['supermarket']['nginx']['directory']}/etc/nginx.conf" do
+  cookbook 'nginx'
   source 'nginx.conf.erb'
   owner node['supermarket']['user']
   group node['supermarket']['group']
