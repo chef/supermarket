@@ -27,12 +27,4 @@ describe EmailPreference do
     expect(hank.email_preferences.size).to eql(3)
     expect(hank.system_emails.map(&:name)).to include('lol', 'wut', 'yiss')
   end
-
-  it 'should have a unique token' do
-    ep = create(:email_preference)
-    ep2 = build(:email_preference)
-    expect(SecureRandom).to receive(:hex) { ep.token }
-    expect(ep2).to_not be_valid
-    expect(ep2.errors[:token]).to_not be_nil
-  end
 end

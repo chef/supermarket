@@ -55,4 +55,25 @@ class CookbookMailer < ActionMailer::Base
 
     mail(to: @to, subject: subject)
   end
+
+  #
+  # Sends email to the recipient of an OwnershipTransferRequest, asking if they
+  # want to become the new owner of a Cookbook. This is generated when
+  # a Cookbook owner initiates a transfer of ownership to someone that's not
+  # currently a Collaborator on the Cookbook.
+  #
+  # @param transfer_request [OwnershipTransferRequest]
+  #
+  def transfer_ownership_email(transfer_request)
+    @transfer_request = transfer_request
+    @sender = transfer_request.sender.name
+    @cookbook = transfer_request.cookbook.name
+
+    subject = %(
+      #{@sender} wants to transfer ownership of the #{@cookbook} cookbook to
+      you.
+    ).squish
+
+    mail(to: transfer_request.recipient.email, subject: subject)
+  end
 end

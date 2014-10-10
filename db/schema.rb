@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141007195503) do
+ActiveRecord::Schema.define(version: 20141013212617) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -323,6 +323,20 @@ ActiveRecord::Schema.define(version: 20141007195503) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "ownership_transfer_requests", force: true do |t|
+    t.integer  "cookbook_id",  null: false
+    t.integer  "recipient_id", null: false
+    t.integer  "sender_id",    null: false
+    t.string   "token",        null: false
+    t.boolean  "accepted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ownership_transfer_requests", ["cookbook_id"], name: "index_ownership_transfer_requests_on_cookbook_id", using: :btree
+  add_index "ownership_transfer_requests", ["recipient_id"], name: "index_ownership_transfer_requests_on_recipient_id", using: :btree
+  add_index "ownership_transfer_requests", ["token"], name: "index_ownership_transfer_requests_on_token", unique: true, using: :btree
 
   create_table "supported_platforms", force: true do |t|
     t.string   "name",                                    null: false

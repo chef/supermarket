@@ -36,8 +36,8 @@ module ContributorsHelper
   end
 
   #
-  # Show the appropriate text for removing contributors from a resource. Owners
-  # should see "Remove Contributor", while contributors should see "Remove
+  # Show the appropriate text for removing collaborators from a resource. Owners
+  # should see "Remove Collaborator", while collaborators should see "Remove
   # Myself".
   #
   # @param owner [User] the owner of a resource in question
@@ -46,7 +46,7 @@ module ContributorsHelper
   #
   def contributor_removal_text(owner)
     if current_user == owner
-      'Remove Contributor'
+      'Remove Collaborator'
     else
       'Remove Myself'
     end

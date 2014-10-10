@@ -145,18 +145,6 @@ class CookbooksController < ApplicationController
   end
 
   #
-  # PUT /cookbooks/:cookbook/transfer_ownership
-  #
-  # Transfers ownership of cookbook to another user and redirects
-  # back to the cookbook.
-  #
-  def transfer_ownership
-    authorize! @cookbook
-    @cookbook.update_attributes(transfer_ownership_params)
-    redirect_to @cookbook, notice: t('cookbook.transfered_ownership', cookbook: @cookbook.name, user: @cookbook.owner.username)
-  end
-
-  #
   # PUT /cookbooks/:cookbook/deprecate
   #
   # Deprecates the cookbook, sets the replacement cookbook, kicks off a notifier
@@ -255,10 +243,6 @@ class CookbooksController < ApplicationController
 
   def cookbook_urls_params
     params.require(:cookbook).permit(:source_url, :issues_url)
-  end
-
-  def transfer_ownership_params
-    params.require(:cookbook).permit(:user_id)
   end
 
   def cookbook_deprecation_params

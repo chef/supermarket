@@ -30,7 +30,7 @@ describe ContributorsHelper do
 
     it 'returns "Remove Contributor" if you are the owner' do
       allow(helper).to receive(:current_user) { sally }
-      expect(helper.contributor_removal_text(cookbook.owner)).to eql('Remove Contributor')
+      expect(helper.contributor_removal_text(cookbook.owner)).to eql('Remove Collaborator')
     end
 
     it 'returns "Remove Myself" if you are a contributor' do

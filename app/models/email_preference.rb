@@ -1,4 +1,6 @@
 class EmailPreference < ActiveRecord::Base
+  include Tokenable
+
   # Associations
   # --------------------
   belongs_to :system_email
@@ -12,7 +14,7 @@ class EmailPreference < ActiveRecord::Base
 
   # Callbacks
   # --------------------
-  before_validation :ensure_token
+  before_validation { generate_token }
 
   #
   # Setup a default set of +EmailPreference+s for a +User+. This is called when
@@ -34,14 +36,5 @@ class EmailPreference < ActiveRecord::Base
   #
   def to_param
     token
-  end
-
-  private
-
-  #
-  # Ensure that a token exists when this object is created
-  #
-  def ensure_token
-    self.token = SecureRandom.hex
   end
 end

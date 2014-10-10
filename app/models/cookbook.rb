@@ -119,6 +119,43 @@ class Cookbook < ActiveRecord::Base
   end
 
   #
+  # Transfers ownership of this cookbook to someone else. If the user id passed
+  # in represents someone that is already a collaborator on this cookbook, or
+  # if the User initiating this transfer is an admin, then we just assign the
+  # new owner and move on. If they're not already a collaborator, then we send
+  # them an email asking if they want ownership of this cookbook. This
+  # prevents abuse of people assigning random owners without getting permission.
+  #
+  # @param initiator [User] the User initiating the transfer
+  # @param recipient [User] the User to assign ownership to
+  #
+  # @return [String] a key representing a message to display to the user
+  #
+  def transfer_ownership(initiator, recipient)
+    if initiator.is?(:admin) || collaborator_users.include?(recipient)
+      update_attribute(:user_id, recipient.id)
+
+      if collaborator_users.include?(recipient)
+        collaborator = collaborators.where(
+          user_id: recipient.id,
+          resourceable: self
+        ).first
+        collaborator.destroy unless collaborator.nil?
+      end
+
+      'cookbook.ownership_transfer.done'
+    else
+      transfer_request = OwnershipTransferRequest.create(
+        sender: initiator,
+        recipient: recipient,
+        cookbook: self
+      )
+      CookbookMailer.delay.transfer_ownership_email(transfer_request)
+      'cookbook.ownership_transfer.email_sent'
+    end
+  end
+
+  #
   # The most recent CookbookVersion, based on the semantic version number
   #
   # @return [CookbookVersion] the most recent CookbookVersion
