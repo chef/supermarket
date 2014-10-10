@@ -1,3 +1,7 @@
+v1.2.0 (2014-10-10)
+-------------------
+- [#846] Lazily initialize ROLLOUT
+
 v1.1.0 (2014-10-09)
 -------------------
 - [#831] Make email notifications configurable
