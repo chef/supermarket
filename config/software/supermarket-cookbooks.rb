@@ -16,11 +16,8 @@
 
 name "supermarket-cookbooks"
 
-# We use Berkshelf to install the cookbook dependencies at build time. Since
-# there is no distinction in omnibus between build and runtime dependencies,
-# we're using Berkshelf 2 because Berkshelf 3 includes Gecode, which bloats the
-# file size of the package significantly.
-dependency "berkshelf2"
+dependency "berkshelf"
+dependency "cacerts"
 
 source path: "#{project.files_path}/cookbooks/supermarket"
 
@@ -28,12 +25,7 @@ build do
   cookbooks_path = "#{install_dir}/embedded/cookbooks"
   env = with_standard_compiler_flags(with_embedded_path)
 
-  mkdir cookbooks_path
-
-# FIXME: This seems to be failing for the same reason as the rake tasks due
-# to broken native extension paths
-#  command "#{install_dir}/embedded/bin/berks install --path=#{cookbooks_path}",
-#          env: env
+  command "berks vendor --path=#{cookbooks_path}", env: env
 
   block do
     open("#{cookbooks_path}/dna.json", "w") do |file|

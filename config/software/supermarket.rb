@@ -21,6 +21,7 @@ dependency "bundler"
 dependency "cacerts"
 dependency "git"
 dependency "nginx"
+dependency "nodejs"
 dependency "postgresql"
 dependency "redis"
 dependency "ruby"
@@ -32,12 +33,13 @@ build do
   env = with_standard_compiler_flags(with_embedded_path)
 
   bundle "install" \
-         " --jobs 4" \
+         " --jobs #{workers}" \
+         " --retry 3" \
          " --path=vendor/bundle" \
          " --without development",
          env: env
   # This fails because we're installing Ruby C extensions in the wrong place!
-  #bundle "exec rake assets:precompile", env: env
+  bundle "exec rake assets:precompile", env: env
 
   sync project_dir, "#{install_dir}/embedded/service/supermarket/"
   delete "#{install_dir}/embedded/service/supermarket/log"
