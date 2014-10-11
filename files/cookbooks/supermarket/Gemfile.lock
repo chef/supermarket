@@ -29,7 +29,7 @@ GEM
       buff-ruby_engine (~> 0.1.0)
     celluloid (0.16.0)
       timers (~> 4.0.0)
-    celluloid-io (0.16.0)
+    celluloid-io (0.16.1)
       celluloid (>= 0.16.0)
       nio4r (>= 1.0.0)
     chef (11.16.2)
