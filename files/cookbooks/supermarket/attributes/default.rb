@@ -19,6 +19,9 @@
 
 # Top-level attributes
 ######################
+#
+# These are used by the other items below. More app-specific top-level
+# attributes are further down in this file.
 
 # The fully qualified domain name. Will use the node's fqdn if nothing is
 # specified.
@@ -29,6 +32,11 @@ default['supermarket']['log_directory'] = '/var/log/supermarket'
 default['supermarket']['var_directory'] = '/var/opt/supermarket'
 default['supermarket']['user'] = 'supermarket'
 default['supermarket']['group'] = 'supermarket'
+
+# Database
+##########
+
+default['supermarket']['database']['name'] = 'supermarket'
 
 # Enterprise
 ############
@@ -169,3 +177,14 @@ default['supermarket']['ssl']['locality_name'] = "Seattle"
 default['supermarket']['ssl']['company_name'] = "My Supermarket"
 default['supermarket']['ssl']['organizational_unit_name'] = "Operations"
 default['supermarket']['ssl']['email_address'] = "you@example.com"
+
+# App-specific top-level attributes
+###################################
+#
+# These are used by Rails and Sidekiq. Most will be exported directly to
+# environment variables to be used by the app.
+
+# By default we create this URL from the postgresql settings above in the
+# database recipe. If using an external database, set the whole thing here to
+# the url of the database.
+default['supermarket']['database_url'] = nil

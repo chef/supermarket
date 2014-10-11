@@ -36,4 +36,12 @@ describe 'supermarket::config' do
       mode: '0700',
     )
   end
+
+  it 'creates /var/opt/supermarket/etc' do
+    expect(chef_run).to create_directory('/var/opt/supermarket/etc').with(
+      user: 'supermarket',
+      group: 'supermarket',
+      mode: '0700',
+    )
+  end
 end

@@ -34,6 +34,12 @@ directory node['supermarket']['var_directory'] do
   mode '0700'
 end
 
+directory "#{node['supermarket']['var_directory']}/etc" do
+  owner node['supermarket']['user']
+  group node['supermarket']['group']
+  mode '0700'
+end
+
 template node['supermarket']['config_filename'] do
   source 'supermarket.rb.erb'
   owner node['supermarket']['user']
