@@ -24,13 +24,19 @@ group node['supermarket']['group'] do
 end
 
 directory File.dirname(node['supermarket']['config_filename']) do
-  user node['supermarket']['user']
+  owner node['supermarket']['user']
   group node['supermarket']['group']
+end
+
+directory node['supermarket']['var_directory'] do
+  owner node['supermarket']['user']
+  group node['supermarket']['group']
+  mode '0700'
 end
 
 template node['supermarket']['config_filename'] do
   source 'supermarket.rb.erb'
-  user node['supermarket']['user']
+  owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'
   action :create_if_missing
