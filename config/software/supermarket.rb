@@ -15,7 +15,7 @@
 #
 
 name "supermarket"
-default_version "1.1.0"
+default_version "1.2.0"
 
 dependency "bundler"
 dependency "cacerts"
@@ -39,7 +39,7 @@ build do
          " --without development",
          env: env
   # This fails because we're installing Ruby C extensions in the wrong place!
-  bundle "exec rake assets:precompile", env: env
+  bundle "exec rake assets:precompile", env: env.merge('RAILS_ENV' => 'production')
 
   sync project_dir, "#{install_dir}/embedded/service/supermarket/"
   delete "#{install_dir}/embedded/service/supermarket/log"
