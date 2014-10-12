@@ -10,7 +10,7 @@ class Supermarket
       begin
         secrets = {
           'supermarket' => {
-            'database' => { 'password' => SecureRandom.hex(50) }
+
           }
         }
 

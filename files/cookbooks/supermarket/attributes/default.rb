@@ -33,12 +33,6 @@ default['supermarket']['var_directory'] = '/var/opt/supermarket'
 default['supermarket']['user'] = 'supermarket'
 default['supermarket']['group'] = 'supermarket'
 
-# Database
-##########
-
-default['supermarket']['database']['user'] = 'supermarket'
-default['supermarket']['database']['name'] = 'supermarket'
-
 # Enterprise
 ############
 #
@@ -179,13 +173,16 @@ default['supermarket']['ssl']['company_name'] = "My Supermarket"
 default['supermarket']['ssl']['organizational_unit_name'] = "Operations"
 default['supermarket']['ssl']['email_address'] = "you@example.com"
 
+# Database
+##########
+
+default['supermarket']['database']['user'] = node['supermarket']['postgresql']['username']
+default['supermarket']['database']['name'] = 'supermarket'
+default['supermarket']['database']['host'] = node['supermarket']['postgresql']['listen_address']
+default['supermarket']['database']['port'] = node['supermarket']['postgresql']['port']
+
 # App-specific top-level attributes
 ###################################
 #
 # These are used by Rails and Sidekiq. Most will be exported directly to
 # environment variables to be used by the app.
-
-# By default we create this URL from the postgresql settings above in the
-# database recipe. If using an external database, set the whole thing here to
-# the url of the database.
-default['supermarket']['database_url'] = nil

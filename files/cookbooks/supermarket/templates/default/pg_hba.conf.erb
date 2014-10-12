@@ -65,6 +65,9 @@
 # "local" is for Unix domain socket connections only
 local all <%= node['supermarket']['postgresql']['username'] %> peer
 
+host all <%= node['supermarket']['postgresql']['username'] %> 127.0.0.1/32 trust
+host all <%= node['supermarket']['postgresql']['username'] %> ::1/128 trust
+
 <% node['supermarket']['postgresql']['md5_auth_cidr_addresses'].each do |cidr| %>
 host all all <%= cidr %> md5
 <% end %>

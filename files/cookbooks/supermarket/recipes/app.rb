@@ -21,23 +21,17 @@
 
 include_recipe 'supermarket::config'
 
-if node['supermarket']['database_url']
-  database_config = Supermarket.parsed_database_url(node['supermarket']['database_url'])
-else
-  database_config = {
+file "#{node['supermarket']['var_directory']}/etc/database.yml" do
+  content({
     'production' => {
       'adapter' => 'postgresql',
       'database' => node['supermarket']['database']['name'],
-      'username' => node['supermarket']['postgresql']['username'],
+      'username' => node['supermarket']['database']['user'],
       'password' => node['supermarket']['database']['password'],
-      'host' => node['supermarket']['postgresql']['listen_address'],
-      'port' => node['supermarket']['postgresql']['port'],
+      'host' => node['supermarket']['database']['host'],
+      'port' => node['supermarket']['database']['port'],
     }
-  }
-end
-
-file "#{node['supermarket']['var_directory']}/etc/database.yml" do
-  content database_config.to_yaml
+  }.to_yaml)
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'
