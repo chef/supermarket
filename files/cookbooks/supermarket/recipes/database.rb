@@ -18,3 +18,57 @@
 #
 
 include_recipe 'supermarket::config'
+
+# The enterprise_pg resources use the CLI to create databases and users. Set
+# these environment variables so the commands have the correct connection
+# settings.
+
+ENV['PGHOST'] = node['supermarket']['database']['host']
+ENV['PGPORT'] = node['supermarket']['database']['port'].to_s
+
+enterprise_pg_user node['supermarket']['database']['user'] do
+  superuser true
+  password node['supermarket']['database']['password'] || ''
+  # If the database user is the same as the main postgres user, don't create it.
+  not_if do
+    node['supermarket']['database']['user'] ==
+      node['supermarket']['postgresql']['username']
+  end
+end
+
+enterprise_pg_database node['supermarket']['database']['name'] do
+  owner node['supermarket']['database']['user']
+end
+
+file "#{node['supermarket']['var_directory']}/etc/database.yml" do
+  content({
+    'production' => {
+      'adapter' => 'postgresql',
+      'database' => node['supermarket']['database']['name'],
+      'username' => node['supermarket']['database']['user'],
+      'password' => node['supermarket']['database']['password'],
+      'host' => node['supermarket']['database']['host'],
+      'port' => node['supermarket']['database']['port'],
+    }
+  }.to_yaml)
+  owner node['supermarket']['user']
+  group node['supermarket']['group']
+  mode '0600'
+end
+
+link "#{node['supermarket']['app_directory']}/config/database.yml" do
+  to "#{node['supermarket']['var_directory']}/etc/database.yml"
+end
+
+# Ensure the db schema is owned by the supermarket user, so dumping the db
+# schema after migrate works
+file "#{node['supermarket']['app_directory']}/db/schema.rb" do
+  owner node['supermarket']['user']
+end
+
+execute 'database schema' do
+  command 'bundle exec rake db:migrate db:seed'
+  cwd node['supermarket']['app_directory']
+  env 'RAILS_ENV' => 'production'
+  user node['supermarket']['user']
+end

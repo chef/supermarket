@@ -28,6 +28,7 @@
 default['supermarket']['fqdn'] = node['fqdn']
 default['supermarket']['config_directory'] = '/etc/supermarket'
 default['supermarket']['install_directory'] = '/opt/supermarket'
+default['supermarket']['app_directory'] = "#{node['supermarket']['install_directory']}/embedded/service/supermarket"
 default['supermarket']['log_directory'] = '/var/log/supermarket'
 default['supermarket']['var_directory'] = '/var/opt/supermarket'
 default['supermarket']['user'] = 'supermarket'

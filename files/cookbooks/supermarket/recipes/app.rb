@@ -20,23 +20,3 @@
 # Common configuration for Rails & Sidekiq
 
 include_recipe 'supermarket::config'
-
-file "#{node['supermarket']['var_directory']}/etc/database.yml" do
-  content({
-    'production' => {
-      'adapter' => 'postgresql',
-      'database' => node['supermarket']['database']['name'],
-      'username' => node['supermarket']['database']['user'],
-      'password' => node['supermarket']['database']['password'],
-      'host' => node['supermarket']['database']['host'],
-      'port' => node['supermarket']['database']['port'],
-    }
-  }.to_yaml)
-  owner node['supermarket']['user']
-  group node['supermarket']['group']
-  mode '0600'
-end
-
-link "#{node['supermarket']['install_directory']}/embedded/service/supermarket/config/database.yml" do
-  to "#{node['supermarket']['var_directory']}/etc/database.yml"
-end
