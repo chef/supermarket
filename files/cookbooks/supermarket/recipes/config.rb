@@ -17,13 +17,18 @@
 # limitations under the License.
 #
 
+# Get and/or create config and secrets
+node.consume_attributes(Supermarket::Config.generate_secrets!(
+  "#{node['supermarket']['config_directory']}/secrets.json"
+))
+
 user node['supermarket']['user']
 
 group node['supermarket']['group'] do
   members [node['supermarket']['user']]
 end
 
-directory File.dirname(node['supermarket']['config_filename']) do
+directory node['supermarket']['config_directory'] do
   owner node['supermarket']['user']
   group node['supermarket']['group']
 end
@@ -40,7 +45,7 @@ directory "#{node['supermarket']['var_directory']}/etc" do
   mode '0700'
 end
 
-template node['supermarket']['config_filename'] do
+template "#{node['supermarket']['config_directory']}/supermarket.rb" do
   source 'supermarket.rb.erb'
   owner node['supermarket']['user']
   group node['supermarket']['group']

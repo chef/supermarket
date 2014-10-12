@@ -26,7 +26,7 @@
 # The fully qualified domain name. Will use the node's fqdn if nothing is
 # specified.
 default['supermarket']['fqdn'] = node['fqdn']
-default['supermarket']['config_filename'] = '/etc/supermarket/supermarket.rb'
+default['supermarket']['config_directory'] = '/etc/supermarket'
 default['supermarket']['install_directory'] = '/opt/supermarket'
 default['supermarket']['log_directory'] = '/var/log/supermarket'
 default['supermarket']['var_directory'] = '/var/opt/supermarket'
@@ -36,6 +36,7 @@ default['supermarket']['group'] = 'supermarket'
 # Database
 ##########
 
+default['supermarket']['database']['user'] = 'supermarket'
 default['supermarket']['database']['name'] = 'supermarket'
 
 # Enterprise

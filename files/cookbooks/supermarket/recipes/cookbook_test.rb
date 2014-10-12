@@ -25,7 +25,9 @@
 # If attributes are defined for packages, install them
 test_attributes = node['supermarket']['test']
 if test_attributes['deb_package_path'] && node['platform_family'] == 'debian'
-  dpkg_package test_attributes['deb_package_path']
+  dpkg_package 'supermarket' do
+    source test_attributes['deb_package_path']
+  end
 end
 if test_attributes['rpm_package_path'] && node['platform_family'] == 'rhel'
   package test_attributes['rpm_package_path'] do

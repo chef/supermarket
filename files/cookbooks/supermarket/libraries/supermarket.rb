@@ -5,7 +5,7 @@ class Supermarket
   # Take a database URL and turn it into what we need for the database.yml.
   # Based on what Heroku does:
   # https://github.com/heroku/heroku-buildpack-ruby/blob/v34/lib/language_pack/ruby.rb#L440-503
-  def self.parsed_database_url(url)
+  def parsed_database_url(url)
     begin
       uri = URI.parse(url)
     rescue URI::InvalidURIError
