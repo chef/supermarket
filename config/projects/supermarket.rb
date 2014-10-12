@@ -29,6 +29,7 @@ end
 build_iteration 1
 
 override :bundler, version: "1.7.3"
+override :'chef-gem', version: "11.16.4"
 override :postgresql, version: "9.3.4"
 override :'omnibus-ctl', version: "nls/ignore-config"
 override :ruby, version: "2.1.3"
