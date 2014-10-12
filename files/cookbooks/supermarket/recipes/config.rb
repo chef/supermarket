@@ -17,10 +17,18 @@
 # limitations under the License.
 #
 
-# Get and/or create config and secrets
-node.consume_attributes(Supermarket::Config.generate_secrets!(
-  "#{node['supermarket']['config_directory']}/secrets.json"
-))
+# Get and/or create config and secrets.
+#
+# This creates the config_directory if it does not exist as well as the files
+# in it.
+Supermarket::Config.load_or_create!(
+  "#{node['supermarket']['config_directory']}/supermarket.rb",
+  node
+)
+Supermarket::Config.load_or_create_secrets!(
+  "#{node['supermarket']['config_directory']}/secrets.json",
+  node
+)
 
 user node['supermarket']['user']
 
@@ -45,10 +53,14 @@ directory "#{node['supermarket']['var_directory']}/etc" do
   mode '0700'
 end
 
-template "#{node['supermarket']['config_directory']}/supermarket.rb" do
-  source 'supermarket.rb.erb'
+file "#{node['supermarket']['config_directory']}/supermarket.rb" do
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'
-  action :create_if_missing
+end
+
+file "#{node['supermarket']['config_directory']}/secrets.json" do
+  owner node['supermarket']['user']
+  group node['supermarket']['group']
+  mode '0600'
 end

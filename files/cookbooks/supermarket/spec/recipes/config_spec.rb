@@ -21,8 +21,8 @@ describe 'supermarket::config' do
     )
   end
 
-  it 'creates /etc/supermarket/supermarket.rb if it does not exist' do
-    expect(chef_run).to create_template_if_missing('/etc/supermarket/supermarket.rb').with(
+  it 'creates /etc/supermarket/supermarket.rb' do
+    expect(chef_run).to create_file('/etc/supermarket/supermarket.rb').with(
       user: 'supermarket',
       group: 'supermarket',
       mode: '0600',
