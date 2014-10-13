@@ -39,34 +39,35 @@ if node['supermarket']['ssl']['certificate']
 # No certificate has been supplied; generate one
 else
   keyfile = "#{node['supermarket']['ssl']['directory']}/ca/#{node['supermarket']['fqdn']}.key"
-  crtfile = "#{node['supermarket']['ssl']['directory']}/ca/#{node['supermarket']['fqdn']}.crt"
   signing_conf = "#{node['supermarket']['ssl']['directory']}/ca/#{node['supermarket']['fqdn']}-ssl.conf"
+  crtfile = "#{node['supermarket']['ssl']['directory']}/ca/#{node['supermarket']['fqdn']}.crt"
 
-  file keyfile do
-    content `#{node['supermarket']['ssl']['openssl_bin']} genrsa 2048`
-    owner 'root'
-    group 'root'
-    mode '0640'
-    action :create_if_missing
-  end
+  unless File.exist?(keyfile) && File.exist?(signing_conf) && File.exist?(crtfile)
+    file keyfile do
+      content `#{node['supermarket']['ssl']['openssl_bin']} genrsa 2048`
+      owner 'root'
+      group 'root'
+      mode '0640'
+      action :create_if_missing
+    end
 
-  template signing_conf do
-    source 'ssl-signing.conf.erb'
-    owner 'root'
-    group 'root'
-    mode '0644'
-    action :create_if_missing
-  end
+    template signing_conf do
+      source 'ssl-signing.conf.erb'
+      owner 'root'
+      group 'root'
+      mode '0644'
+      action :create_if_missing
+    end
 
-  ruby_block 'create certificate' do
-    block do
-      r = Chef::Resource::File.new(crtfile, run_context)
-      r.owner 'root'
-      r.group 'root'
-      r.mode '0644'
-      r.content `#{node['supermarket']['ssl']['openssl_bin']} req -config '#{signing_conf}' -new -x509 -nodes -sha1 -days 3650 -key #{keyfile}`
-      r.not_if { File.exists?(crtfile) }
-      r.run_action(:create)
+    ruby_block 'create certificate' do
+      block do
+        r = Chef::Resource::File.new(crtfile, run_context)
+        r.owner 'root'
+        r.group 'root'
+        r.mode '0644'
+        r.content `#{node['supermarket']['ssl']['openssl_bin']} req -config '#{signing_conf}' -new -x509 -nodes -sha1 -days 3650 -key #{keyfile}`
+        r.run_action(:create)
+      end
     end
   end
 
