@@ -92,10 +92,4 @@ describe 'GET /universe' do
     expect(body['redis']['1.3.0']['download_url']).to match(%r{/api/v1/cookbooks/redis/versions/1.3.0/download})
     expect(body['apt']['1.1.0']['dependencies']).to eql({})
   end
-
-  it 'should use supermarket location_type in the future' do
-    unless Time.now < Time.at(1420012800)
-      raise 'We should implement the universe using the supermarket location_type and location_path by 2014-12-31'
-    end
-  end
 end
