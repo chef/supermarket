@@ -16,15 +16,13 @@ ln -sf /opt/supermarket/bin/supermarket-ctl /usr/bin || error_exit "Cannot link 
 echo
 if [ -e /etc/supermarket/supermarket-running.json ]; then
   echo -e "\033[1mYou have upgraded Supermarket!\033[0m"
-  NEXT_COMMAND=upgrade
 else
   echo -e "\033[1mThank you for installing Supermarket!\033[0m"
-  NEXT_COMMAND=reconfigure
 fi
 
 echo
 echo "The next step in the process is to run:"
 echo
-echo -e "\033[1;32msupermarket-ctl $NEXT_COMMAND\033[0m\n"
+echo -e "\033[1;32msupermarket-ctl reconfigure\033[0m\n"
 
 exit 0
