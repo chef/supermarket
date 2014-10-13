@@ -19,7 +19,7 @@ name "supermarket-ctl"
 dependency "omnibus-ctl"
 dependency "runit"
 
-source path: "#{project.files_path}/ctl-commands"
+source path: "#{project_dir}/cookbooks/omnibus-supermarket/files/default/ctl-commands"
 
 build do
   block do
