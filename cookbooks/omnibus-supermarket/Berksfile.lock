@@ -1,12 +1,11 @@
 DEPENDENCIES
-  apt (~> 2.0)
   enterprise
     git: https://github.com/opscode-cookbooks/enterprise-chef-common.git
     revision: bbbe5f85f13d5828b116cef72de9f31f7bec8a23
     tag: 0.4.5
-  omnibus
   omnibus-supermarket
-    path: cookbooks/omnibus-supermarket
+    path: .
+    metadata: true
 
 GRAPH
   7-zip (1.0.2)
@@ -15,11 +14,11 @@ GRAPH
   bluepill (2.3.1)
     rsyslog (>= 0.0.0)
   build-essential (2.0.6)
-  chef-sugar (2.3.0)
+  chef-sugar (2.4.1)
   chef_handler (1.1.6)
   enterprise (0.4.4)
     runit (> 1.0.0)
-  homebrew (1.9.0)
+  homebrew (1.9.2)
   nginx (2.7.4)
     apt (~> 2.2)
     bluepill (~> 2.3)
@@ -28,14 +27,13 @@ GRAPH
     runit (~> 1.2)
     yum-epel (~> 0.3)
   ohai (2.0.1)
-  omnibus (2.3.4)
+  omnibus (2.4.0)
     7-zip (~> 1.0)
     build-essential (~> 2.0)
     chef-sugar (~> 2.0)
     homebrew (~> 1.5)
     windows (~> 1.30)
     wix (~> 1.1)
-    yum-epel (~> 0.4)
   omnibus-supermarket (1.0.0)
     enterprise (>= 0.0.0)
     nginx (>= 0.0.0)

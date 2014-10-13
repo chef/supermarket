@@ -19,7 +19,7 @@ name "supermarket-cookbooks"
 dependency "berkshelf"
 dependency "cacerts"
 
-source path: "#{project.files_path}/cookbooks/supermarket"
+source path: "#{project_dir}/cookbooks/omnibus-supermarket"
 
 build do
   cookbooks_path = "#{install_dir}/embedded/cookbooks"
@@ -29,12 +29,12 @@ build do
 
   block do
     open("#{cookbooks_path}/dna.json", "w") do |file|
-      file.write JSON.fast_generate(run_list: ['recipe[supermarket::default]'])
+      file.write JSON.fast_generate(run_list: ['recipe[omnibus-supermarket::default]'])
     end
 
     open("#{cookbooks_path}/show-config.json", "w") do |file|
       file.write JSON.fast_generate(
-        run_list: ['recipe[supermarket::show_config]']
+        run_list: ['recipe[omnibus-supermarket::show_config]']
       )
     end
 
