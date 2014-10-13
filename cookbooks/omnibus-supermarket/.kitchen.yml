@@ -2,7 +2,7 @@
 driver:
   name: vagrant
   synced_folders:
-    - ['../../../pkg', '/tmp/packages', 'create: true, type: :rsync']
+    - ['../../pkg', '/tmp/packages', 'create: true, type: :rsync']
 
 provisioner:
   name: chef_solo
