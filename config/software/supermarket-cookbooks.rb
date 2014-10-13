@@ -19,13 +19,36 @@ name "supermarket-cookbooks"
 dependency "berkshelf"
 dependency "cacerts"
 
-source path: "#{project_dir}/cookbooks/omnibus-supermarket"
+source path: "cookbooks/omnibus-supermarket"
 
 build do
   cookbooks_path = "#{install_dir}/embedded/cookbooks"
   env = with_standard_compiler_flags(with_embedded_path)
 
-  command "berks vendor --path=#{cookbooks_path}", env: env
+  # FIXME: Berks fails here:
+  # /opt/supermarket/embedded/lib/ruby/2.1.0/net/http.rb:920:in `connect': SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed (OpenSSL::SSL::SSLError)
+  #
+  # Tried:
+  #
+  # * Setting the SSL_CERT_FILE environment variable to the cacert.pem dependency
+  #   in that softawre
+  # * Creating .berkshelf/config.json in the cookbook with ssl verify false
+  #
+  # Haven't tried outside of vagrant/kitchen, so it could be specific to one
+  # of those.
+  #
+  # It's failing on the "enterprise" dependency in
+  # cookbooks/omnibus-supermarket/Berksfile, which is open source on GitHub.
+  # Same failure happens if I use http:// or git://.
+  #
+  # We weren't seeing this when we were using berkshelf2, but we switched to
+  # 3 because we're using 3 in the cookbook itself, and the file size issues are
+  # much better now, and 2 is deprecated.
+  #
+  #command "berks vendor --path=#{cookbooks_path}", env: env
+  #
+  # Do this instead for now, so the directory is there:
+  mkdir cookbooks_path
 
   block do
     open("#{cookbooks_path}/dna.json", "w") do |file|

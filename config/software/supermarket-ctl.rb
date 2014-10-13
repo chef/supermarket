@@ -19,7 +19,7 @@ name "supermarket-ctl"
 dependency "omnibus-ctl"
 dependency "runit"
 
-source path: "#{project_dir}/cookbooks/omnibus-supermarket/files/default/ctl-commands"
+source path: "cookbooks/omnibus-supermarket/files/default/ctl-commands"
 
 build do
   block do
@@ -33,5 +33,5 @@ build do
   end
 
   # additional omnibus-ctl commands
-  sync "#{project_dir}", "#{install_dir}/embedded/service/omnibus-ctl/"
+  sync project_dir, "#{install_dir}/embedded/service/omnibus-ctl/"
 end
