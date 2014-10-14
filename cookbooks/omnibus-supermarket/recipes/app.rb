@@ -20,6 +20,7 @@
 # Common configuration for Rails & Sidekiq
 
 include_recipe 'omnibus-supermarket::config'
+include_recipe 'omnibus-supermarket::rails'
 include_recipe 'omnibus-supermarket::sidekiq'
 
 file "#{node['supermarket']['var_directory']}/etc/env" do
@@ -28,6 +29,7 @@ file "#{node['supermarket']['var_directory']}/etc/env" do
   group 'supermarket'
   mode '0600'
   notifies :restart, 'runit_service[sidekiq]' if node['supermarket']['sidekiq']['enable']
+  notifies :restart, 'runit_service[rails]' if node['supermarket']['rails']['enable']
 end
 
 link "#{node['supermarket']['app_directory']}/.env.production" do

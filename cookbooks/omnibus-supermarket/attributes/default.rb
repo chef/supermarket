@@ -121,6 +121,16 @@ default['supermarket']['postgresql']['shmmax'] = 17179869184
 default['supermarket']['postgresql']['shmall'] = 4194304
 default['supermarket']['postgresql']['work_mem'] = "8MB"
 
+# Rails
+#######
+#
+# The Rails app for Supermarket
+default['supermarket']['rails']['enable'] = true
+default['supermarket']['rails']['port'] = 13000
+default['supermarket']['rails']['log_directory'] = "#{node['supermarket']['log_directory']}/rails"
+default['supermarket']['rails']['log_rotation']['file_maxbytes'] = 104857600
+default['supermarket']['rails']['log_rotation']['num_to_keep'] = 10
+
 # Redis
 #######
 
@@ -145,9 +155,9 @@ default['runit']['svlogd_bin'] = "#{node['supermarket']['install_directory']}/em
 # Used for background jobs
 default['supermarket']['sidekiq']['enable'] = true
 default['supermarket']['sidekiq']['concurrency'] = 25
-default['supermarket']['sidekiq']['log_directory']['file_maxbytes'] = 104857600
-default['supermarket']['sidekiq']['log_rotation']['num_to_keep'] = 10
 default['supermarket']['sidekiq']['log_directory'] = "#{node['supermarket']['log_directory']}/sidekiq"
+default['supermarket']['sidekiq']['log_rotation']['file_maxbytes'] = 104857600
+default['supermarket']['sidekiq']['log_rotation']['num_to_keep'] = 10
 default['supermarket']['sidekiq']['timeout'] = 30
 
 # SSL
@@ -181,6 +191,27 @@ default['supermarket']['ssl']['email_address'] = "you@example.com"
 # Full explanation of all options can be found at
 # http://unicorn.bogomips.org/Unicorn/Configurator.html
 default['supermarket']['unicorn']['name'] = 'supermarket'
+default['supermarket']['unicorn']['copy_on_write'] = true
+default['supermarket']['unicorn']['enable_stats'] = false
+default['supermarket']['unicorn']['forked_user'] = node['supermarket']['user']
+default['supermarket']['unicorn']['forked_group'] = node['supermarket']['group']
+default['supermarket']['unicorn']['listen'] = ["127.0.0.1:#{node['supermarket']['rails']['port']}"]
+default['supermarket']['unicorn']['pid'] = "#{node['supermarket']['var_directory']}/rails/run/unicorn.pid"
+default['supermarket']['unicorn']['preload_app'] = true
+default['supermarket']['unicorn']['worker_timeout'] = 15
+default['supermarket']['unicorn']['worker_processes'] = node['nginx']['worker_processes']
+
+# These are not used, but you can set them if needed
+default['supermarket']['unicorn']['before_exec'] = nil
+default['supermarket']['unicorn']['stderr_path'] = nil
+default['supermarket']['unicorn']['stdout_path'] = nil
+default['supermarket']['unicorn']['unicorn_command_line'] = nil
+default['supermarket']['unicorn']['working_directory'] = nil
+
+# These are defined a recipe to be specific things we need that you
+# could change here, but probably should not.
+default['supermarket']['unicorn']['before_fork'] = nil
+default['supermarket']['unicorn']['after_fork'] = nil
 
 # Database
 ##########
