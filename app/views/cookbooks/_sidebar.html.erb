@@ -37,7 +37,7 @@
 
     <div class="cookbook-urls">
       <% if cookbook.source_url.present? %>
-        <%= link_to 'View Source', cookbook.source_url, class: 'button secondary radius tiny source-url', itemprop: 'codeRepository' %>
+        <%= link_to 'View Source', cookbook.source_url, class: 'button radius tiny source-url', itemprop: 'codeRepository' %>
       <% end %>
 
       <% if cookbook.issues_url.present? %>
