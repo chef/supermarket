@@ -125,6 +125,7 @@ default['supermarket']['postgresql']['work_mem'] = "8MB"
 #######
 
 default['supermarket']['redis']['enable'] = true
+default['supermarket']['redis']['bind'] = '127.0.0.1'
 default['supermarket']['redis']['directory'] = "#{node['supermarket']['var_directory']}/redis"
 default['supermarket']['redis']['log_directory'] = "#{node['supermarket']['log_directory']}/redis"
 default['supermarket']['redis']['log_rotation']['file_maxbytes'] = 104857600
@@ -172,3 +173,4 @@ default['supermarket']['database']['port'] = node['supermarket']['postgresql']['
 #
 # These are used by Rails and Sidekiq. Most will be exported directly to
 # environment variables to be used by the app.
+default['supermarket']['redis_url'] = "redis://#{node['supermarket']['redis']['bind']}:#{node['supermarket']['redis']['port']}/0/supermarket"

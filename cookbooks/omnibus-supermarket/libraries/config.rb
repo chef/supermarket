@@ -45,6 +45,22 @@ class Supermarket
       node.consume_attributes(secrets)
     end
 
+    # Take some node attributes and return them on each line as:
+    #
+    # export ATTR_NAME="attr_value"
+    #
+    # If the value is a String or Number and the attribute name is attr_name.
+    # Used to write out environment variables to a file.
+    def self.environment_variables_from(attributes)
+      attributes.reduce "" do |str, attr|
+        if attr[1].is_a?(String) || attr[1].is_a?(Numeric)
+          str << "export #{attr[0].upcase}=\"#{attr[1]}\"\n"
+        else
+          str << ''
+        end
+      end
+    end
+
     def self.create_directory!(filename)
       dir = File.dirname(filename)
       FileUtils.mkdir(dir, :mode => 0700) unless Dir.exist?(dir)

@@ -20,3 +20,14 @@
 # Common configuration for Rails & Sidekiq
 
 include_recipe 'omnibus-supermarket::config'
+
+file "#{node['supermarket']['var_directory']}/etc/env" do
+  content Supermarket::Config.environment_variables_from(node['supermarket'])
+  owner 'supermarket'
+  group 'supermarket'
+  mode '0600'
+end
+
+link "#{node['supermarket']['app_directory']}/.env.production" do
+  to "#{node['supermarket']['var_directory']}/etc/env"
+end

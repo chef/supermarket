@@ -1,6 +1,8 @@
 ---
 driver:
   name: vagrant
+  network:
+    - ['private_network', { ip: '192.168.33.33' }]
   synced_folders:
     - ['../../pkg', '/tmp/packages', 'create: true, type: :rsync']
 
