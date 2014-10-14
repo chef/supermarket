@@ -139,6 +139,17 @@ default['supermarket']['redis']['port'] = 16379
 # see (https://github.com/opscode-cookbooks/enterprise-chef-common/pull/17)
 default['runit']['svlogd_bin'] = "#{node['supermarket']['install_directory']}/embedded/bin/svlogd"
 
+# Sidekiq
+#########
+#
+# Used for background jobs
+default['supermarket']['sidekiq']['enable'] = true
+default['supermarket']['sidekiq']['concurrency'] = 25
+default['supermarket']['sidekiq']['log_directory']['file_maxbytes'] = 104857600
+default['supermarket']['sidekiq']['log_rotation']['num_to_keep'] = 10
+default['supermarket']['sidekiq']['log_directory'] = "#{node['supermarket']['log_directory']}/sidekiq"
+default['supermarket']['sidekiq']['timeout'] = 30
+
 # SSL
 #####
 
@@ -160,6 +171,17 @@ default['supermarket']['ssl']['company_name'] = "My Supermarket"
 default['supermarket']['ssl']['organizational_unit_name'] = "Operations"
 default['supermarket']['ssl']['email_address'] = "you@example.com"
 
+# Unicorn
+#########
+#
+# Settings for main Rails app Unicorn application server. These attributes are
+# used with the template from the community Unicorn cookbook:
+# https://github.com/opscode-cookbooks/unicorn/blob/master/templates/default/unicorn.rb.erb
+#
+# Full explanation of all options can be found at
+# http://unicorn.bogomips.org/Unicorn/Configurator.html
+default['supermarket']['unicorn']['name'] = 'supermarket'
+
 # Database
 ##########
 
@@ -167,6 +189,7 @@ default['supermarket']['database']['user'] = node['supermarket']['postgresql']['
 default['supermarket']['database']['name'] = 'supermarket'
 default['supermarket']['database']['host'] = node['supermarket']['postgresql']['listen_address']
 default['supermarket']['database']['port'] = node['supermarket']['postgresql']['port']
+default['supermarket']['database']['pool'] = node['supermarket']['sidekiq']['concurrency']
 
 # App-specific top-level attributes
 ###################################
@@ -174,3 +197,4 @@ default['supermarket']['database']['port'] = node['supermarket']['postgresql']['
 # These are used by Rails and Sidekiq. Most will be exported directly to
 # environment variables to be used by the app.
 default['supermarket']['redis_url'] = "redis://#{node['supermarket']['redis']['bind']}:#{node['supermarket']['redis']['port']}/0/supermarket"
+default['newrelic_agent_enabled'] = 'false'

@@ -49,6 +49,7 @@ file "#{node['supermarket']['var_directory']}/etc/database.yml" do
       'password' => node['supermarket']['database']['password'],
       'host' => node['supermarket']['database']['host'],
       'port' => node['supermarket']['database']['port'],
+      'pool' => node['supermarket']['database']['pool'],
     }
   }.to_yaml)
   owner node['supermarket']['user']

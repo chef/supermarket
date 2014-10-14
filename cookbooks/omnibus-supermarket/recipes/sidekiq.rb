@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: supermarket
-# Recipe:: app
+# Recipe:: sidekiq
 #
 # Copyright 2014 Chef Supermarket Team
 #
@@ -17,19 +17,18 @@
 # limitations under the License.
 #
 
-# Common configuration for Rails & Sidekiq
-
-include_recipe 'omnibus-supermarket::config'
-include_recipe 'omnibus-supermarket::sidekiq'
-
-file "#{node['supermarket']['var_directory']}/etc/env" do
-  content Supermarket::Config.environment_variables_from(node['supermarket'])
-  owner 'supermarket'
-  group 'supermarket'
-  mode '0600'
-  notifies :restart, 'runit_service[sidekiq]' if node['supermarket']['sidekiq']['enable']
+directory "#{node['supermarket']['log_directory']}/sidekiq" do
+  owner node['supermarket']['user']
+  group node['supermarket']['group']
+  mode '0700'
 end
 
-link "#{node['supermarket']['app_directory']}/.env.production" do
-  to "#{node['supermarket']['var_directory']}/etc/env"
+if node['supermarket']['sidekiq']['enable']
+  component_runit_service 'sidekiq' do
+    package 'supermarket'
+  end
+else
+  runit_service 'sidekiq' do
+    action :disable
+  end
 end
