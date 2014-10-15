@@ -41,7 +41,7 @@ gem 'virtus', '1.0.2', require: false
 
 gem 'kaminari'
 gem 'validate_url'
-gem 'chef', '~> 11.10.4', require: false
+gem 'chef', require: false
 gem 'mixlib-authentication'
 gem 'aws-sdk'
 gem 'newrelic_rpm'
