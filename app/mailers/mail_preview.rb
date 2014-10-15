@@ -14,8 +14,8 @@ if Rails.env.development?
 
     def cookbook_follower_notification_email
       CookbookMailer.follower_notification_email(
-        user,
-        cookbook.latest_cookbook_version
+        cookbook.latest_cookbook_version,
+        user
       )
     end
 
