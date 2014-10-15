@@ -5,12 +5,48 @@
 #
 # Most of the attributes in this file are things you will not need to ever
 # touch, but they are here in case you need them.
+#
+# A `supermarket-ctl reconfigure` should pick up any changes made here.
 
 # ## Common Use Cases
 #
 # These are examples of things you may want to do, depending on how you set up
 # the application to run.
-# TODO
+#
+# ### Chef Identity
+#
+# You will have to set this up in order to log into Supermarket and upload
+# cookbooks with your Chef server keys.
+#
+# See the "Chef OAuth2 Settings" section below
+#
+# ### Using an external Postgres database
+#
+# Disable the provided Postgres instance and connect to your own:
+#
+# default['supermarket']['postgresql']['enable'] = false
+# default['supermarket']['database']['user'] = 'my_db_user_name'
+# default['supermarket']['database']['name'] = 'my_db_name''
+# default['supermarket']['database']['host'] = 'my.db.server.address'
+# default['supermarket']['database']['port'] = 5432
+#
+# ### Using an external Redis server
+#
+# Disable the provided Redis server and use on reachable on your network:
+#
+# default['supermarket']['redis']['enable'] = false
+# default['supermarket']['redis_url'] = 'redis://my.redis.host:6379/0/mydbname
+#
+# ### Bring your on SSL certificate
+#
+# If a key and certificate are not provided, a self-signed certificate will be
+# generated. To use your own, provide the paths to them and ensure SSL is
+# enabled in Nginx:
+#
+# default['supermarket']['nginx']['port'] = 443
+# default['supermarket']['nginx']['protocol'] = 'https'
+# default['supermarket']['ssl']['certificate'] = '/path/to/my.crt'
+# default['supermarket']['ssl']['certificate_key'] = '/path/to/my.key'
 
 # ## Top-level attributes
 #
@@ -46,7 +82,11 @@ default['supermarket']['sysvinit_id'] = 'SUP'
 
 # ## Nginx
 
+# These attributes control Supermarket-specific portions of the Nginx
+# configuration and the virtual host for the Supermarket Rails app.
 default['supermarket']['nginx']['enable'] = true
+default['supermarket']['nginx']['port'] = 80
+default['supermarket']['nginx']['protocol'] = 'http'
 default['supermarket']['nginx']['directory'] = "#{node['supermarket']['var_directory']}/nginx"
 default['supermarket']['nginx']['log_directory'] = "#{node['supermarket']['log_directory']}/nginx"
 default['supermarket']['nginx']['log_rotation']['file_maxbytes'] = 104857600
@@ -140,6 +180,7 @@ default['supermarket']['rails']['log_rotation']['file_maxbytes'] = 104857600
 default['supermarket']['rails']['log_rotation']['num_to_keep'] = 10
 
 # ## Redis
+
 default['supermarket']['redis']['enable'] = true
 default['supermarket']['redis']['bind'] = '127.0.0.1'
 default['supermarket']['redis']['directory'] = "#{node['supermarket']['var_directory']}/redis"
@@ -157,6 +198,7 @@ default['runit']['svlogd_bin'] = "#{node['supermarket']['install_directory']}/em
 # ## Sidekiq
 #
 # Used for background jobs
+
 default['supermarket']['sidekiq']['enable'] = true
 default['supermarket']['sidekiq']['concurrency'] = 25
 default['supermarket']['sidekiq']['log_directory'] = "#{node['supermarket']['log_directory']}/sidekiq"
@@ -165,6 +207,7 @@ default['supermarket']['sidekiq']['log_rotation']['num_to_keep'] = 10
 default['supermarket']['sidekiq']['timeout'] = 30
 
 # ## SSL
+
 default['supermarket']['ssl']['directory'] = '/var/opt/supermarket/ssl'
 
 # This shouldn't be changed, but can be overriden in tests
@@ -227,6 +270,105 @@ default['supermarket']['database']['pool'] = node['supermarket']['sidekiq']['con
 #
 # These are used by Rails and Sidekiq. Most will be exported directly to
 # environment variables to be used by the app.
+#
+# Items that are set to nil here and also set in the development environment
+# configuration (https://github.com/opscode/supermarket/blob/master/.env) will
+# use the value from the development environment. Set them to something other
+# than nil to change them.
 
+default['supermarket']['fieri_url'] = nil
+default['supermarket']['fieri_key'] = nil
+default['supermarket']['from_email'] = nil
+default['supermarket']['github_access_token'] = nil
+default['supermarket']['github_key'] = nil
+default['supermarket']['github_secret'] = nil
+default['supermarket']['google_analytics_id'] = nil
+default['supermarket']['host'] = node['supermarket']['fqdn']
+default['supermarket']['newrelic_agent_enabled'] = 'false'
+default['supermarket']['newrelic_app_name'] = nil
+default['supermarket']['newrelic_license_key'] = nil
+default['supermarket']['port'] = node['supermarket']['nginx']['port']
+default['supermarket']['protocol'] = node['supermarket']['nginx']['protocol']
+default['supermarket']['pubsubhubbub_callback_url'] = nil
+default['supermarket']['pubsubhubbub_secret'] = nil
 default['supermarket']['redis_url'] = "redis://#{node['supermarket']['redis']['bind']}:#{node['supermarket']['redis']['port']}/0/supermarket"
-default['newrelic_agent_enabled'] = 'false'
+default['supermarket']['sentry_url'] = nil
+
+# ### Chef OAuth2 Settings
+#
+# These settings configure the service to talk to a Chef identity service.
+#
+# An Application must be created on the Chef server's identity service to do
+# this. With the following in /etc/opscode/chef-server.rb:
+#
+#     oc_id['applications'] = { 'my_supermarket' => { 'redirect_uri' => 'https://my.supermarket.server.fqdn/auth/chef_oauth2/callback' } }
+#
+# Run `chef-server-ctl reconfigure`, then these values should available in
+# /etc/opscode/oc-id-applications/my_supermarket.json.
+#
+# If you are using a self-signed certificate on your Chef server without a
+# properly configured certificate authority, chef_oauth2_verify_ssl must be
+# false.
+default['supermarket']['chef_oauth2_app_id'] = nil
+default['supermarket']['chef_oauth2_secret'] = nil
+default['supermarket']['chef_oauth2_url'] = nil
+default['supermarket']['chef_oauth2_verify_ssl'] = true
+
+# ### CLA Settings
+#
+# These are used for the Contributor License Agreement features. You only need
+# them if the cla and/or join_ccla features are enabled (see "Features" below.)
+default['supermarket']['ccla_version'] = nil
+default['supermarket']['cla_signature_notification_email'] = nil
+default['supermarket']['cla_report_email'] = nil
+default['supermarket']['curry_cla_location'] = nil
+default['supermarket']['curry_success_label'] = nil
+default['supermarket']['icla_location'] = nil
+default['supermarket']['icla_version'] = nil
+default['supermarket']['seed_cla_data'] = nil
+
+# ### Features
+#
+# These control the feature flags that turn features on and off.
+#
+# Available features are:
+#
+# * announcement: TODO
+# * cla: Enable the Contributor License Agreement features
+# * fieri: Use the fieri service to report on cookbook quality (requires
+#   fieri_url and fieri_key to be set.)
+# * join_ccla: Enable joining of Corporate CLAs
+# * tools: Enable the tools section
+default['supermarket']['features'] = 'announcement,tools'
+
+# ### S3 Settings
+#
+# If these are not set, uploaded cookbooks will be stored on the local
+# filesystem (this means that running multiple application servers will require
+# some kind of shared storage, which is not provided.)
+#
+# If these are set, cookbooks will be uploaded to the to the given S3 bucket
+# using the provided credentials. A cdn_url can be used for an alias if the
+# given S3 bucket is behind a CDN like CloudFront.
+default['supermarket']['s3_access_key_id'] = nil
+default['supermarket']['s3_bucket'] = nil
+default['supermarket']['s3_secret_access_key'] = nil
+default['supermarket']['cdn_url'] = nil
+
+# ### SMTP Settings
+#
+# If none of these are set, the :sendmail delivery method will be used. Using
+# the sendmail delivery method requires that a working mail transfer agent
+# (usually set up with a relay host) be configured on this machine.
+#
+# SMTP will use the 'plain' authentication method.
+default['supermarket']['smtp_address'] = nil
+default['supermarket']['smtp_password'] = nil
+default['supermarket']['smtp_port'] = nil
+default['supermarket']['smtp_user_name'] = nil
+
+# ### StatsD Settings
+#
+# If these are present, metrics can be reported to a StatsD server.
+default['supermarket']['statsd_url'] = nil
+default['supermarket']['statsd_port'] = nil
