@@ -31,7 +31,7 @@ class Supermarket
       begin
         secrets = {
           'supermarket' => {
-
+            'secret_key_base' => SecureRandom.hex(50)
           }
         }
 
