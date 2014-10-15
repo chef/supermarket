@@ -53,7 +53,7 @@ class Supermarket
     # Used to write out environment variables to a file.
     def self.environment_variables_from(attributes)
       attributes.reduce "" do |str, attr|
-        if attr[1].is_a?(String) || attr[1].is_a?(Numeric)
+        if attr[1].is_a?(String) || attr[1].is_a?(Numeric) || attr[1] == true || attr[1] == false
           str << "export #{attr[0].upcase}=\"#{attr[1]}\"\n"
         else
           str << ''

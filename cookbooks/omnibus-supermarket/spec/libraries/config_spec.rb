@@ -9,10 +9,15 @@ describe Supermarket::Config do
         'test3' => {},
         'test4' => [],
         'test5' => 'def',
+        'test6' => true,
+        'test7' => false,
+        'test8' => nil,
       )).to eq(<<EOF
 export TEST1="123"
 export TEST2="abc"
 export TEST5="def"
+export TEST6="true"
+export TEST7="false"
 EOF
 )
     end
