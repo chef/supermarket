@@ -30,7 +30,7 @@ describe 'omnibus-supermarket::nginx' do
   end
 
   it 'creates /var/opt/supermarket/nginx/etc/sites_enabled' do
-    expect(chef_run).to create_directory('/var/opt/supermarket/nginx/etc/sites_enabled').with(
+    expect(chef_run).to create_directory('/var/opt/supermarket/nginx/etc/sites-enabled').with(
       user: 'supermarket',
       group: 'supermarket',
       mode: '0700',
@@ -47,7 +47,7 @@ describe 'omnibus-supermarket::nginx' do
   end
 
   it 'symlinks the mime types' do
-    expect(chef_run.link('/var/opt/supermarket/nginx/mime.types')).to link_to(
+    expect(chef_run.link('/var/opt/supermarket/nginx/etc/mime.types')).to link_to(
       '/opt/supermarket/embedded/conf/mime.types'
     )
   end

@@ -18,6 +18,7 @@
 #
 
 include_recipe 'omnibus-supermarket::config'
+include_recipe 'omnibus-supermarket::nginx'
 
 [node['supermarket']['rails']['log_directory'],
  "#{node['supermarket']['var_directory']}/rails/run"].each do |dir|
@@ -89,4 +90,12 @@ end
 
 link "#{node['supermarket']['app_directory']}/config/unicorn.rb" do
   to "#{node['supermarket']['var_directory']}/etc/unicorn.rb"
+end
+
+template "#{node['supermarket']['nginx']['directory']}/sites-enabled/rails" do
+  source 'rails.nginx.conf.erb'
+  owner node['supermarket']['user']
+  group node['supermarket']['group']
+  mode '0600'
+  notifies :reload, 'runit_service[nginx]' if node['supermarket']['nginx']['enable']
 end

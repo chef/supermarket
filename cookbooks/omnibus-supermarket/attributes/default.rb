@@ -87,7 +87,7 @@ default['supermarket']['sysvinit_id'] = 'SUP'
 default['supermarket']['nginx']['enable'] = true
 default['supermarket']['nginx']['port'] = 80
 default['supermarket']['nginx']['protocol'] = 'http'
-default['supermarket']['nginx']['directory'] = "#{node['supermarket']['var_directory']}/nginx"
+default['supermarket']['nginx']['directory'] = "#{node['supermarket']['var_directory']}/nginx/etc"
 default['supermarket']['nginx']['log_directory'] = "#{node['supermarket']['log_directory']}/nginx"
 default['supermarket']['nginx']['log_rotation']['file_maxbytes'] = 104857600
 default['supermarket']['nginx']['log_rotation']['num_to_keep'] = 10
@@ -306,6 +306,8 @@ default['supermarket']['sentry_url'] = nil
 # Run `chef-server-ctl reconfigure`, then these values should available in
 # /etc/opscode/oc-id-applications/my_supermarket.json.
 #
+# The chef_oauth2_url should be the root URL of your Chef server.
+#
 # If you are using a self-signed certificate on your Chef server without a
 # properly configured certificate authority, chef_oauth2_verify_ssl must be
 # false.
@@ -333,13 +335,15 @@ default['supermarket']['seed_cla_data'] = nil
 #
 # Available features are:
 #
-# * announcement: TODO
+# * announcement: Display the Supermarket initial launch announcement banner
+#   (this will most likely be of no use to you, but could be made a
+#   configurable thing in the future.)
 # * cla: Enable the Contributor License Agreement features
 # * fieri: Use the fieri service to report on cookbook quality (requires
 #   fieri_url and fieri_key to be set.)
 # * join_ccla: Enable joining of Corporate CLAs
 # * tools: Enable the tools section
-default['supermarket']['features'] = 'announcement,tools'
+default['supermarket']['features'] = 'tools'
 
 # ### S3 Settings
 #

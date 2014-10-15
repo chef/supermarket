@@ -3,4 +3,4 @@ exec 2>&1
 exec <%= node['runit']['chpst_bin'] %> \
        -P \
      <%= node['supermarket']['install_directory'] %>/embedded/sbin/nginx \
-       -c <%= node['supermarket']['nginx']['directory'] %>/etc/nginx.conf
+       -c <%= node['supermarket']['nginx']['directory'] %>/nginx.conf

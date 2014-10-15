@@ -20,9 +20,9 @@
 include_recipe 'omnibus-supermarket::config'
 
 [node['supermarket']['nginx']['log_directory'],
- "#{node['supermarket']['nginx']['directory']}/etc",
- "#{node['supermarket']['nginx']['directory']}/etc/conf.d",
- "#{node['supermarket']['nginx']['directory']}/etc/sites_enabled"].each do |dir|
+ node['supermarket']['nginx']['directory'],
+ "#{node['supermarket']['nginx']['directory']}/conf.d",
+ "#{node['supermarket']['nginx']['directory']}/sites-enabled"].each do |dir|
   directory dir do
     owner node['supermarket']['user']
     group node['supermarket']['group']
@@ -46,7 +46,7 @@ else
   end
 end
 
-template "#{node['supermarket']['nginx']['directory']}/etc/nginx.conf" do
+template "#{node['supermarket']['nginx']['directory']}/nginx.conf" do
   cookbook 'nginx'
   source 'nginx.conf.erb'
   owner node['supermarket']['user']
