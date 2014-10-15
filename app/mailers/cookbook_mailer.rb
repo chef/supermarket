@@ -3,18 +3,19 @@ class CookbookMailer < ActionMailer::Base
   add_template_helper(CookbookVersionsHelper)
 
   #
-  # Creates notification email to a cookbook follower
-  # that a new cookbook version has been published
+  # Creates an email to a user that is a cookbook follower
+  # that notifies them a new cookbook version has been published
   #
-  # @param cookbook_follower [CookbookFollower] the follower
+  # @param cookbook_version [CookbookVersion] the cookbook version that was
+  # published
+  # @param user [User] the user to notify
   #
-  def follower_notification_email(cookbook_follower)
-    @cookbook = cookbook_follower.cookbook
-    user = cookbook_follower.user
+  def follower_notification_email(cookbook_version, user)
+    @cookbook_version = cookbook_version
     @email_preference = user.email_preference_for('New cookbook version')
     @to = user.email
 
-    mail(to: @to, subject: "A new version of the #{@cookbook.name} cookbook has been released")
+    mail(to: @to, subject: "A new version of the #{@cookbook_version.name} cookbook has been released")
   end
 
   #

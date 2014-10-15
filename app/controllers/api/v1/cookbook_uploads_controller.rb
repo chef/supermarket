@@ -54,7 +54,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
         else
           @cookbook = cookbook
 
-          CookbookNotifyWorker.perform_async(@cookbook.id)
+          CookbookNotifyWorker.perform_async(cookbook_version.id)
 
           if ROLLOUT.active?(:fieri) && ENV['FIERI_URL'].present?
             FieriNotifyWorker.perform_async(
