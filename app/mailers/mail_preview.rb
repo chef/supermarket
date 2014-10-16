@@ -13,7 +13,10 @@ if Rails.env.development?
     end
 
     def cookbook_follower_notification_email
-      CookbookMailer.follower_notification_email(cookbook_follower)
+      CookbookMailer.follower_notification_email(
+        cookbook.latest_cookbook_version,
+        user
+      )
     end
 
     def cookbook_deleted_notification_email
@@ -92,10 +95,6 @@ if Rails.env.development?
 
     def cookbook_other
       Cookbook.last!
-    end
-
-    def cookbook_follower
-      CookbookFollower.where(user: user).first!
     end
 
     def collaborator
