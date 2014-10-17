@@ -63,6 +63,11 @@
 # specified.
 default['supermarket']['fqdn'] = node['fqdn']
 
+# The URL for the Chef server. Used with the "Chef OAuth2 Settings" and
+# "Chef URL Settings" below. If this is not set, authentication and some of the
+# links in the application will not work.
+default['supermarket']['chef_server_url'] = nil
+
 default['supermarket']['config_directory'] = '/etc/supermarket'
 default['supermarket']['install_directory'] = '/opt/supermarket'
 default['supermarket']['app_directory'] = "#{node['supermarket']['install_directory']}/embedded/service/supermarket"
@@ -326,6 +331,13 @@ default['supermarket']['pubsubhubbub_secret'] = nil
 default['supermarket']['redis_url'] = "redis://#{node['supermarket']['redis']['bind']}:#{node['supermarket']['redis']['port']}/0/supermarket"
 default['supermarket']['sentry_url'] = nil
 
+# ### Chef URL Settings
+#
+# URLs for various links used within Supermarket
+default['supermarket']['chef_identity_url'] = "#{node['supermarket']['chef_server_url']}/id"
+default['supermarket']['chef_profile_url'] = node['supermarket']['chef_server_url']
+default['supermarket']['chef_sign_up_url'] = "#{node['supermarket']['chef_server_url']}/signup?ref=community"
+
 # ### Chef OAuth2 Settings
 #
 # These settings configure the service to talk to a Chef identity service.
@@ -345,7 +357,7 @@ default['supermarket']['sentry_url'] = nil
 # false.
 default['supermarket']['chef_oauth2_app_id'] = nil
 default['supermarket']['chef_oauth2_secret'] = nil
-default['supermarket']['chef_oauth2_url'] = nil
+default['supermarket']['chef_oauth2_url'] = node['supermarket']['chef_server_url']
 default['supermarket']['chef_oauth2_verify_ssl'] = true
 
 # ### CLA Settings
