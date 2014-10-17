@@ -50,8 +50,7 @@
 # generated. To use your own, provide the paths to them and ensure SSL is
 # enabled in Nginx:
 #
-# default['supermarket']['nginx']['port'] = 443
-# default['supermarket']['nginx']['protocol'] = 'https'
+# default['supermarket']['nginx']['force_ssl'] = true
 # default['supermarket']['ssl']['certificate'] = '/path/to/my.crt'
 # default['supermarket']['ssl']['certificate_key'] = '/path/to/my.key'
 
@@ -92,12 +91,20 @@ default['supermarket']['sysvinit_id'] = 'SUP'
 # These attributes control Supermarket-specific portions of the Nginx
 # configuration and the virtual host for the Supermarket Rails app.
 default['supermarket']['nginx']['enable'] = true
-default['supermarket']['nginx']['port'] = 80
-default['supermarket']['nginx']['protocol'] = 'http'
+default['supermarket']['nginx']['force_ssl'] = true
+default['supermarket']['nginx']['non_ssl_port'] = 80
+default['supermarket']['nginx']['ssl_port'] = 443
 default['supermarket']['nginx']['directory'] = "#{node['supermarket']['var_directory']}/nginx/etc"
 default['supermarket']['nginx']['log_directory'] = "#{node['supermarket']['log_directory']}/nginx"
 default['supermarket']['nginx']['log_rotation']['file_maxbytes'] = 104857600
 default['supermarket']['nginx']['log_rotation']['num_to_keep'] = 10
+
+# Redirect to the FQDN
+default['supermarket']['nginx']['redirect_to_canonical'] = true
+
+# Controls nginx caching, used to cache some endpoints
+default['supermarket']['nginx']['cache']['enable'] = false
+default['supermarket']['nginx']['cache']['directory'] = "#{node['supermarket']['var_directory']}/nginx//cache"
 
 # These attributes control the main nginx.conf, including the events and http
 # contexts.
@@ -237,6 +244,20 @@ default['supermarket']['ssl']['company_name'] = "My Supermarket"
 default['supermarket']['ssl']['organizational_unit_name'] = "Operations"
 default['supermarket']['ssl']['email_address'] = "you@example.com"
 
+# ### Cipher settings
+#
+# Based off of the Mozilla recommended cipher suite
+# https://wiki.mozilla.org/Security/Server_Side_TLS#Recommended_Ciphersuite
+#
+# SSLV3 was removed because of the poodle attack. (https://www.openssl.org/~bodo/ssl-poodle.pdf)
+#
+# If your infrastructure still has requirements for the vulnerable/venerable SSLV3, you can add
+# "SSLv3" to the below line.
+default['supermarket']['ssl']['ciphers'] = 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA'
+default['supermarket']['ssl']['protocols'] = 'TLSv1 TLSv1.1 TLSv1.2'
+default['supermarket']['ssl']['session_cache'] = 'shared:SSL:4m'
+default['supermarket']['ssl']['session_timeout'] = '5m'
+
 # ## Unicorn
 #
 # Settings for main Rails app Unicorn application server. These attributes are
@@ -298,8 +319,8 @@ default['supermarket']['host'] = node['supermarket']['fqdn']
 default['supermarket']['newrelic_agent_enabled'] = 'false'
 default['supermarket']['newrelic_app_name'] = nil
 default['supermarket']['newrelic_license_key'] = nil
-default['supermarket']['port'] = node['supermarket']['nginx']['port']
-default['supermarket']['protocol'] = node['supermarket']['nginx']['protocol']
+default['supermarket']['port'] = node['supermarket']['nginx']['force_ssl'] ? node['supermarket']['nginx']['ssl_port'] : node['supermarket']['non_ssl_port']
+default['supermarket']['protocol'] = node['supermarket']['nginx']['force_ssl'] ? 'https' : 'http'
 default['supermarket']['pubsubhubbub_callback_url'] = nil
 default['supermarket']['pubsubhubbub_secret'] = nil
 default['supermarket']['redis_url'] = "redis://#{node['supermarket']['redis']['bind']}:#{node['supermarket']['redis']['port']}/0/supermarket"

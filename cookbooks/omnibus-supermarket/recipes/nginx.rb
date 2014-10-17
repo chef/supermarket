@@ -19,7 +19,8 @@
 
 include_recipe 'omnibus-supermarket::config'
 
-[node['supermarket']['nginx']['log_directory'],
+[node['supermarket']['nginx']['cache']['directory'],
+ node['supermarket']['nginx']['log_directory'],
  node['supermarket']['nginx']['directory'],
  "#{node['supermarket']['nginx']['directory']}/conf.d",
  "#{node['supermarket']['nginx']['directory']}/sites-enabled"].each do |dir|
