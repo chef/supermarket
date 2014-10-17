@@ -17,8 +17,4 @@
 # limitations under the License.
 #
 
-puts Chef::JSONCompat.to_json_pretty(
-  'supermarket' => node['supermarket'],
-  'nginx' => node['nginx'],
-  'runit' => node['runit'],
-)
+puts Chef::JSONCompat.to_json_pretty(node['supermarket'])

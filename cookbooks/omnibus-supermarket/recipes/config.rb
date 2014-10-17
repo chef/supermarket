@@ -30,6 +30,11 @@ Supermarket::Config.load_or_create_secrets!(
   node
 )
 
+# Copy things we need from the supermarket namespace to the top level. This is
+# necessary for some community cookbooks.
+node.consume_attributes('nginx' => node['supermarket']['nginx'],
+                        'runit' => node['supermarket']['runit'])
+
 user node['supermarket']['user']
 
 group node['supermarket']['group'] do

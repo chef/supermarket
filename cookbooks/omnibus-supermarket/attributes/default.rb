@@ -93,23 +93,25 @@ default['supermarket']['nginx']['log_rotation']['file_maxbytes'] = 104857600
 default['supermarket']['nginx']['log_rotation']['num_to_keep'] = 10
 
 # These attributes control the main nginx.conf, including the events and http
-# contexts. Note that they are not scoped to 'supermarket', like most things
-# here, because we're using the template from the community nginx cookbook
+# contexts.
+#
+# These will be copied to the top-level nginx namespace and used in a
+# template from the community nginx cookbook
 # (https://github.com/miketheman/nginx/blob/master/templates/default/nginx.conf.erb)
-default['nginx']['user'] = node['supermarket']['user']
-default['nginx']['group'] = node['supermarket']['group']
-default['nginx']['dir'] = node['supermarket']['nginx']['directory']
-default['nginx']['log_dir'] = node['supermarket']['nginx']['log_directory']
-default['nginx']['pid'] = "#{node['supermarket']['nginx']['directory']}/nginx.pid"
-default['nginx']['daemon_disable'] = true
-default['nginx']['gzip'] = 'on'
-default['nginx']['gzip_static'] = 'off'
-default['nginx']['gzip_http_version'] = '1.0'
-default['nginx']['gzip_comp_level'] = '2'
-default['nginx']['gzip_proxied'] = 'any'
-default['nginx']['gzip_vary'] = 'off'
-default['nginx']['gzip_buffers'] = nil
-default['nginx']['gzip_types'] = %w[
+default['supermarket']['nginx']['user'] = node['supermarket']['user']
+default['supermarket']['nginx']['group'] = node['supermarket']['group']
+default['supermarket']['nginx']['dir'] = node['supermarket']['nginx']['directory']
+default['supermarket']['nginx']['log_dir'] = node['supermarket']['nginx']['log_directory']
+default['supermarket']['nginx']['pid'] = "#{node['supermarket']['nginx']['directory']}/nginx.pid"
+default['supermarket']['nginx']['daemon_disable'] = true
+default['supermarket']['nginx']['gzip'] = 'on'
+default['supermarket']['nginx']['gzip_static'] = 'off'
+default['supermarket']['nginx']['gzip_http_version'] = '1.0'
+default['supermarket']['nginx']['gzip_comp_level'] = '2'
+default['supermarket']['nginx']['gzip_proxied'] = 'any'
+default['supermarket']['nginx']['gzip_vary'] = 'off'
+default['supermarket']['nginx']['gzip_buffers'] = nil
+default['supermarket']['nginx']['gzip_types'] = %w[
   text/plain
   text/css
   application/x-javascript
@@ -121,28 +123,28 @@ default['nginx']['gzip_types'] = %w[
   application/javascript
   application/json
 ]
-default['nginx']['gzip_min_length'] = 1000
-default['nginx']['gzip_disable'] = 'MSIE [1-6]\.'
-default['nginx']['keepalive'] = 'on'
-default['nginx']['keepalive_timeout'] = 65
-default['nginx']['worker_processes'] = node['cpu'] && node['cpu']['total'] ? node['cpu']['total'] : 1
-default['nginx']['worker_connections'] = 1024
-default['nginx']['worker_rlimit_nofile'] = nil
-default['nginx']['multi_accept'] = false
-default['nginx']['event'] = nil
-default['nginx']['server_tokens'] = nil
-default['nginx']['server_names_hash_bucket_size'] = 64
-default['nginx']['sendfile'] = 'on'
-default['nginx']['access_log_options'] = nil
-default['nginx']['error_log_options'] = nil
-default['nginx']['disable_access_log'] = false
-default['nginx']['default_site_enabled'] = false
-default['nginx']['types_hash_max_size'] = 2048
-default['nginx']['types_hash_bucket_size'] = 64
-default['nginx']['proxy_read_timeout'] = nil
-default['nginx']['client_body_buffer_size'] = nil
-default['nginx']['client_max_body_size'] = '250m'
-default['nginx']['default']['modules'] = []
+default['supermarket']['nginx']['gzip_min_length'] = 1000
+default['supermarket']['nginx']['gzip_disable'] = 'MSIE [1-6]\.'
+default['supermarket']['nginx']['keepalive'] = 'on'
+default['supermarket']['nginx']['keepalive_timeout'] = 65
+default['supermarket']['nginx']['worker_processes'] = node['cpu'] && node['cpu']['total'] ? node['cpu']['total'] : 1
+default['supermarket']['nginx']['worker_connections'] = 1024
+default['supermarket']['nginx']['worker_rlimit_nofile'] = nil
+default['supermarket']['nginx']['multi_accept'] = false
+default['supermarket']['nginx']['event'] = nil
+default['supermarket']['nginx']['server_tokens'] = nil
+default['supermarket']['nginx']['server_names_hash_bucket_size'] = 64
+default['supermarket']['nginx']['sendfile'] = 'on'
+default['supermarket']['nginx']['access_log_options'] = nil
+default['supermarket']['nginx']['error_log_options'] = nil
+default['supermarket']['nginx']['disable_access_log'] = false
+default['supermarket']['nginx']['default_site_enabled'] = false
+default['supermarket']['nginx']['types_hash_max_size'] = 2048
+default['supermarket']['nginx']['types_hash_bucket_size'] = 64
+default['supermarket']['nginx']['proxy_read_timeout'] = nil
+default['supermarket']['nginx']['client_body_buffer_size'] = nil
+default['supermarket']['nginx']['client_max_body_size'] = '250m'
+default['supermarket']['nginx']['default']['modules'] = []
 
 # ## Postgres
 
@@ -193,7 +195,9 @@ default['supermarket']['redis']['port'] = 16379
 
 # This is missing from the enterprise cookbook
 # see (https://github.com/opscode-cookbooks/enterprise-chef-common/pull/17)
-default['runit']['svlogd_bin'] = "#{node['supermarket']['install_directory']}/embedded/bin/svlogd"
+#
+# Will be copied to the root node.runit namespace.
+default['supermarket']['runit']['svlogd_bin'] = "#{node['supermarket']['install_directory']}/embedded/bin/svlogd"
 
 # ## Sidekiq
 #
