@@ -3,8 +3,7 @@
 
 <div class="page nobg">
   <section class="cookbooks_stats">
-    <span class="stat"><span class="number"><%= number_with_delimiter @cookbook_count, delimiter: ',' %></span> Cookbooks</span>
-    <span class="stat"><span class="number"><%= number_with_delimiter @user_count, delimiter: ',' %></span> Chefs</span>
+    <%= render 'resources/community_stats', cookbook_count: @cookbook_count, user_count: @user_count %>
   </section>
 
   <ul class="cookbooks_columns <%= 'four_up' if @featured_cookbooks.any? %>">
