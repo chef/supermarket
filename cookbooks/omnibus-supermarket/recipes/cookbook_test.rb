@@ -26,24 +26,27 @@
 deb_package_path = node['supermarket']['test']['deb_package_path']
 rpm_package_path = node['supermarket']['test']['rpm_package_path']
 
-dpkg_package 'supermarket' do
-  source deb_package_path
-  only_if do
-    deb_package_path && node['platform_family'] == 'debian'
-  end
-end
-
-rpm_package 'supermarket' do
-  source rpm_package_path
-  options "--nogpgcheck"
-  only_if do
-    rpm_package_path && node['platform_family'] == 'rhel'
+package 'supermarket' do
+  case node['platform_family']
+  when 'debian'
+    provider Chef::Provider::Package::Dpkg
+    source deb_package_path
+    only_if {deb_package_path}
+  when 'redhat'
+    provider Chef::Provider::Package::Rpm
+    source rpm_package_path
+    options '--nogpgcheck'
+    only_if {rpm_package_path}
   end
 end
 
 # Remove installed cookbooks and replace them with local versions
-execute 'rm -rf /opt/supermarket/embedded/cookbooks/*/'
-execute 'cp -R /tmp/kitchen/cookbooks/* /opt/supermarket/embedded/cookbooks/'
+directory '/opt/supermarket/embedded/cookbooks' do
+  action :delete
+  recursive true
+end
+
+execute 'rsync -avz /tmp/kitchen/cookbooks/* /opt/supermarket/embedded/cookbooks/'
 
 # Reconfigure the app
 execute 'supermarket-ctl reconfigure'
