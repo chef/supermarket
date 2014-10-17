@@ -17,9 +17,22 @@ class Supermarket
             file.write "# #{line}"
           end
         end
+        Chef::Log.info("Creating configuration file #{filename}")
       end
     rescue Errno::ENOENT => e
       Chef::Log.warn "Could not create #{filename}: #{e}"
+    end
+
+    # Read in a JSON file for attributes and consume them
+    def self.load_from_json!(filename, node)
+      create_directory!(filename)
+      if File.exist?(filename)
+        node.consume_attributes(
+          'supermarket' => Chef::JSONCompat.from_json(open(filename).read)
+        )
+      end
+    rescue => e
+      Chef::Log.warn "Could not read attributes from #{filename}: #{e}"
     end
 
     # Read in the filename (as JSON) and add its attributes to the node object.
@@ -29,20 +42,17 @@ class Supermarket
       secrets = Chef::JSONCompat.from_json(File.open(filename).read)
     rescue Errno::ENOENT
       begin
-        secrets = {
-          'supermarket' => {
-            'secret_key_base' => SecureRandom.hex(50)
-          }
-        }
+        secrets = { 'secret_key_base' => SecureRandom.hex(50) }
 
         open(filename, 'w') do |file|
           file.puts Chef::JSONCompat.to_json_pretty(secrets)
         end
+        Chef::Log.info("Creating secrets file #{filename}")
       rescue Errno::EACCES, Errno::ENOENT => e
         Chef::Log.warn "Could not create #{filename}: #{e}"
       end
 
-      node.consume_attributes(secrets)
+      node.consume_attributes('supermarket' => secrets)
     end
 
     # Take some node attributes and return them on each line as:

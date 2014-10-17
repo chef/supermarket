@@ -23,11 +23,15 @@
 # in it.
 Supermarket::Config.load_or_create!(
   "#{node['supermarket']['config_directory']}/supermarket.rb",
-  node
+  node,
+)
+Supermarket::Config.load_from_json!(
+  "#{node['supermarket']['config_directory']}/supermarket.json",
+  node,
 )
 Supermarket::Config.load_or_create_secrets!(
   "#{node['supermarket']['config_directory']}/secrets.json",
-  node
+  node,
 )
 
 # Copy things we need from the supermarket namespace to the top level. This is

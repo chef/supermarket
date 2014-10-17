@@ -7,6 +7,13 @@
 # touch, but they are here in case you need them.
 #
 # A `supermarket-ctl reconfigure` should pick up any changes made here.
+#
+# If /etc/supermarket/supermarket.json exists, its attributes will be loaded
+# after these, so if you have that file with the contents:
+#
+#     { "redis": { "enable": false } }
+#
+# for example, it will set the node['supermarket']['redis'] attribute to false.
 
 # ## Common Use Cases
 #
