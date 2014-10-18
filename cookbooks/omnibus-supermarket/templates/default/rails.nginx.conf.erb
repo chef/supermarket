@@ -6,7 +6,6 @@ upstream rails {
   server 127.0.0.1:<%= node['supermarket']['rails']['port'] %>;
 }
 
-
 <% if node['supermarket']['nginx']['cache']['enable'] -%>
 proxy_cache_path <%= node['supermarket']['nginx']['cache']['directory'] %>/supermarket levels=1:2 keys_zone=supermarket-cache:512m max_size=1000m inactive=600m;
 proxy_temp_path  <%= node['supermarket']['nginx']['cache']['directory'] %>/tmp;
@@ -35,7 +34,10 @@ server {
 
 server {
   listen <%= node['supermarket']['nginx']['ssl_port'] %>;
+  server_name <%= node['supermarket']['fqdn'] %>;
+
 <%   if node['supermarket']['ssl']['certificate'] && node['supermarket']['ssl']['certificate_key'] -%>
+  ssl on;
   ssl_certificate <%= node['supermarket']['ssl']['certificate'] %>;
   ssl_certificate_key <%= node['supermarket']['ssl']['certificate_key'] %>;
   ssl_prefer_server_ciphers on;
@@ -63,7 +65,7 @@ server {
   }
 
   if ($redirect_to_canonical = H) {
-    return 301 https://<%= node['supermarket']['fqdn'] %>$request_uri;
+    return 301 http<%= node['supermarket']['nginx']['force_ssl'] ? 's' : '' %>://<%= node['supermarket']['fqdn'] %>$request_uri;
   }
 <% end -%>
 
@@ -72,14 +74,12 @@ server {
 <% end -%>
 
   location ~ /sitemap\d*.xml.gz {
-    root <%= node['supermarket']['app_directory'] %>/current/public;
-
+    root <%= node['supermarket']['app_directory'] %>/public;
     break;
   }
 
   location ~ ^/(assets|system)/ {
-    root <%= node['supermarket']['app_directory'] %>/current/public;
-
+    root <%= node['supermarket']['app_directory'] %>/public;
     expires 1y;
     add_header Cache-Control public;
     add_header ETag "";
