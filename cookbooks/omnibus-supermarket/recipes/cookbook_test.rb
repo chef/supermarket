@@ -31,19 +31,22 @@ package 'supermarket' do
   when 'debian'
     provider Chef::Provider::Package::Dpkg
     source deb_package_path
-    only_if {deb_package_path}
-  when 'redhat'
+    only_if { deb_package_path }
+  when 'rhel'
     provider Chef::Provider::Package::Rpm
     source rpm_package_path
     options '--nogpgcheck'
-    only_if {rpm_package_path}
+    only_if { rpm_package_path }
   end
 end
 
 # Remove installed cookbooks and replace them with local versions
-directory '/opt/supermarket/embedded/cookbooks' do
-  action :delete
-  recursive true
+Dir['/opt/supermarket/embedded/cookbooks/*'].each do |dir|
+  directory dir do
+    action :delete
+    recursive true
+    only_if { File.directory?(dir) }
+  end
 end
 
 execute 'rsync -avz /tmp/kitchen/cookbooks/* /opt/supermarket/embedded/cookbooks/'
