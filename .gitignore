@@ -1,5 +1,6 @@
 *.gem
 .bundle
+.bundler/
 .kitchen/
 .kitchen.local.yml
 vendor/bundle

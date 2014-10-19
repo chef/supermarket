@@ -30,7 +30,7 @@ file '/etc/resolv.conf' do
 end
 
 execute 'bundle install' do
-  command 'bundle install --binstubs --without development'
+  command "bundle install --binstubs --without development --path #{node['omnibus']['build_dir']}/.bundler"
   cwd node['omnibus']['build_dir']
   user node['omnibus']['build_user']
 end
