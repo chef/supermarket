@@ -24,3 +24,11 @@ include_recipe 'omnibus-supermarket::redis'
 include_recipe 'omnibus-supermarket::nginx'
 include_recipe 'omnibus-supermarket::database'
 include_recipe 'omnibus-supermarket::app'
+
+# Write out a supermarket-running.json at the end of the run
+file "#{node['supermarket']['config_directory']}/supermarket-running.json" do
+  content Chef::JSONCompat.to_json_pretty('supermarket' => node['supermarket'])
+  owner node['supermarket']['user']
+  group node['supermarket']['group']
+  mode '0600'
+end
