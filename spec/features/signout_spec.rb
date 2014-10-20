@@ -5,6 +5,6 @@ describe 'signing out' do
     sign_in(create(:user))
     sign_out
 
-    expect(page).to have_content('id.opscode.com')
+    expect(page).to have_content(ENV['CHEF_IDENTITY_URL'])
   end
 end

@@ -33,7 +33,7 @@ VCR.configure do |c|
     ENV['VALID_OCID_REFRESH_TOKEN']
   end
   c.filter_sensitive_data('<OCID_REPLACEMENT_OAUTH_TOKEN>') do |interaction|
-    if interaction.request.uri == 'https://id.opscode.com/id/oauth/token'
+    if interaction.request.uri == "#{ENV['CHEF_IDENTITY_URL']}/id/oauth/token"
       body = nil
 
       begin
@@ -46,7 +46,7 @@ VCR.configure do |c|
     end
   end
   c.filter_sensitive_data('<OCID_REPLACEMENT_REFRESH_TOKEN>') do |interaction|
-    if interaction.request.uri == 'https://id.opscode.com/id/oauth/token'
+    if interaction.request.uri == "#{ENV['CHEF_IDENTITY_URL']}/id/oauth/token"
       body = nil
 
       begin
