@@ -129,6 +129,66 @@ describe Cookbook do
     end
   end
 
+  describe '#transfer_ownership' do
+    let(:jimmy) { create(:user) }
+    let(:cookbook) { create(:cookbook, owner: jimmy) }
+
+    it 'should instantly transfer ownership if the initiator is an admin' do
+      hank = create(:user)
+      sally = create(:admin)
+      expect(cookbook.owner).to eql(jimmy)
+      result = cookbook.transfer_ownership(sally, hank)
+      cookbook.reload
+      expect(cookbook.owner).to eql(hank)
+      expect(result).to eql('cookbook.ownership_transfer.done')
+    end
+
+    it 'should instantly transfer ownership if the recipient is a collaborator' do
+      hank = create(:user)
+      create(:cookbook_collaborator, resourceable: cookbook, user: hank)
+      expect(cookbook.owner).to eql(jimmy)
+      result = cookbook.transfer_ownership(jimmy, hank)
+      cookbook.reload
+      expect(cookbook.owner).to eql(hank)
+      expect(result).to eql('cookbook.ownership_transfer.done')
+    end
+
+    it 'should remove the collaborator record if the new owner used to be a collaborator' do
+      hank = create(:user)
+      create(:cookbook_collaborator, resourceable: cookbook, user: hank)
+      expect(cookbook.owner).to eql(jimmy)
+      expect(cookbook.collaborator_users).to include(hank)
+      result = cookbook.transfer_ownership(jimmy, hank)
+      cookbook.reload
+      expect(cookbook.owner).to eql(hank)
+      expect(cookbook.collaborator_users).to_not include(hank)
+    end
+
+    it 'should create a transfer request if the initiator is not an admin and the recipient is not a collaborator' do
+      result = nil
+      hank = create(:user)
+      expect(cookbook.owner).to eql(jimmy)
+      expect do
+        result = cookbook.transfer_ownership(jimmy, hank)
+        cookbook.reload
+        expect(cookbook.owner).to eql(jimmy)
+      end.to change(OwnershipTransferRequest, :count).by(1)
+      expect(result).to eql('cookbook.ownership_transfer.email_sent')
+    end
+
+    it 'should send an email to the recipient if the initiator is not an admin and the recipient is not a collaborator' do
+      result = nil
+      hank = create(:user)
+      expect(cookbook.owner).to eql(jimmy)
+      expect do
+        Sidekiq::Testing.inline! do
+          result = cookbook.transfer_ownership(jimmy, hank)
+        end
+      end.to change(ActionMailer::Base.deliveries, :size).by(1)
+      expect(result).to eql('cookbook.ownership_transfer.email_sent')
+    end
+  end
+
   describe '#contingents' do
     let(:apt) { create(:cookbook, name: 'apt') }
     let(:nginx) { create(:cookbook, name: 'nginx') }

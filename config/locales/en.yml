@@ -15,7 +15,11 @@ en:
     added: 'Collaborator added.'
     owner_changed: 'You successfully transferred ownership of %{resource} to %{user}.'
   cookbook:
-    transfered_ownership: "%{cookbook} transferred to %{user}."
+    ownership_transfer:
+      done: "%{cookbook} transferred to %{user}."
+      email_sent: "Ownership transfer email sent to %{user}."
+      invite_accepted: "You are the new owner of %{cookbook}."
+      invite_declined: "You have declined ownership of %{cookbook}."
     deprecated: "%{cookbook} deprecated in favor of %{replacement_cookbook}."
     undeprecated: "%{cookbook} is no longer deprecated."
     featured: "%{cookbook} is now %{state}."

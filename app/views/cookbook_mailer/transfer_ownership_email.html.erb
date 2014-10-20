@@ -1,0 +1,4 @@
+<h1><%= @sender %> wants to transfer ownership of the <%= @cookbook %> cookbook to you.</h1>
+
+<%= link_to 'Accept', accept_transfer_url(@transfer_request), class: 'button accept' %>
+<%= link_to 'Decline', decline_transfer_url(@transfer_request), class: 'button decline' %>

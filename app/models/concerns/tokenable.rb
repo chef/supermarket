@@ -7,9 +7,9 @@ module Tokenable
   #
   # Callback: create and assign a confirmation token when a new email is added.
   #
-  def generate_token(column)
+  def generate_token(column = :token)
     begin
-      self[column] = SecureRandom.urlsafe_base64
+      self[column] = SecureRandom.hex
     end while self.class.exists?(column => self[column])
   end
 end

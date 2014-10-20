@@ -45,7 +45,7 @@ class CookbookAuthorizer < Authorizer::Base
   # @return [Boolean]
   #
   def transfer_ownership?
-    user.is?(:admin)
+    owner? || user.is?(:admin)
   end
 
   #

@@ -14,7 +14,7 @@ class Invitation < ActiveRecord::Base
 
   # Callbacks
   # --------------------
-  before_validation { generate_token(:token) }
+  before_validation { generate_token }
 
   scope :pending, -> { where(accepted: nil) }
   scope :declined, -> { where(accepted: false) }

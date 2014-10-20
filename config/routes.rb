@@ -33,12 +33,15 @@ Supermarket::Application.routes.draw do
   get 'status' => 'api/v1/health#show', defaults: { format: :json }
   get 'unsubscribe/:token' => 'email_preferences#unsubscribe', as: :unsubscribe
 
+  put 'cookbooks/:id/transfer_ownership' => 'transfer_ownership#transfer', as: :transfer_ownership
+  get 'ownership_transfer/:token/accept' => 'transfer_ownership#accept', as: :accept_transfer
+  get 'ownership_transfer/:token/decline' => 'transfer_ownership#decline', as: :decline_transfer
+
   resources :cookbooks, only: [:index, :show, :update] do
     member do
       get :download
       put :follow
       delete :unfollow
-      put :transfer_ownership
       put :deprecate
       delete :deprecate, action: 'undeprecate'
       put :toggle_featured
