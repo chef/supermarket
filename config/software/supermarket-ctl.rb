@@ -22,6 +22,11 @@ dependency "runit"
 source path: "cookbooks/omnibus-supermarket/files/default/ctl-commands"
 
 build do
+  # Gem dependencies for tests
+  %w[ rspec serverspec yarjuf ].each do |g|
+    gem "install #{g} --no-rdoc --no-ri", env: env
+  end
+
   block do
     erb source: "supermarket-ctl.erb",
         dest: "#{install_dir}/bin/supermarket-ctl",
