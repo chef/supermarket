@@ -22,6 +22,8 @@ dependency "runit"
 source path: "cookbooks/omnibus-supermarket/files/default/ctl-commands"
 
 build do
+  env = with_standard_compiler_flags(with_embedded_path)
+
   # Gem dependencies for tests
   %w[ rspec serverspec yarjuf ].each do |g|
     gem "install #{g} --no-rdoc --no-ri", env: env
