@@ -8,7 +8,7 @@ FactoryGirl.define do
     deprecated false
     featured false
 
-    ignore do
+    transient do
       cookbook_versions_count 2
     end
 

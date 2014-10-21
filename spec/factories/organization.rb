@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :organization do
-    ignore do
+    transient do
       ccla_signatures_count 2
     end
 

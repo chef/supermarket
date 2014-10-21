@@ -6,7 +6,7 @@ FactoryGirl.define do
 
     sequence(:email) { |n| "johndoe#{n}@example.com" }
 
-    ignore do
+    transient do
       create_chef_account true
     end
 
