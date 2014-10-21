@@ -9,7 +9,7 @@
     <%= organization_tab('Manage Contributors', organization_invitations_path(ccla_signature.organization)) %>
   <% end %>
 
-  <% if ROLLOUT.active?(:join_ccla) %>
+  <% if ROLLOUT.active?(:join_ccla) && ROLLOUT.active?(:github) %>
     <% if policy(ccla_signature.organization).manage_requests_to_join? %>
       <%= organization_tab('Requests to Join', requests_to_join_organization_path(ccla_signature.organization), 'requests_to_join') %>
     <% end %>

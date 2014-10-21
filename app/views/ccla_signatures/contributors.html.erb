@@ -4,7 +4,7 @@
   <div class="heading-with-buttons">
     <h1 class="title">Contributors on Behalf of <%= @ccla_signature.organization.name %></h1>
 
-    <% if ROLLOUT.active?(:join_ccla) %>
+    <% if ROLLOUT.active?(:join_ccla) && ROLLOUT.active?(:github) %>
       <div class="buttons">
         <% if current_user && policy(@ccla_signature.organization).request_to_join? %>
           <p>
