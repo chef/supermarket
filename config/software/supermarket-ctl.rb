@@ -19,13 +19,12 @@ name "supermarket-ctl"
 dependency "omnibus-ctl"
 dependency "runit"
 
-source path: "cookbooks/omnibus-supermarket/files/default/ctl-commands"
+source path: "cookbooks/omnibus-supermarket"
 
 build do
-  # Gem dependencies for tests
-  %w[ rspec serverspec yarjuf ].each do |g|
-    gem "install #{g} --no-rdoc --no-ri", env: env
-  end
+  env = with_standard_compiler_flags(with_embedded_path)
+
+  bundle "install", env: env
 
   block do
     erb source: "supermarket-ctl.erb",
@@ -38,5 +37,5 @@ build do
   end
 
   # additional omnibus-ctl commands
-  sync project_dir, "#{install_dir}/embedded/service/omnibus-ctl/"
+  sync "#{project_dir}/files/default/ctl-commands", "#{install_dir}/embedded/service/omnibus-ctl/"
 end

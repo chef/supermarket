@@ -28,6 +28,7 @@ build_version do
 end
 build_iteration 1
 
+override :cacerts, version: '2014.08.20'
 override :bundler, version: "1.7.3"
 override :'chef-gem', version: "11.16.4"
 override :postgresql, version: "9.3.4"
