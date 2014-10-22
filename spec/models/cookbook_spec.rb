@@ -362,7 +362,9 @@ describe Cookbook do
             dependencies: {
               'apt' => '= 1.2.3',
               'yum' => '~> 2.1.3'
-            }
+            },
+            source_url: 'http://example.com',
+            issues_url: 'http://example.com/issues'
           )
         end
       end
@@ -394,6 +396,18 @@ describe Cookbook do
       cookbook.publish_version!(params)
 
       expect(cookbook.updated_at).to be > original_date
+    end
+
+    it 'sets the source_url attribute on the cookbook' do
+      cookbook.publish_version!(params)
+
+      expect(cookbook.source_url).to eql('http://example.com')
+    end
+
+    it 'sets the issues_url attribute on the cookbook' do
+      cookbook.publish_version!(params)
+
+      expect(cookbook.issues_url).to eql('http://example.com/issues')
     end
 
     it 'saves the README' do
