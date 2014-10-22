@@ -1,7 +1,6 @@
-[![Stories in Ready](https://badge.waffle.io/opscode/supermarket.png?label=ready&title=Ready)](https://waffle.io/opscode/supermarket)
 # Supermarket
 
-[![Code Climate](https://codeclimate.com/github/opscode/supermarket.png)](https://codeclimate.com/github/opscode/supermarket) [![Build Status](https://travis-ci.org/opscode/supermarket.png?branch=master)](https://travis-ci.org/opscode/supermarket) [![Dependency Status](https://gemnasium.com/opscode/supermarket.png)](https://gemnasium.com/opscode/supermarket) [![Coverage Status](https://coveralls.io/repos/opscode/supermarket/badge.png?branch=master)](https://coveralls.io/r/opscode/supermarket?branch=master) [![Inline docs](http://inch-ci.org/github/opscode/supermarket.png)](http://inch-ci.org/github/opscode/supermarket) [![Gitter chat](https://badges.gitter.im/opscode/supermarket.png)](https://gitter.im/opscode/supermarket)
+[![Code Climate](https://codeclimate.com/github/opscode/supermarket.png)](https://codeclimate.com/github/opscode/supermarket) [![Build Status](https://travis-ci.org/opscode/supermarket.png?branch=master)](https://travis-ci.org/opscode/supermarket) [![Dependency Status](https://gemnasium.com/opscode/supermarket.png)](https://gemnasium.com/opscode/supermarket) [![Coverage Status](https://coveralls.io/repos/opscode/supermarket/badge.png?branch=master)](https://coveralls.io/r/opscode/supermarket?branch=master) [![Inline docs](http://inch-ci.org/github/opscode/supermarket.png)](http://inch-ci.org/github/opscode/supermarket) [![Gitter chat](https://badges.gitter.im/opscode/supermarket.png)](https://gitter.im/opscode/supermarket) [![Stories in Ready](https://badge.waffle.io/opscode/supermarket.png?label=ready&title=Ready)](https://waffle.io/opscode/supermarket)
 
 Supermarket is Chef's new community project with the goals of being the
 community repository for cookbooks, an easy to contribute to project, and
@@ -13,7 +12,7 @@ wiki](https://github.com/opscode/supermarket/wiki). Supermarket is currently
 pre-release and under active development. [View the
 roadmap](https://github.com/opscode/supermarket/wiki/Roadmap), and
 [follow along with the project development in
-Trello](https://trello.com/b/IGLbkBWL/supermarket). Supermarket has
+waffle.io](https://waffle.io/opscode/supermarket). Supermarket has
 [an open project chat on Gitter](https://gitter.im/opscode/supermarket)
 and [a mailing list](https://groups.google.com/forum/#!forum/chef-supermarket).
 
