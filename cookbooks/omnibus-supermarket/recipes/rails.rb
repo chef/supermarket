@@ -30,16 +30,6 @@ include_recipe 'omnibus-supermarket::nginx'
   end
 end
 
-if node['supermarket']['rails']['enable']
-  component_runit_service 'rails' do
-    package 'supermarket'
-  end
-else
-  runit_service 'rails' do
-    action :disable
-  end
-end
-
 # Before and after fork blocks for Unicorn.
 #
 # We'll probably want to factor these out into something else when we do the
@@ -98,4 +88,14 @@ template "#{node['supermarket']['nginx']['directory']}/sites-enabled/rails" do
   group node['supermarket']['group']
   mode '0600'
   notifies :reload, 'runit_service[nginx]' if node['supermarket']['nginx']['enable']
+end
+
+if node['supermarket']['rails']['enable']
+  component_runit_service 'rails' do
+    package 'supermarket'
+  end
+else
+  runit_service 'rails' do
+    action :disable
+  end
 end
