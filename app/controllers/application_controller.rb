@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   # If GitHub integration is disabled, just return true.
   #
   def require_linked_github_account!
-    return true unless ROLLOUT.active?(:github)
+    return unless ROLLOUT.active?(:github)
 
     unless current_user.linked_github_account?
       store_location!
