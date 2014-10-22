@@ -1,7 +1,7 @@
 <nav class="appnav">
   <ul class="mainnav">
     <li><%= link_to 'Cookbooks', cookbooks_directory_path, 'data-hover' => 'Cookbooks', :rel => 'cookbooks' %></li>
-    <% if ROLLOUT.active?(:cla) %>
+    <% if ROLLOUT.active?(:cla) && ROLLOUT.active?(:github) %>
       <li><%= link_to 'Contributors', contributors_path, 'data-hover' => 'Contributors', :rel => 'contributors' %></li>
     <% end %>
     <% if ROLLOUT.active?(:tools) %>
@@ -20,7 +20,7 @@
         <li><%= link_to 'View Profile', current_user, class: 'fa fa-user', rel: 'view_profile' %></li>
         <li><%= link_to 'Manage Profile', edit_profile_path, class: 'fa fa-cog', rel: 'manage_profile' %></li>
 
-        <% if ROLLOUT.active?(:cla) %>
+        <% if ROLLOUT.active?(:cla) && ROLLOUT.active?(:github) %>
           <% unless current_user.signed_icla? %>
             <li><%= link_to 'Sign ICLA', new_icla_signature_path, class: 'fa fa-file-text', rel: 'sign_icla' %></li>
           <% end %>
@@ -28,7 +28,7 @@
           <li><%= link_to 'Sign CCLA', new_ccla_signature_path, class: 'fa fa-file-text', rel: 'sign_ccla' %></li>
         <% end %>
 
-        <% if current_user && current_user.is?(:admin) && ROLLOUT.active?(:cla) %>
+        <% if current_user && current_user.is?(:admin) && ROLLOUT.active?(:cla) && ROLLOUT.active?(:github) %>
           <li>
             <%= link_to "Watched Repositories", curry_repositories_url, :class => 'fa fa-github', rel: 'manage_repositories' %>
           </li>

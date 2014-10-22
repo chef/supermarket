@@ -1,4 +1,4 @@
-if ROLLOUT.active?(:cla)
+if ROLLOUT.active?(:cla) && ROLLOUT.active?(:github)
   #
   # Worker that generates and emails a CLA report if new signatures were created since the last run.
   #

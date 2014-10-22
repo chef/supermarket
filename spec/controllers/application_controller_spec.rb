@@ -47,4 +47,32 @@ describe ApplicationController do
       expect(assigns[:search][:path]).to eql(cookbooks_path)
     end
   end
+
+  describe 'github integration' do
+    before { ROLLOUT.deactivate(:github) }
+    after { ROLLOUT.activate(:github) }
+
+    controller do
+      before_filter :require_linked_github_account!
+
+      def index
+        respond_to do |format|
+          format.html do
+            render text: 'haha'
+          end
+        end
+      end
+
+      def current_user
+        nil
+      end
+    end
+
+    it 'skips the require_linked_github_account! filter if github integration is disabled' do
+      get :index
+
+      expect(response).to be_success
+      expect(response.body).to eql('haha')
+    end
+  end
 end

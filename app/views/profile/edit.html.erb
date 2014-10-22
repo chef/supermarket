@@ -8,8 +8,10 @@
 
     <dl class="tabs radius" data-tab data-options="deep_linking:true">
       <dd class="active"><a href="#profile" rel="manage_profile">Edit Profile</a></dd>
-      <dd><a href="#github-accounts" rel="manage_github_accounts">GitHub Accounts</a></dd>
-      <% if ROLLOUT.active?(:cla) %>
+      <% if ROLLOUT.active?(:github) %>
+        <dd><a href="#github-accounts" rel="manage_github_accounts">GitHub Accounts</a></dd>
+      <% end %>
+      <% if ROLLOUT.active?(:cla) && ROLLOUT.active?(:github) %>
         <dd><a href="#agreements" rel="manage_agreements">Agreements</a></dd>
         <dd><a href="#collaborations" rel="manage_collaborations">Collaborations</a></dd>
       <% end %>
@@ -49,21 +51,24 @@
           <%= f.submit 'Update Profile', class: 'button primary radius' %>
         <% end %>
       </div>
-      <div class="content" id="github-accounts">
-        <p>You must have at least one linked GitHub account in order for us to match your contributions on GitHub with your signed Contributors License Agreement.</p>
-        <table>
-          <% current_user.accounts.for('github').each do |account| %>
-            <tr>
-              <td><i class="fa fa-github"></i> <%= account.username %></td>
-              <td class="text-right"><%= link_to 'Disconnect This Account', user_account_url(current_user, account), method: :delete, rel: 'disconnect_github', class: 'button tiny alert radius' %></td>
-            </tr>
-          <% end %>
-        </table>
 
-        <%= link_to '<i class="fa fa-github"></i> Connect GitHub Account'.html_safe, auth_path(:github), class: 'button radius', rel: 'connect_github' %>
-      </div>
+      <% if ROLLOUT.active?(:github) %>
+        <div class="content" id="github-accounts">
+          <p>You must have at least one linked GitHub account in order for us to match your contributions on GitHub with your signed Contributors License Agreement.</p>
+          <table>
+            <% current_user.accounts.for('github').each do |account| %>
+              <tr>
+                <td><i class="fa fa-github"></i> <%= account.username %></td>
+                <td class="text-right"><%= link_to 'Disconnect This Account', user_account_url(current_user, account), method: :delete, rel: 'disconnect_github', class: 'button tiny alert radius' %></td>
+              </tr>
+            <% end %>
+          </table>
 
-      <% if ROLLOUT.active?(:cla) %>
+          <%= link_to '<i class="fa fa-github"></i> Connect GitHub Account'.html_safe, auth_path(:github), class: 'button radius', rel: 'connect_github' %>
+        </div>
+      <% end %>
+
+      <% if ROLLOUT.active?(:cla) && ROLLOUT.active?(:github) %>
         <div class="content" id="agreements">
           <table>
             <% if current_user.signed_icla? %>

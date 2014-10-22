@@ -40,9 +40,13 @@ class ApplicationController < ActionController::Base
   #
   # Redirect the user to their profile page if they do not have any linked
   # GitHub accounts with the notice to instruct them to link a GitHub account
-  # before signing an CCLA.
+  # before signing a CCLA.
+  #
+  # If GitHub integration is disabled, just return true.
   #
   def require_linked_github_account!
+    return unless ROLLOUT.active?(:github)
+
     unless current_user.linked_github_account?
       store_location!
       redirect_to link_github_profile_path,  notice: t('requires_linked_github')

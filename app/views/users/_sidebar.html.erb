@@ -3,7 +3,7 @@
   <h3><%= @user.name %></h3>
   <h4><%= image_tag "chef-icon.png" %> <%= @user.username %></h4>
 
-  <% if ROLLOUT.active?(:cla) %>
+  <% if ROLLOUT.active?(:cla) && ROLLOUT.active?(:github) %>
     <% if @user.authorized_to_contribute? %>
       <h4><i class="fa fa-check"></i> Authorized to Contribute</h4>
     <% end %>
