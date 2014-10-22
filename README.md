@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/opscode/supermarket.png?label=ready&title=Ready)](https://waffle.io/opscode/supermarket)
 # Supermarket
 
 [![Code Climate](https://codeclimate.com/github/opscode/supermarket.png)](https://codeclimate.com/github/opscode/supermarket) [![Build Status](https://travis-ci.org/opscode/supermarket.png?branch=master)](https://travis-ci.org/opscode/supermarket) [![Dependency Status](https://gemnasium.com/opscode/supermarket.png)](https://gemnasium.com/opscode/supermarket) [![Coverage Status](https://coveralls.io/repos/opscode/supermarket/badge.png?branch=master)](https://coveralls.io/r/opscode/supermarket?branch=master) [![Inline docs](http://inch-ci.org/github/opscode/supermarket.png)](http://inch-ci.org/github/opscode/supermarket) [![Gitter chat](https://badges.gitter.im/opscode/supermarket.png)](https://gitter.im/opscode/supermarket)
