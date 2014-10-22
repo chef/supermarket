@@ -386,6 +386,7 @@ default['supermarket']['seed_cla_data'] = nil
 # * cla: Enable the Contributor License Agreement features
 # * fieri: Use the fieri service to report on cookbook quality (requires
 #   fieri_url and fieri_key to be set.)
+# * github: Enable GitHub integration, used with CLA signing
 # * join_ccla: Enable joining of Corporate CLAs
 # * tools: Enable the tools section
 default['supermarket']['features'] = 'tools'
