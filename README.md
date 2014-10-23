@@ -28,7 +28,7 @@ GitHub Issue](https://github.com/opscode/supermarket/issues/new).
 
 ## Requirements
 
-- Ruby 2.0.0
+- Ruby 2.1.3
 - PostgreSQL 9.3+
 - Redis 2.4+
 
