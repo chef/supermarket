@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe Authorizer::Base do
   let(:user) { double(:user) }
   let(:record) { double(:record) }
