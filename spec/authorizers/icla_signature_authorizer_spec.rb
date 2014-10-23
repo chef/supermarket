@@ -1,5 +1,4 @@
-require 'isolated_spec_helper'
-require 'icla_signature_authorizer'
+require 'spec_helper'
 
 describe IclaSignatureAuthorizer do
   let(:user) { double('User') }
