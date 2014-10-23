@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CookbookNotifyWorker do
   let!(:system_email1) { create(:system_email, name: 'New cookbook version') }
   let!(:system_email2) { create(:system_email, name: 'Cookbook deprecated') }
-  let(:cookbook) { create(:cookbook) }
+  let!(:cookbook) { create(:cookbook) }
 
   it 'notifies each interested non-imported cookbook follower via email' do
     create_list(:cookbook_follower, 3, cookbook: cookbook)
@@ -20,7 +20,7 @@ describe CookbookNotifyWorker do
 
     expect do
       Sidekiq::Testing.inline! do
-        worker.perform(cookbook.id)
+        worker.perform(cookbook.latest_cookbook_version.id)
       end
     end.to change(ActionMailer::Base.deliveries, :count).by(1)
   end
