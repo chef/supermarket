@@ -1,7 +1,4 @@
-require 'isolated_spec_helper'
-require 'support/tarball_helpers'
-
-require 'cookbook_upload/parameters'
+require 'spec_helper'
 
 describe CookbookUpload::Parameters do
   include TarballHelpers
