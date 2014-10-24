@@ -1,3 +1,21 @@
+# OmniAuth configuration
+
+# Set the full_host for OmniAuth
+#
+# If this is not set correctly, OmniAuth may not generate redirect_uri
+# parameters in requests correctly.
+#
+# We do not need to do this in the test environment, since it's using mock_auth
+# there.
+#
+# See http://www.kbedell.com/2011/03/08/overriding-omniauth-callback-url-for-twitter-or-facebook-oath-processing/
+unless Rails.env.test?
+  OmniAuth.config.full_host = "#{ENV['PROTOCOL']}://" \
+    "#{ENV['HOST']}" \
+    "#{[80, 443].include?(ENV['PORT'].to_i) ? '' : ':' + ENV['PORT']}"
+end
+
+# Configure middleware used by OmniAuth
 Rails.application.config.middleware.use(OmniAuth::Builder) do
   provider(
     :github,
