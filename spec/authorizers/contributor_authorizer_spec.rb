@@ -1,5 +1,4 @@
-require 'isolated_spec_helper'
-require 'contributor_authorizer'
+require 'spec_helper'
 
 describe ContributorAuthorizer do
   describe '#update?' do

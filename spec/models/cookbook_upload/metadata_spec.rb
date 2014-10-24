@@ -1,5 +1,4 @@
-require 'isolated_spec_helper'
-require 'cookbook_upload/metadata'
+require 'spec_helper'
 
 describe CookbookUpload::Metadata do
   describe 'setting the platforms attribute' do

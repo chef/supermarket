@@ -1,5 +1,4 @@
-require 'isolated_spec_helper'
-require 'active_model/validations/chef_version_constraint_validator'
+require 'spec_helper'
 
 describe ActiveModel::Validations::ChefVersionConstraintValidator do
   let(:dependency_class) do
