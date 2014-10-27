@@ -26,6 +26,12 @@ and on [InVision](https://projects.invisionapp.com/share/VMOMTJ36#/screens).
 If you have questions, feature ideas, or other suggestions, please [open a
 GitHub Issue](https://github.com/opscode/supermarket/issues/new).
 
+This repository has the code for the Supermarket application, related
+repositories are:
+
+* [opscode-cookbooks/supermarket](https://github.com/opscode-cookbooks/supermarket): The cookbook used to deploy the application
+* [opscode/omnibus-supermarket](https://github.com/opscode/omnibus-supermarket): Code used to build RPM and DEB packages
+
 ## Requirements
 
 - Ruby 2.1.3
