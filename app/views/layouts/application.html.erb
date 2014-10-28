@@ -35,11 +35,11 @@
             <% end %>
           </ul>
           <ul class="off-canvas-list">
-            <li><a href="http://www.getchef.com/" target="_blank">Get Chef</a></li>
-            <li><a href="https://learnchef.opscode.com/" target="_blank">Learn Chef</a></li>
-            <li><a href="http://docs.opscode.com/" target="_blank">Docs</a></li>
-            <li><a href="http://www.getchef.com/training/" target="_blank">Training</a></li>
-            <li><a href="https://botbot.me/freenode/chef" target="_blank">Botbot IRC Logs</a></li>
+            <li><%= link_to 'Get Chef', root_url, target: '_blank' %></li>
+            <li><%= link_to 'Learn Chef', learn_chef_url, target: '_blank' %></li>
+            <li><%= link_to 'Docs', chef_docs_url, target: '_blank' %></li>
+            <li><%= link_to 'Training', "#{chef_domain}/training", target: '_blank' %></li>
+            <li><%= link_to 'Botbot IRC Logs', 'https://botbot.me/freenode/chef', target: '_blank' %></li>
           </ul>
         </aside>
 

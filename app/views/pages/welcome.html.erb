@@ -4,7 +4,7 @@
 <div class="page withspace">
   <% if flash[:signout] %>
     <div class="signout-message">
-      <p>You have been signed out of Supermarket but may still be signed in to your Chef account. Visit <%= link_to ENV['CHEF_IDENTITY_URL'], ENV['CHEF_IDENTITY_URL'] %> to sign out completely.</p>
+      <p>You have been signed out of Supermarket but may still be signed in to your Chef account. Visit <%= link_to chef_identity_url %> to sign out completely.</p>
     </div>
   <% end %>
 
@@ -12,7 +12,7 @@
     <h2 class="text-center">Welcome to Supermarket. Find, explore and view Chef cookbooks for all of your ops needs.</h2>
 
     <p class="text-center">
-      <%= link_to 'Sign Up For a Chef Account', ENV['CHEF_SIGN_UP_URL'], class: 'button radius' %>
+      <%= link_to 'Sign Up For a Chef Account', chef_sign_up_url, class: 'button radius' %>
       <%= link_to 'Sign In With Your Chef Account', sign_in_path, class: 'button radius' %>
     </p>
   </section>
@@ -26,7 +26,7 @@
           <%= link_to "Browse Cookbooks", cookbooks_path %>
         </li>
         <li>
-          <a href="http://www.getchef.com/blog/" target="_blank">Read the Chef Blog</a>
+          <%= link_to 'Read the Chef Blog', chef_blog_url, target: '_blank' %>
         </li>
       </ul>
     </div>
@@ -34,16 +34,16 @@
       <h2>Learn</h2>
       <ul>
         <li>
-          <a href="https://learnchef.opscode.com/" target="_blank">Learn Chef</a>
+          <%= link_to 'Learn Chef', learn_chef_url, target: '_blank' %>
         </li>
         <li>
-          <a href="http://docs.opscode.com/" target="_blank">Read the Chef Docs</a>
+          <%= link_to 'Read the Chef Docs', chef_docs_url, target: '_blank' %>
         </li>
         <li>
-          <a href="http://docs.opscode.com/community_guidelines.html" target="_blank">Community Guidelines</a>
+          <%= link_to 'Community Guidelines', chef_docs_url('community_guidelines.html'), target: '_blank' %>
         </li>
         <li>
-          <a href="http://docs.opscode.com/community_contributions.html" target="_blank">How to Contribute</a>
+          <%= link_to 'How to Contribute', chef_docs_url('community_contributions.html'), target: '_blank' %>
         </li>
       </ul>
     </div>

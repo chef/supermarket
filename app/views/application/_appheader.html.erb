@@ -9,7 +9,7 @@
     <% end %>
     <% if !signed_in? %>
       <li class="sign_in_create_account"><%= link_to 'Sign In', sign_in_path, rel: 'sign_in' %></li>
-      <li class="sign_in_create_account"><%= link_to 'Create Account', ENV['CHEF_SIGN_UP_URL'] %></li>
+      <li class="sign_in_create_account"><%= link_to 'Create Account', chef_sign_up_url %></li>
     <% end %>
   </ul>
   <% if signed_in? %>
