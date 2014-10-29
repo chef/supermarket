@@ -1,7 +1,5 @@
 require File.expand_path('../boot', __FILE__)
-
 require 'dotenv'
-
 require 'rails'
 
 Dotenv.overload('.env', ".env.#{Rails.env}").tap do |env|
