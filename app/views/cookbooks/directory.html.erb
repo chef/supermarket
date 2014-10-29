@@ -73,16 +73,13 @@
       <h3>How do I use a cookbook?</h3>
       <p>Interact with cookbooks by using the <code>knife cookbook</code> commands.
       With <code>knife cookbook</code>, you can create, delete, show, list,
-      download and upload cookbooks. Read the <a href="http://docs.opscode.com/knife_cookbook.html">
-      knife cookbook commands documentation</a> for more information.</p>
+      download and upload cookbooks. Read the <%= link_to 'knife cookbook commands documentation', chef_docs_url('knife_cookbook.html') %> for more information.</p>
 
       <h3>How do I share a cookbook?</h3>
       <p>In order to share and interact with cookbooks on Supermarket, use the
-      <code>knife cookbook site</code> commands. <a href="http://docs.opscode.com/knife_cookbook_site.html">
-      The documentation</a> for <code>knife cookbook site</code> explains how to
+      <code>knife cookbook site</code> commands. <%= link_to 'The documentation', chef_docs_url('knife_cookbook_site.html') %> for <code>knife cookbook site</code> explains how to
       download, share, unshare, search, install and list cookbooks on Supermarket.
-      You can also interact with the <a href="http://docs.opscode.com/api_cookbooks_site.html">
-      Supermarket API</a> directly.</p>
+      You can also interact with the <%= link_to 'Supermarket API', chef_docs_url('api_cookbooks_site.html') %> directly.</p>
     </div>
 
     <div class="learn_about_cookbooks_sidebar">
@@ -90,35 +87,35 @@
 
       <ul>
         <li>
-          <a href="http://docs.opscode.com/essentials_cookbooks.html">About cookbooks</a>
+          <%= link_to 'About cookbooks', chef_docs_url('essentials_cookbooks.html') %>
         </li>
 
         <li>
-          <a href="http://docs.opscode.com/essentials_cookbook_recipes.html">About recipes</a>
+          <%= link_to 'About recipes', chef_docs_url('essentials_cookbook_recipes.html') %>
         </li>
 
         <li>
-          <a href="http://docs.opscode.com/api_cookbooks_site.html">Supermarket cookbooks API documentation</a>
+          <%= link_to 'Supermarket cookbooks API documentation', chef_docs_url('api_cookbooks_site.html') %>
         </li>
 
         <li>
-          <a href="http://berkshelf.com/">Berkshelf documentation</a>
+          <%= link_to 'Berkshelf documentation', 'http://berkshelf.com' %>
         </li>
 
         <li>
-          <a href="http://docs.opscode.com/chef/knife.html">knife documentation</a>
+          <%= link_to 'knife documentation', chef_docs_url('chef/knife.html') %>
         </li>
 
         <li>
-          <a href="http://docs.opscode.com/kitchen.html">test-kitchen documentation</a>
+          <%= link_to 'test-kitchen documentation', chef_docs_url('kitchen.html') %>
         </li>
 
         <li>
-          <a href="http://docs.opscode.com/foodcritic.html">Foodcritic documentation</a>
+          <%= link_to 'Foodcritic documentation', chef_docs_url('foodcritic.html') %>
         </li>
 
         <li>
-          <a href="http://www.getchef.com/downloads/chef-dk/">Chef Development Kit (Chef DK)</a>
+          <%= link_to 'Chef Development Kit (Chef DK)', chef_downloads_url('chef-dk') %>
         </li>
 
         <li>

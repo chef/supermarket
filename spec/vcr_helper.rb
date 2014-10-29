@@ -2,6 +2,8 @@ require 'cgi'
 require 'vcr'
 
 VCR.configure do |c|
+  include CustomUrlHelper
+
   c.cassette_library_dir = 'spec/vcr_cassettes'
   c.hook_into :webmock
   c.allow_http_connections_when_no_cassette = true
@@ -33,7 +35,7 @@ VCR.configure do |c|
     ENV['VALID_OCID_REFRESH_TOKEN']
   end
   c.filter_sensitive_data('<OCID_REPLACEMENT_OAUTH_TOKEN>') do |interaction|
-    if interaction.request.uri == "#{ENV['CHEF_IDENTITY_URL']}/id/oauth/token"
+    if interaction.request.uri == "#{chef_identity_url}/oauth/token"
       body = nil
 
       begin
@@ -46,7 +48,7 @@ VCR.configure do |c|
     end
   end
   c.filter_sensitive_data('<OCID_REPLACEMENT_REFRESH_TOKEN>') do |interaction|
-    if interaction.request.uri == "#{ENV['CHEF_IDENTITY_URL']}/id/oauth/token"
+    if interaction.request.uri == "#{chef_identity_url}/oauth/token"
       body = nil
 
       begin
