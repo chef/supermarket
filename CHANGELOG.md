@@ -1,6 +1,6 @@
 # Supermarket Changelog
 
-## 1.3.0.alpha.0 (2014-10-30)
+## 1.3.0-alpha.0 (2014-10-30)
 
 - [#898] Make sitemap generation configurable
 - [#895] Add URL helpers
