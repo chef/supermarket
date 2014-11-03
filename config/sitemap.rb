@@ -1,10 +1,6 @@
 # Set the host name for URL creation
 if Rails.env.production?
-  SitemapGenerator::Sitemap.default_host = if ENV['PORT'].present?
-                                             "#{ENV['PROTOCOL']}://#{ENV['HOST']}:#{ENV['PORT']}"
-                                           else
-                                             "#{ENV['PROTOCOL']}://#{ENV['HOST']}"
-                                           end
+  SitemapGenerator::Sitemap.default_host = Supermarket::Host.full_url
 else
   SitemapGenerator::Sitemap.default_host = 'http://www.example.com'
 end
