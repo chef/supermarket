@@ -10,9 +10,7 @@
 #
 # See http://www.kbedell.com/2011/03/08/overriding-omniauth-callback-url-for-twitter-or-facebook-oath-processing/
 unless Rails.env.test?
-  OmniAuth.config.full_host = "#{ENV['PROTOCOL']}://" \
-    "#{ENV['HOST']}" \
-    "#{[80, 443].include?(ENV['PORT'].to_i) ? '' : ':' + ENV['PORT']}"
+  OmniAuth.config.full_host = Supermarket::Host.full_url
 end
 
 # Configure middleware used by OmniAuth

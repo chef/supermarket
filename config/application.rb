@@ -21,6 +21,8 @@ end
   end
 end
 
+require_relative '../lib/supermarket/host'
+
 # Require the gems listed in Gemfile, including any gems
 # you have limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
@@ -81,11 +83,7 @@ module Supermarket
       protocol: ENV['PROTOCOL']
     }
 
-    if ENV['PORT'].present?
-      config.action_mailer.asset_host = "#{ENV['PROTOCOL']}://#{ENV['HOST']}:#{ENV['PORT']}"
-    else
-      config.action_mailer.asset_host = "#{ENV['PROTOCOL']}://#{ENV['HOST']}"
-    end
+    config.action_mailer.asset_host = Supermarket::Host.full_url
 
     # Set default from email for ActionMailer
     ActionMailer::Base.default from: ENV['FROM_EMAIL']
