@@ -1,22 +1,45 @@
 require 'spec_helper'
 
 describe Supermarket::Host do
+  let(:stash) { {} }
+
+  before do
+    stash.clear
+    ENV.each do |k, v|
+      stash[k] = v
+      ENV[k] = nil
+    end
+  end
+
+  after do
+    stash.each { |k, v| ENV[k] = v }
+  end
+
   describe '#full_url' do
     it 'generates the correct url when there is no port present' do
-      port = ENV['PORT']
       ENV['PORT'] = nil
-      expect(ENV['PORT']).to be_nil
-      expect(ENV['HOST']).to eql('localhost')
-      expect(ENV['PROTOCOL']).to eql('http')
-      expect(described_class.full_url).to eql('http://localhost')
-      ENV['PORT'] = port
+      ENV['HOST'] = 'example.com'
+      ENV['PROTOCOL'] = 'http'
+
+      expect(described_class.full_url).to eql('http://example.com')
     end
 
     it 'generates the correct url when there is a port present' do
-      expect(ENV['PORT']).to eql('3000')
-      expect(ENV['HOST']).to eql('localhost')
-      expect(ENV['PROTOCOL']).to eql('http')
-      expect(described_class.full_url).to eql('http://localhost:3000')
+      ENV['PORT'] = '3000'
+      ENV['HOST'] = 'example.com'
+      ENV['PROTOCOL'] = 'https'
+
+      expect(described_class.full_url).to eql('https://example.com:3000')
+    end
+
+    it 'should not display the port in the url if it is 80 or 443' do
+      %w(80 443).each do |port|
+        ENV['PORT'] = port
+        ENV['HOST'] = 'example.com'
+        ENV['PROTOCOL'] = 'http'
+
+        expect(described_class.full_url).to eql('http://example.com')
+      end
     end
   end
 end
