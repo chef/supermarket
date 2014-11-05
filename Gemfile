@@ -25,6 +25,11 @@ gem 'coveralls', require: false
 gem 'octokit', github: 'octokit/octokit.rb', require: false
 gem 'sidekiq'
 
+# Pin sprockets to ensure we get the latest security patches. Not pinning this
+# meant that the gem that depended on sprockets was pulling in an old
+# (vulnerable) version.
+gem 'sprockets', '~> 2.11.3'
+
 # Use the version on GitHub because the version published on RubyGems has
 # compatibility problems with Sidekiq 3.0.
 gem 'sidetiq', github: 'tobiassvn/sidetiq', ref: '4f7d7da'
@@ -55,7 +60,7 @@ gem 'html_truncator'
 gem 'rollout'
 gem 'statsd-ruby'
 gem 'sentry-raven', '~> 0.8.0', require: false
-gem 'sass-rails',   '~> 4.0.1'
+gem 'sass-rails',   '~> 4.0.4'
 gem 'compass-rails'
 gem 'uglifier',     '~> 2.2'
 
