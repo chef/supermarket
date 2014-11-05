@@ -72,9 +72,5 @@
     </div>
 
     <%= javascript_include_tag 'application' %>
-
-    <% if ENV['SEGMENT_IO_WRITE_KEY'].present? %>
-      <%= render partial: 'segment.io' %>
-    <% end %>
   </body>
 </html>

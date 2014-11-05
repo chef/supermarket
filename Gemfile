@@ -55,7 +55,6 @@ gem 'html_truncator'
 gem 'rollout'
 gem 'statsd-ruby'
 gem 'sentry-raven', '~> 0.8.0', require: false
-gem 'analytics-ruby', '~> 1.0.0', require: false
 gem 'sass-rails',   '~> 4.0.1'
 gem 'compass-rails'
 gem 'uglifier',     '~> 2.2'
