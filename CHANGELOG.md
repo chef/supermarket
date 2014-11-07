@@ -1,5 +1,10 @@
 # Supermarket Changelog
 
+## 1.4.0 (2014-11-06)
+- [#900] DRY up full host URL generation
+- [#901] Gem updates
+- [#902] More removal of segment.io
+
 ## 1.3.0-alpha.0 (2014-10-30)
 
 - [#898] Make sitemap generation configurable
