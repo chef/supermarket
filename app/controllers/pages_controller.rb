@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   before_filter :authenticate_user!, only: :dashboard
+  layout false, only: [:robots]
 
   #
   # GET /
@@ -25,5 +26,15 @@ class PagesController < ApplicationController
     @collaborated_cookbooks = current_user.collaborated_cookbooks.limit(5)
     @tools = current_user.tools.limit(5)
     @followed_cookbook_activity = current_user.followed_cookbook_versions.limit(50)
+  end
+
+  #
+  # GET /robots.txt
+  #
+  # Instead of serving robots.txt out of the public directory, we serve it here
+  # so that it can be populated with the correct host name.
+  #
+  def robots
+    respond_to :text
   end
 end

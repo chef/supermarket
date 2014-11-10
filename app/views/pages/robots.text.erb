@@ -1,0 +1,8 @@
+User-agent: *
+<% if ENV['ROBOTS_ALLOW'] %>
+Allow: <%= ENV['ROBOTS_ALLOW'] %>
+<% end %>
+<% if ENV['ROBOTS_DISALLOW'] %>
+Disallow: <%= ENV['ROBOTS_DISALLOW'] %>
+<% end %>
+Sitemap: <%= Supermarket::Host.full_url %>/sitemap.xml.gz

@@ -1,19 +1,7 @@
 require 'spec_helper'
 
 describe CustomUrlHelper do
-  let(:stash) { {} }
-
-  before do
-    stash.clear
-    ENV.each do |k, v|
-      stash[k] = v
-      ENV[k] = nil
-    end
-  end
-
-  after do
-    stash.each { |k, v| ENV[k] = v }
-  end
+  include_context 'env stashing'
 
   shared_examples 'a url with extra pieces' do
     it 'should allow extra pieces to be passed to the url' do
