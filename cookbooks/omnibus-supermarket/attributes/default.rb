@@ -401,6 +401,15 @@ default['supermarket']['seed_cla_data'] = nil
 # * tools: Enable the tools section
 default['supermarket']['features'] = 'tools'
 
+# ### robots.txt Settings
+#
+# These control the "Allow" and "Disallow" paths in /robots.txt. See
+# http://www.robotstxt.org/robotstxt.html for more information. Only a single
+# line for each item is supported. If a value is nil, the line will not be
+# present in the file.
+default['supermarket']['robots_allow'] = '/'
+default['supermarket']['robots_disallow'] = nil
+
 # ### S3 Settings
 #
 # If these are not set, uploaded cookbooks will be stored on the local
