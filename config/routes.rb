@@ -167,6 +167,6 @@ Supermarket::Application.routes.draw do
 
   # this is what a logged in user sees after login
   get 'dashboard' => 'pages#dashboard'
-
+  get 'robots.:format' => 'pages#robots'
   root 'pages#welcome'
 end

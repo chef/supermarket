@@ -1,19 +1,7 @@
 require 'spec_helper'
 
 describe Supermarket::Host do
-  let(:stash) { {} }
-
-  before do
-    stash.clear
-    ENV.each do |k, v|
-      stash[k] = v
-      ENV[k] = nil
-    end
-  end
-
-  after do
-    stash.each { |k, v| ENV[k] = v }
-  end
+  include_context 'env stashing'
 
   describe '#full_url' do
     it 'generates the correct url when there is no port present' do
