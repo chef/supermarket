@@ -201,6 +201,7 @@ ActiveRecord::Schema.define(version: 20141114192958) do
     t.integer  "api_download_count",       default: 0
     t.boolean  "featured",                 default: false
     t.boolean  "privacy"
+    t.boolean  "up_for_adoption"
   end
 
   add_index "cookbooks", ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true, using: :btree
