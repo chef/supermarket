@@ -6,6 +6,12 @@
     <%= render "cookbooks/manage_cookbook", cookbook: cookbook %>
   <% end %>
 
+  <% if cookbook.up_for_adoption? %>
+    <div>
+      <%= link_to 'Adopt me!', adoption_cookbook_path(cookbook), method: :post, class: 'button radius tiny' %>
+    </div>
+  <% end %>
+
   <h3 class="<%= 'show-cookbook-urls-manage' if policy(cookbook).manage_cookbook_urls? %>" rel="edit-cookbook-urls">
     <% if policy(cookbook).manage_cookbook_urls? %>
       <%= link_to '#' do %>

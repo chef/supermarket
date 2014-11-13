@@ -17,7 +17,7 @@ class CookbookAuthorizer < Authorizer::Base
   # Owners of a cookbook and Supermarket admins can manage a cookbook.
   #
   def manage?
-    owner? || user.is?(:admin)
+    owner_or_admin?
   end
 
   #
@@ -30,12 +30,13 @@ class CookbookAuthorizer < Authorizer::Base
   end
 
   #
-  # Owners and collaborators of a cookbook can manage the cookbook's urls.
+  # Owners and collaborators of a cookbook and Supermarket admins can manage
+  # the cookbook's urls.
   #
   # @return [Boolean]
   #
   def manage_cookbook_urls?
-    owner_or_collaborator?
+    owner_or_collaborator? || admin?
   end
 
   #
@@ -44,7 +45,7 @@ class CookbookAuthorizer < Authorizer::Base
   # @return [Boolean]
   #
   def transfer_ownership?
-    owner? || user.is?(:admin)
+    owner_or_admin?
   end
 
   #
@@ -54,7 +55,7 @@ class CookbookAuthorizer < Authorizer::Base
   # @return [Boolean]
   #
   def deprecate?
-    !record.deprecated? && (owner? || user.is?(:admin))
+    !record.deprecated? && owner_or_admin?
   end
 
   #
@@ -64,7 +65,17 @@ class CookbookAuthorizer < Authorizer::Base
   # @return [Boolean]
   #
   def undeprecate?
-    record.deprecated? && (owner? || user.is?(:admin))
+    record.deprecated? && owner_or_admin?
+  end
+
+  #
+  # Owners of a cookbook and Supermarket admins can put a cookbook up for
+  # adoption.
+  #
+  # @return [Boolean]
+  #
+  def manage_adoption?
+    owner_or_admin?
   end
 
   #
@@ -73,10 +84,14 @@ class CookbookAuthorizer < Authorizer::Base
   # @return [Boolean]
   #
   def toggle_featured?
-    user.is?(:admin)
+    admin?
   end
 
   private
+
+  def admin?
+    user.is?(:admin)
+  end
 
   def owner?
     record.owner == user
@@ -84,5 +99,9 @@ class CookbookAuthorizer < Authorizer::Base
 
   def owner_or_collaborator?
     owner? || record.collaborator_users.include?(user)
+  end
+
+  def owner_or_admin?
+    owner? || admin?
   end
 end

@@ -193,6 +193,24 @@ class CookbooksController < ApplicationController
   end
 
   #
+  # POST /cookbooks/:id/adoption
+  #
+  # Sends an email to the cookbook owner letting them know that someone is
+  # interested in adopting their cookbook.
+  #
+  def adoption
+    CookbookMailer.delay.adoption_email(@cookbook, current_user)
+
+    redirect_to(
+      @cookbook,
+      notice: t(
+        'cookbook.adoption_email',
+        cookbook: @cookbook.name
+      )
+    )
+  end
+
+  #
   # PUT /cookbooks/:cookbook/toggle_featured
   #
   # Allows a Supermarket admin to set a cookbook as featured or
@@ -242,7 +260,7 @@ class CookbooksController < ApplicationController
   end
 
   def cookbook_urls_params
-    params.require(:cookbook).permit(:source_url, :issues_url)
+    params.require(:cookbook).permit(:source_url, :issues_url, :up_for_adoption)
   end
 
   def cookbook_deprecation_params

@@ -22,6 +22,7 @@ en:
       invite_declined: "You have declined ownership of %{cookbook}."
     deprecated: "%{cookbook} deprecated in favor of %{replacement_cookbook}."
     undeprecated: "%{cookbook} is no longer deprecated."
+    adoption_email: "An email has been sent to the owner of %{cookbook}, alerting them of your interest."
     featured: "%{cookbook} is now %{state}."
     deprecate_with_deprecated_failure: "This cookbook cannot be deprecated in favor of a deprecated cookbook."
     activity: "%{maintainer} released v%{version} of the %{cookbook} cookbook."
