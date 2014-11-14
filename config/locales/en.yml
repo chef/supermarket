@@ -88,6 +88,7 @@ en:
       authentication_failed: "AUTHENTICATION_FAILED"
       unauthorized: "UNAUTHORIZED"
     error_messages:
+      privacy_violation: 'Private cookbook upload not allowed'
       not_found: "Resource does not exist."
       missing_cookbook: "Mulipart POST must include a part named 'cookbook'."
       cookbook_not_json: "Mulipart POST part 'cookbook' must be a valid JSON string."

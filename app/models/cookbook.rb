@@ -230,6 +230,14 @@ class Cookbook < ActiveRecord::Base
   #
   def publish_version!(params)
     metadata = params.metadata
+
+    if metadata.privacy &&
+        ENV['ENFORCE_PRIVACY'].present? &&
+        ENV['ENFORCE_PRIVACY'] == 'true'
+      errors.add(:base, I18n.t('api.error_messages.privacy_violation'))
+      raise ActiveRecord::RecordInvalid.new(self)
+    end
+
     tarball = params.tarball
     readme = params.readme
     changelog = params.changelog
@@ -255,6 +263,7 @@ class Cookbook < ActiveRecord::Base
       self.updated_at = Time.now
       self.source_url = metadata.source_url
       self.issues_url = metadata.issues_url
+      self.privacy = metadata.privacy
       save!
 
       metadata.platforms.each do |name, version_constraint|

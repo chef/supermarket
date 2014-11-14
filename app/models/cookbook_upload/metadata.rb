@@ -62,6 +62,11 @@ class CookbookUpload
     #   @return [String] The cookbook issues url
     #
 
+    #
+    # @!attribute [r] privacy
+    #   @return [Boolean] Whether or not this cookbook is private
+    #
+
     values do
       attribute :name, String, default: ''
       attribute :version, String, default: ''
@@ -71,6 +76,7 @@ class CookbookUpload
       attribute :dependencies, Hash[String => String]
       attribute :source_url, String, default: ''
       attribute :issues_url, String, default: ''
+      attribute :privacy, Boolean, default: false
     end
   end
 end
