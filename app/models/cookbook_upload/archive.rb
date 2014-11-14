@@ -13,12 +13,12 @@ class CookbookUpload
     # Indicates that the uploaded archive may not be an upload, since it does
     # not have a +path+
     #
-    NoPath = Class.new(RuntimeError)
+    class NoPath < RuntimeError; end
 
     #
     # Indicates that the source could not be processed
     #
-    Error = Class.new(RuntimeError)
+    class Error < RuntimeError; end
 
     #
     # Creates a new Archive

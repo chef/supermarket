@@ -115,5 +115,5 @@ class Curry::PullRequestUpdatesController < ApplicationController
 
   attr_reader :pull_request
 
-  HMAC_DIGEST = OpenSSL::Digest::Digest.new('sha1')
+  HMAC_DIGEST = OpenSSL::Digest.new('sha1')
 end
