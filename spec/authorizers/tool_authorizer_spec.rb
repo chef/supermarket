@@ -12,6 +12,7 @@ describe ToolAuthorizer do
     it { should permit_authorization(:update) }
     it { should permit_authorization(:destroy) }
     it { should permit_authorization(:create_collaborator) }
+    it { should permit_authorization(:manage_adoption) }
   end
 
   context 'as a tool collaborator' do
@@ -28,6 +29,7 @@ describe ToolAuthorizer do
     it { should permit_authorization(:edit) }
     it { should permit_authorization(:update) }
     it { should permit_authorization(:manage) }
+    it { should_not permit_authorization(:manage_adoption) }
   end
 
   context 'as a supermarket admin' do
@@ -40,6 +42,7 @@ describe ToolAuthorizer do
     it { should permit_authorization(:edit) }
     it { should permit_authorization(:update) }
     it { should permit_authorization(:destroy) }
+    it { should permit_authorization(:manage_adoption) }
   end
 
   context 'not as the tool owner' do
@@ -51,5 +54,6 @@ describe ToolAuthorizer do
     it { should_not permit_authorization(:update) }
     it { should_not permit_authorization(:destroy) }
     it { should_not permit_authorization(:create_collaborator) }
+    it { should_not permit_authorization(:manage_adoption) }
   end
 end

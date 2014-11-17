@@ -115,7 +115,6 @@ describe CookbooksController do
     before { sign_in user }
 
     it 'sends an adoption email' do
-      post :adoption, id: cookbook
       Sidekiq::Testing.inline! do
         expect { post :adoption, id: cookbook }
         .to change(ActionMailer::Base.deliveries, :count).by(1)

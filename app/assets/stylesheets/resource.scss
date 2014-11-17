@@ -109,6 +109,31 @@
         margin-top: rem-calc(5);
       }
     }
+
+    .owner_tool {
+      @include clearfix;
+      margin-top: rem-calc(12);
+      font: {
+        size: rem-calc(18);
+        weight: $bold;
+      }
+
+      .gravatar {
+        float: left;
+        margin-top: rem-calc(0);
+        width: rem-calc(50);
+        height: rem-calc(50);
+      }
+
+      small {
+        display: block;
+        font: {
+          size: rem-calc(14);
+          weight: $normal;
+        }
+        margin-top: rem-calc(5);
+      }
+    }
   }
 
   .heading {

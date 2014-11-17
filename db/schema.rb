@@ -366,6 +366,7 @@ ActiveRecord::Schema.define(version: 20141114192958) do
     t.datetime "updated_at"
     t.string   "lowercase_name"
     t.string   "slug"
+    t.boolean  "up_for_adoption"
   end
 
   add_index "tools", ["lowercase_name"], name: "index_tools_on_lowercase_name", unique: true, using: :btree

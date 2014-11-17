@@ -57,21 +57,6 @@ class CookbookMailer < ActionMailer::Base
   end
 
   #
-  # Sends an email to the owner of a cookbook, letting them know that someone
-  # is interested in taking over ownership of the cookbook.
-  #
-  # @param cookbook [Cookbook] the cookbook
-  # @param user [User] the interested user
-  #
-  def adoption_email(cookbook, user)
-    @name = cookbook.name
-    @email = user.email
-    @to = cookbook.owner.email
-
-    mail(to: @to, subject: "Interest in adopting your #{@name} cookbook")
-  end
-
-  #
   # Sends email to the recipient of an OwnershipTransferRequest, asking if they
   # want to become the new owner of a Cookbook. This is generated when
   # a Cookbook owner initiates a transfer of ownership to someone that's not

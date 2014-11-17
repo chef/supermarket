@@ -13,19 +13,7 @@
     </div>
   <% end %>
 
-  <% if policy(cookbook).manage_adoption? %>
-    <li>
-      <% if cookbook.up_for_adoption? %>
-        <%= link_to cookbook_path(cookbook, cookbook: { up_for_adoption: false }), method: :patch do %>
-          <i class="fa fa-heart"></i> Disable adoption
-        <% end %>
-      <% else %>
-        <%= link_to cookbook_path(cookbook, cookbook: { up_for_adoption: true }), method: :patch do %>
-          <i class="fa fa-heart"></i> Put up for adoption
-        <% end %>
-      <% end %>
-    </li>
-  <% end %>
+  <%= link_to_adoption(cookbook) %>
 
   <% if policy(cookbook).transfer_ownership? %>
     <li>

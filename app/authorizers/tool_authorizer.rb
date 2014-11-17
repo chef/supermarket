@@ -5,7 +5,7 @@ class ToolAuthorizer < Authorizer::Base
   # @return [Boolean]
   #
   def edit?
-    owner_or_collaborator? || user.is?(:admin)
+    owner_or_collaborator? || admin?
   end
 
   #
@@ -14,7 +14,7 @@ class ToolAuthorizer < Authorizer::Base
   # @return [Boolean]
   #
   def update?
-    owner_or_collaborator? || user.is?(:admin)
+    owner_or_collaborator? || admin?
   end
 
   #
@@ -23,7 +23,7 @@ class ToolAuthorizer < Authorizer::Base
   # @return [Boolean]
   #
   def destroy?
-    owner? || user.is?(:admin)
+    owner? || admin?
   end
 
   #
@@ -31,7 +31,7 @@ class ToolAuthorizer < Authorizer::Base
   # manage a cookbook.
   #
   def manage?
-    owner_or_collaborator? || user.is?(:admin)
+    owner_or_collaborator? || admin?
   end
 
   #
@@ -41,7 +41,21 @@ class ToolAuthorizer < Authorizer::Base
     owner?
   end
 
+  #
+  # Owners of a tool and Supermarket admins can put a cookbook up for
+  # adoption.
+  #
+  # @return [Boolean]
+  #
+  def manage_adoption?
+    owner? || admin?
+  end
+
   private
+
+  def admin?
+    user.is?(:admin)
+  end
 
   def owner?
     record.owner == user
