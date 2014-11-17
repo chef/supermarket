@@ -233,7 +233,7 @@ describe ToolsController do
       expect(tool.up_for_adoption).to eql(true)
     end
 
-    it "redirects the user to the tool" do
+    it 'redirects the user to the tool' do
       patch :update, id: tool, tool: { name: 'margarine' }
 
       expect(response).to redirect_to(tool_path(tool))
