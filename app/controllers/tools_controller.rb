@@ -93,9 +93,19 @@ class ToolsController < ApplicationController
     authorize! @tool
 
     if @tool.update_attributes(tool_params)
+      key = if tool_params.key?(:up_for_adoption)
+              if tool_params[:up_for_adoption] == 'true'
+                'adoption.up'
+              else
+                'adoption.down'
+              end
+            else
+              'tool.updated'
+            end
+
       redirect_to(
         tool_path(@tool),
-        notice: t('tool.updated', name: @tool.name)
+        notice: t(key, name: @tool.name)
       )
     else
       render :edit
@@ -138,7 +148,7 @@ class ToolsController < ApplicationController
     redirect_to(
       @tool,
       notice: t(
-        'adoption_email',
+        'adoption.email_sent',
         cookbook_or_tool: @tool.name
       )
     )

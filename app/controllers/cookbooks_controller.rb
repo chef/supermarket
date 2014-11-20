@@ -115,7 +115,17 @@ class CookbooksController < ApplicationController
 
     @cookbook.update_attributes(cookbook_urls_params)
 
-    redirect_to @cookbook
+    key = if cookbook_urls_params.key?(:up_for_adoption)
+            if cookbook_urls_params[:up_for_adoption] == 'true'
+              'adoption.up'
+            else
+              'adoption.down'
+            end
+          else
+            'cookbook.updated'
+          end
+
+    redirect_to @cookbook, notice: t(key, name: @cookbook.name)
   end
 
   #
@@ -204,7 +214,7 @@ class CookbooksController < ApplicationController
     redirect_to(
       @cookbook,
       notice: t(
-        'adoption_email',
+        'adoption.email_sent',
         cookbook_or_tool: @cookbook.name
       )
     )

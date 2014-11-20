@@ -1,5 +1,8 @@
 en:
-  adoption_email: "An email has been sent to the owner of %{cookbook_or_tool}, alerting them of your interest."
+  adoption:
+    email_sent: "An email has been sent to the owner of %{cookbook_or_tool}, alerting them of your interest."
+    up: "%{name} has been successfully put up for adoption."
+    down: "%{name} is no longer up for adoption."
   user:
     signed_in:  "Welcome back %{name}."
     signed_out: "You have successfully signed out."
@@ -26,6 +29,7 @@ en:
     featured: "%{cookbook} is now %{state}."
     deprecate_with_deprecated_failure: "This cookbook cannot be deprecated in favor of a deprecated cookbook."
     activity: "%{maintainer} released v%{version} of the %{cookbook} cookbook."
+    updated: "The %{name} cookbook has been successfully updated."
   contributor:
     removed: "Contributor removed."
   contributor_requests:
