@@ -368,7 +368,7 @@ default['supermarket']['learn_chef_url'] = "https://learn.#{node['supermarket'][
 # false.
 default['supermarket']['chef_oauth2_app_id'] = nil
 default['supermarket']['chef_oauth2_secret'] = nil
-default['supermarket']['chef_oauth2_url'] = node['supermarket']['chef_server_url']
+default['supermarket']['chef_oauth2_url'] = nil
 default['supermarket']['chef_oauth2_verify_ssl'] = true
 
 # ### CLA Settings

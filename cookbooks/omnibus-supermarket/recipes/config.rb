@@ -39,6 +39,11 @@ Supermarket::Config.load_or_create_secrets!(
 node.consume_attributes('nginx' => node['supermarket']['nginx'],
                         'runit' => node['supermarket']['runit'])
 
+# set chef_oauth2_url from chef_server_url after this value has been loaded from config
+if node['supermarket']['chef_server_url'] && node['supermarket']['chef_oauth2_url'].nil?
+  node.set['supermarket']['chef_oauth2_url'] = node['supermarket']['chef_server_url']
+end
+
 user node['supermarket']['user']
 
 group node['supermarket']['group'] do
