@@ -222,18 +222,13 @@ describe CookbookUpload do
         to include(I18n.t('api.error_messages.invalid_metadata'))
     end
 
-    it 'yields an error if the cookbook parameters do not specify a category' do
+    it 'does not yield an error if the cookbook parameters do not specify a category' do
       tarball = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
 
       upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
       errors = upload.finish { |e, _| e }
 
-      error_message = I18n.t(
-        'api.error_messages.non_existent_category',
-        category_name: ''
-      )
-
-      expect(errors.full_messages).to include(error_message)
+      expect(errors.full_messages).to be_empty
     end
 
     it 'yields an error if the cookbook parameters specify an invalid category' do

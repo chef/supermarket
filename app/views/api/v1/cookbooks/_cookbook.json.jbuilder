@@ -1,7 +1,7 @@
 json.name cookbook.name
 json.maintainer cookbook.maintainer
 json.description cookbook.description
-json.category cookbook.category.name
+json.category cookbook.category.try(:name)
 json.latest_version latest_cookbook_version_url(cookbook)
 json.external_url cookbook.source_url
 json.average_rating nil

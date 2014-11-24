@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114192958) do
+ActiveRecord::Schema.define(version: 20141124212519) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -191,7 +191,7 @@ ActiveRecord::Schema.define(version: 20141114192958) do
     t.datetime "updated_at"
     t.string   "source_url"
     t.boolean  "deprecated",               default: false
-    t.integer  "category_id",                              null: false
+    t.integer  "category_id"
     t.string   "lowercase_name"
     t.string   "issues_url"
     t.integer  "cookbook_followers_count", default: 0
