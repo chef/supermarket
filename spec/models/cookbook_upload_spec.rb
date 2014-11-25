@@ -159,6 +159,16 @@ describe CookbookUpload do
         to include(I18n.t('api.error_messages.missing_readme'))
     end
 
+    it 'yields an error if the tarball has a zero-length README entry' do
+      tarball = File.open('spec/support/cookbook_fixtures/zero-length-readme.tgz')
+
+      upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
+      errors = upload.finish { |e, _| e }
+
+      expect(errors.full_messages).
+        to include(I18n.t('api.error_messages.missing_readme'))
+    end
+
     it "yields an error if the tarball's metadata.json is not actually JSON" do
       tarball = File.open('spec/support/cookbook_fixtures/invalid-metadata-json.tgz')
 

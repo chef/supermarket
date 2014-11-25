@@ -195,6 +195,11 @@ class CookbookUpload
             contents: archive.read(path),
             extension: File.extname(path)[1..-1].to_s
           )
+
+          if readme.contents.nil?
+            readme = nil
+            errors.add(:base, I18n.t('api.error_messages.missing_readme'))
+          end
         else
           errors.add(:base, I18n.t('api.error_messages.missing_readme'))
         end

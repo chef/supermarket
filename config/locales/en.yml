@@ -97,7 +97,7 @@ en:
       non_existent_category: "Category '%{category_name}' does not exist."
       tarball_not_gzipped: "Multipart POST part 'tarball' must be GZipped."
       missing_metadata: "Multipart POST part 'tarball' must contain a metadata.json entry."
-      missing_readme: "Multipart POST part 'tarball' must contain a README."
+      missing_readme: "Multipart POST part 'tarball' must contain a README and it must be greater than zero bytes."
       metadata_not_json: "Tarball entry named 'metadata.json' could not be parsed as JSON."
       invalid_version_constraint: "Platform '%{name}' has invalid version constraint '%{version_constraint}'."
       invalid_metadata: "The metadata is formatted incorrectly."

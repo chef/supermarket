@@ -9,6 +9,8 @@ describe CookbookVersion do
     it { should validate_presence_of(:license) }
     it { should validate_presence_of(:description) }
     it { should validate_presence_of(:version) }
+    it { should validate_presence_of(:readme) }
+    it { should validate_presence_of(:readme_extension) }
     it { should validate_uniqueness_of(:version).scoped_to(:cookbook_id) }
     it { should ensure_length_of(:license).is_at_most(255) }
 
