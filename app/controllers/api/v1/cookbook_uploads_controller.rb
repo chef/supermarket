@@ -13,7 +13,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
   # Accepts cookbooks to share. A sharing request is a multipart POST. Two of
   # those parts are relevant to this method: +cookbook+ and +tarball+.
   #
-  # The +cookbook+ part is a serialized JSON object which must contain a
+  # The +cookbook+ part is a serialized JSON object which can optionally contain a
   # +"category"+ key. The value of this key is the name of the category to
   # which this cookbook belongs.
   #
@@ -26,8 +26,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
   # this action.
   #
   # There are also several failure modes for sharing a cookbook. These include,
-  # but are not limited to, forgetting to specify a category, specifying a
-  # non-existent category, forgetting to upload a tarball, uploading a tarball
+  # but are not limited to, forgetting to upload a tarball, uploading a tarball
   # without a metadata.json entry, and so forth.
   #
   # The majority of the work happens between +CookbookUpload+,

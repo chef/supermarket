@@ -19,6 +19,7 @@ module ApiSpecHelpers
   #
   def share_cookbook(cookbook_name, user, opts = {})
     cookbooks_path = '/api/v1/cookbooks'
+    cookbook_params = {}
 
     tarball = cookbook_upload(cookbook_name, opts)
     private_key = private_key(opts.fetch(:with_invalid_private_key, false))
@@ -33,8 +34,14 @@ module ApiSpecHelpers
 
     opts.fetch(:omitted_headers, []).each { |h| header.delete(h) }
 
-    category = create(:category, name: opts.fetch(:category, 'other').titleize)
-    payload = opts.fetch(:payload, cookbook: "{\"category\": \"#{category.name}\"}", tarball: tarball)
+    category = opts.fetch(:category, 'other')
+
+    unless category.nil?
+      new_category = create(:category, name: category.titleize)
+      cookbook_params[:category] = new_category.name
+    end
+
+    payload = opts.fetch(:payload, cookbook: JSON.generate(cookbook_params), tarball: tarball)
 
     post cookbooks_path, payload, header
   end

@@ -26,8 +26,7 @@ class CookbookUpload
     #
     # @param params [Hash] the "raw" parameters
     # @option params [String] :cookbook a JSON string which specifies cookbook
-    #   attributes; in particular, it should contain a +"category"+ key when
-    #   deserialized
+    #   attributes
     # @option params [File] :tarball the cookbook tarball artifact
     #
     def initialize(params)

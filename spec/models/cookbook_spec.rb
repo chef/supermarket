@@ -116,7 +116,6 @@ describe Cookbook do
 
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:cookbook_versions) }
-    it { should validate_presence_of(:category) }
   end
 
   describe '#lowercase_name' do

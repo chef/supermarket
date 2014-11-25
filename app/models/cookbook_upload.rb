@@ -7,8 +7,7 @@ class CookbookUpload
   # @param user [User] the user uploading the cookbook
   # @param params [Hash] the upload parameters
   # @option params [String] :cookbook a JSON string which contains cookbook
-  #   data. In particular, it should contain a +"category"+ key when
-  #   deserialized
+  #   data.
   # @option params [File] :tarball the cookbook tarball artifact
   #
   def initialize(user, params)
@@ -92,7 +91,7 @@ class CookbookUpload
         e.add(:base, message)
       end
 
-      if category.nil?
+      if category.nil? && @params.category_name.present?
         message = I18n.t(
           'api.error_messages.non_existent_category',
           category_name: @params.category_name

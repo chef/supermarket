@@ -33,6 +33,12 @@ describe 'POST /api/v1/cookbooks' do
     it_behaves_like 'valid cookbook'
   end
 
+  context 'no category is given' do
+    before(:each) { share_cookbook('redis-test', user, category: nil) }
+
+    it_behaves_like 'valid cookbook'
+  end
+
   context "the user doesn't provide valid params" do
     before(:each) { share_cookbook('redis-test', user, payload: {}) }
 
