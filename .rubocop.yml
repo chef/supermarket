@@ -28,3 +28,5 @@ Metrics/PerceivedComplexity:
   Enabled: false
 Style/NumericLiterals:
   Enabled: false
+Style/RaiseArgs:
+  Enabled: false

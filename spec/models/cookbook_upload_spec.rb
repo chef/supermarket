@@ -82,6 +82,28 @@ describe CookbookUpload do
       expect(errors).to be_empty
     end
 
+    context 'privacy' do
+      after { ENV['ENFORCE_PRIVACY'] = nil }
+
+      it 'returns an error if privacy is being enforced and a private cookbook is uploaded' do
+        ENV['ENFORCE_PRIVACY'] = 'true'
+
+        tarball = File.open('spec/support/cookbook_fixtures/private-cookbook.tgz')
+        upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
+        errors = upload.finish { |e, _| e }
+        expect(errors.full_messages).to include('Private cookbook upload not allowed')
+      end
+
+      it 'allows private cookbook uploads if private is not being enforced' do
+        ENV['ENFORCE_PRIVACY'] = 'false'
+
+        tarball = File.open('spec/support/cookbook_fixtures/private-cookbook.tgz')
+        upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
+        errors = upload.finish { |e, _| e }
+        expect(errors).to be_empty
+      end
+    end
+
     it 'yields the cookbook version if the cookbook and tarball are workable' do
       tarball = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
 
