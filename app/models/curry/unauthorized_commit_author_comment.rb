@@ -44,7 +44,7 @@ class Curry::UnauthorizedCommitAuthorComment
         verified email address. To become authorized to contribute, you will
         need to sign the Contributor License Agreement (CLA) as an individual or
         on behalf of your company. [You can read more on Chef's
-        blog.](http://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)
+        blog.](#{chef_blog_url('2014/06/23/changes-to-the-contributor-license-agreement-process')})
       ).squish
 
       if @unauthorized_commit_authors.any?(&:email)
