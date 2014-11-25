@@ -3,21 +3,7 @@ require 'spec_helper'
 describe 'POST /api/v1/cookbooks' do
   let(:user) { create(:user) }
 
-  context 'the user provides valid params' do
-    before(:each) { share_cookbook('redis-test', user) }
-
-    it 'returns a 201' do
-      expect(response.status.to_i).to eql(201)
-    end
-
-    it 'returns the URI for the newly created cookbook' do
-      expect(json_body['uri']).to match(%r{api/v1/cookbooks/redis})
-    end
-  end
-
-  context "the user doesn't provide valid params" do
-    before(:each) { share_cookbook('redis-test', user, payload: {}) }
-
+  shared_context 'invalid cookbook' do
     it 'returns a 400' do
       expect(response.status.to_i).to eql(400)
     end
@@ -29,6 +15,40 @@ describe 'POST /api/v1/cookbooks' do
     it 'returns a error message' do
       expect(json_body['error_messages']).to_not be_nil
     end
+  end
+
+  shared_context 'valid cookbook' do
+    it 'returns a 201' do
+      expect(response.status.to_i).to eql(201)
+    end
+
+    it 'returns the URI for the newly created cookbook' do
+      expect(json_body['uri']).to match(%r{api/v1/cookbooks/redis})
+    end
+  end
+
+  context 'the user provides valid params' do
+    before(:each) { share_cookbook('redis-test', user) }
+
+    it_behaves_like 'valid cookbook'
+  end
+
+  context "the user doesn't provide valid params" do
+    before(:each) { share_cookbook('redis-test', user, payload: {}) }
+
+    it_behaves_like 'invalid cookbook'
+  end
+
+  context 'the user is sharing a cookbook with a zero-length README' do
+    before(:each) { share_cookbook('zero-length-readme.tgz', user) }
+
+    it_behaves_like 'invalid cookbook'
+  end
+
+  context 'the user uploads a cookbook with a README that has no extension' do
+    before(:each) { share_cookbook('readme-no-extension.tgz', user) }
+
+    it_behaves_like 'valid cookbook'
   end
 
   context "the user sharing doesn't exist" do
@@ -98,7 +118,7 @@ describe 'POST /api/v1/cookbooks' do
     end
 
     it 'returns an error code' do
-      expect(json_body['error']).to_not be_nil
+      expect(json_body['error_code']).to_not be_nil
     end
 
     it 'returns an error message' do

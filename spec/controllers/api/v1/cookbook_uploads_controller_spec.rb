@@ -65,7 +65,7 @@ describe Api::V1::CookbookUploadsController do
         post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
 
         expect(JSON.parse(response.body)).to eql(
-          'error' => I18n.t('api.error_codes.invalid_data'),
+          'error_code' => I18n.t('api.error_codes.invalid_data'),
           'error_messages' => ['This cookbook is no good']
         )
       end

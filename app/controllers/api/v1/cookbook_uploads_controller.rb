@@ -48,7 +48,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
       cookbook_upload.finish do |errors, cookbook, cookbook_version|
         if errors.any?
           error(
-            error: t('api.error_codes.invalid_data'),
+            error_code: t('api.error_codes.invalid_data'),
             error_messages: errors.full_messages
           )
         else
