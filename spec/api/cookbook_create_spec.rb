@@ -17,9 +17,7 @@ describe 'POST /api/v1/cookbooks' do
     end
   end
 
-  context 'the user provides valid params' do
-    before(:each) { share_cookbook('redis-test', user) }
-
+  shared_context 'valid cookbook' do
     it 'returns a 201' do
       expect(response.status.to_i).to eql(201)
     end
@@ -27,6 +25,12 @@ describe 'POST /api/v1/cookbooks' do
     it 'returns the URI for the newly created cookbook' do
       expect(json_body['uri']).to match(%r{api/v1/cookbooks/redis})
     end
+  end
+
+  context 'the user provides valid params' do
+    before(:each) { share_cookbook('redis-test', user) }
+
+    it_behaves_like 'valid cookbook'
   end
 
   context "the user doesn't provide valid params" do
@@ -39,6 +43,12 @@ describe 'POST /api/v1/cookbooks' do
     before(:each) { share_cookbook('zero-length-readme.tgz', user) }
 
     it_behaves_like 'invalid cookbook'
+  end
+
+  context 'the user uploads a cookbook with a README that has no extension' do
+    before(:each) { share_cookbook('readme-no-extension.tgz', user) }
+
+    it_behaves_like 'valid cookbook'
   end
 
   context "the user sharing doesn't exist" do

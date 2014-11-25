@@ -113,6 +113,15 @@ describe CookbookUpload do
       expect(version).to be_present
     end
 
+    it 'yields the cookbook version if the README has no extension' do
+      tarball = File.open('spec/support/cookbook_fixtures/readme-no-extension.tgz')
+
+      upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
+      version = upload.finish { |_, _, v| v }
+
+      expect(version).to be_present
+    end
+
     it 'yields an error if the cookbook is not valid JSON' do
       upload = CookbookUpload.new(user, cookbook: 'ack!', tarball: 'tarball')
       errors = upload.finish { |e, _| e }

@@ -196,7 +196,7 @@ class CookbookUpload
             extension: File.extname(path)[1..-1].to_s
           )
 
-          if readme.contents.nil?
+          if readme.contents.blank?
             readme = nil
             errors.add(:base, I18n.t('api.error_messages.missing_readme'))
           end

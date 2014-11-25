@@ -17,7 +17,6 @@ class CookbookVersion < ActiveRecord::Base
   validates :license, presence: true, length: { maximum: 255 }
   validates :description, presence: true
   validates :readme, presence: true
-  validates :readme_extension, presence: true
   validates :version, presence: true, uniqueness: { scope: :cookbook }
   validate :semantic_version
   validates_attachment(
