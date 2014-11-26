@@ -112,9 +112,14 @@ describe CookbooksController do
   describe 'POST #adoption' do
     let(:user) { create(:user) }
     let(:cookbook) { create(:cookbook) }
-    before { sign_in user }
+
+    it 'requires authentication' do
+      post :adoption, id: cookbook
+      expect(response).to redirect_to(sign_in_url)
+    end
 
     it 'sends an adoption email' do
+      sign_in user
       Sidekiq::Testing.inline! do
         expect { post :adoption, id: cookbook }
         .to change(ActionMailer::Base.deliveries, :count).by(1)
@@ -122,6 +127,7 @@ describe CookbooksController do
     end
 
     it 'redirects to the @cookbook' do
+      sign_in user
       post :adoption, id: cookbook
       expect(response).to redirect_to(assigns[:cookbook])
     end

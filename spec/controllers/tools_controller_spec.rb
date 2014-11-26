@@ -196,9 +196,14 @@ describe ToolsController do
   describe 'POST #adoption' do
     let(:user) { create(:user) }
     let(:tool) { create(:tool, name: 'haha') }
-    before { sign_in user }
+
+    it 'requires authentication' do
+      post :adoption, id: tool
+      expect(response).to redirect_to(sign_in_url)
+    end
 
     it 'sends an adoption email' do
+      sign_in user
       Sidekiq::Testing.inline! do
         expect { post :adoption, id: tool }
         .to change(ActionMailer::Base.deliveries, :count).by(1)
@@ -206,6 +211,7 @@ describe ToolsController do
     end
 
     it 'redirects to the @tool' do
+      sign_in user
       post :adoption, id: tool
       expect(response).to redirect_to(assigns[:tool])
     end
