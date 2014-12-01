@@ -1,7 +1,7 @@
 class ToolsController < ApplicationController
   before_filter :store_location!, only: [:new]
   before_filter :authenticate_user!, except: [:index, :show, :directory]
-  before_filter :assign_tool, only: [:show, :update, :edit, :destroy]
+  before_filter :assign_tool, only: [:show, :update, :edit, :destroy, :adoption]
   before_filter :override_search
 
   #
@@ -93,9 +93,19 @@ class ToolsController < ApplicationController
     authorize! @tool
 
     if @tool.update_attributes(tool_params)
+      key = if tool_params.key?(:up_for_adoption)
+              if tool_params[:up_for_adoption] == 'true'
+                'adoption.up'
+              else
+                'adoption.down'
+              end
+            else
+              'tool.updated'
+            end
+
       redirect_to(
-        tools_user_path(@tool.owner),
-        notice: t('tool.updated', name: @tool.name)
+        tool_path(@tool),
+        notice: t(key, name: @tool.name)
       )
     else
       render :edit
@@ -126,6 +136,24 @@ class ToolsController < ApplicationController
     @recently_added_tools = Tool.ordered_by('recently_added').limit(5)
   end
 
+  #
+  # POST /tools/:id/adoption
+  #
+  # Sends an email to the tool owner letting them know that someone is
+  # interested in adopting their tool.
+  #
+  def adoption
+    AdoptionMailer.delay.interest_email(@tool, current_user)
+
+    redirect_to(
+      @tool,
+      notice: t(
+        'adoption.email_sent',
+        cookbook_or_tool: @tool.name
+      )
+    )
+  end
+
   private
 
   #
@@ -138,7 +166,8 @@ class ToolsController < ApplicationController
       :type,
       :description,
       :source_url,
-      :instructions
+      :instructions,
+      :up_for_adoption
     )
   end
 

@@ -26,6 +26,13 @@ describe Tool do
       expect(tool).to_not be_valid
       expect(tool.errors[:source_url]).to_not be_nil
     end
+
+    it 'generates a slug automatically from the name if a slug does not exist' do
+      tool = build(:tool, slug: nil, name: 'awesome tool')
+      expect(tool.slug).to be_nil
+      expect(tool).to be_valid
+      expect(tool.slug).to eql('awesome-tool')
+    end
   end
 
   describe '#lowercase_name' do

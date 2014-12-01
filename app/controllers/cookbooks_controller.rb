@@ -1,6 +1,6 @@
 class CookbooksController < ApplicationController
   before_filter :assign_cookbook, except: [:index, :directory]
-  before_filter :store_location_then_authenticate_user!, only: [:follow, :unfollow]
+  before_filter :store_location_then_authenticate_user!, only: [:follow, :unfollow, :adoption]
 
   #
   # GET /cookbooks
@@ -115,7 +115,17 @@ class CookbooksController < ApplicationController
 
     @cookbook.update_attributes(cookbook_urls_params)
 
-    redirect_to @cookbook
+    key = if cookbook_urls_params.key?(:up_for_adoption)
+            if cookbook_urls_params[:up_for_adoption] == 'true'
+              'adoption.up'
+            else
+              'adoption.down'
+            end
+          else
+            'cookbook.updated'
+          end
+
+    redirect_to @cookbook, notice: t(key, name: @cookbook.name)
   end
 
   #
@@ -193,6 +203,24 @@ class CookbooksController < ApplicationController
   end
 
   #
+  # POST /cookbooks/:id/adoption
+  #
+  # Sends an email to the cookbook owner letting them know that someone is
+  # interested in adopting their cookbook.
+  #
+  def adoption
+    AdoptionMailer.delay.interest_email(@cookbook, current_user)
+
+    redirect_to(
+      @cookbook,
+      notice: t(
+        'adoption.email_sent',
+        cookbook_or_tool: @cookbook.name
+      )
+    )
+  end
+
+  #
   # PUT /cookbooks/:cookbook/toggle_featured
   #
   # Allows a Supermarket admin to set a cookbook as featured or
@@ -242,7 +270,7 @@ class CookbooksController < ApplicationController
   end
 
   def cookbook_urls_params
-    params.require(:cookbook).permit(:source_url, :issues_url)
+    params.require(:cookbook).permit(:source_url, :issues_url, :up_for_adoption)
   end
 
   def cookbook_deprecation_params

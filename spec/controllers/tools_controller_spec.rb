@@ -193,6 +193,30 @@ describe ToolsController do
     end
   end
 
+  describe 'POST #adoption' do
+    let(:user) { create(:user) }
+    let(:tool) { create(:tool, name: 'haha') }
+
+    it 'requires authentication' do
+      post :adoption, id: tool
+      expect(response).to redirect_to(sign_in_url)
+    end
+
+    it 'sends an adoption email' do
+      sign_in user
+      Sidekiq::Testing.inline! do
+        expect { post :adoption, id: tool }
+        .to change(ActionMailer::Base.deliveries, :count).by(1)
+      end
+    end
+
+    it 'redirects to the @tool' do
+      sign_in user
+      post :adoption, id: tool
+      expect(response).to redirect_to(assigns[:tool])
+    end
+  end
+
   describe 'PATCH #update' do
     let(:user) { create(:user) }
     let(:tool) { create(:tool, name: 'butter', owner: user) }
@@ -202,26 +226,27 @@ describe ToolsController do
     end
 
     it 'assigns user' do
-      put :update, id: tool, tool: { name: 'margarine' }
+      patch :update, id: tool, tool: { name: 'margarine' }
 
       expect(assigns(:user)).to_not be_nil
     end
 
     it 'updates a tool' do
-      put :update, id: tool, tool: { name: 'margarine' }
+      patch :update, id: tool, tool: { name: 'margarine', up_for_adoption: true }
 
       tool.reload
       expect(tool.name).to eql('margarine')
+      expect(tool.up_for_adoption).to eql(true)
     end
 
-    it "redirects the user to the tool owner's profile tools tab" do
-      put :update, id: tool, tool: { name: 'margarine' }
+    it 'redirects the user to the tool' do
+      patch :update, id: tool, tool: { name: 'margarine' }
 
-      expect(response).to redirect_to(tools_user_path(user))
+      expect(response).to redirect_to(tool_path(tool))
     end
 
     it 'renders the edit form when the tool is invalid' do
-      put :update, id: tool, tool: { name: '' }
+      patch :update, id: tool, tool: { name: '' }
 
       expect(response).to render_template('tools/edit')
     end
@@ -229,13 +254,13 @@ describe ToolsController do
     it '404s if the user is not authorized to update the tool' do
       sign_in(create(:user))
 
-      put :update, id: tool, tool: { name: 'margarine' }
+      patch :update, id: tool, tool: { name: 'margarine' }
 
       expect(response.status.to_i).to eql(404)
     end
   end
 
-  describe 'PATCH #destroy' do
+  describe 'DELETE #destroy' do
     let(:user) { create(:user) }
     let!(:tool) { create(:tool, name: 'butter', owner: user) }
 

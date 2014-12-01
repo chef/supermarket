@@ -45,6 +45,7 @@ class Tool < ActiveRecord::Base
   # --------------------
   before_validation :copy_name_to_lowercase_name
   before_validation :strip_name_whitespace
+  before_validation :ensure_slug
   before_validation :lowercase_slug
 
   #
@@ -134,5 +135,12 @@ class Tool < ActiveRecord::Base
   #
   def lowercase_slug
     self.slug = slug.to_s.downcase
+  end
+
+  #
+  # Ensure we always have a slug
+  #
+  def ensure_slug
+    self.slug = name.parameterize if slug.blank?
   end
 end

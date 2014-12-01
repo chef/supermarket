@@ -12,7 +12,8 @@ describe 'DELETE /api/v1/cookbooks/:cookbook' do
         'description' => 'Installs/Configures redis-test',
         'average_rating' => nil,
         'category' => 'Other',
-        'latest_version' => 'http://www.example.com/api/v1/cookbooks/redis-test/versions/1.0.0'
+        'latest_version' => 'http://www.example.com/api/v1/cookbooks/redis-test/versions/1.0.0',
+        'up_for_adoption' => nil
       }
     end
 

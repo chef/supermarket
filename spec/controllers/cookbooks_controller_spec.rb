@@ -109,6 +109,30 @@ describe CookbooksController do
     end
   end
 
+  describe 'POST #adoption' do
+    let(:user) { create(:user) }
+    let(:cookbook) { create(:cookbook) }
+
+    it 'requires authentication' do
+      post :adoption, id: cookbook
+      expect(response).to redirect_to(sign_in_url)
+    end
+
+    it 'sends an adoption email' do
+      sign_in user
+      Sidekiq::Testing.inline! do
+        expect { post :adoption, id: cookbook }
+        .to change(ActionMailer::Base.deliveries, :count).by(1)
+      end
+    end
+
+    it 'redirects to the @cookbook' do
+      sign_in user
+      post :adoption, id: cookbook
+      expect(response).to redirect_to(assigns[:cookbook])
+    end
+  end
+
   describe 'PATCH #update' do
     let(:user) { create(:user) }
     let(:cookbook) { create(:cookbook, owner: user) }
@@ -118,13 +142,15 @@ describe CookbooksController do
       it 'updates the cookbook' do
         patch :update, id: cookbook, cookbook: {
           source_url: 'http://example.com/cookbook',
-          issues_url: 'http://example.com/cookbook/issues'
+          issues_url: 'http://example.com/cookbook/issues',
+          up_for_adoption: true
         }
 
         cookbook.reload
 
         expect(cookbook.source_url).to eql('http://example.com/cookbook')
         expect(cookbook.issues_url).to eql('http://example.com/cookbook/issues')
+        expect(cookbook.up_for_adoption).to eql(true)
       end
 
       it 'redirects to @cookbook'  do

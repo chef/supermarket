@@ -16,6 +16,7 @@ describe CookbookAuthorizer do
     it { should permit_authorization(:manage) }
     it { should permit_authorization(:create_collaborator) }
     it { should_not permit_authorization(:toggle_featured) }
+    it { should permit_authorization(:manage_adoption) }
   end
 
   context 'as a cookbook collaborator' do
@@ -33,7 +34,8 @@ describe CookbookAuthorizer do
     it { should_not permit_authorization(:toggle_featured) }
     it { should permit_authorization(:create) }
     it { should permit_authorization(:manage_cookbook_urls) }
-    it { should permit_authorization(:manage) }
+    it { should_not permit_authorization(:manage) }
+    it { should_not permit_authorization(:manage_adoption) }
   end
 
   context 'as not the cookbook owner or a cookbook collaborator' do
@@ -48,6 +50,7 @@ describe CookbookAuthorizer do
     it { should_not permit_authorization(:deprecate) }
     it { should_not permit_authorization(:toggle_featured) }
     it { should_not permit_authorization(:manage) }
+    it { should_not permit_authorization(:manage_adoption) }
   end
 
   context 'as an admin' do
@@ -63,7 +66,8 @@ describe CookbookAuthorizer do
     it { should_not permit_authorization(:create) }
     it { should_not permit_authorization(:destroy) }
     it { should_not permit_authorization(:create_collaborator) }
-    it { should_not permit_authorization(:manage_cookbook_urls) }
+    it { should permit_authorization(:manage_cookbook_urls) }
+    it { should permit_authorization(:manage_adoption) }
   end
 
   context 'as a cookbook owner acting on a deprecated cookbook' do

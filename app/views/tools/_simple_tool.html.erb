@@ -1,4 +1,7 @@
-<li>
-  <div class="owner"><%= link_to gravatar_for(tool.owner), tool.owner %></div>
-  <div class="name"><%= link_to tool.name, tool %></div>
+<li class="owner_tool">
+  <%= link_to tool do %>
+    <%= gravatar_for tool.owner %>
+    <span itemprop="author"><%= tool.name %></span>
+    <small><%= tool.type %></small>
+  <% end %>
 </li>

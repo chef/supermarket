@@ -13,6 +13,8 @@
     </div>
   <% end %>
 
+  <%= link_to_adoption(cookbook) %>
+
   <% if policy(cookbook).transfer_ownership? %>
     <li>
       <%= link_to '#', rel: 'transfer_ownership', 'data-reveal-id' => 'transfer' do %>

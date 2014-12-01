@@ -6,6 +6,12 @@
     <%= render 'manage_tool', tool: tool %>
   <% end %>
 
+  <% if tool.up_for_adoption? %>
+    <div>
+      <%= link_to 'Adopt me!', adoption_tool_path(tool), method: :post, class: 'button radius tiny' %>
+    </div>
+  <% end %>
+
   <h3>Details</h3>
   <div class="tool-details">
     <div class="tool-urls">

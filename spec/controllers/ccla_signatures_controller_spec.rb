@@ -157,7 +157,7 @@ describe CclaSignaturesController do
       end
     end
 
-    describe 'post #create' do
+    describe 'POST #create' do
       let(:user) { create(:user) }
       let(:payload) { attributes_for(:ccla_signature, user_id: user.id) }
       before { sign_in user }
