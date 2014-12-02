@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://id.opscode.com/id/oauth/token
+    uri: https://id.chef.io/id/oauth/token
     body:
       encoding: UTF-8
       string: client_id=<CHEF_OAUTH2_APP_ID>&client_secret=<CHEF_OAUTH2_SECRET>&grant_type=refresh_token&refresh_token=<VALID_OCID_REFRESH_TOKEN>
@@ -14,7 +14,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - '*/*'
+      - "*/*"
   response:
     status:
       code: 200
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - ngx_openresty
       Date:
-      - Tue, 13 May 2014 20:54:13 GMT
+      - Wed, 03 Dec 2014 22:15:53 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -38,21 +38,19 @@ http_interactions:
       - 1; mode=block
       X-Content-Type-Options:
       - nosniff
-      X-Ua-Compatible:
-      - chrome=1
       Cache-Control:
       - no-store
       Pragma:
       - no-cache
       Etag:
-      - '"994c37ff6a648027b36935626c095e55"'
+      - '"3b8fc37f70bcbb913023d58336288f1a"'
       X-Request-Id:
-      - 421f00d3-d6a5-456d-83e6-c41946792b1d
+      - 6f67aba4-f144-445d-ab18-bafb9857d28a
       X-Runtime:
-      - '0.020237'
+      - '0.017674'
     body:
       encoding: UTF-8
       string: '{"access_token":"<OCID_REPLACEMENT_OAUTH_TOKEN>","token_type":"bearer","expires_in":7200,"refresh_token":"<OCID_REPLACEMENT_REFRESH_TOKEN>"}'
-    http_version:
-  recorded_at: Tue, 13 May 2014 20:54:16 GMT
-recorded_with: VCR 2.9.0
+    http_version: 
+  recorded_at: Wed, 03 Dec 2014 22:15:53 GMT
+recorded_with: VCR 2.9.2

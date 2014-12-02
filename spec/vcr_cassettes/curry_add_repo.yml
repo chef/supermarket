@@ -8,7 +8,7 @@ http_interactions:
       string: hub.callback=<PUBSUBHUBBUB_CALLBACK>&hub.mode=subscribe&hub.secret=<PUBSUBHUBBUB_SECRET>&hub.topic=https%3A%2F%2Fgithub.com%2Fgofullstack%2Fpaprika%2Fevents%2Fpull_request
     headers:
       User-Agent:
-      - Octokit Ruby Gem 3.0.0
+      - Octokit Ruby Gem 3.3.1
       Authorization:
       - token <TOKEN>
       Content-Type:
@@ -16,7 +16,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - '*/*'
+      - "*/*"
   response:
     status:
       code: 204
@@ -25,21 +25,21 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Mon, 14 Apr 2014 15:09:36 GMT
+      - Tue, 02 Dec 2014 19:26:30 GMT
       Status:
       - 204 No Content
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4999'
+      - '4846'
       X-Ratelimit-Reset:
-      - '1397491776'
+      - '1417549862'
       X-Oauth-Scopes:
-      - public_repo
+      - public_repo, write:repo_hook
       X-Accepted-Oauth-Scopes:
-      - ''
+      - admin:repo_hook, write:repo_hook
       X-Github-Media-Type:
-      - github.beta
+      - github.v3
       X-Xss-Protection:
       - 1; mode=block
       X-Frame-Options:
@@ -47,18 +47,18 @@ http_interactions:
       Content-Security-Policy:
       - default-src 'none'
       X-Github-Request-Id:
-      - 6153E20C:0206:503D540:534BFA30
+      - 180A5027:15D3:1D1B93B:547E1266
       Strict-Transport-Security:
-      - max-age=31536000
+      - max-age=31536000; includeSubdomains; preload
       X-Content-Type-Options:
       - nosniff
       Vary:
       - Accept-Encoding
       X-Served-By:
-      - 03d91026ad8428f4d9966d7434f9d82e
+      - d594a23ec74671eba905bf91ef329026
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Mon, 14 Apr 2014 15:09:36 GMT
-recorded_with: VCR 2.9.0
+  recorded_at: Tue, 02 Dec 2014 19:26:30 GMT
+recorded_with: VCR 2.9.2

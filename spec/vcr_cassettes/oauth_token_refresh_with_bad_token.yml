@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://id.opscode.com/id/oauth/token
+    uri: https://id.chef.io/id/oauth/token
     body:
       encoding: UTF-8
       string: client_id=<CHEF_OAUTH2_APP_ID>&client_secret=<CHEF_OAUTH2_SECRET>&grant_type=refresh_token&refresh_token=dorfle
@@ -14,7 +14,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - '*/*'
+      - "*/*"
   response:
     status:
       code: 401
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - ngx_openresty
       Date:
-      - Tue, 13 May 2014 21:02:20 GMT
+      - Wed, 03 Dec 2014 22:16:37 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -38,8 +38,6 @@ http_interactions:
       - 1; mode=block
       X-Content-Type-Options:
       - nosniff
-      X-Ua-Compatible:
-      - chrome=1
       Cache-Control:
       - no-store
       Pragma:
@@ -49,14 +47,14 @@ http_interactions:
         is missing a required parameter, includes an unsupported parameter value,
         or is otherwise malformed."
       X-Request-Id:
-      - 344ff426-6eff-4578-a521-5d86400d89ce
+      - e703b110-456a-42c1-a719-5262d3db68a5
       X-Runtime:
-      - '0.004857'
+      - '0.006143'
     body:
       encoding: UTF-8
       string: '{"error":"invalid_request","error_description":"The request is missing
         a required parameter, includes an unsupported parameter value, or is otherwise
         malformed."}'
-    http_version:
-  recorded_at: Tue, 13 May 2014 21:02:23 GMT
-recorded_with: VCR 2.9.0
+    http_version: 
+  recorded_at: Wed, 03 Dec 2014 22:16:37 GMT
+recorded_with: VCR 2.9.2

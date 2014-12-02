@@ -16,7 +16,7 @@ describe CustomUrlHelper do
 
   it 'should have a server url' do
     expect(ENV['CHEF_SERVER_URL']).to be_nil
-    expect(helper.chef_server_url).to eql('https://api.opscode.com')
+    expect(helper.chef_server_url).to eql('https://api.chef.io')
   end
 
   describe 'www url' do
@@ -69,27 +69,27 @@ describe CustomUrlHelper do
 
   it 'should have an identity url that uses the server url' do
     expect(ENV['CHEF_IDENTITY_URL']).to be_nil
-    expect(helper.chef_identity_url).to eql('https://api.opscode.com/id')
+    expect(helper.chef_identity_url).to eql('https://api.chef.io/id')
   end
 
   it 'should have a manage url that matches the server url' do
     expect(ENV['CHEF_MANAGE_URL']).to be_nil
-    expect(helper.chef_manage_url).to eql('https://api.opscode.com')
+    expect(helper.chef_manage_url).to eql('https://api.chef.io')
   end
 
   it 'should have an oauth2 url that matches the server url' do
     expect(ENV['CHEF_OAUTH2_URL']).to be_nil
-    expect(helper.chef_oauth2_url).to eql('https://api.opscode.com')
+    expect(helper.chef_oauth2_url).to eql('https://api.chef.io')
   end
 
   it 'should have a profile url that matches the manage url' do
     expect(ENV['CHEF_PROFILE_URL']).to be_nil
-    expect(helper.chef_profile_url).to eql('https://api.opscode.com')
+    expect(helper.chef_profile_url).to eql('https://api.chef.io')
   end
 
   it 'should have a sign up url that uses the manage url' do
     expect(ENV['CHEF_SIGN_UP_URL']).to be_nil
-    expect(helper.chef_sign_up_url).to eql('https://api.opscode.com/signup?ref=community')
+    expect(helper.chef_sign_up_url).to eql('https://api.chef.io/signup?ref=community')
   end
 
   it 'should have a learn chef url that uses the default domain' do
