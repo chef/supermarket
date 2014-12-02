@@ -11,7 +11,7 @@ http_interactions:
         a non GitHub-verified email address in this Pull Request. Chef will have to
         verify by hand that they have signed a Chef CLA.\n\nThe following GitHub users
         do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the
-        CLA here.](https://community.getchef.com)"}'
+        CLA here.](https://community.chef.io)"}'
     headers:
       Accept:
       - application/vnd.github.v3+json
@@ -83,7 +83,7 @@ http_interactions:
         are 1 commit author(s) whose commits are authored by a non GitHub-verified
         email address in this Pull Request. Chef will have to verify by hand that
         they have signed a Chef CLA.\n\nThe following GitHub users do not appear to
-        have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}'
+        have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.chef.io)"}'
     http_version: 
   recorded_at: Mon, 14 Apr 2014 15:35:10 GMT
 - request:
@@ -96,13 +96,13 @@ http_interactions:
         to Chef Software, Inc. projects or are using a non-GitHub verified email address.
         To become authorized to contribute, you will need to sign the Contributor
         License Agreement (CLA) as an individual or on behalf of your company. [You
-        can read more on Chef''s blog.](http://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
+        can read more on Chef''s blog.](http://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
         Non-GitHub Verified Committers\\n\\n\n\nThere are 1 commit author(s) whose
         commits are authored by a non GitHub-verified email address. Chef will have
         to manually verify that they are authorized to contribute.\n\n## GitHub Users
         Who Are Not Authorized To Contribute\\n\\n\n\nThe following GitHub users do
         not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA
-        here.](https://community.getchef.com)"}'
+        here.](https://community.chef.io)"}'
     headers:
       Accept:
       - application/vnd.github.v3+json
@@ -174,13 +174,13 @@ http_interactions:
         Inc. projects or are using a non-GitHub verified email address. To become
         authorized to contribute, you will need to sign the Contributor License Agreement
         (CLA) as an individual or on behalf of your company. [You can read more on
-        Chef''s blog.](http://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
+        Chef''s blog.](http://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
         Non-GitHub Verified Committers\\n\\n\n\nThere are 1 commit author(s) whose
         commits are authored by a non GitHub-verified email address. Chef will have
         to manually verify that they are authorized to contribute.\n\n## GitHub Users
         Who Are Not Authorized To Contribute\\n\\n\n\nThe following GitHub users do
         not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA
-        here.](https://community.getchef.com)"}'
+        here.](https://community.chef.io)"}'
     http_version: 
   recorded_at: Tue, 19 Aug 2014 13:36:31 GMT
 - request:
@@ -270,12 +270,12 @@ http_interactions:
         to Chef Software, Inc. projects or are using a non-GitHub verified email address.
         To become authorized to contribute, you will need to sign the Contributor
         License Agreement (CLA) as an individual or on behalf of your company. [You
-        can read more on Chef''s blog.](http://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
+        can read more on Chef''s blog.](http://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
         Non-GitHub Verified Committers\n\nThere are 1 commit author(s) whose commits
         are authored by a non-GitHub verified email address. Chef will have to manually
         verify that they are authorized to contribute.\n\n## GitHub Users Who Are
         Not Authorized To Contribute\n\nThe following GitHub users do not appear to
-        have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}'
+        have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.chef.io)"}'
     headers:
       Accept:
       - application/vnd.github.v3+json
@@ -347,12 +347,12 @@ http_interactions:
         Inc. projects or are using a non-GitHub verified email address. To become
         authorized to contribute, you will need to sign the Contributor License Agreement
         (CLA) as an individual or on behalf of your company. [You can read more on
-        Chef''s blog.](http://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
+        Chef''s blog.](http://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
         Non-GitHub Verified Committers\n\nThere are 1 commit author(s) whose commits
         are authored by a non-GitHub verified email address. Chef will have to manually
         verify that they are authorized to contribute.\n\n## GitHub Users Who Are
         Not Authorized To Contribute\n\nThe following GitHub users do not appear to
-        have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}'
+        have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.chef.io)"}'
     http_version: 
   recorded_at: Wed, 20 Aug 2014 12:08:23 GMT
 - request:
@@ -433,12 +433,12 @@ http_interactions:
         Inc. projects or are using a non-GitHub verified email address. To become
         authorized to contribute, you will need to sign the Contributor License Agreement
         (CLA) as an individual or on behalf of your company. [You can read more on
-        Chef''s blog.](http://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
+        Chef''s blog.](http://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
         Non-GitHub Verified Committers\n\nThere are 1 commit author(s) whose commits
         are authored by a non-GitHub verified email address. Chef will have to manually
         verify that they are authorized to contribute.\n\n## GitHub Users Who Are
         Not Authorized To Contribute\n\nThe following GitHub users do not appear to
-        have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}]'
+        have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.chef.io)"}]'
     http_version: 
   recorded_at: Wed, 20 Aug 2014 12:08:23 GMT
 recorded_with: VCR 2.9.2

@@ -17,8 +17,8 @@ $ bundle exec rake spec:all
     end
 
     it 'auto renders links with target blank' do
-      expect(helper.render_markdown('http://getchef.com')).
-        to match(Regexp.quote('<a href="http://getchef.com" target="_blank">http://getchef.com</a>'))
+      expect(helper.render_markdown('http://chef.io')).
+        to match(Regexp.quote('<a href="http://chef.io" target="_blank">http://chef.io</a>'))
     end
   end
 

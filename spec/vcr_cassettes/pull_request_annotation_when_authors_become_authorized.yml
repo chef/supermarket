@@ -8,7 +8,7 @@ http_interactions:
       string: '{"body":"Hi. Your friendly Curry bot here. Just letting you know that
         there are commit authors in this Pull Request who appear to not have signed
         a Chef CLA.\n\nThe following GitHub users do not appear to have signed a CLA:\n\n*
-        @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}'
+        @brettchalupa\n\n[Please sign the CLA here.](https://community.chef.io)"}'
     headers:
       Accept:
       - application/vnd.github.v3+json
@@ -78,7 +78,7 @@ http_interactions:
         Your friendly Curry bot here. Just letting you know that there are commit
         authors in this Pull Request who appear to not have signed a Chef CLA.\n\nThe
         following GitHub users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please
-        sign the CLA here.](https://community.getchef.com)"}'
+        sign the CLA here.](https://community.chef.io)"}'
     http_version: 
   recorded_at: Mon, 28 Jul 2014 19:47:32 GMT
 - request:
@@ -91,10 +91,10 @@ http_interactions:
         to Chef Software, Inc. projects or are using a non-GitHub verified email address.
         To become authorized to contribute, you will need to sign the Contributor
         License Agreement (CLA) as an individual or on behalf of your company. [You
-        can read more on Chef''s blog.](http://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
+        can read more on Chef''s blog.](http://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
         GitHub Users Who Are Not Authorized To Contribute\\n\\n\n\nThe following GitHub
         users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign
-        the CLA here.](https://community.getchef.com)"}'
+        the CLA here.](https://community.chef.io)"}'
     headers:
       Accept:
       - application/vnd.github.v3+json
@@ -166,10 +166,10 @@ http_interactions:
         Inc. projects or are using a non-GitHub verified email address. To become
         authorized to contribute, you will need to sign the Contributor License Agreement
         (CLA) as an individual or on behalf of your company. [You can read more on
-        Chef''s blog.](http://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
+        Chef''s blog.](http://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
         GitHub Users Who Are Not Authorized To Contribute\\n\\n\n\nThe following GitHub
         users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign
-        the CLA here.](https://community.getchef.com)"}'
+        the CLA here.](https://community.chef.io)"}'
     http_version: 
   recorded_at: Tue, 19 Aug 2014 13:36:38 GMT
 - request:
@@ -261,10 +261,10 @@ http_interactions:
         to Chef Software, Inc. projects or are using a non-GitHub verified email address.
         To become authorized to contribute, you will need to sign the Contributor
         License Agreement (CLA) as an individual or on behalf of your company. [You
-        can read more on Chef''s blog.](http://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
+        can read more on Chef''s blog.](http://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
         GitHub Users Who Are Not Authorized To Contribute\n\nThe following GitHub
         users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign
-        the CLA here.](https://community.getchef.com)"}'
+        the CLA here.](https://community.chef.io)"}'
     headers:
       Accept:
       - application/vnd.github.v3+json
@@ -336,10 +336,10 @@ http_interactions:
         Inc. projects or are using a non-GitHub verified email address. To become
         authorized to contribute, you will need to sign the Contributor License Agreement
         (CLA) as an individual or on behalf of your company. [You can read more on
-        Chef''s blog.](http://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
+        Chef''s blog.](http://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
         GitHub Users Who Are Not Authorized To Contribute\n\nThe following GitHub
         users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign
-        the CLA here.](https://community.getchef.com)"}'
+        the CLA here.](https://community.chef.io)"}'
     http_version: 
   recorded_at: Wed, 20 Aug 2014 12:08:36 GMT
 - request:
@@ -575,10 +575,10 @@ http_interactions:
         Inc. projects or are using a non-GitHub verified email address. To become
         authorized to contribute, you will need to sign the Contributor License Agreement
         (CLA) as an individual or on behalf of your company. [You can read more on
-        Chef''s blog.](http://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
+        Chef''s blog.](http://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
         GitHub Users Who Are Not Authorized To Contribute\n\nThe following GitHub
         users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign
-        the CLA here.](https://community.getchef.com)"},{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/52766446","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-52766446","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":52766446,"user":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=2","gravatar_id":"c3e5586f55a9551a91d1e8b26fcc9310","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"created_at":"2014-08-20T12:08:36Z","updated_at":"2014-08-20T12:08:36Z","body":"Hi.
+        the CLA here.](https://community.chef.io)"},{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/52766446","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-52766446","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":52766446,"user":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=2","gravatar_id":"c3e5586f55a9551a91d1e8b26fcc9310","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"created_at":"2014-08-20T12:08:36Z","updated_at":"2014-08-20T12:08:36Z","body":"Hi.
         Your friendly Curry bot here. Just letting you know that all commit authors
         have become authorized to contribute. I have added the \"Signed CLA\" label
         to this issue so it can easily be found in the future."}]'

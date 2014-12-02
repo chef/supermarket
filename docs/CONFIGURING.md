@@ -61,7 +61,7 @@ the test suite.
 * `S3_ACCESS_KEY_ID` and `S3_SECRET_ACCESS_KEY` are the keys required to put
   files in the above bucket.
 * `CDN_URL` Used to configure a CDN URL for use with Paperclip. Downloads
-will be aliased with this URL, something like `static.getchef.com`.
+will be aliased with this URL, something like `static.chef.io`.
 * `FIERI_URL` is the URL Supermarket will `POST` to for Cookbook evaluation when
   a cookbook is shared
 
