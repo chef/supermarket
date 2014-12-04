@@ -4,7 +4,7 @@
 <div class="page withspace">
   <% if flash[:signout] %>
     <div class="signout-message">
-      <p>You have been signed out of Supermarket but may still be signed in to your Chef account. Visit <%= link_to chef_identity_url %> to sign out completely.</p>
+      <p>You have been signed out of Supermarket but may still be signed in to your Chef account. Visit <%= link_to nil, chef_identity_url %> to sign out completely.</p>
     </div>
   <% end %>
 
