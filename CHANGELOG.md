@@ -1,9 +1,25 @@
 # Supermarket Changelog
 
+## master
+
+- Update yanked mixlib-shellout version in Omnibus cookbook
+- Fix for OAuth2 URL in Omnibus configuration
+- [#928] Update Rails to 4.1.8 (CVE-2014-7829)
+- [#925] Fix "Get Chef" link in navigation
+- [#923] Fix VCR specs for chef.io
+- [#922] Update yanked mixlib-shellout version
+- [#919] Change default chef domain to chef.io
+- [#916] Allow empty READMEs
+- [#915] Make categories optional
+- [#912] Add privacy flag
+- [#908] Adoption feature for tools and cookbooks
+- [#907] Make robots.txt configurable
+
 ## 1.4.0 (2014-11-06)
-- [#900] DRY up full host URL generation
-- [#901] Gem updates
+
 - [#902] More removal of segment.io
+- [#901] Gem updates
+- [#900] DRY up full host URL generation
 
 ## 1.3.0-alpha.0 (2014-10-30)
 
