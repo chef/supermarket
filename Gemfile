@@ -11,7 +11,13 @@ end
 gem 'rails', '~> 4.1.5'
 
 gem 'omniauth'
-gem 'omniauth-chef-oauth2'
+
+# Pin this to the ref that uses chef.io until a new version is released to
+# rubygems
+gem 'omniauth-chef-oauth2',
+    github: 'opscode/omniauth-chef-oauth2',
+    ref: '42fdb2647ddefd8ad1cb8d8d0b8a268913e3af90'
+
 gem 'omniauth-github'
 
 gem 'pg'

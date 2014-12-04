@@ -1,178 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://api.github.com/repos/gofullstack/paprika/issues/1/comments
-    body:
-      encoding: UTF-8
-      string: '{"body":"Hi. Your friendly Curry bot here. Just letting you know that
-        there are commit authors in this Pull Request who appear to not have signed
-        a Chef CLA.\n\nThe following GitHub users do not appear to have signed a CLA:\n\n*
-        @brettchalupa\n\n[Please sign the CLA here.](https://community.chef.io)"}'
-    headers:
-      Accept:
-      - application/vnd.github.v3+json
-      User-Agent:
-      - Octokit Ruby Gem 3.2.0
-      Authorization:
-      - token <TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 201
-      message: Created
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Mon, 28 Jul 2014 19:47:29 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Status:
-      - 201 Created
-      X-Ratelimit-Limit:
-      - '5000'
-      X-Ratelimit-Remaining:
-      - '4958'
-      X-Ratelimit-Reset:
-      - '1406580371'
-      Cache-Control:
-      - private, max-age=60, s-maxage=60
-      Etag:
-      - '"69f11f94e2adb0caad1e839eac2107d9"'
-      X-Oauth-Scopes:
-      - public_repo, write:repo_hook
-      X-Accepted-Oauth-Scopes:
-      - ''
-      Location:
-      - https://api.github.com/repos/gofullstack/paprika/issues/comments/50389021
-      Vary:
-      - Accept, Authorization, Cookie, X-GitHub-OTP
-      X-Github-Media-Type:
-      - github.v3; format=json
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Frame-Options:
-      - deny
-      Content-Security-Policy:
-      - default-src 'none'
-      Content-Length:
-      - '1548'
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Expose-Headers:
-      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
-        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
-      Access-Control-Allow-Origin:
-      - '*'
-      X-Github-Request-Id:
-      - 18C45CB0:7DF6:7430D10:53D6A8D1
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
-      X-Content-Type-Options:
-      - nosniff
-    body:
-      encoding: UTF-8
-      string: '{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/50389021","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-50389021","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":50389021,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?","gravatar_id":"a17d579ae533fa7dbf3f3875de913e10","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-07-28T19:47:29Z","updated_at":"2014-07-28T19:47:29Z","body":"Hi.
-        Your friendly Curry bot here. Just letting you know that there are commit
-        authors in this Pull Request who appear to not have signed a Chef CLA.\n\nThe
-        following GitHub users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please
-        sign the CLA here.](https://community.chef.io)"}'
-    http_version: 
-  recorded_at: Mon, 28 Jul 2014 19:47:32 GMT
-- request:
-    method: post
-    uri: https://api.github.com/repos/gofullstack/paprika/issues/1/comments
-    body:
-      encoding: UTF-8
-      string: '{"body":"Hi. I am an automated pull request bot named Curry. There
-        are commits in this pull request whose authors are not yet authorized to contribute
-        to Chef Software, Inc. projects or are using a non-GitHub verified email address.
-        To become authorized to contribute, you will need to sign the Contributor
-        License Agreement (CLA) as an individual or on behalf of your company. [You
-        can read more on Chef''s blog.](http://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
-        GitHub Users Who Are Not Authorized To Contribute\\n\\n\n\nThe following GitHub
-        users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign
-        the CLA here.](https://community.chef.io)"}'
-    headers:
-      Accept:
-      - application/vnd.github.v3+json
-      User-Agent:
-      - Octokit Ruby Gem 3.2.0
-      Authorization:
-      - token <TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 201
-      message: Created
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Tue, 19 Aug 2014 13:36:36 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Status:
-      - 201 Created
-      X-Ratelimit-Limit:
-      - '5000'
-      X-Ratelimit-Remaining:
-      - '4894'
-      X-Ratelimit-Reset:
-      - '1408457714'
-      Cache-Control:
-      - private, max-age=60, s-maxage=60
-      Etag:
-      - '"bdd4f7b0837204055263eaf16c910ed5"'
-      X-Oauth-Scopes:
-      - gist, notifications, read:repo_hook, repo, user
-      X-Accepted-Oauth-Scopes:
-      - ''
-      Location:
-      - https://api.github.com/repos/gofullstack/paprika/issues/comments/52633862
-      Vary:
-      - Accept, Authorization, Cookie, X-GitHub-OTP
-      X-Github-Media-Type:
-      - github.v3; format=json
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Frame-Options:
-      - deny
-      Content-Security-Policy:
-      - default-src 'none'
-      Content-Length:
-      - '1997'
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Expose-Headers:
-      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
-        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
-      Access-Control-Allow-Origin:
-      - '*'
-      X-Github-Request-Id:
-      - AE3F1335:0872:C3277A4:53F352E4
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
-      X-Content-Type-Options:
-      - nosniff
-    body:
-      encoding: UTF-8
-      string: '{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/52633862","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-52633862","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":52633862,"user":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=2","gravatar_id":"c3e5586f55a9551a91d1e8b26fcc9310","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"created_at":"2014-08-19T13:36:36Z","updated_at":"2014-08-19T13:36:36Z","body":"Hi.
-        I am an automated pull request bot named Curry. There are commits in this
-        pull request whose authors are not yet authorized to contribute to Chef Software,
-        Inc. projects or are using a non-GitHub verified email address. To become
-        authorized to contribute, you will need to sign the Contributor License Agreement
-        (CLA) as an individual or on behalf of your company. [You can read more on
-        Chef''s blog.](http://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
-        GitHub Users Who Are Not Authorized To Contribute\\n\\n\n\nThe following GitHub
-        users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign
-        the CLA here.](https://community.chef.io)"}'
-    http_version: 
-  recorded_at: Tue, 19 Aug 2014 13:36:38 GMT
-- request:
     method: get
     uri: https://api.github.com/repos/gofullstack/paprika/issues/1/labels
     body:
@@ -182,7 +10,9 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 3.2.0
+      - Octokit Ruby Gem 3.3.1
+      Content-Type:
+      - application/json
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -195,25 +25,27 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Wed, 20 Aug 2014 12:08:36 GMT
+      - Tue, 02 Dec 2014 19:48:02 GMT
       Content-Type:
       - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
       Status:
       - 200 OK
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4913'
+      - '4744'
       X-Ratelimit-Reset:
-      - '1408539725'
+      - '1417549862'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Last-Modified:
-      - Wed, 20 Aug 2014 12:08:35 GMT
+      - Tue, 02 Dec 2014 19:48:01 GMT
       Etag:
-      - '"2c35ba903c3caea3d99f767892ef96f6"'
+      - '"3a3dae204bf28cc6dbef0ed59eca18d6"'
       X-Oauth-Scopes:
-      - gist, notifications, read:repo_hook, repo, user
+      - public_repo, write:repo_hook
       X-Accepted-Oauth-Scopes:
       - ''
       Vary:
@@ -221,8 +53,162 @@ http_interactions:
       - Accept-Encoding
       X-Github-Media-Type:
       - github.v3; format=json
-      Link:
-      - <https://api.github.com/repositories/16483215/issues/1/labels?page=0>; rel="last"
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 180A5027:15D9:43C6EF6:547E1771
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - d594a23ec74671eba905bf91ef329026
+    body:
+      encoding: UTF-8
+      string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/labels/Signed+CLA","name":"Signed
+        CLA","color":"8ED41E"}]'
+    http_version: 
+  recorded_at: Tue, 02 Dec 2014 19:48:02 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/gofullstack/paprika/issues/1/labels
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.3.1
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 02 Dec 2014 19:48:02 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4743'
+      X-Ratelimit-Reset:
+      - '1417549862'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Last-Modified:
+      - Tue, 02 Dec 2014 19:48:01 GMT
+      Etag:
+      - '"3a3dae204bf28cc6dbef0ed59eca18d6"'
+      X-Oauth-Scopes:
+      - public_repo, write:repo_hook
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 180A5027:15D6:6FF398E:547E1772
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 2811da37fbdda4367181b328b22b2499
+    body:
+      encoding: UTF-8
+      string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/labels/Signed+CLA","name":"Signed
+        CLA","color":"8ED41E"}]'
+    http_version: 
+  recorded_at: Tue, 02 Dec 2014 19:48:03 GMT
+- request:
+    method: delete
+    uri: https://api.github.com/repos/gofullstack/paprika/issues/1/labels/Signed+CLA
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.3.1
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 02 Dec 2014 19:48:03 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4742'
+      X-Ratelimit-Reset:
+      - '1417549862'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Etag:
+      - '"3ce5b382efeb38a9f5e7794a753e317c"'
+      X-Oauth-Scopes:
+      - public_repo, write:repo_hook
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
       X-Xss-Protection:
       - 1; mode=block
       X-Frame-Options:
@@ -237,20 +223,20 @@ http_interactions:
       - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
         X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
-      - '*'
+      - "*"
       X-Github-Request-Id:
-      - AE3F1335:6A41:132CB12C:53F48FC4
+      - 180A5027:15D5:52471A4:547E1773
       Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
+      - max-age=31536000; includeSubdomains; preload
       X-Content-Type-Options:
       - nosniff
       X-Served-By:
-      - c046d59f93ede9ab52d5ac29f1ed70f7
+      - 173530fed4bbeb1e264b2ed22e8b5c20
     body:
       encoding: UTF-8
-      string: '[]'
+      string: "[]"
     http_version: 
-  recorded_at: Wed, 20 Aug 2014 12:08:36 GMT
+  recorded_at: Tue, 02 Dec 2014 19:48:03 GMT
 - request:
     method: post
     uri: https://api.github.com/repos/gofullstack/paprika/issues/1/comments
@@ -261,15 +247,17 @@ http_interactions:
         to Chef Software, Inc. projects or are using a non-GitHub verified email address.
         To become authorized to contribute, you will need to sign the Contributor
         License Agreement (CLA) as an individual or on behalf of your company. [You
-        can read more on Chef''s blog.](http://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
+        can read more on Chef''s blog.](https://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process)\n\n##
         GitHub Users Who Are Not Authorized To Contribute\n\nThe following GitHub
         users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign
-        the CLA here.](https://community.chef.io)"}'
+        the CLA here.](https://community.getchef.com)"}'
     headers:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 3.2.0
+      - Octokit Ruby Gem 3.3.1
+      Content-Type:
+      - application/json
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -282,7 +270,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Wed, 20 Aug 2014 12:08:36 GMT
+      - Tue, 02 Dec 2014 19:48:04 GMT
       Content-Type:
       - application/json; charset=utf-8
       Status:
@@ -290,19 +278,19 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4912'
+      - '4741'
       X-Ratelimit-Reset:
-      - '1408539725'
+      - '1417549862'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"7f071e561d802434c6c06a7cbe81de55"'
+      - '"1ca2086a0ce1e7bfb57a88784739f452"'
       X-Oauth-Scopes:
-      - gist, notifications, read:repo_hook, repo, user
+      - public_repo, write:repo_hook
       X-Accepted-Oauth-Scopes:
       - ''
       Location:
-      - https://api.github.com/repos/gofullstack/paprika/issues/comments/52766444
+      - https://api.github.com/repos/gofullstack/paprika/issues/comments/65292161
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       X-Github-Media-Type:
@@ -314,34 +302,34 @@ http_interactions:
       Content-Security-Policy:
       - default-src 'none'
       Content-Length:
-      - '1991'
+      - '1925'
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Expose-Headers:
       - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
         X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
-      - '*'
+      - "*"
       X-Github-Request-Id:
-      - AE3F1335:6A43:1CCD45F7:53F48FC4
+      - 180A5027:15D7:8AEE8DF:547E1773
       Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
+      - max-age=31536000; includeSubdomains; preload
       X-Content-Type-Options:
       - nosniff
     body:
       encoding: UTF-8
-      string: '{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/52766444","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-52766444","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":52766444,"user":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=2","gravatar_id":"c3e5586f55a9551a91d1e8b26fcc9310","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"created_at":"2014-08-20T12:08:36Z","updated_at":"2014-08-20T12:08:36Z","body":"Hi.
+      string: '{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/65292161","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-65292161","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":65292161,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-02T19:48:03Z","updated_at":"2014-12-02T19:48:03Z","body":"Hi.
         I am an automated pull request bot named Curry. There are commits in this
         pull request whose authors are not yet authorized to contribute to Chef Software,
         Inc. projects or are using a non-GitHub verified email address. To become
         authorized to contribute, you will need to sign the Contributor License Agreement
         (CLA) as an individual or on behalf of your company. [You can read more on
-        Chef''s blog.](http://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
+        Chef''s blog.](https://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process)\n\n##
         GitHub Users Who Are Not Authorized To Contribute\n\nThe following GitHub
         users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign
-        the CLA here.](https://community.chef.io)"}'
+        the CLA here.](https://community.getchef.com)"}'
     http_version: 
-  recorded_at: Wed, 20 Aug 2014 12:08:36 GMT
+  recorded_at: Tue, 02 Dec 2014 19:48:04 GMT
 - request:
     method: post
     uri: https://api.github.com/repos/gofullstack/paprika/issues/1/labels
@@ -352,7 +340,9 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 3.2.0
+      - Octokit Ruby Gem 3.3.1
+      Content-Type:
+      - application/json
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -365,7 +355,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Wed, 20 Aug 2014 12:08:36 GMT
+      - Tue, 02 Dec 2014 19:48:04 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -375,15 +365,15 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4911'
+      - '4740'
       X-Ratelimit-Reset:
-      - '1408539725'
+      - '1417549862'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"2484ad0e1dec97c5ae7defd199aaeadd"'
+      - '"3a3dae204bf28cc6dbef0ed59eca18d6"'
       X-Oauth-Scopes:
-      - gist, notifications, read:repo_hook, repo, user
+      - public_repo, write:repo_hook
       X-Accepted-Oauth-Scopes:
       - ''
       Vary:
@@ -403,21 +393,21 @@ http_interactions:
       - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
         X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
-      - '*'
+      - "*"
       X-Github-Request-Id:
-      - AE3F1335:6A3E:3E35242:53F48FC4
+      - 180A5027:15D7:8AEEA48:547E1774
       Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
+      - max-age=31536000; includeSubdomains; preload
       X-Content-Type-Options:
       - nosniff
       X-Served-By:
-      - a1d8c69b807c8e21f06cad9da377d1b0
+      - a241e1a8264a6ace03db946c85b92db3
     body:
       encoding: UTF-8
       string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/labels/Signed+CLA","name":"Signed
         CLA","color":"8ED41E"}]'
     http_version: 
-  recorded_at: Wed, 20 Aug 2014 12:08:36 GMT
+  recorded_at: Tue, 02 Dec 2014 19:48:04 GMT
 - request:
     method: post
     uri: https://api.github.com/repos/gofullstack/paprika/issues/1/comments
@@ -430,7 +420,9 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 3.2.0
+      - Octokit Ruby Gem 3.3.1
+      Content-Type:
+      - application/json
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -443,7 +435,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Wed, 20 Aug 2014 12:08:36 GMT
+      - Tue, 02 Dec 2014 19:48:05 GMT
       Content-Type:
       - application/json; charset=utf-8
       Status:
@@ -451,19 +443,19 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4910'
+      - '4739'
       X-Ratelimit-Reset:
-      - '1408539725'
+      - '1417549862'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"128ce9f3c4a4558a82b8a72108a68659"'
+      - '"616f65a3c0667f1797be0180f5229de4"'
       X-Oauth-Scopes:
-      - gist, notifications, read:repo_hook, repo, user
+      - public_repo, write:repo_hook
       X-Accepted-Oauth-Scopes:
       - ''
       Location:
-      - https://api.github.com/repos/gofullstack/paprika/issues/comments/52766446
+      - https://api.github.com/repos/gofullstack/paprika/issues/comments/65292166
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       X-Github-Media-Type:
@@ -475,28 +467,28 @@ http_interactions:
       Content-Security-Policy:
       - default-src 'none'
       Content-Length:
-      - '1500'
+      - '1434'
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Expose-Headers:
       - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
         X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
-      - '*'
+      - "*"
       X-Github-Request-Id:
-      - AE3F1335:6A40:CE1E7B6:53F48FC4
+      - 180A5027:15D6:6FF3D73:547E1774
       Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
+      - max-age=31536000; includeSubdomains; preload
       X-Content-Type-Options:
       - nosniff
     body:
       encoding: UTF-8
-      string: '{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/52766446","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-52766446","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":52766446,"user":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=2","gravatar_id":"c3e5586f55a9551a91d1e8b26fcc9310","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"created_at":"2014-08-20T12:08:36Z","updated_at":"2014-08-20T12:08:36Z","body":"Hi.
+      string: '{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/65292166","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-65292166","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":65292166,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-02T19:48:05Z","updated_at":"2014-12-02T19:48:05Z","body":"Hi.
         Your friendly Curry bot here. Just letting you know that all commit authors
         have become authorized to contribute. I have added the \"Signed CLA\" label
         to this issue so it can easily be found in the future."}'
     http_version: 
-  recorded_at: Wed, 20 Aug 2014 12:08:36 GMT
+  recorded_at: Tue, 02 Dec 2014 19:48:05 GMT
 - request:
     method: get
     uri: https://api.github.com/repos/gofullstack/paprika/issues/1/comments
@@ -507,7 +499,9 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 3.2.0
+      - Octokit Ruby Gem 3.3.1
+      Content-Type:
+      - application/json
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -520,7 +514,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Wed, 20 Aug 2014 12:08:36 GMT
+      - Tue, 02 Dec 2014 19:48:05 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -530,15 +524,15 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4909'
+      - '4738'
       X-Ratelimit-Reset:
-      - '1408539725'
+      - '1417549862'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"a6bc5da41034e59ecdb73ccecf313273"'
+      - '"a636b205182a395b8df438179c36a92d"'
       X-Oauth-Scopes:
-      - gist, notifications, read:repo_hook, repo, user
+      - public_repo, write:repo_hook
       X-Accepted-Oauth-Scopes:
       - ''
       Vary:
@@ -558,35 +552,71 @@ http_interactions:
       - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
         X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
-      - '*'
+      - "*"
       X-Github-Request-Id:
-      - AE3F1335:6A4A:A29A345:53F48FC4
+      - 180A5027:15D8:9ED32F3:547E1775
       Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
+      - max-age=31536000; includeSubdomains; preload
       X-Content-Type-Options:
       - nosniff
       X-Served-By:
-      - d818ddef80f4c7d10683dd483558952a
+      - 065b43cd9674091fec48a221b420fbb3
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/52766444","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-52766444","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":52766444,"user":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=2","gravatar_id":"c3e5586f55a9551a91d1e8b26fcc9310","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"created_at":"2014-08-20T12:08:36Z","updated_at":"2014-08-20T12:08:36Z","body":"Hi.
+      string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/65289389","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-65289389","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":65289389,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-02T19:31:24Z","updated_at":"2014-12-02T19:31:24Z","body":"Hi.
         I am an automated pull request bot named Curry. There are commits in this
         pull request whose authors are not yet authorized to contribute to Chef Software,
         Inc. projects or are using a non-GitHub verified email address. To become
         authorized to contribute, you will need to sign the Contributor License Agreement
         (CLA) as an individual or on behalf of your company. [You can read more on
-        Chef''s blog.](http://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process/)\n\n##
+        Chef''s blog.](https://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process)\n\n##
         GitHub Users Who Are Not Authorized To Contribute\n\nThe following GitHub
         users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign
-        the CLA here.](https://community.chef.io)"},{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/52766446","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-52766446","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":52766446,"user":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=2","gravatar_id":"c3e5586f55a9551a91d1e8b26fcc9310","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"created_at":"2014-08-20T12:08:36Z","updated_at":"2014-08-20T12:08:36Z","body":"Hi.
+        the CLA here.](https://community.getchef.com)"},{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/65289395","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-65289395","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":65289395,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-02T19:31:25Z","updated_at":"2014-12-02T19:31:25Z","body":"Hi.
+        Your friendly Curry bot here. Just letting you know that all commit authors
+        have become authorized to contribute. I have added the \"Signed CLA\" label
+        to this issue so it can easily be found in the future."},{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/65289400","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-65289400","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":65289400,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-02T19:31:26Z","updated_at":"2014-12-02T19:31:26Z","body":"Hi.
+        I am an automated pull request bot named Curry. There are commits in this
+        pull request whose authors are not yet authorized to contribute to Chef Software,
+        Inc. projects or are using a non-GitHub verified email address. To become
+        authorized to contribute, you will need to sign the Contributor License Agreement
+        (CLA) as an individual or on behalf of your company. [You can read more on
+        Chef''s blog.](https://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process)\n\n##
+        GitHub Users Who Are Not Authorized To Contribute\n\nThe following GitHub
+        users do not appear to have signed a CLA:\n\n* @bcobb\n\n[Please sign the
+        CLA here.](https://community.getchef.com)"},{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/65289405","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-65289405","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":65289405,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-02T19:31:27Z","updated_at":"2014-12-02T19:31:27Z","body":"Hi.
+        Your friendly Curry bot here. Just letting you know that all commit authors
+        have become authorized to contribute. I have added the \"Signed CLA\" label
+        to this issue so it can easily be found in the future."},{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/65292150","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-65292150","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":65292150,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-02T19:48:00Z","updated_at":"2014-12-02T19:48:00Z","body":"Hi.
+        I am an automated pull request bot named Curry. There are commits in this
+        pull request whose authors are not yet authorized to contribute to Chef Software,
+        Inc. projects or are using a non-GitHub verified email address. To become
+        authorized to contribute, you will need to sign the Contributor License Agreement
+        (CLA) as an individual or on behalf of your company. [You can read more on
+        Chef''s blog.](https://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process)\n\n##
+        GitHub Users Who Are Not Authorized To Contribute\n\nThe following GitHub
+        users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign
+        the CLA here.](https://community.getchef.com)"},{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/65292152","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-65292152","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":65292152,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-02T19:48:01Z","updated_at":"2014-12-02T19:48:01Z","body":"Hi.
+        Your friendly Curry bot here. Just letting you know that all commit authors
+        have become authorized to contribute. I have added the \"Signed CLA\" label
+        to this issue so it can easily be found in the future."},{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/65292161","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-65292161","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":65292161,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-02T19:48:03Z","updated_at":"2014-12-02T19:48:03Z","body":"Hi.
+        I am an automated pull request bot named Curry. There are commits in this
+        pull request whose authors are not yet authorized to contribute to Chef Software,
+        Inc. projects or are using a non-GitHub verified email address. To become
+        authorized to contribute, you will need to sign the Contributor License Agreement
+        (CLA) as an individual or on behalf of your company. [You can read more on
+        Chef''s blog.](https://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process)\n\n##
+        GitHub Users Who Are Not Authorized To Contribute\n\nThe following GitHub
+        users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign
+        the CLA here.](https://community.getchef.com)"},{"url":"https://api.github.com/repos/gofullstack/paprika/issues/comments/65292166","html_url":"https://github.com/gofullstack/paprika/pull/1#issuecomment-65292166","issue_url":"https://api.github.com/repos/gofullstack/paprika/issues/1","id":65292166,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-02T19:48:05Z","updated_at":"2014-12-02T19:48:05Z","body":"Hi.
         Your friendly Curry bot here. Just letting you know that all commit authors
         have become authorized to contribute. I have added the \"Signed CLA\" label
         to this issue so it can easily be found in the future."}]'
     http_version: 
-  recorded_at: Wed, 20 Aug 2014 12:08:37 GMT
+  recorded_at: Tue, 02 Dec 2014 19:48:05 GMT
 - request:
     method: get
-    uri: https://api.github.com/repos/gofullstack/paprika/issues/1/labels
+    uri: https://api.github.com/repos/opscode/paprika/issues/1/labels
     body:
       encoding: US-ASCII
       string: ''
@@ -594,7 +624,9 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 3.2.0
+      - Octokit Ruby Gem 3.3.1
+      Content-Type:
+      - application/json
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -607,7 +639,179 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Wed, 20 Aug 2014 12:08:37 GMT
+      - Wed, 03 Dec 2014 22:35:11 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4910'
+      X-Ratelimit-Reset:
+      - '1417649622'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Last-Modified:
+      - Wed, 03 Dec 2014 22:35:11 GMT
+      Etag:
+      - '"3ce5b382efeb38a9f5e7794a753e317c"'
+      X-Oauth-Scopes:
+      - public_repo, write:repo_hook
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Content-Length:
+      - '2'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 180A5027:1AFC:C075971:547F901F
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 474556b853193c38f1b14328ce2d1b7d
+    body:
+      encoding: UTF-8
+      string: "[]"
+    http_version: 
+  recorded_at: Wed, 03 Dec 2014 22:35:11 GMT
+- request:
+    method: post
+    uri: https://api.github.com/repos/opscode/paprika/issues/1/comments
+    body:
+      encoding: UTF-8
+      string: '{"body":"Hi. I am an automated pull request bot named Curry. There
+        are commits in this pull request whose authors are not yet authorized to contribute
+        to Chef Software, Inc. projects or are using a non-GitHub verified email address.
+        To become authorized to contribute, you will need to sign the Contributor
+        License Agreement (CLA) as an individual or on behalf of your company. [You
+        can read more on Chef''s blog.](https://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process)\n\n##
+        GitHub Users Who Are Not Authorized To Contribute\n\nThe following GitHub
+        users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign
+        the CLA here.](https://community.chef.io)"}'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.3.1
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Wed, 03 Dec 2014 22:35:12 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Status:
+      - 201 Created
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4909'
+      X-Ratelimit-Reset:
+      - '1417649622'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Etag:
+      - '"10735c1d34a7f30dc4c82398e58fffcc"'
+      X-Oauth-Scopes:
+      - public_repo, write:repo_hook
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Location:
+      - https://api.github.com/repos/opscode/paprika/issues/comments/65504184
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Content-Length:
+      - '1905'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 180A5027:1AFC:C075A51:547F9020
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"url":"https://api.github.com/repos/opscode/paprika/issues/comments/65504184","html_url":"https://github.com/opscode/paprika/pull/1#issuecomment-65504184","issue_url":"https://api.github.com/repos/opscode/paprika/issues/1","id":65504184,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-03T22:35:12Z","updated_at":"2014-12-03T22:35:12Z","body":"Hi.
+        I am an automated pull request bot named Curry. There are commits in this
+        pull request whose authors are not yet authorized to contribute to Chef Software,
+        Inc. projects or are using a non-GitHub verified email address. To become
+        authorized to contribute, you will need to sign the Contributor License Agreement
+        (CLA) as an individual or on behalf of your company. [You can read more on
+        Chef''s blog.](https://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process)\n\n##
+        GitHub Users Who Are Not Authorized To Contribute\n\nThe following GitHub
+        users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign
+        the CLA here.](https://community.chef.io)"}'
+    http_version: 
+  recorded_at: Wed, 03 Dec 2014 22:35:12 GMT
+- request:
+    method: post
+    uri: https://api.github.com/repos/opscode/paprika/issues/1/labels
+    body:
+      encoding: UTF-8
+      string: '["Signed CLA"]'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.3.1
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Wed, 03 Dec 2014 22:35:13 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -619,15 +823,13 @@ http_interactions:
       X-Ratelimit-Remaining:
       - '4908'
       X-Ratelimit-Reset:
-      - '1408539725'
+      - '1417649622'
       Cache-Control:
       - private, max-age=60, s-maxage=60
-      Last-Modified:
-      - Wed, 20 Aug 2014 12:08:36 GMT
       Etag:
-      - '"2484ad0e1dec97c5ae7defd199aaeadd"'
+      - '"4de2cabfbfcacde04218cf22d0ae732e"'
       X-Oauth-Scopes:
-      - gist, notifications, read:repo_hook, repo, user
+      - public_repo, write:repo_hook
       X-Accepted-Oauth-Scopes:
       - ''
       Vary:
@@ -647,19 +849,269 @@ http_interactions:
       - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
         X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
-      - '*'
+      - "*"
       X-Github-Request-Id:
-      - AE3F1335:6A41:132CB32A:53F48FC5
+      - 180A5027:1AFA:89E02C3:547F9020
       Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
+      - max-age=31536000; includeSubdomains; preload
       X-Content-Type-Options:
       - nosniff
       X-Served-By:
-      - 971af40390ac4398fcdd45c8dab0fbe7
+      - 76d9828c7e4f1d910f7ba069e90ce976
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/gofullstack/paprika/labels/Signed+CLA","name":"Signed
+      string: '[{"url":"https://api.github.com/repos/opscode/paprika/labels/Signed+CLA","name":"Signed
         CLA","color":"8ED41E"}]'
     http_version: 
-  recorded_at: Wed, 20 Aug 2014 12:08:37 GMT
+  recorded_at: Wed, 03 Dec 2014 22:35:13 GMT
+- request:
+    method: post
+    uri: https://api.github.com/repos/opscode/paprika/issues/1/comments
+    body:
+      encoding: UTF-8
+      string: '{"body":"Hi. Your friendly Curry bot here. Just letting you know that
+        all commit authors have become authorized to contribute. I have added the
+        \"Signed CLA\" label to this issue so it can easily be found in the future."}'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.3.1
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Wed, 03 Dec 2014 22:35:13 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Status:
+      - 201 Created
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4907'
+      X-Ratelimit-Reset:
+      - '1417649622'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Etag:
+      - '"c7d881a8409f29afa461b9a2c907f9af"'
+      X-Oauth-Scopes:
+      - public_repo, write:repo_hook
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Location:
+      - https://api.github.com/repos/opscode/paprika/issues/comments/65504187
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Content-Length:
+      - '1422'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 180A5027:1AF8:41AEFC8:547F9021
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"url":"https://api.github.com/repos/opscode/paprika/issues/comments/65504187","html_url":"https://github.com/opscode/paprika/pull/1#issuecomment-65504187","issue_url":"https://api.github.com/repos/opscode/paprika/issues/1","id":65504187,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-03T22:35:13Z","updated_at":"2014-12-03T22:35:13Z","body":"Hi.
+        Your friendly Curry bot here. Just letting you know that all commit authors
+        have become authorized to contribute. I have added the \"Signed CLA\" label
+        to this issue so it can easily be found in the future."}'
+    http_version: 
+  recorded_at: Wed, 03 Dec 2014 22:35:13 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/opscode/paprika/issues/1/comments
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.3.1
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Wed, 03 Dec 2014 22:35:14 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4906'
+      X-Ratelimit-Reset:
+      - '1417649622'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Etag:
+      - '"fd88f8e84d39e469795e5bb8069719bd"'
+      X-Oauth-Scopes:
+      - public_repo, write:repo_hook
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 180A5027:1AFB:A855F2B:547F9021
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 173530fed4bbeb1e264b2ed22e8b5c20
+    body:
+      encoding: UTF-8
+      string: '[{"url":"https://api.github.com/repos/opscode/paprika/issues/comments/65504184","html_url":"https://github.com/opscode/paprika/pull/1#issuecomment-65504184","issue_url":"https://api.github.com/repos/opscode/paprika/issues/1","id":65504184,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-03T22:35:12Z","updated_at":"2014-12-03T22:35:12Z","body":"Hi.
+        I am an automated pull request bot named Curry. There are commits in this
+        pull request whose authors are not yet authorized to contribute to Chef Software,
+        Inc. projects or are using a non-GitHub verified email address. To become
+        authorized to contribute, you will need to sign the Contributor License Agreement
+        (CLA) as an individual or on behalf of your company. [You can read more on
+        Chef''s blog.](https://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process)\n\n##
+        GitHub Users Who Are Not Authorized To Contribute\n\nThe following GitHub
+        users do not appear to have signed a CLA:\n\n* @brettchalupa\n\n[Please sign
+        the CLA here.](https://community.chef.io)"},{"url":"https://api.github.com/repos/opscode/paprika/issues/comments/65504187","html_url":"https://github.com/opscode/paprika/pull/1#issuecomment-65504187","issue_url":"https://api.github.com/repos/opscode/paprika/issues/1","id":65504187,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-03T22:35:13Z","updated_at":"2014-12-03T22:35:13Z","body":"Hi.
+        Your friendly Curry bot here. Just letting you know that all commit authors
+        have become authorized to contribute. I have added the \"Signed CLA\" label
+        to this issue so it can easily be found in the future."}]'
+    http_version: 
+  recorded_at: Wed, 03 Dec 2014 22:35:14 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/opscode/paprika/issues/1/labels
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.3.1
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Wed, 03 Dec 2014 22:35:14 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4905'
+      X-Ratelimit-Reset:
+      - '1417649622'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Last-Modified:
+      - Wed, 03 Dec 2014 22:35:13 GMT
+      Etag:
+      - '"4de2cabfbfcacde04218cf22d0ae732e"'
+      X-Oauth-Scopes:
+      - public_repo, write:repo_hook
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 180A5027:1AFA:89E04E9:547F9022
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 4c8b2d4732c413f4b9aefe394bd65569
+    body:
+      encoding: UTF-8
+      string: '[{"url":"https://api.github.com/repos/opscode/paprika/labels/Signed+CLA","name":"Signed
+        CLA","color":"8ED41E"}]'
+    http_version: 
+  recorded_at: Wed, 03 Dec 2014 22:35:14 GMT
 recorded_with: VCR 2.9.2

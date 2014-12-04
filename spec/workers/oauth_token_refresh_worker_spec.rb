@@ -8,7 +8,31 @@ describe OauthTokenRefreshWorker do
     # happy-path cassette(s) delete the existing cassette(s) and run this spec
     # with these ENV variables set to valid values. You can obtain valid values
     # by running the app locally, logging-in via OC-ID, and copying the tokens
-    # set following authentication
+    # set following authentication.
+    #
+    # So the general workflow, should you need to re-record the cassettes for
+    # this spec, is:
+    #
+    # 1. Login to Supermarket through some valid oc-id server, somewhere.
+    # 2. Open a Rails console on your Supermarket server and grab the
+    #    oauth_token and oauth_refresh_token from the Account of the user that
+    #    you just logged in as.
+    # 3. Make a note of the CHEF_OAUTH2_APP_ID and CHEF_OAUTH2_SECRET ENV vars
+    #    for the Supermarket server you used to login in step 1.
+    # 3. Comment out the 2 ENV vars below and in their place, add 4 new ones
+    #    that look like this:
+    #
+    #    ENV['VALID_OCID_OAUTH_TOKEN'] = 'oauth-token-you-just-retrieved'
+    #    ENV['VALID_OCID_REFRESH_TOKEN'] = 'oauth-refresh-token-you-just-retrieved'
+    #    ENV['CHEF_OAUTH2_APP_ID'] = 'oauth2-app-id-from-your-oc-id-server'
+    #    ENV['CHEF_OAUTH2_SECRET'] = 'oauth2-secret-from-your-oc-id-server'
+    #
+    # 4. Change "record: :once" in the 2 specs below to "record: :all", re-run
+    #    the specs and everything should pass.
+    # 5. Once everything passes, change "record: :all" back to "record: :once",
+    #    delete the 4 ENV vars you added, uncomment the 2 ENV vars below, and
+    #    you're good to go.
+
     ENV['VALID_OCID_OAUTH_TOKEN'] ||= 'oauth_token'
     ENV['VALID_OCID_REFRESH_TOKEN'] ||= 'refresh_token'
   end

@@ -10,7 +10,7 @@ module CustomUrlHelper
   end
 
   def chef_server_url
-    ENV['CHEF_SERVER_URL'] || 'https://api.opscode.com'
+    ENV['CHEF_SERVER_URL'] || 'https://api.chef.io'
   end
 
   def chef_www_url(extra = nil)

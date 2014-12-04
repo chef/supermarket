@@ -8,9 +8,11 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/vnd.github.beta+json
+      - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 2.7.0
+      - Octokit Ruby Gem 3.3.1
+      Content-Type:
+      - application/json
       Authorization:
       - token <TOKEN>
       Accept-Encoding:
@@ -23,7 +25,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Fri, 07 Feb 2014 15:56:25 GMT
+      - Tue, 02 Dec 2014 19:24:06 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -33,263 +35,60 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4915'
+      - '4867'
       X-Ratelimit-Reset:
-      - '1391789085'
+      - '1417549862'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Last-Modified:
-      - Fri, 07 Feb 2014 15:22:00 GMT
+      - Tue, 02 Dec 2014 19:13:39 GMT
       Etag:
-      - '"802c41929d8f3c0fbdb0dd9f2a2131e5"'
+      - '"d1fc95a626597a2c7149f748d82a4db9"'
       X-Oauth-Scopes:
-      - user, public_repo, repo, gist
+      - public_repo, write:repo_hook
       X-Accepted-Oauth-Scopes:
-      - repo
+      - ''
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       - Accept-Encoding
       X-Github-Media-Type:
-      - github.beta; format=json
-      X-Content-Type-Options:
-      - nosniff
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Expose-Headers:
-      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
       Access-Control-Allow-Origin:
-      - '*'
+      - "*"
       X-Github-Request-Id:
-      - 6153E20C:53A8:CDAC04:52F50228
+      - 180A5027:15D9:435C191:547E11D6
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 8dd185e423974a7e13abbbe6e060031e
     body:
       encoding: UTF-8
       string: '[{"sha":"d94ba7bb94a2ddf1294d2a523caa48e776fa157f","commit":{"author":{"name":"Brett
         Chalupa","email":"brettchalupa@gmail.com","date":"2014-02-03T15:35:33Z"},"committer":{"name":"Brett
         Chalupa","email":"brettchalupa@gmail.com","date":"2014-02-03T15:35:33Z"},"message":"Hot
-        commit.","tree":{"sha":"4b2b83f8e273603f65f5ab185dc689ce1fb2d5f0","url":"https://api.github.com/repos/gofullstack/paprika/git/trees/4b2b83f8e273603f65f5ab185dc689ce1fb2d5f0"},"url":"https://api.github.com/repos/gofullstack/paprika/git/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","comment_count":0},"url":"https://api.github.com/repos/gofullstack/paprika/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","html_url":"https://github.com/gofullstack/paprika/commit/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","comments_url":"https://api.github.com/repos/gofullstack/paprika/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f/comments","author":{"login":"brettchalupa","id":928367,"avatar_url":"https://gravatar.com/avatar/c3e5586f55a9551a91d1e8b26fcc9310?d=https%3A%2F%2Fidenticons.github.com%2F75863a6fc9904e8d97bec8db91221900.png&r=x","gravatar_id":"c3e5586f55a9551a91d1e8b26fcc9310","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"committer":{"login":"brettchalupa","id":928367,"avatar_url":"https://gravatar.com/avatar/c3e5586f55a9551a91d1e8b26fcc9310?d=https%3A%2F%2Fidenticons.github.com%2F75863a6fc9904e8d97bec8db91221900.png&r=x","gravatar_id":"c3e5586f55a9551a91d1e8b26fcc9310","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"parents":[{"sha":"6663a36b52f609a30096ee2685d87c3b21cf345c","url":"https://api.github.com/repos/gofullstack/paprika/commits/6663a36b52f609a30096ee2685d87c3b21cf345c","html_url":"https://github.com/gofullstack/paprika/commit/6663a36b52f609a30096ee2685d87c3b21cf345c"}]},{"sha":"aab780e8da7e018baecdf86d03581e083b8db13b","commit":{"author":{"name":"Brian
-        and Brett","email":"brian+bcobb+brettchalupa@gofullstack.com","date":"2014-02-06T20:23:50Z"},"committer":{"name":"Brian
+        commit.","tree":{"sha":"4b2b83f8e273603f65f5ab185dc689ce1fb2d5f0","url":"https://api.github.com/repos/gofullstack/paprika/git/trees/4b2b83f8e273603f65f5ab185dc689ce1fb2d5f0"},"url":"https://api.github.com/repos/gofullstack/paprika/git/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","comment_count":0},"url":"https://api.github.com/repos/gofullstack/paprika/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","html_url":"https://github.com/gofullstack/paprika/commit/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","comments_url":"https://api.github.com/repos/gofullstack/paprika/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f/comments","author":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=3","gravatar_id":"","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"committer":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=3","gravatar_id":"","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"parents":[{"sha":"6663a36b52f609a30096ee2685d87c3b21cf345c","url":"https://api.github.com/repos/gofullstack/paprika/commits/6663a36b52f609a30096ee2685d87c3b21cf345c","html_url":"https://github.com/gofullstack/paprika/commit/6663a36b52f609a30096ee2685d87c3b21cf345c"}]},{"sha":"aab780e8da7e018baecdf86d03581e083b8db13b","commit":{"author":{"name":"Brian
+        and Brett","email":"brian+bcobb+brettchalupa@cramerdev.com","date":"2014-02-06T20:23:50Z"},"committer":{"name":"Brian
         Cobb","email":"bcobb@uwalumni.com","date":"2014-02-06T20:23:50Z"},"message":"Adding
-        the list of contributors","tree":{"sha":"8a0be27bb37b5640fca5729a14b6788a6bc1f0e0","url":"https://api.github.com/repos/gofullstack/paprika/git/trees/8a0be27bb37b5640fca5729a14b6788a6bc1f0e0"},"url":"https://api.github.com/repos/gofullstack/paprika/git/commits/aab780e8da7e018baecdf86d03581e083b8db13b","comment_count":0},"url":"https://api.github.com/repos/gofullstack/paprika/commits/aab780e8da7e018baecdf86d03581e083b8db13b","html_url":"https://github.com/gofullstack/paprika/commit/aab780e8da7e018baecdf86d03581e083b8db13b","comments_url":"https://api.github.com/repos/gofullstack/paprika/commits/aab780e8da7e018baecdf86d03581e083b8db13b/comments","author":null,"committer":{"login":"bcobb","id":35545,"avatar_url":"https://gravatar.com/avatar/269b40217dfecccd37c71650992dd2cc?d=https%3A%2F%2Fidenticons.github.com%2F59a3e5c5684f2219aeba5934fc50e8bb.png&r=x","gravatar_id":"269b40217dfecccd37c71650992dd2cc","url":"https://api.github.com/users/bcobb","html_url":"https://github.com/bcobb","followers_url":"https://api.github.com/users/bcobb/followers","following_url":"https://api.github.com/users/bcobb/following{/other_user}","gists_url":"https://api.github.com/users/bcobb/gists{/gist_id}","starred_url":"https://api.github.com/users/bcobb/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/bcobb/subscriptions","organizations_url":"https://api.github.com/users/bcobb/orgs","repos_url":"https://api.github.com/users/bcobb/repos","events_url":"https://api.github.com/users/bcobb/events{/privacy}","received_events_url":"https://api.github.com/users/bcobb/received_events","type":"User","site_admin":false},"parents":[{"sha":"d94ba7bb94a2ddf1294d2a523caa48e776fa157f","url":"https://api.github.com/repos/gofullstack/paprika/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","html_url":"https://github.com/gofullstack/paprika/commit/d94ba7bb94a2ddf1294d2a523caa48e776fa157f"}]}]'
-    http_version:
-  recorded_at: Fri, 07 Feb 2014 15:56:29 GMT
-- request:
-    method: get
-    uri: https://api.github.com/repos/gofullstack/paprika/pulls/1/commits
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/vnd.github.beta+json
-      User-Agent:
-      - Octokit Ruby Gem 2.7.0
-      Authorization:
-      - token <TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Fri, 07 Feb 2014 15:56:25 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Status:
-      - 200 OK
-      X-Ratelimit-Limit:
-      - '5000'
-      X-Ratelimit-Remaining:
-      - '4914'
-      X-Ratelimit-Reset:
-      - '1391789085'
-      Cache-Control:
-      - private, max-age=60, s-maxage=60
-      Last-Modified:
-      - Fri, 07 Feb 2014 15:22:00 GMT
-      Etag:
-      - '"802c41929d8f3c0fbdb0dd9f2a2131e5"'
-      X-Oauth-Scopes:
-      - user, public_repo, repo, gist
-      X-Accepted-Oauth-Scopes:
-      - repo
-      Vary:
-      - Accept, Authorization, Cookie, X-GitHub-OTP
-      - Accept-Encoding
-      X-Github-Media-Type:
-      - github.beta; format=json
-      X-Content-Type-Options:
-      - nosniff
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Expose-Headers:
-      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval
-      Access-Control-Allow-Origin:
-      - '*'
-      X-Github-Request-Id:
-      - 6153E20C:53AE:615531A:52F50229
-    body:
-      encoding: UTF-8
-      string: '[{"sha":"d94ba7bb94a2ddf1294d2a523caa48e776fa157f","commit":{"author":{"name":"Brett
-        Chalupa","email":"brettchalupa@gmail.com","date":"2014-02-03T15:35:33Z"},"committer":{"name":"Brett
-        Chalupa","email":"brettchalupa@gmail.com","date":"2014-02-03T15:35:33Z"},"message":"Hot
-        commit.","tree":{"sha":"4b2b83f8e273603f65f5ab185dc689ce1fb2d5f0","url":"https://api.github.com/repos/gofullstack/paprika/git/trees/4b2b83f8e273603f65f5ab185dc689ce1fb2d5f0"},"url":"https://api.github.com/repos/gofullstack/paprika/git/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","comment_count":0},"url":"https://api.github.com/repos/gofullstack/paprika/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","html_url":"https://github.com/gofullstack/paprika/commit/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","comments_url":"https://api.github.com/repos/gofullstack/paprika/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f/comments","author":{"login":"brettchalupa","id":928367,"avatar_url":"https://gravatar.com/avatar/c3e5586f55a9551a91d1e8b26fcc9310?d=https%3A%2F%2Fidenticons.github.com%2F75863a6fc9904e8d97bec8db91221900.png&r=x","gravatar_id":"c3e5586f55a9551a91d1e8b26fcc9310","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"committer":{"login":"brettchalupa","id":928367,"avatar_url":"https://gravatar.com/avatar/c3e5586f55a9551a91d1e8b26fcc9310?d=https%3A%2F%2Fidenticons.github.com%2F75863a6fc9904e8d97bec8db91221900.png&r=x","gravatar_id":"c3e5586f55a9551a91d1e8b26fcc9310","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"parents":[{"sha":"6663a36b52f609a30096ee2685d87c3b21cf345c","url":"https://api.github.com/repos/gofullstack/paprika/commits/6663a36b52f609a30096ee2685d87c3b21cf345c","html_url":"https://github.com/gofullstack/paprika/commit/6663a36b52f609a30096ee2685d87c3b21cf345c"}]},{"sha":"aab780e8da7e018baecdf86d03581e083b8db13b","commit":{"author":{"name":"Brian
-        and Brett","email":"brian+bcobb+brettchalupa@gofullstack.com","date":"2014-02-06T20:23:50Z"},"committer":{"name":"Brian
-        Cobb","email":"bcobb@uwalumni.com","date":"2014-02-06T20:23:50Z"},"message":"Adding
-        the list of contributors","tree":{"sha":"8a0be27bb37b5640fca5729a14b6788a6bc1f0e0","url":"https://api.github.com/repos/gofullstack/paprika/git/trees/8a0be27bb37b5640fca5729a14b6788a6bc1f0e0"},"url":"https://api.github.com/repos/gofullstack/paprika/git/commits/aab780e8da7e018baecdf86d03581e083b8db13b","comment_count":0},"url":"https://api.github.com/repos/gofullstack/paprika/commits/aab780e8da7e018baecdf86d03581e083b8db13b","html_url":"https://github.com/gofullstack/paprika/commit/aab780e8da7e018baecdf86d03581e083b8db13b","comments_url":"https://api.github.com/repos/gofullstack/paprika/commits/aab780e8da7e018baecdf86d03581e083b8db13b/comments","author":null,"committer":{"login":"bcobb","id":35545,"avatar_url":"https://gravatar.com/avatar/269b40217dfecccd37c71650992dd2cc?d=https%3A%2F%2Fidenticons.github.com%2F59a3e5c5684f2219aeba5934fc50e8bb.png&r=x","gravatar_id":"269b40217dfecccd37c71650992dd2cc","url":"https://api.github.com/users/bcobb","html_url":"https://github.com/bcobb","followers_url":"https://api.github.com/users/bcobb/followers","following_url":"https://api.github.com/users/bcobb/following{/other_user}","gists_url":"https://api.github.com/users/bcobb/gists{/gist_id}","starred_url":"https://api.github.com/users/bcobb/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/bcobb/subscriptions","organizations_url":"https://api.github.com/users/bcobb/orgs","repos_url":"https://api.github.com/users/bcobb/repos","events_url":"https://api.github.com/users/bcobb/events{/privacy}","received_events_url":"https://api.github.com/users/bcobb/received_events","type":"User","site_admin":false},"parents":[{"sha":"d94ba7bb94a2ddf1294d2a523caa48e776fa157f","url":"https://api.github.com/repos/gofullstack/paprika/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","html_url":"https://github.com/gofullstack/paprika/commit/d94ba7bb94a2ddf1294d2a523caa48e776fa157f"}]}]'
-    http_version:
-  recorded_at: Fri, 07 Feb 2014 15:56:29 GMT
-- request:
-    method: get
-    uri: https://api.github.com/repos/gofullstack/paprika/pulls/1/commits
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/vnd.github.beta+json
-      User-Agent:
-      - Octokit Ruby Gem 2.7.0
-      Authorization:
-      - token <TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Fri, 07 Feb 2014 15:56:25 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Status:
-      - 200 OK
-      X-Ratelimit-Limit:
-      - '5000'
-      X-Ratelimit-Remaining:
-      - '4913'
-      X-Ratelimit-Reset:
-      - '1391789085'
-      Cache-Control:
-      - private, max-age=60, s-maxage=60
-      Last-Modified:
-      - Fri, 07 Feb 2014 15:22:00 GMT
-      Etag:
-      - '"802c41929d8f3c0fbdb0dd9f2a2131e5"'
-      X-Oauth-Scopes:
-      - user, public_repo, repo, gist
-      X-Accepted-Oauth-Scopes:
-      - repo
-      Vary:
-      - Accept, Authorization, Cookie, X-GitHub-OTP
-      - Accept-Encoding
-      X-Github-Media-Type:
-      - github.beta; format=json
-      X-Content-Type-Options:
-      - nosniff
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Expose-Headers:
-      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval
-      Access-Control-Allow-Origin:
-      - '*'
-      X-Github-Request-Id:
-      - 6153E20C:53AD:5FAA78E:52F50229
-    body:
-      encoding: UTF-8
-      string: '[{"sha":"d94ba7bb94a2ddf1294d2a523caa48e776fa157f","commit":{"author":{"name":"Brett
-        Chalupa","email":"brettchalupa@gmail.com","date":"2014-02-03T15:35:33Z"},"committer":{"name":"Brett
-        Chalupa","email":"brettchalupa@gmail.com","date":"2014-02-03T15:35:33Z"},"message":"Hot
-        commit.","tree":{"sha":"4b2b83f8e273603f65f5ab185dc689ce1fb2d5f0","url":"https://api.github.com/repos/gofullstack/paprika/git/trees/4b2b83f8e273603f65f5ab185dc689ce1fb2d5f0"},"url":"https://api.github.com/repos/gofullstack/paprika/git/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","comment_count":0},"url":"https://api.github.com/repos/gofullstack/paprika/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","html_url":"https://github.com/gofullstack/paprika/commit/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","comments_url":"https://api.github.com/repos/gofullstack/paprika/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f/comments","author":{"login":"brettchalupa","id":928367,"avatar_url":"https://gravatar.com/avatar/c3e5586f55a9551a91d1e8b26fcc9310?d=https%3A%2F%2Fidenticons.github.com%2F75863a6fc9904e8d97bec8db91221900.png&r=x","gravatar_id":"c3e5586f55a9551a91d1e8b26fcc9310","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"committer":{"login":"brettchalupa","id":928367,"avatar_url":"https://gravatar.com/avatar/c3e5586f55a9551a91d1e8b26fcc9310?d=https%3A%2F%2Fidenticons.github.com%2F75863a6fc9904e8d97bec8db91221900.png&r=x","gravatar_id":"c3e5586f55a9551a91d1e8b26fcc9310","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"parents":[{"sha":"6663a36b52f609a30096ee2685d87c3b21cf345c","url":"https://api.github.com/repos/gofullstack/paprika/commits/6663a36b52f609a30096ee2685d87c3b21cf345c","html_url":"https://github.com/gofullstack/paprika/commit/6663a36b52f609a30096ee2685d87c3b21cf345c"}]},{"sha":"aab780e8da7e018baecdf86d03581e083b8db13b","commit":{"author":{"name":"Brian
-        and Brett","email":"brian+bcobb+brettchalupa@gofullstack.com","date":"2014-02-06T20:23:50Z"},"committer":{"name":"Brian
-        Cobb","email":"bcobb@uwalumni.com","date":"2014-02-06T20:23:50Z"},"message":"Adding
-        the list of contributors","tree":{"sha":"8a0be27bb37b5640fca5729a14b6788a6bc1f0e0","url":"https://api.github.com/repos/gofullstack/paprika/git/trees/8a0be27bb37b5640fca5729a14b6788a6bc1f0e0"},"url":"https://api.github.com/repos/gofullstack/paprika/git/commits/aab780e8da7e018baecdf86d03581e083b8db13b","comment_count":0},"url":"https://api.github.com/repos/gofullstack/paprika/commits/aab780e8da7e018baecdf86d03581e083b8db13b","html_url":"https://github.com/gofullstack/paprika/commit/aab780e8da7e018baecdf86d03581e083b8db13b","comments_url":"https://api.github.com/repos/gofullstack/paprika/commits/aab780e8da7e018baecdf86d03581e083b8db13b/comments","author":null,"committer":{"login":"bcobb","id":35545,"avatar_url":"https://gravatar.com/avatar/269b40217dfecccd37c71650992dd2cc?d=https%3A%2F%2Fidenticons.github.com%2F59a3e5c5684f2219aeba5934fc50e8bb.png&r=x","gravatar_id":"269b40217dfecccd37c71650992dd2cc","url":"https://api.github.com/users/bcobb","html_url":"https://github.com/bcobb","followers_url":"https://api.github.com/users/bcobb/followers","following_url":"https://api.github.com/users/bcobb/following{/other_user}","gists_url":"https://api.github.com/users/bcobb/gists{/gist_id}","starred_url":"https://api.github.com/users/bcobb/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/bcobb/subscriptions","organizations_url":"https://api.github.com/users/bcobb/orgs","repos_url":"https://api.github.com/users/bcobb/repos","events_url":"https://api.github.com/users/bcobb/events{/privacy}","received_events_url":"https://api.github.com/users/bcobb/received_events","type":"User","site_admin":false},"parents":[{"sha":"d94ba7bb94a2ddf1294d2a523caa48e776fa157f","url":"https://api.github.com/repos/gofullstack/paprika/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","html_url":"https://github.com/gofullstack/paprika/commit/d94ba7bb94a2ddf1294d2a523caa48e776fa157f"}]}]'
-    http_version:
-  recorded_at: Fri, 07 Feb 2014 15:56:30 GMT
-- request:
-    method: get
-    uri: https://api.github.com/repos/gofullstack/paprika/pulls/1/commits
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/vnd.github.beta+json
-      User-Agent:
-      - Octokit Ruby Gem 2.7.0
-      Authorization:
-      - token <TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Fri, 07 Feb 2014 15:56:26 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Status:
-      - 200 OK
-      X-Ratelimit-Limit:
-      - '5000'
-      X-Ratelimit-Remaining:
-      - '4912'
-      X-Ratelimit-Reset:
-      - '1391789085'
-      Cache-Control:
-      - private, max-age=60, s-maxage=60
-      Last-Modified:
-      - Fri, 07 Feb 2014 15:22:00 GMT
-      Etag:
-      - '"802c41929d8f3c0fbdb0dd9f2a2131e5"'
-      X-Oauth-Scopes:
-      - user, public_repo, repo, gist
-      X-Accepted-Oauth-Scopes:
-      - repo
-      Vary:
-      - Accept, Authorization, Cookie, X-GitHub-OTP
-      - Accept-Encoding
-      X-Github-Media-Type:
-      - github.beta; format=json
-      X-Content-Type-Options:
-      - nosniff
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Expose-Headers:
-      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval
-      Access-Control-Allow-Origin:
-      - '*'
-      X-Github-Request-Id:
-      - 6153E20C:53AC:443F9D3:52F5022A
-    body:
-      encoding: UTF-8
-      string: '[{"sha":"d94ba7bb94a2ddf1294d2a523caa48e776fa157f","commit":{"author":{"name":"Brett
-        Chalupa","email":"brettchalupa@gmail.com","date":"2014-02-03T15:35:33Z"},"committer":{"name":"Brett
-        Chalupa","email":"brettchalupa@gmail.com","date":"2014-02-03T15:35:33Z"},"message":"Hot
-        commit.","tree":{"sha":"4b2b83f8e273603f65f5ab185dc689ce1fb2d5f0","url":"https://api.github.com/repos/gofullstack/paprika/git/trees/4b2b83f8e273603f65f5ab185dc689ce1fb2d5f0"},"url":"https://api.github.com/repos/gofullstack/paprika/git/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","comment_count":0},"url":"https://api.github.com/repos/gofullstack/paprika/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","html_url":"https://github.com/gofullstack/paprika/commit/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","comments_url":"https://api.github.com/repos/gofullstack/paprika/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f/comments","author":{"login":"brettchalupa","id":928367,"avatar_url":"https://gravatar.com/avatar/c3e5586f55a9551a91d1e8b26fcc9310?d=https%3A%2F%2Fidenticons.github.com%2F75863a6fc9904e8d97bec8db91221900.png&r=x","gravatar_id":"c3e5586f55a9551a91d1e8b26fcc9310","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"committer":{"login":"brettchalupa","id":928367,"avatar_url":"https://gravatar.com/avatar/c3e5586f55a9551a91d1e8b26fcc9310?d=https%3A%2F%2Fidenticons.github.com%2F75863a6fc9904e8d97bec8db91221900.png&r=x","gravatar_id":"c3e5586f55a9551a91d1e8b26fcc9310","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"parents":[{"sha":"6663a36b52f609a30096ee2685d87c3b21cf345c","url":"https://api.github.com/repos/gofullstack/paprika/commits/6663a36b52f609a30096ee2685d87c3b21cf345c","html_url":"https://github.com/gofullstack/paprika/commit/6663a36b52f609a30096ee2685d87c3b21cf345c"}]},{"sha":"aab780e8da7e018baecdf86d03581e083b8db13b","commit":{"author":{"name":"Brian
-        and Brett","email":"brian+bcobb+brettchalupa@gofullstack.com","date":"2014-02-06T20:23:50Z"},"committer":{"name":"Brian
-        Cobb","email":"bcobb@uwalumni.com","date":"2014-02-06T20:23:50Z"},"message":"Adding
-        the list of contributors","tree":{"sha":"8a0be27bb37b5640fca5729a14b6788a6bc1f0e0","url":"https://api.github.com/repos/gofullstack/paprika/git/trees/8a0be27bb37b5640fca5729a14b6788a6bc1f0e0"},"url":"https://api.github.com/repos/gofullstack/paprika/git/commits/aab780e8da7e018baecdf86d03581e083b8db13b","comment_count":0},"url":"https://api.github.com/repos/gofullstack/paprika/commits/aab780e8da7e018baecdf86d03581e083b8db13b","html_url":"https://github.com/gofullstack/paprika/commit/aab780e8da7e018baecdf86d03581e083b8db13b","comments_url":"https://api.github.com/repos/gofullstack/paprika/commits/aab780e8da7e018baecdf86d03581e083b8db13b/comments","author":null,"committer":{"login":"bcobb","id":35545,"avatar_url":"https://gravatar.com/avatar/269b40217dfecccd37c71650992dd2cc?d=https%3A%2F%2Fidenticons.github.com%2F59a3e5c5684f2219aeba5934fc50e8bb.png&r=x","gravatar_id":"269b40217dfecccd37c71650992dd2cc","url":"https://api.github.com/users/bcobb","html_url":"https://github.com/bcobb","followers_url":"https://api.github.com/users/bcobb/followers","following_url":"https://api.github.com/users/bcobb/following{/other_user}","gists_url":"https://api.github.com/users/bcobb/gists{/gist_id}","starred_url":"https://api.github.com/users/bcobb/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/bcobb/subscriptions","organizations_url":"https://api.github.com/users/bcobb/orgs","repos_url":"https://api.github.com/users/bcobb/repos","events_url":"https://api.github.com/users/bcobb/events{/privacy}","received_events_url":"https://api.github.com/users/bcobb/received_events","type":"User","site_admin":false},"parents":[{"sha":"d94ba7bb94a2ddf1294d2a523caa48e776fa157f","url":"https://api.github.com/repos/gofullstack/paprika/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","html_url":"https://github.com/gofullstack/paprika/commit/d94ba7bb94a2ddf1294d2a523caa48e776fa157f"}]}]'
-    http_version:
-  recorded_at: Fri, 07 Feb 2014 15:56:30 GMT
-recorded_with: VCR 2.8.0
+        the list of contributors","tree":{"sha":"8a0be27bb37b5640fca5729a14b6788a6bc1f0e0","url":"https://api.github.com/repos/gofullstack/paprika/git/trees/8a0be27bb37b5640fca5729a14b6788a6bc1f0e0"},"url":"https://api.github.com/repos/gofullstack/paprika/git/commits/aab780e8da7e018baecdf86d03581e083b8db13b","comment_count":0},"url":"https://api.github.com/repos/gofullstack/paprika/commits/aab780e8da7e018baecdf86d03581e083b8db13b","html_url":"https://github.com/gofullstack/paprika/commit/aab780e8da7e018baecdf86d03581e083b8db13b","comments_url":"https://api.github.com/repos/gofullstack/paprika/commits/aab780e8da7e018baecdf86d03581e083b8db13b/comments","author":null,"committer":{"login":"bcobb","id":35545,"avatar_url":"https://avatars.githubusercontent.com/u/35545?v=3","gravatar_id":"","url":"https://api.github.com/users/bcobb","html_url":"https://github.com/bcobb","followers_url":"https://api.github.com/users/bcobb/followers","following_url":"https://api.github.com/users/bcobb/following{/other_user}","gists_url":"https://api.github.com/users/bcobb/gists{/gist_id}","starred_url":"https://api.github.com/users/bcobb/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/bcobb/subscriptions","organizations_url":"https://api.github.com/users/bcobb/orgs","repos_url":"https://api.github.com/users/bcobb/repos","events_url":"https://api.github.com/users/bcobb/events{/privacy}","received_events_url":"https://api.github.com/users/bcobb/received_events","type":"User","site_admin":false},"parents":[{"sha":"d94ba7bb94a2ddf1294d2a523caa48e776fa157f","url":"https://api.github.com/repos/gofullstack/paprika/commits/d94ba7bb94a2ddf1294d2a523caa48e776fa157f","html_url":"https://github.com/gofullstack/paprika/commit/d94ba7bb94a2ddf1294d2a523caa48e776fa157f"}]},{"sha":"4b602bb7db91d02fc4390b850126d0588509c91e","commit":{"author":{"name":"Brett
+        Chalupa","email":"brettchalupa@gmail.com","date":"2014-02-10T17:15:35Z"},"committer":{"name":"Brett
+        Chalupa","email":"brettchalupa@gmail.com","date":"2014-02-10T17:15:35Z"},"message":"omg
+        great commit","tree":{"sha":"5ca15ca11d8015e110d4651593fc85b5170f0998","url":"https://api.github.com/repos/gofullstack/paprika/git/trees/5ca15ca11d8015e110d4651593fc85b5170f0998"},"url":"https://api.github.com/repos/gofullstack/paprika/git/commits/4b602bb7db91d02fc4390b850126d0588509c91e","comment_count":0},"url":"https://api.github.com/repos/gofullstack/paprika/commits/4b602bb7db91d02fc4390b850126d0588509c91e","html_url":"https://github.com/gofullstack/paprika/commit/4b602bb7db91d02fc4390b850126d0588509c91e","comments_url":"https://api.github.com/repos/gofullstack/paprika/commits/4b602bb7db91d02fc4390b850126d0588509c91e/comments","author":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=3","gravatar_id":"","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"committer":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=3","gravatar_id":"","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"parents":[{"sha":"aab780e8da7e018baecdf86d03581e083b8db13b","url":"https://api.github.com/repos/gofullstack/paprika/commits/aab780e8da7e018baecdf86d03581e083b8db13b","html_url":"https://github.com/gofullstack/paprika/commit/aab780e8da7e018baecdf86d03581e083b8db13b"}]},{"sha":"8b91830774d7d6aea0b570c00c8a5121ca21e424","commit":{"author":{"name":"Brett
+        Chalupa","email":"brettchalupa@gmail.com","date":"2014-02-10T17:29:28Z"},"committer":{"name":"Brett
+        Chalupa","email":"brettchalupa@gmail.com","date":"2014-02-10T17:29:28Z"},"message":"great
+        message","tree":{"sha":"4b1fc74952ef1a1c3d2bba8911e8ab4d162cbc55","url":"https://api.github.com/repos/gofullstack/paprika/git/trees/4b1fc74952ef1a1c3d2bba8911e8ab4d162cbc55"},"url":"https://api.github.com/repos/gofullstack/paprika/git/commits/8b91830774d7d6aea0b570c00c8a5121ca21e424","comment_count":0},"url":"https://api.github.com/repos/gofullstack/paprika/commits/8b91830774d7d6aea0b570c00c8a5121ca21e424","html_url":"https://github.com/gofullstack/paprika/commit/8b91830774d7d6aea0b570c00c8a5121ca21e424","comments_url":"https://api.github.com/repos/gofullstack/paprika/commits/8b91830774d7d6aea0b570c00c8a5121ca21e424/comments","author":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=3","gravatar_id":"","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"committer":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=3","gravatar_id":"","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"parents":[{"sha":"4b602bb7db91d02fc4390b850126d0588509c91e","url":"https://api.github.com/repos/gofullstack/paprika/commits/4b602bb7db91d02fc4390b850126d0588509c91e","html_url":"https://github.com/gofullstack/paprika/commit/4b602bb7db91d02fc4390b850126d0588509c91e"}]}]'
+    http_version: 
+  recorded_at: Tue, 02 Dec 2014 19:24:06 GMT
+recorded_with: VCR 2.9.2

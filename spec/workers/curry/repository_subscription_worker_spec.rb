@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'vcr_helper'
 
 describe Curry::RepositorySubscriptionWorker do
-  let(:cassett_pr_count) { 8 }
+  let(:cassett_pr_count) { 16 }
 
   before do
     Curry::ImportPullRequestCommitAuthorsWorker.jobs.clear

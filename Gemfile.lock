@@ -6,6 +6,15 @@ GIT
       sawyer (~> 0.5.3)
 
 GIT
+  remote: https://github.com/opscode/omniauth-chef-oauth2.git
+  revision: 42fdb2647ddefd8ad1cb8d8d0b8a268913e3af90
+  ref: 42fdb2647ddefd8ad1cb8d8d0b8a268913e3af90
+  specs:
+    omniauth-chef-oauth2 (1.0.2)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
+
+GIT
   remote: https://github.com/thoughtbot/shoulda-matchers.git
   revision: 380d18f0621c66a79445ebc6dcc0048fcc969911
   ref: 380d18f0621c66a79445ebc6dcc0048fcc969911
@@ -235,9 +244,6 @@ GEM
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
-    omniauth-chef-oauth2 (1.0.2)
-      omniauth (~> 1.0)
-      omniauth-oauth2 (~> 1.0)
     omniauth-github (1.1.2)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.1)
@@ -463,7 +469,7 @@ DEPENDENCIES
   nokogiri
   octokit!
   omniauth
-  omniauth-chef-oauth2
+  omniauth-chef-oauth2!
   omniauth-github
   paperclip
   pg
