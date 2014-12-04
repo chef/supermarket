@@ -71,7 +71,7 @@ class Curry::PullRequestUpdatesController < ApplicationController
   # verified
   #
   def verify_github_signature
-    if github_signature != expected_signature
+    unless Rack::Utils.secure_compare(github_signature, expected_signature)
       head 400
     end
   end
