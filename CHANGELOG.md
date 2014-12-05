@@ -1,6 +1,6 @@
 # Supermarket Changelog
 
-## master
+## 1.5.0-alpha.0 (2014-12-04)
 
 - Update yanked mixlib-shellout version in Omnibus cookbook
 - Fix for OAuth2 URL in Omnibus configuration
@@ -8,7 +8,7 @@
 - [#925] Fix "Get Chef" link in navigation
 - [#923] Fix VCR specs for chef.io
 - [#922] Update yanked mixlib-shellout version
-- [#919] Change default chef domain to chef.io
+- [#919] Change default Chef domain to chef.io
 - [#916] Allow empty READMEs
 - [#915] Make categories optional
 - [#912] Add privacy flag
