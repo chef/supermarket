@@ -343,8 +343,13 @@ describe Cookbook do
   end
 
   describe '#publish_version!' do
-    let(:cookbook) { create(:cookbook) }
-    let(:params) do
+    def generate_params(opts = {})
+      opts.reverse_merge!(
+        source_url: 'http://example.com',
+        issues_url: 'http://example.com/issues',
+        version: '9.9.9'
+      )
+
       tarball = build_cookbook_tarball('stuff') do |base|
         base.file('README.md') { 'readme' }
         base.file('CHANGELOG.txt') { 'changelog' }
@@ -352,7 +357,7 @@ describe Cookbook do
           JSON.dump(
             name: 'stuff',
             license: 'MIT',
-            version: '9.9.9',
+            version: opts[:version],
             description: 'Description',
             platforms: {
               'ubuntu' => '= 12.04',
@@ -362,14 +367,17 @@ describe Cookbook do
               'apt' => '= 1.2.3',
               'yum' => '~> 2.1.3'
             },
-            source_url: 'http://example.com',
-            issues_url: 'http://example.com/issues'
+            source_url: opts[:source_url],
+            issues_url: opts[:issues_url]
           )
         end
       end
 
       CookbookUpload::Parameters.new(cookbook: '{}', tarball: tarball)
     end
+
+    let(:cookbook) { create(:cookbook) }
+    let(:params) { generate_params }
 
     it 'creates supported platforms from the metadata' do
       cookbook.publish_version!(params)
@@ -406,6 +414,22 @@ describe Cookbook do
     it 'sets the issues_url attribute on the cookbook' do
       cookbook.publish_version!(params)
 
+      expect(cookbook.issues_url).to eql('http://example.com/issues')
+    end
+
+    it 'does not erase source_url or issues_url after they have been set' do
+      cookbook.publish_version!(params)
+      expect(cookbook.source_url).to eql('http://example.com')
+      expect(cookbook.issues_url).to eql('http://example.com/issues')
+
+      new_params = generate_params(
+        source_url: '',
+        issues_url: '',
+        version: '10.0.0'
+      )
+
+      cookbook.publish_version!(new_params)
+      expect(cookbook.source_url).to eql('http://example.com')
       expect(cookbook.issues_url).to eql('http://example.com/issues')
     end
 
