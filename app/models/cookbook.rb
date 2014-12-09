@@ -260,8 +260,15 @@ class Cookbook < ActiveRecord::Base
       )
 
       self.updated_at = Time.now
-      self.source_url = metadata.source_url
-      self.issues_url = metadata.issues_url
+
+      [:source_url, :issues_url].each do |url|
+        url_val = metadata.send(url)
+
+        if url_val.present?
+          write_attribute(url, url_val)
+        end
+      end
+
       self.privacy = metadata.privacy
       save!
 

@@ -10,7 +10,9 @@ describe 'GET /api/v1/cookbooks/:cookbook' do
         'category' => 'Other',
         'maintainer' => user.username,
         'latest_version' => 'http://www.example.com/api/v1/cookbooks/redis-test/versions/0.2.0',
-        'external_url' => '',
+        'external_url' => nil,
+        'source_url' => nil,
+        'issues_url' => nil,
         'versions' =>
           [
             'http://www.example.com/api/v1/cookbooks/redis-test/versions/0.2.0',
