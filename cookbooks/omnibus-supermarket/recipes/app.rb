@@ -35,3 +35,15 @@ end
 link "#{node['supermarket']['app_directory']}/.env.production" do
   to "#{node['supermarket']['var_directory']}/etc/env"
 end
+
+# Cookbook data is uploaded to /opt/supermarket/embedded/service/supermarket/public/system
+directory "#{node['supermarket']['var_directory']}/supermarket_data" do
+  owner 'supermarket'
+  group 'supermarket'
+  mode "0755"
+  action :create
+end
+
+link "#{node['supermarket']['app_directory']}/public/system" do
+  to "#{node['supermarket']['var_directory']}/supermarket_data"
+end
