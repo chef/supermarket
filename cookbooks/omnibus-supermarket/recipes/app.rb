@@ -37,7 +37,7 @@ link "#{node['supermarket']['app_directory']}/.env.production" do
 end
 
 # Cookbook data is uploaded to /opt/supermarket/embedded/service/supermarket/public/system
-directory "#{node['supermarket']['var_directory']}/supermarket_data" do
+directory node['supermarket']['data_directory'] do
   owner 'supermarket'
   group 'supermarket'
   mode "0755"
@@ -45,5 +45,5 @@ directory "#{node['supermarket']['var_directory']}/supermarket_data" do
 end
 
 link "#{node['supermarket']['app_directory']}/public/system" do
-  to "#{node['supermarket']['var_directory']}/supermarket_data"
+  to node['supermarket']['data_directory']
 end

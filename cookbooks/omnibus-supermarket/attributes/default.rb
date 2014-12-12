@@ -73,6 +73,7 @@ default['supermarket']['install_directory'] = '/opt/supermarket'
 default['supermarket']['app_directory'] = "#{node['supermarket']['install_directory']}/embedded/service/supermarket"
 default['supermarket']['log_directory'] = '/var/log/supermarket'
 default['supermarket']['var_directory'] = '/var/opt/supermarket'
+default['supermarket']['data_directory'] = '/var/opt/supermarket/data'
 default['supermarket']['user'] = 'supermarket'
 default['supermarket']['group'] = 'supermarket'
 
