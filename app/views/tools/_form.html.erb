@@ -14,11 +14,8 @@
   </div>
 
   <div class="type-field">
-    <% Tool::ALLOWED_TYPES.each_with_index do |type, index| %>
-      <%= f.radio_button :type, type, index == 0 ? { checked: true } : {} %>
-      <label for="tool_type_<%= type %>"><%= type.titleize %></label>
-      <% if (index + 1) % 4 == 0 %> <br/> <% end %>
-    <% end %>
+    <%= f.label :type %>
+    <%= f.select :type, Tool::ALLOWED_TYPES.map { |type| [pretty_type(type), type] } %>
   </div>
 
   <div class="description-field">

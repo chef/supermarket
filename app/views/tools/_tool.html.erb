@@ -5,7 +5,7 @@
         <%= link_to tool.name, tool, rel: 'view_tool', itemprop: 'name' %>
       </h2>
       <span class="meta">
-        <i class="fa fa-wrench"></i> <span itemprop="sampleType"><%= tool.type.titleize %></span>
+        <i class="fa fa-wrench"></i> <span itemprop="sampleType"><%= pretty_type(tool.type) %></span>
       </span>
       <div class="owner">
         <%= link_to tool.owner do %>

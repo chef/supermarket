@@ -12,7 +12,7 @@
     <div class="buttons">
       <span>Filter by</span>
       <%= link_to '#', 'data-dropdown' => 'type', class: 'button radius tiny dropdown secondary' do %>
-        <%= params[:type].present? ? params[:type].titleize : 'All' %>
+        <%= params[:type].present? ? pretty_type(params[:type]) : 'All' %>
       <% end %>
       <% if current_user %>
         <%= link_to 'Add Tool', new_tool_path, class: 'button radius tiny secondary' %>
@@ -20,7 +20,7 @@
       <ul id="type" data-dropdown-content class="f-dropdown">
         <li><%= link_to 'All', tools_path %></li>
         <% Tool::ALLOWED_TYPES.each do |type| %>
-          <li><%= link_to type.titleize, params.merge(type: type) %></li>
+          <li><%= link_to pretty_type(type), params.merge(type: type) %></li>
         <% end %>
       </ul>
     </div>

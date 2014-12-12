@@ -1,7 +1,7 @@
 <div class="main" data-equalizer-watch>
   <h1 class="heading">
     <span itemprop="name"><%= tool.name %></span>
-    <small itemprop="sampleType"><%= tool.type.titleize %></small>
+    <small itemprop="sampleType"><%= pretty_type(tool.type) %></small>
   </h1>
 
   <%= auto_link(simple_format(tool.description, itemprop: 'description')) %>
