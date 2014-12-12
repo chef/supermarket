@@ -12,7 +12,7 @@ describe 'creating a tool' do
     within '.new_tool' do
       fill_in 'tool_name', with: 'butter'
       fill_in 'tool_slug', with: 'butter'
-      choose 'Knife Plugin'
+      select 'Knife Plugin', from: 'Type'
       fill_in 'tool_description', with: 'Easily cut with knife'
       fill_in 'tool_source_url', with: 'http://example.com'
       fill_in 'tool_instructions', with: 'Delicious with toast.'
