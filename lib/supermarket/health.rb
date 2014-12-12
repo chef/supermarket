@@ -44,7 +44,7 @@ module Supermarket
       current_features = ENV['FEATURES'].split(',')
 
       @features = ALL_FEATURES.reduce({}) do |result, feature|
-        result[feature] = current_features.include?(feature) ? :enabled : :disabled
+        result[feature] = current_features.include?(feature)
         result
       end
     end
