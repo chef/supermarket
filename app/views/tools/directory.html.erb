@@ -15,7 +15,7 @@
     <p>There are various types of tools, each serving a slightly different purpose. If your tool does not fall into one of the types below, <a href="https://github.com/opscode/supermarket/issues/new">open a GitHub issue requesting to add that type</a>.
     <ul>
       <% Tool::ALLOWED_TYPES.each do |type| %>
-        <li><%= link_to type.titleize, tools_path(type: type) %></li>
+        <li><%= link_to pretty_type(type), tools_path(type: type) %></li>
       <% end %>
     </ul>
   </div>

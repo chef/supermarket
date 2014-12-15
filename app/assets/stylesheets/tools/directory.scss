@@ -21,3 +21,7 @@
     @include grid-column($columns: 12);
   }
 }
+
+#extra-spacing {
+  height: rem-calc(140);
+}

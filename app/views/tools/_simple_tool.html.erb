@@ -2,6 +2,6 @@
   <%= link_to tool do %>
     <%= gravatar_for tool.owner %>
     <span itemprop="author"><%= tool.name %></span>
-    <small><%= tool.type %></small>
+    <small><%= pretty_type(tool.type) %></small>
   <% end %>
 </li>
