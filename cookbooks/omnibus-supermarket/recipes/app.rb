@@ -25,8 +25,8 @@ include_recipe 'omnibus-supermarket::sidekiq'
 
 file "#{node['supermarket']['var_directory']}/etc/env" do
   content Supermarket::Config.environment_variables_from(node['supermarket'])
-  owner 'supermarket'
-  group 'supermarket'
+  owner node['supermarket']['user']
+  group node['supermarket']['group']
   mode '0600'
   notifies :restart, 'runit_service[sidekiq]' if node['supermarket']['sidekiq']['enable']
   notifies :restart, 'runit_service[rails]' if node['supermarket']['rails']['enable']
@@ -34,4 +34,16 @@ end
 
 link "#{node['supermarket']['app_directory']}/.env.production" do
   to "#{node['supermarket']['var_directory']}/etc/env"
+end
+
+# Cookbook data is uploaded to /opt/supermarket/embedded/service/supermarket/public/system
+directory node['supermarket']['data_directory'] do
+  owner node['supermarket']['user']
+  group node['supermarket']['group']
+  mode '0755'
+  action :create
+end
+
+link "#{node['supermarket']['app_directory']}/public/system" do
+  to node['supermarket']['data_directory']
 end
