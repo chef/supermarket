@@ -7,7 +7,7 @@
     <% end %>
   </ul>
 
-  <% if current_user %>
+  <% if current_user && ROLLOUT.active?(:github) %>
     <h3>Your Agreements</h3>
 
     <% unless current_user.contributor? %>

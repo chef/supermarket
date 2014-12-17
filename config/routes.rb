@@ -149,7 +149,7 @@ Supermarket::Application.routes.draw do
   end
 
   get 'become-a-contributor' => 'contributors#become_a_contributor', constraints: proc { ROLLOUT.active?(:cla) && ROLLOUT.active?(:github) }
-  get 'contributors' => 'contributors#index', constraints: proc { ROLLOUT.active?(:cla) && ROLLOUT.active?(:github) }
+  get 'contributors' => 'contributors#index', constraints: proc { ROLLOUT.active?(:cla) }
 
   get 'chat' => 'irc_logs#index'
   get 'chat/:channel' => 'irc_logs#show'

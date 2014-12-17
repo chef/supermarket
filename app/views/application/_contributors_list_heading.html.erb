@@ -1,8 +1,10 @@
 <div class="heading-with-buttons">
   <h1 class="title">Contributors</h1>
-  <div class="buttons">
-    <%= link_to "Become a Contributor", become_a_contributor_path, class: "button tiny radius right" %>
-  </div>
+    <% if ROLLOUT.active?(:cla) && ROLLOUT.active?(:github) %>
+      <div class="buttons">
+        <%= link_to "Become a Contributor", become_a_contributor_path, class: "button tiny radius right" %>
+      </div>
+    <% end %>
 </div>
 
 <dl class="tabs">
