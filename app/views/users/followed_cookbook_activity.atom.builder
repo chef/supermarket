@@ -1,6 +1,6 @@
 atom_feed language: 'en-US' do |feed|
   feed.title "#{@user.username}'s Followed Cookbook Activity"
-  feed.updated Time.now
+  feed.updated @followed_cookbook_activity.max_by(&:updated_at).updated_at
 
   @followed_cookbook_activity.each do |cookbook_version|
     feed.entry cookbook_version, url: cookbook_version_url(cookbook_version.cookbook, cookbook_version.version) do |entry|
@@ -9,7 +9,7 @@ atom_feed language: 'en-US' do |feed|
                     version: cookbook_version.version,
                     cookbook: cookbook_version.cookbook.name
                    )
-      entry.content cookbook_version.description
+      entry.content cookbook_atom_content(cookbook_version), type: 'html'
 
       entry.author do |author|
         author.name cookbook_version.cookbook.maintainer
