@@ -206,3 +206,23 @@ changes.
 
 [Read about Deployment instructions in the wiki.]
 (https://github.com/opscode/supermarket/wiki/Deployment)
+
+## Feature Flags
+
+Supermarket uses a `.env` file to configure itself. Inside this file are
+key/value pairs. These key/value pairs will be exported as environment
+variables when the app runs, and Supermarket will look for these keys as
+environment variables when it needs to read a value that's configurable.
+
+One of these keys is called `FEATURES` and it controls a number of features
+that can be turned on and off. Here are the available features that can be
+toggled:
+
+* cla
+* join_ccla
+* tools
+* fieri
+* announcement
+* github
+* no_crawl
+
