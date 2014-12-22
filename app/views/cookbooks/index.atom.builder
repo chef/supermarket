@@ -1,6 +1,6 @@
 atom_feed language: 'en-US' do |feed|
   feed.title 'Cookbooks'
-  feed.updated @cookbooks.max_by(&:updated_at).updated_at
+  feed.updated safe_updated_at(@cookbooks)
 
   @cookbooks.each do |cookbook|
     feed.entry cookbook, url: cookbook_url(cookbook) do |entry|
