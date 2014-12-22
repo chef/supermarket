@@ -2,6 +2,37 @@ module CookbookVersionsHelper
   include MarkdownHelper
 
   #
+  # Returns an abbreviated Changelog or a description if no Changelog is
+  # available for the given CookbookVersion, suitable for showing in an Atom
+  # feed.
+  #
+  # @param cookbook_version [CookbookVersion]
+  #
+  # @return [String] the Changelog and/or description
+  #
+  def cookbook_atom_content(cookbook_version)
+    if cookbook_version.changelog.present?
+      changelog = render_document(
+        cookbook_version.changelog, cookbook_version.changelog_extension
+      )
+      changelog_link = link_to(
+        'View Full Changelog',
+        cookbook_version_url(
+          cookbook_version.cookbook,
+          cookbook_version,
+          anchor: 'changelog'
+        )
+      )
+      <<-EOS
+        <p>#{cookbook_version.description}</p>
+        #{HTML_Truncator.truncate(changelog, 30, ellipsis: '')}
+        <p>#{changelog_link}</p>
+      EOS
+    else
+      cookbook_version.description
+    end
+  end
+  #
   # Returns the given README +content+ as it should be rendered. If the given
   # +extension+ indicates the README is formatted as Markdown, the +content+ is
   # rendered as such.
