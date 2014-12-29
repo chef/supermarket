@@ -2,6 +2,23 @@ module CookbookVersionsHelper
   include MarkdownHelper
 
   #
+  # Encapsulates the logic required to return an updated_at timestamp for an
+  # Atom feed, while handling possibly empty collections
+  #
+  # @param collection [Array<Object>] some collection to be checked
+  #
+  # @return [ActiveSupport::TimeWithZone] the most recent updated_at, or right
+  # now
+  #
+  def safe_updated_at(collection)
+    if collection.present?
+      collection.max_by(&:updated_at).updated_at
+    else
+      Time.zone.now
+    end
+  end
+
+  #
   # Returns an abbreviated Changelog or a description if no Changelog is
   # available for the given CookbookVersion, suitable for showing in an Atom
   # feed.

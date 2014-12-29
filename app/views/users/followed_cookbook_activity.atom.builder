@@ -1,6 +1,6 @@
 atom_feed language: 'en-US' do |feed|
   feed.title "#{@user.username}'s Followed Cookbook Activity"
-  feed.updated @followed_cookbook_activity.max_by(&:updated_at).updated_at
+  feed.updated safe_updated_at(@followed_cookbook_activity)
 
   @followed_cookbook_activity.each do |cookbook_version|
     feed.entry cookbook_version, url: cookbook_version_url(cookbook_version.cookbook, cookbook_version.version) do |entry|
