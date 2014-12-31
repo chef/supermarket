@@ -113,6 +113,7 @@ class CookbookUpload
     # @return [ActiveModel::Errors]
     #
     def errors
+      return @errors if @errors
       error_messages = Set.new.tap do |messages|
         parse_cookbook_json do |parsing_errors, _|
           parsing_errors.full_messages.each do |message|
@@ -133,7 +134,7 @@ class CookbookUpload
         end
       end
 
-      ActiveModel::Errors.new([]).tap do |errors|
+      @errors = ActiveModel::Errors.new([]).tap do |errors|
         error_messages.each do |error_message|
           errors.add(:base, error_message)
         end
@@ -169,6 +170,8 @@ class CookbookUpload
         errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
       rescue Archive::NoPath
         errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
+      rescue Gem::Package::TarInvalidError => e
+        errors.add(:base, I18n.t('api.error_messages.tarball_corrupt', error: e))
       end
 
       block.call(errors, metadata)
@@ -206,6 +209,8 @@ class CookbookUpload
         errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
       rescue Archive::NoPath
         errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
+      rescue Gem::Package::TarInvalidError => e
+        errors.add(:base, I18n.t('api.error_messages.tarball_corrupt', error: e))
       end
 
       block.call(errors, readme)
