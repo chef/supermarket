@@ -7,6 +7,8 @@ This project creates full-stack platform-specific packages for
 Issues for this project can be opened and tracked from the
 [Supermarket GitHub Issues page](https://github.com/opscode/supermarket/issues).
 
+General Supermarket documentation is on the [Supermarket Wiki](https://github.com/opscode/supermarket/wiki). Setting up authentication tends to be the main blocker to getting started, so see this [wiki page](https://github.com/opscode/supermarket/wiki/Chef-Authentication) and a related [blog post](https://www.chef.io/blog/2014/08/29/getting-started-with-oc-id-and-supermarket/)
+
 Installation
 ------------
 You must have a sane Ruby 1.9+ environment with Bundler installed. Ensure all
