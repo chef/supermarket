@@ -148,6 +148,16 @@ describe CookbookUpload do
         to include(I18n.t('api.error_messages.tarball_not_gzipped'))
     end
 
+    it 'yields an error if the tarball is corrupted' do
+      tarball = File.open('spec/support/cookbook_fixtures/corrupted-tarball.tgz')
+
+      upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
+      errors = upload.finish { |e, _| e }
+
+      expect(errors.full_messages).
+        to include(I18n.t('api.error_messages.tarball_corrupt', error: 'tar is corrupt, name contains null byte'))
+    end
+
     it 'yields an error if the tarball has no metadata.json entry' do
       tarball = File.open('spec/support/cookbook_fixtures/no-metadata-or-readme.tgz')
 

@@ -86,7 +86,7 @@ class CookbookUpload
   # @return [ActiveModel::Errors]
   #
   def errors
-    ActiveModel::Errors.new([]).tap do |e|
+    @errors ||= ActiveModel::Errors.new([]).tap do |e|
       @params.errors.full_messages.each do |message|
         e.add(:base, message)
       end

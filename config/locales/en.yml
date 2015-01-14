@@ -99,6 +99,7 @@ en:
       cookbook_not_json: "Mulipart POST part 'cookbook' must be a valid JSON string."
       missing_tarball: "Mulipart POST must include a part named 'tarball'."
       tarball_has_no_path: "Multipart POST part 'tarball' must be a file."
+      tarball_corrupt: "Multipart POST part 'tarball' is corrupt: %{error}"
       non_existent_category: "Category '%{category_name}' does not exist."
       tarball_not_gzipped: "Multipart POST part 'tarball' must be GZipped."
       missing_metadata: "Multipart POST part 'tarball' must contain a metadata.json entry."
