@@ -11,6 +11,7 @@ module SupportedPlatformsHelper
   #
   def supported_platform_icon(platform)
     {
+      'aix' => 'O',
       'amazon' => 'A',
       'centos' => 'B',
       'debian' => 'C',
@@ -27,6 +28,6 @@ module SupportedPlatformsHelper
       'suse' => 'L',
       'ubuntu' => 'M',
       'windows' => 'N'
-    }.fetch(platform.name.parameterize('_'), 'O')
+    }.fetch(platform.name.parameterize('_'), 'P')
   end
 end
