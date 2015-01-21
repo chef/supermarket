@@ -53,6 +53,11 @@ module CustomUrlHelper
     ENV['CHEF_SIGN_UP_URL'] || "#{chef_manage_url}/signup?ref=community"
   end
 
+  def chef_training_url(extra = nil)
+    url = ENV['CHEF_TRAINING_URL'] || "#{chef_www_url}/training"
+    extra_dispatch(url, extra)
+  end
+
   def learn_chef_url
     ENV['LEARN_CHEF_URL'] || "https://learn.#{chef_domain}"
   end
