@@ -1,5 +1,20 @@
 # Supermarket Changelog
 
+## 1.6.0-alpha.0 (2015-01-21)
+
+- [#934] Only show source/issues URLs if they're present
+- [#936] Add powershell modules and dsc resources to available tool types
+- [#937] List which FEATURES are enabled in the health endpoint
+- [#942] Add a button for sorting search results by release date
+- [#945] Show contributors even if GH is disabled
+- [#946] Show code of conduct in the footer
+- [#951] Adding changelogs to more Atom feeds
+- [#952] Add docs on feature flags to the README
+- [#953] Fix error with empty collections in atom feeds
+- [#959] Return an error message when processing a corrupted tarball
+- [#968] Added AIX platform logo
+- [#971] Fix incorrect training URL
+
 ## 1.5.0-alpha.0 (2014-12-04)
 
 - Update yanked mixlib-shellout version in Omnibus cookbook
