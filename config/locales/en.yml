@@ -83,8 +83,8 @@ en:
         failure: "That repository does not exist on GitHub."
         success: "Supermarket is now monitoring this repository."
       unsubscribe:
-        failure: "The repository has been destroyed, but there was an issue unsubscribing from the repo."
-        success: "The repository has been destroyed, and Supermarket has been unsubscribed from the repo."
+        failure: "There was an issue unsubscribing Supermarket from the repo."
+        success: "Supermarket is no longer monitoring this repo."
   api:
     error_codes:
       not_found: "NOT_FOUND"
