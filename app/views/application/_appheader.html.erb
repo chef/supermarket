@@ -30,7 +30,7 @@
 
         <% if current_user && current_user.is?(:admin) && ROLLOUT.active?(:cla) && ROLLOUT.active?(:github) %>
           <li>
-            <%= link_to "Watched Repositories", curry_repositories_url, :class => 'fa fa-github', rel: 'manage_repositories' %>
+            <%= link_to "Configure Curry", curry_repositories_url, :class => 'fa fa-github', rel: 'manage_repositories' %>
           </li>
         <% end %>
 
