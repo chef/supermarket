@@ -2,22 +2,22 @@
 
 [![Code Climate](https://codeclimate.com/github/opscode/supermarket.png)](https://codeclimate.com/github/opscode/supermarket) [![Build Status](https://travis-ci.org/chef/supermarket.png?branch=master)](https://travis-ci.org/chef/supermarket) [![Dependency Status](https://gemnasium.com/opscode/supermarket.png)](https://gemnasium.com/opscode/supermarket) [![Coverage Status](https://coveralls.io/repos/opscode/supermarket/badge.png?branch=master)](https://coveralls.io/r/opscode/supermarket?branch=master) [![Inline docs](http://inch-ci.org/github/opscode/supermarket.png)](http://inch-ci.org/github/opscode/supermarket) [![Gitter chat](https://badges.gitter.im/chef/supermarket.png)](https://gitter.im/chef/supermarket) [![Stories in Ready](https://badge.waffle.io/chef/supermarket.png?label=ready&title=Ready)](https://waffle.io/chef/supermarket)
 
-Supermarket is Chef's new community project with the goals of being the
-community repository for cookbooks, an easy to contribute to project, and
-the behind-the-firewall solution to serving cookbooks.
+Supermarket is Chef's community repository for cookbooks, currently hosted
+at [supermarket.chef.io](supermarket.chef.io). Supermarket can also be run
+internally, behind-the-firewall.
 
-The goal of this README is to introduce you to the project and get you up and
+The code is designed to be easy for others to contribute to. To that end,
+the goal of this README is to introduce you to the project and get you up and
 running. More information about Supermarket can be found in [the
-wiki](https://github.com/opscode/supermarket/wiki). Supermarket is currently
-pre-release and under active development. [View the
-roadmap](https://github.com/opscode/supermarket/wiki/Roadmap), and
+wiki](https://github.com/chef/supermarket/wiki). 
+[View the roadmap](https://github.com/chef/supermarket/wiki/Roadmap), and
 [follow along with the project development in
 waffle.io](https://waffle.io/opscode/supermarket). Supermarket has
 [an open project chat on Gitter](https://gitter.im/opscode/supermarket)
 and [a mailing list](https://groups.google.com/forum/#!forum/chef-supermarket).
 
 If you want to contribute to Supermarket, read the [contributor's
-workflow](https://github.com/opscode/supermarket/blob/master/CONTRIBUTING.md)
+workflow](https://github.com/chef/supermarket/blob/master/CONTRIBUTING.md)
 for license information and helpful tips to get you started. There are project artifacts such as planning docs, wireframes, recorded
 demos, and team retrospectives in a [public Google Drive
 folder](https://drive.google.com/a/gofullstack.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8)
@@ -30,7 +30,7 @@ This repository has the code for the Supermarket application, related
 repositories are:
 
 * [opscode-cookbooks/supermarket](https://github.com/opscode-cookbooks/supermarket): The cookbook used to deploy the application
-* [opscode/omnibus-supermarket](https://github.com/opscode/omnibus-supermarket): Code used to build RPM and DEB packages
+* [chef/omnibus-supermarket](https://github.com/chef/omnibus-supermarket): Code used to build RPM and DEB packages
 
 ## Requirements
 
@@ -44,8 +44,8 @@ repositories are:
 
 Configure the [dotenv](https://github.com/bkeepers/dotenv) keys and secrets to .
 See `.env.example` for required keys and secrets to get up and running.
-[`docs/CONFIGURING.md`](https://github.com/opscode/supermarket/blob/master/docs/CONFIGURING.md)
-goes into detail about the not so straight forward configuration that needs
+[`docs/CONFIGURING.md`](https://github.com/chef/supermarket/blob/master/docs/CONFIGURING.md)
+goes into detail about the not-so-straightforward configuration that needs
 to happen to get Supermarket working locally.
 
 ### Using Vagrant (Beginner)
@@ -92,7 +92,7 @@ You can [read more about Vagrant teardown in the Vagrant
 docs](http://docs.vagrantup.com/v2/getting-started/teardown.html).
 
 [Read more about changing the Vagrant VM defaults in the wiki.]
-(https://github.com/opscode/supermarket/wiki/Changing-the-Vagrant-VM-Defaults)
+(https://github.com/chef/supermarket/wiki/Changing-the-Vagrant-VM-Defaults)
 
 #### Guest Additions
 
@@ -179,7 +179,7 @@ When writing feature specs, the Rack::Test driver is used by default. If the
 Poltergeist driver is required to be used (for example, an acceptance test
 that uses AJAX), add the `use_poltergeist: true` metadata to the spec. See
 [the remove_members_from_ccla_spec.rb spec]
-(https://github.com/opscode/supermarket/blob/master/spec/features/remove_members_from_ccla_spec.rb#L17)
+(https://github.com/chef/supermarket/blob/master/spec/features/remove_members_from_ccla_spec.rb#L17)
 for an example.
 
 Some specs run using [PhantomJS](http://phantomjs.org/), which must be
@@ -200,12 +200,12 @@ changes.
 ## Background Jobs
 
 [Read about Supermarket's background jobs in the wiki]
-(https://github.com/opscode/supermarket/wiki/Background-Jobs).
+(https://github.com/chef/supermarket/wiki/Background-Jobs).
 
 ## Deployment
 
 [Read about Deployment instructions in the wiki.]
-(https://github.com/opscode/supermarket/wiki/Deployment)
+(https://github.com/chef/supermarket/wiki/Deployment)
 
 ## Feature Flags
 
@@ -226,3 +226,23 @@ toggled:
 * github
 * no_crawl
 
+# License
+
+|                      |                                          |
+|:---------------------|:-----------------------------------------|
+| **Copyright:**       | Copyright (c) 2014-2015 Chef Software, Inc.
+| **License:**         | Apache License, Version 2.0
+
+```text
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
