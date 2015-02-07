@@ -1,7 +1,6 @@
 GIT
   remote: git://github.com/opscode/omnibus-software.git
-  revision: b54befd04aad569667b4d7596b38587ba755add6
-  ref: nls/psql-world
+  revision: 2e26be554787803214ba9525b6b4214b5c7b6d43
   specs:
     omnibus-software (4.0.0)
 
