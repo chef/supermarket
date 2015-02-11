@@ -21,9 +21,9 @@ check with our lawyers about small patches.
 
 It only takes a few minutes to complete a CLA, and you retain the copyright to your contribution.
 
-You can [become a contributor by signing the ICLA or by contributing on behalf of your company](http://supermarket.chef.io/become-a-contributor).
+You can [become a contributor by signing the ICLA or by contributing on behalf of your company](https://supermarket.chef.io/become-a-contributor).
 
-For more information about licensing, copyright, and CLAs see Chef's [Community Contributions](http://docs.chef.io/community_contributions.html) page.
+For more information about licensing, copyright, and CLAs see Chef's [Community Contributions](https://docs.chef.io/community_contributions.html) page.
 
 Working with the community
 --------------------------
@@ -31,9 +31,8 @@ These resources will help you learn more about Chef and connect to other members
 
 * [chef](http://lists.chef.io/sympa/info/chef) and [chef-dev](http://lists.chef.io/sympa/info/chef-dev) mailing lists
 * #chef and #chef-hacking IRC channels on irc.freenode.net
-* [Chef docs](http://docs.chef.io)
-* Chef [product page](http://www.chef.io/chef)
-
+* [Chef docs](https://docs.chef.io)
+* Chef [product page](https://www.chef.io/chef)
 
 Overview
 --------
