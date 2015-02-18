@@ -17,9 +17,9 @@ describe Curry::Repository do
   end
 
   it 'assigns name and owner based on full_name' do
-    repository = Curry::Repository.new(full_name: 'opscode/supermarket')
+    repository = Curry::Repository.new(full_name: 'chef/supermarket')
 
-    expect(repository.owner).to eql('opscode')
+    expect(repository.owner).to eql('chef')
     expect(repository.name).to eql('supermarket')
   end
 end

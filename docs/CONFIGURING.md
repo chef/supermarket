@@ -18,7 +18,7 @@ core functionality of Supermarket.
 * The `SECRET_KEY_BASE` is similar to the `DEVISE_SECRET_KEY`, but is for
   Rails. Set it to whatever you want in development.
 * `CHEF_OAUTH2_APP_ID` and `CHEF_OAUTH2_SECRET` are generated when [registering
-  an application on oc-id](https://id.opscode.com/id/oauth/applications/). They
+  an application on oc-id](https://id.chef.io/id/oauth/applications/). They
   are needed for authentication via OAuth2. When using the application locally,
   be sure to create an application and set the callback url to
   `http://localhost:3000/auth/chef_oauth2/callback` or whatever localhost domain
@@ -27,7 +27,7 @@ core functionality of Supermarket.
   will report various statistics to, currently API and web download counts.
 * `CLA_REPORT_EMAIL` an email address where a monthly report of new CLA signers will be sent.
 
-  **NOTE** oc-id is still a work-in-progress; as such, you may find that you are unable to register an application. If this is the case, see [#425](https://github.com/opscode/supermarket/issues/550) for a discussion on how to bypass OAuth for now.
+  **NOTE** oc-id is still a work-in-progress; as such, you may find that you are unable to register an application. If this is the case, see [#425](https://github.com/chef/supermarket/issues/550) for a discussion on how to bypass OAuth for now.
 * `CCLA_VERSION` and `ICLA_VERSION` set the version of the current CCLA and
   ICLA respectively.
 

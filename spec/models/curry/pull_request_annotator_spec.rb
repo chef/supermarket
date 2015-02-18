@@ -10,7 +10,7 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
     end
 
     let(:repository) do
-      create(:repository, owner: 'opscode', name: 'paprika')
+      create(:repository, owner: 'chef', name: 'paprika')
     end
 
     let(:pull_request) do

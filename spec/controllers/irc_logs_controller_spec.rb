@@ -12,7 +12,7 @@ describe IrcLogsController do
   describe 'GET #show' do
     let(:botbot_base_url) { 'https://botbot.me/freenode/' }
     let(:github_repo_url) do
-      'https://github.com/opscode/irc_log_archives'
+      'https://github.com/chef/irc_log_archives'
     end
 
     it 'redirects to the botbot channel if the date is not specified' do

@@ -29,7 +29,7 @@
     <h1>Add A Repository</h1>
 
     <%= form_for(@repository) do |f| %>
-      <%= f.text_field :full_name, placeholder: 'opscode/supermarket' %>
+      <%= f.text_field :full_name, placeholder: 'chef/supermarket' %>
       <%= f.submit "Add Repository", class: 'button radius primary expand' %>
     <% end %>
 

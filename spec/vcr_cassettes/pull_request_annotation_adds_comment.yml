@@ -89,12 +89,12 @@ http_interactions:
         to Chef Software, Inc. projects or are using a non-GitHub verified email address.
         To become authorized to contribute, you will need to sign the Contributor
         License Agreement (CLA) as an individual or on behalf of your company. [You
-        can read more on Chef''s blog.](https://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process)\n\n##
+        can read more on Chef''s blog.](https://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process)\n\n##
         Non-GitHub Verified Committers\n\nThere are 1 commit author(s) whose commits
         are authored by a non-GitHub verified email address. Chef will have to manually
         verify that they are authorized to contribute.\n\n## GitHub Users Who Are
         Not Authorized To Contribute\n\nThe following GitHub users do not appear to
-        have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}'
+        have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.chef.io)"}'
     headers:
       Accept:
       - application/vnd.github.v3+json
@@ -168,12 +168,12 @@ http_interactions:
         Inc. projects or are using a non-GitHub verified email address. To become
         authorized to contribute, you will need to sign the Contributor License Agreement
         (CLA) as an individual or on behalf of your company. [You can read more on
-        Chef''s blog.](https://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process)\n\n##
+        Chef''s blog.](https://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process)\n\n##
         Non-GitHub Verified Committers\n\nThere are 1 commit author(s) whose commits
         are authored by a non-GitHub verified email address. Chef will have to manually
         verify that they are authorized to contribute.\n\n## GitHub Users Who Are
         Not Authorized To Contribute\n\nThe following GitHub users do not appear to
-        have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}'
+        have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.chef.io)"}'
     http_version: 
   recorded_at: Tue, 02 Dec 2014 19:30:58 GMT
 - request:
@@ -256,17 +256,17 @@ http_interactions:
         Inc. projects or are using a non-GitHub verified email address. To become
         authorized to contribute, you will need to sign the Contributor License Agreement
         (CLA) as an individual or on behalf of your company. [You can read more on
-        Chef''s blog.](https://www.getchef.com/blog/2014/06/23/changes-to-the-contributor-license-agreement-process)\n\n##
+        Chef''s blog.](https://www.chef.io/blog/2014/06/23/changes-to-the-contributor-license-agreement-process)\n\n##
         Non-GitHub Verified Committers\n\nThere are 1 commit author(s) whose commits
         are authored by a non-GitHub verified email address. Chef will have to manually
         verify that they are authorized to contribute.\n\n## GitHub Users Who Are
         Not Authorized To Contribute\n\nThe following GitHub users do not appear to
-        have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.getchef.com)"}]'
+        have signed a CLA:\n\n* @brettchalupa\n\n[Please sign the CLA here.](https://community.chef.io)"}]'
     http_version: 
   recorded_at: Tue, 02 Dec 2014 19:30:58 GMT
 - request:
     method: get
-    uri: https://api.github.com/repos/opscode/paprika/issues/1/labels
+    uri: https://api.github.com/repos/chef/paprika/issues/1/labels
     body:
       encoding: US-ASCII
       string: ''
@@ -345,7 +345,7 @@ http_interactions:
   recorded_at: Wed, 03 Dec 2014 22:34:27 GMT
 - request:
     method: post
-    uri: https://api.github.com/repos/opscode/paprika/issues/1/comments
+    uri: https://api.github.com/repos/chef/paprika/issues/1/comments
     body:
       encoding: UTF-8
       string: '{"body":"Hi. I am an automated pull request bot named Curry. There
@@ -398,7 +398,7 @@ http_interactions:
       X-Accepted-Oauth-Scopes:
       - ''
       Location:
-      - https://api.github.com/repos/opscode/paprika/issues/comments/65504097
+      - https://api.github.com/repos/chef/paprika/issues/comments/65504097
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       X-Github-Media-Type:
@@ -426,7 +426,7 @@ http_interactions:
       - nosniff
     body:
       encoding: UTF-8
-      string: '{"url":"https://api.github.com/repos/opscode/paprika/issues/comments/65504097","html_url":"https://github.com/opscode/paprika/pull/1#issuecomment-65504097","issue_url":"https://api.github.com/repos/opscode/paprika/issues/1","id":65504097,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-03T22:34:33Z","updated_at":"2014-12-03T22:34:33Z","body":"Hi.
+      string: '{"url":"https://api.github.com/repos/chef/paprika/issues/comments/65504097","html_url":"https://github.com/chef/paprika/pull/1#issuecomment-65504097","issue_url":"https://api.github.com/repos/chef/paprika/issues/1","id":65504097,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-03T22:34:33Z","updated_at":"2014-12-03T22:34:33Z","body":"Hi.
         I am an automated pull request bot named Curry. There are commits in this
         pull request whose authors are not yet authorized to contribute to Chef Software,
         Inc. projects or are using a non-GitHub verified email address. To become
@@ -442,7 +442,7 @@ http_interactions:
   recorded_at: Wed, 03 Dec 2014 22:34:33 GMT
 - request:
     method: get
-    uri: https://api.github.com/repos/opscode/paprika/issues/1/comments
+    uri: https://api.github.com/repos/chef/paprika/issues/1/comments
     body:
       encoding: US-ASCII
       string: ''
@@ -514,7 +514,7 @@ http_interactions:
       - 474556b853193c38f1b14328ce2d1b7d
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/opscode/paprika/issues/comments/65504097","html_url":"https://github.com/opscode/paprika/pull/1#issuecomment-65504097","issue_url":"https://api.github.com/repos/opscode/paprika/issues/1","id":65504097,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-03T22:34:33Z","updated_at":"2014-12-03T22:34:33Z","body":"Hi.
+      string: '[{"url":"https://api.github.com/repos/chef/paprika/issues/comments/65504097","html_url":"https://github.com/chef/paprika/pull/1#issuecomment-65504097","issue_url":"https://api.github.com/repos/chef/paprika/issues/1","id":65504097,"user":{"login":"curryandr","id":6596341,"avatar_url":"https://avatars.githubusercontent.com/u/6596341?v=3","gravatar_id":"","url":"https://api.github.com/users/curryandr","html_url":"https://github.com/curryandr","followers_url":"https://api.github.com/users/curryandr/followers","following_url":"https://api.github.com/users/curryandr/following{/other_user}","gists_url":"https://api.github.com/users/curryandr/gists{/gist_id}","starred_url":"https://api.github.com/users/curryandr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/curryandr/subscriptions","organizations_url":"https://api.github.com/users/curryandr/orgs","repos_url":"https://api.github.com/users/curryandr/repos","events_url":"https://api.github.com/users/curryandr/events{/privacy}","received_events_url":"https://api.github.com/users/curryandr/received_events","type":"User","site_admin":false},"created_at":"2014-12-03T22:34:33Z","updated_at":"2014-12-03T22:34:33Z","body":"Hi.
         I am an automated pull request bot named Curry. There are commits in this
         pull request whose authors are not yet authorized to contribute to Chef Software,
         Inc. projects or are using a non-GitHub verified email address. To become

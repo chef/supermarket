@@ -7,7 +7,7 @@ module Universe
   LOCATION_TYPE = 'location_type'.freeze
   DOWNLOAD_URL = 'download_url'.freeze
   DEPENDENCIES = 'dependencies'.freeze
-  OPSCODE = 'opscode'.freeze
+  OPSCODE = 'chef'.freeze
 
   module_function
 

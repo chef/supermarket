@@ -26,7 +26,7 @@ class IrcLogsController < ApplicationController
   #
   def show
     botbot_base_url = 'https://botbot.me/freenode/'
-    github_repo_url = 'https://github.com/opscode/irc_log_archives'
+    github_repo_url = 'https://github.com/chef/irc_log_archives'
 
     channel = params[:channel]
     date_str = params.fetch(:date, nil)

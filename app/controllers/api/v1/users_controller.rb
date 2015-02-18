@@ -6,7 +6,7 @@ class Api::V1::UsersController < Api::V1Controller
   # exist, return a 404.
   #
   # @example
-  #   GET /api/v1/users/opscode
+  #   GET /api/v1/users/chef
   #
   def show
     @user = Account.for(

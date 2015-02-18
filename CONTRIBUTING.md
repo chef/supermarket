@@ -29,7 +29,7 @@ Working with the community
 --------------------------
 These resources will help you learn more about Chef and connect to other members of the Chef community:
 
-* [chef](http://lists.opscode.com/sympa/info/chef) and [chef-dev](http://lists.opscode.com/sympa/info/chef-dev) mailing lists
+* [chef](http://lists.chef.io/sympa/info/chef) and [chef-dev](http://lists.chef.io/sympa/info/chef-dev) mailing lists
 * #chef and #chef-hacking IRC channels on irc.freenode.net
 * [Chef docs](http://docs.chef.io)
 * Chef [product page](http://www.chef.io/chef)
@@ -39,19 +39,19 @@ Overview
 --------
 If you're experienced with the toolchain, here are the steps for submitting a patch to Supermarket:
 
-1. [Fork the project](https://github.com/opscode/supermarket/fork) on GitHub
+1. [Fork the project](https://github.com/chef/supermarket/fork) on GitHub
 1. Create a feature branch:
 
         $ git checkout -b my_feature
 
 1. Make your changes, writing excellent commit messages and adding appropiate test coverage
-1. Open a [Pull Request](https://github.com/opscode/supermarket/pull) against the supermarket master branch on GitHub
+1. Open a [Pull Request](https://github.com/chef/supermarket/pull) against the supermarket master branch on GitHub
 
 
 Helpful Tips
 ------------
 ### Writing Commit Messages
-Commit messages should be in the present tense, starting with an action verb, and contain a full predicate. Additional information, such as justification or helpful links, may be added after the commit header. See [0f1ef3fe54](https://github.com/opscode/supermarket/commit/0f1ef3fe54) for an example multi-line commit.
+Commit messages should be in the present tense, starting with an action verb, and contain a full predicate. Additional information, such as justification or helpful links, may be added after the commit header. See [0f1ef3fe54](https://github.com/chef/supermarket/commit/0f1ef3fe54) for an example multi-line commit.
 
 ```text
 Bad:  Added some feature
