@@ -17,8 +17,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder './', '/vagrant', disabled: true
 
   config.vm.provider :virtualbox do |vb, override|
-    override.vm.box     = 'chef-ubuntu-12.04'
-    override.vm.box_url = 'https://chef-vm-bento.s3.amazonaws.com/vagrant/chef_ubuntu-12.04_provisionerless.box'
+    override.vm.box     = 'opscode-ubuntu-12.04'
+    override.vm.box_url = 'http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box'
     vb.customize ['modifyvm', :id, '--memory', VM_MEMORY]
     vb.customize ['modifyvm', :id, '--cpus', VM_CPUS]
   end
