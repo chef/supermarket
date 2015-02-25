@@ -9,7 +9,7 @@ internally, behind-the-firewall.
 The code is designed to be easy for others to contribute to. To that end,
 the goal of this README is to introduce you to the project and get you up and
 running. More information about Supermarket can be found in [the
-wiki](https://github.com/chef/supermarket/wiki). 
+wiki](https://github.com/chef/supermarket/wiki).
 [View the roadmap](https://github.com/chef/supermarket/wiki/Roadmap), and
 [follow along with the project development in
 waffle.io](https://waffle.io/chef/supermarket). Supermarket has
@@ -35,7 +35,7 @@ repositories are:
 ## Requirements
 
 - Ruby 2.1.3
-- PostgreSQL 9.3+
+- PostgreSQL 9.2
 - Redis 2.4+
 
 ## Development
@@ -119,13 +119,30 @@ This is because of the Bundler config in `.bundle/config`.
 
 
 ### Local Environment (Advanced)
+These instructions are tested and verified on Mac OS X Yosemite
 
-1. Install Ruby 2.0 (latest patch) using your favorite Ruby manager
-1. Install Postgres (from [homebrew](http://brew.sh/) or the [app](http://postgresapp.com/))
-   NOTE: This application requires Postgresql version 9.2.  Homebrew will install a later version by default.  To install the earlier version using homebrew see this [stack overflow](http:
-//stackoverflow.com/a/4158763)
-1. Install Redis (required to run background jobs)
-1. Make sure both Postgres and the Redis server are running
+1. Install a Ruby manager - if you don't already have one, you will need a Ruby manager to install Ruby 2.1.3 such as:
+   * [RVM](https://rvm.io)
+   * [Rbenv](https://github.com/sstephenson/rbenv)
+   * [chruby] (https://github.com/postmodern/chruby)
+   * or any other Ruby version manager that may come along
+
+1. Use your ruby manager to install Ruby 2.1.3.  For instructions on this, please see the manager's documentation.
+
+1. Install Postgres - There are two ways to install Postgres on OS X
+  * Install the [Postgres App](http://postgresapp.com/).  This is probably the simplest way to get Postgres running on your mac, it "just works."  You can then start a Postgres server through the GUI of the app
+  * Through [Homebrew](http://brew.sh/).  Supermarket requires Postgresql version 9.2.  Homebrew will install a later version by default. To install the earlier version using homebrew see this [stack overflow](http://stackoverflow.com/questions/3987683/homebrew-install-specific-version-of-formula).  When installed through homebrew, Postgres often requires additional configuration, see this [blog post](https://www.codefellows.org/blog/three-battle-tested-ways-to-install-postgresql) for instructions.  You can then start the Postgresql server with
+
+  ```
+  $ pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+  ```
+
+1. Install Redis.  You can install this with Homebrew.  Follow the instructions in the install output to start the redis server.
+
+  ```
+  $ brew install redis
+  ```
+
 1. Install bundler
 
   ```
