@@ -176,9 +176,11 @@ These instructions are tested and verified on Mac OS X Yosemite
 
 ## Tests
 
+Requirements for tests: PhantomJS 1.8, Node
+
 Run the entire test suite (rspec, rubocop and mocha) with:
 
-``` sh
+```
 $ bundle exec rake spec:all
 ```
 
@@ -202,6 +204,18 @@ for an example.
 Some specs run using [PhantomJS](http://phantomjs.org/), which must be
 installed for the test suite to pass.
 
+NOTE: Supermarket requires PhantomJS 1.8. If you are installing with Homebrew, it will install PhantomJS 2.0.  To get around this:
+  * uninstall PhantomJS if you've already installed PhantomJS 2.0
+
+  ```
+  $ brew uninstall phantomjs
+  ```
+
+  * then install PhantomJS 1.8 with
+
+  ```
+  $ brew install homebrew/versions/phantomjs182
+  ```
 ### JavaScript Tests
 
 The JavaScript specs are run with [Karma](http://karma-runner.github.io) and use
