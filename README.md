@@ -174,6 +174,82 @@ These instructions are tested and verified on Mac OS X Yosemite
   $ foreman start
   ```
 
+## Setting up Auth
+1. Setting up oc-id
+Supermarket uses oc-id running on a Chef server to authenticate users to Supermarket.
+
+NOTE: Authentication currently requires a live chef server running oc-id.  We are working on a solution which would allow a developer to run the authentication locally, stay tuned.
+
+Create a new application and register it on oc-id (I called my application "Application:Supermarket Development").  Set the callback url to http://localhost:3000/auth/chef_oauth2/callback or whatever localhost domain you use.
+
+Open up the .env file in your local copy of the Supermarket repo.  Replace these values:
+
+  ```
+  CHEF_OAUTH2_APP_ID=YOUR_CHEF_OAUTH2_APP_ID
+  CHEF_OAUTH2_SECRET=YOUR_CHEF_OAUTH2_SECRET
+  ```
+with these values:
+
+  ```
+  CHEF_OAUTH2_APP_ID=[Application ID of the oc-id application you just registered]
+  CHEF_OAUTH2_SECRET=[Secret of the oc-id application you just registered]
+  ```
+
+Now when you click on "Sign In" you should be signed into your supermarket account with your Chef server account!
+
+## Connecting your Github Acount
+
+On the production site, users are required to sign a CLA before they can upload cookbooks.
+
+You can simulate this by creating an application with your Github account.  To do this:
+
+1. Log into your Github acount if you aren't already.
+2. Click on your username in the upper right hand corner.  This will bring you to your Profile page.
+3. Click the "Edit Profile" button in the upper right corner of the Profile page.
+4. Click on "Applications" in the vertical menu on the left hand side
+5. At the top of the screen you'll see a section labeled "Developer applications" with a button that says "Register new Application."  Click on this button.
+6.  Name your application whatever you like (I use "Chef-Supermarket-Testing"), the set the homepage url as http://localhost:3000 (or whatever localhost domain that you use).  Also set the Authorization callback URL to http://localhost:3000 (or your localhost domain of choice).
+7. Click the "Register application" button.
+8.  Open up the .env file in your local copy of the Supermarket repo.  Replace these values:
+
+  ```
+  GITHUB_KEY=YOUR_GITHUB_KEY
+  GITHUB_SECRET=YOUR_GITHUB_SECRET
+  ```
+
+  with these values:
+
+  ```
+  GITHUB_KEY=[Your new application's client ID]
+  GITHUB_SECRET=[Your new application's client secret]
+  ```
+
+Next, create a Github Access token.  You also do this from the "Applications" section of your Profile page.
+
+1. Look at the "Personal access tokens section heading." Click on the "Generate new token" button.
+2. When prompted, enter your Github password.
+3. Enter whatever you like for the Token description, I use "testing-supermarket"
+4. Leave the scopes at the defaults
+5. Click the "Generate token" button
+6. Copy the token it generates and put it somewhere safe!
+7. Open up your .env file again and replace this value:
+
+  ```
+  GITHUB_ACCESS_TOKEN=YOUR_GITHUB_ACCESS_TOKEN
+  ```
+
+  with this value:
+
+  ```
+  GITHUB_ACCESS_TOKEN=[Token you just generated through Github]
+  ```
+ 1. Now hover over your account icon and username in the upper right hand corner of Supermarket in your browser
+ 2. Click on "Sign CCLA"
+ 3. Click on the big green button to connect your github account to your local version of Supermarket - this will connect to the application you just created.
+ 4. Fill in the form for the CCLA (this is just a local copy that will go to your local database, it won't affect the CCLA you signed for Chef).
+ 5. Click 'Sign CCLA'
+ 6. Now your local DB will record that you signed the CCLA.
+
 ## Tests
 
 Requirements for tests: PhantomJS 1.8, Node
