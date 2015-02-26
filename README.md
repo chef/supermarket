@@ -175,7 +175,6 @@ These instructions are tested and verified on Mac OS X Yosemite
   ```
 
 ## Setting up Auth
-1. Setting up oc-id
 Supermarket uses oc-id running on a Chef server to authenticate users to Supermarket.
 
 NOTE: Authentication currently requires a live chef server running oc-id.  We are working on a solution which would allow a developer to run the authentication locally, stay tuned.
@@ -243,12 +242,12 @@ Next, create a Github Access token.  You also do this from the "Applications" se
   ```
   GITHUB_ACCESS_TOKEN=[Token you just generated through Github]
   ```
- 1. Now hover over your account icon and username in the upper right hand corner of Supermarket in your browser
- 2. Click on "Sign CCLA"
- 3. Click on the big green button to connect your github account to your local version of Supermarket - this will connect to the application you just created.
- 4. Fill in the form for the CCLA (this is just a local copy that will go to your local database, it won't affect the CCLA you signed for Chef).
- 5. Click 'Sign CCLA'
- 6. Now your local DB will record that you signed the CCLA.
+1. Now hover over your account icon and username in the upper right hand corner of Supermarket in your browser
+2. Click on "Sign CCLA"
+3. Click on the big green button to connect your github account to your local version of Supermarket - this will connect to the application you just created.
+4. Fill in the form for the CCLA (this is just a local copy that will go to your local database, it won't affect the CCLA you signed for Chef).
+5. Click 'Sign CCLA'
+6. Now your local DB will record that you signed the CCLA.
 
 ## Tests
 
