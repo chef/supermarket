@@ -35,7 +35,7 @@ repositories are:
 ## Requirements
 
 - Ruby 2.1.3
-- PostgreSQL 9.2
+- PostgreSQL 9.2+
 - Redis 2.4+
 
 ## Development
@@ -181,7 +181,7 @@ NOTE: Authentication currently requires a live chef server running oc-id.  We ar
 
 Create a new application and register it on oc-id (I called my application "Application:Supermarket Development").  Set the callback url to http://localhost:3000/auth/chef_oauth2/callback or whatever localhost domain you use.
 
-Open up the .env file in your local copy of the Supermarket repo.  Replace these values:
+Open up the .env.development file in your local copy of the Supermarket repo.  Replace these values:
 
   ```
   CHEF_OAUTH2_APP_ID=YOUR_CHEF_OAUTH2_APP_ID
@@ -209,7 +209,7 @@ You can simulate this by creating an application with your Github account.  To d
 5. At the top of the screen you'll see a section labeled "Developer applications" with a button that says "Register new Application."  Click on this button.
 6.  Name your application whatever you like (I use "Chef-Supermarket-Testing"), the set the homepage url as http://localhost:3000 (or whatever localhost domain that you use).  Also set the Authorization callback URL to http://localhost:3000 (or your localhost domain of choice).
 7. Click the "Register application" button.
-8.  Open up the .env file in your local copy of the Supermarket repo.  Replace these values:
+8.  Open up the .env.development file in your local copy of the Supermarket repo.  Replace these values:
 
   ```
   GITHUB_KEY=YOUR_GITHUB_KEY
@@ -231,7 +231,7 @@ Next, create a Github Access token.  You also do this from the "Applications" se
 4. Leave the scopes at the defaults
 5. Click the "Generate token" button
 6. Copy the token it generates and put it somewhere safe!
-7. Open up your .env file again and replace this value:
+7. Open up your .env.development file again and replace this value:
 
   ```
   GITHUB_ACCESS_TOKEN=YOUR_GITHUB_ACCESS_TOKEN
