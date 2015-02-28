@@ -121,6 +121,8 @@ This is because of the Bundler config in `.bundle/config`.
 ### Local Environment (Advanced)
 These instructions are tested and verified on Mac OS X Yosemite
 
+1. Make sure you have XCode installed
+
 1. Install a Ruby manager - if you don't already have one, you will need a Ruby manager to install Ruby 2.1.3 such as:
    * [RVM](https://rvm.io)
    * [Rbenv](https://github.com/sstephenson/rbenv)
@@ -174,6 +176,8 @@ These instructions are tested and verified on Mac OS X Yosemite
   $ foreman start
   ```
 
+  If you receive errors, make sure that redis and Postgres are running.
+
 ## Setting up Auth
 Supermarket uses oc-id running on a Chef server to authenticate users to Supermarket.
 
@@ -181,7 +185,7 @@ NOTE: Authentication currently requires a live chef server running oc-id.  We ar
 
 Create a new application and register it on oc-id (I called my application "Application:Supermarket Development").  Set the callback url to http://localhost:3000/auth/chef_oauth2/callback or whatever localhost domain you use.
 
-Open up the .env.development file in your local copy of the Supermarket repo.  Replace these values:
+In your local copy of the Supermarket repo, copy the .env file to .env.development.  Open up .env.development and replace these values:
 
   ```
   CHEF_OAUTH2_APP_ID=YOUR_CHEF_OAUTH2_APP_ID
@@ -194,7 +198,11 @@ with these values:
   CHEF_OAUTH2_SECRET=[Secret of the oc-id application you just registered]
   ```
 
-Now when you click on "Sign In" you should be signed into your supermarket account with your Chef server account!
+Restart your foreman server.
+
+Now when you click on "Sign In" you should be signed into your supermarket account with your Chef account!
+
+NOTE: If you receive an omniauth csrf detected error, try clearing your browser's cache.
 
 ## Connecting your Github Acount
 
@@ -242,12 +250,13 @@ Next, create a Github Access token.  You also do this from the "Applications" se
   ```
   GITHUB_ACCESS_TOKEN=[Token you just generated through Github]
   ```
-1. Now hover over your account icon and username in the upper right hand corner of Supermarket in your browser
-2. Click on "Sign CCLA"
-3. Click on the big green button to connect your github account to your local version of Supermarket - this will connect to the application you just created.
-4. Fill in the form for the CCLA (this is just a local copy that will go to your local database, it won't affect the CCLA you signed for Chef).
-5. Click 'Sign CCLA'
-6. Now your local DB will record that you signed the CCLA.
+1. Restart your foreman server.
+2. Now hover over your account icon and username in the upper right hand corner of Supermarket in your browser
+3. Click on "Sign CCLA"
+4. Click on the big green button to connect your github account to your local version of Supermarket - this will connect to the application you just created.
+5. Fill in the form for the CCLA (this is just a local copy that will go to your local database, it won't affect the CCLA you signed for Chef).
+6. Click 'Sign CCLA'
+7. Now your local DB will record that you signed the CCLA.
 
 ## Tests
 
