@@ -9,7 +9,7 @@ internally, behind-the-firewall.
 The code is designed to be easy for others to contribute to. To that end,
 the goal of this README is to introduce you to the project and get you up and
 running. More information about Supermarket can be found in [the
-wiki](https://github.com/chef/supermarket/wiki). 
+wiki](https://github.com/chef/supermarket/wiki).
 [View the roadmap](https://github.com/chef/supermarket/wiki/Roadmap), and
 [follow along with the project development in
 waffle.io](https://waffle.io/chef/supermarket). Supermarket has
@@ -35,7 +35,7 @@ repositories are:
 ## Requirements
 
 - Ruby 2.1.3
-- PostgreSQL 9.3+
+- PostgreSQL 9.2+
 - Redis 2.4+
 
 ## Development
@@ -119,13 +119,32 @@ This is because of the Bundler config in `.bundle/config`.
 
 
 ### Local Environment (Advanced)
+These instructions are tested and verified on Mac OS X Yosemite
 
-1. Install Ruby 2.0 (latest patch) using your favorite Ruby manager
-1. Install Postgres (from [homebrew](http://brew.sh/) or the [app](http://postgresapp.com/))
-   NOTE: This application requires Postgresql version 9.2.  Homebrew will install a later version by default.  To install the earlier version using homebrew see this [stack overflow](http:
-//stackoverflow.com/a/4158763)
-1. Install Redis (required to run background jobs)
-1. Make sure both Postgres and the Redis server are running
+1. Make sure you have XCode installed
+
+1. Install a Ruby manager - if you don't already have one, you will need a Ruby manager to install Ruby 2.1.3 such as:
+   * [RVM](https://rvm.io)
+   * [Rbenv](https://github.com/sstephenson/rbenv)
+   * [chruby] (https://github.com/postmodern/chruby)
+   * or any other Ruby version manager that may come along
+
+1. Use your ruby manager to install Ruby 2.1.3.  For instructions on this, please see the manager's documentation.
+
+1. Install Postgres - There are two ways to install Postgres on OS X
+  * Install the [Postgres App](http://postgresapp.com/).  This is probably the simplest way to get Postgres running on your mac, it "just works."  You can then start a Postgres server through the GUI of the app
+  * Through [Homebrew](http://brew.sh/).  Supermarket requires Postgresql version 9.2.  Homebrew will install a later version by default. To install the earlier version using homebrew see this [stack overflow](http://stackoverflow.com/questions/3987683/homebrew-install-specific-version-of-formula).  When installed through homebrew, Postgres often requires additional configuration, see this [blog post](https://www.codefellows.org/blog/three-battle-tested-ways-to-install-postgresql) for instructions.  You can then start the Postgresql server with
+
+  ```
+  $ pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+  ```
+
+1. Install Redis.  You can install this with Homebrew.  Follow the instructions in the install output to start the redis server.
+
+  ```
+  $ brew install redis
+  ```
+
 1. Install bundler
 
   ```
@@ -157,11 +176,95 @@ This is because of the Bundler config in `.bundle/config`.
   $ foreman start
   ```
 
+  If you receive errors, make sure that redis and Postgres are running.
+
+## Setting up Auth
+Supermarket uses oc-id running on a Chef server to authenticate users to Supermarket.
+
+NOTE: Authentication currently requires a live chef server running oc-id.  We are working on a solution which would allow a developer to run the authentication locally, stay tuned.
+
+Create a new application and register it on oc-id (I called my application "Application:Supermarket Development").  Set the callback url to http://localhost:3000/auth/chef_oauth2/callback or whatever localhost domain you use.
+
+In your local copy of the Supermarket repo, copy the .env file to .env.development.  Open up .env.development and replace these values:
+
+  ```
+  CHEF_OAUTH2_APP_ID=YOUR_CHEF_OAUTH2_APP_ID
+  CHEF_OAUTH2_SECRET=YOUR_CHEF_OAUTH2_SECRET
+  ```
+with these values:
+
+  ```
+  CHEF_OAUTH2_APP_ID=[Application ID of the oc-id application you just registered]
+  CHEF_OAUTH2_SECRET=[Secret of the oc-id application you just registered]
+  ```
+
+Restart your foreman server.
+
+Now when you click on "Sign In" you should be signed into your supermarket account with your Chef account!
+
+NOTE: If you receive an omniauth csrf detected error, try clearing your browser's cache.
+
+## Connecting your Github Acount
+
+On the production site, users are required to sign a CLA before they can upload cookbooks.
+
+You can simulate this by creating an application with your Github account.  To do this:
+
+1. Log into your Github acount if you aren't already.
+2. Click on your username in the upper right hand corner.  This will bring you to your Profile page.
+3. Click the "Edit Profile" button in the upper right corner of the Profile page.
+4. Click on "Applications" in the vertical menu on the left hand side
+5. At the top of the screen you'll see a section labeled "Developer applications" with a button that says "Register new Application."  Click on this button.
+6.  Name your application whatever you like (I use "Chef-Supermarket-Testing"), the set the homepage url as http://localhost:3000 (or whatever localhost domain that you use).  Also set the Authorization callback URL to http://localhost:3000 (or your localhost domain of choice).
+7. Click the "Register application" button.
+8.  Open up the .env.development file in your local copy of the Supermarket repo.  Replace these values:
+
+  ```
+  GITHUB_KEY=YOUR_GITHUB_KEY
+  GITHUB_SECRET=YOUR_GITHUB_SECRET
+  ```
+
+  with these values:
+
+  ```
+  GITHUB_KEY=[Your new application's client ID]
+  GITHUB_SECRET=[Your new application's client secret]
+  ```
+
+Next, create a Github Access token.  You also do this from the "Applications" section of your Profile page.
+
+1. Look at the "Personal access tokens section heading." Click on the "Generate new token" button.
+2. When prompted, enter your Github password.
+3. Enter whatever you like for the Token description, I use "testing-supermarket"
+4. Leave the scopes at the defaults
+5. Click the "Generate token" button
+6. Copy the token it generates and put it somewhere safe!
+7. Open up your .env.development file again and replace this value:
+
+  ```
+  GITHUB_ACCESS_TOKEN=YOUR_GITHUB_ACCESS_TOKEN
+  ```
+
+  with this value:
+
+  ```
+  GITHUB_ACCESS_TOKEN=[Token you just generated through Github]
+  ```
+1. Restart your foreman server.
+2. Now hover over your account icon and username in the upper right hand corner of Supermarket in your browser
+3. Click on "Sign CCLA"
+4. Click on the big green button to connect your github account to your local version of Supermarket - this will connect to the application you just created.
+5. Fill in the form for the CCLA (this is just a local copy that will go to your local database, it won't affect the CCLA you signed for Chef).
+6. Click 'Sign CCLA'
+7. Now your local DB will record that you signed the CCLA.
+
 ## Tests
+
+Requirements for tests: PhantomJS 1.8, Node
 
 Run the entire test suite (rspec, rubocop and mocha) with:
 
-``` sh
+```
 $ bundle exec rake spec:all
 ```
 
@@ -185,6 +288,18 @@ for an example.
 Some specs run using [PhantomJS](http://phantomjs.org/), which must be
 installed for the test suite to pass.
 
+NOTE: Supermarket requires PhantomJS 1.8. If you are installing with Homebrew, it will install PhantomJS 2.0.  To get around this:
+  * uninstall PhantomJS if you've already installed PhantomJS 2.0
+
+  ```
+  $ brew uninstall phantomjs
+  ```
+
+  * then install PhantomJS 1.8 with
+
+  ```
+  $ brew install homebrew/versions/phantomjs182
+  ```
 ### JavaScript Tests
 
 The JavaScript specs are run with [Karma](http://karma-runner.github.io) and use
