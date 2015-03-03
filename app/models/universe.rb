@@ -7,7 +7,10 @@ module Universe
   LOCATION_TYPE = 'location_type'.freeze
   DOWNLOAD_URL = 'download_url'.freeze
   DEPENDENCIES = 'dependencies'.freeze
-  OPSCODE = 'chef'.freeze
+  # TODO: change this value to 'chef' once the `remote_cookbook.location_type` in Berkshelf
+  # https://github.com/berkshelf/berkshelf/blob/master/lib/berkshelf/downloader.rb#L60-151
+  # has been updated from 'opscode' to 'chef'
+  CHEF = 'opscode'.freeze
 
   module_function
 
@@ -50,7 +53,7 @@ module Universe
 
       result[name] ||= {}
       result[name][version] ||= {
-        LOCATION_TYPE => OPSCODE,
+        LOCATION_TYPE => CHEF,
         LOCATION_PATH => location_path,
         DOWNLOAD_URL => download_url(name, version, url_base),
         DEPENDENCIES => {}
