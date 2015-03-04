@@ -4,6 +4,8 @@ require 'octokit'
 # Responsible for adding a comment to a Pull Request
 #
 class Curry::UnauthorizedCommitAuthorComment
+  include CustomUrlHelper
+
   #
   # Creates a new +Curry::UnauthorizedCommitAuthorComment+
   #
