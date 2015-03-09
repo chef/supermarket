@@ -9,19 +9,22 @@ driver:
 
 provisioner:
   name: chef_zero
-  require_chef_omnibus: 11.16.2
+  require_chef_omnibus: 12.1.0
 
 platforms:
   - name: ubuntu-10.04
     run_list: apt::default
   - name: centos-5.10
+    run_list: yum-epel::default
+  - name: centos-7.0
+    run_list: yum-epel::default
 
 suites:
   - name: default
-    run_list: omnibus-supermarket::build_package
+    run_list:
+      - omnibus::default
     attributes:
       omnibus:
         build_user:  vagrant
         build_dir:   /home/vagrant/supermarket
         install_dir: /opt/supermarket
-        log_level: debug

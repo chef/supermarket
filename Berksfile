@@ -11,3 +11,5 @@ cookbook 'enterprise',
 
 cookbook 'omnibus'
 cookbook 'omnibus-supermarket', path: './cookbooks/omnibus-supermarket'
+
+cookbook 'yum-epel', '~> 0.6'
