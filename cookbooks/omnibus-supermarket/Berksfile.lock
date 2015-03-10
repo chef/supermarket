@@ -1,8 +1,8 @@
 DEPENDENCIES
   enterprise
     git: https://github.com/opscode-cookbooks/enterprise-chef-common.git
-    revision: bbbe5f85f13d5828b116cef72de9f31f7bec8a23
-    tag: 0.4.5
+    revision: 454d6a3e7d349a25a3c6732761e8e095811219c7
+    tag: 0.5.2
   omnibus-supermarket
     path: .
     metadata: true
