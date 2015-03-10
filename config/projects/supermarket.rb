@@ -32,7 +32,7 @@ override :cacerts, version: '2014.08.20'
 override :bundler, version: "1.7.3"
 override :'chef-gem', version: "11.16.4"
 override :postgresql, version: "9.3.4"
-override :'omnibus-ctl', version: "nls/ignore-config"
+override :'omnibus-ctl', version: '0.3.3'
 override :ruby, version: "2.1.3"
 override :rubygems, version: "2.4.1"
 
