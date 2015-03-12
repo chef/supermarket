@@ -48,77 +48,7 @@ See `.env.example` for required keys and secrets to get up and running.
 goes into detail about the not-so-straightforward configuration that needs
 to happen to get Supermarket working locally.
 
-### Using Vagrant (Beginner)
-
-Supermarket includes a collection of Chef cookbooks and a preconfigured
-`Vagrantfile` to make it easy to get up an running without modifying your local system.
-
-1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and
-[Vagrant](http://www.vagrantup.com/downloads.html)
-
-1. Install the `vagrant-omnibus` plugin:
-
-  ```
-  $ vagrant plugin install vagrant-omnibus
-  ```
-
-1. Install the `vagrant-berkshelf` plugin:
-
-  ```
-  $ vagrant plugin install vagrant-berkshelf --plugin-version '>= 2.0.1'
-  ```
-
-1. Run the server:
-
-  ```
-  $ ./bin/supermarket server
-  ```
-
-The next time you want to start the application, you only need to run:
-
-```
-$ ./bin/supermarket server
-```
-
-#### About Vagrant
-
-Vagrant uses VirtualBox to run a VM that has access to the application project
-files. It syncs your local project files with the VM. Running the
-`./bin/supermarket server` command spins up a VM. When you are done running the
-application, do not forget to run `vagrant suspend` or `vagrant halt` to give
-the VM a break.
-
-You can [read more about Vagrant teardown in the Vagrant
-docs](http://docs.vagrantup.com/v2/getting-started/teardown.html).
-
-[Read more about changing the Vagrant VM defaults in the wiki.]
-(https://github.com/chef/supermarket/wiki/Changing-the-Vagrant-VM-Defaults)
-
-#### Guest Additions
-
-If you get an error about Guest Additions, install the `vagrant-vbguest` vagrant
-plugin:
-
-```
-$ vagrant plugin install vagrant-vbguest
-```
-
-#### Switching from Vagrant to Local Environment Development
-
-If you want to switch from Vagrant to your developing locally, you have two
-options:
-
-When Vagrant runs `bundle install` it installs the gems into `vendor/ruby/gems`.
-This is because of the Bundler config in `.bundle/config`.
-
-1. If you want to continue to install gems in `vendor/ruby/gems`, delete that
-   directory and run `bundle install`. This will rebuild the gems with native
-   dependencies on your local machine instead of the Vagrant VM.
-1. If you want to install your gems system wide, delete the `.bundle`
-   directory.
-
-
-### Local Environment (Advanced)
+### Local Environment
 These instructions are tested and verified on Mac OS X Yosemite
 
 1. Make sure you have XCode installed
