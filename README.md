@@ -132,7 +132,7 @@ These instructions are tested and verified on Mac OS X Yosemite
 1. Use your ruby manager to install Ruby 2.1.3.  For instructions on this, please see the manager's documentation.
 
 1. Install Postgres - There are two ways to install Postgres on OS X
-  * Install the [Postgres App](http://postgresapp.com/).  This is probably the simplest way to get Postgres running on your mac, it "just works."  You can then start a Postgres server through the GUI of the app
+  * Install the [Postgres App](http://postgresapp.com/).  This is probably the simplest way to get Postgres running on your mac, it "just works."  You can then start a Postgres server through the GUI of the app. If you go this route then you'll have to add "/Applications/Postgres.app/Contents/Versions/9.4/bin/" or the equivalent to your PATH in order to get the pg gem to build.
   * Through [Homebrew](http://brew.sh/).  Supermarket requires Postgresql version 9.2.  Homebrew will install a later version by default. To install the earlier version using homebrew see this [stack overflow](http://stackoverflow.com/questions/3987683/homebrew-install-specific-version-of-formula).  When installed through homebrew, Postgres often requires additional configuration, see this [blog post](https://www.codefellows.org/blog/three-battle-tested-ways-to-install-postgresql) for instructions.  You can then start the Postgresql server with
 
   ```
