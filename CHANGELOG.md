@@ -1,5 +1,18 @@
 # Supermarket Changelog
 
+## 1.7.0-alpha.0 (2015-03-13)
+
+- Updated omnibus and omnibus-software with bug fixes
+- [#1004] Remove incorrect dev environment instructions
+- [#995] Fixes for blog links
+- [#992] Fix universe endpoint name
+- [#988] Documentation improvements
+- [#982] Fix mailing lists URL
+- [#979] Update README
+- [#978] Revise Curry navigation link copy
+- [#976] Make destruction message less scary
+- [#970] Remove links to old wiki
+
 ## 1.6.0-alpha.0 (2015-01-21)
 
 - [#934] Only show source/issues URLs if they're present
