@@ -63,6 +63,7 @@ gem 'sentry-raven', '~> 0.8.0', require: false
 gem 'sass-rails',   '~> 4.0.4'
 gem 'compass-rails'
 gem 'uglifier',     '~> 2.2'
+gem 'rails_stdout_logging'
 
 group :doc do
   gem 'yard', require: false
