@@ -36,6 +36,7 @@ template "#{node['supermarket']['var_directory']}/etc/unicorn.rb" do
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'
+  variables(node['supermarket']['unicorn'].to_hash)
   notifies :restart, 'runit_service[rails]'
 end
 
