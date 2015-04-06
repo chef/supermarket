@@ -1,111 +1,14 @@
-#!/bin/bash
+#!/bin/sh
 exec 2>&1
 
-#
-# Since unicorn creates a new pid on restart/reload, it needs a little extra love to
-# manage with runit. Instead of managing unicorn directly, we simply trap signal calls
-# to the service and redirect them to unicorn directly.
-#
+export PATH=<%= node['supermarket']['install_directory'] %>/embedded/bin:$PATH
+export LD_LIBRARY_PATH=<%= node['supermarket']['install_directory'] %>/embedded/lib
+cd <%= node['supermarket']['install_directory'] %>/embedded/service/supermarket
 
-RUNIT_PID=$$
-CUR_PID_FILE=<%= node['supermarket']['unicorn']['pid'] %>
-OLD_PID_FILE=$CUR_PID_FILE.oldbin
-
-echo "Runit service restarted (PID: $RUNIT_PID)"
-
-function is_unicorn_alive {
-    set +e
-    if [ -n $1 ] && kill -0 $1 >/dev/null 2>&1; then
-        echo "yes"
-    fi
-    set -e
-}
-
-if [ -e $OLD_PID_FILE ]; then
-    OLD_PID=$(cat $OLD_PID_FILE)
-    echo "Old master detected (PID: $OLD_PID), waiting for it to exit"
-    while [ -n "$(is_unicorn_alive $OLD_PID)" ]; do
-        echo -n '.'
-        sleep 2
-    done
-fi
-
-if [ -e $CUR_PID_FILE ]; then
-    CUR_PID=$(cat $CUR_PID_FILE)
-    if [ -n "$(is_unicorn_alive $CUR_PID)" ]; then
-        echo "Detected running Unicorn instance (PID: $CUR_PID)"
-        RUNNING=true
-    fi
-fi
-
-function start {
-  unset ACTION
-  if [ $RUNNING ]; then
-    restart
-  else
-    echo 'Starting new Unicorn instance'
-    cd <%= node['supermarket']['app_directory'] %>
-    exec <%= node['runit']['chpst_bin'] %> \
-           -u <%= node['supermarket']['unicorn']['forked_user'] %> \
-           -P \
-         env \
-          PATH=<%= node['supermarket']['install_directory'] %>/embedded/bin:$PATH \
-         bundle exec unicorn \
-            --config-file config/unicorn.rb \
-            --daemonize \
-            --env production
-    sleep 3
-    CUR_PID=$(cat $CUR_PID_FILE)
-  fi
-}
-
-function stop {
-  unset ACTION
-  echo 'Initializing graceful shutdown'
-  kill -QUIT $CUR_PID
-
-  while [ -n "$(is_unicorn_alive $CUR_PID)" ]; do
-    echo -n '.'
-    sleep 2
-  done
-
-  echo 'Unicorn stopped, exiting Runit process'
-  kill -9 $RUNIT_PID
-}
-
-function restart {
-  unset ACTION
-  echo "Restart request captured, swapping old master (PID: $CUR_PID) for new master with USR2"
-  kill -USR2 $CUR_PID
-
-  sleep 2
-  echo 'Restarting Runit service to capture new master PID'
-  exit
-}
-
-function alarm {
-  unset ACTION
-  echo 'Unicorn process interrupted'
-}
-
-trap 'ACTION=stop' STOP TERM KILL
-trap 'ACTION=restart' QUIT USR2 INT
-trap 'ACTION=alarm' ALRM
-
-[ $RUNNING ] || ACTION=start
-
-if [ $ACTION ]; then
-  echo "Performing \"$ACTION\" action and going into sleep mode until new signal captured"
-elif [ $RUNNING ]; then
-  echo "Going into sleep mode until new signal captured"
-fi
-
-if [ $ACTION ] || [ $RUNNING ]; then
-  while true; do
-    [ "$ACTION" == 'start' ] && start
-    [ "$ACTION" == 'stop' ] && stop
-    [ "$ACTION" == 'restart' ] && restart
-    [ "$ACTION" == 'alarm' ] && alarm
-    sleep 2
-  done
-fi
+exec <%= node['runit']['chpst_bin'] %> \
+  -P \
+  -U <%= node['supermarket']['unicorn']['forked_user'] %> \
+  -u <%= node['supermarket']['unicorn']['forked_user'] %> \
+    bundle exec unicorn -E production \
+      -c <%= node['supermarket']['var_directory'] %>/etc/unicorn.rb
+      <%= node['supermarket']['install_directory'] %>/embedded/service/supermarket/config.ru
