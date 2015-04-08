@@ -29,7 +29,7 @@ GitHub Issue](https://github.com/chef/supermarket/issues/new).
 This repository has the code for the Supermarket application, related
 repositories are:
 
-* [chef-cookbooks/supermarket](https://github.com/chef-cookbooks/supermarket): The cookbook used to deploy the application
+* [opscode-cookbooks/supermarket](https://github.com/opscode-cookbooks/supermarket): The cookbook used to deploy the application
 * [chef/omnibus-supermarket](https://github.com/chef/omnibus-supermarket): Code used to build RPM and DEB packages
 
 ## Requirements
