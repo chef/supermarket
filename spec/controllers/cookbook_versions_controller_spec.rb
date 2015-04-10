@@ -55,7 +55,9 @@ describe CookbookVersionsController do
         end
 
         it "redirects to the expiring url" do
-          expect(version.tarball).to receive(:expiring_url).with(ENV['S3_PRIVATE_URLS_EXPIRE']).and_return(version.tarball.expiring_url(ENV['S3_PRIVATE_URLS_EXPIRE']))
+          expect(version.tarball).to receive(:expiring_url)
+            .with(ENV['S3_PRIVATE_URLS_EXPIRE'])
+            .and_return(version.tarball.expiring_url(ENV['S3_PRIVATE_URLS_EXPIRE']))
 
           get :download, cookbook_id: cookbook.name, version: version.to_param
         end
