@@ -37,6 +37,44 @@ describe CookbookVersionsController do
 
       expect(response.status.to_i).to eql(404)
     end
+
+    context 'creating urls to cookbooks' do
+      let(:mock_tarball) { version.tarball }
+
+      before do
+        allow(Cookbook).to receive_message_chain(:with_name, :first!).and_return(cookbook)
+        allow(cookbook).to receive(:get_version!).and_return(version)
+        allow(version).to receive(:tarball).and_return(mock_tarball)
+
+      end
+
+      context 'when using a private s3 bucket' do
+        before do
+          ENV['S3_PRIVATE_URLS'] = "true"
+          ENV['S3_PRIVATE_URLS_EXPIRE'] = "10"
+        end
+
+        it "redirects to the expiring url" do
+          expect(version.tarball).to receive(:expiring_url).with(ENV['S3_PRIVATE_URLS_EXPIRE']).and_return(version.tarball.expiring_url(ENV['S3_PRIVATE_URLS_EXPIRE']))
+
+          get :download, cookbook_id: cookbook.name, version: version.to_param
+        end
+
+        after do
+          ENV['S3_PRIVATE_URLS'] = nil
+          ENV['S3_PRIVATE_URLS_EXPIRE'] = nil
+        end
+      end
+
+      context 'when not using a private s3 bucked' do
+        it 'redirects to the url for the cookbook' do
+          expect(mock_tarball).to_not receive(:expiring_url)
+          expect(mock_tarball).to receive(:url).and_return(version.tarball.url)
+
+          get :download, cookbook_id: cookbook.name, version: version.to_param
+        end
+      end
+    end
   end
 
   describe '#show' do

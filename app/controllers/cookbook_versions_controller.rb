@@ -11,7 +11,8 @@ class CookbookVersionsController < ApplicationController
     Cookbook.increment_counter(:web_download_count, @cookbook.id)
     Supermarket::Metrics.increment('cookbook.downloads.web')
 
-    redirect_to @version.tarball.url
+    url = ENV['S3_PRIVATE_URLS_EXPIRE'].present? ? @version.tarball.expiring_url(ENV['S3_PRIVATE_URLS_EXPIRE']) : @version.tarball.url
+    redirect_to url
   end
 
   #
