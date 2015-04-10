@@ -20,6 +20,12 @@ end
       s3_protocol: ENV['PROTOCOL']
     }
 
+    if ENV['S3_PRIVATE_URLS'].present?
+      options = options.merge(
+        s3_permissions: :private
+      )
+    end
+
     if ENV['CDN_URL'].present?
       options = options.merge(
         url: ':s3_alias_url',
