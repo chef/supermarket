@@ -50,11 +50,11 @@ describe CookbookVersionsController do
 
       context 'when using a private s3 bucket' do
         before do
-          ENV['S3_PRIVATE_URLS'] = "true"
-          ENV['S3_PRIVATE_URLS_EXPIRE'] = "10"
+          ENV['S3_PRIVATE_URLS'] = 'true'
+          ENV['S3_PRIVATE_URLS_EXPIRE'] = '10'
         end
 
-        it "redirects to the expiring url" do
+        it 'redirects to the expiring url' do
           expect(version.tarball).to receive(:expiring_url)
             .with(ENV['S3_PRIVATE_URLS_EXPIRE'])
             .and_return(version.tarball.expiring_url(ENV['S3_PRIVATE_URLS_EXPIRE']))
