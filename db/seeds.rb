@@ -214,7 +214,14 @@ if Rails.env.development?
   #
   # Default cookbooks for use in development.
   #
-  %w(redis postgres node ruby haskell clojure java mysql apache2 nginx yum apt).each do |name|
+  platforms = {
+    'app' => ['windows', 'ubuntu'],
+    'apt' => ['debian', 'ubuntu'],
+    'postgres' => ['fedora', 'debian', 'suse', 'amazon', 'centos', 'redhat', 'scientific', 'oracle','ubuntu'],
+    'clojure' => ['redhat']
+  }
+
+  %w(apt redis postgres node ruby haskell clojure java mysql apache2 nginx yum app).each do |name|
     cookbook = Cookbook.where(
       name: name
     ).first_or_initialize(
@@ -235,6 +242,12 @@ if Rails.env.development?
       readme: File.read('README.md'),
       readme_extension: 'md'
     )
+
+    if platforms.key?(name)
+      platforms[name].each do |platform|
+        cookbook_version.add_supported_platform(platform, '>=0.0')
+      end
+    end
 
     cookbook.cookbook_versions << cookbook_version
     cookbook.save!
