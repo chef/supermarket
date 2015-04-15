@@ -214,7 +214,13 @@ if Rails.env.development?
   #
   # Default cookbooks for use in development.
   #
-  %w(redis postgres node ruby haskell clojure java mysql apache2 nginx yum apt).each do |name|
+  platforms = {
+    'app' => %w(windows, ubuntu),
+    'apt' => %w(debian, ubuntu),
+    'postgres' => %w(fedora, debian, suse, amazon, centos, redhat, scientific, oracle, ubuntu)
+  }
+
+  %w(apt redis postgres node ruby haskell clojure java mysql apache2 nginx yum app).each do |name|
     cookbook = Cookbook.where(
       name: name
     ).first_or_initialize(
@@ -235,6 +241,21 @@ if Rails.env.development?
       readme: File.read('README.md'),
       readme_extension: 'md'
     )
+
+    if platforms.key?(name)
+      platforms[name].each do |platform|
+        cookbook_version.add_supported_platform(platform, '>=0.0')
+      end
+    end
+
+    unless name == 'apt'
+      dependency = CookbookDependency.where(
+        name: 'apt',
+        cookbook: Cookbook.find_by(name: 'apt'),
+        cookbook_version: cookbook_version
+      ).first_or_create!
+      cookbook_version.cookbook_dependencies << dependency
+    end
 
     cookbook.cookbook_versions << cookbook_version
     cookbook.save!
@@ -265,7 +286,7 @@ if Rails.env.development?
       type: 'ohai_plugin',
       description: 'Great ohai plugin.',
       source_url: 'http://example.com',
-      instructions: "Install the plugin in /etc/chef/ohai_plugins.",
+      instructions: 'Install the plugin in /etc/chef/ohai_plugins.',
       owner: user
     )
   end
