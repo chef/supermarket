@@ -60,8 +60,15 @@ the test suite.
   artifacts.
 * `S3_ACCESS_KEY_ID` and `S3_SECRET_ACCESS_KEY` are the keys required to put
   files in the above bucket.
+* `S3_URLS_EXPIRE` is used if you want to use expiring urls for your cookbook
+  artifacts when someone downloads them.
+* `S3_PRIVATE_OBJECTS` is used if you want to set permissions on your cookbook
+  artifacts as 'private'.  Note that this will set this ACL as private on your
+  cookbook object itself, which may conflict with a bucket policy if you use one
+  on your bucket.  If you wish to use a bucket policy, rather than an object policy,
+  leave this variable as nil.
 * `CDN_URL` Used to configure a CDN URL for use with Paperclip. Downloads
-will be aliased with this URL, something like `static.chef.io`.
+  will be aliased with this URL, something like `static.chef.io`.
 * `FIERI_URL` is the URL Supermarket will `POST` to for Cookbook evaluation when
   a cookbook is shared
 
