@@ -215,9 +215,9 @@ if Rails.env.development?
   # Default cookbooks for use in development.
   #
   platforms = {
-    'app' => %w(windows, ubuntu),
-    'apt' => %w(debian, ubuntu),
-    'postgres' => %w(fedora, debian, suse, amazon, centos, redhat, scientific, oracle, ubuntu)
+    'app' => %w(windows ubuntu),
+    'apt' => %w(debian ubuntu),
+    'postgres' => %w(fedora debian suse amazon centos redhat scientific oracle ubuntu)
   }
 
   %w(apt redis postgres node ruby haskell clojure java mysql apache2 nginx yum app).each do |name|
