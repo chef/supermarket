@@ -66,8 +66,8 @@ describe CookbookVersionsController do
         end
       end
 
-      context 'when not using a private s3 bucked' do
-        it 'redirects to the url for the cookbook' do
+      context 'when not using expiring urls' do
+        it 'redirects to the regular url for the cookbook' do
           expect(mock_tarball).to_not receive(:expiring_url)
           expect(mock_tarball).to receive(:url).and_return(version.tarball.url)
 
