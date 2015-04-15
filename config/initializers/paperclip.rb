@@ -20,7 +20,7 @@ end
       s3_protocol: ENV['PROTOCOL']
     }
 
-    if ENV['S3_PRIVATE_URLS'].present?
+    if ENV['S3_PRIVATE_OBJECTS'].present?
       options = options.merge(
         s3_permissions: :private
       )

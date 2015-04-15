@@ -35,8 +35,8 @@ class CookbookVersionsController < ApplicationController
   end
 
   def cookbook_url
-    if ENV['S3_PRIVATE_URLS_EXPIRE'].present?
-      @version.tarball.expiring_url(ENV['S3_PRIVATE_URLS_EXPIRE'])
+    if ENV['S3_URLS_EXPIRE'].present?
+      @version.tarball.expiring_url(ENV['S3_URLS_EXPIRE'])
     else
       @version.tarball.url
     end
