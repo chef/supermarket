@@ -366,6 +366,10 @@ pre {
   font-size: rem-calc(11);
   padding: rem-calc(40);
   text-align: center;
+
+  a {
+    margin-right: rem-calc(25);
+  }
 }
 
 input.error, textarea.error {
