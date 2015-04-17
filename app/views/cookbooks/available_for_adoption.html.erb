@@ -1,0 +1,12 @@
+<%= provide(:title, "Cookbooks available for Adoption") %>
+<%= provide(:description, "Browse and search Chef cookbooks that are available for adoption.") %>
+
+<h3>Cookbooks Available for Adoption</h3>
+
+<ul class="adoptable_cookbooks_list">
+  <%= @available_cookbooks.each do |cookbook| %>
+    <li>
+      <h4><%=link_to "#{cookbook.name}", cookbook_path(cookbook) %></h4>
+    </li>
+  <% end %>
+</ul>

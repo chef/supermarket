@@ -292,4 +292,5 @@ class CookbooksController < ApplicationController
       render partial: 'follow_button_show', locals: { cookbook: @cookbook }
     end
   end
+
 end
