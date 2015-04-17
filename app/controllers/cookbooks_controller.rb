@@ -1,5 +1,5 @@
 class CookbooksController < ApplicationController
-  before_filter :assign_cookbook, except: [:index, :directory]
+  before_filter :assign_cookbook, except: [:index, :directory, :available_for_adoption]
   before_filter :store_location_then_authenticate_user!, only: [:follow, :unfollow, :adoption]
 
   #
@@ -256,6 +256,10 @@ class CookbooksController < ApplicationController
     respond_to do |format|
       format.json
     end
+  end
+
+  def available_for_adoption
+    @available_cookbooks = Cookbook.where(up_for_adoption: true )
   end
 
   private
