@@ -1,5 +1,16 @@
 # Supermarket Changelog
 
+## 1.8.0-alpha.0 (2015-04-16)
+
+- [#1020] Temporary urls for private s3 storage
+- [#1015] adding in links to Chef corporate legalese in common footer
+- [#1023] Remove commas from platform names in seed.rb
+- [#1014] correcting OWNERS file to reflect current ownership
+- [#1019] Add some platforms and dependencies to seed.rb
+- [#1013] Update link to supermarket cookbook in README.md
+- [#940] Make log level configurable
+- [#1001] Update Chef's office address
+
 ## 1.7.0-alpha.0 (2015-03-13)
 
 - Updated omnibus and omnibus-software with bug fixes
