@@ -6,7 +6,11 @@ module MarkdownHelper
     include ActionView::Helpers::TagHelper
 
     def initialize(extensions = {})
-      super extensions.merge(link_attributes: { target: '_blank' }, with_toc_data: true)
+      super extensions.merge(
+        link_attributes: { target: '_blank' },
+        with_toc_data: true,
+        escape_html: true
+      )
     end
 
     #
