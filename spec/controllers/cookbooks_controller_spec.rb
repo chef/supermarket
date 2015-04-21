@@ -107,6 +107,73 @@ describe CookbooksController do
         expect(assigns[:cookbooks]).to_not include(ok_cookbook)
       end
     end
+
+    context 'there is a platform parameter' do
+      let!(:debian_platform) do
+        create(
+        :supported_platform,
+        name: 'debian'
+        )
+      end
+
+      let!(:erlang) do
+        create(
+          :cookbook,
+          name: 'erlang',
+          cookbook_versions: [
+            create(
+              :cookbook_version,
+              supported_platforms: [
+                debian_platform,
+                create(:supported_platform, name: 'ubuntu')
+              ]
+            )
+          ]
+        )
+      end
+
+      let!(:ruby) do
+        create(
+          :cookbook,
+          name: 'ruby',
+          cookbook_versions: [
+            create(
+              :cookbook_version,
+              supported_platforms: [
+                debian_platform,
+                create(:supported_platform, name: 'windows')
+              ]
+            )
+          ]
+        )
+      end
+
+      it 'returns @cookbooks that support some of given platforms' do
+        get :index, platforms: %w(ubuntu windows)
+        expect(assigns[:cookbooks]).to include(erlang)
+        expect(assigns[:cookbooks]).to include(ruby)
+      end
+
+      it 'does not return @cookbooks that does not support any of given platforms' do
+        get :index, platforms: %w(windows)
+        expect(assigns[:cookbooks]).not_to include(erlang)
+      end
+
+      it 'works correctly with search' do
+        get :index, q: 'ruby', platforms: %w(debian)
+        expect(assigns[:cookbooks]).to include(ruby)
+        expect(assigns[:cookbooks]).not_to include(erlang)
+      end
+
+      it 'works correctly with order' do
+        erlang.update_attributes(web_download_count: 10, api_download_count: 100)
+        ruby.update_attributes(web_download_count: 5, api_download_count: 101)
+
+        get :index, order: 'most_downloaded', platforms: %w(debian)
+        expect(assigns[:cookbooks][0]).to eql(erlang)
+        expect(assigns[:cookbooks][1]).to eql(ruby)
+      end
+    end
   end
 
   describe 'POST #adoption' do

@@ -25,7 +25,7 @@ class Cookbook < ActiveRecord::Base
     reorder({
       'recently_updated' => 'updated_at DESC',
       'recently_added' => 'id DESC',
-      'most_downloaded' => '(web_download_count + api_download_count) DESC, id ASC',
+      'most_downloaded' => '(cookbooks.web_download_count + cookbooks.api_download_count) DESC, id ASC',
       'most_followed' => 'cookbook_followers_count DESC, id ASC'
     }.fetch(ordering, 'name ASC'))
   }
@@ -42,6 +42,12 @@ class Cookbook < ActiveRecord::Base
   }
 
   scope :featured, -> { where(featured: true) }
+
+  scope :filter_platforms, lambda { |platforms|
+    joins(cookbook_versions: :supported_platforms)
+    .where('supported_platforms.name IN (?)', platforms).distinct
+    .select('cookbooks.*', '(cookbooks.web_download_count + cookbooks.api_download_count)')
+  }
 
   # Search
   # --------------------

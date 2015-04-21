@@ -37,6 +37,8 @@ class CookbooksController < ApplicationController
       @cookbooks = @cookbooks.order(:name)
     end
 
+    apply_filters
+
     @number_of_cookbooks = @cookbooks.count(:all)
     @cookbooks = @cookbooks.page(params[:page]).per(20)
 
@@ -286,6 +288,12 @@ class CookbooksController < ApplicationController
       render partial: 'follow_button_list', locals: { cookbook: @cookbook }
     else
       render partial: 'follow_button_show', locals: { cookbook: @cookbook }
+    end
+  end
+
+  def apply_filters
+    if params[:platforms].present?
+      @cookbooks = @cookbooks.filter_platforms(params[:platforms])
     end
   end
 end
