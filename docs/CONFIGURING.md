@@ -1,5 +1,10 @@
 # Configuring Supermarket
 
+These instructions show how to configure Supermarket in development mode. If
+running in a production-like environment, you'll be using the Omnibus
+package install, where these settings are driven through
+/etc/supermarket/supermarket.rb.
+
 Supermarket uses [dotenv](https://github.com/bkeepers/dotenv) to handle setting
 environment variables. These are the different configurations needed to get
 Supermarket running. The default parameters provided in `.env` should be
@@ -17,6 +22,9 @@ core functionality of Supermarket.
   developing locally, feel free to set it to anything.
 * The `SECRET_KEY_BASE` is similar to the `DEVISE_SECRET_KEY`, but is for
   Rails. Set it to whatever you want in development.
+* `CHEF_OAUTH2_URL` is the URL for your Chef server (example:
+  https://example.com.) Enterprise Chef >= 11.2 or Chef server >= 12 is
+  required.
 * `CHEF_OAUTH2_APP_ID` and `CHEF_OAUTH2_SECRET` are generated when [registering
   an application on oc-id](https://id.chef.io/id/oauth/applications/). They
   are needed for authentication via OAuth2. When using the application locally,
