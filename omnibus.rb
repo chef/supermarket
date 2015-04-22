@@ -37,7 +37,6 @@ s3_bucket      ENV['AWS_S3_BUCKET'] || 'opscode-omnibus-cache'
 
 # Customize compiler bits
 # ------------------------------
-solaris_compiler 'gcc'
 build_retries 5
 fetcher_read_timeout 120
 
