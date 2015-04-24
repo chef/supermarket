@@ -64,6 +64,11 @@ wrap.
     expect(html).to include('<img alt="" src="//img.example.com">')
   end
 
+  it 'prevents XSS attacks' do
+    html = helper.render_markdown("<iframe src=javascript:alert('hahaha')></iframe>")
+    expect(html).to match(/&lt;iframe src=javascript:alert\(&#39;hahaha&#39;\)&gt;&lt;\/iframe&gt;/)
+  end
+
   it 'uses protocol-relative URLs for images served over HTTPS' do
     html = helper.render_markdown('![](https://img.example.com)')
 
