@@ -1,12 +1,22 @@
 <%= provide(:title, "Cookbooks available for Adoption") %>
 <%= provide(:description, "Browse and search Chef cookbooks that are available for adoption.") %>
 
-<h3>Cookbooks Available for Adoption</h3>
+<div class="page nobg">
+  <div class="heading-with-buttons">
+    <h1 class="title">
+      <%= pluralize(@number_of_available_cookbooks, 'Available Cookbook') %>
+      <small>
+        <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
+      </small>
+    </h1>
+  </div>
 
-<ul class="adoptable_cookbooks_list">
-  <%= @available_cookbooks.each do |cookbook| %>
-    <li>
-      <h4><%=link_to "#{cookbook.name}", cookbook_path(cookbook) %></h4>
-    </li>
-  <% end %>
-</ul>
+  <ul class="listing">
+    <% @available_cookbooks.each do |cookbook| %>
+      <p>
+        <h4><%=link_to "#{cookbook.name}", cookbook_path(cookbook) %></h4>
+        <h4><%=link_to "#{cookbook.description}", cookbook_path(cookbook) %></h4>
+      </p>
+    <% end %>
+  </ul>
+</div>

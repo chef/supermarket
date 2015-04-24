@@ -33,7 +33,7 @@ describe 'cookbook directory' do
     within '.learn_about_cookbooks_content' do
       expect(page).to have_content('How do I adopt a cookbook?')
       click_link('Click here')
-      expect(page).to have_content('Cookbooks available for adoption')
     end
+    expect(page).to have_content('Cookbooks Available for Adoption')
   end
 end

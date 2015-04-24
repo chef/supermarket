@@ -260,6 +260,7 @@ class CookbooksController < ApplicationController
 
   def available_for_adoption
     @available_cookbooks = Cookbook.where(up_for_adoption: true )
+    @number_of_available_cookbooks = @available_cookbooks.count(:all)
   end
 
   private
