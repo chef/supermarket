@@ -9,12 +9,10 @@ describe 'adoptable cookbooks directory' do
 
     visit '/available_for_adoption'
 
-    within '.adoptable_cookbooks_list' do
-      click_link "#{@adoptable_cookbook.name}"
-    end
+    click_link "#{@adoptable_cookbook.name}"
   end
 
   it 'shows an adoptable cookbook' do
-      expect(page).to have_content(@adoptable_cookbook.name)
+    expect(page).to have_content(@adoptable_cookbook.name)
   end
 end
