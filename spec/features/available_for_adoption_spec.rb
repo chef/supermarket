@@ -5,7 +5,7 @@ describe 'adoptable cookbooks directory' do
   # let!(:adoptable_cookbook) { create(:cookbook, up_for_adoption: true ) }
 
   before do
-    @adoptable_cookbook = create(:cookbook, name: 'CookbookName', up_for_adoption: true )
+    @adoptable_cookbook = create(:cookbook, name: 'CookbookName', up_for_adoption: true)
 
     visit '/available_for_adoption'
 

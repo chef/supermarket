@@ -598,8 +598,8 @@ describe CookbooksController do
 
   describe 'GET #available_for_adoption' do
 
-    let!(:adoptable_cookbook) { create(:cookbook, up_for_adoption: true ) }
-    let!(:unadoptable_cookbook) { create(:cookbook ) }
+    let!(:adoptable_cookbook) { create(:cookbook, up_for_adoption: true) }
+    let!(:unadoptable_cookbook) { create(:cookbook) }
 
     it 'has instance variable' do
       get :available_for_adoption
