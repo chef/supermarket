@@ -32,6 +32,7 @@
 //= require organizations
 //= require tools
 //= require searchToggle
+//= require advancedSearch
 
 // Hack to resolve bug with Foundation. Resolved in master
 // here: https://github.com/zurb/foundation/issues/4684 so

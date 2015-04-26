@@ -1,25 +1,50 @@
 <div class="search_bar">
-  <%= form_tag @search[:path], class: 'search_form', method: :get do %>
-    <div class="search_toggle">
-      <a class="button expand large" data-dropdown="search-types" rel="toggle-search-types"><span><%= @search[:name] %></span> <i class="fa fa-chevron-down"></i></a>
+    <%= form_tag @search[:path], class: 'search_form', method: :get do %>
+      <div class="quick_search">
+        <div class="search_toggle">
+          <a class="button expand large" data-dropdown="search-types" rel="toggle-search-types"><span><%= @search[:name] %></span> <i class="fa fa-chevron-down"></i></a>
 
-      <ul id="search-types" data-dropdown-content class="f-dropdown">
-        <li><a href="#" data-url=<%= cookbooks_path %> rel="toggle-cookbook-search">Cookbooks</a></li>
-        <li><a href="#" data-url=<%= tools_path %> rel="toggle-tool-search">Tools</a></li>
-      </ul>
-    </div>
+          <ul id="search-types" data-dropdown-content class="f-dropdown">
+            <li><a href="#" data-url=<%= cookbooks_path %> rel="toggle-cookbook-search">Cookbooks</a></li>
+            <li><a href="#" data-url=<%= tools_path %> rel="toggle-tool-search">Tools</a></li>
+          </ul>
+        </div>
 
-    <div class="search_field">
-      <i class="fa fa-search"></i>
-      <%= search_field_tag :q, params[:q], placeholder: 'Search', class: 'cookbook_search_textfield' %>
-    </div>
+        <div class="search_field">
+          <i class="fa fa-search"></i>
+          <%= search_field_tag :q, params[:q], placeholder: 'Search', class: 'cookbook_search_textfield' %>
+        </div>
 
-    <%= hidden_field_tag :order, params[:order] if params[:order].present? %>
+        <%= hidden_field_tag :order, params[:order] if params[:order].present? %>
 
-    <div class="search_button">
-      <%= button_tag(type: 'submit', class: 'cookbook_search_button', name: nil) do %>
-        GO
-      <% end %>
-    </div>
+        <div class="search_button">
+          <%= button_tag(type: 'submit', class: 'cookbook_search_button', name: nil) do %>
+            GO
+          <% end %>
+        </div>
+
+        <div class="advanced_search_toggle">
+          <span> Advanced Search </span>
+        </div>
+      </div>
+
+      <div class="advanced_search_body">
+        <h4> Select Supported Platforms </h4>
+        <div class = "advanced_search_platforms" >
+
+          <% %w(aix amazon centos debian fedora freebsd gentoo mac_os_x omnios openbsd oracle redhat ubuntu scientific smartos solaris suse windows).each do |platform| %>
+            <div class="advanced_search_platform">
+                <label>
+                  <%=check_box_tag 'platforms[]', platform, params[:platforms] ? params[:platforms].include?(platform) : false %>
+                  <%= platform %>
+                </label>
+            </div>
+          <% end %>
+        </div>
+
+        <div class= "advanced_textfield">
+          <%= search_field_tag 'platforms[]', nil, placeholder: "You can write platform name here, if it's not on the list!", class: 'platform_search_textfield' %>
+        </div>
+      </div>
   <% end %>
 </div>

@@ -292,7 +292,7 @@ class CookbooksController < ApplicationController
   end
 
   def apply_filters
-    if params[:platforms].present?
+    if params[:platforms].present? && !params[:platforms][0].blank?
       @cookbooks = @cookbooks.filter_platforms(params[:platforms])
     end
   end

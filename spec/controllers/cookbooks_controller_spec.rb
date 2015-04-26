@@ -159,6 +159,12 @@ describe CookbooksController do
         expect(assigns[:cookbooks]).not_to include(erlang)
       end
 
+      it 'returns all @cookbooks if only blank platform is given' do
+        get :index, platforms: ['']
+        expect(assigns[:cookbooks]).to include(erlang)
+        expect(assigns[:cookbooks]).to include(ruby)
+      end
+
       it 'works correctly with search' do
         get :index, q: 'ruby', platforms: %w(debian)
         expect(assigns[:cookbooks]).to include(ruby)
