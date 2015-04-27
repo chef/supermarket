@@ -12,12 +12,9 @@
     </h1>
   </div>
 
-  <ul class="listing">
+  <ul class="simple_listing">
     <% @available_cookbooks.each do |cookbook| %>
-      <p>
-        <h4><%=link_to "#{cookbook.name}", cookbook_path(cookbook) %></h4>
-        <h4><%=link_to "#{cookbook.description}", cookbook_path(cookbook) %></h4>
-      </p>
+      <li><%= render "simple_cookbook", cookbook: cookbook %></li>
     <% end %>
   </ul>
 </div>
