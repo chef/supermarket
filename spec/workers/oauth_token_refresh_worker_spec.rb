@@ -82,54 +82,68 @@ describe OauthTokenRefreshWorker do
     end.to_not raise_error
   end
 
-  context "when the user has not defined a custom chef oauth2 url" do
+  context 'dealing with custom chef oauth2 urls' do
 
     let!(:account) { create(:account) }
 
-    let(:default_chef_oauth2_url) { "https://id.chef.io" }
-
     let(:worker) { OauthTokenRefreshWorker.new }
 
-    let(:strategy) { double('OmniAuth::Strategies::ChefOAuth2', client: "whatever") }
+    let(:strategy) { double('OmniAuth::Strategies::ChefOAuth2', client: 'whatever') }
 
     let(:refreshed_token) do
       double('OmniAuth2::AccessToken',
-        token: "Iamatoken",
-        expires_at: Time.now + 1.hour,
-        refresh_token: "AnotherToken"
+             token: 'Iamatoken',
+             expires_at: Time.now + 1.hour,
+             refresh_token: 'AnotherToken'
       )
     end
 
     let(:access_token) { double('OmniAuth2::AccessToken', refresh!: refreshed_token) }
 
     before do
-      ENV['CHEF_OAUTH2_URL'] = nil
-
+      allow(OmniAuth::Strategies::ChefOAuth2).to receive(:new).and_return(strategy)
       allow(OAuth2::AccessToken).to receive(:new).and_return(access_token)
+      allow(access_token).to receive(:refresh!).and_return(refreshed_token)
     end
 
-    it "does not pass a url option" do
-      expect(OmniAuth::Strategies::ChefOAuth2).to receive(:new).with(
-        anything(), # Rails.application
-        client_id: anything(),
-        client_secret: anything()
-      ).and_return(strategy)
-
-      expect(OmniAuth::Strategies::ChefOAuth2).to_not receive(:new).with(
-        anything(), # Rails.application
-        client_id: anything(),
-        client_secret: anything(),
-        client_options: { site: anything() }
-      )
-
-      VCR.use_cassette('oauth_token_refresh_with_good_token', record: :once) do
-        worker.perform(account.id)
+    context 'when the user has not defined a custom chef oauth2 url' do
+      before do
+        ENV['CHEF_OAUTH2_URL'] = nil
       end
 
-    end
-  end
+      it 'does not pass a url option' do
+        expect(OmniAuth::Strategies::ChefOAuth2).to receive(:new).with(
+          anything, # Rails.application
+          client_id: anything,
+          client_secret: anything,
+          client_options: {} # Empty hash
+        )
 
-  context "when the user has defined a custom chef oauth2 url" do
-    it "uses the custom url"
+        VCR.use_cassette('oauth_token_refresh_with_good_token', record: :once) do
+          worker.perform(account.id)
+        end
+      end
+    end
+
+    context 'when the user has defined a custom chef oauth2 url' do
+      let(:sample_custom_url) { 'https://mycustomchefserver.io' }
+
+      before do
+        ENV['CHEF_OAUTH2_URL'] = sample_custom_url
+      end
+
+      it 'passes the custom url' do
+        expect(OmniAuth::Strategies::ChefOAuth2).to receive(:new).with(
+          anything, # Rails.application
+          client_id: anything,
+          client_secret: anything,
+          client_options: { site: sample_custom_url }
+        ).and_return(strategy)
+
+        VCR.use_cassette('oauth_token_refresh_with_good_token', record: :once) do
+          worker.perform(account.id)
+        end
+      end
+    end
   end
 end
