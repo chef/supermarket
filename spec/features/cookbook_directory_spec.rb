@@ -28,4 +28,12 @@ describe 'cookbook directory' do
       expect(all('.simple_listing li').size).to eql(5)
     end
   end
+
+  it 'shows link for cookbook adoptions' do
+    within '.learn_about_cookbooks_content' do
+      expect(page).to have_content('How do I adopt a cookbook?')
+      click_link('list of adoptable cookbooks')
+    end
+    expect(page).to have_content('Cookbooks Available for Adoption')
+  end
 end

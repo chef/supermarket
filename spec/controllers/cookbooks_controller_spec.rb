@@ -595,4 +595,23 @@ describe CookbooksController do
       expect(response.status.to_i).to eql(200)
     end
   end
+
+  describe 'GET #available_for_adoption' do
+
+    let!(:adoptable_cookbook) { create(:cookbook, up_for_adoption: true) }
+    let!(:unadoptable_cookbook) { create(:cookbook) }
+
+    it 'has instance variable' do
+      get :available_for_adoption
+
+      expect(assigns[:available_cookbooks]).to_not be_nil
+    end
+
+    it 'finds adoptable cookbooks' do
+      get :available_for_adoption
+
+      expect(assigns[:available_cookbooks]).to include(adoptable_cookbook)
+      expect(assigns[:available_cookbooks]).to_not include(unadoptable_cookbook)
+    end
+  end
 end

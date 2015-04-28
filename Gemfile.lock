@@ -276,6 +276,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
     quiet_assets (1.0.3)
@@ -470,6 +472,7 @@ DEPENDENCIES
   pg_search
   poltergeist
   premailer-rails
+  pry-rails
   pundit
   quiet_assets
   rails (~> 4.1.5)
