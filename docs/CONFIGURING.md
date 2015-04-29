@@ -53,6 +53,45 @@ CHEF_OAUTH2_APP_ID=MY_DEVELOPMENT_KEY
 CHEF_OAUTH2_SECRET=MY_DEVELOPMENT_SECRET
 ```
 
+### Admin Users
+Admin users can create other admin users and can change the ownership of cookbooks.
+
+To create your FIRST (and only your first) admin user, you will need to access the
+Rails console.  We have plans for adding this as a supermarket-ctl function, but for
+now this is the best way.
+
+1. First, ssh into your Supermarket Server
+2.  Switch to the following directory
+  ```
+    $ cd /opt/supermarket/embedded/service/supermarket
+  ```
+3. Access the Rails console like this:
+  ```
+    $ env PATH=/opt/supermarket/embedded/bin bin/rails console production
+  ```
+4. Once you're in console, find the user you want to make the first Admin user
+   (the user must already exist in Supermarket before it can be promoted
+   to Admin)
+  ```
+    irb(main):001:0> user = User.find_by_email("email_address_of_user")
+  ```
+5. Now add the admin user to that role
+  ```
+    irb(main):002:0> user.roles = user.roles + ['admin']
+  ```
+6. And save that user
+  ```
+    irb(main):003:0> user.save
+  ```
+7. Now go ahead and exit out of the console
+  ```
+    irb(main):004:0> exit
+  ```
+
+To make more admin users, an existing admin user should access the user's profile
+page in the Supermarket GUI (https://your-supermarket-server/users/user_name),
+then click the big "Make Admin" button in the left hand menu on the screen.
+
 ## Production Settings
 
 These settings are recommended when deploying Supermarket to a production
