@@ -1,5 +1,13 @@
 # Supermarket Changelog
 
+## 1.9.0-alpha.0 (2014-04-30)
+- [#1027] Close an XSS hole
+- [#1029] Add notes about chef server url and dev mode configuration
+- [#1031] Cookbooks available for adoption
+- [#1032] Fix Custom Chef Oauth2 URL
+- [#1033] Add link to survey
+- [#1034] Add in documentation for Admin users
+
 ## 1.8.0-alpha.0 (2015-04-16)
 
 - [#1020] Temporary urls for private s3 storage
