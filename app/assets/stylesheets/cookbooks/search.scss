@@ -194,14 +194,22 @@ input[type="search"].cookbook_search_textfield {
 .advanced_search_toggle {
   @include grid-column($columns: 12, $collapse: true);
   margin-bottom: rem-calc(-21);
-  position: relative;
+  padding-right: rem-calc(2);
 
   span {
     color: lighten($primary_gray, 20%);
     float: right;
-    font: rem-calc(15) $accent_font;
+    font: rem-calc(14) $accent_font;
     &:hover{
       color: white;
+    }
+  }
+}
+
+@media #{$mobile-only} {
+  .advanced_search_toggle{
+    span {
+      font: rem-calc(11) $accent_font;
     }
   }
 }
@@ -241,17 +249,12 @@ input[type="search"].cookbook_search_textfield {
   input {
     margin:0;
     margin-right: rem-calc(5);
-    margin-left: rem-calc(30);
+    margin-left: rem-calc(25);
     padding: 0;
     position: relative;
     top: rem-calc(-2);
     vertical-align: middle;
   }
-}
-
-.advanced_textfield {
-  @include grid-column($columns: 6, $collapse: true, $offset: 3);
-  margin-top: rem-calc(20);
 }
 
 @media #{$small-only} {
@@ -274,4 +277,9 @@ input[type="search"].cookbook_search_textfield {
   .advanced_search_platform {
     @include grid-column(6, $collapse: true);
   }
+}
+
+.advanced_textfield {
+  @include grid-column($columns: 6, $collapse: true, $offset: 3);
+  margin-top: rem-calc(20);
 }
