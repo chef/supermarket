@@ -195,10 +195,13 @@ input[type="search"].cookbook_search_textfield {
   @include grid-column($columns: 12, $collapse: true);
   margin-bottom: rem-calc(-21);
   padding-right: rem-calc(2);
+  margin-top: rem-calc(10);
+  cursor: pointer;
 
   span {
     color: lighten($primary_gray, 20%);
     float: right;
+    margin-right: rem-calc(10);
     font: rem-calc(14) $accent_font;
     &:hover{
       color: white;
