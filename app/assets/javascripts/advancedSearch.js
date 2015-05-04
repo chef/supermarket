@@ -4,7 +4,6 @@ $(function() {
   }
 
   $(".advanced_search_toggle span").click(function() {
-
     if ($(".advanced_search_body").is(":hidden")) {
       $(".advanced_search_body").slideDown(300);
       $.cookie('advancedSearch' ,'on')
