@@ -16,14 +16,7 @@ module UsersHelper
   #   gravatar.
   #
   def gravatar_for(user, options = {})
-    options = {
-      size: 48
-    }.merge(options)
-
-    size = options[:size]
-    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
-    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
-    image_tag(gravatar_url, alt: user.name, class: 'gravatar')
+    ENV['DISABLE_GRAVATAR'].present? ? no_gravatar_image : gravatar_image(user, options)
   end
 
   #
@@ -37,5 +30,22 @@ module UsersHelper
   def pluralized_stats(count, thing)
     new_count, new_thing = pluralize(count, thing).split(' ')
     raw "#{new_count} #{content_tag(:span, new_thing)}"
+  end
+
+  private
+
+  def gravatar_image(user, options = {})
+    options = {
+      size: 48
+    }.merge(options)
+
+    size = options[:size]
+    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
+    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
+    image_tag(gravatar_url, alt: user.name, class: 'gravatar')
+  end
+
+  def no_gravatar_image
+    image_tag("#{Rails.root}/images/logo.svg", alt: "Default Avatar", class: 'gravatar')
   end
 end
