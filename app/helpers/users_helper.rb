@@ -46,6 +46,6 @@ module UsersHelper
   end
 
   def no_gravatar_image
-    image_tag("#{Rails.root}/images/logo.svg", alt: "Default Avatar", class: 'gravatar')
+    image_tag("apple-touch-icon.png", alt: "Default Avatar", class: 'gravatar')
   end
 end

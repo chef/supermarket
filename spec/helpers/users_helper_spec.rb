@@ -23,7 +23,7 @@ describe UsersHelper do
       end
 
       it "returns the image tag for the chef logo image" do
-        expect(gravatar_for(user)).to eq("<img alt=\"Default Avatar\" class=\"gravatar\" src=\"#{Rails.root}/images/logo.svg\" />")
+        expect(gravatar_for(user)).to eq("<img alt=\"Default Avatar\" class=\"gravatar\" src=\"/images/apple-touch-icon.png\" />")
       end
 
       after do
