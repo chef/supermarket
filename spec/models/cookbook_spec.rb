@@ -512,6 +512,59 @@ describe Cookbook do
     end
   end
 
+  describe '.filter_platforms' do
+    let!(:debian_platform) do
+      create(
+        :supported_platform,
+        name: 'debian'
+      )
+    end
+
+    let!(:erlang) do
+      create(
+        :cookbook,
+        name: 'erlang',
+        cookbook_versions: [
+          create(
+            :cookbook_version,
+            supported_platforms: [
+              debian_platform,
+              create(:supported_platform, name: 'ubuntu')
+            ]
+          )
+        ]
+      )
+    end
+
+    let!(:ruby) do
+      create(
+        :cookbook,
+        name: 'ruby',
+        cookbook_versions: [
+          create(
+            :cookbook_version,
+            supported_platforms: [
+              debian_platform,
+              create(:supported_platform, name: 'windows')
+            ]
+          )
+        ]
+      )
+    end
+
+    it 'returns cookbooks that support some of given platforms' do
+      expect(Cookbook.filter_platforms(['debian'])).to include(erlang)
+      expect(Cookbook.filter_platforms(['debian'])).to include(ruby)
+      expect(Cookbook.filter_platforms(%w(windows ubuntu))).to include(ruby)
+      expect(Cookbook.filter_platforms(%w(windows ubuntu))).to include(erlang)
+    end
+
+    it 'only returns cookbooks that support some of given platforms' do
+      expect(Cookbook.filter_platforms('ubuntu')).to include(erlang)
+      expect(Cookbook.filter_platforms('ubuntu')).to_not include(ruby)
+    end
+  end
+
   describe '.ordered_by' do
     let!(:great) { create(:cookbook, name: 'great') }
     let!(:cookbook) { create(:cookbook, name: 'cookbook') }
