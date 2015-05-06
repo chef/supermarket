@@ -9,7 +9,14 @@
 .search_form {
   @include grid-row();
   position: relative;
-  max-width: $max-width;
+  max-width: 100%;
+}
+
+.search_bar{
+  @include grid-row();
+  position: relative;
+  max-width: 100%;
+  background-color: $primary_blue;
 }
 
 .quick_search {
@@ -218,11 +225,13 @@ input[type="search"].cookbook_search_textfield {
 }
 
 .advanced_search_body {
-  @include grid-column($columns: 12, $collapse: true);
+  @include grid-row();
   @include border-radius(rem-calc(3));
   background-color: white;
   border-bottom: rem-calc(2) solid lighten($secondary_gray, 30%);
   display: none;
+  max-width: $max-width;
+  padding: rem-calc(0 55);
 
   h4 {
     color: black;
@@ -232,10 +241,28 @@ input[type="search"].cookbook_search_textfield {
   }
 }
 
+@media #{$mobile-only} {
+  .advanced_search_body {
+    padding: rem-calc(0 20);
+  }
+}
+
+@media #{$small-only} {
+  .advanced_search_body {
+    padding: rem-calc(0 20);
+  }
+}
+
+@media #{$xlarge-up} {
+  .advanced_search_body {
+    padding: rem-calc(0 40);
+  }
+}
+
 .advanced_search_platforms {
   @include grid-column($columns: 12, $collapse: true);
-  padding-left: rem-calc(80);
-  padding-right: rem-calc(50);
+  padding-left: rem-calc(70);
+  padding-right: rem-calc(20);
 }
 
 .advanced_search_platform {
@@ -252,7 +279,7 @@ input[type="search"].cookbook_search_textfield {
   input {
     margin:0;
     margin-right: rem-calc(5);
-    margin-left: rem-calc(25);
+    margin-left: rem-calc(10);
     padding: 0;
     position: relative;
     top: rem-calc(-2);
