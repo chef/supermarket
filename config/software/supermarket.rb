@@ -15,7 +15,7 @@
 #
 
 name "supermarket"
-default_version "master"
+default_version "irving/remove_ruby_pin"
 
 dependency "bundler"
 dependency "cacerts"
@@ -27,7 +27,7 @@ dependency "redis"
 dependency "ruby"
 dependency "runit"
 
-source git: "https://github.com/opscode/supermarket.git"
+source git: "https://github.com/chef/supermarket.git"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
