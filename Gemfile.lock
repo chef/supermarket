@@ -1,12 +1,11 @@
 GIT
-  remote: git://github.com/opscode/omnibus-software.git
-  revision: a9f3e794818b89e4bac06c3170993cca6a491d5f
-  branch: irving/update_nginx
+  remote: https://github.com/chef/omnibus-software.git
+  revision: 89b41ae4ceede373b478ad21bd4ee1f69623d0c4
   specs:
     omnibus-software (4.0.0)
 
 GIT
-  remote: git://github.com/opscode/omnibus.git
+  remote: https://github.com/chef/omnibus.git
   revision: c795b65bc796629c4e5b97ce21185b553caaf7e9
   specs:
     omnibus (4.0.0)
