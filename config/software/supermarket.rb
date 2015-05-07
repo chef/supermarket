@@ -19,6 +19,7 @@ default_version "irving/remove_ruby_pin"
 
 dependency "bundler"
 dependency "cacerts"
+dependency "chef"
 dependency "git"
 dependency "nginx"
 dependency "nodejs"
