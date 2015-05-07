@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
-# TODO: is value needs to be updated as local dev changes, and removed when
-# local dev doesn't need to specify it anymore
-ruby ENV['CUSTOM_RUBY_VERSION'] || '2.1.3'
+# Ruby version isn't specified here anymore, as it's pinned in Omnibus
+# https://github.com/chef/omnibus-supermarket/blob/master/config/projects/supermarket.rb
 
 gem 'rails', '~> 4.1.5'
 
