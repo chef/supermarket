@@ -1,12 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.1.3'
 
-# Override the Bundler :github shortcut to use HTTPS instead of the git protocol
-# Note: Version 2.x of Bundler should do this by default
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
-  "https://github.com/#{repo_name}.git"
-end
+# Ruby version isn't specified here anymore, as it's pinned in Omnibus
+# https://github.com/chef/omnibus-supermarket/blob/master/config/projects/supermarket.rb
 
 gem 'rails', '~> 4.1.5'
 
@@ -22,7 +17,7 @@ gem 'foreman'
 gem 'pundit'
 gem 'dotenv'
 gem 'coveralls', require: false
-gem 'octokit', github: 'octokit/octokit.rb', require: false
+gem 'octokit', git: 'https://github.com/octokit/octokit.rb.git', require: false
 gem 'sidekiq'
 
 # Pin sprockets to ensure we get the latest security patches. Not pinning this
@@ -32,7 +27,7 @@ gem 'sprockets', '~> 2.11.3'
 
 # Use the version on GitHub because the version published on RubyGems has
 # compatibility problems with Sidekiq 3.0.
-gem 'sidetiq', github: 'tobiassvn/sidetiq', ref: '4f7d7da'
+gem 'sidetiq', git: 'https://github.com/tobiassvn/sidetiq.git', ref: '4f7d7da'
 
 gem 'premailer-rails', group: [:development, :production]
 gem 'nokogiri'
@@ -85,7 +80,7 @@ group :test do
   # constraint error this pins shoulda-matchers at a commit where setting
   # default values for scopes was reverted
   gem 'shoulda-matchers',
-      github: 'thoughtbot/shoulda-matchers',
+      git: 'https://github.com/thoughtbot/shoulda-matchers.git',
       ref: '380d18f0621c66a79445ebc6dcc0048fcc969911'
 
   gem 'database_cleaner'
