@@ -16,7 +16,7 @@ module UsersHelper
   #   gravatar.
   #
   def gravatar_for(user, options = {})
-    ENV['DISABLE_GRAVATAR'].present? ? no_gravatar_image : gravatar_image(user, options)
+    ROLLOUT.active?(:gravatar) ? gravatar_image(user, options) : no_gravatar_image(user)
   end
 
   #
@@ -45,7 +45,7 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.name, class: 'gravatar')
   end
 
-  def no_gravatar_image
-    image_tag("apple-touch-icon.png", alt: user.name, class: 'gravatar')
+  def no_gravatar_image(user)
+    image_tag('apple-touch-icon.png', alt: user.name, class: 'gravatar')
   end
 end
