@@ -15,7 +15,7 @@
 #
 
 name "supermarket"
-default_version "irving/remove_ruby_pin"
+default_version 'master'
 
 dependency "bundler"
 dependency "cacerts"
