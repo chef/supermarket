@@ -29,7 +29,7 @@ end
 build_iteration 1
 
 override :cacerts, version: '2014.08.20'
-override :postgresql, version: "9.3.5"
+override :postgresql, version: '9.3.6'
 override :ruby, version: "2.1.6"
 override :rubygems, version: "2.4.1"
 override :git, version: "2.2.1"
