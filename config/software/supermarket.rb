@@ -15,7 +15,7 @@
 #
 
 name "supermarket"
-default_version 'master'
+default_version "master"
 
 dependency "bundler"
 dependency "cacerts"
