@@ -19,6 +19,7 @@ default_version "master"
 
 dependency "bundler"
 dependency "cacerts"
+dependency "chef"
 dependency "git"
 dependency "nginx"
 dependency "nodejs"
@@ -27,7 +28,7 @@ dependency "redis"
 dependency "ruby"
 dependency "runit"
 
-source git: "https://github.com/opscode/supermarket.git"
+source git: "https://github.com/chef/supermarket.git"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)

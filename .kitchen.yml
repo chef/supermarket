@@ -14,7 +14,7 @@ provisioner:
 platforms:
   - name: ubuntu-10.04
     run_list: apt::default
-  - name: centos-5.10
+  - name: centos-5.11
     run_list: yum-epel::default
   - name: centos-7.0
     run_list: yum-epel::default

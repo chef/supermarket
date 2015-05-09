@@ -1,12 +1,11 @@
 source 'https://rubygems.org'
 
 # Install omnibus
-gem 'omnibus', github: 'opscode/omnibus'
+gem 'omnibus', git: 'https://github.com/chef/omnibus.git'
 
 # Use Chef's software definitions. It is recommended that you write your own
 # software definitions, but you can clone/fork Chef's to get you started.
-#gem 'omnibus-software', github: 'opscode/omnibus-software'
-gem 'omnibus-software', github: 'opscode/omnibus-software'
+gem 'omnibus-software', git: 'https://github.com/chef/omnibus-software.git'
 
 # This development group is installed by default when you run `bundle install`,
 # but if you are using Omnibus in a CI-based infrastructure, you do not need
