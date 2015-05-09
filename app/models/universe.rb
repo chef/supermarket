@@ -39,6 +39,7 @@ module Universe
       FROM cookbook_versions
         INNER JOIN cookbooks ON cookbooks.id = cookbook_versions.cookbook_id
         LEFT JOIN cookbook_dependencies ON cookbook_dependencies.cookbook_version_id = cookbook_versions.id
+          AND cookbook_dependencies.name != cookbooks.name
     )
 
     cookbooks = ActiveRecord::Base.connection.execute(sql).to_a
