@@ -6,7 +6,7 @@ describe UsersHelper do
   describe '#gravatar_for' do
     context 'when gravatar feature is enabled' do
       before do
-        ROLLOUT.activate(:gravatar)
+        allow(ROLLOUT).to receive(:active?).with(:gravatar).and_return(true)
       end
 
       it "returns the image tag for the specified user's gravtar image" do
@@ -16,15 +16,11 @@ describe UsersHelper do
       it "returns the image tag for the specified user's gravtar image with size" do
         expect(gravatar_for(user, size: 128)).to eq('<img alt="John Doe" class="gravatar" src="https://secure.gravatar.com/avatar/fd876f8cd6a58277fc664d47ea10ad19?s=128" />')
       end
-
-      after do
-        ROLLOUT.deactivate(:gravatar)
-      end
     end
 
     context 'when gravatar feature is disabled' do
       before do
-        expect(ROLLOUT.active?(:gravatar)).to eq(false)
+        allow(ROLLOUT).to receive(:active?).with(:gravatar).and_return(false)
       end
 
       it 'returns the image tag for the chef logo image' do
