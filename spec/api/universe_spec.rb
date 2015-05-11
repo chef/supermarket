@@ -40,6 +40,8 @@ describe 'GET /universe' do
     create(:cookbook_dependency, cookbook_version: redis_version1, cookbook: apt, name: 'apt', version_constraint: '>= 1.0.0')
     create(:cookbook_dependency, cookbook_version: redis_version1, cookbook: narf, name: 'narf', version_constraint: '>= 1.1.0')
     create(:cookbook_dependency, cookbook_version: redis_version2, cookbook: apt, name: 'apt', version_constraint: '>= 1.0.0')
+    # this creates a self-dependency from redis to redis which must be stripped before returning
+    create(:cookbook_dependency, cookbook_version: redis_version2, cookbook: redis, name: 'redis', version_constraint: '>= 1.0.0')
   end
 
   it 'returns a 200' do
