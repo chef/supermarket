@@ -32,7 +32,7 @@ gem 'sidetiq', git: 'https://github.com/tobiassvn/sidetiq.git', ref: '4f7d7da'
 gem 'premailer-rails', group: [:development, :production]
 gem 'nokogiri'
 gem 'jbuilder'
-gem 'pg_search'
+gem 'pg_search', '~> 0.7.6'
 gem 'paperclip'
 
 # Pin virtus to a version before the handling of nil in collection coercion was
@@ -89,7 +89,7 @@ group :test do
 end
 
 group :development, :test do
-  gem 'rubocop', '>= 0.23.0'
+  gem 'rubocop', '~> 0.26.0'
   gem 'mail_view'
   gem 'quiet_assets'
   gem 'rspec-rails', '~> 3.1.0'
