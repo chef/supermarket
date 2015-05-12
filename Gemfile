@@ -41,7 +41,8 @@ gem 'virtus', '1.0.2', require: false
 
 gem 'kaminari'
 gem 'validate_url'
-gem 'chef', require: false
+gem 'chef', '~> 12.0', require: false
+gem 'chef-zero', '~> 4.2.1', require: false
 gem 'mixlib-authentication'
 gem 'aws-sdk'
 gem 'newrelic_rpm'
@@ -92,7 +93,7 @@ group :development, :test do
   gem 'rubocop', '~> 0.26.0'
   gem 'mail_view'
   gem 'quiet_assets'
-  gem 'rspec-rails', '~> 3.1.0'
+  gem 'rspec-rails', '~> 3.2.0'
   gem 'byebug'
   gem 'launchy'
 
