@@ -44,7 +44,7 @@ node['supermarket']['database']['extensions'].each do |ext, enable|
   execute "create postgresql #{ext} extension" do
     user node['supermarket']['database']['user']
     command "echo 'CREATE EXTENSION IF NOT EXISTS #{ext}' | psql"
-    not_if "echo '\dx' | psql #{node['supermarket']['database']['name']} | grep #{ext}"
+    not_if "echo '\\dx' | psql #{node['supermarket']['database']['name']} | grep #{ext}"
   end
 end
 
