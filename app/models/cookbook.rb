@@ -138,7 +138,9 @@ class Cookbook < ActiveRecord::Base
   #
   def transfer_ownership(initiator, recipient)
     if initiator.is?(:admin) || collaborator_users.include?(recipient)
+      collaborator = Collaborator.new(user_id: user_id, resourceable: self)
       update_attribute(:user_id, recipient.id)
+      collaborator.save!
 
       if collaborator_users.include?(recipient)
         collaborator = collaborators.where(

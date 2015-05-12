@@ -163,6 +163,17 @@ describe Cookbook do
       expect(cookbook.collaborator_users).to_not include(hank)
     end
 
+    it 'should create a new collaborator record for the previous owner' do
+      hank = create(:user)
+      create(:cookbook_collaborator, resourceable: cookbook, user: hank)
+      expect(cookbook.owner).to eql(jimmy)
+      expect(cookbook.collaborator_users).to_not include(jimmy)
+      result = cookbook.transfer_ownership(jimmy, hank)
+      cookbook.reload
+      expect(cookbook.owner).to eql(hank)
+      expect(cookbook.collaborator_users).to include(jimmy)
+    end
+
     it 'should create a transfer request if the initiator is not an admin and the recipient is not a collaborator' do
       result = nil
       hank = create(:user)
