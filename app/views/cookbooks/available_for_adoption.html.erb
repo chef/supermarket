@@ -12,9 +12,9 @@
     </h1>
   </div>
 
-  <ul class="simple_listing">
+  <ul class="simple_listing zebra">
     <% @available_cookbooks.each do |cookbook| %>
-      <li><%= render "simple_cookbook", cookbook: cookbook %></li>
+      <%= render "simple_cookbook", cookbook: cookbook %>
     <% end %>
   </ul>
 </div>

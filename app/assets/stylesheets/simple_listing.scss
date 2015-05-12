@@ -14,6 +14,10 @@
     display: none;
   }
 
+  &.zebra li:nth-child(odd) {
+    background-color: $secondary_gray;
+  }
+
   li {
     @include dark-links;
     border-bottom: rem-calc(2) solid lighten($secondary_gray, 32%);
