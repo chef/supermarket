@@ -14,7 +14,7 @@
     display: none;
   }
 
-  li:nth-child(odd) {
+  &.zebra li:nth-child(odd) {
     background-color: $secondary_gray;
   }
 
