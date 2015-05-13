@@ -401,7 +401,7 @@ default['supermarket']['seed_cla_data'] = nil
 # * gravatar: Enable Gravatar integration, used for user avatars
 # * join_ccla: Enable joining of Corporate CLAs
 # * tools: Enable the tools section
-default['supermarket']['features'] = 'tools'
+default['supermarket']['features'] = 'tools, gravatar'
 
 # ### robots.txt Settings
 #
