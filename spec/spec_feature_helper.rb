@@ -42,4 +42,6 @@ RSpec.configure do |config|
   end
 
   config.include FeatureHelpers
+
+  config.include Capybara::DSL
 end
