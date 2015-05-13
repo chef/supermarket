@@ -299,4 +299,9 @@ if Rails.env.development?
     cookbook: Cookbook.find_by(name: 'redis')
   ).first_or_create!
 
+  Curry::Repository.where(
+    name: "paprika",
+    owner: "chef",
+    callback_url: ENV['PUBSUBHUBBUB_CALLBACK_URL']
+  ).first_or_create!
 end
