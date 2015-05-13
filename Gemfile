@@ -32,7 +32,7 @@ gem 'sidetiq', git: 'https://github.com/tobiassvn/sidetiq.git', ref: '4f7d7da'
 gem 'premailer-rails', group: [:development, :production]
 gem 'nokogiri'
 gem 'jbuilder'
-gem 'pg_search'
+gem 'pg_search', '~> 0.7.6'
 gem 'paperclip'
 
 # Pin virtus to a version before the handling of nil in collection coercion was
@@ -41,7 +41,8 @@ gem 'virtus', '1.0.2', require: false
 
 gem 'kaminari'
 gem 'validate_url'
-gem 'chef', require: false
+gem 'chef', '~> 12.0', require: false
+gem 'chef-zero', '~> 4.2.1', require: false
 gem 'mixlib-authentication'
 gem 'aws-sdk'
 gem 'newrelic_rpm'
@@ -54,7 +55,7 @@ gem 'rinku', require: 'rails_rinku'
 gem 'html_truncator'
 gem 'rollout'
 gem 'statsd-ruby'
-gem 'sentry-raven', '~> 0.8.0', require: false
+gem 'sentry-raven', '~> 0.12.0', require: false
 gem 'sass-rails',   '~> 4.0.4'
 gem 'compass-rails'
 gem 'uglifier',     '~> 2.2'
@@ -89,10 +90,10 @@ group :test do
 end
 
 group :development, :test do
-  gem 'rubocop', '>= 0.23.0'
+  gem 'rubocop', '~> 0.26.0'
   gem 'mail_view'
   gem 'quiet_assets'
-  gem 'rspec-rails', '~> 3.1.0'
+  gem 'rspec-rails', '~> 3.2.0'
   gem 'byebug'
   gem 'launchy'
 
