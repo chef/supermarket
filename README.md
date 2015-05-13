@@ -1,6 +1,6 @@
 # Supermarket
 
-[![Code Climate](https://codeclimate.com/github/chef/supermarket.png)](https://codeclimate.com/github/chef/supermarket) [![Build Status](https://travis-ci.org/chef/supermarket.png?branch=master)](https://travis-ci.org/chef/supermarket) [![Dependency Status](https://gemnasium.com/chef/supermarket.png)](https://gemnasium.com/chef/supermarket) [![Coverage Status](https://coveralls.io/repos/chef/supermarket/badge.png?branch=master)](https://coveralls.io/r/chef/supermarket?branch=master) [![Inline docs](http://inch-ci.org/github/chef/supermarket.png)](http://inch-ci.org/github/chef/supermarket) [![Gitter chat](https://badges.gitter.im/chef/supermarket.png)](https://gitter.im/chef/supermarket) [![Stories in Ready](https://badge.waffle.io/chef/supermarket.png?label=ready&title=Ready)](https://waffle.io/chef/supermarket)
+[![Code Climate](https://codeclimate.com/github/chef/supermarket.png)](https://codeclimate.com/github/chef/supermarket) [![Build Status](https://travis-ci.org/chef/supermarket.png?branch=master)](https://travis-ci.org/chef/supermarket) [![Dependency Status](https://gemnasium.com/chef/supermarket.png)](https://gemnasium.com/chef/supermarket) [![Coverage Status](https://coveralls.io/repos/chef/supermarket/badge.png?branch=master)](https://coveralls.io/r/chef/supermarket?branch=master) [![Inline docs](http://inch-ci.org/github/chef/supermarket.png)](http://inch-ci.org/github/chef/supermarket) [![Stories in Ready](https://badge.waffle.io/chef/supermarket.png?label=ready&title=Ready)](https://waffle.io/chef/supermarket)
 
 Supermarket is Chef's community repository for cookbooks, currently hosted
 at [supermarket.chef.io](supermarket.chef.io). Supermarket can also be run
@@ -9,19 +9,14 @@ internally, behind-the-firewall.
 The code is designed to be easy for others to contribute to. To that end,
 the goal of this README is to introduce you to the project and get you up and
 running. More information about Supermarket can be found in [the
-wiki](https://github.com/chef/supermarket/wiki).
-[View the roadmap](https://github.com/chef/supermarket/wiki/Roadmap), and
-[follow along with the project development in
-waffle.io](https://waffle.io/chef/supermarket). Supermarket has
-[an open project chat on Gitter](https://gitter.im/chef/supermarket)
-and [a mailing list](https://groups.google.com/forum/#!forum/chef-supermarket).
+wiki](https://github.com/chef/supermarket/wiki).  You can [follow along with the project development in
+waffle.io](https://waffle.io/chef/supermarket).
 
 If you want to contribute to Supermarket, read the [contributor's
 workflow](https://github.com/chef/supermarket/blob/master/CONTRIBUTING.md)
 for license information and helpful tips to get you started. There are project artifacts such as planning docs, wireframes, recorded
 demos, and team retrospectives in a [public Google Drive
-folder](https://drive.google.com/a/gofullstack.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8)
-and on [InVision](https://projects.invisionapp.com/share/VMOMTJ36#/screens).
+folder](https://drive.google.com/a/gofullstack.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8).
 
 If you have questions, feature ideas, or other suggestions, please [open a
 GitHub Issue](https://github.com/chef/supermarket/issues/new).
@@ -29,7 +24,7 @@ GitHub Issue](https://github.com/chef/supermarket/issues/new).
 This repository has the code for the Supermarket application, related
 repositories are:
 
-* [opscode-cookbooks/supermarket](https://github.com/opscode-cookbooks/supermarket): The cookbook used to deploy the application
+* [opscode-cookbooks/supermarket](https://github.com/opscode-cookbooks/supermarket): The cookbook used to deploy the application (NOTE: THIS COOKBOOK WILL SOON BE DEPRECATED.  We highly recommend using the supermarket omnibus package to both install and update a private instance of Supermarket).
 * [chef/omnibus-supermarket](https://github.com/chef/omnibus-supermarket): Code used to build RPM and DEB packages
 
 ## Requirements
