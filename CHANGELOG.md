@@ -1,6 +1,17 @@
 # Supermarket Changelog
 
-## 1.9.0-alpha.0 (2014-04-30)
+## 1.10.0-alpha.0 (2015-05-14)
+- [1028] - Add advanced search functionality to search for cookbooks based on platform
+- [1040] - Fix search bar width
+- [1039] - Remove Ruby 2.1.3 from the Gemfile
+- [1043] - Prevent the universe endpoint from a cookbook showing itself as a dependency on itself
+- [1041] - When ownership is transferred, make the previous owner a collaborator on the cookbook
+- [1045] - Add zebra striping to adoptable cookbooks list
+- [1044] - Add rake tasks to verify development/test env
+- [1047] - Remove obsolete info from the README
+- [1038] - Add option to disable Gravatars
+
+## 1.9.0-alpha.0 (2015-04-30)
 - [#1027] Close an XSS hole
 - [#1029] Add notes about chef server url and dev mode configuration
 - [#1031] Cookbooks available for adoption
