@@ -1,5 +1,14 @@
 # Supermarket Changelog
 
+## 1.10.1-alpha.0 (2015-05-15)
+Upping version to account for changes in [omnibus-supermarket](https://github.com/chef/omnibus-supermarket/tree/1.10.0-alpha.0)
+
+These changes include (remember, these changes are on omnibus-supermarket)
+- [16] - Update omnibus software versions
+- [17] - Fix Postgres configuration typos
+- [18] - Updating README to point to the most recent version of a Supermarket setup blog post
+- [19] - Make Gravatar feature enabled by default
+
 ## 1.10.0-alpha.0 (2015-05-14)
 - [1028] - Add advanced search functionality to search for cookbooks based on platform
 - [1040] - Fix search bar width
