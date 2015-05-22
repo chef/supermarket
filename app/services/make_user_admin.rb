@@ -1,17 +1,11 @@
 class MakeUserAdmin
-  attr_accessor :user
-
-  def initialize(user)
-    @user = user
+  def initialize(user_name)
+    @user_name = user_name
   end
 
   def call
-    begin
-      user = User.find(@user)
-      add_admin_role(user)
-    rescue ActiveRecord::RecordNotFound
-      user_not_found_message
-    end
+    user = User.with_username(@user_name).first
+    user.present? ? add_admin_role(user) : user_not_found_message
   end
 
   private
@@ -29,7 +23,7 @@ class MakeUserAdmin
   end
 
   def add_admin_role(user)
-    user.roles.push('admin')
+    user.roles = user.roles + ["admin"]
     user.save ? successful_promotion_message(user) : unsuccessful_promotion_message(user)
   end
 

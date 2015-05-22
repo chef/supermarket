@@ -2,17 +2,17 @@ require 'spec_helper'
 
 describe MakeUserAdmin do
   let(:user) { create(:user) }
-  let(:make_user_admin) { MakeUserAdmin.new(user) }
+  let(:make_user_admin) { MakeUserAdmin.new(user.username) }
 
   context "finding the user" do
-    it "searches for the user" do
-      expect(User).to receive(:find).and_return(user)
+    it "searches for the user by the username" do
+      expect(User).to receive(:with_username).with(user.username).and_return([user])
       make_user_admin.call
     end
 
     context "when it does not exist" do
       before do
-        allow(User).to receive(:find).and_raise(ActiveRecord::RecordNotFound)
+        allow(User).to receive(:with_username).and_return([])
       end
 
       it "returns an error" do
@@ -22,19 +22,11 @@ describe MakeUserAdmin do
   end
 
   context "promoting the user to admin" do
-    let(:roles) { user.roles }
-
     before do
-      allow(User).to receive(:find).and_return(user)
-      allow(user).to receive(:roles).and_return(roles)
+      allow(User).to receive(:with_username).and_return([user])
     end
 
     context "when successful" do
-      it "adds the admin role" do
-        expect(user.roles).to receive(:push).with('admin')
-        make_user_admin.call
-      end
-
       it "saves the user" do
         expect(user).to receive(:save)
         make_user_admin.call
@@ -42,6 +34,14 @@ describe MakeUserAdmin do
 
       it "returns a success message" do
         expect(make_user_admin.call).to include("#{user.username} has been promoted to Admin!")
+      end
+
+      it "adds the admin role to the user" do
+        expect(user.roles).to_not include("admin")
+        make_user_admin = MakeUserAdmin.new(user.username)
+        make_user_admin.call
+        user.reload
+        expect(user.roles).to include("admin")
       end
     end
 
