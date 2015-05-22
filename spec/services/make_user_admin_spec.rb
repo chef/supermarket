@@ -4,10 +4,11 @@ describe MakeUserAdmin do
 
   context "finding the user" do
     let(:user) { create(:user) }
+    let(:make_user_admin) { MakeUserAdmin.new(user) }
 
     it "searches for the user" do
       expect(User).to receive(:find).and_return(user)
-      MakeUserAdmin.new(user)
+      make_user_admin.call
     end
 
     context "when it exists" do
@@ -17,13 +18,17 @@ describe MakeUserAdmin do
         allow(User).to receive(:find).and_return(user)
       end
 
-      it "assigns the correct user" do
-        expect(make_user_admin.user).to eq(user)
-      end
+      it "assigns the correct user"
     end
 
     context "when it does not exist" do
-      it "returns an error"
+      before do
+        allow(User).to receive(:find).and_raise(ActiveRecord::RecordNotFound)
+      end
+
+      it "returns an error" do
+        expect(make_user_admin.call).to include("User not found in Supermarket")
+      end
     end
   end
 

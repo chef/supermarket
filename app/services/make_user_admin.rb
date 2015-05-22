@@ -2,12 +2,15 @@ class MakeUserAdmin
   attr_accessor :user
 
   def initialize(user)
-    @user = find_user(user)
+    @user = user
   end
 
-  private
-
-  def find_user(user)
-    User.find(user)
+  def call
+    begin
+      User.find(@user)
+    rescue ActiveRecord::RecordNotFound
+      "User not found in Supermarket.  Make sure the user exists in Supermarket before making it an admin."
+    end
   end
+
 end
