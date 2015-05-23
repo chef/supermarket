@@ -34,10 +34,12 @@ enterprise_pg_user node['supermarket']['database']['user'] do
     node['supermarket']['database']['user'] ==
       node['supermarket']['postgresql']['username']
   end
+  only_if { node['supermarket']['postgresql']['enable'] }
 end
 
 enterprise_pg_database node['supermarket']['database']['name'] do
   owner node['supermarket']['database']['user']
+  only_if { node['supermarket']['postgresql']['enable'] }
 end
 
 node['supermarket']['database']['extensions'].each do |ext, enable|
