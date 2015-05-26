@@ -162,6 +162,10 @@ class CookbookUpload
         else
           errors.add(:base, I18n.t('api.error_messages.missing_metadata'))
         end
+
+        # transparently clean self-dependnecies from the uploaded metadata
+        # (in the distant future this should be an error)
+        metadata.dependencies.reject! { |key, value| key == metadata.name }
       rescue JSON::ParserError
         errors.add(:base, I18n.t('api.error_messages.metadata_not_json'))
       rescue Virtus::CoercionError
