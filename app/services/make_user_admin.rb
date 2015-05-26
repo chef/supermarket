@@ -11,7 +11,7 @@ class MakeUserAdmin
   private
 
   def user_not_found_message
-    "User not found in Supermarket.  Make sure the user exists in Supermarket before making it an admin."
+    'User not found in Supermarket.  Make sure the user exists in Supermarket before making it an admin.'
   end
 
   def successful_promotion_message(user)
@@ -23,8 +23,7 @@ class MakeUserAdmin
   end
 
   def add_admin_role(user)
-    user.roles = user.roles + ["admin"]
+    user.roles = user.roles + ['admin']
     user.save ? successful_promotion_message(user) : unsuccessful_promotion_message(user)
   end
-
 end
