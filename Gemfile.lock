@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 9d387525a335f0e0973842159a9ee3cd02ce04e8
+  revision: ce9639e12b50ce5b58e63a81aa0f09f29fc95315
   specs:
     omnibus (4.0.0)
       chef-sugar (~> 3.0)
@@ -78,7 +78,7 @@ GEM
     mixlib-authentication (1.3.0)
       mixlib-log
     mixlib-cli (1.5.0)
-    mixlib-config (2.1.0)
+    mixlib-config (2.2.1)
     mixlib-log (1.6.0)
     mixlib-shellout (1.6.1)
     mixlib-versioning (1.0.0)
