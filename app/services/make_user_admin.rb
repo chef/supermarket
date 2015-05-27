@@ -5,21 +5,21 @@ class MakeUserAdmin
 
   def call
     user = User.with_username(@user_name).first
-    user.present? ? add_admin_role(user) : user_not_found_message
+    user.present? ? add_admin_role(user) : user_not_found_message(@user_name)
   end
 
   private
 
-  def user_not_found_message
-    'User not found in Supermarket.  Make sure the user exists in Supermarket before making it an admin.'
+  def user_not_found_message(user_name)
+    I18n.t('user.not_found', name: user_name)
   end
 
   def successful_promotion_message(user)
-    "#{user.username} has been promoted to Admin!"
+    I18n.t('user.successful_promotion_message', name: user.username)
   end
 
   def unsuccessful_promotion_message(user)
-    "#{user.username} was not able to be promoted to Admin at this time.  Please try again later."
+    I18n.t('user.unsuccessful_promotion_message', name: user.username)
   end
 
   def add_admin_role(user)

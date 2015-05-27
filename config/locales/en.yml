@@ -9,6 +9,9 @@ en:
     must_be_signed_in: "You must be signed in to do that."
     made_admin: "%{name} is now an admin."
     revoked_admin: "%{name} is no longer an admin."
+    not_found: "%{name} was not found in Supermarket.  Make sure the user exists in Supermarket before making it an admin."
+    successful_promotion_message: "%{name} has been made an admin!"
+    unsuccessful_promotion_message: "%{name} was not able to be promoted to an admin at this time.  Please try again later."
   account:
     already_connected: "The %{provider} account (%{username}) you are trying to link is already linked to another Supermarket user."
     disconnected: "Account disconnected."

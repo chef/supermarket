@@ -16,7 +16,7 @@ describe MakeUserAdmin do
       end
 
       it 'returns an error' do
-        expect(make_user_admin.call).to include('User not found in Supermarket')
+        expect(make_user_admin.call).to include("#{user.username} was not found in Supermarket")
       end
     end
   end
@@ -33,7 +33,7 @@ describe MakeUserAdmin do
       end
 
       it 'returns a success message' do
-        expect(make_user_admin.call).to include("#{user.username} has been promoted to Admin!")
+        expect(make_user_admin.call).to include("#{user.username} has been made an admin!")
       end
 
       it 'adds the admin role to the user' do
@@ -52,7 +52,7 @@ describe MakeUserAdmin do
       end
 
       it 'returns an error' do
-        expect(make_user_admin.call).to include("#{user.username} was not able to be promoted to Admin at this time.  Please try again later.")
+        expect(make_user_admin.call).to include("#{user.username} was not able to be promoted to an admin at this time.  Please try again later.")
       end
     end
   end
