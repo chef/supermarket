@@ -15,7 +15,7 @@
 #
 
 name "supermarket"
-default_version "make-user-admin-task"
+default_version "master"
 
 dependency "bundler"
 dependency "cacerts"
