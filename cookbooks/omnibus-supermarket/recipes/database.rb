@@ -29,17 +29,21 @@ ENV['PGPORT'] = node['supermarket']['database']['port'].to_s
 enterprise_pg_user node['supermarket']['database']['user'] do
   superuser true
   password node['supermarket']['database']['password'] || ''
+  admin_username node['supermarket']['postgresql']['username'] unless node['supermarket']['postgresql']['enable']
+  admin_password node['supermarket']['postgresql']['password'] unless node['supermarket']['postgresql']['enable']
+  host node['supermarket']['database']['host'] unless node['supermarket']['postgresql']['enable']
   # If the database user is the same as the main postgres user, don't create it.
   not_if do
     node['supermarket']['database']['user'] ==
       node['supermarket']['postgresql']['username']
   end
-  only_if { node['supermarket']['postgresql']['enable'] }
 end
 
 enterprise_pg_database node['supermarket']['database']['name'] do
   owner node['supermarket']['database']['user']
-  only_if { node['supermarket']['postgresql']['enable'] }
+  admin_username node['supermarket']['postgresql']['username'] unless node['supermarket']['postgresql']['enable']
+  admin_password node['supermarket']['postgresql']['password'] unless node['supermarket']['postgresql']['enable']
+  host node['supermarket']['database']['host'] unless node['supermarket']['postgresql']['enable']
 end
 
 node['supermarket']['database']['extensions'].each do |ext, enable|
