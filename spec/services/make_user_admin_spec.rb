@@ -55,6 +55,18 @@ describe MakeUserAdmin do
         expect(make_user_admin.call).to include("#{user.username} was not able to be promoted to an admin at this time.  Please try again later.")
       end
     end
-  end
 
+    context 'when the user is already an admin' do
+      before do
+        user.roles = user.roles + ['admin']
+        user.save!
+        expect(user.roles).to include('admin')
+      end
+
+      it 'returns a message' do
+        make_user_admin = MakeUserAdmin.new(user.username)
+        expect(make_user_admin.call).to include("#{user.username} is already an admin.")
+      end
+    end
+  end
 end

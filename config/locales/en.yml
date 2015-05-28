@@ -10,6 +10,7 @@ en:
     made_admin: "%{name} is now an admin."
     revoked_admin: "%{name} is no longer an admin."
     not_found: "%{name} was not found in Supermarket.  Make sure the user exists in Supermarket before making it an admin."
+    already_admin: "%{name} is already an admin."
     successful_promotion_message: "%{name} has been made an admin!"
     unsuccessful_promotion_message: "%{name} was not able to be promoted to an admin at this time.  Please try again later."
   account:
