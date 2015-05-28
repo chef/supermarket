@@ -1,7 +1,7 @@
 require 'mixlib/shellout'
 
 # supermarket-ctl make_admin username
-add_command 'make_admin', 'Make a Supermarket user an admin', 2 do
+add_command 'make-admin', 'Make a Supermarket user an admin', 2 do
 
   # Find username arg
   username = ARGV[3]
