@@ -41,6 +41,7 @@ else
   keyfile = "#{node['supermarket']['ssl']['directory']}/ca/#{node['supermarket']['fqdn']}.key"
   signing_conf = "#{node['supermarket']['ssl']['directory']}/ca/#{node['supermarket']['fqdn']}-ssl.conf"
   crtfile = "#{node['supermarket']['ssl']['directory']}/ca/#{node['supermarket']['fqdn']}.crt"
+  ssl_dhparam = "#{node['supermarket']['ssl']['directory']}/ca/dhparams.pem"
 
   unless File.exist?(keyfile) && File.exist?(signing_conf) && File.exist?(crtfile)
     file keyfile do
@@ -69,6 +70,14 @@ else
         r.run_action(:create)
       end
     end
+  end
+
+  file ssl_dhparam do
+    content `/opt/opscode/embedded/bin/openssl dhparam 2048 2>/dev/null`
+    mode "0644"
+    owner "root"
+    group "root"
+    action :create_if_missing
   end
 
   node.default['supermarket']['ssl']['certificate'] ||= crtfile
