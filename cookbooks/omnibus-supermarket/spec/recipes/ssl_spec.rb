@@ -29,7 +29,7 @@ describe 'omnibus-supermarket::ssl' do
       user: 'root',
       group: 'root',
       mode: '0644',
-      content: `/opt/opscode/embedded/bin/openssl dhparam 2048 2>/dev/null`
+      content: `/opt/supermarket/embedded/bin/openssl dhparam 2048 2>/dev/null`
     )
   end
 

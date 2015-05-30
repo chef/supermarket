@@ -8,4 +8,8 @@ describe 'omnibus-supermarket::rails' do
       it { should_not be_listening.with('tcp') }
     end
   end
+
+  describe file('/var/opt/supermarket/nginx/etc/sites-enabled/rails') do
+     its(:content) { should match /ssl_dhparam/ }
+  end
 end

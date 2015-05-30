@@ -40,6 +40,7 @@ server {
   ssl on;
   ssl_certificate <%= node['supermarket']['ssl']['certificate'] %>;
   ssl_certificate_key <%= node['supermarket']['ssl']['certificate_key'] %>;
+  ssl_dhparam <%= node['supermarket']['ssl']['ssl_dhparam'] %>;
   ssl_prefer_server_ciphers on;
   ssl_ciphers <%= node['supermarket']['ssl']['ciphers'] %>;
   ssl_protocols <%= node['supermarket']['ssl']['protocols'] %>;

@@ -73,7 +73,7 @@ else
   end
 
   file ssl_dhparam do
-    content `/opt/opscode/embedded/bin/openssl dhparam 2048 2>/dev/null`
+    content `/opt/supermarket/embedded/bin/openssl dhparam 2048 2>/dev/null`
     mode "0644"
     owner "root"
     group "root"
@@ -82,6 +82,7 @@ else
 
   node.default['supermarket']['ssl']['certificate'] ||= crtfile
   node.default['supermarket']['ssl']['certificate_key'] ||= keyfile
+  node.default['supermarket']['ssl']['ssl_dhparam'] ||= ssl_dhparam
 
   link "#{node['supermarket']['ssl']['directory']}/cacert.pem" do
     to crtfile
