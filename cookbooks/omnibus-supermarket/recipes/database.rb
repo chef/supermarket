@@ -41,8 +41,8 @@ end
 
 enterprise_pg_database node['supermarket']['database']['name'] do
   owner node['supermarket']['database']['user']
-  admin_username node['supermarket']['postgresql']['username'] unless node['supermarket']['postgresql']['enable']
-  admin_password node['supermarket']['postgresql']['password'] unless node['supermarket']['postgresql']['enable']
+  username node['supermarket']['postgresql']['username'] unless node['supermarket']['postgresql']['enable']
+  password node['supermarket']['postgresql']['password'] unless node['supermarket']['postgresql']['enable']
   host node['supermarket']['database']['host'] unless node['supermarket']['postgresql']['enable']
 end
 
