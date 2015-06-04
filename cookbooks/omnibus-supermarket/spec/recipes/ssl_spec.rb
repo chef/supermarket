@@ -22,6 +22,17 @@ describe 'omnibus-supermarket::ssl' do
     )
   end
 
+  it 'creates /var/opt/supermarket/ssl/ca/dhparams.pem' do
+    expect(chef_run).to create_file_if_missing(
+      '/var/opt/supermarket/ssl/ca/dhparams.pem'
+    ).with(
+      user: 'root',
+      group: 'root',
+      mode: '0644',
+      content: `/opt/supermarket/embedded/bin/openssl dhparam 2048 2>/dev/null`
+    )
+  end
+
   context 'when an ssl certificate is not defined' do
     it 'creates /var/opt/supermarket/ssl/ca/chefspec.local.key' do
       expect(chef_run).to create_file_if_missing(
