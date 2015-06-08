@@ -25,14 +25,12 @@ include_recipe 'omnibus-supermarket::config'
 
 ENV['PGHOST'] = node['supermarket']['database']['host']
 ENV['PGPORT'] = node['supermarket']['database']['port'].to_s
+ENV['PGUSER'] = node['supermarket']['database']['user']
+ENV['PGPASSWORD'] = node['supermarket']['database']['password']
 
 enterprise_pg_user node['supermarket']['database']['user'] do
   superuser true
   password node['supermarket']['database']['password'] || ''
-#  Commenting these out until a bug is fixed with the database provider in https://github.com/opscode-cookbooks/enterprise-chef-common
-#  admin_username node['supermarket']['postgresql']['username'] unless node['supermarket']['postgresql']['enable']
-#  admin_password node['supermarket']['postgresql']['password'] unless node['supermarket']['postgresql']['enable']
-#  host node['supermarket']['database']['host'] unless node['supermarket']['postgresql']['enable']
   # If the database user is the same as the main postgres user, don't create it.
   not_if do
     node['supermarket']['database']['user'] ==
@@ -42,10 +40,6 @@ end
 
 enterprise_pg_database node['supermarket']['database']['name'] do
   owner node['supermarket']['database']['user']
-#  Commenting these out until a bug is fixed with the database provider in https://github.com/opscode-cookbooks/enterprise-chef-common
-#  username node['supermarket']['postgresql']['username'] unless node['supermarket']['postgresql']['enable']
-#  password node['supermarket']['postgresql']['password'] unless node['supermarket']['postgresql']['enable']
-#  host node['supermarket']['database']['host'] unless node['supermarket']['postgresql']['enable']
 end
 
 node['supermarket']['database']['extensions'].each do |ext, enable|
