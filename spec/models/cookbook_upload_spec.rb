@@ -287,5 +287,19 @@ describe CookbookUpload do
 
       expect(errors).to_not be_empty
     end
+
+    it 'strips self-dependencies out of cookbooks on upload' do
+      tarball = File.open('spec/support/cookbook_fixtures/with-self-dependency.tgz')
+
+      cookbook_record = CookbookUpload.new(
+        user,
+        cookbook: cookbook,
+        tarball: tarball
+      ).finish do |_, result|
+        result
+      end
+
+      expect(cookbook_record.cookbook_versions.first.cookbook_dependencies.count).to eql(0)
+    end
   end
 end
