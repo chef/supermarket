@@ -7,6 +7,10 @@ end
     ENV[key].present?
   end
 
+  if ENV['S3_PATH'].present?
+    path = "#{ENV['S3_PATH']}/#{path}"
+  end
+
   if configured
     options = {
       storage: 's3',

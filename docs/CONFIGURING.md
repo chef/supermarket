@@ -103,8 +103,8 @@ the test suite.
 * `CLA_SIGNATURE_NOTIFICATION_EMAIL` is the email that gets notified when CLAs
   are signed.
 * `FROM_EMAIL` is the default sender email address for all Supermarket mailers.
-* `S3_BUCKET` specifies the S3 bucket to use to save uploaded cookbook
-  artifacts.
+* `S3_BUCKET` specifies the S3 bucket to use to save uploaded cookbook artifacts
+* `S3_PATH` specifies the path in the S3 Bucket to save the uploaded cookbook artifacts to (i.e. if you had a test/supermarket folder (also known as a directory or a prefix) in your bucket that you wanted to save your cookbooks to, you would use "test/supermarket" as your path).
 * `S3_ACCESS_KEY_ID` and `S3_SECRET_ACCESS_KEY` are the keys required to put
   files in the above bucket.
 * `S3_URLS_EXPIRE` is used if you want to use expiring urls for your cookbook
