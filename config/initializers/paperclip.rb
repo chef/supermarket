@@ -7,6 +7,10 @@ end
     ENV[key].present?
   end
 
+  if ENV['S3_PATH'].present?
+    path = "#{ENV['S3_PATH']}/#{path}"
+  end
+
   if configured
     options = {
       storage: 's3',
@@ -15,7 +19,7 @@ end
         access_key_id: ENV['S3_ACCESS_KEY_ID'],
         secret_access_key: ENV['S3_SECRET_ACCESS_KEY']
       },
-      path: "#{ENV['S3_PATH']}/#{path}",
+      path: path,
       bucket: ENV['S3_BUCKET'],
       s3_protocol: ENV['PROTOCOL']
     }
