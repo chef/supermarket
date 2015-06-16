@@ -17,6 +17,7 @@
 name "supermarket-ctl"
 
 dependency "omnibus-ctl"
+dependency "chef-gem"
 dependency "runit"
 
 source path: "cookbooks/omnibus-supermarket"

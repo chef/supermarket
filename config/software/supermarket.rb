@@ -19,7 +19,7 @@ default_version "master"
 
 dependency "bundler"
 dependency "cacerts"
-dependency "chef"
+dependency "chef-gem"
 dependency "git"
 dependency "nginx"
 dependency "nodejs"
