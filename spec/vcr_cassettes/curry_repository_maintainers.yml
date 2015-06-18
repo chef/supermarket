@@ -1,0 +1,87 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/repos/chef/paprika/contents/MAINTAINERS.toml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3.raw
+      User-Agent:
+      - Octokit Ruby Gem 3.3.1
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 16 Jun 2015 13:39:35 GMT
+      Content-Type:
+      - application/vnd.github.v3.raw; charset=utf-8
+      Content-Length:
+      - '103'
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4949'
+      X-Ratelimit-Reset:
+      - '1434463934'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Last-Modified:
+      - Wed, 13 May 2015 15:04:43 GMT
+      Etag:
+      - '"8b1f9c972f0c6b63cbf910ec54373dd3"'
+      X-Oauth-Scopes:
+      - gist, repo, user
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; param=raw
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 97E7E382:5FD6:A789925:55802717
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 318e55760cf7cdb40e61175a4d36cd32
+    body:
+      encoding: UTF-8
+      string: |
+        [Org.Components.Core]
+          maintainers = [ "thommay" ]
+        [people]
+          [people.thommay]
+            GitHub = "thommay"
+    http_version: 
+  recorded_at: Tue, 16 Jun 2015 13:39:35 GMT
+recorded_with: VCR 2.9.2

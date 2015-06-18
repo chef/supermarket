@@ -19,6 +19,7 @@ gem 'dotenv'
 gem 'coveralls', require: false
 gem 'octokit', git: 'https://github.com/octokit/octokit.rb.git', require: false
 gem 'sidekiq'
+gem 'tomlrb'
 
 # Pin sprockets to ensure we get the latest security patches. Not pinning this
 # meant that the gem that depended on sprockets was pulling in an old

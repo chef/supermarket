@@ -7,7 +7,7 @@ class Curry::Repository < ActiveRecord::Base
 
   has_many :pull_requests, dependent: :destroy
   has_many :repository_maintainers, dependent: :destroy, class_name: 'Curry::RepositoryMaintainer'
-  has_many :maintainers, through: :repository_maintainers, source: :user
+  has_many :maintainers, -> { uniq }, through: :repository_maintainers, source: :user
 
   def full_name
     if owner.present? && name.present?
