@@ -17,7 +17,7 @@ gem 'foreman'
 gem 'pundit'
 gem 'dotenv'
 gem 'coveralls', require: false
-gem 'octokit', git: 'https://github.com/octokit/octokit.rb.git', require: false
+gem 'octokit', require: false
 gem 'sidekiq'
 gem 'tomlrb'
 
