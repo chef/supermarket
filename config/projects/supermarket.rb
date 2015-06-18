@@ -33,7 +33,7 @@ override :postgresql, version: '9.3.6'
 override :ruby, version: "2.1.6"
 override :rubygems, version: "2.4.1"
 override :git, version: "2.2.1"
-override :chef, version: '12.3.0'
+override :'chef-gem', version: '12.3.0'
 
 # Creates required build directories
 dependency "preparation"
