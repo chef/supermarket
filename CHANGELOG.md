@@ -1,5 +1,17 @@
 # Supermarket Changelog
 
+## 1.11.0-alpha.0 (2015-06-18)
+- [1066] - remove gitter reference from announcement banner
+- [1064] - Be more liberal in our configuration tools config
+- [1055] - part #2 of removing cookbook self-deps
+- [1054] - Make user admin task
+- [21] - updating the Gemfile.lock version of omnibus for an error fix
+- [22] - Add supermarket ctl command
+- [23] - Support rds for postgres
+- [25] - Dhparam Options
+- [29] - PostgreSQL Credentials
+
+
 ## 1.10.1-alpha.0 (2015-05-15)
 Upping version to account for changes in [omnibus-supermarket](https://github.com/chef/omnibus-supermarket/tree/1.10.0-alpha.0)
 
