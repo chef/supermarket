@@ -274,8 +274,8 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
       end
 
       it 'assigns a maintainer to a pull request' do
-        thom = create(:user, first_name: "Thom", last_name: "May", email: "thom@example.com")
-        thom.accounts << create(:account, provider: "github", username: "thommay")
+        thom = create(:user, first_name: 'Thom', last_name: 'May', email: 'thom@example.com')
+        thom.accounts << create(:account, provider: 'github', username: 'thommay')
         repository.maintainers << thom
 
         VCR.use_cassette('pull_request_annotation_assigns_maintainer', record: :once) do
@@ -286,7 +286,7 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
           annotator.annotate
 
           assignee = octokit.issue(repository.full_name, pull_request.number)[:assignee][:login]
-          expect(assignee).to eql("thommay")
+          expect(assignee).to eql('thommay')
         end
       end
     end
