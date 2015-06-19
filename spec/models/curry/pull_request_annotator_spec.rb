@@ -272,6 +272,23 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
           expect(success_comments.count).to eql(2)
         end
       end
+
+      it 'assigns a maintainer to a pull request' do
+        thom = create(:user, first_name: "Thom", last_name: "May", email: "thom@example.com")
+        thom.accounts << create(:account, provider: "github", username: "thommay")
+        repository.maintainers << thom
+
+        VCR.use_cassette('pull_request_annotation_assigns_maintainer', record: :once) do
+          brett = pull_request.commit_authors.create!(login: 'brettchalupa')
+          brett.sign_cla!
+
+          annotator = Curry::PullRequestAnnotator.new(pull_request)
+          annotator.annotate
+
+          assignee = octokit.issue(repository.full_name, pull_request.number)[:assignee][:login]
+          expect(assignee).to eql("thommay")
+        end
+      end
     end
 
     it 'removes the label before adding a comment' do
@@ -298,5 +315,6 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
         expect(labels.map(&:name)).to_not include(label_text)
       end
     end
+
   end
 end
