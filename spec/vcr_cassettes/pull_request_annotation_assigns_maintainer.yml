@@ -1,0 +1,309 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.github.com/repos/chef/paprika/issues/1/labels
+    body:
+      encoding: UTF-8
+      string: '["Signed CLA"]'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.8.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 18 Jun 2015 14:36:23 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4939'
+      X-Ratelimit-Reset:
+      - '1434639614'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Etag:
+      - W/"7047506afe4fce590bfd2496c42ce8f4"
+      X-Oauth-Scopes:
+      - gist, repo, user
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 53D85E6F:7355:1BDCD53:5582D765
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 173530fed4bbeb1e264b2ed22e8b5c20
+    body:
+      encoding: UTF-8
+      string: '[{"url":"https://api.github.com/repos/chef/paprika/labels/Signed%20CLA","name":"Signed
+        CLA","color":"8ED41E"}]'
+    http_version: 
+  recorded_at: Thu, 18 Jun 2015 14:36:23 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/chef/paprika/assignees/thommay
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.8.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 18 Jun 2015 14:36:24 GMT
+      Status:
+      - 204 No Content
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4938'
+      X-Ratelimit-Reset:
+      - '1434639614'
+      X-Oauth-Scopes:
+      - gist, repo, user
+      X-Accepted-Oauth-Scopes:
+      - ''
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 53D85E6F:7357:14531F9:5582D767
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      X-Served-By:
+      - dc1ce2bfb41810a06c705e83b388572d
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 18 Jun 2015 14:36:24 GMT
+- request:
+    method: patch
+    uri: https://api.github.com/repos/chef/paprika/issues/1
+    body:
+      encoding: UTF-8
+      string: '{"assignee":"thommay"}'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.8.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 18 Jun 2015 14:36:25 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4937'
+      X-Ratelimit-Reset:
+      - '1434639614'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Etag:
+      - W/"dfbce4bd48615b162315fac9fc735f3f"
+      X-Oauth-Scopes:
+      - gist, repo, user
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 53D85E6F:7354:1976376:5582D769
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - bd82876e9bf04990f289ba22f246ee9b
+    body:
+      encoding: UTF-8
+      string: '{"url":"https://api.github.com/repos/chef/paprika/issues/1","labels_url":"https://api.github.com/repos/chef/paprika/issues/1/labels{/name}","comments_url":"https://api.github.com/repos/chef/paprika/issues/1/comments","events_url":"https://api.github.com/repos/chef/paprika/issues/1/events","html_url":"https://github.com/chef/paprika/pull/1","id":26811461,"number":1,"title":"add
+        henri the cat to the pr","user":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=3","gravatar_id":"","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"labels":[{"url":"https://api.github.com/repos/chef/paprika/labels/Signed%20CLA","name":"Signed
+        CLA","color":"8ED41E"}],"state":"open","locked":false,"assignee":{"login":"thommay","id":8500,"avatar_url":"https://avatars.githubusercontent.com/u/8500?v=3","gravatar_id":"","url":"https://api.github.com/users/thommay","html_url":"https://github.com/thommay","followers_url":"https://api.github.com/users/thommay/followers","following_url":"https://api.github.com/users/thommay/following{/other_user}","gists_url":"https://api.github.com/users/thommay/gists{/gist_id}","starred_url":"https://api.github.com/users/thommay/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/thommay/subscriptions","organizations_url":"https://api.github.com/users/thommay/orgs","repos_url":"https://api.github.com/users/thommay/repos","events_url":"https://api.github.com/users/thommay/events{/privacy}","received_events_url":"https://api.github.com/users/thommay/received_events","type":"User","site_admin":false},"milestone":null,"comments":2,"created_at":"2014-02-03T15:35:50Z","updated_at":"2015-06-18T14:36:23Z","closed_at":null,"pull_request":{"url":"https://api.github.com/repos/chef/paprika/pulls/1","html_url":"https://github.com/chef/paprika/pull/1","diff_url":"https://github.com/chef/paprika/pull/1.diff","patch_url":"https://github.com/chef/paprika/pull/1.patch"},"body":"![maxresdefault](https://f.cloud.github.com/assets/928367/2128243/b8d12b78-9278-11e3-9016-a57c8de471f7.jpg)","closed_by":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=3","gravatar_id":"","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false}}'
+    http_version: 
+  recorded_at: Thu, 18 Jun 2015 14:36:25 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/chef/paprika/issues/1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.8.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 18 Jun 2015 14:36:26 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4936'
+      X-Ratelimit-Reset:
+      - '1434639614'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Last-Modified:
+      - Thu, 18 Jun 2015 14:36:25 GMT
+      Etag:
+      - W/"dfbce4bd48615b162315fac9fc735f3f"
+      X-Oauth-Scopes:
+      - gist, repo, user
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 53D85E6F:7356:1CC772D:5582D76A
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 76d9828c7e4f1d910f7ba069e90ce976
+    body:
+      encoding: UTF-8
+      string: '{"url":"https://api.github.com/repos/chef/paprika/issues/1","labels_url":"https://api.github.com/repos/chef/paprika/issues/1/labels{/name}","comments_url":"https://api.github.com/repos/chef/paprika/issues/1/comments","events_url":"https://api.github.com/repos/chef/paprika/issues/1/events","html_url":"https://github.com/chef/paprika/pull/1","id":26811461,"number":1,"title":"add
+        henri the cat to the pr","user":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=3","gravatar_id":"","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false},"labels":[{"url":"https://api.github.com/repos/chef/paprika/labels/Signed%20CLA","name":"Signed
+        CLA","color":"8ED41E"}],"state":"open","locked":false,"assignee":{"login":"thommay","id":8500,"avatar_url":"https://avatars.githubusercontent.com/u/8500?v=3","gravatar_id":"","url":"https://api.github.com/users/thommay","html_url":"https://github.com/thommay","followers_url":"https://api.github.com/users/thommay/followers","following_url":"https://api.github.com/users/thommay/following{/other_user}","gists_url":"https://api.github.com/users/thommay/gists{/gist_id}","starred_url":"https://api.github.com/users/thommay/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/thommay/subscriptions","organizations_url":"https://api.github.com/users/thommay/orgs","repos_url":"https://api.github.com/users/thommay/repos","events_url":"https://api.github.com/users/thommay/events{/privacy}","received_events_url":"https://api.github.com/users/thommay/received_events","type":"User","site_admin":false},"milestone":null,"comments":2,"created_at":"2014-02-03T15:35:50Z","updated_at":"2015-06-18T14:36:23Z","closed_at":null,"pull_request":{"url":"https://api.github.com/repos/chef/paprika/pulls/1","html_url":"https://github.com/chef/paprika/pull/1","diff_url":"https://github.com/chef/paprika/pull/1.diff","patch_url":"https://github.com/chef/paprika/pull/1.patch"},"body":"![maxresdefault](https://f.cloud.github.com/assets/928367/2128243/b8d12b78-9278-11e3-9016-a57c8de471f7.jpg)","closed_by":{"login":"brettchalupa","id":928367,"avatar_url":"https://avatars.githubusercontent.com/u/928367?v=3","gravatar_id":"","url":"https://api.github.com/users/brettchalupa","html_url":"https://github.com/brettchalupa","followers_url":"https://api.github.com/users/brettchalupa/followers","following_url":"https://api.github.com/users/brettchalupa/following{/other_user}","gists_url":"https://api.github.com/users/brettchalupa/gists{/gist_id}","starred_url":"https://api.github.com/users/brettchalupa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/brettchalupa/subscriptions","organizations_url":"https://api.github.com/users/brettchalupa/orgs","repos_url":"https://api.github.com/users/brettchalupa/repos","events_url":"https://api.github.com/users/brettchalupa/events{/privacy}","received_events_url":"https://api.github.com/users/brettchalupa/received_events","type":"User","site_admin":false}}'
+    http_version: 
+  recorded_at: Thu, 18 Jun 2015 14:36:26 GMT
+recorded_with: VCR 2.9.2
