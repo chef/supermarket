@@ -42,6 +42,7 @@ class Curry::PullRequestAnnotator
 
     if unauthorized_commit_authors.empty?
       actions << Curry::AddAuthorizedLabel.new(@octokit, @pull_request)
+      actions << Curry::AssignPullRequestReviewer.new(@octokit, @pull_request)
 
       if comment.required_authorization?
         actions << Curry::AuthorizedCommitAuthorComment.new(

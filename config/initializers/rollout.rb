@@ -7,7 +7,7 @@ def Object.const_missing(const)
     redis = Redis.new(url: redis_url)
     Object.const_set('ROLLOUT', Rollout.new(redis))
 
-    features = ENV['FEATURES'].to_s.split(',').map {|f| f.strip }
+    features = ENV['FEATURES'].to_s.split(',').map(&:strip)
 
     #
     # Features that are defined in rollout but are no longer defined

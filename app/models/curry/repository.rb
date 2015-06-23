@@ -6,6 +6,8 @@ class Curry::Repository < ActiveRecord::Base
   validates :callback_url, presence: true
 
   has_many :pull_requests, dependent: :destroy
+  has_many :repository_maintainers, dependent: :destroy, class_name: 'Curry::RepositoryMaintainer'
+  has_many :maintainers, -> { uniq }, through: :repository_maintainers, source: :user
 
   def full_name
     if owner.present? && name.present?
