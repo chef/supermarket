@@ -273,20 +273,42 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
         end
       end
 
-      xit 'assigns a maintainer to a pull request' do
-        thom = create(:user, first_name: 'Thom', last_name: 'May', email: 'thom@example.com')
-        thom.accounts << create(:account, provider: 'github', username: 'thommay')
-        repository.maintainers << thom
+      describe 'maintainers' do
+        let(:thom) { create(:user, first_name: 'Thom', last_name: 'May', email: 'thom@example.com') }
+        let(:frank) { create(:user, first_name: 'Frank', last_name: 'Jones', email: 'frank@example.com') }
 
-        VCR.use_cassette('pull_request_annotation_assigns_maintainer', record: :once) do
-          brett = pull_request.commit_authors.create!(login: 'brettchalupa')
-          brett.sign_cla!
+        before do
+          thom.accounts << create(:account, provider: 'github', username: 'thommay')
+          frank.accounts << create(:account, provider: 'github', username: 'frank')
+        end
 
-          annotator = Curry::PullRequestAnnotator.new(pull_request)
-          annotator.annotate
+        it 'assigns a maintainer to a pull request' do
+          repository.maintainers = [thom]
+          VCR.use_cassette('pull_request_annotation_assigns_maintainer', record: :once) do
+            brett = pull_request.commit_authors.create!(login: 'brettchalupa')
+            brett.sign_cla!
 
-          assignee = octokit.issue(repository.full_name, pull_request.number)[:assignee][:login]
-          expect(assignee).to eql('thommay')
+            annotator = Curry::PullRequestAnnotator.new(pull_request)
+            annotator.annotate
+
+            assignee = octokit.issue(repository.full_name, pull_request.number)[:assignee][:login]
+            expect(assignee).to eql('thommay')
+            expect(pull_request.maintainer).to be(thom)
+          end
+        end
+
+        it 'does not change an already assigned maintainer' do
+          pull_request.maintainer = thom
+          repository.maintainers = [frank]
+          VCR.use_cassette('pull_request_annotation_assigns_maintainer', record: :once) do
+            brett = pull_request.commit_authors.create!(login: 'brettchalupa')
+            brett.sign_cla!
+
+            annotator = Curry::PullRequestAnnotator.new(pull_request)
+            annotator.annotate
+
+            expect(pull_request.maintainer).to be(thom)
+          end
         end
       end
     end

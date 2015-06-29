@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150512134228) do
+ActiveRecord::Schema.define(version: 20150626120818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -204,8 +204,8 @@ ActiveRecord::Schema.define(version: 20150512134228) do
     t.integer  "web_download_count",       default: 0
     t.integer  "api_download_count",       default: 0
     t.boolean  "featured",                 default: false
-    t.boolean  "privacy"
     t.boolean  "up_for_adoption"
+    t.boolean  "privacy"
   end
 
   add_index "cookbooks", ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true, using: :btree
@@ -253,8 +253,10 @@ ActiveRecord::Schema.define(version: 20150512134228) do
     t.integer  "repository_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "maintainer_id"
   end
 
+  add_index "curry_pull_requests", ["maintainer_id"], name: "index_curry_pull_requests_on_maintainer_id", using: :btree
   add_index "curry_pull_requests", ["number", "repository_id"], name: "index_curry_pull_requests_on_number_and_repository_id", unique: true, using: :btree
 
   create_table "curry_repositories", force: true do |t|

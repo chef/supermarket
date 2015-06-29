@@ -6,6 +6,7 @@ class Curry::PullRequest < ActiveRecord::Base
   has_many :commit_authors, through: :pull_request_commit_authors
   has_many :comments, class_name: 'Curry::PullRequestComment'
 
+  belongs_to :maintainer, class_name: 'User'
   validates :number, presence: true, uniqueness: { scope: :repository_id }
   validates :repository_id, presence: true
 
