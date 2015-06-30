@@ -359,10 +359,8 @@ GEM
       addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
     semverse (1.2.1)
-    sentry-raven (0.8.0)
+    sentry-raven (0.13.3)
       faraday (>= 0.7.6)
-      hashie (>= 1.1.0)
-      uuidtools
     sequel (4.15.0)
     sidekiq (3.2.3)
       celluloid (>= 0.15.2)
@@ -414,7 +412,6 @@ GEM
       rack
       unicorn
     utf8-cleaner (0.0.9)
-    uuidtools (2.1.5)
     validate_url (0.2.2)
       activemodel (>= 3.0.0)
       addressable
@@ -482,7 +479,7 @@ DEPENDENCIES
   rubocop (>= 0.23.0)
   sass-rails (~> 4.0.4)
   semverse
-  sentry-raven (~> 0.8.0)
+  sentry-raven (~> 0.13.3)
   shoulda-matchers!
   sidekiq
   sidetiq!

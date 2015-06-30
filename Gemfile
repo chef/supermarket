@@ -55,7 +55,7 @@ gem 'rinku', require: 'rails_rinku'
 gem 'html_truncator'
 gem 'rollout'
 gem 'statsd-ruby'
-gem 'sentry-raven', '~> 0.8.0', require: false
+gem 'sentry-raven', '~> 0.13.3', require: false
 gem 'sass-rails',   '~> 4.0.4'
 gem 'compass-rails'
 gem 'uglifier',     '~> 2.2'
