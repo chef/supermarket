@@ -300,7 +300,7 @@ GEM
     rainbow (2.0.0)
     raindrops (0.13.0)
     rake (10.4.2)
-    redcarpet (3.1.2)
+    redcarpet (3.3.2)
     redis (3.1.0)
     redis-actionpack (4.0.0)
       actionpack (~> 4)
