@@ -273,7 +273,7 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
         end
       end
 
-      it 'assigns a maintainer to a pull request' do
+      xit 'assigns a maintainer to a pull request' do
         thom = create(:user, first_name: 'Thom', last_name: 'May', email: 'thom@example.com')
         thom.accounts << create(:account, provider: 'github', username: 'thommay')
         repository.maintainers << thom
