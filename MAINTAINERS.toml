@@ -1,0 +1,58 @@
+#
+# This file is structured to be consumed by both humans and computers.
+# It is a TOML document containing Markdown
+#
+[Preamble]
+  title = "Maintainers"
+  text = """
+This file lists how the Chef project is maintained. When making changes to the system, this
+file tells you who needs to review your patch - you need a simple majority of maintainers
+for the relevant subsystems to provide a :+1: on your pull request. Additionally, you need
+to not receive a veto from a Lieutenant or the Project Lead.
+
+Check out [How Chef is Maintained](https://github.com/opscode/chef-rfc/blob/master/rfc030-maintenance-policy.md#how-the-project-is-maintained) for details on the process, how to become
+a maintainer, lieutenant, or the project lead.
+"""
+
+[Org]
+  [Org.Lead]
+    title = "Project Lead"
+    person = "nathenharvey"
+
+  [Org.Components]
+    title = "Components"
+
+    [Org.Components.Rails]
+      title = "Rails Application"
+      text = """
+The core Supermarket application is a Rails application.  This component manages this Rails application.
+"""
+      lieutenant = "nellshamrell"
+
+      maintainers = [
+        "kirtfitzpatrick"
+      ]
+
+   [Org.Components.OmnibusSupermarket]
+     title = "Omnibus Supermarket Application"
+     text = """
+Supermarket is packaged in an Omnibus package to allow easy deploy with all required services included.
+"""
+      lieutenant = "kirtfitzpatrick"
+
+      maintainers = [
+        "nellshamrell"
+      ]
+
+[people]
+  [people.nathenharvey]
+    Name = "Nathen Harvey"
+    Github = "nathenharvey"
+
+  [people.nellshamrell]
+    Name = "Nell Shamrell-Harrington"
+    Github = "nellshamrell"
+
+  [people.kirtfitzpatrick]
+    Name = "Kirt Fitzpatrick"
+    Github = "kirtfitzpatrick"
