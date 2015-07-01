@@ -65,7 +65,7 @@ describe CookbookAuthorizer do
     it { should permit_authorization(:manage) }
     it { should_not permit_authorization(:create) }
     it { should_not permit_authorization(:destroy) }
-    it { should_not permit_authorization(:create_collaborator) }
+    it { should permit_authorization(:create_collaborator) }
     it { should permit_authorization(:manage_cookbook_urls) }
     it { should permit_authorization(:manage_adoption) }
   end

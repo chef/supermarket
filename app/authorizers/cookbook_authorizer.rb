@@ -26,7 +26,7 @@ class CookbookAuthorizer < Authorizer::Base
   # @return [Boolean]
   #
   def create_collaborator?
-    owner?
+    owner_or_admin?
   end
 
   #
