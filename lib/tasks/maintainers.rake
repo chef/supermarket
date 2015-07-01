@@ -17,53 +17,53 @@
 
 require 'rake'
 
-SOURCE = File.join(File.dirname(__FILE__), "../..", "MAINTAINERS.toml")
-TARGET = File.join(File.dirname(__FILE__), "../..", "MAINTAINERS.md")
+SOURCE = File.join(File.dirname(__FILE__), '../..', 'MAINTAINERS.toml')
+TARGET = File.join(File.dirname(__FILE__), '../..', 'MAINTAINERS.md')
 
 begin
   require 'tomlrb'
-  task :default => :generate
+  task default: :generate
 
   namespace :maintainers do
-    desc "Generate MarkDown version of MAINTAINERS file"
+    desc 'Generate MarkDown version of MAINTAINERS file'
     task :generate do
       maintainers = Tomlrb.load_file SOURCE
       out = "<!-- This is a generated file. Please do not edit directly -->\n\n"
-      out << "# " + maintainers["Preamble"]["title"] + "\n\n"
-      out <<  maintainers["Preamble"]["text"] + "\n"
-      out << "# " + maintainers["Org"]["Lead"]["title"] + "\n\n"
-      out << person(maintainers["people"], maintainers["Org"]["Lead"]["person"]) + "\n\n"
-      out << components(maintainers["people"], maintainers["Org"]["Components"])
-      File.open(TARGET, "w") { |fn|
+      out << '# ' + maintainers['Preamble']['title'] + "\n\n"
+      out <<  maintainers['Preamble']['text'] + "\n"
+      out << '# ' + maintainers['Org']['Lead']['title'] + "\n\n"
+      out << person(maintainers['people'], maintainers['Org']['Lead']['person']) + "\n\n"
+      out << components(maintainers['people'], maintainers['Org']['Components'])
+      File.open(TARGET, 'w') do |fn|
         fn.write out
-      }
       end
     end
-
-    def components(list, cmp)
-      out = "## " + cmp.delete("title") + "\n\n"
-      out << cmp.delete("text") + "\n" if cmp.has_key?("text")
-      if cmp.has_key?("lieutenant")
-        out << "### Lieutenant\n\n"
-        out << person(list, cmp.delete("lieutenant")) + "\n\n"
-      end
-      out << maintainers(list, cmp.delete("maintainers")) + "\n" if cmp.has_key?("maintainers")
-      cmp.delete("paths")
-      cmp.each {|k,v| out << components(list, v) }
-      out
-    end
-
-    def maintainers(list, people)
-      o = "### Maintainers\n\n"
-      people.each do |p|
-        o << person(list, p) + "\n"
-      end
-      o
-    end
-
-    def person(list, person)
-      "* [#{list[person]["Name"]}](https://github.com/#{list[person]["GitHub"]})"
-    end
-  rescue LoadError
-    STDERR.puts "\n*** TomlRb not available.\n\n"
   end
+
+  def components(list, cmp)
+    out = '## ' + cmp.delete('title') + "\n\n"
+    out << cmp.delete('text') + "\n" if cmp.key?('text')
+    if cmp.key?('lieutenant')
+      out << "### Lieutenant\n\n"
+      out << person(list, cmp.delete('lieutenant')) + "\n\n"
+    end
+    out << maintainers(list, cmp.delete('maintainers')) + "\n" if cmp.key?('maintainers')
+    cmp.delete('paths')
+    cmp.each { |_k, v| out << components(list, v) }
+    out
+  end
+
+  def maintainers(list, people)
+    o = "### Maintainers\n\n"
+    people.each do |p|
+      o << person(list, p) + "\n"
+    end
+    o
+  end
+
+  def person(list, person)
+    "* [#{list[person]['Name']}](https://github.com/#{list[person]['GitHub']})"
+  end
+rescue LoadError
+  STDERR.puts "\n*** TomlRb not available.\n\n"
+end
