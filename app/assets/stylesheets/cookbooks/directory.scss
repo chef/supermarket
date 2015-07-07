@@ -5,11 +5,11 @@
 // Styles for the cookbooks directory
 
 .cookbooks_columns {
-  @include block-grid(3);
+  @include block-grid(2);
   margin: rem-calc(55 0);
 
   &.four_up {
-    @include block-grid(4);
+    @include block-grid(3);
     margin: rem-calc(55 0);
   }
 }

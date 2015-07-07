@@ -74,10 +74,6 @@
     <h4><i class="fa fa-key"></i> License</h4>
     <p><%= version.license %></p>
 
-    <h4 class="cookbook_show_sidebar_downloads">
-      <i class="fa fa-download"></i> <span itemprop="interactionCount"><%= number_with_delimiter(version.download_count) %></span> Downloads of Version <%= version.version %>
-      <small><%= number_with_delimiter(cookbook.download_count) %> Total Downloads</small>
-    </h4>
     <%= link_to "Download Cookbook", { action: 'download' }, class: 'button secondary radius expand button_download_cookbook' %>
   </div>
 </div>
