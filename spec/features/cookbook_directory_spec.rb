@@ -17,12 +17,6 @@ describe 'cookbook directory' do
     end
   end
 
-  it 'lists the five most downloaded cookbooks' do
-    within '.most-downloaded' do
-      expect(all('.simple_listing li').size).to eql(5)
-    end
-  end
-
   it 'lists the five most followed cookbooks' do
     within '.most-followed' do
       expect(all('.simple_listing li').size).to eql(5)
