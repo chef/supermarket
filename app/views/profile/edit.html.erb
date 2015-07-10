@@ -15,6 +15,7 @@
         <dd><a href="#agreements" rel="manage_agreements">Agreements</a></dd>
         <dd><a href="#collaborations" rel="manage_collaborations">Collaborations</a></dd>
       <% end %>
+        <dd><a href="#keys" rel="manage_keys">Keys</a></dd>
     </dl>
 
     <div class="tabs-content">
@@ -135,6 +136,25 @@
               <% end %>
             </table>
           <% end %>
+        </div>
+        <div class="content" id="keys">
+          <p>The credentials to authenticate with Supermarket are the same ones
+            used to authenticate with the Chef server. E.g. if you wish to upload
+            cookbooks to supermarket.chef.io you need to use the same username
+            and client key that you use to authenticate with manage.chef.io.
+          </p>
+          <p>If you do not already have your keys, or don't know if you do, you
+            can reset your key here:
+          </p>
+          <ol>
+            <li>Login or create an account at at: <a href="www.chef.io/account/login">www.chef.io/account/login<a></li>
+            <li>Click on the "Password and Key" tab (<a href="www.chef.io/account/password">www.chef.io/account/password</a>)</li>
+            <li>Click on <emph>Get a New Key</emph>. This will reset your client
+              key.</li>
+            <li>Use this key to configure knife to authenticate with the public Chef
+              server as you normally would.</li>
+            <li>You should now be configured to authenticate with Supermarket.</li>
+          </ol>
         </div>
       <% end %>
     </div>
