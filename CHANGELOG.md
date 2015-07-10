@@ -1,5 +1,9 @@
 # Supermarket Changelog
 
+
+## 1.12.0-alpha.0 (2015-06-23)
+- [1067] - Automatically assign maintainers to pull requests
+
 ## 1.11.0-alpha.0 (2015-06-18)
 - [1066] - remove gitter reference from announcement banner
 - [1064] - Be more liberal in our configuration tools config
