@@ -56,11 +56,6 @@
       </div>
 
       <ul class="cookbook_stats">
-        <li>
-          <i class="fa fa-inbox"></i>
-          <span itemprop="interactionCount"><%= number_with_delimiter(cookbook.download_count) %></span>
-          <h5>Total Downloads</h5>
-        </li>
         <%= render 'cookbooks/follow_button_list', cookbook: cookbook %>
       </ul>
     </div>
