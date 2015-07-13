@@ -1,0 +1,45 @@
+require 'spec_helper'
+
+describe AdoptionMailer do
+  describe 'interest_email' do
+    let(:cookbook) { create(:cookbook) }
+    let(:user) { create(:user) }
+
+    subject do
+      AdoptionMailer.interest_email(cookbook, user)
+    end
+
+    context 'in the to address' do
+      it 'includes the current owner\'s email' do
+        expect(subject.to).to include(cookbook.owner.email)
+      end
+    end
+
+    context 'in the subject' do
+      it 'includes the correct name' do
+        expect(subject.subject).to include(cookbook.name)
+      end
+
+      it 'includes the type of cookbook or tool' do
+        expect(subject.subject).to include(cookbook.class.name.downcase)
+      end
+    end
+
+    context 'in the body' do
+      it 'includes the adopting user email' do
+        expect(subject.text_part.to_s).to include(user.email)
+        expect(subject.html_part.to_s).to include(user.email)
+      end
+
+      it 'includes the type of cookbook or tool' do
+        expect(subject.text_part.to_s).to include(cookbook.class.name.downcase)
+        expect(subject.html_part.to_s).to include(cookbook.class.name.downcase)
+      end
+
+      it 'includes the name of the cookbook' do
+        expect(subject.text_part.to_s).to include(cookbook.name)
+        expect(subject.html_part.to_s).to include(cookbook.name)
+      end
+    end
+  end
+end
