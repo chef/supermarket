@@ -154,17 +154,14 @@ be enabled. Supermarket supports the following features.
 
 If you are having any issues with Supermarket, you can debug it using the Rails log.  However, the way you access it in Supermarket is different from how you would access it in most Rails applications.
 
-First, you will need to change the log level to 'DEBUG'.  You do this by opening up /opt/supermarket/supermarket.rb and adding this line
-```
-  default['supermarket']['log_level'] = 'DEBUG'
-```
+First, you will need to change the log level to 'DEBUG'.  You do this by setting the environmental variable `LOG_LEVEL` to 'DEBUG'
 
-Then save and close the file and run:
+Once you do this, run:
 ```
   $ supermarket-ctl reconfigure
 ```
 
-Once the reconfigure is complete, run this command to tail the logs.  You should now see any logger debug statements in your Rails application.
+Once the reconfigure is complete, run this command to tail the logs.  You should now see any logger debug statements in the Supermarket Rails application.
 ```
   $ supermarket-ctl tail
 ```
