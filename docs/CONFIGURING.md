@@ -149,3 +149,19 @@ be enabled. Supermarket supports the following features.
 * `fieri`, Enables the ability for Cookbook Versions to be evaluated by Fieri
 * `announcement`, Enables the foldable annoucement banner that is displayed on all views.
   when uploaded
+
+## Debugging
+
+If you are having any issues with Supermarket, you can debug it using the Rails log.  However, the way you access it in Supermarket is different from how you would access it in most Rails applications.
+
+First, you will need to change the log level to 'DEBUG'.  You do this by setting the environmental variable `LOG_LEVEL` to 'DEBUG'
+
+Once you do this, run:
+```
+  $ supermarket-ctl reconfigure
+```
+
+Once the reconfigure is complete, run this command to tail the logs.  You should now see any logger debug statements in the Supermarket Rails application.
+```
+  $ supermarket-ctl tail
+```
