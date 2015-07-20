@@ -47,7 +47,7 @@ en:
   icla:
     successful_signature: "You successfully signed the ICLA. Thank you!"
     successful_resignature: "You successfully re-signed the ICLA."
-    duplicate_signature: "You have already signed the ICLA. You can view and update your signature within Mange Profile."
+    duplicate_signature: "You have already signed the ICLA. You can view and update your signature within Manage Profile."
   invitation:
     accept:
       success: "Successfully joined %{organization}"
