@@ -1,5 +1,7 @@
 Your <%= @thing %>, <%= @name %>, which is currently up for adoption, got some interest today.
 
+<%= "#{Rails.root}#{cookbook_path(@name)}" %>
+
 Here is the interested user's information:
 Supermarket Username: <%= @adopting_username %>
 Email Address: <%= @email %>

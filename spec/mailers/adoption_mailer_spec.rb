@@ -48,6 +48,19 @@ describe AdoptionMailer do
         expect(subject.text_part.to_s).to include(cookbook.name)
         expect(subject.html_part.to_s).to include(cookbook.name)
       end
+
+      context 'including a link to the cookbook page' do
+        it 'includes the supermarket url' do
+          puts subject.html_part.to_s
+          expect(subject.text_part.to_s).to include(Rails.root.to_s)
+          expect(subject.html_part.to_s).to include(Rails.root.to_s)
+        end
+
+        it 'includes a link to the cookbook page' do
+          expect(subject.text_part.to_s).to include(cookbook_path(cookbook))
+          expect(subject.html_part.to_s).to include(cookbook_path(cookbook))
+        end
+      end
     end
   end
 end
