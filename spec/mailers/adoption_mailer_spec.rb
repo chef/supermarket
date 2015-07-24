@@ -31,6 +31,14 @@ describe AdoptionMailer do
         expect(subject.html_part.to_s).to include(user.email)
       end
 
+      it 'includes the username of the adopting user' do
+        # Making the username different from the email
+        allow(user).to receive(:username).and_return('someone')
+
+        expect(subject.text_part.to_s).to include(user.username)
+        expect(subject.html_part.to_s).to include(user.username)
+      end
+
       it 'includes the type of cookbook or tool' do
         expect(subject.text_part.to_s).to include(cookbook.class.name.downcase)
         expect(subject.html_part.to_s).to include(cookbook.class.name.downcase)
