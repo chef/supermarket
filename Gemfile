@@ -16,7 +16,6 @@ gem 'unicorn-rails'
 gem 'foreman'
 gem 'pundit'
 gem 'dotenv'
-gem 'coveralls', require: false
 gem 'octokit', require: false
 gem 'sidekiq'
 gem 'tomlrb'
