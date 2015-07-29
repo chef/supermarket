@@ -1,9 +1,9 @@
-Your <%= @thing %>, <%= @name %>, which is currently up for adoption, got some interest today.
-
+Your <%= @thing %>, <%= @name %>, which is currently up for adoption, got some interest today.<br />
 <%= link_to(@name, "#{Rails.root}#{cookbook_path(@name)}") %>
-
-Here is the interested user's information:
-Supermarket Username: <%= @adopting_username %>
-Email Address: <%= mail_to @email %>
+<br />
+<br />
+Here is the interested user's information:<br />
+Supermarket Username: <%= @adopting_username %><br />
+Email Address: <%= mail_to @email %><br />
 
 Please get in touch with them.
