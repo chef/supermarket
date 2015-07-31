@@ -11,6 +11,7 @@ class AdoptionMailer < ActionMailer::Base
   def interest_email(cookbook_or_tool, user)
     @name = cookbook_or_tool.name
     @email = user.email
+    @adopting_username = user.username
     @to = cookbook_or_tool.owner.email
     @thing = cookbook_or_tool.class.name.downcase
 
