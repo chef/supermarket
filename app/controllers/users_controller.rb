@@ -33,6 +33,15 @@ class UsersController < ApplicationController
   end
 
   #
+  # GET /users/:id/groups
+  #
+  # Display a user and their groups
+  #
+  def groups
+    @groups = @user.memberships
+  end
+
+  #
   # GET /users/:id/followed_cookbook_activity
   #
   # Displays a feed of cookbook activity for the

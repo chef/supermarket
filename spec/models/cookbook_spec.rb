@@ -10,6 +10,7 @@ describe Cookbook do
     it { should have_many(:collaborators) }
     it { should have_many(:collaborator_users) }
     it { should have_one(:chef_account) }
+    it { should have_many(:group_resources) }
 
     context 'dependent deletions' do
       let!(:cookbook) { create(:cookbook) }
@@ -152,26 +153,79 @@ describe Cookbook do
       expect(result).to eql('cookbook.ownership_transfer.done')
     end
 
-    it 'should remove the collaborator record if the new owner used to be a collaborator' do
-      hank = create(:user)
-      create(:cookbook_collaborator, resourceable: cookbook, user: hank)
-      expect(cookbook.owner).to eql(jimmy)
-      expect(cookbook.collaborator_users).to include(hank)
-      result = cookbook.transfer_ownership(jimmy, hank)
-      cookbook.reload
-      expect(cookbook.owner).to eql(hank)
-      expect(cookbook.collaborator_users).to_not include(hank)
+    context 'removing the collaborator record' do
+      let!(:hank) { create(:user) }
+      let!(:cookbook_collaborator) { create(:cookbook_collaborator, resourceable: cookbook, user: hank) }
+
+      before do
+        expect(cookbook.owner).to eql(jimmy)
+        expect(cookbook.collaborator_users).to include(hank)
+      end
+
+      context 'when the collaborator is NOT part of a group' do
+        it 'should remove the collaborator record if the new owner used to be a collaborator' do
+          cookbook.transfer_ownership(jimmy, hank)
+          cookbook.reload
+          expect(cookbook.owner).to eql(hank)
+          expect(cookbook.collaborator_users).to_not include(hank)
+        end
+      end
+
+      context 'when the collaborator IS part of a group' do
+        let!(:group) { create(:group) }
+
+        before do
+          cookbook_collaborator.group_id = group.id
+          cookbook_collaborator.save!
+        end
+
+        it 'does not remove the collaborator' do
+          cookbook.transfer_ownership(jimmy, hank)
+          cookbook.reload
+          expect(cookbook.owner).to eql(hank)
+          expect(cookbook.collaborator_users).to include(hank)
+        end
+      end
     end
 
-    it 'should create a new collaborator record for the previous owner' do
-      hank = create(:user)
-      create(:cookbook_collaborator, resourceable: cookbook, user: hank)
-      expect(cookbook.owner).to eql(jimmy)
-      expect(cookbook.collaborator_users).to_not include(jimmy)
-      result = cookbook.transfer_ownership(jimmy, hank)
-      cookbook.reload
-      expect(cookbook.owner).to eql(hank)
-      expect(cookbook.collaborator_users).to include(jimmy)
+    context 'adding a new collaborator record' do
+      let!(:hank) { create(:user) }
+      let!(:cookbook_collaborator) { create(:cookbook_collaborator, resourceable: cookbook, user: hank) }
+
+      context 'when the owner does NOT exist as a collaborator associated with a group' do
+        before do
+          expect(cookbook.owner).to eql(jimmy)
+          expect(cookbook.collaborator_users).to_not include(jimmy)
+        end
+
+        it 'should create a new collaborator record for the previous owner' do
+          result = cookbook.transfer_ownership(jimmy, hank)
+          cookbook.reload
+          expect(cookbook.owner).to eql(hank)
+          expect(cookbook.collaborator_users).to include(jimmy)
+        end
+      end
+
+      context 'when the owner DOES exist as a collaborator associated with a group' do
+        let(:group) { create(:group) }
+        let(:group_collaborator) { create(:cookbook_collaborator, resourceable: cookbook, user: jimmy, group_id: group.id) }
+
+        before do
+          expect(cookbook.collaborators).to include(group_collaborator)
+        end
+
+        it 'does not create a new collaborator record for the previous owner' do
+          expect(cookbook.owner).to eql(jimmy)
+          expect(cookbook.collaborators.where(user: group_collaborator.user).count).to eq(1)
+
+          result = cookbook.transfer_ownership(jimmy, hank)
+
+          cookbook.reload
+          expect(cookbook.owner).to eql(hank)
+          expect(cookbook.collaborators.where(user: group_collaborator.user).count).to eq(1)
+        end
+      end
+
     end
 
     it 'should create a transfer request if the initiator is not an admin and the recipient is not a collaborator' do

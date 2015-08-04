@@ -3,10 +3,15 @@
 
 <%= form_for Collaborator.new do |f| %>
   <div class="row collapse">
-    <div class="small-10 columns">
+    <div class="small-12 columns">
       <%= f.hidden_field :resourceable_type, value: resource.class.name %>
       <%= f.hidden_field :resourceable_id, value: resource.id %>
-      <%= f.hidden_field :user_ids, class: 'collaborators multiple', 'data-url' => collaborators_path(ineligible_user_ids: Collaborator.ineligible_collaborators_for(resource).map(&:id)) %>
+      <%= f.label :users %>
+      <%= f.hidden_field :user_ids, id: 'user_ids', class: 'collaborators multiple', 'data-url' => collaborators_path(ineligible_user_ids: Collaborator.ineligible_collaborators_for(resource).map(&:id)) %>
+      <% if ROLLOUT.active?(:collaborator_groups) %>
+        <%= f.label :groups %>
+        <%= f.hidden_field :group_ids, id: 'group_ids', class: 'groups multiple', 'data-url' => groups_path %>
+      <% end %>
     </div>
     <div class="small-2 columns">
       <%= f.submit 'Add', class: 'button radius postfix' %>

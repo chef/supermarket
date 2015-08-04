@@ -43,24 +43,11 @@ describe CollaboratorsController do
         expect(response).to redirect_to(cookbook)
       end
 
-      it 'sends the collaborator an email' do
+      it 'adds the user as a collaborator' do
         sign_in fanny
 
-        Sidekiq::Testing.inline! do
-          expect do
-            post :create, collaborator: { user_ids: hank.id, resourceable_type: 'Cookbook', resourceable_id: cookbook.id }
-          end.to change { ActionMailer::Base.deliveries.size }.by(1)
-        end
-      end
-
-      it 'fails if the signed in user is not the resource owner' do
-        sign_in hanky
-
-        expect do
-          post :create, collaborator: { user_ids: hank.id, resourceable_type: 'Cookbook', resourceable_id: cookbook.id }
-        end.to_not change { Collaborator.count }
-
-        expect(response.status).to eql(404)
+        expect(controller).to receive(:add_users_as_collaborators).with(cookbook, hank.id.to_s)
+        post :create, collaborator: { user_ids: hank.id, resourceable_type: 'Cookbook', resourceable_id: cookbook.id }
       end
 
       it 'does not include the resource owner if the resource owner tries to add themselves as a contributor' do
@@ -78,6 +65,18 @@ describe CollaboratorsController do
 
         expect(response.status).to eql(404)
       end
+
+      context 'when adding a group of collaborators' do
+        let(:group1) { create(:group) }
+        let(:group2) { create(:group) }
+
+        it 'adds collaborators for all groups' do
+          sign_in fanny
+          expect(controller).to receive(:add_group_members_as_collaborators).with(cookbook, "#{group1.id}, #{group2.id}")
+
+          post :create, collaborator: { group_ids: "#{group1.id}, #{group2.id}", resourceable_type: 'Cookbook', resourceable_id: cookbook.id }
+        end
+      end
     end
 
     describe 'DELETE #destroy' do
@@ -87,6 +86,96 @@ describe CollaboratorsController do
         sign_in fanny
         expect(controller).to receive(:remove_collaborator).with(collaborator)
         delete :destroy, id: collaborator, format: :js
+      end
+
+      context 'removing a group of collaborators' do
+        let!(:group_member1) { create(:group_member) }
+        let!(:group) { group_member1.group }
+        let!(:group_member2) { create(:group_member, group: group) }
+
+        let!(:collaborator1) { create(:cookbook_collaborator, group: group, user: group_member1.user, resourceable: cookbook) }
+        let!(:collaborator2) { create(:cookbook_collaborator, group: group, user: group_member2.user, resourceable: cookbook) }
+
+        let(:group_resource) { create(:group_resource, resourceable: cookbook, group: group) }
+        let(:group_resources) { GroupResource.where(group: group, resourceable: cookbook) }
+
+        let(:collaborators) { Collaborator.where(group: group, resourceable: cookbook) }
+
+        before do
+          sign_in fanny
+        end
+
+        it 'finds the correct group' do
+          expect(Group).to receive(:find).with(group.id.to_s).and_return(group)
+          delete :destroy_group, id: group, resourceable_id: cookbook.id, resourceable_type: 'Cookbook'
+        end
+
+        it 'finds the correct resource' do
+          expect(Cookbook).to receive(:find).with(cookbook.id.to_s).and_return(cookbook)
+          delete :destroy_group, id: group, resourceable_id: cookbook.id, resourceable_type: 'Cookbook'
+        end
+
+        it 'finds the correct group resource' do
+          expect(GroupResource).to receive(:where).with(group: group, resourceable: cookbook).and_return(group_resources)
+          delete :destroy_group, id: group, resourceable_id: cookbook.id, resourceable_type: 'Cookbook'
+        end
+
+        it 'removes the group_resource entry' do
+          allow(GroupResource).to receive(:where).and_return(group_resources)
+
+          group_resources.each do |group_resource|
+            expect(group_resource).to receive(:destroy)
+          end
+
+          delete :destroy_group, id: group, resourceable_id: cookbook.id, resourceable_type: 'Cookbook'
+        end
+
+        it 'removes all collaborators associated with that group' do
+          allow(Collaborator).to receive(:where).and_return(collaborators)
+          expect(controller).to receive(:remove_group_collaborators).with(Collaborator.where(group: group, resourceable: cookbook))
+          delete :destroy_group, id: group, resourceable_id: cookbook.id, resourceable_type: 'Cookbook'
+        end
+
+        it 'redirects back to the resource page' do
+          delete :destroy_group, id: group, resourceable_id: cookbook.id, resourceable_type: 'Cookbook'
+          expect(response).to redirect_to(cookbook_path(cookbook))
+        end
+
+        it 'shows a success message' do
+          delete :destroy_group, id: group, resourceable_id: cookbook.id, resourceable_type: 'Cookbook'
+          expect(flash[:notice]).to include("#{group.name} successfully removed")
+        end
+
+        context 'removing a collaborator who is also a member of a second group associated with the resource' do
+          let!(:group_2) { create(:group) }
+          let!(:group_2_member) { create(:group_member, group: group_2, user: group_member1.user) }
+          let!(:group_resource) { create(:group_resource, resourceable: cookbook, group: group_2) }
+          let!(:group_2_collaborator) { create(:cookbook_collaborator, resourceable: cookbook, user: group_member1.user, group_id: group_2.id) }
+
+          before do
+            expect(group_2.group_members).to include(group_2_member)
+            expect(group_2_member.user).to eq(group_member1.user)
+          end
+
+          it 'does not remove the collaborator record for the second group' do
+            expect(cookbook.collaborator_users).to include(group_2_member.user)
+            delete :destroy_group, id: group, resourceable_id: cookbook.id, resourceable_type: 'Cookbook'
+            expect(cookbook.collaborator_users).to include(group_2_member.user)
+          end
+
+          it 'finds all users associated with the collaborators' do
+            allow(Collaborator).to receive(:where).and_return(collaborators)
+            expect(collaborators).to receive(:map).and_return([group_member1.user])
+            delete :destroy_group, id: group, resourceable_id: cookbook.id, resourceable_type: 'Cookbook'
+          end
+
+          it 'shows a message to the user' do
+            delete :destroy_group, id: group, resourceable_id: cookbook.id, resourceable_type: 'Cookbook'
+            expect(flash[:notice]).to include(
+              "#{group_member1.user.username} is still a collaborator associated with #{group_2.name}"
+            )
+          end
+        end
       end
     end
 

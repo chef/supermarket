@@ -3,16 +3,18 @@ class Collaborator < ActiveRecord::Base # Associations
   # --------------------
   belongs_to :resourceable, polymorphic: true
   belongs_to :user
+  belongs_to :group
 
   # Validations
   # --------------------
   validates :resourceable, presence: true
   validates :user, presence: true
-  validates :resourceable_id, uniqueness: { scope: [:user_id, :resourceable_type] }
+  validates :resourceable_id, uniqueness: { scope: [:user_id, :resourceable_type, :group_id] }
 
   # Accessors
   # --------------------
   attr_accessor :user_ids
+  attr_accessor :group_ids
 
   #
   # Transfers ownership of this cookbook to this user. The existing owner is

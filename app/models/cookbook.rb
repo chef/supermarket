@@ -83,6 +83,7 @@ class Cookbook < ActiveRecord::Base
   belongs_to :replacement, class_name: 'Cookbook', foreign_key: :replacement_id
   has_many :collaborators, as: :resourceable
   has_many :collaborator_users, through: :collaborators, source: :user
+  has_many :group_resources, as: :resourceable
 
   # Delegations
   # --------------------
@@ -138,17 +139,10 @@ class Cookbook < ActiveRecord::Base
   #
   def transfer_ownership(initiator, recipient)
     if initiator.is?(:admin) || collaborator_users.include?(recipient)
-      collaborator = Collaborator.new(user_id: user_id, resourceable: self)
       update_attribute(:user_id, recipient.id)
-      collaborator.save!
 
-      if collaborator_users.include?(recipient)
-        collaborator = collaborators.where(
-          user_id: recipient.id,
-          resourceable: self
-        ).first
-        collaborator.destroy unless collaborator.nil?
-      end
+      create_new_collaborator(initiator)
+      delete_old_collaborator(recipient)
 
       'cookbook.ownership_transfer.done'
     else
@@ -406,5 +400,22 @@ class Cookbook < ActiveRecord::Base
   #
   def copy_name_to_lowercase_name
     self.lowercase_name = name.to_s.downcase
+  end
+
+  def create_new_collaborator(initiator)
+    collaborators.where(user_id: initiator.id).first_or_create!
+  end
+
+  def delete_old_collaborator(user)
+    if collaborator_users.include?(user)
+      collaborator = collaborators.where(
+        user_id: user.id,
+        resourceable: self,
+        group_id: nil
+      ).first
+      # Do not destroy collaborator is collaborator does not exist
+      # OR if the collaborator is associated with a group
+      collaborator.destroy if collaborator
+    end
   end
 end

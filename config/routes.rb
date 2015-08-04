@@ -64,6 +64,7 @@ Supermarket::Application.routes.draw do
   resources :collaborators, only: [:index, :new, :create, :destroy] do
     member do
       put :transfer
+      delete :destroy_group
     end
   end
 
@@ -98,6 +99,7 @@ Supermarket::Application.routes.draw do
   resources :users, only: [:show] do
     member do
       get :tools, constraints: proc { ROLLOUT.active?(:tools) }
+      get :groups
 
       put :make_admin
       delete :revoke_admin
@@ -105,6 +107,14 @@ Supermarket::Application.routes.draw do
     end
 
     resources :accounts, only: [:destroy]
+  end
+
+  resources :groups
+
+  resources :group_members do
+    member do
+      post :make_admin
+    end
   end
 
   resources :tools, constraints: proc { ROLLOUT.active?(:tools) } do

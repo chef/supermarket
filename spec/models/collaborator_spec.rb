@@ -4,23 +4,35 @@ describe Collaborator do
   context 'associations' do
     it { should belong_to(:resourceable) }
     it { should belong_to(:user) }
+    it { should belong_to(:group) }
   end
 
   context 'validations' do
+    let(:cookbook) { create(:cookbook) }
+    let(:tool) { create(:tool) }
+    let(:user) { create(:user) }
+
+    let!(:original_cookbook_collaborator) { Collaborator.create(user: user, resourceable: cookbook) }
+    let!(:original_tool_collaborator) { Collaborator.create(user: user, resourceable: tool) }
+    let!(:duplicate_cookbook_collaborator) { Collaborator.create(user: user, resourceable: cookbook) }
+
     it { should validate_presence_of(:resourceable) }
 
-    it 'validates the uniqueness of resourceable id scoped to user id and resourceable type' do
-      cookbook = create(:cookbook)
-      tool = create(:tool)
-      user = create(:user)
+    context 'of resourceable id' do
 
-      original_cookbook_collaborator = Collaborator.create(user: user, resourceable: cookbook)
-      original_tool_collaborator = Collaborator.create(user: user, resourceable: tool)
-      duplicate_cookbook_collaborator = Collaborator.create(user: user, resourceable: cookbook)
+      it 'validates uniqueness scoped to user id and resourceable type' do
+        expect(original_cookbook_collaborator.errors[:resourceable_id].size).to be 0
+        expect(original_tool_collaborator.errors[:resourceable_id].size).to be 0
+        expect(duplicate_cookbook_collaborator.errors[:resourceable_id].size).to be 1
+      end
 
-      expect(original_cookbook_collaborator.errors[:resourceable_id].size).to be 0
-      expect(original_tool_collaborator.errors[:resourceable_id].size).to be 0
-      expect(duplicate_cookbook_collaborator.errors[:resourceable_id].size).to be 1
+      it 'validates uniqueness scoped to user id and resourceable type and group_id' do
+        expect(Collaborator.where(user: user, resourceable: cookbook).count).to_not eq 0
+        group = create(:group)
+
+        diff_group_collaborator = Collaborator.create(user: user, resourceable: cookbook, group_id: group.id)
+        expect(diff_group_collaborator.errors[:resourceable_id].size).to eq 0
+      end
     end
   end
 

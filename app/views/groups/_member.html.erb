@@ -1,0 +1,17 @@
+<li itemscope itemtype="http://schema.org/Code">
+  <div class="header">
+    <div class="header-content">
+      <%= link_to member.user, rel: 'member', itemprop: 'username' do %><%= member.user.username %><% end %>
+      <div class="remove">
+        <% if @admin_members.map(&:user).include?(current_user) %>
+          <% if !member.admin? || (member.admin? && @admin_members.count > 1) %>
+            <%= link_to "Remove", group_member_path(member.id), method: :delete, data: { confirm: "Are you sure you want to remove this member?" }, class: 'button tiny alert radius' %>
+          <% end %>
+          <% if !member.admin? %>
+            <%= link_to "Make Admin", make_admin_group_member_path(member.id), method: :post, class: 'button tiny radius' %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</li>

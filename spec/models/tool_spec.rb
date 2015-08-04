@@ -6,6 +6,7 @@ describe Tool do
     it { should have_one(:chef_account) }
     it { should have_many(:collaborators) }
     it { should have_many(:collaborator_users) }
+    it { should have_many(:group_resources) }
   end
 
   context 'validations' do

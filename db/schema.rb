@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150626120818) do
+ActiveRecord::Schema.define(version: 20151201232841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,9 +96,10 @@ ActiveRecord::Schema.define(version: 20150626120818) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "resourceable_type"
+    t.integer  "group_id"
   end
 
-  add_index "collaborators", ["user_id", "resourceable_type", "resourceable_id"], name: "index_cookbook_collaborators_on_user_id_and_resourceable", unique: true, using: :btree
+  add_index "collaborators", ["user_id", "resourceable_type", "resourceable_id", "group_id"], name: "index_collaborators_on_user_id_and_group_id_and_resourceable", unique: true, using: :btree
 
   create_table "contributor_request_responses", force: true do |t|
     t.integer  "contributor_request_id", null: false
@@ -284,6 +285,28 @@ ActiveRecord::Schema.define(version: 20150626120818) do
 
   add_index "email_preferences", ["token"], name: "index_email_preferences_on_token", unique: true, using: :btree
   add_index "email_preferences", ["user_id", "system_email_id"], name: "index_email_preferences_on_user_id_and_system_email_id", unique: true, using: :btree
+
+  create_table "group_members", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.boolean  "admin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "group_resources", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "resourceable_id"
+    t.string   "resourceable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "hits", force: true do |t|
     t.string  "label",             null: false
