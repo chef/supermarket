@@ -53,6 +53,12 @@ CHEF_OAUTH2_APP_ID=MY_DEVELOPMENT_KEY
 CHEF_OAUTH2_SECRET=MY_DEVELOPMENT_SECRET
 ```
 
+## Mail Settings
+
+Your Supermarket will use email to send notifications to users (i.e. when a cookbook is up for adoption and someone expresses interest, an email will be sent to the cookbook's current owner)
+
+Configure a local mail transfer agent (Postfix works well!) on your Supermarket server using the steps appropriate for the platform on which your Supermarket server is running.
+
 ### Admin Users
 Admin users can create other admin users and can change the ownership of cookbooks.
 
