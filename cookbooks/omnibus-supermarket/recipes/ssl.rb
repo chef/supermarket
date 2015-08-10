@@ -37,7 +37,7 @@ if node['supermarket']['ssl']['certificate']
     to "#{node['supermarket']['install_directory']}/embedded/ssl/certs/cacert.pem"
   end
 # No certificate has been supplied; generate one
-else
+elsif node['supermarket']['ssl']['enabled']
   keyfile = "#{node['supermarket']['ssl']['directory']}/ca/#{node['supermarket']['fqdn']}.key"
   signing_conf = "#{node['supermarket']['ssl']['directory']}/ca/#{node['supermarket']['fqdn']}-ssl.conf"
   crtfile = "#{node['supermarket']['ssl']['directory']}/ca/#{node['supermarket']['fqdn']}.crt"

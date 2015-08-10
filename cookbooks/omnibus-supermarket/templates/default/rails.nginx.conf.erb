@@ -36,7 +36,7 @@ server {
   listen <%= node['supermarket']['nginx']['ssl_port'] %>;
   server_name <%= node['supermarket']['fqdn'] %>;
 
-<%   if node['supermarket']['ssl']['certificate'] && node['supermarket']['ssl']['certificate_key'] -%>
+<%   if node['supermarket']['ssl']['enabled'] -%>
   ssl on;
   ssl_certificate <%= node['supermarket']['ssl']['certificate'] %>;
   ssl_certificate_key <%= node['supermarket']['ssl']['certificate_key'] %>;
@@ -126,6 +126,8 @@ server {
 
     # to serve gzipped text and json responses
     gzip on;
+    gzip_min_length 1000;
     gzip_proxied expired no-cache no-store private auth;
+    gzip_types text/plain application/json;
   }
 }
