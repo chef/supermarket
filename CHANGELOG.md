@@ -1,6 +1,9 @@
 # Supermarket Changelog
 
 
+## 1.12.1-alpha.0 (2015-08-11)
+- Updated Omnibus to handle diabling SSL on port 443
+
 ## 1.12.0-alpha.0 (2015-06-23)
 - [1067] - Automatically assign maintainers to pull requests
 - [1063] - Ability to specify s3 bucket paths
