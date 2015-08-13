@@ -1,5 +1,23 @@
 # Supermarket Changelog
 
+## 2.0.0-alpha.0 (2015-08-13)
+- [1073] Convert owners file to maintainers file
+- [1074] Update making an admin user docs
+- [1075] Update security vulnerable gems
+- [1072] Allow admins to add collaborators
+- [1084] remove cookbooks survey
+- [1083] Add private key documentatino
+- [1077] Add log level docs
+- [1085] Add linke to feedback site
+- [1079] Remove download counts
+- [1078] Add roadmap
+- [1087] Fix type on ICLA duplicate signature message
+- [1092] Update changelog
+- [1089] Remove coveralls
+- [1091] Enhance adoption email
+- [1095] Add mail instructions
+- [1097] Clarify Supermarket Omnibus Instructions
+- [1099] Update omnibus to handle no ssl on port 443
 
 ## 1.12.1-alpha.0 (2015-08-11)
 - Updated Omnibus to handle diabling SSL on port 443
