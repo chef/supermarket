@@ -239,6 +239,7 @@ default['supermarket']['ssl']['openssl_bin'] = "#{node['supermarket']['install_d
 
 # Paths to the SSL certificate and key files. If these are not provided we will
 # attempt to generate a self-signed certificate and use that instead.
+default['supermarket']['ssl']['enabled'] = true
 default['supermarket']['ssl']['certificate'] = nil
 default['supermarket']['ssl']['certificate_key'] = nil
 default['supermarket']['ssl']['ssl_dhparam'] = nil
