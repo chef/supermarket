@@ -15,7 +15,7 @@
 #
 
 name "supermarket"
-default_version "no_ssl_443"
+default_version "master"
 
 dependency "bundler"
 dependency "cacerts"
