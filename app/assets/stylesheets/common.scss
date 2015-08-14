@@ -1,4 +1,7 @@
 @import "foundation/functions";
 @import "variables";
 @import "mixins/mixins";
+@import "default_branding";
 
+// Optional branding overrides of common variables.
+@import "branding/*";

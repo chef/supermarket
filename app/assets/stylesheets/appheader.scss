@@ -64,7 +64,7 @@
 }
 
 .logochef {
-  background: url(image-path('logo-supermarket.svg')) no-repeat;
+  background: url(image-path($appheader_logo_svg)) no-repeat;
   @include background-size(rem-calc(140) rem-calc(36));
   float: left;
   height: rem-calc(36);
@@ -72,7 +72,7 @@
   width: rem-calc(140);
 
   .no-svg & {
-    background: url(image-path('logo-supermarket.png')) no-repeat;
+    background: url(image-path($appheader_logo_png)) no-repeat;
   }
 
   a {

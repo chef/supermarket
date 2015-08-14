@@ -16,7 +16,7 @@
   @include grid-row();
   position: relative;
   max-width: 100%;
-  background-color: $primary_blue;
+  background-color: $search_bar_background;
 }
 
 .quick_search {
@@ -121,7 +121,7 @@
 }
 
 input[type="search"].cookbook_search_textfield {
-  background-color: darken($primary_blue, 7%);
+  background-color: $search_input_bg_color;
   border: none;
   @include border-left-radius(rem-calc(3));
   @include box-shadow(none);
