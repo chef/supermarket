@@ -55,3 +55,7 @@ public/sitemap*
 # Ignore local configuration
 .env.development
 .env.test
+
+# Ignore developer cruft
+**/.DS_Store
+.sass-cache
