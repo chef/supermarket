@@ -62,6 +62,10 @@ module CustomUrlHelper
     ENV['LEARN_CHEF_URL'] || "https://learn.#{chef_domain}"
   end
 
+  def chef_status_url
+    ENV['CHEF_STATUS_URL'] || "http://status.#{chef_domain}"
+  end
+
   private
 
   def extra_dispatch(url, extra = nil)
