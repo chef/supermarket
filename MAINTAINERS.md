@@ -24,19 +24,11 @@ The core Supermarket application is a Rails application.  This component manages
 
 * [Nell Shamrell-Harrington](https://github.com/)
 
-### Maintainers
-
-* [Kirt Fitzpatrick](https://github.com/)
-
 ## Omnibus Supermarket Application
 
 Supermarket is packaged in an Omnibus package to allow easy deploy with all required services included.
 
 ### Lieutenant
-
-* [Kirt Fitzpatrick](https://github.com/)
-
-### Maintainers
 
 * [Nell Shamrell-Harrington](https://github.com/)
 

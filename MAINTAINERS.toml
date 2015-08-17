@@ -29,20 +29,12 @@ The core Supermarket application is a Rails application.  This component manages
 """
       lieutenant = "nellshamrell"
 
-      maintainers = [
-        "kirtfitzpatrick"
-      ]
-
    [Org.Components.OmnibusSupermarket]
      title = "Omnibus Supermarket Application"
      text = """
 Supermarket is packaged in an Omnibus package to allow easy deploy with all required services included.
 """
-      lieutenant = "kirtfitzpatrick"
-
-      maintainers = [
-        "nellshamrell"
-      ]
+      lieutenant = "nellshamrell"
 
 [people]
   [people.nathenharvey]
@@ -52,7 +44,3 @@ Supermarket is packaged in an Omnibus package to allow easy deploy with all requ
   [people.nellshamrell]
     Name = "Nell Shamrell-Harrington"
     Github = "nellshamrell"
-
-  [people.kirtfitzpatrick]
-    Name = "Kirt Fitzpatrick"
-    Github = "kirtfitzpatrick"
