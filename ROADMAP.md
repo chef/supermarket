@@ -7,5 +7,8 @@ It is drafted by the Project Lead and the Lieutenants, with input from Maintaine
 ## 2015 Q3
 * Supermarket Groups
   - Add in group ownership/management of cookbooks on Supermarket (similar to Github organizations)
+
+## 2015 Q4
 * Quality Metrics for Cookbooks
   - Develop and display quality metrics for cookbooks on Supermarket
+* LDAP Authentication Integration (including organizational units) into Supermarket
