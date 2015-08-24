@@ -69,7 +69,7 @@ a supermarket-ctl task.
 2. Run this command, subsituting in the username you wish to make an admin
 
 ```
-$ supermarket-ctl make_admin supermarket_username
+$ supermarket-ctl make-admin supermarket_username
 ```
 To make more admin users, an existing admin user should access the user's profile
 page in the Supermarket GUI (https://your-supermarket-server/users/user_name),
