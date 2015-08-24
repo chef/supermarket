@@ -51,7 +51,6 @@ describe AdoptionMailer do
 
       context 'including a link to the cookbook page' do
         it 'includes the supermarket url' do
-          puts subject.html_part.to_s
           expect(subject.text_part.to_s).to include(Rails.root.to_s)
           expect(subject.html_part.to_s).to include(Rails.root.to_s)
         end
