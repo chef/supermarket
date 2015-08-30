@@ -234,9 +234,6 @@ default['supermarket']['sidekiq']['timeout'] = 30
 
 default['supermarket']['ssl']['directory'] = '/var/opt/supermarket/ssl'
 
-# This shouldn't be changed, but can be overriden in tests
-default['supermarket']['ssl']['openssl_bin'] = "#{node['supermarket']['install_directory']}/embedded/bin/openssl"
-
 # Paths to the SSL certificate and key files. If these are not provided we will
 # attempt to generate a self-signed certificate and use that instead.
 default['supermarket']['ssl']['enabled'] = true
