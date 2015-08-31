@@ -56,10 +56,6 @@ public/sitemap*
 .env.development
 .env.test
 
-# Ignore developer cruft
-**/.DS_Store
-.sass-cache
-
 # Ignore branding adjustments, user should track that separately
 # (ref app/assets/stylesheets/branding/README.md).
 app/assets/stylesheets/branding
