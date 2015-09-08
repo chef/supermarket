@@ -19,8 +19,6 @@
 
 include_recipe 'omnibus-supermarket::config'
 
-# Sets up SSL certificates. Creates a self-signed cert if none was provided.
-
 [node['supermarket']['ssl']['directory'],
  "#{node['supermarket']['ssl']['directory']}/ca"].each do |dir|
   directory dir do
@@ -30,61 +28,50 @@ include_recipe 'omnibus-supermarket::config'
   end
 end
 
-# A certificate has been supplied
-if node['supermarket']['ssl']['certificate']
-  # Link the standard CA cert into our certs directory
-  link "#{node['supermarket']['ssl']['directory']}/cacert.pem" do
-    to "#{node['supermarket']['install_directory']}/embedded/ssl/certs/cacert.pem"
-  end
-# No certificate has been supplied; generate one
-elsif node['supermarket']['ssl']['enabled']
-  keyfile = "#{node['supermarket']['ssl']['directory']}/ca/#{node['supermarket']['fqdn']}.key"
-  signing_conf = "#{node['supermarket']['ssl']['directory']}/ca/#{node['supermarket']['fqdn']}-ssl.conf"
-  crtfile = "#{node['supermarket']['ssl']['directory']}/ca/#{node['supermarket']['fqdn']}.crt"
-  ssl_dhparam = "#{node['supermarket']['ssl']['directory']}/ca/dhparams.pem"
+# Unless SSL is disabled, sets up SSL certificates.
+# Creates a self-signed cert if none is provided.
+if node['supermarket']['ssl']['enabled']
 
-  unless File.exist?(keyfile) && File.exist?(signing_conf) && File.exist?(crtfile)
-    file keyfile do
-      content `#{node['supermarket']['ssl']['openssl_bin']} genrsa 2048`
-      owner 'root'
-      group 'root'
-      mode '0640'
-      action :create_if_missing
+  # A certificate has been supplied
+  if node['supermarket']['ssl']['certificate']
+    # Link the standard CA cert into our certs directory
+    link "#{node['supermarket']['ssl']['directory']}/cacert.pem" do
+      to "#{node['supermarket']['install_directory']}/embedded/ssl/certs/cacert.pem"
     end
 
-    template signing_conf do
-      source 'ssl-signing.conf.erb'
+  # No certificate has been supplied; generate one
+  else
+    supermarket_ca_dir = File.join(node['supermarket']['ssl']['directory'], 'ca')
+    ssl_keyfile = File.join(supermarket_ca_dir, "#{node['supermarket']['fqdn']}.key")
+    ssl_crtfile = File.join(supermarket_ca_dir, "#{node['supermarket']['fqdn']}.crt")
+    ssl_dhparam = File.join(supermarket_ca_dir, 'dhparams.pem')
+
+    openssl_x509 ssl_crtfile do
+      common_name node['supermarket']['fqdn']
+      org node['supermarket']['ssl']['company_name']
+      org_unit node['supermarket']['ssl']['organizational_unit_name']
+      country node['supermarket']['ssl']['country_name']
+      key_length 2048
+      expire 3650
       owner 'root'
       group 'root'
       mode '0644'
-      action :create_if_missing
     end
 
-    ruby_block 'create certificate' do
-      block do
-        r = Chef::Resource::File.new(crtfile, run_context)
-        r.owner 'root'
-        r.group 'root'
-        r.mode '0644'
-        r.content `#{node['supermarket']['ssl']['openssl_bin']} req -config '#{signing_conf}' -new -x509 -nodes -sha1 -days 3650 -key #{keyfile}`
-        r.run_action(:create)
-      end
+    openssl_dhparam ssl_dhparam do
+      key_length 2048
+      generator 2
+      owner 'root'
+      group 'root'
+      mode '0644'
     end
-  end
 
-  file ssl_dhparam do
-    content `/opt/supermarket/embedded/bin/openssl dhparam 2048 2>/dev/null`
-    mode "0644"
-    owner "root"
-    group "root"
-    action :create_if_missing
-  end
+    node.default['supermarket']['ssl']['certificate'] ||= ssl_crtfile
+    node.default['supermarket']['ssl']['certificate_key'] ||= ssl_keyfile
+    node.default['supermarket']['ssl']['ssl_dhparam'] ||= ssl_dhparam
 
-  node.default['supermarket']['ssl']['certificate'] ||= crtfile
-  node.default['supermarket']['ssl']['certificate_key'] ||= keyfile
-  node.default['supermarket']['ssl']['ssl_dhparam'] ||= ssl_dhparam
-
-  link "#{node['supermarket']['ssl']['directory']}/cacert.pem" do
-    to crtfile
+    link "#{node['supermarket']['ssl']['directory']}/cacert.pem" do
+      to ssl_crtfile
+    end
   end
 end
