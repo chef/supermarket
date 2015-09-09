@@ -21,5 +21,7 @@ class Curry::AssignPullRequestReviewer
     if @octokit.check_assignee(repo_name, gh_user)
       @octokit.update_issue(repo_name, @pull_request.number, assignee: gh_user)
     end
+    @pull_request.maintainer = maintainer
+    @pull_request.save
   end
 end

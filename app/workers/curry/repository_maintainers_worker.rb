@@ -32,7 +32,7 @@ class Curry::RepositoryMaintainersWorker
 
   def components(cmp)
     mnt = []
-    %w(title text paths).each { |k| cmp.delete(k) }
+    %w(title text paths team).each { |k| cmp.delete(k) }
     mnt << resolve(cmp.delete('lieutenant')) if cmp.key?('lieutenant')
     mnt << resolve(cmp.delete('maintainers')) if cmp.key?('maintainers')
     cmp.each { |_k, v| mnt << components(v) }
