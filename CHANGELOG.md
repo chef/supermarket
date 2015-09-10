@@ -1,5 +1,16 @@
 # Supermarket Changelog
 
+## 2.0.1-alpha.0 (2015-09-10)
+- [1102] Corrects maintainers file
+- [1106] Corrects profile links
+- [1109] Correct output of noisy spec
+- [1105] Correct docs
+- [1111] Add simple branding
+- [1112] Remove double at in keys help text
+- [1114] Correct closing link tag
+- [1070] Ensure we set a maintainer only once
+- [1118] Fix adoption email url
+
 ## 2.0.0-alpha.0 (2015-08-13)
 - [1073] Convert owners file to maintainers file
 - [1074] Update making an admin user docs
