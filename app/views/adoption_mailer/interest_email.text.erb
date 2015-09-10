@@ -1,6 +1,6 @@
 Your <%= @thing %>, <%= @name %>, which is currently up for adoption, got some interest today.
 
-<%= "#{Rails.root}#{cookbook_path(@name)}" %>
+<%= "#{root_url}#{cookbook_path(@name)}" %>
 
 Here is the information you need to know about the awesome Chef who interested in adopting your <%= @thing %>:
 Supermarket Username: <%= @adopting_username %>
