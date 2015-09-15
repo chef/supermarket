@@ -31,6 +31,19 @@ end
 # Unless SSL is disabled, sets up SSL certificates.
 # Creates a self-signed cert if none is provided.
 if node['supermarket']['ssl']['enabled']
+  supermarket_ca_dir = File.join(node['supermarket']['ssl']['directory'], 'ca')
+  ssl_dhparam = File.join(supermarket_ca_dir, 'dhparams.pem')
+
+  #Generate dhparams.pem for perfect forward secrecy
+  openssl_dhparam ssl_dhparam do
+    key_length 2048
+    generator 2
+    owner 'root'
+    group 'root'
+    mode '0644'
+  end
+
+  node.default['supermarket']['ssl']['ssl_dhparam'] ||= ssl_dhparam
 
   # A certificate has been supplied
   if node['supermarket']['ssl']['certificate']
@@ -41,10 +54,8 @@ if node['supermarket']['ssl']['enabled']
 
   # No certificate has been supplied; generate one
   else
-    supermarket_ca_dir = File.join(node['supermarket']['ssl']['directory'], 'ca')
     ssl_keyfile = File.join(supermarket_ca_dir, "#{node['supermarket']['fqdn']}.key")
     ssl_crtfile = File.join(supermarket_ca_dir, "#{node['supermarket']['fqdn']}.crt")
-    ssl_dhparam = File.join(supermarket_ca_dir, 'dhparams.pem')
 
     openssl_x509 ssl_crtfile do
       common_name node['supermarket']['fqdn']
@@ -58,17 +69,8 @@ if node['supermarket']['ssl']['enabled']
       mode '0644'
     end
 
-    openssl_dhparam ssl_dhparam do
-      key_length 2048
-      generator 2
-      owner 'root'
-      group 'root'
-      mode '0644'
-    end
-
     node.default['supermarket']['ssl']['certificate'] ||= ssl_crtfile
     node.default['supermarket']['ssl']['certificate_key'] ||= ssl_keyfile
-    node.default['supermarket']['ssl']['ssl_dhparam'] ||= ssl_dhparam
 
     link "#{node['supermarket']['ssl']['directory']}/cacert.pem" do
       to ssl_crtfile

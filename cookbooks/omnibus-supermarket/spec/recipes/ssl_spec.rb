@@ -2,7 +2,10 @@ describe 'omnibus-supermarket::ssl' do
   # Shared Example Sets
   # - :create_directories - Creates the directories for SSL
   # - :create_certificates - When the recipe should create certs
+  # - :create_dhparams - When the recipe should create a dhparams.pem
   # - :no_create_certificates - When the recipe should not create certs
+  # - :no_create_dhparams - When the recipe should not create dhparams.pem
+
   shared_examples_for :create_directories do
     it 'creates /var/opt/supermarket/ssl' do
       expect(chef_run).to create_directory('/var/opt/supermarket/ssl').with(
@@ -22,18 +25,6 @@ describe 'omnibus-supermarket::ssl' do
   end
 
   shared_examples_for :create_certificates do
-    it 'creates /var/opt/supermarket/ssl/ca/dhparams.pem' do
-      expect(chef_run).to create_dhparam_pem(
-        '/var/opt/supermarket/ssl/ca/dhparams.pem'
-      ).with(
-        key_length: 2048,
-        generator: 2,
-        owner: 'root',
-        group: 'root',
-        mode: '0644'
-      )
-    end
-
     it 'creates /var/opt/supermarket/ssl/ca/chefspec.local.crt' do
       expect(chef_run).to create_x509_certificate(
         '/var/opt/supermarket/ssl/ca/chefspec.local.crt'
@@ -51,15 +42,32 @@ describe 'omnibus-supermarket::ssl' do
     end
   end
 
-  shared_examples_for :no_create_certificates do
-    it 'does not create a dhparams.pem' do
-      expect(chef_run).not_to create_dhparam_pem(
-        '/var/opt/supermarket/ssl/ca/dhparams.pem')
+  shared_examples_for :create_dhparams do
+    it 'creates /var/opt/supermarket/ssl/ca/dhparams.pem' do
+      expect(chef_run).to create_dhparam_pem(
+        '/var/opt/supermarket/ssl/ca/dhparams.pem'
+      ).with(
+        key_length: 2048,
+        generator: 2,
+        owner: 'root',
+        group: 'root',
+        mode: '0644'
+      )
     end
+  end
 
+  shared_examples_for :no_create_certificates do
     it 'does not create an x509 certificate' do
       expect(chef_run).not_to create_x509_certificate(
         '/var/opt/supermarket/ssl/ca/chefspec.local.crt')
+    end
+  end
+
+  shared_examples_for :no_create_dhparams do
+    it 'does not create a dhparams.pem file' do
+      expect(chef_run).not_to create_dhparam_pem(
+        '/var/opt/supermarket/ssl/ca/dhparams.pem'
+      )
     end
   end
 
@@ -75,9 +83,10 @@ describe 'omnibus-supermarket::ssl' do
       runner.node.automatic['memory']['total'] = '16000MB'
       runner.converge(described_recipe)
     end
-    
+
     it_behaves_like :create_directories
     it_behaves_like :create_certificates
+    it_behaves_like :create_dhparams
 
     it 'sets the [\'supermarket\'][\'ssl\'] attributes correctly' do
       expect(chef_run.node['supermarket']['ssl']['certificate'])
@@ -107,6 +116,7 @@ describe 'omnibus-supermarket::ssl' do
 
     it_behaves_like :create_directories
     it_behaves_like :no_create_certificates
+    it_behaves_like :create_dhparams
 
     it 'sets the [\'supermarket\'][\'ssl\'] attributes correctly' do
       expect(chef_run.node['supermarket']['ssl']['certificate'])
@@ -114,7 +124,7 @@ describe 'omnibus-supermarket::ssl' do
       expect(chef_run.node['supermarket']['ssl']['certificate_key'])
         .to be_nil
       expect(chef_run.node['supermarket']['ssl']['ssl_dhparam'])
-        .to be_nil
+        .to eq('/var/opt/supermarket/ssl/ca/dhparams.pem')
     end
 
     it 'links the CA cert to /opt/supermarket/embedded/ssl/certs/cacert.pem' do
@@ -136,6 +146,7 @@ describe 'omnibus-supermarket::ssl' do
 
     it_behaves_like :create_directories
     it_behaves_like :no_create_certificates
+    it_behaves_like :no_create_dhparams
 
     it 'does not set the [\'supermarket\'][\'ssl\'] attributes' do
       expect(chef_run.node['supermarket']['ssl']['certificate'])
@@ -164,6 +175,7 @@ describe 'omnibus-supermarket::ssl' do
 
     it_behaves_like :create_directories
     it_behaves_like :no_create_certificates
+    it_behaves_like :no_create_dhparams
 
     it 'does not modify the [\'supermarket\'][\'ssl\'] attributes' do
       expect(chef_run.node['supermarket']['ssl']['certificate'])
