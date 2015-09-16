@@ -31,4 +31,15 @@ describe CollaboratorAuthorizer do
     it { should_not permit_authorization(:create) }
     it { should_not permit_authorization(:destroy) }
   end
+
+
+  context 'as an admin user' do
+    let(:admin_user) { create(:admin) }
+
+    subject { described_class.new(admin_user, cookbook_collaborator) }
+
+    it { should permit_authorization(:create) }
+    it { should permit_authorization(:transfer) }
+    it { should permit_authorization(:destroy) }
+  end
 end

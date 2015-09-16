@@ -7,7 +7,7 @@ class CollaboratorAuthorizer < Authorizer::Base
   # @return [Boolean]
   #
   def transfer?
-    record.resourceable.owner == user && record.persisted?
+    create? && record.persisted?
   end
 
   #
@@ -16,7 +16,7 @@ class CollaboratorAuthorizer < Authorizer::Base
   # @return [Boolean]
   #
   def create?
-    record.resourceable.owner == user
+    record.resourceable.owner == user || user.is?(:admin)
   end
 
   #
