@@ -32,7 +32,6 @@ describe CollaboratorAuthorizer do
     it { should_not permit_authorization(:destroy) }
   end
 
-
   context 'as an admin user' do
     let(:admin_user) { create(:admin) }
 
