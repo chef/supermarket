@@ -1,5 +1,9 @@
 # Supermarket Changelog
 
+## 2.0.2-alpha.0 (2015-09-17)
+- [1103] Add link to Chef Status page to footer
+- [1123] Allow admin users to add collaborators, remove collaborators, and transfer ownership
+
 ## 2.0.1-alpha.0 (2015-09-10)
 - [1102] Corrects maintainers file
 - [1106] Corrects profile links
