@@ -96,4 +96,9 @@ describe CustomUrlHelper do
     expect(ENV['LEARN_CHEF_URL']).to be_nil
     expect(helper.learn_chef_url).to eql('https://learn.chef.io')
   end
+
+  it 'should have a chef status url that uses the default domain' do
+    expect(ENV['CHEF_STATUS_URL']).to be_nil
+    expect(helper.chef_status_url).to eql('http://status.chef.io')
+  end
 end
