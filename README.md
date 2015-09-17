@@ -25,7 +25,6 @@ This repository has the code for the Supermarket application, related
 repositories are:
 
 * [irvingpop/supermarket-omnibus-cookbook](https://github.com/irvingpop/supermarket-omnibus-cookbook): This cookbook is used to deploy Supermarket through the Supermarket omnibus package. For details on using this cookbook to install Supermarket omnibus, check out [this webinar by the Supermarket Engineering team](https://www.chef.io/webinars/?commid=164925).
-* [opscode-cookbooks/supermarket](https://github.com/opscode-cookbooks/supermarket): Old cookbook used to deploy the application (NOTE: THIS COOKBOOK WILL SOON BE DEPRECATED.  We highly recommend using the supermarket-omnibus-cookbook to both install and update a private instance of Supermarket).
 * [chef/omnibus-supermarket](https://github.com/chef/omnibus-supermarket): Code used to build RPM and DEB packages
 
 ## Requirements
@@ -242,11 +241,6 @@ changes.
 
 [Read about Supermarket's background jobs in the wiki]
 (https://github.com/chef/supermarket/wiki/Background-Jobs).
-
-## Deployment
-
-[Read about Deployment instructions in the wiki.]
-(https://github.com/chef/supermarket/wiki/Deployment)
 
 ## Feature Flags
 
