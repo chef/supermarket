@@ -134,7 +134,7 @@ describe Supermarket::CurryMassSubscribe do
             curry_mass_subscribe.subscribe_org_repos(sample_org)
           end
 
-          it 'displays an error message' do
+          it 'displays a message' do
             expect { curry_mass_subscribe.subscribe_org_repos(sample_org) }.to output("Unable to subscribe #{curry_repository.name}\n").to_stdout
           end
         end
@@ -142,7 +142,23 @@ describe Supermarket::CurryMassSubscribe do
 
 
       context 'when the repository is already monitored by Curry' do
+        let!(:existing_repository) do
+          Curry::Repository.create!(owner: sample_org, name: sample_org_public_repos.first[:name], callback_url: 'https://example.com')
+        end
 
+        before do
+          allow(client).to receive(:org_repos).and_return([sample_org_public_repos.first])
+          allow(Curry::Repository).to receive(:where).and_return([existing_repository])
+        end
+
+        it 'does not create a new repository' do
+          expect(Curry::Repository).to_not receive(:new)
+          curry_mass_subscribe.subscribe_org_repos(sample_org)
+        end
+
+        it 'displays a message' do
+          expect { curry_mass_subscribe.subscribe_org_repos(sample_org) }.to output("#{sample_org_public_repos.first[:name]} is already subscribed.  Skipping...\n").to_stdout
+        end
       end
     end
   end
