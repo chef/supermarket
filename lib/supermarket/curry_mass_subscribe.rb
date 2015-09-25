@@ -2,7 +2,6 @@ module Supermarket
   require 'Octokit'
 
   class CurryMassSubscribe
-
     def subscribe_org_repos(org)
       public_repos(org).each do |repo|
         if Curry::Repository.where(owner: org, name: repo[:name]).present?

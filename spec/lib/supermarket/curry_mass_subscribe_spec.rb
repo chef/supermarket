@@ -140,7 +140,6 @@ describe Supermarket::CurryMassSubscribe do
         end
       end
 
-
       context 'when the repository is already monitored by Curry' do
         let!(:existing_repository) do
           Curry::Repository.create!(owner: sample_org, name: sample_org_public_repos.first[:name], callback_url: 'https://example.com')
