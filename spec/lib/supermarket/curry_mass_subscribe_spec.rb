@@ -27,7 +27,7 @@ describe Supermarket::CurryMassSubscribe do
       end
 
       it 'initiates a connection to the Github API' do
-        expect(Octokit::Client).to receive(:new).with(access_token: ENV['GITHUB_ACCESS_TOKEN'])
+        expect(Octokit::Client).to receive(:new).with(access_token: ENV['GITHUB_ACCESS_TOKEN']).and_return(client)
         curry_mass_subscribe.subscribe_org_repos(sample_org)
       end
 
