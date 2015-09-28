@@ -1,5 +1,5 @@
 module Supermarket
-  require 'Octokit'
+  require 'octokit'
 
   class CurryMassSubscribe
     def subscribe_org_repos(org)
