@@ -26,11 +26,6 @@ describe Supermarket::CurryMassSubscribe do
         allow(Octokit::Client).to receive(:new).and_return(client)
       end
 
-      it 'initiates a connection to the Github API' do
-        expect(Octokit::Client).to receive(:new).with(access_token: ENV['GITHUB_ACCESS_TOKEN']).and_return(client)
-        curry_mass_subscribe.subscribe_org_repos(sample_org)
-      end
-
       it 'finds all public repos for the organization' do
         expect(client).to receive(:org_repos).with(sample_org, private: true).and_return([])
         curry_mass_subscribe.subscribe_org_repos(sample_org)
