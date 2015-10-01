@@ -161,7 +161,7 @@ module Supermarket
     end
 
     #
-    # Perform an action against the Postgres database and if it fails, mark the
+    # Perform an action against the Redis instance and if it fails, mark the
     # appropriate status.
     #
     def redis_health_metric
