@@ -19,11 +19,11 @@ describe Organization do
 
   describe '#latest_ccla_signature' do
     it 'returns the latest ccla signature based on date signed' do
-      organization = create(:organization)
-      one_year_ago = create(:ccla_signature, signed_at: 1.year.ago, organization: organization)
-      one_month_ago = create(:ccla_signature, signed_at: 1.month.ago, organization: organization)
+      organization = create(:organization, ccla_signatures_count: 0)
+      recent_signature = create(:ccla_signature, signed_at: 1.month.ago, organization: organization)
+      old_signature = create(:ccla_signature, signed_at: 1.year.ago, organization: organization)
 
-      expect(organization.latest_ccla_signature).to eql(one_month_ago)
+      expect(organization.latest_ccla_signature).to eql(recent_signature)
     end
   end
 
