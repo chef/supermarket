@@ -35,8 +35,8 @@ describe IclaSignature do
     context 'when multiple users have signed an ICLA' do
       let(:user_one) { create(:user) }
       let(:user_two) { create(:user) }
-      let!(:user_one_signature) { create(:icla_signature, user: user_one, signed_at: 1.year.ago) }
       let!(:user_two_signature) { create(:icla_signature, user: user_two, signed_at: 1.day.ago) }
+      let!(:user_one_signature) { create(:icla_signature, user: user_one, signed_at: 1.year.ago) }
 
       it 'should return the signatures' do
         expect(IclaSignature.by_user.count).to eql(2)
@@ -63,8 +63,8 @@ describe IclaSignature do
 
     context 'when a user has re-signed an ICLA' do
       let(:user) { create(:user) }
-      let!(:one_year_ago) { create(:icla_signature, user: user, signed_at: 1.year.ago) }
       let!(:one_day_ago) { create(:icla_signature, user: user, signed_at: 1.day.ago) }
+      let!(:one_year_ago) { create(:icla_signature, user: user, signed_at: 1.year.ago) }
 
       it 'should return the latest signature' do
         expect(IclaSignature.by_user).to include(one_day_ago)
