@@ -15,7 +15,7 @@ Chef uses the Apache 2.0 license to strike a balance between open contribution a
 The license tells you what rights you have that are provided by the copyright holder. It is important that the contributor fully understands what rights
 they are licensing and agrees to them. Sometimes the copyright holder isn't the contributor, most often when the contributor is doing work for a company.
 
-To make a good faith effort to ensure these criteria are met, Chef requires a Contributor License Agreement (CLA) or a Corporate Contributor License
+To make a good faith effort to ensure these criteria are met, Chef requires an Individual Contributor License Agreement (ICLA) or a Corporate Contributor License
 Agreement (CCLA) for all contributions. This is without exception due to some matters not being related to copyright and to avoid having to continually
 check with our lawyers about small patches.
 
