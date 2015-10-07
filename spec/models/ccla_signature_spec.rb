@@ -40,31 +40,31 @@ describe CclaSignature do
 
   describe '.by_organization' do
     context 'when multiple organizations have signed a CCLA' do
-      let(:organization_one) { create(:organization) }
-      let(:organization_two) { create(:organization) }
-      let!(:organization_one_signature) { create(:ccla_signature, organization: organization_one, signed_at: 1.year.ago) }
-      let!(:organization_two_signature) { create(:ccla_signature, organization: organization_two, signed_at: 1.day.ago) }
+      let(:old_org) { create(:organization, ccla_signatures_count: 0) }
+      let(:recent_org) { create(:organization, ccla_signatures_count: 0) }
+      let!(:recent_org_signature) { create(:ccla_signature, organization: recent_org, signed_at: 1.day.ago) }
+      let!(:old_org_signature) { create(:ccla_signature, organization: old_org, signed_at: 1.year.ago) }
 
       it 'should return the signatures' do
         expect(CclaSignature.by_organization.count).to eql(2)
       end
 
       it 'should order the signatures ascending by signed at date' do
-        expect(CclaSignature.by_organization.first).to eql(organization_one_signature)
+        expect(CclaSignature.by_organization.first).to eql(old_org_signature)
       end
     end
 
     context 'when a organizaiton has re-signed a CCLA' do
-      let(:organization) { create(:organization) }
-      let!(:one_year_ago) { create(:ccla_signature, organization: organization, signed_at: 1.year.ago) }
-      let!(:one_day_ago) { create(:ccla_signature, organization: organization, signed_at: 1.day.ago) }
+      let(:organization) { create(:organization, ccla_signatures_count: 0) }
+      let!(:recent_signature) { create(:ccla_signature, organization: organization, signed_at: 1.month.ago) }
+      let!(:old_signature) { create(:ccla_signature, organization: organization, signed_at: 1.year.ago) }
 
       it 'should return the latest signature' do
-        expect(CclaSignature.by_organization).to include(one_day_ago)
+        expect(CclaSignature.by_organization).to include(recent_signature)
       end
 
       it 'should not return older signatures' do
-        expect(CclaSignature.by_organization).to_not include(one_year_ago)
+        expect(CclaSignature.by_organization).to_not include(old_signature)
       end
     end
   end

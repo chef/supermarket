@@ -36,12 +36,36 @@ Ccla.where(version: ENV['CCLA_VERSION']).
 
 if ENV['SEED_CLA_DATA']
   #
-  # Add 100 new individual contributors
+  # Add 100 people
   #
+  100.times do |index|
+    first_name = Faker::Name.first_name
+    last_name = Faker::Name.last_name
+
+    user = User.where(
+      first_name: first_name,
+      last_name: last_name,
+      email: Faker::Internet.email(first_name + last_name)
+    ).first_or_create!
+
+    Account.where(
+      username: first_name + last_name,
+      provider: 'github'
+    ).first_or_create!(
+      user: user,
+      uid: 200+index,
+      oauth_token: 200+index,
+      oauth_secret: 200+index,
+      oauth_expires: Faker::Time.backward,
+    )
+  end
+
   existing_contributors = User.authorized_contributors.map(&:id)
 
-  individual_contributors = User.where.not(id: existing_contributors).first(100)
-
+  #
+  # Select 50 people who haven't signed yet and make them ICLA signers
+  #
+  individual_contributors = User.where.not(id: existing_contributors).first(50)
   ActiveRecord::Base.transaction do
     individual_contributors.each.with_index do |user, index|
       IclaSignature.create!(
@@ -56,13 +80,14 @@ if ENV['SEED_CLA_DATA']
         state: 'NY',
         zip: '12345',
         country: 'USA',
-        agreement: '1'
+        agreement: '1',
+        signed_at: Faker::Time.backward,
       )
     end
   end
 
   #
-  # Add 25 new CCLA signatures
+  # Select 25 people who haven't signed yet and make them CCLA signers
   #
   existing_contributors += individual_contributors.map(&:id)
 
@@ -81,7 +106,8 @@ if ENV['SEED_CLA_DATA']
       state: 'NY',
       zip: '12345',
       country: 'USA',
-      agreement: '1'
+      agreement: '1',
+      signed_at: Faker::Time.backward,
     )
   end
 
@@ -90,13 +116,13 @@ if ENV['SEED_CLA_DATA']
   end
 
   #
-  # Add 50 of the new individual contributors as contributors on behalf of one
+  # Add 10 of the new individual contributors as contributors on behalf of one
   # of the new CCLA signatures
   #
   existing_contributors += ccla_signers.map(&:id)
 
   ActiveRecord::Base.transaction do
-    individual_contributors.shuffle.first(50).each.with_index do |user, index|
+    individual_contributors.shuffle.first(10).each.with_index do |user, index|
       ccla_signatures[index % ccla_signatures.size].tap do |ccla_signature|
         ccla_signature.organization.contributors.create!(user: user)
       end
