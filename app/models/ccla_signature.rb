@@ -28,7 +28,9 @@ class CclaSignature < ActiveRecord::Base
 
   # Scopes
   # --------------------
-  scope :by_organization, -> { where(id: select('DISTINCT ON(organization_id) id').order('organization_id, signed_at DESC')).order('signed_at ASC') }
+  scope :by_organization, -> { latest.chronological }
+  scope :latest, -> { where(id: select('DISTINCT ON(organization_id) id').order('organization_id, signed_at DESC')) }
+  scope :chronological, -> { order('signed_at ASC') }
 
   # Callbacks
   # --------------------

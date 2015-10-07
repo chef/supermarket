@@ -24,7 +24,9 @@ class IclaSignature < ActiveRecord::Base
 
   # Scopes
   # --------------------
-  scope :by_user, -> { includes(user: :accounts).where(id: select('DISTINCT ON(user_id) id').order('user_id, signed_at DESC')).order('signed_at ASC') }
+  scope :by_user, -> { includes(user: :accounts).latest.chronological }
+  scope :latest, -> { where(id: select('DISTINCT ON(user_id) id').order('user_id, signed_at DESC')) }
+  scope :chronological, -> { order('signed_at ASC') }
 
   # Callbacks
   # --------------------
