@@ -1,5 +1,6 @@
 class CclaSignature < ActiveRecord::Base
   include PgSearch
+  include Exportable
 
   # Associations
   # --------------------

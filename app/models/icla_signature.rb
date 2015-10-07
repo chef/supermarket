@@ -1,4 +1,5 @@
 class IclaSignature < ActiveRecord::Base
+  include Exportable
   # Associations
   # --------------------
   belongs_to :user
