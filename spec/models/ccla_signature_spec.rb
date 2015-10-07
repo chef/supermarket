@@ -69,6 +69,23 @@ describe CclaSignature do
     end
   end
 
+  describe '.earliest' do
+    context 'when a organizaiton has re-signed a CCLA' do
+      let(:organization) { create(:organization, ccla_signatures_count: 0) }
+      let!(:latest_signature) { create(:ccla_signature, organization: organization, signed_at: 1.day.ago) }
+      let!(:recent_signature) { create(:ccla_signature, organization: organization, signed_at: 1.month.ago) }
+      let!(:earliest_signature) { create(:ccla_signature, organization: organization, signed_at: 1.year.ago) }
+
+      it 'returns the earliest signature' do
+        expect(CclaSignature.earliest).to include(earliest_signature)
+      end
+
+      it 'does not return older signatures' do
+        expect(CclaSignature.earliest).to_not include([recent_signature, latest_signature])
+      end
+    end
+  end
+
   describe '.search' do
     let!(:ihop) { create(:ccla_signature, company: 'International House of Pancakes') }
     let!(:bhop) { create(:ccla_signature, company: "Bob's House of Pancakes") }

@@ -75,4 +75,21 @@ describe IclaSignature do
       end
     end
   end
+
+  describe '.earliest' do
+    context 'when a user has re-signed an ICLA' do
+      let(:user) { create(:user) }
+      let!(:latest_signature) { create(:icla_signature, user: user, signed_at: 1.day.ago) }
+      let!(:recent_signature) { create(:icla_signature, user: user, signed_at: 1.month.ago) }
+      let!(:earliest_signature) { create(:icla_signature, user: user, signed_at: 1.year.ago) }
+
+      it 'returns the earliest signature' do
+        expect(IclaSignature.earliest).to include(earliest_signature)
+      end
+
+      it 'does not return later signatures' do
+        expect(IclaSignature.earliest).to_not include([recent_signature, latest_signature])
+      end
+    end
+  end
 end
