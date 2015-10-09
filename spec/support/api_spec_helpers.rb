@@ -28,7 +28,7 @@ module ApiSpecHelpers
       http_method: 'post',
       path: cookbooks_path,
       user_id: user.username,
-      timestamp: Time.now.utc.iso8601,
+      timestamp: Time.current.utc.iso8601,
       body: tarball.read
     ).sign(private_key)
 
@@ -59,7 +59,7 @@ module ApiSpecHelpers
       http_method: 'delete',
       path: cookbook_path,
       user_id: user.username,
-      timestamp: Time.now.utc.iso8601,
+      timestamp: Time.current.utc.iso8601,
       body: ''
     ).sign(private_key)
 
@@ -80,7 +80,7 @@ module ApiSpecHelpers
       http_method: 'delete',
       path: cookbook_version_path,
       user_id: user.username,
-      timestamp: Time.now.utc.iso8601,
+      timestamp: Time.current.utc.iso8601,
       body: ''
     ).sign(private_key)
 

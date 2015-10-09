@@ -93,7 +93,7 @@ describe OauthTokenRefreshWorker do
     let(:refreshed_token) do
       double('OmniAuth2::AccessToken',
              token: 'Iamatoken',
-             expires_at: Time.now + 1.hour,
+             expires_at: Time.current + 1.hour,
              refresh_token: 'AnotherToken'
       )
     end

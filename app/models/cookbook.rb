@@ -267,7 +267,7 @@ class Cookbook < ActiveRecord::Base
         changelog_extension: changelog.extension
       )
 
-      self.updated_at = Time.now
+      self.updated_at = Time.current
 
       [:source_url, :issues_url].each do |url|
         url_val = metadata.send(url)
