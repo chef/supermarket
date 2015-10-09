@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :ccla_signature do
     association :user
-    association :organization
+    association :organization, ccla_signatures_count: 0
 
     prefix 'Mr.'
     first_name 'John'

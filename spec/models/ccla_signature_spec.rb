@@ -21,6 +21,8 @@ describe CclaSignature do
     it { should validate_acceptance_of(:agreement) }
   end
 
+  it_behaves_like 'exportable'
+
   describe '#sign!' do
     let(:ccla_signature) { build(:ccla_signature) }
     before { ccla_signature.sign! }

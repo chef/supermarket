@@ -21,6 +21,8 @@ describe IclaSignature do
     it { should validate_acceptance_of(:agreement) }
   end
 
+  it_behaves_like 'exportable'
+
   context 'callbacks' do
     it 'sets the value of signed_at' do
       time = Time.at(680_241_600)
