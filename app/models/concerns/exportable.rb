@@ -1,7 +1,7 @@
 module Exportable
   require 'csv'
 
-  def self.included base
+  def self.included(base)
     base.extend ClassMethods
   end
 
