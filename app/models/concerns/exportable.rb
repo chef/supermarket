@@ -1,6 +1,9 @@
 module Exportable
-  extend ActiveSupport::Concern
   require 'csv'
+
+  def self.included base
+    base.extend ClassMethods
+  end
 
   module ClassMethods
     def as_csv
