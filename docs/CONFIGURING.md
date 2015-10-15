@@ -10,6 +10,14 @@ environment variables. These are the different configurations needed to get
 Supermarket running. The default parameters provided in `.env` should be
 sufficient to run the test suite.
 
+
+## Recommended System Specs
+
+If you are running Supermarket in a production environment, these are the minimum, basic specifications we recommend for your Supermarket server:
+* At least 1 CPU
+* At least 1 GB Memory
+* At least 5 GB free space in /var
+
 ## Minimum Viable Configuration
 
 It is recommended to set these parameters to valid values to be able to use the
