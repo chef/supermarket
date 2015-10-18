@@ -62,11 +62,11 @@ describe CclaSignature do
       let!(:old_signature) { create(:ccla_signature, organization: organization, signed_at: 1.year.ago) }
 
       it 'should return the latest signature' do
-        expect(CclaSignature.by_organization).to include(recent_signature)
+        expect(CclaSignature.by_organization).to match_array([recent_signature])
       end
 
       it 'should not return older signatures' do
-        expect(CclaSignature.by_organization).to_not include(old_signature)
+        expect(CclaSignature.by_organization).to_not match_array([old_signature])
       end
     end
   end
@@ -79,11 +79,14 @@ describe CclaSignature do
       let!(:earliest_signature) { create(:ccla_signature, organization: organization, signed_at: 1.year.ago) }
 
       it 'returns the earliest signature' do
-        expect(CclaSignature.earliest).to include(earliest_signature)
+        expect(CclaSignature.earliest).to match_array([earliest_signature])
       end
 
       it 'does not return older signatures' do
-        expect(CclaSignature.earliest).to_not include([recent_signature, latest_signature])
+        expect(CclaSignature.earliest).to_not match_array([recent_signature, latest_signature])
+      end
+    end
+  end
       end
     end
   end
