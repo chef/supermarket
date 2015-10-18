@@ -56,7 +56,7 @@ describe CclaSignature do
       end
     end
 
-    context 'when a organizaiton has re-signed a CCLA' do
+    context 'when a organization has re-signed a CCLA' do
       let(:organization) { create(:organization, ccla_signatures_count: 0) }
       let!(:recent_signature) { create(:ccla_signature, organization: organization, signed_at: 1.month.ago) }
       let!(:old_signature) { create(:ccla_signature, organization: organization, signed_at: 1.year.ago) }
@@ -72,7 +72,7 @@ describe CclaSignature do
   end
 
   describe '.earliest' do
-    context 'when a organizaiton has re-signed a CCLA' do
+    context 'when a organization has re-signed a CCLA' do
       let(:organization) { create(:organization, ccla_signatures_count: 0) }
       let!(:latest_signature) { create(:ccla_signature, organization: organization, signed_at: 1.day.ago) }
       let!(:recent_signature) { create(:ccla_signature, organization: organization, signed_at: 1.month.ago) }
@@ -89,7 +89,7 @@ describe CclaSignature do
   end
 
   describe '.latest_by_user' do
-    context 'when multiple users from a single organizaiton have signed a CCLA' do
+    context 'when multiple users from a single organization have signed a CCLA' do
       let(:organization) { create(:organization, ccla_signatures_count: 0) }
       let!(:latest_signature) { create(:ccla_signature, organization: organization, signed_at: 1.day.ago) }
       let!(:recent_signature) { create(:ccla_signature, organization: organization, signed_at: 1.month.ago) }
