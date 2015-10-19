@@ -90,7 +90,7 @@ describe CclaSignature do
         expect(CclaSignature.earliest_by_user).to match_array([earliest_signature, recent_signature, latest_signature])
       end
 
-      it 'does not return an older signature by the same user' do
+      it 'does not return a newer signature by the same user' do
         expect(CclaSignature.earliest_by_user).to_not include(recent_repeat)
       end
     end
