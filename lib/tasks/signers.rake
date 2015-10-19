@@ -12,7 +12,7 @@ namespace :signers do
     desc 'Given a date, export as CSV CCLA signatures from organizations after that date'
     task ccla: :environment do
       date = Time.zone.parse(ENV['date'])
-      puts CclaSignature.earliest.where('signed_at > ?', date).as_csv
+      puts CclaSignature.earliest_by_user.where('signed_at > ?', date).as_csv
     end
   end
 end

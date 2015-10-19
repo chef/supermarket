@@ -88,15 +88,27 @@ describe CclaSignature do
     end
   end
 
-  describe '.latest_by_user' do
+  describe '.earliest_by_user' do
     context 'when multiple users from a single organization have signed a CCLA' do
       let(:organization) { create(:organization, ccla_signatures_count: 0) }
+      let(:repeat_signer) { create(:user, last_name: 'Repeater') }
       let!(:latest_signature) { create(:ccla_signature, organization: organization, signed_at: 1.day.ago) }
-      let!(:recent_signature) { create(:ccla_signature, organization: organization, signed_at: 1.month.ago) }
+      let!(:recent_signature) do
+        create(:ccla_signature, organization: organization, signed_at: 1.month.ago,
+                                user: repeat_signer, last_name: repeat_signer.last_name)
+      end
+      let!(:recent_repeat) do
+        create(:ccla_signature, organization: organization, signed_at: 1.week.ago,
+                                user: repeat_signer, last_name: repeat_signer.last_name)
+      end
       let!(:earliest_signature) { create(:ccla_signature, organization: organization, signed_at: 1.year.ago) }
 
-      it 'returns the latest signature for each of the users' do
-        expect(CclaSignature.latest_by_user.all).to match_array([earliest_signature, recent_signature, latest_signature])
+      it 'returns the earliest signature for each of the users' do
+        expect(CclaSignature.earliest_by_user).to match_array([earliest_signature, recent_signature, latest_signature])
+      end
+
+      it 'does not return an older signature by the same user' do
+        expect(CclaSignature.earliest_by_user).to_not include(recent_repeat)
       end
     end
   end
