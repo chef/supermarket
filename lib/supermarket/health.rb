@@ -56,7 +56,7 @@ module Supermarket
       postgres_health_metric do
         @supermarket[:expired_ocid_tokens] = Account.
           for('chef_oauth2').
-          where('oauth_expires < ?', Time.now).
+          where('oauth_expires < ?', Time.current).
           count
       end
     end

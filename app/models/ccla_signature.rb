@@ -32,7 +32,7 @@ class CclaSignature < ActiveRecord::Base
 
   # Callbacks
   # --------------------
-  before_create -> (record) { record.signed_at ||= Time.now }
+  before_create -> (record) { record.signed_at ||= Time.current }
 
   # Search
   # --------------------

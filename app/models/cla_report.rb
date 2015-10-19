@@ -70,7 +70,7 @@ class ClaReport < ActiveRecord::Base
 
     report.csv = StringIO.new(csv_string)
     report.csv_content_type = 'text/csv'
-    report.csv_file_name = "#{Time.now.to_i}.csv"
+    report.csv_file_name = "#{Time.current.to_i}.csv"
     report.save!
 
     report

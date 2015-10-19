@@ -1,6 +1,6 @@
 atom_feed language: 'en-US' do |feed|
   feed.title 'Tools & Plugins'
-  feed.updated Time.now
+  feed.updated Time.current
 
   @tools.each do |tool|
     feed.entry tool do |entry|
