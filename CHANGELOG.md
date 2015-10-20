@@ -1,5 +1,16 @@
 # Supermarket Changelog
 
+## 2.1.0-alpha.0 (2015-10-20)
+- [1125] - updates changelog
+- [1126] - updates README
+- [1134] - updates doc to clarify ICLA vs CCLA
+- [1136] - update roadmap
+- [1138] - fix signer creation in seeds
+- [1143] - update docs for minimum requirements for a Supermarket server
+- [1142] - change Time.now to Time.current
+- [1140] - Export CLA signatures rake task
+- [1144] - Fix Postgresql requirement in README
+
 ## 2.0.2-alpha.0 (2015-09-17)
 - [1103] Add link to Chef Status page to footer
 - [1123] Allow admin users to add collaborators, remove collaborators, and transfer ownership
