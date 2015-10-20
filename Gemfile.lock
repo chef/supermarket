@@ -87,7 +87,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
-    nio4r (1.1.0)
+    nio4r (1.1.1)
     octokit (3.8.0)
       sawyer (~> 0.6.0, >= 0.5.3)
     ohai (7.4.1)
