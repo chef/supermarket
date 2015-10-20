@@ -1,5 +1,6 @@
 class CclaSignature < ActiveRecord::Base
   include PgSearch
+  include Exportable
 
   # Associations
   # --------------------
@@ -28,7 +29,10 @@ class CclaSignature < ActiveRecord::Base
 
   # Scopes
   # --------------------
-  scope :by_organization, -> { where(id: select('DISTINCT ON(organization_id) id').order('organization_id, signed_at DESC')).order('signed_at ASC') }
+  scope :by_organization, -> { latest_by_organization.chronological }
+  scope :latest_by_organization, -> { where(id: select('DISTINCT ON(organization_id) id').order('organization_id, signed_at DESC')) }
+  scope :earliest_by_user, -> { where(id: select('DISTINCT ON(user_id) id').order('user_id, signed_at ASC')) }
+  scope :chronological, -> { order('signed_at ASC') }
 
   # Callbacks
   # --------------------

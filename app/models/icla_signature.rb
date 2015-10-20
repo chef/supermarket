@@ -1,4 +1,5 @@
 class IclaSignature < ActiveRecord::Base
+  include Exportable
   # Associations
   # --------------------
   belongs_to :user
@@ -24,7 +25,10 @@ class IclaSignature < ActiveRecord::Base
 
   # Scopes
   # --------------------
-  scope :by_user, -> { includes(user: :accounts).where(id: select('DISTINCT ON(user_id) id').order('user_id, signed_at DESC')).order('signed_at ASC') }
+  scope :by_user, -> { includes(user: :accounts).latest.chronological }
+  scope :latest, -> { where(id: select('DISTINCT ON(user_id) id').order('user_id, signed_at DESC')) }
+  scope :earliest, -> { where(id: select('DISTINCT ON(user_id) id').order('user_id, signed_at ASC')) }
+  scope :chronological, -> { order('signed_at ASC') }
 
   # Callbacks
   # --------------------

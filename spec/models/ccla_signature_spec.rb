@@ -21,6 +21,8 @@ describe CclaSignature do
     it { should validate_acceptance_of(:agreement) }
   end
 
+  it_behaves_like 'exportable'
+
   describe '#sign!' do
     let(:ccla_signature) { build(:ccla_signature) }
     before { ccla_signature.sign! }
@@ -54,17 +56,42 @@ describe CclaSignature do
       end
     end
 
-    context 'when a organizaiton has re-signed a CCLA' do
+    context 'when a organization has re-signed a CCLA' do
       let(:organization) { create(:organization, ccla_signatures_count: 0) }
       let!(:recent_signature) { create(:ccla_signature, organization: organization, signed_at: 1.month.ago) }
       let!(:old_signature) { create(:ccla_signature, organization: organization, signed_at: 1.year.ago) }
 
       it 'should return the latest signature' do
-        expect(CclaSignature.by_organization).to include(recent_signature)
+        expect(CclaSignature.by_organization).to match_array([recent_signature])
       end
 
       it 'should not return older signatures' do
-        expect(CclaSignature.by_organization).to_not include(old_signature)
+        expect(CclaSignature.by_organization).to_not match_array([old_signature])
+      end
+    end
+  end
+
+  describe '.earliest_by_user' do
+    context 'when multiple users from a single organization have signed a CCLA' do
+      let(:organization) { create(:organization, ccla_signatures_count: 0) }
+      let(:repeat_signer) { create(:user, last_name: 'Repeater') }
+      let!(:latest_signature) { create(:ccla_signature, organization: organization, signed_at: 1.day.ago) }
+      let!(:recent_signature) do
+        create(:ccla_signature, organization: organization, signed_at: 1.month.ago,
+                                user: repeat_signer, last_name: repeat_signer.last_name)
+      end
+      let!(:recent_repeat) do
+        create(:ccla_signature, organization: organization, signed_at: 1.week.ago,
+                                user: repeat_signer, last_name: repeat_signer.last_name)
+      end
+      let!(:earliest_signature) { create(:ccla_signature, organization: organization, signed_at: 1.year.ago) }
+
+      it 'returns the earliest signature for each of the users' do
+        expect(CclaSignature.earliest_by_user).to match_array([earliest_signature, recent_signature, latest_signature])
+      end
+
+      it 'does not return a newer signature by the same user' do
+        expect(CclaSignature.earliest_by_user).to_not include(recent_repeat)
       end
     end
   end
