@@ -20,24 +20,6 @@ describe FakesController do
     sign_in fanny
   end
 
-  context 'finding the resource' do
-    context 'when the resource is a cookbook' do
-      it 'finds the correct cookbook' do
-        expect(Cookbook).to receive(:find).with(cookbook.id).and_return(cookbook)
-        subject.add_users_as_collaborators('Cookbook', cookbook.id, user_ids)
-      end
-    end
-
-    context 'when the resource is a tool' do
-      let(:tool) { create(:tool, owner: fanny) }
-
-      it 'finds the correct tool' do
-        expect(Tool).to receive(:find).with(tool.id).and_return(tool)
-        subject.add_users_as_collaborators('Tool', tool.id, user_ids)
-      end
-    end
-  end
-
   context 'adding users' do
     context 'finding non-eligible user ids' do
 
@@ -47,12 +29,12 @@ describe FakesController do
 
       it 'finds non-eligible users' do
         expect(Collaborator).to receive(:ineligible_collaborators_for).with(cookbook)
-        subject.add_users_as_collaborators('Cookbook', cookbook.id, user_ids)
+        subject.add_users_as_collaborators(cookbook, user_ids)
       end
 
       it 'maps the user ids' do
         expect(users).to receive(:map).and_return([user1.id, user2.id, user3.id])
-        subject.add_users_as_collaborators('Cookbook', cookbook.id, user_ids)
+        subject.add_users_as_collaborators(cookbook, user_ids)
       end
 
       it 'converts the ids to strings' do
@@ -60,20 +42,20 @@ describe FakesController do
 
         allow(users).to receive(:map).and_return(id_array)
         expect(id_array).to receive(:map).and_return(["#{user1.id}","#{user2.id}","#{user3.id}"])
-        subject.add_users_as_collaborators('Cookbook', cookbook.id, user_ids)
+        subject.add_users_as_collaborators(cookbook, user_ids)
       end
     end
 
     context 'finding users' do
       it 'finds all eligible users' do
         expect(User).to receive(:where).with(id: ["#{user1.id}","#{user2.id}","#{user3.id}"]).and_return(users)
-        subject.add_users_as_collaborators('Cookbook', cookbook.id, user_ids)
+        subject.add_users_as_collaborators(cookbook, user_ids)
       end
 
       it 'does not include non-eligible users' do
         allow(Collaborator).to receive(:ineligible_collaborators_for).and_return([user2])
         expect(User).to receive(:where).with(id: ["#{user1.id}","#{user3.id}"]).and_return([user1,user2])
-        subject.add_users_as_collaborators('Cookbook', cookbook.id, user_ids)
+        subject.add_users_as_collaborators(cookbook, user_ids)
       end
     end
 
@@ -84,12 +66,12 @@ describe FakesController do
 
       it 'creates a new collaborator' do
         expect(Collaborator).to receive(:new).with( user_id: user.id, resourceable: cookbook ).and_return(new_collaborator)
-        subject.add_users_as_collaborators('Cookbook', cookbook.id, user_ids)
+        subject.add_users_as_collaborators(cookbook, user_ids)
       end
 
       it 'authorizes the collaborator' do
         expect(subject).to receive(:authorize!)
-        subject.add_users_as_collaborators('Cookbook', cookbook.id, user_ids)
+        subject.add_users_as_collaborators(cookbook, user_ids)
       end
 
       context 'when the current user is the owner of the resource' do
@@ -101,7 +83,7 @@ describe FakesController do
         it 'saves the new collaborator' do
           allow(Collaborator).to receive(:new).and_return(new_collaborator)
           expect(new_collaborator).to receive(:save!)
-          subject.add_users_as_collaborators('Cookbook', cookbook.id, user_ids)
+          subject.add_users_as_collaborators(cookbook, user_ids)
         end
 
         it 'queues a mailer' do
@@ -111,7 +93,7 @@ describe FakesController do
           expect(CollaboratorMailer).to receive(:delay).and_return(collaborator_mailer)
 
           expect(collaborator_mailer).to receive(:added_email).with(new_collaborator)
-          subject.add_users_as_collaborators('Cookbook', cookbook.id, user_ids)
+          subject.add_users_as_collaborators(cookbook, user_ids)
         end
       end
 

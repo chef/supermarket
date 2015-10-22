@@ -5,11 +5,7 @@ module CollaboratorProcessing
     helper_method :add_users_as_collaborators
   end
 
-  def add_users_as_collaborators(resourceable_type, resourceable_id, user_ids)
-    resource = resourceable_type.constantize.find(
-      resourceable_id
-    )
-
+  def add_users_as_collaborators(resource, user_ids)
     user_ids = user_ids.split(',') - ineligible_ids(resource)
 
     User.where(id: user_ids).each do |user|
