@@ -80,15 +80,16 @@ describe FakesController do
           expect(cookbook.owner).to eq(fanny)
         end
 
-        it 'saves the new collaborator' do
+        before do
           allow(Collaborator).to receive(:new).and_return(new_collaborator)
+        end
+
+        it 'saves the new collaborator' do
           expect(new_collaborator).to receive(:save!)
           subject.add_users_as_collaborators(cookbook, user_ids)
         end
 
         it 'queues a mailer' do
-          allow(Collaborator).to receive(:new).and_return(new_collaborator)
-
           collaborator_mailer = double('CollaboratorMailer', delay: 'true')
           expect(CollaboratorMailer).to receive(:delay).and_return(collaborator_mailer)
 
@@ -105,8 +106,10 @@ describe FakesController do
           expect(cookbook.owner).to_not eq(hank)
         end
 
-        it 'does something' do
-
+        it 'returns an error' do
+          expect do
+            subject.add_users_as_collaborators(cookbook, user_ids)
+          end.to raise_error(Pundit::NotAuthorizedError)
         end
       end
     end
