@@ -12,7 +12,7 @@ describe FakesController do
   let(:user2) { create(:user) }
   let(:user3) { create(:user) }
 
-  let(:users) {[user1, user2, user3]}
+  let(:users) { [user1, user2, user3] }
   let(:user_ids) { "#{user1.id},#{user2.id},#{user3.id}" }
 
   before do
@@ -38,23 +38,23 @@ describe FakesController do
       end
 
       it 'converts the ids to strings' do
-        id_array = [user1.id,user2.id,user3.id]
+        id_array = [user1.id, user2.id, user3.id]
 
         allow(users).to receive(:map).and_return(id_array)
-        expect(id_array).to receive(:map).and_return(["#{user1.id}","#{user2.id}","#{user3.id}"])
+        expect(id_array).to receive(:map).and_return(["#{user1.id}", "#{user2.id}", "#{user3.id}"])
         subject.add_users_as_collaborators(cookbook, user_ids)
       end
     end
 
     context 'finding users' do
       it 'finds all eligible users' do
-        expect(User).to receive(:where).with(id: ["#{user1.id}","#{user2.id}","#{user3.id}"]).and_return(users)
+        expect(User).to receive(:where).with(id: ["#{user1.id}", "#{user2.id}", "#{user3.id}"]).and_return(users)
         subject.add_users_as_collaborators(cookbook, user_ids)
       end
 
       it 'does not include non-eligible users' do
         allow(Collaborator).to receive(:ineligible_collaborators_for).and_return([user2])
-        expect(User).to receive(:where).with(id: ["#{user1.id}","#{user3.id}"]).and_return([user1,user2])
+        expect(User).to receive(:where).with(id: ["#{user1.id}", "#{user3.id}"]).and_return([user1, user2])
         subject.add_users_as_collaborators(cookbook, user_ids)
       end
     end
@@ -65,7 +65,7 @@ describe FakesController do
       let(:new_collaborator) { build(:cookbook_collaborator, user: user, resourceable: cookbook) }
 
       it 'creates a new collaborator' do
-        expect(Collaborator).to receive(:new).with( user_id: user.id, resourceable: cookbook ).and_return(new_collaborator)
+        expect(Collaborator).to receive(:new).with(user_id: user.id, resourceable: cookbook).and_return(new_collaborator)
         subject.add_users_as_collaborators(cookbook, user_ids)
       end
 

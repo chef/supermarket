@@ -16,7 +16,7 @@ module CollaboratorProcessing
 
       # Passes object and action to Supermarket::Authorization,
       # which in turn passes them to Pundit for authorization
-      authorize!(collaborator, "create?")
+      authorize!(collaborator, 'create?')
 
       collaborator.save!
       CollaboratorMailer.delay.added_email(collaborator)
