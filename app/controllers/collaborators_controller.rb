@@ -1,4 +1,6 @@
 class CollaboratorsController < ApplicationController
+  include CollaboratorProcessing
+
   before_filter :authenticate_user!
   before_filter :find_collaborator, only: [:destroy, :transfer]
   skip_before_filter :verify_authenticity_token, only: [:destroy]
@@ -34,19 +36,7 @@ class CollaboratorsController < ApplicationController
         collaborator_params[:resourceable_id]
       )
 
-      user_ids = collaborator_params.delete(:user_ids).split(',') -
-        Collaborator.ineligible_collaborators_for(resource).map(&:id).map(&:to_s)
-
-      User.where(id: user_ids).each do |user|
-        collaborator = Collaborator.new(
-          collaborator_params.merge(user_id: user.id)
-        )
-
-        authorize! collaborator
-        collaborator.save!
-
-        CollaboratorMailer.delay.added_email(collaborator)
-      end
+      add_users_as_collaborators(resource, collaborator_params[:user_ids])
 
       redirect_to resource, notice: t('collaborator.added')
     else
