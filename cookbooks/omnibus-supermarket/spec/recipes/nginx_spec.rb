@@ -1,6 +1,6 @@
 describe 'omnibus-supermarket::nginx' do
   let(:chef_run) do
-    ChefSpec::SoloRunner.new do |node|
+    ChefSpec::Runner.new do |node|
       node.automatic['memory']['total'] = '16000MB'
     end.converge(described_recipe)
   end
@@ -69,7 +69,7 @@ describe 'omnibus-supermarket::nginx' do
           'file_maxbytes' => 104857600,
           'num_to_keep' => 10,
         },
-        'postrotate' => '/opt/supermarket/embedded/bin/sv 1 /opt/supermarket/service/nginx',
+        'postrotate' => '/opt/supermarket/embedded/sbin/nginx -s reopen',
         'owner' => 'root',
         'group' => 'root',
       }
