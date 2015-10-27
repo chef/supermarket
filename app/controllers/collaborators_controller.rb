@@ -52,9 +52,7 @@ class CollaboratorsController < ApplicationController
   def destroy
     respond_to do |format|
       format.js do
-        authorize!(@collaborator)
-
-        @collaborator.destroy
+        remove_collaborator(@collaborator)
         head :ok
       end
     end

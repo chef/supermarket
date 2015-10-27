@@ -114,4 +114,39 @@ describe FakesController do
       end
     end
   end
+
+  context 'removing users' do
+    let!(:hank) { create(:user, first_name: 'Hank') }
+    let!(:hanky) { create(:user, first_name: 'Hanky') }
+
+    let!(:collaborator) { create(:cookbook_collaborator, resourceable: cookbook, user: hank) }
+
+    it 'deletes a collaborator if the signed in user is the resource owner' do
+      sign_in fanny
+
+      expect do
+        subject.remove_collaborator(collaborator)
+      end.to change { Collaborator.count }.by(-1)
+
+      expect(response).to be_success
+    end
+
+    it 'deletes a collaborator if the signed in user is a collaborator on this resource' do
+      sign_in hank
+
+      expect do
+        subject.remove_collaborator(collaborator)
+      end.to change { Collaborator.count }.by(-1)
+
+      expect(response).to be_success
+    end
+
+    it 'fails if the signed in user is not the cookbook owner and also not a collaborator' do
+      sign_in hanky
+
+      expect do
+        subject.remove_collaborator(collaborator)
+      end.to raise_error(Pundit::NotAuthorizedError)
+    end
+  end
 end
