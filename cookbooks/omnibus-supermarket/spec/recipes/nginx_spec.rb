@@ -69,7 +69,7 @@ describe 'omnibus-supermarket::nginx' do
           'file_maxbytes' => 104857600,
           'num_to_keep' => 10,
         },
-        'postrotate' => '/opt/supermarket/embedded/sbin/nginx -s reopen',
+        'postrotate' => '/opt/supermarket/embedded/sbin/nginx -c /var/opt/supermarket/nginx/etc/nginx.conf -s reopen',
         'owner' => 'root',
         'group' => 'root',
       }
