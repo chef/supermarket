@@ -141,7 +141,18 @@ describe FakesController do
       expect(response).to be_success
     end
 
-    it 'does not allow a non-owner to remove a collborator other than themselves' do
+    it 'does not allow a non-collaborator to remove a collaborator' do
+      sign_in hanky
+
+      expect do
+        subject.remove_collaborator(collaborator)
+      end.to raise_error(Pundit::NotAuthorizedError)
+    end
+
+    it 'does not allow a collaborator to remove a collaborator other than themselves' do
+      hanky_collaborator = create(:cookbook_collaborator, resourceable: cookbook, user: hanky)
+      expect(cookbook.collaborators).to include(hanky_collaborator)
+
       sign_in hanky
 
       expect do
