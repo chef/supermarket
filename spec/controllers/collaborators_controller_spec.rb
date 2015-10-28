@@ -83,34 +83,10 @@ describe CollaboratorsController do
     describe 'DELETE #destroy' do
       let!(:collaborator) { create(:cookbook_collaborator, resourceable: cookbook, user: hank) }
 
-      it 'deletes a collaborator if the signed in user is the resource owner' do
+      it 'calls the remove collaborator method' do
         sign_in fanny
-
-        expect do
-          delete :destroy, id: collaborator, format: :js
-        end.to change { Collaborator.count }.by(-1)
-
-        expect(response).to be_success
-      end
-
-      it 'deletes a collaborator if the signed in user is a collaborator on this resource' do
-        sign_in hank
-
-        expect do
-          delete :destroy, id: collaborator, format: :js
-        end.to change { Collaborator.count }.by(-1)
-
-        expect(response).to be_success
-      end
-
-      it 'fails if the signed in user is not the cookbook owner and also not a collaborator' do
-        sign_in hanky
-
-        expect do
-          delete :destroy, cookbook_id: cookbook, id: hank, format: :js
-        end.to_not change { Collaborator.count }
-
-        expect(response).to_not be_success
+        expect(controller).to receive(:remove_collaborator).with(collaborator)
+        delete :destroy, id: collaborator, format: :js
       end
     end
 

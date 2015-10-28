@@ -23,6 +23,11 @@ module CollaboratorProcessing
     end
   end
 
+  def remove_collaborator(collaborator)
+    authorize!(collaborator, 'destroy?')
+    collaborator.destroy
+  end
+
   private
 
   def ineligible_ids(resource)
