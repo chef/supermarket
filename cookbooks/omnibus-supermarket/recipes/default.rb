@@ -18,6 +18,7 @@
 #
 
 include_recipe 'omnibus-supermarket::config'
+include_recipe 'omnibus-supermarket::log_management'
 include_recipe 'omnibus-supermarket::ssl'
 include_recipe 'omnibus-supermarket::postgresql'
 include_recipe 'omnibus-supermarket::redis'

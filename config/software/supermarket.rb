@@ -27,6 +27,7 @@ dependency "postgresql"
 dependency "redis"
 dependency "ruby"
 dependency "runit"
+dependency "logrotate"
 
 source git: "https://github.com/chef/supermarket.git"
 

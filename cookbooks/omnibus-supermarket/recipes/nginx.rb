@@ -56,3 +56,18 @@ else
   end
 end
 
+# setup log rotation with logrotate because nginx and runit's svlogd
+# differ in opinion about who does the logging
+template "#{node['supermarket']['var_directory']}/etc/logrotate.d/nginx" do
+  source 'logrotate-rule.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  variables(
+    'log_directory' => node['supermarket']['nginx']['log_directory'],
+    'log_rotation' => node['supermarket']['nginx']['log_rotation'],
+    'postrotate' => "#{node['supermarket']['install_directory']}/embedded/sbin/nginx -c #{node['supermarket']['nginx']['directory']}/nginx.conf -s reopen",
+    'owner' => 'root',
+    'group' => 'root',
+  )
+end

@@ -56,4 +56,23 @@ describe 'omnibus-supermarket::nginx' do
     expect(chef_run.template('/var/opt/supermarket/nginx/etc/nginx.conf'))
       .to notify('runit_service[nginx]').to(:hup)
   end
+
+  it 'creates /var/opt/supermarket/etc/logrotate.d/nginx' do
+    expect(chef_run).to create_template('/var/opt/supermarket/etc/logrotate.d/nginx').with(
+      source: 'logrotate-rule.erb',
+      owner: 'root',
+      group: 'root',
+      mode: '0644',
+      variables: {
+        'log_directory' => '/var/log/supermarket/nginx',
+        'log_rotation' => {
+          'file_maxbytes' => 104857600,
+          'num_to_keep' => 10,
+        },
+        'postrotate' => '/opt/supermarket/embedded/sbin/nginx -c /var/opt/supermarket/nginx/etc/nginx.conf -s reopen',
+        'owner' => 'root',
+        'group' => 'root',
+      }
+    )
+  end
 end
