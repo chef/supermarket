@@ -12,7 +12,7 @@ a maintainer, lieutenant, or the project lead.
 
 # Project Lead
 
-* [Nathen Harvey](https://github.com/)
+* [Nathen Harvey](https://github.com/nathenharvey)
 
 ## Components
 
@@ -22,7 +22,11 @@ The core Supermarket application is a Rails application.  This component manages
 
 ### Lieutenant
 
-* [Nell Shamrell-Harrington](https://github.com/)
+* [Nell Shamrell-Harrington](https://github.com/nellshamrell)
+
+### Maintainers
+
+* [Robb Kidd](https://github.com/robbkidd)
 
 ## Omnibus Supermarket Application
 
@@ -30,5 +34,9 @@ Supermarket is packaged in an Omnibus package to allow easy deploy with all requ
 
 ### Lieutenant
 
-* [Nell Shamrell-Harrington](https://github.com/)
+* [Nell Shamrell-Harrington](https://github.com/nellshamrell)
+
+### Maintainers
+
+* [Robb Kidd](https://github.com/robbkidd)
 
