@@ -77,12 +77,7 @@ group :test do
   gem 'factory_girl'
   gem 'poltergeist'
 
-  # To prevent the validates_uniqueness matcher from raising a chef version
-  # constraint error this pins shoulda-matchers at a commit where setting
-  # default values for scopes was reverted
-  gem 'shoulda-matchers',
-      git: 'https://github.com/thoughtbot/shoulda-matchers.git',
-      ref: '380d18f0621c66a79445ebc6dcc0048fcc969911'
+  gem 'shoulda-matchers', '~> 2.8'
 
   gem 'database_cleaner'
   gem 'vcr', require: false
