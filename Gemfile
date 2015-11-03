@@ -17,7 +17,7 @@ gem 'foreman'
 gem 'pundit'
 gem 'dotenv'
 gem 'octokit', require: false
-gem 'sidekiq', '= 3.4.2' # pinned to version prior to celluloid upgrade that brakes sidetiq
+gem 'sidekiq', '= 3.4.2' # pinned to version prior to celluloid upgrade that breaks sidetiq
 gem 'tomlrb'
 
 # Pin sprockets to ensure we get the latest security patches. Not pinning this
