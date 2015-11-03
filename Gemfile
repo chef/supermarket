@@ -91,6 +91,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'byebug'
   gem 'launchy'
+  gem 'bundler-audit'
+  gem 'brakeman'
 
   # Pinned to be greater than or equal to 1.0.0.pre because the gems were prior
   # to 1.0.0 release when added
