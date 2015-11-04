@@ -17,7 +17,7 @@ gem 'foreman'
 gem 'pundit'
 gem 'dotenv'
 gem 'octokit', require: false
-gem 'sidekiq'
+gem 'sidekiq', '= 3.4.2' # pinned to version prior to celluloid upgrade that breaks sidetiq
 gem 'tomlrb'
 
 # Pin sprockets to ensure we get the latest security patches. Not pinning this
@@ -58,7 +58,7 @@ gem 'sentry-raven', '~> 0.13.3', require: false
 gem 'sass-rails',   '~> 4.0.4'
 gem 'sass-globbing'
 gem 'compass-rails'
-gem 'uglifier',     '~> 2.2'
+gem 'uglifier',     '~> 2.7'
 
 group :doc do
   gem 'yard', require: false
@@ -77,12 +77,7 @@ group :test do
   gem 'factory_girl'
   gem 'poltergeist'
 
-  # To prevent the validates_uniqueness matcher from raising a chef version
-  # constraint error this pins shoulda-matchers at a commit where setting
-  # default values for scopes was reverted
-  gem 'shoulda-matchers',
-      git: 'https://github.com/thoughtbot/shoulda-matchers.git',
-      ref: '380d18f0621c66a79445ebc6dcc0048fcc969911'
+  gem 'shoulda-matchers', '~> 2.8'
 
   gem 'database_cleaner'
   gem 'vcr', require: false
@@ -96,6 +91,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'byebug'
   gem 'launchy'
+  gem 'bundler-audit'
+  gem 'brakeman'
 
   # Pinned to be greater than or equal to 1.0.0.pre because the gems were prior
   # to 1.0.0 release when added
