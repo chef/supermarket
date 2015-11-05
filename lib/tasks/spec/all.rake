@@ -3,6 +3,10 @@ namespace :spec do
     fail unless system 'bundle exec rubocop'
   end
 
+  task :bundle_audit do
+    fail unless system 'bundle exec bundle-audit check --update'
+  end
+
   desc 'Run RSpec tests and rubocop'
-  task all: [:spec, :javascripts, :rubocop]
+  task all: [:spec, :javascripts, :rubocop, :bundle_audit]
 end

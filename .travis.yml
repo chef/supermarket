@@ -27,5 +27,6 @@ rvm:
 script:
   - bundle exec rake spec
   - bundle exec rake spec:rubocop
+  - bundle exec bundle-audit check --update
 services:
   - redis-server
