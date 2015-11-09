@@ -11,7 +11,7 @@ describe ContributorRequestResponse do
 
     it { should validate_uniqueness_of(:contributor_request_id) }
     it { should validate_presence_of(:contributor_request_id) }
-    it { should ensure_inclusion_of(:decision).in_array(%w(accepted declined)) }
+    it { should validate_inclusion_of(:decision).in_array(%w(accepted declined)) }
   end
 
   describe '.accept!' do
