@@ -30,6 +30,14 @@ describe ActiveModel::Validations::ChefVersionConstraintValidator do
     expect(dependency.errors[:version]).to_not be_empty
   end
 
+  it 'includes why the constraint is invalid' do
+    dependency = dependency_class.new(version: '2')
+
+    expect { dependency.valid? }
+      .to change { dependency.errors[:version] }
+      .to include(/'2' does not match 'x.y.z' or 'x.y'/)
+  end
+
   it 'has a configurable error message' do
     dependency_class = Class.new do
       include ActiveModel::Model
@@ -40,8 +48,9 @@ describe ActiveModel::Validations::ChefVersionConstraintValidator do
     end
 
     dependency = dependency_class.new(version: 'haha')
-    dependency.valid?
 
-    expect(dependency.errors[:version]).to eql(['oh no'])
+    expect { dependency.valid? }
+      .to change { dependency.errors[:version] }
+      .to include(/oh no/)
   end
 end

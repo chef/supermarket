@@ -13,19 +13,17 @@ describe CookbookDependency do
     it 'does not allow "snarfle" as a version constraint' do
       platform = CookbookDependency.new(version_constraint: 'snarfle')
 
-      platform.valid?
-
-      expect(platform.errors[:version_constraint]).
-        to include('is not a valid Chef version constraint')
+      expect { platform.valid? }
+        .to change { platform.errors[:version_constraint] }
+        .to include(/is not a valid Chef version constraint/)
     end
 
     it 'does not allow blank version constraints' do
       platform = CookbookDependency.new(version_constraint: '')
 
-      platform.valid?
-
-      expect(platform.errors[:version_constraint]).
-        to include('is not a valid Chef version constraint')
+      expect { platform.valid? }
+        .to change { platform.errors[:version_constraint] }
+        .to include(/is not a valid Chef version constraint/)
     end
 
     it 'must have a unique name and version constraint per CookbookVersion' do
