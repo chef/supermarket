@@ -35,7 +35,6 @@ package 'supermarket' do
   when 'rhel'
     provider Chef::Provider::Package::Rpm
     source rpm_package_path
-    options '--nogpgcheck'
     only_if { rpm_package_path }
   end
 end
