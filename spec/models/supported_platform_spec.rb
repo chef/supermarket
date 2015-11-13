@@ -16,19 +16,17 @@ describe SupportedPlatform do
     it 'does not allow "snarfle" as a version constraint' do
       platform = SupportedPlatform.new(version_constraint: 'snarfle')
 
-      platform.valid?
-
-      expect(platform.errors[:version_constraint]).
-        to include('is not a valid Chef version constraint')
+      expect { platform.valid? }
+        .to change { platform.errors[:version_constraint] }
+        .to include(/is not a valid Chef version constraint/)
     end
 
     it 'does not allow blank version constraints' do
       platform = SupportedPlatform.new(version_constraint: '')
 
-      platform.valid?
-
-      expect(platform.errors[:version_constraint]).
-        to include('is not a valid Chef version constraint')
+      expect { platform.valid? }
+        .to change { platform.errors[:version_constraint] }
+        .to include(/is not a valid Chef version constraint/)
     end
   end
 

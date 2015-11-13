@@ -34,8 +34,9 @@ module ActiveModel
       #
       def validate_each(record, attribute, value)
         Chef::VersionConstraint.new(value)
-      rescue Chef::Exceptions::InvalidVersionConstraint, Chef::Exceptions::InvalidCookbookVersion
-        record.errors.add(attribute, options.fetch(:message), value: value)
+      rescue Chef::Exceptions::InvalidVersionConstraint, Chef::Exceptions::InvalidCookbookVersion => e
+        msg = "#{options.fetch(:message)}. #{e.class}: #{e.message}"
+        record.errors.add(attribute, msg, value: value)
       end
     end
   end
