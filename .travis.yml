@@ -28,6 +28,7 @@ notifications:
       - https://webhooks.gitter.im/e/c2044eca72685a9b2ef7
 rvm:
   - 2.1.3
+  - 2.2.3
 script:
   - bundle exec rake spec
   - bundle exec rake spec:rubocop
