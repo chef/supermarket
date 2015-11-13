@@ -10,7 +10,7 @@ describe Tool do
 
   context 'validations' do
     it { should validate_presence_of(:name) }
-    it { should ensure_inclusion_of(:type).in_array(Tool::ALLOWED_TYPES) }
+    it { should validate_inclusion_of(:type).in_array(Tool::ALLOWED_TYPES) }
     it { should_not allow_value('great tool').for(:slug) }
     it { should allow_value('great-tool').for(:slug) }
     it { should validate_uniqueness_of(:slug) }

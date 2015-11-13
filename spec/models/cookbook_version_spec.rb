@@ -11,7 +11,7 @@ describe CookbookVersion do
     it { should validate_presence_of(:version) }
     it { should validate_presence_of(:readme) }
     it { should validate_uniqueness_of(:version).scoped_to(:cookbook_id) }
-    it { should ensure_length_of(:license).is_at_most(255) }
+    it { should validate_length_of(:license).is_at_most(255) }
 
     it 'seriously validates the uniqueness of cookbook version numbers' do
       cookbook = create(:cookbook)
