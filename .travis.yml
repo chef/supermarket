@@ -1,6 +1,10 @@
+sudo: false
+addons:
+  apt:
+    packages:
+    - libxslt1-dev
+    - libxml2-dev
 before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq libxslt-dev libxml2-dev
   - bundle config build.nokogiri --use-system-libraries
 before_script:
   - psql -c 'create database supermarket_test;' -U postgres
