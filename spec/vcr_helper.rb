@@ -17,7 +17,7 @@ VCR.configure do |c|
     ENV['PUBSUBHUBBUB_SECRET']
   end
   c.filter_sensitive_data('<PUBSUBHUBBUB_CALLBACK>') do
-    CGI.escape(ENV['PUBSUBHUBBUB_CALLBACK_URL'])
+    CGI.escape('http://localhost:3000/curry/pull_request_updates')
   end
   c.filter_sensitive_data('<PUBSUBHUBBUB_CALLBACK>') do
     ENV['PUBSUBHUBBUB_CALLBACK_URL']

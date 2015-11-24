@@ -23,14 +23,14 @@ module Curry
     # @return [TrueClass] if successfully subscribed
     # @return [FalseClass] if unable to subscribe
     #
-    def subscribe(callback_url)
-      @repository.callback_url = callback_url
+    def subscribe
+      @repository.callback_url = pubsubhubbub_callback_url
 
       if @repository.valid?
         begin
           client.subscribe(
             topic,
-            callback_url,
+            @repository.callback_url,
             ENV['PUBSUBHUBBUB_SECRET']
           )
 
@@ -70,6 +70,20 @@ module Curry
     #
     def topic
       "https://github.com/#{@repository.owner}/#{@repository.name}/events/pull_request"
+    end
+
+    #
+    # The Hubbub URL. It is computed from the protocol/host/port settings in
+    # the environment so that callback from GitHub use the public URL of the
+    # Supermarket instance.
+    #
+    # @return [String] The callback url for the GitHub PubSubHubbub hub to post
+    #   from a subscribed repository's pull requests
+    #
+    def pubsubhubbub_callback_url
+      Rails.application.routes.url_helpers
+        .url_for(controller: 'curry/pull_request_updates', action: 'create',
+                 host: ENV['HOST'], protocol: ENV['PROTOCOL'], port: ENV['PORT'])
     end
 
     #

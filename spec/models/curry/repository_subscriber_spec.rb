@@ -2,8 +2,6 @@ require 'spec_helper'
 require 'vcr_helper'
 
 describe Curry::RepositorySubscriber do
-  let(:hub_callback) { ENV['PUBSUBHUBBUB_CALLBACK_URL'] }
-
   describe '#subscribe' do
     around(:each) do |example|
       VCR.use_cassette('curry_repository_subscriber', record: :once) do
@@ -19,12 +17,12 @@ describe Curry::RepositorySubscriber do
       end
 
       it "returns true when able to subscribe to the repository's hub" do
-        expect(subscriber.subscribe(hub_callback)).to be true
+        expect(subscriber.subscribe).to be true
       end
 
       it 'saves a repository record in the act of subscribing' do
         expect do
-          subscriber.subscribe(hub_callback)
+          subscriber.subscribe
         end.to change(Curry::Repository, :count).by(1)
       end
 
@@ -33,10 +31,9 @@ describe Curry::RepositorySubscriber do
           build(:repository)
         )
 
-        subscriber.subscribe(hub_callback)
-
-        expect(subscriber.repository.reload.callback_url).
-          to eql(hub_callback)
+        expect { subscriber.subscribe }
+          .to change { subscriber.repository.callback_url }
+          .to eql(subscriber.send(:pubsubhubbub_callback_url))
       end
     end
 
@@ -48,17 +45,17 @@ describe Curry::RepositorySubscriber do
       end
 
       it "returns false when unable to subscribe to the repository's hub" do
-        expect(subscriber.subscribe(hub_callback)).to be false
+        expect(subscriber.subscribe).to be false
       end
 
       it 'does not save repositories to which it cannot subscribe' do
         expect do
-          subscriber.subscribe(hub_callback)
+          subscriber.subscribe
         end.to_not change(Curry::Repository, :count)
       end
 
       it 'records errors which occur while subscribing' do
-        subscriber.subscribe(hub_callback)
+        subscriber.subscribe
 
         expect(subscriber.repository.errors).to_not be_nil
       end
@@ -85,13 +82,13 @@ describe Curry::RepositorySubscriber do
     end
 
     it "returns true when able to unsubscribe to the repository's hub" do
-      subscriber.subscribe(hub_callback)
+      subscriber.subscribe
 
       expect(subscriber.unsubscribe).to be_truthy
     end
 
     it 'unsubscribes the PubSubHubbub hook' do
-      subscriber.subscribe(hub_callback)
+      subscriber.subscribe
 
       expect do
         subscriber.unsubscribe
@@ -99,7 +96,7 @@ describe Curry::RepositorySubscriber do
     end
 
     it "it destroys the RepositorySubscriber's repository record" do
-      subscriber.subscribe(hub_callback)
+      subscriber.subscribe
 
       expect do
         subscriber.unsubscribe
@@ -107,8 +104,8 @@ describe Curry::RepositorySubscriber do
     end
 
     it 'still destroys the repository if the hook is already gone' do
-      subscriber.subscribe(hub_callback)
-      client.unsubscribe(subscriber.send(:topic), hub_callback)
+      subscriber.subscribe
+      client.unsubscribe(subscriber.send(:topic), subscriber.repository.callback_url)
 
       expect do
         subscriber.unsubscribe
