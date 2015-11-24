@@ -21,7 +21,7 @@ class Curry::RepositoriesController < ApplicationController
     repository = Curry::Repository.new(repository_params)
     subscriber = Curry::RepositorySubscriber.new(repository)
 
-    if subscriber.subscribe
+    if subscriber.subscribe!
       Curry::RepositorySubscriptionWorker.perform_async(repository.id)
 
       redirect_to curry_repositories_url,
@@ -46,7 +46,7 @@ class Curry::RepositoriesController < ApplicationController
       Curry::Repository.find(params[:id])
     )
 
-    if subscriber.unsubscribe
+    if subscriber.unsubscribe!
       flash[:notice] = t('curry.repositories.unsubscribe.success')
     else
       flash[:alert] = t('curry.repositories.unsubscribe.failure')

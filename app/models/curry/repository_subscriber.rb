@@ -23,7 +23,7 @@ module Curry
     # @return [TrueClass] if successfully subscribed
     # @return [FalseClass] if unable to subscribe
     #
-    def subscribe
+    def subscribe!
       @repository.callback_url = pubsubhubbub_callback_url
 
       if @repository.valid?
@@ -50,7 +50,7 @@ module Curry
     #
     # @raise [Octokit::Error] if unsubscribing from the hub fails
     #
-    def unsubscribe
+    def unsubscribe!
       begin
         client.unsubscribe(topic, @repository.callback_url)
       rescue Octokit::UnprocessableEntity => e
