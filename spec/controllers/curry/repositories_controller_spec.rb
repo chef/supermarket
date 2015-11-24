@@ -39,7 +39,7 @@ describe Curry::RepositoriesController do
 
       context 'when subscribing to a repository succeeds' do
         before do
-          allow_any_instance_of(Curry::RepositorySubscriber).to receive(:subscribe) { true }
+          allow_any_instance_of(Curry::RepositorySubscriber).to receive(:subscribe!) { true }
         end
 
         it 'redirects back to the repository index' do
@@ -64,7 +64,7 @@ describe Curry::RepositoriesController do
 
       context 'when creating a repository fails' do
         before do
-          allow_any_instance_of(Curry::RepositorySubscriber).to receive(:subscribe) { false }
+          allow_any_instance_of(Curry::RepositorySubscriber).to receive(:subscribe!) { false }
           allow_any_instance_of(Curry::RepositorySubscriber).to receive(:repository)
         end
 
@@ -107,7 +107,7 @@ describe Curry::RepositoriesController do
       sign_in create(:admin)
 
       repository = create(:repository)
-      allow_any_instance_of(Curry::RepositorySubscriber).to receive(:unsubscribe) { true }
+      allow_any_instance_of(Curry::RepositorySubscriber).to receive(:unsubscribe!) { true }
 
       delete :destroy, id: repository.id
 
@@ -120,7 +120,7 @@ describe Curry::RepositoriesController do
       sign_in create(:admin)
 
       repository = create(:repository)
-      allow_any_instance_of(Curry::RepositorySubscriber).to receive(:unsubscribe) { false }
+      allow_any_instance_of(Curry::RepositorySubscriber).to receive(:unsubscribe!) { false }
 
       delete :destroy, id: repository.id
 
