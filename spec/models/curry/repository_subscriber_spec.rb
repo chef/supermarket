@@ -21,9 +21,9 @@ describe Curry::RepositorySubscriber do
       end
 
       it 'saves a repository record in the act of subscribing' do
-        expect do
-          subscriber.subscribe!
-        end.to change(Curry::Repository, :count).by(1)
+        expect { subscriber.subscribe! }
+          .to change(Curry::Repository, :count)
+          .by(1)
       end
 
       it 'saves the callback url with the repository' do
@@ -49,9 +49,8 @@ describe Curry::RepositorySubscriber do
       end
 
       it 'does not save repositories to which it cannot subscribe' do
-        expect do
-          subscriber.subscribe!
-        end.to_not change(Curry::Repository, :count)
+        expect { subscriber.subscribe! }
+          .to_not change(Curry::Repository, :count)
       end
 
       it 'records errors which occur while subscribing' do
@@ -90,26 +89,26 @@ describe Curry::RepositorySubscriber do
     it 'unsubscribes the PubSubHubbub hook' do
       subscriber.subscribe!
 
-      expect do
-        subscriber.unsubscribe!
-      end.to change { client.hooks('gofullstack/paprika').size }.by(-1)
+      expect { subscriber.unsubscribe! }
+        .to change { client.hooks('gofullstack/paprika').size }
+        .by(-1)
     end
 
     it "it destroys the RepositorySubscriber's repository record" do
       subscriber.subscribe!
 
-      expect do
-        subscriber.unsubscribe!
-      end.to change(Curry::Repository, :count).by(-1)
+      expect { subscriber.unsubscribe! }
+        .to change(Curry::Repository, :count)
+        .by(-1)
     end
 
     it 'still destroys the repository if the hook is already gone' do
       subscriber.subscribe!
       client.unsubscribe(subscriber.send(:topic), subscriber.repository.callback_url)
 
-      expect do
-        subscriber.unsubscribe!
-      end.to change(Curry::Repository, :count).by(-1)
+      expect { subscriber.unsubscribe! }
+        .to change(Curry::Repository, :count)
+        .by(-1)
     end
   end
 end
