@@ -1,4 +1,11 @@
 # Supermarket Changelog
+## 2.1.1-alpha.0 (2015-11-24)
+- [1146, 1147] Refactor collaborator processing into a reusable concern
+- [1153] Update gems (shoulda-matchers, uglifier, chef, sidekiq) for security vulnerability patches
+- [1154] Add bundler-audit to test suite
+- [1157] Fix deprecation warnings in test suite
+- [1160] Add more detail to error given during dependency version validation
+- [omnibus-supermarket#37] Add logrotate to supermarket install to handle nginx logs
 
 ## 2.1.0-alpha.0 (2015-10-20)
 - [1125] - updates changelog
