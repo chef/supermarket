@@ -31,13 +31,12 @@ Also here are some additional pointers to some awesome Chef content:
 
 ## Overview
 If you're experienced with the toolchain, here are the steps for submitting a patch to Supermarket:
+
 1. [Fork the project](https://github.com/chef/supermarket/fork) on GitHub.
 2. Create a feature branch:
-
   ```
   $ git checkout -b my_feature
   ```
-
 3. Make your changes, writing excellent commit messages and adding appropriate test coverage.
 4. Open a [Pull Request](https://github.com/chef/supermarket/pull) against the supermarket master branch on GitHub
 
