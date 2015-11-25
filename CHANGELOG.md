@@ -1,4 +1,6 @@
 # Supermarket Changelog
+## 2.1.2-alpha.0 (2015-11-25)
+- [1170] - No longer invoke foundation tooltips with user supplied content (High Priority Security Fix)
 ## 2.1.1-alpha.0 (2015-11-24)
 - [1146, 1147] Refactor collaborator processing into a reusable concern
 - [1153] Update gems (shoulda-matchers, uglifier, chef, sidekiq) for security vulnerability patches
