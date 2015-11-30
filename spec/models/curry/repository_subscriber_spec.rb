@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'vcr_helper'
 
 describe Curry::RepositorySubscriber do
-  describe '#subscribe' do
+  describe '#subscribe!' do
     around(:each) do |example|
       VCR.use_cassette('curry_repository_subscriber', record: :once) do
         example.run
@@ -61,7 +61,7 @@ describe Curry::RepositorySubscriber do
     end
   end
 
-  describe '#unsubscribe' do
+  describe '#unsubscribe!' do
     around(:each) do |example|
       VCR.use_cassette('curry_repository_unsubscriber', record: :once) do
         example.run
