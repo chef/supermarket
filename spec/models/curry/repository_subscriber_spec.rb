@@ -12,7 +12,7 @@ describe Curry::RepositorySubscriber do
     context 'for a repository that exists' do
       let!(:subscriber) do
         Curry::RepositorySubscriber.new(
-          Curry::Repository.new(owner: 'gofullstack', name: 'paprika')
+          Curry::Repository.new(owner: 'chef', name: 'paprika')
         )
       end
 
@@ -33,7 +33,7 @@ describe Curry::RepositorySubscriber do
 
         expect { subscriber.subscribe! }
           .to change { subscriber.repository.callback_url }
-          .to eql(subscriber.send(:pubsubhubbub_callback_url))
+          .to eql('http://localhost:3000/curry/pull_request_updates')
       end
     end
 
@@ -57,6 +57,23 @@ describe Curry::RepositorySubscriber do
         subscriber.subscribe!
 
         expect(subscriber.repository.errors).to_not be_nil
+      end
+    end
+
+    context 'when the environment has a PubSubHubbub callback url set' do
+      it 'subscribes using the overridden callback URL from the environment' do
+        override_url = 'https://example.com/overridden-pubsubhubbub-callback'
+        ENV['PUBSUBHUBBUB_CALLBACK_URL'] = override_url
+
+        subscriber = Curry::RepositorySubscriber.new(
+          build(:repository)
+        )
+
+        expect { subscriber.subscribe! }
+          .to change { subscriber.repository.callback_url }
+          .to eql(override_url)
+
+        ENV.delete('PUBSUBHUBBUB_CALLBACK_URL')
       end
     end
   end
@@ -90,7 +107,7 @@ describe Curry::RepositorySubscriber do
       subscriber.subscribe!
 
       expect { subscriber.unsubscribe! }
-        .to change { client.hooks('gofullstack/paprika').size }
+        .to change { client.hooks('chef/paprika').size }
         .by(-1)
     end
 

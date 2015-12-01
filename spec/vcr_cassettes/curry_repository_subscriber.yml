@@ -5,71 +5,10 @@ http_interactions:
     uri: https://api.github.com/hub
     body:
       encoding: UTF-8
-      string: hub.callback=<PUBSUBHUBBUB_CALLBACK>&hub.mode=subscribe&hub.secret=<PUBSUBHUBBUB_SECRET>&hub.topic=https%3A%2F%2Fgithub.com%2Fgofullstack%2Fnot_paprika%2Fevents%2Fpull_request
+      string: hub.callback=<PUBSUBHUBBUB_CALLBACK_OVERRIDDEN>&hub.mode=subscribe&hub.secret=<PUBSUBHUBBUB_SECRET>&hub.topic=https%3A%2F%2Fgithub.com%2Fchef%2Fpaprika%2Fevents%2Fpull_request
     headers:
       User-Agent:
-      - Octokit Ruby Gem 3.3.1
-      Authorization:
-      - token <TOKEN>
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 422
-      message: Unprocessable Entity
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Tue, 02 Dec 2014 19:24:13 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Status:
-      - 422 Unprocessable Entity
-      X-Ratelimit-Limit:
-      - '5000'
-      X-Ratelimit-Remaining:
-      - '4853'
-      X-Ratelimit-Reset:
-      - '1417549862'
-      X-Oauth-Scopes:
-      - public_repo, write:repo_hook
-      X-Accepted-Oauth-Scopes:
-      - repo
-      X-Github-Media-Type:
-      - github.v3
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Frame-Options:
-      - deny
-      Content-Security-Policy:
-      - default-src 'none'
-      Content-Length:
-      - '195'
-      X-Github-Request-Id:
-      - 180A5027:15D2:EC8FAC:547E11DD
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains; preload
-      X-Content-Type-Options:
-      - nosniff
-    body:
-      encoding: UTF-8
-      string: '{"message":"No repository found for hub.topic: \"https://github.com/gofullstack/not_paprika/events/pull_request\"","documentation_url":"https://developer.github.com/v3/repos/hooks/#pubsubhubbub"}'
-    http_version: 
-  recorded_at: Tue, 02 Dec 2014 19:24:13 GMT
-- request:
-    method: post
-    uri: https://api.github.com/hub
-    body:
-      encoding: UTF-8
-      string: hub.callback=<PUBSUBHUBBUB_CALLBACK>&hub.mode=subscribe&hub.secret=<PUBSUBHUBBUB_SECRET>&hub.topic=https%3A%2F%2Fgithub.com%2Fgofullstack%2Fpaprika%2Fevents%2Fpull_request
-    headers:
-      User-Agent:
-      - Octokit Ruby Gem 3.3.1
+      - Octokit Ruby Gem 3.8.0
       Authorization:
       - token <TOKEN>
       Content-Type:
@@ -86,17 +25,17 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Tue, 02 Dec 2014 19:24:15 GMT
+      - Tue, 01 Dec 2015 22:25:18 GMT
       Status:
       - 204 No Content
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4850'
+      - '4995'
       X-Ratelimit-Reset:
-      - '1417549862'
+      - '1449012274'
       X-Oauth-Scopes:
-      - public_repo, write:repo_hook
+      - gist, repo, user
       X-Accepted-Oauth-Scopes:
       - admin:repo_hook, write:repo_hook
       X-Github-Media-Type:
@@ -107,8 +46,6 @@ http_interactions:
       - deny
       Content-Security-Policy:
       - default-src 'none'
-      X-Github-Request-Id:
-      - 180A5027:15D7:8A470FB:547E11DF
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains; preload
       X-Content-Type-Options:
@@ -116,10 +53,134 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Served-By:
-      - 2811da37fbdda4367181b328b22b2499
+      - 7f48e2f7761567e923121f17538d7a6d
+      X-Github-Request-Id:
+      - 64248A0E:14938:5A7383F:565E1E4E
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Tue, 02 Dec 2014 19:24:15 GMT
+  recorded_at: Tue, 01 Dec 2015 22:25:18 GMT
+- request:
+    method: post
+    uri: https://api.github.com/hub
+    body:
+      encoding: UTF-8
+      string: hub.callback=<PUBSUBHUBBUB_CALLBACK_COMPUTED>&hub.mode=subscribe&hub.secret=<PUBSUBHUBBUB_SECRET>&hub.topic=https%3A%2F%2Fgithub.com%2Fchef%2Fpaprika%2Fevents%2Fpull_request
+    headers:
+      User-Agent:
+      - Octokit Ruby Gem 3.8.0
+      Authorization:
+      - token <TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 01 Dec 2015 22:25:18 GMT
+      Status:
+      - 204 No Content
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4992'
+      X-Ratelimit-Reset:
+      - '1449012274'
+      X-Oauth-Scopes:
+      - gist, repo, user
+      X-Accepted-Oauth-Scopes:
+      - admin:repo_hook, write:repo_hook
+      X-Github-Media-Type:
+      - github.v3
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      X-Served-By:
+      - 5aeb3f30c9e3ef6ef7bcbcddfd9a68f7
+      X-Github-Request-Id:
+      - 64248A0E:14936:2D1F8FB:565E1E4E
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Tue, 01 Dec 2015 22:25:18 GMT
+- request:
+    method: post
+    uri: https://api.github.com/hub
+    body:
+      encoding: UTF-8
+      string: hub.callback=<PUBSUBHUBBUB_CALLBACK_COMPUTED>&hub.mode=subscribe&hub.secret=<PUBSUBHUBBUB_SECRET>&hub.topic=https%3A%2F%2Fgithub.com%2Fchef%2Fnot_paprika%2Fevents%2Fpull_request
+    headers:
+      User-Agent:
+      - Octokit Ruby Gem 3.8.0
+      Authorization:
+      - token <TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 422
+      message: Unprocessable Entity
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 01 Dec 2015 22:25:19 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '188'
+      Status:
+      - 422 Unprocessable Entity
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4989'
+      X-Ratelimit-Reset:
+      - '1449012274'
+      X-Oauth-Scopes:
+      - gist, repo, user
+      X-Accepted-Oauth-Scopes:
+      - repo
+      X-Github-Media-Type:
+      - github.v3
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Github-Request-Id:
+      - 64248A0E:14934:1C536B8:565E1E4F
+    body:
+      encoding: UTF-8
+      string: '{"message":"No repository found for hub.topic: \"https://github.com/chef/not_paprika/events/pull_request\"","documentation_url":"https://developer.github.com/v3/repos/hooks/#pubsubhubbub"}'
+    http_version: 
+  recorded_at: Tue, 01 Dec 2015 22:25:19 GMT
 recorded_with: VCR 2.9.2

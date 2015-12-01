@@ -73,15 +73,16 @@ module Curry
     end
 
     #
-    # The Hubbub URL. It is computed from the protocol/host/port settings in
-    # the environment so that callback from GitHub use the public URL of the
-    # Supermarket instance.
+    # The Hubbub URL. By default it is computed from the protocol/host/port
+    # settings in the environment so that callback from GitHub uses the public
+    # URL of the Supermarket instance. Override the default by setting
+    # PUBSUBHUBBUB_CALLBACK_URL in the environment (e.g. .env.<environment>)
     #
     # @return [String] The callback url for the GitHub PubSubHubbub hub to post
     #   from a subscribed repository's pull requests
     #
     def pubsubhubbub_callback_url
-      Rails.application.routes.url_helpers
+      ENV['PUBSUBHUBBUB_CALLBACK_URL'].presence || Rails.application.routes.url_helpers
         .url_for(controller: 'curry/pull_request_updates', action: 'create',
                  host: ENV['HOST'], protocol: ENV['PROTOCOL'], port: ENV['PORT'])
     end
