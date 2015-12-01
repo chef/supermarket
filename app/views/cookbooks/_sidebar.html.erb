@@ -60,7 +60,7 @@
     <ul class="cookbook_platforms">
       <% if cookbook.supported_platforms.present? %>
         <% supported_platforms.each do |platform| %>
-          <li class="cookbook_platform_icon has-tip" title="<%= platform.name %> <%= platform.version_constraint %>" data-tooltip data-icon="<%= supported_platform_icon(platform) %>">
+          <li class="cookbook_platform_icon has-tip" title="<%= platform.name %> <%= platform.version_constraint %>" data-icon="<%= supported_platform_icon(platform) %>">
             <span><%= platform.name %></span>
           </li>
         <% end %>

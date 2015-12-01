@@ -11,36 +11,36 @@
 
   <ul>
     <% if @user.company.present? %>
-      <li data-tooltip class="has-tip" title="The company <%= @user.name %> associates with">
+      <li class="has-tip" title="The company <%= @user.name %> associates with">
         <span class="fa fa-briefcase"></span> <%= @user.company %>
       </li>
     <% end %>
 
     <% if @user.twitter_username.present? %>
-      <li data-tooltip class="has-tip" title="<%= posessivize(@user.name) %> Twitter Username">
+      <li class="has-tip" title="<%= posessivize(@user.name) %> Twitter Username">
         <a href="https://twitter.com/<%= @user.twitter_username %>" target="_blank"><i class="fa fa-twitter"></i> <%= @user.twitter_username %></a>
       </li>
     <% end %>
 
     <% @user.accounts.for(:github).each do |account| %>
-      <li data-tooltip class="has-tip" title="<%= posessivize(@user.name) %> GitHub Username">
+      <li class="has-tip" title="<%= posessivize(@user.name) %> GitHub Username">
         <a href="https://github.com/<%= account.username %>" target="_blank"><i class="fa fa-github"></i> <%= account.username %></a>
       </li>
     <% end %>
 
     <% if @user.irc_nickname.present? %>
-      <li data-tooltip class="has-tip" title="<%= posessivize(@user.name) %> IRC Nickname">
+      <li class="has-tip" title="<%= posessivize(@user.name) %> IRC Nickname">
         <i class="fa fa-comment"></i> <%= @user.irc_nickname %>
       </li>
     <% end %>
 
     <% if @user.jira_username.present? %>
-      <li data-tooltip class="has-tip" title="<%= posessivize(@user.name) %> Jira Username">
+      <li class="has-tip" title="<%= posessivize(@user.name) %> Jira Username">
         <i class="fa fa-ticket"></i> <%= @user.jira_username %>
       </li>
     <% end %>
 
-    <li data-tooltip class="has-tip" title="When <%= @user.name %> joined the Chef Community site">
+    <li class="has-tip" title="When <%= @user.name %> joined the Chef Community site">
       <i class="fa fa-clock-o"></i> Joined <%= time_ago_in_words(@user.created_at) %> ago.
     </li>
   </ul>
