@@ -17,7 +17,13 @@ VCR.configure do |c|
     CGI.escape('http://localhost:3000/curry/pull_request_updates')
   end
   c.filter_sensitive_data('<PUBSUBHUBBUB_CALLBACK_OVERRIDDEN>') do
-    CGI.escape('https://example.com/overridden-pubsubhubbub-callback')
+    CGI.escape('https://example.com/overridden_callback_url')
+  end
+  c.filter_sensitive_data('<PUBSUBHUBHUB_CALLBACK_PREVIOUS>') do
+    CGI.escape('https://example.com/previous_callback_url')
+  end
+  c.filter_sensitive_data('<PUBSUBHUBHUB_CALLBACK_CURRENT>') do
+    CGI.escape('https://example.com/current_callback_url')
   end
   c.filter_sensitive_data('<CHEF_OAUTH2_APP_ID>') do
     ENV['CHEF_OAUTH2_APP_ID']
