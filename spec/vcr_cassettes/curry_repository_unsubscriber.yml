@@ -1,6 +1,128 @@
 ---
 http_interactions:
 - request:
+    method: post
+    uri: https://api.github.com/hub
+    body:
+      encoding: UTF-8
+      string: hub.callback=<PUBSUBHUBBUB_CALLBACK_COMPUTED>&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fgithub.com%2Fchef%2Fpaprika%2Fevents%2Fpull_request
+    headers:
+      User-Agent:
+      - Octokit Ruby Gem 3.8.0
+      Authorization:
+      - token <TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Wed, 02 Dec 2015 02:18:52 GMT
+      Status:
+      - 204 No Content
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4970'
+      X-Ratelimit-Reset:
+      - '1449026328'
+      X-Oauth-Scopes:
+      - gist, repo, user
+      X-Accepted-Oauth-Scopes:
+      - admin:repo_hook, write:repo_hook
+      X-Github-Media-Type:
+      - github.v3
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      X-Served-By:
+      - a241e1a8264a6ace03db946c85b92db3
+      X-Github-Request-Id:
+      - 64248A0E:12D3F:3E252D:565E550C
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 02 Dec 2015 02:18:52 GMT
+- request:
+    method: post
+    uri: https://api.github.com/hub
+    body:
+      encoding: UTF-8
+      string: hub.callback=<PUBSUBHUBBUB_CALLBACK_COMPUTED>&hub.mode=subscribe&hub.secret=<PUBSUBHUBBUB_SECRET>&hub.topic=https%3A%2F%2Fgithub.com%2Fchef%2Fpaprika%2Fevents%2Fpull_request
+    headers:
+      User-Agent:
+      - Octokit Ruby Gem 3.8.0
+      Authorization:
+      - token <TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Wed, 02 Dec 2015 02:18:52 GMT
+      Status:
+      - 204 No Content
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4969'
+      X-Ratelimit-Reset:
+      - '1449026328'
+      X-Oauth-Scopes:
+      - gist, repo, user
+      X-Accepted-Oauth-Scopes:
+      - admin:repo_hook, write:repo_hook
+      X-Github-Media-Type:
+      - github.v3
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      X-Served-By:
+      - 173530fed4bbeb1e264b2ed22e8b5c20
+      X-Github-Request-Id:
+      - 64248A0E:12D3F:3E254C:565E550C
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 02 Dec 2015 02:18:52 GMT
+- request:
     method: get
     uri: https://api.github.com/repos/chef/paprika/hooks
     body:
@@ -25,7 +147,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Wed, 02 Dec 2015 01:48:13 GMT
+      - Wed, 02 Dec 2015 02:18:52 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -35,13 +157,13 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4864'
+      - '4968'
       X-Ratelimit-Reset:
-      - '1449020937'
+      - '1449026328'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - W/"5d0d3ee2abd8b5b54c1ea7f6a64578fa"
+      - W/"9089f08085ee6b746da917e9d246854c"
       X-Oauth-Scopes:
       - gist, repo, user
       X-Accepted-Oauth-Scopes:
@@ -69,18 +191,78 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       X-Served-By:
-      - a241e1a8264a6ace03db946c85b92db3
+      - 07ff1c8a09e44b62e277fae50a1b1dc4
       X-Github-Request-Id:
-      - 64248A0E:12D3F:3616E1:565E4DDD
+      - 64248A0E:12D3C:1B5723:565E550C
     body:
       encoding: UTF-8
       string: '[{"url":"https://api.github.com/repos/chef/paprika/hooks/2446779","test_url":"https://api.github.com/repos/chef/paprika/hooks/2446779/test","ping_url":"https://api.github.com/repos/chef/paprika/hooks/2446779/pings","id":2446779,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://currybowl.herokuapp.com/52f2934cec5edd0002000015","secret":"********","content_type":"form"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2015-09-23T01:25:48Z","created_at":"2014-06-19T16:01:15Z"},{"url":"https://api.github.com/repos/chef/paprika/hooks/5453951","test_url":"https://api.github.com/repos/chef/paprika/hooks/5453951/test","ping_url":"https://api.github.com/repos/chef/paprika/hooks/5453951/pings","id":5453951,"name":"web","active":true,"events":["push"],"config":{"url":"https://chefio.atlassian.net/rest/bitbucket/1.0/repository/1118/sync"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2015-07-29T20:55:22Z","created_at":"2015-07-29T20:55:22Z"},{"url":"https://api.github.com/repos/chef/paprika/hooks/5453952","test_url":"https://api.github.com/repos/chef/paprika/hooks/5453952/test","ping_url":"https://api.github.com/repos/chef/paprika/hooks/5453952/pings","id":5453952,"name":"web","active":true,"events":["push","pull_request","pull_request_review_comment","issue_comment"],"config":{"content_type":"json","url":"https://chefio.atlassian.net/rest/bitbucket/1.0/repository/1118/sync"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2015-09-23T01:25:49Z","created_at":"2015-07-29T20:55:22Z"},{"url":"https://api.github.com/repos/chef/paprika/hooks/6559607","test_url":"https://api.github.com/repos/chef/paprika/hooks/6559607/test","ping_url":"https://api.github.com/repos/chef/paprika/hooks/6559607/pings","id":6559607,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://example.com/remove-me","secret":"********","content_type":"form"},"last_response":{"code":422,"status":"misconfigured","message":"Invalid
         HTTP Response: 404"},"updated_at":"2015-12-02T01:18:54Z","created_at":"2015-12-02T01:18:54Z"},{"url":"https://api.github.com/repos/chef/paprika/hooks/6559757","test_url":"https://api.github.com/repos/chef/paprika/hooks/6559757/test","ping_url":"https://api.github.com/repos/chef/paprika/hooks/6559757/pings","id":6559757,"name":"web","active":true,"events":["pull_request"],"config":{"url":"https://example.com/current_callback_url","secret":"********","content_type":"form"},"last_response":{"code":422,"status":"misconfigured","message":"Invalid
         HTTP Response: 404"},"updated_at":"2015-12-02T01:45:36Z","created_at":"2015-12-02T01:45:36Z"},{"url":"https://api.github.com/repos/chef/paprika/hooks/6559765","test_url":"https://api.github.com/repos/chef/paprika/hooks/6559765/test","ping_url":"https://api.github.com/repos/chef/paprika/hooks/6559765/pings","id":6559765,"name":"web","active":true,"events":["pull_request"],"config":{"url":"https://example.com/overridden_callback_url","secret":"********","content_type":"form"},"last_response":{"code":422,"status":"misconfigured","message":"Invalid
-        HTTP Response: 404"},"updated_at":"2015-12-02T01:45:56Z","created_at":"2015-12-02T01:45:56Z"},{"url":"https://api.github.com/repos/chef/paprika/hooks/6559766","test_url":"https://api.github.com/repos/chef/paprika/hooks/6559766/test","ping_url":"https://api.github.com/repos/chef/paprika/hooks/6559766/pings","id":6559766,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://localhost:3000/curry/pull_request_updates","secret":"********","content_type":"form"},"last_response":{"code":504,"status":"timeout","message":"Service
-        Timeout"},"updated_at":"2015-12-02T01:45:57Z","created_at":"2015-12-02T01:45:57Z"}]'
+        HTTP Response: 404"},"updated_at":"2015-12-02T01:45:56Z","created_at":"2015-12-02T01:45:56Z"},{"url":"https://api.github.com/repos/chef/paprika/hooks/6560069","test_url":"https://api.github.com/repos/chef/paprika/hooks/6560069/test","ping_url":"https://api.github.com/repos/chef/paprika/hooks/6560069/pings","id":6560069,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://localhost:3000/curry/pull_request_updates","secret":"********","content_type":"form"},"last_response":{"code":0,"status":"unused","message":"Unused"},"updated_at":"2015-12-02T02:18:52Z","created_at":"2015-12-02T02:18:52Z"}]'
     http_version: 
-  recorded_at: Wed, 02 Dec 2015 01:48:13 GMT
+  recorded_at: Wed, 02 Dec 2015 02:18:52 GMT
+- request:
+    method: post
+    uri: https://api.github.com/hub
+    body:
+      encoding: UTF-8
+      string: hub.callback=<PUBSUBHUBBUB_CALLBACK_COMPUTED>&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fgithub.com%2Fchef%2Fpaprika%2Fevents%2Fpull_request
+    headers:
+      User-Agent:
+      - Octokit Ruby Gem 3.8.0
+      Authorization:
+      - token <TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Wed, 02 Dec 2015 02:18:52 GMT
+      Status:
+      - 204 No Content
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4967'
+      X-Ratelimit-Reset:
+      - '1449026328'
+      X-Oauth-Scopes:
+      - gist, repo, user
+      X-Accepted-Oauth-Scopes:
+      - admin:repo_hook, write:repo_hook
+      X-Github-Media-Type:
+      - github.v3
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      X-Served-By:
+      - 07ff1c8a09e44b62e277fae50a1b1dc4
+      X-Github-Request-Id:
+      - 64248A0E:12D3D:2746DB:565E550C
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 02 Dec 2015 02:18:52 GMT
 - request:
     method: get
     uri: https://api.github.com/repos/chef/paprika/hooks
@@ -106,7 +288,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Wed, 02 Dec 2015 01:48:14 GMT
+      - Wed, 02 Dec 2015 02:18:52 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -116,9 +298,9 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4862'
+      - '4966'
       X-Ratelimit-Reset:
-      - '1449020937'
+      - '1449026328'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
@@ -150,9 +332,9 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       X-Served-By:
-      - e724c57ebb9961c772a91e2dd7421c8d
+      - cee4c0729c8e9147e7abcb45b9d69689
       X-Github-Request-Id:
-      - 64248A0E:12D3B:10D33B:565E4DDD
+      - 64248A0E:12D3D:2746EC:565E550C
     body:
       encoding: UTF-8
       string: '[{"url":"https://api.github.com/repos/chef/paprika/hooks/2446779","test_url":"https://api.github.com/repos/chef/paprika/hooks/2446779/test","ping_url":"https://api.github.com/repos/chef/paprika/hooks/2446779/pings","id":2446779,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://currybowl.herokuapp.com/52f2934cec5edd0002000015","secret":"********","content_type":"form"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2015-09-23T01:25:48Z","created_at":"2014-06-19T16:01:15Z"},{"url":"https://api.github.com/repos/chef/paprika/hooks/5453951","test_url":"https://api.github.com/repos/chef/paprika/hooks/5453951/test","ping_url":"https://api.github.com/repos/chef/paprika/hooks/5453951/pings","id":5453951,"name":"web","active":true,"events":["push"],"config":{"url":"https://chefio.atlassian.net/rest/bitbucket/1.0/repository/1118/sync"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2015-07-29T20:55:22Z","created_at":"2015-07-29T20:55:22Z"},{"url":"https://api.github.com/repos/chef/paprika/hooks/5453952","test_url":"https://api.github.com/repos/chef/paprika/hooks/5453952/test","ping_url":"https://api.github.com/repos/chef/paprika/hooks/5453952/pings","id":5453952,"name":"web","active":true,"events":["push","pull_request","pull_request_review_comment","issue_comment"],"config":{"content_type":"json","url":"https://chefio.atlassian.net/rest/bitbucket/1.0/repository/1118/sync"},"last_response":{"code":200,"status":"active","message":"OK"},"updated_at":"2015-09-23T01:25:49Z","created_at":"2015-07-29T20:55:22Z"},{"url":"https://api.github.com/repos/chef/paprika/hooks/6559607","test_url":"https://api.github.com/repos/chef/paprika/hooks/6559607/test","ping_url":"https://api.github.com/repos/chef/paprika/hooks/6559607/pings","id":6559607,"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://example.com/remove-me","secret":"********","content_type":"form"},"last_response":{"code":422,"status":"misconfigured","message":"Invalid
@@ -160,188 +342,5 @@ http_interactions:
         HTTP Response: 404"},"updated_at":"2015-12-02T01:45:36Z","created_at":"2015-12-02T01:45:36Z"},{"url":"https://api.github.com/repos/chef/paprika/hooks/6559765","test_url":"https://api.github.com/repos/chef/paprika/hooks/6559765/test","ping_url":"https://api.github.com/repos/chef/paprika/hooks/6559765/pings","id":6559765,"name":"web","active":true,"events":["pull_request"],"config":{"url":"https://example.com/overridden_callback_url","secret":"********","content_type":"form"},"last_response":{"code":422,"status":"misconfigured","message":"Invalid
         HTTP Response: 404"},"updated_at":"2015-12-02T01:45:56Z","created_at":"2015-12-02T01:45:56Z"}]'
     http_version: 
-  recorded_at: Wed, 02 Dec 2015 01:48:14 GMT
-- request:
-    method: post
-    uri: https://api.github.com/hub
-    body:
-      encoding: UTF-8
-      string: hub.callback=<PUBSUBHUBBUB_CALLBACK_COMPUTED>&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fgithub.com%2Fchef%2Fpaprika%2Fevents%2Fpull_request
-    headers:
-      User-Agent:
-      - Octokit Ruby Gem 3.8.0
-      Authorization:
-      - token <TOKEN>
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Wed, 02 Dec 2015 01:48:14 GMT
-      Status:
-      - 204 No Content
-      X-Ratelimit-Limit:
-      - '5000'
-      X-Ratelimit-Remaining:
-      - '4857'
-      X-Ratelimit-Reset:
-      - '1449020937'
-      X-Oauth-Scopes:
-      - gist, repo, user
-      X-Accepted-Oauth-Scopes:
-      - admin:repo_hook, write:repo_hook
-      X-Github-Media-Type:
-      - github.v3
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Frame-Options:
-      - deny
-      Content-Security-Policy:
-      - default-src 'none'
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      Vary:
-      - Accept-Encoding
-      X-Served-By:
-      - bd82876e9bf04990f289ba22f246ee9b
-      X-Github-Request-Id:
-      - 64248A0E:12D40:339C0F:565E4DDE
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Wed, 02 Dec 2015 01:48:14 GMT
-- request:
-    method: post
-    uri: https://api.github.com/hub
-    body:
-      encoding: UTF-8
-      string: hub.callback=<PUBSUBHUBBUB_CALLBACK_COMPUTED>&hub.mode=subscribe&hub.secret=<PUBSUBHUBBUB_SECRET>&hub.topic=https%3A%2F%2Fgithub.com%2Fchef%2Fpaprika%2Fevents%2Fpull_request
-    headers:
-      User-Agent:
-      - Octokit Ruby Gem 3.8.0
-      Authorization:
-      - token <TOKEN>
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Wed, 02 Dec 2015 01:48:14 GMT
-      Status:
-      - 204 No Content
-      X-Ratelimit-Limit:
-      - '5000'
-      X-Ratelimit-Remaining:
-      - '4856'
-      X-Ratelimit-Reset:
-      - '1449020937'
-      X-Oauth-Scopes:
-      - gist, repo, user
-      X-Accepted-Oauth-Scopes:
-      - admin:repo_hook, write:repo_hook
-      X-Github-Media-Type:
-      - github.v3
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Frame-Options:
-      - deny
-      Content-Security-Policy:
-      - default-src 'none'
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      Vary:
-      - Accept-Encoding
-      X-Served-By:
-      - 76d9828c7e4f1d910f7ba069e90ce976
-      X-Github-Request-Id:
-      - 64248A0E:12D3A:D9520:565E4DDE
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Wed, 02 Dec 2015 01:48:14 GMT
-- request:
-    method: post
-    uri: https://api.github.com/hub
-    body:
-      encoding: UTF-8
-      string: hub.callback=<PUBSUBHUBBUB_CALLBACK_COMPUTED>&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fgithub.com%2Fchef%2Fpaprika%2Fevents%2Fpull_request
-    headers:
-      User-Agent:
-      - Octokit Ruby Gem 3.8.0
-      Authorization:
-      - token <TOKEN>
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Wed, 02 Dec 2015 01:48:14 GMT
-      Status:
-      - 204 No Content
-      X-Ratelimit-Limit:
-      - '5000'
-      X-Ratelimit-Remaining:
-      - '4855'
-      X-Ratelimit-Reset:
-      - '1449020937'
-      X-Oauth-Scopes:
-      - gist, repo, user
-      X-Accepted-Oauth-Scopes:
-      - admin:repo_hook, write:repo_hook
-      X-Github-Media-Type:
-      - github.v3
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Frame-Options:
-      - deny
-      Content-Security-Policy:
-      - default-src 'none'
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      Vary:
-      - Accept-Encoding
-      X-Served-By:
-      - 318e55760cf7cdb40e61175a4d36cd32
-      X-Github-Request-Id:
-      - 64248A0E:12D3F:3618B7:565E4DDE
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Wed, 02 Dec 2015 01:48:14 GMT
+  recorded_at: Wed, 02 Dec 2015 02:18:53 GMT
 recorded_with: VCR 2.9.2

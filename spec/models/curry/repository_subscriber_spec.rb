@@ -140,7 +140,13 @@ describe Curry::RepositorySubscriber do
   describe '#resubscribe!' do
     around(:each) do |example|
       VCR.use_cassette('curry_repository_resubscriber', record: :once) do
+        ENV['PUBSUBHUBBUB_CALLBACK_URL'] = previous_url
+        subscriber.subscribe!
+        ENV['PUBSUBHUBBUB_CALLBACK_URL'] = current_url
+
         example.run
+
+        ENV.delete('PUBSUBHUBBUB_CALLBACK_URL')
       end
     end
 
@@ -148,46 +154,32 @@ describe Curry::RepositorySubscriber do
     let!(:subscriber)   { Curry::RepositorySubscriber.new repository }
 
     it 'sets the callback_url to the current url' do
-      ENV['PUBSUBHUBBUB_CALLBACK_URL'] = previous_url
-      subscriber.subscribe!
-      ENV['PUBSUBHUBBUB_CALLBACK_URL'] = current_url
-
       expect { subscriber.resubscribe! }
         .to change { repository.callback_url }
         .to eql(current_url)
     end
 
     it 'does not change the number of curried repositories' do
-      ENV['PUBSUBHUBBUB_CALLBACK_URL'] = previous_url
-      subscriber.subscribe!
-      ENV['PUBSUBHUBBUB_CALLBACK_URL'] = current_url
-
       expect { subscriber.resubscribe! }
         .to_not change(Curry::Repository, :count)
     end
 
     it 'adds a webhook to the repository for the current callback_url' do
-      ENV['PUBSUBHUBBUB_CALLBACK_URL'] = previous_url
-      subscriber.subscribe!
-      ENV['PUBSUBHUBBUB_CALLBACK_URL'] = current_url
       subscriber.resubscribe!
-
       repository_hook_urls = client.hooks(subscriber.repository.full_name).map do |hook|
         hook[:config][:url]
       end
+
       expect(repository_hook_urls)
         .to include(current_url)
     end
 
     it 'removes the webhook from the repository for the previous callback_url' do
-      ENV['PUBSUBHUBBUB_CALLBACK_URL'] = previous_url
-      subscriber.subscribe!
-      ENV['PUBSUBHUBBUB_CALLBACK_URL'] = current_url
       subscriber.resubscribe!
-
       repository_hook_urls = client.hooks(subscriber.repository.full_name).map do |hook|
         hook[:config][:url]
       end
+
       expect(repository_hook_urls)
         .to_not include(previous_url)
     end
