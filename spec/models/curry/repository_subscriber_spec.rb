@@ -8,20 +8,6 @@ describe Curry::RepositorySubscriber do
   let!(:current_url)  { 'https://example.com/current_callback_url' }
   let!(:override_url) { 'https://example.com/overridden_callback_url' }
 
-  after(:all) do
-    # clean up any hooks left over on the test repository
-    # after all the specs have run
-    clean_up_client = Octokit::Client.new access_token: ENV['GITHUB_ACCESS_TOKEN']
-    test_repo = build(:repository)
-    hook_topic = "https://github.com/#{test_repo.owner}/#{test_repo.name}/events/pull_request"
-    hooks = clean_up_client.hooks(test_repo.full_name)
-    hooks.each do |hook|
-      if hook[:config][:url] =~ /example.com|localhost:3000/
-        clean_up_client.unsubscribe(hook_topic, hook[:config][:url])
-      end
-    end
-  end
-
   describe '#subscribe!' do
     around(:each) do |example|
       VCR.use_cassette('curry_repository_subscriber', record: :once) do
