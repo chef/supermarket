@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.github.com/hub
     body:
       encoding: UTF-8
-      string: hub.callback=<PUBSUBHUBBUB_CALLBACK>&hub.mode=subscribe&hub.secret=<PUBSUBHUBBUB_SECRET>&hub.topic=https%3A%2F%2Fgithub.com%2Fgofullstack%2Fpaprika%2Fevents%2Fpull_request
+      string: hub.callback=<PUBSUBHUBBUB_CALLBACK_COMPUTED>&hub.mode=subscribe&hub.secret=<PUBSUBHUBBUB_SECRET>&hub.topic=https%3A%2F%2Fgithub.com%2Fgofullstack%2Fpaprika%2Fevents%2Fpull_request
     headers:
       User-Agent:
       - Octokit Ruby Gem 3.3.1
@@ -59,6 +59,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version: 
+    http_version:
   recorded_at: Tue, 02 Dec 2014 19:26:30 GMT
 recorded_with: VCR 2.9.2

@@ -37,28 +37,9 @@ describe Curry::RepositoriesController do
     context 'as an admin' do
       before { sign_in create(:admin) }
 
-      context 'when the environment has no set PubSubHubbub callback url' do
-
-        it 'subscribes using the PR update endpoint as the callback url' do
-          callback = ENV['PUBSUBHUBBUB_CALLBACK_URL']
-          ENV['PUBSUBHUBBUB_CALLBACK_URL'] = ''
-
-          expect_any_instance_of(Curry::RepositorySubscriber).
-            to receive(:subscribe).
-            with(curry_pull_request_updates_url) { true }
-
-          post :create, curry_repository: {
-            owner: 'gofullstack',
-            name: 'paprika'
-          }
-
-          ENV['PUBSUBHUBBUB_CALLBACK_URL'] = callback
-        end
-      end
-
       context 'when subscribing to a repository succeeds' do
         before do
-          allow_any_instance_of(Curry::RepositorySubscriber).to receive(:subscribe) { true }
+          allow_any_instance_of(Curry::RepositorySubscriber).to receive(:subscribe!) { true }
         end
 
         it 'redirects back to the repository index' do
@@ -83,7 +64,7 @@ describe Curry::RepositoriesController do
 
       context 'when creating a repository fails' do
         before do
-          allow_any_instance_of(Curry::RepositorySubscriber).to receive(:subscribe) { false }
+          allow_any_instance_of(Curry::RepositorySubscriber).to receive(:subscribe!) { false }
           allow_any_instance_of(Curry::RepositorySubscriber).to receive(:repository)
         end
 
@@ -126,7 +107,7 @@ describe Curry::RepositoriesController do
       sign_in create(:admin)
 
       repository = create(:repository)
-      allow_any_instance_of(Curry::RepositorySubscriber).to receive(:unsubscribe) { true }
+      allow_any_instance_of(Curry::RepositorySubscriber).to receive(:unsubscribe!) { true }
 
       delete :destroy, id: repository.id
 
@@ -139,7 +120,7 @@ describe Curry::RepositoriesController do
       sign_in create(:admin)
 
       repository = create(:repository)
-      allow_any_instance_of(Curry::RepositorySubscriber).to receive(:unsubscribe) { false }
+      allow_any_instance_of(Curry::RepositorySubscriber).to receive(:unsubscribe!) { false }
 
       delete :destroy, id: repository.id
 

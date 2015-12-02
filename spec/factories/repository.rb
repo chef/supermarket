@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :repository, class: Curry::Repository do
-    owner 'gofullstack'
+    owner 'chef'
     name 'paprika'
-    callback_url ENV['PUBSUBHUBBUB_CALLBACK_URL']
+    callback_url 'https://super.example.com/curry/pull_request_updates'
   end
 end

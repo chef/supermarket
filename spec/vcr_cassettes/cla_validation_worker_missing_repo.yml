@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.github.com/repos/gofullstack/doesnotexist/issues/1/labels
+    uri: https://api.github.com/repos/chef/doesnotexist/issues/1/labels
     body:
       encoding: UTF-8
       string: '["Signed CLA"]'
@@ -66,6 +66,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"message":"Not Found","documentation_url":"https://developer.github.com/v3"}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 02 Dec 2014 19:30:32 GMT
 recorded_with: VCR 2.9.2

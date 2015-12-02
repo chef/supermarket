@@ -23,14 +23,14 @@ module Curry
     # @return [TrueClass] if successfully subscribed
     # @return [FalseClass] if unable to subscribe
     #
-    def subscribe(callback_url)
-      @repository.callback_url = callback_url
+    def subscribe!
+      @repository.callback_url = pubsubhubbub_callback_url
 
       if @repository.valid?
         begin
           client.subscribe(
             topic,
-            callback_url,
+            @repository.callback_url,
             ENV['PUBSUBHUBBUB_SECRET']
           )
 
@@ -50,7 +50,7 @@ module Curry
     #
     # @raise [Octokit::Error] if unsubscribing from the hub fails
     #
-    def unsubscribe
+    def unsubscribe!
       begin
         client.unsubscribe(topic, @repository.callback_url)
       rescue Octokit::UnprocessableEntity => e
@@ -58,6 +58,26 @@ module Curry
       end
 
       @repository.destroy
+    end
+
+    #
+    # Resubscribes Supermarket to the repository, removing a webhook
+    # on the repository for the recorded callback_url and resubscribing
+    # to the repository with the current callback_url
+    #
+    # @return [Curry::Repository] if Supermarket has unsubscribed
+    #
+    # @raise [Octokit::Error] if unsubscribing from the hub fails
+    #
+    def resubscribe!
+      begin
+        client.unsubscribe(topic, @repository.callback_url)
+        subscribe!
+      rescue Octokit::UnprocessableEntity => e
+        Rails.logger.info e
+      end
+
+      @repository
     end
 
     private
@@ -70,6 +90,21 @@ module Curry
     #
     def topic
       "https://github.com/#{@repository.owner}/#{@repository.name}/events/pull_request"
+    end
+
+    #
+    # The Hubbub URL. By default it is computed from the protocol/host/port
+    # settings in the environment so that callback from GitHub uses the public
+    # URL of the Supermarket instance. Override the default by setting
+    # PUBSUBHUBBUB_CALLBACK_URL in the environment (e.g. .env.<environment>)
+    #
+    # @return [String] The callback url for the GitHub PubSubHubbub hub to post
+    #   from a subscribed repository's pull requests
+    #
+    def pubsubhubbub_callback_url
+      ENV['PUBSUBHUBBUB_CALLBACK_URL'].presence || Rails.application.routes.url_helpers
+        .url_for(controller: 'curry/pull_request_updates', action: 'create',
+                 host: ENV['HOST'], protocol: ENV['PROTOCOL'], port: ENV['PORT'])
     end
 
     #

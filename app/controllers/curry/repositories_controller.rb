@@ -21,7 +21,7 @@ class Curry::RepositoriesController < ApplicationController
     repository = Curry::Repository.new(repository_params)
     subscriber = Curry::RepositorySubscriber.new(repository)
 
-    if subscriber.subscribe(pubsubhubbub_callback_url)
+    if subscriber.subscribe!
       Curry::RepositorySubscriptionWorker.perform_async(repository.id)
 
       redirect_to curry_repositories_url,
@@ -46,7 +46,7 @@ class Curry::RepositoriesController < ApplicationController
       Curry::Repository.find(params[:id])
     )
 
-    if subscriber.unsubscribe
+    if subscriber.unsubscribe!
       flash[:notice] = t('curry.repositories.unsubscribe.success')
     else
       flash[:alert] = t('curry.repositories.unsubscribe.failure')
@@ -86,20 +86,5 @@ class Curry::RepositoriesController < ApplicationController
   #
   def restrict_non_admin_access!
     not_found! unless current_user.is?(:admin)
-  end
-
-  #
-  # The Hubbub URL. It is configured in application.yml. If it is not present,
-  # then use the +curry_pull_request_updates_url+ route.
-  #
-  # @return [String] The callback url for the GitHub PubSubHubbub hub to post
-  #   from a subscribed repository's pull requests
-  #
-  def pubsubhubbub_callback_url
-    if ENV['PUBSUBHUBBUB_CALLBACK_URL'].blank?
-      curry_pull_request_updates_url
-    else
-      ENV['PUBSUBHUBBUB_CALLBACK_URL']
-    end
   end
 end
