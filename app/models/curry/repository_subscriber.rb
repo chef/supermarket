@@ -60,6 +60,26 @@ module Curry
       @repository.destroy
     end
 
+    #
+    # Resubscribes Supermarket to the repository, removing a webhook
+    # on the repository for the recorded callback_url and resubscribing
+    # to the repository with the current callback_url
+    #
+    # @return [Curry::Repository] if Supermarket has unsubscribed
+    #
+    # @raise [Octokit::Error] if unsubscribing from the hub fails
+    #
+    def resubscribe!
+      begin
+        client.unsubscribe(topic, @repository.callback_url)
+        subscribe!
+      rescue Octokit::UnprocessableEntity => e
+        Rails.logger.info e
+      end
+
+      @repository
+    end
+
     private
 
     #

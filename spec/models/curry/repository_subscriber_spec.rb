@@ -2,6 +2,26 @@ require 'spec_helper'
 require 'vcr_helper'
 
 describe Curry::RepositorySubscriber do
+  let!(:client) { Octokit::Client.new access_token: ENV['GITHUB_ACCESS_TOKEN'] }
+  let!(:test_callback_url) { 'http://localhost:3000/curry/pull_request_updates' }
+  let!(:previous_url) { 'https://example.com/previous_callback_url' }
+  let!(:current_url)  { 'https://example.com/current_callback_url' }
+  let!(:override_url) { 'https://example.com/overridden_callback_url' }
+
+  after(:all) do
+    # clean up any hooks left over on the test repository
+    # after all the specs have run
+    clean_up_client = Octokit::Client.new access_token: ENV['GITHUB_ACCESS_TOKEN']
+    test_repo = build(:repository)
+    hook_topic = "https://github.com/#{test_repo.owner}/#{test_repo.name}/events/pull_request"
+    hooks = clean_up_client.hooks(test_repo.full_name)
+    hooks.each do |hook|
+      if hook[:config][:url] =~ /example.com|localhost:3000/
+        clean_up_client.unsubscribe(hook_topic, hook[:config][:url])
+      end
+    end
+  end
+
   describe '#subscribe!' do
     around(:each) do |example|
       VCR.use_cassette('curry_repository_subscriber', record: :once) do
@@ -20,6 +40,15 @@ describe Curry::RepositorySubscriber do
         expect(subscriber.subscribe!).to be true
       end
 
+      it 'adds a webhook to the repository for the callback_url' do
+        subscriber.subscribe!
+        repository_hook_urls = client.hooks(subscriber.repository.full_name).map do |hook|
+          hook[:config][:url]
+        end
+        expect(repository_hook_urls)
+          .to include(test_callback_url)
+      end
+
       it 'saves a repository record in the act of subscribing' do
         expect { subscriber.subscribe! }
           .to change(Curry::Repository, :count)
@@ -33,7 +62,7 @@ describe Curry::RepositorySubscriber do
 
         expect { subscriber.subscribe! }
           .to change { subscriber.repository.callback_url }
-          .to eql('http://localhost:3000/curry/pull_request_updates')
+          .to eql(test_callback_url)
       end
     end
 
@@ -62,7 +91,6 @@ describe Curry::RepositorySubscriber do
 
     context 'when the environment has a PubSubHubbub callback url set' do
       it 'subscribes using the overridden callback URL from the environment' do
-        override_url = 'https://example.com/overridden-pubsubhubbub-callback'
         ENV['PUBSUBHUBBUB_CALLBACK_URL'] = override_url
 
         subscriber = Curry::RepositorySubscriber.new(
@@ -88,12 +116,6 @@ describe Curry::RepositorySubscriber do
     let!(:subscriber) do
       Curry::RepositorySubscriber.new(
         create(:repository)
-      )
-    end
-
-    let(:client) do
-      Octokit::Client.new(
-        access_token: ENV['GITHUB_ACCESS_TOKEN']
       )
     end
 
@@ -126,6 +148,62 @@ describe Curry::RepositorySubscriber do
       expect { subscriber.unsubscribe! }
         .to change(Curry::Repository, :count)
         .by(-1)
+    end
+  end
+
+  describe '#resubscribe!' do
+    around(:each) do |example|
+      VCR.use_cassette('curry_repository_resubscriber', record: :once) do
+        example.run
+      end
+    end
+
+    let!(:repository)   { create(:repository) }
+    let!(:subscriber)   { Curry::RepositorySubscriber.new repository }
+
+    it 'sets the callback_url to the current url' do
+      ENV['PUBSUBHUBBUB_CALLBACK_URL'] = previous_url
+      subscriber.subscribe!
+      ENV['PUBSUBHUBBUB_CALLBACK_URL'] = current_url
+
+      expect { subscriber.resubscribe! }
+        .to change { repository.callback_url }
+        .to eql(current_url)
+    end
+
+    it 'does not change the number of curried repositories' do
+      ENV['PUBSUBHUBBUB_CALLBACK_URL'] = previous_url
+      subscriber.subscribe!
+      ENV['PUBSUBHUBBUB_CALLBACK_URL'] = current_url
+
+      expect { subscriber.resubscribe! }
+        .to_not change(Curry::Repository, :count)
+    end
+
+    it 'adds a webhook to the repository for the current callback_url' do
+      ENV['PUBSUBHUBBUB_CALLBACK_URL'] = previous_url
+      subscriber.subscribe!
+      ENV['PUBSUBHUBBUB_CALLBACK_URL'] = current_url
+      subscriber.resubscribe!
+
+      repository_hook_urls = client.hooks(subscriber.repository.full_name).map do |hook|
+        hook[:config][:url]
+      end
+      expect(repository_hook_urls)
+        .to include(current_url)
+    end
+
+    it 'removes the webhook from the repository for the previous callback_url' do
+      ENV['PUBSUBHUBBUB_CALLBACK_URL'] = previous_url
+      subscriber.subscribe!
+      ENV['PUBSUBHUBBUB_CALLBACK_URL'] = current_url
+      subscriber.resubscribe!
+
+      repository_hook_urls = client.hooks(subscriber.repository.full_name).map do |hook|
+        hook[:config][:url]
+      end
+      expect(repository_hook_urls)
+        .to_not include(previous_url)
     end
   end
 end
