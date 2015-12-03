@@ -328,6 +328,6 @@ if Rails.env.development?
   Curry::Repository.where(
     name: "paprika",
     owner: "chef",
-    callback_url: ENV['PUBSUBHUBBUB_CALLBACK_URL']
+    callback_url: ENV['PUBSUBHUBBUB_CALLBACK_URL'] || 'https://seeded.example.com/curry/pr-updates'
   ).first_or_create!
 end
