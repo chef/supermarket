@@ -12,6 +12,12 @@
     </div>
   <% end %>
 
+  <% if cookbook.partner_status? %>
+    <div>
+      <%= link_to 'Partner Status!', partner_status(cookbook), method: :post, class: 'button radius tiny' %>
+    </div>
+  <% end %>
+
   <h3 class="<%= 'show-cookbook-urls-manage' if policy(cookbook).manage_cookbook_urls? %>" rel="edit-cookbook-urls">
     <% if policy(cookbook).manage_cookbook_urls? %>
       <%= link_to '#' do %>
