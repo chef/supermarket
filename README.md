@@ -98,7 +98,7 @@ These instructions are tested and verified on Mac OS X Yosemite
 1. Start the server:
 
   ```
-  $ foreman start
+  $ bundle exec foreman start
   ```
 
   If you receive errors, make sure that redis and Postgres are running.
