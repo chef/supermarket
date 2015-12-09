@@ -100,7 +100,7 @@ describe Api::V1::CookbookVersionsController do
               cookbook_name: cookbook.name,
               cookbook_version: version.to_param,
               foodcritic_failure: true,
-              foodcritic_failure: 'E066',
+              foodcritic_feedback: 'E066',
               fieri_key: 'YOUR_FIERI_KEY',
               format: :json
             )
@@ -154,7 +154,7 @@ describe Api::V1::CookbookVersionsController do
             cookbook_name: cookbook.name,
             cookbook_version: '1010101.1.1',
             foodcritic_failure: true,
-            foodcritic_failure: 'E066',
+            foodcritic_feedback: 'E066',
             fieri_key: 'YOUR_FIERI_KEY',
             format: :json
           )
@@ -171,7 +171,7 @@ describe Api::V1::CookbookVersionsController do
           cookbook_name: cookbook.name,
           cookbook_version: '1010101.1.1',
           foodcritic_failure: true,
-          foodcritic_failure: 'E066',
+          foodcritic_feedback: 'E066',
           fieri_key: 'not_the_key',
           format: :json
         )
