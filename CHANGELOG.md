@@ -1,6 +1,16 @@
 # Supermarket Changelog
+
+## 2.1.3-alpha.0 (2015-12-08)
+- [1172] Update nokogiri to address CVEs
+- [1163] Update README with correct current URLs to GitHub repos and mailing list
+- [1163] Configure Travis CI to use container infrastructure
+- [1167] Fix Curry's computation of what the GitHub repo webhook callback URL should be in production
+- [1173] Update README to have consistent use of `bundle exec`
+- [1174] Fix `db/seeds.rb` by providing a default callback URL in development
+
 ## 2.1.2-alpha.0 (2015-11-25)
 - [1170] - No longer invoke foundation tooltips with user supplied content (High Priority Security Fix)
+
 ## 2.1.1-alpha.0 (2015-11-24)
 - [1146, 1147] Refactor collaborator processing into a reusable concern
 - [1153] Update gems (shoulda-matchers, uglifier, chef, sidekiq) for security vulnerability patches
@@ -72,7 +82,6 @@
 - [25] - Dhparam Options
 - [29] - PostgreSQL Credentials
 
-
 ## 1.10.1-alpha.0 (2015-05-15)
 Upping version to account for changes in [omnibus-supermarket](https://github.com/chef/omnibus-supermarket/tree/1.10.0-alpha.0)
 
@@ -102,7 +111,6 @@ These changes include (remember, these changes are on omnibus-supermarket)
 - [#1034] Add in documentation for Admin users
 
 ## 1.8.0-alpha.0 (2015-04-16)
-
 - [#1020] Temporary urls for private s3 storage
 - [#1015] adding in links to Chef corporate legalese in common footer
 - [#1023] Remove commas from platform names in seed.rb
@@ -113,7 +121,6 @@ These changes include (remember, these changes are on omnibus-supermarket)
 - [#1001] Update Chef's office address
 
 ## 1.7.0-alpha.0 (2015-03-13)
-
 - Updated omnibus and omnibus-software with bug fixes
 - [#1004] Remove incorrect dev environment instructions
 - [#995] Fixes for blog links
@@ -126,7 +133,6 @@ These changes include (remember, these changes are on omnibus-supermarket)
 - [#970] Remove links to old wiki
 
 ## 1.6.0-alpha.0 (2015-01-21)
-
 - [#934] Only show source/issues URLs if they're present
 - [#936] Add powershell modules and dsc resources to available tool types
 - [#937] List which FEATURES are enabled in the health endpoint
@@ -141,7 +147,6 @@ These changes include (remember, these changes are on omnibus-supermarket)
 - [#971] Fix incorrect training URL
 
 ## 1.5.0-alpha.0 (2014-12-04)
-
 - Update yanked mixlib-shellout version in Omnibus cookbook
 - Fix for OAuth2 URL in Omnibus configuration
 - [#928] Update Rails to 4.1.8 (CVE-2014-7829)
@@ -156,13 +161,11 @@ These changes include (remember, these changes are on omnibus-supermarket)
 - [#907] Make robots.txt configurable
 
 ## 1.4.0 (2014-11-06)
-
 - [#902] More removal of segment.io
 - [#901] Gem updates
 - [#900] DRY up full host URL generation
 
 ## 1.3.0-alpha.0 (2014-10-30)
-
 - [#898] Make sitemap generation configurable
 - [#895] Add URL helpers
 - [#893] Gem updates
@@ -188,11 +191,9 @@ These changes include (remember, these changes are on omnibus-supermarket)
 - [#773] Parse source and issue URLs from cookbook metadata
 
 ## 1.2.0 (2014-10-10)
-
 - [#846] Lazily initialize ROLLOUT
 
 ## 1.1.0 (2014-10-09)
-
 - [#831] Make email notifications configurable
 - [#834] Update README
 - [#837] Cleanup old email notifications
@@ -201,5 +202,4 @@ These changes include (remember, these changes are on omnibus-supermarket)
 - [#844] Remove segment.io
 
 # 1.0.0 (2014-10-01)
-
 - Initial 1.0 release
