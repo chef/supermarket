@@ -29,7 +29,7 @@ repositories are:
 
 ## Requirements
 
-- Ruby 2.1.3
+- Ruby 2.2.3
 - PostgreSQL 9.2+
 - Redis 2.4+
 
