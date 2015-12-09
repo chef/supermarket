@@ -28,12 +28,12 @@ build_version do
 end
 build_iteration 1
 
-override :cacerts, version: '2014.08.20'
 override :postgresql, version: '9.3.6'
-override :ruby, version: "2.1.6"
-override :rubygems, version: "2.4.1"
+override :ruby, version: "2.2.3"
+override :rubygems, version: "2.4.8"
 override :git, version: "2.2.1"
 override :'chef-gem', version: '12.3.0'
+override :redis, version: '2.8.21'
 
 # Creates required build directories
 dependency "preparation"

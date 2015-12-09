@@ -13,7 +13,10 @@ provisioner:
 
 platforms:
   - name: ubuntu-10.04
-  - name: centos-5.10
+  - name: ubuntu-12.04
+  - name: centos-5.11
+  - name: centos-6.7
+  - name: centos-7.1
 
 suites:
   - name: default
@@ -22,5 +25,5 @@ suites:
     attributes:
       supermarket:
         test:
-          deb_package_path: false
-          rpm_package_path: false
+          deb_package_path: <%= ENV['SUPERMARKET_DEB'] || false %>
+          rpm_package_path: <%= ENV['SUPERMARKET_RPM'] || false %>

@@ -1,35 +1,17 @@
 DEPENDENCIES
   apt (~> 2.0)
-  enterprise
-    git: https://github.com/opscode-cookbooks/enterprise-chef-common.git
-    revision: 7fafe6fc5f833469a7fde4f1c2002c127412b3a4
-    branch: postgres_credentials
   omnibus
-  omnibus-supermarket
-    path: cookbooks/omnibus-supermarket
   yum-epel (~> 0.6)
 
 GRAPH
   7-zip (1.0.2)
     windows (>= 1.2.2)
   apt (2.7.0)
-  bluepill (2.3.1)
-    rsyslog (>= 0.0.0)
   build-essential (2.2.3)
   chef-sugar (3.1.0)
   chef_handler (1.1.9)
-  enterprise (0.8.0)
-    runit (> 1.0.0)
   homebrew (1.12.0)
     build-essential (>= 2.1.2)
-  nginx (2.7.6)
-    apt (~> 2.2)
-    bluepill (~> 2.3)
-    build-essential (~> 2.0)
-    ohai (~> 2.0)
-    runit (~> 1.2)
-    yum-epel (~> 0.3)
-  ohai (2.0.1)
   omnibus (2.6.7)
     7-zip (~> 1.0)
     build-essential (~> 2.0)
@@ -37,20 +19,6 @@ GRAPH
     homebrew (~> 1.9)
     windows (~> 1.30)
     wix (~> 1.1)
-  omnibus-supermarket (1.0.0)
-    enterprise (>= 0.0.0)
-    nginx (>= 0.0.0)
-    omnibus (>= 0.0.0)
-    runit (>= 0.0.0)
-    sysctl (>= 0.0.0)
-    unicorn (>= 0.0.0)
-  packagecloud (0.0.18)
-  rsyslog (2.0.0)
-  runit (1.6.0)
-    packagecloud (>= 0.0.0)
-  sysctl (0.6.2)
-    ohai (>= 0.0.0)
-  unicorn (2.0.0)
   windows (1.37.0)
     chef_handler (>= 0.0.0)
   wix (1.1.0)
