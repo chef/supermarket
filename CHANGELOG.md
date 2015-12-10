@@ -1,5 +1,9 @@
 # Supermarket Changelog
 
+## 2.1.4-alpha.0 (2015-12-10)
+- [1161] Upgrade Ruby to 2.2.3
+- [omnibus-supermarket#39] Upgrade embedded Ruby, RubyGems, cacerts and OpenSSL
+
 ## 2.1.3-alpha.0 (2015-12-08)
 - [1172] Update nokogiri to address CVEs
 - [1163] Update README with correct current URLs to GitHub repos and mailing list
