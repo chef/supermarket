@@ -11,6 +11,7 @@ class Tool < ActiveRecord::Base
   has_one :chef_account, through: :owner
   has_many :collaborators, as: :resourceable
   has_many :collaborator_users, through: :collaborators, source: :user
+  has_many :group_resources, as: :resourceable
 
   # Validations
   # --------------------

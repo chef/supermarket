@@ -1,0 +1,21 @@
+<%= provide(:title, "#{@user.username}") %>
+<%= provide(:description, "#{@user.username}'s Groups.") %>
+
+
+<div class="page profile" data-equalizer>
+  <%= render 'sidebar' %>
+
+  <div class="main" data-equalizer-watch>
+    <%= render 'heading', user: @user, title: "#{posessivize(@user.name)} Groups", active: 'groups' %>
+    <div class="tabs-content">
+      <div class="content active">
+        <% if @groups.any? %>
+          <ul class="listing">
+            <%= render partial: 'groups/group', collection: @groups %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+    <%= link_to "Create Group", new_group_path, class: 'button medium radius' %>
+  </div>
+</div>

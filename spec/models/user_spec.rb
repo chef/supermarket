@@ -10,6 +10,8 @@ describe User do
     it { should have_many(:cookbook_followers) }
     it { should have_many(:followed_cookbooks) }
     it { should have_many(:tools) }
+    it { should have_many(:group_members) }
+    it { should have_many(:memberships) }
   end
 
   context 'validations' do

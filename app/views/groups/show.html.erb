@@ -1,0 +1,30 @@
+<div class="page nobg">
+  <h1 class="title">
+    <%= @group.name %>
+  </h1>
+
+  <h2>Admin Members</h2>
+    <ul class="listing" id="admin_members">
+      <%= render partial: 'member', collection: @admin_members %>
+    </ul>
+  <h2>Members</h2>
+    <ul class="listing" id="members">
+      <%= render partial: 'member', collection: @members %>
+    </ul>
+
+      <%= link_to '#', class: 'addgroupmember', rel: 'add-group-member', 'data-reveal-id' => 'group-members' do %>
+        <i class="fa fa-plus-square"></i>
+        Add Group Member
+      <% end %>
+
+    <div id="group-members" class="reveal-modal small" data-reveal>
+      <%= render 'group_members/add', group: @group %>
+    </div>
+
+    <br />
+    <br />
+    <h2>Resources associated with this group:</h2>
+    <ul class="listing" id="resources">
+      <%= render partial: 'resource', collection: group_resourceables(@group) %>
+    </ul>
+</div>

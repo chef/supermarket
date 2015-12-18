@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   has_many :email_preferences
   has_many :system_emails, through: :email_preferences
   has_one :chef_account, -> { self.for('chef_oauth2') }, class_name: 'Account'
+  has_many :group_members
+  has_many :memberships, through: :group_members, source: :group
 
   # Validations
   # --------------------

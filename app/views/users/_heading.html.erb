@@ -1,10 +1,13 @@
 <div class="heading-with-buttons">
   <h1 class="title"><%= title %></h1>
 
-  <% if ROLLOUT.active?(:tools) %>
     <div class="buttons">
       <%= link_to "Cookbooks", user, class: "button radius secondary #{'active' if active == 'cookbooks'}", rel: "view_cookbooks" %>
-      <%= link_to "Tools & Plugins", tools_user_path(user), class: "button radius secondary #{'active' if active == 'tools'}", rel: "view_tools" %>
-    </div>
+  <% if ROLLOUT.active?(:tools) %>
+    <%= link_to "Tools & Plugins", tools_user_path(user), class: "button radius secondary #{'active' if active == 'tools'}", rel: "view_tools" %>
   <% end %>
+  <% if ROLLOUT.active?(:collaborator_groups) %>
+    <%= link_to "Groups", groups_user_path(user), class: "button radius secondary #{'active' if active == 'groups'}" %>
+  <% end %>
+    </div>
 </div>

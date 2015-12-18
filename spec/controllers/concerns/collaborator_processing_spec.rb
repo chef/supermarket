@@ -65,7 +65,7 @@ describe FakesController do
       let(:new_collaborator) { build(:cookbook_collaborator, user: user, resourceable: cookbook) }
 
       it 'creates a new collaborator' do
-        expect(Collaborator).to receive(:new).with(user_id: user.id, resourceable: cookbook).and_return(new_collaborator)
+        expect(Collaborator).to receive(:new).with(user_id: user.id, resourceable: cookbook, group_id: nil).and_return(new_collaborator)
         subject.add_users_as_collaborators(cookbook, user_ids)
       end
 
@@ -115,7 +115,93 @@ describe FakesController do
     end
   end
 
-  context 'removing users' do
+  context 'adding collaborator groups' do
+    let!(:group_member) { create(:group_member) }
+    let(:group) { group_member.group }
+
+    let!(:group_member2) { create(:group_member, group: group) }
+
+    context 'adding a single group' do
+      before do
+        expect(cookbook.owner).to eq(fanny)
+        sign_in fanny
+
+        allow(Group).to receive(:find).and_return(group)
+        allow(group).to receive(:members).and_return(group.members)
+      end
+
+      it 'finds the correct group' do
+        expect(Group).to receive(:find).with(group.id.to_s).and_return(group)
+        subject.add_group_members_as_collaborators(cookbook, "#{group.id}")
+      end
+
+      it 'associates the group with the resource' do
+        expect(group).to receive(:group_resources).at_least(:once).and_return([])
+        new_group_resource = create(:group_resource, group: group)
+
+        allow(GroupResource).to receive(:create!).and_return(new_group_resource)
+
+        expect(group.group_resources).to receive(:<<).with(new_group_resource)
+
+        subject.add_group_members_as_collaborators(cookbook, "#{group.id}")
+      end
+
+      it 'finds the members for the group' do
+        expect(group).to receive(:members).and_return(group.members)
+        subject.add_group_members_as_collaborators(cookbook, "#{group.id}")
+      end
+
+      it 'maps the user ids' do
+        expect(group.members).to receive(:map).and_return(group.members.map(&:id))
+        subject.add_group_members_as_collaborators(cookbook, "#{group.id}")
+      end
+
+      it 'transforms the user ids into a string' do
+        member_ids = group.members.map(&:id)
+        allow(group.members).to receive(:map).and_return(member_ids)
+        expect(member_ids).to receive(:map).and_return(member_ids.map(&:to_s))
+
+        subject.add_group_members_as_collaborators(cookbook, "#{group.id}")
+      end
+
+      it 'makes a collaborator for each group user' do
+        user_ids = group.members.map(&:id).map(&:to_s)
+
+        expect(subject).to receive(:add_users_as_collaborators).with(cookbook, user_ids, group.id.to_s)
+        subject.add_group_members_as_collaborators(cookbook, "#{group.id}")
+      end
+
+      it 'associates the collaborator with the group' do
+        expect(cookbook.collaborators).to be_empty
+        subject.add_group_members_as_collaborators(cookbook, "#{group.id}")
+        cookbook.collaborators.each do |collaborator|
+          expect(collaborator.group).to eq(group)
+        end
+      end
+    end
+
+    context 'adding multiple groups' do
+      let!(:group2_member) { create(:group_member) }
+      let(:group2) { group2_member.group }
+      let!(:group2_member2) { create(:group_member, group: group2) }
+
+      it 'finds all groups' do
+        expect(Group).to receive(:find).at_least(:twice).and_return(group, group2)
+        subject.add_group_members_as_collaborators(cookbook, "#{group.id}, #{group2.id}")
+      end
+
+      it 'makes a new collaborator for each user in both groups' do
+        expect(cookbook.collaborators).to be_empty
+
+        subject.add_group_members_as_collaborators(cookbook, "#{group.id},#{group2.id}")
+
+        collaborator_user_ids = cookbook.collaborators.map(&:user_id)
+        expect(collaborator_user_ids).to include(group_member.user.id, group2_member.user.id, group2_member2.user.id)
+      end
+    end
+  end
+
+  context 'removing collaborators' do
     let!(:hank) { create(:user, first_name: 'Hank') }
     let!(:hanky) { create(:user, first_name: 'Hanky') }
 
@@ -158,6 +244,30 @@ describe FakesController do
       expect do
         subject.remove_collaborator(collaborator)
       end.to raise_error(Pundit::NotAuthorizedError)
+    end
+  end
+
+  context 'removing groups of collaborators' do
+    let!(:group_member1) { create(:group_member) }
+    let!(:group) { group_member1.group }
+    let!(:group_member2) { create(:group_member, group: group) }
+
+    let(:collaborator1) { create(:cookbook_collaborator, group: group, user: group_member1.user, resourceable: cookbook) }
+    let(:collaborator2) { create(:cookbook_collaborator, group: group, user: group_member2.user, resourceable: cookbook) }
+
+    let(:group_resource) { create(:group_resource, resourceable: cookbook, group: group) }
+
+    before do
+      expect(group.group_members).to include(group_member1, group_member2)
+      expect(cookbook.group_resources).to include(group_resource)
+      expect(cookbook.collaborators).to include(collaborator1, collaborator2)
+    end
+
+    it 'removes all collaborators associated with the group' do
+      group_collaborators = Collaborator.where(resourceable: cookbook, group: group)
+      expect(subject).to receive(:remove_collaborator).with(collaborator1)
+      expect(subject).to receive(:remove_collaborator).with(collaborator2)
+      subject.remove_group_collaborators(group_collaborators)
     end
   end
 end

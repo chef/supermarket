@@ -22,6 +22,7 @@ en:
   collaborator:
     added: 'Collaborator added.'
     owner_changed: 'You successfully transferred ownership of %{resource} to %{user}.'
+    group_removed: "Collaborator group %{name} successfully removed"
   cookbook:
     ownership_transfer:
       done: "%{cookbook} transferred to %{user}."

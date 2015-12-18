@@ -163,6 +163,8 @@ be enabled. Supermarket supports the following features.
 * `fieri`, Enables the ability for Cookbook Versions to be evaluated by Fieri
 * `announcement`, Enables the foldable annoucement banner that is displayed on all views.
   when uploaded
+* `collaborator_groups`, Enables collaborator groups, which allow you to manage collaborators
+   through groups
 
 ## Debugging
 

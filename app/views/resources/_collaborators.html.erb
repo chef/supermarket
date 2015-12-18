@@ -1,5 +1,5 @@
 <div class="collaborators_avatar">
-  <% collaborators.each do |collaborator| %>
+  <% non_group_collaborators(collaborators).each do |collaborator| %>
     <div class="gravatar-container">
       <% collaboration_permissions_for(collaborator) do |transfer, destroy| %>
         <% if destroy %>
@@ -12,5 +12,15 @@
         <% end %>
       <% end %>
     </div>
+  <% end %>
+
+  <% if ROLLOUT.active?(:collaborator_groups) && resource.group_resources.present? %>
+    <h2>Collaborator Groups</h2>
+    <% resource.group_resources.each do |group_resource| %>
+      <h2 class="collaboration-group-name"><%= link_to("#{group_resource.group.name}", group_path(group_resource.group)) %>  <%= link_to 'Remove', destroy_group_collaborator_path(resourceable_type: group_resource.resourceable_type, resourceable_id: group_resource.resourceable_id, id: group_resource.group), method: :delete, class: 'button tiny alert radius remove' %> </h2>
+      <% group_collaborators(collaborators, group_resource.group).each do |collaborator | %>
+          <%= link_to gravatar_for(collaborator.user, size: 80), collaborator.user, title: collaborator.user.username %>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
