@@ -15,7 +15,7 @@
 #
 
 name "supermarket"
-default_version "groups-feature-2"
+default_version "master"
 
 dependency "bundler"
 dependency "cacerts"
