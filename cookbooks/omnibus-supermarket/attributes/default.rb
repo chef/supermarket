@@ -394,6 +394,7 @@ default['supermarket']['seed_cla_data'] = nil
 #   (this will most likely be of no use to you, but could be made a
 #   configurable thing in the future.)
 # * cla: Enable the Contributor License Agreement features
+# * collaborator_groups: Enable collaborator groups, allowing management of collaborators through groups
 # * fieri: Use the fieri service to report on cookbook quality (requires
 #   fieri_url and fieri_key to be set.)
 # * github: Enable GitHub integration, used with CLA signing
