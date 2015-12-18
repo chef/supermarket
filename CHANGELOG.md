@@ -1,5 +1,11 @@
 # Supermarket Changelog
 
+## 2.2.0 (2015-12-18)
+- [1151] Add Collaborator Groups feature to Supermarket
+- [1185] Bring Ruby version back to 2.1.x
+- [omnibus-supermarket#38] Add documentation for collaborator groups feature
+- [omnibus-supermarket#41] Change Ruby to v2.1.8
+
 ## 2.1.4-alpha.0 (2015-12-10)
 - [1161] Upgrade Ruby to 2.2.3
 - [omnibus-supermarket#39] Upgrade embedded Ruby, RubyGems, cacerts and OpenSSL
