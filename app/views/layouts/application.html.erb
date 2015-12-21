@@ -14,8 +14,10 @@
     <link rel="icon" href="<%= image_url('favicon.ico') %>" type="image/x-icon">
     <link rel="apple-touch-icon" href="<%= image_url('apple-touch-icon.png') %>"/>
     <%= stylesheet_link_tag "application", media: "all" %>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <% unless Rails.env == 'test' %>
+      <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" %>
+      <%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Montserrat:400,700" %>
+    <% end %>
     <%= csrf_meta_tags %>
     <%= render 'google_analytics' %>
   </head>
