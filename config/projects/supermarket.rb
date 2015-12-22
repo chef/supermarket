@@ -29,7 +29,7 @@ end
 build_iteration 1
 
 override :postgresql, version: '9.3.6'
-override :ruby, version: "2.2.3"
+override :ruby, version: "2.1.8"
 override :rubygems, version: "2.4.8"
 override :git, version: "2.2.1"
 override :'chef-gem', version: '12.3.0'
