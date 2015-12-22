@@ -13,6 +13,17 @@ describe 'omnibus-supermarket::app' do
     )
   end
 
+  it 'creates sitemap files with the correct permissions' do
+    files = ['/opt/supermarket/embedded/service/supermarket/public/sitemap.xml.gz',
+             '/opt/supermarket/embedded/service/supermarket/public/sitemap1.xml.gz']
+    files.each do |file|
+      expect(chef_run).to create_file(file)
+        .with( owner: 'supermarket',
+               group: 'supermarket',
+               mode:  '0664' )
+    end
+  end
+
   it 'links the env file' do
     expect(chef_run.link(
       '/opt/supermarket/embedded/service/supermarket/.env.production'

@@ -47,3 +47,13 @@ end
 link "#{node['supermarket']['app_directory']}/public/system" do
   to node['supermarket']['data_directory']
 end
+
+sitemap_files = ['sitemap.xml.gz', 'sitemap1.xml.gz']
+sitemap_files.each do |sitemap_file|
+  file "#{node['supermarket']['app_directory']}/public/#{sitemap_file}" do
+    owner node['supermarket']['user']
+    group node['supermarket']['group']
+    mode '0664'
+    action :create
+  end
+end
