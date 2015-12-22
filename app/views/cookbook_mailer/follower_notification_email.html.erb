@@ -5,7 +5,7 @@
 <div class="changelog">
   <% if @cookbook_version.changelog.present? %>
     <h2 class="title">Changelog</h2>
-    <%= HTML_Truncator.truncate(render_document(@cookbook_version.changelog, @cookbook_version.changelog_extension), 30, ellipsis: '').html_safe %>
+    <%= HTML_Truncator.truncate(render_document(@cookbook_version.changelog, @cookbook_version.changelog_extension), 200, ellipsis: '').html_safe %>
 
     <%= link_to 'View Full Changelog', cookbook_version_url(@cookbook_version.cookbook, @cookbook_version, anchor: 'changelog'), class: 'button accept' %>
   <% end %>
