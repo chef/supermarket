@@ -1,5 +1,14 @@
 # Supermarket Changelog
 
+## 2.2.2 (2015-12-23)
+- [omnibus-supermarket#42] Fix sitemap permissions
+- [omnibus-supermarket#40] Add supermarket-ctl console command
+- [omnibus-supermarket#43] Fix broken specs
+
+## 2.2.1 (2015-12-18)
+- Same as 2.2.0
+- Corrects release error
+
 ## 2.2.0 (2015-12-18)
 - [1151] Add Collaborator Groups feature to Supermarket
 - [1185] Bring Ruby version back to 2.1.x
