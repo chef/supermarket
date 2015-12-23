@@ -1,4 +1,9 @@
 describe 'omnibus-supermarket::database' do
+  before do
+    stub_command("echo '\\dx' | psql supermarket | grep plpgsql").and_return('')
+    stub_command("echo '\\dx' | psql supermarket | grep pg_trgm").and_return('')
+  end
+
   let(:chef_run) do
     ChefSpec::Runner.new do |node|
       node.automatic['memory']['total'] = '16000MB'
