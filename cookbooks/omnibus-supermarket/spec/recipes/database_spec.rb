@@ -5,7 +5,7 @@ describe 'omnibus-supermarket::database' do
   end
 
   let(:chef_run) do
-    ChefSpec::Runner.new do |node|
+    ChefSpec::SoloRunner.new do |node|
       node.automatic['memory']['total'] = '16000MB'
     end.converge(described_recipe)
   end
