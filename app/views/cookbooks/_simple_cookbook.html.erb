@@ -1,8 +1,12 @@
 <li>
   <div class="owner"><%= link_to gravatar_for(cookbook.owner), cookbook.owner %></div>
+    <% if mobile_device?(request.headers["HTTP_USER_AGENT"]) %>
+      <%= link_to cookbook.name, cookbook, rel: 'cookbook', class: 'name' %>
+    <% else %>
   <div class="name">
     <%= link_to cookbook.name, cookbook, rel: 'cookbook' %>
     <small><%= cookbook.latest_cookbook_version.version %></small>
   </div>
+  <% end %>
   <small class="followers"><%= pluralize(cookbook.cookbook_followers_count, "Follower") %></small>
 </li>

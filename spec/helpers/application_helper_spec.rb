@@ -46,4 +46,18 @@ describe ApplicationHelper do
       expect(flash_message_class_for('warning')).to eql('warning')
     end
   end
+
+  describe '#mobile_device?' do
+    context 'when detecting a mobile device' do
+      it 'returns true' do
+        expect(helper.mobile_device?('mobile')).to eq(true)
+      end
+    end
+
+    context 'when not detecting a mobile device' do
+      it 'returns false' do
+        expect(helper.mobile_device?('browser')).to eq(false)
+      end
+    end
+  end
 end
