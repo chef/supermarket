@@ -127,16 +127,6 @@ class CookbooksController < ApplicationController
             'cookbook.updated'
           end
 
-    key = if cookbook_urls_params.key?(:partner_status)
-            if cookbook_urls_params[:partner_status] == 'true'
-              'partner_status.up'
-            else
-              'partner_status.down'
-            end
-          else
-            'cookbook.updated'
-          end
-
     redirect_to @cookbook, notice: t(key, name: @cookbook.name)
   end
 
@@ -273,11 +263,6 @@ class CookbooksController < ApplicationController
   def available_for_adoption
     @available_cookbooks = Cookbook.where(up_for_adoption: true)
     @number_of_available_cookbooks = @available_cookbooks.count(:all)
-  end
-
-  def partner_status
-    @partner_cookbooks = Cookbook.where(partner_status: true)
-    @number_of_available_partner_cookbooks = @partner_cookbooks.count(:all)
   end
 
   private
