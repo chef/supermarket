@@ -72,13 +72,6 @@ class CookbookVersion < ActiveRecord::Base
     CookbookVersionPlatform.create! supported_platform: platform, cookbook_version: self
   end
 
-  #
-  # Is this a cookbook that has gone through the Partner Cookbook process
-  #
-  def partner?
-    cookbook.partner
-  end
-
   private
 
   #
