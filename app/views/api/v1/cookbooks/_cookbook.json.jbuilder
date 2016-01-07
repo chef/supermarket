@@ -10,4 +10,3 @@ json.average_rating nil
 json.created_at cookbook.created_at
 json.updated_at cookbook.updated_at
 json.up_for_adoption cookbook.up_for_adoption
-json.partner_status cookbook.partner_cookbooks
