@@ -166,6 +166,13 @@ class Cookbook < ActiveRecord::Base
   end
 
   #
+  # Is this a cookbook that has gone through the Partner Cookbook process
+  #
+  def partner?
+    cookbook.partner
+  end
+
+  #
   # Return all of the cookbook errors as well as full error messages for any of
   # the CookbookVersions
   #
