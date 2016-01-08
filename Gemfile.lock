@@ -1,12 +1,12 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 2c5403e1cc33645cfc1c44decc2416bbda594f2c
+  revision: 5f855e580bb85acc54284368a150dd40c859ba44
   specs:
     omnibus-software (4.0.0)
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 9797151639e1b8e4f97a4a5ab1f7f70f99cc7d59
+  revision: dcd681ee69865695b2b8d0b8e4a43ca644fb8be2
   specs:
     omnibus (5.0.0)
       aws-sdk (~> 2)
@@ -22,12 +22,12 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.8)
-    aws-sdk (2.2.5)
-      aws-sdk-resources (= 2.2.5)
-    aws-sdk-core (2.2.5)
+    aws-sdk (2.2.8)
+      aws-sdk-resources (= 2.2.8)
+    aws-sdk-core (2.2.8)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.2.5)
-      aws-sdk-core (= 2.2.5)
+    aws-sdk-resources (2.2.8)
+      aws-sdk-core (= 2.2.8)
     berkshelf (3.3.0)
       addressable (~> 2.3.4)
       berkshelf-api-client (~> 1.2)
@@ -61,10 +61,10 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef-config (12.5.1)
+    chef-config (12.6.0)
       mixlib-config (~> 2.0)
       mixlib-shellout (~> 2.0)
-    chef-sugar (3.1.1)
+    chef-sugar (3.2.0)
     cleanroom (1.0.0)
     dep-selector-libgecode (1.0.2)
     dep_selector (1.0.3)
@@ -79,15 +79,12 @@ GEM
     hashie (3.4.3)
     hitimes (1.2.3)
     httpclient (2.6.0.1)
-    ipaddress (0.8.0)
+    ipaddress (0.8.2)
     jmespath (1.1.3)
     json (1.8.3)
     kitchen-vagrant (0.19.0)
       test-kitchen (~> 1.4)
     libyajl2 (1.2.0)
-    mime-types (3.0)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2015.1120)
     minitar (0.5.4)
     mixlib-authentication (1.3.0)
       mixlib-log
@@ -100,15 +97,14 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
-    nio4r (1.1.1)
+    nio4r (1.2.0)
     octokit (3.8.0)
       sawyer (~> 0.6.0, >= 0.5.3)
-    ohai (8.8.0)
+    ohai (8.8.1)
       chef-config (>= 12.5.0.alpha.1, < 13)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
       ipaddress
-      mime-types (~> 3.0)
       mixlib-cli
       mixlib-config (~> 2.0)
       mixlib-log
@@ -168,3 +164,6 @@ DEPENDENCIES
   omnibus!
   omnibus-software!
   test-kitchen (~> 1.2)
+
+BUNDLED WITH
+   1.10.6
