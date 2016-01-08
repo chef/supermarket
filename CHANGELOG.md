@@ -1,5 +1,11 @@
 # Supermarket Changelog
 
+## 2.3.0 (2016-01-08)
+- [1196] Add Compliance Profile as a new type of tool
+- [1195, 1195] Update ROADMAP items
+- [1191] Upgrade Nokogiri
+- [omnibus-supermarket#44] Upgrade libxml2 via omnibus-software update
+
 ## 2.2.2 (2015-12-23)
 - [omnibus-supermarket#42] Fix sitemap permissions
 - [omnibus-supermarket#40] Add supermarket-ctl console command
