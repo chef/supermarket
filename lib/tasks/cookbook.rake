@@ -4,7 +4,7 @@ namespace :cookbook do
   desc 'Enable the Partner Cookbook icon for a cookbook'
   task enable_partner_cookbook: :environment do
     cookbook = Cookbook.with_name(ENV['cookbook']).first!
-    cookbook.partner = true
+    cookbook.badges += [:partner]
     cookbook.save
   end
 end
