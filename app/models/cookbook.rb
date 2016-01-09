@@ -1,4 +1,5 @@
 class Cookbook < ActiveRecord::Base
+  include Badgeable
   include PgSearch
 
   #
@@ -163,13 +164,6 @@ class Cookbook < ActiveRecord::Base
   #
   def latest_cookbook_version
     @latest_cookbook_version ||= sorted_cookbook_versions.first
-  end
-
-  #
-  # Is this a cookbook that has gone through the Partner Cookbook process
-  #
-  def partner?
-    cookbook.partner
   end
 
   #

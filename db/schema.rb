@@ -207,6 +207,7 @@ ActiveRecord::Schema.define(version: 20160109212307) do
     t.boolean  "featured",                 default: false
     t.boolean  "up_for_adoption"
     t.boolean  "privacy"
+    t.integer  "badges_mask"
   end
 
   add_index "cookbooks", ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true, using: :btree
@@ -403,6 +404,7 @@ ActiveRecord::Schema.define(version: 20160109212307) do
     t.string   "lowercase_name"
     t.string   "slug"
     t.boolean  "up_for_adoption"
+    t.integer  "badges_mask"
   end
 
   add_index "tools", ["lowercase_name"], name: "index_tools_on_lowercase_name", unique: true, using: :btree
