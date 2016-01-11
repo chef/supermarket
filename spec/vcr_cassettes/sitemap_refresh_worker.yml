@@ -1,0 +1,120 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.google.com/webmasters/tools/ping?sitemap=http://www.example.com/sitemap.xml.gz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html; charset=UTF-8
+      Expires:
+      - Mon, 21 Dec 2015 19:17:49 GMT
+      Date:
+      - Mon, 21 Dec 2015 19:17:49 GMT
+      Cache-Control:
+      - private, max-age=0
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '528'
+      Server:
+      - GSE
+    body:
+      encoding: UTF-8
+      string: |-
+        <html><meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <head><title>Google Webmaster Tools
+        -
+        Sitemap Notification Received</title>
+        <meta name="robots" content="noindex, noodp">
+        <script src="https://ssl.google-analytics.com/urchin.js" type="text/javascript">
+            </script>
+        <script type="text/javascript">
+              _uacct="UA-18009-2";
+              _utcp="/webmasters/";
+              _uanchor=1;
+              urchinTracker();
+            </script></head>
+        <body><h2>Sitemap Notification Received</h2>
+        <br>
+        Your Sitemap has been successfully added to our list of Sitemaps to crawl. If this is the first time you are notifying Google about this Sitemap, please add it via  <a href="http://www.google.com/webmasters/tools/">http://www.google.com/webmasters/tools/</a>  so you can track its status. Please note that we do not add all submitted URLs to our index, and we cannot make any predictions or guarantees about when or if they will appear.</body></html>
+    http_version: 
+  recorded_at: Mon, 21 Dec 2015 19:17:49 GMT
+- request:
+    method: get
+    uri: http://www.bing.com/webmaster/ping.aspx?siteMap=http://www.example.com/sitemap.xml.gz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '832'
+      Content-Type:
+      - text/html; charset=utf-8
+      Expires:
+      - "-1"
+      Vary:
+      - Accept-Encoding
+      Server:
+      - Microsoft-IIS/8.5
+      X-Machinename:
+      - BN2SCH020220450
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      X-Msedge-Ref:
+      - 'Ref A: 95FC2D79508B40D68FAD10C7741C1D1D Ref B: F842F22C1355E6B1257B2DEC942411FA
+        Ref C: Mon Dec 21 11:17:50 2015 PST'
+      Date:
+      - Mon, 21 Dec 2015 19:17:50 GMT
+    body:
+      encoding: UTF-8
+      string: '<html><body>Thanks for submitting your Sitemap.  Join the <a href="/webmaster">Bing
+        Webmaster Tools</a> to see your Sitemaps status and more reports on how you
+        are doing on Bing.<!-- SiteCatalyst code version: H.1. Copyright 1997-2005
+        Omniture, Inc. More info available at http://www.omniture.com --><script language=''JavaScript''>var
+        s_account=''msnportalbingwebmaster'';</script><script language=''JavaScript''
+        src=''/webmaster/content/s_code.js''></script><script language=''JavaScript''>s.linkInternalFilters=''javascript:,'';s.trackExternalLinks=true;s.pageName=''ping_sitemap'';s.server=''www.bing.com'';s.channel
+        = ''Webmaster'';s.prop2 = ''en-US'';s.eVar3 = ''en-US'';s.prop5 = '''';s.eVar5
+        = '''';s.prop22 = '''';/************* DO NOT ALTER ANYTHING BELOW THIS LINE
+        ! **************/var s_code=s.t();if(s_code)document.write(s_code)</script><script
+        language=''JavaScript''><!--if(navigator.appVersion.indexOf(''MSIE'')>=0)document.write(unescape(''%3C'')+''\!-''+''-'')//--></script><noscript><img
+        src=''https://102.112.2O7.net/b/ss/msnportaldev/1/H.1--NS/0'' height=''1''
+        width=''1'' border=''0'' alt='''' /></noscript><!--/DO NOT REMOVE/--><!--
+        End SiteCatalyst code version: H.1. --></body></html>'
+    http_version: 
+  recorded_at: Mon, 21 Dec 2015 19:17:50 GMT
+recorded_with: VCR 2.9.2
