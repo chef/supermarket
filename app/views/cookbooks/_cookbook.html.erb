@@ -3,6 +3,7 @@
     <div class="header-content">
       <h2 class="title">
         <%= link_to cookbook, rel: 'cookbook', itemprop: 'name' do %><%= cookbook.name %><% end %>
+        <%= image_tag "badge-cookbook-partner-03.png", alt: "Partner Cookbook", title: "Partner Cookbook", height: 100, width: 100, class: "fa" if cookbook.is?(:partner) %>
         <i class="fa fa-file"></i>
         <small><%= cookbook.latest_cookbook_version.version %></small>
       </h2>

@@ -12,12 +12,6 @@
     </div>
   <% end %>
 
-  <% if cookbook.is? :partner %>
-    <div>
-      <img src="https://avatars3.githubusercontent.com/u/810824?v=3&s=115"/>
-    </div>
-  <% end %>
-
   <h3 class="<%= 'show-cookbook-urls-manage' if policy(cookbook).manage_cookbook_urls? %>" rel="edit-cookbook-urls">
     <% if policy(cookbook).manage_cookbook_urls? %>
       <%= link_to '#' do %>
@@ -76,6 +70,12 @@
         </li>
       <% end %>
     </ul>
+
+    <% if cookbook.is? :partner %>
+      <h4><i class="fa fa-shield"></i> Badges</h4>
+      <%= image_tag "badge-cookbook-partner-01.png", alt: "Partner Cookbook", title: "Partner Cookbook", height: 100, width: 100, class: "image_fix" %>
+    <% end %>
+
 
     <h4><i class="fa fa-key"></i> License</h4>
     <p><%= version.license %></p>
