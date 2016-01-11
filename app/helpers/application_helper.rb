@@ -48,6 +48,8 @@ module ApplicationHelper
   # @return [Bool]
   #
   def mobile_device?(user_agent)
-    user_agent.downcase =~ /Mobile|webOS/i ? true : false
+    if user_agent.present?
+      user_agent.downcase =~ /Mobile|webOS/i ? true : false
+    end
   end
 end
