@@ -12,7 +12,7 @@ A new version of <%= @cookbook_version.name %> has been released [<%= @cookbook_
 Changelog
 _________________________________________________________
 
-<%= truncate @cookbook_version.changelog, length: 100 %>
+<%= truncate @cookbook_version.changelog, length: 200 %>
 
 <%= cookbook_version_url(@cookbook_version.cookbook, @cookbook_version, anchor: 'changelog') %>
 <% end %>
