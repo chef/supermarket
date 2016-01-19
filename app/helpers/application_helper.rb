@@ -39,4 +39,17 @@ module ApplicationHelper
       'warning' => 'warning'
     }.fetch(name)
   end
+
+  #
+  # Returns true if request comes from a mobile device, false if not
+  #
+  # @param user_agent [String]
+  #
+  # @return [Bool]
+  #
+  def mobile_device?(user_agent)
+    if user_agent.present?
+      user_agent.downcase =~ /Mobile|webOS/i ? true : false
+    end
+  end
 end
