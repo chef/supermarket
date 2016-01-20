@@ -8,6 +8,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+.DS_Store
+.sass-cache
 
 # Let developers choose their RSpec options
 .rspec
@@ -16,6 +18,7 @@
 .ruby-version
 .rbenv-version
 .rvmrc
+.direnv
 
 # Ignore Vagrant-specific things
 .vagrant/
@@ -55,6 +58,7 @@ public/sitemap*
 # Ignore local configuration
 .env.development
 .env.test
+.envrc
 
 # Ignore branding adjustments, user should track that separately
 # (ref app/assets/stylesheets/branding/README.md).
