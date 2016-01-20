@@ -18,7 +18,7 @@ class CclaSignaturesController < ApplicationController
       @ccla_signatures = @ccla_signatures.where('organization_id <> ?', params[:exclude_id])
     end
 
-    @ccla_signatures = @ccla_signatures.page(params[:page]).per(20)
+    @ccla_signatures = @ccla_signatures.page(params[:page]).per(50)
 
     respond_to do |format|
       format.html
