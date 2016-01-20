@@ -71,9 +71,13 @@
       <% end %>
     </ul>
 
-    <% if cookbook.is? :partner %>
+    <% if cookbook.badges.present? %>
       <h4><i class="fa fa-shield"></i> Badges</h4>
-      <%= image_tag "badge-cookbook-partner.svg", alt: "Partner Cookbook", title: "Partner Cookbook", height: 16, width: 16, class: "image_fix" %>
+      <ul class="cookbook_badges">
+        <li class="cookbook_badge_icon has-tip"/>
+          <%= image_tag "badge-cookbook-partner.svg", alt: "Partner Cookbook", title: "Partner Cookbook", height: 16, width: 16, class: "fa"  %>
+        </li>
+      </ul>
     <% end %>
 
 
