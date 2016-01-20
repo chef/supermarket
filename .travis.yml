@@ -8,7 +8,6 @@ before_install:
   - bundle config build.nokogiri --use-system-libraries
 before_script:
   - psql -c 'create database supermarket_test;' -U postgres
-  - psql supermarket_test -c 'create extension pg_trgm' -U postgres
   - bundle exec rake db:schema:load
 bundler_args: --without development --jobs 7
 cache:
