@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109212307) do
+ActiveRecord::Schema.define(version: 20160120222923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -184,6 +184,8 @@ ActiveRecord::Schema.define(version: 20160109212307) do
     t.string   "changelog_extension",   default: "",    null: false
     t.boolean  "foodcritic_failure"
     t.text     "foodcritic_feedback"
+    t.string   "chef_version"
+    t.string   "ohai_version"
   end
 
   add_index "cookbook_versions", ["legacy_id"], name: "index_cookbook_versions_on_legacy_id", unique: true, using: :btree
