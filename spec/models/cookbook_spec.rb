@@ -412,7 +412,7 @@ describe Cookbook do
       opts.reverse_merge!(
         source_url: 'http://example.com',
         issues_url: 'http://example.com/issues',
-        version: '9.9.9',
+        version: '9.9.9'
       )
 
       tarball = build_cookbook_tarball('stuff') do |base|
@@ -440,24 +440,6 @@ describe Cookbook do
         end
       end
 
-          doc = JSON.dump(
-            name: 'stuff',
-            license: 'MIT',
-            version: opts[:version],
-            description: 'Description',
-            platforms: {
-              'ubuntu' => '= 12.04',
-              'debian' => '>= 0.0.0'
-            },
-            dependencies: {
-              'apt' => '= 1.2.3',
-              'yum' => '~> 2.1.3'
-            },
-            source_url: opts[:source_url],
-            issues_url: opts[:issues_url],
-            chef_version: '12.4.1',
-            ohai_version: '8.8.1'
-          )
       CookbookUpload::Parameters.new(cookbook: '{}', tarball: tarball)
     end
 
