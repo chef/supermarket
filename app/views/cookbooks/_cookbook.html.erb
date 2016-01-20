@@ -61,10 +61,12 @@
         <ul class="cookbook_badges">
         <% if cookbook.is?(:partner) %>
         <li class="cookbook_badge_icon had-tip" title=""/>
-          <%= image_tag "badge-cookbook-partner-03.png", alt: "Partner Cookbook", title: "Partner Cookbook", height: 100, width: 100, class: "fa"  %>
+          <%= image_tag "badge-cookbook-partner.svg", alt: "Partner Cookbook", title: "Partner Cookbook", height: 100, width: 100, class: "fa"  %>
+        </li>
         <% end %>
       </ul>
       </div>
+      <% end %>
 
       <ul class="cookbook_stats">
         <%= render 'cookbooks/follow_button_list', cookbook: cookbook %>
