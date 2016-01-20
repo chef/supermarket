@@ -465,7 +465,6 @@ describe Cookbook do
     let(:params) { generate_params }
 
     it 'creates supported platforms from the metadata' do
-puts params.metadata.inspect
       cookbook.publish_version!(params)
       supported_platforms = cookbook.reload.supported_platforms
 
