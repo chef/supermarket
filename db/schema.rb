@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109212307) do
+ActiveRecord::Schema.define(version: 20160121144602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -207,7 +207,7 @@ ActiveRecord::Schema.define(version: 20160109212307) do
     t.boolean  "featured",                 default: false
     t.boolean  "up_for_adoption"
     t.boolean  "privacy"
-    t.integer  "badges_mask"
+    t.integer  "badges_mask",              default: 0,     null: false
   end
 
   add_index "cookbooks", ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true, using: :btree

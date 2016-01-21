@@ -3,11 +3,14 @@ require 'spec_helper.rb'
 class BadgeableThing
   include Badgeable
   attr_accessor :badges_mask
+  def initialize
+    @badges_mask = 0
+  end
 end
 
 shared_examples 'a badgeable thing' do
   it 'has a badges_mask to remember badges assigned' do
-    expect(subject).to respond_to(:badges_mask)
+    expect(subject.badges_mask.class).to eq(Fixnum)
   end
 
   context 'has badgeable methods' do

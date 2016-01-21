@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'concerns/badgeable_spec'
 
 describe Cookbook do
   context 'associations' do
@@ -34,6 +35,8 @@ describe Cookbook do
       end
     end
   end
+
+  it_behaves_like 'a badgeable thing'
 
   context 'ordering versions' do
     let(:toast) { create(:cookbook) }
@@ -119,7 +122,6 @@ describe Cookbook do
     it { should validate_presence_of(:cookbook_versions) }
   end
 
-  it_behaves_like 'a badgeable thing'
 
   describe '#lowercase_name' do
     it 'is set as part of the saving lifecycle' do
