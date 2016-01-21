@@ -5,31 +5,30 @@ addons:
     - libxslt1-dev
     - libxml2-dev
 before_install:
-  - bundle config build.nokogiri --use-system-libraries
+- bundle config build.nokogiri --use-system-libraries
 before_script:
-  - psql -c 'create database supermarket_test;' -U postgres
-  - bundle exec rake db:schema:load
-bundler_args: --without development --jobs 7
+- psql -c 'create database supermarket_test;' -U postgres
+- bundle exec rake db:schema:load
+branches:
+  only:
+  - master
+bundler_args: "--without development --jobs 7"
 cache:
-  - apt
-  - bundler
+- apt
+- bundler
 env:
   global:
-    secure: "rzoy57s+oxvw27HStU1VNHN7fS525ocQo11bmASbwG5Ax6I4X/dwWofQCoZPoGrXisMw5RQaa7e3bHJpATZsMJC67Sf6gbfSOIYY7tISXuCFh9q/19YPGltdwZkP3OgawEpufA8zcMHzD5nvWNXq4c4TKRdtX6mHQVIAOJ9u6qY="
+    secure: rzoy57s+oxvw27HStU1VNHN7fS525ocQo11bmASbwG5Ax6I4X/dwWofQCoZPoGrXisMw5RQaa7e3bHJpATZsMJC67Sf6gbfSOIYY7tISXuCFh9q/19YPGltdwZkP3OgawEpufA8zcMHzD5nvWNXq4c4TKRdtX6mHQVIAOJ9u6qY=
 language: ruby
 notifications:
   email: false
-  webhooks:
-    on_failure: always  # options: [always|never|change] default: always
-    on_start: false     # default: false
-    on_success: change  # options: [always|never|change] default: always
-    urls:
-      - https://webhooks.gitter.im/e/c2044eca72685a9b2ef7
+  slack:
+    secure: YhfiTSk7726AGK9H8761vEbu7wgKzh8zZll/PJuH2dmUy5myrV2nOxf7h6cbsEZcVA+dJ6jpGuLJnsoCBrneh2p7MKf+3wlwxZKE/sns0doMjf5L0i58guGEIVUbE6ydCoC+z65oniq5r/keS5kOs1Rate8wK2DvzgKN7Sjmx58=
 rvm:
-  - 2.1.8
+- 2.1.8
 script:
-  - bundle exec rake spec
-  - bundle exec rake spec:rubocop
-  - bundle exec bundle-audit check --update
+- bundle exec rake spec
+- bundle exec rake spec:rubocop
+- bundle exec bundle-audit check --update
 services:
-  - redis-server
+- redis-server
