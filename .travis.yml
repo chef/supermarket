@@ -9,6 +9,9 @@ before_install:
 before_script:
 - psql -c 'create database supermarket_test;' -U postgres
 - bundle exec rake db:schema:load
+branches:
+  only:
+  - master
 bundler_args: "--without development --jobs 7"
 cache:
 - apt
