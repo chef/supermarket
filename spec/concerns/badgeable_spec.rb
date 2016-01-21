@@ -17,7 +17,7 @@ shared_examples 'a badgeable thing' do
     badgeable_methods = BadgeableThing.new.methods - Object.methods
 
     badgeable_methods.each do |method|
-      it { should respond_to(method)}
+      it { should respond_to(method) }
     end
   end
 

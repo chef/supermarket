@@ -122,7 +122,6 @@ describe Cookbook do
     it { should validate_presence_of(:cookbook_versions) }
   end
 
-
   describe '#lowercase_name' do
     it 'is set as part of the saving lifecycle' do
       cookbook = Cookbook.new(name: 'Apache')

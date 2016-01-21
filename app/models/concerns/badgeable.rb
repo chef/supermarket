@@ -2,8 +2,8 @@ module Badgeable
   # The list of badges.
   # It would be a phenomenally bad idea to reorder this array's elements.
   # Logic about whether a badge is in the badges_mask is based on the index
-  # of the badge text in this array. If you change the order—and therefore the
-  # index—the integers stored in the database for a record's badges_mask will
+  # of the badge text in this array. If you change the order--and therefore the
+  # index--the integers stored in the database for a record's badges_mask will
   # no longer match the badges that the record was assigned.
   BADGES = %w(partner).freeze
 
