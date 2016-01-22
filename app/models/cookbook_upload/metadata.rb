@@ -67,6 +67,14 @@ class CookbookUpload
     #   @return [Boolean] Whether or not this cookbook is private
     #
 
+    #
+    # @!attribute [r] chef_version
+    #   @return [JSON] Chef Versions this cookbook's version will work with
+    #   i.e. [[12.1,12.2],[11.2,12.3]]
+    #   inner array elements are joined by "&&" while the outer array is joined by "||" operators.
+    #   So a cookbook version with the example would work with Chef Version 12.1 AND 12.2 OR Chef Version 11.2 AND 12.3
+    #   See https://github.com/chef/supermarket/issues/1201 for more details
+
     values do
       attribute :name, String, default: ''
       attribute :version, String, default: ''
