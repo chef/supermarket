@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'concerns/badgeable_spec'
 
 describe Cookbook do
   context 'associations' do
