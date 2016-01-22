@@ -433,7 +433,9 @@ describe Cookbook do
               'yum' => '~> 2.1.3'
             },
             source_url: opts[:source_url],
-            issues_url: opts[:issues_url]
+            issues_url: opts[:issues_url],
+            chef_version: '12.4.1',
+            ohai_version: '8.8.1'
           )
         end
       end
@@ -480,6 +482,18 @@ describe Cookbook do
       cookbook.publish_version!(params)
 
       expect(cookbook.issues_url).to eql('http://example.com/issues')
+    end
+
+    it 'sets the chef_version attribute on the cookbookk version' do
+      cookbook.publish_version!(params)
+
+      expect(cookbook.cookbook_versions.last.chef_version).to eq('12.4.1')
+    end
+
+    it 'sets the ohai_version attribute on the cookbook' do
+      cookbook.publish_version!(params)
+
+      expect(cookbook.cookbook_versions.last.ohai_version).to eq('8.8.1')
     end
 
     it 'does not erase source_url or issues_url after they have been set' do
