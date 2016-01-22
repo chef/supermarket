@@ -184,8 +184,8 @@ ActiveRecord::Schema.define(version: 20160121191223) do
     t.string   "changelog_extension",   default: "",    null: false
     t.boolean  "foodcritic_failure"
     t.text     "foodcritic_feedback"
-    t.json     "chef_version"
-    t.json     "ohai_version"
+    t.json     "chef_versions"
+    t.json     "ohai_versions"
   end
 
   add_index "cookbook_versions", ["legacy_id"], name: "index_cookbook_versions_on_legacy_id", unique: true, using: :btree
