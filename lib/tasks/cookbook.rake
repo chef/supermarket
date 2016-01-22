@@ -1,10 +1,9 @@
 namespace :cookbook do
 
-  # Usage: rake cookbook:enable_partnert_cookbook <cookbook_name>
-  desc 'Enable the Partner Cookbook icon for a cookbook'
-  task enable_partner_cookbook: :environment do
-    cookbook = Cookbook.with_name(ENV['cookbook']).first!
-    cookbook.badges += [:partner]
-    cookbook.save
+  # Usage: rake cookbook:grant_partner_badge cookbook=<cookbook_name>
+  desc 'Grant the Partner badge to a cookbook'
+  task grant_partner_badge: :environment do
+    grant_badge_result = GrantBadgeToCookbook.new(badge: 'partner', cookbook: ENV['cookbook']).call
+    puts grant_badge_result
   end
 end
