@@ -264,7 +264,9 @@ class Cookbook < ActiveRecord::Base
         readme: readme.contents,
         readme_extension: readme.extension,
         changelog: changelog.contents,
-        changelog_extension: changelog.extension
+        changelog_extension: changelog.extension,
+        chef_version: metadata.chef_version,
+        ohai_version: metadata.ohai_version
       )
 
       self.updated_at = Time.current

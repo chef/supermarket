@@ -435,7 +435,9 @@ describe Cookbook do
               'yum' => '~> 2.1.3'
             },
             source_url: opts[:source_url],
-            issues_url: opts[:issues_url]
+            issues_url: opts[:issues_url],
+            chef_version: [['12.4.1', '12.4.2'],['11.2.3','12.4.3']],
+            ohai_version: [['8.8.1', '8.8.2'],['8.9.1','8.9.2']]
           )
         end
       end
@@ -498,6 +500,18 @@ describe Cookbook do
       cookbook.publish_version!(new_params)
       expect(cookbook.source_url).to eql('http://example.com')
       expect(cookbook.issues_url).to eql('http://example.com/issues')
+    end
+
+    it 'sets the chef_version attribute on the cookbook version' do
+      cookbook.publish_version!(params)
+
+      expect(cookbook.cookbook_versions.last.chef_version).to eq([['12.4.1', '12.4.2'],['11.2.3','12.4.3']])
+    end
+
+    it 'sets the ohai_version attribute on the cookbook' do
+      cookbook.publish_version!(params)
+
+      expect(cookbook.cookbook_versions.last.ohai_version).to eq([['8.8.1', '8.8.2'],['8.9.1','8.9.2']])
     end
 
     it 'saves the README' do

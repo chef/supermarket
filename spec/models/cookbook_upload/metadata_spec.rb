@@ -23,5 +23,19 @@ describe CookbookUpload::Metadata do
 
       expect(metadata.platforms).to eql('ubuntu' => 'cool')
     end
+
+    describe 'setting the chef_version' do
+      it 'sets the chef_version' do
+        metadata = CookbookUpload::Metadata.new(chef_version: [['12.4.1', '12.4.2'],['11.2.3','12.4.3']])
+        expect(metadata.chef_version).to eq([['12.4.1', '12.4.2'],['11.2.3','12.4.3']])
+      end
+    end
+
+    describe 'setting the ohai_version' do
+      it 'sets the ohai version' do
+        metadata = CookbookUpload::Metadata.new(ohai_version: [['8.8.1', '8.8.2'],['8.9.1','8.9.2']])
+        expect(metadata.ohai_version).to eq([['8.8.1', '8.8.2'],['8.9.1','8.9.2']])
+      end
+    end
   end
 end

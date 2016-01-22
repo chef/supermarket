@@ -77,6 +77,8 @@ class CookbookUpload
       attribute :source_url, String, default: ''
       attribute :issues_url, String, default: ''
       attribute :privacy, Boolean, default: false
+      attribute :chef_version, JSON, default: []
+      attribute :ohai_version, JSON, default: []
     end
   end
 end
