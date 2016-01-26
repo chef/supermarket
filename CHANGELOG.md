@@ -1,5 +1,14 @@
 # Supermarket Changelog
 
+## 2.3.1 (2016-01-26)
+- [1188] Prevent test suite from calling out to 3rd party services.
+- [1189] Increase changelog content included in email notifications.
+- [1206] Fix omission of PostgreSQL extension requirement in migrations.
+- [1205] Fix people and titles disappearing from dashboard on small displays.
+- [1162] Increase number of contributors displayed on a page from 10 to 50.
+- [1209] Upgrade Nokogiri to address CVE
+- [1212] Upgrade Rails to address CVEs
+
 ## 2.3.0 (2016-01-08)
 - [1196] Add Compliance Profile as a new type of tool
 - [1195, 1195] Update ROADMAP items
