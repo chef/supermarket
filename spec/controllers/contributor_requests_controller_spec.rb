@@ -34,7 +34,7 @@ describe ContributorRequestsController do
 
       post :create, ccla_signature_id: ccla_signature.id
 
-      expect(response).to render_template('exceptions/404.html.erb')
+      expect(response.status.to_i).to eql(404)
     end
 
     it 'creates a ContributorRequest for users new to the Organization' do
