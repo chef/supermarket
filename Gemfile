@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Ruby version isn't specified here anymore, as it's pinned in Omnibus
 # https://github.com/chef/omnibus-supermarket/blob/master/config/projects/supermarket.rb
 
-gem 'rails', '~> 4.1.5'
+gem 'rails', '~> 4.1.14'
 
 gem 'omniauth'
 gem 'omniauth-chef-oauth2'

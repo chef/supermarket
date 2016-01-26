@@ -63,7 +63,7 @@ describe PagesController do
         # template. We define the correct behavior to be 404 Not Found.
         get :dashboard, format: :json
 
-        expect(response).to render_template('exceptions/404.html.erb')
+        expect(response.status.to_i).to eql(404)
       end
     end
 

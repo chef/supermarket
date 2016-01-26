@@ -31,7 +31,7 @@ describe UsersController do
 
       get :show, id: user.username, user_tab_string: 'activity'
 
-      expect(response).to render_template('exceptions/404.html.erb')
+      expect(response.status.to_i).to eql(404)
     end
   end
 
