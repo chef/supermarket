@@ -1,5 +1,8 @@
 # Supermarket Changelog
 
+## 2.3.2 (2016-01-27)
+- [chef/omnibus-supermarket#45] Pin embedded berkshelf to prevent net-ssh upgrade
+
 ## 2.3.1 (2016-01-26)
 - [1188] Prevent test suite from calling out to 3rd party services.
 - [1189] Increase changelog content included in email notifications.
