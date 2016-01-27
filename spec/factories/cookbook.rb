@@ -15,5 +15,10 @@ FactoryGirl.define do
     before(:create) do |cookbook, evaluator|
       cookbook.cookbook_versions << create_list(:cookbook_version, evaluator.cookbook_versions_count)
     end
+
+    factory :partner_cookbook do
+      sequence(:name) { |n| "partner-#{n}" }
+      badges_mask 1
+    end
   end
 end
