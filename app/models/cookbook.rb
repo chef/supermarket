@@ -1,4 +1,5 @@
 class Cookbook < ActiveRecord::Base
+  include Badgeable
   include PgSearch
 
   #

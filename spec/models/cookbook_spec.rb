@@ -35,6 +35,8 @@ describe Cookbook do
     end
   end
 
+  it_behaves_like 'a badgeable thing'
+
   context 'ordering versions' do
     let(:toast) { create(:cookbook) }
 

@@ -55,6 +55,21 @@
         </ul>
       </div>
 
+      <% if cookbook.badges.present? %>
+      <div class="cookbook_badges_content show_for_medium_up">
+        <h5>Badges</h5>
+        <ul class="cookbook_badges">
+        <% if cookbook.is?(:partner) %>
+        <li class="cookbook_badge_icon has-tip" title=""/>
+          <a href="https://github.com/chef-partners/cookbook-guide/blob/master/cookbook-guide.pdf" target="new">
+            <%= image_tag "badge-cookbook-partner.svg", alt: "Partner Cookbook", title: "Partner Cookbook", height: 16, width: 16, id: "partner_badge", class: "fa"  %>
+          </a>
+        </li>
+        <% end %>
+      </ul>
+      </div>
+      <% end %>
+
       <ul class="cookbook_stats">
         <%= render 'cookbooks/follow_button_list', cookbook: cookbook %>
       </ul>

@@ -16,6 +16,11 @@ en:
   account:
     already_connected: "The %{provider} account (%{username}) you are trying to link is already linked to another Supermarket user."
     disconnected: "Account disconnected."
+  badge:
+    successful_grant_message: "%{grantee} was granted the %{name} badge."
+    unsuccessful_grant_message: "%{grantee} was not able to be granted the %{name} badge."
+    already_granted: "%{grantee} already has the %{name} badge."
+    not_a_valid_badge_name: "%{name} is not a valid badge."
   ccla:
     successful_signature: "You successfully signed the CCLA."
     successful_resignature: "You successfully re-signed the CCLA."
@@ -35,6 +40,7 @@ en:
     deprecate_with_deprecated_failure: "This cookbook cannot be deprecated in favor of a deprecated cookbook."
     activity: "%{maintainer} released v%{version} of the %{cookbook} cookbook."
     updated: "The %{name} cookbook has been successfully updated."
+    not_found: "The %{name} cookbook was not found."
   contributor:
     removed: "Contributor removed."
   contributor_requests:
