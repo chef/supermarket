@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 require 'vcr_helper'
 
 describe 'Curry management', uses_secrets: true do

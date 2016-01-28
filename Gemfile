@@ -88,7 +88,7 @@ group :development, :test do
   gem 'rubocop', '>= 0.23.0'
   gem 'mail_view'
   gem 'quiet_assets'
-  gem 'rspec-rails', '~> 3.1.0'
+  gem 'rspec-rails', '~> 3.4.1'
   gem 'byebug'
   gem 'launchy'
   gem 'bundler-audit', git: 'https://github.com/rubysec/bundler-audit.git', ref: '4e32fca'

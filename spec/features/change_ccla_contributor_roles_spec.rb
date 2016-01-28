@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'Changing a contributors role on a CCLA' do
   example 'admins can change other users roles', use_poltergeist: true do

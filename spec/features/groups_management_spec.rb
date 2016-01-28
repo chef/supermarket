@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 feature 'groups management' do
   let(:user) { create(:user) }

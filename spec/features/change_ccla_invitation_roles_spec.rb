@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'Changing a invitations role on a CCLA' do
   example 'admins can change the role of an invitation', use_poltergeist: true do

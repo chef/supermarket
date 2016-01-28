@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 feature 'cookbook owners can deprecate a cookbook' do
   let(:cookbook) { create(:cookbook) }

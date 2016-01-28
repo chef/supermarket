@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'signing in with oauth' do
   it 'signs a user in' do

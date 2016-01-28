@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 feature 'supermarket admins can feature a cookbook' do
   let(:cookbook) { create(:cookbook) }

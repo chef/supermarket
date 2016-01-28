@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'viewing a cookbook' do
   it 'displays cookbook details if the cookbook exists' do

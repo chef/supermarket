@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'linking an OAuth account to a user' do
   it 'associates a user with a GitHub account' do
