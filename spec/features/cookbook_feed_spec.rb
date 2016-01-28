@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'cookbook feed' do
   it 'lists cookbooks by a metadata search term' do

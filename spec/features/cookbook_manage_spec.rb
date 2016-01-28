@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe "updating a cookbook's issues and source urls" do
   let(:user) { create(:user) }

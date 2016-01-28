@@ -4,6 +4,9 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'paperclip/matchers'
 require 'sidekiq/testing'
+require 'capybara/rails'
+require 'capybara/rspec'
+require 'capybara/poltergeist'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -19,6 +22,21 @@ FactoryGirl.find_definitions
 # Treat Sidekiq like ActionMailer. In most cases, tests which queue jobs should
 # only care that the job was queued, and not care about the result.
 Sidekiq::Testing.fake!
+
+# Use a quieter Poltergeist driver
+# This eliminates the debug warnings regarding unrecognized viewport
+# arguments and the like
+Capybara.register_driver :quiet_ghost do |app|
+  error_logger = Logger.new(STDERR).tap { |l| l.level = Logger::ERROR }
+
+  Capybara::Poltergeist::Driver.new(
+    app,
+    phantomjs_logger: error_logger,
+    timeout: 90
+  )
+end
+
+Capybara.javascript_driver = :quiet_ghost
 
 RSpec.configure do |config|
   # Include FactoryGirl mixin for syntax
@@ -44,6 +62,12 @@ RSpec.configure do |config|
 
   # Helpers to build in-memory archives
   config.include TarballHelpers
+
+  # Include our FeatureHelpers from support to dry up feature steps
+  config.include FeatureHelpers, type: :feature
+
+  # Include Capybara's DSL for feature steps
+  config.include Capybara::DSL, type: :feature
 
   # Prohibit using the should syntax
   config.expect_with :rspec do |spec|
@@ -84,14 +108,29 @@ RSpec.configure do |config|
     end
   end
 
-  config.before(:each) do
-    Rails.cache.clear
+  config.use_transactional_fixtures = false
+
+  config.before(:suite) do
+    DatabaseCleaner.clean_with :truncation
   end
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
+  config.before(:each) do |example|
+    Rails.cache.clear
+    if example.metadata[:js] || example.metadata[:type] == :feature
+      DatabaseCleaner.strategy = :truncation
+    else
+      DatabaseCleaner.strategy = :transaction
+    end
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
+  config.before(type: :feature) do |example|
+    Capybara.current_driver = :quiet_ghost if example.metadata[:use_poltergeist] == true
+  end
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of

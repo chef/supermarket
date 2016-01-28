@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'a request to join a CCLA' do
   it 'can be accepted via email by CCLA admins', use_poltergeist: true do

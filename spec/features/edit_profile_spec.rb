@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'editing the current user profile' do
   it 'updates the users profile' do

@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'signing a CCLA' do
   before { create(:ccla) }

@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 require 'tempfile'
 
 describe 'the set of SASS assets', type: :feature do

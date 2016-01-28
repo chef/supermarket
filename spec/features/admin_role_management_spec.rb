@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 feature 'admin role management' do
   let(:user) { create(:user) }

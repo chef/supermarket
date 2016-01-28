@@ -129,7 +129,7 @@ Now when you click on "Sign In" you should be signed into your supermarket accou
 
 NOTE: If you receive an omniauth csrf detected error, try clearing your browser's cache.
 
-## Connecting your Github Acount
+## Connecting your Github Account
 
 On the production site, users are required to sign a CLA before they can upload cookbooks.
 
@@ -199,10 +199,6 @@ Acceptance tests are run with [Capybara](https://github.com/jnicklas/capybara).
 Run `rake spec:features` to run the specs in spec/features. The default `rake
 spec` also runs these.
 
-When writing a feature, use `require 'spec_feature_helper'` instead of
-`spec_helper` to require the extra configuration and libraries needed to run the
-feature specs.
-
 When writing feature specs, the Rack::Test driver is used by default. If the
 Poltergeist driver is required to be used (for example, an acceptance test
 that uses AJAX), add the `use_poltergeist: true` metadata to the spec. See
@@ -213,18 +209,6 @@ for an example.
 Some specs run using [PhantomJS](http://phantomjs.org/), which must be
 installed for the test suite to pass.
 
-NOTE: Supermarket requires PhantomJS 1.8. If you are installing with Homebrew, it will install PhantomJS 2.0.  To get around this:
-  * uninstall PhantomJS if you've already installed PhantomJS 2.0
-
-  ```
-  $ brew uninstall phantomjs
-  ```
-
-  * then install PhantomJS 1.8 with
-
-  ```
-  $ brew install homebrew/versions/phantomjs182
-  ```
 ### JavaScript Tests
 
 The JavaScript specs are run with [Karma](http://karma-runner.github.io) and use

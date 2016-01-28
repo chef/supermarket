@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'inviting people to sign a CCLA' do
   let(:user) { create(:user) }

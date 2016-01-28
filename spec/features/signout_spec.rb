@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'signing out' do
   it 'displays a message about oc-id' do

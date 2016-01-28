@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'resending an invitation to a CCLA' do
   it 'resends invited users an email prompting them to sign the CCLA' do

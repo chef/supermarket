@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'creating a tool' do
   it 'is possible for users to create a tool' do

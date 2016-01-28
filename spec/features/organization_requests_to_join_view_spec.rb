@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'viewing the requests to join an organization' do
   it 'lists the pending requests' do

@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'signing a ICLA' do
   before { create(:icla) }

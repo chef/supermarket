@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'Removing members from a CCLA' do
   example 'admins can remove another admin' do
