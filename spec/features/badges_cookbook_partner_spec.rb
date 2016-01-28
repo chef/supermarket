@@ -1,4 +1,4 @@
-require 'spec_feature_helper'
+require 'spec_helper'
 
 describe 'A cookbook that has been granted a Partner badge' do
   let(:badged_cookbook) { create(:partner_cookbook, name: 'ReallyGreatPartnerCookbook') }
