@@ -300,5 +300,9 @@ class CookbooksController < ApplicationController
     if params[:platforms].present? && !params[:platforms][0].blank?
       @cookbooks = @cookbooks.filter_platforms(params[:platforms])
     end
+
+    if params[:badges].present? && !params[:badges][0].blank?
+      @cookbooks = @cookbooks.filter_badges(params[:badges])
+    end
   end
 end

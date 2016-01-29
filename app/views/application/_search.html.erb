@@ -30,6 +30,19 @@
   </div>
 
   <div class="advanced_search_body">
+    <h4> Select Badges</h4>
+    <div class="advanced_search_badges" >
+
+      <% Badgeable::BADGES.each do |badge| %>
+        <div class="advanced_search_badge">
+            <label>
+              <%= check_box_tag "badges[#{badge}]", badge, params.fetch(:badges,[]).include?(badge), name: 'badges[]' %>
+              <%= badge %>
+            </label>
+        </div>
+      <% end %>
+    </div>
+
     <h4> Select Supported Platforms </h4>
     <div class = "advanced_search_platforms" >
 
