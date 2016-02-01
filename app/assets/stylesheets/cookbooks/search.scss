@@ -259,13 +259,13 @@ input[type="search"].cookbook_search_textfield {
   }
 }
 
-.advanced_search_platforms {
+.advanced_search_platforms, .advanced_search_badges{
   @include grid-column($columns: 12, $collapse: true);
   padding-left: rem-calc(70);
   padding-right: rem-calc(20);
 }
 
-.advanced_search_platform {
+.advanced_search_platform, .advanced_search_badge {
   @include grid-column($columns: 2, $collapse: true);
 
   label {
@@ -288,23 +288,23 @@ input[type="search"].cookbook_search_textfield {
 }
 
 @media #{$small-only} {
-  .advanced_search_platforms {
+  .advanced_search_platforms, .advanced_search_badges {
     @include grid-column($columns: 12, $collapse: true);
     padding-left: rem-calc(20);
   }
 
-  .advanced_search_platform {
+  .advanced_search_platform, .advanced_search_badge {
     @include grid-column(3, $collapse: true);
   }
 }
 
 @media #{$mobile-only} {
-  .advanced_search_platforms {
+  .advanced_search_platforms, .advanced_search_badges {
     @include grid-column($columns: 12, $collapse: true);
     padding-left: rem-calc(10);
   }
 
-  .advanced_search_platform {
+  .advanced_search_platform, .advanced_search_badge {
     @include grid-column(6, $collapse: true);
   }
 }

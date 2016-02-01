@@ -1,6 +1,7 @@
 class Cookbook < ActiveRecord::Base
-  include Badgeable
   include PgSearch
+  include Badgeable
+  extend Badgeable::ClassMethods
 
   #
   # Query cookbooks by case-insensitive name.
@@ -48,6 +49,10 @@ class Cookbook < ActiveRecord::Base
     joins(cookbook_versions: :supported_platforms)
     .where('supported_platforms.name IN (?)', platforms).distinct
     .select('cookbooks.*', '(cookbooks.web_download_count + cookbooks.api_download_count)')
+  }
+
+  scope :filter_badges, lambda { |badges|
+    with_badges badges
   }
 
   # Search

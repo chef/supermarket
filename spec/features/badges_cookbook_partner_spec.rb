@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'A cookbook that has been granted a Partner badge' do
-  let(:badged_cookbook) { create(:partner_cookbook, name: 'ReallyGreatPartnerCookbook') }
+  let!(:badged_cookbook) { create(:partner_cookbook, name: 'ReallyGreatPartnerCookbook') }
+  let!(:other_badged_cookbook) { create :partner_cookbook }
+  let!(:non_badged_cookbook) { create :cookbook }
 
   describe 'on its page' do
     before do
@@ -32,6 +34,17 @@ describe 'A cookbook that has been granted a Partner badge' do
 
       expect(page).to have_content(badged_cookbook.name)
       expect(find('.cookbook_badges')).to have_css('img#partner_badge')
+    end
+
+    it 'shows only partner-badged cookbooks when selected' do
+      within '.search_form' do
+        check 'badges_partner'
+        submit_form
+      end
+
+      expect(page).to have_content(badged_cookbook.name)
+      expect(page).to have_content(other_badged_cookbook.name)
+      expect(page).not_to have_content(non_badged_cookbook.name)
     end
   end
 end

@@ -7,6 +7,17 @@ module Badgeable
   # no longer match the badges that the record was assigned.
   BADGES = %w(partner).freeze
 
+  module ClassMethods
+    #
+    # Provides a search method for Badgeable AR::Base models
+    #
+    def with_badges(badges)
+      badges = Array(badges).map(&:to_s)
+      search_mask = (badges & BADGES).map { |b| 2**BADGES.index(b) }.inject(0, :+)
+      where('badges_mask & ? > 0', search_mask)
+    end
+  end
+
   #
   # Set the badges on the parent model.
   #

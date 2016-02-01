@@ -180,6 +180,43 @@ describe CookbooksController do
         expect(assigns[:cookbooks][1]).to eql(ruby)
       end
     end
+
+    context 'when there is a badges parameter' do
+      let!(:awesome_cookbook) { create(:partner_cookbook, name: 'awesome_sauce') }
+      let!(:but_not_saucy) { create(:partner_cookbook, name: 'but_not_saucy') }
+      let!(:unknown_cookbook) { create(:cookbook, name: 'could_be_good_i_dunno') }
+
+      it 'returns cookbooks with badges' do
+        get :index, badges: %w(partner)
+        expect(assigns[:cookbooks]).to include(awesome_cookbook)
+      end
+
+      it 'does not return cookbooks without badges' do
+        get :index, badges: %w(partner)
+        expect(assigns[:cookbooks]).not_to include(unknown_cookbook)
+      end
+
+      it 'returns all cookbooks if not badges are given' do
+        get :index, badges: ''
+        expect(assigns[:cookbooks]).to include(awesome_cookbook)
+        expect(assigns[:cookbooks]).to include(unknown_cookbook)
+      end
+
+      it 'works correctly with search' do
+        get :index, q: 'sauce', badges: %w(partner)
+        expect(assigns[:cookbooks]).to include(awesome_cookbook)
+        expect(assigns[:cookbooks]).not_to include(but_not_saucy)
+      end
+
+      it 'works correctly with order' do
+        awesome_cookbook.update_attributes(web_download_count: 10, api_download_count: 100)
+        but_not_saucy.update_attributes(web_download_count: 5, api_download_count: 101)
+
+        get :index, order: 'most_downloaded', badges: %w(partner)
+        expect(assigns[:cookbooks][0]).to eql(awesome_cookbook)
+        expect(assigns[:cookbooks][1]).to eql(but_not_saucy)
+      end
+    end
   end
 
   describe 'POST #adoption' do
