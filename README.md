@@ -30,7 +30,7 @@ repositories are:
 ## Requirements
 
 - Ruby 2.1.8
-- PostgreSQL 9.2+
+- PostgreSQL 9.3
 - Redis 2.4+
 
 ## Development
@@ -80,7 +80,7 @@ These instructions are tested and verified on Mac OS X Yosemite
 filesystem for development libraries to be available for building the `pg` gem.
 See the instructions for locally running PostgreSQL below, but omit the steps
 where a service is started.
- 
+
 ##### As Locally Running Processes
 
 1. Install Postgres - There are a few ways to get PostgreSQL running on OS X
