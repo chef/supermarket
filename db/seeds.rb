@@ -256,34 +256,37 @@ if Rails.env.development?
       owner: user
     )
 
-    # TODO: figure out a nice way to use CookbookUpload here, which will ensure
-    # that our seed data is realistically seeded.
-    cookbook_version = cookbook.cookbook_versions.where(
-      version: '0.1.0'
-    ).first_or_create(
-      description: Faker::Lorem.sentences(1).first,
-      license: 'MIT',
-      tarball: File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz'),
-      readme: File.read('README.md'),
-      readme_extension: 'md'
-    )
+    (1..2).each do |version_number|
+      # TODO: figure out a nice way to use CookbookUpload here, which will ensure
+      # that our seed data is realistically seeded.
+      cookbook_version = cookbook.cookbook_versions.where(
+        version: "0.#{version_number}.0"
+      ).first_or_create(
+        description: Faker::Lorem.sentences(1).first,
+        license: 'MIT',
+        tarball: File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz'),
+        readme: File.read('README.md'),
+        readme_extension: 'md'
+      )
 
-    if platforms.key?(name)
-      platforms[name].each do |platform|
-        cookbook_version.add_supported_platform(platform, '>=0.0')
+      if platforms.key?(name)
+        platforms[name].each do |platform|
+          cookbook_version.add_supported_platform(platform, ">=#{version_number}.0")
+        end
       end
-    end
 
-    unless name == 'apt'
-      dependency = CookbookDependency.where(
-        name: 'apt',
-        cookbook: Cookbook.find_by(name: 'apt'),
-        cookbook_version: cookbook_version
-      ).first_or_create!
-      cookbook_version.cookbook_dependencies << dependency
-    end
+      unless name == 'apt' || name == 'yum'
+        dep = version_number.even? ? 'apt' : 'yum'
+        dependency = CookbookDependency.where(
+          name: dep,
+          cookbook: Cookbook.find_by(name: dep),
+          cookbook_version: cookbook_version
+        ).first_or_create!
+        cookbook_version.cookbook_dependencies << dependency
+      end
 
-    cookbook.cookbook_versions << cookbook_version
+      cookbook.cookbook_versions << cookbook_version
+    end
     cookbook.save!
   end
 

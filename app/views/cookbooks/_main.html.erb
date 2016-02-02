@@ -70,10 +70,10 @@
     </div>
     <div class="content" id="dependencies">
       <h3 class="dependent-header">Dependent cookbooks</h3>
-      <% if cookbook.cookbook_dependencies.present? %>
+      <% if version.cookbook_dependencies.present? %>
         <table>
           <tbody>
-            <%= render partial: 'cookbooks/dependency', collection: cookbook.cookbook_dependencies %>
+            <%= render partial: 'cookbooks/dependency', collection: version.cookbook_dependencies %>
           </tbody>
         </table>
       <% else %>
