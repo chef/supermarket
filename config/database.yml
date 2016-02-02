@@ -1,13 +1,13 @@
 development:
   adapter: postgresql
   database: supermarket_development
-  host: localhost
+  host: <%= ENV['POSTGRES_IP'] || 'localhost' %>
   pool: 30
 
 test:
   adapter: postgresql
   database: supermarket_test
-  host: localhost
+  host: <%= ENV['POSTGRES_IP'] || 'localhost' %>
 
 production:
   username: <%= ENV['DB_USERNAME'] %>

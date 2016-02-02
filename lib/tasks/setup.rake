@@ -33,4 +33,23 @@ namespace :setup do
       end
     end
   end
+
+  desc 'spin up docker containers running dependency services'
+  task :docker do
+    fail 'FATAL: Cannot contact running docker services.' unless system('docker info')
+    system("docker run \
+      --detach=true \
+      --env POSTGRES_USER=#{ENV['USER']}  \
+      --publish 5432:5432 \
+      --name supermarket-pg \
+      postgres:9.3")
+    system("docker run \
+      --detach=true \
+      --publish 6379:6379 \
+      --name supermarket-redis \
+      redis:3.0")
+    puts "You'll need to set POSTGRES_IP and REDIS_URL in your environment."
+    puts '* POSTGRES_IP should be the IP of the Docker host running the containers.'
+    puts '* REDIS_URL should be in the form of redis://DOCKER_HOST_IP:6379/0/supermarket'
+  end
 end

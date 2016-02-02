@@ -46,17 +46,39 @@ to happen to get Supermarket working locally.
 ### Local Environment
 These instructions are tested and verified on Mac OS X Yosemite
 
-1. Make sure you have XCode installed
+#### Dependency Services
 
-1. Install a Ruby manager - if you don't already have one, you will need a Ruby manager to install Ruby 2.1.3 such as:
-   * [RVM](https://rvm.io)
-   * [Rbenv](https://github.com/sstephenson/rbenv)
-   * [chruby] (https://github.com/postmodern/chruby)
-   * or any other Ruby version manager that may come along
+##### As Docker Containers
 
-1. Use your ruby manager to install Ruby 2.1.3.  For instructions on this, please see the manager's documentation.
+1. Install the hypervisor of your choice (e.g. [VirtualBox](https://www.virtualbox.org/wiki/Downloads),
+  VMWare Fusion).
 
-1. Install Postgres - There are two ways to install Postgres on OS X
+1. Install `docker-machine` and `docker`. With [Homebrew](http://brew.sh/):
+
+  ```
+  $ brew install docker-machine docker
+  ```
+
+1. Create a `docker-machine` host on which to run Docker services. The following
+  command assumes your hypervisor is VirtualBox and that you will name this host
+  "default".
+
+  ```
+  $ docker-machine create --drive virtualbox default
+  ```
+
+1. Set environment variables for the Supermarket configuration:
+
+  ```
+  eval $(docker-machine env default)
+  export DOCKER_IP=$(docker-machine ip default)
+  export POSTGRES_IP=$DOCKER_IP
+  export REDIS_URL="redis://${DOCKER_IP}:6379/0/supermarket"
+  ```
+
+##### As Locally Running Processes
+
+1. Install Postgres - There are a few ways to get PostgreSQL running on OS X
   * Install the [Postgres App](http://postgresapp.com/).  This is probably the simplest way to get Postgres running on your mac, it "just works."  You can then start a Postgres server through the GUI of the app. If you go this route then you'll have to add "/Applications/Postgres.app/Contents/Versions/9.4/bin/" or the equivalent to your PATH in order to get the pg gem to build.
   * Through [Homebrew](http://brew.sh/).  When installed through homebrew, Postgres often requires additional configuration, see this [blog post](https://www.codefellows.org/blog/three-battle-tested-ways-to-install-postgresql) for instructions.  You can then start the Postgresql server with
 
@@ -69,6 +91,18 @@ These instructions are tested and verified on Mac OS X Yosemite
   ```
   $ brew install redis
   ```
+
+#### Development Environment
+
+1. Make sure you have XCode installed
+
+1. Install a Ruby manager - if you don't already have one, you will need a Ruby manager to install Ruby 2.1.3 such as:
+   * [RVM](https://rvm.io)
+   * [Rbenv](https://github.com/sstephenson/rbenv)
+   * [chruby] (https://github.com/postmodern/chruby)
+   * or any other Ruby version manager that may come along
+
+1. Use your ruby manager to install Ruby 2.1.3.  For instructions on this, please see the manager's documentation.
 
 1. Install bundler
 
