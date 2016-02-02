@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe 'viewing a cookbook' do
-  it 'displays cookbook details if the cookbook exists' do
-    owner = create(:user)
-    cookbook = create(:cookbook, owner: owner)
+  let!(:owner) { create(:user) }
+  let!(:cookbook) { create(:cookbook, owner: owner) }
 
+  it 'displays cookbook details if the cookbook exists' do
     visit '/'
     follow_relation 'cookbooks'
 
@@ -16,9 +16,6 @@ describe 'viewing a cookbook' do
   end
 
   it "shows that cookbook's versions" do
-    owner = create(:user)
-    cookbook = create(:cookbook, owner: owner)
-
     visit cookbook_path(cookbook)
 
     follow_relation 'cookbook_versions'
@@ -27,49 +24,41 @@ describe 'viewing a cookbook' do
     expect(page).to have_selector('.cookbook_show')
   end
 
-  it "shows that cookbook's dependencies" do
-    owner = create(:user)
-    cookbook = create(:cookbook, owner: owner)
-    apt = create(:cookbook, name: 'apt', owner: owner)
+  describe 'dependencies' do
+    let(:apt) { create(:cookbook, name: 'apt', owner: owner) }
+    let(:yum) { create(:cookbook, name: 'yum', owner: owner) }
 
-    create(
-      :cookbook_dependency,
-      cookbook_version: cookbook.latest_cookbook_version,
-      cookbook: apt
-    )
+    before :each do
+      create(
+        :cookbook_dependency,
+        cookbook_version: cookbook.latest_cookbook_version,
+        cookbook: apt
+      )
+      create(
+        :cookbook_dependency,
+        cookbook_version: cookbook.cookbook_versions.first,
+        cookbook: yum
+      )
+    end
 
-    visit cookbook_path(cookbook)
+    it "shows that cookbook's latest version's dependencies" do
+      visit cookbook_path(cookbook)
 
-    follow_relation 'cookbook_dependencies'
-    relations('cookbook_dependency').first.click
+      follow_relation 'cookbook_dependencies'
+      relations('cookbook_dependency').first.click
 
-    expect(page).to have_selector('.cookbook_show')
-    expect(page).to have_content('apt')
-  end
+      expect(page).to have_selector('.cookbook_show')
+      expect(page).to have_content('apt')
+    end
 
-  it "shows that cookbook's version's dependencies" do
-    owner = create(:user)
-    cookbook = create(:cookbook, owner: owner)
-    apt = create(:cookbook, name: 'apt', owner: owner)
-    yum = create(:cookbook, name: 'yum', owner: owner)
+    it "shows that cookbook's previous version's dependencies" do
+      visit cookbook_version_path(cookbook_id: cookbook, version: cookbook.cookbook_versions.first)
 
-    create(
-      :cookbook_dependency,
-      cookbook_version: cookbook.latest_cookbook_version,
-      cookbook: apt
-    )
-    create(
-      :cookbook_dependency,
-      cookbook_version: cookbook.cookbook_versions.first,
-      cookbook: yum
-    )
+      follow_relation 'cookbook_dependencies'
+      relations('cookbook_dependency').first.click
 
-    visit cookbook_version_path(cookbook_id: cookbook, version: cookbook.cookbook_versions.first)
-
-    follow_relation 'cookbook_dependencies'
-    relations('cookbook_dependency').first.click
-
-    expect(page).to have_selector('.cookbook_show')
-    expect(page).to have_content('yum')
+      expect(page).to have_selector('.cookbook_show')
+      expect(page).to have_content('yum')
+    end
   end
 end
