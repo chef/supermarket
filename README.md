@@ -76,6 +76,11 @@ These instructions are tested and verified on Mac OS X Yosemite
   export REDIS_URL="redis://${DOCKER_IP}:6379/0/supermarket"
   ```
 
+**NOTE:** You will still need a version of PostgreSQL installed on the local
+filesystem for development libraries to be available for building the `pg` gem.
+See the instructions for locally running PostgreSQL below, but omit the steps
+where a service is started.
+ 
 ##### As Locally Running Processes
 
 1. Install Postgres - There are a few ways to get PostgreSQL running on OS X
