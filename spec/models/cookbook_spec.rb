@@ -500,7 +500,6 @@ describe Cookbook do
       expect(cookbook.issues_url).to eql('http://example.com/issues')
     end
 
-
     it 'saves the CHANGELOG' do
       cookbook.publish_version!(params)
 
