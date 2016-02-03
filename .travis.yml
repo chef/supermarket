@@ -1,5 +1,6 @@
 sudo: false
 addons:
+  postgresql: "9.3"
   apt:
     packages:
     - libxslt1-dev
@@ -31,4 +32,5 @@ script:
 - bundle exec rake spec:rubocop
 - bundle exec bundle-audit check --update
 services:
-- redis-server
+  - redis-server
+  - postgresql

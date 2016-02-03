@@ -67,6 +67,20 @@ class CookbookUpload
     #   @return [Boolean] Whether or not this cookbook is private
     #
 
+    #
+    # @!attribute [r] chef_versions
+    #   @return [JSON] Chef Versions this cookbook's version will work with
+    #   i.e. [[12.1,12.2],[11.2,12.3]]
+    #   inner array elements are joined by "&&" while the outer array is joined by "||" operators.
+    #   So a cookbook version with the example would work with Chef Version 12.1 AND 12.2 OR Chef Version 11.2 AND 12.3
+    #   See https://github.com/chef/supermarket/issues/1201 for more details
+
+    # @!attribute [r] ohai_versions
+    #   @return [JSON] Ohai Versions this cookbook's version will work with
+    #   i.e. [[8.0.1,8.0.2],[8.1.1,8.1.2]]
+    #   inner array elements are joined by "&&" while the outer array is joined by "||" operators.
+    #   So a cookbook version with the example would work with Ohai Version 8.0.1 AND 8.0.2 OR Chef Version 8.1.1 AND 8.1.2
+
     values do
       attribute :name, String, default: ''
       attribute :version, String, default: ''
@@ -77,6 +91,8 @@ class CookbookUpload
       attribute :source_url, String, default: ''
       attribute :issues_url, String, default: ''
       attribute :privacy, Boolean, default: false
+      attribute :chef_versions, JSON, default: []
+      attribute :ohai_versions, JSON, default: []
     end
   end
 end

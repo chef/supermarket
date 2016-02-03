@@ -500,13 +500,6 @@ describe Cookbook do
       expect(cookbook.issues_url).to eql('http://example.com/issues')
     end
 
-    it 'saves the README' do
-      cookbook.publish_version!(params)
-
-      expect(cookbook.cookbook_versions.last.readme).to eql('readme')
-      expect(cookbook.cookbook_versions.last.readme_extension).to eql('md')
-    end
-
     it 'saves the CHANGELOG' do
       cookbook.publish_version!(params)
 
@@ -518,6 +511,65 @@ describe Cookbook do
       cookbook_version = cookbook.publish_version!(params)
 
       expect(cookbook_version).to eql(cookbook.cookbook_versions.last)
+    end
+
+    context 'setting chef versions and ohai versions' do
+      def generate_params_versions(opts = {})
+        opts.reverse_merge!(
+          source_url: 'http://example.com',
+          issues_url: 'http://example.com/issues',
+          version: '9.9.9'
+        )
+
+        tarball = build_cookbook_tarball('stuff') do |base|
+          base.file('README.md') { 'readme' }
+          base.file('CHANGELOG.txt') { 'changelog' }
+          base.file('metadata.json') do
+            JSON.dump(
+              name: 'stuff',
+              license: 'MIT',
+              version: opts[:version],
+              description: 'Description',
+              platforms: {
+                'ubuntu' => '= 12.04',
+                'debian' => '>= 0.0.0'
+              },
+              dependencies: {
+                'apt' => '= 1.2.3',
+                'yum' => '~> 2.1.3'
+              },
+              source_url: opts[:source_url],
+              issues_url: opts[:issues_url],
+              chef_versions: [['12.4.1', '12.4.2'], ['11.2.3', '12.4.3']],
+              ohai_versions: [['8.8.1', '8.8.2'], ['8.9.1', '8.9.2']]
+            )
+          end
+        end
+
+        CookbookUpload::Parameters.new(cookbook: '{}', tarball: tarball)
+      end
+
+      let(:cookbook) { create(:cookbook) }
+      let(:params) { generate_params_versions }
+
+      it 'sets the chef_versions attribute on the cookbook version' do
+        cookbook.publish_version!(params)
+
+        expect(cookbook.cookbook_versions.last.chef_versions).to eq([['12.4.1', '12.4.2'], ['11.2.3', '12.4.3']])
+      end
+
+      it 'sets the ohai_versions attribute on the cookbook' do
+        cookbook.publish_version!(params)
+
+        expect(cookbook.cookbook_versions.last.ohai_versions).to eq([['8.8.1', '8.8.2'], ['8.9.1', '8.9.2']])
+      end
+    end
+
+    it 'saves the README' do
+      cookbook.publish_version!(params)
+
+      expect(cookbook.cookbook_versions.last.readme).to eql('readme')
+      expect(cookbook.cookbook_versions.last.readme_extension).to eql('md')
     end
   end
 
