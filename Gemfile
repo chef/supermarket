@@ -70,6 +70,9 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'faker'
   gem 'pry-rails'
+  gem 'guard'
+  gem 'guard-rspec', require: false
+  gem 'guard-rubocop', require: false
 end
 
 group :test do
