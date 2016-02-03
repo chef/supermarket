@@ -9,6 +9,7 @@
 - [#1218] Fix display of dependencies for cookbook versions
 - [#1211] Add Chef and Ohai attributes to cookbook versions
 - [#1219] Add Guard to run tests
+- [chef/omnibus-supermarket#46] Update omnibus and software for openssl 1.0.1r
 
 ## 2.3.2 (2016-01-27)
 - [chef/omnibus-supermarket#45] Pin embedded berkshelf to prevent net-ssh upgrade
