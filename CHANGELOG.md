@@ -1,5 +1,15 @@
 # Supermarket Changelog
 
+## 2.3.3 (2016-02-03)
+- [#1215] Upgrade rspec
+- [#1199] Add partner badges
+- [#1214] Increase contributors shown per page
+- [#1216] Add badges to advanced search for cookbooks
+- [#1217] Add rake task to spin up PostgreSQL and Redis in Docker
+- [#1218] Fix display of dependencies for cookbook versions
+- [#1211] Add Chef and Ohai attributes to cookbook versions
+- [#1219] Add Guard to run tests
+
 ## 2.3.2 (2016-01-27)
 - [chef/omnibus-supermarket#45] Pin embedded berkshelf to prevent net-ssh upgrade
 
