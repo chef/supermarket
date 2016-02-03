@@ -1,6 +1,6 @@
 class CookbooksController < ApplicationController
-  before_filter :assign_cookbook, except: [:index, :directory, :available_for_adoption]
-  before_filter :store_location_then_authenticate_user!, only: [:follow, :unfollow, :adoption]
+  before_action :assign_cookbook, except: [:index, :directory, :available_for_adoption]
+  before_action :store_location_then_authenticate_user!, only: [:follow, :unfollow, :adoption]
 
   #
   # GET /cookbooks

@@ -1,9 +1,9 @@
 class CollaboratorsController < ApplicationController
   include CollaboratorProcessing
 
-  before_filter :authenticate_user!
-  before_filter :find_collaborator, only: [:destroy, :transfer]
-  skip_before_filter :verify_authenticity_token, only: [:destroy]
+  before_action :authenticate_user!
+  before_action :find_collaborator, only: [:destroy, :transfer]
+  skip_before_action :verify_authenticity_token, only: [:destroy]
 
   #
   # GET /collaborators?q=jimmy&ineligible_user_ids=[1,2,3]

@@ -2,9 +2,9 @@ require 'openssl'
 
 class Curry::PullRequestUpdatesController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_filter :verify_github_signature, unless: -> { Rails.env.development? }
-  before_filter :ignore_zen_updates
-  before_filter :find_pull_request!
+  before_action :verify_github_signature, unless: -> { Rails.env.development? }
+  before_action :ignore_zen_updates
+  before_action :find_pull_request!
 
   #
   # POST /curry/pull_request_updates

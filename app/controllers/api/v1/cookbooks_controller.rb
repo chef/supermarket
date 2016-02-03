@@ -1,6 +1,6 @@
 class Api::V1::CookbooksController < Api::V1Controller
-  before_filter :init_params, only: [:index, :search]
-  before_filter :assign_cookbook, only: [:show, :foodcritic, :contingent]
+  before_action :init_params, only: [:index, :search]
+  before_action :assign_cookbook, only: [:show, :foodcritic, :contingent]
 
   #
   # GET /api/v1/cookbooks

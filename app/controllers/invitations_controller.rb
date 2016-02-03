@@ -1,7 +1,7 @@
 class InvitationsController < ApplicationController
-  before_filter :find_invitation
-  before_filter :store_location_then_authenticate_user!
-  before_filter :require_linked_github_account!, only: [:accept]
+  before_action :find_invitation
+  before_action :store_location_then_authenticate_user!
+  before_action :require_linked_github_account!, only: [:accept]
   include ApplicationHelper
 
   def show

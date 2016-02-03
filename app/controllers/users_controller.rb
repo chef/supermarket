@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :assign_user
-  before_filter :override_search, only: [:tools]
+  before_action :assign_user
+  before_action :override_search, only: [:tools]
 
   #
   # GET /users/:id

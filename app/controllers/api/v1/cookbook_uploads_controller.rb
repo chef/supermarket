@@ -2,8 +2,8 @@ require 'cookbook_upload'
 require 'mixlib/authentication/signatureverification'
 
 class Api::V1::CookbookUploadsController < Api::V1Controller
-  before_filter :require_upload_params, only: :create
-  before_filter :authenticate_user!
+  before_action :require_upload_params, only: :create
+  before_action :authenticate_user!
 
   attr_reader :current_user
 

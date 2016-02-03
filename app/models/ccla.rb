@@ -1,5 +1,5 @@
 class Ccla < ActiveRecord::Base
-  validates_uniqueness_of :version
+  validates :version, uniqueness: true
 
   # Get the latest version based on the config value
   def self.latest

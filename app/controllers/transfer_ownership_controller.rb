@@ -1,5 +1,5 @@
 class TransferOwnershipController < ApplicationController
-  before_filter :find_transfer_request, only: [:accept, :decline]
+  before_action :find_transfer_request, only: [:accept, :decline]
 
   #
   # PUT /cookbooks/:id/transfer_ownership

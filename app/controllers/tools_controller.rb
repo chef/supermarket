@@ -1,8 +1,8 @@
 class ToolsController < ApplicationController
-  before_filter :store_location!, only: [:new]
-  before_filter :authenticate_user!, except: [:index, :show, :directory]
-  before_filter :assign_tool, only: [:show, :update, :edit, :destroy, :adoption]
-  before_filter :override_search
+  before_action :store_location!, only: [:new]
+  before_action :authenticate_user!, except: [:index, :show, :directory]
+  before_action :assign_tool, only: [:show, :update, :edit, :destroy, :adoption]
+  before_action :override_search
 
   #
   # GET /tools

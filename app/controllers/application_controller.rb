@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_filter :define_search
+  before_action :define_search
 
   include Supermarket::Authorization
   include Supermarket::Authentication
