@@ -155,7 +155,25 @@ GEM
     foreman (0.75.0)
       dotenv (~> 0.11.1)
       thor (~> 0.19.1)
+    formatador (0.2.5)
     fssm (0.2.10)
+    guard (2.13.0)
+      formatador (>= 0.2.4)
+      listen (>= 2.7, <= 4.0)
+      lumberjack (~> 1.0)
+      nenv (~> 0.1)
+      notiffany (~> 0.0)
+      pry (>= 0.9.12)
+      shellany (~> 0.0)
+      thor (>= 0.18.1)
+    guard-compat (1.2.1)
+    guard-rspec (4.6.4)
+      guard (~> 2.1)
+      guard-compat (~> 1.1)
+      rspec (>= 2.99.0, < 4.0)
+    guard-rubocop (1.2.0)
+      guard (~> 2.0)
+      rubocop (~> 0.20)
     haml (4.0.7)
       tilt
     hashie (2.1.2)
@@ -191,6 +209,10 @@ GEM
       sqlite3
       thor
       xml-simple
+    listen (3.0.5)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
+    lumberjack (1.0.10)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mail_view (2.0.4)
@@ -209,6 +231,7 @@ GEM
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    nenv (0.2.0)
     net-ssh (2.9.2)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
@@ -218,6 +241,9 @@ GEM
     newrelic_rpm (3.14.0.305)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    notiffany (0.0.8)
+      nenv (~> 0.1)
+      shellany (~> 0.0)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -309,6 +335,9 @@ GEM
     rainbow (2.0.0)
     raindrops (0.13.0)
     rake (10.5.0)
+    rb-fsevent (0.9.7)
+    rb-inotify (0.9.5)
+      ffi (>= 0.5.0)
     redcarpet (3.3.2)
     redis (3.2.1)
     redis-actionpack (4.0.0)
@@ -332,6 +361,10 @@ GEM
     rinku (1.7.3)
     rollout (2.0.0)
       redis
+    rspec (3.4.0)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
     rspec-core (3.4.2)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -378,6 +411,7 @@ GEM
       faraday (>= 0.7.6)
     sequel (4.15.0)
     sexp_processor (4.6.0)
+    shellany (0.0.1)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
     sidekiq (3.4.2)
@@ -469,6 +503,9 @@ DEPENDENCIES
   factory_girl
   faker
   foreman
+  guard
+  guard-rspec
+  guard-rubocop
   html_truncator
   jbuilder
   kaminari
