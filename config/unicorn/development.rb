@@ -19,5 +19,3 @@ after_fork do |_server, _worker|
   defined?(ActiveRecord::Base) &&
     ActiveRecord::Base.establish_connection
 end
-
-listen Integer(ENV['PORT'] || 3000)
