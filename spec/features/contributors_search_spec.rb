@@ -38,23 +38,13 @@ feature 'collaborators search' do
     end
 
     describe 'user searches for a contributor' do
-      context 'by username' do
-        before do
-          fill_in('Search', with: suzie.username)
-          click_button('Search Contributors')
-        end
-
-        it 'shows the contributor the user searched for' do
-          expect(page).to have_content(suzie.username)
-        end
-
-        it 'does not show a contributor the user did not search for' do
-          expect(page).to_not have_content(billy.username)
-        end
+      before do
+        fill_in('Search', with: suzie.username)
+        click_button('Search Contributors')
       end
 
-      context 'by email' do
-
+      it 'shows the contributor the user searched for' do
+        expect(page).to have_content(suzie.username)
       end
     end
   end

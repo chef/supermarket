@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ContributorsController do
   let!(:organization) { create(:organization) }
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user, first_name: 'Billy', last_name: 'Bob', email: 'billybob@chef.io') }
   let!(:contributor) do
     create :contributor,
            user: user,
@@ -103,6 +103,44 @@ describe ContributorsController do
       get :index
 
       expect(assigns[:contributor_list]).to_not be_nil
+    end
+
+    context 'when searching for a contributor' do
+      let(:sample_username) { 'billybob' }
+
+      before do
+        allow(user).to receive(:username).and_return(sample_username)
+      end
+
+      it 'includes the contributor being searched for' do
+        get :index, contributors_q: sample_username
+
+        expect(assigns[:contributors]).to include(user)
+      end
+
+      it 'does not include a contributor not being searched for' do
+        other_user = User.first
+        expect(other_user).to_not eq(user)
+        allow(other_user).to receive(:username).and_return('sallysue')
+
+        get :index, contributors_q: user.username
+
+        expect(assigns[:contributors]).to_not include(other_user)
+      end
+
+      context 'when a contributor is not authorized' do
+        let(:new_user) { create(:user) }
+
+        before do
+          expect(User.authorized_contributors).to_not include(new_user)
+        end
+
+        it 'does not include the contributor' do
+          get :index, contributors_q: new_user.username
+
+          expect(assigns[:contributors]).to_not include(new_user)
+        end
+      end
     end
   end
 end
