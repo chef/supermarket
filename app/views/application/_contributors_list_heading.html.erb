@@ -8,7 +8,13 @@
 </div>
 
 <div>
-  <h1>Search</h1>
+  <%= form_tag contributors_path, method: :get do %>
+    <%= label_tag :contributors_search, 'Search' %>
+    <%= search_field_tag :contributors_q, params[:contributors_q], placeholder: 'Search for a contributor' %>
+    <%= button_tag(type: 'Submit') do %>
+      Search Contributors
+    <% end %>
+  <% end %>
 </div>
 
 <dl class="tabs">
