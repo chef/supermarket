@@ -2,6 +2,7 @@ inherit_from: .rubocop_todo.yml
 Rails:
   Enabled: true
 AllCops:
+  TargetRubyVersion: 2.1
   Exclude:
     - db/**/*
     - vendor/**/*
