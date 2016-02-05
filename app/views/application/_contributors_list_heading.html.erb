@@ -20,7 +20,7 @@
 <dl class="tabs">
   <dd class="<%= "active" if current_page?(contributors_path) %>">
     <%= link_to contributors_path do %>
-      All <span><%= User.authorized_contributors.count %></span>
+      All <span><%= @contributors.present? ? @contributors.count : User.authorized_contributors.count %></span>
     <% end %>
   </dd>
   <dd class="<%= "active" if current_page?(icla_signatures_path) %>">
