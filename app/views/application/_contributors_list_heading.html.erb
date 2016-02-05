@@ -1,36 +1,38 @@
 <div class="heading-with-buttons">
   <h1 class="title">Contributors</h1>
-    <% if ROLLOUT.active?(:cla) && ROLLOUT.active?(:github) %>
-      <div class="buttons">
-        <%= link_to "Become a Contributor", become_a_contributor_path, class: "button tiny radius right" %>
-      </div>
-    <% end %>
+  <% if ROLLOUT.active?(:cla) && ROLLOUT.active?(:github) %>
+    <div class="buttons">
+      <%= link_to "Become a Contributor", become_a_contributor_path, class: "button tiny radius right" %>
+    </div>
+  <% end %>
 </div>
 
 <div>
-  <%= form_tag contributors_path, method: :get do %>
-    <%= label_tag :contributors_search, 'Search' %>
-    <%= search_field_tag :contributors_q, params[:contributors_q], placeholder: 'Search for a contributor' %>
-    <%= button_tag(type: 'Submit') do %>
-      Search Contributors
+  <div class="contributor_search">
+    <%= form_tag contributors_path, method: :get do %>
+      <%= label_tag :contributors_search, 'Search' %>
+        <%= search_field_tag :contributors_q, params[:contributors_q], placeholder: 'Search for a contributor', class: "bar" %>
+        <%= button_tag(type: 'Submit', class: 'button') do %>
+          Search
+        <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
 
 <dl class="tabs">
   <dd class="<%= "active" if current_page?(contributors_path) %>">
-    <%= link_to contributors_path do %>
-      All <span><%= @contributors.present? ? @contributors.count : User.authorized_contributors.count %></span>
-    <% end %>
+  <%= link_to contributors_path do %>
+    All <span><%= @contributors.present? ? @contributors.count : User.authorized_contributors.count %></span>
+  <% end %>
   </dd>
   <dd class="<%= "active" if current_page?(icla_signatures_path) %>">
-    <%= link_to icla_signatures_path, rel: 'individual-contributors' do %>
-      Individuals <span><%= IclaSignature.by_user.count %></span>
-    <% end %>
+  <%= link_to icla_signatures_path, rel: 'individual-contributors' do %>
+    Individuals <span><%= IclaSignature.by_user.count %></span>
+  <% end %>
   </dd>
   <dd class="<%= "active" if current_page?(ccla_signatures_path) %>">
-    <%= link_to ccla_signatures_path, rel: 'companies' do %>
-      Companies <span><%= CclaSignature.by_organization.count %></span>
-    <% end %>
+  <%= link_to ccla_signatures_path, rel: 'companies' do %>
+    Companies <span><%= CclaSignature.by_organization.count %></span>
+  <% end %>
   </dd>
 </dl>

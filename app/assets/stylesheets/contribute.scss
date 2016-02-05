@@ -50,3 +50,17 @@
     }
   }
 }
+
+.contributor_search {
+  height: rem-calc(100);
+  .bar {
+    height: rem-calc(50);
+    max-width: 80%;
+    float: left;
+  }
+  .button{
+    height: rem-calc(50);
+    max-width: 20%;
+    float: right;
+  }
+}
