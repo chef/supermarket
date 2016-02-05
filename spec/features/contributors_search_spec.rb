@@ -34,13 +34,13 @@ feature 'collaborators search' do
     end
 
     it 'shows a search button' do
-      expect(page).to have_button('Search Contributors')
+      expect(page).to have_button('Search')
     end
 
     describe 'user searches for a contributor' do
       before do
         fill_in('Search', with: suzie.username)
-        click_button('Search Contributors')
+        click_button('Search')
       end
 
       it 'shows the contributor the user searched for' do
