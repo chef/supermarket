@@ -6,18 +6,11 @@ class Contributor < ActiveRecord::Base
 
   # Validations
   # --------------------
-  validates_uniqueness_of :user_id, scope: :organization_id
+  validates :user_id, uniqueness: { scope: :organization_id }
 
-  #
-  # Returns the +Contributor+'s primary email address.
-  #
-  # @return [String] if the user has a primary email.
-  #
-  # @return [nil] if the user does not have a primary email.
-  #
-  def email
-    user.email
-  end
+  # Delegations
+  # ____________________
+  delegate :email, to: :user
 
   #
   # Determine if the if the instance of +Contributor+ is the only admin of

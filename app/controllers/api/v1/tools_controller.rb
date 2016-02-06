@@ -1,5 +1,5 @@
 class Api::V1::ToolsController < Api::V1Controller
-  before_filter :init_params, except: [:show]
+  before_action :init_params, except: [:show]
 
   #
   # GET /api/v1/tools

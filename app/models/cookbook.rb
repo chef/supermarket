@@ -96,6 +96,8 @@ class Cookbook < ActiveRecord::Base
   delegate :description, to: :latest_cookbook_version
   delegate :foodcritic_failure, to: :latest_cookbook_version
   delegate :foodcritic_feedback, to: :latest_cookbook_version
+  delegate :supported_platforms, to: :latest_cookbook_version
+  delegate :cookbook_dependencies, to: :latest_cookbook_version
 
   # Validations
   # --------------------
@@ -275,7 +277,7 @@ class Cookbook < ActiveRecord::Base
         url_val = metadata.send(url)
 
         if url_val.present?
-          write_attribute(url, url_val)
+          self[url] = url_val
         end
       end
 
@@ -307,24 +309,6 @@ class Cookbook < ActiveRecord::Base
   #
   def followed_by?(user)
     cookbook_followers.where(user: user).any?
-  end
-
-  #
-  # Returns the platforms supported by the latest version of this cookbook.
-  #
-  # @return [Array<SupportedVersion>]
-  #
-  def supported_platforms
-    latest_cookbook_version.supported_platforms
-  end
-
-  #
-  # Returns the dependencies of the latest version of this cookbook.
-  #
-  # @return [Array<CookbookDependency>]
-  #
-  def cookbook_dependencies
-    latest_cookbook_version.cookbook_dependencies
   end
 
   #

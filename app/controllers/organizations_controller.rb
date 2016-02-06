@@ -1,7 +1,7 @@
 class OrganizationsController < ApplicationController
-  before_filter :authenticate_user!, except: [:index]
-  before_filter :find_organization, except: [:index]
-  skip_before_filter :verify_authenticity_token, only: [:index]
+  before_action :authenticate_user!, except: [:index]
+  before_action :find_organization, except: [:index]
+  skip_before_action :verify_authenticity_token, only: [:index]
 
   #
   # GET /organizations/:id

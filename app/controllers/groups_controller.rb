@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_filter :collaborator_groups_feature_check
+  before_action :collaborator_groups_feature_check
 
   def index
     @groups = Group.all

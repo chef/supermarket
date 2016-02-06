@@ -2,6 +2,6 @@ class GroupResource < ActiveRecord::Base
   belongs_to :group
   belongs_to :resourceable, polymorphic: true
 
-  validates_presence_of :group
-  validates_presence_of :resourceable
+  validates :group, presence: true
+  validates :resourceable, presence: true
 end

@@ -1,5 +1,5 @@
 class ProfileController < ApplicationController
-  before_filter :authenticate_user!, except: [:update_install_preference]
+  before_action :authenticate_user!, except: [:update_install_preference]
 
   #
   # PATCH /profile

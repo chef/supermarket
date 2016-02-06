@@ -1,5 +1,5 @@
 class CookbookVersionsController < ApplicationController
-  before_filter :set_cookbook_and_version
+  before_action :set_cookbook_and_version
 
   #
   # GET /cookbooks/:cookbook_id/versions/:version/download

@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
   # Validations
   # --------------------
-  validates_presence_of :email
+  validates :email, presence: true
 
   # Callbacks
   # --------------------

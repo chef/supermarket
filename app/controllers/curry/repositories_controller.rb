@@ -1,6 +1,6 @@
 class Curry::RepositoriesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :restrict_non_admin_access!
+  before_action :authenticate_user!
+  before_action :restrict_non_admin_access!
 
   #
   # GET /curry/repositories

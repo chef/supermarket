@@ -1,7 +1,7 @@
 class GrantBadgeToCookbook
   attr_reader :badge_name, :cookbook_name
 
-  def initialize(badge: badge, cookbook: cookbook)
+  def initialize(badge:, cookbook:)
     @badge_name = badge
     @cookbook_name = cookbook
   end

@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_filter :authenticate_user!, only: :dashboard
+  before_action :authenticate_user!, only: :dashboard
   layout false, only: [:robots]
 
   #
