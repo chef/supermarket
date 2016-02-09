@@ -1,7 +1,7 @@
 class IclaSignaturesController < ApplicationController
-  before_action :redirect_if_signed!, only: [:new, :create]
-  before_action :authenticate_user!, except: [:index, :agreement]
-  before_action :require_linked_github_account!, only: [:new, :create, :re_sign]
+  before_filter :redirect_if_signed!, only: [:new, :create]
+  before_filter :authenticate_user!, except: [:index, :agreement]
+  before_filter :require_linked_github_account!, only: [:new, :create, :re_sign]
 
   #
   # GET /icla-signatures

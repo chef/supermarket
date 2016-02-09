@@ -1,5 +1,5 @@
 class ContributorsController < ApplicationController
-  before_action :find_contributor, only: [:update, :destroy]
+  before_filter :find_contributor, only: [:update, :destroy]
 
   #
   # PATCH /organizations/:organization_id/contributors/:id

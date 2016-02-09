@@ -1,6 +1,6 @@
 class CclaSignaturesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :agreement, :contributors]
-  before_action :require_linked_github_account!, only: [:new, :create, :re_sign]
+  before_filter :authenticate_user!, except: [:index, :agreement, :contributors]
+  before_filter :require_linked_github_account!, only: [:new, :create, :re_sign]
 
   #
   # GET /ccla-signatures
