@@ -12,6 +12,17 @@ describe IclaSignaturesController do
       it 'assigns @icla_signatures' do
         expect(assigns(:icla_signatures)).to include(icla_signature)
       end
+
+      context 'when searching for an icla signature' do
+        let!(:jimmy_icla) { create(:icla_signature, first_name: 'Jimmy', last_name: 'John', email: 'someotheremail@chef.io') }
+        let!(:billy_icla) { create(:icla_signature, first_name: 'Billy', last_name: 'Bob', email: 'thisdude@chef.io') }
+
+        it 'returns icla signatures that match the search' do
+          get :index, contributors_q: 'Jimmy'
+          expect(assigns[:icla_signatures]).to include(jimmy_icla)
+          expect(assigns[:icla_signatures]).to_not include(billy_icla)
+        end
+      end
     end
 
     describe 'GET #agreement' do
