@@ -94,4 +94,24 @@ describe IclaSignature do
       end
     end
   end
+
+  describe '.search' do
+    let(:jimmy_icla) { create(:icla_signature, first_name: 'Jimmy', last_name: 'John', email: 'someotheremail@chef.io') }
+    let(:billy_icla) { create(:icla_signature, first_name: 'Billy', last_name: 'Bob', email: 'thisdude@chef.io') }
+
+    it 'returns ICLA signatures with a similar first name' do
+      expect(IclaSignature.search('jimmy')).to include(jimmy_icla)
+      expect(IclaSignature.search('jimmy')).to_not include(billy_icla)
+    end
+
+    it 'returns ICLA signatures with a similar last name' do
+      expect(IclaSignature.search('john')).to include(jimmy_icla)
+      expect(IclaSignature.search('john')).to_not include(billy_icla)
+    end
+
+    it 'returns ICLA signatures with a similar email address' do
+      expect(IclaSignature.search('someotheremail@chef.io')).to include(jimmy_icla)
+      expect(IclaSignature.search('someotheremail@chef.io')).to_not include(billy_icla)
+    end
+  end
 end
