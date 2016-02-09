@@ -46,4 +46,24 @@ describe ApplicationHelper do
       expect(flash_message_class_for('warning')).to eql('warning')
     end
   end
+
+  describe '#search_path' do
+    context 'when using the contributors controller' do
+      it 'returns the contributors path' do
+        expect(search_path('contributors')).to eq(contributors_path)
+      end
+    end
+
+    context 'when using the icla signatures controller' do
+      it 'returns the icla signatures path' do
+        expect(search_path('icla_signatures')).to eq(icla_signatures_path)
+      end
+    end
+
+    context 'when using the ccla signatures controller' do
+      it 'returns the ccla signatures path' do
+        expect(search_path('ccla_signatures')).to eq(ccla_signatures_path)
+      end
+    end
+  end
 end

@@ -16,6 +16,19 @@ describe CclaSignaturesController do
 
         it 'assigns @ccla_signatures' do
           expect(assigns(:ccla_signatures)).to include(ccla_signature1)
+          expect(assigns(:ccla_signatures)).to include(ccla_signature2)
+        end
+
+        context 'when searching for a ccla signature' do
+          before { get :index, contributors_q: 'International' }
+
+          it 'returns a ccla signature that matches the search' do
+            expect(assigns(:ccla_signatures)).to include(ccla_signature1)
+          end
+
+          it 'does not return a ccla signature that does not match the search' do
+            expect(assigns(:ccla_signatures)).to_not include(ccla_signature2)
+          end
         end
       end
 

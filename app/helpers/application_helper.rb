@@ -39,4 +39,15 @@ module ApplicationHelper
       'warning' => 'warning'
     }.fetch(name)
   end
+
+  def search_path(controller_name)
+    case controller_name
+    when 'contributors'
+      contributors_path
+    when 'icla_signatures'
+      icla_signatures_path
+    when 'ccla_signatures'
+      ccla_signatures_path
+    end
+  end
 end
