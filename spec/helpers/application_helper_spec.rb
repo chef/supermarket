@@ -66,4 +66,24 @@ describe ApplicationHelper do
       end
     end
   end
+
+  describe '#search_field_text' do
+    context 'when using the contributors controller' do
+      it 'returns the contributors search text' do
+        expect(search_field_text('contributors')).to eq('Search for a contributor by name, email, chef or github username')
+      end
+    end
+
+    context 'when using the icla signatures controller' do
+      it 'returns the icla signatures search text' do
+        expect(search_field_text('icla_signatures')).to eq('Search for an ICLA signer by name or email')
+      end
+    end
+
+    context 'when using the ccla signatures controller' do
+      it 'returns the ccla signatures search text' do
+        expect(search_field_text('ccla_signatures')).to eq('Search for a CCLA signer by name or email')
+      end
+    end
+  end
 end

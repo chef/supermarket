@@ -11,8 +11,8 @@
   <div class="contributor_search">
     <%= form_tag search_path(controller.controller_name), method: :get do %>
       <%= label_tag :contributors_search, 'Search' %>
-        <%= search_field_tag :contributors_q, params[:contributors_q], placeholder: 'Search for a contributor', class: "bar" %>
-        <%= button_tag(type: 'Submit', class: 'button') do %>
+        <%= search_field_tag :contributors_q, params[:contributors_q], placeholder: search_field_text(controller.controller_name), class: "bar", id: 'contributors_q' %>
+        <%= button_tag(type: 'submit', class: 'button', id: 'search_button') do %>
           Search
         <% end %>
     <% end %>

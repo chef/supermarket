@@ -42,14 +42,9 @@ class ContributorsController < ApplicationController
   # Display all of the users who are authorized to contribute
   #
   def index
-    if params[:contributors_q].present?
-      # Finds the intersection between the users returned by the search
-      # and the list of users who are authorized contributors
-      contributors = User.search(params[:contributors_q]) & User.authorized_contributors
-
-    else
-      contributors = User.authorized_contributors
-    end
+    # Finds the intersection between the users returned by the search
+    # and the list of users who are authorized contributors
+    contributors = params[:contributors_q].present? ? authorized_users_from_search(params[:contributors_q]) : User.authorized_contributors
 
     # Using Kaminari.paginate_array because finding the intersection of two active record relations returns an array
     @contributors = Kaminari.paginate_array(contributors).page(params[:page]).per(20)
@@ -65,5 +60,9 @@ class ContributorsController < ApplicationController
 
   def contributor_params
     params.require(:contributor).permit(:admin)
+  end
+
+  def authorized_users_from_search(search_param)
+    User.search(search_param) & User.authorized_contributors
   end
 end

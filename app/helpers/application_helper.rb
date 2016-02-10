@@ -50,4 +50,15 @@ module ApplicationHelper
       ccla_signatures_path
     end
   end
+
+  def search_field_text(controller_name)
+    case controller_name
+    when 'contributors'
+      'Search for a contributor by name, email, chef or github username'
+    when 'icla_signatures'
+      'Search for an ICLA signer by name or email'
+    when 'ccla_signatures'
+      'Search for a CCLA signer by name or email'
+    end
+  end
 end
