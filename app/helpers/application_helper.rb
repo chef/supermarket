@@ -58,7 +58,7 @@ module ApplicationHelper
     when 'icla_signatures'
       'Search for an ICLA signer by name or email'
     when 'ccla_signatures'
-      'Search for a CCLA signer by name or email'
+      'Search for a CCLA signer by company name'
     end
   end
 end

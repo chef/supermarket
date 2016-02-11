@@ -82,7 +82,7 @@ describe ApplicationHelper do
 
     context 'when using the ccla signatures controller' do
       it 'returns the ccla signatures search text' do
-        expect(search_field_text('ccla_signatures')).to eq('Search for a CCLA signer by name or email')
+        expect(search_field_text('ccla_signatures')).to eq('Search for a CCLA signer by company name')
       end
     end
   end
