@@ -39,4 +39,26 @@ module ApplicationHelper
       'warning' => 'warning'
     }.fetch(name)
   end
+
+  def search_path(controller_name)
+    case controller_name
+    when 'contributors'
+      contributors_path
+    when 'icla_signatures'
+      icla_signatures_path
+    when 'ccla_signatures'
+      ccla_signatures_path
+    end
+  end
+
+  def search_field_text(controller_name)
+    case controller_name
+    when 'contributors'
+      'Search for a contributor by name, email, chef or github username'
+    when 'icla_signatures'
+      'Search for an ICLA signer by name or email'
+    when 'ccla_signatures'
+      'Search for a CCLA signer by company name'
+    end
+  end
 end

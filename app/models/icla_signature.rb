@@ -1,4 +1,5 @@
 class IclaSignature < ActiveRecord::Base
+  include PgSearch
   include Exportable
   # Associations
   # --------------------
@@ -33,6 +34,18 @@ class IclaSignature < ActiveRecord::Base
   # Callbacks
   # --------------------
   before_create -> (record) { record.signed_at ||= Time.current }
+
+  # Search
+  # --------------------
+
+  pg_search_scope(
+    :search,
+    against: [:first_name, :last_name, :email],
+    using: {
+      tsearch: { dictionary: 'english' },
+      trigram: { threshold: 0.2 }
+    }
+  )
 
   def name
     "#{first_name} #{last_name}"

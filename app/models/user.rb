@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   has_many :email_preferences
   has_many :system_emails, through: :email_preferences
   has_one :chef_account, -> { self.for('chef_oauth2') }, class_name: 'Account'
+  has_one :github_account, -> { self.for('github') }, class_name: 'Account'
   has_many :group_members
   has_many :memberships, through: :group_members, source: :group
 
@@ -47,7 +48,8 @@ class User < ActiveRecord::Base
       email: 'C'
     },
     associated_against: {
-      chef_account: :username
+      chef_account: :username,
+      github_account: :username
     },
     using: {
       tsearch: { prefix: true, dictionary: 'english' },

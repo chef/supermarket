@@ -9,7 +9,13 @@ class IclaSignaturesController < ApplicationController
   # Displays a list of all users who have a signed ICLA.
   #
   def index
-    @icla_signatures = IclaSignature.by_user.page(params[:page]).per(50)
+    @icla_signatures = IclaSignature.by_user
+
+    if params[:contributors_q]
+      @icla_signatures = @icla_signatures.search(params[:contributors_q])
+    end
+
+    @icla_signatures = @icla_signatures.page(params[:page]).per(50)
   end
 
   #

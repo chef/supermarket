@@ -174,6 +174,13 @@ describe User do
       expect(User.search('jimmyjam')).to include(jimmy)
       expect(User.search('jimmcji')).to include(jim)
     end
+
+    it 'returns users with a similar github username' do
+      jimmy.accounts << create(:account, provider: 'github', username: 'goofygithubuser')
+      jim.accounts << create(:account, provider: 'github', username: 'someotherdude')
+      expect(User.search('goofygithubuser')).to include(jimmy)
+      expect(User.search('someotherdude')).to include(jim)
+    end
   end
 
   describe '#latest_icla_signature' do

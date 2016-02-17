@@ -9,6 +9,7 @@
         <table>
           <thead>
             <tr>
+              <th>Supermarket Username</th>
               <th>Chef Username</th>
               <th>GitHub</th>
             </tr>
@@ -16,6 +17,7 @@
           <tbody>
             <% @contributor_list.each do |user, chef_account, github_accounts| %>
               <tr class="contributor">
+                <td><%= link_to user.username, user_path(id: user.username) %></td>
                 <td><%= link_to chef_account.username, user_path(id: chef_account.username) %></td>
                 <td>
                   <% github_accounts.each_with_index do |account, index| %>
