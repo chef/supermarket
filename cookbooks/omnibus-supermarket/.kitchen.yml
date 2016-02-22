@@ -14,6 +14,7 @@ provisioner:
 platforms:
   - name: ubuntu-10.04
   - name: ubuntu-12.04
+  - name: ubuntu-14.04
   - name: centos-5.11
   - name: centos-6.7
   - name: centos-7.1
