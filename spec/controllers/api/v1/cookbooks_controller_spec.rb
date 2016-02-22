@@ -59,6 +59,15 @@ describe Api::V1::CookbooksController do
       expect(cookbooks.first).to eql(sashimi)
     end
 
+    it 'allows filtering cookbooks by platform' do
+      create(:debian_cookbook_version, cookbook: sashimi)
+
+      get :index, platforms: 'debian', format: :json
+      cookbooks = assigns[:cookbooks]
+      expect(cookbooks.size).to eql(1)
+      expect(cookbooks.first).to eql(sashimi)
+    end
+
     it 'uses the start param to offset the cookbooks sent to the view' do
       get :index, start: 1, format: :json
 

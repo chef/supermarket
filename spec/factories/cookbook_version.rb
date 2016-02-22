@@ -7,5 +7,15 @@ FactoryGirl.define do
     readme '# redis cookbook'
     readme_extension 'md'
     foodcritic_failure false
+
+    trait :debian do
+      after(:build) do |cookbook_version, evaluator|
+        cookbook_version.add_supported_platform("debian", evaluator.version)
+      end
+    end
+  end
+
+  factory :debian_cookbook_version, parent: :cookbook_version do
+    debian
   end
 end
