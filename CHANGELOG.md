@@ -1,5 +1,12 @@
 # Supermarket Changelog
 
+## 2.4.0 (2016-02-25)
+- [chef/supermarket#1220] Turn on Rails Rubocops and update controllers & models
+- [chef/supermarket#1222] Add search to Contributors page
+- [chef/supermarket#1229] Add supported platform filter to cookbook index API endpoint
+  (Thanks, Joel Freedman at Pivotal Sydney!)
+- [chef/omnibus-supermarket#48] Fix https/http proxy header when https is disabled
+
 ## 2.3.3 (2016-02-03)
 - [#1215] Upgrade rspec
 - [#1199] Add partner badges
