@@ -48,10 +48,10 @@ class CookbookMailer < ActionMailer::Base
     @email_preference = user.email_preference_for('Cookbook deprecated')
     @to = user.email
 
-    subject = %(
-      The #{@cookbook.name} cookbook has been deprecated in favor
-      of the #{@replacement_cookbook.name} cookbook
-    ).squish
+    subject = "The #{@cookbook.name} cookbook has been deprecated"
+    if @replacement_cookbook
+      subject += "in favor of the #{@replacement_cookbook.name} cookbook"
+    end
 
     mail(to: @to, subject: subject)
   end

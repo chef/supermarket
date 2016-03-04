@@ -112,7 +112,6 @@ class Cookbook < ActiveRecord::Base
     allow_blank: true,
     allow_nil: true
   }
-  validates :replacement, presence: true, if: :deprecated?
 
   #
   # The total number of times a cookbook has been downloaded from Supermarket
@@ -351,21 +350,23 @@ class Cookbook < ActiveRecord::Base
   #
   # A cookbook can only be replaced with a cookbook that is not deprecated.
   #
-  # @param replacement_cookbook [Cookbook] the cookbook to succeed this cookbook
-  #   once deprecated
+  # @param replacement_cookbook_name [String] the name of the cookbook to
+  #   succeed this cookbook once deprecated
   #
   # @return [Boolean] whether or not the cookbook was successfully deprecated
   #   and  saved
   #
-  def deprecate(replacement_cookbook)
-    if replacement_cookbook.deprecated?
+  def deprecate(replacement_cookbook_name = '')
+    replacement_cookbook = Cookbook.find_by_name replacement_cookbook_name
+
+    if replacement_cookbook.present? && replacement_cookbook.deprecated?
       errors.add(:base, I18n.t('cookbook.deprecate_with_deprecated_failure'))
       return false
-    else
-      self.deprecated = true
-      self.replacement = replacement_cookbook
-      save
     end
+
+    self.deprecated = true
+    self.replacement = replacement_cookbook if replacement_cookbook.present?
+    save
   end
 
   #

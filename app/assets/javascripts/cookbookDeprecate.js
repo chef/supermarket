@@ -28,8 +28,4 @@ $(document).on('opened', '[data-reveal]', function () {
   }
 
   $('.cookbook-deprecate').select2(settings);
-
-  $('.cookbook-deprecate').on("select2-selecting", function(e) {
-    $('.submit-deprecation').prop('disabled', false);
-  });
 });

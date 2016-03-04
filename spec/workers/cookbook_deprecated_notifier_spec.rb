@@ -8,7 +8,7 @@ describe CookbookDeprecatedNotifier do
     disinterested_user = create(:user)
     disinterested_user.email_preference_for('Cookbook deprecated').destroy
     cookbook = create(:cookbook)
-    cookbook.deprecate(create(:cookbook))
+    cookbook.deprecate(create(:cookbook).name)
     cookbook_collaborator = create(:cookbook_collaborator, resourceable: cookbook)
     cookbook_followers = [
       create(:cookbook_follower, cookbook: cookbook),

@@ -34,7 +34,7 @@ en:
       email_sent: "Ownership transfer email sent to %{user}."
       invite_accepted: "You are the new owner of %{cookbook}."
       invite_declined: "You have declined ownership of %{cookbook}."
-    deprecated: "%{cookbook} deprecated in favor of %{replacement_cookbook}."
+    deprecated: "%{cookbook} deprecated."
     undeprecated: "%{cookbook} is no longer deprecated."
     featured: "%{cookbook} is now %{state}."
     deprecate_with_deprecated_failure: "This cookbook cannot be deprecated in favor of a deprecated cookbook."

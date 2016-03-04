@@ -105,11 +105,11 @@ describe Cookbook do
       expect(cookbook.errors[:name]).to be_empty
     end
 
-    it 'requires deprecated cookbooks to specify a replacement' do
+    it 'allows deprecated cookbooks to optionally specify a replacement' do
       cookbook = Cookbook.new(deprecated: true)
       cookbook.valid?
 
-      expect(cookbook.errors[:replacement]).to_not be_empty
+      expect(cookbook.errors[:replacement]).to be_empty
 
       cookbook.replacement = Cookbook.new
       cookbook.valid?
@@ -281,22 +281,41 @@ describe Cookbook do
   describe '#deprecate' do
     let!(:cookbook) { create(:cookbook, name: 'spicy_curry') }
 
-    context 'replacement cookbook is valid' do
-      let!(:replacement_cookbook) { create(:cookbook, name: 'mild_curry') }
-
+    context 'with no replacement cookbook' do
       it 'returns true' do
-        result = cookbook.deprecate(replacement_cookbook)
+        result = cookbook.deprecate
         expect(result).to eql(true)
       end
 
       it 'sets the deprecated attribute to true' do
-        cookbook.deprecate(replacement_cookbook)
+        cookbook.deprecate
+
+        expect(cookbook.deprecated?).to eql(true)
+      end
+
+      it 'does not set a replacement' do
+        cookbook.deprecate
+
+        expect(cookbook.replacement).to eql(nil)
+      end
+    end
+
+    context 'replacement cookbook is valid' do
+      let!(:replacement_cookbook) { create(:cookbook, name: 'mild_curry') }
+
+      it 'returns true' do
+        result = cookbook.deprecate(replacement_cookbook.name)
+        expect(result).to eql(true)
+      end
+
+      it 'sets the deprecated attribute to true' do
+        cookbook.deprecate(replacement_cookbook.name)
 
         expect(cookbook.deprecated?).to eql(true)
       end
 
       it 'sets the replacement' do
-        cookbook.deprecate(replacement_cookbook)
+        cookbook.deprecate(replacement_cookbook.name)
 
         expect(cookbook.replacement).to eql(replacement_cookbook)
       end
@@ -313,25 +332,25 @@ describe Cookbook do
       end
 
       it 'returns false' do
-        result = cookbook.deprecate(replacement_cookbook)
+        result = cookbook.deprecate(replacement_cookbook.name)
         expect(result).to eql(false)
       end
 
       it 'fails to deprecate' do
-        cookbook.deprecate(replacement_cookbook)
+        cookbook.deprecate(replacement_cookbook.name)
 
         expect(cookbook.deprecated?).to eql(false)
       end
 
       it 'fails to set the replacement' do
-        cookbook.deprecate(replacement_cookbook)
+        cookbook.deprecate(replacement_cookbook.name)
 
         expect(cookbook.replacement).to eql(nil)
       end
 
       it 'adds an error if the replacement cookbook is deprecated' do
         expect do
-          cookbook.deprecate(replacement_cookbook)
+          cookbook.deprecate(replacement_cookbook.name)
         end.to change(cookbook.errors, :count).by(1)
       end
     end
