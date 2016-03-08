@@ -1,9 +1,14 @@
 # Supermarket Changelog
 
+## 2.4.2 (2016-03-08)
+- [chef/supermarket#1240] Upgrade Rails to 4.1.14.2 to address CVEs
+- [chef/omnibus-supermarket#49] Upgrade omnibus install for OpenSSL 1.0.1s update
+- [chef/supermarket#1242] Update steps/links to create/login to Chef account
+
 ## 2.4.1 (2016-02-26)
 - Revert chef/omnibus-supermarket#48 Fix https/http proxy header when https is disabled -
   needs a more comprehensive fix for various https/http scenarios
-  
+
 ## 2.4.0 (2016-02-25)
 - [chef/supermarket#1220] Turn on Rails Rubocops and update controllers & models
 - [chef/supermarket#1222] Add search to Contributors page
