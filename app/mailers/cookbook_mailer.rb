@@ -50,7 +50,7 @@ class CookbookMailer < ActionMailer::Base
 
     subject = "The #{@cookbook.name} cookbook has been deprecated"
     if @replacement_cookbook
-      subject += "in favor of the #{@replacement_cookbook.name} cookbook"
+      subject += " in favor of the #{@replacement_cookbook.name} cookbook"
     end
 
     mail(to: @to, subject: subject)
