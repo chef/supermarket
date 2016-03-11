@@ -497,18 +497,73 @@ describe CookbooksController do
   describe 'PUT #deprecate' do
     let(:user) { create(:user) }
     let!(:cookbook) { create(:cookbook, owner: user) }
+    let!(:other_cookbook) { create(:cookbook, owner: user) }
     let!(:replacement_cookbook) { create(:cookbook) }
 
     context 'cookbook owner' do
-      context 'valid replacement' do
-        before { sign_in(user) }
+      context 'no replacement' do
+        before do
+          sign_in(user)
+        end
 
         it 'deprecates the cookbook and sets the replacement' do
           put(
             :deprecate,
             id: cookbook,
             cookbook: {
-              replacement: replacement_cookbook
+              replacement: ''
+            }
+          )
+
+          cookbook.reload
+
+          expect(cookbook.deprecated).to eql(true)
+          expect(cookbook.replacement).to eql(nil)
+        end
+
+        it 'redirects back to the cookbook w/ success notice' do
+          put(
+            :deprecate,
+            id: cookbook,
+            cookbook: {
+              replacement: ''
+            }
+          )
+
+          expect(response).to redirect_to(cookbook)
+
+          expect(flash[:notice]).to eql(
+            I18n.t(
+              'cookbook.deprecated',
+              cookbook: cookbook.name
+            )
+          )
+        end
+
+        it 'starts the cookbook deprecated notifier worker' do
+          expect do
+            put(
+              :deprecate,
+              id: cookbook,
+              cookbook: {
+                replacement: ''
+              }
+            )
+          end.to change(CookbookDeprecatedNotifier.jobs, :size).by(1)
+        end
+      end
+
+      context 'valid replacement' do
+        before do
+          sign_in(user)
+        end
+
+        it 'deprecates the cookbook and sets the replacement' do
+          put(
+            :deprecate,
+            id: cookbook,
+            cookbook: {
+              replacement: replacement_cookbook.name
             }
           )
 
@@ -523,7 +578,7 @@ describe CookbooksController do
             :deprecate,
             id: cookbook,
             cookbook: {
-              replacement: replacement_cookbook
+              replacement: replacement_cookbook.name
             }
           )
 
@@ -532,8 +587,7 @@ describe CookbooksController do
           expect(flash[:notice]).to eql(
             I18n.t(
               'cookbook.deprecated',
-              cookbook: cookbook.name,
-              replacement_cookbook: replacement_cookbook.name
+              cookbook: cookbook.name
             )
           )
         end

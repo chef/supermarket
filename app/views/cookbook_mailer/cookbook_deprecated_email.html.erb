@@ -1,3 +1,9 @@
-<p>The <%= link_to @cookbook.name, cookbook_url(@cookbook) %> cookbook has been deprecated in favor of the <%= link_to @replacement_cookbook.name, cookbook_url(@replacement_cookbook) %> cookbook.</p>
+<p>The <%= link_to @cookbook.name, cookbook_url(@cookbook) %> cookbook has been
+   deprecated.</p>
+
+<% if @replacement_cookbook -%>
+<p>The owner recommends using the <%= link_to @replacement_cookbook.name, cookbook_url(@replacement_cookbook) %>
+   cookbook.</p>
+<% end -%>
 
 <%= link_to 'Unsubscribe', unsubscribe_url(@email_preference) %>
