@@ -1,5 +1,9 @@
 # Supermarket Changelog
 
+## 2.5.0 (2016-03-24)
+- [chef/supermarket#1245] Allow cookbook to be deprecated without specifying
+  a replacement. (Closes #1223)
+
 ## 2.4.2 (2016-03-08)
 - [chef/supermarket#1240] Upgrade Rails to 4.1.14.2 to address CVEs
 - [chef/omnibus-supermarket#49] Upgrade omnibus install for OpenSSL 1.0.1s update
