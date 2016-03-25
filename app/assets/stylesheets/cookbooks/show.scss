@@ -11,7 +11,10 @@
     border: 4px solid $secondary_yellow;
     display: block;
     margin: rem-calc(0 0 18 0);
-    text-align: center;
+
+    h2 {
+      text-align: center;
+    }
 
     .deprecation-copy {
       color: $secondary-yellow;
