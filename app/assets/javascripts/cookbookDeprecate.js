@@ -1,6 +1,6 @@
 $(document).on('opened', '[data-reveal]', function () {
   var settings =  {
-    placeholder: 'Search for a cookbook',
+    placeholder: 'Search for a cookbook (optional)',
     minimumInputLength: 3,
     width: '100%',
     ajax: {
