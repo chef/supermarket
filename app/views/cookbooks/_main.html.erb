@@ -2,12 +2,18 @@
   <% if cookbook.deprecated? %>
     <div class="deprecation-notice">
       <h2 class="deprecation-copy">
-        <% if cookbook.replacement.present? %>
-          <i class="fa fa-exclamation-triangle"></i> <%= cookbook.name %> has been deprecated in favor of <%= link_to cookbook.replacement.name, cookbook.replacement %>
-        <% else %>
-          <i class="fa fa-exclamation-triangle"></i> <%= cookbook.name %> has been deprecated
-        <% end %>
+          <i class="fa fa-exclamation-triangle"></i> The <%= cookbook.name %>
+          cookbook has been deprecated
       </h2>
+      <p class="deprecation-copy">
+        The <%= cookbook.name %> cookbook has been deprecated and is no longer
+        being maintained by its authors.  Use of the <%= cookbook.name %>
+        cookbook is no longer recommended.
+        <% if cookbook.replacement.present? %>
+          You may find that the <%= link_to cookbook.replacement.name, cookbook.replacement %>
+          cookbook is a suitable alternative.
+        <% end %>
+      </p>
     </div>
   <% end %>
 
