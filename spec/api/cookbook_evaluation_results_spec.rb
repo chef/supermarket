@@ -6,7 +6,7 @@ describe 'POST /api/v1/cookbook_evalution_results' do
 
   it 'returns a 200' do
     post(
-      '/api/v1/cookbook-verisons/evaluation',
+      '/api/v1/cookbook-versions/evaluation',
       cookbook_name: cookbook.name,
       cookbook_version: cookbook_version.version,
       foodcritic_failure: false,

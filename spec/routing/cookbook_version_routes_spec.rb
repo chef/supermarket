@@ -29,6 +29,12 @@ describe 'cookbook version routes' do
         expect(get: '/api/v1/cookbooks/redis/versions/latest/download', format: :json).to route_to(controller: 'api/v1/cookbook_versions', action: 'download', format: :json, cookbook: 'redis', version: 'latest')
       end
     end
+
+    context '#evaluation' do
+      it 'can route using cookbook_versions#evaluation' do
+        expect(post: '/api/v1/cookbook-versions/evaluation', format: :json).to route_to(controller: 'api/v1/cookbook_versions', action: 'evaluation', format: :json)
+      end
+    end
   end
 
   context 'public website' do
