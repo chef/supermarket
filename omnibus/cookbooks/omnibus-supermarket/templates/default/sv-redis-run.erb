@@ -1,0 +1,10 @@
+#!/bin/sh
+exec 2>&1
+exec <%= node['runit']['chpst_bin'] %> \
+       -P \
+       -U <%= node['supermarket']['user'] %> \
+       -u <%= node['supermarket']['user'] %> \
+     env \
+       PATH=<%= node['supermarket']['install_directory'] %>/embedded/bin:$PATH \
+     redis-server \
+       <%= node['supermarket']['redis']['directory'] %>/etc/redis.conf

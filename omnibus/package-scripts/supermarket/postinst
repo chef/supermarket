@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+# Perform necessary setup steps after package is installed.
+#
+
+PROGNAME=$(basename $0)
+
+function error_exit
+{
+  echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
+  exit 1
+}
+
+ln -sf /opt/supermarket/bin/supermarket-ctl /usr/bin || error_exit "Cannot link supermarket-ctl in /usr/bin"
+
+echo
+if [ -e /etc/supermarket/supermarket-running.json ]; then
+  echo -e "\033[1mYou have upgraded Supermarket!\033[0m"
+else
+  echo -e "\033[1mThank you for installing Supermarket!\033[0m"
+fi
+
+echo
+echo "The next step in the process is to run:"
+echo
+echo -e "\033[1;32msupermarket-ctl reconfigure\033[0m\n"
+
+exit 0

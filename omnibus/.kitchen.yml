@@ -1,0 +1,32 @@
+driver:
+  name: vagrant
+  forward_agent: yes
+  customize:
+    cpus: 2
+    memory: 2048
+  synced_folders:
+    - ['.', '/home/vagrant/supermarket']
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: 12.4.1
+
+platforms:
+  - name: ubuntu-10.04
+    run_list: apt::default
+  - name: centos-5.11
+    run_list: yum-epel::default
+  - name: centos-6.7
+    run_list: yum-epel::default
+  - name: centos-7.1
+    run_list: yum-epel::default
+
+suites:
+  - name: default
+    run_list:
+      - omnibus::default
+    attributes:
+      omnibus:
+        build_user:  vagrant
+        build_dir:   /home/vagrant/supermarket
+        install_dir: /opt/supermarket
