@@ -23,7 +23,7 @@ homepage "https://supermarket.getchef.com"
 install_dir "#{default_root}/#{name}"
 
 build_version do
-  source :git, from_dependency: 'supermarket'
+  source :git
   output_format :semver
 end
 build_iteration 1

@@ -15,7 +15,8 @@
 #
 
 name "supermarket"
-default_version "master"
+
+source path: File.expand_path('../../../../src/supermarket', project.filepath)
 
 dependency "bundler"
 dependency "cacerts"
@@ -29,8 +30,6 @@ dependency "ruby"
 dependency "runit"
 dependency "logrotate"
 
-source git: "https://github.com/chef/supermarket.git"
-
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
@@ -43,7 +42,8 @@ build do
   # This fails because we're installing Ruby C extensions in the wrong place!
   bundle "exec rake assets:precompile", env: env.merge('RAILS_ENV' => 'production')
 
-  sync project_dir, "#{install_dir}/embedded/service/supermarket/"
-  delete "#{install_dir}/embedded/service/supermarket/log"
-  delete "#{install_dir}/embedded/service/supermarket/tmp"
+  sync project_dir, "#{install_dir}/embedded/service/supermarket/",
+    exclude: %w( .cookbooks .direnv .envrc .env.* .gitignore .kitchen*
+                 app/assets/**/branding coverage log node_modules pkg
+                 public/system spec tmp )
 end

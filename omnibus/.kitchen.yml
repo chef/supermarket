@@ -5,7 +5,7 @@ driver:
     cpus: 2
     memory: 2048
   synced_folders:
-    - ['.', '/home/vagrant/supermarket']
+    - ['..', '/home/vagrant/supermarket']
 
 provisioner:
   name: chef_zero
