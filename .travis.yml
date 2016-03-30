@@ -6,10 +6,10 @@ addons:
     - libxslt1-dev
     - libxml2-dev
 before_install:
-- bundle config build.nokogiri --use-system-libraries
+- cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle config build.nokogiri --use-system-libraries
 before_script:
 - psql -c 'create database supermarket_test;' -U postgres
-- bundle exec rake db:schema:load
+- cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake db:schema:load
 branches:
   only:
   - master
@@ -20,6 +20,8 @@ cache:
 env:
   global:
     secure: rzoy57s+oxvw27HStU1VNHN7fS525ocQo11bmASbwG5Ax6I4X/dwWofQCoZPoGrXisMw5RQaa7e3bHJpATZsMJC67Sf6gbfSOIYY7tISXuCFh9q/19YPGltdwZkP3OgawEpufA8zcMHzD5nvWNXq4c4TKRdtX6mHQVIAOJ9u6qY=
+  matrix:
+  - COMPONENT=supermarket
 language: ruby
 notifications:
   email: false
@@ -28,9 +30,7 @@ notifications:
 rvm:
 - 2.1.8
 script:
-- bundle exec rake spec
-- bundle exec rake spec:rubocop
-- bundle exec bundle-audit check --update
+- cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake spec:all
 services:
   - redis-server
   - postgresql
