@@ -1,0 +1,3 @@
+files:
+  included:
+    - src/*/{app,lib}/**/*.rb
