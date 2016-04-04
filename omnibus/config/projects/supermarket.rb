@@ -22,10 +22,7 @@ homepage "https://supermarket.getchef.com"
 # and /opt/supermarket on all other platforms
 install_dir "#{default_root}/#{name}"
 
-build_version do
-  source :git
-  output_format :semver
-end
+build_version '2.5.0'
 build_iteration 1
 
 override :postgresql, version: '9.3.6'
