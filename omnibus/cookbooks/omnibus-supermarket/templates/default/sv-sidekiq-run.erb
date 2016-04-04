@@ -1,0 +1,10 @@
+#!/bin/sh
+exec 2>&1
+cd <%= node['supermarket']['app_directory'] %>
+exec chpst \
+       -u <%= node['supermarket']['user'] %> \
+       -P \
+     bundle exec sidekiq \
+       --concurrency <%= node['supermarket']['sidekiq']['concurrency'] %> \
+       --environment production \
+       --timeout <%= node['supermarket']['sidekiq']['timeout'] %>
