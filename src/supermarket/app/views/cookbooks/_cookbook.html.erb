@@ -43,8 +43,10 @@
         <ul class="cookbook_platforms">
           <% if cookbook.supported_platforms.present? %>
             <% cookbook.supported_platforms.each do |platform| %>
-              <li class="cookbook_platform_icon has-tip" title="<%= platform.name %> <%= platform.version_constraint %>" data-icon="<%= supported_platform_icon(platform) %>">
-                <span><%= platform.name %></span>
+              <li class="cookbook_platform_icon">
+                <%= image_tag "platform_#{supported_platform_icon(platform)}.svg",
+                    alt: "#{platform.name} #{platform.version_constraint}",
+                    title: "#{platform.name} #{platform.version_constraint}", height: 16, width: 16, class: "fa" %>
               </li>
             <% end %>
           <% else %>

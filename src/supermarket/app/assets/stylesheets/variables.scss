@@ -84,37 +84,6 @@ $cookbook_partial_sidebar: #dfe6eb;
 $cookbook_partial_sidebar_footer: #dbe2e7;
 
 // Fonts
-
-// Custom Fonts
-/*
-Platform icon letter mapping
-
-A AWS
-B centOS
-C Debian
-D Fedora
-E FreeBSD
-F Linux Mint
-G Mac OSX
-H Oracle
-I Red Hat
-J Scientific
-K SmartOS
-L SUSE
-M Ubuntu
-N Windows
-O Generic
-
-*/
-@font-face {
-  font-family: "platform_icons";
-  src: url(asset-path('platform_icons.woff')) format('woff'),
-       url(asset-path('platform_icons.ttf')) format('truetype'),
-       url(asset-path('platform_icons.svg')) format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
 $default_font: "helvetica neue", helvetica, arial, sans-serif;
 $accent_font: "Montserrat", $default_font;
 $bold: 700;
