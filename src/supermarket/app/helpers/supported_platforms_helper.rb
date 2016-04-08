@@ -27,7 +27,8 @@ module SupportedPlatformsHelper
       'smartos' => 'K',
       'suse' => 'L',
       'ubuntu' => 'M',
-      'windows' => 'N'
+      'windows' => 'N',
+      'zlinux' => 'Z'
     }.fetch(platform.name.parameterize('_'), 'P')
   end
 end
