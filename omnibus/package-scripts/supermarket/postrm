@@ -1,4 +1,9 @@
 #!/bin/sh
+# WARNING: REQUIRES /bin/sh
+# - if you think you are a bash wizard, you probably do not understand
+#   this programming language.  do not touch.
+# - if you are under 40, get peer review from your elders.
+
 cleanup_symlinks() {
   binaries="supermarket-ctl"
   for binary in $binaries; do
