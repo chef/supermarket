@@ -1,2 +1,23 @@
 #!/bin/sh
-rm -f /usr/bin/supermarket-ctl
+# WARNING: REQUIRES /bin/sh
+# - if you think you are a bash wizard, you probably do not understand
+#   this programming language.  do not touch.
+# - if you are under 40, get peer review from your elders.
+
+cleanup_symlinks() {
+  binaries="supermarket-ctl"
+  for binary in $binaries; do
+    rm -f /usr/bin/$binary
+  done
+}
+
+# Clean up binary symlinks if they exist
+# see: http://tickets.opscode.com/browse/CHEF-3022
+#    : https://github.com/chef/supermarket/issues/1265
+if [ ! -f /etc/redhat-release -a ! -f /etc/fedora-release -a ! -f /etc/system-release -a ! -f /etc/SuSE-release ]; then
+  # not a redhat-ish RPM-based system
+  cleanup_symlinks
+elif [ "x$1" = "x0" ]; then
+  # RPM-based system and we're deinstalling rather than upgrading
+  cleanup_symlinks
+fi
