@@ -20,7 +20,12 @@ Supermarket::Application.routes.draw do
       delete 'cookbooks/:cookbook' => 'cookbook_uploads#destroy'
       delete 'cookbooks/:cookbook/versions/:version' => 'cookbook_uploads#destroy_version', constraints: { version: VERSION_PATTERN }
       get 'users/:user' => 'users#show', as: :user
-      post '/cookbook-verisons/evaluation' => 'cookbook_versions#evaluation', as: :cookbook_versions_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
+
+      # This was the original route, which has a misspelling (cookbook-verisons rather than cookbook-versions).  Keeping this here so as not to break anyone who is still depending on the original route.
+      post '/cookbook-verisons/evaluation' => 'cookbook_versions#evaluation', constraints: proc { ROLLOUT.active?(:fieri) }
+
+      # This route has the correct spelling of cookbook-versions
+      post '/cookbook-versions/evaluation' => 'cookbook_versions#evaluation', as: :cookbook_versions_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
 
       get 'tools/:tool' => 'tools#show', as: :tool
       get 'tools' => 'tools#index', as: :tools
