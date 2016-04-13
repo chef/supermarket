@@ -15,6 +15,7 @@
 #
 
 name "supermarket-cookbooks"
+license :project_license
 
 dependency "berkshelf"
 

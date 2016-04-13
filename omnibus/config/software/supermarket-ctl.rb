@@ -15,6 +15,7 @@
 #
 
 name "supermarket-ctl"
+license :project_license
 
 dependency "omnibus-ctl"
 dependency "chef-gem"

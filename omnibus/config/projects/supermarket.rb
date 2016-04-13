@@ -18,6 +18,9 @@ name "supermarket"
 maintainer "Chef Supermarket Team <supermarket@getchef.com>"
 homepage "https://supermarket.getchef.com"
 
+license "Apache-2.0"
+license_file "../LICENSE"
+
 # Defaults to C:/supermarket on Windows
 # and /opt/supermarket on all other platforms
 install_dir "#{default_root}/#{name}"

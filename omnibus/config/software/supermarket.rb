@@ -15,6 +15,7 @@
 #
 
 name "supermarket"
+license :project_license
 
 source path: File.expand_path('../../../../src/supermarket', project.filepath)
 
