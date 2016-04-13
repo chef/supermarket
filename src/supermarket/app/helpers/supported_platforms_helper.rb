@@ -3,31 +3,32 @@ module SupportedPlatformsHelper
   # Determines the correct icon to use for a given platform
   #
   # @example
-  #   platform = SupportedPlatform.new(name: 'ubuntu')
-  #   supported_platform_icon(platform) == 'U'
+  #   platform = SupportedPlatform.new(name: 'mac_os_x_server')
+  #   supported_platform_icon(platform) == 'macosx'
   #
   #
   # @return [String] the icon
   #
   def supported_platform_icon(platform)
     {
-      'aix' => 'O',
-      'amazon' => 'A',
-      'centos' => 'B',
-      'debian' => 'C',
-      'fedora' => 'D',
-      'freebsd' => 'E',
-      'linuxmint' => 'F',
-      'mac_os_x' => 'G',
-      'mac_os_x_server' => 'G',
-      'oracle' => 'H',
-      'opensuse' => 'L',
-      'redhat' => 'I',
-      'scientific' => 'J',
-      'smartos' => 'K',
-      'suse' => 'L',
-      'ubuntu' => 'M',
-      'windows' => 'N'
-    }.fetch(platform.name.parameterize('_'), 'P')
+      'aix' => 'aix',
+      'amazon' => 'aws',
+      'centos' => 'centos',
+      'debian' => 'debian',
+      'fedora' => 'fedora',
+      'freebsd' => 'freebsd',
+      'linuxmint' => 'linuxmint',
+      'mac_os_x' => 'macosx',
+      'mac_os_x_server' => 'macosx',
+      'oracle' => 'oracle',
+      'opensuse' => 'suse',
+      'redhat' => 'redhat',
+      'scientific' => 'scientific',
+      'smartos' => 'smartos',
+      'suse' => 'suse',
+      'ubuntu' => 'ubuntu',
+      'windows' => 'windows',
+      'zlinux' => 'zlinux'
+    }.fetch(platform.name.parameterize('_'), 'generic')
   end
 end
