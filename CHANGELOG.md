@@ -1,5 +1,8 @@
 # Supermarket Changelog
 
+## 2.5.2 (2016-04-14)
+Updates package number in omnibus software definition
+
 ## 2.5.1 (2016-04-14)
 - [#1252] Update deprecation form text
 - [#1253] Refine deprecation form and banner
