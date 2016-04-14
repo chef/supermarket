@@ -22,6 +22,7 @@ module SupportedPlatformsHelper
       'mac_os_x_server' => 'macosx',
       'oracle' => 'oracle',
       'opensuse' => 'suse',
+      'opensuseleap' => 'suse',
       'redhat' => 'redhat',
       'scientific' => 'scientific',
       'smartos' => 'smartos',
