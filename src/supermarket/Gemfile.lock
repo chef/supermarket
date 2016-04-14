@@ -336,6 +336,7 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    rb-readline (0.5.3)
     redcarpet (3.3.2)
     redis (3.2.1)
     redis-actionpack (4.0.0)
@@ -525,6 +526,7 @@ DEPENDENCIES
   pundit
   quiet_assets
   rails (~> 4.1.14)
+  rb-readline
   redcarpet
   redis-rails
   rinku

@@ -19,6 +19,7 @@ gem 'dotenv'
 gem 'octokit', require: false
 gem 'sidekiq', '= 3.4.2' # pinned to version prior to celluloid upgrade that breaks sidetiq
 gem 'tomlrb'
+gem 'rb-readline'
 
 # Pin sprockets to ensure we get the latest security patches. Not pinning this
 # meant that the gem that depended on sprockets was pulling in an old
