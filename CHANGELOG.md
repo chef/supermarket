@@ -1,5 +1,20 @@
 # Supermarket Changelog
 
+## 2.5.1 (2016-04-14)
+- [#1252] Update deprecation form text
+- [#1253] Refine deprecation form and banner
+- [#1255] Bring in omnibus omnibus packager
+- [#1260] Fix badges for CodeClimate and InchCI
+- [#1261] Update Paperclip
+- [#1267] Fix upgrades on RHELish systems
+- [#1268] Add license info to omnibus project
+- [#1264] Add zLinux platform
+- [#1274] Fix Rails console
+- [#1273] Add opensuseleap support
+- [#1272] Make the readme badges SVGs
+- [#1269] Fix seeds with new location of README
+
+
 ## 2.5.0 (2016-03-24)
 - [chef/supermarket#1245] Allow cookbook to be deprecated without specifying
   a replacement. (Closes #1223)
