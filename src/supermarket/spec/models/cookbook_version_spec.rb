@@ -109,7 +109,7 @@ describe CookbookVersion do
 
     context 'when using S3 for cookbook storage' do
       before do
-        Paperclip::Attachment.default_options[:storage] = 's3'
+        allow(Paperclip::Attachment).to receive(:default_options).and_return(storage: 's3')
 
         # Paths for cookbooks are configured in config/initializers/paperclip.rb
         # These variables are set to simulate cookbooks which are configured to
