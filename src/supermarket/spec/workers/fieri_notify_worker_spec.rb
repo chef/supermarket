@@ -13,7 +13,6 @@ describe FieriNotifyWorker do
     expect(result.class).to eql(Net::HTTPOK)
   end
 
-
   context 'setting the correct cookbook artifact url' do
     let(:version) { create(:cookbook_version, cookbook: cookbook) }
 

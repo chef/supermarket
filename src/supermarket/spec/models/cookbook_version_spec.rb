@@ -103,7 +103,7 @@ describe CookbookVersion do
       end
 
       it 'includes the correct cookbook artifact url' do
-        expect(version.cookbook_artifact_url).to eq("#{Supermarket::Host.full_url}#{version.tarball.url.to_s}")
+        expect(version.cookbook_artifact_url).to eq("#{Supermarket::Host.full_url}#{version.tarball.url}")
       end
     end
 
