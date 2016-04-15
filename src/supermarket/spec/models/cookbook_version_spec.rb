@@ -88,4 +88,42 @@ describe CookbookVersion do
       expect(cookbook_version.download_count).to eql(11)
     end
   end
+
+  context '#artifact_url' do
+    let(:cookbook) { create(:cookbook) }
+    let(:version) { create(:cookbook_version, cookbook: cookbook) }
+
+    before do
+      allow(CookbookVersion).to receive(:find).and_return(version)
+    end
+
+    context 'when using S3 for cookbook storage' do
+      it 'includes the correct cookbook artifact url' do
+        expect(version.cookbook_artifact_url).to eq("#{Supermarket::Host.full_url}#{version.tarball.url.to_s}")
+      end
+    end
+
+    context 'when using S3 for cookbook storage' do
+      before do
+        ENV['S3_BUCKET'] = 'mybucket'
+        ENV['S3_ACCESS_KEY_ID'] = '123'
+        ENV['S3_SECRET_ACCESS_KEY'] = '456'
+
+        # Paths for cookbooks are configured in config/initializers/paperclip.rb
+        # These variables are set to simulate cookbooks which are configured to
+        # be stored on S3
+        default_s3_url = "https://s3.amazonaws.com/"
+        s3_path = version.tarball.url.sub(%r{^/system}, '') # S3 cookbook paths do not have /system at the beginning of them
+
+        s3_tarball_url = "#{default_s3_url}#{ENV['S3_BUCKET']}#{s3_path}"
+
+        allow(version).to receive_message_chain(:tarball, :url).and_return(s3_tarball_url)
+      end
+
+      it 'includes the correct cookbook artifact url' do
+        expect(version.cookbook_artifact_url).to include('https://s3.amazonaws.com')
+        expect(version.cookbook_artifact_url).to eq(version.tarball.url.to_s)
+      end
+    end
+  end
 end

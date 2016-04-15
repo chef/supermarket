@@ -21,23 +21,9 @@ class FieriNotifyWorker
     data = {
       'cookbook_name' => cookbook_version.name,
       'cookbook_version' => cookbook_version.version,
-      'cookbook_artifact_url' => cookbook_artifact_url(cookbook_version)
+      'cookbook_artifact_url' => cookbook_version.cookbook_artifact_url
     }
 
     response = Net::HTTP.post_form(uri, data)
-  end
-
- def cookbook_artifact_url(cookbook_version)
-    if s3_configured?
-      cookbook_version.tarball.url
-    else
-      "#{Supermarket::Host.full_url}#{cookbook_version.tarball.url}"
-    end
-  end
-
-  def s3_configured?
-    %w(S3_BUCKET S3_ACCESS_KEY_ID S3_SECRET_ACCESS_KEY).all? do |key|
-      ENV[key].present?
-    end
   end
 end

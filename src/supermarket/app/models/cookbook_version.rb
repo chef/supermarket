@@ -72,6 +72,14 @@ class CookbookVersion < ActiveRecord::Base
     CookbookVersionPlatform.create! supported_platform: platform, cookbook_version: self
   end
 
+  def cookbook_artifact_url
+    if s3_configured?
+      tarball.url
+    else
+      "#{Supermarket::Host.full_url}#{tarball.url}"
+    end
+  end
+
   private
 
   #
@@ -83,6 +91,12 @@ class CookbookVersion < ActiveRecord::Base
       Semverse::Version.new(version)
     rescue Semverse::InvalidVersionFormat
       errors.add(:version, 'is formatted incorrectly')
+    end
+  end
+
+  def s3_configured?
+    %w(S3_BUCKET S3_ACCESS_KEY_ID S3_SECRET_ACCESS_KEY).all? do |key|
+      ENV[key].present?
     end
   end
 end
