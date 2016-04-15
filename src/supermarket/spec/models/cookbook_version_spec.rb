@@ -97,7 +97,11 @@ describe CookbookVersion do
       allow(CookbookVersion).to receive(:find).and_return(version)
     end
 
-    context 'when using S3 for cookbook storage' do
+    context 'when using the filesystem for cookbook storage' do
+      before do
+        expect(Paperclip::Attachment.default_options[:storage]).to eq(:filesystem)
+      end
+
       it 'includes the correct cookbook artifact url' do
         expect(version.cookbook_artifact_url).to eq("#{Supermarket::Host.full_url}#{version.tarball.url.to_s}")
       end
@@ -105,9 +109,7 @@ describe CookbookVersion do
 
     context 'when using S3 for cookbook storage' do
       before do
-        ENV['S3_BUCKET'] = 'mybucket'
-        ENV['S3_ACCESS_KEY_ID'] = '123'
-        ENV['S3_SECRET_ACCESS_KEY'] = '456'
+        Paperclip::Attachment.default_options[:storage] = 's3'
 
         # Paths for cookbooks are configured in config/initializers/paperclip.rb
         # These variables are set to simulate cookbooks which are configured to
