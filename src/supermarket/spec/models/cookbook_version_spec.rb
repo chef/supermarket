@@ -126,6 +126,19 @@ describe CookbookVersion do
         expect(version.cookbook_artifact_url).to include('https://s3.amazonaws.com')
         expect(version.cookbook_artifact_url).to eq(version.tarball.url.to_s)
       end
+
+      context 'when the Supermarket is set to use expiring URLs' do
+        before do
+          ENV['S3_URLS_EXPIRE'] = '10'
+        end
+
+        it 'includes the expiration' do
+          expect(version.tarball).to receive(:expiring_url)
+            .with(ENV['S3_URLS_EXPIRE'])
+
+          version.cookbook_artifact_url
+        end
+      end
     end
   end
 end

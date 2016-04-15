@@ -74,7 +74,7 @@ class CookbookVersion < ActiveRecord::Base
 
   def cookbook_artifact_url
     if Paperclip::Attachment.default_options[:storage] == 's3'
-      tarball.url
+      ENV['S3_URLS_EXPIRE'].present? ? tarball.expiring_url(ENV['S3_URLS_EXPIRE']) : tarball.url
     else
       "#{Supermarket::Host.full_url}#{tarball.url}"
     end
