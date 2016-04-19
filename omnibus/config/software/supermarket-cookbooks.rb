@@ -29,11 +29,11 @@ build do
 
   block do
     open("#{cookbooks_path}/dna.json", "w") do |file|
-      file.write JSON.fast_generate(run_list: ['recipe[omnibus-supermarket::default]'])
+      file.write FFI_Yajl::Encoder.encode(run_list: ['recipe[omnibus-supermarket::default]'])
     end
 
     open("#{cookbooks_path}/show-config.json", "w") do |file|
-      file.write JSON.fast_generate(
+      file.write FFI_Yajl::Encoder.encode(
         run_list: ['recipe[omnibus-supermarket::show_config]']
       )
     end
