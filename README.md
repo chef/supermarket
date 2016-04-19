@@ -118,6 +118,18 @@ where a service is started.
   $ gem install bundler
   ```
 
+1. Make sure you have the Supermarket repo cloned to your machine, then change into that directory
+
+  ```
+  $ cd supermarket-repo
+  ```
+
+1. Then change into the src
+
+  ```
+  $ cd src
+  ```
+
 1. Install required gems:
 
   ```
@@ -147,6 +159,8 @@ where a service is started.
 
 ## Setting up Auth
 Supermarket uses oc-id running on a Chef server to authenticate users to Supermarket.
+
+IF YOU ARE AN INTERNAL CHEF STAFFER - there are some special things we need to do to set you up with oc-id.  Consult the internal wiki on setting up your Supermarket dev environment (or ask a friendly team member!).
 
 NOTE: Authentication currently requires a live chef server running oc-id.  We are working on a solution which would allow a developer to run the authentication locally, stay tuned.
 
