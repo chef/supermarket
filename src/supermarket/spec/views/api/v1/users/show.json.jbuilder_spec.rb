@@ -8,6 +8,7 @@ describe 'api/v1/users/show' do
       last_name: 'McNanny',
       company: 'FannyInternational',
       twitter_username: 'fannyfannyfanny',
+      email: 'fanny@fanny.com',
       irc_nickname: 'fannyfunnyfanny',
       jira_username: 'funnyfannyfunny'
     )
@@ -90,6 +91,11 @@ describe 'api/v1/users/show' do
   it "displays the user's twitter handle" do
     twitter = json_body['twitter']
     expect(twitter).to eql(user.twitter_username)
+  end
+
+  it "displays the user's email account" do 
+    email = json_body['email']
+    expect(email).to eql(user.email)
   end
 
   it "displays the user's irc handle" do
