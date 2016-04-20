@@ -22,7 +22,7 @@
       </li>
     <% end %>
 
-    <% if @user.roles.include?('admin') && @user.email.present? %>
+    <% if current_user.roles.include?('admin') && @user.email.present? %>
       <li class="has-tip" title="<%= posessivize(@user.name) %> Email">
         <a href="mailto:<%= @user.email %>" target="_blank"><i class="fa fa-envelope"></i> <%= @user.email %></a>
       </li>
