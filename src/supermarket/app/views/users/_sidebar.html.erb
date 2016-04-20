@@ -22,6 +22,12 @@
       </li>
     <% end %>
 
+    <% if @user.email.present? %>
+      <li class="has-tip" title="<%= posessivize(@user.name) %> Email">
+        <a href="mailto:<%= @user.email %>" target="_blank"><i class="fa fa-envelope"></i> <%= @user.email %></a>
+      </li>
+    <% end %>
+
     <% @user.accounts.for(:github).each do |account| %>
       <li class="has-tip" title="<%= posessivize(@user.name) %> GitHub Username">
         <a href="https://github.com/<%= account.username %>" target="_blank"><i class="fa fa-github"></i> <%= account.username %></a>
