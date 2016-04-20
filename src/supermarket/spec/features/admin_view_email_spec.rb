@@ -7,7 +7,6 @@ feature 'admin email permissions' do
   scenario 'admin user goes to another users page' do
     sign_in(admin)
     visit user_path(user)
-    follow_relation 'make_admin'
 
     expect(page).to have_content(user.email)
   end
