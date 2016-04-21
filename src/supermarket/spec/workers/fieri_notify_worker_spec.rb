@@ -12,4 +12,22 @@ describe FieriNotifyWorker do
 
     expect(result.class).to eql(Net::HTTPOK)
   end
+
+  context 'setting the correct cookbook artifact url' do
+    let(:version) { create(:cookbook_version, cookbook: cookbook) }
+
+    before do
+      allow(CookbookVersion).to receive(:find).and_return(version)
+
+      stub_request(:post, "http://example.com/").
+       to_return(:status => 200, :body => "", :headers => {})
+    end
+
+    it 'includes the correct cookbook artifact url' do
+      expect(version).to receive(:cookbook_artifact_url)
+
+      worker = FieriNotifyWorker.new
+      worker.perform(version.id)
+    end
+  end
 end
