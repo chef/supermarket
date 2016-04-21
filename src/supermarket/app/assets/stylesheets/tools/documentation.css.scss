@@ -1,0 +1,23 @@
+@import "common";
+@import "foundation/components/grid";
+
+.documentation_info {
+  @include grid-column($columns: 8);
+  background: white;
+  border: 1px solid $cookbook_border;
+  padding: rem-calc(20);
+}
+
+@media #{$small-down} {
+  .documentation_info {
+    @include grid-column($columns: 12);
+  }
+
+  .recently_added_documentation {
+    @include grid-column($columns: 12);
+  }
+}
+
+#extra-spacing {
+  height: rem-calc(140);
+}
