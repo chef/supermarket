@@ -1,10 +1,3 @@
-// var cancelIsClicked = false;
-
-// $(".fa.fa-times").click(function(){
-//   cancelIsClicked = true;
-// });
-
-
 $(function() {
   $(".more-info").click(function() {
     if ($(".announcement_banner_content").is(":hidden")) {
