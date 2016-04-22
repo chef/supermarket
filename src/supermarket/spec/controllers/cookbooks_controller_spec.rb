@@ -291,8 +291,8 @@ describe CookbooksController do
   describe 'GET #directory' do
     before { get :directory }
 
-    it 'assigns @recently_updated_cookbooks' do
-      expect(assigns[:recently_updated_cookbooks]).to_not be_nil
+    it 'assigns @recently_updated_cookbook_versions' do
+      expect(assigns[:recently_updated_cookbook_versions]).to_not be_nil
     end
 
     it 'assigns @most_downloaded_cookbooks' do
