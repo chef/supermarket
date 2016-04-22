@@ -289,10 +289,53 @@ describe CookbooksController do
   end
 
   describe 'GET #directory' do
+    let!(:cookbook_1) do
+      create(
+        :cookbook,
+        name: 'mysql',
+        web_download_count: 1,
+        api_download_count: 100,
+        cookbook_followers_count: 100,
+        updated_at: Time.now
+      )
+    end
+
+    let!(:cookbook_2) do
+      create(
+        :cookbook,
+        name: 'mysql-admin-tools',
+        web_download_count: 1,
+        api_download_count: 50,
+        cookbook_followers_count: 50,
+        updated_at: Time.now - 2.days
+      )
+    end
+
+    let!(:cookbook1_versionA) do 
+      create(
+        :cookbook_version,
+        cookbook: cookbook_1,
+        created_at: Time.now - 1.day
+      )
+    end
+
+    let!(:cookbook2_versionA) do
+      create(
+        :cookbook_version,
+        cookbook: cookbook_2,
+        created_at: Time.now
+      )
+    end
+
     before { get :directory }
 
     it 'assigns @recently_updated_cookbook_versions' do
       expect(assigns[:recently_updated_cookbook_versions]).to_not be_nil
+    end
+
+    it 'orders cookbooks by @recently_updated_cookbook_versions' do 
+      expect(assigns[:recently_updated_cookbook_versions].first).to eq(cookbook2_versionA)
+      expect(assigns[:recently_updated_cookbook_versions].last).to eq(cookbook1_versionA)
     end
 
     it 'assigns @most_downloaded_cookbooks' do
