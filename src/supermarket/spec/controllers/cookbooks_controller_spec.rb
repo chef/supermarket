@@ -327,6 +327,14 @@ describe CookbooksController do
       )
     end
 
+    let(:cookbook2_versionB) do
+      create(
+        :cookbook_version,
+        cookbook: cookbook_2,
+        created_at: Time.now
+      )
+    end
+
     before do
       CookbookVersion.destroy_all
     end
@@ -343,6 +351,16 @@ describe CookbooksController do
 
       expect(assigns[:recently_updated_cookbook_versions].first).to eq(cookbook2_versionA)
       expect(assigns[:recently_updated_cookbook_versions].last).to eq(cookbook1_versionA)
+    end
+
+    it "returns unique cookbooks when ordered by @recently_updated_cookbook_versions" do 
+      cookbook1_versionA
+      cookbook2_versionA
+      cookbook2_versionB
+      get(:directory)
+      
+      expect(assigns[:recently_updated_cookbook_versions]).to include(cookbook1_versionA)
+      expect(assigns[:recently_updated_cookbook_versions].count).to eq 2
     end
 
     it 'assigns @most_downloaded_cookbooks' do
