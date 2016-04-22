@@ -339,28 +339,28 @@ describe CookbooksController do
       CookbookVersion.destroy_all
     end
 
-    it 'assigns @recently_updated_cookbook_versions' do
+    it 'assigns @recently_updated_cookbook' do
       get(:directory)
-      expect(assigns[:recently_updated_cookbook_versions]).to_not be_nil
+      expect(assigns[:recently_updated_cookbooks]).to_not be_nil
     end
 
-    it 'orders cookbooks by @recently_updated_cookbook_versions' do 
+    it 'orders cookbooks by @recently_updated_cookbooks' do 
       cookbook1_versionA
       cookbook2_versionA
       get(:directory)
 
-      expect(assigns[:recently_updated_cookbook_versions].first).to eq(cookbook2_versionA)
-      expect(assigns[:recently_updated_cookbook_versions].last).to eq(cookbook1_versionA)
+      expect(assigns[:recently_updated_cookbooks].first).to eq(cookbook_2)
+      expect(assigns[:recently_updated_cookbooks].last).to eq(cookbook_1)
     end
 
-    it "returns unique cookbooks when ordered by @recently_updated_cookbook_versions" do 
+    it "returns unique cookbooks when ordered by @recently_updated_cookbooks" do 
       cookbook1_versionA
       cookbook2_versionA
       cookbook2_versionB
       get(:directory)
-      
-      expect(assigns[:recently_updated_cookbook_versions]).to include(cookbook1_versionA)
-      expect(assigns[:recently_updated_cookbook_versions].count).to eq 2
+
+      expect(assigns[:recently_updated_cookbooks]).to include(cookbook_1)
+      expect(assigns[:recently_updated_cookbooks].count).to eq 2
     end
 
     it 'assigns @most_downloaded_cookbooks' do
