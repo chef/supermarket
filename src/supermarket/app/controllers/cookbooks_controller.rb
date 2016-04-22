@@ -54,7 +54,7 @@ class CookbooksController < ApplicationController
   # Return the three most recently updated and created cookbooks.
   #
   def directory
-    @recently_updated_cookbooks = Cookbook.
+    @recently_updated_cookbook_versions = Cookbook.
       includes(:cookbook_versions).
       ordered_by('recently_updated').
       limit(5)
