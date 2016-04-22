@@ -311,7 +311,7 @@ describe CookbooksController do
       )
     end
 
-    let!(:cookbook1_versionA) do 
+    let(:cookbook1_versionA) do 
       create(
         :cookbook_version,
         cookbook: cookbook_1,
@@ -319,7 +319,7 @@ describe CookbooksController do
       )
     end
 
-    let!(:cookbook2_versionA) do
+    let(:cookbook2_versionA) do
       create(
         :cookbook_version,
         cookbook: cookbook_2,
@@ -327,34 +327,46 @@ describe CookbooksController do
       )
     end
 
-    before { get :directory }
+    before do
+      CookbookVersion.destroy_all
+    end
 
     it 'assigns @recently_updated_cookbook_versions' do
+      get(:directory)
       expect(assigns[:recently_updated_cookbook_versions]).to_not be_nil
     end
 
     it 'orders cookbooks by @recently_updated_cookbook_versions' do 
+      cookbook1_versionA
+      cookbook2_versionA
+      get(:directory)
+
       expect(assigns[:recently_updated_cookbook_versions].first).to eq(cookbook2_versionA)
       expect(assigns[:recently_updated_cookbook_versions].last).to eq(cookbook1_versionA)
     end
 
     it 'assigns @most_downloaded_cookbooks' do
+      get(:directory)
       expect(assigns[:most_downloaded_cookbooks]).to_not be_nil
     end
 
     it 'assigns @most_followed_cookbooks' do
+      get(:directory)
       expect(assigns[:most_followed_cookbooks]).to_not be_nil
     end
 
     it 'assigns @featured_cookbooks' do
+      get(:directory)
       expect(assigns[:featured_cookbooks]).to_not be_nil
     end
 
     it 'sends cookbook count to the view' do
+      get(:directory)
       expect(assigns[:cookbook_count]).to_not be_nil
     end
 
     it 'sends user count to the view' do
+      get(:directory)
       expect(assigns[:user_count]).to_not be_nil
     end
   end
