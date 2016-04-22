@@ -37,7 +37,7 @@ end
       )
     else
       options = options.merge(
-        url: ':s3_path_url'
+        url: ':s3_domain_url'
       )
     end
 
