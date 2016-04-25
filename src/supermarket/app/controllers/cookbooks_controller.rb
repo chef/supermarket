@@ -54,17 +54,10 @@ class CookbooksController < ApplicationController
   # Return the three most recently updated and created cookbooks.
   #
   def directory
-    recently_updated_cookbook_ids = CookbookVersion.
-      order('created_at DESC').
-      pluck(:cookbook_id).
-      uniq.
-      take(5)
-
-    @recently_updated_cookbooks = []
-
-    recently_updated_cookbook_ids.each do |id|
-      @recently_updated_cookbooks << Cookbook.find(id)
-    end
+    @recently_updated_cookbooks = Cookbook.
+      includes(:cookbook_versions).
+      order('cookbook_versions.created_at DESC').
+      limit(10)
 
     @most_downloaded_cookbooks = Cookbook.
       includes(:cookbook_versions).
