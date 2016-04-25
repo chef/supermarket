@@ -296,7 +296,7 @@ describe CookbooksController do
         web_download_count: 1,
         api_download_count: 100,
         cookbook_followers_count: 100,
-        updated_at: Time.now
+        updated_at: Time.zone.now
       )
     end
 
@@ -307,7 +307,7 @@ describe CookbooksController do
         web_download_count: 1,
         api_download_count: 50,
         cookbook_followers_count: 50,
-        updated_at: Time.now - 2.days
+        updated_at: Time.zone.now - 2.days
       )
     end
 
@@ -315,7 +315,7 @@ describe CookbooksController do
       create(
         :cookbook_version,
         cookbook: cookbook_1,
-        created_at: Time.now - 1.day
+        created_at: Time.zone.now - 1.day
       )
     end
 
@@ -323,7 +323,7 @@ describe CookbooksController do
       create(
         :cookbook_version,
         cookbook: cookbook_2,
-        created_at: Time.now
+        created_at: Time.zone.now
       )
     end
 
@@ -331,7 +331,7 @@ describe CookbooksController do
       create(
         :cookbook_version,
         cookbook: cookbook_2,
-        created_at: Time.now
+        created_at: Time.zone.now
       )
     end
 
@@ -344,7 +344,7 @@ describe CookbooksController do
       expect(assigns[:recently_updated_cookbooks]).to_not be_nil
     end
 
-    it 'orders cookbooks by @recently_updated_cookbooks' do 
+    it 'orders cookbooks by @recently_updated_cookbooks' do
       cookbook1_versionA
       cookbook2_versionA
       get(:directory)
@@ -353,7 +353,7 @@ describe CookbooksController do
       expect(assigns[:recently_updated_cookbooks].last).to eq(cookbook_1)
     end
 
-    it "returns unique cookbooks when ordered by @recently_updated_cookbooks" do 
+    it "returns unique cookbooks when ordered by @recently_updated_cookbooks" do
       cookbook1_versionA
       cookbook2_versionA
       cookbook2_versionB
