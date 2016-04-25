@@ -311,7 +311,7 @@ describe CookbooksController do
       )
     end
 
-    let(:cookbook1_versionA) do 
+    let(:cookbook1_versionA) do
       create(
         :cookbook_version,
         cookbook: cookbook_1,
