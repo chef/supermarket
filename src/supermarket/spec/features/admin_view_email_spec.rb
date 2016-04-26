@@ -17,4 +17,11 @@ feature 'admin email permissions' do
 
     expect(page).to_not have_content(user.email)
   end
+
+
+  scenario 'non-logged-in user goes to a users page' do
+    visit user_path(user)
+
+    expect(page).to_not have_content(user.email)
+  end
 end
