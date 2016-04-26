@@ -30,7 +30,7 @@ notifications:
 rvm:
 - 2.1.8
 script:
-- cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake spec:all
+- cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake spec:travis
 services:
   - redis-server
   - postgresql
