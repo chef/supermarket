@@ -360,7 +360,7 @@ describe CookbooksController do
       get(:directory)
 
       expect(assigns[:recently_updated_cookbooks]).to include(cookbook_1)
-      expect(assigns[:recently_updated_cookbooks].count).to eq 2
+      expect(assigns[:recently_updated_cookbooks].length).to eq 2
     end
 
     it 'assigns @most_downloaded_cookbooks' do
