@@ -21,3 +21,11 @@ You accept and agree to the following terms and conditions for Your present and 
 9. It is Your responsibility to notify the Company when any change is required to the list of designated employees authorized to submit Contributions on behalf of the Corporation, or to the Corporation's Point of Contact with the Company
 
 10. The validity and interpretation of this Agreement shall be governed by, and construed and enforced in accordance with, the laws of the State of Washington applicable to agreements made there (excluding the conflicts of laws rules).  This Agreement embodies the entire agreement and understanding of the parties hereto and supersedes any and all prior agreements, arrangements and understandings relating to the matters provided for herein.  No alteration, waiver, amendment, change or supplement hereto shall be binding or effective unless the same is set forth in writing signed by both parties.
+
+Schedule A
+
+   [Initial list of designated employees.  NB: authorization is not tied to particular Contributions.]
+
+Schedule B
+
+   [Identification of optional concurrent software grant.  Would be left blank or omitted if there is no concurrent software grant.]
