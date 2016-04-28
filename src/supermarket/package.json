@@ -2,11 +2,13 @@
   "name": "supermarket",
   "devDependencies": {
     "chai": "~1.8.1",
-    "karma": "~0.10.2",
+    "karma": "~0.12.1",
     "mocha": "~1.13.0",
-    "karma-mocha": "~0.1.0",
+    "karma-mocha": "~0.2.2",
     "karma-osx-reporter": "0.0.3",
     "karma-spec-reporter": "0.0.6",
+    "karma-phantomjs-launcher": "~1.0.0",
+    "phantomjs-prebuilt": "~2.1",
     "sprockets-chain": "0.0.9"
   }
 }

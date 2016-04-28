@@ -7,6 +7,9 @@ namespace :spec do
     fail unless system 'bundle exec bundle-audit check --update'
   end
 
+  desc 'Tests to run in Travis'
+  task travis: [:spec, :rubocop, :bundle_audit]
+
   desc 'Run RSpec tests and rubocop'
   task all: [:spec, :javascripts, :rubocop, :bundle_audit]
 end
