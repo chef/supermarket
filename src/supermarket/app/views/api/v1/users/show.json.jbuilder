@@ -3,7 +3,6 @@ json.name @user.name
 json.company @user.company
 json.github Array(@github_usernames)
 json.twitter @user.twitter_username
-json.email @user.email
 json.irc @user.irc_nickname
 json.jira @user.jira_username
 json.authorized_to_contribute @user.authorized_to_contribute?

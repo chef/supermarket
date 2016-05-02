@@ -93,11 +93,6 @@ describe 'api/v1/users/show' do
     expect(twitter).to eql(user.twitter_username)
   end
 
-  it "displays the user's email account" do
-    email = json_body['email']
-    expect(email).to eql(user.email)
-  end
-
   it "displays the user's irc handle" do
     irc = json_body['irc']
     expect(irc).to eql(user.irc_nickname)
