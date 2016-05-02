@@ -590,6 +590,13 @@ describe Cookbook do
       expect(cookbook.cookbook_versions.last.readme).to eql('readme')
       expect(cookbook.cookbook_versions.last.readme_extension).to eql('md')
     end
+
+    it 'captures the uploading user id' do
+      user = create(:user)
+      cookbook.publish_version!(params, user)
+
+      expect(cookbook.cookbook_versions.last.user).to_not eql(nil)
+    end
   end
 
   describe '.search' do

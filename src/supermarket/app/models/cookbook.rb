@@ -236,7 +236,7 @@ class Cookbook < ActiveRecord::Base
   #
   # @param params [CookbookUpload::Parameters] the upload parameters
   #
-  def publish_version!(params)
+  def publish_version!(params, user)
     metadata = params.metadata
 
     if metadata.privacy &&
