@@ -45,15 +45,12 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
       render_not_authorized([t('api.error_messages.unauthorized_upload_error')])
     else
       cookbook_upload.finish(current_user) do |errors, cookbook, cookbook_version|
-        puts "one"
         if errors.any?
-          puts "two"
           error(
             error_code: t('api.error_codes.invalid_data'),
             error_messages: errors.full_messages
           )
         else
-          puts "three"
           @cookbook = cookbook
 
           CookbookNotifyWorker.perform_async(cookbook_version.id)

@@ -1,20 +1,13 @@
 require 'spec_helper'
 
 describe Api::V1::CookbookUploadsController do
-  let(:user) { create(:user) }
-  before do
-    allow(subject).to receive(:authenticate_user!) { true }
-    allow(subject).to receive(:current_user) { user }
-  end
-
   describe '#create' do
-    it 'passes current_user to CookbookUpload#finish' do
-      expect_any_instance_of(CookbookUpload).to receive(:finish).with(user)
-      post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
-    end
-
     context 'when the upload succeeds' do
+      let(:user) { create(:user) }
       before do
+        allow(subject).to receive(:authenticate_user!) { true }
+        allow(subject).to receive(:current_user) { user }
+
         allow_any_instance_of(CookbookUpload).
           to receive(:finish).
           and_yield(
@@ -23,6 +16,11 @@ describe Api::V1::CookbookUploadsController do
             double('CookbookVersion', version: '1.1.1', id: 1, cookbook_id: 1)
           )
         auto_authorize!(Cookbook, 'create')
+      end
+
+      it 'passes current_user to CookbookUpload#finish' do
+        expect_any_instance_of(CookbookUpload).to receive(:finish).with(user)
+        post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
       end
 
       it 'sends the cookbook to the view' do
@@ -57,6 +55,9 @@ describe Api::V1::CookbookUploadsController do
 
     context 'when the upload fails' do
       before do
+        allow(subject).to receive(:authenticate_user!) { true }
+        allow(subject).to receive(:current_user) { create(:user) }
+
         errors = ActiveModel::Errors.new([]).tap do |e|
           e.add(:base, 'This cookbook is no good')
         end
@@ -85,6 +86,9 @@ describe Api::V1::CookbookUploadsController do
 
     context 'when the user is not authorized to upload an existing cookbook' do
       before do
+        allow(subject).to receive(:authenticate_user!) { true }
+        allow(subject).to receive(:current_user) { create(:user) }
+
         allow_any_instance_of(CookbookUpload).
           to receive(:finish).
           and_yield(
@@ -128,6 +132,11 @@ describe Api::V1::CookbookUploadsController do
   end
 
   describe '#destroy' do
+    before do
+      allow(subject).to receive(:authenticate_user!) { true }
+      allow(subject).to receive(:current_user) { create(:user) }
+    end
+
     context 'when a cookbook exists' do
       let!(:cookbook) { create(:cookbook) }
       let(:unshare) { delete :destroy, cookbook: cookbook.name, format: :json }
@@ -183,6 +192,11 @@ describe Api::V1::CookbookUploadsController do
   end
 
   describe '#destroy_version' do
+    before do
+      allow(subject).to receive(:authenticate_user!) { true }
+      allow(subject).to receive(:current_user) { create(:user) }
+    end
+
     let!(:cookbook) { create(:cookbook) }
     let!(:cookbook_version) { create(:cookbook_version, cookbook: cookbook) }
     let(:unshare_version) do
