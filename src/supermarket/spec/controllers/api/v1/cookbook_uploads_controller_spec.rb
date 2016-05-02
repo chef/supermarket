@@ -1,12 +1,18 @@
 require 'spec_helper'
 
 describe Api::V1::CookbookUploadsController do
+  let(:user) { create(:user) }
   before do
     allow(subject).to receive(:authenticate_user!) { true }
-    allow(subject).to receive(:current_user) { create(:user) }
+    allow(subject).to receive(:current_user) { user }
   end
 
   describe '#create' do
+    it 'passes current_user to CookbookUpload#finish' do
+      expect_any_instance_of(CookbookUpload).to receive(:finish).with(user)
+      post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+    end
+
     context 'when the upload succeeds' do
       before do
         allow_any_instance_of(CookbookUpload).
