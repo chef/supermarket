@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'tempfile'
 
 describe CookbookUpload do
-  describe '#finish' do
+  describe '#finish(user)' do
     before do
       create(:category, name: 'Other')
     end
@@ -23,7 +23,7 @@ describe CookbookUpload do
       upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
 
       expect do
-        upload.finish
+        upload.finish(user)
       end.to change(user.owned_cookbooks, :count).by(1)
     end
 
@@ -31,11 +31,11 @@ describe CookbookUpload do
       tarball_one = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
       tarball_two = File.open('spec/support/cookbook_fixtures/redis-test-v2.tgz')
 
-      CookbookUpload.new(user, cookbook: cookbook, tarball: tarball_one).finish
+      CookbookUpload.new(user, cookbook: cookbook, tarball: tarball_one).finish(user)
 
       collaborator = create(:user)
 
-      CookbookUpload.new(collaborator, cookbook: cookbook, tarball: tarball_two).finish do |_, result|
+      CookbookUpload.new(collaborator, cookbook: cookbook, tarball: tarball_two).finish(user) do |_, result|
         expect(result.owner).to eql(user)
         expect(result.owner).to_not eql(collaborator)
       end
@@ -45,12 +45,12 @@ describe CookbookUpload do
       tarball_one = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
       tarball_two = File.open('spec/support/cookbook_fixtures/redis-test-v2.tgz')
 
-      CookbookUpload.new(user, cookbook: cookbook, tarball: tarball_one).finish
+      CookbookUpload.new(user, cookbook: cookbook, tarball: tarball_one).finish(user)
 
       update = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball_two)
 
       expect do
-        update.finish
+        update.finish(user)
       end.to_not change(Cookbook, :count)
     end
 
@@ -62,14 +62,14 @@ describe CookbookUpload do
         user,
         cookbook: cookbook,
         tarball: tarball_one
-      ).finish do |_, result|
+      ).finish(user) do |_, result|
         result
       end
 
       update = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball_two)
 
       expect do
-        update.finish
+        update.finish(user)
       end.to change(cookbook_record.cookbook_versions, :count).by(1)
     end
 
@@ -77,7 +77,7 @@ describe CookbookUpload do
       tarball = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
 
       upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
-      errors = upload.finish { |e, _| e }
+      errors = upload.finish(user) { |e, _| e }
 
       expect(errors).to be_empty
     end
@@ -90,7 +90,7 @@ describe CookbookUpload do
 
         tarball = File.open('spec/support/cookbook_fixtures/private-cookbook.tgz')
         upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
-        errors = upload.finish { |e, _| e }
+        errors = upload.finish(user) { |e, _| e }
         expect(errors.full_messages).to include('Private cookbook upload not allowed')
       end
 
@@ -99,7 +99,7 @@ describe CookbookUpload do
 
         tarball = File.open('spec/support/cookbook_fixtures/private-cookbook.tgz')
         upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
-        errors = upload.finish { |e, _| e }
+        errors = upload.finish(user) { |e, _| e }
         expect(errors).to be_empty
       end
     end
@@ -108,7 +108,7 @@ describe CookbookUpload do
       tarball = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
 
       upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
-      version = upload.finish { |_, _, v| v }
+      version = upload.finish(user) { |_, _, v| v }
 
       expect(version).to be_present
     end
@@ -117,14 +117,14 @@ describe CookbookUpload do
       tarball = File.open('spec/support/cookbook_fixtures/readme-no-extension.tgz')
 
       upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
-      version = upload.finish { |_, _, v| v }
+      version = upload.finish(user) { |_, _, v| v }
 
       expect(version).to be_present
     end
 
     it 'yields an error if the cookbook is not valid JSON' do
       upload = CookbookUpload.new(user, cookbook: 'ack!', tarball: 'tarball')
-      errors = upload.finish { |e, _| e }
+      errors = upload.finish(user) { |e, _| e }
 
       expect(errors.full_messages).
         to include(I18n.t('api.error_messages.cookbook_not_json'))
@@ -132,7 +132,7 @@ describe CookbookUpload do
 
     it 'yields an error if the tarball does not seem to be an uploaded File' do
       upload = CookbookUpload.new(user, cookbook: '{}', tarball: 'cool')
-      errors = upload.finish { |e, _| e }
+      errors = upload.finish(user) { |e, _| e }
 
       expect(errors.full_messages).
         to include(I18n.t('api.error_messages.tarball_has_no_path'))
@@ -142,7 +142,7 @@ describe CookbookUpload do
       tarball = File.open('spec/support/cookbook_fixtures/not-actually-gzipped.tgz')
 
       upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
-      errors = upload.finish { |e, _| e }
+      errors = upload.finish(user) { |e, _| e }
 
       expect(errors.full_messages).
         to include(I18n.t('api.error_messages.tarball_not_gzipped'))
@@ -152,7 +152,7 @@ describe CookbookUpload do
       tarball = File.open('spec/support/cookbook_fixtures/corrupted-tarball.tgz')
 
       upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
-      errors = upload.finish { |e, _| e }
+      errors = upload.finish(user) { |e, _| e }
 
       expect(errors.full_messages).
         to include(I18n.t('api.error_messages.tarball_corrupt', error: 'tar is corrupt, name contains null byte'))
@@ -162,7 +162,7 @@ describe CookbookUpload do
       tarball = File.open('spec/support/cookbook_fixtures/no-metadata-or-readme.tgz')
 
       upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
-      errors = upload.finish { |e, _| e }
+      errors = upload.finish(user) { |e, _| e }
 
       expect(errors.full_messages).
         to include(I18n.t('api.error_messages.missing_metadata'))
@@ -172,7 +172,7 @@ describe CookbookUpload do
       tarball = File.open('spec/support/cookbook_fixtures/no-metadata-or-readme.tgz')
 
       upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
-      errors = upload.finish { |e, _| e }
+      errors = upload.finish(user) { |e, _| e }
 
       expect(errors.full_messages).
         to include(I18n.t('api.error_messages.missing_readme'))
@@ -182,7 +182,7 @@ describe CookbookUpload do
       tarball = File.open('spec/support/cookbook_fixtures/zero-length-readme.tgz')
 
       upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
-      errors = upload.finish { |e, _| e }
+      errors = upload.finish(user) { |e, _| e }
 
       expect(errors.full_messages).
         to include(I18n.t('api.error_messages.missing_readme'))
@@ -192,7 +192,7 @@ describe CookbookUpload do
       tarball = File.open('spec/support/cookbook_fixtures/invalid-metadata-json.tgz')
 
       upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
-      errors = upload.finish { |e, _| e }
+      errors = upload.finish(user) { |e, _| e }
 
       expect(errors.full_messages).
         to include(I18n.t('api.error_messages.metadata_not_json'))
@@ -209,7 +209,7 @@ describe CookbookUpload do
       end
 
       upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
-      errors = upload.finish { |e, _| e }
+      errors = upload.finish(user) { |e, _| e }
 
       expect(errors.full_messages).
         to include(I18n.t('api.error_messages.invalid_metadata'))
@@ -226,7 +226,7 @@ describe CookbookUpload do
       end
 
       upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
-      errors = upload.finish { |e, _| e }
+      errors = upload.finish(user) { |e, _| e }
 
       expect(errors.full_messages).
         to include(I18n.t('api.error_messages.invalid_metadata'))
@@ -236,7 +236,7 @@ describe CookbookUpload do
       tarball = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
 
       upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
-      errors = upload.finish { |e, _| e }
+      errors = upload.finish(user) { |e, _| e }
 
       expect(errors.full_messages).to be_empty
     end
@@ -249,7 +249,7 @@ describe CookbookUpload do
         cookbook: '{"category": "Kewl"}',
         tarball: tarball
       )
-      errors = upload.finish { |e, _| e }
+      errors = upload.finish(user) { |e, _| e }
 
       error_message = I18n.t(
         'api.error_messages.non_existent_category',
@@ -263,14 +263,14 @@ describe CookbookUpload do
       tarball = File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
       user = create(:user)
 
-      CookbookUpload.new(user, cookbook: cookbook, tarball: tarball).finish
+      CookbookUpload.new(user, cookbook: cookbook, tarball: tarball).finish(user)
 
       allow_any_instance_of(ActiveRecord::Validations::UniquenessValidator).
         to receive(:validate_each)
 
       upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
 
-      errors = upload.finish { |e, _| e }
+      errors = upload.finish(user) { |e, _| e }
 
       message = %{
         redis-test (0.1.0) already exists. A cookbook's version number must be
@@ -283,7 +283,7 @@ describe CookbookUpload do
     it 'yields an error if any of the associated models have errors' do
       tarball = File.open('spec/support/cookbook_fixtures/invalid-platforms-and-dependencies.tgz')
       upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
-      errors = upload.finish { |e, _| e }
+      errors = upload.finish(user) { |e, _| e }
 
       expect(errors).to_not be_empty
     end
@@ -295,7 +295,7 @@ describe CookbookUpload do
         user,
         cookbook: cookbook,
         tarball: tarball
-      ).finish do |_, result|
+      ).finish(user) do |_, result|
         result
       end
 
@@ -308,7 +308,7 @@ describe CookbookUpload do
       tarball = File.open('spec/support/cookbook_fixtures/with-self-dependency.tgz')
       upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
 
-      expect_any_instance_of(Cookbook).to receive(:publish_version!).with(anything(), user)
+      expect_any_instance_of(Cookbook).to receive(:publish_version!).with(anything, user)
       upload.finish(user)
     end
   end
