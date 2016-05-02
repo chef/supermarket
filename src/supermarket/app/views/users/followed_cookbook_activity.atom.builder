@@ -5,14 +5,14 @@ atom_feed language: 'en-US' do |feed|
   @followed_cookbook_activity.each do |cookbook_version|
     feed.entry cookbook_version, url: cookbook_version_url(cookbook_version.cookbook, cookbook_version.version) do |entry|
       entry.title t('cookbook.activity',
-                    maintainer: cookbook_version.user,
+                    maintainer: cookbook_version.user.name,
                     version: cookbook_version.version,
                     cookbook: cookbook_version.cookbook.name
                    )
       entry.content cookbook_atom_content(cookbook_version), type: 'html'
 
       entry.author do |author|
-        author.name cookbook_version.user
+        author.name cookbook_version.user.name
         author.uri user_url(cookbook_version.user)
       end
     end
