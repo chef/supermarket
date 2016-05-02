@@ -24,7 +24,7 @@ class CookbookUpload
   # @yieldparam cookbook_version [CookbookVersion, nil] the cookbook version, if
   #   the upload succeeds
   #
-  def finish
+  def finish(user)
     result = nil
 
     if valid?
@@ -34,7 +34,7 @@ class CookbookUpload
         cookbook_version = nil
 
         result = cookbook.tap do |book|
-          cookbook_version = book.publish_version!(@params)
+          cookbook_version = book.publish_version!(@params, user)
         end
       rescue ActiveRecord::RecordNotUnique
         metadata = @params.metadata

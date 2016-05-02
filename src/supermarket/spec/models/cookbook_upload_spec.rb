@@ -301,5 +301,15 @@ describe CookbookUpload do
 
       expect(cookbook_record.cookbook_versions.first.cookbook_dependencies.count).to eql(0)
     end
+
+    it 'passes the user to #publish_version' do
+      cookbook2 = create(:cookbook)
+      # allow(CookbookUpload).to receive(:cookbook).and_return(cookbook2)
+      tarball = File.open('spec/support/cookbook_fixtures/with-self-dependency.tgz')
+      upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
+
+      expect_any_instance_of(Cookbook).to receive(:publish_version!).with(anything(), user)
+      upload.finish(user)
+    end
   end
 end
