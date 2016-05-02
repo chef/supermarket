@@ -18,9 +18,9 @@
         <% @followed_cookbook_activity.each do |cookbook_version| %>
           <li>
             <div>
-              <%= link_to gravatar_for(cookbook_version.owner), cookbook_version.user %>
+              <%= link_to gravatar_for(cookbook_version.owner), cookbook_version.published_by %>
               <%= t('cookbook.activity',
-                    maintainer: link_to(cookbook_version.user.name, cookbook_version.user),
+                    maintainer: link_to(cookbook_version.published_by.name, cookbook_version.published_by),
                     version: cookbook_version.version,
                     cookbook: link_to(cookbook_version.name, cookbook_version.cookbook)
                    ).html_safe %>
