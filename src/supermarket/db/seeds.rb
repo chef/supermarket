@@ -266,7 +266,8 @@ if Rails.env.development?
         license: 'MIT',
         tarball: File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz'),
         readme: File.read('../../README.md'),
-        readme_extension: 'md'
+        readme_extension: 'md',
+        user_id: rand(1..User.all.count)
       )
 
       if platforms.key?(name)
