@@ -258,6 +258,7 @@ class Cookbook < ActiveRecord::Base
     transaction do
       cookbook_version = cookbook_versions.build(
         cookbook: self,
+        user: user,
         description: metadata.description,
         license: metadata.license,
         version: metadata.version,
