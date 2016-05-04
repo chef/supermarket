@@ -1,5 +1,16 @@
 # Supermarket Changelog
 
+## 2.6.0 (2016-05-04)
+- [#1289] Upgrade node things
+- [#1292] Schedules in CCLA
+- [#1275] Shrink SVGs
+- [#1284] Hide Announcements
+- [#1281] Make S3 Location Agnostic
+- [#1270] Fieri use with on disk cookbooks
+- [#1278] Add Ubuntu 1204 to Kitchen
+- [#1280] Fix Readme
+- [#1279] Updates for publishing licensing information
+
 ## 2.5.2 (2016-04-14)
 Updates package number in omnibus software definition
 
