@@ -190,6 +190,18 @@ describe Cookbook do
       end
     end
 
+    context 'adding current owner as collaborator checkbox is selected' do
+      it 'should list the current owner as a collaborator' do
+        hank = create(:user)
+        create(:cookbook_collaborator, resourceable: cookbook, user: hank)
+        expect(cookbook.owner).to eql(jimmy)
+        result = cookbook.transfer_ownership(jimmy, hank, true)
+        cookbook.reload
+        expect(cookbook.owner).to eql(hank)
+        expect(cookbook.collaborators.count).to eql(2)
+      end
+    end
+
     context 'adding a new collaborator record' do
       let!(:hank) { create(:user) }
       let!(:cookbook_collaborator) { create(:cookbook_collaborator, resourceable: cookbook, user: hank) }
