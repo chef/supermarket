@@ -82,7 +82,7 @@ class CookbookVersion < ActiveRecord::Base
   end
 
   def published_by
-    user || cookbook.owner
+    user || cookbook.maintainer
   end
 
   private
