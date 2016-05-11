@@ -152,7 +152,7 @@ class Cookbook < ActiveRecord::Base
   # @return [String] a key representing a message to display to the user
   #
 
-  def transfer_ownership(initiator, recipient, add_owner_as_collaborator=false)
+  def transfer_ownership(initiator, recipient, add_owner_as_collaborator = false)
     if initiator.is?(:admin) || collaborator_users.include?(recipient)
       update_attribute(:user_id, recipient.id)
 
