@@ -199,7 +199,7 @@ describe Cookbook do
         cookbook.reload
         expect(cookbook.owner).to eql(hank)
         expect(cookbook.collaborator_users).to include(jimmy)
-        expect(cookbook.collaborators.count).to eql(2)
+        expect(cookbook.collaborators.count).to eql(1)
       end
     end
 
@@ -214,7 +214,7 @@ describe Cookbook do
         end
 
         it 'should create a new collaborator record for the previous owner' do
-          result = cookbook.transfer_ownership(jimmy, hank)
+          result = cookbook.transfer_ownership(jimmy, hank, true)
           cookbook.reload
           expect(cookbook.owner).to eql(hank)
           expect(cookbook.collaborator_users).to include(jimmy)
