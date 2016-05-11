@@ -173,6 +173,7 @@ class Cookbook < ActiveRecord::Base
       transfer_request = OwnershipTransferRequest.create(
         sender: initiator,
         recipient: recipient,
+        # add_owner_as_collaborator: add_owner_as_collaborator,
         cookbook: self
       )
       CookbookMailer.delay.transfer_ownership_email(transfer_request)

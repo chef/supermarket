@@ -62,6 +62,6 @@ class TransferOwnershipController < ApplicationController
   end
 
   def transfer_ownership_params
-    params.require(:cookbook).permit(:user_id).permit(:add_owner_as_collaborator)
+    params.require(:cookbook).permit(:user_id, :add_owner_as_collaborator)
   end
 end
