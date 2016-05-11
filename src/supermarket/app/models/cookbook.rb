@@ -159,13 +159,14 @@ class Cookbook < ActiveRecord::Base
       if add_owner_as_collaborator
         create_new_collaborator(initiator)
       end
+
       delete_old_collaborator(recipient)
       'cookbook.ownership_transfer.done'
     else
       transfer_request = OwnershipTransferRequest.create(
         sender: initiator,
         recipient: recipient,
-        # add_owner_as_collaborator: add_owner_as_collaborator,
+        add_owner_as_collaborator: add_owner_as_collaborator,
         cookbook: self
       )
       CookbookMailer.delay.transfer_ownership_email(transfer_request)

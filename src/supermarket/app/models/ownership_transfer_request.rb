@@ -29,6 +29,9 @@ class OwnershipTransferRequest < ActiveRecord::Base
     return unless accepted.nil?
     update_attribute(:accepted, true)
     cookbook.update_attribute(:user_id, recipient.id)
+    if add_owner_as_collaborator
+      collaborators.where(user_id: initiator.id).first_or_create!
+    end
   end
 
   #

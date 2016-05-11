@@ -11,8 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160502171009) do
 
+ActiveRecord::Schema.define(version: 20160511224519) do
+  
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
@@ -367,13 +368,14 @@ ActiveRecord::Schema.define(version: 20160502171009) do
   end
 
   create_table "ownership_transfer_requests", force: true do |t|
-    t.integer  "cookbook_id",  null: false
-    t.integer  "recipient_id", null: false
-    t.integer  "sender_id",    null: false
-    t.string   "token",        null: false
+    t.integer  "cookbook_id",               null: false
+    t.integer  "recipient_id",              null: false
+    t.integer  "sender_id",                 null: false
+    t.string   "token",                     null: false
     t.boolean  "accepted"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "add_owner_as_collaborator"
   end
 
   add_index "ownership_transfer_requests", ["cookbook_id"], name: "index_ownership_transfer_requests_on_cookbook_id", using: :btree
