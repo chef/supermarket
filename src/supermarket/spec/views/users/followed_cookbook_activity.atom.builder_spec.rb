@@ -66,13 +66,6 @@ describe 'users/followed_cookbook_activity.atom.builder' do
       expect(activity['link']['href']).
         to eql(cookbook_version_url(test_cookbook, test_cookbook.cookbook_versions.first.version))
     end
-
-    it 'displays information about cookbook activity when current_user was nil at creation' do
-      test_cookbook_5_0.user = nil
-      activity = xml_body['feed']['entry'].first
-       expect(activity['author']['name']).to eql(test_cookbook.owner.name)
-       expect(activity['author']['uri']).to eql(user_url(test_cookbook.maintainer))
-    end
   end
 
   describe 'no activity' do

@@ -53,6 +53,29 @@ describe CookbookVersion do
     end
   end
 
+  context '#published_by' do
+    it 'returns the cookbook owner when a cookbook version user_id is nil' do
+      cookbook = create(:cookbook)
+      cookbook_version = build(
+        :cookbook_version,
+        cookbook: cookbook,
+        user_id: nil
+      )
+
+      expect(cookbook_version.published_by).to eq(cookbook.owner)
+    end
+
+    it 'returns the cookbook version owner when a cookbook version user_id is present' do
+      cookbook = create(:cookbook)
+      cookbook_version = build(
+        :cookbook_version,
+        cookbook: cookbook
+      )
+
+      expect(cookbook_version.published_by).to eq(cookbook_version.user)
+    end
+  end
+
   context 'attachments' do
     it { should have_attached_file(:tarball) }
   end
