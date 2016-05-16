@@ -18,7 +18,10 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.1.14.2"
   s.add_dependency "sidekiq"
+  s.add_dependency "dotenv-rails"
+  s.add_dependency "foodcritic"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails", "~> 3.0"
+  s.add_development_dependency "webmock"
 end

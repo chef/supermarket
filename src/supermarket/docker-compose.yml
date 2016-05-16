@@ -1,0 +1,12 @@
+version: '2'
+services:
+  db:
+    image: postgres:9.3
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER
+  cache:
+    image: redis:3.0
+    ports:
+      - "6379:6379"
