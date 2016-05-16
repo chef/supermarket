@@ -254,11 +254,11 @@ describe CookbooksController do
         email: 'jane@example.com'
       )
     end
-    let(:cookbook_follower) do
+    let!(:cookbook_follower) do
       create(
         :cookbook_follower,
-        user_id: another_user.id,
-        cookbook_id: cookbook.id
+        user: another_user,
+        cookbook: cookbook
       )
     end
     before { sign_in user }
@@ -279,11 +279,12 @@ describe CookbooksController do
       end
 
       it 'sends an adoption email to cookbook followers' do
+        cookbook.reload
         Sidekiq::Testing.inline! do
           patch :update, id: cookbook, cookbook: {
             source_url: 'http://example.com/cookbook',
             issues_url: 'http://example.com/cookbook/issues',
-            up_for_adoption: true
+            up_for_adoption: 'true'
           }
           expect(ActionMailer::Base.deliveries.map(&:to).flatten).to include(cookbook_follower.user.email)
         end

@@ -17,4 +17,14 @@ class AdoptionMailer < ActionMailer::Base
 
     mail(to: @to, subject: "Interest in adopting your #{@name} #{@thing}")
   end
+
+  def follower_email(cookbook_or_tool)
+    @name = cookbook_or_tool.name
+    @thing = cookbook_or_tool.class.name.downcase
+    @emails = cookbook_or_tool.followers.pluck(:email)
+
+    @emails.each do |email|
+      mail(to: email, subject: "#{@name} #{@thing} up for adoption")
+    end
+  end
 end
