@@ -1,4 +1,4 @@
-require "net/http"
+require 'open-uri'
 require "rubygems/package"
 require "foodcritic"
 
@@ -57,16 +57,12 @@ class CookbookArtifact
   # @return [Tempfile] the artifact
   #
   def download
-    file = Tempfile.new("archive")
-
-    Net::HTTP.get_response URI.parse(url) do |response|
-      response.read_body do |segment|
-        file.write(segment)
+    File.open(Tempfile.new("archive"), "wb") do |saved_file|
+      open(url, "rb") do |read_file|
+        saved_file.write(read_file.read)
       end
+      saved_file
     end
-
-    file.close
-    file
   end
 
   #
