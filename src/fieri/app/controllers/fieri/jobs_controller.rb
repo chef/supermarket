@@ -15,6 +15,7 @@ module Fieri
       [:cookbook_name, :cookbook_version, :cookbook_artifact_url].each do |param|
         params.require(param)
       end
+      params
     end
   end
 end
