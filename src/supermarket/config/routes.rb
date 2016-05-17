@@ -5,6 +5,8 @@ Supermarket::Application.routes.draw do
     mount MailPreview => 'mail_view'
   end
 
+  mount Fieri::Engine, at: '/fieri'
+
   namespace :api, defaults: { format: :json }  do
     namespace :v1 do
       get 'metrics' => 'metrics#show'
