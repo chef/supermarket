@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 # https://github.com/chef/omnibus-supermarket/blob/master/config/projects/supermarket.rb
 
 gem 'rails', '~> 4.1.14'
+gem 'fieri', path: '../fieri'
 
 gem 'omniauth'
 gem 'omniauth-chef-oauth2'
