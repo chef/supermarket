@@ -14,15 +14,15 @@ describe CookbookArtifact do
 
     describe "#initalize" do
       it "assigns #url" do
-        assert_equal "http://example.com/apache.tar.gz", artifact.url
+        expect(artifact.url).to eq('http://example.com/apache.tar.gz')
       end
 
       it "assigns #archive" do
-        assert artifact.archive.is_a?(Tempfile)
+        expect(artifact.archive).to be_a(File)
       end
 
       it "assigns #directory" do
-        assert_equal File.expand_path("/tmp/cook/somejobid/apache2"), artifact.directory
+        expect(artifact.directory).to eq(File.expand_path("/tmp/cook/somejobid/apache2"))
       end
     end
 
