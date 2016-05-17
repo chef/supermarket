@@ -4,9 +4,10 @@ module Fieri
   class JobsController < ApplicationController
     def create
       CookbookWorker.perform_async(job_params)
-      render text: "ok"
+      render json: { status: 'ok' }.to_json
     rescue ActionController::ParameterMissing => e
-      render status: 400, text: "Error: #{e.message}"
+      render status: 400, json: { status: 'error',
+                                  message: e.message }
     end
 
     private
