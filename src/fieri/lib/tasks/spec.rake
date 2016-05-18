@@ -8,5 +8,5 @@ namespace :spec do
   end
 
   desc 'Run RSpec tests and rubocop'
-  task all: [:spec, :javascripts, :rubocop, :bundle_audit]
+  task all: [:spec, :rubocop, :bundle_audit]
 end
