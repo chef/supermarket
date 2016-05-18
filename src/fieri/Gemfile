@@ -13,5 +13,9 @@ gemspec
 # To use debugger
 # gem 'debugger'
 group :development, :test do
+  gem 'sqlite3'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'webmock'
+  gem 'rubocop'
   gem 'bundler-audit', git: 'https://github.com/rubysec/bundler-audit.git', ref: '4e32fca'
 end
