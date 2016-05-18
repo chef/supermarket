@@ -14,8 +14,8 @@ class CookbookWorker
       feedback, status = cookbook.criticize
 
       Net::HTTP.post_form(
-        URI.parse(ENV['RESULTS_ENDPOINT']),
-        fieri_key: ENV['AUTH_TOKEN'],
+        URI.parse(ENV['FIERI_RESULTS_ENDPOINT']),
+        fieri_key: ENV['FIERI_KEY'],
         cookbook_name: params['cookbook_name'],
         cookbook_version: params['cookbook_version'],
         foodcritic_feedback: feedback,
