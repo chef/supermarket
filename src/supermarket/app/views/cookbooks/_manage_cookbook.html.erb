@@ -31,8 +31,10 @@
         <div class="row collapse">
           <div class="small-9 columns">
             <%= f.hidden_field :user_id, class: 'collaborators', 'data-url' => collaborators_path(ineligible_user_ids: Collaborator.ineligible_owners_for(cookbook).map(&:id)) %>
-            <%= f.label "Select this box to keep the current owner on as a collaborator." %>
-            <%= f.check_box :add_owner_as_collaborator, checked: false %>
+            <h3>
+              <%= f.check_box :add_owner_as_collaborator, checked: false %>
+              <%= f.label "Make current owner a collaborator?" %>
+            </h3>
           </div>
           <div class="small-3 columns">
             <%= f.submit 'Transfer', class: 'button radius postfix' %>
