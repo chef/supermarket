@@ -2,7 +2,7 @@ namespace :fieri do
   namespace :travis do
     desc "Things to run during Travis's before_script phase"
     task :before_script do
-      puts 'Nothing to setup for fieri.'  
+      puts 'Nothing to setup for fieri.'
     end
 
     desc "Tests to run during Travis' script phase"

@@ -1,16 +1,16 @@
-require_dependency "fieri/application_controller"
+require_dependency 'fieri/application_controller'
 
 module Fieri
   class StatusController < ApplicationController
-    require "sidekiq/api"
-    
-    REACHABLE = "REACHABLE"
-    UNKNOWN = "UNKNOWN"
-    UNREACHABLE = "UNREACHABLE"
+    require 'sidekiq/api'
+
+    REACHABLE = 'REACHABLE'.freeze
+    UNKNOWN = 'UNKNOWN'.freeze
+    UNREACHABLE = 'UNREACHABLE'.freeze
 
     def show
-      redis_health = { :status => REACHABLE }
-      sidekiq_health = { :status => REACHABLE }
+      redis_health = { status: REACHABLE }
+      sidekiq_health = { status: REACHABLE }
 
       begin
         Sidekiq::Queue.new.tap do |queue|
@@ -29,7 +29,7 @@ module Fieri
 
         redis_info = Sidekiq.redis(&:info)
 
-        %w[uptime_in_seconds connected_clients used_memory used_memory_peak].each do |key|
+        %w(uptime_in_seconds connected_clients used_memory used_memory_peak).each do |key|
           redis_health.store(key, redis_info.fetch(key, -1).to_i)
         end
       rescue Redis::TimeoutError
@@ -40,17 +40,17 @@ module Fieri
         redis_health.store(:status, UNREACHABLE)
       end
 
-      if redis_health.fetch(:status) == "REACHABLE" &&
-          sidekiq_health.fetch(:status) == "REACHABLE"
-        status = "ok"
-      else
-        status = "not ok"
-      end
+      status = if redis_health.fetch(:status) == 'REACHABLE' &&
+                  sidekiq_health.fetch(:status) == 'REACHABLE'
+                 'ok'
+               else
+                 'not ok'
+               end
 
       response = {
-        "status" => status,
-        "sidekiq" => sidekiq_health,
-        "redis" => redis_health
+        'status' => status,
+        'sidekiq' => sidekiq_health,
+        'redis' => redis_health
       }.to_json
 
       render json: response
