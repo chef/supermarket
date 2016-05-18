@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :cookbook_version do
+    association :user
     description 'An awesome cookbook!'
     license 'MIT'
     sequence(:version) { |n| "1.2.#{n}" }

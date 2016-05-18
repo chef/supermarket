@@ -429,6 +429,7 @@ describe Cookbook do
   end
 
   describe '#publish_version!' do
+    let(:user) { create(:user) }
     def generate_params(opts = {})
       opts.reverse_merge!(
         source_url: 'http://example.com',
@@ -466,7 +467,7 @@ describe Cookbook do
     let(:params) { generate_params }
 
     it 'creates supported platforms from the metadata' do
-      cookbook.publish_version!(params)
+      cookbook.publish_version!(params, user)
       supported_platforms = cookbook.reload.supported_platforms
 
       expect(supported_platforms.map(&:name)).to match_array(%w(debian ubuntu))
@@ -475,7 +476,7 @@ describe Cookbook do
     end
 
     it 'creates cookbook dependencies from the metadata' do
-      cookbook.publish_version!(params)
+      cookbook.publish_version!(params, user)
 
       dependencies = cookbook.reload.cookbook_dependencies
 
@@ -486,25 +487,25 @@ describe Cookbook do
 
     it 'bumps the updated at date' do
       original_date = cookbook.updated_at
-      cookbook.publish_version!(params)
+      cookbook.publish_version!(params, user)
 
       expect(cookbook.updated_at).to be > original_date
     end
 
     it 'sets the source_url attribute on the cookbook' do
-      cookbook.publish_version!(params)
+      cookbook.publish_version!(params, user)
 
       expect(cookbook.source_url).to eql('http://example.com')
     end
 
     it 'sets the issues_url attribute on the cookbook' do
-      cookbook.publish_version!(params)
+      cookbook.publish_version!(params, user)
 
       expect(cookbook.issues_url).to eql('http://example.com/issues')
     end
 
     it 'does not erase source_url or issues_url after they have been set' do
-      cookbook.publish_version!(params)
+      cookbook.publish_version!(params, user)
       expect(cookbook.source_url).to eql('http://example.com')
       expect(cookbook.issues_url).to eql('http://example.com/issues')
 
@@ -514,20 +515,20 @@ describe Cookbook do
         version: '10.0.0'
       )
 
-      cookbook.publish_version!(new_params)
+      cookbook.publish_version!(new_params, user)
       expect(cookbook.source_url).to eql('http://example.com')
       expect(cookbook.issues_url).to eql('http://example.com/issues')
     end
 
     it 'saves the CHANGELOG' do
-      cookbook.publish_version!(params)
+      cookbook.publish_version!(params, user)
 
       expect(cookbook.cookbook_versions.last.changelog).to eql('changelog')
       expect(cookbook.cookbook_versions.last.changelog_extension).to eql('txt')
     end
 
     it 'returns the cookbook version' do
-      cookbook_version = cookbook.publish_version!(params)
+      cookbook_version = cookbook.publish_version!(params, user)
 
       expect(cookbook_version).to eql(cookbook.cookbook_versions.last)
     end
@@ -572,23 +573,29 @@ describe Cookbook do
       let(:params) { generate_params_versions }
 
       it 'sets the chef_versions attribute on the cookbook version' do
-        cookbook.publish_version!(params)
+        cookbook.publish_version!(params, user)
 
         expect(cookbook.cookbook_versions.last.chef_versions).to eq([['12.4.1', '12.4.2'], ['11.2.3', '12.4.3']])
       end
 
       it 'sets the ohai_versions attribute on the cookbook' do
-        cookbook.publish_version!(params)
+        cookbook.publish_version!(params, user)
 
         expect(cookbook.cookbook_versions.last.ohai_versions).to eq([['8.8.1', '8.8.2'], ['8.9.1', '8.9.2']])
       end
     end
 
     it 'saves the README' do
-      cookbook.publish_version!(params)
+      cookbook.publish_version!(params, user)
 
       expect(cookbook.cookbook_versions.last.readme).to eql('readme')
       expect(cookbook.cookbook_versions.last.readme_extension).to eql('md')
+    end
+
+    it 'captures the uploading user id' do
+      cookbook.publish_version!(params, user)
+
+      expect(cookbook.cookbook_versions.last.user).to_not eql(nil)
     end
   end
 

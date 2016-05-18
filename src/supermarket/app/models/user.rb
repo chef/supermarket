@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :contributors
   has_many :organizations, through: :contributors
   has_many :owned_cookbooks, class_name: 'Cookbook', foreign_key: 'user_id'
+  has_many :cookbook_versions
   has_many :collaborators
   has_many :cookbook_followers
   has_many :followed_cookbooks, through: :cookbook_followers, source: :cookbook

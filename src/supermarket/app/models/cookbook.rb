@@ -243,7 +243,7 @@ class Cookbook < ActiveRecord::Base
   #
   # @param params [CookbookUpload::Parameters] the upload parameters
   #
-  def publish_version!(params)
+  def publish_version!(params, user)
     metadata = params.metadata
 
     if metadata.privacy &&
@@ -265,6 +265,7 @@ class Cookbook < ActiveRecord::Base
     transaction do
       cookbook_version = cookbook_versions.build(
         cookbook: self,
+        user: user,
         description: metadata.description,
         license: metadata.license,
         version: metadata.version,
