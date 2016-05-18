@@ -51,8 +51,8 @@ describe CookbookWorker do
         'cookbook_version' => '1.2.0'
       )
 
-      assert Dir.exist?(File.expand_path(Dir.tmpdir, job_id_1))
-      assert Dir.exist?(File.expand_path(Dir.tmpdir, job_id_2))
+      assert Dir.exist?(File.join(Dir.tmpdir, job_id_1))
+      assert Dir.exist?(File.join(Dir.tmpdir, job_id_2))
     end
   end
 end
