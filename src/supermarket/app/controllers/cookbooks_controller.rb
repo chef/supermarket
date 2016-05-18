@@ -55,8 +55,7 @@ class CookbooksController < ApplicationController
   #
   def directory
     @recently_updated_cookbooks = Cookbook.
-      includes(:cookbook_versions).
-      ordered_by('recently_updated').
+      order_by_latest_upload_date.
       limit(5)
     @most_downloaded_cookbooks = Cookbook.
       includes(:cookbook_versions).

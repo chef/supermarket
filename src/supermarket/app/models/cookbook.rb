@@ -32,6 +32,13 @@ class Cookbook < ActiveRecord::Base
     }.fetch(ordering, 'name ASC'))
   }
 
+  scope :order_by_latest_upload_date, lambda {
+    joins(:cookbook_versions)
+    .select('cookbooks.*', 'MAX(cookbook_versions.created_at) AS latest_upload')
+    .group('cookbooks.id')
+    .order('latest_upload DESC')
+  }
+
   scope :owned_by, lambda { |username|
     joins(owner: :chef_account).where('accounts.username = ?', username)
   }

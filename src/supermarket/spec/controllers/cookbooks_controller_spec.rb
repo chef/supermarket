@@ -289,29 +289,102 @@ describe CookbooksController do
   end
 
   describe 'GET #directory' do
-    before { get :directory }
+    let!(:cookbook_1) do
+      create(
+        :cookbook,
+        name: 'mysql',
+        web_download_count: 1,
+        api_download_count: 100,
+        cookbook_followers_count: 100,
+        updated_at: Time.zone.now
+      )
+    end
 
-    it 'assigns @recently_updated_cookbooks' do
+    let!(:cookbook_2) do
+      create(
+        :cookbook,
+        name: 'mysql-admin-tools',
+        web_download_count: 1,
+        api_download_count: 50,
+        cookbook_followers_count: 50,
+        updated_at: Time.zone.now - 2.days
+      )
+    end
+
+    let(:cookbook1_versionA) do
+      create(
+        :cookbook_version,
+        cookbook: cookbook_1,
+        created_at: Time.zone.now - 1.day
+      )
+    end
+
+    let(:cookbook2_versionA) do
+      create(
+        :cookbook_version,
+        cookbook: cookbook_2,
+        created_at: Time.zone.now
+      )
+    end
+
+    let(:cookbook2_versionB) do
+      create(
+        :cookbook_version,
+        cookbook: cookbook_2,
+        created_at: Time.zone.now
+      )
+    end
+
+    before do
+      CookbookVersion.destroy_all
+    end
+
+    it 'assigns @recently_updated_cookbook' do
+      get(:directory)
       expect(assigns[:recently_updated_cookbooks]).to_not be_nil
     end
 
+    it 'orders cookbooks by @recently_updated_cookbooks' do
+      cookbook1_versionA
+      cookbook2_versionA
+      get(:directory)
+
+      expect(assigns[:recently_updated_cookbooks].first).to eq(cookbook_2)
+      expect(assigns[:recently_updated_cookbooks].last).to eq(cookbook_1)
+    end
+
+    it "returns unique cookbooks when ordered by @recently_updated_cookbooks" do
+      cookbook1_versionA
+      cookbook2_versionA
+      cookbook2_versionB
+      get(:directory)
+
+      expect(assigns[:recently_updated_cookbooks]).to include(cookbook_1)
+      expect(assigns[:recently_updated_cookbooks].length).to eq 2
+    end
+
     it 'assigns @most_downloaded_cookbooks' do
+      get(:directory)
       expect(assigns[:most_downloaded_cookbooks]).to_not be_nil
     end
 
     it 'assigns @most_followed_cookbooks' do
+      get(:directory)
       expect(assigns[:most_followed_cookbooks]).to_not be_nil
     end
 
     it 'assigns @featured_cookbooks' do
+      get(:directory)
       expect(assigns[:featured_cookbooks]).to_not be_nil
     end
 
     it 'sends cookbook count to the view' do
+      get(:directory)
       expect(assigns[:cookbook_count]).to_not be_nil
     end
 
     it 'sends user count to the view' do
+      get(:directory)
       expect(assigns[:user_count]).to_not be_nil
     end
   end
