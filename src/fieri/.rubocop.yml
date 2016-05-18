@@ -1,0 +1,35 @@
+inherit_from: .rubocop_todo.yml
+Rails:
+  Enabled: true
+AllCops:
+  TargetRubyVersion: 2.1
+  Exclude:
+    - db/**/*
+    - vendor/**/*
+    - node_modules/**/*
+IfUnlessModifier:
+  Enabled: false
+Loop:
+  Enabled: false
+ClassLength:
+  Enabled: false
+LineLength:
+  Enabled: false
+MethodLength:
+  Enabled: false
+SignalException:
+  Enabled: false
+Documentation:
+  Enabled: false
+DotPosition:
+  Enabled: false
+RedundantBegin:
+  Enabled: false
+EachWithObject:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Style/NumericLiterals:
+  Enabled: false
+Style/RaiseArgs:
+  Enabled: false

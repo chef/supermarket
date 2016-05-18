@@ -1,6 +1,6 @@
 require 'open-uri'
-require "rubygems/package"
-require "foodcritic"
+require 'rubygems/package'
+require 'foodcritic'
 
 class CookbookArtifact
   #
@@ -17,7 +17,7 @@ class CookbookArtifact
   #
   def initialize(url, jid)
     @url = url
-    @job_id = jid || "nojobid"
+    @job_id = jid || 'nojobid'
     @work_dir = File.join(Dir.tmpdir, job_id)
     @archive = download
     @directory = unarchive
@@ -30,14 +30,14 @@ class CookbookArtifact
   # @return [String] the would be command line out from FoodCritic
   #
   def criticize
-    args = [directory, "-f #{ENV["FOODCRITIC_FAIL_TAGS"]}"]
-    ENV["FOODCRITIC_TAGS"].split.each do |tag|
+    args = [directory, "-f #{ENV['FOODCRITIC_FAIL_TAGS']}"]
+    ENV['FOODCRITIC_TAGS'].split.each do |tag|
       args.push("-t #{tag}")
-    end if ENV["FOODCRITIC_TAGS"]
+    end if ENV['FOODCRITIC_TAGS']
     cmd = FoodCritic::CommandLine.new(args)
     result, _status = FoodCritic::Linter.run(cmd)
 
-    return result.to_s, result.failed?
+    [result.to_s, result.failed?]
   end
 
   #
@@ -47,7 +47,7 @@ class CookbookArtifact
   # @return [Fixnum] the status code from the operation
   #
   def cleanup
-    FileUtils.remove_dir(work_dir, :force => false)
+    FileUtils.remove_dir(work_dir, force: false)
   end
 
   private
@@ -58,8 +58,8 @@ class CookbookArtifact
   # @return [Tempfile] the artifact
   #
   def download
-    File.open(Tempfile.new("archive"), "wb") do |saved_file|
-      open(url, "rb") do |read_file|
+    File.open(Tempfile.new('archive'), 'wb') do |saved_file|
+      open(url, 'rb') do |read_file|
         saved_file.write(read_file.read)
       end
       saved_file
@@ -74,7 +74,7 @@ class CookbookArtifact
   #
   def unarchive
     Gem::Package::TarReader.new(Zlib::GzipReader.open(archive.path)) do |tar|
-      root = File.expand_path(work_dir, tar.first.header.name.split("/")[0])
+      root = File.expand_path(work_dir, tar.first.header.name.split('/')[0])
       tar.rewind
 
       tar.each do |entry|
@@ -85,7 +85,7 @@ class CookbookArtifact
 
         FileUtils.mkdir_p destination_dir unless File.directory?(destination_dir)
 
-        file = File.open(destination_file, "w+")
+        file = File.open(destination_file, 'w+')
         file << entry.read
         file.close
       end

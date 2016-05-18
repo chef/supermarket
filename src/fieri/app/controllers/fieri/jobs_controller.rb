@@ -1,4 +1,4 @@
-require_dependency "fieri/application_controller"
+require_dependency 'fieri/application_controller'
 
 module Fieri
   class JobsController < ApplicationController

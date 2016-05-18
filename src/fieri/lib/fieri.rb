@@ -1,4 +1,4 @@
-require "fieri/engine"
+require 'fieri/engine'
 
 module Fieri
 end

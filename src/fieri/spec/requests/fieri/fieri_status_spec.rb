@@ -1,20 +1,19 @@
 require 'rails_helper'
 
-RSpec.describe "Jobs", type: :request do
-  describe "GET /status" do
-    describe "when a valid job is posted" do
-      let(:valid_params) {
-        { cookbook_name: "redis",
-          cookbook_version: "1.2.0",
-          cookbook_artifact_url: "http://example.com/apache.tar.gz"
-        }
-      }
-      it "should return a 200" do
+RSpec.describe 'Jobs', type: :request do
+  describe 'GET /status' do
+    describe 'when a valid job is posted' do
+      let(:valid_params) do
+        { cookbook_name: 'redis',
+          cookbook_version: '1.2.0',
+          cookbook_artifact_url: 'http://example.com/apache.tar.gz' }
+      end
+      it 'should return a 200' do
         get fieri.status_path
         expect(response).to have_http_status(200)
       end
 
-      it "should return the status" do
+      it 'should return the status' do
         Sidekiq::Worker.clear_all
         Sidekiq::Queue.new.clear
         Sidekiq::Testing.disable! do
