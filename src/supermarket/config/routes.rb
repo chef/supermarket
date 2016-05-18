@@ -5,7 +5,7 @@ Supermarket::Application.routes.draw do
     mount MailPreview => 'mail_view'
   end
 
-  mount Fieri::Engine, at: '/fieri'
+  mount Fieri::Engine, at: '/fieri', constraints: proc { ROLLOUT.active?(:fieri) }
 
   namespace :api, defaults: { format: :json }  do
     namespace :v1 do
