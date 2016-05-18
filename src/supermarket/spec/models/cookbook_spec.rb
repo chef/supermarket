@@ -195,7 +195,8 @@ describe Cookbook do
         hank = create(:user)
         create(:cookbook_collaborator, resourceable: cookbook, user: hank)
         expect(cookbook.owner).to eql(jimmy)
-        result = cookbook.transfer_ownership(jimmy, hank, true)
+        expect(cookbook.collaborator_users).to_not include(jimmy)
+        cookbook.transfer_ownership(jimmy, hank, true)
         cookbook.reload
         expect(cookbook.owner).to eql(hank)
         expect(cookbook.collaborator_users).to include(jimmy)
