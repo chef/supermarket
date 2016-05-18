@@ -8,6 +8,7 @@ describe 'api/v1/users/show' do
       last_name: 'McNanny',
       company: 'FannyInternational',
       twitter_username: 'fannyfannyfanny',
+      email: 'fanny@fanny.com',
       irc_nickname: 'fannyfunnyfanny',
       jira_username: 'funnyfannyfunny'
     )
