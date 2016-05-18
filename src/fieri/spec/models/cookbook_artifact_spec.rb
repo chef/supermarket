@@ -22,7 +22,7 @@ describe CookbookArtifact do
       end
 
       it "assigns #directory" do
-        expect(artifact.directory).to eq(File.expand_path("/tmp/cook/somejobid/apache2"))
+        expect(artifact.directory).to eq(File.expand_path(artifact.work_dir,'apache2'))
       end
     end
 
@@ -38,7 +38,7 @@ describe CookbookArtifact do
     describe "#clean" do
       it "deletes the artifacts unarchived directory" do
         artifact.cleanup
-        assert !Dir.exist?("/tmp/cook/#{artifact.job_id}")
+        assert !Dir.exist?(artifact.work_dir)
       end
     end
   end
