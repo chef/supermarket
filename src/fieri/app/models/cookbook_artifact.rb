@@ -74,7 +74,7 @@ class CookbookArtifact
   #
   def unarchive
     Gem::Package::TarReader.new(Zlib::GzipReader.open(archive.path)) do |tar|
-      root = File.expand_path(work_dir, tar.first.header.name.split('/')[0])
+      root = File.join(work_dir, tar.first.header.name.split('/')[0])
       tar.rewind
 
       tar.each do |entry|

@@ -22,7 +22,7 @@ describe CookbookArtifact do
       end
 
       it 'assigns #directory' do
-        expect(artifact.directory).to eq(File.expand_path(artifact.work_dir, 'apache2'))
+        expect(artifact.directory).to eq(File.join(artifact.work_dir, 'apache2'))
       end
     end
 
