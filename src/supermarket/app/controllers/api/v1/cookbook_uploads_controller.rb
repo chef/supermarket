@@ -44,7 +44,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
     rescue
       render_not_authorized([t('api.error_messages.unauthorized_upload_error')])
     else
-      cookbook_upload.finish(current_user) do |errors, cookbook, cookbook_version|
+      cookbook_upload.finish do |errors, cookbook, cookbook_version|
         if errors.any?
           error(
             error_code: t('api.error_codes.invalid_data'),

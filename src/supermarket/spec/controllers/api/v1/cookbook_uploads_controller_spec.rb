@@ -19,7 +19,7 @@ describe Api::V1::CookbookUploadsController do
       end
 
       it 'passes current_user to CookbookUpload#finish' do
-        expect_any_instance_of(CookbookUpload).to receive(:finish).with(user)
+        expect_any_instance_of(CookbookUpload).to receive(:finish)
         post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
       end
 
