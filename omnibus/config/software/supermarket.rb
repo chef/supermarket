@@ -30,9 +30,12 @@ dependency "redis"
 dependency "ruby"
 dependency "runit"
 dependency "logrotate"
+dependency "fieri"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
+
+  bundle "package --all --no-install"
 
   bundle "install" \
          " --jobs #{workers}" \
