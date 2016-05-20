@@ -133,8 +133,8 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
     rescue VersionMustExist
       error({ error_code: t('api.error_codes.conflict'),
               error_messages: [t('api.error_messages.only_cookbook_version')],
-              error: t('api.error_messages.only_cookbook_version')},
-              409)
+              error: t('api.error_messages.only_cookbook_version') },
+            409)
     rescue
       error({}, 403)
     else
