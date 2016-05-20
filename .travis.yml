@@ -14,8 +14,8 @@ branches:
   - master
 bundler_args: "--without development --jobs 7"
 cache:
-- apt
-- bundler
+  apt: true
+  bundler: true
   directories:
     - $TRAVIS_BUILD_DIR/src/$COMPONENT/vendor/bundle
 env:
