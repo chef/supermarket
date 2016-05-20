@@ -16,6 +16,8 @@ bundler_args: "--without development --jobs 7"
 cache:
 - apt
 - bundler
+  directories:
+    - $TRAVIS_BUILD_DIR/src/$COMPONENT/vendor/bundle
 env:
   global:
     secure: rzoy57s+oxvw27HStU1VNHN7fS525ocQo11bmASbwG5Ax6I4X/dwWofQCoZPoGrXisMw5RQaa7e3bHJpATZsMJC67Sf6gbfSOIYY7tISXuCFh9q/19YPGltdwZkP3OgawEpufA8zcMHzD5nvWNXq4c4TKRdtX6mHQVIAOJ9u6qY=
