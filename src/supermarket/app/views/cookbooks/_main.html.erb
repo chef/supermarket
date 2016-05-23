@@ -1,4 +1,4 @@
-<div class="main" data-equalizer-watch>
+<div class="main">
   <% if cookbook.deprecated? %>
     <div class="deprecation-notice">
       <h2 class="deprecation-copy">
@@ -61,11 +61,9 @@
       <dd><a href="#changelog" rel="changelog">Changelog</a></dd>
     <% end %>
     <% if ROLLOUT.active?(:fieri) %>
-      <% unless version.foodcritic_failure.nil? %>
-        <dd>
-          <a href="#quality" rel="quality">Quality</a>
-        </dd>
-      <% end %>
+      <dd>
+        <a href="#quality" rel="quality">Quality</a>
+      </dd>
     <% end %>
   </dl>
   <div class="tabs-content">
@@ -113,15 +111,17 @@
       </div>
     <% end %>
     <% if ROLLOUT.active?(:fieri) %>
-      <% unless version.foodcritic_failure.nil? %>
-        <div class="content" id="foodcritic">
+      <div class="content" id="quality">
+        <% if version.foodcritic_failure.present? %>
           <% if version.foodcritic_feedback.present? %>
             <pre><%= version.foodcritic_feedback.gsub(/\n/, '<br />').html_safe %></pre>
           <% else %>
             <p><%= version.version %> passed <%= link_to 'Foodcritic', 'http://acrmp.github.io/foodcritic', target: '_blank' %>.
           <% end %>
-        </div>
-      <% end %>
+        <% else %>
+          <h2>No quality metric results found.</h2>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>
