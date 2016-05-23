@@ -63,9 +63,7 @@
     <% if ROLLOUT.active?(:fieri) %>
       <% unless version.foodcritic_failure.nil? %>
         <dd>
-          <a href="#foodcritic" rel="foodcritic">Foodcritic
-            <i class="fa <%= version.foodcritic_failure ? 'fa-times' : 'fa-check' %>" title="Foodcritic is <%= version.foodcritic_failure ? 'failing' : 'passing' %>" data-tooltip></i>
-          </a>
+          <a href="#quality" rel="quality">Quality</a>
         </dd>
       <% end %>
     <% end %>
