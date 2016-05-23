@@ -436,6 +436,18 @@ default['supermarket']['s3_bucket'] = nil
 default['supermarket']['s3_secret_access_key'] = nil
 default['supermarket']['cdn_url'] = nil
 
+
+# ### Additional S3 Settings
+# By default, Supermarket will use domain style S3 urls that look like this
+# bucketname.s3.amazonaws.com
+# This style of url will work across all regions
+# If this is set as ':s3_path_url', the S3 urls will look like this
+# s3.amazonaws.com/bucketname.
+# This will only work if the S3 bucket is in N. Virginia.
+# If your S3 bucket name as had "." in it - i.e. "my.bucket.name",
+# you must use the path style url and your S3 bucket must be in N. Virginia
+default['supermarket']['s3_domain_style'] = ':s3_domain_url'
+
 # ### SMTP Settings
 #
 # If none of these are set, the :sendmail delivery method will be used. Using
