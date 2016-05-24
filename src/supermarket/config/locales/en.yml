@@ -103,6 +103,7 @@ en:
       invalid_data: "INVALID_DATA"
       authentication_failed: "AUTHENTICATION_FAILED"
       unauthorized: "UNAUTHORIZED"
+      conflict: "CONFLICT"
     error_messages:
       privacy_violation: 'Private cookbook upload not allowed'
       not_found: "Resource does not exist."
@@ -127,6 +128,7 @@ en:
       unauthorized_post_error: "You are not authorized to POST to this end-point"
       missing_public_key_error: "Before you can perform knife activities that require authentication, you must log into %{current_host} and grant it permission to access your Chef account information."
       negative_parameter: "Start and item parameters must be positive numbers but they are start: %{start} and items: %{items}."
+      only_cookbook_version: "You may not DELETE the only version of a cookbook. A cookbook must have at least one version."
       missing_cookbook_name: "Evaluation POST must contain cookbook_name."
       missing_cookbook_version: "Evaluation POST must contain cookbook_version."
       missing_foodcritic_failure: "Evaluation POST must contain foodcritic_failure."

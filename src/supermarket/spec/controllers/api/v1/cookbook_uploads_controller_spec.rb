@@ -244,6 +244,20 @@ describe Api::V1::CookbookUploadsController do
       end
     end
 
+    context 'when there is only one version of the cookbook remaining' do
+      before { auto_authorize!(Cookbook, 'destroy') }
+
+      it 'returns a 409 with informative error messages' do
+        versions = CookbookVersion.all.pluck(:version)
+        versions.each do |version|
+          delete :destroy_version, cookbook: cookbook, version: version, format: :json
+        end
+
+        expect(response.status.to_i).to eql(409)
+        expect(JSON.parse(response.body)['error']).to eq(I18n.t('api.error_messages.only_cookbook_version'))
+      end
+    end
+
     context 'when a cookbook does not exist' do
       it 'responds with a 404' do
         delete :destroy_version, cookbook: 'mamimi', version: '1.0.0', format: :json

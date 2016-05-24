@@ -7,6 +7,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
 
   attr_reader :current_user
 
+  class VersionMustExist < RuntimeError; end
   #
   # POST /api/v1/cookbooks
   #
@@ -128,6 +129,12 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
 
     begin
       authorize! @cookbook, :destroy?
+      raise VersionMustExist if @cookbook.cookbook_versions.count == 1
+    rescue VersionMustExist
+      error({ error_code: t('api.error_codes.conflict'),
+              error_messages: [t('api.error_messages.only_cookbook_version')],
+              error: t('api.error_messages.only_cookbook_version') },
+            409)
     rescue
       error({}, 403)
     else
