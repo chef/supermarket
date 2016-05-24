@@ -254,8 +254,7 @@ describe Api::V1::CookbookUploadsController do
         end
 
         expect(response.status.to_i).to eql(409)
-        expect(JSON.parse(response.body)["error_code"]).to_not eq(nil)
-        expect(I18n.t('api.error_messages.only_cookbook_version')).to eq('You may not DELETE the only version of a cookbook. A cookbook must have at least one version.')
+        expect(JSON.parse(response.body)['error']).to eq(I18n.t('api.error_messages.only_cookbook_version'))
       end
     end
 
