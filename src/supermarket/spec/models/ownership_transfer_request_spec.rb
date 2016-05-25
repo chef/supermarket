@@ -58,10 +58,10 @@ describe OwnershipTransferRequest do
           sally = cookbook.owner
           jimmy = transfer_request.recipient
           transfer_request.add_owner_as_collaborator = true
-          transfer_request.accept!
           cookbook.reload
-          expect(cookbook.owner).to eql(jimmy)
-          expect(cookbook.collaborators).to include(sally)
+
+          expect { transfer_request.accept! }.
+            to change(cookbook.collaborators, :count).from(0).to(1)
         end
       end
     end
