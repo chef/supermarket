@@ -314,7 +314,8 @@ default['supermarket']['database']['extensions'] = { 'plpgsql' => true, 'pg_trgm
 # use the value from the development environment. Set them to something other
 # than nil to change them.
 
-default['supermarket']['fieri_url'] = nil
+default['supermarket']['fieri_url'] = 'http://localhost:13000/fieri/jobs'
+default['supermarket']['fieri_results_endpoint'] = 'http://localhost:13000/api/v1/cookbook-versions/evaluation'
 default['supermarket']['fieri_key'] = nil
 default['supermarket']['from_email'] = nil
 default['supermarket']['github_access_token'] = nil
@@ -396,7 +397,7 @@ default['supermarket']['seed_cla_data'] = nil
 # * cla: Enable the Contributor License Agreement features
 # * collaborator_groups: Enable collaborator groups, allowing management of collaborators through groups
 # * fieri: Use the fieri service to report on cookbook quality (requires
-#   fieri_url and fieri_key to be set.)
+#   fieri_url, fieri_results_endpoint, and fieri_key to be set.)
 # * github: Enable GitHub integration, used with CLA signing
 # * gravatar: Enable Gravatar integration, used for user avatars
 # * join_ccla: Enable joining of Corporate CLAs
