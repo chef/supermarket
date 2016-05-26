@@ -282,7 +282,7 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
           frank.accounts << create(:account, provider: 'github', username: 'frank')
         end
 
-        it 'assigns a maintainer to a pull request' do
+        it 'does not assign a maintainer to a pull request' do
           repository.maintainers = [thom]
           VCR.use_cassette('pull_request_annotation_assigns_maintainer', record: :once) do
             brett = pull_request.commit_authors.create!(login: 'brettchalupa')
@@ -291,9 +291,9 @@ describe Curry::PullRequestAnnotator, uses_secrets: true do
             annotator = Curry::PullRequestAnnotator.new(pull_request)
             annotator.annotate
 
-            assignee = octokit.issue(repository.full_name, pull_request.number)[:assignee][:login]
-            expect(assignee).to eql('thommay')
-            expect(pull_request.maintainer).to be(thom)
+            assignee = octokit.issue(repository.full_name, pull_request.number)[:assignee]
+            expect(assignee).to be_nil
+            expect(pull_request.maintainer).to be_nil
           end
         end
 
