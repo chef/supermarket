@@ -19,7 +19,7 @@ describe FieriNotifyWorker do
     before do
       allow(CookbookVersion).to receive(:find).and_return(version)
 
-      stub_request(:post, "http://example.com/").
+      stub_request(:post, ENV['FIERI_URL']).
        to_return(:status => 200, :body => "", :headers => {})
     end
 
