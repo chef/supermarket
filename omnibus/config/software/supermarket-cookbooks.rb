@@ -41,7 +41,7 @@ build do
     open("#{cookbooks_path}/solo.rb", "w") do |file|
       file.write <<-EOH.gsub(/^ {8}/, '')
         cookbook_path   "#{cookbooks_path}"
-        file_cache_path "#{cookbooks_path}/cache"
+        cache_path "/var/opt/supermarket/cache"
         verbose_logging true
         ssl_verify_mode :verify_peer
       EOH
