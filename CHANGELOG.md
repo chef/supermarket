@@ -1,5 +1,16 @@
 # Supermarket Changelog
 
+## 2.6.1 (2016-05-31)
+- [#1285] Add documentation route and page for guides, tutorials, and documentation
+- [#1286] "Recently Updated" cookbooks list now refers to  list of recently shipped new versions
+- [#1287] Allow admins to view users' emails
+- [#1290] Fix for disappearing browser when clicking a cookbook's changelog tab
+- [#1293] Changing supermarket activity stream to report correct user for releases
+- [#1306] Do not allow a cookbook version to be destroyed if it is the last version of a cookbook
+- [#1320] Remove PR assignment from Curry
+- [#1299] Move the cache_path into the omnibus var dir to avoid warnings
+- [#1322] Reverts changing paperclip to use path urls
+
 ## 2.6.0 (2016-05-04)
 - [#1289] Upgrade node things
 - [#1292] Schedules in CCLA
