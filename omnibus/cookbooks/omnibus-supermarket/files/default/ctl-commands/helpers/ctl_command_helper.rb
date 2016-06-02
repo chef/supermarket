@@ -1,4 +1,4 @@
-class UserCheckHelper
+class CtlCommandHelper
   attr_accessor :command_name
 
   def initialize(command_name)
@@ -17,6 +17,6 @@ class UserCheckHelper
 
   def exit_failure(msg)
     STDERR.puts msg
-    raise SystemExit.new(1, msg)
+    exit 1
   end
 end

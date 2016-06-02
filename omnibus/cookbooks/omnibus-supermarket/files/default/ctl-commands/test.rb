@@ -4,14 +4,14 @@ require 'optparse'
 # so we want to use the full path when loaded from omnibus-ctl,
 # but we need the local relative path for it to work with rspec
 begin
-  require 'helpers/user_check_helper'
+  require 'helpers/ctl_command_helper'
 rescue LoadError
-  require '/opt/supermarket/embedded/service/omnibus-ctl/helpers/user_check_helper'
+  require '/opt/supermarket/embedded/service/omnibus-ctl/helpers/ctl_command_helper'
 end
 
 add_command 'test', 'Run the Supermarket installation test suite', 2 do
-  user_check = UserCheckHelper.new('test')
-  user_check.must_run_as 'supermarket'
+  cmd_helper = CtlCommandHelper.new('test')
+  cmd_helper.must_run_as 'supermarket'
 
   options = {}
   OptionParser.new do |opts|

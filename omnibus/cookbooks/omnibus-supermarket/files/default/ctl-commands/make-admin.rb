@@ -3,15 +3,15 @@ require 'mixlib/shellout'
 # so we want to use the full path when loaded from omnibus-ctl,
 # but we need the local relative path for it to work with rspec
 begin
-  require 'helpers/user_check_helper'
+  require 'helpers/ctl_command_helper'
 rescue LoadError
-  require '/opt/supermarket/embedded/service/omnibus-ctl/helpers/user_check_helper'
+  require '/opt/supermarket/embedded/service/omnibus-ctl/helpers/ctl_command_helper'
 end
 
 # supermarket-ctl make_admin username
 add_command 'make-admin', 'Make a Supermarket user an admin', 2 do
-  user_check = UserCheckHelper.new('make-admin')
-  user_check.must_run_as 'supermarket'
+  cmd_helper = CtlCommandHelper.new('make-admin')
+  cmd_helper.must_run_as 'supermarket'
 
   # Find username arg
   username = ARGV[3]
