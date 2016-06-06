@@ -151,18 +151,22 @@ class Cookbook < ActiveRecord::Base
   #
   # @return [String] a key representing a message to display to the user
   #
-  def transfer_ownership(initiator, recipient)
+
+  def transfer_ownership(initiator, recipient, add_owner_as_collaborator = false)
     if initiator.is?(:admin) || collaborator_users.include?(recipient)
       update_attribute(:user_id, recipient.id)
 
-      create_new_collaborator(initiator)
-      delete_old_collaborator(recipient)
+      if add_owner_as_collaborator
+        create_new_collaborator(initiator)
+      end
 
+      delete_old_collaborator(recipient)
       'cookbook.ownership_transfer.done'
     else
       transfer_request = OwnershipTransferRequest.create(
         sender: initiator,
         recipient: recipient,
+        add_owner_as_collaborator: add_owner_as_collaborator,
         cookbook: self
       )
       CookbookMailer.delay.transfer_ownership_email(transfer_request)

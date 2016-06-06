@@ -51,6 +51,19 @@ describe OwnershipTransferRequest do
       end
 
       it_should_behave_like 'returning early'
+
+      context 'current owner wants to become a collaborator' do
+        it 'should transfer the ownership and keep the old owner as a collaborator' do
+          cookbook = transfer_request.cookbook
+          sally = cookbook.owner
+          jimmy = transfer_request.recipient
+          transfer_request.add_owner_as_collaborator = true
+          cookbook.reload
+
+          expect { transfer_request.accept! }.
+            to change(cookbook.collaborators, :count).from(0).to(1)
+        end
+      end
     end
 
     describe '#decline!' do

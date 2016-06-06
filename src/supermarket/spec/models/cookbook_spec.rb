@@ -190,44 +190,31 @@ describe Cookbook do
       end
     end
 
-    context 'adding a new collaborator record' do
-      let!(:hank) { create(:user) }
-      let!(:cookbook_collaborator) { create(:cookbook_collaborator, resourceable: cookbook, user: hank) }
-
-      context 'when the owner does NOT exist as a collaborator associated with a group' do
-        before do
-          expect(cookbook.owner).to eql(jimmy)
-          expect(cookbook.collaborator_users).to_not include(jimmy)
-        end
-
-        it 'should create a new collaborator record for the previous owner' do
-          result = cookbook.transfer_ownership(jimmy, hank)
-          cookbook.reload
-          expect(cookbook.owner).to eql(hank)
-          expect(cookbook.collaborator_users).to include(jimmy)
-        end
+    context 'adding current owner as collaborator checkbox is selected' do
+      it 'should list the current owner as a collaborator' do
+        hank = create(:user)
+        create(:cookbook_collaborator, resourceable: cookbook, user: hank)
+        expect(cookbook.owner).to eql(jimmy)
+        expect(cookbook.collaborator_users).to_not include(jimmy)
+        cookbook.transfer_ownership(jimmy, hank, true)
+        cookbook.reload
+        expect(cookbook.owner).to eql(hank)
+        expect(cookbook.collaborator_users).to include(jimmy)
+        expect(cookbook.collaborators.count).to eql(1)
       end
+    end
 
-      context 'when the owner DOES exist as a collaborator associated with a group' do
-        let(:group) { create(:group) }
-        let(:group_collaborator) { create(:cookbook_collaborator, resourceable: cookbook, user: jimmy, group_id: group.id) }
-
-        before do
-          expect(cookbook.collaborators).to include(group_collaborator)
-        end
-
-        it 'does not create a new collaborator record for the previous owner' do
-          expect(cookbook.owner).to eql(jimmy)
-          expect(cookbook.collaborators.where(user: group_collaborator.user).count).to eq(1)
-
-          result = cookbook.transfer_ownership(jimmy, hank)
-
-          cookbook.reload
-          expect(cookbook.owner).to eql(hank)
-          expect(cookbook.collaborators.where(user: group_collaborator.user).count).to eq(1)
-        end
+    context 'adding current owner as collaborator checkbox is not selected' do
+      it 'should not list the current owner as a collaborator' do
+        hank = create(:user)
+        create(:cookbook_collaborator, resourceable: cookbook, user: hank)
+        expect(cookbook.owner).to eql(jimmy)
+        cookbook.transfer_ownership(jimmy, hank, false)
+        cookbook.reload
+        expect(cookbook.owner).to eql(hank)
+        expect(cookbook.collaborator_users).to_not include(jimmy)
+        expect(cookbook.collaborators.count).to eql(0)
       end
-
     end
 
     it 'should create a transfer request if the initiator is not an admin and the recipient is not a collaborator' do

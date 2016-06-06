@@ -11,7 +11,14 @@ class TransferOwnershipController < ApplicationController
     @cookbook = Cookbook.with_name(params[:id]).first!
     authorize! @cookbook, :transfer_ownership?
     recipient = User.find(transfer_ownership_params[:user_id])
-    msg = @cookbook.transfer_ownership(current_user, recipient)
+
+    add_owner_as_collaborator = if params[:cookbook][:add_owner_as_collaborator] == "1"
+                                  true
+                                else
+                                  false
+                                end
+
+    msg = @cookbook.transfer_ownership(current_user, recipient, add_owner_as_collaborator)
     redirect_to @cookbook, notice: t(msg, cookbook: @cookbook.name, user: recipient.username)
   end
 
@@ -61,6 +68,6 @@ class TransferOwnershipController < ApplicationController
   end
 
   def transfer_ownership_params
-    params.require(:cookbook).permit(:user_id)
+    params.require(:cookbook).permit(:user_id, :add_owner_as_collaborator)
   end
 end

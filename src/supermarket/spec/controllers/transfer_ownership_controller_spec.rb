@@ -16,9 +16,19 @@ describe TransferOwnershipController do
       it 'attempts to change the cookbooks owner' do
         expect(cookbook).to receive(:transfer_ownership).with(
           user,
-          new_owner
+          new_owner,
+          false
         ) { 'cookbook.ownership_transfer.done' }
-        put :transfer, id: cookbook, cookbook: { user_id: new_owner.id }
+        put :transfer, id: cookbook, cookbook: { user_id: new_owner.id, add_owner_as_collaborator: "0" }
+      end
+
+      it 'attempts to change the cookbooks owner and save the current owner as a contributor' do
+        expect(cookbook).to receive(:transfer_ownership).with(
+          user,
+          new_owner,
+          true
+        ) { 'cookbook.ownership_transfer.done' }
+        put :transfer, id: cookbook, cookbook: { user_id: new_owner.id, add_owner_as_collaborator: "1" }
       end
 
       it 'redirects back to the cookbook' do
