@@ -32,7 +32,7 @@ module AdoptionHelper
   # @return [String] the URL to link to
   #
   def adoption_url(obj, txt, up)
-    link_to(polymorphic_path(obj, "#{obj.class.name.downcase}" => { up_for_adoption: up }), method: :patch) do
+    link_to(polymorphic_path(obj, "#{obj.class.name.downcase}" => { up_for_adoption: up }), method: :patch, data: { confirm: "Are you sure you want to put this up for adoption?" }) do
       "<i class=\"fa fa-heart\"></i> #{txt}".html_safe
     end
   end
