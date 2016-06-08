@@ -28,3 +28,4 @@ suites:
         test:
           deb_package_path: <%= ENV['SUPERMARKET_DEB'] || false %>
           rpm_package_path: <%= ENV['SUPERMARKET_RPM'] || false %>
+        ingredient_config:

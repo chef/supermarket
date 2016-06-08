@@ -39,6 +39,12 @@ package 'supermarket' do
   end
 end
 
+directory '/etc/supermarket'
+
+file '/etc/supermarket/supermarket.json' do
+  content node['supermarket']['ingredient_config'].to_json
+end
+
 # Remove installed cookbooks and replace them with local versions
 Dir['/opt/supermarket/embedded/cookbooks/*'].each do |dir|
   directory dir do
