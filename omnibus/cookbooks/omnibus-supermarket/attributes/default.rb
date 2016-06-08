@@ -315,7 +315,7 @@ default['supermarket']['database']['extensions'] = { 'plpgsql' => true, 'pg_trgm
 # than nil to change them.
 
 default['supermarket']['fieri_url'] = 'http://localhost:13000/fieri/jobs'
-default['supermarket']['fieri_results_endpoint'] = 'http://localhost:13000/api/v1/cookbook-versions/evaluation'
+default['supermarket']['fieri_results_endpoint'] = 'https://localhost:13000/api/v1/cookbook-versions/evaluation'
 default['supermarket']['fieri_key'] = nil
 default['supermarket']['from_email'] = nil
 default['supermarket']['github_access_token'] = nil
