@@ -1,5 +1,14 @@
 # Supermarket Changelog
 
+## 2.7.0 (2016-06-09)
+- [#1323] Fix platform search wording
+- [#1313] Changes Food Critic tab to Quality tab
+- [#1300] Adds option to add the current owner as a collaborator when transferring ownership
+- [#1324] Add a guard to supermarket specific ctl commands being run as a supermarket service user
+- [#1330] Update nokogiri
+- [#1303] Makes Fieri an engine within the Supermarket code base
+- [#1331] Removes as-supermarket-user guard from '-ctl test' command
+
 ## 2.6.1 (2016-05-31)
 - [#1285] Add documentation route and page for guides, tutorials, and documentation
 - [#1286] "Recently Updated" cookbooks list now refers to  list of recently shipped new versions
