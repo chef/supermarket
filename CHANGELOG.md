@@ -1,5 +1,8 @@
 # Supermarket Changelog
 
+## 2.7.1 (2016-06-10)
+- Same as 2.7.0, increments version number after an error with the build and release of 2.7.0
+
 ## 2.7.0 (2016-06-09)
 - [#1323] Fix platform search wording
 - [#1313] Changes Food Critic tab to Quality tab
