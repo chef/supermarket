@@ -15,4 +15,5 @@ json.metrics do
     end
   end
   json.followers @cookbook.followers.size
+  json.collaborators @cookbook.collaborators.size
 end
