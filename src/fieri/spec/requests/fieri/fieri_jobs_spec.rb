@@ -15,7 +15,7 @@ RSpec.describe 'Jobs', type: :request do
 
       it 'should queue a cookbook worker' do
         expect { post fieri.jobs_path valid_params }
-          .to change { CookbookWorker.jobs.size }
+          .to change { FoodcriticWorker.jobs.size }
           .by(1)
       end
     end

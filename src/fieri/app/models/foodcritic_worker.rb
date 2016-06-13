@@ -1,7 +1,7 @@
 require 'sidekiq'
 require 'net/http'
 
-class CookbookWorker
+class FoodcriticWorker
   include ::Sidekiq::Worker
 
   def perform(params)

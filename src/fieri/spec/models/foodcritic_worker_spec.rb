@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CookbookWorker do
+describe FoodcriticWorker do
   before do
     #
     # Stubs criticize for speed!
@@ -25,7 +25,7 @@ describe CookbookWorker do
   end
 
   it 'sends a post request to the results endpoint' do
-    CookbookWorker.new.perform(
+    FoodcriticWorker.new.perform(
       'cookbook_artifact_url' => 'http://example.com/apache.tar.gz',
       'cookbook_name' => 'apache2',
       'cookbook_version' => '1.2.0'
@@ -39,13 +39,13 @@ describe CookbookWorker do
 
   it 'creates a unique directory for each job to work within' do
     Sidekiq::Testing.inline! do
-      job_id_1 = CookbookWorker.perform_async(
+      job_id_1 = FoodcriticWorker.perform_async(
         'cookbook_artifact_url' => 'http://example.com/apache.tar.gz',
         'cookbook_name' => 'apache2',
         'cookbook_version' => '1.2.0'
       )
 
-      job_id_2 = CookbookWorker.perform_async(
+      job_id_2 = FoodcriticWorker.perform_async(
         'cookbook_artifact_url' => 'http://example.com/apache.tar.gz',
         'cookbook_name' => 'apache2',
         'cookbook_version' => '1.2.0'
