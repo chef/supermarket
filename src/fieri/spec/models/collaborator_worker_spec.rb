@@ -1,14 +1,16 @@
 require 'rails_helper'
 
 describe CollaboratorWorker do
-  before do
-  end
+  let(:cw) { CollaboratorWorker.new() }
 
   it 'calls Supermarket API for collaborator count' do
+    cookbook_name = "greatcookbook"
+    uri = 'https://supermarket.chef.io/api/v1/cookbooks'
+    expect(Net::HTTP).to receive(:post_form).with(uri, cookbook_name)
+    cw.get_collaborators(cookbook_name)
   end
 
   it 'checks whether coookbook version passes collaborator metrics' do
-    cw = CollaboratorWorker.new()
     expect(cw.sufficient_collaborators?(2)).to eql(true)
     expect(cw.sufficient_collaborators?(1)).to eql(false)
   end

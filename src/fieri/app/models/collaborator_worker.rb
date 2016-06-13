@@ -8,6 +8,12 @@ class CollaboratorWorker
     number_of_collaborators > 1 ? true : false
   end
 
+  def get_collaborators(cookbook_name)
+    uri = 'https://supermarket.chef.io/api/v1/cookbooks'
+    data = cookbook_name
+    response = Net::HTTP.post_form(uri, data)
+  end
+
   def perform(params)
     # begin
     #   cookbook = CookbookArtifact.new(params['cookbook_artifact_url'], jid)
