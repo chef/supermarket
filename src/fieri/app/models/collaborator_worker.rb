@@ -8,10 +8,15 @@ class CollaboratorWorker
     number_of_collaborators > 1 ? true : false
   end
 
-  def get_collaborators(cookbook_name)
+  def get_json(cookbook_name)
     uri = 'https://supermarket.chef.io/api/v1/cookbooks'
     data = cookbook_name
     response = Net::HTTP.post_form(uri, data)
+  end
+
+  def get_collaborator_count(json)
+    parsed = JSON.parse(json)
+    parsed["metrics"]["collaborators"]
   end
 
   def perform(params)
