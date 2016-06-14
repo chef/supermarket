@@ -85,6 +85,6 @@ $cookbook_partial_sidebar_footer: #dbe2e7;
 
 // Fonts
 $default_font: "helvetica neue", helvetica, arial, sans-serif;
-$accent_font: "Montserrat", $default_font;
+$accent_font: $default_font;
 $bold: 700;
 $normal: 400;

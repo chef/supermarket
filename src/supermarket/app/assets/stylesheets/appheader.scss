@@ -36,8 +36,6 @@
   width: rem-calc(55);
   z-index: 1;
 
-  &:before { display: block; margin-top: rem-calc(43); }
-
   &:visited { color: adjust-lightness($concrete, 10%); }
   &:hover { color: adjust-lightness($concrete, 20%); }
 }
