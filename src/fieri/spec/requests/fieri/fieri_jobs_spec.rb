@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Jobs', type: :request do
   describe 'POST /fieri_jobs' do
-    describe 'when a valid job is posted' do
+    context 'a valid job is posted' do
       let(:valid_params) do
         { cookbook_name: 'redis',
           cookbook_version: '1.2.0',
@@ -13,10 +13,20 @@ RSpec.describe 'Jobs', type: :request do
         expect(response).to have_http_status(200)
       end
 
-      it 'should queue a cookbook worker' do
-        expect { post fieri.jobs_path valid_params }
-          .to change { FoodcriticWorker.jobs.size }
-          .by(1)
+      describe 'the worker is a FoodcriticWorker' do
+        it 'should queue a Foodcritic worker' do
+          expect { post fieri.jobs_path valid_params }
+            .to change { FoodcriticWorker.jobs.size }
+            .by(1)
+        end
+      end
+
+      describe 'the worker is a CollaboratorWorker' do
+        it 'should queue a CollaboratorWorker' do
+         expect { post fieri.jobs_path valid_params }
+            .to change { CollaboratorWorker.jobs.size }
+            .by(1)
+        end
       end
     end
 
