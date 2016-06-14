@@ -30,7 +30,7 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
   end
 
   #
-  # POST /api/v1/cookbook-verisons/evaluation
+  # POST /api/v1/cookbook-versions/evaluation
   #
   # Take the evaluation results from Fieri and store them on the
   # applicable +CookbookVersion+.

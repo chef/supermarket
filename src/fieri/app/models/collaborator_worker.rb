@@ -9,9 +9,8 @@ class CollaboratorWorker
   end
 
   def get_json(cookbook_name)
-    uri = 'https://supermarket.chef.io/api/v1/cookbooks'
-    data = cookbook_name
-    response = Net::HTTP.post_form(uri, data)
+    uri = URI("https://supermarket.chef.io/api/v1/cookbooks/#{cookbook_name}")
+    response = Net::HTTP.get(uri)
   end
 
   def get_collaborator_count(json)
@@ -19,6 +18,19 @@ class CollaboratorWorker
     parsed["metrics"]["collaborators"]
   end
 
+  def evaluate(cookbook_name)
+    cookbook_json = get_json(cookbook_name)
+    collaborator_count = get_collaborator_count(cookbook_json)
+    sufficient_collaborators?(collaborator_count)
+  end
+
   def perform(params)
+    Net::HTTP.post_form(
+      URI.parse(ENV['FIERI_RESULTS_ENDPOINT']),
+      fieri_key: ENV['FIERI_KEY'],
+      cookbook_name: params['cookbook_name'],
+      collaborator_feedback: evaluate(params['cookbook_name'])
+      # collaborator_failure: status
+    )
   end
 end
