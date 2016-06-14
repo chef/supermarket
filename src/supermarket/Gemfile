@@ -61,6 +61,7 @@ gem 'sass-rails',   '~> 4.0.4'
 gem 'sass-globbing'
 gem 'compass-rails'
 gem 'uglifier',     '~> 2.7'
+gem 'font-awesome-rails'
 
 group :doc do
   gem 'yard', require: false

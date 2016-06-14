@@ -15,7 +15,6 @@
     <link rel="apple-touch-icon" href="<%= image_url('apple-touch-icon.png') %>"/>
     <%= stylesheet_link_tag "application", media: "all" %>
     <% unless Rails.env == 'test' %>
-      <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" %>
       <%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Montserrat:400,700" %>
     <% end %>
     <%= csrf_meta_tags %>
