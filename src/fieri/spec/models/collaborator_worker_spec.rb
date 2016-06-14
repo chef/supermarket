@@ -11,37 +11,7 @@ describe CollaboratorWorker do
   end
 
   it 'parses the json response from supermarket to find collaborators' do
-    json_response = '{
-            "name": "apache2",
-            "maintainer": "johndoe",
-            "description": "Repudiandae et rerum eligendi sequi accusantium pariatur.",
-            "category": "Other",
-            "latest_version": "http://localhost:3000/api/v1/cookbooks/apache2/versions/0.2.0",
-            "external_url": "http://example.com",
-            "source_url": "http://example.com",
-            "issues_url": "http://example.com",
-            "average_rating": null,
-            "created_at": "2016-05-23T21:29:10.855Z",
-            "updated_at": "2016-05-23T21:29:10.855Z",
-            "up_for_adoption": null,
-            "deprecated": false,
-            "foodcritic_failure": null,
-            "versions": [
-            "http://localhost:3000/api/v1/cookbooks/apache2/versions/0.2.0",
-            "http://localhost:3000/api/v1/cookbooks/apache2/versions/0.1.0"
-            ],
-            "metrics": {
-            "downloads": {
-            "total": 0,
-            "versions": {
-            "0.1.0": 0,
-            "0.2.0": 0
-            }
-            },
-            "followers": 0,
-            "collaborators": 2
-            }
-            }'
+    json_response = File.read("spec/support/cookbook_metrics_fixture.json")
 
     allow(Net::HTTP).to receive(:post_form).and_return(json_response)
     expect(cw.get_collaborator_count(json_response)).to eq 2
