@@ -26,7 +26,7 @@ class CollaboratorWorker
 
   def perform(params)
     Net::HTTP.post_form(
-      URI.parse(ENV['FIERI_RESULTS_ENDPOINT']),
+      URI.parse('http://supermarket.getchef.com/api/v1/cookbook-versions/evaluation'),
       fieri_key: ENV['FIERI_KEY'],
       cookbook_name: params['cookbook_name'],
       collaborator_feedback: evaluate(params['cookbook_name'])
