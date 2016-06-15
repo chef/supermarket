@@ -1,5 +1,9 @@
 # Supermarket Changelog
 
+## 2.7.2 (2016-06-15)
+- [#1328] Add pop-up to confirm putting a cookbook up for adoption
+- [#1338] Fix Quality tab not displaying foodcritic feedback when there are no failures
+
 ## 2.7.1 (2016-06-10)
 - Same as 2.7.0, increments version number after an error with the build and release of 2.7.0
 
