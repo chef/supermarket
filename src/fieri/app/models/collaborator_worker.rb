@@ -24,13 +24,17 @@ class CollaboratorWorker
     sufficient_collaborators?(collaborator_count)
   end
 
+  def give_feedback(cookbook_name)
+    evaluate(cookbook_name) ? 'This cookbook has sufficient collaborators.' : 'This cookbook does not have sufficient collaborators.'
+  end
+
   def perform(params)
     Net::HTTP.post_form(
       URI.parse(ENV['FIERI_RESULTS_ENDPOINT']),
       fieri_key: ENV['FIERI_KEY'],
       cookbook_name: params['cookbook_name'],
-      collaborator_feedback: evaluate(params['cookbook_name'])
-      # collaborator_failure: status
+      collaborator_failure: evaluate(params['cookbook_name']),
+      collaborator_feedback: give_feedback(params['cookbook_name'])
     )
   end
 end
