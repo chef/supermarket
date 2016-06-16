@@ -35,7 +35,6 @@ describe CollaboratorWorker do
     )
 
     assert_requested(:post, ENV['FIERI_RESULTS_ENDPOINT'], times: 1) do |req|
-      puts req.body
       req.body =~ /collaborator_failure=true/
       req.body =~ /collaborator_feedback=.+/
     end
