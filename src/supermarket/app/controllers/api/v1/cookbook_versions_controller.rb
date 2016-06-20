@@ -87,7 +87,7 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
 
   private
 
-  def require_evaluatlion_params
+  def require_evaluation_params
     params.require(:fieri_key)
     params.require(:cookbook_name)
     params.require(:cookbook_version)
