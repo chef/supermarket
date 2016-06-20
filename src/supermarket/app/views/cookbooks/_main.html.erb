@@ -112,14 +112,19 @@
     <% end %>
     <% if ROLLOUT.active?(:fieri) %>
       <div class="content" id="quality">
-        <% if version.foodcritic_failure.nil? %>
-          <h2>No quality metric results found.</h2>
-        <% else %>
+        <% if version.foodcritic_failure.present? || version.collaborator_failure.present %>
           <% if version.foodcritic_feedback.present? %>
             <pre><%= version.foodcritic_feedback.gsub(/\n/, '<br />').html_safe %></pre>
           <% else %>
             <p><%= version.version %> passed <%= link_to 'Foodcritic', 'http://acrmp.github.io/foodcritic', target: '_blank' %>.
           <% end %>
+          <% if version.collaborator_feedback.present? %>
+            <pre><%= version.collaborator_feedback.gsub(/\n/, '<br />').html_safe %></pre>
+          <% else %>
+            <p><%= version.version %> passed with more than one collaborator.
+          <% end %>
+        <% else %>
+          <h2>No quality metric results found.</h2>
         <% end %>
       </div>
     <% end %>

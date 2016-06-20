@@ -52,7 +52,9 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
 
       cookbook_version.update(
         foodcritic_failure: params[:foodcritic_failure],
-        foodcritic_feedback: params[:foodcritic_feedback]
+        foodcritic_feedback: params[:foodcritic_feedback],
+        collaborator_failure: params[:collaborator_failure],
+        collaborator_failure: params[:collaborator_failure]
       )
 
       head 200
@@ -75,5 +77,6 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
     params.require(:cookbook_name)
     params.require(:cookbook_version)
     params.require(:foodcritic_failure)
+    params.require(:collaborator_failure)
   end
 end
