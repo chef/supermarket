@@ -9,7 +9,7 @@ class CollaboratorWorker
   end
 
   def get_json(cookbook_name)
-    uri = URI.parse("http://localhost:3000/api/v1/cookbooks/dragons")
+    uri = URI.parse("http://localhost:3000/api/v1/cookbooks/#{cookbook_name}")
     response = Net::HTTP.get(uri)
     return response
   end
@@ -29,13 +29,13 @@ class CollaboratorWorker
     evaluate(cookbook_name) ? 'This cookbook has sufficient collaborators.' : 'This cookbook does not have sufficient collaborators.'
   end
 
-  def perform(params)
+  def perform(cookbook_name)
     Net::HTTP.post_form(
-      URI.parse(ENV['FIERI_RESULTS_ENDPOINT']),
+      URI.parse('http://localhost:3000/api/v1/cookbook-versions/collaborators_evaluation'),
       fieri_key: ENV['FIERI_KEY'],
-      cookbook_name: params['cookbook_name'],
-      collaborator_failure: evaluate(params),
-      collaborator_feedback: give_feedback(params['cookbook_name'])
+      cookbook_name: cookbook_name,
+      collaborator_failure: evaluate(cookbook_name),
+      collaborator_feedback: give_feedback(cookbook_name)
     )
   end
 end

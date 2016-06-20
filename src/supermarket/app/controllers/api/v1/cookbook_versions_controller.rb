@@ -52,9 +52,7 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
 
       cookbook_version.update(
         foodcritic_failure: params[:foodcritic_failure],
-        foodcritic_feedback: params[:foodcritic_feedback],
-        collaborator_failure: params[:collaborator_failure],
-        collaborator_failure: params[:collaborator_failure]
+        foodcritic_feedback: params[:foodcritic_feedback]
       )
 
       head 200
@@ -70,13 +68,34 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
     )
   end
 
+  def collaborators_evaluation
+    require_collaborator_params
+
+    if ENV['FIERI_KEY'] == params['fieri_key']
+      cookbook_version = Cookbook.where(lowercase_name: params[:cookbook_name]).first.cookbook_versions.last
+
+      cookbook_version.update(
+        collaborator_failure: params[:collaborator_failure],
+        collaborator_feedback: params[:collaborator_feedback]
+      )
+
+      head 200
+    else
+      render_not_authorized([t('api.error_messages.unauthorized_post_error')])
+    end
+  end
+
   private
 
-  def require_evaluation_params
+  def require_evaluatlion_params
     params.require(:fieri_key)
     params.require(:cookbook_name)
     params.require(:cookbook_version)
     params.require(:foodcritic_failure)
+  end
+
+  def require_collaborator_params
+    params.require(:cookbook_name)
     params.require(:collaborator_failure)
   end
 end

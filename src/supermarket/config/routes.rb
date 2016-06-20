@@ -27,6 +27,7 @@ Supermarket::Application.routes.draw do
 
       # This route has the correct spelling of cookbook-versions
       post '/cookbook-versions/evaluation' => 'cookbook_versions#evaluation', as: :cookbook_versions_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/cookbook-versions/collaborators_evaluation' => 'cookbook_versions#collaborators_evaluation', as: :cookbook_versions_collaborators_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
 
       get 'tools/:tool' => 'tools#show', as: :tool
       get 'tools' => 'tools#index', as: :tools
