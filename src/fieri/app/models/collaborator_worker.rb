@@ -30,9 +30,6 @@ class CollaboratorWorker
   end
 
   def perform(params)
-    # Sidekiq::Logging.logger.info "FIRING COOKBOOKWORKER#perform"
-    # Sidekiq::Logging.logger.info params.inspect
-    # Sidekiq::Logging.logger.info params['cookbook_name']
     Net::HTTP.post_form(
       URI.parse(ENV['FIERI_RESULTS_ENDPOINT']),
       fieri_key: ENV['FIERI_KEY'],
