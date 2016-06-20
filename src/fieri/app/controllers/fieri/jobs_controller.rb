@@ -4,7 +4,7 @@ module Fieri
   class JobsController < ApplicationController
     def create
       FoodcriticWorker.perform_async(job_params)
-      CollaboratorWorker.perform_async(job_params)
+      CollaboratorWorker.perform_async(collaborator_params)
       render json: { status: 'ok' }.to_json
     rescue ActionController::ParameterMissing => e
       render status: 400, json: { status: 'error',
@@ -18,6 +18,10 @@ module Fieri
         params.require(param)
       end
       params
+    end
+
+    def collaborator_params
+      params.require(:cookbook_name)
     end
   end
 end
