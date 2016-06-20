@@ -11,12 +11,12 @@ class CollaboratorWorker
   def get_json(cookbook_name)
     uri = URI.parse("http://localhost:3000/api/v1/cookbooks/#{cookbook_name}")
     response = Net::HTTP.get(uri)
-    return response
+    response
   end
 
   def get_collaborator_count(json)
     parsed = JSON.parse(json)
-    parsed["metrics"]["collaborators"]
+    parsed['metrics']['collaborators']
   end
 
   def evaluate(cookbook_name)

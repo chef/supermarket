@@ -23,7 +23,7 @@ RSpec.describe 'Jobs', type: :request do
 
       describe 'the worker is a CollaboratorWorker' do
         it 'should queue a CollaboratorWorker' do
-         expect { post fieri.jobs_path valid_params }
+          expect { post fieri.jobs_path valid_params }
             .to change { CollaboratorWorker.jobs.size }
             .by(1)
         end
