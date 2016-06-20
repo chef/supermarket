@@ -186,4 +186,82 @@ describe Api::V1::CookbookVersionsController do
       end
     end
   end
+
+
+  describe '#collaborators_evaluation' do
+    let(:cookbook) { create(:cookbook) }
+    let(:version) { create(:cookbook_version, cookbook: cookbook) }
+
+    context 'the request is authorized' do
+        context 'the required params are provided' do
+          it 'returns a 200' do
+            post(
+              :collaborators_evaluation,
+              cookbook_name: cookbook.name,
+              collaborator_failure: false,
+              collaborator_feedback: 'This cookbook does not have sufficient collaborators.',
+              fieri_key: 'YOUR_FIERI_KEY',
+              format: :json
+            )
+            expect(response.status.to_i).to eql(200)
+          end
+
+          it "updates the cookbook version's collaborator attributes" do
+            post(
+              :collaborators_evaluation,
+              cookbook_name: cookbook.name,
+              cookbook_version: version.to_param,
+              collaborator_failure: false,
+              collaborator_feedback: 'This cookbook does not have sufficient collaborators.',
+              fieri_key: 'YOUR_FIERI_KEY',
+              format: :json
+            )
+
+            expect(version.reload.collaborator_failure).to eql(false)
+            expect(version.reload.collaborator_feedback).to eql('This cookbook does not have sufficient collaborators.')
+          end
+        end
+        context 'the required params are not provided' do
+            it 'returns a 400' do
+              post(
+                :collaborators_evaluation,
+                collaborator_failure: false,
+                collaborator_feedback: '',
+                fieri_key: 'YOUR_FIERI_KEY',
+                format: :json
+              )
+
+              expect(response.status.to_i).to eql(400)
+
+              expect(JSON.parse(response.body)).to eql(
+                'error_code' => I18n.t('api.error_codes.invalid_data'),
+                'error_messages' => [
+                  I18n.t('api.error_messages.missing_cookbook_name')
+                ]
+              )
+            end
+          end
+        end
+
+    context 'the request is not authorized' do
+      it 'renders a 401 error about unauthorized post' do
+        post(
+          :collaborators_evaluation,
+          cookbook_name: cookbook.name,
+          collaborator_failure: true,
+          collaborator_feedback: 'E066',
+          fieri_key: 'not_the_key',
+          format: :json
+        )
+
+        expect(response.status.to_i).to eql(401)
+        expect(JSON.parse(response.body)).to eql(
+          'error_code' => I18n.t('api.error_codes.unauthorized'),
+          'error_messages' => [
+            I18n.t('api.error_messages.unauthorized_post_error')
+          ]
+        )
+      end
+    end
+  end
 end
