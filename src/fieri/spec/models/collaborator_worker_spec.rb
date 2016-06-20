@@ -4,10 +4,10 @@ describe CollaboratorWorker do
   let(:cw) { CollaboratorWorker.new() }
   let(:cookbook_name) { "greatcookbook" }
   let(:json_response) { File.read("spec/support/cookbook_metrics_fixture.json") }
-  let(:uri) { "https://supermarket.chef.io/api/v1/cookbooks/#{cookbook_name}" }
+  let(:uri) { "http://localhost:3000/api/v1/cookbooks/#{cookbook_name}" }
 
   before do
-    stub_request(:get, "https://supermarket.chef.io/api/v1/cookbooks/greatcookbook").
+    stub_request(:get, "http://localhost:3000/api/v1/cookbooks/greatcookbook").
       to_return(:status => 200, :body => json_response, :headers => {})
   end
 
@@ -27,14 +27,12 @@ describe CollaboratorWorker do
   end
 
   it 'sends a post request to the results endpoint' do
-    stub_request(:post, ENV['FIERI_RESULTS_ENDPOINT']).
+    stub_request(:post, 'http://localhost:3000/api/v1/cookbook-versions/collaborators_evaluation').
          to_return(:status => 200, :body => json_response, :headers => {})
 
-    CollaboratorWorker.new.perform(
-      'cookbook_name' => cookbook_name,
-    )
+    CollaboratorWorker.new.perform(cookbook_name)
 
-    assert_requested(:post, ENV['FIERI_RESULTS_ENDPOINT'], times: 1) do |req|
+    assert_requested(:post, 'http://localhost:3000/api/v1/cookbook-versions/collaborators_evaluation', times: 1) do |req|
       req.body =~ /collaborator_failure=true/
       req.body =~ /collaborator_feedback=.+/
     end
