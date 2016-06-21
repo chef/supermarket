@@ -31,7 +31,7 @@ class CollaboratorWorker
 
   def perform(cookbook_name)
     Net::HTTP.post_form(
-      URI.parse('http://localhost:3000/api/v1/cookbook-versions/collaborators_evaluation'),
+      URI.parse(ENV['FIERI_COLLABORATORS_ENDPOINT']),
       fieri_key: ENV['FIERI_KEY'],
       cookbook_name: cookbook_name,
       collaborator_failure: evaluate(cookbook_name),

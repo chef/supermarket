@@ -61,13 +61,6 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
     end
   end
 
-  rescue_from ActionController::ParameterMissing do |e|
-    error(
-      error_code: t('api.error_codes.invalid_data'),
-      error_messages: [t("api.error_messages.missing_#{e.param}")]
-    )
-  end
-
   def collaborators_evaluation
     require_collaborator_params
 
@@ -83,6 +76,13 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
     else
       render_not_authorized([t('api.error_messages.unauthorized_post_error')])
     end
+  end
+
+  rescue_from ActionController::ParameterMissing do |e|
+    error(
+      error_code: t('api.error_codes.invalid_data'),
+      error_messages: [t("api.error_messages.missing_#{e.param}")]
+    )
   end
 
   private

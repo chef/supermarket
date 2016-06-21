@@ -27,7 +27,7 @@ describe CollaboratorWorker do
   end
 
   it 'sends a post request to the results endpoint' do
-    stub_request(:post, 'http://localhost:3000/api/v1/cookbook-versions/collaborators_evaluation').
+    stub_request(:post, ENV['FIERI_COLLABORATORS_ENDPOINT']).
       to_return(status: 200, body: json_response, headers: {})
 
     CollaboratorWorker.new.perform(cookbook_name)
