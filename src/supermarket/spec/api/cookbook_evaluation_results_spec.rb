@@ -8,7 +8,7 @@ describe 'POST /api/v1/cookbook_evalution_results' do
     # The original route was mispelled as cookbook-verisons, rather than cookbook-versions
     it 'returns a 200' do
       post(
-        '/api/v1/cookbook-verisons/evaluation',
+        '/api/v1/cookbook-verisons/foodcritic_evaluation',
         cookbook_name: cookbook.name,
         cookbook_version: cookbook_version.version,
         foodcritic_failure: false,
@@ -23,7 +23,7 @@ describe 'POST /api/v1/cookbook_evalution_results' do
   context 'with the correct spelling' do
     it 'returns a 200' do
       post(
-        '/api/v1/cookbook-versions/evaluation',
+        '/api/v1/cookbook-versions/foodcritic_evaluation',
         cookbook_name: cookbook.name,
         cookbook_version: cookbook_version.version,
         foodcritic_failure: false,

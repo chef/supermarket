@@ -96,7 +96,7 @@ describe Api::V1::CookbookVersionsController do
         context 'the required params are provided' do
           it 'returns a 200' do
             post(
-              :evaluation,
+              :foodcritic_evaluation,
               cookbook_name: cookbook.name,
               cookbook_version: version.to_param,
               foodcritic_failure: true,
@@ -110,7 +110,7 @@ describe Api::V1::CookbookVersionsController do
 
           it "updates the cookbook version's food critic attributes" do
             post(
-              :evaluation,
+              :foodcritic_evaluation,
               cookbook_name: cookbook.name,
               cookbook_version: version.to_param,
               foodcritic_failure: true,
@@ -126,7 +126,7 @@ describe Api::V1::CookbookVersionsController do
           context 'the required params are not provided' do
             it 'returns a 400' do
               post(
-                :evaluation,
+                :foodcritic_evaluation,
                 cookbook_name: cookbook.name,
                 foodcritic_failure: 'false',
                 foodcritic_feedback: '',
@@ -150,7 +150,7 @@ describe Api::V1::CookbookVersionsController do
       context 'the cookbook version does not exist' do
         it 'returns a 404' do
           post(
-            :evaluation,
+            :foodcritic_evaluation,
             cookbook_name: cookbook.name,
             cookbook_version: '1010101.1.1',
             foodcritic_failure: true,
@@ -167,7 +167,7 @@ describe Api::V1::CookbookVersionsController do
     context 'the request is not authorized' do
       it 'renders a 401 error about unauthorized post' do
         post(
-          :evaluation,
+          :foodcritic_evaluation,
           cookbook_name: cookbook.name,
           cookbook_version: '1010101.1.1',
           foodcritic_failure: true,

@@ -42,7 +42,7 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
   # This endpoint expects +cookbook_name+, +cookbook_version+,
   # +foodcritic_failure+, +foodcritic_feedback+, and +fieri_key+.
   #
-  def evaluation
+  def foodcritic_evaluation
     require_evaluation_params
 
     if ENV['FIERI_KEY'] == params['fieri_key']
