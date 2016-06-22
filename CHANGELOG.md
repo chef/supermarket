@@ -1,5 +1,8 @@
 # Supermarket Changelog
 
+## 2.7.3 (2016-06-22)
+- [#1343] Untar things as binary in Fieri
+
 ## 2.7.2 (2016-06-15)
 - [#1328] Add pop-up to confirm putting a cookbook up for adoption
 - [#1338] Fix Quality tab not displaying foodcritic feedback when there are no failures
