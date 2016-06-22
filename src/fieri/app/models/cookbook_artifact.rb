@@ -85,7 +85,7 @@ class CookbookArtifact
 
         FileUtils.mkdir_p destination_dir unless File.directory?(destination_dir)
 
-        file = File.open(destination_file, 'w+')
+        file = File.open(destination_file, 'wb+')
         file << entry.read
         file.close
       end
