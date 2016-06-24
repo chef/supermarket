@@ -36,8 +36,9 @@ class CookbookArtifact
     end if ENV['FIERI_FOODCRITIC_TAGS']
     cmd = FoodCritic::CommandLine.new(args)
     result, _status = FoodCritic::Linter.run(cmd)
-
-    [result.to_s, result.failed?]
+    feedback = result.to_s
+    feedback.gsub!(@work_dir, '')
+    [feedback, result.failed?]
   end
 
   #
