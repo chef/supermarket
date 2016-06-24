@@ -1,6 +1,6 @@
 module FeatureFlagHelper
 
   def air_gapped?
-    ENV['air_gapped'] == 'true'
+    ENV['AIR_GAPPED'] == 'true'
   end
 end
