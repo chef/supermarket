@@ -5,7 +5,7 @@ describe FeatureFlagHelper do
   describe '#air_gap?' do
     context 'when the feature flag is set to true' do
       before do
-        ENV['air_gapped'] = 'true'
+        ENV['AIR_GAPPED'] = 'true'
       end
 
       it 'returns true' do
@@ -15,7 +15,7 @@ describe FeatureFlagHelper do
 
     context 'when the feature flag is not set to true' do
       before do
-        ENV['air_gapped'] = 'false'
+        ENV['AIR_GAPPED'] = 'false'
       end
 
       it 'returns false' do

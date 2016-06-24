@@ -110,6 +110,12 @@ the test suite.
 * `FIERI_URL` is the URL Supermarket will `POST` to for Cookbook evaluation when
   a cookbook is shared
 
+## Turning off 3rd party services
+
+If you are in an air-gapped environment or another situation where you cannot
+have your Supermarket call out to 3rd party services (i.e. fonts, Google Analytics)
+* `AIR_GAPPED` can be set to true to avoid calls to 3rd party services.  It is set to false by default.
+
 ## Configuring Curry
 
 Curry verifies that all contributing parties on a Pull Request have signed a
