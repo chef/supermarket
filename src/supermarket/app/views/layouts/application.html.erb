@@ -14,12 +14,14 @@
     <link rel="icon" href="<%= image_url('favicon.ico') %>" type="image/x-icon">
     <link rel="apple-touch-icon" href="<%= image_url('apple-touch-icon.png') %>"/>
     <%= stylesheet_link_tag "application", media: "all" %>
-    <% unless Rails.env == 'test' %>
+    <% unless Rails.env == 'test' || air_gapped? %>
       <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" %>
       <%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Montserrat:400,700" %>
     <% end %>
     <%= csrf_meta_tags %>
-    <%= render 'google_analytics' %>
+    <% unless air_gapped? %>
+      <%= render 'google_analytics' %>
+    <% end %>
   </head>
   <body class="<%= controller.controller_name %>">
     <div class="off-canvas-wrap">
