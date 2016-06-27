@@ -404,6 +404,11 @@ default['supermarket']['seed_cla_data'] = nil
 # * tools: Enable the tools section
 default['supermarket']['features'] = 'tools, gravatar'
 
+# ### Air Gapped Settings
+# This controls whether your Supermarket will reach out to 3rd party services like certain fonts
+# and Google Analytics.
+default['supermarket']['air_gapped'] = 'false'
+
 # ### robots.txt Settings
 #
 # These control the "Allow" and "Disallow" paths in /robots.txt. See
