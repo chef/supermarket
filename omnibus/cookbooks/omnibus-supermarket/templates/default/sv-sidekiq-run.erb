@@ -1,6 +1,11 @@
 #!/bin/sh
 exec 2>&1
-cd <%= node['supermarket']['app_directory'] %>
+
+export DIR=<%= node['supermarket']['app_directory'] %>
+export HOME=$DIR
+
+cd $DIR
+
 exec chpst \
        -u <%= node['supermarket']['user'] %> \
        -P \
