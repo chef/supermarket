@@ -42,7 +42,7 @@ RSpec.describe 'Jobs', type: :request do
           to_return(
             body: File.open(File.expand_path('./spec/fixtures/apache-no-metadata.rb.tar.gz')),
             status: 200
-        )
+          )
         allow_any_instance_of(CookbookArtifact).to receive(:criticize).and_return(['FC023: Prefer conditional attributes: /var/folders/m3/r80gybns1v357ff8q40pxw980000gn/T/e8f370c280fb21201b8d491d/apache2/definitions/apache_conf.rb:38', true])
       end
 
@@ -50,10 +50,10 @@ RSpec.describe 'Jobs', type: :request do
         ENV['FIERI_LOG_PATH'] = './spec/fixtures/fieri_test_log.log'
         logger = double('logger')
         allow(Logger).to receive(:new).and_return(logger)
-        allow(logger).to receive_messages(:level= => 1, :formatter= => Sidekiq::Logging::Pretty, :debug => "Sidekiq client with redis options {:url=>nil}")
+        allow(logger).to receive_messages(:level= => 1, :formatter= => Sidekiq::Logging::Pretty, :debug => 'Sidekiq client with redis options {:url=>nil}')
 
         Sidekiq::Testing.inline! do
-          allow(Net::HTTP).to receive(:post_form).and_raise("errors")
+          allow(Net::HTTP).to receive(:post_form).and_raise('errors')
           expect(logger).to receive(:error)
           CookbookWorker.perform_async(valid_params)
         end
