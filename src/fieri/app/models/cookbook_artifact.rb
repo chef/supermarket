@@ -36,9 +36,7 @@ class CookbookArtifact
     end if ENV['FIERI_FOODCRITIC_TAGS']
     cmd = FoodCritic::CommandLine.new(args)
     result, _status = FoodCritic::Linter.run(cmd)
-    feedback = result.to_s
-    feedback.gsub!(@work_dir, '')
-    [feedback, result.failed?]
+    [shorten(result), result.failed?]
   end
 
   #
@@ -52,6 +50,16 @@ class CookbookArtifact
   end
 
   private
+
+  #
+  # Shortens and thus clairifies the foodcritic result by cutting
+  # out the working directory.
+  # @return [String] the foodcritic feedback sentence
+  #
+  def shorten(result)
+    feedback = result.to_s
+    feedback.gsub!(@work_dir, '')
+  end
 
   #
   # Downloads an artifact from a url and writes it to the filesystem.
