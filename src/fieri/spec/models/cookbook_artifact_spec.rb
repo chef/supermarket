@@ -30,6 +30,7 @@ describe CookbookArtifact do
       it 'it returns the feedback and status from the FoodCritic run' do
         feedback, status = artifact.criticize
 
+        expect(feedback).to_not include(artifact.work_dir)
         assert_match(/FC023/, feedback)
         assert_equal true, status
       end
