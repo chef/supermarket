@@ -12,7 +12,6 @@ provisioner:
     ssl_verify_mode: verify_peer
 
 platforms:
-  - name: ubuntu-10.04
   - name: ubuntu-12.04
   - name: ubuntu-14.04
   - name: centos-5.11
