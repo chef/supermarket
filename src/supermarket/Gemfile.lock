@@ -7,16 +7,6 @@ GIT
       bundler (~> 1.2)
       thor (~> 0.18)
 
-GIT
-  remote: https://github.com/tobiassvn/sidetiq.git
-  revision: 4f7d7daea3873443b17bf2f3da61619532bbeba2
-  ref: 4f7d7da
-  specs:
-    sidetiq (0.5.0)
-      celluloid (>= 0.14.1)
-      ice_cube (~> 0.11.0)
-      sidekiq (>= 2.16.0)
-
 PATH
   remote: ../fieri
   specs:
@@ -92,8 +82,23 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    celluloid (0.16.0)
-      timers (~> 4.0.0)
+    celluloid (0.17.3)
+      celluloid-essentials
+      celluloid-extras
+      celluloid-fsm
+      celluloid-pool
+      celluloid-supervision
+      timers (>= 4.1.1)
+    celluloid-essentials (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-extras (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-fsm (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-pool (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-supervision (0.20.6)
+      timers (>= 4.1.1)
     chef (12.0.1)
       chef-zero (~> 3.2)
       diff-lcs (~> 1.2, >= 1.2.4)
@@ -132,6 +137,7 @@ GEM
       sass (~> 3.2.19)
     compass-rails (2.0.0)
       compass (>= 0.12.2)
+    concurrent-ruby (1.0.2)
     connection_pool (2.2.0)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
@@ -199,7 +205,7 @@ GEM
     hashie (2.1.2)
     highline (1.7.8)
     hike (1.2.3)
-    hitimes (1.2.3)
+    hitimes (1.2.4)
     html_truncator (0.4.0)
       nokogiri (~> 1.5)
     htmlentities (4.3.4)
@@ -207,7 +213,7 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
-    ice_cube (0.11.3)
+    ice_cube (0.13.3)
     ice_nine (0.11.0)
     ipaddress (0.8.0)
     jbuilder (2.2.4)
@@ -363,7 +369,7 @@ GEM
       ffi (>= 0.5.0)
     rb-readline (0.5.3)
     redcarpet (3.3.2)
-    redis (3.2.1)
+    redis (3.3.0)
     redis-actionpack (4.0.0)
       actionpack (~> 4)
       redis-rack (~> 1.5.0)
@@ -371,8 +377,6 @@ GEM
     redis-activesupport (4.0.0)
       activesupport (~> 4)
       redis-store (~> 1.1.0)
-    redis-namespace (1.5.2)
-      redis (~> 3.0, >= 3.0.4)
     redis-rack (1.5.0)
       rack (~> 1.5)
       redis-store (~> 1.1.0)
@@ -438,12 +442,14 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
-    sidekiq (3.4.2)
-      celluloid (~> 0.16.0)
+    sidekiq (4.1.2)
+      concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
-      json (~> 1.0)
       redis (~> 3.2, >= 3.2.1)
-      redis-namespace (~> 1.5, >= 1.5.2)
+    sidetiq (0.7.0)
+      celluloid (>= 0.17.3)
+      ice_cube (~> 0.13.2)
+      sidekiq (>= 4.0.0)
     sitemap_generator (5.0.5)
       builder
     slim (3.0.6)
@@ -470,7 +476,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    timers (4.0.4)
+    timers (4.1.1)
       hitimes
     tomlrb (1.1.1)
     treetop (1.6.5)
@@ -567,8 +573,8 @@ DEPENDENCIES
   semverse
   sentry-raven (~> 0.13.3)
   shoulda-matchers (~> 2.8)
-  sidekiq (= 3.4.2)
-  sidetiq!
+  sidekiq (~> 4.0)
+  sidetiq (~> 0.7)
   sitemap_generator
   spring
   spring-commands-rspec
