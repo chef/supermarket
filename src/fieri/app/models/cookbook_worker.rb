@@ -12,16 +12,19 @@ class CookbookWorker
       logger.error e
     else
       feedback, status = cookbook.criticize
-
-      Net::HTTP.post_form(
-        URI.parse(ENV['FIERI_RESULTS_ENDPOINT']),
-        fieri_key: ENV['FIERI_KEY'],
-        cookbook_name: params['cookbook_name'],
-        cookbook_version: params['cookbook_version'],
-        foodcritic_feedback: feedback,
-        foodcritic_failure: status
-      )
-
+      begin
+        Net::HTTP.post_form(
+          URI.parse(ENV['FIERI_RESULTS_ENDPOINT']),
+          fieri_key: ENV['FIERI_KEY'],
+          cookbook_name: params['cookbook_name'],
+          cookbook_version: params['cookbook_version'],
+          foodcritic_feedback: feedback,
+          foodcritic_failure: status
+        )
+      rescue
+        logger = Logger.new File.new(File.expand_path(ENV['FIERI_LOG_PATH']))
+        logger.error e
+      end
       cookbook.cleanup
     end
   end
