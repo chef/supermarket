@@ -50,10 +50,8 @@ RSpec.describe 'Jobs', type: :request do
         ENV['FIERI_LOG_PATH'] = './spec/fixtures/fieri_test_log.log'
         logger = double('logger')
         allow(Logger).to receive(:new).and_return(logger)
+        allow(logger).to receive_messages(:level= => 1, :formatter= => Sidekiq::Logging::Pretty, :debug => "Sidekiq client with redis options {:url=>nil}")
 
-        allow(logger).to receive(:level=) { 1 }
-        allow(logger).to receive(:formatter=) { Sidekiq::Logging::Pretty }
-        allow(logger).to receive(:debug) { "Sidekiq client with redis options {:url=>nil}"}
         Sidekiq::Testing.inline! do
           allow(Net::HTTP).to receive(:post_form).and_raise("errors")
           expect(logger).to receive(:error)
