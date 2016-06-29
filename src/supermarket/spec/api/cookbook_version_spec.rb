@@ -36,7 +36,6 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
 
     context 'for a version that exists' do
       let(:cookbook) { Cookbook.where(name: 'redis-test').first }
-      let(:cookbook_version) { cookbook.cookbook_versions.where(version: '0.1.0').first }
 
       let(:cookbook_version_signature) do
         {
