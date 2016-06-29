@@ -18,7 +18,7 @@ gem 'foreman'
 gem 'pundit'
 gem 'dotenv'
 gem 'octokit', require: false
-gem 'sidekiq', '= 3.4.2' # pinned to version prior to celluloid upgrade that breaks sidetiq
+gem 'sidekiq', '~> 4.0'
 gem 'tomlrb'
 gem 'rb-readline'
 
@@ -27,9 +27,7 @@ gem 'rb-readline'
 # (vulnerable) version.
 gem 'sprockets', '~> 2.11.3'
 
-# Use the version on GitHub because the version published on RubyGems has
-# compatibility problems with Sidekiq 3.0.
-gem 'sidetiq', git: 'https://github.com/tobiassvn/sidetiq.git', ref: '4f7d7da'
+gem 'sidetiq', '~> 0.7'
 
 gem 'premailer-rails', group: [:development, :production]
 gem 'nokogiri'
