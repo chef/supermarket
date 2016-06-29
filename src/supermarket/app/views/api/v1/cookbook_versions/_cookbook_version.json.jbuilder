@@ -9,6 +9,10 @@ json.quality do
     json.failed @cookbook.foodcritic_failure
     json.feedback @cookbook.foodcritic_feedback
   end
+  json.collaborator do
+    json.failed @cookbook.collaborator_failure
+    json.feedback @cookbook.collaborator_feedback
+  end
 end
 json.set! :dependencies do
   cookbook_version.cookbook_dependencies.each do |dependency|
