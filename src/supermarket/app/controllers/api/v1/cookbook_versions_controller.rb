@@ -97,5 +97,6 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
   def require_collaborator_params
     params.require(:cookbook_name)
     params.require(:collaborator_failure)
+    params.require(:collaborator_feedback)
   end
 end

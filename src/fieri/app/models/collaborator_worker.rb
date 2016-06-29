@@ -22,11 +22,17 @@ class CollaboratorWorker
   def evaluate(cookbook_name)
     cookbook_json = get_json(cookbook_name)
     collaborator_count = get_collaborator_count(cookbook_json)
-    sufficient_collaborators?(collaborator_count)
+    sufficient_collaborators?(collaborator_count) ? false : true
   end
 
   def give_feedback(cookbook_name)
-    evaluate(cookbook_name) ? 'This cookbook has sufficient collaborators.' : 'This cookbook does not have sufficient collaborators.'
+    json = get_json(cookbook_name)
+    collaborator_count = get_collaborator_count(json)
+    if evaluate(cookbook_name)
+      I18n.t('quality_metrics.collaborator.failure', :collaborators => collaborator_count.to_s + ' collaborators', :passing_number => '2')
+    else
+      I18n.t('quality_metrics.collaborator.success', :collaborators => collaborator_count.to_s + ' collaborators')
+    end
   end
 
   def perform(cookbook_name)
