@@ -1,6 +1,6 @@
 class Api::V1::CookbooksController < Api::V1Controller
   before_action :init_params, only: [:index, :search]
-  before_action :assign_cookbook, only: [:show, :foodcritic, :contingent]
+  before_action :assign_cookbook, only: [:show, :contingent]
 
   #
   # GET /api/v1/cookbooks
@@ -47,17 +47,6 @@ class Api::V1::CookbooksController < Api::V1Controller
     @cookbook_versions_urls = @cookbook.sorted_cookbook_versions.map do |version|
       api_v1_cookbook_version_url(@cookbook, version)
     end
-  end
-
-  #
-  # GET /api/v1/cookbooks/:foodcritic
-  #
-  # Return the failure status and feedback from the cookbook's Foodcritic run.
-  #
-  # @example
-  #   GET /api/v1/cookbooks/redis/foodcritic
-  #
-  def foodcritic
   end
 
   #

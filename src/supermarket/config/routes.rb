@@ -14,7 +14,6 @@ Supermarket::Application.routes.draw do
       get 'cookbooks' => 'cookbooks#index'
       get 'search' => 'cookbooks#search'
       get 'cookbooks/:cookbook' => 'cookbooks#show', as: :cookbook
-      get 'cookbooks/:cookbook/foodcritic' => 'cookbooks#foodcritic', constraints: proc { ROLLOUT.active?(:fieri) }
       get 'cookbooks/:cookbook/contingent' => 'cookbooks#contingent'
       get 'cookbooks/:cookbook/versions/:version' => 'cookbook_versions#show', as: :cookbook_version, constraints: { version: VERSION_PATTERN }
       get 'cookbooks/:cookbook/versions/:version/download' => 'cookbook_versions#download', as: :cookbook_version_download, constraints: { version: VERSION_PATTERN }
