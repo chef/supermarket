@@ -25,7 +25,7 @@ license_file "../LICENSE"
 # and /opt/supermarket on all other platforms
 install_dir "#{default_root}/#{name}"
 
-build_version '2.7.3'
+build_version '2.7.4'
 build_iteration 1
 
 override :postgresql, version: '9.3.6'
