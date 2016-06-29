@@ -35,12 +35,26 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
     end
 
     context 'for a version that exists' do
+      let(:cookbook) { Cookbook.where(name: 'redis-test').first }
+      let(:cookbook_version) { cookbook.cookbook_versions.where(version: '0.1.0').first }
+
       let(:cookbook_version_signature) do
         {
           'license' => 'MIT',
           'version' => '0.1.0',
           'average_rating' => nil,
           'cookbook' => 'http://www.example.com/api/v1/cookbooks/redis-test'
+        }
+      end
+
+      let(:quality_metrics) do
+        { 'quality' =>
+          { 'foodcritic' =>
+            {
+              'failed' => cookbook.foodcritic_failure,
+              'feedback' => cookbook.foodcritic_feedback
+            }
+          }
         }
       end
 
@@ -54,6 +68,12 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
         get json_body['versions'].find { |v| v =~ /0.1.0/ }
 
         expect(signature(json_body)).to include(cookbook_version_signature)
+      end
+
+      it 'returns quality metrics for the cookbook version' do
+        get json_body['versions'].find { |v| v =~ /0.1.0/ }
+
+        expect(signature(json_body)).to include(quality_metrics)
       end
     end
 
