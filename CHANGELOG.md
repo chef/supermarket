@@ -1,5 +1,11 @@
 # Supermarket Changelog
 
+## 2.7.4 (2016-06-29)
+- [#1350] Airgap feature flag to disable calls to 3rd parties
+- [#1357] Upgrade OpenSSL to v1.0.1t (via omnibus & omnibus-software update)
+- [#1358] Upgrade Sidekiq & Sidetiq to resolve a stack too deep error when
+  scheduling critique of certain cookbooks
+
 ## 2.7.3 (2016-06-22)
 - [#1343] Untar things as binary in Fieri
 
