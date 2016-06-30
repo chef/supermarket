@@ -30,9 +30,9 @@ class CollaboratorWorker
     json = get_json(cookbook_name)
     collaborator_count = get_collaborator_count(json)
     if evaluate(cookbook_name)
-      I18n.t('quality_metrics.collaborator.failure', :collaborators => collaborator_count.to_s + ' collaborators', :passing_number => '2')
+      I18n.t('quality_metrics.collaborator.failure', :num_collaborators => collaborator_count.to_s + ' collaborators', :passing_number => '2')
     else
-      I18n.t('quality_metrics.collaborator.success', :collaborators => collaborator_count.to_s + ' collaborators')
+      I18n.t('quality_metrics.collaborator.success', :num_collaborators => collaborator_count.to_s + ' collaborators')
     end
   end
 

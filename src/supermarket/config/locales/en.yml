@@ -96,10 +96,6 @@ en:
       unsubscribe:
         failure: "There was an issue unsubscribing Supermarket from the repo."
         success: "Supermarket is no longer monitoring this repo."
-  quality_metrics:
-    collaborator:
-      success: 'passed with %{collaborators}.'
-      failure: 'Failure: Cookbook has %{collaborators}. A cookbook must have at least %{passing_number} collaborators to pass this metric.'
   api:
     error_codes:
       not_found: "NOT_FOUND"
