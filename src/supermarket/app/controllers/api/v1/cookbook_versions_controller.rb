@@ -30,9 +30,9 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
   end
 
   #
-  # POST /api/v1/cookbook-versions/evaluation
+  # POST /api/v1/cookbook-versions/foodcritic_evaluation
   #
-  # Take the evaluation results from Fieri and store them on the
+  # Take the foodcritic evaluation results from Fieri and store them on the
   # applicable +CookbookVersion+.
   #
   # If the +CookbookVersion+ does not exist, render a 404 not_found.
@@ -61,6 +61,19 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
     end
   end
 
+  #
+  # POST /api/v1/cookbook-versions/collaborators_evaluation
+  #
+  # Take the collaborators evaluation results from Fieri and store them on the
+  # applicable +CookbookVersion+.
+  #
+  # If the +CookbookVersion+ does not exist, render a 404 not_found.
+  #
+  # If the request is unauthorized, render unauthorized.
+  #
+  # This endpoint expects +cookbook_name+, +cookbook_version+,
+  # +collaborators_failure+, +collaborators_feedback+, and +fieri_key+.
+  #
   def collaborators_evaluation
     require_collaborator_params
 
