@@ -3,9 +3,10 @@ require 'net/http'
 
 class CollaboratorWorker
   include ::Sidekiq::Worker
+  SUFFICENT_COLLABORATORS = 2
 
   def sufficient_collaborators?(number_of_collaborators)
-    number_of_collaborators > 1 ? true : false
+    number_of_collaborators >= CollaboratorWorker::SUFFICENT_COLLABORATORS ? true : false
   end
 
   def get_json(cookbook_name)
@@ -29,9 +30,16 @@ class CollaboratorWorker
     json = get_json(cookbook_name)
     collaborator_count = get_collaborator_count(json)
     if evaluate(cookbook_name)
-      I18n.t('quality_metrics.collaborator.failure', num_collaborators: collaborator_count.to_s + ' collaborators', passing_number: '2')
+      I18n.t(
+        'quality_metrics.collaborator.failure',
+        num_collaborators: collaborator_count.to_s + ' collaborators',
+        passing_number: CollaboratorWorker::SUFFICENT_COLLABORATORS.to_s
+      )
     else
-      I18n.t('quality_metrics.collaborator.success', num_collaborators: collaborator_count.to_s + ' collaborators')
+      I18n.t(
+        'quality_metrics.collaborator.success',
+        num_collaborators: collaborator_count.to_s + ' collaborators'
+      )
     end
   end
 
