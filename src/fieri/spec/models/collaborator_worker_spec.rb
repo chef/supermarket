@@ -4,10 +4,10 @@ describe CollaboratorWorker do
   let(:cw) { CollaboratorWorker.new }
   let(:cookbook_name) { 'greatcookbook' }
   let(:json_response) { File.read('spec/support/cookbook_metrics_fixture.json') }
-  let(:uri) { "http://localhost:3000/api/v1/cookbooks/#{cookbook_name}" }
+  let(:uri) { "#{ENV['FIERI_COLLABORATORS_REQUEST']}/#{cookbook_name}" }
 
   before do
-    stub_request(:get, 'http://localhost:3000/api/v1/cookbooks/greatcookbook').
+    stub_request(:get, "#{ENV['FIERI_COLLABORATORS_REQUEST']}/greatcookbook").
       to_return(status: 200, body: json_response, headers: {})
   end
 

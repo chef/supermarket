@@ -9,8 +9,7 @@ class CollaboratorWorker
   end
 
   def get_json(cookbook_name)
-    # TODO: put this url into an enviornment variable
-    uri = URI.parse("http://localhost:3000/api/v1/cookbooks/#{cookbook_name}")
+    uri = URI.parse("#{ENV['FIERI_COLLABORATORS_REQUEST']}/#{cookbook_name}")
     response = Net::HTTP.get(uri)
     response
   end
