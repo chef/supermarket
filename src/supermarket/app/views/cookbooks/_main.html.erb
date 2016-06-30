@@ -115,8 +115,8 @@
         <% if version.foodcritic_failure.nil? && version.collaborator_failure.nil? %>
           <h2>No quality metric results found.</h2>
         <% else %>
+          <h1>Foodcritic Metric</h1>
           <% if version.foodcritic_feedback.present? %>
-            <h1>Foodcritic Metric</h1>
             <pre><%= version.foodcritic_feedback.gsub(/\n/, '<br />').html_safe %></pre>
           <% else %>
             <p><%= version.version %> passed <%= link_to 'Foodcritic', 'http://acrmp.github.io/foodcritic', target: '_blank' %>.
@@ -128,7 +128,7 @@
             <% if version.collaborator_failure %>
               <pre><%= version.collaborator_feedback %></pre>
             <% else %>
-              <p><%= version.version %> <%= version.collaborator_feedback %></p>
+              <p><%= version.version %> <%= version.collaborator_feedback %> collaborators.</p>
             <% end %>
           <% end %>
         <% end %>

@@ -32,13 +32,13 @@ class CollaboratorWorker
     if evaluate(cookbook_name)
       I18n.t(
         'quality_metrics.collaborator.failure',
-        num_collaborators: collaborator_count.to_s + ' collaborators',
+        num_collaborators: collaborator_count.to_s,
         passing_number: CollaboratorWorker::SUFFICENT_COLLABORATORS.to_s
       )
     else
       I18n.t(
         'quality_metrics.collaborator.success',
-        num_collaborators: collaborator_count.to_s + ' collaborators'
+        num_collaborators: collaborator_count.to_s
       )
     end
   end
