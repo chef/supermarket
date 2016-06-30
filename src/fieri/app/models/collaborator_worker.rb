@@ -9,6 +9,7 @@ class CollaboratorWorker
   end
 
   def get_json(cookbook_name)
+    # TODO put this url into an enviornment variable
     uri = URI.parse("http://localhost:3000/api/v1/cookbooks/#{cookbook_name}")
     response = Net::HTTP.get(uri)
     response
@@ -37,7 +38,7 @@ class CollaboratorWorker
 
   def perform(cookbook_name)
     Net::HTTP.post_form(
-      URI.parse(ENV['FIERI_COLLABORATORS_ENDPOINT']),
+      URI.parse("#{ENV['FIERI_RESULTS_ENDPOINT']}/collaborators_evaluation"),
       fieri_key: ENV['FIERI_KEY'],
       cookbook_name: cookbook_name,
       collaborator_failure: evaluate(cookbook_name),
