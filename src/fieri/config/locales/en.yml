@@ -1,0 +1,5 @@
+en:
+  quality_metrics:
+    collaborator:
+      success: 'passed the Collaborator Metric with %{num_collaborators} collaborators.'
+      failure: 'Failure: Cookbook has %{num_collaborators} collaborators. A cookbook must have at least %{passing_number} collaborators to pass this metric.'
