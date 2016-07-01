@@ -27,12 +27,12 @@ describe CollaboratorWorker do
   end
 
   it 'sends a post request to the results endpoint' do
-    stub_request(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/collaborators_evaluation").
+    stub_request(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/collaborators_evaluation").
       to_return(status: 200, body: json_response, headers: {})
 
     CollaboratorWorker.new.perform(cookbook_name)
 
-    assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/collaborators_evaluation", times: 1) do |req|
+    assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/collaborators_evaluation", times: 1) do |req|
       req.body =~ /collaborator_failure=true/
       req.body =~ /collaborator_feedback=.+/
     end
