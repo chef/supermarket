@@ -61,6 +61,7 @@ class Api::V1::CookbooksController < Api::V1Controller
   #   GET /api/v1/search?q=redis
   #   GET /api/v1/search?q=redis&start=3&items=5
   #
+
   def search
     @results = Cookbook.search(
       params.fetch(:q, nil)

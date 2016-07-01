@@ -23,10 +23,11 @@ Supermarket::Application.routes.draw do
       get 'users/:user' => 'users#show', as: :user
 
       # This was the original route, which has a misspelling (cookbook-verisons rather than cookbook-versions).  Keeping this here so as not to break anyone who is still depending on the original route.
-      post '/cookbook-verisons/evaluation' => 'cookbook_versions#evaluation', constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/cookbook-verisons/foodcritic_evaluation' => 'cookbook_versions#foodcritic_evaluation', constraints: proc { ROLLOUT.active?(:fieri) }
 
       # This route has the correct spelling of cookbook-versions
-      post '/cookbook-versions/evaluation' => 'cookbook_versions#evaluation', as: :cookbook_versions_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/cookbook-versions/foodcritic_evaluation' => 'cookbook_versions#foodcritic_evaluation', as: :cookbook_versions_foodcritic_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/cookbook-versions/collaborators_evaluation' => 'cookbook_versions#collaborators_evaluation', as: :cookbook_versions_collaborators_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
 
       get 'tools/:tool' => 'tools#show', as: :tool
       get 'tools' => 'tools#index', as: :tools

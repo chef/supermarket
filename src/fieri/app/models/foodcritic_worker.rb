@@ -1,7 +1,7 @@
 require 'sidekiq'
 require 'net/http'
 
-class CookbookWorker
+class FoodcriticWorker
   include ::Sidekiq::Worker
 
   def perform(params)
@@ -14,7 +14,7 @@ class CookbookWorker
       feedback, status = cookbook.criticize
 
       Net::HTTP.post_form(
-        URI.parse(ENV['FIERI_RESULTS_ENDPOINT']),
+        URI.parse("#{ENV['FIERI_RESULTS_ENDPOINT']}/foodcritic_evaluation"),
         fieri_key: ENV['FIERI_KEY'],
         cookbook_name: params['cookbook_name'],
         cookbook_version: params['cookbook_version'],

@@ -47,11 +47,15 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
       end
 
       let(:quality_metrics) do
-        { 'quality' =>
-          { 'foodcritic' =>
-            {
+        {
+          'quality' => {
+            'foodcritic' => {
               'failed' => cookbook.foodcritic_failure,
               'feedback' => cookbook.foodcritic_feedback
+            },
+            'collaborator' => {
+              'failed' => cookbook.collaborator_failure,
+              'feedback' => cookbook.collaborator_feedback
             }
           }
         }

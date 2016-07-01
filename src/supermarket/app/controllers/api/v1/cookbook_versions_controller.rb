@@ -30,9 +30,9 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
   end
 
   #
-  # POST /api/v1/cookbook-verisons/evaluation
+  # POST /api/v1/cookbook-versions/foodcritic_evaluation
   #
-  # Take the evaluation results from Fieri and store them on the
+  # Take the foodcritic evaluation results from Fieri and store them on the
   # applicable +CookbookVersion+.
   #
   # If the +CookbookVersion+ does not exist, render a 404 not_found.
@@ -42,7 +42,7 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
   # This endpoint expects +cookbook_name+, +cookbook_version+,
   # +foodcritic_failure+, +foodcritic_feedback+, and +fieri_key+.
   #
-  def evaluation
+  def foodcritic_evaluation
     require_evaluation_params
 
     if ENV['FIERI_KEY'] == params['fieri_key']
@@ -53,6 +53,36 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
       cookbook_version.update(
         foodcritic_failure: params[:foodcritic_failure],
         foodcritic_feedback: params[:foodcritic_feedback]
+      )
+
+      head 200
+    else
+      render_not_authorized([t('api.error_messages.unauthorized_post_error')])
+    end
+  end
+
+  #
+  # POST /api/v1/cookbook-versions/collaborators_evaluation
+  #
+  # Take the collaborators evaluation results from Fieri and store them on the
+  # applicable +CookbookVersion+.
+  #
+  # If the +CookbookVersion+ does not exist, render a 404 not_found.
+  #
+  # If the request is unauthorized, render unauthorized.
+  #
+  # This endpoint expects +cookbook_name+, +cookbook_version+,
+  # +collaborators_failure+, +collaborators_feedback+, and +fieri_key+.
+  #
+  def collaborators_evaluation
+    require_collaborator_params
+
+    if ENV['FIERI_KEY'] == params['fieri_key']
+      cookbook_version = Cookbook.where(lowercase_name: params[:cookbook_name]).first.cookbook_versions.last
+
+      cookbook_version.update(
+        collaborator_failure: params[:collaborator_failure],
+        collaborator_feedback: params[:collaborator_feedback]
       )
 
       head 200
@@ -75,5 +105,11 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
     params.require(:cookbook_name)
     params.require(:cookbook_version)
     params.require(:foodcritic_failure)
+  end
+
+  def require_collaborator_params
+    params.require(:cookbook_name)
+    params.require(:collaborator_failure)
+    params.require(:collaborator_feedback)
   end
 end
