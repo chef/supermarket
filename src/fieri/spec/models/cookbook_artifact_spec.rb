@@ -17,17 +17,21 @@ describe CookbookArtifact do
         expect(artifact.url).to eq('http://example.com/apache.tar.gz')
       end
 
-      it 'assigns #archive' do
-        expect(artifact.archive).to be_a(File)
+      it 'assigns #work_dir' do
+        expect(artifact.work_dir).to eq(File.join(Dir.tmpdir, 'somejobid'))
       end
+    end
 
-      it 'assigns #directory' do
-        expect(artifact.directory).to eq(File.join(artifact.work_dir, 'apache2'))
+    describe '#prep' do
+      it 'prepares a unique directory for the job' do
+        artifact.prep
+
+        expect(Dir).to exist(artifact.work_dir)
       end
     end
 
     describe '#criticize' do
-      it 'it returns the feedback and status from the FoodCritic run' do
+      it 'returns the feedback and status from the FoodCritic run' do
         feedback, status = artifact.criticize
 
         assert_match(/FC023/, feedback)
@@ -37,8 +41,10 @@ describe CookbookArtifact do
 
     describe '#clean' do
       it 'deletes the artifacts unarchived directory' do
+        artifact.prep
+
         artifact.cleanup
-        assert !Dir.exist?(artifact.work_dir)
+        expect(Dir).not_to exist(artifact.work_dir)
       end
     end
   end
