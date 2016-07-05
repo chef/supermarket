@@ -21,7 +21,7 @@ describe FoodcriticWorker do
         status: 200
       )
 
-    stub_request(:post, "#{ENV['FIERI_RESULTS_ENDPOINT']}/foodcritic_evaluation")
+    stub_request(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/foodcritic_evaluation")
   end
 
   it 'sends a post request to the results endpoint' do
@@ -31,7 +31,7 @@ describe FoodcriticWorker do
       'cookbook_version' => '1.2.0'
     )
 
-    assert_requested(:post, "#{ENV['FIERI_RESULTS_ENDPOINT']}/foodcritic_evaluation", times: 1) do |req|
+    assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/foodcritic_evaluation", times: 1) do |req|
       req.body =~ /foodcritic_failure=true/
       req.body =~ /FC023/
     end
