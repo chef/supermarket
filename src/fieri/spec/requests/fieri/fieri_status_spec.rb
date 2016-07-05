@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'sidekiq/api'
 
 RSpec.describe 'Jobs', type: :request do
   describe 'GET /status' do

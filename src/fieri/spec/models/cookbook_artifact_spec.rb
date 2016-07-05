@@ -62,4 +62,25 @@ describe CookbookArtifact do
       end
     end
   end
+
+  describe 'when checking a cookbook that must be read as binary' do
+    let(:artifact) { CookbookArtifact.new('http://example.com/apache.tar.gz', 'somejobid2') }
+
+    before do
+      stub_request(:get, 'http://example.com/apache.tar.gz').
+        to_return(
+          body: File.open(File.expand_path('./spec/fixtures/apache-with-binaries.tar.gz')),
+          status: 200
+        )
+    end
+
+    describe '#criticize' do
+      it 'disables ~FC031 and ~FC045 by default' do
+        feedback, status = artifact.criticize
+
+        assert_match(/FC023/, feedback)
+        assert_equal true, status
+      end
+    end
+  end
 end
