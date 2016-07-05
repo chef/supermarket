@@ -1,5 +1,10 @@
 # Supermarket Changelog
 
+## 2.8.0 (2016-05-05)
+- [#1342] Adds Quality Metrics API
+- [#1345] Adds tests for Fieri untarring tarballs
+- [#1357] Refactor fieri environmental variables
+
 ## 2.7.4 (2016-06-29)
 - [#1350] Airgap feature flag to disable calls to 3rd parties
 - [#1357] Upgrade OpenSSL to v1.0.1t (via omnibus & omnibus-software update)
