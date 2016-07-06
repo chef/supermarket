@@ -1,8 +1,7 @@
 DEPENDENCIES
   enterprise
     git: https://github.com/opscode-cookbooks/enterprise-chef-common.git
-    revision: 783b0801443df4cebe21d745abe4ef69344006aa
-    tag: 0.5.2
+    revision: d4cac1f5470d7592d36699d570886fba1ba281a9
   omnibus-supermarket
     path: .
     metadata: true
@@ -16,7 +15,7 @@ GRAPH
   build-essential (2.2.3)
   chef-sugar (3.1.1)
   chef_handler (1.2.0)
-  enterprise (0.5.2)
+  enterprise (0.10.1)
     runit (> 1.0.0)
   homebrew (1.13.0)
     build-essential (>= 2.1.2)
@@ -50,7 +49,7 @@ GRAPH
   rsyslog (2.1.0)
   runit (1.7.2)
     packagecloud (>= 0.0.0)
-  sysctl (0.6.2)
+  sysctl (0.7.0)
     ohai (>= 0.0.0)
   unicorn (2.0.0)
   windows (1.38.1)
