@@ -59,6 +59,14 @@ directory node['supermarket']['var_directory'] do
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0700'
+  recursive true
+end
+
+directory node['supermarket']['log_directory'] do
+  owner node['supermarket']['user']
+  group node['supermarket']['group']
+  mode '0700'
+  recursive true
 end
 
 directory "#{node['supermarket']['var_directory']}/etc" do
