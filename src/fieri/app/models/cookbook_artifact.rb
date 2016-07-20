@@ -28,7 +28,7 @@ class CookbookArtifact
   def prep
     downloaded_tarball = download
     tar = Mixlib::Archive.new(downloaded_tarball.path)
-    tar.extract(work_dir)
+    tar.extract(work_dir, perms: false, ignore: /^\.$/)
   end
 
   #
