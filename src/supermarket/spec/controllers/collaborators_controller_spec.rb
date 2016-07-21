@@ -66,6 +66,13 @@ describe CollaboratorsController do
         expect(response.status).to eql(404)
       end
 
+      it 're-evaluates collaborator rating' do
+        sign_in fanny
+        expect do
+          post :create, collaborator: { user_ids: hank.id, resourceable_type: 'Cookbook', resourceable_id: cookbook.id }
+        end.to change(FieriNotifyWorker.jobs, :size).by(1)
+      end
+
       context 'when adding a group of collaborators' do
         let(:group1) { create(:group) }
         let(:group2) { create(:group) }
