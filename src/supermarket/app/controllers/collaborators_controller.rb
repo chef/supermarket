@@ -41,11 +41,7 @@ class CollaboratorsController < ApplicationController
       add_group_members_as_collaborators(resource, collaborator_params[:group_ids]) if collaborator_params[:group_ids].present?
 
       if collaborator_params[:resourceable_type] == 'Cookbook'
-        if ROLLOUT.active?(:fieri) && ENV['FIERI_URL'].present?
-          FieriNotifyWorker.perform_async(
-            resource.latest_cookbook_version.id
-          )
-        end
+        perform_fieri(resource)
       end
 
       redirect_to resource, notice: t('collaborator.added')
@@ -133,6 +129,17 @@ class CollaboratorsController < ApplicationController
   #
   def find_collaborator
     @collaborator = Collaborator.find(params[:id])
+  end
+
+  #
+  # Check if Fieri features are active and run Fieri
+  #
+  def perform_fieri(cookbook)
+    if ROLLOUT.active?(:fieri) && ENV['FIERI_URL'].present?
+      FieriNotifyWorker.perform_async(
+        cookbook.latest_cookbook_version.id
+      )
+    end
   end
 
   #
