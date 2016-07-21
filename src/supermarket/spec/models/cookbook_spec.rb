@@ -150,7 +150,7 @@ describe Cookbook do
         it 'keeps the owner as a collaborator' do
           result = cookbook.transfer_ownership(sally, hank, true)
           cookbook.reload
-          collaborators_users = cookbook.collaborators.map { |c| c.user }
+          collaborators_users = cookbook.collaborators.map(&:user)
           expect(collaborators_users).to include(jimmy, sally)
         end
       end
