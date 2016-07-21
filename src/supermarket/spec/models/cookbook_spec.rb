@@ -136,22 +136,20 @@ describe Cookbook do
     let(:cookbook) { create(:cookbook, owner: jimmy) }
 
     context 'initiator is an admin' do
+      let(:hank) { create(:user) }
+      let(:sally) { create(:admin) }
+
       it 'should instantly transfer ownership if the initiator is an admin' do
-        hank = create(:user)
-        sally = create(:admin)
-        expect(cookbook.owner).to eql(jimmy)
         result = cookbook.transfer_ownership(sally, hank)
         cookbook.reload
         expect(cookbook.owner).to eql(hank)
         expect(result).to eql('cookbook.ownership_transfer.done')
       end
+
       context 'admin is not the owner' do
         it 'keeps the owner as a collaborator' do
-          hank = create(:user)
-          sally = create(:admin)
           result = cookbook.transfer_ownership(sally, hank, true)
           cookbook.reload
-          expect(cookbook.owner).to eql(hank)
           collaborators_users = cookbook.collaborators.map { |c| c.user }
           expect(collaborators_users).to include(jimmy, sally)
         end

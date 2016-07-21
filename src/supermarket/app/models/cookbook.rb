@@ -156,13 +156,12 @@ class Cookbook < ActiveRecord::Base
 
   def transfer_ownership(initiator, recipient, add_owner_as_collaborator = false)
     original_owner = owner
+
     if initiator.is?(:admin) || collaborator_users.include?(recipient)
       update_attribute(:user_id, recipient.id)
 
       if add_owner_as_collaborator
-        if initiator != original_owner
-          create_new_collaborator(original_owner)
-        end
+        create_new_collaborator(original_owner) unless initiator == original_owner
         create_new_collaborator(initiator)
       end
 
