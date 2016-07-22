@@ -1,12 +1,13 @@
 require 'open-uri'
 require 'rubygems/package'
 require 'foodcritic'
+require 'mixlib/archive'
 
 class CookbookArtifact
   #
   # Accessors
   #
-  attr_accessor :url, :archive, :directory, :job_id, :work_dir
+  attr_accessor :url, :job_id, :work_dir
 
   #
   # Initializes a +CookbookArtifact+ downloading and unarchiving the
@@ -19,8 +20,15 @@ class CookbookArtifact
     @url = url
     @job_id = jid || 'nojobid'
     @work_dir = File.join(Dir.tmpdir, job_id)
-    @archive = download
-    @directory = unarchive
+  end
+
+  #
+  # downloads and untars a cookbook to the work_dir
+  #
+  def prep
+    downloaded_tarball = download
+    tar = Mixlib::Archive.new(downloaded_tarball.path)
+    tar.extract(work_dir, perms: false, ignore: /^\.$/)
   end
 
   #
@@ -30,7 +38,9 @@ class CookbookArtifact
   # @return [String] the would be command line out from FoodCritic
   #
   def criticize
-    args = [directory, "-f #{ENV['FIERI_FOODCRITIC_FAIL_TAGS']}"]
+    prep
+
+    args = [work_dir, "-f #{ENV['FIERI_FOODCRITIC_FAIL_TAGS']}"]
     ENV['FIERI_FOODCRITIC_TAGS'].split.each do |tag|
       args.push("-t #{tag}")
     end if ENV['FIERI_FOODCRITIC_TAGS']
@@ -62,34 +72,6 @@ class CookbookArtifact
         saved_file.write(read_file.read)
       end
       saved_file
-    end
-  end
-
-  #
-  # Unarchives an artifact into the tmp directory. The unarchived artifact
-  # will be deleted when the +CookbookArtifact+ is garbage collected.
-  #
-  # @return [String] the directory where the unarchived artifact lives.
-  #
-  def unarchive
-    Gem::Package::TarReader.new(Zlib::GzipReader.open(archive.path)) do |tar|
-      root = File.join(work_dir, tar.first.header.name.split('/')[0])
-      tar.rewind
-
-      tar.each do |entry|
-        next unless entry.file?
-
-        destination_file = File.join(work_dir, entry.header.name)
-        destination_dir = File.dirname(destination_file)
-
-        FileUtils.mkdir_p destination_dir unless File.directory?(destination_dir)
-
-        file = File.open(destination_file, 'wb+')
-        file << entry.read
-        file.close
-      end
-
-      return root
     end
   end
 end

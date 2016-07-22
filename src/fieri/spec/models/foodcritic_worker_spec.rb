@@ -36,23 +36,4 @@ describe FoodcriticWorker do
       req.body =~ /FC023/
     end
   end
-
-  it 'creates a unique directory for each job to work within' do
-    Sidekiq::Testing.inline! do
-      job_id_1 = FoodcriticWorker.perform_async(
-        'cookbook_artifact_url' => 'http://example.com/apache.tar.gz',
-        'cookbook_name' => 'apache2',
-        'cookbook_version' => '1.2.0'
-      )
-
-      job_id_2 = FoodcriticWorker.perform_async(
-        'cookbook_artifact_url' => 'http://example.com/apache.tar.gz',
-        'cookbook_name' => 'apache2',
-        'cookbook_version' => '1.2.0'
-      )
-
-      assert Dir.exist?(File.join(Dir.tmpdir, job_id_1))
-      assert Dir.exist?(File.join(Dir.tmpdir, job_id_2))
-    end
-  end
 end
