@@ -161,8 +161,7 @@ class Cookbook < ActiveRecord::Base
       update_attribute(:user_id, recipient.id)
 
       if add_owner_as_collaborator
-        create_new_collaborator(original_owner) unless initiator == original_owner
-        create_new_collaborator(initiator)
+        create_new_collaborator(original_owner)
       end
 
       delete_old_collaborator(recipient)

@@ -151,7 +151,7 @@ describe Cookbook do
           result = cookbook.transfer_ownership(sally, hank, true)
           cookbook.reload
           collaborators_users = cookbook.collaborators.map(&:user)
-          expect(collaborators_users).to include(jimmy, sally)
+          expect(collaborators_users).to include(jimmy)
         end
       end
     end
