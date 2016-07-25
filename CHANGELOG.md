@@ -1,6 +1,13 @@
 # Supermarket Changelog
 
-## 2.8.0 (2016-05-05)
+## 2.8.1 (2016-07-25)
+- [#1370] Support use of systemd on Ubuntu 16.04
+- [#1374] Fix wording for passing collaboration metric
+- [#1375] Change fieri_results_endpoint to fieri_supermarket_endpoint
+- [#1366] Create the log directory to avoid failures which assume it's created
+- [#1371] Fix Fieri's handling of cookbook tarballs with non-dir/file entries
+
+## 2.8.0 (2016-07-05)
 - [#1342] Adds Quality Metrics API
 - [#1345] Adds tests for Fieri untarring tarballs
 - [#1357] Refactor fieri environmental variables
