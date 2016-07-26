@@ -40,7 +40,7 @@ class CollaboratorsController < ApplicationController
 
       add_group_members_as_collaborators(resource, collaborator_params[:group_ids]) if collaborator_params[:group_ids].present?
 
-      if collaborator_params[:resourceable_type] == 'Cookbook'
+      if resource.class == Cookbook
         perform_fieri(resource)
       end
 
