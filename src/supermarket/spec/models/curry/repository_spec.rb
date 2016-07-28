@@ -24,16 +24,20 @@ describe Curry::Repository do
   end
 
   describe '#subscribe!' do
-    it 'sets the correct callback_url' do
-      ENV['FQDN'] = 'localhost'
+    let(:expected_fqdn) { 'bunniesareadorable' }
 
+    before do
+      ENV['FQDN'] = expected_fqdn
+    end
+
+    it 'sets the correct callback_url' do
       repository = Curry::Repository.new(full_name: 'chef/supermarket')
       expect(repository.callback_url).to be_nil
 
       repository_subscriber = Curry::RepositorySubscriber.new(repository)
       repository_subscriber.subscribe!
 
-      expect(repository.callback_url).to eq("http://#{ENV['FQDN']}:3000/curry/pull_request_updates")
+      expect(repository.callback_url).to eq("http://#{expected_fqdn}:3000/curry/pull_request_updates")
     end
   end
 end
