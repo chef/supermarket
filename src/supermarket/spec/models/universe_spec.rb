@@ -19,15 +19,16 @@ describe Universe do
 
   context 'when a host is not provided' do
     it 'uses the fqdn environmental variable' do
-      ENV['FQDN'] = "some_localhost"
+      expect(ENV['HOST']).to be_nil
+      ENV['FQDN'] = "localhost"
 
       opts = {
         port: 6060,
         protocol: 'https'
       }
 
-      expect(Universe.protocol_host_port(opts)).to eql('https://some_localhost:6060')
-      expect(Universe.download_url(cookbook, version, 'https://some_localhost:6060')).to eql('https://some_localhost:6060/api/v1/cookbooks/redis/versions/1.3.1/download')
+      expect(Universe.protocol_host_port(opts)).to eql("https://#{ENV['FQDN']}:6060")
+      expect(Universe.download_url(cookbook, version, "https://#{ENV['FQDN']}:6060")).to eql("https://#{ENV['FQDN']}:6060/api/v1/cookbooks/redis/versions/1.3.1/download")
     end
   end
 

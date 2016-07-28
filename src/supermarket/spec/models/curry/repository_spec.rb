@@ -25,7 +25,7 @@ describe Curry::Repository do
 
   describe '#subscribe!' do
     it 'sets the correct callback_url' do
-      ENV['FQDN'] = 'some_localhost'
+      ENV['FQDN'] = 'localhost'
 
       repository = Curry::Repository.new(full_name: 'chef/supermarket')
       expect(repository.callback_url).to be_nil
