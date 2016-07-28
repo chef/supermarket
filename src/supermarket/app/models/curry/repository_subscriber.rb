@@ -104,7 +104,7 @@ module Curry
     def pubsubhubbub_callback_url
       ENV['PUBSUBHUBBUB_CALLBACK_URL'].presence || Rails.application.routes.url_helpers
         .url_for(controller: 'curry/pull_request_updates', action: 'create',
-                 host: ENV['HOST'], protocol: ENV['PROTOCOL'], port: ENV['PORT'])
+                 host: ENV['FQDN'], protocol: ENV['PROTOCOL'], port: ENV['PORT'])
     end
 
     #
