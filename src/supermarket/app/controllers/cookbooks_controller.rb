@@ -116,6 +116,12 @@ class CookbooksController < ApplicationController
 
     @cookbook.update_attributes(cookbook_urls_params)
 
+    if cookbook_urls_params.key?(:up_for_adoption)
+      if cookbook_urls_params[:up_for_adoption] == 'true'
+        AdoptionMailer.delay.follower_email(@cookbook)
+      end
+    end
+
     key = if cookbook_urls_params.key?(:up_for_adoption)
             if cookbook_urls_params[:up_for_adoption] == 'true'
               'adoption.up'

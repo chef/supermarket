@@ -228,11 +228,11 @@ describe CookbooksController do
       expect(response).to redirect_to(sign_in_url)
     end
 
-    it 'sends an adoption email' do
+    it 'sends an adoption email to the cookbook owner' do
       sign_in user
       Sidekiq::Testing.inline! do
-        expect { post :adoption, id: cookbook }
-        .to change(ActionMailer::Base.deliveries, :count).by(1)
+        post :adoption, id: cookbook
+        expect(ActionMailer::Base.deliveries.map(&:to).flatten).to include(cookbook.owner.email)
       end
     end
 
@@ -246,6 +246,21 @@ describe CookbooksController do
   describe 'PATCH #update' do
     let(:user) { create(:user) }
     let(:cookbook) { create(:cookbook, owner: user) }
+    let(:another_user) do
+      create(
+        :user,
+        first_name: 'Jane',
+        last_name: 'Doe',
+        email: 'jane@example.com'
+      )
+    end
+    let!(:cookbook_follower) do
+      create(
+        :cookbook_follower,
+        user: another_user,
+        cookbook: cookbook
+      )
+    end
     before { sign_in user }
 
     context 'the params are valid' do
@@ -261,6 +276,18 @@ describe CookbooksController do
         expect(cookbook.source_url).to eql('http://example.com/cookbook')
         expect(cookbook.issues_url).to eql('http://example.com/cookbook/issues')
         expect(cookbook.up_for_adoption).to eql(true)
+      end
+
+      it 'sends an adoption email to cookbook followers' do
+        cookbook.reload
+        Sidekiq::Testing.inline! do
+          patch :update, id: cookbook, cookbook: {
+            source_url: 'http://example.com/cookbook',
+            issues_url: 'http://example.com/cookbook/issues',
+            up_for_adoption: 'true'
+          }
+          expect(ActionMailer::Base.deliveries.map(&:to).flatten).to include(cookbook_follower.user.email)
+        end
       end
 
       it 'redirects to @cookbook'  do
