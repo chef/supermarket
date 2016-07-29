@@ -78,7 +78,7 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
     require_collaborator_params
 
     if ENV['FIERI_KEY'] == params['fieri_key']
-      cookbook_version = Cookbook.where(lowercase_name: params[:cookbook_name]).first.cookbook_versions.last
+      cookbook_version = Cookbook.with_name(params[:cookbook_name]).first.cookbook_versions.last
 
       cookbook_version.update(
         collaborator_failure: params[:collaborator_failure],
