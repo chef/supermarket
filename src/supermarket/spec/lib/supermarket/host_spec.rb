@@ -6,7 +6,7 @@ describe Supermarket::Host do
   describe '#full_url' do
     it 'generates the correct url when there is no port present' do
       ENV['PORT'] = nil
-      ENV['HOST'] = 'example.com'
+      ENV['FQDN'] = 'example.com'
       ENV['PROTOCOL'] = 'http'
 
       expect(described_class.full_url).to eql('http://example.com')
@@ -14,7 +14,7 @@ describe Supermarket::Host do
 
     it 'generates the correct url when there is a port present' do
       ENV['PORT'] = '3000'
-      ENV['HOST'] = 'example.com'
+      ENV['FQDN'] = 'example.com'
       ENV['PROTOCOL'] = 'https'
 
       expect(described_class.full_url).to eql('https://example.com:3000')
@@ -23,7 +23,7 @@ describe Supermarket::Host do
     it 'should not display the port in the url if it is 80 or 443' do
       %w(80 443).each do |port|
         ENV['PORT'] = port
-        ENV['HOST'] = 'example.com'
+        ENV['FQDN'] = 'example.com'
         ENV['PROTOCOL'] = 'http'
 
         expect(described_class.full_url).to eql('http://example.com')

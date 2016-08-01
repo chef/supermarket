@@ -4,7 +4,7 @@ describe 'pages/robots.text.erb' do
   include_context 'env stashing'
 
   it 'uses the full host' do
-    ENV['HOST'] = 'example.com'
+    ENV['FQDN'] = 'example.com'
     ENV['PORT'] = '80'
     ENV['PROTOCOL'] = 'http'
 

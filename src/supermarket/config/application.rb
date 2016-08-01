@@ -78,7 +78,7 @@ module Supermarket
 
     # Set default URL for ActionMailer
     config.action_mailer.default_url_options = {
-      host: ENV['HOST'],
+      host: ENV['FQDN'],
       port: ENV['PORT'],
       protocol: ENV['PROTOCOL']
     }
