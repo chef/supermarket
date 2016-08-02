@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'foodcritic'
 
 describe FoodcriticWorker do
   before do
@@ -31,9 +32,12 @@ describe FoodcriticWorker do
       'cookbook_version' => '1.2.0'
     )
 
+
     assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/foodcritic_evaluation", times: 1) do |req|
       req.body =~ /foodcritic_failure=true/
       req.body =~ /FC023/
+      req.body =~ /foodcritic_version=#{FoodCritic::VERSION}/
+      req.body =~ /food_critic_tags=#{ENV['FIERI_FOODCRITIC_TAGS'].to_s}/
     end
   end
 end
