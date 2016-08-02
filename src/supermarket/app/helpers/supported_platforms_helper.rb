@@ -1,4 +1,39 @@
 module SupportedPlatformsHelper
+
+  #
+  # Returns an array of all known platforms to Supermarket
+  #
+  # @example
+  #   puts known_platforms.join(',')
+  #
+  #
+  # @return [Array] platforms
+  #
+  def known_platforms
+    %(aix
+      amazon
+      cento
+      debian
+      fedora
+      freebsd
+      gentoo
+      mac_os_x
+      omnios
+      openbsd
+      opensuse
+      opensuseleap
+      oracle
+      redhat
+      ubuntu
+      scientific
+      smartos
+      solaris
+      suse
+      windows
+      zlinux)
+  end
+
+
   #
   # Determines the correct icon to use for a given platform
   #
