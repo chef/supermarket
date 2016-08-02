@@ -44,16 +44,6 @@ describe FoodcriticWorker do
     end
   end
 
-  it 'creates a unique directory for each job to work within' do
-    Sidekiq::Testing.inline! do
-      job_id_1 = FoodcriticWorker.perform_async(valid_params)
-      job_id_2 = FoodcriticWorker.perform_async(valid_params)
-
-      assert Dir.exist?(File.join(Dir.tmpdir, job_id_1))
-      assert Dir.exist?(File.join(Dir.tmpdir, job_id_2))
-    end
-  end
-
   describe 'when posting results back to Supermarket' do
     let(:not_gonna_work_params) do
       valid_params.merge('cookbook_name' => 'not_gonna_work')
