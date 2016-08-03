@@ -32,10 +32,10 @@ class FoodcriticWorker
   end
 
   def format_feedback(feedback,status)
-    if status == true
+    if !status.nil?
       "#{feedback}\n#{foodcritic_info}"
     else
-      "This cookbook version passed Foodcritic\n#{foodcritic_info}"
+      foodcritic_info
     end
   end
 end
