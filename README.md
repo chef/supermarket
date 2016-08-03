@@ -27,7 +27,7 @@ GitHub Issue](https://github.com/chef/supermarket/issues/new).
 This repository has the code for the Supermarket application, related
 repositories are:
 
-* [irvingpop/supermarket-omnibus-cookbook](https://github.com/irvingpop/supermarket-omnibus-cookbook): This cookbook is used to deploy Supermarket through the Supermarket omnibus package. For details on using this cookbook to install Supermarket omnibus, check out [this webinar by the Supermarket Engineering team](https://www.chef.io/webinars/?commid=164925).
+* [chef-cookbooks/supermarket-omnibus-cookbook](https://github.com/chef-cookbooks/supermarket-omnibus-cookbook): This cookbook is used to deploy Supermarket through the Supermarket omnibus package. For details on using this cookbook to install Supermarket omnibus, check out [this webinar by the Supermarket Engineering team](https://www.chef.io/webinars/?commid=164925).
 * [chef/omnibus-supermarket](https://github.com/chef/omnibus-supermarket): Code used to build RPM and DEB packages
 
 ## Requirements
@@ -42,7 +42,7 @@ repositories are:
 
 Configure the [dotenv](https://github.com/bkeepers/dotenv) keys and secrets to .
 See `.env.example` for required keys and secrets to get up and running.
-[`docs/CONFIGURING.md`](https://github.com/chef/supermarket/blob/master/docs/CONFIGURING.md)
+[`docs/CONFIGURING.md`](https://github.com/chef/supermarket/blob/master/src/supermarket/docs/CONFIGURING.md)
 goes into detail about the not-so-straightforward configuration that needs
 to happen to get Supermarket working locally.
 
@@ -104,13 +104,13 @@ where a service is started.
 
 1. Make sure you have XCode installed
 
-1. Install a Ruby manager - if you don't already have one, you will need a Ruby manager to install Ruby 2.1.3 such as:
+1. Install a Ruby manager - if you don't already have one, you will need a Ruby manager to install Ruby 2.1.8 such as:
    * [RVM](https://rvm.io)
-   * [Rbenv](https://github.com/sstephenson/rbenv)
+   * [Rbenv](https://github.com/rbenv/rbenv)
    * [chruby] (https://github.com/postmodern/chruby)
    * or any other Ruby version manager that may come along
 
-1. Use your ruby manager to install Ruby 2.1.3.  For instructions on this, please see the manager's documentation.
+1. Use your ruby manager to install Ruby 2.1.8.  For instructions on this, please see the manager's documentation.
 
 1. Install bundler
 
