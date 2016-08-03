@@ -40,4 +40,42 @@ describe FoodcriticWorker do
       end
     end
   end
+
+  context 'when a cookbook version passes foodcritic' do
+    before do
+      #
+      # Stubs criticize for speed!
+      #
+      CookbookArtifact.any_instance.stub(:criticize)
+                      .and_return('', false)
+
+      CookbookArtifact.any_instance.stub(:cleanup)
+                      .and_return(0)
+
+      stub_request(:get, 'http://example.com/apache.tar.gz').
+        to_return(
+          body: File.open(File.expand_path('./spec/fixtures/apache.tar.gz')),
+          status: 200
+        )
+
+      stub_request(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/foodcritic_evaluation")
+    end
+
+    it 'indicates that foodcritic passed' do
+
+      FoodcriticWorker.new.perform(
+        'cookbook_artifact_url' => 'http://example.com/apache.tar.gz',
+        'cookbook_name' => 'apache2',
+        'cookbook_version' => '1.2.0'
+      )
+
+      assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/foodcritic_evaluation", times: 1) do |req|
+        req.body =~ /#{FoodCritic::VERSION}/
+        ENV['FIERI_FOODCRITIC_TAGS'].split(" ").each do |tag|
+          req.body =~ /#{tag}/
+        end
+        req.body =~ /This\+cookbook\+version\+passed\+Foodcritic/
+      end
+    end
+  end
 end

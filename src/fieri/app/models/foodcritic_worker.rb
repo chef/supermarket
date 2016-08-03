@@ -18,10 +18,9 @@ class FoodcriticWorker
         fieri_key: ENV['FIERI_KEY'],
         cookbook_name: params['cookbook_name'],
         cookbook_version: params['cookbook_version'],
-        foodcritic_feedback: format_feedback(feedback),
+        foodcritic_feedback: format_feedback(feedback,status),
         foodcritic_failure: status
       )
-
       cookbook.cleanup
     end
   end
@@ -32,7 +31,11 @@ class FoodcriticWorker
     "Run with Foodcritic Version #{FoodCritic::VERSION} with tags #{ENV['FIERI_FOODCRITIC_TAGS'].to_s}"
   end
 
-  def format_feedback(feedback)
-    "#{feedback}\n#{foodcritic_info}"
+  def format_feedback(feedback,status)
+    if status == true
+      "#{feedback}\n#{foodcritic_info}"
+    else
+      "This cookbook version passed Foodcritic\n#{foodcritic_info}"
+    end
   end
 end
