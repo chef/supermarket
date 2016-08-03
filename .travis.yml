@@ -30,7 +30,7 @@ notifications:
   slack:
     secure: YhfiTSk7726AGK9H8761vEbu7wgKzh8zZll/PJuH2dmUy5myrV2nOxf7h6cbsEZcVA+dJ6jpGuLJnsoCBrneh2p7MKf+3wlwxZKE/sns0doMjf5L0i58guGEIVUbE6ydCoC+z65oniq5r/keS5kOs1Rate8wK2DvzgKN7Sjmx58=
 rvm:
-- 2.1.8
+- 2.3.0
 script:
 - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake $COMPONENT:travis:script
 services:
