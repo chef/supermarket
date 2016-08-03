@@ -34,6 +34,10 @@ describe FoodcriticWorker do
     assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/foodcritic_evaluation", times: 1) do |req|
       req.body =~ /foodcritic_failure=true/
       req.body =~ /FC023/
+      req.body =~ /#{FoodCritic::VERSION}/
+      ENV['FIERI_FOODCRITIC_TAGS'].split(" ").each do |tag|
+        req.body =~ /#{tag}/
+      end
     end
   end
 end

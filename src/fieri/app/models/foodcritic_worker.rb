@@ -18,11 +18,21 @@ class FoodcriticWorker
         fieri_key: ENV['FIERI_KEY'],
         cookbook_name: params['cookbook_name'],
         cookbook_version: params['cookbook_version'],
-        foodcritic_feedback: feedback,
+        foodcritic_feedback: format_feedback(feedback),
         foodcritic_failure: status
       )
 
       cookbook.cleanup
     end
+  end
+
+  private
+
+  def foodcritic_info
+    "Run with Foodcritic Version #{FoodCritic::VERSION} with tags #{ENV['FIERI_FOODCRITIC_TAGS'].to_s}"
+  end
+
+  def format_feedback(feedback)
+    "#{feedback} #{foodcritic_info}"
   end
 end
