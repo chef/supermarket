@@ -145,4 +145,19 @@ module CookbooksHelper
       link_to linked_text, params.merge(order: ordering), class: 'button radius secondary'
     end
   end
+
+  def foodcritic_info(failing_status='',feedback)
+    if failing_status == false
+      # When a cookbook version passes foodcritic
+      # The feedback from Fieri has a \n at the beginning
+      # of it.
+      feedback.gsub(/^\n/,'').html_safe
+    else
+      # When a cookbook version does not pass foodcritic
+      # The feedback from Fieri includes \n in between
+      # failing rules
+      # This replaces those with <br /> tags for rendering
+      feedback.gsub(/\n/,'<br />').html_safe
+    end
+  end
 end

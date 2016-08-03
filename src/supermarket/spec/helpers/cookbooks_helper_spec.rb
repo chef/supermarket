@@ -118,4 +118,27 @@ describe CookbooksHelper do
       expect(URI(link['href']).query).to include('order=not_excellent')
     end
   end
+
+  describe '#foodcritic_info' do
+    context 'when a cookbook version has passed foodcritic' do
+      let(:passing_foodcritic) { "\nRun with Foodcritic Version 7.0.1 with tags ~FC031 ~FC045" }
+
+      it 'does not include a new line at the beginning' do
+        expect(helper.foodcritic_info(false, passing_foodcritic)).to_not match(/^\n/)
+      end
+      it 'does not include a <br />' do
+        expect(helper.foodcritic_info(false, passing_foodcritic)).to_not include('<br />')
+      end
+    end
+
+    context 'when a cookbook version has not passed foodcritic' do
+      let(:failing_foodcritic) {
+        "FC064: Ensure issues_url is set in metadata:\nRun with Foodcritic Version 7.0.1 with tags ~FC031 ~FC045"
+      }
+
+      it 'includes at least one <br />' do
+        expect(helper.foodcritic_info(true, failing_foodcritic)) .to include('<br />')
+      end
+    end
+  end
 end
