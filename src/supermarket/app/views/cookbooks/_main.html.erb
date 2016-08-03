@@ -118,10 +118,10 @@
           <h1>Foodcritic Metric</h1>
           <% if version.foodcritic_failure == false %>
             <p><%= version.version %> passed <%= link_to 'Foodcritic', 'http://acrmp.github.io/foodcritic', target: '_blank' %>.
-            <pre><%= version.foodcritic_feedback.gsub(/^\n/, '').html_safe %></pre>
-          <% else %>
-            <pre><%= version.foodcritic_feedback.gsub(/\n/, '<br />').html_safe %></pre>
           <% end %>
+          <% if version.foodcritic_feedback.present? %>
+            <pre><%= foodcritic_info(version.foodcritic_failure, version.foodcritic_feedback) %></pre>
+        <% end %>
           <br />
           <% if version.collaborator_feedback.present? %>
             <h1>Collaborators Metric</h1>
