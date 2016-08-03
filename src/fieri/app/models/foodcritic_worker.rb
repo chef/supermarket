@@ -33,6 +33,6 @@ class FoodcriticWorker
   end
 
   def format_feedback(feedback)
-    "#{feedback} #{foodcritic_info}"
+    "#{feedback}\n#{foodcritic_info}"
   end
 end
