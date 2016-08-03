@@ -19,13 +19,10 @@ class FoodcriticWorker
         cookbook_name: params['cookbook_name'],
         cookbook_version: params['cookbook_version'],
         foodcritic_feedback: feedback,
-        foodcritic_failure: status,
-        foodcritic_version: FoodCritic::VERSION,
-        foodcritic_tags: ENV['FIERI_FOODCRITIC_TAGS'].to_s
+        foodcritic_failure: status
       )
 
       cookbook.cleanup
     end
   end
-
 end
