@@ -42,7 +42,7 @@ describe FoodcriticWorker do
       req.body =~ /foodcritic_failure=true/
       req.body =~ /FC023/
       req.body =~ /#{FoodCritic::VERSION}/
-      ENV['FIERI_FOODCRITIC_TAGS'].split(" ").each do |tag|
+      ENV['FIERI_FOODCRITIC_TAGS'].split(' ').each do |tag|
         req.body =~ /#{tag}/
       end
     end
@@ -52,7 +52,6 @@ describe FoodcriticWorker do
     let(:not_gonna_work_params) do
       valid_params.merge('cookbook_name' => 'not_gonna_work')
     end
-
 
     it 'rescues a POST error' do
       stub_request(:post, test_evaluation_endpoint).

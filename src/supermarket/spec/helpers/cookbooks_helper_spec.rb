@@ -124,10 +124,10 @@ describe CookbooksHelper do
       let(:passing_foodcritic) { "\nRun with Foodcritic Version 7.0.1 with tags ~FC031 ~FC045" }
 
       it 'does not include a new line at the beginning' do
-        expect(helper.foodcritic_info(false, passing_foodcritic)).to_not match(/^\n/)
+        expect(helper.foodcritic_info(passing_foodcritic, false)).to_not match(/^\n/)
       end
       it 'does not include a <br />' do
-        expect(helper.foodcritic_info(false, passing_foodcritic)).to_not include('<br />')
+        expect(helper.foodcritic_info(passing_foodcritic, false)).to_not include('<br />')
       end
     end
 
@@ -137,7 +137,7 @@ describe CookbooksHelper do
       end
 
       it 'includes at least one <br />' do
-        expect(helper.foodcritic_info(true, failing_foodcritic)) .to include('<br />')
+        expect(helper.foodcritic_info(failing_foodcritic, true)) .to include('<br />')
       end
     end
   end
