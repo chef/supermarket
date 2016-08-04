@@ -1,5 +1,21 @@
 # Supermarket Changelog
 
+## 2.8.2 (2016-08-03)
+- [#1312] Adds sending an email to cookbook followers when a cookbook goes up
+  for adoption.
+- [#1381] Fixed adding the current owner to collaborators when an admin
+  initiates a transfer of ownership.
+- [#1382] Fixes reevaluating a cookbook when a collaborator is added.
+- [#1386] Fixes the database migration command within omnibus to always have a
+  HOME set after an update to rb-readline began requiring a HOME.
+- [#1387] Fixes config confusion and inconsistencies by no longer requiring FQDN
+  and HOME be set and matching in omnibus config. Only a value for FQDN is
+  needed now.
+- [#1391] Fixes a fieri callback to handle quality metrics results for cookbooks
+  with uppercase letters in their name.
+- [#1396] Upgrade Ruby to 2.3.0.
+- [#1398] Update README with links and Ruby requirements.
+
 ## 2.8.1 (2016-07-25)
 - [#1370] Support use of systemd on Ubuntu 16.04
 - [#1374] Fix wording for passing collaboration metric
