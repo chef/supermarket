@@ -132,9 +132,9 @@ describe CookbooksHelper do
     end
 
     context 'when a cookbook version has not passed foodcritic' do
-      let(:failing_foodcritic) {
+      let(:failing_foodcritic) do
         "FC064: Ensure issues_url is set in metadata:\nRun with Foodcritic Version 7.0.1 with tags ~FC031 ~FC045"
-      }
+      end
 
       it 'includes at least one <br />' do
         expect(helper.foodcritic_info(true, failing_foodcritic)) .to include('<br />')
