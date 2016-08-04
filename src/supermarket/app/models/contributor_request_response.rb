@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ContributorRequestResponse < ActiveRecord::Base
   ACCEPTED = 'accepted'.freeze unless defined? ACCEPTED
   DECLINED = 'declined'.freeze unless defined? DECLINED
