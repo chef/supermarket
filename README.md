@@ -32,7 +32,7 @@ repositories are:
 
 ## Requirements
 
-- Ruby 2.1.8
+- Ruby 2.3.0
 - PostgreSQL 9.3
 - Redis 2.4+
 
@@ -104,13 +104,13 @@ where a service is started.
 
 1. Make sure you have XCode installed
 
-1. Install a Ruby manager - if you don't already have one, you will need a Ruby manager to install Ruby 2.1.8 such as:
+1. Install a Ruby manager - if you don't already have one, you will need a Ruby manager to install Ruby 2.3.0 such as:
    * [RVM](https://rvm.io)
    * [Rbenv](https://github.com/rbenv/rbenv)
    * [chruby] (https://github.com/postmodern/chruby)
    * or any other Ruby version manager that may come along
 
-1. Use your ruby manager to install Ruby 2.1.8.  For instructions on this, please see the manager's documentation.
+1. Use your ruby manager to install Ruby 2.3.0.  For instructions on this, please see the manager's documentation.
 
 1. Install bundler
 
