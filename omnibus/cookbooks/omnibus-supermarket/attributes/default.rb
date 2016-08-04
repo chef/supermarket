@@ -214,7 +214,7 @@ default['supermarket']['redis']['port'] = 16379
 # ## Runit
 
 # This is missing from the enterprise cookbook
-# see (https://github.com/opscode-cookbooks/enterprise-chef-common/pull/17)
+# see (https://github.com/chef-cookbooks/enterprise-chef-common/pull/17)
 #
 # Will be copied to the root node.runit namespace.
 default['supermarket']['runit']['svlogd_bin'] = "#{node['supermarket']['install_directory']}/embedded/bin/svlogd"
@@ -267,7 +267,7 @@ default['supermarket']['ssl']['session_timeout'] = '5m'
 #
 # Settings for main Rails app Unicorn application server. These attributes are
 # used with the template from the community Unicorn cookbook:
-# https://github.com/opscode-cookbooks/unicorn/blob/master/templates/default/unicorn.rb.erb
+# https://github.com/chef-cookbooks/unicorn/blob/master/templates/default/unicorn.rb.erb
 #
 # Full explanation of all options can be found at
 # http://unicorn.bogomips.org/Unicorn/Configurator.html
@@ -310,7 +310,7 @@ default['supermarket']['database']['extensions'] = { 'plpgsql' => true, 'pg_trgm
 # environment variables to be used by the app.
 #
 # Items that are set to nil here and also set in the development environment
-# configuration (https://github.com/opscode/supermarket/blob/master/.env) will
+# configuration (https://github.com/chef/supermarket/blob/master/.env) will
 # use the value from the development environment. Set them to something other
 # than nil to change them.
 
@@ -342,7 +342,7 @@ default['supermarket']['chef_sign_up_url'] = "#{node['supermarket']['chef_server
 
 # URLs for Chef Software, Inc. sites. Most of these have defaults set in
 # Supermarket already, but you can customize them here to your liking
-default['supermarket']['chef_domain'] = 'getchef.com'
+default['supermarket']['chef_domain'] = 'chef.io'
 default['supermarket']['chef_blog_url'] = "https://www.#{node['supermarket']['chef_domain']}/blog"
 default['supermarket']['chef_docs_url'] = "https://docs.#{node['supermarket']['chef_domain']}"
 default['supermarket']['chef_downloads_url'] = "https://downloads.#{node['supermarket']['chef_domain']}"
