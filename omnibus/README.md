@@ -2,12 +2,12 @@ Chef Supermarket Omnibus project
 ================================
 
 This project creates full-stack platform-specific packages for
-[Chef Supermarket](https://supermarket.getchef.com).
+[Chef Supermarket](https://supermarket.chef.io).
 
 Issues for this project can be opened and tracked from the
-[Supermarket GitHub Issues page](https://github.com/opscode/supermarket/issues).
+[Supermarket GitHub Issues page](https://github.com/chef/supermarket/issues).
 
-General Supermarket documentation is on the [Supermarket Wiki](https://github.com/opscode/supermarket/wiki). Setting up authentication tends to be the main blocker to getting started, so see this [wiki page](https://github.com/opscode/supermarket/wiki/Chef-Authentication) and a related [blog post](https://www.chef.io/blog/2015/04/21/setting-up-your-private-supermarket-server/)
+General Supermarket documentation is on the [Supermarket Wiki](https://github.com/chef/supermarket/wiki). Setting up authentication tends to be the main blocker to getting started, so see this [wiki page](https://github.com/chef/supermarket/wiki/Chef-Authentication) and a related [blog post](https://www.chef.io/blog/2015/04/21/setting-up-your-private-supermarket-server/)
 
 Installation
 ------------
@@ -78,7 +78,7 @@ changing the list found in the `.kitchen.yml` `platforms` YAML stanza.
 
 This build environment is designed to get you up-and-running quickly. However,
 there is nothing that restricts you to building on other platforms. Simply use
-the [omnibus cookbook](https://github.com/opscode-cookbooks/omnibus) to setup
+the [omnibus cookbook](https://github.com/chef-cookbooks/omnibus) to setup
 your desired platform and execute the build steps listed above.
 
 The default build environment requires Test Kitchen and VirtualBox for local

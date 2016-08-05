@@ -15,8 +15,8 @@
 #
 
 name "supermarket"
-maintainer "Chef Supermarket Team <supermarket@getchef.com>"
-homepage "https://supermarket.getchef.com"
+maintainer "Chef Supermarket Team <supermarket@chef.io>"
+homepage "https://supermarket.chef.io"
 
 license "Apache-2.0"
 license_file "../LICENSE"
