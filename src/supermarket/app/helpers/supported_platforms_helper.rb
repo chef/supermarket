@@ -11,25 +11,44 @@ module SupportedPlatformsHelper
   #
   def known_platforms
     %(aix
+      alpine
       amazon
+      arch
       cento
+      cloudlinux
       debian
       fedora
       freebsd
       gentoo
+      hpux
+      ibm_powerkvm
+      ios_xr
+      linuxmint
       mac_os_x
+      netbsd
+      nexentacore
+      nexus
+      nexus_centos
       omnios
       openbsd
+      openindiana
+      opensolaris
       opensuse
       opensuseleap
       oracle
+      parallels
+      pidora
+      raspbian
       redhat
-      ubuntu
       scientific
+      slackware
       smartos
       solaris
       suse
+      ubuntu
       windows
+      wrlinux
+      xenserver
       zlinux)
   end
 
