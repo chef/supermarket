@@ -119,7 +119,7 @@
           <% if version.foodcritic_feedback.present? %>
             <pre><%= version.foodcritic_feedback.gsub(/\n/, '<br />').html_safe %></pre>
           <% else %>
-            <p><%= version.version %> passed <%= link_to 'Foodcritic', 'http://acrmp.github.io/foodcritic', target: '_blank' %>.
+            <p><%= version.version %> passed <%= link_to 'Foodcritic', 'http://www.foodcritic.io/', target: '_blank' %>.
           <% end %>
 
           <br />
