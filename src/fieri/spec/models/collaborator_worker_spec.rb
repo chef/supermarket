@@ -21,7 +21,7 @@ describe CollaboratorWorker do
     expect(cw.get_collaborator_count(json_response)).to eq 2
   end
 
-  it 'checks whether coookbook version passes collaborator metrics' do
+  it 'checks whether coookbook version passes collaborators metrics' do
     expect(cw.sufficient_collaborators?(2)).to eql(true)
     expect(cw.sufficient_collaborators?(1)).to eql(false)
   end
