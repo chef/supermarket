@@ -56,8 +56,8 @@ describe AdoptionMailer do
         end
 
         it 'includes a link to the cookbook page' do
-          expect(subject.text_part.to_s).to include(cookbook_path(cookbook))
-          expect(subject.html_part.to_s).to include(cookbook_path(cookbook))
+          expect(subject.text_part.to_s).to include(cookbook_url(cookbook))
+          expect(subject.html_part.to_s).to include(cookbook_url(cookbook))
         end
       end
     end
