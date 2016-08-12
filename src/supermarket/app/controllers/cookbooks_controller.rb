@@ -22,7 +22,7 @@ class CookbooksController < ApplicationController
     @cookbooks = Cookbook.includes(:cookbook_versions)
 
     if params[:q].present?
-      @cookbooks = @cookbooks.search(params[:q])
+      @cookbooks = @cookbooks.search(params[:q]).with_pg_search_rank
     end
 
     if params[:featured].present?
