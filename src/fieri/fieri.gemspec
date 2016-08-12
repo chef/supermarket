@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.rdoc']
 
-  s.add_dependency 'rails', '~> 4.1.14.2'
+  s.add_dependency 'rails', '~> 4.2'
   s.add_dependency 'sidekiq'
   s.add_dependency 'dotenv-rails'
   s.add_dependency 'foodcritic'
