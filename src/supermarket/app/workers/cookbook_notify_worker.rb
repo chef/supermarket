@@ -30,7 +30,7 @@ class CookbookNotifyWorker
       where(users: { id: common_user_ids })
 
     emailable_cookbook_followers.each do |cookbook_follower|
-      CookbookMailer.follower_notification_email(cookbook_version, cookbook_follower.user).deliver
+      CookbookMailer.follower_notification_email(cookbook_version, cookbook_follower.user).deliver_now
     end
   end
 end

@@ -26,7 +26,7 @@ class CookbookDeletionWorker
     users = followers_or_collaborators.map(&:user).uniq.select { |u| subscribed_user_ids.include?(u.id) }
 
     users.each do |user|
-      CookbookMailer.cookbook_deleted_email(cookbook['name'], user).deliver
+      CookbookMailer.cookbook_deleted_email(cookbook['name'], user).deliver_now
     end
 
     followers_or_collaborators.each(&:destroy)
