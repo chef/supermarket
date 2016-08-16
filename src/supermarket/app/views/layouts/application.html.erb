@@ -28,12 +28,13 @@
       <div class="inner-wrap">
         <!-- Chef Property Menu -->
         <aside class="left-off-canvas-menu">
-          <ul class="off-canvas-list hide-for-medium-up">
+          <ul class="off-canvas-list show-for-medium-down">
             <li><%= link_to 'Cookbooks', cookbooks_directory_path %></li>
             <li><%= link_to 'Contribute', icla_signatures_path %></li>
             <% if ROLLOUT.active?(:tools) %>
               <li><%= link_to 'Tools & Plugins', tools_path %></li>
             <% end %>
+            <li class="more-info"><a>More Info</a></li>
             <% if !signed_in? %>
               <li><%= link_to 'Sign In', sign_in_path, rel: 'sign_in' %></li>
             <% end %>

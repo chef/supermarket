@@ -94,21 +94,14 @@
     li {
       float: left;
       list-style: none;
-      margin-right: rem-calc(40);
+      margin-right: rem-calc(30);
 
-      &.sign_in_create_account {
-        float: right;
-        margin: rem-calc(0 0 0 40);
+      &:first-child {
+        margin-left: rem-calc(0);
+      }
 
-        a {
-          color: lighten($concrete, 5%);
-          font: rem-calc(12) $accent_font;
-          line-height: rem-calc(102);
-
-          &:hover, &:active {
-            color: lighten($concrete, 15%);
-          }
-        }
+      &:last-child {
+        margin-right: rem-calc(0);
       }
 
       a {
@@ -125,12 +118,6 @@
           color: lighten($concrete, 10%);
         }
       }
-    }
-  }
-
-  @media #{$small-down} {
-    ul.mainnav li {
-      display: none;
     }
   }
 }

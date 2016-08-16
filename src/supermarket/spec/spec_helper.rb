@@ -33,7 +33,12 @@ Capybara.register_driver :quiet_ghost do |app|
   Capybara::Poltergeist::Driver.new(
     app,
     phantomjs_logger: error_logger,
-    timeout: 90
+    timeout: 90,
+    # set to a width larger than the medium range defined in variables.scss
+    # so that tests the navmenu appears at the top of the window, otherwise
+    # capybara will complain about
+    #   Unable to find css "[rel*=thinginthenavmenu]"
+    window_size: [1100, 764]
   )
 end
 
