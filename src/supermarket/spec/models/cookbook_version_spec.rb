@@ -40,17 +40,32 @@ describe CookbookVersion do
       expect(cookbook_version.errors[:version]).to be_empty
     end
 
-    it 'includes a descriptive error message when content type validation fails' do
-      cookbook = create(:cookbook)
-      cookbook_version = build(
-        :cookbook_version,
-        cookbook: cookbook,
-        tarball: File.open('spec/support/cookbook_fixtures/not-a-tarball.txt')
-      )
+    context 'when something that is not a tarball is given' do
+      it 'includes an error that the content type is not supported' do
+        cookbook = create(:cookbook)
+        cookbook_version = build(
+          :cookbook_version,
+          cookbook: cookbook,
+          tarball: File.open('spec/support/cookbook_fixtures/not-a-tarball.txt')
+        )
 
-      expect(cookbook_version).to_not be_valid
-      expect(cookbook_version.errors[:tarball].first).to eql('can not be text/plain.')
-      expect(cookbook_version.errors.full_messages.first).to eql('Tarball content type can not be text/plain.')
+        expect(cookbook_version).to_not be_valid
+        expect(cookbook_version.errors[:tarball].first).to eql('can not be text/plain.')
+        expect(cookbook_version.errors.full_messages.first).to eql('Tarball content type can not be text/plain.')
+      end
+
+      it 'includes an error that the contents do not match the content type' do
+        cookbook = create(:cookbook)
+        cookbook_version = build(
+          :cookbook_version,
+          cookbook: cookbook,
+          tarball: File.open('spec/support/cookbook_fixtures/not-a-tarball-and-lies-about-it.tgz')
+        )
+
+        expect(cookbook_version).to_not be_valid
+        expect(cookbook_version.errors[:tarball].first).to eql('has contents that are not what they are reported to be')
+        expect(cookbook_version.errors.full_messages.first).to eql('Tarball has contents that are not what they are reported to be')
+      end
     end
   end
 
