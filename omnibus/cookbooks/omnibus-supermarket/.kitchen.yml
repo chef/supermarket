@@ -2,7 +2,7 @@
 driver:
   name: vagrant
   network:
-    - ['private_network', { ip: '192.168.33.33' }]
+    - ['private_network', type: 'dhcp']
   synced_folders:
     - ['../../pkg', '/tmp/packages', 'create: true, type: :rsync']
 
@@ -26,6 +26,5 @@ suites:
     attributes:
       supermarket:
         test:
-          deb_package_path: <%= ENV['SUPERMARKET_DEB'] || false %>
-          rpm_package_path: <%= ENV['SUPERMARKET_RPM'] || false %>
+          version_to_install: <%= ENV['VERSION_TO_INSTALL'] || false %>
         ingredient_config:

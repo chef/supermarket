@@ -23,19 +23,17 @@
 # the cookbooks with integration tests.
 
 # If attributes are defined for packages, install them
-deb_package_path = node['supermarket']['test']['deb_package_path']
-rpm_package_path = node['supermarket']['test']['rpm_package_path']
+package_path = node['supermarket']['test']['package_path'] || '/tmp/packages'
+version_to_install = node['supermarket']['test']['version_to_install'] || 'nope_set_VERSION_TO_INSTALL'
 
 package 'supermarket' do
   case node['platform_family']
   when 'debian'
     provider Chef::Provider::Package::Dpkg
-    source deb_package_path
-    only_if { deb_package_path }
+    source "#{package_path}/supermarket_#{version_to_install}-1_amd64.deb"
   when 'rhel'
     provider Chef::Provider::Package::Rpm
-    source rpm_package_path
-    only_if { rpm_package_path }
+    source "#{package_path}/supermarket-#{version_to_install}-1.el#{node['platform_version'].to_i}.x86_64.rpm"
   end
 end
 
