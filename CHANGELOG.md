@@ -1,5 +1,11 @@
 # Supermarket Changelog
 
+## 2.8.3 (2016-08-22)
+- [#1402] Use "Chef" and "chef.io" consistently in links.
+- [#1405] Use correct URL for Foodcritic project.
+- [#1406] Use consistent pluralization of "collaborator metrics"
+- [#1409] Upgrade to Rails 4.2 to address [CVE-2016-6316](https://groups.google.com/forum/#!topic/rubyonrails-security/I-VWr034ouk)
+
 ## 2.8.2 (2016-08-03)
 - [#1312] Adds sending an email to cookbook followers when a cookbook goes up
   for adoption.
