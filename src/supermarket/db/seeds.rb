@@ -249,7 +249,7 @@ if Rails.env.development?
   %w(apt redis postgres node ruby haskell clojure java mysql apache2 nginx yum app).each do |name|
     cookbook = Cookbook.where(
       name: name
-    ).first_or_initialize(
+    ).first_or_create(
       source_url: 'http://example.com',
       issues_url: 'http://example.com',
       category: category,
@@ -261,13 +261,13 @@ if Rails.env.development?
       # that our seed data is realistically seeded.
       cookbook_version = cookbook.cookbook_versions.where(
         version: "0.#{version_number}.0"
-      ).first_or_create(
+      ).first_or_initialize(
         description: Faker::Lorem.sentences(1).first,
         license: 'MIT',
         tarball: File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz'),
         readme: File.read('../../README.md'),
         readme_extension: 'md',
-        user_id: rand(1..User.all.count)
+        user: user
       )
 
       if platforms.key?(name)
@@ -275,6 +275,8 @@ if Rails.env.development?
           cookbook_version.add_supported_platform(platform, ">=#{version_number}.0")
         end
       end
+
+      cookbook.save!
 
       unless name == 'apt' || name == 'yum'
         dep = version_number.even? ? 'apt' : 'yum'

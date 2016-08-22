@@ -11,7 +11,7 @@ shared_examples_for 'exportable' do
     end
 
     it 'has header row of model\'s attributes' do
-      expect(reparsed_csv.first).to eq(exportable_thing.attribute_names)
+      expect(reparsed_csv.first).to match_array(exportable_thing.attribute_names)
     end
 
     it 'has a row for a model in a query' do

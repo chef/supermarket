@@ -61,7 +61,7 @@ wrap.
   it 'uses protocol-relative URLs for images served over HTTP' do
     html = helper.render_markdown('![](http://img.example.com)')
 
-    expect(html).to include('<img alt="" src="//img.example.com">')
+    expect(html).to include('<img src="//img.example.com" alt="">')
   end
 
   it 'prevents XSS attacks' do
@@ -72,7 +72,7 @@ wrap.
   it 'uses protocol-relative URLs for images served over HTTPS' do
     html = helper.render_markdown('![](https://img.example.com)')
 
-    expect(html).to include('<img alt="" src="//img.example.com">')
+    expect(html).to include('<img src="//img.example.com" alt="">')
   end
 
   it 'escapes attribute values' do
@@ -80,7 +80,7 @@ wrap.
     attribute = '&quot;&gt;&lt;&quot;'
 
     escaped_html = %(
-      <img alt="#{attribute}" src="#{attribute}" title="&gt;&lt;">
+      <img src="#{attribute}" alt="#{attribute}" title="&gt;&lt;">
     ).squish
 
     expect(html).to include(escaped_html)

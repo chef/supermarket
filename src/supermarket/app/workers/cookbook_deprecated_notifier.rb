@@ -19,7 +19,7 @@ class CookbookDeprecatedNotifier
         cookbook,
         replacement_cookbook,
         user
-      ).deliver
+      ).deliver_now
     end
   end
 
