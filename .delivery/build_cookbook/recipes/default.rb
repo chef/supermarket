@@ -6,6 +6,12 @@
 
 ruby_install node['build_cookbook']['ruby_version']
 
+%w(
+  libsqlite3-dev
+).each do |dependency|
+  package dependency
+end
+
 # get to the project root and use it as a cache
 # as it is persistent between build jobs
 gem_cache = File.join(node['delivery']['workspace']['root'], "../../../project_gem_cache")

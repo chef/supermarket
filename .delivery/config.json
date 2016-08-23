@@ -4,7 +4,11 @@
     "name": "build_cookbook",
     "path": ".delivery/build_cookbook"
   },
-  "skip_phases": [],
-  "build_nodes": {},
+  "skip_phases": [
+    "syntax"
+  ],
+  "build_nodes": {
+    "default": ["tags:delivery-build-node AND platform:ubuntu"]
+  },
   "dependencies": []
 }
