@@ -8,7 +8,7 @@
     "syntax"
   ],
   "build_nodes": {
-    "default": ["tags:delivery-build-node AND platform:ubuntu"]
+    "default": ["tags:delivery-build-node AND platform:ubuntu AND platform_version:16.04"]
   },
   "dependencies": []
 }

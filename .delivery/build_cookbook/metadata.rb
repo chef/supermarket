@@ -6,3 +6,4 @@ version '0.1.0'
 
 depends 'languages'
 depends 'delivery-sugar'
+depends 'chef-apt-docker'
