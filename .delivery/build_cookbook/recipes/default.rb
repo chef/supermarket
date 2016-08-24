@@ -34,3 +34,10 @@ directory gem_cache do
   recursive true
   action :create
 end
+
+#########################################################################
+# Ensure Java is installed for remote triggering of Jenkins jobs with
+# `jenkins_job`
+#########################################################################
+node.set['java']['jdk_version'] = '7'
+include_recipe 'java::default'

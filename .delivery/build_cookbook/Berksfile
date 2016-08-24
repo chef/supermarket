@@ -2,8 +2,19 @@ source 'https://supermarket.chef.io'
 
 metadata
 
-group :delivery do
-  cookbook 'delivery_build', git: 'https://github.com/chef-cookbooks/delivery_build'
-  cookbook 'delivery-base', git: 'https://github.com/chef-cookbooks/delivery-base'
-  cookbook 'test', path: './test/fixtures/cookbooks/test'
-end
+# Engineering Services cookbooks (will eventually be deps of `delivery-bus`)
+cookbook 'artifactory-pro',
+         git: 'git@github.com:chef-cookbooks/artifactory-pro.git',
+         branch: 'master'
+
+cookbook 'jenkins',
+         git: 'https://github.com/chef-cookbooks/jenkins.git',
+         ref: '55bcb48e61febf4997d3c25fc73b8f017af73d68'
+
+cookbook 'oc-artifactory',
+         git: 'git@github.com:chef-cookbooks/oc-artifactory.git',
+         branch: 'master'
+
+cookbook 'opscode-ci',
+         git: 'git@github.com:chef-cookbooks/opscode-ci.git',
+         branch: 'master'

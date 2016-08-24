@@ -5,7 +5,12 @@
     "path": ".delivery/build_cookbook"
   },
   "skip_phases": [
-    "syntax"
+    "syntax",
+    "security",
+    "quality",
+    "provision",
+    "deploy",
+    "smoke"
   ],
   "build_nodes": {
     "default": ["tags:delivery-build-node AND platform:ubuntu AND platform_version:16.04"]
