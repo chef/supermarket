@@ -25,7 +25,7 @@ license_file "../LICENSE"
 # and /opt/supermarket on all other platforms
 install_dir "#{default_root}/#{name}"
 
-build_version '2.8.3'
+build_version Omnibus::BuildVersion.semver
 build_iteration 1
 
 override :postgresql, version: '9.3.6'
