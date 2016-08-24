@@ -4,23 +4,9 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-#########################################################################
-# Docker
-#########################################################################
-include_recipe 'chef-apt-docker::default'
-
-package "docker-engine"
-
-execute 'install docker-compose' do
-  command <<-EOH
-curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-EOH
+if node['delivery']['change']['phase'] == "unit"
+  include_recipe 'build_cookbook::_install_docker'
 end
-
-# Ensure the `dbuild` user is part of the `docker` group so they can
-# connect to the Docker daemon
-execute "usermod -aG docker #{node['delivery_builder']['build_user']}"
 
 #########################################################################
 # Install a relatively up-to-date version of PhantomJS for app specs
