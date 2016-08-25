@@ -47,6 +47,7 @@ if node['delivery']['change']['stage'] == 'acceptance'
     channel :current
     comment "Promoted by #{delivery_change_id} during acceptance/functional"
     user 'dbuild'
+    confirm false
   end
 
 end
