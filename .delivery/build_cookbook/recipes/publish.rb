@@ -28,7 +28,7 @@ git_ssh = File.join(delivery_workspace, 'bin', 'git_ssh')
 execute 'Set a user and email for git operations' do
   command <<-CMD
 git config user.name "Delivery Builder - Supermarket Pipeline" && \
-git config user.email "builder@delivery.chef.co"
+git config user.email "chef-delivery@users.noreply.github.com"
 CMD
   cwd delivery_workspace_repo
   environment({"GIT_SSH" => git_ssh})
