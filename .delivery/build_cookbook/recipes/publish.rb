@@ -25,36 +25,16 @@ node.run_state[:jenkins_private_key]       = delivery_bus_secrets['jenkins_priva
 
 git_ssh = File.join(delivery_workspace, 'bin', 'git_ssh')
 
-execute "Fetch Tags" do
+execute 'Fetch latest tags from Workflow server' do
   command "git fetch --tags"
   cwd delivery_workspace_repo
   environment({"GIT_SSH" => git_ssh})
   returns [0]
 end
 
-execute "Tag Release" do
-  command 'git tag $NEW_TAG -a -m "Supermarket $NEW_TAG"'
-  cwd delivery_workspace_repo
-  # Use lazy evaluation to make sure we do the version lookup
-  # after the fetch above
-  environment(lazy {{
-    "GIT_SSH" => git_ssh,
-    "GIT_AUTHOR_NAME" => "Delivery Builder",
-    "GIT_AUTHOR_EMAIL" => "builder@delivery.chef.co",
-    "GIT_COMMITTER_NAME" => "Delivery Builder",
-    "GIT_COMMITTER_EMAIL" => "builder@delivery.chef.co",
-    "NEW_TAG" => VersionBumper.next_version(delivery_workspace_repo)
-  }})
-end
-
-execute 'Push Tags' do
-  command 'git push origin --tags'
-  cwd delivery_workspace_repo
-  environment({ 'GIT_SSH' => git_ssh })
-end
-
 # Push changes up to the GitHub repo
 delivery_github 'chef/supermarket' do
+  tag lazy { VersionBumper.next_version(delivery_workspace_repo) }
   deploy_key delivery_bus_secrets['github_private_key']
   branch node['delivery']['change']['pipeline']
   remote_url "git@github.com:chef/supermarket.git"
@@ -62,6 +42,14 @@ delivery_github 'chef/supermarket' do
   cache_path node['delivery']['workspace']['cache']
   action :push
 end
+
+execute 'Push the new tag to Workflow server' do
+  command 'git push origin --tags'
+  cwd delivery_workspace_repo
+  environment({ 'GIT_SSH' => git_ssh })
+end
+
+
 
 #########################################################################
 # Execute the build in Jenkins. The `jenkins_job` resource will block
