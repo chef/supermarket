@@ -28,7 +28,7 @@ git_ssh = File.join(delivery_workspace, 'bin', 'git_ssh')
 execute 'Set a user and email for git operations' do
   command <<-CMD
 git config user.name "Delivery Builder - Supermarket Pipeline" && \
-git config user.email "builder@delivery.chef.co"
+git config user.email "chef-delivery@users.noreply.github.com"
 CMD
   cwd delivery_workspace_repo
   environment({"GIT_SSH" => git_ssh})
@@ -40,17 +40,9 @@ execute 'Fetch latest tags from Workflow server' do
   environment({"GIT_SSH" => git_ssh})
 end
 
-next_version_num = ''
-
-ruby_block 'Compute the next version number' do
-  block do
-    next_version_num = VersionBumper.next_version(delivery_workspace_repo)
-  end
-end
-
 # Push changes up to the GitHub repo
 delivery_github 'chef/supermarket' do
-  tag next_version_num
+  tag lazy { VersionBumper.next_version(delivery_workspace_repo) }
   deploy_key delivery_bus_secrets['github_private_key']
   branch node['delivery']['change']['pipeline']
   remote_url "git@github.com:chef/supermarket.git"
