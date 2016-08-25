@@ -25,11 +25,19 @@ node.run_state[:jenkins_private_key]       = delivery_bus_secrets['jenkins_priva
 
 git_ssh = File.join(delivery_workspace, 'bin', 'git_ssh')
 
+execute 'Set a user and email for git operations' do
+  command <<-CMD
+git config user.name "Delivery Builder - Supermarket Pipeline" && \
+git config user.email "builder@delivery.chef.co"
+CMD
+  cwd delivery_workspace_repo
+  environment({"GIT_SSH" => git_ssh})
+end
+
 execute 'Fetch latest tags from Workflow server' do
   command "git fetch --tags"
   cwd delivery_workspace_repo
   environment({"GIT_SSH" => git_ssh})
-  returns [0]
 end
 
 # Push changes up to the GitHub repo
