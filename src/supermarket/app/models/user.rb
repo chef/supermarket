@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   include Authorizable
   include PgSearch
 
-  ALLOWED_INSTALL_PREFERENCES = %w(berkshelf knife librarian)
+  ALLOWED_INSTALL_PREFERENCES = %w(berkshelf knife policyfile)
 
   # Associations
   # --------------------

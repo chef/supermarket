@@ -5,8 +5,8 @@
         <a href="#berkshelf" class="button tiny secondary">Berkshelf</a>
       </dd>
 
-      <dd class="<%= current_user.install_preference == 'librarian' ? 'active' : '' %>">
-        <a href="#librarian" class="button tiny secondary">Librarian</a>
+      <dd class="<%= current_user.install_preference == 'policyfile' ? 'active' : '' %>">
+        <a href="#policyfile" class="button tiny secondary">Policyfile</a>
       </dd>
 
       <dd class="<%= current_user.install_preference == 'knife' ? 'active' : '' %>">
@@ -18,7 +18,7 @@
       </dd>
 
       <dd>
-        <a href="#librarian" class="button tiny secondary">Librarian</a>
+        <a href="#policyfile" class="button tiny secondary">Policyfile</a>
       </dd>
 
       <dd>
@@ -33,7 +33,7 @@
         <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>'</pre>
       </div>
 
-      <div class="content <%= current_user.install_preference == 'librarian' ? 'active' : '' %>" id="librarian">
+      <div class="content <%= current_user.install_preference == 'policyfile' ? 'active' : '' %>" id="policyfile">
         <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>'</pre>
       </div>
 
@@ -46,7 +46,7 @@
         <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>'</pre>
       </div>
 
-      <div class="content" id="librarian">
+      <div class="content" id="policyfile">
         <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>'</pre>
       </div>
 
