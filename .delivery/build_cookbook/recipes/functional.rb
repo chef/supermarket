@@ -16,11 +16,11 @@ if node['delivery']['change']['stage'] == 'acceptance'
   #######################################################################
   delivery_bus_secrets = DeliverySugar::ChefServer.new.encrypted_data_bag_item('delivery-bus', 'secrets')
 
-  node.set['jenkins']['master']['endpoint']  = 'http://wilson.ci.chef.co'
-  node.set['jenkins']['executor']['timeout'] = 7200 # wait up to 2 hours for jobs to complete
+  node.normal['jenkins']['master']['endpoint']  = 'http://wilson.ci.chef.co'
+  node.normal['jenkins']['executor']['timeout'] = 7200 # wait up to 2 hours for jobs to complete
   node.run_state[:jenkins_private_key]       = delivery_bus_secrets['jenkins_private_key']
 
-  node.set['artifactory-pro']['endpoint']      = 'http://artifactory.chef.co:8081'
+  node.normal['artifactory-pro']['endpoint']      = 'http://artifactory.chef.co:8081'
   node.run_state[:artifactory_client_username] = delivery_bus_secrets['artifactory_username']
   node.run_state[:artifactory_client_password] = delivery_bus_secrets['artifactory_password']
 
