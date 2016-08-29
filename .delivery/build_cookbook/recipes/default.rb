@@ -39,5 +39,5 @@ end
 # Ensure Java is installed for remote triggering of Jenkins jobs with
 # `jenkins_job`
 #########################################################################
-node.set['java']['jdk_version'] = '7'
+node.normal['java']['jdk_version'] = '7'
 include_recipe 'java::default'

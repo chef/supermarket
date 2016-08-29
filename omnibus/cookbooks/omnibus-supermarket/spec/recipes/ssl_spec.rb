@@ -110,7 +110,7 @@ describe 'omnibus-supermarket::ssl' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new
       runner.node.automatic['memory']['total'] = '16000MB'
-      runner.node.set['supermarket']['ssl']['certificate'] = '/etc/mycert.pem'
+      runner.node.normal['supermarket']['ssl']['certificate'] = '/etc/mycert.pem'
       runner.converge(described_recipe)
     end
 
@@ -140,7 +140,7 @@ describe 'omnibus-supermarket::ssl' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new
       runner.node.automatic['memory']['total'] = '16000MB'
-      runner.node.set['supermarket']['ssl']['enabled'] = false
+      runner.node.normal['supermarket']['ssl']['enabled'] = false
       runner.converge(described_recipe)
     end
 
@@ -168,8 +168,8 @@ describe 'omnibus-supermarket::ssl' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new
       runner.node.automatic['memory']['total'] = '16000MB'
-      runner.node.set['supermarket']['ssl']['enabled'] = false
-      runner.node.set['supermarket']['ssl']['certificate'] = '/etc/mycert.pem'
+      runner.node.normal['supermarket']['ssl']['enabled'] = false
+      runner.node.normal['supermarket']['ssl']['certificate'] = '/etc/mycert.pem'
       runner.converge(described_recipe)
     end
 
