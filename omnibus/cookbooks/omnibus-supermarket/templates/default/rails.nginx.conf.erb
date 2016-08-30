@@ -54,7 +54,7 @@ server {
 
   # Redirect anything that isn't an ip address (for ELB checks) or the
   # canonical server name to <%= node['supermarket']['fqdn'] %>
-  if ($host !~ "^(<%= node['supermarket']['fqdn'].gsub('.', '\.') %>|[0-9.]+)$") {
+  if ($host !~* "^(<%= node['supermarket']['fqdn'].gsub('.', '\.') %>|[0-9.]+)$") {
     set $redirect_to_canonical H;
   }
 
