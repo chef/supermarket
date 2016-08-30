@@ -13,30 +13,35 @@
 #########################################################################
 
 class DockerComposeKiller < Chef::Handler
-  attr_accessor :cwd
+  attr_accessor :docker_compose_bin, :cwd
 
-  def initialize(cwd)
+  def initialize(docker_compose_bin, cwd)
+    @docker_compose_bin = docker_compose_bin
     @cwd = cwd
   end
 
   def report
     Chef::Log.info("Tearing down docker-composed dependency services.")
-    cmd = "#{delivery_workspace_cache}/docker-compose down"
+    cmd = "#{docker_compose_bin} down"
     so = Mixlib::ShellOut.new(cmd, cwd: cwd)
     so.run_command
     if so.error?
-      Chef::Log.error("ROLLBACK FAILED")
+      Chef::Log.error("Error while tearing down docker-compose containers.")
       Chef::Log.error(so.stdout)
+    else
+      Chef::Log.info(so.stdout)
     end
   end
 end
 
-ishmael = DockerComposeKiller.new("#{delivery_workspace_repo}/src/supermarket")
+docker_compose_bin = "#{delivery_workspace_cache}/docker-compose"
+ishmael = DockerComposeKiller.new(docker_compose_bin,
+                                  "#{delivery_workspace_repo}/src/supermarket")
 Chef::Config.exception_handlers << ishmael
 Chef::Config.report_handlers << ishmael
 
 execute 'Startup dependency services in Docker' do
-  command "#{delivery_workspace_cache}/docker-compose up -d"
+  command "#{docker_compose_bin} up -d"
   cwd "#{delivery_workspace_repo}/src/supermarket"
   environment('USER' => node['delivery_builder']['build_user'])
   live_stream true
