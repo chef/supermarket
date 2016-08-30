@@ -21,7 +21,7 @@ class DockerComposeKiller < Chef::Handler
 
   def report
     Chef::Log.info("Tearing down docker-composed dependency services.")
-    cmd = "docker-compose down"
+    cmd = "#{delivery_workspace_cache}/docker-compose down"
     so = Mixlib::ShellOut.new(cmd, cwd: cwd)
     so.run_command
     if so.error?
@@ -36,7 +36,7 @@ Chef::Config.exception_handlers << ishmael
 Chef::Config.report_handlers << ishmael
 
 execute 'Startup dependency services in Docker' do
-  command 'docker-compose up -d'
+  command "#{delivery_workspace_cache}/docker-compose up -d"
   cwd "#{delivery_workspace_repo}/src/supermarket"
   environment('USER' => node['delivery_builder']['build_user'])
   live_stream true
