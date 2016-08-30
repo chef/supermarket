@@ -25,8 +25,10 @@ class DockerComposeKiller < Chef::Handler
     so = Mixlib::ShellOut.new(cmd, cwd: cwd)
     so.run_command
     if so.error?
-      Chef::Log.error("ROLLBACK FAILED")
+      Chef::Log.error("Error while tearing down docker-compose containers.")
       Chef::Log.error(so.stdout)
+    else
+      Chef::Log.info(so.stdout)
     end
   end
 end

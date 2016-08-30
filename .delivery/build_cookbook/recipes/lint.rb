@@ -10,7 +10,7 @@ ruby_execute "Rubocop linting" do
   version node['build_cookbook']['ruby_version']
   command <<-CMD
 bundle install && \
-bundle exec rubocop --display-style-guide --display-style-guide
+bundle exec rubocop --display-cop-names --display-style-guide --format simple --format worst
 CMD
   cwd "#{delivery_workspace_repo}/src/supermarket"
   environment('BUNDLE_PATH' => gem_cache)
