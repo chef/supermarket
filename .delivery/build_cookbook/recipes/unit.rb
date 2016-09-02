@@ -69,3 +69,13 @@ CMD
   cwd "#{delivery_workspace_repo}/src/fieri"
   environment('BUNDLE_PATH' => gem_cache)
 end
+
+ruby_execute "Tests for Omnibus Cookbook" do
+  version node['build_cookbook']['ruby_version']
+  command <<-CMD
+bundle install && \
+bundle exec rspec --color --format documentation
+CMD
+  cwd "#{delivery_workspace_repo}/omnibus/cookbooks/omnibus-supermarket"
+  environment('BUNDLE_PATH' => gem_cache)
+end
