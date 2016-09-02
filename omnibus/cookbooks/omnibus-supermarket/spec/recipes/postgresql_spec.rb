@@ -2,6 +2,7 @@ describe 'omnibus-supermarket::postgresql' do
   let(:chef_run) do
     ChefSpec::SoloRunner.new do |node|
       node.automatic['memory']['total'] = '16000MB'
+      node.normal['sysctl']['conf_dir'] = '/var/log/supermarket/postgresql'
     end.converge(described_recipe)
   end
 
