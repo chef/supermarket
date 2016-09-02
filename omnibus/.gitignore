@@ -3,6 +3,8 @@
 .bundler/
 .kitchen/
 .kitchen.local.yml
+Berksfile.lock
+Gemfile.lock
 vendor/bundle
 pkg/*
 .vagrant
