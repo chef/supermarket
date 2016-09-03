@@ -6,7 +6,6 @@
   },
   "skip_phases": [
     "syntax",
-    "security",
     "quality",
     "provision",
     "deploy",
