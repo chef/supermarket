@@ -19,24 +19,11 @@
 
 # Used to build a package in the Test Kitchen build lab
 
-include_recipe 'omnibus'
-
-# The default resolver from vagrant seems to be flaky. Use Google's
-file '/etc/resolv.conf' do
-  content "nameserver 8.8.8.8\nnameserver 8.8.4.4"
-  owner 'root'
-  group 'root'
-  mode '0644'
-end
-
-execute 'bundle install' do
-  command "bundle install --binstubs --without development --path #{node['omnibus']['build_dir']}/.bundler"
-  cwd node['omnibus']['build_dir']
-  user node['omnibus']['build_user']
-end
-
-execute 'build package' do
-  command "bin/omnibus build supermarket --log-level #{node['omnibus']['log_level']}"
-  cwd node['omnibus']['build_dir']
-  user node['omnibus']['build_user']
+omnibus_build 'supermarket' do
+  environment 'HOME' => node['omnibus']['build_user_home']
+  project_dir node['omnibus']['build_dir']
+  log_level :internal
+  config_overrides(
+    append_timestamp: true
+  )
 end

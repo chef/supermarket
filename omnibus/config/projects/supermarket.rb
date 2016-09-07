@@ -32,7 +32,7 @@ override :postgresql, version: '9.3.6'
 override :ruby, version: "2.3.0"
 override :rubygems, version: "2.4.8"
 override :git, version: "2.2.1"
-override :'chef-gem', version: '12.3.0'
+override :'chef-gem', version: '12.13.37'
 override :redis, version: '2.8.21'
 
 # pin berks to keep net-ssh at 2.9.2 as expected by Supermarket
