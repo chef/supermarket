@@ -1,8 +1,8 @@
 <div class="installs" data-update-url="<%= update_install_preference_profile_url %>">
   <dl data-tab data-options="deep_linking:true; scroll_to_content: false;" class="<%= 'persist-install-method' if current_user %>">
     <% if current_user && current_user.install_preference.present? %>
-      <dd class="<%= current_user.install_preference == 'berkshelf' ? 'active' : '' %>">
-        <a href="#berkshelf" class="button tiny secondary">Berkshelf</a>
+      <dd class="<%= %w(berkshelf librarian).include? current_user.install_preference ? 'active' : '' %>">
+        <a href="#berkshelf" class="button tiny secondary">Berkshelf/Librarian</a>
       </dd>
 
       <dd class="<%= current_user.install_preference == 'policyfile' ? 'active' : '' %>">
@@ -14,7 +14,7 @@
       </dd>
     <% else %>
       <dd class="active">
-        <a href="#berkshelf" class="button tiny secondary">Berkshelf</a>
+        <a href="#berkshelf" class="button tiny secondary">Berkshelf/Librarian</a>
       </dd>
 
       <dd>
@@ -29,12 +29,12 @@
 
   <div class="tabs-content">
     <% if current_user && current_user.install_preference.present? %>
-      <div class="content <%= current_user.install_preference == 'berkshelf' ? 'active' : '' %>" id="berkshelf">
+      <div class="content <%= %w(berkshelf librarian).include? current_user.install_preference ? 'active' : '' %>" id="berkshelf">
         <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>'</pre>
       </div>
 
       <div class="content <%= current_user.install_preference == 'policyfile' ? 'active' : '' %>" id="policyfile">
-        <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>'</pre>
+        <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>, :supermarket</pre>
       </div>
 
       <div class="content <%= current_user.install_preference == 'knife' ? 'active' : '' %>" id="knife">
@@ -47,7 +47,7 @@
       </div>
 
       <div class="content" id="policyfile">
-        <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>'</pre>
+        <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>', :supermarket</pre>
       </div>
 
       <div class="content" id="knife">
