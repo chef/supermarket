@@ -34,7 +34,7 @@
       </div>
 
       <div class="content <%= current_user.install_preference == 'policyfile' ? 'active' : '' %>" id="policyfile">
-        <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>, :supermarket</pre>
+        <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>', :supermarket</pre>
       </div>
 
       <div class="content <%= current_user.install_preference == 'knife' ? 'active' : '' %>" id="knife">
