@@ -34,6 +34,7 @@ override :rubygems, version: "2.4.8"
 override :git, version: "2.2.1"
 override :'chef-gem', version: '12.13.37'
 override :redis, version: '2.8.21'
+override :openssl, version: '1.0.2h'
 
 # pin berks to keep net-ssh at 2.9.2 as expected by Supermarket
 # chef, net-ssh, berks and rspec have gotten tangled
