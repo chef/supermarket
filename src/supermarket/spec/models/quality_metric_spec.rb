@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-RSpec.describe QualityMetric, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe QualityMetric do
+  it { should have_many(:metric_results) }
 end

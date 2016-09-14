@@ -1,5 +1,8 @@
 require 'spec_helper'
 
-RSpec.describe MetricResult, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe MetricResult do
+  context 'associations' do
+    it { should belong_to(:cookbook_version) }
+    it { should belong_to(:quality_metric) }
+  end
 end
