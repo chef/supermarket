@@ -1,4 +1,17 @@
 GIT
+  remote: https://github.com/celluloid/celluloid
+  revision: 0d192022ffff8e46722771b4865bfce4114b00a3
+  submodules: true
+  specs:
+    celluloid (0.17.4)
+      celluloid-essentials
+      celluloid-extras
+      celluloid-fsm
+      celluloid-pool
+      celluloid-supervision
+      timers (>= 4.1.1)
+
+GIT
   remote: https://github.com/rubysec/bundler-audit.git
   revision: 4e32fca89d75f0e249671431ff38aadc02bfb28b
   ref: 4e32fca
@@ -92,13 +105,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    celluloid (0.17.3)
-      celluloid-essentials
-      celluloid-extras
-      celluloid-fsm
-      celluloid-pool
-      celluloid-supervision
-      timers (>= 4.1.1)
     celluloid-essentials (0.20.5)
       timers (>= 4.1.1)
     celluloid-extras (0.20.5)
@@ -553,6 +559,7 @@ DEPENDENCIES
   bundler-audit!
   byebug
   capybara
+  celluloid!
   chef
   compass-rails
   database_cleaner
@@ -618,4 +625,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.12.3
+   1.12.5
