@@ -464,6 +464,28 @@ describe CookbooksController do
       expect(assigns(:supported_platforms)).to_not be_nil
     end
 
+    it 'sends the metrics results to the view' do
+      foodcritic_qm = QualityMetric.create!(name: 'Foodcritic')
+      collab_num_qm = QualityMetric.create!(name: 'CollaboratorsNumber')
+
+      foodcritic_result = MetricResult.create(
+        cookbook_version: cookbook.latest_cookbook_version,
+        quality_metric:   foodcritic_qm,
+        failure:          true,
+        feedback:         'it failed'
+      )
+
+      collab_result = MetricResult.create(
+        cookbook_version: cookbook.latest_cookbook_version,
+        quality_metric:   collab_num_qm,
+        failure:          false,
+        feedback:         'it passed'
+      )
+
+      get :show, id: cookbook.name
+      expect(assigns(:metric_results)).to include(foodcritic_result, collab_result)
+    end
+
     it '404s when the cookbook does not exist' do
       get :show, id: 'snarfle'
 

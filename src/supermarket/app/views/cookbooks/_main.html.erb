@@ -112,24 +112,19 @@
     <% end %>
     <% if ROLLOUT.active?(:fieri) %>
       <div class="content" id="quality">
-        <% if version.foodcritic_failure.nil? && version.collaborator_failure.nil? %>
-          <h2>No quality metric results found.</h2>
+        <% unless @metric_results.present? %>
+          <h2>No quality metric results found</h2>
         <% else %>
-          <h1>Foodcritic Metric</h1>
-          <% if version.foodcritic_failure.present? %>
-            <pre><%= foodcritic_info(version.foodcritic_feedback, version.foodcritic_failure) %></pre>
-          <% else %>
-            <p><%= version.version %> passed <%= link_to 'Foodcritic', 'http://www.foodcritic.io/', target: '_blank' %><br />
-            <%= foodcritic_info(version.foodcritic_feedback, version.foodcritic_failure) %></p>
-          <% end %>
-          <br />
-          <% if version.collaborator_feedback.present? %>
-            <h1>Collaborators Metric</h1>
-            <% if version.collaborator_failure %>
-              <pre><%= version.collaborator_feedback %></pre>
-            <% else %>
-              <p><%= version.version %> <%= version.collaborator_feedback %></p>
-            <% end %>
+          <% @metric_results.each do |result| %>
+            <h1><%= "#{result.quality_metric.name} Metric" %>
+              <pre>
+                <% if result.failure? %>
+                  <p><%= version.version %> failed this metric</pre>
+                  <pre><%= result.feedback.gsub(/\n/, '<br />').html_safe %></pre>
+                <% else %>
+                  <p><%= version.version %> passed this metric%></pre>
+                <% end %>
+              </pre>
           <% end %>
         <% end %>
       </div>

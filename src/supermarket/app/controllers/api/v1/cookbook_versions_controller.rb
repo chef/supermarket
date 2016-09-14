@@ -50,6 +50,7 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
         params[:cookbook_name]
       ).first!.get_version!(params[:cookbook_version])
 
+
       cookbook_version.update(
         foodcritic_failure: params[:foodcritic_failure],
         foodcritic_feedback: params[:foodcritic_feedback]

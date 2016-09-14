@@ -1,7 +1,7 @@
 class MoveQualityMetricResults < ActiveRecord::Migration
   def change
     foodcritic_qm = QualityMetric.create!(name: 'Foodcritic')
-    collab_num_qm = QualityMetric.create!(name: 'CollaboratorNumber')
+    collab_num_qm = QualityMetric.create!(name: 'Collaborator Number')
 
     CookbookVersion.all.each do |cookbook_version|
       if !cookbook_version.foodcritic_failure.nil?
