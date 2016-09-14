@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914201753) do
+ActiveRecord::Schema.define(version: 20160914205216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -371,6 +371,15 @@ ActiveRecord::Schema.define(version: 20160914201753) do
   end
 
   add_index "invitations", ["organization_id"], name: "index_invitations_on_organization_id", using: :btree
+
+  create_table "metric_results", force: :cascade do |t|
+    t.integer  "cookbook_version_id"
+    t.integer  "quality_metric_id"
+    t.boolean  "failure"
+    t.string   "feedback"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
 
   create_table "organizations", force: :cascade do |t|
     t.datetime "created_at"
