@@ -11,6 +11,7 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
   def show
     @cookbook = Cookbook.with_name(params[:cookbook]).first!
     @cookbook_version = @cookbook.get_version!(params[:version])
+    @cookbook_version_metrics = @cookbook_version.metric_results
   end
 
   #

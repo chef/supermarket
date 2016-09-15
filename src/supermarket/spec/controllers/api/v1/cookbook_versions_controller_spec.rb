@@ -30,6 +30,20 @@ describe Api::V1::CookbookVersionsController do
       expect(assigns[:cookbook_version]).to eql(redis_1_0_0)
     end
 
+    it 'includes the cookbook version\'s metric results' do
+      qm = QualityMetric.create!(name: 'Foodcritic')
+      metric_result = MetricResult.create!(
+        cookbook_version: redis_1_0_0,
+        quality_metric: qm,
+        failure: true,
+        feedback: 'it failed :('
+      )
+
+      get :show, cookbook: 'redis', version: '1.0.0', format: :json
+
+      expect(assigns[:cookbook_version_metrics]).to include(metric_result)
+    end
+
     it 'handles the latest version of a cookbook' do
       latest_version = redis.latest_cookbook_version
       get :show, cookbook: 'redis', version: 'latest', format: :json

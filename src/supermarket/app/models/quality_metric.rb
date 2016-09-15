@@ -4,10 +4,10 @@ class QualityMetric < ActiveRecord::Base
   validates :name, uniqueness: true
 
   def self.foodcritic_metric
-    QualityMetric.where(name: 'Foodcritic').first
+    QualityMetric.find_by(name: 'Foodcritic')
   end
 
   def self.collaborator_num_metric
-    QualityMetric.where(name: 'Collaborator Number').first
+    QualityMetric.find_by(name: 'Collaborator Number')
   end
 end
