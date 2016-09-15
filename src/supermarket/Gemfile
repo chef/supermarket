@@ -29,8 +29,8 @@ gem 'sprockets', '~> 2.11.3'
 
 # Required until to build from master until Celluloid 0.17.4 or 0.18.0 is released
 # https://github.com/celluloid/celluloid/issues/728
-gem 'celluloid', git: 'https://github.com/celluloid/celluloid', submodules: true
-gem 'sidetiq', '~> 0.7'
+gem 'celluloid', git: 'https://github.com/celluloid/celluloid', submodules: true, require: false
+gem 'sidetiq', '~> 0.7', require: false
 
 gem 'premailer-rails', group: [:development, :production]
 gem 'nokogiri'

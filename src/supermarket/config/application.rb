@@ -2,6 +2,12 @@ require File.expand_path('../boot', __FILE__)
 require 'dotenv'
 require 'rails'
 
+# Workaround to avoid the "Celluloid is not yet started; use Celluloid.boot" error
+# with Celluloid 0.17.4 https://github.com/endofunky/sidetiq/issues/160
+require 'celluloid'
+Celluloid.boot
+require 'sidetiq'
+
 Dotenv.overload('.env', ".env.#{Rails.env}").tap do |env|
   if env.empty?
     fail 'Cannot run Supermarket without a .env file.'
@@ -26,6 +32,7 @@ require_relative '../lib/supermarket/host'
 # Require the gems listed in Gemfile, including any gems
 # you have limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
+
 
 module Supermarket
   class Application < Rails::Application
