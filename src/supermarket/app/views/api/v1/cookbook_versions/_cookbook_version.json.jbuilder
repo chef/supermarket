@@ -7,12 +7,12 @@ json.file api_v1_cookbook_version_download_url(cookbook_version.cookbook, cookbo
 if cookbook_version.metric_results.any?
   json.quality do
     json.foodcritic do
-      json.failed cookbook_version.metric_results.where(quality_metric: QualityMetric.foodcritic_metric).first.failure
-      json.feedback cookbook_version.metric_results.where(quality_metric: QualityMetric.foodcritic_metric).first.feedback
+      json.failed foodcritic_metric_result(cookbook_version).failure
+      json.feedback foodcritic_metric_result(cookbook_version).feedback
     end
     json.collaborator do
-      json.failed cookbook_version.metric_results.where(quality_metric: QualityMetric.collaborator_num_metric).first.failure
-      json.feedback cookbook_version.metric_results.where(quality_metric: QualityMetric.collaborator_num_metric).first.feedback
+      json.failed collaborator_num_metric_result(cookbook_version).failure
+      json.feedback collaborator_num_metric_result(cookbook_version).feedback
     end
   end
 end
