@@ -33,7 +33,6 @@ require_relative '../lib/supermarket/host'
 # you have limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-
 module Supermarket
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

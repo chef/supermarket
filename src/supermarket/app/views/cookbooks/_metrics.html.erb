@@ -1,5 +1,5 @@
 <div class="content" id="quality">
-  <% if @metric_results.empty? %>
+  <% unless @metric_results.present? %>
     <h2>No quality metric results found</h2>
   <% else %>
     <% @metric_results.each do |result| %>

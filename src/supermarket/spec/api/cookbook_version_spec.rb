@@ -49,29 +49,23 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
       let(:cookbook_version) { cookbook.cookbook_versions.where(version: '0.1.0').first }
 
       let(:quality_metric_foodcritic) do
-        QualityMetric.create!(name: 'Foodcritic')
+        create(:quality_metric, name: 'Foodcritic')
       end
 
       let(:quality_metric_collab_num) do
-        QualityMetric.create!(name: 'Collaborator Number')
+        create(:quality_metric, name: 'Collaborator Number')
       end
 
       let!(:foodcritic_result) do
-        MetricResult.create!(
-          cookbook_version: cookbook_version,
-          quality_metric: quality_metric_foodcritic,
-          failure: true,
-          feedback: 'it failed'
-        )
+        create(:metric_result,
+               cookbook_version: cookbook_version,
+               quality_metric: quality_metric_foodcritic)
       end
 
       let!(:collab_result) do
-        MetricResult.create!(
-          cookbook_version: cookbook_version,
-          quality_metric: quality_metric_collab_num,
-          failure: true,
-          feedback: 'it failed'
-        )
+        create(:metric_result,
+               cookbook_version: cookbook_version,
+               quality_metric: quality_metric_collab_num)
       end
 
       let(:quality_metrics) do

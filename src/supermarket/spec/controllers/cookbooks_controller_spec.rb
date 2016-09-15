@@ -111,8 +111,8 @@ describe CookbooksController do
     context 'there is a platform parameter' do
       let!(:debian_platform) do
         create(
-        :supported_platform,
-        name: 'debian'
+          :supported_platform,
+          name: 'debian'
         )
       end
 
@@ -465,22 +465,22 @@ describe CookbooksController do
     end
 
     it 'sends the metrics results to the view' do
-      foodcritic_qm = QualityMetric.create!(name: 'Foodcritic')
-      collab_num_qm = QualityMetric.create!(name: 'CollaboratorsNumber')
+      foodcritic_qm = create(:quality_metric, name: 'Foodcritic')
+      collab_num_qm = create(:quality_metric, name: 'Collaborator Number')
 
-      foodcritic_result = MetricResult.create(
-        cookbook_version: cookbook.latest_cookbook_version,
-        quality_metric:   foodcritic_qm,
-        failure:          true,
-        feedback:         'it failed'
-      )
+      foodcritic_result = create(:metric_result,
+                                 cookbook_version: cookbook.latest_cookbook_version,
+                                 quality_metric:   foodcritic_qm,
+                                 failure:          true,
+                                 feedback:         'it failed'
+                                )
 
-      collab_result = MetricResult.create(
-        cookbook_version: cookbook.latest_cookbook_version,
-        quality_metric:   collab_num_qm,
-        failure:          false,
-        feedback:         'it passed'
-      )
+      collab_result = create(:metric_result,
+                             cookbook_version: cookbook.latest_cookbook_version,
+                             quality_metric:   collab_num_qm,
+                             failure:          false,
+                             feedback:         'it passed'
+                            )
 
       get :show, id: cookbook.name
       expect(assigns(:metric_results)).to include(foodcritic_result, collab_result)
