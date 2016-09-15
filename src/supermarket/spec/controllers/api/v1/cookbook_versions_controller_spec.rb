@@ -108,7 +108,9 @@ describe Api::V1::CookbookVersionsController do
             expect(response.status.to_i).to eql(200)
           end
 
-          it "updates the cookbook version's food critic attributes" do
+          it "adds a metric result for foodcritic" do
+            quality_metric = QualityMetric.create!(name: 'Foodcritic')
+
             post(
               :foodcritic_evaluation,
               cookbook_name: cookbook.name,
@@ -119,8 +121,7 @@ describe Api::V1::CookbookVersionsController do
               format: :json
             )
 
-            expect(version.reload.foodcritic_failure).to eql(true)
-            expect(version.reload.foodcritic_feedback).to eql('E066')
+            expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
           end
 
           context 'the required params are not provided' do
@@ -206,6 +207,8 @@ describe Api::V1::CookbookVersionsController do
         end
 
         it "updates the cookbook version's collaborator attributes" do
+          quality_metric = QualityMetric.create!(name: 'Collaborator Number')
+
           post(
             :collaborators_evaluation,
             cookbook_name: cookbook.name,
@@ -216,10 +219,10 @@ describe Api::V1::CookbookVersionsController do
             format: :json
           )
 
-          expect(version.reload.collaborator_failure).to eql(false)
-          expect(version.reload.collaborator_feedback).to eql('This cookbook does not have sufficient collaborators.')
+          expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
         end
       end
+
       context 'the required params are not provided' do
         it 'returns a 400' do
           post(
