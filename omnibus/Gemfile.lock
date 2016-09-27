@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 8eeb0bb45b01b833389c662932c9fab9042f328b
+  revision: 778b2bb20cb3f64207ad822c1277e6068be5bbfc
   specs:
     omnibus-software (4.0.0)
       chef-sugar (>= 3.4.0)
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 3eefb1cd8de69b1d97de2962f779512892e9296d
+  revision: ed8a050dc3df3fca242f068879cfc867762428d3
   specs:
     omnibus (5.5.0)
       aws-sdk (~> 2)
@@ -27,12 +27,12 @@ GEM
   specs:
     addressable (2.4.0)
     artifactory (2.3.3)
-    aws-sdk (2.5.11)
-      aws-sdk-resources (= 2.5.11)
-    aws-sdk-core (2.5.11)
+    aws-sdk (2.6.3)
+      aws-sdk-resources (= 2.6.3)
+    aws-sdk-core (2.6.3)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.5.11)
-      aws-sdk-core (= 2.5.11)
+    aws-sdk-resources (2.6.3)
+      aws-sdk-core (= 2.6.3)
     berkshelf (4.3.5)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (~> 2.0, >= 2.0.2)
@@ -68,7 +68,8 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef-config (12.13.37)
+    chef-config (12.14.89)
+      addressable
       fuzzyurl
       mixlib-config (~> 2.0)
       mixlib-shellout (~> 2.0)
@@ -90,7 +91,7 @@ GEM
     kitchen-vagrant (0.20.0)
       test-kitchen (~> 1.4)
     libyajl2 (1.2.0)
-    license_scout (0.1.2)
+    license_scout (0.1.3)
       ffi-yajl (~> 2.2)
       mixlib-shellout (~> 2.2)
     minitar (0.5.4)
