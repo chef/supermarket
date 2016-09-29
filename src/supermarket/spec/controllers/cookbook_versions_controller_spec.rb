@@ -101,5 +101,28 @@ describe CookbookVersionsController do
       expect(assigns(:supported_platforms).map(&:name)).
         to match_array(%w(one two))
     end
+
+    it 'sends the metrics results to the view' do
+      foodcritic_qm = create(:quality_metric, name: 'Foodcritic')
+      collab_num_qm = create(:quality_metric, name: 'Collaborator Number')
+
+      foodcritic_result = create(:metric_result,
+                                 cookbook_version: version,
+                                 quality_metric:   foodcritic_qm,
+                                 failure:          true,
+                                 feedback:         'it failed'
+                                )
+
+      collab_result = create(:metric_result,
+                             cookbook_version: version,
+                             quality_metric:   collab_num_qm,
+                             failure:          false,
+                             feedback:         'it passed'
+                            )
+
+      get :show, cookbook_id: cookbook.name, version: version.version
+      expect(assigns(:metric_results)).to include(foodcritic_result, collab_result)
+    end
+
   end
 end
