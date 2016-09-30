@@ -35,7 +35,7 @@ class FoodcriticWorker
   private
 
   def foodcritic_info
-    "Run with Foodcritic Version #{FoodCritic::VERSION} with tags #{ENV['FIERI_FOODCRITIC_TAGS']}"
+    "Run with Foodcritic Version #{FoodCritic::VERSION} with tags #{ENV['FIERI_FOODCRITIC_TAGS']} and failure tags #{ENV['FIERI_FOODCRITIC_FAIL_TAGS']}"
   end
 
   def format_feedback(feedback, status)
