@@ -44,11 +44,11 @@ describe FoodcriticWorker do
       req.body =~ /#{FoodCritic::VERSION}/
 
       ENV['FIERI_FOODCRITIC_TAGS'].split(' ').each do |tag|
-        expect(req.body).to include(tag.gsub(/~/, ''))
+        expect(req.body).to include(tag.delete('~'))
       end
 
       ENV['FIERI_FOODCRITIC_FAIL_TAGS'].split(' ').each do |tag|
-        expect(req.body).to include(tag.gsub(/~/, ''))
+        expect(req.body).to include(tag.delete('~'))
       end
     end
   end
