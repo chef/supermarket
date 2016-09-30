@@ -140,5 +140,11 @@ describe CookbooksHelper do
         expect(helper.foodcritic_info(failing_foodcritic, true)) .to include('<br />')
       end
     end
+
+    context 'when feedback is nil' do
+      it 'does not include a new line at the beginning' do
+        expect(helper.foodcritic_info(nil, true)) .to eq('No foodcritic feedback available')
+      end
+    end
   end
 end

@@ -147,10 +147,9 @@ module CookbooksHelper
   end
 
   def foodcritic_info(feedback, failing_status = '')
-    if failing_status == false
-      # When a cookbook version passes foodcritic
-      # The feedback from Fieri has a \n at the beginning
-      # of it.
+    return 'No foodcritic feedback available' if feedback.nil?
+
+    if failing_status == false # When a cookbook version passes foodcritic # The feedback from Fieri has a \n at the beginning # of it.
       feedback.gsub(/^\n/, '').html_safe
     else
       # When a cookbook version does not pass foodcritic
