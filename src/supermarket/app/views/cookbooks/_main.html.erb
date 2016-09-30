@@ -116,14 +116,12 @@
           <h2>No quality metric results found.</h2>
         <% else %>
           <h1>Foodcritic Metric</h1>
-          <% if version.foodcritic_feedback.present? %>
-            <pre><%= version.foodcritic_feedback.gsub(/\n/, '<br />').html_safe %></pre>
+          <% if version.foodcritic_failure.present? %>
+            <pre><%= foodcritic_info(version.foodcritic_feedback, version.foodcritic_failure) %></pre>
           <% else %>
-            <p><%= version.version %> passed <%= link_to 'Foodcritic', 'http://www.foodcritic.io/', target: '_blank' %>.
+            <p><%= version.version %> passed <%= link_to 'Foodcritic', 'http://www.foodcritic.io/', target: '_blank' %><br />
+            <%= foodcritic_info(version.foodcritic_feedback, version.foodcritic_failure) %></p>
           <% end %>
-          <% if version.foodcritic_feedback.present? %>
-            <pre><%= foodcritic_info(version.foodcritic_failure, version.foodcritic_feedback) %></pre>
-        <% end %>
           <br />
           <% if version.collaborator_feedback.present? %>
             <h1>Collaborators Metric</h1>
