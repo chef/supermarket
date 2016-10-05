@@ -465,8 +465,8 @@ describe CookbooksController do
     end
 
     it 'sends the metrics results to the view' do
-      foodcritic_qm = create(:quality_metric, name: 'Foodcritic')
-      collab_num_qm = create(:quality_metric, name: 'Collaborator Number')
+      foodcritic_qm = create(:foodcritic_metric)
+      collab_num_qm = create(:collaborator_num_metric)
 
       foodcritic_result = create(:metric_result,
                                  cookbook_version: cookbook.latest_cookbook_version,

@@ -4,7 +4,7 @@ json.version cookbook_version.version
 json.average_rating nil
 json.cookbook api_v1_cookbook_url(cookbook)
 json.file api_v1_cookbook_version_download_url(cookbook_version.cookbook, cookbook_version)
-if @cookbook_version_metrics.any?
+if !@cookbook_version_metrics.nil? && @cookbook_version_metrics.any?
   json.quality do
     json.foodcritic do
       json.failed foodcritic_metric_result(cookbook_version).failure

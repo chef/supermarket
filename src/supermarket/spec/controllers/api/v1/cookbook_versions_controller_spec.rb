@@ -31,7 +31,7 @@ describe Api::V1::CookbookVersionsController do
     end
 
     it 'includes the cookbook version\'s metric results' do
-      qm = create(:quality_metric, name: 'Foodcritic')
+      qm = create(:foodcritic_metric)
       metric_result = create(:metric_result,
                              cookbook_version: redis_1_0_0,
                              quality_metric: qm
@@ -121,7 +121,7 @@ describe Api::V1::CookbookVersionsController do
           end
 
           it "adds a metric result for foodcritic" do
-            quality_metric = create(:quality_metric, name: 'Foodcritic')
+            quality_metric = create(:foodcritic_metric)
 
             post(
               :foodcritic_evaluation,
@@ -219,7 +219,7 @@ describe Api::V1::CookbookVersionsController do
         end
 
         it "updates the cookbook version's collaborator attributes" do
-          quality_metric = create(:quality_metric, name: 'Collaborator Number')
+          quality_metric = create(:collaborator_num_metric)
 
           post(
             :collaborators_evaluation,

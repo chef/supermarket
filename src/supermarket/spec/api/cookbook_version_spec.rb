@@ -49,11 +49,11 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
       let(:cookbook_version) { cookbook.cookbook_versions.where(version: '0.1.0').first }
 
       let(:quality_metric_foodcritic) do
-        create(:quality_metric, name: 'Foodcritic')
+        create(:foodcritic_metric)
       end
 
       let(:quality_metric_collab_num) do
-        create(:quality_metric, name: 'Collaborator Number')
+        create(:collaborator_num_metric)
       end
 
       let!(:foodcritic_result) do

@@ -28,7 +28,7 @@ describe CookbookVersionsHelper do
   describe '#foodcritic_metric_result' do
     let(:cookbook) { create(:cookbook) }
 
-    let(:quality_metric) { QualityMetric.create(name: 'Foodcritic') }
+    let(:quality_metric) { create(:foodcritic_metric) }
 
     let!(:metric_result) do
       MetricResult.create(
@@ -51,7 +51,7 @@ describe CookbookVersionsHelper do
   describe '#collaborator_num_metric_result' do
     let(:cookbook) { create(:cookbook) }
 
-    let(:quality_metric) { QualityMetric.create(name: 'Collaborator Number') }
+    let(:quality_metric) { create(:collaborator_num_metric) }
 
     let!(:metric_result) do
       MetricResult.create(

@@ -5,15 +5,15 @@ describe QualityMetric do
 
   describe 'validations' do
     it 'enforces unique names' do
-      create(:quality_metric, name: 'Foodcritic')
-      dup_qm = QualityMetric.new(name: 'Foodcritic')
+      create(:foodcritic_metric)
+      dup_qm = build(:foodcritic_metric)
       expect(dup_qm).to_not be_valid
     end
   end
 
   describe '#foodcritic metric' do
     let!(:foodcritic_metric) do
-      create(:quality_metric, name: 'Foodcritic')
+      create(:foodcritic_metric)
     end
 
     it 'finds the foodcritic metric' do
@@ -23,7 +23,7 @@ describe QualityMetric do
 
   describe '#collaborators_num_metric' do
     let!(:collaborator_metric) do
-      create(:quality_metric, name: 'Collaborator Number')
+      create(:collaborator_num_metric)
     end
 
     it 'finds the collaborators num metric' do
