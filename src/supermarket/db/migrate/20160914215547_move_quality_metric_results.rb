@@ -3,7 +3,7 @@ class MoveQualityMetricResults < ActiveRecord::Migration
     foodcritic_qm = QualityMetric.create!(name: 'Foodcritic')
     collab_num_qm = QualityMetric.create!(name: 'Collaborator Number')
 
-    CookbookVersion.all.each do |cookbook_version|
+    CookbookVersion.where("foodcritic_failure IS NOT NULL or collaborator_failure IS NOT NULL").each do |cookbook_version|
       if !cookbook_version.foodcritic_failure.nil?
         MetricResult.create!(
           cookbook_version_id: cookbook_version.id,
