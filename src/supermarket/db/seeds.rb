@@ -13,6 +13,14 @@ attributes = {}
   ).read
 end
 
+unless(QualityMetric.where(name: 'Foodcritic').any?)
+  QualityMetric.create!(name: 'Foodcritic')
+end
+
+unless(QualityMetric.where(name: 'Collaborator Number').any?)
+  QualityMetric.create!(name: 'Collaborator Number')
+end
+
 Icla.where(version: ENV['ICLA_VERSION']).
   first_or_create!.
   update_attributes(attributes)
@@ -338,12 +346,4 @@ if Rails.env.development?
     owner: "chef",
     callback_url: ENV['PUBSUBHUBBUB_CALLBACK_URL'] || 'https://seeded.example.com/curry/pr-updates'
   ).first_or_create!
-
-  unless(QualityMetric.where(name: 'Foodcritic').any?)
-    QualityMetric.create!(name: 'Foodcritic')
-  end
-
-  unless(QualityMetric.where(name: 'Collaborator Number').any?)
-    QualityMetric.create!(name: 'Collaborator Number')
-  end
 end
