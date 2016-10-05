@@ -41,6 +41,15 @@ describe FoodcriticWorker do
     assert_requested(:post, test_evaluation_endpoint) do |req|
       req.body =~ /foodcritic_failure=true/
       req.body =~ /FC023/
+      req.body =~ /#{FoodCritic::VERSION}/
+
+      ENV['FIERI_FOODCRITIC_TAGS'].split(' ').each do |tag|
+        expect(req.body).to include(tag.delete('~'))
+      end
+
+      ENV['FIERI_FOODCRITIC_FAIL_TAGS'].split(' ').each do |tag|
+        expect(req.body).to include(tag.delete('~'))
+      end
     end
   end
 

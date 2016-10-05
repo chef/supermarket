@@ -23,12 +23,26 @@ class FoodcriticWorker
       fieri_key: ENV['FIERI_KEY'],
       cookbook_name: params['cookbook_name'],
       cookbook_version: params['cookbook_version'],
-      foodcritic_feedback: feedback,
+      foodcritic_feedback: format_feedback(feedback, status),
       foodcritic_failure: status
     )
     unless response.is_a? Net::HTTPSuccess
       error_msg = "Unable to POST Foodcritic Evaluation of #{params[cookbook_name]} " + response.message
       raise error_msg
+    end
+  end
+
+  private
+
+  def foodcritic_info
+    "Run with Foodcritic Version #{FoodCritic::VERSION} with tags #{ENV['FIERI_FOODCRITIC_TAGS']} and failure tags #{ENV['FIERI_FOODCRITIC_FAIL_TAGS']}"
+  end
+
+  def format_feedback(feedback, status)
+    if !status.nil?
+      "#{feedback}\n#{foodcritic_info}"
+    else
+      foodcritic_info
     end
   end
 end
