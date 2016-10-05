@@ -283,7 +283,7 @@ if Rails.env.development?
       unless name == 'apt' || name == 'yum'
         dep = version_number.even? ? 'apt' : 'yum'
         dependency = CookbookDependency.where(
-          name: "#{dep} #{version_number}",
+          name: "#{dep} #{version_number} #{Time.now}",
           cookbook: Cookbook.find_by(name: dep),
           cookbook_version: cookbook_version
         ).first_or_create!
