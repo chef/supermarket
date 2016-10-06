@@ -3,6 +3,7 @@ require 'spec_helper'
 describe CookbookVersion do
   context 'associations' do
     it { should belong_to(:cookbook) }
+    it { should have_many(:metric_results) }
   end
 
   context 'validations' do

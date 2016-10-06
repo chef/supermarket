@@ -13,6 +13,14 @@ attributes = {}
   ).read
 end
 
+unless(QualityMetric.where(name: 'Foodcritic').any?)
+  QualityMetric.create!(name: 'Foodcritic')
+end
+
+unless(QualityMetric.where(name: 'Collaborator Number').any?)
+  QualityMetric.create!(name: 'Collaborator Number')
+end
+
 Icla.where(version: ENV['ICLA_VERSION']).
   first_or_create!.
   update_attributes(attributes)
@@ -272,7 +280,9 @@ if Rails.env.development?
 
       if platforms.key?(name)
         platforms[name].each do |platform|
-          cookbook_version.add_supported_platform(platform, ">=#{version_number}.0")
+          unless(cookbook_version.supported_platforms.where(name: platform, version_constraint: ">=#{version_number}.0").any?)
+            cookbook_version.add_supported_platform(platform, ">=#{version_number}.0")
+          end
         end
       end
 
@@ -281,7 +291,7 @@ if Rails.env.development?
       unless name == 'apt' || name == 'yum'
         dep = version_number.even? ? 'apt' : 'yum'
         dependency = CookbookDependency.where(
-          name: dep,
+          name: "#{dep} #{version_number} #{Time.now}",
           cookbook: Cookbook.find_by(name: dep),
           cookbook_version: cookbook_version
         ).first_or_create!

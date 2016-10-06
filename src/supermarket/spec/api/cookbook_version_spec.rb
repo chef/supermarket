@@ -46,19 +46,45 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
         }
       end
 
+      let(:cookbook_version) { cookbook.cookbook_versions.where(version: '0.1.0').first }
+
+      let(:quality_metric_foodcritic) do
+        create(:foodcritic_metric)
+      end
+
+      let(:quality_metric_collab_num) do
+        create(:collaborator_num_metric)
+      end
+
+      let!(:foodcritic_result) do
+        create(:metric_result,
+               cookbook_version: cookbook_version,
+               quality_metric: quality_metric_foodcritic)
+      end
+
+      let!(:collab_result) do
+        create(:metric_result,
+               cookbook_version: cookbook_version,
+               quality_metric: quality_metric_collab_num)
+      end
+
       let(:quality_metrics) do
         {
           'quality' => {
             'foodcritic' => {
-              'failed' => cookbook.foodcritic_failure,
-              'feedback' => cookbook.foodcritic_feedback
+              'failed' => foodcritic_result.failure,
+              'feedback' => foodcritic_result.feedback
             },
             'collaborator' => {
-              'failed' => cookbook.collaborator_failure,
-              'feedback' => cookbook.collaborator_feedback
+              'failed' => collab_result.failure,
+              'feedback' => collab_result.feedback
             }
           }
         }
+      end
+
+      before do
+        cookbook.reload
       end
 
       it 'returns a 200' do

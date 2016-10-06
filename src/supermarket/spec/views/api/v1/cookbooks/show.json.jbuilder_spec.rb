@@ -21,8 +21,7 @@ describe 'api/v1/cookbooks/show' do
       description: 'great cookbook',
       version: '2.0.0',
       web_download_count: 1,
-      api_download_count: 19,
-      foodcritic_failure: true
+      api_download_count: 19
     )
   end
 
@@ -33,8 +32,7 @@ describe 'api/v1/cookbooks/show' do
       description: 'great cookbook',
       version: '2.1.0',
       web_download_count: 1,
-      api_download_count: 13,
-      foodcritic_failure: true
+      api_download_count: 13
     )
   end
 
@@ -96,11 +94,6 @@ describe 'api/v1/cookbooks/show' do
   it "displays the cookbook's deprecation status" do
     deprecated = json_body['deprecated']
     expect(deprecated).to eql(true)
-  end
-
-  it "displays the cookbook's foodcritic failure status" do
-    failure = json_body['foodcritic_failure']
-    expect(failure).to eql(true)
   end
 
   it "displays the cookbook's replacement cookbook" do

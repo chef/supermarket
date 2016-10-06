@@ -66,4 +66,28 @@ module CookbookVersionsHelper
       content
     end
   end
+
+  #
+  # Returns the foodcritic quality metric for the indicated version
+  #
+  # @param cookbook_version [CookbookVersion]
+  #
+  # @return [MetricResult]
+  def foodcritic_metric_result(cookbook_version)
+    cookbook_version.metric_results.find_by(
+      quality_metric: QualityMetric.foodcritic_metric
+    )
+  end
+
+  #
+  # Returns the foodcritic quality metric for the indicated version
+  #
+  # @param cookbook_version [CookbookVersion]
+  #
+  # @return [MetricResult]
+  def collaborator_num_metric_result(cookbook_version)
+    cookbook_version.metric_results.find_by(
+      quality_metric: QualityMetric.collaborator_num_metric
+    )
+  end
 end

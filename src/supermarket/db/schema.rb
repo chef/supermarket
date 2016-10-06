@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815191201) do
+ActiveRecord::Schema.define(version: 20160914223316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -186,13 +186,9 @@ ActiveRecord::Schema.define(version: 20160815191201) do
     t.integer  "api_download_count",    default: 0
     t.text     "changelog"
     t.string   "changelog_extension",   default: "",    null: false
-    t.boolean  "foodcritic_failure"
-    t.text     "foodcritic_feedback"
     t.json     "chef_versions"
     t.json     "ohai_versions"
     t.integer  "user_id"
-    t.boolean  "collaborator_failure"
-    t.text     "collaborator_feedback"
   end
 
   add_index "cookbook_versions", ["legacy_id"], name: "index_cookbook_versions_on_legacy_id", unique: true, using: :btree
@@ -372,6 +368,15 @@ ActiveRecord::Schema.define(version: 20160815191201) do
 
   add_index "invitations", ["organization_id"], name: "index_invitations_on_organization_id", using: :btree
 
+  create_table "metric_results", force: :cascade do |t|
+    t.integer  "cookbook_version_id"
+    t.integer  "quality_metric_id"
+    t.boolean  "failure"
+    t.string   "feedback"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -391,6 +396,12 @@ ActiveRecord::Schema.define(version: 20160815191201) do
   add_index "ownership_transfer_requests", ["cookbook_id"], name: "index_ownership_transfer_requests_on_cookbook_id", using: :btree
   add_index "ownership_transfer_requests", ["recipient_id"], name: "index_ownership_transfer_requests_on_recipient_id", using: :btree
   add_index "ownership_transfer_requests", ["token"], name: "index_ownership_transfer_requests_on_token", unique: true, using: :btree
+
+  create_table "quality_metrics", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "supported_platforms", force: :cascade do |t|
     t.string   "name",                                    null: false

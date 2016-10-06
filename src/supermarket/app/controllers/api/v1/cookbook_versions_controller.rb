@@ -11,6 +11,7 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
   def show
     @cookbook = Cookbook.with_name(params[:cookbook]).first!
     @cookbook_version = @cookbook.get_version!(params[:version])
+    @cookbook_version_metrics = @cookbook_version.metric_results
   end
 
   #
@@ -50,9 +51,11 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
         params[:cookbook_name]
       ).first!.get_version!(params[:cookbook_version])
 
-      cookbook_version.update(
-        foodcritic_failure: params[:foodcritic_failure],
-        foodcritic_feedback: params[:foodcritic_feedback]
+      create_metric(
+        cookbook_version,
+        QualityMetric.foodcritic_metric,
+        params[:foodcritic_failure],
+        params[:foodcritic_feedback]
       )
 
       head 200
@@ -80,9 +83,11 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
     if ENV['FIERI_KEY'] == params['fieri_key']
       cookbook_version = Cookbook.with_name(params[:cookbook_name]).first.cookbook_versions.last
 
-      cookbook_version.update(
-        collaborator_failure: params[:collaborator_failure],
-        collaborator_feedback: params[:collaborator_feedback]
+      create_metric(
+        cookbook_version,
+        QualityMetric.collaborator_num_metric,
+        params[:collaborator_failure],
+        params[:collaborator_feedback]
       )
 
       head 200
@@ -111,5 +116,14 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
     params.require(:cookbook_name)
     params.require(:collaborator_failure)
     params.require(:collaborator_feedback)
+  end
+
+  def create_metric(cookbook_version, quality_metric, failure, feedback)
+    MetricResult.create!(
+      cookbook_version: cookbook_version,
+      quality_metric: quality_metric,
+      failure: failure,
+      feedback: feedback
+    )
   end
 end

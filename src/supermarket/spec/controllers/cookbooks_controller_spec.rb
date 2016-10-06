@@ -111,8 +111,8 @@ describe CookbooksController do
     context 'there is a platform parameter' do
       let!(:debian_platform) do
         create(
-        :supported_platform,
-        name: 'debian'
+          :supported_platform,
+          name: 'debian'
         )
       end
 
@@ -462,6 +462,28 @@ describe CookbooksController do
       get :show, id: cookbook.name
 
       expect(assigns(:supported_platforms)).to_not be_nil
+    end
+
+    it 'sends the metrics results to the view' do
+      foodcritic_qm = create(:foodcritic_metric)
+      collab_num_qm = create(:collaborator_num_metric)
+
+      foodcritic_result = create(:metric_result,
+                                 cookbook_version: cookbook.latest_cookbook_version,
+                                 quality_metric:   foodcritic_qm,
+                                 failure:          true,
+                                 feedback:         'it failed'
+                                )
+
+      collab_result = create(:metric_result,
+                             cookbook_version: cookbook.latest_cookbook_version,
+                             quality_metric:   collab_num_qm,
+                             failure:          false,
+                             feedback:         'it passed'
+                            )
+
+      get :show, id: cookbook.name
+      expect(assigns(:metric_results)).to include(foodcritic_result, collab_result)
     end
 
     it '404s when the cookbook does not exist' do

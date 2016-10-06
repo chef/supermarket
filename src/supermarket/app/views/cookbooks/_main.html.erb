@@ -2,17 +2,17 @@
   <% if cookbook.deprecated? %>
     <div class="deprecation-notice">
       <h2 class="deprecation-copy">
-          <i class="fa fa-exclamation-triangle"></i> The <%= cookbook.name %>
-          cookbook has been deprecated
+        <i class="fa fa-exclamation-triangle"></i> The <%= cookbook.name %>
+        cookbook has been deprecated
       </h2>
       <p class="deprecation-copy">
-        The <%= cookbook.name %> cookbook has been deprecated and is no longer
-        being maintained by its authors.  Use of the <%= cookbook.name %>
-        cookbook is no longer recommended.
-        <% if cookbook.replacement.present? %>
-          You may find that the <%= link_to cookbook.replacement.name, cookbook.replacement %>
-          cookbook is a suitable alternative.
-        <% end %>
+      The <%= cookbook.name %> cookbook has been deprecated and is no longer
+      being maintained by its authors.  Use of the <%= cookbook.name %>
+      cookbook is no longer recommended.
+      <% if cookbook.replacement.present? %>
+        You may find that the <%= link_to cookbook.replacement.name, cookbook.replacement %>
+        cookbook is a suitable alternative.
+      <% end %>
       </p>
     </div>
   <% end %>
@@ -33,16 +33,16 @@
       <% end %>
       <ul id="versions" data-dropdown-content class="f-dropdown">
         <li>
-          <ul>
-            <% cookbook_versions.each do |cookbook_version| %>
-              <li>
-                <%= link_to cookbook_version_path(cookbook, cookbook_version), rel: 'cookbook_version' do %>
-                  <%= cookbook_version.version %>
-                  <% if cookbook_version == version %><i class="fa fa-check right"></i><% end %>
-                <% end %>
-              </li>
+        <ul>
+          <% cookbook_versions.each do |cookbook_version| %>
+            <li>
+            <%= link_to cookbook_version_path(cookbook, cookbook_version), rel: 'cookbook_version' do %>
+              <%= cookbook_version.version %>
+              <% if cookbook_version == version %><i class="fa fa-check right"></i><% end %>
             <% end %>
-          </ul>
+            </li>
+          <% end %>
+        </ul>
         </li>
       </ul>
     </small>
@@ -62,7 +62,7 @@
     <% end %>
     <% if ROLLOUT.active?(:fieri) %>
       <dd>
-        <a href="#quality" rel="quality">Quality</a>
+      <a href="#quality" rel="quality">Quality</a>
       </dd>
     <% end %>
   </dl>
@@ -87,17 +87,17 @@
         <dl class="accordion contingents" data-accordion>
           <% cookbook.contingents.group_by { |c| c.cookbook_version.cookbook.name }.each do |cookbook, contingents| %>
             <dd class="accordion-navigation">
-              <a href="#panel-<%= cookbook %>">
-                <%= cookbook %>
-                <span class="right">Applicable Versions <i class="fa fa-plus"></i><i class="fa fa-minus"></i></span>
-              </a>
-              <div id="panel-<%= cookbook %>" class="content">
-                <table>
-                  <tbody>
-                    <%= render partial: 'cookbooks/contingent', collection: contingents %>
-                  </tbody>
-                </table>
-              </div>
+            <a href="#panel-<%= cookbook %>">
+              <%= cookbook %>
+              <span class="right">Applicable Versions <i class="fa fa-plus"></i><i class="fa fa-minus"></i></span>
+            </a>
+            <div id="panel-<%= cookbook %>" class="content">
+              <table>
+                <tbody>
+                  <%= render partial: 'cookbooks/contingent', collection: contingents %>
+                </tbody>
+              </table>
+            </div>
             </dd>
           <% end %>
         </dl>
@@ -111,28 +111,7 @@
       </div>
     <% end %>
     <% if ROLLOUT.active?(:fieri) %>
-      <div class="content" id="quality">
-        <% if version.foodcritic_failure.nil? && version.collaborator_failure.nil? %>
-          <h2>No quality metric results found.</h2>
-        <% else %>
-          <h1>Foodcritic Metric</h1>
-          <% if version.foodcritic_failure.present? %>
-            <pre><%= foodcritic_info(version.foodcritic_feedback, version.foodcritic_failure) %></pre>
-          <% else %>
-            <p><%= version.version %> passed <%= link_to 'Foodcritic', 'http://www.foodcritic.io/', target: '_blank' %><br />
-            <%= foodcritic_info(version.foodcritic_feedback, version.foodcritic_failure) %></p>
-          <% end %>
-          <br />
-          <% if version.collaborator_feedback.present? %>
-            <h1>Collaborators Metric</h1>
-            <% if version.collaborator_failure %>
-              <pre><%= version.collaborator_feedback %></pre>
-            <% else %>
-              <p><%= version.version %> <%= version.collaborator_feedback %></p>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
+      <%= render partial: 'cookbooks/metrics', locals: { version: version } %>
     <% end %>
   </div>
 </div>

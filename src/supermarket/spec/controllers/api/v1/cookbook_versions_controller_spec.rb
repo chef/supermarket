@@ -30,6 +30,18 @@ describe Api::V1::CookbookVersionsController do
       expect(assigns[:cookbook_version]).to eql(redis_1_0_0)
     end
 
+    it 'includes the cookbook version\'s metric results' do
+      qm = create(:foodcritic_metric)
+      metric_result = create(:metric_result,
+                             cookbook_version: redis_1_0_0,
+                             quality_metric: qm
+                            )
+
+      get :show, cookbook: 'redis', version: '1.0.0', format: :json
+
+      expect(assigns[:cookbook_version_metrics]).to include(metric_result)
+    end
+
     it 'handles the latest version of a cookbook' do
       latest_version = redis.latest_cookbook_version
       get :show, cookbook: 'redis', version: 'latest', format: :json
@@ -108,7 +120,9 @@ describe Api::V1::CookbookVersionsController do
             expect(response.status.to_i).to eql(200)
           end
 
-          it "updates the cookbook version's food critic attributes" do
+          it "adds a metric result for foodcritic" do
+            quality_metric = create(:foodcritic_metric)
+
             post(
               :foodcritic_evaluation,
               cookbook_name: cookbook.name,
@@ -119,8 +133,7 @@ describe Api::V1::CookbookVersionsController do
               format: :json
             )
 
-            expect(version.reload.foodcritic_failure).to eql(true)
-            expect(version.reload.foodcritic_feedback).to eql('E066')
+            expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
           end
 
           context 'the required params are not provided' do
@@ -206,6 +219,8 @@ describe Api::V1::CookbookVersionsController do
         end
 
         it "updates the cookbook version's collaborator attributes" do
+          quality_metric = create(:collaborator_num_metric)
+
           post(
             :collaborators_evaluation,
             cookbook_name: cookbook.name,
@@ -216,10 +231,10 @@ describe Api::V1::CookbookVersionsController do
             format: :json
           )
 
-          expect(version.reload.collaborator_failure).to eql(false)
-          expect(version.reload.collaborator_feedback).to eql('This cookbook does not have sufficient collaborators.')
+          expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
         end
       end
+
       context 'the required params are not provided' do
         it 'returns a 400' do
           post(

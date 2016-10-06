@@ -101,10 +101,6 @@ class Cookbook < ActiveRecord::Base
   # Delegations
   # --------------------
   delegate :description, to: :latest_cookbook_version
-  delegate :foodcritic_failure, to: :latest_cookbook_version
-  delegate :foodcritic_feedback, to: :latest_cookbook_version
-  delegate :collaborator_failure, to: :latest_cookbook_version
-  delegate :collaborator_feedback, to: :latest_cookbook_version
   delegate :supported_platforms, to: :latest_cookbook_version
   delegate :cookbook_dependencies, to: :latest_cookbook_version
 

@@ -4,14 +4,16 @@ json.version cookbook_version.version
 json.average_rating nil
 json.cookbook api_v1_cookbook_url(cookbook)
 json.file api_v1_cookbook_version_download_url(cookbook_version.cookbook, cookbook_version)
-json.quality do
-  json.foodcritic do
-    json.failed @cookbook.foodcritic_failure
-    json.feedback @cookbook.foodcritic_feedback
-  end
-  json.collaborator do
-    json.failed @cookbook.collaborator_failure
-    json.feedback @cookbook.collaborator_feedback
+if !@cookbook_version_metrics.nil? && @cookbook_version_metrics.any?
+  json.quality do
+    json.foodcritic do
+      json.failed foodcritic_metric_result(cookbook_version).failure
+      json.feedback foodcritic_metric_result(cookbook_version).feedback
+    end
+    json.collaborator do
+      json.failed collaborator_num_metric_result(cookbook_version).failure
+      json.feedback collaborator_num_metric_result(cookbook_version).feedback
+    end
   end
 end
 json.set! :dependencies do
