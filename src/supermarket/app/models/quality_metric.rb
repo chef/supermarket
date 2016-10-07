@@ -10,4 +10,8 @@ class QualityMetric < ActiveRecord::Base
   def self.collaborator_num_metric
     QualityMetric.find_by(name: 'Collaborator Number')
   end
+
+  def self.publish_metric
+    QualityMetric.find_by(name: 'Publish')
+  end
 end

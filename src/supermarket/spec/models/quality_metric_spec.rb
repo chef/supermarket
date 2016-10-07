@@ -30,4 +30,14 @@ describe QualityMetric do
       expect(QualityMetric.collaborator_num_metric).to eq(collaborator_metric)
     end
   end
+
+  describe '#publish_metric' do
+    let!(:publish_metric) do
+      create(:publish_metric)
+    end
+
+    it 'finds the publish metric' do
+      expect(QualityMetric.publish_metric).to eq(publish_metric)
+    end
+  end
 end

@@ -6,7 +6,7 @@ class CookbookVersion < ActiveRecord::Base
   has_many :cookbook_version_platforms
   has_many :supported_platforms, through: :cookbook_version_platforms
   has_many :cookbook_dependencies, dependent: :destroy
-  has_many :metric_results
+  has_many :metric_results, -> { includes :quality_metric }
 
   belongs_to :cookbook
   belongs_to :user

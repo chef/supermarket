@@ -1,8 +1,23 @@
 <div class="content" id="quality">
-  <% unless @metric_results.present? %>
+  <% unless @public_metric_results.present? %>
     <h2>No quality metric results found</h2>
   <% else %>
-    <% @metric_results.each do |result| %>
+    <% @public_metric_results.each do |result| %>
+      <h1><%= "#{result.quality_metric.name} Metric" %>
+        <pre>
+          <% if result.failure? %>
+            <p><%= version.version %> failed this metric</pre>
+            <pre><%= result.feedback.gsub(/\n/, '<br />').html_safe %></pre>
+          <% else %>
+            <p><%= version.version %> passed this metric</pre>
+          <% end %>
+        </pre>
+    <% end %>
+  <% end %>
+  <br />
+  <% if current_user && current_user.roles.include?('admin') %>
+    <h1>Admin Only Metrics (not visible to non-admin users)</h1>
+    <% @admin_metric_results.each do |result| %>
       <h1><%= "#{result.quality_metric.name} Metric" %>
         <pre>
           <% if result.failure? %>

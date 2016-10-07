@@ -304,4 +304,95 @@ describe Api::V1::CookbookVersionsController do
       end
     end
   end
+
+  describe '#publish_evaluation' do
+    let(:cookbook) { create(:cookbook) }
+    let!(:version) { create(:cookbook_version, cookbook: cookbook) }
+    let!(:quality_metric) { create(:publish_metric) }
+
+    context 'the request is authorized' do
+      context 'the required params are provided' do
+        it 'returns a 200' do
+          post(
+            :publish_evaluation,
+            cookbook_name: cookbook.name,
+            publish_failure: false,
+            publish_feedback: 'This cookbook does not exist.',
+            fieri_key: 'YOUR_FIERI_KEY',
+            format: :json
+          )
+          expect(response.status.to_i).to eql(200)
+        end
+
+        it "creates a publish metric" do
+          post(
+            :publish_evaluation,
+            cookbook_name: cookbook.name,
+            publish_failure: false,
+            publish_feedback: 'This cookbook does not exist.',
+            fieri_key: 'YOUR_FIERI_KEY',
+            format: :json
+          )
+
+          version.reload
+          expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
+        end
+
+        it 'finds the correct cookbook version' do
+          post(
+            :publish_evaluation,
+            cookbook_name: cookbook.name,
+            publish_failure: false,
+            publish_feedback: 'This cookbook does not exist.',
+            fieri_key: 'YOUR_FIERI_KEY',
+            format: :json
+          )
+
+          expect(assigns[:cookbook_version]).to eq(version)
+        end
+      end
+
+      context 'the required params are not provided' do
+        it 'returns a 400' do
+          post(
+            :publish_evaluation,
+            publish_failure: false,
+            publish_feedback: '',
+            fieri_key: 'YOUR_FIERI_KEY',
+            format: :json
+          )
+
+          expect(response.status.to_i).to eql(400)
+
+          expect(JSON.parse(response.body)).to eql(
+            'error_code' => I18n.t('api.error_codes.invalid_data'),
+            'error_messages' => [
+              I18n.t('api.error_messages.missing_cookbook_name')
+            ]
+          )
+        end
+      end
+    end
+
+    context 'the request is not authorized' do
+      it 'renders a 401 error about unauthorized post' do
+        post(
+          :publish_evaluation,
+          cookbook_name: cookbook.name,
+          publish_failure: false,
+          publish_feedback: '',
+          fieri_key: 'not_the_key',
+          format: :json
+        )
+
+        expect(response.status.to_i).to eql(401)
+        expect(JSON.parse(response.body)).to eql(
+          'error_code' => I18n.t('api.error_codes.unauthorized'),
+          'error_messages' => [
+            I18n.t('api.error_messages.unauthorized_post_error')
+          ]
+        )
+      end
+    end
+  end
 end

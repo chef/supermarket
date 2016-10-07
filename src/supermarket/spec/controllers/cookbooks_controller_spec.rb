@@ -464,26 +464,65 @@ describe CookbooksController do
       expect(assigns(:supported_platforms)).to_not be_nil
     end
 
-    it 'sends the metrics results to the view' do
-      foodcritic_qm = create(:foodcritic_metric)
-      collab_num_qm = create(:collaborator_num_metric)
+    context 'displaying metrics' do
+      let(:foodcritic_qm) { create(:foodcritic_metric) }
+      let(:collab_num_qm) { create(:collaborator_num_metric) }
+      let(:publish_qm) { create(:publish_metric, admin_only: true) }
 
-      foodcritic_result = create(:metric_result,
-                                 cookbook_version: cookbook.latest_cookbook_version,
-                                 quality_metric:   foodcritic_qm,
-                                 failure:          true,
-                                 feedback:         'it failed'
-                                )
+      let(:foodcritic_result) do
+        create(:metric_result,
+               cookbook_version: cookbook.latest_cookbook_version,
+               quality_metric:   foodcritic_qm,
+               failure:          true,
+               feedback:         'it failed'
+              )
+      end
 
-      collab_result = create(:metric_result,
-                             cookbook_version: cookbook.latest_cookbook_version,
-                             quality_metric:   collab_num_qm,
-                             failure:          false,
-                             feedback:         'it passed'
-                            )
+      let(:collab_result) do
+        create(:metric_result,
+               cookbook_version: cookbook.latest_cookbook_version,
+               quality_metric:   collab_num_qm,
+               failure:          false,
+               feedback:         'it passed'
+              )
+      end
 
-      get :show, id: cookbook.name
-      expect(assigns(:metric_results)).to include(foodcritic_result, collab_result)
+      let(:publish_result) do
+        create(:metric_result,
+               cookbook_version: cookbook.latest_cookbook_version,
+               quality_metric:   publish_qm,
+               failure:          false,
+               feedback:         'it passed'
+              )
+      end
+
+      before do
+        expect(cookbook.latest_cookbook_version.metric_results).to include(foodcritic_result, collab_result, publish_result)
+      end
+
+      context 'public metrics' do
+        it 'sends the public metrics results to the view' do
+          get :show, id: cookbook.name
+          expect(assigns(:public_metric_results)).to include(foodcritic_result, collab_result)
+        end
+
+        it 'does not include admin only metrics' do
+          get :show, id: cookbook.name
+          expect(assigns(:public_metric_results)).to_not include(publish_result)
+        end
+      end
+
+      context 'admin only metrics' do
+        it 'sends the admin only metrics to the view' do
+          get :show, id: cookbook.name
+          expect(assigns(:admin_metric_results)).to include(publish_result)
+        end
+
+        it 'does not include the public metrics' do
+          get :show, id: cookbook.name
+          expect(assigns(:admin_metric_results)).to_not include(foodcritic_result, collab_result)
+        end
+      end
     end
 
     it '404s when the cookbook does not exist' do
