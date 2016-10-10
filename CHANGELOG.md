@@ -1,5 +1,9 @@
 # Supermarket Changelog
 
+THIS DOCUMENT IS NOW DEPRECATED
+
+Please see the [Releases page](https://github.com/chef/supermarket/releases) for Changelog details
+
 ## 2.8.3 (2016-08-22)
 - [#1402] Use "Chef" and "chef.io" consistently in links.
 - [#1405] Use correct URL for Foodcritic project.
