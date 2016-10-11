@@ -70,16 +70,18 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
 
       let(:quality_metrics) do
         {
-          'quality' => {
-            'foodcritic' => {
+          'quality_metrics' => [
+            {
+              'name' => quality_metric_foodcritic.name,
               'failed' => foodcritic_result.failure,
               'feedback' => foodcritic_result.feedback
             },
-            'collaborator' => {
+            {
+              'name' => quality_metric_collab_num.name,
               'failed' => collab_result.failure,
               'feedback' => collab_result.feedback
             }
-          }
+          ]
         }
       end
 
@@ -101,7 +103,6 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
 
       it 'returns quality metrics for the cookbook version' do
         get json_body['versions'].find { |v| v =~ /0.1.0/ }
-
         expect(signature(json_body)).to include(quality_metrics)
       end
 
@@ -114,7 +115,6 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
         it 'returns a 200' do
           get "/api/v1/cookbooks/#{cookbook.name}/versions/#{cookbook_version.version}"
 
-          puts response.body.inspect
           expect(response.status.to_i).to eql(200)
         end
 
