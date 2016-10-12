@@ -70,16 +70,18 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
 
       let(:quality_metrics) do
         {
-          'quality' => {
-            'foodcritic' => {
+          'quality_metrics' => [
+            {
+              'name' => quality_metric_foodcritic.name,
               'failed' => foodcritic_result.failure,
               'feedback' => foodcritic_result.feedback
             },
-            'collaborator' => {
+            {
+              'name' => quality_metric_collab_num.name,
               'failed' => collab_result.failure,
               'feedback' => collab_result.feedback
             }
-          }
+          ]
         }
       end
 
@@ -99,10 +101,38 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
         expect(signature(json_body)).to include(cookbook_version_signature)
       end
 
-      it 'returns quality metrics for the cookbook version' do
-        get json_body['versions'].find { |v| v =~ /0.1.0/ }
+      context 'when the fieri feature is active' do
+        before do
+          allow(ROLLOUT).to receive(:active?).with(:fieri).and_return(true)
+        end
 
-        expect(signature(json_body)).to include(quality_metrics)
+        it 'returns quality metrics for the cookbook version' do
+          get "/api/v1/cookbooks/#{cookbook.name}/versions/#{cookbook_version.version}"
+          expect(JSON.parse(response.body)).to include(quality_metrics)
+        end
+
+        context 'when the cookbook has only the foodcritic metric' do
+          before do
+            collab_result.destroy
+          end
+
+          it 'returns a 200' do
+            get "/api/v1/cookbooks/#{cookbook.name}/versions/#{cookbook_version.version}"
+
+            expect(response.status.to_i).to eql(200)
+          end
+        end
+      end
+
+      context 'when the fieri feature is not active' do
+        before do
+          allow(ROLLOUT).to receive(:active?).with(:fieri).and_return(false)
+        end
+
+        it 'does not return quality metrics for the cookbook version' do
+          get "/api/v1/cookbooks/#{cookbook.name}/versions/#{cookbook_version.version}"
+          expect(JSON.parse(response.body)).to_not include(quality_metrics)
+        end
       end
     end
 
