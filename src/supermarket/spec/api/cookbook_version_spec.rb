@@ -114,7 +114,6 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
         context 'when the cookbook has only the foodcritic metric' do
           before do
             collab_result.destroy
-            expect(cookbook_version.metric_results.count).to eq(1)
           end
 
           it 'returns a 200' do
