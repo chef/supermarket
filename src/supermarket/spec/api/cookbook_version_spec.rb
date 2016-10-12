@@ -101,23 +101,39 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
         expect(signature(json_body)).to include(cookbook_version_signature)
       end
 
-      it 'returns quality metrics for the cookbook version' do
-        get json_body['versions'].find { |v| v =~ /0.1.0/ }
-        expect(signature(json_body)).to include(quality_metrics)
+      context 'when the fieri feature is active' do
+        before do
+          allow(ROLLOUT).to receive(:active?).with(:fieri).and_return(true)
+        end
+
+        it 'returns quality metrics for the cookbook version' do
+          get "/api/v1/cookbooks/#{cookbook.name}/versions/#{cookbook_version.version}"
+          expect(JSON.parse(response.body)).to include(quality_metrics)
+        end
+
+        context 'when the cookbook has only the foodcritic metric' do
+          before do
+            collab_result.destroy
+            expect(cookbook_version.metric_results.count).to eq(1)
+          end
+
+          it 'returns a 200' do
+            get "/api/v1/cookbooks/#{cookbook.name}/versions/#{cookbook_version.version}"
+
+            expect(response.status.to_i).to eql(200)
+          end
+        end
       end
 
-      context 'when the cookbook has only the foodcritic metric' do
+      context 'when the fieri feature is not active' do
         before do
-          collab_result.destroy
-          expect(cookbook_version.metric_results.count).to eq(1)
+          allow(ROLLOUT).to receive(:active?).with(:fieri).and_return(false)
         end
 
-        it 'returns a 200' do
+        it 'does not return quality metrics for the cookbook version' do
           get "/api/v1/cookbooks/#{cookbook.name}/versions/#{cookbook_version.version}"
-
-          expect(response.status.to_i).to eql(200)
+          expect(JSON.parse(response.body)).to_not include(quality_metrics)
         end
-
       end
     end
 

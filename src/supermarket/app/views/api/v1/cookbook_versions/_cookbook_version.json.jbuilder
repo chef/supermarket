@@ -5,7 +5,7 @@ json.average_rating nil
 json.cookbook api_v1_cookbook_url(cookbook)
 json.file api_v1_cookbook_version_download_url(cookbook_version.cookbook, cookbook_version)
 
-if !@cookbook_version_metrics.nil? && @cookbook_version_metrics.any?
+if ROLLOUT.active?(:fieri)
   json.quality_metrics @cookbook_version_metrics do |metric|
     json.name metric.quality_metric.name
     json.failed metric.failure
