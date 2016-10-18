@@ -132,7 +132,7 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
   end
 
   def find_cookbook_version
-    if params[:cookbook_version].present?
+    if params[:cookbook_version]
       @cookbook_version = Cookbook.with_name(
         params[:cookbook_name]
       ).first!.get_version!(params[:cookbook_version])
