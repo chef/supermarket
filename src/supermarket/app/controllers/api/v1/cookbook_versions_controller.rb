@@ -1,4 +1,7 @@
 class Api::V1::CookbookVersionsController < Api::V1Controller
+  before_action :check_cookbook_name_present, only: [:foodcritic_evaluation, :collaborators_evaluation]
+  before_action :check_authorization, only: [:foodcritic_evaluation, :collaborators_evaluation]
+  before_action :find_cookbook_version, only: [:foodcritic_evaluation, :collaborators_evaluation]
   #
   # GET /api/v1/cookbooks/:cookbook/versions/:version
   #
@@ -46,22 +49,14 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
   def foodcritic_evaluation
     require_evaluation_params
 
-    if ENV['FIERI_KEY'] == params['fieri_key']
-      cookbook_version = Cookbook.with_name(
-        params[:cookbook_name]
-      ).first!.get_version!(params[:cookbook_version])
+    create_metric(
+      @cookbook_version,
+      QualityMetric.foodcritic_metric,
+      params[:foodcritic_failure],
+      params[:foodcritic_feedback]
+    )
 
-      create_metric(
-        cookbook_version,
-        QualityMetric.foodcritic_metric,
-        params[:foodcritic_failure],
-        params[:foodcritic_feedback]
-      )
-
-      head 200
-    else
-      render_not_authorized([t('api.error_messages.unauthorized_post_error')])
-    end
+    head 200
   end
 
   #
@@ -80,20 +75,14 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
   def collaborators_evaluation
     require_collaborator_params
 
-    if ENV['FIERI_KEY'] == params['fieri_key']
-      cookbook_version = Cookbook.with_name(params[:cookbook_name]).first.cookbook_versions.last
+    create_metric(
+      @cookbook_version,
+      QualityMetric.collaborator_num_metric,
+      params[:collaborator_failure],
+      params[:collaborator_feedback]
+    )
 
-      create_metric(
-        cookbook_version,
-        QualityMetric.collaborator_num_metric,
-        params[:collaborator_failure],
-        params[:collaborator_feedback]
-      )
-
-      head 200
-    else
-      render_not_authorized([t('api.error_messages.unauthorized_post_error')])
-    end
+    head 200
   end
 
   rescue_from ActionController::ParameterMissing do |e|
@@ -125,5 +114,30 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
       failure: failure,
       feedback: feedback
     )
+  end
+
+  def check_authorization
+    unless ENV['FIERI_KEY'] == params['fieri_key']
+      render_not_authorized([t('api.error_messages.unauthorized_post_error')])
+    end
+  end
+
+  def check_cookbook_name_present
+    unless params[:cookbook_name].present?
+      error(
+        error_code: t('api.error_codes.invalid_data'),
+        error_messages: [t("api.error_messages.missing_cookbook_name")]
+      )
+    end
+  end
+
+  def find_cookbook_version
+    if params[:cookbook_version].present?
+      @cookbook_version = Cookbook.with_name(
+        params[:cookbook_name]
+      ).first!.get_version!(params[:cookbook_version])
+    else
+      @cookbook_version = Cookbook.with_name(params[:cookbook_name]).first.latest_cookbook_version
+    end
   end
 end

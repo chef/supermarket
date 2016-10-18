@@ -98,13 +98,27 @@ describe Api::V1::CookbookVersionsController do
     end
   end
 
-  describe '#evaluation' do
+  describe '#foodcritic_evaluation' do
     let(:cookbook) { create(:cookbook) }
-    let(:version) { create(:cookbook_version, cookbook: cookbook) }
+    let!(:version) { create(:cookbook_version, cookbook: cookbook) }
+    let!(:version_2) { create(:cookbook_version, cookbook: cookbook) }
 
     context 'the request is authorized' do
-
       context 'the cookbook version exists' do
+        it 'finds the correct cookbook version' do
+          post(
+            :foodcritic_evaluation,
+            cookbook_name: cookbook.name,
+            cookbook_version: version_2.to_param,
+            foodcritic_failure: true,
+            foodcritic_feedback: 'E066',
+            fieri_key: 'YOUR_FIERI_KEY',
+            format: :json
+          )
+
+          expect(assigns[:cookbook_version]).to eq(version_2)
+        end
+
         context 'the required params are provided' do
           it 'returns a 200' do
             post(
@@ -202,10 +216,23 @@ describe Api::V1::CookbookVersionsController do
 
   describe '#collaborators_evaluation' do
     let(:cookbook) { create(:cookbook) }
-    let(:version) { create(:cookbook_version, cookbook: cookbook) }
+    let!(:version) { create(:cookbook_version, cookbook: cookbook) }
+    let!(:version_2) { create(:cookbook_version, cookbook: cookbook) }
 
     context 'the request is authorized' do
       context 'the required params are provided' do
+        it 'finds the latest cookbook version' do
+          post(
+            :collaborators_evaluation,
+            cookbook_name: cookbook.name,
+            collaborator_failure: false,
+            collaborator_feedback: 'This cookbook does not have sufficient collaborators.',
+            fieri_key: 'YOUR_FIERI_KEY',
+            format: :json
+          )
+          expect(assigns[:cookbook_version]).to eq(version_2)
+        end
+
         it 'returns a 200' do
           post(
             :collaborators_evaluation,
@@ -224,14 +251,13 @@ describe Api::V1::CookbookVersionsController do
           post(
             :collaborators_evaluation,
             cookbook_name: cookbook.name,
-            cookbook_version: version.to_param,
             collaborator_failure: false,
             collaborator_feedback: 'This cookbook does not have sufficient collaborators.',
             fieri_key: 'YOUR_FIERI_KEY',
             format: :json
           )
 
-          expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
+          expect(version_2.metric_results.where(quality_metric: quality_metric).count).to eq(1)
         end
       end
 
