@@ -33,8 +33,9 @@ describe CollaboratorWorker do
     CollaboratorWorker.new.perform(cookbook_name)
 
     assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/collaborators_evaluation", times: 1) do |req|
-      req.body =~ /collaborator_failure=true/
-      req.body =~ /collaborator_feedback=.+/
+      expect(req.body).to include("cookbook_name=#{cookbook_name}")
+      expect(req.body).to include('collaborator_failure=false')
+      expect(req.body).to include('collaborator_feedback=passed')
     end
   end
 end
