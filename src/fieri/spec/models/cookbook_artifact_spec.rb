@@ -34,7 +34,7 @@ describe CookbookArtifact do
       it 'returns the feedback and status from the FoodCritic run' do
         feedback, status = artifact.criticize
 
-        assert_match(/FC023/, feedback)
+        assert_match(/FC064/, feedback)
         assert_equal true, status
       end
     end
@@ -84,7 +84,7 @@ describe CookbookArtifact do
       it 'disables ~FC031 and ~FC045 by default' do
         feedback, status = artifact.criticize
 
-        assert_match(/FC023/, feedback)
+        assert_match(/FC064/, feedback)
         assert_equal true, status
       end
     end
