@@ -1,34 +1,18 @@
 # Supermarket
 
-[![Build Status](https://travis-ci.org/chef/supermarket.svg?branch=master)](https://travis-ci.org/chef/supermarket)
-[![Dependency Status](https://gemnasium.com/chef/supermarket.svg)](https://gemnasium.com/chef/supermarket)
-[![Code Climate](https://codeclimate.com/github/chef/supermarket.svg)](https://codeclimate.com/github/chef/supermarket)
-[![Inline docs](http://inch-ci.org/github/chef/supermarket.svg)](http://inch-ci.org/github/chef/supermarket)
+[![Build Status](https://travis-ci.org/chef/supermarket.svg?branch=master)](https://travis-ci.org/chef/supermarket) [![Dependency Status](https://gemnasium.com/chef/supermarket.svg)](https://gemnasium.com/chef/supermarket) [![Code Climate](https://codeclimate.com/github/chef/supermarket.svg)](https://codeclimate.com/github/chef/supermarket) [![Inline docs](http://inch-ci.org/github/chef/supermarket.svg)](http://inch-ci.org/github/chef/supermarket)
 
-Supermarket is Chef's community repository for cookbooks, currently hosted
-at [supermarket.chef.io](supermarket.chef.io). Supermarket can also be run
-internally, behind-the-firewall.
+Supermarket is Chef's community repository for cookbooks, currently hosted at [supermarket.chef.io](https://supermarket.chef.io). Supermarket can also be run internally, behind-the-firewall.
 
-The code is designed to be easy for others to contribute to. To that end,
-the goal of this README is to introduce you to the project and get you up and
-running. More information about Supermarket can be found in [the
-wiki](https://github.com/chef/supermarket/wiki).  You can [follow along with the project development in
-waffle.io](https://waffle.io/chef/supermarket).
+The code is designed to be easy for others to contribute to. To that end, the goal of this README is to introduce you to the project and get you up and running. More information about Supermarket can be found in [the wiki](https://github.com/chef/supermarket/wiki). You can [follow along with the project development in waffle.io](https://waffle.io/chef/supermarket).
 
-If you want to contribute to Supermarket, read the [contributor's
-workflow](https://github.com/chef/supermarket/blob/master/CONTRIBUTING.md)
-for license information and helpful tips to get you started. There are project artifacts such as planning docs, wireframes, recorded
-demos, and team retrospectives in a [public Google Drive
-folder](https://drive.google.com/a/gofullstack.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8).
+If you want to contribute to Supermarket, read the [Chef Contributing Documentation](https://github.com/chef/chef/blob/master/CONTRIBUTING.md) for license information and helpful tips to get you started. There are project artifacts such as planning docs, wireframes, recorded demos, and team retrospectives in a [public Google Drive folder](https://drive.google.com/a/gofullstack.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8).
 
-If you have questions, feature ideas, or other suggestions, please [open a
-GitHub Issue](https://github.com/chef/supermarket/issues/new).
+If you have questions, feature ideas, or other suggestions, please [open a GitHub Issue](https://github.com/chef/supermarket/issues/new).
 
-This repository has the code for the Supermarket application, related
-repositories are:
+This repository has the code for the Supermarket application, related repositories are:
 
-* [chef-cookbooks/supermarket-omnibus-cookbook](https://github.com/chef-cookbooks/supermarket-omnibus-cookbook): This cookbook is used to deploy Supermarket through the Supermarket omnibus package. For details on using this cookbook to install Supermarket omnibus, check out [this webinar by the Supermarket Engineering team](https://www.chef.io/webinars/?commid=164925).
-* [chef/omnibus-supermarket](https://github.com/chef/omnibus-supermarket): Code used to build RPM and DEB packages
+- [chef-cookbooks/supermarket-omnibus-cookbook](https://github.com/chef-cookbooks/supermarket-omnibus-cookbook): This cookbook is used to deploy Supermarket through the Supermarket omnibus package. For details on using this cookbook to install Supermarket omnibus, check out [this webinar by the Supermarket Engineering team](https://www.chef.io/webinars/?commid=164925).
 
 ## Requirements
 
@@ -47,6 +31,7 @@ goes into detail about the not-so-straightforward configuration that needs
 to happen to get Supermarket working locally.
 
 ### Local Environment
+
 These instructions are tested and verified on Mac OS X Yosemite
 
 #### Dependency Services
