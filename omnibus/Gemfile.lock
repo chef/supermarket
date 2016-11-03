@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 778b2bb20cb3f64207ad822c1277e6068be5bbfc
+  revision: 2352f3e0c6326e05befda4d97f12a07de27c575c
   specs:
     omnibus-software (4.0.0)
       chef-sugar (>= 3.4.0)
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: ed8a050dc3df3fca242f068879cfc867762428d3
+  revision: e4068402d4a5023c419ecbaae66b8f651349163f
   specs:
     omnibus (5.5.0)
       aws-sdk (~> 2)
@@ -26,13 +26,13 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.4.0)
-    artifactory (2.3.3)
-    aws-sdk (2.6.3)
-      aws-sdk-resources (= 2.6.3)
-    aws-sdk-core (2.6.3)
+    artifactory (2.5.0)
+    aws-sdk (2.6.17)
+      aws-sdk-resources (= 2.6.17)
+    aws-sdk-core (2.6.17)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.6.3)
-      aws-sdk-core (= 2.6.3)
+    aws-sdk-resources (2.6.17)
+      aws-sdk-core (= 2.6.17)
     berkshelf (4.3.5)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (~> 2.0, >= 2.0.2)
@@ -68,7 +68,7 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef-config (12.14.89)
+    chef-config (12.15.19)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -82,7 +82,7 @@ GEM
     ffi-yajl (2.3.0)
       libyajl2 (~> 1.2)
     fuzzyurl (0.9.0)
-    hashie (3.4.4)
+    hashie (3.4.6)
     hitimes (1.2.4)
     httpclient (2.7.2)
     ipaddress (0.8.3)
@@ -101,10 +101,11 @@ GEM
       mixlib-log
     mixlib-cli (1.7.0)
     mixlib-config (2.2.4)
-    mixlib-install (1.1.0)
+    mixlib-install (2.1.5)
       artifactory
       mixlib-shellout
       mixlib-versioning
+      thor
     mixlib-log (1.7.1)
     mixlib-shellout (2.2.7)
     mixlib-versioning (1.1.0)
@@ -116,9 +117,9 @@ GEM
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     nio4r (1.2.1)
-    octokit (4.3.0)
+    octokit (4.4.1)
       sawyer (~> 0.7.0, >= 0.5.3)
-    ohai (8.20.0)
+    ohai (8.21.0)
       chef-config (>= 12.5.0.alpha.1, < 13)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
@@ -160,8 +161,8 @@ GEM
       molinillo (~> 0.4.2)
       semverse (~> 1.1)
     systemu (2.6.5)
-    test-kitchen (1.12.0)
-      mixlib-install (~> 1.0, >= 1.0.4)
+    test-kitchen (1.13.2)
+      mixlib-install (>= 1.2, < 3.0)
       mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
       net-ssh (>= 2.9, < 4.0)
