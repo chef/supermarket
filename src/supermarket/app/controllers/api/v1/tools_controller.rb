@@ -38,19 +38,33 @@ class Api::V1::ToolsController < Api::V1Controller
   #
   # GET /api/v1/tools-search?q=QUERY
   #
-  # Return tools with a name that contains the specified query. Takes the +q+
-  # parameter for the request. It also handles the start and items parameters
-  # for specifying where to start the search and how many items to return. Start
-  # defaults to 0. Items defaults to 10. Items has an upper limit of 100.
+  # Return tools with a name that contains the specified query.
+  #
+  # Parameters
+  # - +q+ parameter for textual searches of tool name or description
+  # - +type+ parameter to filter results to a single tool type
+  # - +order+ order of the results, defaults to alphabetically by name
+  #           options: recently_added (reverse chronological)
+  # - +start+ what index to start the results list, defaults to 0
+  # - +items+ how many items to return from the +start+ index, defaults to 10
   #
   # @example
   #   GET /api/v1/tools-search?q=berkshelf
   #   GET /api/v1/tools-search?q=berkshelf&start=3&items=5
+  #   GET /api/v1/tools-search?type=compliance_profile&order=recently_added
   #
   def search
-    @results = Tool.search(
-      params.fetch(:q, nil)
-    ).offset(@start).limit(@items)
+    @results = Tool.ordered_by(params[:order])
+
+    if params[:q].present?
+      @results = @results.search(params[:q])
+    end
+
+    if Tool::ALLOWED_TYPES.include?(params[:type])
+      @results = @results.where(type: params[:type])
+    end
+
+    @results = @results.offset(@start).limit(@items)
 
     @total = @results.count(:all)
   end
