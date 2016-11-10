@@ -26,10 +26,8 @@ class FoodcriticWorker
       foodcritic_feedback: format_feedback(feedback, status),
       foodcritic_failure: status
     )
-    unless response.is_a? Net::HTTPSuccess
-      error_msg = "Unable to POST Foodcritic Evaluation of #{params[cookbook_name]} " + response.message
-      raise error_msg
-    end
+    return if response.is_a? Net::HTTPSuccess
+    raise "Unable to POST Foodcritic Evaluation of #{params['cookbook_name']} " + response.message
   end
 
   private
