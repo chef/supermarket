@@ -1,6 +1,6 @@
 sudo: false
 addons:
-  postgresql: "9.3"
+  postgresql: '9.3'
   apt:
     packages:
     - libxslt1-dev
@@ -17,7 +17,7 @@ cache:
   apt: true
   bundler: true
   directories:
-    - $TRAVIS_BUILD_DIR/src/$COMPONENT/vendor/bundle
+  - "$TRAVIS_BUILD_DIR/src/$COMPONENT/vendor/bundle"
 env:
   matrix:
   - COMPONENT=supermarket
@@ -32,5 +32,5 @@ rvm:
 script:
 - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake $COMPONENT:travis:script
 services:
-  - redis-server
-  - postgresql
+- redis-server
+- postgresql
