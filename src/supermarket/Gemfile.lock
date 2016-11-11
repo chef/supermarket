@@ -25,7 +25,7 @@ PATH
   specs:
     fieri (0.0.1)
       dotenv-rails
-      foodcritic
+      foodcritic (~> 8.1)
       mixlib-archive (~> 0.2)
       rails (~> 4.2)
       sidekiq
@@ -82,6 +82,7 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
+    backports (3.6.8)
     brakeman (3.1.1)
       erubis (~> 2.6)
       fastercsv (~> 1.5)
@@ -159,7 +160,8 @@ GEM
       safe_yaml (~> 1.0.0)
     css_parser (1.3.5)
       addressable
-    cucumber-core (1.5.0)
+    cucumber-core (2.0.0)
+      backports (~> 3.6)
       gherkin (~> 4.0)
     database_cleaner (1.3.0)
     debugger-linecache (1.2.0)
@@ -185,7 +187,7 @@ GEM
     ffi-yajl (1.4.0)
       ffi (~> 1.5)
       libyajl2 (~> 1.2)
-    foodcritic (7.0.1)
+    foodcritic (8.1.0)
       cucumber-core (>= 1.3)
       erubis
       nokogiri (>= 1.5, < 2.0)
@@ -625,4 +627,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.12.5
+   1.13.6

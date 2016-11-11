@@ -40,10 +40,13 @@ class CookbookArtifact
   def criticize
     prep
 
-    args = [work_dir, "-f #{ENV['FIERI_FOODCRITIC_FAIL_TAGS']}"]
-    ENV['FIERI_FOODCRITIC_TAGS'].split.each do |tag|
+    tags = ENV['FIERI_FOODCRITIC_TAGS'] || ''
+    fail_tags = ENV['FIERI_FOODCRITIC_FAIL_TAGS']
+
+    args = [work_dir, "-f #{fail_tags}"]
+    tags.split.each do |tag|
       args.push("-t #{tag}")
-    end if ENV['FIERI_FOODCRITIC_TAGS']
+    end
     cmd = FoodCritic::CommandLine.new(args)
     result, _status = FoodCritic::Linter.run(cmd)
     [result.to_s, result.failed?]
