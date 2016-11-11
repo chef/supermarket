@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'vcr_helper'
+require 'webmock/rspec'
 
 RSpec.describe Curry::RepositoryMaintainersWorker, type: :worker do
 
@@ -70,18 +71,30 @@ RSpec.describe Curry::RepositoryMaintainersWorker, type: :worker do
     let!(:real_worker) { Curry::RepositoryMaintainersWorker.new }
     let!(:paprika) { create(:repository, owner: 'chef', name: 'paprika') }
 
+    let(:maintainers_toml) do
+      <<-TOML
+[Org.Components.Core]
+  maintainers = [ "thommay" ]
+[people]
+  [people.thommay]
+    GitHub = "thommay"
+TOML
+    end
+
     it 'should download a maintainers file and parse it' do
-      VCR.use_cassette('curry_repository_maintainers', record: :once) do
-        real_worker.perform
-      end
+      stub_request(:get, "https://api.github.com/repos/chef/paprika/contents/MAINTAINERS.toml")
+        .to_return(body: maintainers_toml)
+
+      real_worker.perform
 
       expect(real_worker.people).to eql('thommay' => { 'GitHub' => 'thommay' })
     end
 
     it 'should associate the correct maintainers with the repository' do
-      VCR.use_cassette('curry_repository_maintainers', record: :once) do
-        real_worker.perform
-      end
+      stub_request(:get, "https://api.github.com/repos/chef/paprika/contents/MAINTAINERS.toml")
+        .to_return(body: maintainers_toml)
+
+      real_worker.perform
 
       expect(paprika.maintainers.length).to be(1)
       expect(paprika.maintainers.first).to eql(thom)
