@@ -1,0 +1,28 @@
+#!/bin/sh
+export SUPERMARKET_HOME="{{pkg.path}}"
+export SUPERMARKET_DATA="{{pkg.svc_data_path}}"
+
+echo "Removing previous version deployed at ${SUPERMARKET_DATA}"
+rm ${SUPERMARKET_DATA}/dist
+
+echo "Deploying new version from ${SUPERMARKET_HOME} to ${SUPERMARKET_DATA}"
+ln -s ${SUPERMARKET_HOME}/dist ${SUPERMARKET_DATA}/dist
+
+echo "Linking database.yml"
+ln -sf {{pkg.svc_config_path}}/database.yml ${SUPERMARKET_DATA}/dist/config/database.yml
+
+export GEM_HOME="${SUPERMARKET_DATA}/dist/vendor/bundle/ruby/2.3.0"
+export GEM_PATH="$(hab pkg path core/ruby)/lib/ruby/gems/2.3.0:$(hab pkg path core/bundler):$GEM_HOME"
+export LD_LIBRARY_PATH="$(hab pkg path core/gcc-libs)/lib"
+export PATH="$PATH:${SUPERMARKET_DATA}/dist/bin"
+export RAILS_ENV="production"
+
+chown -R hab:hab ${SUPERMARKET_DATA}/dist
+cd ${SUPERMARKET_DATA}/dist
+
+exec 2>&1
+
+if [[ ! -f ${SUPERMARKET_DATA}/.migrations_complete ]]; then
+  echo "Migrating DB in ${PWD}"
+  exec bin/rake db:create db:migrate && touch $SUPERMARKET_DATA/.migrations_complete
+fi
