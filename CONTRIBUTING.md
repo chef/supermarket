@@ -2,8 +2,8 @@
 Thanks for your interest in contributing to Supermarket!
 
 The basic process:
-- Sign a Chef CLA (see below)
 - Create a git topic branch for your patch and push it to GitHub
+- Sign your commits with DCO (Developer Certificate of Origin)
 - Open a pull request
 
 ## The Apache License and Chef Contributor License Agreements
@@ -11,18 +11,12 @@ Licensing is very important to open source projects, it helps ensure the softwar
 
 The license tells you what rights you have that are provided by the copyright holder. It is important that the contributor fully understands what rights they are licensing and agrees to them. Sometimes the copyright holder isn't the contributor, most often when the contributor is doing work for a company.
 
-To make a good faith effort to ensure these criteria are met, Chef requires an Individual Contributor License Agreement (ICLA) or a Corporate Contributor License Agreement (CCLA) for all contributions. This is without exception due to some matters not being related to copyright and to avoid having to continually check with our lawyers about small patches.
-
-It only takes a few minutes to complete a CLA, and you retain the copyright to your contribution.
-
-You can [become a contributor by signing the ICLA or by contributing on behalf of your company](https://supermarket.chef.io/become-a-contributor).
-
-For more information about licensing, copyright, and CLAs see Chef's [Community Contributions](https://docs.chef.io/community_contributions.html) page.
+For more information about licensing, copyright, and how to sign your commits with DCO, see Chef's [Community Contributions](https://docs.chef.io/community_contributions.html) page.
 
 ## Working with the community
 These resources will help you learn more about Chef and connect to other members of the Chef community:
-- [chef](https://discourse.chef.io/) mailing list
-- [#chef](https://botbot.me/freenode/chef) and [#chef-hacking](https://botbot.me/freenode/chef-hacking) IRC channels on irc.freenode.net
+- [Chef](https://discourse.chef.io/) mailing list
+- [Chef community slack](http://community-slack.chef.io/)
 
 Also here are some additional pointers to some awesome Chef content:
 - [Chef Docs](https://docs.chef.io/)
