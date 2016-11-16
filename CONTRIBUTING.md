@@ -3,15 +3,17 @@ Thanks for your interest in contributing to Supermarket!
 
 The basic process:
 - Create a git topic branch for your patch and push it to GitHub
-- Sign your commits with DCO (Developer Certificate of Origin)
+- Sign all of your commits with DCO (Developer Certificate of Origin)
 - Open a pull request
 
-## The Apache License and Chef Contributor License Agreements
+## The Apache License and Contributing
 Licensing is very important to open source projects, it helps ensure the software continues to be available under the terms that the author desired. Chef uses the Apache 2.0 license to strike a balance between open contribution and allowing you to use the software however you would like to.
 
 The license tells you what rights you have that are provided by the copyright holder. It is important that the contributor fully understands what rights they are licensing and agrees to them. Sometimes the copyright holder isn't the contributor, most often when the contributor is doing work for a company.
 
-For more information about licensing, copyright, and how to sign your commits with DCO, see Chef's [Community Contributions](https://docs.chef.io/community_contributions.html) page.
+For more information about licensing, copyright, and why we use DCO, see Chef's [Community Contributions](https://docs.chef.io/community_contributions.html) page.
+
+For information on how to sign your commits with DCO, please see [DCO Sign Off Methods](https://github.com/chef/chef/blob/master/CONTRIBUTING.md#dco-sign-off-methods).
 
 ## Working with the community
 These resources will help you learn more about Chef and connect to other members of the Chef community:
