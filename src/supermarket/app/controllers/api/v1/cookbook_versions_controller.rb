@@ -1,7 +1,7 @@
 class Api::V1::CookbookVersionsController < Api::V1Controller
-  before_action :check_cookbook_name_present, only: [:foodcritic_evaluation, :collaborators_evaluation]
-  before_action :check_authorization, only: [:foodcritic_evaluation, :collaborators_evaluation]
-  before_action :find_cookbook_version, only: [:foodcritic_evaluation, :collaborators_evaluation]
+  before_action :check_cookbook_name_present, only: [:foodcritic_evaluation, :collaborators_evaluation, :publish_evaluation]
+  before_action :check_authorization, only: [:foodcritic_evaluation, :collaborators_evaluation, :publish_evaluation]
+  before_action :find_cookbook_version, only: [:foodcritic_evaluation, :collaborators_evaluation, :publish_evaluation]
   #
   # GET /api/v1/cookbooks/:cookbook/versions/:version
   #
@@ -90,6 +90,30 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
       error_code: t('api.error_codes.invalid_data'),
       error_messages: [t("api.error_messages.missing_#{e.param}")]
     )
+  end
+
+  #
+  # POST /api/v1/cookbook-versions/publish_evaluation
+  #
+  # Take the publish evaluation results from Fieri and store them as a
+  # metric result
+  #
+  # If the +CookbookVersion+ does not exist, render a 404 not_found.
+  #
+  # If the request is unauthorized, render unauthorized.
+  #
+  # This endpoint expects +cookbook_name+, +cookbook_version+,
+  # +publish_failure+, +publish_feedback+, and +fieri_key+.
+  #
+  def publish_evaluation
+    create_metric(
+      @cookbook_version,
+      QualityMetric.publish_metric,
+      params[:publish_failure],
+      params[:publish_feedback]
+    )
+
+    head 200
   end
 
   private

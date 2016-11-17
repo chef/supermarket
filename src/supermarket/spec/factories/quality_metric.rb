@@ -8,7 +8,12 @@ FactoryGirl.define do
       name "Collaborator Number"
     end
 
+    trait :publish do
+      name "Publish"
+    end
+
     factory :foodcritic_metric, traits: [:foodcritic]
     factory :collaborator_num_metric, traits: [:collaborator_num]
+    factory :publish_metric, traits: [:publish]
   end
 end

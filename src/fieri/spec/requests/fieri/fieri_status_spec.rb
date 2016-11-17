@@ -22,7 +22,7 @@ RSpec.describe 'Jobs', type: :request do
           get fieri.status_path
 
           expect(response.body).to match(/ok/)
-          expect(response.body).to match(/\"queued_jobs\":2/)
+          expect(response.body).to match(/\"queued_jobs\":3/)
         end
       end
     end

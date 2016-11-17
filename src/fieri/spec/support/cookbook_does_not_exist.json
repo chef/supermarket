@@ -1,0 +1,6 @@
+{
+  "error_messages": [
+    "Resource does not exist."
+  ],
+  "error_code": "NOT_FOUND"
+}
