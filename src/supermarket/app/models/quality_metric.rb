@@ -1,6 +1,9 @@
 class QualityMetric < ActiveRecord::Base
   has_many :metric_results
 
+  scope :open, -> { where(admin_only: false) }
+  scope :admin_only, -> { where(admin_only: true) }
+
   validates :name, uniqueness: true
 
   def self.foodcritic_metric
