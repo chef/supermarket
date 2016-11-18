@@ -399,9 +399,9 @@ ActiveRecord::Schema.define(version: 20161116191103) do
 
   create_table "quality_metrics", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean  "admin_only"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "admin_only", default: false, null: false
   end
 
   create_table "supported_platforms", force: :cascade do |t|

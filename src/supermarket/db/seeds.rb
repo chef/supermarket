@@ -13,6 +13,8 @@ attributes = {}
   ).read
 end
 
+QualityMetric.reset_column_information
+
 unless(QualityMetric.where(name: 'Foodcritic').any?)
   QualityMetric.create!(name: 'Foodcritic')
 end
@@ -257,6 +259,9 @@ if Rails.env.development?
     'apt' => %w(debian ubuntu),
     'postgres' => %w(fedora debian suse amazon centos redhat scientific oracle ubuntu)
   }
+
+  Cookbook.reset_column_information
+  CookbookVersion.reset_column_information
 
   %w(apt redis postgres node ruby haskell clojure java mysql apache2 nginx yum app).each do |name|
     cookbook = Cookbook.where(
