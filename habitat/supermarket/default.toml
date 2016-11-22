@@ -1,0 +1,33 @@
+[database]
+user = "supermarket"
+password = ""
+host = "localhost"
+name = "supermarket"
+pool = "25"
+
+[unicorn]
+# Settings for main Rails app Unicorn application server.
+# Full explanation of all options can be found at
+# http://unicorn.bogomips.org/Unicorn/Configurator.html
+name = 'supermarket'
+copy_on_write = true
+enable_stats = false
+forked_user = "hab"
+forked_group = "hab"
+listen_ip = "127.0.0.1"
+listen_port = 13000
+preload_app = true
+worker_timeout = 15
+worker_processes = 1
+# These are not used, but you can set them if needed
+before_exec = ""
+unicorn_command_line = ""
+working_directory = ""
+# These are defined a recipe to be specific things we need that you
+# could change here, but probably should not.
+before_fork = ""
+after_fork = ""
+
+[sidekiq]
+concurrency = 25
+timeout = 30

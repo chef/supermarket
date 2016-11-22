@@ -1,14 +1,15 @@
 pkg_name=supermarket
-pkg_version=$(cat ../../VERSION)
+pkg_version=_computed_below
 pkg_origin=robbkidd
 pkg_maintainer="Supermarket Team <supermarket@chef.io>"
 pkg_license=('Apache-2.0')
 pkg_source=not_downloaded
-pkg_filename=${pkg_name}-${pkg_version}.tar.gz
+pkg_filename=_computed_below
 
 pkg_deps=(
   core/bundler
   core/cacerts
+  core/gcc-libs
   core/glibc
   core/libffi
   core/libxml2
@@ -32,9 +33,19 @@ pkg_build_deps=(
 
 pkg_lib_dirs=(lib)
 pkg_include_dirs=(include)
-pkg_expose=(3000)
+pkg_expose=(13000)
+
+determine_version() {
+  pkg_version=$(git describe)
+  pkg_dirname=${pkg_name}-${pkg_version}
+  pkg_filename=${pkg_dirname}.tar.gz
+  pkg_prefix=$HAB_PKG_PATH/${pkg_origin}/${pkg_name}/${pkg_version}/${pkg_release}
+  pkg_artifact="$HAB_CACHE_ARTIFACT_PATH/${pkg_origin}-${pkg_name}-${pkg_version}-${pkg_release}-${pkg_target}.${_artifact_ext}"
+}
 
 do_download() {
+  determine_version
+
   build_line "Fake download! Creating archive of latest repository commit."
   # source is in this repo, so we're going to create an archive from the
   # appropriate path within the repo for the rest of the plan callback chain
@@ -57,7 +68,10 @@ do_verify() {
 # We clean this link up in `do_install`.
 do_prepare() {
   build_line "Setting link for /usr/bin/env to 'coreutils'"
-  [[ ! -f /usr/bin/env ]] && ln -s $(pkg_path_for coreutils)/bin/env /usr/bin/env
+  if [[ ! -r /usr/bin/env ]]; then
+    ln -sv $(pkg_path_for coreutils)/bin/env /usr/bin/env
+    _clean_env=true
+  fi
   return 0
 }
 
@@ -85,7 +99,7 @@ do_build() {
   export SQLITE3_CONFIG="--with-sqlite3-include=${_sqlite_dir}/include --with-sqlite3-lib=${_sqlite_dir}/lib --with-sqlite3-dir=${_sqlite_dir}/bin"
   bundle config build.sqlite3 '${SQLITE3_CONFIG}'
 
-  export SSL_CERT_FILE="$(hab pkg path core/cacerts)/ssl/certs/cacert.pem"
+  export SSL_CERT_FILE="$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem"
 
 
   bundle config build.nokogiri '${NOKOGIRI_CONFIG}'
@@ -103,23 +117,41 @@ do_build() {
   build_line "Retrieving and caching gems."
   bundle package --all
   build_line "Installing only production gems from gem cache."
-  bundle install --deployment --local --frozen
+  bundle install --binstubs --deployment --local --frozen
   build_line "Compiling assets."
+  export DATABASE_URL="postgresql://nobody@nowhere/fake_db_to_appease_rails_env"
   bundle exec rake assets:precompile RAILS_ENV=production
+
+  build_line "Writing out runtime environment settings."
+  _app_run_dir="${pkg_prefix}/dist/supermarket"
+  _runtime_gem_home="${_app_run_dir}/vendor/bundle/ruby/2.3.0"
+  cat > runtime_environment.sh <<GEMFILE
+export APP_RUN_DIR="${_app_run_dir}"
+export GEM_HOME="${_runtime_gem_home}"
+export GEM_PATH="${_runtime_gem_home}:$(pkg_path_for core/ruby)/lib/ruby/gems/2.3.0:$(pkg_path_for core/bundler)"
+export LD_LIBRARY_PATH="$(pkg_path_for core/gcc-libs)/lib"
+export PATH="${_app_run_dir}/bin:$PATH"
+export SSL_CERT_FILE="$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem"
+export NEW_RELIC_LOG_FILE_PATH="${pkg_svc_var_path}"
+export RAILS_ENV="production"
+GEMFILE
 }
 
 do_install() {
   build_line "Lifting files over to the runtime directory."
-  rsync -a --info=progress2 src/supermarket/.* ${pkg_prefix}/dist
+  rsync -a --info=progress2 src/ ${pkg_prefix}/dist
 
   build_line "Fixing shebangery for production."
-  for binstub in ${pkg_prefix}/dist/bin/*; do
+  for binstub in ${_app_run_dir}/bin/*; do
     build_line "Setting shebang for ${binstub} to 'ruby'"
     [[ -f $binstub ]] && sed -e "s#/usr/bin/env ruby#$(pkg_path_for ruby)/bin/ruby#" -i $binstub
   done
+}
 
-  if [[ `readlink /usr/bin/env` = "$(pkg_path_for coreutils)/bin/env" ]]; then
-    build_line "Removing the symlink we created for '/usr/bin/env'"
-    rm /usr/bin/env
+do_end() {
+  # Clean up the `env` link, if we set it up. 
+  if [[ -n "$_clean_env" ]]; then
+    rm -fv /usr/bin/env
   fi
+  return 0
 }

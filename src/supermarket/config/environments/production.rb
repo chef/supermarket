@@ -1,6 +1,10 @@
 Supermarket::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # disable attempting to write over the schema.rb in production because that's
+  # owned by root, not the user we run our migrations under
+  config.active_record.dump_schema_after_migration = false
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

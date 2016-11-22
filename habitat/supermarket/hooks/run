@@ -1,13 +1,39 @@
 #!/bin/sh
-export SUPERMARKET_DATA="{{pkg.svc_data_path}}"
-export GEM_HOME="${SUPERMARKET_DATA}/dist/vendor/bundle/ruby/2.3.0"
-export GEM_PATH="$(hab pkg path core/ruby)/lib/ruby/gems/2.3.0:$(hab pkg path core/bundler):$GEM_HOME"
-export LD_LIBRARY_PATH="$(hab pkg path core/gcc-libs)/lib"
-export PATH="$PATH:${SUPERMARKET_DATA}/dist/bin"
-export SSL_CERT_FILE="$(hab pkg path core/cacerts)/ssl/certs/cacert.pem"
-export RAILS_ENV="production"
-
-cd $SUPERMARKET_DATA/dist
+. "{{pkg.path}}/dist/supermarket/runtime_environment.sh"
 
 exec 2>&1
-exec chpst -u hab ./bin/rails server -b {{cfg.rails_binding_ip}} -p {{cfg.rails_port}}
+
+cd "${APP_RUN_DIR}" || exit
+
+web_command="bundle exec unicorn -E production \
+    -c {{pkg.svc_config_path}}/unicorn.rb \
+    ${APP_RUN_DIR}/config.ru"
+
+workers_command="bundle exec sidekiq \
+    --concurrency {{cfg.sidekiq.concurrency}} \
+    --environment production \
+    --timeout {{cfg.sidekiq.timeout}}"
+
+
+echo "FLAVOR: ${FLAVOR:=web}"
+
+case $FLAVOR in
+  "web")
+    echo "We're webby!"
+    service_command=$web_command;;
+  "workers")
+    echo "We're workers!"
+    service_command=$workers_command;;
+  *)
+    echo "Sorry. FLAVOR env var must be 'web' or 'workers'. Defaults to 'web'."
+    exit 1;;
+esac
+
+if [ "$(whoami)" = "root" ]; then
+  exec chpst \
+    -U hab:hab \
+    -u hab:hab \
+    ${service_command}
+else
+  exec ${service_command}
+fi

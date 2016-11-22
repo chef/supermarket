@@ -1,16 +1,8 @@
 development:
-  adapter: postgresql
-  database: supermarket_development
-  host: <%= ENV['POSTGRES_IP'] || 'localhost' %>
-  pool: 30
+  url: <%= ENV['DATABASE_DEV_URL'] %>
 
 test:
-  adapter: postgresql
-  database: supermarket_test
-  host: <%= ENV['POSTGRES_IP'] || 'localhost' %>
+  url: <%= ENV['DATABASE_TEST_URL'] %>
 
 production:
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
-  adapter: postgresql
-  database: supermarket_production
+  url: <%= ENV['DATABASE_URL'] %>
