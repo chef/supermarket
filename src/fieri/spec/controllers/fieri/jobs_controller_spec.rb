@@ -29,6 +29,21 @@ module Fieri
         expect(PublishWorker).to receive(:perform_async).with(params['cookbook_name'])
         post :create, params
       end
+
+      context 'getting the cookbook version information' do
+        let(:uri) { "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbooks/#{params['cookbook_name']}/versions/#{params['cookbook_version']}" }
+        let(:json_response) { File.read('spec/support/cookbook_version_fixture.json') }
+
+        before do
+          stub_request(:get, uri).
+            to_return(status: 200, body: json_response, headers: {})
+        end
+
+        it 'calls the Supermarket API' do
+          expect(Net::HTTP).to receive(:get).with(URI(uri)).and_return(json_response)
+          post :create, params
+        end
+      end
     end
   end
 end
