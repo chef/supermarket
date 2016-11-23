@@ -1,7 +1,7 @@
 #!/bin/sh
+. "{{pkg.path}}/dist/supermarket/runtime_environment.sh"
 
 migrate_and_seed_the_db() {
-  . "{{pkg.path}}/dist/supermarket/runtime_environment.sh"
 
   cd "${APP_RUN_DIR}" || exit
 
@@ -15,6 +15,8 @@ migrate_and_seed_the_db() {
     exec bin/rake --trace db:migrate db:seed 2>&1
   fi
 }
+
+ln -s "{{pkg.svc_config_path}}/env.production" "${APP_RUN_DIR}/.env.production"
 
 if [ "${DB_MIGRATE:=false}" = "true" ]
 then
