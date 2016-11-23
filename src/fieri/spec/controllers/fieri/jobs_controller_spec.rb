@@ -13,6 +13,14 @@ module Fieri
         }
       end
 
+      let(:version_uri) { "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbooks/#{params['cookbook_name']}/versions/#{params['cookbook_version']}" }
+      let(:version_json_response) { File.read('spec/support/cookbook_version_fixture.json') }
+
+      before do
+        stub_request(:get,version_uri).
+          to_return(status: 200, body: version_json_response, headers: {})
+      end
+
       it 'calls the collaborator worker' do
         expect(CollaboratorWorker).to receive(:perform_async).with(params['cookbook_name'])
 
@@ -31,18 +39,15 @@ module Fieri
       end
 
       context 'getting the cookbook version information' do
-        let(:uri) { "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbooks/#{params['cookbook_name']}/versions/#{params['cookbook_version']}" }
-        let(:json_response) { File.read('spec/support/cookbook_version_fixture.json') }
-
-        before do
-          stub_request(:get, uri).
-            to_return(status: 200, body: json_response, headers: {})
-        end
-
         it 'calls the Supermarket API' do
-          expect(Net::HTTP).to receive(:get).with(URI(uri)).and_return(json_response)
+          expect(Net::HTTP).to receive(:get).with(URI(version_uri)).and_return(version_json_response)
           post :create, params
         end
+      end
+
+      it 'calls the license worker' do
+        expect(LicenseWorker).to receive(:perform_async).with(version_json_response)
+        post :create, params
       end
     end
   end
