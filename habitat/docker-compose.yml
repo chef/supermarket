@@ -1,0 +1,40 @@
+version: '2'
+services:
+  db:
+    image: postgres:9.3
+    ports:
+      - "5432"
+    environment:
+      - POSTGRES_USER=hab
+      - POSTGRES_DB=supermarket_production
+  cache:
+    image: redis:3.0
+    ports:
+      - "6379"
+  web:
+    image: $HAB_ORIGIN/supermarket:latest
+    ports:
+      - "13000:13000"
+    links:
+      - db
+      - cache
+    volumes:
+      - .:/tmp/hab
+    environment:
+      - DATABASE_URL=postgresql://hab@db/supermarket_production?pool=5&timeout=3000
+      - REDIS_URL=redis://cache:6379/0/supermarket
+      - HAB_SUPERMARKET=unicorn={listen_ip="0.0.0.0"}
+      - FLAVOR=web
+      - DB_MIGRATE=true
+    command: start $HAB_ORIGIN/supermarket --config-from /tmp/hab/supermarket
+  workers:
+    image: $HAB_ORIGIN/supermarket:latest
+    links:
+      - db
+      - cache
+    volumes:
+      - .:/tmp/hab
+    environment:
+      - DATABASE_URL=postgresql://hab@db/supermarket_production?pool=5&timeout=3000
+      - REDIS_URL=redis://cache:6379/0/supermarket
+      - FLAVOR=workers
