@@ -1,22 +1,23 @@
 #!/bin/sh
-. "{{pkg.path}}/dist/supermarket/runtime_environment.sh"
+exec 2>&1
+
+. "{{pkg.path}}/dist/runtime_environment.sh"
+
+cd {{pkg.svc_var_path}}
+ln -sf {{pkg.svc_config_path}}/env.production {{pkg.svc_var_path}}/.env
 
 migrate_and_seed_the_db() {
-
-  cd "${APP_RUN_DIR}" || exit
-
-  bin/rake db:abort_if_pending_migrations 2>&1
+  rake_opts="--rakefile ${APP_RUN_DIR}/Rakefile"
+  rake ${rake_opts} db:abort_if_pending_migrations 2>&1
 
   if [ $? -eq 0 ]
   then
     echo "Schema up-to-date. Continuing with service startup."
   else
     echo "Schema migrations pending. Running migrations & seeds."
-    exec bin/rake --trace db:migrate db:seed 2>&1
+    exec rake ${rake_opts} --trace db:migrate db:seed 2>&1
   fi
 }
-
-ln -s "{{pkg.svc_config_path}}/env.production" "${APP_RUN_DIR}/.env.production"
 
 if [ "${DB_MIGRATE:=false}" = "true" ]
 then

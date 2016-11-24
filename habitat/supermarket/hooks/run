@@ -1,15 +1,15 @@
 #!/bin/sh
-. "{{pkg.path}}/dist/supermarket/runtime_environment.sh"
-
 exec 2>&1
 
-cd "${APP_RUN_DIR}" || exit
+. "{{pkg.path}}/dist/runtime_environment.sh"
 
-web_command="bundle exec unicorn -E production \
+cd {{pkg.svc_var_path}}
+
+web_command="unicorn -E production \
     -c {{pkg.svc_config_path}}/unicorn.rb \
     ${APP_RUN_DIR}/config.ru"
 
-workers_command="bundle exec sidekiq \
+workers_command="sidekiq \
     --concurrency {{cfg.sidekiq.concurrency}} \
     --environment production \
     --timeout {{cfg.sidekiq.timeout}}"

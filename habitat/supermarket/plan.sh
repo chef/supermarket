@@ -5,6 +5,7 @@ pkg_maintainer="Supermarket Team <supermarket@chef.io>"
 pkg_license=('Apache-2.0')
 pkg_source=not_downloaded
 pkg_filename=_computed_below
+pkg_bin_dirs=(dist/bin)
 
 pkg_deps=(
   core/bundler
@@ -88,8 +89,8 @@ do_build() {
   local _zlib_dir=$(pkg_path_for zlib)
 
   export CPPFLAGS="${CPPFLAGS} ${CFLAGS}"
-  export GEM_HOME=${_source_root}/vendor
-  export GEM_PATH=${_bundler_dir}:${GEM_HOME}
+  export GEM_HOME=${_source_root}/vendor/bundle/ruby/2.3.0
+  export GEM_PATH=${GEM_HOME}:${_bundler_dir}:$(pkg_path_for core/ruby)/lib/ruby/gems/2.3.0
   export BUNDLE_SILENCE_ROOT_WARNING=1
 
   # don't let bundler split up the nokogiri config string (it breaks
@@ -104,33 +105,45 @@ do_build() {
 
   bundle config build.nokogiri '${NOKOGIRI_CONFIG}'
   bundle config build.pg --with-pg-config=${_pgconfig}
-  bundle config without development:test
-  bundle config binstubs true
   bundle config retry 5
+  bundle config --local path vendor/bundle
+  bundle config --local cache_path vendor/cache
+  bundle config --local without development:test
+  bundle config --local binstubs true
+  bundle config --local cache_all true
 
   # We need to add tzinfo-data to the Gemfile since we're not in an
   # environment that has this from the OS
   if [[ -z "`grep 'gem .*tzinfo-data.*' Gemfile`" ]]; then
     echo 'gem "tzinfo-data"' >> Gemfile
   fi
+  bundle lock --update tzinfo-data
 
   build_line "Retrieving and caching gems."
   bundle package --all
-  build_line "Installing only production gems from gem cache."
+  build_line "Fixing bundler not locking to the cached copy of Fieri."
+  sed -e "s#\.\./fieri#vendor/cache/fieri#" -i Gemfile
+  sed -e "s#\.\./fieri#vendor/cache/fieri#" -i Gemfile.lock
+  build_line "Creating binstubs and setting bundler to deployment mode."
   bundle install --binstubs --deployment --local --frozen
+
+  attach
+
   build_line "Compiling assets."
   export DATABASE_URL="postgresql://nobody@nowhere/fake_db_to_appease_rails_env"
   bundle exec rake assets:precompile RAILS_ENV=production
 
+  build_line "Removing legacy default environment."
+  rm .env
+
   build_line "Writing out runtime environment settings."
-  _app_run_dir="${pkg_prefix}/dist/supermarket"
+  _app_run_dir="${pkg_prefix}/dist"
   _runtime_gem_home="${_app_run_dir}/vendor/bundle/ruby/2.3.0"
   cat > runtime_environment.sh <<GEMFILE
 export APP_RUN_DIR="${_app_run_dir}"
 export GEM_HOME="${_runtime_gem_home}"
-export GEM_PATH="${_runtime_gem_home}:$(pkg_path_for core/ruby)/lib/ruby/gems/2.3.0:$(pkg_path_for core/bundler)"
+export GEM_PATH="${_runtime_gem_home}:$(pkg_path_for core/bundler):$(pkg_path_for core/ruby)/lib/ruby/gems/2.3.0"
 export LD_LIBRARY_PATH="$(pkg_path_for core/gcc-libs)/lib"
-export PATH="${_app_run_dir}/bin:$PATH"
 export SSL_CERT_FILE="$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem"
 export NEW_RELIC_LOG_FILE_PATH="${pkg_svc_var_path}"
 export RAILS_ENV="production"
@@ -139,7 +152,7 @@ GEMFILE
 
 do_install() {
   build_line "Lifting files over to the runtime directory."
-  rsync -a --info=progress2 src/ ${pkg_prefix}/dist
+  rsync -a --info=progress2 src/supermarket/ ${pkg_prefix}/dist
 
   build_line "Fixing shebangery for production."
   for binstub in ${_app_run_dir}/bin/*; do
