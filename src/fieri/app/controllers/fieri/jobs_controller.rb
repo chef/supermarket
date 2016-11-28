@@ -7,7 +7,7 @@ module Fieri
       FoodcriticWorker.perform_async(job_params)
       PublishWorker.perform_async(job_params[:cookbook_name])
 
-      LicenseWorker.perform_async(cookbook_version_response)
+      LicenseWorker.perform_async(cookbook_version_response, params[:cookbook_name])
       render json: { status: 'ok' }.to_json
     rescue ActionController::ParameterMissing => e
       render status: 400, json: { status: 'error',

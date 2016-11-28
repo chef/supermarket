@@ -46,7 +46,7 @@ module Fieri
       end
 
       it 'calls the license worker' do
-        expect(LicenseWorker).to receive(:perform_async).with(version_json_response)
+        expect(LicenseWorker).to receive(:perform_async).with(version_json_response, params['cookbook_name'])
         post :create, params
       end
     end
