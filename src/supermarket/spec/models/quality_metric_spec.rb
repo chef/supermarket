@@ -40,4 +40,14 @@ describe QualityMetric do
       expect(QualityMetric.publish_metric).to eq(publish_metric)
     end
   end
+
+  describe '#license_metric' do
+    let!(:license_metric) do
+      create(:license_metric)
+    end
+
+    it 'finds the license metric' do
+      expect(QualityMetric.license_metric).to eq(license_metric)
+    end
+  end
 end

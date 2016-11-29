@@ -17,4 +17,8 @@ class QualityMetric < ActiveRecord::Base
   def self.publish_metric
     QualityMetric.find_by(name: 'Publish')
   end
+
+  def self.license_metric
+    QualityMetric.find_by(name: 'License')
+  end
 end
