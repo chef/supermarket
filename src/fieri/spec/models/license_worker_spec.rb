@@ -36,7 +36,8 @@ describe LicenseWorker do
         expect(req.body).to include("cookbook_name=#{cookbook_name}")
         expect(req.body).to include("cookbook_version=#{cookbook_version}")
         expect(req.body).to include('license_failure=true')
-        expect(req.body).to include("license_feedback=#{cookbook_name}+needs+a+valid+open+source+license")
+        expect(req.body).to include("license_feedback=#{cookbook_name}+does+not+have+a+valid+open+source+license")
+        expect(req.body).to include('Acceptable+licenses+include')
       end
     end
   end

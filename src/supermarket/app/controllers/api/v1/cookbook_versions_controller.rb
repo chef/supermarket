@@ -162,7 +162,6 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
     params.require(:cookbook_name)
     params.require(:cookbook_version)
     params.require(:license_failure)
-    params.require(:license_feedback)
   end
 
   def create_metric(cookbook_version, quality_metric, failure, feedback)
