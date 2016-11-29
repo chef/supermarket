@@ -452,7 +452,9 @@ describe Api::V1::CookbookVersionsController do
           post(
             :license_evaluation,
             cookbook_name: cookbook.name,
-            cookbook_version: version.version
+            cookbook_version: version.version,
+            fieri_key: 'YOUR_FIERI_KEY',
+            format: :json
           )
 
           expect(response.status.to_i).to eql(400)
@@ -471,7 +473,6 @@ describe Api::V1::CookbookVersionsController do
           fieri_key: 'not_the_key',
           format: :json
         )
-
 
         expect(response.status.to_i).to eql(401)
         expect(JSON.parse(response.body)).to eql(

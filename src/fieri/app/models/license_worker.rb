@@ -28,6 +28,16 @@ class LicenseWorker
   end
 
   def license_feedback(cookbook_name, failure)
-    failure == true ? "#{cookbook_name} has no license" : ''
+    failure == true ? "#{cookbook_name} needs a valid open source license" : ''
+  end
+
+  def acceptable_licenses_string
+    licenses = 'Acceptable licenses include '
+
+    ACCEPTABLE_LICENSES.each do |license|
+      licenses << "#{license}, "
+    end
+
+    licenses.gsub(/,\s$/, '')
   end
 end
