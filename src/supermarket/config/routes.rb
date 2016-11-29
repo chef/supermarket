@@ -29,6 +29,7 @@ Supermarket::Application.routes.draw do
       post '/cookbook-versions/foodcritic_evaluation' => 'cookbook_versions#foodcritic_evaluation', as: :cookbook_versions_foodcritic_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
       post '/cookbook-versions/collaborators_evaluation' => 'cookbook_versions#collaborators_evaluation', as: :cookbook_versions_collaborators_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
       post '/cookbook-versions/publish_evaluation' => 'cookbook_versions#publish_evaluation', as: :cookbook_versions_publish_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/cookbook-versions/license_evaluation' => 'cookbook_versions#license_evaluation', as: :cookbook_versions_license_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
 
       get 'tools/:tool' => 'tools#show', as: :tool
       get 'tools' => 'tools#index', as: :tools
