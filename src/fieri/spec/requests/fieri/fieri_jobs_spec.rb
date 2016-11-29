@@ -8,6 +8,12 @@ RSpec.describe 'Jobs', type: :request do
           cookbook_version: '1.2.0',
           cookbook_artifact_url: 'http://example.com/apache.tar.gz' }
       end
+
+      before do
+        stub_request(:get, 'http://localhost:13000/api/v1/cookbooks/redis/versions/1.2.0').
+          to_return(status: 200, body: '', headers: {})
+      end
+
       it 'should return a 200' do
         post fieri.jobs_path valid_params
         expect(response).to have_http_status(200)

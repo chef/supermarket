@@ -17,7 +17,7 @@ module Fieri
       let(:version_json_response) { File.read('spec/support/cookbook_version_fixture.json') }
 
       before do
-        stub_request(:get,version_uri).
+        stub_request(:get, version_uri).
           to_return(status: 200, body: version_json_response, headers: {})
       end
 
