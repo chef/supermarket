@@ -50,4 +50,28 @@ describe LicenseWorker do
       end
     end
   end
+
+  context 'acceptable licenses' do
+    context 'when the cookbook version has the Apache 2.0 license' do
+      it 'passes the metric'
+    end
+
+    context 'when the cookbook version has the GNU Public License 2.0' do
+      it 'passes the metric'
+    end
+
+    context 'when the cookbook version has the GNU Public License 3.0' do
+      it 'passes the metric'
+    end
+
+    context 'when the cookbook version has the MIT license' do
+      it 'passes the metric'
+    end
+  end
+
+  context 'non-acceptable license' do
+    context 'when the cookbook version has a non-acceptable license' do
+      it 'fails the metric'
+    end
+  end
 end
