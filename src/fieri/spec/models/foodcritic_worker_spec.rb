@@ -42,8 +42,7 @@ describe FoodcriticWorker do
       req.body =~ /foodcritic_failure=true/
       req.body =~ /FC023/
       req.body =~ /#{FoodCritic::VERSION}/
-
-      ENV['FIERI_FOODCRITIC_TAGS'].split(' ').each do |tag|
+      ENV['FIERI_FOODCRITIC_TAGS'].split(/\s|,/).each do |tag|
         expect(req.body).to include(tag.delete('~'))
       end
 
