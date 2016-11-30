@@ -21,9 +21,7 @@ services:
     volumes:
       - .:/tmp/hab
     environment:
-      - DATABASE_URL=postgresql://hab@db/supermarket_production?pool=5&timeout=3000
-      - REDIS_URL=redis://cache:6379/0/supermarket
-      - HAB_SUPERMARKET=unicorn={listen_ip="0.0.0.0"}
+      - HAB_SUPERMARKET
       - FLAVOR=web
       - DB_MIGRATE=true
     command: start $HAB_ORIGIN/supermarket --config-from /tmp/hab/supermarket
@@ -35,6 +33,6 @@ services:
     volumes:
       - .:/tmp/hab
     environment:
-      - DATABASE_URL=postgresql://hab@db/supermarket_production?pool=5&timeout=3000
-      - REDIS_URL=redis://cache:6379/0/supermarket
+      - HAB_SUPERMARKET
       - FLAVOR=workers
+    command: start $HAB_ORIGIN/supermarket --config-from /tmp/hab/supermarket

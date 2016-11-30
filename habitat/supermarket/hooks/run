@@ -10,6 +10,7 @@ web_command="unicorn -E production \
     ${APP_RUN_DIR}/config.ru"
 
 workers_command="sidekiq \
+    --require ${APP_RUN_DIR} \
     --concurrency {{cfg.sidekiq.concurrency}} \
     --environment production \
     --timeout {{cfg.sidekiq.timeout}}"
