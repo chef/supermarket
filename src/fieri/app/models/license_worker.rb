@@ -6,7 +6,10 @@ class LicenseWorker
 
   # Acceptable licenses were determined and documented in
   # https://github.com/chef-cookbooks/cookbook-quality-metrics/blob/master/quality-metrics/qm-003-license.md
-  ACCEPTABLE_LICENSES = ['Apache 2.0', 'MIT', 'GNU Public License 2.0', 'GNU Public License 3.0'].freeze
+  ACCEPTABLE_LICENSES = ['Apache 2.0', 'apachev2',
+                         'MIT', 'mit',
+                         'GNU Public License 2.0', 'gplv2',
+                         'GNU Public License 3.0', 'gplv3'].freeze
 
   def perform(version_json, cookbook_name)
     version_info = JSON.parse(version_json)
