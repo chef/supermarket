@@ -1,7 +1,7 @@
 class Api::V1::CookbookVersionsController < Api::V1Controller
   before_action :check_cookbook_name_present, only: [:foodcritic_evaluation, :collaborators_evaluation, :publish_evaluation]
-  before_action :check_authorization, only: [:foodcritic_evaluation, :collaborators_evaluation, :publish_evaluation]
-  before_action :find_cookbook_version, only: [:foodcritic_evaluation, :collaborators_evaluation, :publish_evaluation]
+  before_action :check_authorization, only: [:foodcritic_evaluation, :collaborators_evaluation, :publish_evaluation, :license_evaluation]
+  before_action :find_cookbook_version, only: [:foodcritic_evaluation, :collaborators_evaluation, :publish_evaluation, :license_evaluation]
   #
   # GET /api/v1/cookbooks/:cookbook/versions/:version
   #
@@ -116,6 +116,32 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
     head 200
   end
 
+  #
+  # POST /api/v1/cookbook-versions/license_evaluation
+  #
+  # Take the license evaluation results from Fieri and store them as a
+  # metric result
+  #
+  # If the +CookbookVersion+ does not exist, render a 404 not_found.
+  #
+  # If the request is unauthorized, render unauthorized.
+  #
+  # This endpoint expects +cookbook_name+, +cookbook_version+,
+  # +license_failure+, +license_feedback+, and +fieri_key+.
+  #
+  def license_evaluation
+    require_license_params
+
+    create_metric(
+      @cookbook_version,
+      QualityMetric.license_metric,
+      params[:license_failure],
+      params[:license_feedback]
+    )
+
+    head 200
+  end
+
   private
 
   def require_evaluation_params
@@ -129,6 +155,13 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
     params.require(:cookbook_name)
     params.require(:collaborator_failure)
     params.require(:collaborator_feedback)
+  end
+
+  def require_license_params
+    params.require(:fieri_key)
+    params.require(:cookbook_name)
+    params.require(:cookbook_version)
+    params.require(:license_failure)
   end
 
   def create_metric(cookbook_version, quality_metric, failure, feedback)

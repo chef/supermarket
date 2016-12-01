@@ -27,6 +27,10 @@ unless(QualityMetric.where(name: 'Publish').any?)
   QualityMetric.create!(name: 'Publish', admin_only: true)
 end
 
+unless(QualityMetric.where(name: 'License').any?)
+  QualityMetric.create!(name: 'License', admin_only: true)
+end
+
 Icla.where(version: ENV['ICLA_VERSION']).
   first_or_create!.
   update_attributes(attributes)

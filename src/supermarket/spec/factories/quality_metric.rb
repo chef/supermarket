@@ -12,8 +12,13 @@ FactoryGirl.define do
       name "Publish"
     end
 
+    trait :license do
+      name "License"
+    end
+
     factory :foodcritic_metric, traits: [:foodcritic]
     factory :collaborator_num_metric, traits: [:collaborator_num]
     factory :publish_metric, traits: [:publish]
+    factory :license_metric, traits: [:license]
   end
 end

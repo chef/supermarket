@@ -1,0 +1,10 @@
+{
+  "license": "Apache 2.0",
+  "tarball_file_size": 1791,
+  "version": "0.2.0",
+  "average_rating": null,
+  "cookbook": "http://localhost:3000/api/v1/cookbooks/apt",
+  "file": "http://localhost:3000/api/v1/cookbooks/apt/versions/0.2.0/download",
+  "quality_metrics": [
+  ]
+}

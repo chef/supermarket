@@ -132,4 +132,5 @@ en:
       missing_cookbook_name: "Evaluation POST must contain cookbook_name."
       missing_cookbook_version: "Evaluation POST must contain cookbook_version."
       missing_foodcritic_failure: "Evaluation POST must contain foodcritic_failure."
+      missing_license_failure: "Evaluation POST must contain license_failure."
       missing_fieri_key: "Evaluation POST must contain fieri_key."
