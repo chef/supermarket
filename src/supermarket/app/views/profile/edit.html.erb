@@ -8,6 +8,9 @@
 
     <dl class="tabs radius" data-tab data-options="deep_linking:true">
       <dd class="active"><a href="#profile" rel="manage_profile">Edit Profile</a></dd>
+      <% if ROLLOUT.active?(:github) %>
+        <dd><a href="#github-accounts" rel="manage_github_accounts">GitHub Accounts</a></dd>
+      <% end %>
       <dd><a href="#collaborations" rel="manage_collaborations">Collaborations</a></dd>
       <dd><a href="#keys" rel="manage_keys">Keys</a></dd>
     </dl>
@@ -46,6 +49,21 @@
           <%= f.submit 'Update Profile', class: 'button primary radius' %>
         <% end %>
       </div>
+
+      <% if ROLLOUT.active?(:github) %>
+        <div class="content" id="github-accounts">
+          <table>
+            <% current_user.accounts.for('github').each do |account| %>
+              <tr>
+                <td><i class="fa fa-github"></i> <%= account.username %></td>
+                <td class="text-right"><%= link_to 'Disconnect This Account', user_account_url(current_user, account), method: :delete, rel: 'disconnect_github', class: 'button tiny alert radius' %></td>
+              </tr>
+            <% end %>
+          </table>
+
+          <%= link_to '<i class="fa fa-github"></i> Connect GitHub Account'.html_safe, auth_path(:github), class: 'button radius', rel: 'connect_github' %>
+        </div>
+      <% end %>
       <div class="content" id="collaborations">
         <% if current_user.collaborated_cookbooks.empty? %>
           <p>You are currently not a collaborator on any resources. Once you are, they will be listed here.</p>
