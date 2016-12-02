@@ -79,28 +79,22 @@
                 <td class="text-right"><%= link_to 'Remove Myself as a Collaborator', collaborator_path(collaborator), remote: true, method: :delete, class: 'button tiny alert radius', rel: 'remove_collaboration' %></td>
               </tr>
             <% end %>
+          <% end %>
           </table>
-        <% end %>
       </div>
       <div class="content" id="keys">
-        <p>The credentials to authenticate with Supermarket are the same ones
-        used to authenticate with the Chef server. E.g. if you wish to upload
-        cookbooks to supermarket.chef.io you need to use the same username
-        and client key that you use to authenticate with manage.chef.io.
-        </p>
-        <p>If you do not already have your keys, or don't know if you do, you
-        can reset your key here:
-        </p>
-        <ol>
-          <li>Login or create an account at: <a href="https://manage.chef.io/login">manage.chef.io/login</a></li>
-          <li>Login to Chef's Identity Service at: <a href="https://id.chef.io/id/signin">https://id.chef.io/id/signin</a></li>
-          <li>Visit your Chef account profile: <a href="https://id.chef.io/id/profile">id.chef.io/id/profile</a></li>
-          <li>Click on <emph>Get a New Key</emph>. This will reset your client
-          key.</li>
-          <li>Use this key to configure knife to authenticate with the public Chef
-          server as you normally would.</li>
-          <li>You should now be configured to authenticate with Supermarket.</li>
-        </ol>
+        <p>Your Supermarket key is the same as your key on the associated Chef
+           Server. You can change your credentials or keys by logging into
+           <a href="<%= chef_oauth2_url %>">this Supermarket's Chef Server</a>.</p>
+        <p>Current key fingerprint for this Supermarket is:</p>
+        <p><pre class="install"><%= current_user.public_key_signature %></pre></p>
+        <p>This fingerprint should match the fingerprint of the private key you
+           have configured in knife. Check with:</p>
+        <p><pre class="install">openssl rsa -in your/private_key.pem -pubout -outform DER | openssl md5 -c</pre></p>
+        <p>If the signatures do not match, it could be that you have a newer key
+           on the Chef Server than the one known by Supermarket. Supermarket can
+           get the latest key if you log out of Supermarket and then log back in
+           to trigger an account refresh between the systems.</p>
       </div>
     </div>
   </div>
