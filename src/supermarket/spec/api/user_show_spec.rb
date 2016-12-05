@@ -10,7 +10,6 @@ describe 'GET /api/v1/users/:user' do
         company: 'Fanny Pack',
         twitter_username: 'fanny',
         irc_nickname: 'fanny',
-        jira_username: 'fanny',
         chef_account: create(
           :account,
           provider: 'chef_oauth2',
@@ -27,7 +26,6 @@ describe 'GET /api/v1/users/:user' do
         'company' => 'Fanny Pack',
         'twitter' => 'fanny',
         'irc' => 'fanny',
-        'jira' => 'fanny',
         'github' => ['fanny'],
         'authorized_to_contribute' => true,
         'cookbooks' => {
