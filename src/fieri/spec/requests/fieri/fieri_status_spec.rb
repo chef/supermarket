@@ -11,6 +11,9 @@ RSpec.describe 'Jobs', type: :request do
       end
 
       before do
+        stub_request(:get, 'http://localhost:13000/api/v1/cookbooks/redis').
+          to_return(status: 200, body: '', headers: {})
+
         stub_request(:get, 'http://localhost:13000/api/v1/cookbooks/redis/versions/1.2.0').
           to_return(status: 200, body: '', headers: {})
       end
@@ -28,7 +31,7 @@ RSpec.describe 'Jobs', type: :request do
           get fieri.status_path
 
           expect(response.body).to match(/ok/)
-          expect(response.body).to match(/\"queued_jobs\":4/)
+          expect(response.body).to match(/\"queued_jobs\":1/)
         end
       end
     end

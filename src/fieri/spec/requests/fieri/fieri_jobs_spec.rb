@@ -10,6 +10,9 @@ RSpec.describe 'Jobs', type: :request do
       end
 
       before do
+        stub_request(:get, 'http://localhost:13000/api/v1/cookbooks/redis').
+          to_return(status: 200, body: '', headers: {})
+
         stub_request(:get, 'http://localhost:13000/api/v1/cookbooks/redis/versions/1.2.0').
           to_return(status: 200, body: '', headers: {})
       end
@@ -19,24 +22,27 @@ RSpec.describe 'Jobs', type: :request do
         expect(response).to have_http_status(200)
       end
 
-      describe 'the worker is a FoodcriticWorker' do
-        it 'should queue a Foodcritic worker' do
+      describe 'the MetricsRunner worker' do
+        it 'queues a MetricsRunner worker' do
           expect { post fieri.jobs_path valid_params }
-            .to change { FoodcriticWorker.jobs.size }
-            .by(1)
-        end
-      end
-
-      describe 'the worker is a CollaboratorWorker' do
-        it 'should queue a CollaboratorWorker' do
-          expect { post fieri.jobs_path valid_params }
-            .to change { CollaboratorWorker.jobs.size }
+            .to change { MetricsRunner.jobs.size }
             .by(1)
         end
       end
     end
 
     describe 'when an invalid job is posted' do
+      before do
+        stub_request(:get, 'http://localhost:13000/api/v1/cookbooks/redis').
+          to_return(status: 200, body: '', headers: {})
+
+        stub_request(:get, 'http://localhost:13000/api/v1/cookbooks/redis/versions/').
+          to_return(status: 200, body: '', headers: {})
+
+        stub_request(:get, 'http://localhost:13000/api/v1/cookbooks/redis/versions/1.2.0').
+          to_return(status: 200, body: '', headers: {})
+      end
+
       it 'should return a 400' do
         post fieri.jobs_path(cookbook_name: 'redis')
         expect(response).to have_http_status(400)

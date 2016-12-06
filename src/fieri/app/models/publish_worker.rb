@@ -4,8 +4,8 @@ require 'net/http'
 class PublishWorker
   include ::Sidekiq::Worker
 
-  def perform(cookbook_name)
-    parsed = JSON.parse(get_supermarket_response(cookbook_name))
+  def perform(cookbook_json, cookbook_name)
+    parsed = JSON.parse(cookbook_json)
 
     failure = false
     publish_feedback = ''
@@ -35,14 +35,6 @@ class PublishWorker
   end
 
   private
-
-  def supermarket_uri(cookbook_name)
-    URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbooks/#{cookbook_name}")
-  end
-
-  def get_supermarket_response(cookbook_name)
-    Net::HTTP.get(supermarket_uri(cookbook_name))
-  end
 
   def cookbook_exists?(cookbook_output, cookbook_name)
     cookbook_output['name'] == cookbook_name ? true : false
