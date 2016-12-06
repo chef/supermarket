@@ -52,6 +52,7 @@
 
       <% if ROLLOUT.active?(:github) %>
         <div class="content" id="github-accounts">
+          <p>Linking your account lets other cookbook shoppers find you on GitHub for feedback, collaboration, and kudos. The link requests access only to your GitHub account's public information.</p>
           <table>
             <% current_user.accounts.for('github').each do |account| %>
               <tr>
