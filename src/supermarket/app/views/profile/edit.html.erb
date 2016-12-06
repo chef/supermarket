@@ -11,11 +11,8 @@
       <% if ROLLOUT.active?(:github) %>
         <dd><a href="#github-accounts" rel="manage_github_accounts">GitHub Accounts</a></dd>
       <% end %>
-      <% if ROLLOUT.active?(:cla) && ROLLOUT.active?(:github) %>
-        <dd><a href="#agreements" rel="manage_agreements">Agreements</a></dd>
-        <dd><a href="#collaborations" rel="manage_collaborations">Collaborations</a></dd>
-      <% end %>
-        <dd><a href="#keys" rel="manage_keys">Keys</a></dd>
+      <dd><a href="#collaborations" rel="manage_collaborations">Collaborations</a></dd>
+      <dd><a href="#keys" rel="manage_keys">Keys</a></dd>
     </dl>
 
     <div class="tabs-content">
@@ -55,7 +52,7 @@
 
       <% if ROLLOUT.active?(:github) %>
         <div class="content" id="github-accounts">
-          <p>You must have at least one linked GitHub account in order for us to match your contributions on GitHub with your signed Contributors License Agreement.</p>
+          <p>Linking your account lets other cookbook shoppers find you on GitHub for feedback, collaboration, and kudos. The link requests access only to your GitHub account's public information.</p>
           <table>
             <% current_user.accounts.for('github').each do |account| %>
               <tr>
@@ -68,96 +65,43 @@
           <%= link_to '<i class="fa fa-github"></i> Connect GitHub Account'.html_safe, auth_path(:github), class: 'button radius', rel: 'connect_github' %>
         </div>
       <% end %>
+      <div class="content" id="collaborations">
+        <% if current_user.collaborated_cookbooks.empty? %>
+          <p>You are currently not a collaborator on any resources. Once you are, they will be listed here.</p>
+        <% else %>
+          <p>The resources you are a collaborator on.</p>
 
-      <% if ROLLOUT.active?(:cla) && ROLLOUT.active?(:github) %>
-        <div class="content" id="agreements">
           <table>
-            <% if current_user.signed_icla? %>
+            <% current_user.collaborators.each do |collaborator| %>
               <tr>
-                <td>Signed ICLA on <%= current_user.latest_icla_signature.signed_at.to_s(:longish) %></td>
-                <td class="text-right"><%= link_to "Update ICLA Signature", current_user.latest_icla_signature, class: 'button tiny secondary radius' %></td>
+                <td><%= link_to collaborator.resourceable.name, collaborator.resourceable %></td>
+                <td><%= collaborator.resourceable.class.name %></td>
+                <td class="text-right"><%= link_to 'Remove Myself as a Collaborator', collaborator_path(collaborator), remote: true, method: :delete, class: 'button tiny alert radius', rel: 'remove_collaboration' %></td>
               </tr>
-            <% else %>
-              <p>You have not signed the Individual Contributor License Agreement (ICLA) yet. If you are interested in contributing to Chef's open source projects as an individual, <%= link_to "you must sign the ICLA", new_icla_signature_path %>.</p>
-            <% end %>
-
-            <% unless current_user.contributor? %>
-              <p>You are not a member of a Corporate Contributor License Agreement (CCLA). If you want to contribute to Chef's open source projects on behalf of your company, <%= link_to "ask an admin of your company to invite you", ccla_signatures_path %> to join your company's CCLA. If your company has not yet signed the CCLA, <%= link_to "an authorized individual must first sign the CCLA", new_ccla_signature_path %>.</p>
-            <% end %>
-
-            <% current_user.contributors.each do |contributor| %>
-              <% if contributor.admin? %>
-                <tr>
-                  <td>Admin of <%= contributor.organization.name %>, signed CCLA on <%= contributor.organization.latest_ccla_signature.signed_at.to_s(:longish) %></td>
-                  <td class="text-right">
-                    <ul class="button-group radius right">
-                      <li><%= link_to "Update CCLA Signature", contributor.organization.latest_ccla_signature, class: 'button tiny secondary' %></li>
-                      <li><%= link_to "Manage Contributors", organization_invitations_url(contributor.organization), rel: 'invite_contributors', class: 'button tiny secondary' %></li>
-                    </ul>
-                  </td>
-                </tr>
-              <% else %>
-                <tr>
-                  <td>Contributor on behalf of <%= contributor.organization.name %>, signed CCLA on <%= contributor.organization.latest_ccla_signature.signed_at.to_s(:longish) %></td>
-                  <td class="text-right"><%= link_to "View CCLA Signature", contributor.organization.latest_ccla_signature, class: 'button tiny secondary radius' %></td>
-                </tr>
-              <% end %>
             <% end %>
           </table>
-
-          <% if @pending_requests.present? %>
-            <hr />
-            <h3>Pending Requests To Join a Company</h3>
-
-            <p>Requests to join a company to contribute on behalf of.</p>
-
-            <table class="pending-requests">
-              <% @pending_requests.each do |request| %>
-                <tr class="pending-request"><td>You requested to join <%= link_to request.organization.name, contributors_ccla_signature_path(request.organization) %> on <%= request.created_at.to_s(:longish) %></td></tr>
-              <% end %>
-            </table>
-          <% end %>
-
-        </div>
-        <div class="content" id="collaborations">
-
-          <% if current_user.collaborated_cookbooks.empty? %>
-            <p>You are currently not a collaborator on any resources. Once you are, they will be listed here.</p>
-          <% else %>
-            <p>The resources you are a collaborator on.</p>
-
-            <table>
-              <% current_user.collaborators.each do |collaborator| %>
-                <tr>
-                  <td><%= link_to collaborator.resourceable.name, collaborator.resourceable %></td>
-                  <td><%= collaborator.resourceable.class.name %></td>
-                  <td class="text-right"><%= link_to 'Remove Myself as a Collaborator', collaborator_path(collaborator), remote: true, method: :delete, class: 'button tiny alert radius', rel: 'remove_collaboration' %></td>
-                </tr>
-              <% end %>
-            </table>
-          <% end %>
-        </div>
-        <div class="content" id="keys">
-          <p>The credentials to authenticate with Supermarket are the same ones
-            used to authenticate with the Chef server. E.g. if you wish to upload
-            cookbooks to supermarket.chef.io you need to use the same username
-            and client key that you use to authenticate with manage.chef.io.
-          </p>
-          <p>If you do not already have your keys, or don't know if you do, you
-            can reset your key here:
-          </p>
-          <ol>
-            <li>Login or create an account at: <a href="https://manage.chef.io/login">manage.chef.io/login</a></li>
-            <li>Login to Chef's Identity Service at: <a href="https://id.chef.io/id/signin">https://id.chef.io/id/signin</a></li>
-            <li>Visit your Chef account profile: <a href="https://id.chef.io/id/profile">id.chef.io/id/profile</a></li>
-            <li>Click on <emph>Get a New Key</emph>. This will reset your client
-              key.</li>
-            <li>Use this key to configure knife to authenticate with the public Chef
-              server as you normally would.</li>
-            <li>You should now be configured to authenticate with Supermarket.</li>
-          </ol>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
+      <div class="content" id="keys">
+        <p>The credentials to authenticate with Supermarket are the same ones
+        used to authenticate with the Chef server. E.g. if you wish to upload
+        cookbooks to supermarket.chef.io you need to use the same username
+        and client key that you use to authenticate with manage.chef.io.
+        </p>
+        <p>If you do not already have your keys, or don't know if you do, you
+        can reset your key here:
+        </p>
+        <ol>
+          <li>Login or create an account at: <a href="https://manage.chef.io/login">manage.chef.io/login</a></li>
+          <li>Login to Chef's Identity Service at: <a href="https://id.chef.io/id/signin">https://id.chef.io/id/signin</a></li>
+          <li>Visit your Chef account profile: <a href="https://id.chef.io/id/profile">id.chef.io/id/profile</a></li>
+          <li>Click on <emph>Get a New Key</emph>. This will reset your client
+          key.</li>
+          <li>Use this key to configure knife to authenticate with the public Chef
+          server as you normally would.</li>
+          <li>You should now be configured to authenticate with Supermarket.</li>
+        </ol>
+      </div>
     </div>
   </div>
 </div>
