@@ -7,7 +7,7 @@ long_description 'Installs/Configures supermarket in an Omnibus installation'
 version          '1.1.0'
 
 depends          'enterprise'
-depends          'nginx'
+depends          'chef_nginx'
 depends          'omnibus'
 depends          'runit', '>= 3.0.3'
 depends          'sysctl'
