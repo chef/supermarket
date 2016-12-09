@@ -32,7 +32,7 @@ repositories are:
 
 ## Requirements
 
-- Ruby 2.3.0
+- Ruby 2.3.1
 - PostgreSQL 9.3
 - Redis 2.4+
 
