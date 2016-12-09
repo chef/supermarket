@@ -4,7 +4,6 @@ json.company @user.company
 json.github Array(@github_usernames)
 json.twitter @user.twitter_username
 json.irc @user.irc_nickname
-json.jira @user.jira_username
 json.authorized_to_contribute @user.authorized_to_contribute?
 json.cookbooks do
   json.set! :owns do

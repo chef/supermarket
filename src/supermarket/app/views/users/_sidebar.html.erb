@@ -41,12 +41,6 @@
       </li>
     <% end %>
 
-    <% if @user.jira_username.present? %>
-      <li class="has-tip" title="<%= posessivize(@user.name) %> Jira Username">
-        <i class="fa fa-ticket"></i> <%= @user.jira_username %>
-      </li>
-    <% end %>
-
     <li class="has-tip" title="When <%= @user.name %> joined the Chef Community site">
       <i class="fa fa-clock-o"></i> Joined <%= time_ago_in_words(@user.created_at) %> ago.
     </li>

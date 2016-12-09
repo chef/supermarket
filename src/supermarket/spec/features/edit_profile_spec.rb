@@ -8,7 +8,7 @@ describe 'editing the current user profile' do
     within '.edit_user' do
       fill_in 'user_irc_nickname', with: 'eddardstark'
       fill_in 'user_company', with: 'Winterfell'
-      fill_in 'user_jira_username', with: 'eddardstark'
+      fill_in 'user_twitter_username', with: 'eddardstark'
       submit_form
     end
 

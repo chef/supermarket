@@ -9,8 +9,7 @@ describe 'api/v1/users/show' do
       company: 'FannyInternational',
       twitter_username: 'fannyfannyfanny',
       email: 'fanny@fanny.com',
-      irc_nickname: 'fannyfunnyfanny',
-      jira_username: 'funnyfannyfunny'
+      irc_nickname: 'fannyfunnyfanny'
     )
   end
 
@@ -96,11 +95,6 @@ describe 'api/v1/users/show' do
   it "displays the user's irc handle" do
     irc = json_body['irc']
     expect(irc).to eql(user.irc_nickname)
-  end
-
-  it "displays the user's jira username" do
-    jira = json_body['jira']
-    expect(jira).to eql(user.jira_username)
   end
 
   it "displays the user's authorized_to_contribute status" do
