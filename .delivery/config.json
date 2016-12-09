@@ -11,8 +11,15 @@
     "deploy",
     "smoke"
   ],
-  "build_nodes": {
-    "default": ["tags:delivery-build-node AND platform:ubuntu AND platform_version:16.04"]
+  "job_dispatch": {
+    "version": "v2",
+    "filters": {
+      "default": {
+        "os": ["linux"],
+        "platform": ["ubuntu"],
+        "platform_version": ["16.04"]
+      }
+    }
   },
   "dependencies": []
 }
