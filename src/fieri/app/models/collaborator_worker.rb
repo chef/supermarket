@@ -7,7 +7,7 @@ class CollaboratorWorker
 
   def perform(cookbook_json)
     Net::HTTP.post_form(
-      URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/collaborators_evaluation"),
+      URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/collaborators_evaluation"),
       fieri_key: ENV['FIERI_KEY'],
       cookbook_name: cookbook_name(cookbook_json),
       collaborator_failure: evaluate(cookbook_json),

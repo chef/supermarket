@@ -19,7 +19,7 @@ class FoodcriticWorker
 
   def make_post(params, feedback, status)
     response = Net::HTTP.post_form(
-      URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/foodcritic_evaluation"),
+      URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/foodcritic_evaluation"),
       fieri_key: ENV['FIERI_KEY'],
       cookbook_name: params['cookbook_name'],
       cookbook_version: params['cookbook_version'],

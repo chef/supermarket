@@ -7,7 +7,7 @@ describe CollaboratorWorker do
   let(:uri) { "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbooks/#{cookbook_name}" }
 
   before do
-    stub_request(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/publish_evaluation").
+    stub_request(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/publish_evaluation").
       to_return(status: 200, body: '', headers: {})
   end
 
@@ -21,7 +21,7 @@ describe CollaboratorWorker do
       it 'indicates that the publish metric passed' do
         pw.perform(cookbook_response, cookbook_name)
 
-        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/publish_evaluation", times: 1) do |req|
+        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/publish_evaluation", times: 1) do |req|
           expect(req.body).to include('publish_failure=false')
         end
       end
@@ -33,7 +33,7 @@ describe CollaboratorWorker do
       it 'indicates that the publish metric failed' do
         pw.perform(cookbook_does_not_exist_json_response, cookbook_name)
 
-        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/publish_evaluation", times: 1) do |req|
+        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/publish_evaluation", times: 1) do |req|
           expect(req.body).to include('publish_failure=true')
         end
       end
@@ -41,7 +41,7 @@ describe CollaboratorWorker do
       it 'includes a message in the feedback' do
         pw.perform(cookbook_does_not_exist_json_response, cookbook_name)
 
-        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/publish_evaluation", times: 1) do |req|
+        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/publish_evaluation", times: 1) do |req|
           expect(req.body).to include('publish_feedback')
           expect(req.body).to include("#{cookbook_name}+not+found+in+Supermarket")
         end
@@ -56,7 +56,7 @@ describe CollaboratorWorker do
       it 'indicates the publish metric failed' do
         pw.perform(cookbook_response, cookbook_name)
 
-        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/publish_evaluation", times: 1) do |req|
+        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/publish_evaluation", times: 1) do |req|
           expect(req.body).to include('publish_failure=true')
         end
       end
@@ -64,7 +64,7 @@ describe CollaboratorWorker do
       it 'includes a message in the feedback' do
         pw.perform(cookbook_response, cookbook_name)
 
-        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/publish_evaluation", times: 1) do |req|
+        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/publish_evaluation", times: 1) do |req|
           expect(req.body).to include('publish_feedback')
           expect(req.body).to include("#{cookbook_name}+is+deprecated")
         end
@@ -77,7 +77,7 @@ describe CollaboratorWorker do
       it 'indicates the publish metric passed' do
         pw.perform(cookbook_response, cookbook_name)
 
-        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/publish_evaluation", times: 1) do |req|
+        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/publish_evaluation", times: 1) do |req|
           expect(req.body).to include('publish_failure=false')
         end
       end
@@ -91,7 +91,7 @@ describe CollaboratorWorker do
       it 'indicates the publish metric failed' do
         pw.perform(cookbook_response, cookbook_name)
 
-        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/publish_evaluation", times: 1) do |req|
+        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/publish_evaluation", times: 1) do |req|
           expect(req.body).to include('publish_failure=true')
         end
       end
@@ -99,7 +99,7 @@ describe CollaboratorWorker do
       it 'includes a message in the feedback' do
         pw.perform(cookbook_response, cookbook_name)
 
-        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/publish_evaluation", times: 1) do |req|
+        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/publish_evaluation", times: 1) do |req|
           expect(req.body).to include('publish_feedback')
           expect(req.body).to include("#{cookbook_name}+is+up+for+adoption")
         end
@@ -112,7 +112,7 @@ describe CollaboratorWorker do
       it 'indicates the publish metric passed' do
         pw.perform(cookbook_response, cookbook_name)
 
-        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/publish_evaluation", times: 1) do |req|
+        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/publish_evaluation", times: 1) do |req|
           expect(req.body).to include('publish_failure=false')
         end
       end
