@@ -281,7 +281,7 @@ default['supermarket']['unicorn']['listen'] = ["127.0.0.1:#{node['supermarket'][
 default['supermarket']['unicorn']['pid'] = "#{node['supermarket']['var_directory']}/rails/run/unicorn.pid"
 default['supermarket']['unicorn']['preload_app'] = true
 default['supermarket']['unicorn']['worker_timeout'] = 15
-default['supermarket']['unicorn']['worker_processes'] = node['nginx']['worker_processes']
+default['supermarket']['unicorn']['worker_processes'] = node['cpu'] && node['cpu']['total'] ? node['cpu']['total'] : 1
 
 # These are not used, but you can set them if needed
 default['supermarket']['unicorn']['before_exec'] = nil
