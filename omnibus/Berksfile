@@ -1,5 +1,6 @@
 source 'https://supermarket.chef.io'
 
+cookbook 'apt'
 cookbook 'enterprise', git: 'https://github.com/chef-cookbooks/enterprise-chef-common'
 cookbook 'omnibus-supermarket',
          path: File.expand_path("cookbooks/omnibus-supermarket", File.dirname(__FILE__))

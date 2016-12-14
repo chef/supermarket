@@ -38,7 +38,7 @@ link "#{node['supermarket']['nginx']['directory']}/mime.types" do
 end
 
 template "#{node['supermarket']['nginx']['directory']}/nginx.conf" do
-  cookbook 'nginx'
+  cookbook 'chef_nginx'
   source 'nginx.conf.erb'
   owner node['supermarket']['user']
   group node['supermarket']['group']
