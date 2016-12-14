@@ -36,8 +36,7 @@ Supermarket::Config.load_or_create_secrets!(
 
 # Copy things we need from the supermarket namespace to the top level. This is
 # necessary for some community cookbooks.
-node.consume_attributes('nginx' => node['supermarket']['nginx'],
-                        'runit' => node['supermarket']['runit'])
+node.consume_attributes('runit' => node['supermarket']['runit'])
 
 # set chef_oauth2_url from chef_server_url after this value has been loaded from config
 if node['supermarket']['chef_server_url'] && node['supermarket']['chef_oauth2_url'].nil?

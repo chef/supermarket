@@ -45,6 +45,11 @@ template "#{node['supermarket']['nginx']['directory']}/sites-enabled/rails" do
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'
+  variables(nginx: node['supermarket']['nginx'],
+            rails: node['supermarket']['rails'],
+            fqdn: node['supermarket']['fqdn'],
+            ssl: node['supermarket']['ssl'],
+            app_directory: node['supermarket']['app_directory'])
   notifies :reload, 'runit_service[nginx]' if node['supermarket']['nginx']['enable']
 end
 

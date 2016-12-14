@@ -42,6 +42,7 @@ template "#{node['supermarket']['nginx']['directory']}/nginx.conf" do
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'
+  variables(nginx: node['supermarket']['nginx'])
   notifies :hup, 'runit_service[nginx]' if node['supermarket']['nginx']['enable']
 end
 
