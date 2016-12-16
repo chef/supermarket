@@ -38,11 +38,11 @@ link "#{node['supermarket']['nginx']['directory']}/mime.types" do
 end
 
 template "#{node['supermarket']['nginx']['directory']}/nginx.conf" do
-  cookbook 'nginx'
   source 'nginx.conf.erb'
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'
+  variables(nginx: node['supermarket']['nginx'])
   notifies :hup, 'runit_service[nginx]' if node['supermarket']['nginx']['enable']
 end
 
