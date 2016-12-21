@@ -5,7 +5,7 @@ describe LicenseWorker do
   let(:lw) { LicenseWorker.new }
 
   before do
-    stub_request(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/license_evaluation").
+    stub_request(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/license_evaluation").
       to_return(status: 200, body: '', headers: {})
   end
 
@@ -16,7 +16,7 @@ describe LicenseWorker do
     it 'indicates that the license metric passed' do
       lw.perform(licensed_version_json_response, cookbook_name)
 
-      assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/license_evaluation", times: 1) do |req|
+      assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/license_evaluation", times: 1) do |req|
         expect(req.body).to include("cookbook_name=#{cookbook_name}")
         expect(req.body).to include("cookbook_version=#{cookbook_version}")
         expect(req.body).to include('license_failure=false')
@@ -32,7 +32,7 @@ describe LicenseWorker do
     it 'indicates that the license metric failed' do
       lw.perform(no_license_version_json_response, cookbook_name)
 
-      assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/license_evaluation", times: 1) do |req|
+      assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/license_evaluation", times: 1) do |req|
         expect(req.body).to include("cookbook_name=#{cookbook_name}")
         expect(req.body).to include("cookbook_version=#{cookbook_version}")
         expect(req.body).to include('license_failure=true')
@@ -50,7 +50,7 @@ describe LicenseWorker do
       it 'passes the metric' do
         lw.perform(apache_license_version_json_response, cookbook_name)
 
-        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/license_evaluation", times: 1) do |req|
+        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/license_evaluation", times: 1) do |req|
           expect(req.body).to include('license_failure=false')
         end
       end
@@ -63,7 +63,7 @@ describe LicenseWorker do
       it 'passes the metric' do
         lw.perform(mit_license_version_json_response, cookbook_name)
 
-        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/license_evaluation", times: 1) do |req|
+        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/license_evaluation", times: 1) do |req|
           expect(req.body).to include('license_failure=false')
         end
       end
@@ -76,7 +76,7 @@ describe LicenseWorker do
       it 'passes the metric' do
         lw.perform(gnu_2_0_license_version_json_response, cookbook_name)
 
-        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/license_evaluation", times: 1) do |req|
+        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/license_evaluation", times: 1) do |req|
           expect(req.body).to include('license_failure=false')
         end
       end
@@ -89,7 +89,7 @@ describe LicenseWorker do
       it 'passes the metric' do
         lw.perform(gnu_3_0_license_version_json_response, cookbook_name)
 
-        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/license_evaluation", times: 1) do |req|
+        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/license_evaluation", times: 1) do |req|
           expect(req.body).to include('license_failure=false')
         end
       end
@@ -104,7 +104,7 @@ describe LicenseWorker do
       it 'fails the metric' do
         lw.perform(all_rights_license_version_json_response, cookbook_name)
 
-        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/license_evaluation", times: 1) do |req|
+        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/license_evaluation", times: 1) do |req|
           expect(req.body).to include('license_failure=true')
         end
       end

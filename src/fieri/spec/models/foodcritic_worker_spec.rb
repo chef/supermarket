@@ -8,7 +8,7 @@ describe FoodcriticWorker do
   end
 
   let(:test_evaluation_endpoint) do
-    "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/foodcritic_evaluation"
+    "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/foodcritic_evaluation"
   end
 
   before do

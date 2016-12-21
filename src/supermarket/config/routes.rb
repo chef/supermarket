@@ -23,13 +23,18 @@ Supermarket::Application.routes.draw do
       get 'users/:user' => 'users#show', as: :user
 
       # This was the original route, which has a misspelling (cookbook-verisons rather than cookbook-versions).  Keeping this here so as not to break anyone who is still depending on the original route.
-      post '/cookbook-verisons/foodcritic_evaluation' => 'cookbook_versions#foodcritic_evaluation', constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/cookbook-verisons/foodcritic_evaluation' => 'quality_metrics#foodcritic_evaluation', constraints: proc { ROLLOUT.active?(:fieri) }
 
       # This route has the correct spelling of cookbook-versions
-      post '/cookbook-versions/foodcritic_evaluation' => 'cookbook_versions#foodcritic_evaluation', as: :cookbook_versions_foodcritic_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
-      post '/cookbook-versions/collaborators_evaluation' => 'cookbook_versions#collaborators_evaluation', as: :cookbook_versions_collaborators_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
-      post '/cookbook-versions/publish_evaluation' => 'cookbook_versions#publish_evaluation', as: :cookbook_versions_publish_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
-      post '/cookbook-versions/license_evaluation' => 'cookbook_versions#license_evaluation', as: :cookbook_versions_license_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/cookbook-versions/foodcritic_evaluation' => 'quality_metrics#foodcritic_evaluation', as: :cookbook_versions_foodcritic_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/cookbook-versions/collaborators_evaluation' => 'quality_metrics#collaborators_evaluation', as: :cookbook_versions_collaborators_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/cookbook-versions/publish_evaluation' => 'quality_metrics#publish_evaluation', as: :cookbook_versions_publish_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/cookbook-versions/license_evaluation' => 'quality_metrics#license_evaluation', as: :cookbook_versions_license_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
+
+      post '/quality_metrics/foodcritic_evaluation' => 'quality_metrics#foodcritic_evaluation', as: :quality_metrics_foodcritic_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/quality_metrics/collaborators_evaluation' => 'quality_metrics#collaborators_evaluation', as: :quality_metrics_collaborators_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/quality_metrics/publish_evaluation' => 'quality_metrics#publish_evaluation', as: :quality_metrics_publish_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/quality_metrics/license_evaluation' => 'quality_metrics#license_evaluation', as: :quality_metrics_license_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
 
       get 'tools/:tool' => 'tools#show', as: :tool
       get 'tools' => 'tools#index', as: :tools

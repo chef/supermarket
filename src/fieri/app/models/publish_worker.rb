@@ -26,7 +26,7 @@ class PublishWorker
     end
 
     Net::HTTP.post_form(
-      URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbook-versions/publish_evaluation"),
+      URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/publish_evaluation"),
       fieri_key: ENV['FIERI_KEY'],
       cookbook_name: cookbook_name,
       publish_failure: failure,

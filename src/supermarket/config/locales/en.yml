@@ -134,3 +134,5 @@ en:
       missing_foodcritic_failure: "Evaluation POST must contain foodcritic_failure."
       missing_license_failure: "Evaluation POST must contain license_failure."
       missing_fieri_key: "Evaluation POST must contain fieri_key."
+      missing_publish_failure: "Evaluation POST must contain publish_failure."
+      missing_publish_feedback: "Evaluation POST must contain publish_feedback."
