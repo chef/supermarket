@@ -90,6 +90,16 @@
     <h4><i class="fa fa-key"></i> License</h4>
     <p><%= version.license %></p>
 
+    <% if version.chef_versions.present? %>
+      <h4><i class="fa fa-key"></i> Chef Versions</h4>
+      <p><%= versions_string(version.chef_versions) %></p>
+    <% end %>
+
+    <% if version.ohai_versions.present? %>
+      <h4><i class="fa fa-key"></i> Ohai Versions</h4>
+      <p><%= versions_string(version.ohai_versions) %></p>
+    <% end %>
+
     <%= link_to "Download Cookbook", { action: 'download' }, class: 'button secondary radius expand button_download_cookbook' %>
   </div>
 </div>

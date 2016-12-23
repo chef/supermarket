@@ -66,4 +66,21 @@ module CookbookVersionsHelper
       content
     end
   end
+
+  def versions_string(versions)
+    versions_string = ''
+
+    versions.each do |version_set|
+      versions_string += "(#{combined_set(version_set)})"
+      versions_string += ' OR ' unless version_set == versions.last
+    end
+
+    versions_string
+  end
+
+  private
+
+  def combined_set(set)
+    set.join(' AND ')
+  end
 end
