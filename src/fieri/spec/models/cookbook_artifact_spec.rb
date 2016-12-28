@@ -37,6 +37,12 @@ describe CookbookArtifact do
         assert_match(/FC064/, feedback)
         assert_equal true, status
       end
+
+      it 'does not include the working directory of the foodcritic run' do
+        feedback, _status = artifact.criticize
+
+        expect(feedback).to_not include(artifact.work_dir)
+      end
     end
 
     describe '#clean' do
