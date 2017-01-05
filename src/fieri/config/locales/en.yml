@@ -3,3 +3,6 @@ en:
     collaborator:
       success: 'passed the Collaborators Metric with %{num_collaborators} collaborators.'
       failure: 'Failure: Cookbook has %{num_collaborators} collaborators. A cookbook must have at least %{passing_number} collaborators to pass this metric.'
+    supported_platforms:
+      success: '%{cookbook_name} supports at least one platform.'
+      failure: '%{cookbook_name} should declare what platform(s) it supports.'

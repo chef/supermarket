@@ -6,9 +6,5 @@
   "cookbook": "http://localhost:3000/api/v1/cookbooks/apt",
   "file": "http://localhost:3000/api/v1/cookbooks/apt/versions/0.2.0/download",
   "quality_metrics": [
-  ],
-  "supports": {
-    "ubuntu": ">=2.0",
-    "windows": ">=2.0"
-  }
+  ]
 }
