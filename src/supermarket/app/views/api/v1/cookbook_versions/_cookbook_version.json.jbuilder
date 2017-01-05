@@ -14,6 +14,12 @@ if ROLLOUT.active?(:fieri)
   end
 end
 
+json.set! :supports do
+  cookbook_version.supported_platforms.each do |platform|
+    json.set! platform.name, platform.version_constraint
+  end
+end
+
 json.set! :dependencies do
   cookbook_version.cookbook_dependencies.each do |dependency|
     json.set! dependency.name, dependency.version_constraint
