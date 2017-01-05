@@ -142,12 +142,25 @@ class Api::V1::QualityMetricsController < Api::V1Controller
   end
 
   def create_metric(cookbook_version, quality_metric, failure, feedback)
-    MetricResult.create!(
-      cookbook_version: cookbook_version,
-      quality_metric: quality_metric,
-      failure: failure,
-      feedback: feedback
-    )
+    existing_metric = MetricResult.where(cookbook_version: cookbook_version, quality_metric: quality_metric)
+
+    if existing_metric.empty?
+      MetricResult.create!(
+        cookbook_version: cookbook_version,
+        quality_metric: quality_metric,
+        failure: failure,
+        feedback: feedback
+      )
+    else
+      existing_metric.destroy_all
+
+      MetricResult.create!(
+        cookbook_version: cookbook_version,
+        quality_metric: quality_metric,
+        failure: failure,
+        feedback: feedback
+      )
+    end
   end
 
   def find_cookbook_version

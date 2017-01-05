@@ -52,27 +52,27 @@ describe Api::V1::QualityMetricsController do
 
             expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
           end
+        end
 
-          context 'the required params are not provided' do
-            it 'returns a 400' do
-              post(
-                :foodcritic_evaluation,
-                cookbook_name: cookbook.name,
-                foodcritic_failure: 'false',
-                foodcritic_feedback: '',
-                fieri_key: 'YOUR_FIERI_KEY',
-                format: :json
-              )
+        context 'the required params are not provided' do
+          it 'returns a 400' do
+            post(
+              :foodcritic_evaluation,
+              cookbook_name: cookbook.name,
+              foodcritic_failure: 'false',
+              foodcritic_feedback: '',
+              fieri_key: 'YOUR_FIERI_KEY',
+              format: :json
+            )
 
-              expect(response.status.to_i).to eql(400)
+            expect(response.status.to_i).to eql(400)
 
-              expect(JSON.parse(response.body)).to eql(
-                'error_code' => I18n.t('api.error_codes.invalid_data'),
-                'error_messages' => [
-                  I18n.t('api.error_messages.missing_cookbook_version')
-                ]
-              )
-            end
+            expect(JSON.parse(response.body)).to eql(
+              'error_code' => I18n.t('api.error_codes.invalid_data'),
+              'error_messages' => [
+                I18n.t('api.error_messages.missing_cookbook_version')
+              ]
+            )
           end
         end
       end
@@ -387,5 +387,49 @@ describe Api::V1::QualityMetricsController do
         )
       end
     end
+  end
+
+  context 'when a metric result already exists' do
+    let(:cookbook) { create(:cookbook) }
+    let!(:version) { create(:cookbook_version, cookbook: cookbook) }
+    let(:foodcritic_metric) { QualityMetric.foodcritic_metric }
+    let!(:metric_result) do
+      create(:metric_result, cookbook_version: version, quality_metric: foodcritic_metric)
+    end
+
+    before do
+      expect(version.metric_results.where(cookbook_version: version, quality_metric: foodcritic_metric)).to_not be_empty
+    end
+
+    it 'deletes the old metric' do
+      post(
+        :foodcritic_evaluation,
+        cookbook_name: cookbook.name,
+        cookbook_version: version.to_param,
+        foodcritic_failure: true,
+        foodcritic_feedback: 'E066',
+        fieri_key: 'YOUR_FIERI_KEY',
+        format: :json
+      )
+
+      version.reload
+      expect(version.metric_results).to_not include(metric_result)
+    end
+
+    it 'creates the new metric' do
+      post(
+        :foodcritic_evaluation,
+        cookbook_name: cookbook.name,
+        cookbook_version: version.to_param,
+        foodcritic_failure: true,
+        foodcritic_feedback: 'E066',
+        fieri_key: 'YOUR_FIERI_KEY',
+        format: :json
+      )
+
+      version.reload
+      expect(version.metric_results.where(cookbook_version: version, quality_metric: foodcritic_metric)).to_not be_empty
+    end
+
   end
 end
