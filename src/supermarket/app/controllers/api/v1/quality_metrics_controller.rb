@@ -148,12 +148,12 @@ class Api::V1::QualityMetricsController < Api::V1Controller
       existing_metric.destroy_all
     end
 
-      MetricResult.create!(
-        cookbook_version: cookbook_version,
-        quality_metric: quality_metric,
-        failure: failure,
-        feedback: feedback
-      )
+    MetricResult.create!(
+      cookbook_version: cookbook_version,
+      quality_metric: quality_metric,
+      failure: failure,
+      feedback: feedback
+    )
   end
 
   def find_cookbook_version
