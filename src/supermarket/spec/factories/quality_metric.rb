@@ -16,9 +16,14 @@ FactoryGirl.define do
       name "License"
     end
 
+    trait :supported_platforms do
+      name "Supported Platforms"
+    end
+
     factory :foodcritic_metric, traits: [:foodcritic]
     factory :collaborator_num_metric, traits: [:collaborator_num]
     factory :publish_metric, traits: [:publish]
     factory :license_metric, traits: [:license]
+    factory :supported_platforms_metric, traits: [:supported_platforms]
   end
 end

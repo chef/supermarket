@@ -21,4 +21,8 @@ class QualityMetric < ActiveRecord::Base
   def self.license_metric
     QualityMetric.find_by(name: 'License')
   end
+
+  def self.supported_platforms_metric
+    QualityMetric.find_by(name: 'Supported Platforms')
+  end
 end
