@@ -108,6 +108,32 @@ class Api::V1::QualityMetricsController < Api::V1Controller
     head 200
   end
 
+  #
+  # POST /api/v1/cookbook-versions/supported_platforms_evaluation
+  #
+  # Take the supported platforms evaluation results from Fieri and store them
+  # as a metric result
+  #
+  # If the +CookbookVersion+ does not exist, render a 404 not_found.
+  #
+  # If the request is unauthorized, render unauthorized.
+  #
+  # This endpoint expects +cookbook_name+, +cookbook_version+,
+  # +supported_platforms_failure+, +supported_platforms_feedback+, and +fieri_key+.
+  #
+  def supported_platforms_evaluation
+    require_supported_platforms_params
+
+    create_metric(
+      @cookbook_version,
+      QualityMetric.supported_platforms_metric,
+      params[:supported_platforms_failure],
+      params[:supported_platforms_feedback]
+    )
+
+    head 200
+  end
+
   rescue_from ActionController::ParameterMissing do |e|
     error(
       error_code: t('api.error_codes.invalid_data'),
@@ -133,6 +159,13 @@ class Api::V1::QualityMetricsController < Api::V1Controller
     params.require(:cookbook_name)
     params.require(:cookbook_version)
     params.require(:license_failure)
+  end
+
+  def require_supported_platforms_params
+    params.require(:cookbook_name)
+    params.require(:cookbook_version)
+    params.require(:supported_platforms_failure)
+    params.require(:supported_platforms_feedback)
   end
 
   def require_publish_params
