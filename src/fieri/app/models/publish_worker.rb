@@ -25,6 +25,10 @@ class PublishWorker
       publish_feedback += "#{cookbook_name} is up for adoption\n"
     end
 
+    unless failure == true
+      publish_feedback += "#{cookbook_name} passed the publish metric"
+    end
+
     Net::HTTP.post_form(
       URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/publish_evaluation"),
       fieri_key: ENV['FIERI_KEY'],
