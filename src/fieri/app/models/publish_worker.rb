@@ -25,8 +25,8 @@ class PublishWorker
       publish_feedback += "#{cookbook_name} is up for adoption\n"
     end
 
-    unless failure == true
-      publish_feedback += "#{cookbook_name} passed the publish metric"
+    unless failure
+      publish_feedback = "#{cookbook_name} passed the publish metric"
     end
 
     Net::HTTP.post_form(
