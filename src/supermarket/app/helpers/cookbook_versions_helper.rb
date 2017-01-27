@@ -70,9 +70,17 @@ module CookbookVersionsHelper
   def versions_string(versions)
     versions_string = ''
 
-    versions.each do |version_set|
-      versions_string += "(#{combined_set(version_set)})"
-      versions_string += ' OR ' unless version_set == versions.last
+    if versions.first.class == Array
+      versions.each do |version_set|
+        versions_string += "(#{combined_set(version_set)})"
+        versions_string += ' OR ' unless version_set == versions.last
+      end
+    elsif versions.first.class == String
+      # This is a bandaid until https://github.com/chef/supermarket/issues/1505
+      versions.each do |version|
+        versions_string += version
+        versions_string += ' AND ' unless version == versions.last
+      end
     end
 
     versions_string
