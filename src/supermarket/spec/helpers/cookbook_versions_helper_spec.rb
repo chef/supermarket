@@ -45,5 +45,31 @@ describe CookbookVersionsHelper do
         expect(string).to_not include('<= 12.4.3) OR')
       end
     end
+
+    context 'with a single depth array' do
+      # This is a bandaid until https://github.com/chef/supermarket/issues/1505
+      context 'with one version' do
+        let(:chef_versions) { ['>= 12.4.1'] }
+        let(:string) { helper.versions_string(chef_versions) }
+
+        it 'returns the version value as a string' do
+          expect(string).to include('>= 12.4.1')
+          expect(string.class).to eq(String)
+        end
+      end
+
+      context 'with multiple versions' do
+        let(:chef_versions) { ['>= 12.4.1', '12.5.2'] }
+        let(:string) { helper.versions_string(chef_versions) }
+
+        it 'combines them with AND' do
+          expect(string).to include('>= 12.4.1 AND 12.5.2')
+        end
+
+        it 'does not include the AND at the end of the string' do
+          expect(string).to_not include('12.5.2 AND')
+        end
+      end
+    end
   end
 end
