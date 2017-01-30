@@ -101,6 +101,12 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
         expect(signature(json_body)).to include(cookbook_version_signature)
       end
 
+      it 'returns the date the version was published' do
+        get json_body['versions'].find { |v| v =~ /0.1.0/ }
+
+        expect(signature(json_body)).to include("published_at" => cookbook_version.created_at.iso8601)
+      end
+
       context 'when the fieri feature is active' do
         before do
           allow(ROLLOUT).to receive(:active?).with(:fieri).and_return(true)
