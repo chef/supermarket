@@ -34,8 +34,14 @@ describe CookbookArtifact do
       it 'returns the feedback and status from the FoodCritic run' do
         feedback, status = artifact.criticize
 
-        assert_match(/FC064/, feedback)
-        assert_equal true, status
+        expect(feedback).to match(/FC064/)
+        expect(status).to be true
+      end
+
+      it 'does not include the working directory of the foodcritic run' do
+        feedback, _status = artifact.criticize
+
+        expect(feedback).to_not include(artifact.work_dir)
       end
     end
 
@@ -63,8 +69,8 @@ describe CookbookArtifact do
     describe '#criticize' do
       it 'disables ~FC031 and ~FC045 by default' do
         feedback, _status = artifact.criticize
-        refute_match(/FC031/, feedback)
-        refute_match(/FC045/, feedback)
+        expect(feedback).to_not match(/FC031/)
+        expect(feedback).to_not match(/FC045/)
       end
     end
   end
@@ -84,8 +90,8 @@ describe CookbookArtifact do
       it 'disables ~FC031 and ~FC045 by default' do
         feedback, status = artifact.criticize
 
-        assert_match(/FC064/, feedback)
-        assert_equal true, status
+        expect(feedback).to match(/FC064/)
+        expect(status).to be true
       end
     end
   end
