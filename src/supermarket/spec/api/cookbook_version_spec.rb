@@ -107,6 +107,14 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
         expect(signature(json_body)).to include("published_at" => cookbook_version.created_at.iso8601)
       end
 
+      it 'includes a list of supported platforms' do
+        get json_body['versions'].find { |v| v =~ /0.1.0/ }
+
+        supported_platforms_signature = { "supports" => { "ubuntu" => ">= 12.0.0" } }
+
+        expect(signature(json_body)).to include(supported_platforms_signature)
+      end
+
       context 'when the fieri feature is active' do
         before do
           allow(ROLLOUT).to receive(:active?).with(:fieri).and_return(true)

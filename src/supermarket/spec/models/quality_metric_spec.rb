@@ -50,4 +50,14 @@ describe QualityMetric do
       expect(QualityMetric.license_metric).to eq(license_metric)
     end
   end
+
+  describe '#supported_platforms_metric' do
+    let!(:supported_platforms_metric) do
+      create(:supported_platforms_metric)
+    end
+
+    it 'finds the supported platforms metric' do
+      expect(QualityMetric.supported_platforms_metric).to eq(supported_platforms_metric)
+    end
+  end
 end
