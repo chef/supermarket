@@ -31,7 +31,7 @@ unless(QualityMetric.where(name: 'License').any?)
   QualityMetric.create!(name: 'License', admin_only: true)
 end
 
-unless(QualityMetric.where(name: 'Supported Platform').any?)
+unless(QualityMetric.where(name: 'Supported Platforms').any?)
   QualityMetric.create!(name: 'Supported Platforms', admin_only: true)
 end
 
