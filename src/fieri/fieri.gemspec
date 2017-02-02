@@ -20,5 +20,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'sidekiq'
   s.add_dependency 'dotenv-rails'
   s.add_dependency 'foodcritic', '~> 8.1'
-  s.add_dependency 'mixlib-archive', '~> 0.2'
+  s.add_dependency 'mixlib-archive', '~> 0.4'
 end
