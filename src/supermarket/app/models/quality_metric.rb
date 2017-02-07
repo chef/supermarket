@@ -7,22 +7,22 @@ class QualityMetric < ActiveRecord::Base
   validates :name, uniqueness: true
 
   def self.foodcritic_metric
-    QualityMetric.find_by(name: 'Foodcritic')
+    QualityMetric.where(name: 'Foodcritic').first_or_create!
   end
 
   def self.collaborator_num_metric
-    QualityMetric.find_by(name: 'Collaborator Number')
+    QualityMetric.where(name: 'Collaborator Number').first_or_create!
   end
 
   def self.publish_metric
-    QualityMetric.find_by(name: 'Publish')
+    QualityMetric.where(name: 'Publish').first_or_create!(admin_only: true)
   end
 
   def self.license_metric
-    QualityMetric.find_by(name: 'License')
+    QualityMetric.where(name: 'License').first_or_create!(admin_only: true)
   end
 
   def self.supported_platforms_metric
-    QualityMetric.find_by(name: 'Supported Platforms')
+    QualityMetric.where(name: 'Supported Platforms').first_or_create!(admin_only: true)
   end
 end
