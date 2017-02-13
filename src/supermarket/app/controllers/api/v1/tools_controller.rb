@@ -6,7 +6,8 @@ class Api::V1::ToolsController < Api::V1Controller
   #
   # Return all Tools. Defaults to 10 at a time, starting at the first
   # Tool when sorted alphabetically. The max number of Tools that can be
-  # returned is 100.
+  # returned is set by an environment variable API_ITEM_LIMIT. If the limit is
+  # not set or set to an non-integer value, the default is 100.
   #
   # Pass in the start and items params to specify the index at which to start
   # and how many to return. You can pass in an order param to specify how
@@ -46,7 +47,9 @@ class Api::V1::ToolsController < Api::V1Controller
   # - +order+ order of the results, defaults to alphabetically by name
   #           options: recently_added (reverse chronological)
   # - +start+ what index to start the results list, defaults to 0
-  # - +items+ how many items to return from the +start+ index, defaults to 10
+  # - +items+ how many items to return from the +start+ index, defaults to 10,
+  #           with an upper limit default of 100, to change upper limit on items
+  #           set API_ITEM_LIMIT environment variable.
   #
   # @example
   #   GET /api/v1/tools-search?q=berkshelf

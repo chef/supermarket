@@ -46,7 +46,7 @@ class Api::V1Controller < ApplicationController
   #
   def init_params
     @start = params.fetch(:start, 0).to_i
-    @items = [params.fetch(:items, 10).to_i, 100].min
+    @items = [params.fetch(:items, 10).to_i, item_limit].min
 
     if @start < 0 || @items < 0
       return error(
@@ -58,5 +58,18 @@ class Api::V1Controller < ApplicationController
     end
 
     @order = params.fetch(:order, 'name ASC').to_s
+  end
+
+  #
+  # Returns the configured limit for number of items in an API request
+  # Inteded to wrap the mechanism by which the limit is configured
+  #
+  def item_limit
+    configured_limit = ENV['API_ITEM_LIMIT'].to_i
+    if configured_limit > 0
+      configured_limit
+    else
+      100
+    end
   end
 end

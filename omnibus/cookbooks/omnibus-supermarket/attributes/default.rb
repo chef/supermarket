@@ -332,6 +332,7 @@ default['supermarket']['pubsubhubbub_callback_url'] = nil
 default['supermarket']['pubsubhubbub_secret'] = nil
 default['supermarket']['redis_url'] = "redis://#{node['supermarket']['redis']['bind']}:#{node['supermarket']['redis']['port']}/0/supermarket"
 default['supermarket']['sentry_url'] = nil
+default['supermarket']['api_item_limit'] = 100
 
 # ### Chef URL Settings
 #
