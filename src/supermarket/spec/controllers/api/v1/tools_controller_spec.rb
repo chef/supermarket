@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Api::V1::ToolsController do
+  it_behaves_like 'an API v1 controller'
+
   describe '#index' do
     let!(:metal) do
       create(:tool, name: 'metal')
@@ -97,7 +99,8 @@ describe Api::V1::ToolsController do
       expect(assigns[:start]).to eql(0)
     end
 
-    it 'limits the number of items to 100' do
+    it 'limits the number of items to the configured limit' do
+      allow(subject).to receive(:item_limit).and_return(100)
       get :index, items: 101, format: :json
 
       expect(assigns[:items]).to eql(100)

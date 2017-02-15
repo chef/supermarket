@@ -10,6 +10,8 @@ describe Api::V1::CookbooksController do
     create(:cookbook, name: 'sashimi', web_download_count: 11, api_download_count: 14, owner: clive)
   end
 
+  it_behaves_like 'an API v1 controller'
+
   describe '#index' do
     it 'orders the cookbooks by their name by default' do
       get :index, format: :json
@@ -102,7 +104,8 @@ describe Api::V1::CookbooksController do
       expect(assigns[:items]).to eql(10)
     end
 
-    it 'limits the number of items to 100' do
+    it 'limits the number of items to the configured limit' do
+      allow(subject).to receive(:item_limit).and_return(100)
       get :index, items: 101, format: :json
 
       expect(assigns[:items]).to eql(100)

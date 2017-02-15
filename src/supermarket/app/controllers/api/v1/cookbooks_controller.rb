@@ -7,7 +7,8 @@ class Api::V1::CookbooksController < Api::V1Controller
   #
   # Return all Cookbooks. Defaults to 10 at a time, starting at the first
   # Cookbook when sorted alphabetically. The max number of Cookbooks that can be
-  # returned is 100.
+  # returned is set by an environment variable API_ITEM_LIMIT. If the limit is
+  # not set or set to an non-integer value, the default is 100.
   #
   # Pass in the start and items params to specify the index at which to start
   # and how many to return. You can pass in an order param to specify how
@@ -55,7 +56,8 @@ class Api::V1::CookbooksController < Api::V1Controller
   # Return cookbooks with a name that contains the specified query. Takes the
   # +q+ parameter for the query. It also handles the start and items parameters
   # for specify where to start the search and how many items to return. Start
-  # defaults to 0. Items defaults to 10. Items has an upper limit of 100.
+  # defaults to 0. Items defaults to 10. Items has an upper limit default of 100
+  # which can be changed by setting an environment variable API_ITEM_LIMIT.
   #
   # @example
   #   GET /api/v1/search?q=redis
