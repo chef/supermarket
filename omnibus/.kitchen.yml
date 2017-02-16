@@ -16,9 +16,9 @@ platforms:
     run_list: apt::default
   - name: centos-5.11
     run_list: yum-epel::default
-  - name: centos-6.7
+  - name: centos-6.8
     run_list: yum-epel::default
-  - name: centos-7.1
+  - name: centos-7.3
     run_list: yum-epel::default
 
 suites:
