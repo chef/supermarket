@@ -48,6 +48,7 @@ gem 'chef', require: false
 gem 'mixlib-authentication'
 gem 'aws-sdk'
 gem 'newrelic_rpm'
+gem 'ddtrace'
 gem 'semverse'
 gem 'sitemap_generator'
 gem 'redis-rails'

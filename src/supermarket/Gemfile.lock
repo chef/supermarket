@@ -164,6 +164,8 @@ GEM
       backports (~> 3.6)
       gherkin (~> 4.0)
     database_cleaner (1.3.0)
+    ddtrace (0.4.3)
+      msgpack
     debugger-linecache (1.2.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -278,6 +280,7 @@ GEM
     mixlib-config (2.2.1)
     mixlib-log (1.6.0)
     mixlib-shellout (2.2.3)
+    msgpack (1.0.3)
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -565,6 +568,7 @@ DEPENDENCIES
   chef
   compass-rails
   database_cleaner
+  ddtrace
   dotenv
   factory_girl
   faker
@@ -627,4 +631,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.13.6
+   1.14.4
