@@ -46,6 +46,7 @@ gem 'kaminari'
 gem 'validate_url'
 gem 'chef', require: false
 gem 'mixlib-authentication'
+gem 'mixlib-archive'
 gem 'aws-sdk'
 gem 'newrelic_rpm'
 gem 'ddtrace', require: false
