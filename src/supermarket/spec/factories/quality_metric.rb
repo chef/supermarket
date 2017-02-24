@@ -20,10 +20,15 @@ FactoryGirl.define do
       name "Supported Platforms"
     end
 
+    trait :contributor_file do
+      name "Contributor File"
+    end
+
     factory :foodcritic_metric, traits: [:foodcritic]
     factory :collaborator_num_metric, traits: [:collaborator_num]
     factory :publish_metric, traits: [:publish]
     factory :license_metric, traits: [:license]
     factory :supported_platforms_metric, traits: [:supported_platforms]
+    factory :contributor_file_metric, traits: [:contributor_file]
   end
 end

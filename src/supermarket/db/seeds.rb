@@ -5,6 +5,7 @@ QualityMetric.where(name: 'Collaborator Number').first_or_create!
 QualityMetric.where(name: 'Publish').first_or_create!(admin_only: true)
 QualityMetric.where(name: 'License').first_or_create!(admin_only: true)
 QualityMetric.where(name: 'Supported Platforms').first_or_create!(admin_only: true)
+QualityMetric.where(name: 'Contributor File').first_or_create!(admin_only: true)
 
 #
 # The Default ICLA Document
