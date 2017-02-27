@@ -1,3 +1,11 @@
+QualityMetric.reset_column_information
+
+QualityMetric.where(name: 'Foodcritic').first_or_create!
+QualityMetric.where(name: 'Collaborator Number').first_or_create!
+QualityMetric.where(name: 'Publish').first_or_create!(admin_only: true)
+QualityMetric.where(name: 'License').first_or_create!(admin_only: true)
+QualityMetric.where(name: 'Supported Platforms').first_or_create!(admin_only: true)
+
 #
 # The Default ICLA Document
 #
@@ -11,28 +19,6 @@ attributes = {}
   attributes[section] = open(
     "#{File.dirname(__FILE__)}/seeds/icla/#{section}.md"
   ).read
-end
-
-QualityMetric.reset_column_information
-
-unless(QualityMetric.where(name: 'Foodcritic').any?)
-  QualityMetric.create!(name: 'Foodcritic')
-end
-
-unless(QualityMetric.where(name: 'Collaborator Number').any?)
-  QualityMetric.create!(name: 'Collaborator Number')
-end
-
-unless(QualityMetric.where(name: 'Publish').any?)
-  QualityMetric.create!(name: 'Publish', admin_only: true)
-end
-
-unless(QualityMetric.where(name: 'License').any?)
-  QualityMetric.create!(name: 'License', admin_only: true)
-end
-
-unless(QualityMetric.where(name: 'Supported Platforms').any?)
-  QualityMetric.create!(name: 'Supported Platforms', admin_only: true)
 end
 
 Icla.where(version: ENV['ICLA_VERSION']).

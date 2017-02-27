@@ -1,6 +1,35 @@
 require 'spec_helper'
 
 describe Api::V1::QualityMetricsController do
+  describe '#create_metric (private)' do
+    let(:version) { create :cookbook_version }
+    let(:metric) { create :foodcritic_metric }
+
+    it 'creates a metric result for a cookbook version' do
+      new_result = subject.send(:create_metric, version, metric, false, "Looks OK.")
+
+      expect(version.metric_results.last).to eq(new_result)
+    end
+
+    it 'removes previous metric results in favor of the latest created' do
+      3.times { create :metric_result, cookbook_version: version, quality_metric: metric }
+
+      latest_result = subject.send(:create_metric, version, metric, false, "Looks OK.")
+
+      expect(version.metric_results.count).to eq(1)
+      expect(version.metric_results.last).to eq(latest_result)
+    end
+
+    it 'leaves previous metric results of different types intact' do
+      other_metric = create :collaborator_num_metric
+      create :metric_result, cookbook_version: version, quality_metric: other_metric
+
+      subject.send(:create_metric, version, metric, false, "Looks OK.")
+
+      expect(version.metric_results.count).to eq(2)
+    end
+  end
+
   describe '#foodcritic_evaluation' do
     let(:cookbook) { create(:cookbook) }
     let!(:version) { create(:cookbook_version, cookbook: cookbook) }

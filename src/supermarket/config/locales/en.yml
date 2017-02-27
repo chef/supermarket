@@ -41,6 +41,7 @@ en:
     activity: "%{maintainer} released v%{version} of the %{cookbook} cookbook."
     updated: "The %{name} cookbook has been successfully updated."
     not_found: "The %{name} cookbook was not found."
+    version_not_found: "Version %{version} of %{name} cookbook was not found."
   contributor:
     removed: "Contributor removed."
   contributor_requests:
@@ -51,6 +52,11 @@ en:
     already:
       accepted: "%{username} has already been authorized to contribute on behalf of %{organization}."
       declined: "%{username} has already been declined authorization to contribute on behalf of %{organization}."
+  fieri:
+    not_enabled: "Quality metrics feature (fieri) is not enabled."
+    scheduled:
+      single: "Scheduled quality metric evaluation for %{name} %{version}."
+      multiple: "Scheduled quality metric evaluations for %{count} cookbook(s)."
   icla:
     successful_signature: "You successfully signed the ICLA. Thank you!"
     successful_resignature: "You successfully re-signed the ICLA."
