@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-describe ContributorFileWorker do
-  let(:cfw) { ContributorFileWorker.new }
+describe ContributingFileWorker do
+  let(:cfw) { ContributingFileWorker.new }
 
   before do
-    stub_request(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/contributor_file_evaluation").
+    stub_request(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/contributing_file_evaluation").
       to_return(status: 200, body: '', headers: {})
   end
 
@@ -39,10 +39,10 @@ describe ContributorFileWorker do
         it 'posts a passing metric' do
           cfw.perform(cookbook_json_response)
 
-          assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/contributor_file_evaluation", times: 1) do |req|
+          assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/contributing_file_evaluation", times: 1) do |req|
             expect(req.body).to include("cookbook_name=#{JSON.parse(cookbook_json_response)['name']}")
-            expect(req.body).to include('contributor_file_failure=false')
-            expect(req.body).to include('contributor_file_feedback=passed')
+            expect(req.body).to include('contributing_file_failure=false')
+            expect(req.body).to include('contributing_file_feedback=passed')
           end
         end
       end
@@ -56,10 +56,10 @@ describe ContributorFileWorker do
         it 'posts a failing metric' do
           cfw.perform(cookbook_json_response)
 
-          assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/contributor_file_evaluation", times: 1) do |req|
+          assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/contributing_file_evaluation", times: 1) do |req|
             expect(req.body).to include("cookbook_name=#{JSON.parse(cookbook_json_response)['name']}")
-            expect(req.body).to include('contributor_file_failure=true')
-            expect(req.body).to include('contributor_file_feedback=Failure')
+            expect(req.body).to include('contributing_file_failure=true')
+            expect(req.body).to include('contributing_file_feedback=Failure')
           end
         end
       end
@@ -76,10 +76,10 @@ describe ContributorFileWorker do
       it 'posts a failing metric' do
         cfw.perform(invalid_source_url_json_response)
 
-        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/contributor_file_evaluation", times: 1) do |req|
+        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/contributing_file_evaluation", times: 1) do |req|
           expect(req.body).to include("cookbook_name=#{JSON.parse(cookbook_json_response)['name']}")
-          expect(req.body).to include('contributor_file_failure=true')
-          expect(req.body).to include('contributor_file_feedback=Failure')
+          expect(req.body).to include('contributing_file_failure=true')
+          expect(req.body).to include('contributing_file_feedback=Failure')
         end
       end
     end

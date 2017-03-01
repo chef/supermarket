@@ -61,13 +61,13 @@ describe QualityMetric do
     end
   end
 
-  describe '#contributor_file_metric' do
-    let!(:contributor_file_metric) do
-      create(:contributor_file_metric)
+  describe '#contributing_file_metric' do
+    let!(:contributing_file_metric) do
+      create(:contributing_file_metric)
     end
 
-    it 'finds the contributor file metric' do
-      expect(QualityMetric.contributor_file_metric).to eq(contributor_file_metric)
+    it 'finds the contributing file metric' do
+      expect(QualityMetric.contributing_file_metric).to eq(contributing_file_metric)
     end
   end
 

@@ -484,7 +484,6 @@ describe Api::V1::QualityMetricsController do
       end
     end
 
-
     context 'the request is not authorized' do
       it 'renders a 401 error about unauthorized post' do
         post(
@@ -508,20 +507,20 @@ describe Api::V1::QualityMetricsController do
     end
   end
 
-  describe '#contributor_file_evaluation' do
+  describe '#contributing_file_evaluation' do
     let(:cookbook) { create(:cookbook) }
     let!(:version) { create(:cookbook_version, cookbook: cookbook) }
-    let!(:quality_metric) { create(:contributor_file_metric) }
+    let!(:quality_metric) { create(:contributing_file_metric) }
 
     context 'the request is authorized' do
       context 'the required params are provided' do
         it 'returns a 200' do
           post(
-            :contributor_file_evaluation,
+            :contributing_file_evaluation,
             cookbook_name: cookbook.name,
             cookbook_version: version.version,
-            contributor_file_failure: false,
-            contributor_file_feedback: 'passed',
+            contributing_file_failure: false,
+            contributing_file_feedback: 'passed',
             fieri_key: 'YOUR_FIERI_KEY',
             format: :json
           )
@@ -529,13 +528,13 @@ describe Api::V1::QualityMetricsController do
           expect(response.status.to_i).to eql(200)
         end
 
-        it 'creates a contributor file metric' do
+        it 'creates a contributing file metric' do
           post(
-            :contributor_file_evaluation,
+            :contributing_file_evaluation,
             cookbook_name: cookbook.name,
             cookbook_version: version.version,
-            contributor_file_failure: false,
-            contributor_file_feedback: 'passed',
+            contributing_file_failure: false,
+            contributing_file_feedback: 'passed',
             fieri_key: 'YOUR_FIERI_KEY',
             format: :json
           )
@@ -547,11 +546,11 @@ describe Api::V1::QualityMetricsController do
 
         it 'finds the correct cookbook version' do
           post(
-            :contributor_file_evaluation,
+            :contributing_file_evaluation,
             cookbook_name: cookbook.name,
             cookbook_version: version.version,
-            contributor_file_failure: false,
-            contributor_file_feedback: 'passed',
+            contributing_file_failure: false,
+            contributing_file_feedback: 'passed',
             fieri_key: 'YOUR_FIERI_KEY',
             format: :json
           )
@@ -563,9 +562,9 @@ describe Api::V1::QualityMetricsController do
       context 'the required params are not provided' do
         it 'returns a 400' do
           post(
-            :contributor_file_evaluation,
+            :contributing_file_evaluation,
             cookbook_name: cookbook.name,
-            contributor_file_failure: false,
+            contributing_file_failure: false,
             fieri_key: 'YOUR_FIERI_KEY',
             format: :json
           )
@@ -578,10 +577,10 @@ describe Api::V1::QualityMetricsController do
     context 'the request is not authorized' do
       it 'renders a 401 error about unauthorized post' do
         post(
-          :contributor_file_evaluation,
+          :contributing_file_evaluation,
           cookbook_name: cookbook.name,
           cookbook_version: version.version,
-          contributor_file_failure: false,
+          contributing_file_failure: false,
           fieri_key: 'not_the_key',
           format: :json
         )

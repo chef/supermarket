@@ -6,6 +6,6 @@ en:
     supported_platforms:
       success: '%{cookbook_name} supports at least one platform.'
       failure: '%{cookbook_name} should declare what platform(s) it supports.'
-    contributor_file:
+    contributing_file:
       success: 'passed the CONTRIBUTING.md file metric.'
       failure: 'Failure: To pass this metric, your cookbook metadata must include a source url, the source url must be in the form of http://github.com/user/repo, and your repo must contain a CONTRIBUTING.md file'

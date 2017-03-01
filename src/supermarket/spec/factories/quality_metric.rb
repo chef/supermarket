@@ -20,8 +20,8 @@ FactoryGirl.define do
       name "Supported Platforms"
     end
 
-    trait :contributor_file do
-      name "Contributor File"
+    trait :contributing_file do
+      name "Contributing File"
     end
 
     factory :foodcritic_metric, traits: [:foodcritic]
@@ -29,6 +29,6 @@ FactoryGirl.define do
     factory :publish_metric, traits: [:publish]
     factory :license_metric, traits: [:license]
     factory :supported_platforms_metric, traits: [:supported_platforms]
-    factory :contributor_file_metric, traits: [:contributor_file]
+    factory :contributing_file_metric, traits: [:contributing_file]
   end
 end

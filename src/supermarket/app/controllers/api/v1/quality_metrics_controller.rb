@@ -134,7 +134,7 @@ class Api::V1::QualityMetricsController < Api::V1Controller
     head 200
   end
 
-  # POST /api/v1/cookbook-versions/contributor_file_evaluation
+  # POST /api/v1/cookbook-versions/contributing_file_evaluation
   #
   # Take the supported platforms evaluation results from Fieri and store them
   # as a metric result
@@ -144,17 +144,17 @@ class Api::V1::QualityMetricsController < Api::V1Controller
   # If the request is unauthorized, render unauthorized.
   #
   # This endpoint expects +cookbook_name+, +cookbook_version+,
-  # +contributor_file_failure+, +contributor_file_feedback+, and +fieri_key+.
+  # +contributing_file_failure+, +contributing_file_feedback+, and +fieri_key+.
   #
 
-  def contributor_file_evaluation
-    require_contributor_file_params
+  def contributing_file_evaluation
+    require_contributing_file_params
 
     create_metric(
       @cookbook_version,
-      QualityMetric.contributor_file_metric,
-      params[:contributor_file_failure],
-      params[:contributor_file_feedback]
+      QualityMetric.contributing_file_metric,
+      params[:contributing_file_failure],
+      params[:contributing_file_feedback]
     )
 
     head 200
@@ -200,10 +200,10 @@ class Api::V1::QualityMetricsController < Api::V1Controller
     params.require(:publish_feedback)
   end
 
-  def require_contributor_file_params
+  def require_contributing_file_params
     params.require(:cookbook_name)
-    params.require(:contributor_file_failure)
-    params.require(:contributor_file_feedback)
+    params.require(:contributing_file_failure)
+    params.require(:contributing_file_feedback)
   end
 
   def create_metric(cookbook_version, quality_metric, failure, feedback)

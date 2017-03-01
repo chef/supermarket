@@ -26,7 +26,7 @@ class QualityMetric < ActiveRecord::Base
     QualityMetric.where(name: 'Supported Platforms').first_or_create!(admin_only: true)
   end
 
-  def self.contributor_file_metric
-    QualityMetric.find_by(name: 'Contributor File')
+  def self.contributing_file_metric
+    QualityMetric.find_by(name: 'Contributing File')
   end
 end

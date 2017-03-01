@@ -2,18 +2,18 @@ require 'sidekiq'
 require 'net/http'
 require 'octokit'
 
-class ContributorFileWorker
+class ContributingFileWorker
   include ::Sidekiq::Worker
 
   def perform(cookbook_json)
     evaluate_result = evaluate(cookbook_json)
 
     Net::HTTP.post_form(
-      URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/contributor_file_evaluation"),
+      URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/contributing_file_evaluation"),
       fieri_key: ENV['FIERI_KEY'],
       cookbook_name: cookbook_name(cookbook_json),
-      contributor_file_failure: evaluate_result,
-      contributor_file_feedback: give_feedback(evaluate_result)
+      contributing_file_failure: evaluate_result,
+      contributing_file_feedback: give_feedback(evaluate_result)
     )
   end
 
@@ -49,11 +49,11 @@ class ContributorFileWorker
   def give_feedback(failure_result)
     if failure_result
       I18n.t(
-        'quality_metrics.contributor_file.failure'
+        'quality_metrics.contributing_file.failure'
       )
     else
       I18n.t(
-        'quality_metrics.contributor_file.success'
+        'quality_metrics.contributing_file.success'
       )
     end
   end
