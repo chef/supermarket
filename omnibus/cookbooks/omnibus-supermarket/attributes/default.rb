@@ -332,7 +332,8 @@ default['supermarket']['port'] = node['supermarket']['nginx']['force_ssl'] ? nod
 default['supermarket']['protocol'] = node['supermarket']['nginx']['force_ssl'] ? 'https' : 'http'
 default['supermarket']['pubsubhubbub_callback_url'] = nil
 default['supermarket']['pubsubhubbub_secret'] = nil
-default['supermarket']['redis_url'] = "redis://#{node['supermarket']['redis']['bind']}:#{node['supermarket']['redis']['port']}/0/supermarket"
+default['supermarket']['redis_url'] = 'redis://127.0.0.1:16379/0/supermarket'
+default['supermarket']['redis_jobq_url'] = nil
 default['supermarket']['sentry_url'] = nil
 default['supermarket']['api_item_limit'] = 100
 
