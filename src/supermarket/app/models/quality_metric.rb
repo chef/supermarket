@@ -27,6 +27,6 @@ class QualityMetric < ActiveRecord::Base
   end
 
   def self.contributing_file_metric
-    QualityMetric.find_by(name: 'Contributing File')
+    QualityMetric.where(name: 'Contributing File').first_or_create!(admin_only: true)
   end
 end
