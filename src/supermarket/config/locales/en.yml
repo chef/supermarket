@@ -144,3 +144,5 @@ en:
       missing_publish_feedback: "Evaluation POST must contain publish_feedback."
       missing_supported_platforms_failure: "Evaluation POST must contain supported_platforms_failure."
       missing_supported_platforms_feedback: "Evaluation POST must contain supported_platforms_feedback."
+      missing_contributing_file_failure: "Evaluation POST must contain contributor_file_failure."
+      missing_contributing_file_feedback: "Evaluation POST must contain contributor_file_feedback."

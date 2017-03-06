@@ -60,4 +60,15 @@ describe QualityMetric do
       expect(QualityMetric.supported_platforms_metric).to eq(supported_platforms_metric)
     end
   end
+
+  describe '#contributing_file_metric' do
+    let!(:contributing_file_metric) do
+      create(:contributing_file_metric)
+    end
+
+    it 'finds the contributing file metric' do
+      expect(QualityMetric.contributing_file_metric).to eq(contributing_file_metric)
+    end
+  end
+
 end
