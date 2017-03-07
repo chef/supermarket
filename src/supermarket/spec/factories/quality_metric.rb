@@ -24,11 +24,16 @@ FactoryGirl.define do
       name "Contributing File"
     end
 
+    trait :testing_file do
+      name "Testing File"
+    end
+
     factory :foodcritic_metric, traits: [:foodcritic]
     factory :collaborator_num_metric, traits: [:collaborator_num]
     factory :publish_metric, traits: [:publish]
     factory :license_metric, traits: [:license]
     factory :supported_platforms_metric, traits: [:supported_platforms]
     factory :contributing_file_metric, traits: [:contributing_file]
+    factory :testing_file_metric, traits: [:testing_file]
   end
 end

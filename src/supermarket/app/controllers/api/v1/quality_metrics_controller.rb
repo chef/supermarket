@@ -146,7 +146,6 @@ class Api::V1::QualityMetricsController < Api::V1Controller
   # This endpoint expects +cookbook_name+, +cookbook_version+,
   # +contributing_file_failure+, +contributing_file_feedback+, and +fieri_key+.
   #
-
   def contributing_file_evaluation
     require_contributing_file_params
 
@@ -155,6 +154,19 @@ class Api::V1::QualityMetricsController < Api::V1Controller
       QualityMetric.contributing_file_metric,
       params[:contributing_file_failure],
       params[:contributing_file_feedback]
+    )
+
+    head 200
+  end
+
+  def testing_file_evaluation
+    require_testing_file_params
+
+    create_metric(
+      @cookbook_version,
+      QualityMetric.testing_file_metric,
+      params[:testing_file_failure],
+      params[:testing_file_feedback]
     )
 
     head 200
@@ -204,6 +216,12 @@ class Api::V1::QualityMetricsController < Api::V1Controller
     params.require(:cookbook_name)
     params.require(:contributing_file_failure)
     params.require(:contributing_file_feedback)
+  end
+
+  def require_testing_file_params
+    params.require(:cookbook_name)
+    params.require(:testing_file_failure)
+    params.require(:testing_file_feedback)
   end
 
   def create_metric(cookbook_version, quality_metric, failure, feedback)

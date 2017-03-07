@@ -71,4 +71,13 @@ describe QualityMetric do
     end
   end
 
+  describe '#testing_file_metric' do
+    let!(:testing_file_metric) do
+      create(:testing_file_metric)
+    end
+
+    it 'finds the testing file metric' do
+      expect(QualityMetric.testing_file_metric).to eq(testing_file_metric)
+    end
+  end
 end

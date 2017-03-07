@@ -59,7 +59,12 @@ describe MetricsRunner do
     end
 
     it 'calls the contributor file worker' do
-      expect(ContributingFileWorker).to receive(:perform_async).with(cookbook_json_response)
+      expect(ContributingFileWorker).to receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
+      metrics_runner.perform(params)
+    end
+
+    it 'calls the testing file worker' do
+      expect(TestingFileWorker).to receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
       metrics_runner.perform(params)
     end
   end
