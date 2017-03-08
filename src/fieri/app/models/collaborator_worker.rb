@@ -5,11 +5,11 @@ class CollaboratorWorker
   include ::Sidekiq::Worker
   SUFFICENT_COLLABORATORS = 2
 
-  def perform(cookbook_json)
+  def perform(cookbook_json, cookbook_name)
     Net::HTTP.post_form(
       URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/collaborators_evaluation"),
       fieri_key: ENV['FIERI_KEY'],
-      cookbook_name: cookbook_name(cookbook_json),
+      cookbook_name: cookbook_name,
       collaborator_failure: evaluate(cookbook_json),
       collaborator_feedback: give_feedback(cookbook_json)
     )
@@ -45,9 +45,5 @@ class CollaboratorWorker
         num_collaborators: collaborator_count.to_s
       )
     end
-  end
-
-  def cookbook_name(cookbook_json)
-    JSON.parse(cookbook_json)['name']
   end
 end

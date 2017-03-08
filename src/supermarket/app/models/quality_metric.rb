@@ -29,4 +29,8 @@ class QualityMetric < ActiveRecord::Base
   def self.contributing_file_metric
     QualityMetric.where(name: 'Contributing File').first_or_create!(admin_only: true)
   end
+
+  def self.testing_file_metric
+    QualityMetric.where(name: 'Testing File').first_or_create!(admin_only: true)
+  end
 end

@@ -12,7 +12,8 @@ class MetricsRunner
     PublishWorker.perform_async(cookbook_data, params['cookbook_name'])
     LicenseWorker.perform_async(cookbook_version_data, params['cookbook_name'])
     SupportedPlatformsWorker.perform_async(cookbook_version_data, params['cookbook_name'])
-    ContributingFileWorker.perform_async(cookbook_data)
+    ContributingFileWorker.perform_async(cookbook_data, params['cookbook_name'])
+    TestingFileWorker.perform_async(cookbook_data, params['cookbook_name'])
   end
 
   private

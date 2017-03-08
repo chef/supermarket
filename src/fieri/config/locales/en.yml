@@ -9,3 +9,6 @@ en:
     contributing_file:
       success: 'passed the CONTRIBUTING.md file metric.'
       failure: 'Failure: To pass this metric, your cookbook metadata must include a source url, the source url must be in the form of http://github.com/user/repo, and your repo must contain a CONTRIBUTING.md file'
+    testing_file:
+      success: 'passed the TESTING.md file metric.'
+      failure: 'Failure: To pass this metric, your cookbook metadata must include a source url, the source url must be in the form of http://github.com/user/repo, and your repo must contain a TESTING.md file'
