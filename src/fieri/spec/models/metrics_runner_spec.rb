@@ -35,7 +35,7 @@ describe MetricsRunner do
 
   describe 'calling individual metrics' do
     it 'calls the collaborator worker' do
-      expect(CollaboratorWorker).to receive(:perform_async).with(cookbook_json_response)
+      expect(CollaboratorWorker).to receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
 
       metrics_runner.perform(params)
     end
