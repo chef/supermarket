@@ -12,8 +12,11 @@ class MetricsRunner
     PublishWorker.perform_async(cookbook_data, params['cookbook_name'])
     LicenseWorker.perform_async(cookbook_version_data, params['cookbook_name'])
     SupportedPlatformsWorker.perform_async(cookbook_version_data, params['cookbook_name'])
-    ContributingFileWorker.perform_async(cookbook_data, params['cookbook_name'])
-    TestingFileWorker.perform_async(cookbook_data, params['cookbook_name'])
+
+    # do not call metrics that depend on external services if running
+    # in an airgapped environment
+    return if ENV['AIR_GAPPED'] == 'true'
+    external_service_metrics(cookbook_data, params['cookbook_name'])
   end
 
   private
@@ -24,5 +27,10 @@ class MetricsRunner
 
   def cookbook_version_api_response(params)
     SupermarketApiRunner.new.cookbook_version_api_response(params['cookbook_name'], params['cookbook_version'])
+  end
+
+  def external_service_metrics(cookbook_data, cookbook_name)
+    ContributingFileWorker.perform_async(cookbook_data, cookbook_name)
+    TestingFileWorker.perform_async(cookbook_data, cookbook_name)
   end
 end
