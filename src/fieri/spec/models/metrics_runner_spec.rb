@@ -58,14 +58,36 @@ describe MetricsRunner do
       metrics_runner.perform(params)
     end
 
-    it 'calls the contributor file worker' do
-      expect(ContributingFileWorker).to receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
-      metrics_runner.perform(params)
+    context 'when not in airgapped environments' do
+      before do
+        expect(ENV['AIR_GAPPED']).to_not eq('true')
+      end
+
+      it 'calls the contributing file worker' do
+        expect(ContributingFileWorker).to receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
+        metrics_runner.perform(params)
+      end
+
+      it 'calls the testing file worker' do
+        expect(TestingFileWorker).to receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
+        metrics_runner.perform(params)
+      end
     end
 
-    it 'calls the testing file worker' do
-      expect(TestingFileWorker).to receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
-      metrics_runner.perform(params)
+    context 'when in airgapped environments' do
+      before do
+        allow(ENV).to receive(:[]).with('AIR_GAPPED').and_return('true')
+      end
+
+      it 'does not call the contributing file worker' do
+        expect(ContributingFileWorker).to_not receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
+        metrics_runner.perform(params)
+      end
+
+      it 'does not call the testing file worker' do
+        expect(TestingFileWorker).to_not receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
+        metrics_runner.perform(params)
+      end
     end
   end
 end
