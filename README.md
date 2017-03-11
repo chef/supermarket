@@ -187,11 +187,12 @@ NOTE: If you receive an omniauth csrf detected error, try clearing your browser'
 
 ## Connecting your Github Account
 
-On the production site, users are required to sign a CLA before they can upload cookbooks.
+There are a couple features that depend on GitHub integration (CLA signing,
+some quality metrics in Fieri). You can set up an integration for your
+development environment by creating an application with your Github account. To
+do this:
 
-You can simulate this by creating an application with your Github account.  To do this:
-
-1. Log into your Github acount if you aren't already.
+1. Log into your Github account if you aren't already.
 2. Click on your username in the upper right hand corner.  This will bring you to your Profile page.
 3. Click the "Edit Profile" button in the upper right corner of the Profile page.
 4. Click on "Applications" in the vertical menu on the left hand side
@@ -231,13 +232,6 @@ Next, create a Github Access token.  You also do this from the "Applications" se
   ```
   GITHUB_ACCESS_TOKEN=[Token you just generated through Github]
   ```
-1. Restart your foreman server.
-2. Now hover over your account icon and username in the upper right hand corner of Supermarket in your browser
-3. Click on "Sign CCLA"
-4. Click on the big green button to connect your github account to your local version of Supermarket - this will connect to the application you just created.
-5. Fill in the form for the CCLA (this is just a local copy that will go to your local database, it won't affect the CCLA you signed for Chef).
-6. Click 'Sign CCLA'
-7. Now your local DB will record that you signed the CCLA.
 
 ## Tests
 
@@ -293,13 +287,21 @@ One of these keys is called `FEATURES` and it controls a number of features
 that can be turned on and off. Here are the available features that can be
 toggled:
 
-* cla
-* join_ccla
 * tools
 * fieri
 * announcement
 * github
 * no_crawl
+
+Deprecated Features
+
+CLA signing still works, but has been disabled in the public site in favor of
+[the DCO process](https://github.com/chef/chef/blob/master/CONTRIBUTING.md#developer-certification-of-origin-dco)
+which tracked outside of Supermarket.
+
+* cla
+* join_ccla
+
 
 # License
 
