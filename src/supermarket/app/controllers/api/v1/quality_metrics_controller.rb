@@ -172,6 +172,19 @@ class Api::V1::QualityMetricsController < Api::V1Controller
     head 200
   end
 
+  def version_tag_evaluation
+    require_version_tag_params
+
+    create_metric(
+      @cookbook_version,
+      QualityMetric.version_tag_metric,
+      params[:version_tag_failure],
+      params[:version_tag_feedback]
+    )
+
+    head 200
+  end
+
   rescue_from ActionController::ParameterMissing do |e|
     error(
       error_code: t('api.error_codes.invalid_data'),
@@ -222,6 +235,13 @@ class Api::V1::QualityMetricsController < Api::V1Controller
     params.require(:cookbook_name)
     params.require(:testing_file_failure)
     params.require(:testing_file_feedback)
+  end
+
+  def require_version_tag_params
+    params.require(:cookbook_name)
+    params.require(:cookbook_version)
+    params.require(:version_tag_failure)
+    params.require(:version_tag_feedback)
   end
 
   def create_metric(cookbook_version, quality_metric, failure, feedback)

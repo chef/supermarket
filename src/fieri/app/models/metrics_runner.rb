@@ -16,7 +16,7 @@ class MetricsRunner
     # do not call metrics that depend on external services if running
     # in an airgapped environment
     return if ENV['AIR_GAPPED'] == 'true'
-    external_service_metrics(cookbook_data, params['cookbook_name'])
+    external_service_metrics(cookbook_data, params['cookbook_name'], params['cookbook_version'])
   end
 
   private
@@ -29,8 +29,9 @@ class MetricsRunner
     SupermarketApiRunner.new.cookbook_version_api_response(params['cookbook_name'], params['cookbook_version'])
   end
 
-  def external_service_metrics(cookbook_data, cookbook_name)
+  def external_service_metrics(cookbook_data, cookbook_name, cookbook_version)
     ContributingFileWorker.perform_async(cookbook_data, cookbook_name)
     TestingFileWorker.perform_async(cookbook_data, cookbook_name)
+    VersionTagWorker.perform_async(cookbook_data, cookbook_name, cookbook_version)
   end
 end

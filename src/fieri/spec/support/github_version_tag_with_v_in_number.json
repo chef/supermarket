@@ -1,0 +1,38 @@
+[
+  {
+    "name": "help",
+    "zipball_url": "https://api.github.com/repos/chef/supermarket/zipball/help",
+    "tarball_url": "https://api.github.com/repos/chef/supermarket/tarball/help",
+    "commit": {
+      "sha": "6ec8cba59e3e6047b587bf24c99231a73a7876db",
+      "url": "https://api.github.com/repos/chef/supermarket/commits/6ec8cba59e3e6047b587bf24c99231a73a7876db"
+    }
+  },
+  {
+    "name": "v2.9.16",
+    "zipball_url": "https://api.github.com/repos/chef/supermarket/zipball/2.9.16",
+    "tarball_url": "https://api.github.com/repos/chef/supermarket/tarball/2.9.16",
+    "commit": {
+      "sha": "a1b64a786c9dd1e94aada479c49ec5e3fbaf55d6",
+      "url": "https://api.github.com/repos/chef/supermarket/commits/a1b64a786c9dd1e94aada479c49ec5e3fbaf55d6"
+    }
+  },
+  {
+    "name": "v2.9.15",
+    "zipball_url": "https://api.github.com/repos/chef/supermarket/zipball/2.9.15",
+    "tarball_url": "https://api.github.com/repos/chef/supermarket/tarball/2.9.15",
+    "commit": {
+      "sha": "f91c4eb3e6f7685968d21b5588b3e898933cc8df",
+      "url": "https://api.github.com/repos/chef/supermarket/commits/f91c4eb3e6f7685968d21b5588b3e898933cc8df"
+    }
+  },
+  {
+    "name": "v2.9.14",
+    "zipball_url": "https://api.github.com/repos/chef/supermarket/zipball/2.9.14",
+    "tarball_url": "https://api.github.com/repos/chef/supermarket/tarball/2.9.14",
+    "commit": {
+      "sha": "6c350c485b0c0d9ce6178c9cef39086613e36d93",
+      "url": "https://api.github.com/repos/chef/supermarket/commits/6c350c485b0c0d9ce6178c9cef39086613e36d93"
+    }
+  }
+]
