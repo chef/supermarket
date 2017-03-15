@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'foodcritic', '~> 8.1'
   s.add_dependency 'mixlib-archive', '~> 0.4'
   s.add_dependency 'octokit'
+  s.add_dependency 'ruby-filemagic'
 end

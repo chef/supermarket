@@ -2,6 +2,7 @@ require 'open-uri'
 require 'rubygems/package'
 require 'foodcritic'
 require 'mixlib/archive'
+require 'filemagic'
 
 class CookbookArtifact
   #
@@ -54,6 +55,23 @@ class CookbookArtifact
   end
 
   #
+  # Returns a list of binaries found in a cookbook
+  #
+  def binaries
+    prep
+
+    cookbook_files = Dir["#{work_dir}/**/*"]
+    binaries_found = []
+
+    cookbook_files.each do |file|
+      next if File.directory? file
+      binaries_found << file.gsub("#{work_dir}/", '') if binary?(file)
+    end
+
+    binaries_found.join("\n")
+  end
+
+  #
   # Removes the unarchived directory returns nil if the directory
   # doesn't exist.
   #
@@ -76,6 +94,15 @@ class CookbookArtifact
         saved_file.write(read_file.read)
       end
       saved_file
+    end
+  end
+
+  def binary?(filepath)
+    begin
+      magic = FileMagic.new(FileMagic::MAGIC_MIME)
+      !(magic.file(filepath) =~ %r{^text\/})
+    ensure
+      magic.close
     end
   end
 end

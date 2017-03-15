@@ -16,6 +16,7 @@ PATH
       mixlib-archive (~> 0.4)
       octokit
       rails (~> 4.2)
+      ruby-filemagic
       sidekiq
 
 GEM
@@ -166,6 +167,7 @@ GEM
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
+    ruby-filemagic (0.7.1)
     ruby-progressbar (1.8.1)
     rufus-lru (1.1.0)
     safe_yaml (1.0.4)
