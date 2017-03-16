@@ -104,10 +104,25 @@ describe CookbookArtifact do
     end
 
     describe '#binaries' do
+      after(:each) { artifact.cleanup }
+
       it 'returns a list of binary files found in the cookbook' do
         binary_files = artifact.binaries
 
-        expect(binary_files).to match(/fieri.tar.gz/)
+        expect(binary_files).to match(/fieri.tar.gz$/)
+        expect(binary_files).to match(/larger-than-1mb.zip$/)
+      end
+
+      it 'considers a too big file is probably a binary' do
+        binary_files = artifact.binaries
+
+        expect(binary_files).to match(/larger-than-1mb.py \(size/)
+      end
+
+      it 'reports a big binary as binary, not too big' do
+        binary_files = artifact.binaries
+
+        expect(binary_files).to_not match(/larger-than-1mb.zip \(size/)
       end
 
       it 'does not include the working directory of the binary check' do

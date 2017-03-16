@@ -10,6 +10,8 @@ class CookbookArtifact
   #
   attr_accessor :url, :job_id, :work_dir
 
+  FILE_SIZE_LIMIT = 2**20
+
   #
   # Initializes a +CookbookArtifact+ downloading and unarchiving the
   # artifact from the given url.
@@ -64,8 +66,14 @@ class CookbookArtifact
     binaries_found = []
 
     cookbook_files.each do |file|
-      next if File.directory? file
-      binaries_found << file.gsub("#{work_dir}/", '') if binary?(file)
+      case # rubocop:disable Style/EmptyCaseCondition
+      when File.directory?(file)
+        next
+      when binary?(file)
+        binaries_found << file.gsub("#{work_dir}/", '')
+      when too_big?(file)
+        binaries_found << file.gsub("#{work_dir}/", '') + " (size > #{FILE_SIZE_LIMIT} bytes)"
+      end
     end
 
     binaries_found.join("\n")
@@ -104,5 +112,9 @@ class CookbookArtifact
     ensure
       magic.close
     end
+  end
+
+  def too_big?(filepath)
+    File.size(filepath) > FILE_SIZE_LIMIT
   end
 end
