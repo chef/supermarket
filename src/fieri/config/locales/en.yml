@@ -15,3 +15,6 @@ en:
     version_tag:
       success: 'passed the version tag metric.'
       failure: 'Failure: To pass this metric, your cookbook metadata must include a source url, the source url must be in the form of http://github.com/user/repo, and your repo must include a tag that matches this cookbook version number'
+    no_binaries:
+      success: 'passed the No Binaries metric. Contains no obvious binaries.'
+      failure: 'Failure: Cookbook should not contain binaries. Found:'
