@@ -80,4 +80,15 @@ describe QualityMetric do
       expect(QualityMetric.testing_file_metric).to eq(testing_file_metric)
     end
   end
+
+  describe '#version_tag_metric' do
+    let!(:version_tag_metric) do
+      create(:version_tag_metric)
+    end
+
+    it 'finds the version tag metric' do
+      expect(QualityMetric.version_tag_metric).to eq(version_tag_metric)
+    end
+  end
+
 end

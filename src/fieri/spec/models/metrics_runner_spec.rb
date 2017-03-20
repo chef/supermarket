@@ -72,6 +72,11 @@ describe MetricsRunner do
         expect(TestingFileWorker).to receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
         metrics_runner.perform(params)
       end
+
+      it 'calls the version tag worker' do
+        expect(VersionTagWorker).to receive(:perform_async).with(cookbook_json_response, params['cookbook_name'], params['cookbook_version'])
+        metrics_runner.perform(params)
+      end
     end
 
     context 'when in airgapped environments' do
@@ -86,6 +91,11 @@ describe MetricsRunner do
 
       it 'does not call the testing file worker' do
         expect(TestingFileWorker).to_not receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
+        metrics_runner.perform(params)
+      end
+
+      it 'does not call the version tag worker' do
+        expect(VersionTagWorker).to_not receive(:perform_async).with(cookbook_json_response, params['cookbook_name'], params['cookbook_version'])
         metrics_runner.perform(params)
       end
     end

@@ -38,6 +38,7 @@ Supermarket::Application.routes.draw do
       post '/quality_metrics/supported_platforms_evaluation' => 'quality_metrics#supported_platforms_evaluation', as: :quality_metrics_supported_platforms_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
       post '/quality_metrics/contributing_file_evaluation' => 'quality_metrics#contributing_file_evaluation', as: :quality_metrics_contributing_file_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
       post '/quality_metrics/testing_file_evaluation' => 'quality_metrics#testing_file_evaluation', as: :quality_metrics_testing_file_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/quality_metrics/version_tag_evaluation' => 'quality_metrics#version_tag_evaluation', as: :quality_metrics_version_tag_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
 
       get 'tools/:tool' => 'tools#show', as: :tool
       get 'tools' => 'tools#index', as: :tools

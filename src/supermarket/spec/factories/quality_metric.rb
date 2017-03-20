@@ -28,6 +28,10 @@ FactoryGirl.define do
       name "Testing File"
     end
 
+    trait :version_tag do
+      name "Version Tag"
+    end
+
     factory :foodcritic_metric, traits: [:foodcritic]
     factory :collaborator_num_metric, traits: [:collaborator_num]
     factory :publish_metric, traits: [:publish]
@@ -35,5 +39,6 @@ FactoryGirl.define do
     factory :supported_platforms_metric, traits: [:supported_platforms]
     factory :contributing_file_metric, traits: [:contributing_file]
     factory :testing_file_metric, traits: [:testing_file]
+    factory :version_tag_metric, traits: [:version_tag]
   end
 end

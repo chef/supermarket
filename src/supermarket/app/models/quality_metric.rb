@@ -33,4 +33,8 @@ class QualityMetric < ActiveRecord::Base
   def self.testing_file_metric
     QualityMetric.where(name: 'Testing File').first_or_create!(admin_only: true)
   end
+
+  def self.version_tag_metric
+    QualityMetric.where(name: 'Version Tag').first_or_create!(admin_only: true)
+  end
 end

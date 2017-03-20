@@ -674,4 +674,89 @@ describe Api::V1::QualityMetricsController do
       end
     end
   end
+
+  describe '#version_tag_evaluation' do
+    let(:cookbook) { create(:cookbook) }
+    let!(:version) { create(:cookbook_version, cookbook: cookbook) }
+    let!(:quality_metric) { create(:version_tag_metric) }
+
+    context 'the request is authorized' do
+      context 'the required params are provided' do
+        it 'returns a 200' do
+          post(
+            :version_tag_evaluation,
+            cookbook_name: cookbook.name,
+            cookbook_version: version.version,
+            version_tag_failure: false,
+            version_tag_feedback: 'passed',
+            fieri_key: 'YOUR_FIERI_KEY',
+            format: :json
+          )
+
+          expect(response.status.to_i).to eql(200)
+        end
+
+        it 'creates a testing file metric' do
+          post(
+            :version_tag_evaluation,
+            cookbook_name: cookbook.name,
+            cookbook_version: version.version,
+            version_tag_failure: false,
+            version_tag_feedback: 'passed',
+            fieri_key: 'YOUR_FIERI_KEY',
+            format: :json
+          )
+
+          version.reload
+          expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
+          expect(version.metric_results.first.failure).to eq(false)
+        end
+
+        it 'finds the correct cookbook version' do
+          post(
+            :version_tag_evaluation,
+            cookbook_name: cookbook.name,
+            cookbook_version: version.version,
+            version_tag_failure: false,
+            version_tag_feedback: 'passed',
+            fieri_key: 'YOUR_FIERI_KEY',
+            format: :json
+          )
+
+          expect(assigns[:cookbook_version]).to eq(version)
+        end
+      end
+
+      context 'the required params are not provided' do
+        it 'returns a 400' do
+          post(
+            :version_tag_evaluation,
+            cookbook_name: cookbook.name,
+            cookbook_version: version.version,
+            version_tag_failure: false,
+            fieri_key: 'YOUR_FIERI_KEY',
+            format: :json
+          )
+
+          expect(response.status.to_i).to eql(400)
+        end
+      end
+
+      context 'the request is not authorized' do
+        it 'renders a 401 error about unauthorized post' do
+          post(
+            :version_tag_evaluation,
+            cookbook_name: cookbook.name,
+            cookbook_version: version.version,
+            version_tag_failure: false,
+            version_tag_feedback: 'passed',
+            fieri_key: 'not_the_key',
+            format: :json
+          )
+
+          expect(response.status.to_i).to eql(401)
+        end
+      end
+    end
+  end
 end
