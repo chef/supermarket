@@ -91,4 +91,13 @@ describe QualityMetric do
     end
   end
 
+  describe '#no_binaries_metric' do
+    let!(:no_binaries_metric) do
+      create(:no_binaries_metric)
+    end
+
+    it 'finds the testing file metric' do
+      expect(QualityMetric.no_binaries_metric).to eq(no_binaries_metric)
+    end
+  end
 end

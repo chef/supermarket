@@ -8,6 +8,7 @@ QualityMetric.where(name: 'Supported Platforms').first_or_create!(admin_only: tr
 QualityMetric.where(name: 'Contributing File').first_or_create!(admin_only: true)
 QualityMetric.where(name: 'Testing File').first_or_create!(admin_only: true)
 QualityMetric.where(name: 'Version Tag').first_or_create!(admin_only: true)
+QualityMetric.where(name: 'No Binaries').first_or_create!(admin_only: true)
 
 #
 # The Default ICLA Document
