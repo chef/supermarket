@@ -185,6 +185,31 @@ class Api::V1::QualityMetricsController < Api::V1Controller
     head 200
   end
 
+  # POST /api/v1/cookbook-versions/no_binaries_evaluation
+  #
+  # Take the contains no binaries evaluation results from Fieri and store them
+  # as a metric result
+  #
+  # If the +CookbookVersion+ does not exist, render a 404 not_found.
+  #
+  # If the request is unauthorized, render unauthorized.
+  #
+  # This endpoint expects +cookbook_name+, +cookbook_version+,
+  # +no_binaries_failure+, +no_binaries_feedback+, and +fieri_key+.
+  #
+  def no_binaries_evaluation
+    require_no_binaries_params
+
+    create_metric(
+      @cookbook_version,
+      QualityMetric.no_binaries_metric,
+      params[:no_binaries_failure],
+      params[:no_binaries_feedback]
+    )
+
+    head 200
+  end
+
   rescue_from ActionController::ParameterMissing do |e|
     error(
       error_code: t('api.error_codes.invalid_data'),
@@ -242,6 +267,13 @@ class Api::V1::QualityMetricsController < Api::V1Controller
     params.require(:cookbook_version)
     params.require(:version_tag_failure)
     params.require(:version_tag_feedback)
+  end
+
+  def require_no_binaries_params
+    params.require(:cookbook_name)
+    params.require(:cookbook_version)
+    params.require(:no_binaries_failure)
+    params.require(:no_binaries_feedback)
   end
 
   def create_metric(cookbook_version, quality_metric, failure, feedback)
