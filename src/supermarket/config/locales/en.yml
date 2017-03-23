@@ -150,3 +150,5 @@ en:
       missing_testing_file_feedback: "Evaluation POST must contain testing_file_feedback."
       missing_version_tag_failure: "Evaluation POST must contain version_tag_failure."
       missing_version_tag_feedback: "Evaluation POST must contain version_tag_feedback."
+      missing_no_binaries_failure: "Evaluation POST must contain no_binaries_failure."
+      missing_no_binaries_feedback: "Evaluation POST must contain no_binaries_feedback."

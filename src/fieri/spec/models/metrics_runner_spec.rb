@@ -58,6 +58,12 @@ describe MetricsRunner do
       metrics_runner.perform(params)
     end
 
+    it 'calls the no binaries worker' do
+      expect(NoBinariesWorker).to receive(:perform_async).with(hash_including(params))
+
+      metrics_runner.perform(params)
+    end
+
     context 'when not in airgapped environments' do
       before do
         expect(ENV['AIR_GAPPED']).to_not eq('true')

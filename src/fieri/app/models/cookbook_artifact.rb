@@ -2,12 +2,15 @@ require 'open-uri'
 require 'rubygems/package'
 require 'foodcritic'
 require 'mixlib/archive'
+require 'filemagic'
 
 class CookbookArtifact
   #
   # Accessors
   #
   attr_accessor :url, :job_id, :work_dir
+
+  FILE_SIZE_LIMIT = 2**20
 
   #
   # Initializes a +CookbookArtifact+ downloading and unarchiving the
@@ -54,6 +57,29 @@ class CookbookArtifact
   end
 
   #
+  # Returns a list of binaries found in a cookbook
+  #
+  def binaries
+    prep
+
+    cookbook_files = Dir["#{work_dir}/**/*"]
+    binaries_found = []
+
+    cookbook_files.each do |file|
+      case # rubocop:disable Style/EmptyCaseCondition
+      when File.directory?(file)
+        next
+      when binary?(file)
+        binaries_found << file.gsub("#{work_dir}/", '')
+      when too_big?(file)
+        binaries_found << file.gsub("#{work_dir}/", '') + " (size > #{FILE_SIZE_LIMIT} bytes)"
+      end
+    end
+
+    binaries_found.join("\n")
+  end
+
+  #
   # Removes the unarchived directory returns nil if the directory
   # doesn't exist.
   #
@@ -77,5 +103,18 @@ class CookbookArtifact
       end
       saved_file
     end
+  end
+
+  def binary?(filepath)
+    begin
+      magic = FileMagic.new(FileMagic::MAGIC_MIME)
+      !(magic.file(filepath) =~ %r{^text\/})
+    ensure
+      magic.close
+    end
+  end
+
+  def too_big?(filepath)
+    File.size(filepath) > FILE_SIZE_LIMIT
   end
 end

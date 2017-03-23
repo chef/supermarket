@@ -16,6 +16,7 @@ end
 ruby_install node['build_cookbook']['ruby_version']
 
 %w(
+  libmagic-dev
   libpq-dev
   libsqlite3-dev
   nodejs

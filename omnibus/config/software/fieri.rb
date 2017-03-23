@@ -18,3 +18,5 @@ name "fieri"
 license :project_license
 
 source path: File.expand_path('../../../../src/fieri', project.filepath)
+
+dependency "file"

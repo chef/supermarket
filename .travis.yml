@@ -5,6 +5,7 @@ addons:
     packages:
     - libxslt1-dev
     - libxml2-dev
+    - libmagic-dev
 before_install:
 - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle config build.nokogiri --use-system-libraries
 before_script:
