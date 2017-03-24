@@ -108,7 +108,12 @@ class CookbookArtifact
   def binary?(filepath)
     begin
       magic = FileMagic.new(FileMagic::MAGIC_MIME)
-      !(magic.file(filepath) =~ %r{^text\/})
+      # This regex can go back to %r{^text\/} once we can run Ubuntu > 16.04
+      # in our CI environments
+      # need to check for application/xml explicitly because only versions of
+      # libmagic < 5.26 are available on Ubuntu 14.04 and 16.04 which are our
+      # CI (Travis and Automate) node platforms
+      !(magic.file(filepath) =~ %r{^(text\/|application\/xml)})
     ensure
       magic.close
     end
