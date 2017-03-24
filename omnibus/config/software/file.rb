@@ -18,8 +18,8 @@ name "file"
 
 dependency "zlib"
 
-default_version "5.24"
-version("5.24") { source sha256: "802cb3de2e49e88ef97cdcb52cd507a0f25458112752e398445cea102bc750ce" }
+default_version "5.30"
+version("5.30") { source sha256: "694c2432e5240187524c9e7cf1ec6acc77b47a0e19554d34c14773e43dbbf214" }
 
 license "custom"
 license_file "COPYING"
