@@ -42,6 +42,8 @@ class VersionTagWorker < SourceRepoWorker
 
   def tag_names(repo)
     octokit_client.tags(repo).map { |tag| tag['name'] }
+  rescue Octokit::NotFound
+    []
   end
 
   def give_feedback(failure_result)

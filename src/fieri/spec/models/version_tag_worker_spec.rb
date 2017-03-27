@@ -83,6 +83,22 @@ describe VersionTagWorker do
         end
       end
 
+      context 'but the repo declared in metadata does not exist' do
+        before do
+          allow(octokit).to receive(:tags).and_raise(Octokit::NotFound)
+        end
+
+        it 'posts a failing metric' do
+          vfw.perform(cookbook_json_response, cookbook_name, cookbook_version)
+
+          assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/version_tag_evaluation", times: 1) do |req|
+            expect(req.body).to include("cookbook_name=#{cookbook_name}")
+            expect(req.body).to include('version_tag_failure=true')
+            expect(req.body).to include('version_tag_feedback=Failure')
+          end
+        end
+      end
+
       context 'when the tag has a v in the version number' do
         let(:github_tag_present_response) { File.read('spec/support/github_version_tag_with_v_in_number.json') }
         let(:cookbook_version) { '2.9.14' }
