@@ -46,7 +46,7 @@ class CookbookArtifact
     tags = ENV['FIERI_FOODCRITIC_TAGS'] || ''
     fail_tags = ENV['FIERI_FOODCRITIC_FAIL_TAGS']
 
-    args = [work_dir, "-f #{fail_tags}"]
+    args = [work_dir, '--no-progress', "-f #{fail_tags}"]
     tags.split.each do |tag|
       args.push("-t #{tag}")
     end
