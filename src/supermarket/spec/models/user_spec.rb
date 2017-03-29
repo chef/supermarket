@@ -529,6 +529,12 @@ describe User do
       account = create(:account, username: 'superman', user: user, provider: 'chef_oauth2')
       expect(user.name).to eql('superman')
     end
+
+    it 'displays the username if first and last names are empty' do
+      user = create(:user, first_name: '', last_name: '', create_chef_account: false)
+      account = create(:account, username: 'superman', user: user, provider: 'chef_oauth2')
+      expect(user.name).to eql('superman')
+    end
   end
 
   describe '#update_install_preference' do
