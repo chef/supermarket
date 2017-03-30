@@ -30,10 +30,8 @@ build_iteration 1
 
 override :postgresql, version: '9.3.14'
 override :ruby, version: "2.4.1"
-override :git, version: "2.2.1"
-override :'chef-gem', version: '12.13.37'
-override :redis, version: '2.8.21'
-override :openssl, version: '1.0.2j'
+override :'chef-gem', version: '12.19.36'
+override :openssl, version: '1.0.2k'
 
 # Creates required build directories
 dependency "preparation"
