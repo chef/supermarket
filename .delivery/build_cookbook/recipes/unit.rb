@@ -54,7 +54,7 @@ ruby_execute "Tests for Supermarket" do
   command <<-CMD
 bundle install && \
 bundle exec rake db:create db:schema:load db:test:prepare && \
-bundle exec rspec --color --format documentation
+bundle exec rspec --color
 CMD
   cwd "#{delivery_workspace_repo}/src/supermarket"
   environment('BUNDLE_PATH' => gem_cache)
@@ -64,7 +64,7 @@ ruby_execute "Tests for Fieri" do
   version node['build_cookbook']['ruby_version']
   command <<-CMD
 bundle install && \
-bundle exec rspec --color --format documentation
+bundle exec rspec --color
 CMD
   cwd "#{delivery_workspace_repo}/src/fieri"
   environment('BUNDLE_PATH' => gem_cache)

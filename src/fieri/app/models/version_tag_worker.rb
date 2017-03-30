@@ -23,10 +23,8 @@ class VersionTagWorker < SourceRepoWorker
   def evaluate(cookbook_json, cookbook_version)
     repo = source_repo(cookbook_json)
 
-    if repo.nil?
-      # if no match for repo from #source_user_repo, fails metric
-      return true
-    end
+    # if no match for repo from #source_user_repo, fails metric
+    return true unless repo.present?
 
     tags = tag_names(repo)
 
