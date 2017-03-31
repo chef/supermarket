@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '~> 4.2'
   s.add_dependency 'sidekiq'
   s.add_dependency 'dotenv-rails'
-  s.add_dependency 'foodcritic', '~> 10.0'
+  s.add_dependency 'foodcritic', '~> 10.2'
   s.add_dependency 'mixlib-archive', '~> 0.4'
   s.add_dependency 'octokit'
   s.add_dependency 'ruby-filemagic'
