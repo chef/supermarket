@@ -22,10 +22,8 @@ class TestingFileWorker < SourceRepoWorker
   def evaluate(cookbook_json)
     repo = source_repo(cookbook_json)
 
-    if repo.nil?
-      # if no match for repo from #source_user_repo, fails metric
-      return true
-    end
+    # if no match for repo from #source_user_repo, fails metric
+    return true unless repo.present?
 
     begin
       octokit_client.contents(repo, path: 'TESTING.md')
