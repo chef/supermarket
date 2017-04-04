@@ -14,7 +14,7 @@ PATH
       dotenv-rails
       foodcritic (~> 10.2)
       mixlib-archive (~> 0.4)
-      octokit
+      octokit (~> 4.0)
       rails (~> 4.2)
       ruby-filemagic
       sidekiq
