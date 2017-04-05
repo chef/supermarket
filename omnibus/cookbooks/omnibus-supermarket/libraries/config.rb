@@ -4,6 +4,9 @@ require 'securerandom'
 # Manages configuration
 class Supermarket
   module Config
+    class IncompleteConfig < StandardError; end
+    class IncompatibleConfig < StandardError; end
+
     def self.load_or_create!(filename, node)
       create_directory!(filename)
       if File.exist?(filename)
@@ -53,6 +56,21 @@ class Supermarket
       end
 
       node.consume_attributes('supermarket' => secrets)
+    end
+
+    def self.audit_config(node)
+      required_s3_vars = %w(s3_bucket s3_access_key_id s3_secret_access_key s3_region).freeze
+      any_s3_settings = required_s3_vars.any? { |key| !(node[key].nil? || node[key].empty?) }
+      all_s3_settings = required_s3_vars.all? { |key| !(node[key].nil? || node[key].empty?) }
+
+      if any_s3_settings && !all_s3_settings
+        raise IncompleteConfig.new "Got some, but not all, of the required S3 configs. Must provide none or all of #{required_s3_vars} to configure cookbook storage in an S3 bucket."
+      end
+
+      if node['s3_bucket'] =~ /\./ &&
+         (node['s3_domain_style'] != ':s3_path_url' || node['s3_region'] != 'us-east-1')
+         raise IncompatibleConfig.new "Incompatible S3 bucket settings. If the bucket name contains periods, the bucket must be in us-east-1 and the domain style must be :s3_path_url.\nAmazon recommends against periods in bucket names. See: https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html"
+      end
     end
 
     # Take some node attributes and return them on each line as:
