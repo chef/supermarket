@@ -36,6 +36,43 @@ link "#{node['supermarket']['app_directory']}/.env.production" do
   to "#{node['supermarket']['var_directory']}/etc/env"
 end
 
+file "#{node['supermarket']['var_directory']}/etc/database.yml" do
+  content({
+    'production' => {
+      'adapter' => 'postgresql',
+      'database' => node['supermarket']['database']['name'],
+      'username' => node['supermarket']['database']['user'],
+      'password' => node['supermarket']['database']['password'],
+      'host' => node['supermarket']['database']['host'],
+      'port' => node['supermarket']['database']['port'],
+      'pool' => node['supermarket']['database']['pool'],
+    },
+  }.to_yaml)
+  owner node['supermarket']['user']
+  group node['supermarket']['group']
+  mode '0600'
+end
+
+link "#{node['supermarket']['app_directory']}/config/database.yml" do
+  to "#{node['supermarket']['var_directory']}/etc/database.yml"
+end
+
+# Ensure the db schema is owned by the supermarket user, so dumping the db
+# schema after migrate works
+file "#{node['supermarket']['app_directory']}/db/schema.rb" do
+  owner node['supermarket']['user']
+end
+
+execute 'database schema' do
+  command 'bundle exec rake db:migrate db:seed'
+  cwd node['supermarket']['app_directory']
+  environment({
+    'RAILS_ENV' => 'production',
+    'HOME' => node['supermarket']['app_directory']
+  })
+  user node['supermarket']['user']
+end
+
 # Cookbook data is uploaded to /opt/supermarket/embedded/service/supermarket/public/system
 directory node['supermarket']['data_directory'] do
   owner node['supermarket']['user']
