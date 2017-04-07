@@ -1,6 +1,6 @@
 describe 'omnibus-supermarket::config' do
   let(:chef_run) do
-    ChefSpec::SoloRunner.new do |node|
+    ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04') do |node|
       node.automatic['memory']['total'] = '16000MB'
     end.converge(described_recipe)
   end

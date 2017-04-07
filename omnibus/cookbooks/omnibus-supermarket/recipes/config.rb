@@ -34,6 +34,8 @@ Supermarket::Config.load_or_create_secrets!(
   node,
 )
 
+Supermarket::Config.audit_config(node['supermarket'])
+
 # Copy things we need from the supermarket namespace to the top level. This is
 # necessary for some community cookbooks.
 node.consume_attributes('runit' => node['supermarket']['runit'])

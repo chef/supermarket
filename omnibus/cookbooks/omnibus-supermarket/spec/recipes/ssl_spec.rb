@@ -25,11 +25,11 @@ describe 'omnibus-supermarket::ssl' do
   end
 
   shared_examples_for :create_certificates do
-    it 'creates /var/opt/supermarket/ssl/ca/chefspec.local.crt' do
+    it 'creates /var/opt/supermarket/ssl/ca/fauxhai.local.crt' do
       expect(chef_run).to create_x509_certificate(
-        '/var/opt/supermarket/ssl/ca/chefspec.local.crt'
+        '/var/opt/supermarket/ssl/ca/fauxhai.local.crt'
       ).with(
-        common_name: 'chefspec.local',
+        common_name: 'fauxhai.local',
         org: 'My Supermarket',
         org_unit: 'Operations',
         country: 'US',
@@ -59,7 +59,7 @@ describe 'omnibus-supermarket::ssl' do
   shared_examples_for :no_create_certificates do
     it 'does not create an x509 certificate' do
       expect(chef_run).not_to create_x509_certificate(
-        '/var/opt/supermarket/ssl/ca/chefspec.local.crt')
+        '/var/opt/supermarket/ssl/ca/fauxhai.local.crt')
     end
   end
 
@@ -77,9 +77,9 @@ describe 'omnibus-supermarket::ssl' do
   # - SSL disabled: Creates directories, does not create or link certificates
   # - With certificate location & SSL disabled: Tests that ssl disable
   #   supercedes supplied certificate behavior.
-  context 'When all attributes are default, on an unspecified platform:' do
+  context 'When all attributes are default, on a fauxhai\'d platform:' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new
+      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.automatic['memory']['total'] = '16000MB'
       runner.converge(described_recipe)
     end
@@ -90,25 +90,25 @@ describe 'omnibus-supermarket::ssl' do
 
     it 'sets the [\'supermarket\'][\'ssl\'] attributes correctly' do
       expect(chef_run.node['supermarket']['ssl']['certificate'])
-        .to eq('/var/opt/supermarket/ssl/ca/chefspec.local.crt')
+        .to eq('/var/opt/supermarket/ssl/ca/fauxhai.local.crt')
       expect(chef_run.node['supermarket']['ssl']['certificate_key'])
-        .to eq('/var/opt/supermarket/ssl/ca/chefspec.local.key')
+        .to eq('/var/opt/supermarket/ssl/ca/fauxhai.local.key')
       expect(chef_run.node['supermarket']['ssl']['ssl_dhparam'])
         .to eq('/var/opt/supermarket/ssl/ca/dhparams.pem')
     end
 
-    it 'links the CA cert to /var/opt/supermarket/ssl/ca/chefspec.local.crt' do
+    it 'links the CA cert to /var/opt/supermarket/ssl/ca/fauxhai.local.crt' do
       expect(chef_run).to create_link(
         '/var/opt/supermarket/ssl/cacert.pem'
       ).with(
-        to: '/var/opt/supermarket/ssl/ca/chefspec.local.crt'
+        to: '/var/opt/supermarket/ssl/ca/fauxhai.local.crt'
       )
     end
   end
 
-  context 'When a certificate is supplied, on an unspecified platform:' do
+  context 'When a certificate is supplied, on a fauxhai\'d platform:' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new
+      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.automatic['memory']['total'] = '16000MB'
       runner.node.normal['supermarket']['ssl']['certificate'] = '/etc/mycert.pem'
       runner.converge(described_recipe)
@@ -136,9 +136,9 @@ describe 'omnibus-supermarket::ssl' do
     end
   end
 
-  context 'when ssl is disabled, on an unspecified platform' do
+  context 'when ssl is disabled, on a fauxhai\'d platform' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new
+      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.automatic['memory']['total'] = '16000MB'
       runner.node.normal['supermarket']['ssl']['enabled'] = false
       runner.converge(described_recipe)
@@ -164,9 +164,9 @@ describe 'omnibus-supermarket::ssl' do
   end
 
   context 'when ssl is disabled & a certificate is supplied, ' \
-          'on an unspecified platform' do
+          'on a fauxhai\'d platform' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new
+      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.node.automatic['memory']['total'] = '16000MB'
       runner.node.normal['supermarket']['ssl']['enabled'] = false
       runner.node.normal['supermarket']['ssl']['certificate'] = '/etc/mycert.pem'

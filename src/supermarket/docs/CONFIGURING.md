@@ -105,6 +105,9 @@ the test suite.
   cookbook object itself, which may conflict with a bucket policy if you use one
   on your bucket.  If you wish to use a bucket policy, rather than an object policy,
   leave this variable as nil.
+* `S3_DOMAIN_STYLE` is used to specify what type of URL is used to access your s3 bucket.
+  The default is ':s3_domain_url', it will use domains that look like this: bucketname.s3.amazonaws.com.  This works across regions.
+  The alternative is ':s3_path_url', which will use this style s3.amazonaws.com/bucketname.  Unfortunately, this will only work if your S3 bucket is in N. Virginia.  If your s3 bucket name has dots in it (i.e. my.bucket.name), you must use ':s3_path_url' for your S3_DOMAIN_STYLE
 * `CDN_URL` Used to configure a CDN URL for use with Paperclip. Downloads
   will be aliased with this URL, something like `static.chef.io`.
 * `FIERI_URL` is the URL Supermarket will `POST` to for Cookbook evaluation when

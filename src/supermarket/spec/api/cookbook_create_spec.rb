@@ -107,13 +107,6 @@ describe 'POST /api/v1/cookbooks' do
     end
   end
 
-  context 'invalid content type headers are sent' do
-    it 'returns a descriptive error' do
-      share_cookbook('redis-test', user, content_type: 'application/snarfle')
-      expect(json_body['error_messages'].first).to eql('Tarball content type can not be application/snarfle.')
-    end
-  end
-
   context 'using integers for dependency versions' do
     before do
       share_cookbook('invalid-dependencies.tgz', user)

@@ -20,6 +20,10 @@ cache:
   directories:
   - "$TRAVIS_BUILD_DIR/src/$COMPONENT/vendor/bundle"
 env:
+  global:
+  - CAPYBARA_SCREENSHOT_TO_S3=true
+  - secure: zmBguz2BE0upyqhYJbr73wXVPkLO8Me1WisL4bh6B+HVAK6fCHSkdf/FGiiGz1h+HLF39K8DweNw7uPoyQfDxpN3E14MCUkk+jG7I+0IyT5istEsLeJXEBDp2sqgBYcPpCvw73Q4SGYsG2Uf+Ofz5ihKTw4zaxYGYkbuJ7UAs80=
+  - secure: RfOhiaSlkbK0x798woj4sASE0VM2gGn6tdUqkWLWeOYvlRT1wqWs8ZLrVALfpyDiutFyxSPFIALp1fObCBTzswOtBxAQXc347dqVbYmqH92VbTp+qSJO9+dOHIoGe9hrV89Fe73AeL85n2rXzPEXLSJoE3Ap4F8nAGbkpbSf/+M=
   matrix:
   - COMPONENT=supermarket
   - COMPONENT=fieri
