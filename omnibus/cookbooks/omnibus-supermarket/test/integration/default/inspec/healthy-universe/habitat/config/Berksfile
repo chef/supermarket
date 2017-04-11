@@ -1,0 +1,3 @@
+source '{{cfg.supermarket_url}}'
+
+cookbook '{{cfg.i_know_this_cookbook_exists}}'

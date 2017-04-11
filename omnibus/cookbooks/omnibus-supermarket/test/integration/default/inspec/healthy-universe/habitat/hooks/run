@@ -1,0 +1,11 @@
+#!/bin/sh
+
+exec 2>&1
+
+export HOME={{pkg.svc_var_path}}
+export PATH=${PATH}:$(hab pkg path core/ruby)/bin
+export SSL_CERT_FILE="$(hab pkg path core/cacerts)/ssl/certs/cacert.pem"
+
+cd {{pkg.svc_var_path}}
+rm -rf ./.berkshelf
+exec inspec exec --format doc {{pkg.svc_config_path}}/universe.rb
