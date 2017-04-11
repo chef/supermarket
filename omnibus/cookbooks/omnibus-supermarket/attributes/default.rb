@@ -61,7 +61,7 @@
 
 # The fully qualified domain name. Will use the node's fqdn if nothing is
 # specified.
-default['supermarket']['fqdn'] = node['fqdn'].downcase
+default['supermarket']['fqdn'] = (node['fqdn'] || node['hostname']).downcase
 
 # The URL for the Chef server. Used with the "Chef OAuth2 Settings" and
 # "Chef URL Settings" below. If this is not set, authentication and some of the
