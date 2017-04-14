@@ -75,10 +75,9 @@ describe CookbookArtifact do
     end
 
     describe '#criticize' do
-      it 'disables ~FC031 and ~FC045 by default' do
+      it 'disables ~FC031 by default' do
         feedback, _status = artifact.criticize
         expect(feedback).to_not match(/FC031/)
-        expect(feedback).to_not match(/FC045/)
       end
     end
   end
@@ -95,7 +94,7 @@ describe CookbookArtifact do
     end
 
     describe '#criticize' do
-      it 'disables ~FC031 and ~FC045 by default' do
+      it 'disables ~FC031 by default' do
         feedback, status = artifact.criticize
 
         expect(feedback).to match(/FC064/)
