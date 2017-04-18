@@ -68,6 +68,11 @@
           </a>
         </li>
         <% end %>
+        <% if cookbook.is?(:zlinux) %>
+          <li class="cookbook_badge_icon has-tip" title=""/>
+            <%= image_tag "badge-ibm-zlinux.svg", alt: "zLinux", title: "zLinux Supported", height: 16, width: 16, id: "zlinux_badge", class: "fa"  %>
+          </li>
+        <% end %>
       </ul>
       </div>
       <% end %>
