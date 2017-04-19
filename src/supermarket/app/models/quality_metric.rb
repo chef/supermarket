@@ -15,30 +15,30 @@ class QualityMetric < ActiveRecord::Base
   end
 
   def self.publish_metric
-    QualityMetric.where(name: 'Publish').first_or_create!(admin_only: true)
+    QualityMetric.where(name: 'Publish').first_or_create!
   end
 
   def self.license_metric
-    QualityMetric.where(name: 'License').first_or_create!(admin_only: true)
+    QualityMetric.where(name: 'License').first_or_create!
   end
 
   def self.supported_platforms_metric
-    QualityMetric.where(name: 'Supported Platforms').first_or_create!(admin_only: true)
+    QualityMetric.where(name: 'Supported Platforms').first_or_create!
   end
 
   def self.contributing_file_metric
-    QualityMetric.where(name: 'Contributing File').first_or_create!(admin_only: true)
+    QualityMetric.where(name: 'Contributing File').first_or_create!
   end
 
   def self.testing_file_metric
-    QualityMetric.where(name: 'Testing File').first_or_create!(admin_only: true)
+    QualityMetric.where(name: 'Testing File').first_or_create!
   end
 
   def self.version_tag_metric
-    QualityMetric.where(name: 'Version Tag').first_or_create!(admin_only: true)
+    QualityMetric.where(name: 'Version Tag').first_or_create!
   end
 
   def self.no_binaries_metric
-    QualityMetric.where(name: 'No Binaries').first_or_create!(admin_only: true)
+    QualityMetric.where(name: 'No Binaries').first_or_create!
   end
 end
