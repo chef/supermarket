@@ -2,13 +2,13 @@ QualityMetric.reset_column_information
 
 QualityMetric.where(name: 'Foodcritic').first_or_create!
 QualityMetric.where(name: 'Collaborator Number').first_or_create!
-QualityMetric.where(name: 'Publish').first_or_create!(admin_only: true)
-QualityMetric.where(name: 'License').first_or_create!(admin_only: true)
-QualityMetric.where(name: 'Supported Platforms').first_or_create!(admin_only: true)
-QualityMetric.where(name: 'Contributing File').first_or_create!(admin_only: true)
-QualityMetric.where(name: 'Testing File').first_or_create!(admin_only: true)
-QualityMetric.where(name: 'Version Tag').first_or_create!(admin_only: true)
-QualityMetric.where(name: 'No Binaries').first_or_create!(admin_only: true)
+QualityMetric.where(name: 'Publish').first_or_create!
+QualityMetric.where(name: 'License').first_or_create!
+QualityMetric.where(name: 'Supported Platforms').first_or_create!
+QualityMetric.where(name: 'Contributing File').first_or_create!
+QualityMetric.where(name: 'Testing File').first_or_create!
+QualityMetric.where(name: 'Version Tag').first_or_create!
+QualityMetric.where(name: 'No Binaries').first_or_create!
 
 #
 # The Default ICLA Document
