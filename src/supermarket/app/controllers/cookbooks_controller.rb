@@ -86,8 +86,8 @@ class CookbooksController < ApplicationController
     @collaborators = @cookbook.collaborators
     @supported_platforms = @cookbook.supported_platforms
 
-    @public_metric_results = @latest_version.metric_results.open
-    @admin_metric_results = @latest_version.metric_results.admin_only
+    @public_metric_results = @latest_version.metric_results.open.sorted_by_name
+    @admin_metric_results = @latest_version.metric_results.admin_only.sorted_by_name
 
     respond_to do |format|
       format.atom

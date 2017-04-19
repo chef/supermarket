@@ -26,8 +26,8 @@ class CookbookVersionsController < ApplicationController
     @supported_platforms = @version.supported_platforms
     @owner_collaborator = Collaborator.new resourceable: @cookbook, user: @owner
 
-    @public_metric_results = @version.metric_results.open
-    @admin_metric_results = @version.metric_results.admin_only
+    @public_metric_results = @version.metric_results.open.sorted_by_name
+    @admin_metric_results = @version.metric_results.admin_only.sorted_by_name
   end
 
   private
