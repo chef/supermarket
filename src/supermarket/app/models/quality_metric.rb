@@ -6,6 +6,26 @@ class QualityMetric < ActiveRecord::Base
 
   validates :name, uniqueness: true
 
+  def self.flip_public
+    update_all(admin_only: false)
+    all
+  end
+
+  def self.flip_admin_only
+    update_all(admin_only: true)
+    all
+  end
+
+  def flip_public
+    self.admin_only = false
+    save
+  end
+
+  def flip_admin_only
+    self.admin_only = true
+    save
+  end
+
   def self.foodcritic_metric
     QualityMetric.where(name: 'Foodcritic').first_or_create!
   end
