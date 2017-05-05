@@ -86,15 +86,29 @@
         <p>Your Supermarket key is the same as your key on the associated Chef
            Server. You can change your credentials or keys by logging into
            <a href="<%= chef_oauth2_url %>">this Supermarket's Chef Server</a>.</p>
-        <p>Current key fingerprint for this Supermarket is:</p>
-        <p><pre class="install"><%= current_user.public_key_signature %></pre></p>
-        <p>This fingerprint should match the fingerprint of the private key you
-           have configured in knife. Check with:</p>
-        <p><pre class="install">openssl rsa -in your/private_key.pem -pubout -outform DER | openssl md5 -c</pre></p>
-        <p>If the signatures do not match, it could be that you have a newer key
-           on the Chef Server than the one known by Supermarket. Supermarket can
-           get the latest key if you log out of Supermarket and then log back in
-           to trigger an account refresh between the systems.</p>
+        <% if current_user.public_key_signature -%>
+          <p>Current key fingerprint for this Supermarket is:</p>
+          <p><pre class="install"><%= current_user.public_key_signature %></pre></p>
+          <p>This fingerprint should match the fingerprint of the private key you
+             have configured in knife. Check with:</p>
+          <p><pre class="install">openssl rsa -in your/private_key.pem -pubout -outform DER | openssl md5 -c</pre></p>
+          <p>If the signatures do not match, it could be that you have a newer key
+             on the Chef Server than the one known by Supermarket. Supermarket can
+             get the latest key if you log out of Supermarket and then log back in
+             to trigger an account refresh between the systems.</p>
+        <% else -%>
+          <p><i class="fa fa-warning"></i> The account information from
+             <a href="<%= chef_oauth2_url %>">the associated Chef Server</a>
+             does not appear to contain a public key. Try logging out of
+             Supermarket and logging back in. If your key still does not appear
+             here, there is probably an issue with the authentication services
+             between Supermarket and the Chef Server. Check
+             <a href="http://status.chef.io/">status.chef.io</a> for service
+             alerts or for private Supermarkets contact support. You will not be
+             able to use Supermarket clients (e.g. knife supermarket or stove)
+             to publish cookbooks until a public key is associated with your
+             account.</p>
+        <% end -%>
       </div>
     </div>
   </div>
