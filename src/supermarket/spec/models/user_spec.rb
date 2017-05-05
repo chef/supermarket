@@ -559,10 +559,14 @@ describe User do
   end
 
   describe '#public_key_signature' do
-    let(:user) { create(:user, public_key: File.read('spec/support/key_fixtures/valid_public_key.pub')) }
-
     it 'returns the hex MD5 hash of the DER form of the user\'s public key' do
+      user = create(:user, public_key: File.read('spec/support/key_fixtures/valid_public_key.pub'))
       expect(user.public_key_signature).to eq("0f:d2:d4:d9:76:14:ab:8e:bd:67:87:d5:d6:a7:24:29")
+    end
+
+    it 'returns nil if there is no public key on the user\'s account' do
+      user = create(:user, public_key: nil)
+      expect(user.public_key_signature).to be_nil
     end
   end
 end
