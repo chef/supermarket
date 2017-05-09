@@ -36,10 +36,6 @@ override :'chef-gem', version: '12.13.37'
 override :redis, version: '2.8.21'
 override :openssl, version: '1.0.2j'
 
-# pin berks to keep net-ssh at 2.9.2 as expected by Supermarket
-# chef, net-ssh, berks and rspec have gotten tangled
-override :berkshelf, version: 'a05e39202aebbb239e887a479c984b23167b5925'
-
 # Creates required build directories
 dependency "preparation"
 
