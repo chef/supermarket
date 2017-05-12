@@ -478,8 +478,8 @@ GEM
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
     semverse (1.2.1)
-    sentry-raven (0.13.3)
-      faraday (>= 0.7.6)
+    sentry-raven (2.4.0)
+      faraday (>= 0.7.6, < 1.0)
     sequel (4.15.0)
     sexp_processor (4.6.0)
     shellany (0.0.1)
@@ -617,7 +617,7 @@ DEPENDENCIES
   sass-globbing
   sass-rails (~> 4.0.4)
   semverse
-  sentry-raven (~> 0.13.3)
+  sentry-raven
   shoulda-matchers (~> 2.8)
   sidekiq (~> 4.0)
   sidetiq (~> 0.7)
