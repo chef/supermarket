@@ -1,6 +1,6 @@
 require 'active_model/validations/chef_version_constraint_validator'
 
-class SupportedPlatform < ActiveRecord::Base
+class SupportedPlatform < ApplicationRecord
   include SeriousErrors
 
   # Associations

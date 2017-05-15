@@ -1,4 +1,4 @@
-class Cookbook < ActiveRecord::Base
+class Cookbook < ApplicationRecord
   include PgSearch
   include Badgeable
   extend Badgeable::ClassMethods

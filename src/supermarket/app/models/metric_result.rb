@@ -1,4 +1,4 @@
-class MetricResult < ActiveRecord::Base
+class MetricResult < ApplicationRecord
   belongs_to :cookbook_version
   belongs_to :quality_metric
 

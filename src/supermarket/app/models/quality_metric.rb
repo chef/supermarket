@@ -1,4 +1,4 @@
-class QualityMetric < ActiveRecord::Base
+class QualityMetric < ApplicationRecord
   has_many :metric_results
 
   scope :open, -> { where(admin_only: false) }

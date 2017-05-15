@@ -1,4 +1,4 @@
-class OwnershipTransferRequest < ActiveRecord::Base
+class OwnershipTransferRequest < ApplicationRecord
   include Tokenable
 
   # Associations

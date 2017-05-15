@@ -1,4 +1,4 @@
-class Hit < ActiveRecord::Base
+class Hit < ApplicationRecord
   validates :label, presence: true
   validates :total,
             presence: true,

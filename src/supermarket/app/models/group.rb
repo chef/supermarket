@@ -1,4 +1,4 @@
-class Group < ActiveRecord::Base
+class Group < ApplicationRecord
   include PgSearch
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   has_many :group_members

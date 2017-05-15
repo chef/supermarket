@@ -1,4 +1,4 @@
-class Collaborator < ActiveRecord::Base # Associations
+class Collaborator < ApplicationRecord # Associations
   # Associations
   # --------------------
   belongs_to :resourceable, polymorphic: true

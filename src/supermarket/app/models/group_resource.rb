@@ -1,4 +1,4 @@
-class GroupResource < ActiveRecord::Base
+class GroupResource < ApplicationRecord
   belongs_to :group
   belongs_to :resourceable, polymorphic: true
 

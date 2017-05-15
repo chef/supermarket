@@ -1,4 +1,4 @@
-class Category < ActiveRecord::Base
+class Category < ApplicationRecord
   scope :with_name, ->(name) { where(name: name.titleize) }
 
   # Callbacks

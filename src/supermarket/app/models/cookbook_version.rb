@@ -1,4 +1,4 @@
-class CookbookVersion < ActiveRecord::Base
+class CookbookVersion < ApplicationRecord
   include SeriousErrors
 
   # Associations
