@@ -46,27 +46,27 @@ describe CookbooksController do
 
       it 'orders @cookbooks by updated at' do
         cookbook_2.touch
-        get :index, order: 'recently_updated'
+        get :index, params: { order: 'recently_updated' }
         expect(assigns[:cookbooks].first).to eql(cookbook_2)
       end
 
       it 'orders @cookbooks with the most recently created first' do
-        get :index, order: 'recently_added'
+        get :index, params: { order: 'recently_added' }
         expect(assigns[:cookbooks].first).to eql(cookbook_2)
       end
 
       it 'orders @cookbooks by their download count' do
-        get :index, order: 'most_followed'
+        get :index, params: { order: 'most_followed' }
         expect(assigns[:cookbooks].first).to eql(cookbook_1)
       end
 
       it 'orders @cookbooks by download_followers_count' do
-        get :index, order: 'most_downloaded'
+        get :index, params: { order: 'most_downloaded' }
         expect(assigns[:cookbooks].first).to eql(cookbook_1)
       end
 
       it 'correctly orders @cookbooks when also searching' do
-        get :index, order: 'most_followed', q: 'mysql'
+        get :index, params: { order: 'most_followed', q: 'mysql' }
         expect(assigns[:cookbooks].first).to eql(cookbook_1)
       end
     end
@@ -76,7 +76,7 @@ describe CookbooksController do
       let!(:unfeatured) { create(:cookbook, featured: false) }
 
       it 'only returns @cookbooks that are featured' do
-        get :index, featured: true
+        get :index, params: { featured: true }
 
         expect(assigns[:cookbooks]).to include(featured)
         expect(assigns[:cookbooks]).to_not include(unfeatured)
@@ -101,7 +101,7 @@ describe CookbooksController do
       end
 
       it 'only returns @cookbooks that match the query parameter' do
-        get :index, q: 'amazing'
+        get :index, params: { q: 'amazing' }
 
         expect(assigns[:cookbooks]).to include(amazing_cookbook)
         expect(assigns[:cookbooks]).to_not include(ok_cookbook)
@@ -149,24 +149,24 @@ describe CookbooksController do
       end
 
       it 'returns @cookbooks that support some of given platforms' do
-        get :index, platforms: %w(ubuntu windows)
+        get :index, params: { platforms: %w(ubuntu windows) }
         expect(assigns[:cookbooks]).to include(erlang)
         expect(assigns[:cookbooks]).to include(ruby)
       end
 
       it 'does not return @cookbooks that does not support any of given platforms' do
-        get :index, platforms: %w(windows)
+        get :index, params: { platforms: %w(windows) }
         expect(assigns[:cookbooks]).not_to include(erlang)
       end
 
       it 'returns all @cookbooks if only blank platform is given' do
-        get :index, platforms: ['']
+        get :index, params: { platforms: [''] }
         expect(assigns[:cookbooks]).to include(erlang)
         expect(assigns[:cookbooks]).to include(ruby)
       end
 
       it 'works correctly with search' do
-        get :index, q: 'ruby', platforms: %w(debian)
+        get :index, params: { q: 'ruby', platforms: %w(debian) }
         expect(assigns[:cookbooks]).to include(ruby)
         expect(assigns[:cookbooks]).not_to include(erlang)
       end
@@ -175,7 +175,7 @@ describe CookbooksController do
         erlang.update_attributes(web_download_count: 10, api_download_count: 100)
         ruby.update_attributes(web_download_count: 5, api_download_count: 101)
 
-        get :index, order: 'most_downloaded', platforms: %w(debian)
+        get :index, params: { order: 'most_downloaded', platforms: %w(debian) }
         expect(assigns[:cookbooks][0]).to eql(erlang)
         expect(assigns[:cookbooks][1]).to eql(ruby)
       end
@@ -187,23 +187,23 @@ describe CookbooksController do
       let!(:unknown_cookbook) { create(:cookbook, name: 'could_be_good_i_dunno') }
 
       it 'returns cookbooks with badges' do
-        get :index, badges: %w(partner)
+        get :index, params: { badges: %w(partner) }
         expect(assigns[:cookbooks]).to include(awesome_cookbook)
       end
 
       it 'does not return cookbooks without badges' do
-        get :index, badges: %w(partner)
+        get :index, params: { badges: %w(partner) }
         expect(assigns[:cookbooks]).not_to include(unknown_cookbook)
       end
 
       it 'returns all cookbooks if not badges are given' do
-        get :index, badges: ''
+        get :index, params: { badges: '' }
         expect(assigns[:cookbooks]).to include(awesome_cookbook)
         expect(assigns[:cookbooks]).to include(unknown_cookbook)
       end
 
       it 'works correctly with search' do
-        get :index, q: 'sauce', badges: %w(partner)
+        get :index, params: { q: 'sauce', badges: %w(partner) }
         expect(assigns[:cookbooks]).to include(awesome_cookbook)
         expect(assigns[:cookbooks]).not_to include(but_not_saucy)
       end
@@ -212,7 +212,7 @@ describe CookbooksController do
         awesome_cookbook.update_attributes(web_download_count: 10, api_download_count: 100)
         but_not_saucy.update_attributes(web_download_count: 5, api_download_count: 101)
 
-        get :index, order: 'most_downloaded', badges: %w(partner)
+        get :index, params: { order: 'most_downloaded', badges: %w(partner) }
         expect(assigns[:cookbooks][0]).to eql(awesome_cookbook)
         expect(assigns[:cookbooks][1]).to eql(but_not_saucy)
       end
@@ -224,21 +224,21 @@ describe CookbooksController do
     let(:cookbook) { create(:cookbook) }
 
     it 'requires authentication' do
-      post :adoption, id: cookbook
+      post :adoption, params: { id: cookbook }
       expect(response).to redirect_to(sign_in_url)
     end
 
     it 'sends an adoption email to the cookbook owner' do
       sign_in user
       Sidekiq::Testing.inline! do
-        post :adoption, id: cookbook
+        post :adoption, params: { id: cookbook }
         expect(ActionMailer::Base.deliveries.map(&:to).flatten).to include(cookbook.owner.email)
       end
     end
 
     it 'redirects to the @cookbook' do
       sign_in user
-      post :adoption, id: cookbook
+      post :adoption, params: { id: cookbook }
       expect(response).to redirect_to(assigns[:cookbook])
     end
   end
@@ -265,11 +265,11 @@ describe CookbooksController do
 
     context 'the params are valid' do
       it 'updates the cookbook' do
-        patch :update, id: cookbook, cookbook: {
+        patch :update, params: { id: cookbook, cookbook: {
           source_url: 'http://example.com/cookbook',
           issues_url: 'http://example.com/cookbook/issues',
           up_for_adoption: true
-        }
+        } }
 
         cookbook.reload
 
@@ -281,20 +281,20 @@ describe CookbooksController do
       it 'sends an adoption email to cookbook followers' do
         cookbook.reload
         Sidekiq::Testing.inline! do
-          patch :update, id: cookbook, cookbook: {
+          patch :update, params: { id: cookbook, cookbook: {
             source_url: 'http://example.com/cookbook',
             issues_url: 'http://example.com/cookbook/issues',
             up_for_adoption: 'true'
-          }
+          } }
           expect(ActionMailer::Base.deliveries.map(&:to).flatten).to include(cookbook_follower.user.email)
         end
       end
 
       it 'redirects to @cookbook'  do
-        patch :update, id: cookbook, cookbook: {
+        patch :update, params: { id: cookbook, cookbook: {
           source_url: 'http://example.com/cookbook',
           issues_url: 'http://example.com/cookbook/issues'
-        }
+        } }
 
         expect(response).to redirect_to(assigns[:cookbook])
       end
@@ -303,12 +303,12 @@ describe CookbooksController do
     context 'the params are invalid' do
       it "doesn't update the cookbook" do
         expect do
-          patch :update, id: cookbook, cookbook: { source_url: 'some-invalid-url' }
+          patch :update, params: { id: cookbook, cookbook: { source_url: 'some-invalid-url' } }
         end.to_not change(cookbook, :source_url)
       end
 
       it 'redirects to @cookbook' do
-        patch :update, id: cookbook, cookbook: { source_url: 'some-invalid-url' }
+        patch :update, params: { id: cookbook, cookbook: { source_url: 'some-invalid-url' } }
 
         expect(response).to redirect_to(assigns[:cookbook])
       end
@@ -422,44 +422,44 @@ describe CookbooksController do
     let(:cookbook) { create(:cookbook, owner: hank) }
 
     it 'renders the show template' do
-      get :show, id: cookbook.name
+      get :show, params: { id: cookbook.name }
 
       expect(response).to render_template('show')
     end
 
     it 'renders an atom feed of cookbook versions' do
-      get :show, id: cookbook.name, format: :atom
+      get :show, params: { id: cookbook.name, format: :atom }
 
       expect(response).to render_template('show')
     end
 
     it 'sends the cookbook to the view' do
-      get :show, id: cookbook.name
+      get :show, params: { id: cookbook.name }
 
       expect(assigns(:cookbook)).to eql(cookbook)
     end
 
     it 'sends the latest cookbook version to the view' do
       version = create(:cookbook_version, cookbook: cookbook)
-      get :show, id: cookbook.name
+      get :show, params: { id: cookbook.name }
 
       expect(assigns(:latest_version)).to eql(version)
     end
 
     it 'sends all cookbook versions to the view' do
-      get :show, id: cookbook.name
+      get :show, params: { id: cookbook.name }
 
       expect(assigns(:cookbook_versions)).to_not be_empty
     end
 
     it 'sends the collaborators to the view' do
-      get :show, id: cookbook.name
+      get :show, params: { id: cookbook.name }
 
       expect(assigns(:collaborators)).to_not be_nil
     end
 
     it 'sends the supported platforms to the view' do
-      get :show, id: cookbook.name
+      get :show, params: { id: cookbook.name }
 
       expect(assigns(:supported_platforms)).to_not be_nil
     end
@@ -502,31 +502,31 @@ describe CookbooksController do
 
       context 'public metrics' do
         it 'sends the public metrics results to the view' do
-          get :show, id: cookbook.name
+          get :show, params: { id: cookbook.name }
           expect(assigns(:public_metric_results)).to include(foodcritic_result, collab_result)
         end
 
         it 'does not include admin only metrics' do
-          get :show, id: cookbook.name
+          get :show, params: { id: cookbook.name }
           expect(assigns(:public_metric_results)).to_not include(publish_result)
         end
       end
 
       context 'admin only metrics' do
         it 'sends the admin only metrics to the view' do
-          get :show, id: cookbook.name
+          get :show, params: { id: cookbook.name }
           expect(assigns(:admin_metric_results)).to include(publish_result)
         end
 
         it 'does not include the public metrics' do
-          get :show, id: cookbook.name
+          get :show, params: { id: cookbook.name }
           expect(assigns(:admin_metric_results)).to_not include(foodcritic_result, collab_result)
         end
       end
     end
 
     it '404s when the cookbook does not exist' do
-      get :show, id: 'snarfle'
+      get :show, params: { id: 'snarfle' }
 
       expect(response.status.to_i).to eql(404)
     end
@@ -540,14 +540,14 @@ describe CookbooksController do
     it '302s to the cookbook version download  path' do
       version = create(:cookbook_version, cookbook: cookbook)
 
-      get :download, id: cookbook.name
+      get :download, params: { id: cookbook.name }
 
       expect(response).to redirect_to(cookbook_version_download_url(cookbook, version))
       expect(response.status.to_i).to eql(302)
     end
 
     it '404s when the cookbook does not exist' do
-      get :download, id: 'snarfle'
+      get :download, params: { id: 'snarfle' }
 
       expect(response.status.to_i).to eql(404)
     end
@@ -561,24 +561,24 @@ describe CookbooksController do
 
       it 'should add a follower' do
         expect do
-          put :follow, id: cookbook
+          put :follow, params: { id: cookbook }
         end.to change(cookbook.cookbook_followers, :count).by(1)
       end
 
       it 'returns a 200' do
-        put :follow, id: cookbook
+        put :follow, params: { id: cookbook }
 
         expect(response.status.to_i).to eql(200)
       end
 
       it 'renders the show follow button partial' do
-        put :follow, id: cookbook
+        put :follow, params: { id: cookbook }
 
         expect(response).to render_template('cookbooks/_follow_button_show')
       end
 
       it 'renders the list follow button partial if the list param is present' do
-        put :follow, id: cookbook, list: true
+        put :follow, params: { id: cookbook, list: true }
 
         expect(response).to render_template('cookbooks/_follow_button_list')
       end
@@ -586,7 +586,7 @@ describe CookbooksController do
 
     context 'a user is not signed in' do
       it 'redirects to user sign in' do
-        put :follow, id: cookbook
+        put :follow, params: { id: cookbook }
 
         expect(response).to redirect_to(sign_in_path)
       end
@@ -596,7 +596,7 @@ describe CookbooksController do
       before { sign_in create(:user) }
 
       it 'returns a 404' do
-        put :follow, id: 'snarfle'
+        put :follow, params: { id: 'snarfle' }
 
         expect(response.status.to_i).to eql(404)
       end
@@ -615,24 +615,24 @@ describe CookbooksController do
 
       it 'should remove follower' do
         expect do
-          delete :unfollow, id: cookbook
+          delete :unfollow, params: { id: cookbook }
         end.to change(cookbook.cookbook_followers, :count).by(-1)
       end
 
       it 'redirects 200' do
-        delete :follow, id: cookbook
+        delete :follow, params: { id: cookbook }
 
         expect(response.status.to_i).to eql(200)
       end
 
       it 'renders the show follow button partial' do
-        delete :follow, id: cookbook
+        delete :follow, params: { id: cookbook }
 
         expect(response).to render_template('cookbooks/_follow_button_show')
       end
 
       it 'renders the list follow button partial if the list param is present' do
-        put :follow, id: cookbook, list: true
+        put :follow, params: { id: cookbook, list: true }
 
         expect(response).to render_template('cookbooks/_follow_button_list')
       end
@@ -643,12 +643,12 @@ describe CookbooksController do
 
       it 'should not remove a follower'  do
         expect do
-          delete :unfollow, id: cookbook
+          delete :unfollow, params: { id: cookbook }
         end.to_not change(cookbook.cookbook_followers, :count)
       end
 
       it 'returns a 404' do
-        delete :unfollow, id: cookbook
+        delete :unfollow, params: { id: cookbook }
 
         expect(response.status.to_i).to eql(404)
       end
@@ -668,13 +668,9 @@ describe CookbooksController do
         end
 
         it 'deprecates the cookbook and sets the replacement' do
-          put(
-            :deprecate,
-            id: cookbook,
-            cookbook: {
+          put(:deprecate, params: { id: cookbook, cookbook: {
               replacement: ''
-            }
-          )
+            } })
 
           cookbook.reload
 
@@ -683,13 +679,9 @@ describe CookbooksController do
         end
 
         it 'redirects back to the cookbook w/ success notice' do
-          put(
-            :deprecate,
-            id: cookbook,
-            cookbook: {
+          put(:deprecate, params: { id: cookbook, cookbook: {
               replacement: ''
-            }
-          )
+            } })
 
           expect(response).to redirect_to(cookbook)
 
@@ -703,13 +695,9 @@ describe CookbooksController do
 
         it 'starts the cookbook deprecated notifier worker' do
           expect do
-            put(
-              :deprecate,
-              id: cookbook,
-              cookbook: {
+            put(:deprecate, params: { id: cookbook, cookbook: {
                 replacement: ''
-              }
-            )
+              } })
           end.to change(CookbookDeprecatedNotifier.jobs, :size).by(1)
         end
       end
@@ -720,13 +708,9 @@ describe CookbooksController do
         end
 
         it 'deprecates the cookbook and sets the replacement' do
-          put(
-            :deprecate,
-            id: cookbook,
-            cookbook: {
+          put(:deprecate, params: { id: cookbook, cookbook: {
               replacement: replacement_cookbook.name
-            }
-          )
+            } })
 
           cookbook.reload
 
@@ -735,13 +719,9 @@ describe CookbooksController do
         end
 
         it 'redirects back to the cookbook w/ success notice' do
-          put(
-            :deprecate,
-            id: cookbook,
-            cookbook: {
+          put(:deprecate, params: { id: cookbook, cookbook: {
               replacement: replacement_cookbook.name
-            }
-          )
+            } })
 
           expect(response).to redirect_to(cookbook)
 
@@ -755,13 +735,9 @@ describe CookbooksController do
 
         it 'starts the cookbook deprecated notifier worker' do
           expect do
-            put(
-              :deprecate,
-              id: cookbook,
-              cookbook: {
+            put(:deprecate, params: { id: cookbook, cookbook: {
                 replacement: replacement_cookbook
-              }
-            )
+              } })
           end.to change(CookbookDeprecatedNotifier.jobs, :size).by(1)
         end
       end
@@ -773,13 +749,9 @@ describe CookbooksController do
         end
 
         it 'fails to deprecate and set replacement' do
-          put(
-            :deprecate,
-            id: cookbook,
-            cookbook: {
+          put(:deprecate, params: { id: cookbook, cookbook: {
               replacement: deprecated_cookbook
-            }
-          )
+            } })
 
           cookbook.reload
 
@@ -788,13 +760,9 @@ describe CookbooksController do
         end
 
         it 'redirects back to the cookbook w/ an error notice' do
-          put(
-            :deprecate,
-            id: cookbook,
-            cookbook: {
+          put(:deprecate, params: { id: cookbook, cookbook: {
               replacement: deprecated_cookbook
-            }
-          )
+            } })
 
           expect(response).to redirect_to(cookbook)
           expect(flash[:notice]).
@@ -807,13 +775,9 @@ describe CookbooksController do
       before { sign_in(create(:user)) }
 
       it 'returns a 404' do
-        put(
-          :deprecate,
-          id: cookbook,
-          cookbook: {
+        put(:deprecate, params: { id: cookbook, cookbook: {
             replacement: replacement_cookbook
-          }
-        )
+          } })
 
         expect(response.status.to_i).to eql(404)
       end
@@ -832,19 +796,19 @@ describe CookbooksController do
     before { sign_in(user) }
 
     it 'unsets a cookbook as deprecated' do
-      delete :undeprecate, id: cookbook
+      delete :undeprecate, params: { id: cookbook }
 
       expect(cookbook.reload.deprecated).to be false
     end
 
     it 'sets a cookbooks replacement to nil' do
-      delete :undeprecate, id: cookbook
+      delete :undeprecate, params: { id: cookbook }
 
       expect(cookbook.reload.replacement).to be_nil
     end
 
     it 'redirects back to the cookbook' do
-      delete :undeprecate, id: cookbook
+      delete :undeprecate, params: { id: cookbook }
 
       expect(response).to redirect_to(cookbook)
     end
@@ -852,7 +816,7 @@ describe CookbooksController do
     it '404s if the user is not authorized to undeprecate the cookbook' do
       sign_in(create(:user))
 
-      delete :undeprecate, id: cookbook
+      delete :undeprecate, params: { id: cookbook }
 
       expect(response.status.to_i).to eql(404)
     end
@@ -865,21 +829,21 @@ describe CookbooksController do
     before { sign_in(admin) }
 
     it 'sets a cookbook as featured if it is not already featured' do
-      put :toggle_featured, id: unfeatured
+      put :toggle_featured, params: { id: unfeatured }
 
       unfeatured.reload
       expect(unfeatured.featured).to eql(true)
     end
 
     it 'sets a cookbook as not featured if it is already featured' do
-      put :toggle_featured, id: featured
+      put :toggle_featured, params: { id: featured }
 
       featured.reload
       expect(featured.featured).to eql(false)
     end
 
     it 'redirects back to the cookbook' do
-      put :toggle_featured, id: unfeatured
+      put :toggle_featured, params: { id: unfeatured }
 
       expect(response).to redirect_to(unfeatured)
     end
@@ -887,7 +851,7 @@ describe CookbooksController do
     it '404s if the user is not authorized to feature/unfeature a cookbook' do
       sign_in(create(:user))
 
-      put :toggle_featured, id: unfeatured
+      put :toggle_featured, params: { id: unfeatured }
 
       expect(response.status.to_i).to eql(404)
     end
@@ -897,25 +861,25 @@ describe CookbooksController do
     let!(:postgresql) { create(:cookbook, name: 'postgresql') }
 
     it 'responds with a 200' do
-      get :deprecate_search, id: postgresql, q: 'postgresql', format: :json
+      get :deprecate_search, params: { id: postgresql, q: 'postgresql', format: :json }
 
       expect(response.status.to_i).to eql(200)
     end
 
     it 'responds with JSON' do
-      get :deprecate_search, id: postgresql, q: 'postgresql', format: :json
+      get :deprecate_search, params: { id: postgresql, q: 'postgresql', format: :json }
 
       expect(response.content_type).to eql('application/json')
     end
 
     it 'assigns results' do
-      get :deprecate_search, id: postgresql, q: 'postgresql', format: :json
+      get :deprecate_search, params: { id: postgresql, q: 'postgresql', format: :json }
 
       expect(assigns[:results]).to_not be_nil
     end
 
     it 'defaults q to nil if not passed in' do
-      get :deprecate_search, id: postgresql, format: :json
+      get :deprecate_search, params: { id: postgresql, format: :json }
 
       expect(response.status.to_i).to eql(200)
     end

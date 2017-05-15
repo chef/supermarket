@@ -18,7 +18,7 @@ describe ToolsController do
       knife_plugin = create(:tool, type: 'knife_plugin')
       ohai_plugin = create(:tool, type: 'ohai_plugin')
 
-      get :index, type: 'knife_plugin'
+      get :index, params: { type: 'knife_plugin' }
 
       expect(assigns(:tools)).to include(knife_plugin)
       expect(assigns(:tools)).to_not include(ohai_plugin)
@@ -37,7 +37,7 @@ describe ToolsController do
       supermarket = create(:tool, created_at: 1.day.ago)
       ohai = create(:tool, created_at: 10.days.ago)
 
-      get :index, order: 'created_at'
+      get :index, params: { order: 'created_at' }
 
       expect(assigns[:tools]).to match_array([supermarket, ohai])
     end
@@ -46,7 +46,7 @@ describe ToolsController do
       ohai = create(:tool, name: 'ohai')
       supermarket = create(:tool, name: 'supermarket')
 
-      get :index, q: 'supermarket'
+      get :index, params: { q: 'supermarket' }
 
       expect(assigns[:tools]).to include(supermarket)
       expect(assigns[:tools]).to_not include(ohai)
@@ -64,7 +64,7 @@ describe ToolsController do
     context 'when the tool exists' do
       let(:tool) { create(:tool) }
 
-      before { get :show, id: tool }
+      before { get :show, params: { id: tool } }
 
       it 'responds with a 200' do
         expect(response).to be_success
@@ -81,7 +81,7 @@ describe ToolsController do
 
     context 'when the tool does not exist' do
       it '404s' do
-        get :show, id: 'dorfle'
+        get :show, params: { id: 'dorfle' }
 
         expect(response.status.to_i).to eql(404)
       end
@@ -120,39 +120,33 @@ describe ToolsController do
     end
 
     it 'assigns user' do
-      post :create, tool: { name: 'butter' }
+      post :create, params: { tool: { name: 'butter' } }
 
       expect(assigns(:user)).to_not be_nil
     end
 
     it 'creates a tool' do
       expect do
-        post(
-          :create,
-          tool: {
+        post(:create, params: { tool: {
             name: 'butter',
             slug: 'butter',
             type: 'ohai_plugin',
             description: 'Great plugin.',
             source_url: 'http://example.com',
             instructions: 'Use with care'
-          }
-        )
+          } })
       end.to change { Tool.count }.by(1)
     end
 
     it "redirects the user to the tool owner's profile tools tab" do
-      post(
-        :create,
-        tool: {
+      post(:create, params: { tool: {
           name: 'butter',
           slug: 'butter',
           type: 'ohai_plugin',
           description: 'Great plugin.',
           source_url: 'http://example.com',
           instructions: 'Use with care'
-        }
-      )
+        } })
 
       expect(response).to redirect_to(tools_user_path(user))
     end
@@ -167,19 +161,19 @@ describe ToolsController do
     end
 
     it 'responds with a 200' do
-      get :edit, id: tool
+      get :edit, params: { id: tool }
 
       expect(response.status.to_i).to eql(200)
     end
 
     it 'assigns tool' do
-      get :edit, id: tool
+      get :edit, params: { id: tool }
 
       expect(assigns(:tool)).to_not be_nil
     end
 
     it 'assigns user' do
-      get :edit, id: tool
+      get :edit, params: { id: tool }
 
       expect(assigns(:user)).to_not be_nil
     end
@@ -187,7 +181,7 @@ describe ToolsController do
     it '404s if the user is not authorized to edit the tool' do
       sign_in(create(:user))
 
-      get :edit, id: tool
+      get :edit, params: { id: tool }
 
       expect(response.status.to_i).to eql(404)
     end
@@ -198,21 +192,21 @@ describe ToolsController do
     let(:tool) { create(:tool, name: 'haha') }
 
     it 'requires authentication' do
-      post :adoption, id: tool
+      post :adoption, params: { id: tool }
       expect(response).to redirect_to(sign_in_url)
     end
 
     it 'sends an adoption email' do
       sign_in user
       Sidekiq::Testing.inline! do
-        expect { post :adoption, id: tool }
+        expect { post :adoption, params: { id: tool } }
         .to change(ActionMailer::Base.deliveries, :count).by(1)
       end
     end
 
     it 'redirects to the @tool' do
       sign_in user
-      post :adoption, id: tool
+      post :adoption, params: { id: tool }
       expect(response).to redirect_to(assigns[:tool])
     end
   end
@@ -226,13 +220,13 @@ describe ToolsController do
     end
 
     it 'assigns user' do
-      patch :update, id: tool, tool: { name: 'margarine' }
+      patch :update, params: { id: tool, tool: { name: 'margarine' } }
 
       expect(assigns(:user)).to_not be_nil
     end
 
     it 'updates a tool' do
-      patch :update, id: tool, tool: { name: 'margarine', up_for_adoption: true }
+      patch :update, params: { id: tool, tool: { name: 'margarine', up_for_adoption: true } }
 
       tool.reload
       expect(tool.name).to eql('margarine')
@@ -240,13 +234,13 @@ describe ToolsController do
     end
 
     it 'redirects the user to the tool' do
-      patch :update, id: tool, tool: { name: 'margarine' }
+      patch :update, params: { id: tool, tool: { name: 'margarine' } }
 
       expect(response).to redirect_to(tool_path(tool))
     end
 
     it 'renders the edit form when the tool is invalid' do
-      patch :update, id: tool, tool: { name: '' }
+      patch :update, params: { id: tool, tool: { name: '' } }
 
       expect(response).to render_template('tools/edit')
     end
@@ -254,7 +248,7 @@ describe ToolsController do
     it '404s if the user is not authorized to update the tool' do
       sign_in(create(:user))
 
-      patch :update, id: tool, tool: { name: 'margarine' }
+      patch :update, params: { id: tool, tool: { name: 'margarine' } }
 
       expect(response.status.to_i).to eql(404)
     end
@@ -270,19 +264,19 @@ describe ToolsController do
 
     it 'deletes a tool' do
       expect do
-        delete :destroy, id: tool
+        delete :destroy, params: { id: tool }
       end.to change { Tool.count }.by(-1)
     end
 
     it "redirects the user to the tool owner's profile tools tab" do
-      delete :destroy, id: tool
+      delete :destroy, params: { id: tool }
       expect(response).to redirect_to(tools_user_path(user))
     end
 
     it '404s if the user is not authorized to delete the tool' do
       sign_in(create(:user))
 
-      delete :destroy, id: tool
+      delete :destroy, params: { id: tool }
 
       expect(response.status.to_i).to eql(404)
     end

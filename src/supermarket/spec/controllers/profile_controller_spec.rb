@@ -8,17 +8,17 @@ describe ProfileController do
       before { sign_in user }
 
       it 'updates the user' do
-        patch :update, user: {
+        patch :update, params: { user: {
           first_name: 'Bob',
           last_name:  'Loblaw'
-        }
+        } }
         user.reload
 
         expect(user.name).to eql('Bob Loblaw')
       end
 
       it 'redirects to the user profile' do
-        patch :update, user: { first_name: 'Blob' }
+        patch :update, params: { user: { first_name: 'Blob' } }
 
         expect(response).to redirect_to(user)
       end
@@ -52,7 +52,7 @@ describe ProfileController do
         expect(fake_user).to receive(:update_attributes).with(attrs)
         allow(controller).to receive(:current_user) { fake_user }
 
-        patch :update, user: attributes_for(:user, attrs)
+        patch :update, params: { user: attributes_for(:user, attrs) }
       end
     end
 
@@ -94,13 +94,13 @@ describe ProfileController do
       before { sign_in user }
 
       it 'returns a 200 on successful update' do
-        post :update_install_preference, preference: 'knife'
+        post :update_install_preference, params: { preference: 'knife' }
 
         expect(response.status.to_i).to eql(200)
       end
 
       it "updates the user's install preference" do
-        post :update_install_preference, preference: 'knife'
+        post :update_install_preference, params: { preference: 'knife' }
 
         expect(user.install_preference).to eql('knife')
       end
@@ -108,7 +108,7 @@ describe ProfileController do
 
     context 'user not signed in' do
       it 'returns a 404' do
-        post :update_install_preference, preference: 'knife'
+        post :update_install_preference, params: { preference: 'knife' }
 
         expect(response.status.to_i).to eql(404)
       end

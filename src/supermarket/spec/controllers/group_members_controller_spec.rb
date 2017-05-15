@@ -21,7 +21,7 @@ describe GroupMembersController do
       allow(group_members).to receive(:where).with(user_id: user.id, admin: true).and_return(group_members_query_result)
 
       expect(group_members_query_result).to receive(:present?)
-      post :make_admin, id: group_member
+      post :make_admin, params: { id: group_member }
     end
 
     context 'when the current user is an admin member of the group' do
@@ -30,21 +30,21 @@ describe GroupMembersController do
       end
 
       it 'finds the correct group member' do
-        post :make_admin, id: group_member
+        post :make_admin, params: { id: group_member }
         expect(assigns(:group_member)).to eq(group_member)
       end
 
       it 'makes the group member an admin' do
         expect(group_member.admin?).to eq(false)
 
-        post :make_admin, id: group_member
+        post :make_admin, params: { id: group_member }
 
         group_member.reload
         expect(group_member.admin?).to eq(true)
       end
 
       it 'shows a success message' do
-        post :make_admin, id: group_member
+        post :make_admin, params: { id: group_member }
 
         expect(flash[:notice]).to include('Member has successfully been made an admin!')
       end
@@ -58,21 +58,21 @@ describe GroupMembersController do
       it 'does not make the group member an admin' do
         expect(group_member.admin?).to eq(false)
 
-        post :make_admin, id: group_member
+        post :make_admin, params: { id: group_member }
 
         group_member.reload
         expect(group_member.admin?).to eq(false)
       end
 
       it 'shows an error message' do
-        post :make_admin, id: group_member
+        post :make_admin, params: { id: group_member }
 
         expect(flash[:error]).to include('You must be an admin member of the group to do that.')
       end
     end
 
     it 'redirects to the group#show page' do
-      post :make_admin, id: group_member
+      post :make_admin, params: { id: group_member }
       expect(response).to redirect_to(group_path(group_member.group))
     end
   end
@@ -87,7 +87,7 @@ describe GroupMembersController do
       end
 
       it 'saves the new group member to the database' do
-        expect { post :create, group_member: input }.to change(GroupMember, :count).by(1)
+        expect { post :create, params: { group_member: input } }.to change(GroupMember, :count).by(1)
       end
 
       context 'after the save' do
@@ -101,12 +101,12 @@ describe GroupMembersController do
         end
 
         it 'shows a success message' do
-          post :create, group_member: input
+          post :create, params: { group_member: input }
           expect(flash[:notice]).to include('Members successfully added!')
         end
 
         it 'redirects to the group show template' do
-          post :create, group_member: input
+          post :create, params: { group_member: input }
           expect(response).to redirect_to(group_path(group))
         end
 
@@ -120,7 +120,7 @@ describe GroupMembersController do
 
           it 'adds the new member as a collaborator to the cookbook' do
             expect(controller).to receive(:add_users_as_collaborators).with(cookbook, user.id.to_s, group.id)
-            post :create, group_member: input
+            post :create, params: { group_member: input }
           end
 
           context 'when the group is associated with multiple cookbooks' do
@@ -134,7 +134,7 @@ describe GroupMembersController do
             it 'adds the new member as a collaborator to each cookbook' do
               expect(controller).to receive(:add_users_as_collaborators).with(cookbook, user.id.to_s, group.id)
               expect(controller).to receive(:add_users_as_collaborators).with(cookbook2, user.id.to_s, group.id)
-              post :create, group_member: input
+              post :create, params: { group_member: input }
             end
           end
         end
@@ -149,7 +149,7 @@ describe GroupMembersController do
       end
 
       it 'saves both group members to the database' do
-        expect { post :create, group_member: input }.to change(GroupMember, :count).by(2)
+        expect { post :create, params: { group_member: input } }.to change(GroupMember, :count).by(2)
       end
 
       context 'when the group is associated with a cookbook' do
@@ -163,7 +163,7 @@ describe GroupMembersController do
         it 'adds both members as collaborators to the cookbook' do
           expect(controller).to receive(:add_users_as_collaborators).with(cookbook, user.id.to_s, group.id)
           expect(controller).to receive(:add_users_as_collaborators).with(cookbook, user2.id.to_s, group.id)
-          post :create, group_member: input
+          post :create, params: { group_member: input }
         end
       end
     end
@@ -174,7 +174,7 @@ describe GroupMembersController do
       end
 
       it 'does not save the group to the database' do
-        expect { post :create, group_member: invalid_input }.to change(GroupMember, :count).by(0)
+        expect { post :create, params: { group_member: invalid_input } }.to change(GroupMember, :count).by(0)
       end
 
       context 'after the save' do
@@ -188,7 +188,7 @@ describe GroupMembersController do
         end
 
         it 'shows an error' do
-          post :create, group_member: invalid_input
+          post :create, params: { group_member: invalid_input }
           expect(flash[:warning]).to_not be_nil
         end
       end
@@ -205,7 +205,7 @@ describe GroupMembersController do
         end
 
         it 'shows an error' do
-          post :create, group_member: input
+          post :create, params: { group_member: input }
           expect(flash[:warning]).to_not be_nil
         end
       end
@@ -221,7 +221,7 @@ describe GroupMembersController do
     end
 
     it 'finds the correct group member' do
-      delete :destroy, id: group_member.id
+      delete :destroy, params: { id: group_member.id }
       expect(assigns(:group_member)).to eq(group_member)
     end
 
@@ -237,21 +237,21 @@ describe GroupMembersController do
       end
 
       it 'removes the member from the GroupMember' do
-        expect { delete :destroy, id: other_group_member.id }.to change(GroupMember, :count).by(-1)
+        expect { delete :destroy, params: { id: other_group_member.id } }.to change(GroupMember, :count).by(-1)
       end
 
       it 'shows a success message' do
-        delete :destroy, id: other_group_member.id
+        delete :destroy, params: { id: other_group_member.id }
         expect(flash[:notice]).to include('Member successfully removed')
       end
 
       it 'redirects to the group index page' do
-        delete :destroy, id: group_member.id
+        delete :destroy, params: { id: group_member.id }
         expect(response).to redirect_to(group_path(group.id))
       end
 
       it 'does not remove other members' do
-        delete :destroy, id: group_member.id
+        delete :destroy, params: { id: group_member.id }
         expect(group.group_members).to include(other_group_member)
       end
 
@@ -273,7 +273,7 @@ describe GroupMembersController do
 
         it 'removes the member as a collaborator on that cookbook' do
           expect(controller).to receive(:remove_collaborator).with(collaborator)
-          delete :destroy, id: group_member.id
+          delete :destroy, params: { id: group_member.id }
         end
 
         context 'when a group member is not a collaborator on the cookbook' do
@@ -285,7 +285,7 @@ describe GroupMembersController do
 
           it 'does attempt to remove the collaborator' do
             expect(controller).to_not receive(:remove_collaborator)
-            delete :destroy, id: group_member.id
+            delete :destroy, params: { id: group_member.id }
           end
         end
       end
@@ -298,12 +298,12 @@ describe GroupMembersController do
       end
 
       it 'shows a warning message' do
-        delete :destroy, id: group_member.id
+        delete :destroy, params: { id: group_member.id }
         expect(flash[:warning]).to include('An error has occurred')
       end
 
       it 'redirects to the group index page' do
-        delete :destroy, id: group_member.id
+        delete :destroy, params: { id: group_member.id }
         expect(response).to redirect_to(group_path(group.id))
       end
     end

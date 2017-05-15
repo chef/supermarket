@@ -20,36 +20,36 @@ describe Api::V1::CookbookUploadsController do
 
       it 'passes current_user to CookbookUpload#finish' do
         expect_any_instance_of(CookbookUpload).to receive(:finish)
-        post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+        post :create, params: { cookbook: 'cookbook', tarball: 'tarball', format: :json }
       end
 
       it 'sends the cookbook to the view' do
-        post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+        post :create, params: { cookbook: 'cookbook', tarball: 'tarball', format: :json }
 
         expect(assigns[:cookbook]).to_not be_nil
       end
 
       it 'returns a 201' do
-        post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+        post :create, params: { cookbook: 'cookbook', tarball: 'tarball', format: :json }
 
         expect(response.status.to_i).to eql(201)
       end
 
       it 'kicks off a CookbookNotifyWorker' do
         expect do
-          post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+          post :create, params: { cookbook: 'cookbook', tarball: 'tarball', format: :json }
         end.to change(CookbookNotifyWorker.jobs, :size).by(1)
       end
 
       it 'kicks off a FieriNotifyWorker' do
         expect do
-          post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+          post :create, params: { cookbook: 'cookbook', tarball: 'tarball', format: :json }
         end.to change(FieriNotifyWorker.jobs, :size).by(1)
       end
 
       it 'regenerates the universe cache' do
         expect(UniverseCache).to receive(:flush)
-        post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+        post :create, params: { cookbook: 'cookbook', tarball: 'tarball', format: :json }
       end
     end
 
@@ -69,7 +69,7 @@ describe Api::V1::CookbookUploadsController do
       end
 
       it 'renders the error messages' do
-        post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+        post :create, params: { cookbook: 'cookbook', tarball: 'tarball', format: :json }
 
         expect(JSON.parse(response.body)).to eql(
           'error_code' => I18n.t('api.error_codes.invalid_data'),
@@ -78,7 +78,7 @@ describe Api::V1::CookbookUploadsController do
       end
 
       it 'returns a 400' do
-        post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+        post :create, params: { cookbook: 'cookbook', tarball: 'tarball', format: :json }
 
         expect(response.status.to_i).to eql(400)
       end
@@ -99,7 +99,7 @@ describe Api::V1::CookbookUploadsController do
       end
 
       it 'renders an error informing the the user that they may not modify the cookbook' do
-        post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+        post :create, params: { cookbook: 'cookbook', tarball: 'tarball', format: :json }
 
         expect(JSON.parse(response.body)).to eql(
           'error_code' => I18n.t('api.error_codes.unauthorized'),
@@ -108,7 +108,7 @@ describe Api::V1::CookbookUploadsController do
       end
 
       it 'returns a 401' do
-        post :create, cookbook: 'cookbook', tarball: 'tarball', format: :json
+        post :create, params: { cookbook: 'cookbook', tarball: 'tarball', format: :json }
 
         expect(response.status.to_i).to eql(401)
       end
@@ -116,7 +116,7 @@ describe Api::V1::CookbookUploadsController do
 
     context 'when the tarball parameter is missing' do
       it 'returns a 400' do
-        post :create, cookbook: '{}', format: :json
+        post :create, params: { cookbook: '{}', format: :json }
 
         expect(response.status.to_i).to eql(400)
       end
@@ -124,7 +124,7 @@ describe Api::V1::CookbookUploadsController do
 
     context 'when the cookbook parameter is missing' do
       it 'returns a 400' do
-        post :create, tarball: 'tarball', format: :json
+        post :create, params: { tarball: 'tarball', format: :json }
 
         expect(response.status.to_i).to eql(400)
       end
@@ -139,7 +139,7 @@ describe Api::V1::CookbookUploadsController do
 
     context 'when a cookbook exists' do
       let!(:cookbook) { create(:cookbook) }
-      let(:unshare) { delete :destroy, cookbook: cookbook.name, format: :json }
+      let(:unshare) { delete :destroy, params: { cookbook: cookbook.name, format: :json } }
       before { auto_authorize!(Cookbook, 'destroy') }
 
       it 'sends the cookbook to the view' do
@@ -173,7 +173,7 @@ describe Api::V1::CookbookUploadsController do
 
     context 'when the user is not authorized to destroy the cookbook' do
       let!(:cookbook) { create(:cookbook) }
-      let(:unshare) { delete :destroy, cookbook: cookbook.name, format: :json }
+      let(:unshare) { delete :destroy, params: { cookbook: cookbook.name, format: :json } }
 
       it 'returns a 403' do
         unshare
@@ -184,7 +184,7 @@ describe Api::V1::CookbookUploadsController do
 
     context 'when a cookbook does not exist' do
       it 'responds with a 404' do
-        delete :destroy, cookbook: 'mamimi', format: :json
+        delete :destroy, params: { cookbook: 'mamimi', format: :json }
 
         expect(response.status.to_i).to eql(404)
       end
@@ -200,12 +200,7 @@ describe Api::V1::CookbookUploadsController do
     let!(:cookbook) { create(:cookbook) }
     let!(:cookbook_version) { create(:cookbook_version, cookbook: cookbook) }
     let(:unshare_version) do
-      delete(
-        :destroy_version,
-        cookbook: cookbook.name,
-        version: cookbook_version.version,
-        format: :json
-      )
+      delete(:destroy_version, params: { cookbook: cookbook.name, version: cookbook_version.version, format: :json })
     end
 
     context 'when a cookbook and cookbook version exists' do
@@ -250,7 +245,7 @@ describe Api::V1::CookbookUploadsController do
       it 'returns a 409 with informative error messages' do
         versions = CookbookVersion.all.pluck(:version)
         versions.each do |version|
-          delete :destroy_version, cookbook: cookbook, version: version, format: :json
+          delete :destroy_version, params: { cookbook: cookbook, version: version, format: :json }
         end
 
         expect(response.status.to_i).to eql(409)
@@ -260,7 +255,7 @@ describe Api::V1::CookbookUploadsController do
 
     context 'when a cookbook does not exist' do
       it 'responds with a 404' do
-        delete :destroy_version, cookbook: 'mamimi', version: '1.0.0', format: :json
+        delete :destroy_version, params: { cookbook: 'mamimi', version: '1.0.0', format: :json }
 
         expect(response.status.to_i).to eql(404)
       end
@@ -268,7 +263,7 @@ describe Api::V1::CookbookUploadsController do
 
     context 'when a cookbook version does not exist' do
       it 'responds with a 404' do
-        delete :destroy_version, cookbook: cookbook, version: '1.0.0', format: :json
+        delete :destroy_version, params: { cookbook: cookbook, version: '1.0.0', format: :json }
 
         expect(response.status.to_i).to eql(404)
       end

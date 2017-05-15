@@ -33,7 +33,7 @@ describe ApplicationController do
     end
 
     it '404s when JSON is requested but HTML is served' do
-      get :show, id: 1, format: :json
+      get :show, params: { id: 1, format: :json }
 
       expect(response.status.to_i).to eql(404)
     end
@@ -51,12 +51,12 @@ describe ApplicationController do
     after { ROLLOUT.activate(:github) }
 
     controller do
-      before_filter :require_linked_github_account!
+      before_action :require_linked_github_account!
 
       def index
         respond_to do |format|
           format.html do
-            render text: 'haha'
+            render plain: 'haha'
           end
         end
       end

@@ -23,21 +23,21 @@ describe Api::V1::CookbooksController do
 
     it 'allows ordering by recently updated' do
       slow_cooking.touch
-      get :index, order: :recently_updated, format: :json
+      get :index, params: { order: :recently_updated, format: :json }
       cookbooks = assigns[:cookbooks]
       expect(cookbooks.first).to eql(slow_cooking)
       expect(cookbooks.last).to eql(sashimi)
     end
 
     it 'allows ordering by recently added' do
-      get :index, order: :recently_added, format: :json
+      get :index, params: { order: :recently_added, format: :json }
       cookbooks = assigns[:cookbooks]
       expect(cookbooks.first).to eql(sashimi)
       expect(cookbooks.last).to eql(slow_cooking)
     end
 
     it 'allows ordering by most downloaded' do
-      get :index, order: :most_downloaded, format: :json
+      get :index, params: { order: :most_downloaded, format: :json }
       cookbooks = assigns[:cookbooks]
       expect(cookbooks.first).to eql(slow_cooking)
       expect(cookbooks.last).to eql(sashimi)
@@ -48,14 +48,14 @@ describe Api::V1::CookbooksController do
       create(:cookbook_follower, cookbook: slow_cooking, user: create(:user))
       create(:cookbook_follower, cookbook: sashimi, user: create(:user))
 
-      get :index, order: :most_followed, format: :json
+      get :index, params: { order: :most_followed, format: :json }
       cookbooks = assigns[:cookbooks]
       expect(cookbooks.first).to eql(slow_cooking)
       expect(cookbooks.last).to eql(sashimi)
     end
 
     it 'allows filtering cookbooks by owner' do
-      get :index, user: clive.username, format: :json
+      get :index, params: { user: clive.username, format: :json }
       cookbooks = assigns[:cookbooks]
       expect(cookbooks.size).to eql(1)
       expect(cookbooks.first).to eql(sashimi)
@@ -64,14 +64,14 @@ describe Api::V1::CookbooksController do
     it 'allows filtering cookbooks by platform' do
       create(:debian_cookbook_version, cookbook: sashimi)
 
-      get :index, platforms: 'debian', format: :json
+      get :index, params: { platforms: 'debian', format: :json }
       cookbooks = assigns[:cookbooks]
       expect(cookbooks.size).to eql(1)
       expect(cookbooks.first).to eql(sashimi)
     end
 
     it 'uses the start param to offset the cookbooks sent to the view' do
-      get :index, start: 1, format: :json
+      get :index, params: { start: 1, format: :json }
 
       cookbook_names = assigns[:cookbooks].map(&:name)
 
@@ -79,7 +79,7 @@ describe Api::V1::CookbooksController do
     end
 
     it 'passes the start param to the view' do
-      get :index, start: 1, format: :json
+      get :index, params: { start: 1, format: :json }
 
       expect(assigns[:start]).to eql(1)
     end
@@ -91,7 +91,7 @@ describe Api::V1::CookbooksController do
     end
 
     it 'uses the items param to limit the cookbooks sent to the view' do
-      get :index, items: 1, format: :json
+      get :index, params: { items: 1, format: :json }
 
       cookbook_names = assigns[:cookbooks].map(&:name)
 
@@ -106,13 +106,13 @@ describe Api::V1::CookbooksController do
 
     it 'limits the number of items to the configured limit' do
       allow(subject).to receive(:item_limit).and_return(100)
-      get :index, items: 101, format: :json
+      get :index, params: { items: 101, format: :json }
 
       expect(assigns[:items]).to eql(100)
     end
 
     it 'handles the start and items param' do
-      get :index, items: 1, start: 1, format: :json
+      get :index, params: { items: 1, start: 1, format: :json }
 
       cookbook_names = assigns[:cookbooks].map(&:name)
 
@@ -126,13 +126,13 @@ describe Api::V1::CookbooksController do
     end
 
     it 'returns a 400 if start is negative' do
-      get :index, start: -1, format: :json
+      get :index, params: { start: -1, format: :json }
 
       expect(response.status).to eql(400)
     end
 
     it 'returns a 400 if items is negative' do
-      get :index, items: -1, format: :json
+      get :index, params: { items: -1, format: :json }
 
       expect(response.status).to eql(400)
     end
@@ -157,19 +157,19 @@ describe Api::V1::CookbooksController do
       end
 
       it 'responds with a 200' do
-        get :show, cookbook: 'sashimi', format: :json
+        get :show, params: { cookbook: 'sashimi', format: :json }
 
         expect(response.status.to_i).to eql(200)
       end
 
       it 'sends the cookbook to the view' do
-        get :show, cookbook: 'sashimi', format: :json
+        get :show, params: { cookbook: 'sashimi', format: :json }
 
         expect(assigns[:cookbook]).to eql(sashimi)
       end
 
       it 'sends the cookbook_versions_urls to the view' do
-        get :show, cookbook: 'sashimi', format: :json
+        get :show, params: { cookbook: 'sashimi', format: :json }
 
         expect(assigns[:cookbook_versions_urls]).to include('http://test.host/api/v1/cookbooks/sashimi/versions/2.1.0')
         expect(assigns[:cookbook_versions_urls]).to include('http://test.host/api/v1/cookbooks/sashimi/versions/1.1.0')
@@ -178,7 +178,7 @@ describe Api::V1::CookbooksController do
 
     context 'when a cookbook does not exist' do
       it 'responds with a 404' do
-        get :show, cookbook: 'mamimi', format: :json
+        get :show, params: { cookbook: 'mamimi', format: :json }
 
         expect(response.status.to_i).to eql(404)
       end
@@ -206,19 +206,19 @@ describe Api::V1::CookbooksController do
       end
 
       it 'responds with a 200' do
-        get :contingent, cookbook: 'sashimi', format: :json
+        get :contingent, params: { cookbook: 'sashimi', format: :json }
 
         expect(response.status.to_i).to eql(200)
       end
 
       it 'sends the cookbook to the view' do
-        get :contingent, cookbook: 'sashimi', format: :json
+        get :contingent, params: { cookbook: 'sashimi', format: :json }
 
         expect(assigns[:cookbook]).to eql(sashimi)
       end
 
       it 'sends the contingents to the view' do
-        get :contingent, cookbook: 'slow_cooking', format: :json
+        get :contingent, params: { cookbook: 'slow_cooking', format: :json }
 
         contingents = assigns[:contingents]
         expect(contingents.first.cookbook_version.cookbook).to eql(sashimi)
@@ -227,7 +227,7 @@ describe Api::V1::CookbooksController do
 
     context 'when a cookbook does not exist' do
       it 'responds with a 404' do
-        get :show, cookbook: 'mamimi', format: :json
+        get :show, params: { cookbook: 'mamimi', format: :json }
 
         expect(response.status.to_i).to eql(404)
       end
@@ -246,38 +246,38 @@ describe Api::V1::CookbooksController do
     end
 
     it 'sends cookbook search result to the view' do
-      get :search, q: 'redis', format: :json
+      get :search, params: { q: 'redis', format: :json }
 
       expect(assigns[:results]).to include(redis)
     end
 
     it 'sends the total number of search results to the view' do
-      get :search, q: 'redis', format: :json
+      get :search, params: { q: 'redis', format: :json }
 
       expect(assigns[:total]).to eql(2)
     end
 
     it 'searches based on the query' do
-      get :search, q: 'postgres', format: :json
+      get :search, params: { q: 'postgres', format: :json }
 
       expect(assigns[:results]).to include(postgres)
       expect(assigns[:results]).to_not include(redis)
     end
 
     it 'sends start param to the view if it is present' do
-      get :search, q: 'redis', start: '1', format: :json
+      get :search, params: { q: 'redis', start: '1', format: :json }
 
       expect(assigns[:start]).to eql(1)
     end
 
     it 'defaults the start param to 0 if it is not present' do
-      get :search, q: 'redis', format: :json
+      get :search, params: { q: 'redis', format: :json }
 
       expect(assigns[:start]).to eql(0)
     end
 
     it 'handles the start param' do
-      get :search, q: 'redis', start: 1, format: :json
+      get :search, params: { q: 'redis', start: 1, format: :json }
 
       cookbook_names = assigns[:results].map(&:name)
 
@@ -289,7 +289,7 @@ describe Api::V1::CookbooksController do
         create(:cookbook, name: "jam#{index}")
       end
 
-      get :search, q: 'jam', items: 5, format: :json
+      get :search, params: { q: 'jam', items: 5, format: :json }
       cookbooks = assigns[:results]
       expect(cookbooks.count(:all)).to eql 5
     end

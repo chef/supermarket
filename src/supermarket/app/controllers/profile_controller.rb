@@ -57,7 +57,7 @@ class ProfileController < ApplicationController
         :id,
         :system_email_id
       ]
-    )
+    ).to_h
   end
 
   def preference_param
