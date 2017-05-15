@@ -25,7 +25,7 @@ module Fieri
 
       it 'calls the MetricsRunner' do
         expect(MetricsRunner).to receive(:perform_async).with(hash_including(params))
-        post :create, params
+        post :create, params: params
       end
     end
   end
