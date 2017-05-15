@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Ruby version isn't specified here anymore, as it's pinned in Omnibus
 # https://github.com/chef/omnibus-supermarket/blob/master/config/projects/supermarket.rb
 
-gem 'rails', '~> 4.2'
+gem 'rails', '~> 5.0.0'
 gem 'fieri', path: '../fieri'
 
 gem 'omniauth'
@@ -18,14 +18,11 @@ gem 'foreman'
 gem 'pundit'
 gem 'dotenv'
 gem 'octokit', require: false
-gem 'sidekiq', '~> 4.0'
+gem 'sidekiq', '~> 4.2'
+gem 'sidetiq'
 gem 'tomlrb'
 gem 'rb-readline'
-
-# Pin sprockets to ensure we get the latest security patches. Not pinning this
-# meant that the gem that depended on sprockets was pulling in an old
-# (vulnerable) version.
-gem 'sprockets', '~> 2.11.3'
+gem 'sprockets'
 
 # Required until to build from master until Celluloid 0.17.4 or 0.18.0 is released
 # https://github.com/celluloid/celluloid/issues/728
@@ -59,10 +56,10 @@ gem 'html_truncator'
 gem 'rollout'
 gem 'statsd-ruby'
 gem 'sentry-raven', require: false
-gem 'sass-rails',   '~> 4.0.4'
+gem 'sass-rails'
 gem 'sass-globbing'
 gem 'compass-rails'
-gem 'uglifier',     '~> 2.7'
+gem 'uglifier'
 
 group :doc do
   gem 'yard', require: false
@@ -90,13 +87,13 @@ group :test do
   gem 'database_cleaner'
   gem 'vcr', require: false
   gem 'webmock', require: false
+  gem 'rails-controller-testing'
 end
 
 group :development, :test do
   gem 'rubocop', '>= 0.23.0'
   gem 'mail_view'
-  gem 'quiet_assets'
-  gem 'rspec-rails', '~> 3.4.1'
+  gem 'rspec-rails'
   gem 'byebug'
   gem 'launchy'
   gem 'bundler-audit', git: 'https://github.com/rubysec/bundler-audit.git', ref: '4e32fca'
