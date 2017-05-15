@@ -6,7 +6,7 @@ module CollaboratorProcessing
   end
 
   def add_users_as_collaborators(resource, user_ids, group_id = nil)
-    user_ids = user_ids.split(',') - ineligible_ids(resource)
+    user_ids = (user_ids.split(',') - ineligible_ids(resource)).flatten
 
     User.where(id: user_ids).each do |user|
       collaborator = Collaborator.new(
