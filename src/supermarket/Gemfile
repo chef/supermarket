@@ -79,7 +79,7 @@ end
 group :test do
   gem 'capybara'
   gem 'capybara-screenshot'
-  gem 'factory_girl'
+  gem 'factory_girl_rails', require: false
   gem 'poltergeist'
 
   gem 'shoulda-matchers', '~> 2.8'
