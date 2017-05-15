@@ -43,7 +43,7 @@ module ApiSpecHelpers
 
     payload = opts.fetch(:payload, cookbook: JSON.generate(cookbook_params), tarball: tarball)
 
-    post cookbooks_path, payload, header
+    post cookbooks_path, params: payload, headers: header
   end
 
   #
@@ -63,7 +63,7 @@ module ApiSpecHelpers
       body: ''
     ).sign(private_key)
 
-    delete cookbook_path, {}, header
+    delete cookbook_path, params: {}, headers: header
   end
 
   #
@@ -84,7 +84,7 @@ module ApiSpecHelpers
       body: ''
     ).sign(private_key)
 
-    delete cookbook_version_path, {}, header
+    delete cookbook_version_path, params: {}, headers: header
   end
 
   def json_body
