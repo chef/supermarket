@@ -7,6 +7,7 @@ gem 'rails', '~> 5.0.0'
 gem 'fieri', path: '../fieri'
 
 gem 'omniauth'
+gem 'omniauth-oauth2', '~> 1.3.1'
 gem 'omniauth-chef-oauth2'
 gem 'omniauth-github'
 
@@ -19,15 +20,15 @@ gem 'pundit'
 gem 'dotenv'
 gem 'octokit', require: false
 gem 'sidekiq', '~> 4.2'
-gem 'sidetiq'
 gem 'tomlrb'
 gem 'rb-readline'
 gem 'sprockets'
 
 # Required until to build from master until Celluloid 0.17.4 or 0.18.0 is released
 # https://github.com/celluloid/celluloid/issues/728
-gem 'celluloid', git: 'https://github.com/celluloid/celluloid', submodules: true, require: false
-gem 'sidetiq', '~> 0.7', require: false
+gem 'celluloid', git: 'https://github.com/celluloid/celluloid', submodules: true, require: false,
+                 ref: '0d192022ffff8e46722771b4865bfce4114b00a3'
+gem 'sidetiq'
 
 gem 'premailer-rails', group: [:development, :production]
 gem 'nokogiri'
