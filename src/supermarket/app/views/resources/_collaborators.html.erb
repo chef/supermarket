@@ -3,9 +3,9 @@
     <div class="gravatar-container">
       <% collaboration_permissions_for(collaborator) do |transfer, destroy| %>
         <% if destroy %>
-          <%= link_to gravatar_for(collaborator.user, size: 80), collaborator.user, title: collaborator.user.name, data: { :dropdown => contributor_options_id(collaborator.user)} %>
-          <ul id="<%= contributor_options_id(collaborator.user) %>" data-dropdown-content class="f-dropdown">
-            <li><%= link_to "<i class='fa fa-times-circle'></i> #{contributor_removal_text(resource.owner)}".html_safe, collaborator_path(collaborator), rel: 'remove-cookbook-collaborator', remote: true, method: :delete %></li>
+          <%= link_to gravatar_for(collaborator.user, size: 80), collaborator.user, title: collaborator.user.name, data: { :dropdown => collaborator_options_id(collaborator.user)} %>
+          <ul id="<%= collaborator_options_id(collaborator.user) %>" data-dropdown-content class="f-dropdown">
+            <li><%= link_to "<i class='fa fa-times-circle'></i> #{collaborator_removal_text(resource.owner)}".html_safe, collaborator_path(collaborator), rel: 'remove-cookbook-collaborator', remote: true, method: :delete %></li>
           </ul>
         <% else %>
           <%= link_to gravatar_for(collaborator.user, size: 80), collaborator.user, title: collaborator.user.username %>

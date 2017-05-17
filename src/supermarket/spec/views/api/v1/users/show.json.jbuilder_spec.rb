@@ -43,7 +43,6 @@ describe 'api/v1/users/show' do
       cookbook: create(:cookbook, name: 'ruby'),
       user: user
     )
-    create(:icla_signature, user: user)
 
     create(:tool, name: 'berkshelf', owner: user, slug: 'berkshelf')
     create(
@@ -95,11 +94,6 @@ describe 'api/v1/users/show' do
   it "displays the user's irc handle" do
     irc = json_body['irc']
     expect(irc).to eql(user.irc_nickname)
-  end
-
-  it "displays the user's authorized_to_contribute status" do
-    authorized = json_body['authorized_to_contribute']
-    expect(authorized).to eql(true)
   end
 
   it 'displays the cookbooks the user owns' do

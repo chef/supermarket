@@ -21,7 +21,6 @@ class ProfileController < ApplicationController
   #
   def edit
     @user = current_user
-    @pending_requests = @user.pending_contributor_requests
   end
 
   #
