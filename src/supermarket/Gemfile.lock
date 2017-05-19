@@ -195,7 +195,7 @@ GEM
     ffi-yajl (1.4.0)
       ffi (~> 1.5)
       libyajl2 (~> 1.2)
-    foodcritic (11.0.0)
+    foodcritic (11.1.0)
       cucumber-core (>= 1.3)
       erubis
       nokogiri (>= 1.5, < 2.0)
