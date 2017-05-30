@@ -9,8 +9,6 @@ class User < ActiveRecord::Base
   has_many :accounts
   has_many :icla_signatures
   has_many :ccla_signatures
-  has_many :contributors
-  has_many :organizations, through: :contributors
   has_many :owned_cookbooks, class_name: 'Cookbook', foreign_key: 'user_id'
   has_many :cookbook_versions
   has_many :collaborators
@@ -86,79 +84,6 @@ class User < ActiveRecord::Base
   end
 
   #
-  # The commit author identities who have signed a CLA
-  #
-  # @return [Array<Curry::CommitAuthor>]
-  #
-  def verified_commit_author_identities
-    accounts.for(:github).map do |account|
-      Curry::CommitAuthor.with_login(account.username).where(authorized_to_contribute: true)
-    end.flatten
-  end
-
-  #
-  # The commit author identities who have not signed a CLA
-  #
-  # @return [Array<Curry::CommitAuthor>]
-  #
-  def unverified_commit_author_identities
-    accounts.for(:github).map do |account|
-      Curry::CommitAuthor.with_login(account.username).where(authorized_to_contribute: false)
-    end.flatten
-  end
-
-  #
-  # Determine if the current user signed the Individual Contributor License
-  # Agreement.
-  #
-  # @todo Expand this functionality to search for the most recently active
-  #       ICLA and return some sort of history instead.
-  #
-  # @return [Boolean]
-  #
-  def signed_icla?
-    icla_signatures.any?
-  end
-
-  #
-  # Retrieve the current users latest ICLA signature if they have signed a
-  # ICLA.
-  #
-  # @return [IclaSignature]
-  #
-  def latest_icla_signature
-    icla_signatures.order(:signed_at).last
-  end
-
-  #
-  # Retrieve the current users latest CCLA signature if they have signed a
-  # CCLA.
-  #
-  # @return [IclaSignature]
-  #
-  def latest_ccla
-    ccla_signatures.order(:signed_at).last
-  end
-
-  #
-  # Determine if the user is a contributor on behalf of one or more
-  # +Organization+s
-  #
-  # @return [Boolean]
-  #
-  def contributor?
-    contributors.any?
-  end
-
-  #
-  # A user is authorized to contribute if they have signed the ICLA or are a
-  # contributor on behalf of one or more organizations.
-  #
-  def authorized_to_contribute?
-    signed_icla? || contributor?
-  end
-
-  #
   # The name of the current user.
   #
   # @example
@@ -172,22 +97,6 @@ class User < ActiveRecord::Base
     else
       username
     end
-  end
-
-  #
-  # Determine if the current user is an admin of a given organization
-  #
-  # @example
-  #   user.admin_of_organization?(organization)
-  #
-  # @param organization [Organization] the organization
-  #
-  # @return [Boolean]
-  #
-  def admin_of_organization?(organization)
-    organizations.joins(:contributors).where(
-      'contributors.admin = ? AND organizations.id = ?',
-      true, organization.id).count > 0
   end
 
   #
@@ -238,61 +147,6 @@ class User < ActiveRecord::Base
   #
   def username
     chef_account.try(:username).to_s
-  end
-
-  #
-  # Determines if the user has an outstanding request to join the given
-  # +organization+
-  #
-  # @return [Boolean]
-  #
-  def requested_to_join?(organization)
-    ContributorRequest.where(
-      organization_id: organization.id,
-      user_id: id
-    ).first.try(:pending?)
-  end
-
-  #
-  # Returns the pending +ContributorRequest+s for the user. Eager loads the
-  # associated +ContributorRequestResponse+ because it is used in
-  # +ContributorRequest#pending+. Eager loads the associated +Organization+ and
-  # +CclaSignature+ because they are used in the views to display and link to
-  # the +Organization+.
-  #
-  # @return [Array<ContributorRequest>] array of pending +ContributorRequest+s
-  #
-  def pending_contributor_requests
-    ContributorRequest.includes(
-      :contributor_request_response,
-      :organization,
-      :ccla_signature
-    ).where(
-      user: self
-    ).select(&:pending?)
-  end
-
-  #
-  # Returns a unique +ActiveRecord::Relation+ of all users who have signed
-  # either the ICLA or CCLA or are a contributor on behalf of one or
-  # more +Organization+s. Sorts the users by their Chef account username.
-  #
-  # NOTE: this does not eager load the accounts for users. Do not make any calls
-  # that use the user's accounts, like
-  # +User.authorized_contributors.first.username+
-  #
-  # @return [ActiveRecord::Relation] the users who have signed the cla
-  #
-  def self.authorized_contributors
-    User.includes(:accounts).
-      joins('LEFT JOIN icla_signatures ON icla_signatures.user_id = users.id').
-      joins('LEFT JOIN ccla_signatures ON ccla_signatures.user_id = users.id').
-      joins('LEFT JOIN contributors ON contributors.user_id = users.id').
-      where('accounts.provider = ?', 'chef_oauth2').
-      where('icla_signatures.id IS NOT NULL OR ccla_signatures.id
-            IS NOT NULL OR contributors.id IS NOT NULL').
-      order('accounts.username').
-      distinct
   end
 
   #

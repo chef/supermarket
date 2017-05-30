@@ -25,7 +25,4 @@ SitemapGenerator::Sitemap.create do
   User.includes(:chef_account).find_each do |user|
     add(user_path(user), lastmod: user.updated_at)
   end
-
-  add(icla_signatures_path)
-  add(ccla_signatures_path)
 end

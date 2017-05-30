@@ -27,7 +27,6 @@ describe 'GET /api/v1/users/:user' do
         'twitter' => 'fanny',
         'irc' => 'fanny',
         'github' => ['fanny'],
-        'authorized_to_contribute' => true,
         'cookbooks' => {
           'owns' => {
             'macand' => 'http://www.example.com/api/v1/cookbooks/macand',
@@ -77,7 +76,6 @@ describe 'GET /api/v1/users/:user' do
         cookbook: create(:cookbook, name: 'ruby'),
         user: user
       )
-      create(:icla_signature, user: user)
 
       create(:tool, name: 'berkshelf', owner: user, slug: 'berkshelf')
       create(

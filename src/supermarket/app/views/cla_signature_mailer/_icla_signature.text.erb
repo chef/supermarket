@@ -1,8 +1,0 @@
-<%= signature.name %>
-
-<%= signature.email %> - <%= number_to_phone(signature.phone) %>
-<%= signature.address_line_1 %>
-<%= signature.address_line_2 %>
-
-View Supermarket Profile: <%= user_url(signature.user) %>
-View GitHub Profile: <%= "https://www.github.com/#{signature.user.accounts.for('github').first.username}" %>

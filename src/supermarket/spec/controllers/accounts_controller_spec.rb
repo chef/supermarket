@@ -22,11 +22,11 @@ describe AccountsController do
     end
 
     it 'redirects to the stored location for the user on success if set' do
-      controller.store_location!(new_icla_signature_path)
+      controller.store_location!(cookbooks_path)
 
       post :create, provider: 'github'
 
-      expect(response).to redirect_to(new_icla_signature_path)
+      expect(response).to redirect_to(cookbooks_path)
     end
   end
 

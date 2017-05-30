@@ -3,7 +3,6 @@ require 'spec_helper'
 describe User do
   context 'associations' do
     it { should have_many(:accounts) }
-    it { should have_many(:icla_signatures) }
     it { should have_many(:owned_cookbooks) }
     it { should have_many(:collaborators) }
     it { should have_many(:collaborated_cookbooks) }
@@ -16,119 +15,6 @@ describe User do
 
   context 'validations' do
     it { should validate_presence_of(:email) }
-  end
-
-  describe '#signed_icla?' do
-    it 'is true when there is an icla signature' do
-      user = build(:user, icla_signatures: [build(:icla_signature)])
-      expect(user.signed_icla?).to be true
-    end
-
-    it 'is false when there is not an icla signature' do
-      user = build(:user, icla_signatures: [])
-      expect(user.signed_icla?).to be false
-    end
-  end
-
-  describe '#contributor?' do
-    it 'is true when the user belongs to one or more organizations' do
-      user = create(:user)
-      create(:contributor, user: user)
-
-      expect(user.contributor?).to be true
-    end
-
-    it 'is false when the user does not belong to any organizations' do
-      user = create(:user)
-
-      expect(user.contributor?).to be false
-    end
-  end
-
-  describe '#authorized_to_contribute?' do
-    it 'is true when the user has signed an ICLA or is a contributor to one or more organizations' do
-      contributor_user = create(:user)
-      create(:contributor, user: contributor_user)
-
-      icla_signing_user = build(:user, icla_signatures: [build(:icla_signature)])
-
-      expect(contributor_user.authorized_to_contribute?).to be true
-      expect(icla_signing_user.authorized_to_contribute?).to be true
-    end
-
-    it 'is false when the user has not signed the ICLA and is not a contributor to one or more organizations' do
-      user = create(:user)
-
-      expect(user.authorized_to_contribute?).to be false
-    end
-  end
-
-  describe '.authorized_contributors' do
-    let!(:jimmy) do
-      create(
-        :user,
-        first_name: 'Jimmy',
-        last_name: 'Jammy',
-        email: 'jimmyjammy@example.com'
-      )
-    end
-
-    let!(:jim) do
-      create(
-        :user,
-        first_name: 'Jim',
-        last_name: 'McJimmerton',
-        email: 'jimmcjimmerton@example.com'
-      )
-    end
-
-    let!(:yojimbo) do
-      create(
-        :user,
-        first_name: 'Yo',
-        last_name: 'Jimbo',
-        email: 'yojimbo@example.com'
-      )
-    end
-
-    let!(:tidus) do
-      create(
-        :user,
-        first_name: 'Tidus',
-        last_name: 'Nomura',
-        email: 'tidus@example.com'
-      )
-    end
-
-    before do
-      create(:icla_signature, user: jim)
-      create(:icla_signature, user: jimmy)
-      create(:ccla_signature, user: jimmy)
-      create(:ccla_signature, user: jimmy)
-      create(:contributor, user: tidus)
-    end
-
-    it 'returns users who have signed a CCLA, ICLA or are a contributor to a CCLA organization' do
-      expect(User.authorized_contributors).to include(jimmy)
-      expect(User.authorized_contributors).to include(jim)
-      expect(User.authorized_contributors).to include(tidus)
-      expect(User.authorized_contributors).to_not include(yojimbo)
-    end
-
-    it 'returns a unique set of users' do
-      ids = User.authorized_contributors.map(&:id)
-
-      expect(ids).to eql(ids.uniq)
-    end
-
-    it 'sorts the users by their chef account username alphabetically ascending' do
-      sorted_users_array = [jimmy, jim, tidus].sort_by(&:username)
-      authorized_contributors = User.authorized_contributors.select do |user|
-        sorted_users_array.include?(user)
-      end
-
-      expect(authorized_contributors).to eql(sorted_users_array)
-    end
   end
 
   describe '.search' do
@@ -183,16 +69,6 @@ describe User do
     end
   end
 
-  describe '#latest_icla_signature' do
-    it 'returns the latest ICLA signature' do
-      one_year_ago = create(:icla_signature, signed_at: 1.year.ago)
-      one_month_ago = create(:icla_signature, signed_at: 1.month.ago)
-
-      user = create(:user, icla_signatures: [one_year_ago, one_month_ago])
-      expect(user.latest_icla_signature).to eql(one_month_ago)
-    end
-  end
-
   describe '#followed_cookbook_versions' do
     it 'returns all cookbook versions of a followed cookbook' do
       user = create(:user)
@@ -203,24 +79,6 @@ describe User do
 
       expect(user.followed_cookbook_versions).to include(*redis.cookbook_versions)
       expect(user.followed_cookbook_versions).to include(*yum.cookbook_versions)
-    end
-  end
-
-  describe '#admin_of_organization?' do
-    it 'is true when the user is an admin of the given organization' do
-      contributor = create(:contributor, admin: true)
-      user = contributor.user
-      organization = contributor.organization
-
-      expect(user.admin_of_organization?(organization)).to be true
-    end
-
-    it 'is false when the user is not an admin of the given organization' do
-      contributor = create(:contributor, admin: false)
-      user = contributor.user
-      organization = contributor.organization
-
-      expect(user.admin_of_organization?(organization)).to be false
     end
   end
 
@@ -253,68 +111,6 @@ describe User do
 
   end
 
-  describe '#verified_commit_author_identities' do
-
-    it "returns the user's commit author identities who have signed a CLA" do
-      commit_author = create(:commit_author, login: 'joedoe', authorized_to_contribute: true)
-      user = create(:user)
-      account = create(
-        :account,
-        user: user,
-        provider: 'github',
-        username: 'joedoe'
-      )
-
-      expect(user.verified_commit_author_identities).
-        to eql([commit_author])
-    end
-
-    it "does not return the user's commit author identities who have not signed a CLA" do
-      commit_author = create(:commit_author, login: 'joedoe', authorized_to_contribute: false)
-      user = create(:user)
-      account = create(
-        :account,
-        user: user,
-        provider: 'github',
-        username: 'joedoe'
-      )
-
-      expect(user.verified_commit_author_identities).
-        to eql([])
-    end
-  end
-
-  describe '#unverified_commit_author_identities' do
-
-    it "returns the user's commit author identities who have not signed a CLA" do
-      commit_author = create(:commit_author, login: 'joedoe', authorized_to_contribute: false)
-      user = create(:user)
-      account = create(
-        :account,
-        user: user,
-        provider: 'github',
-        username: 'joedoe'
-      )
-
-      expect(user.unverified_commit_author_identities).
-        to eql([commit_author])
-    end
-
-    it "does not return the user's commit author identities who have signed a CLA" do
-      commit_author = create(:commit_author, login: 'joedoe', authorized_to_contribute: true)
-      user = create(:user)
-      account = create(
-        :account,
-        user: user,
-        provider: 'github',
-        username: 'joedoe'
-      )
-
-      expect(user.unverified_commit_author_identities).
-        to eql([])
-    end
-  end
-
   describe '#username' do
     it 'returns the chef username for the user' do
       user = create(:user)
@@ -329,57 +125,6 @@ describe User do
       user.accounts.destroy_all # unlink all accounts aka destroy them
 
       expect(user.username).to eql('')
-    end
-  end
-
-  describe '#requested_to_join?' do
-    it 'is false if this user has not requested to join the given organization' do
-      user = create(:user)
-      organization = create(:organization)
-
-      expect(user.requested_to_join?(organization)).to be_falsey
-    end
-
-    it 'is true if this user has requested to join the given organization' do
-      user = create(:user)
-      ccla_signature = create(:ccla_signature)
-      organization = ccla_signature.organization
-
-      ContributorRequest.create!(
-        user: user,
-        ccla_signature: ccla_signature,
-        organization: organization
-      )
-
-      expect(user.requested_to_join?(organization)).to be true
-    end
-
-    it "is false if this user's request has been declined" do
-      user = create(:user)
-      ccla_signature = create(:ccla_signature)
-      organization = ccla_signature.organization
-
-      ContributorRequest.create!(
-        user: user,
-        ccla_signature: ccla_signature,
-        organization: organization
-      ).decline
-
-      expect(user.requested_to_join?(organization)).to be false
-    end
-
-    it "is false if this user's request has been accepted" do
-      user = create(:user)
-      ccla_signature = create(:ccla_signature)
-      organization = ccla_signature.organization
-
-      ContributorRequest.create!(
-        user: user,
-        ccla_signature: ccla_signature,
-        organization: organization
-      ).accept
-
-      expect(user.requested_to_join?(organization)).to be false
     end
   end
 
@@ -484,22 +229,6 @@ describe User do
         expect(account.oauth_refresh_token).to eql('fresh_refresh')
         expect(user.email).to eql(auth['info']['email'])
       end
-    end
-  end
-
-  describe '#pending_contributor_requests' do
-    it 'returns the contributor_requests for that user that are pending' do
-      user = create(:user)
-
-      accepted_contributor_request = create(:contributor_request, user: user)
-      accepted_contributor_request.accept
-
-      pending_contributor_request = create(:contributor_request, user: user)
-
-      pending_requests = user.pending_contributor_requests
-
-      expect(pending_requests.to_a).to include(pending_contributor_request)
-      expect(pending_requests.to_a).to_not include(accepted_contributor_request)
     end
   end
 

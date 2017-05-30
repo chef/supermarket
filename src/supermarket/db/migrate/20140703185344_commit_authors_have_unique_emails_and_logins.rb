@@ -1,3 +1,33 @@
+module Curry; end
+class Curry::CommitAuthor < ActiveRecord::Base
+  def self.table_name_prefix
+    'curry_'
+  end
+
+  has_many :pull_request_commit_authors
+  has_many :pull_requests, through: :pull_request_commit_authors
+
+  validates :email, uniqueness: { allow_nil: true }
+  validates :login, uniqueness: { allow_nil: true }
+
+  scope :with_known_email, -> { where('email IS NOT ?', nil) }
+  scope :with_known_login, -> { where('login IS NOT ?', nil) }
+
+  scope :with_email, ->(email) { where(email: email) }
+  scope :with_login, ->(login) { where(login: login) }
+end
+
+class Curry::PullRequestCommitAuthor < ActiveRecord::Base
+  def self.table_name_prefix
+    'curry_'
+  end
+  
+  belongs_to :commit_author
+  belongs_to :pull_request
+
+  validates :commit_author_id, uniqueness: { scope: :pull_request_id }
+end
+
 class CommitAuthorsHaveUniqueEmailsAndLogins < ActiveRecord::Migration
   def change
     emails = Curry::CommitAuthor.with_known_email.pluck(:email)

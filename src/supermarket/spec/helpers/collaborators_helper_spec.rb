@@ -27,4 +27,24 @@ describe CollaboratorsHelper do
       expect(helper.group_collaborators(cookbook.collaborators, group)).to_not include(collaborator1)
     end
   end
+
+  describe '#collaborator_removal_text' do
+    let(:sally) { create(:user) }
+    let(:hank) { create(:user) }
+    let(:cookbook) { create(:cookbook, owner: sally) }
+
+    before do
+      create(:cookbook_collaborator, resourceable: cookbook, user: hank)
+    end
+
+    it 'returns "Remove Collaborator" if you are the owner' do
+      allow(helper).to receive(:current_user) { sally }
+      expect(helper.collaborator_removal_text(cookbook.owner)).to eql('Remove Collaborator')
+    end
+
+    it 'returns "Remove Myself" if you are a collaborator' do
+      allow(helper).to receive(:current_user) { hank }
+      expect(helper.collaborator_removal_text(cookbook.owner)).to eql('Remove Myself')
+    end
+  end
 end
