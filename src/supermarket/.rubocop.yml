@@ -27,8 +27,16 @@ RedundantBegin:
   Enabled: false
 EachWithObject:
   Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - Guardfile
+    - Vagrantfile
+    - lib/tasks/**/*
+    - spec/**/*
 Metrics/PerceivedComplexity:
   Enabled: false
+Style/SymbolArray:
+  EnforcedStyle: brackets
 Style/NumericLiterals:
   Enabled: false
 Style/RaiseArgs:

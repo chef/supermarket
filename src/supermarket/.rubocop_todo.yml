@@ -101,7 +101,7 @@ Style/ClassAndModuleChildren:
 
 # Offense count: 4
 # Cop supports --auto-correct.
-Style/ClosingParenthesisIndentation:
+Layout/ClosingParenthesisIndentation:
   Exclude:
     - 'app/controllers/collaborators_controller.rb'
     - 'app/workers/cookbook_deletion_worker.rb'
@@ -135,7 +135,7 @@ Style/EmptyElse:
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: AllowAdjacentOneLineDefs.
-Style/EmptyLineBetweenDefs:
+Layout/EmptyLineBetweenDefs:
   Exclude:
     - 'app/helpers/cookbook_versions_helper.rb'
 
@@ -143,13 +143,13 @@ Style/EmptyLineBetweenDefs:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: empty_lines, no_empty_lines
-Style/EmptyLinesAroundBlockBody:
+Layout/EmptyLinesAroundBlockBody:
   Enabled: false
 
 # Offense count: 10
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment, ForceEqualSignAlignment.
-Style/ExtraSpacing:
+Layout/ExtraSpacing:
   Exclude:
     - 'Gemfile'
     - 'app/controllers/application_controller.rb'
@@ -165,7 +165,7 @@ Style/ExtraSpacing:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
 # SupportedStyles: consistent, special_for_inner_method_call, special_for_inner_method_call_in_parentheses
-Style/FirstParameterIndentation:
+Layout/FirstParameterIndentation:
   Exclude:
     - 'app/controllers/collaborators_controller.rb'
     - 'spec/controllers/cookbooks_controller_spec.rb'
@@ -203,21 +203,21 @@ Style/IfInsideElse:
 # Cop supports --auto-correct.
 # Configuration parameters: SupportedStyles, IndentationWidth.
 # SupportedStyles: special_inside_parentheses, consistent, align_brackets
-Style/IndentArray:
+Layout/IndentArray:
   EnforcedStyle: consistent
 
 # Offense count: 75
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
 # SupportedStyles: aligned, indented
-Style/MultilineMethodCallIndentation:
+Layout/MultilineMethodCallIndentation:
   Enabled: false
 
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
 # SupportedStyles: aligned, indented
-Style/MultilineOperationIndentation:
+Layout/MultilineOperationIndentation:
   Enabled: false
 
 # Offense count: 5
@@ -250,7 +250,7 @@ Style/RegexpLiteral:
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment.
-Style/SpaceAroundOperators:
+Layout/SpaceAroundOperators:
   Exclude:
     - 'lib/tasks/maintainers.rake'
 
