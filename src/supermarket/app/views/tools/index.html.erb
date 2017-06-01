@@ -6,13 +6,13 @@
     <h1 class="title">
       Tools &amp; Plugins
       <small>
-        <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom', order: 'created_at'), class: 'rss_feed_link show-for-medium-up' %>
+        <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, @current_params.merge(format: 'atom', order: 'created_at'), class: 'rss_feed_link show-for-medium-up' %>
       </small>
     </h1>
     <div class="buttons">
       <span>Filter by</span>
       <%= link_to '#', 'data-dropdown' => 'type', class: 'button radius tiny dropdown secondary' do %>
-        <%= params[:type].present? ? pretty_type(params[:type]) : 'All' %>
+        <%= @current_params[:type].present? ? pretty_type(@current_params[:type]) : 'All' %>
       <% end %>
       <% if current_user %>
         <%= link_to 'Add Tool', new_tool_path, class: 'button radius tiny secondary' %>
@@ -20,7 +20,7 @@
       <ul id="type" data-dropdown-content class="f-dropdown">
         <li><%= link_to 'All', tools_path %></li>
         <% Tool::ALLOWED_TYPES.each do |type| %>
-          <li><%= link_to pretty_type(type), params.merge(type: type) %></li>
+          <li><%= link_to pretty_type(type), @current_params.merge(type: type) %></li>
         <% end %>
       </ul>
     </div>

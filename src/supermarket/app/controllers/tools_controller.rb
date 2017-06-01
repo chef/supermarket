@@ -10,21 +10,23 @@ class ToolsController < ApplicationController
   # Lists all +Tool+ instances.
   #
   def index
-    if params[:order] == 'created_at'
+    @current_params = tool_index_params
+
+    if @current_params[:order] == 'created_at'
       @tools = Tool.order(:created_at)
     else
       @tools = Tool.order(:name)
     end
 
-    if params[:q].present?
-      @tools = @tools.search(params[:q])
+    if @current_params[:q].present?
+      @tools = @tools.search(@current_params[:q])
     end
 
-    if Tool::ALLOWED_TYPES.include?(params[:type])
-      @tools = @tools.where(type: params[:type])
+    if Tool::ALLOWED_TYPES.include?(@current_params[:type])
+      @tools = @tools.where(type: @current_params[:type])
     end
 
-    @tools = @tools.page(params[:page]).per(20)
+    @tools = @tools.page(@current_params[:page]).per(20)
 
     respond_to do |format|
       format.html
@@ -155,6 +157,10 @@ class ToolsController < ApplicationController
   end
 
   private
+
+  def tool_index_params
+    params.permit(:q, :order, :type, :page)
+  end
 
   #
   # Strong params for a +Tool+

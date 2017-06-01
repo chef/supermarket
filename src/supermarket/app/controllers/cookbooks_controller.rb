@@ -21,26 +21,28 @@ class CookbooksController < ApplicationController
   def index
     @cookbooks = Cookbook.includes(:cookbook_versions)
 
-    if params[:q].present?
-      @cookbooks = @cookbooks.search(params[:q]).with_pg_search_rank
+    @current_params = cookbook_index_params
+
+    if @current_params[:q].present?
+      @cookbooks = @cookbooks.search(@current_params[:q]).with_pg_search_rank
     end
 
-    if params[:featured].present?
+    if @current_params[:featured].present?
       @cookbooks = @cookbooks.featured
     end
 
-    if params[:order].present?
-      @cookbooks = @cookbooks.ordered_by(params[:order])
+    if @current_params[:order].present?
+      @cookbooks = @cookbooks.ordered_by(@current_params[:order])
     end
 
-    if params[:order].blank? && params[:q].blank?
+    if @current_params[:order].blank? && @current_params[:q].blank?
       @cookbooks = @cookbooks.order(:name)
     end
 
-    apply_filters
+    apply_filters @current_params
 
     @number_of_cookbooks = @cookbooks.count(:all)
-    @cookbooks = @cookbooks.page(params[:page]).per(20)
+    @cookbooks = @cookbooks.page(cookbook_index_params[:page]).per(20)
 
     respond_to do |format|
       format.html
@@ -281,6 +283,10 @@ class CookbooksController < ApplicationController
     authenticate_user!
   end
 
+  def cookbook_index_params
+    params.permit(:q, :featured, :order, :page, :badges => [], :platforms => [])
+  end
+
   def cookbook_urls_params
     params.require(:cookbook).permit(:source_url, :issues_url, :up_for_adoption)
   end
@@ -301,7 +307,7 @@ class CookbooksController < ApplicationController
     end
   end
 
-  def apply_filters
+  def apply_filters(params)
     if params[:platforms].present? && !params[:platforms][0].blank?
       @cookbooks = @cookbooks.filter_platforms(params[:platforms])
     end
