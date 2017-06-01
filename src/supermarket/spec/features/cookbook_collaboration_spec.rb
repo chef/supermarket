@@ -63,10 +63,11 @@ describe 'cookbook collaboration' do
     context 'when the collaborator groups feature is active' do
       before do
         ROLLOUT.activate(:collaborator_groups)
+        expect(ROLLOUT.active?(:collaborator_groups)).to eq(true)
         navigate_to_cookbook
         find('#manage').click
         find('[rel*=add-collaborator]').click
-        obj = find('.groups').set(group.id)
+        obj = find('.groups', visible: false).set(group.id)
 
         click_button('Add')
       end
@@ -86,7 +87,7 @@ describe 'cookbook collaboration' do
         before do
           visit group_path(group)
           click_link('Add Group Member')
-          find(:xpath, "//input[@id='user_ids']").set "#{existing_user.id}"
+          find(:xpath, "//input[@id='user_ids']", visible: false).set "#{existing_user.id}"
           click_button('Add Member')
           navigate_to_cookbook
         end
@@ -137,7 +138,7 @@ describe 'cookbook collaboration' do
             expect(page).to have_link(group.name)
             find('#manage').click
             find('[rel*=add-collaborator]').click
-            obj = find('.groups').set(group_2.id)
+            obj = find('.groups', visible: false).set(group_2.id)
             click_button('Add')
           end
 
@@ -166,55 +167,55 @@ describe 'cookbook collaboration' do
             end
           end
         end
+      end
 
-        context 'when a user is already a collaborator NOT affiliated with a group' do
-          let(:new_user) { create(:user) }
-          let!(:dup_collaborator_group_member) { create(:group_member, group: group, user: new_user) }
+      context 'when a user is already a collaborator NOT affiliated with a group' do
+        let(:new_user) { create(:user, first_name: 'Already', last_name: 'Collab') }
+        let!(:dup_collaborator_group_member) { create(:group_member, group: group, user: new_user) }
+
+        before do
+          navigate_to_cookbook
+
+          find('#manage').click
+          find('[rel*=add-collaborator]').click
+          obj = find('.collaborators.multiple', visible: false).set(new_user.id)
+
+          click_button('Add')
+        end
+
+        context 'adding a group' do
+          let!(:new_admin_member) { create(:group_member, admin: true, user: sally) }
+          let!(:new_group) { new_admin_member.group }
+          let!(:new_member) { create(:group_member, group: new_group, user: new_user) }
 
           before do
-            navigate_to_cookbook
+            expect(Collaborator.where(resourceable: cookbook, user: new_user, group: nil)).to_not be_empty
 
             find('#manage').click
             find('[rel*=add-collaborator]').click
-            obj = find('.collaborators.multiple').set(new_user.id)
-
+            obj = find('.groups', visible: false).set(new_group.id)
             click_button('Add')
+            expect(page).to have_link(new_group.name)
           end
 
-          context 'adding a group' do
-            let!(:new_admin_member) { create(:group_member, admin: true, user: sally) }
-            let!(:new_group) { new_admin_member.group }
-            let!(:new_member) { create(:group_member, group: new_group, user: new_user) }
+          it 'adds the group user as a second collaborator' do
+            expect(page).to have_link("#{new_member.user.first_name} #{new_member.user.last_name}", href: user_path(new_member.user), count: 2)
+          end
 
+          context 'removing a group' do
             before do
-              expect(Collaborator.where(resourceable: cookbook, user: new_user, group: nil)).to_not be_empty
+              resource = GroupResource.where(resourceable_id: cookbook.id, group: new_group).first
 
-              find('#manage').click
-              find('[rel*=add-collaborator]').click
-              obj = find('.groups').set(new_group.id)
-              click_button('Add')
-              expect(page).to have_link(new_group.name)
+              # Finds the correct "Remove Group" link associated with new_group
+              find("a[href=\"#{destroy_group_collaborator_path(resourceable_type: resource.resourceable_type, resourceable_id: resource.resourceable_id, id: resource.group)}\"]").click
             end
 
-            it 'adds the group user as a second collaborator' do
-              expect(page).to have_link("#{new_member.user.first_name} #{new_member.user.last_name}", href: user_path(new_member.user), count: 2)
+            it 'leaves the collaborator not associated with the group' do
+              expect(page).to have_link("#{new_member.user.first_name} #{new_member.user.last_name}", href: user_path(new_member.user), count: 1)
             end
 
-            context 'removing a group' do
-              before do
-                resource = GroupResource.where(resourceable_id: cookbook.id, group: new_group).first
-
-                # Finds the correct "Remove Group" link associated with new_group
-                find("a[href=\"#{destroy_group_collaborator_path(resourceable_type: resource.resourceable_type, resourceable_id: resource.resourceable_id, id: resource.group)}\"]").click
-              end
-
-              it 'leaves the collaborator not associated with the group' do
-                expect(page).to have_link("#{new_member.user.first_name} #{new_member.user.last_name}", href: user_path(new_member.user), count: 1)
-              end
-
-              it 'shows a warning that the user is still a collaborator' do
-                expect(page).to have_content("#{new_member.user.username} is still a collaborator")
-              end
+            it 'shows a warning that the user is still a collaborator' do
+              expect(page).to have_content("#{new_member.user.username} is still a collaborator")
             end
           end
         end
@@ -234,7 +235,7 @@ describe 'cookbook collaboration' do
 
           find('#manage').click
           find('[rel*=add-collaborator]').click
-          obj = find('.groups').set(group.id)
+          obj = find('.groups', visible: false).set(group.id)
 
           click_button('Add')
 
@@ -250,7 +251,7 @@ describe 'cookbook collaboration' do
           find('[rel*=transfer_ownership]').click
 
           within '#transfer' do
-            find('.collaborators').set(non_admin_group_member.user.id)
+            find('.collaborators', visible: false).set(non_admin_group_member.user.id)
           end
 
           click_button('Transfer')
@@ -281,7 +282,7 @@ describe 'cookbook collaboration' do
             find('[rel*=transfer_ownership]').click
 
             within '#transfer' do
-              find('.collaborators').set(new_collaborator.user.id)
+              find('.collaborators', visible: false).set(new_collaborator.user.id)
             end
 
             click_button('Transfer')
