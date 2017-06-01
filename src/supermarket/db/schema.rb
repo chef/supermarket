@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -26,23 +25,21 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.datetime "oauth_expires"
     t.string   "provider"
     t.string   "oauth_refresh_token"
+    t.index ["oauth_expires"], name: "index_accounts_on_oauth_expires", using: :btree
+    t.index ["uid", "provider"], name: "index_accounts_on_uid_and_provider", unique: true, using: :btree
+    t.index ["uid"], name: "index_accounts_on_uid", using: :btree
+    t.index ["user_id"], name: "index_accounts_on_user_id", using: :btree
+    t.index ["username", "provider"], name: "index_accounts_on_username_and_provider", unique: true, using: :btree
+    t.index ["username"], name: "index_accounts_on_username", using: :btree
   end
-
-  add_index "accounts", ["oauth_expires"], name: "index_accounts_on_oauth_expires", using: :btree
-  add_index "accounts", ["uid", "provider"], name: "index_accounts_on_uid_and_provider", unique: true, using: :btree
-  add_index "accounts", ["uid"], name: "index_accounts_on_uid", using: :btree
-  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
-  add_index "accounts", ["username", "provider"], name: "index_accounts_on_username_and_provider", unique: true, using: :btree
-  add_index "accounts", ["username"], name: "index_accounts_on_username", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.index ["slug"], name: "index_categories_on_slug", using: :btree
   end
-
-  add_index "categories", ["slug"], name: "index_categories_on_slug", using: :btree
 
   create_table "ccla_signatures", force: :cascade do |t|
     t.integer  "user_id"
@@ -65,11 +62,10 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.string   "country"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["ccla_id"], name: "index_ccla_signatures_on_ccla_id", using: :btree
+    t.index ["organization_id"], name: "index_ccla_signatures_on_organization_id", using: :btree
+    t.index ["user_id"], name: "index_ccla_signatures_on_user_id", using: :btree
   end
-
-  add_index "ccla_signatures", ["ccla_id"], name: "index_ccla_signatures_on_ccla_id", using: :btree
-  add_index "ccla_signatures", ["organization_id"], name: "index_ccla_signatures_on_organization_id", using: :btree
-  add_index "ccla_signatures", ["user_id"], name: "index_ccla_signatures_on_user_id", using: :btree
 
   create_table "cclas", force: :cascade do |t|
     t.string   "version"
@@ -77,9 +73,8 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["version"], name: "index_cclas_on_version", using: :btree
   end
-
-  add_index "cclas", ["version"], name: "index_cclas_on_version", using: :btree
 
   create_table "cla_reports", force: :cascade do |t|
     t.integer  "first_ccla_id"
@@ -101,18 +96,16 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.datetime "updated_at"
     t.string   "resourceable_type"
     t.integer  "group_id"
+    t.index ["user_id", "resourceable_type", "resourceable_id", "group_id"], name: "index_collaborators_on_user_id_and_group_id_and_resourceable", unique: true, using: :btree
   end
-
-  add_index "collaborators", ["user_id", "resourceable_type", "resourceable_id", "group_id"], name: "index_collaborators_on_user_id_and_group_id_and_resourceable", unique: true, using: :btree
 
   create_table "contributor_request_responses", force: :cascade do |t|
     t.integer  "contributor_request_id", null: false
     t.string   "decision",               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["contributor_request_id"], name: "index_contributor_request_responses_on_contributor_request_id", unique: true, using: :btree
   end
-
-  add_index "contributor_request_responses", ["contributor_request_id"], name: "index_contributor_request_responses_on_contributor_request_id", unique: true, using: :btree
 
   create_table "contributor_requests", force: :cascade do |t|
     t.integer  "organization_id",   null: false
@@ -120,9 +113,8 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "ccla_signature_id", null: false
+    t.index ["organization_id", "user_id"], name: "index_contributor_requests_on_organization_id_and_user_id", unique: true, using: :btree
   end
-
-  add_index "contributor_requests", ["organization_id", "user_id"], name: "index_contributor_requests_on_organization_id_and_user_id", unique: true, using: :btree
 
   create_table "contributors", force: :cascade do |t|
     t.integer  "user_id"
@@ -130,11 +122,10 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.boolean  "admin"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["organization_id"], name: "index_contributors_on_organization_id", using: :btree
+    t.index ["user_id", "organization_id"], name: "index_contributors_on_user_id_and_organization_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_contributors_on_user_id", using: :btree
   end
-
-  add_index "contributors", ["organization_id"], name: "index_contributors_on_organization_id", using: :btree
-  add_index "contributors", ["user_id", "organization_id"], name: "index_contributors_on_user_id_and_organization_id", unique: true, using: :btree
-  add_index "contributors", ["user_id"], name: "index_contributors_on_user_id", using: :btree
 
   create_table "cookbook_dependencies", force: :cascade do |t|
     t.string   "name",                                     null: false
@@ -143,29 +134,26 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "cookbook_id"
+    t.index ["cookbook_id"], name: "index_cookbook_dependencies_on_cookbook_id", using: :btree
+    t.index ["cookbook_version_id", "name", "version_constraint"], name: "cookbook_dependencies_unique_by_name_and_constraint", unique: true, using: :btree
+    t.index ["cookbook_version_id"], name: "index_cookbook_dependencies_on_cookbook_version_id", using: :btree
   end
-
-  add_index "cookbook_dependencies", ["cookbook_id"], name: "index_cookbook_dependencies_on_cookbook_id", using: :btree
-  add_index "cookbook_dependencies", ["cookbook_version_id", "name", "version_constraint"], name: "cookbook_dependencies_unique_by_name_and_constraint", unique: true, using: :btree
-  add_index "cookbook_dependencies", ["cookbook_version_id"], name: "index_cookbook_dependencies_on_cookbook_version_id", using: :btree
 
   create_table "cookbook_followers", force: :cascade do |t|
     t.integer  "cookbook_id", null: false
     t.integer  "user_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["cookbook_id", "user_id"], name: "index_cookbook_followers_on_cookbook_id_and_user_id", unique: true, using: :btree
   end
-
-  add_index "cookbook_followers", ["cookbook_id", "user_id"], name: "index_cookbook_followers_on_cookbook_id_and_user_id", unique: true, using: :btree
 
   create_table "cookbook_version_platforms", force: :cascade do |t|
     t.integer  "cookbook_version_id"
     t.integer  "supported_platform_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["cookbook_version_id", "supported_platform_id"], name: "index_cvp_on_cvi_and_spi", unique: true, using: :btree
   end
-
-  add_index "cookbook_version_platforms", ["cookbook_version_id", "supported_platform_id"], name: "index_cvp_on_cvi_and_spi", unique: true, using: :btree
 
   create_table "cookbook_versions", force: :cascade do |t|
     t.integer  "cookbook_id"
@@ -189,11 +177,10 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.json     "chef_versions"
     t.json     "ohai_versions"
     t.integer  "user_id"
+    t.index ["legacy_id"], name: "index_cookbook_versions_on_legacy_id", unique: true, using: :btree
+    t.index ["version", "cookbook_id"], name: "index_cookbook_versions_on_version_and_cookbook_id", unique: true, using: :btree
+    t.index ["version"], name: "index_cookbook_versions_on_version", using: :btree
   end
-
-  add_index "cookbook_versions", ["legacy_id"], name: "index_cookbook_versions_on_legacy_id", unique: true, using: :btree
-  add_index "cookbook_versions", ["version", "cookbook_id"], name: "index_cookbook_versions_on_version_and_cookbook_id", unique: true, using: :btree
-  add_index "cookbook_versions", ["version"], name: "index_cookbook_versions_on_version", using: :btree
 
   create_table "cookbooks", force: :cascade do |t|
     t.string   "name",                                     null: false
@@ -213,11 +200,10 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.boolean  "up_for_adoption"
     t.boolean  "privacy"
     t.integer  "badges_mask",              default: 0,     null: false
+    t.index ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true, using: :btree
+    t.index ["name"], name: "index_cookbooks_on_name", using: :btree
+    t.index ["user_id"], name: "index_cookbooks_on_user_id", using: :btree
   end
-
-  add_index "cookbooks", ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true, using: :btree
-  add_index "cookbooks", ["name"], name: "index_cookbooks_on_name", using: :btree
-  add_index "cookbooks", ["user_id"], name: "index_cookbooks_on_user_id", using: :btree
 
   create_table "curry_commit_authors", force: :cascade do |t|
     t.string   "login"
@@ -225,10 +211,9 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "authorized_to_contribute", default: false, null: false
+    t.index ["email"], name: "index_curry_commit_authors_on_email", unique: true, using: :btree
+    t.index ["login"], name: "index_curry_commit_authors_on_login", unique: true, using: :btree
   end
-
-  add_index "curry_commit_authors", ["email"], name: "index_curry_commit_authors_on_email", unique: true, using: :btree
-  add_index "curry_commit_authors", ["login"], name: "index_curry_commit_authors_on_login", unique: true, using: :btree
 
   create_table "curry_pull_request_comments", force: :cascade do |t|
     t.integer  "github_id",                                null: false
@@ -236,19 +221,17 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "unauthorized_commit_authors", default: [],              array: true
+    t.index ["github_id"], name: "index_curry_pull_request_comments_on_github_id", unique: true, using: :btree
+    t.index ["pull_request_id"], name: "index_curry_pull_request_comments_on_pull_request_id", using: :btree
   end
-
-  add_index "curry_pull_request_comments", ["github_id"], name: "index_curry_pull_request_comments_on_github_id", unique: true, using: :btree
-  add_index "curry_pull_request_comments", ["pull_request_id"], name: "index_curry_pull_request_comments_on_pull_request_id", using: :btree
 
   create_table "curry_pull_request_commit_authors", force: :cascade do |t|
     t.integer "pull_request_id",  null: false
     t.integer "commit_author_id", null: false
+    t.index ["commit_author_id", "pull_request_id"], name: "curry_pr_commit_author_ids", unique: true, using: :btree
+    t.index ["commit_author_id"], name: "index_curry_pull_request_commit_authors_on_commit_author_id", using: :btree
+    t.index ["pull_request_id"], name: "index_curry_pull_request_commit_authors_on_pull_request_id", using: :btree
   end
-
-  add_index "curry_pull_request_commit_authors", ["commit_author_id", "pull_request_id"], name: "curry_pr_commit_author_ids", unique: true, using: :btree
-  add_index "curry_pull_request_commit_authors", ["commit_author_id"], name: "index_curry_pull_request_commit_authors_on_commit_author_id", using: :btree
-  add_index "curry_pull_request_commit_authors", ["pull_request_id"], name: "index_curry_pull_request_commit_authors_on_pull_request_id", using: :btree
 
   create_table "curry_pull_request_updates", force: :cascade do |t|
     t.datetime "created_at"
@@ -263,11 +246,10 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "maintainer_id"
+    t.index ["maintainer_id"], name: "index_curry_pull_requests_on_maintainer_id", using: :btree
+    t.index ["number", "repository_id"], name: "index_curry_pull_requests_on_number_and_repository_id", unique: true, using: :btree
+    t.index ["repository_id"], name: "index_curry_pull_requests_on_repository_id", using: :btree
   end
-
-  add_index "curry_pull_requests", ["maintainer_id"], name: "index_curry_pull_requests_on_maintainer_id", using: :btree
-  add_index "curry_pull_requests", ["number", "repository_id"], name: "index_curry_pull_requests_on_number_and_repository_id", unique: true, using: :btree
-  add_index "curry_pull_requests", ["repository_id"], name: "index_curry_pull_requests_on_repository_id", using: :btree
 
   create_table "curry_repositories", force: :cascade do |t|
     t.string   "owner",        null: false
@@ -290,10 +272,9 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.string   "token",           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["token"], name: "index_email_preferences_on_token", unique: true, using: :btree
+    t.index ["user_id", "system_email_id"], name: "index_email_preferences_on_user_id_and_system_email_id", unique: true, using: :btree
   end
-
-  add_index "email_preferences", ["token"], name: "index_email_preferences_on_token", unique: true, using: :btree
-  add_index "email_preferences", ["user_id", "system_email_id"], name: "index_email_preferences_on_user_id_and_system_email_id", unique: true, using: :btree
 
   create_table "group_members", force: :cascade do |t|
     t.integer  "group_id"
@@ -320,9 +301,8 @@ ActiveRecord::Schema.define(version: 20170203223651) do
   create_table "hits", force: :cascade do |t|
     t.string  "label",             null: false
     t.integer "total", default: 0, null: false
+    t.index ["label"], name: "index_hits_on_label", unique: true, using: :btree
   end
-
-  add_index "hits", ["label"], name: "index_hits_on_label", unique: true, using: :btree
 
   create_table "icla_signatures", force: :cascade do |t|
     t.integer  "user_id"
@@ -341,10 +321,9 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.string   "zip"
     t.string   "country"
     t.integer  "icla_id"
+    t.index ["icla_id"], name: "index_icla_signatures_on_icla_id", using: :btree
+    t.index ["user_id"], name: "index_icla_signatures_on_user_id", using: :btree
   end
-
-  add_index "icla_signatures", ["icla_id"], name: "index_icla_signatures_on_icla_id", using: :btree
-  add_index "icla_signatures", ["user_id"], name: "index_icla_signatures_on_user_id", using: :btree
 
   create_table "iclas", force: :cascade do |t|
     t.string   "version"
@@ -352,9 +331,8 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["version"], name: "index_iclas_on_version", using: :btree
   end
-
-  add_index "iclas", ["version"], name: "index_iclas_on_version", using: :btree
 
   create_table "invitations", force: :cascade do |t|
     t.integer  "organization_id"
@@ -364,9 +342,8 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.boolean  "accepted"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["organization_id"], name: "index_invitations_on_organization_id", using: :btree
   end
-
-  add_index "invitations", ["organization_id"], name: "index_invitations_on_organization_id", using: :btree
 
   create_table "metric_results", force: :cascade do |t|
     t.integer  "cookbook_version_id"
@@ -391,11 +368,10 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "add_owner_as_collaborator"
+    t.index ["cookbook_id"], name: "index_ownership_transfer_requests_on_cookbook_id", using: :btree
+    t.index ["recipient_id"], name: "index_ownership_transfer_requests_on_recipient_id", using: :btree
+    t.index ["token"], name: "index_ownership_transfer_requests_on_token", unique: true, using: :btree
   end
-
-  add_index "ownership_transfer_requests", ["cookbook_id"], name: "index_ownership_transfer_requests_on_cookbook_id", using: :btree
-  add_index "ownership_transfer_requests", ["recipient_id"], name: "index_ownership_transfer_requests_on_recipient_id", using: :btree
-  add_index "ownership_transfer_requests", ["token"], name: "index_ownership_transfer_requests_on_token", unique: true, using: :btree
 
   create_table "quality_metrics", force: :cascade do |t|
     t.string   "name"
@@ -409,9 +385,8 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.string   "version_constraint", default: ">= 0.0.0", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["name", "version_constraint"], name: "index_supported_platforms_on_name_and_version_constraint", unique: true, using: :btree
   end
-
-  add_index "supported_platforms", ["name", "version_constraint"], name: "index_supported_platforms_on_name_and_version_constraint", unique: true, using: :btree
 
   create_table "system_emails", force: :cascade do |t|
     t.string   "name",       null: false
@@ -431,11 +406,10 @@ ActiveRecord::Schema.define(version: 20170203223651) do
     t.string   "lowercase_name"
     t.string   "slug"
     t.boolean  "up_for_adoption"
+    t.index ["lowercase_name"], name: "index_tools_on_lowercase_name", unique: true, using: :btree
+    t.index ["slug"], name: "index_tools_on_slug", unique: true, using: :btree
+    t.index ["user_id"], name: "index_tools_on_user_id", using: :btree
   end
-
-  add_index "tools", ["lowercase_name"], name: "index_tools_on_lowercase_name", unique: true, using: :btree
-  add_index "tools", ["slug"], name: "index_tools_on_slug", unique: true, using: :btree
-  add_index "tools", ["user_id"], name: "index_tools_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
