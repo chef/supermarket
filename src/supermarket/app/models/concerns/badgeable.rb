@@ -5,7 +5,7 @@ module Badgeable
   # of the badge text in this array. If you change the order--and therefore the
   # index--the integers stored in the database for a record's badges_mask will
   # no longer match the badges that the record was assigned.
-  BADGES = %w(partner).freeze
+  BADGES = %w[partner].freeze
 
   module ClassMethods
     #

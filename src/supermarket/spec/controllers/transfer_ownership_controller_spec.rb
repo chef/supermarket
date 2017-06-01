@@ -6,7 +6,7 @@ describe TransferOwnershipController do
     let(:new_owner) { create(:user) }
 
     before do
-      cookbook_collection = double('cookbook_collection', :first! => cookbook)
+      cookbook_collection = double('cookbook_collection', first!: cookbook)
       allow(Cookbook).to receive(:with_name) { cookbook_collection }
     end
 

@@ -1,4 +1,4 @@
-%w(
+%w[
   ../.env
   ../.env.development
   ../.env.test
@@ -6,4 +6,4 @@
   .rbenv-vars
   tmp/restart.txt
   tmp/caching-dev.txt
-).each { |path| Spring.watch(path) }
+].each { |path| Spring.watch(path) }

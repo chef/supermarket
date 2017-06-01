@@ -12,8 +12,7 @@ describe 'POST /api/v1/cookbook_evalution_results' do
                      cookbook_version: cookbook_version.version,
                      foodcritic_failure: false,
                      foodcritic_feedback: nil,
-                     fieri_key: 'YOUR_FIERI_KEY'
-                   }
+                     fieri_key: 'YOUR_FIERI_KEY' }
 
       expect(response.status.to_i).to eql(200)
     end
@@ -26,8 +25,7 @@ describe 'POST /api/v1/cookbook_evalution_results' do
                      cookbook_version: cookbook_version.version,
                      foodcritic_failure: false,
                      foodcritic_feedback: nil,
-                     fieri_key: 'YOUR_FIERI_KEY'
-                   }
+                     fieri_key: 'YOUR_FIERI_KEY' }
 
       expect(response.status.to_i).to eql(200)
     end

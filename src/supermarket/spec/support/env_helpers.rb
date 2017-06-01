@@ -13,7 +13,7 @@ module EnvHelpers
 
     temporary_env.each { |k, v| ENV[k] = v }
 
-    block.call
+    yield
   ensure
     existing_env.each { |k, v| ENV[k] = v }
   end

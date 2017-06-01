@@ -15,7 +15,7 @@ describe Supermarket::Authentication do
 
     it 'finds the user by the session' do
       user = double(:user)
-      allow(User).to receive(:find_by_id).with(1).and_return(user)
+      allow(User).to receive(:find_by).with(id: 1).and_return(user)
       allow(subject).to receive(:session).and_return(user_id: 1)
 
       expect(subject.current_user).to be(user)

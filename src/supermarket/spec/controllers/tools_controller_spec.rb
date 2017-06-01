@@ -128,25 +128,25 @@ describe ToolsController do
     it 'creates a tool' do
       expect do
         post(:create, params: { tool: {
-            name: 'butter',
-            slug: 'butter',
-            type: 'ohai_plugin',
-            description: 'Great plugin.',
-            source_url: 'http://example.com',
-            instructions: 'Use with care'
-          } })
+               name: 'butter',
+               slug: 'butter',
+               type: 'ohai_plugin',
+               description: 'Great plugin.',
+               source_url: 'http://example.com',
+               instructions: 'Use with care'
+             } })
       end.to change { Tool.count }.by(1)
     end
 
     it "redirects the user to the tool owner's profile tools tab" do
       post(:create, params: { tool: {
-          name: 'butter',
-          slug: 'butter',
-          type: 'ohai_plugin',
-          description: 'Great plugin.',
-          source_url: 'http://example.com',
-          instructions: 'Use with care'
-        } })
+             name: 'butter',
+             slug: 'butter',
+             type: 'ohai_plugin',
+             description: 'Great plugin.',
+             source_url: 'http://example.com',
+             instructions: 'Use with care'
+           } })
 
       expect(response).to redirect_to(tools_user_path(user))
     end
@@ -200,7 +200,7 @@ describe ToolsController do
       sign_in user
       Sidekiq::Testing.inline! do
         expect { post :adoption, params: { id: tool } }
-        .to change(ActionMailer::Base.deliveries, :count).by(1)
+          .to change(ActionMailer::Base.deliveries, :count).by(1)
       end
     end
 

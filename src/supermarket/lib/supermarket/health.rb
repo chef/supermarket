@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Supermarket
   class Health
     #
@@ -7,10 +8,10 @@ module Supermarket
     # side-effects, not their return values.
     #
 
-    REACHABLE = 'reachable'.freeze
-    UNKNOWN = 'unknown'.freeze
-    UNREACHABLE = 'unreachable'.freeze
-    ALL_FEATURES = %w(cla join_ccla tools fieri announcement github no_crawl)
+    REACHABLE = 'reachable'
+    UNKNOWN = 'unknown'
+    UNREACHABLE = 'unreachable'
+    ALL_FEATURES = %w[cla join_ccla tools fieri announcement github no_crawl].freeze
 
     attr_reader :status, :supermarket, :postgresql, :sidekiq, :redis, :features
 
@@ -55,10 +56,9 @@ module Supermarket
     #
     def expired_ocid_tokens
       postgres_health_metric do
-        @supermarket[:expired_ocid_tokens] = Account.
-          for('chef_oauth2').
-          where('oauth_expires < ?', Time.current).
-          count
+        @supermarket[:expired_ocid_tokens] = Account.for('chef_oauth2')
+                                                    .where('oauth_expires < ?', Time.current)
+                                                    .count
       end
     end
 
@@ -128,7 +128,7 @@ module Supermarket
       redis_health_metric do
         redis_info = Sidekiq.redis(&:info)
 
-        %w(uptime_in_seconds connected_clients used_memory used_memory_peak).each do |key|
+        %w[uptime_in_seconds connected_clients used_memory used_memory_peak].each do |key|
           @redis.store(key, redis_info.fetch(key, -1).to_i)
         end
       end
@@ -138,13 +138,13 @@ module Supermarket
     # What is the overall system status
     #
     def overall
-      if @sidekiq[:status] == REACHABLE &&
-         @postgresql[:status] == REACHABLE &&
-         @redis[:status] == REACHABLE
-        @status = 'ok'
-      else
-        @status = 'not ok'
-      end
+      @status = if @sidekiq[:status] == REACHABLE &&
+                   @postgresql[:status] == REACHABLE &&
+                   @redis[:status] == REACHABLE
+                  'ok'
+                else
+                  'not ok'
+                end
     end
 
     #

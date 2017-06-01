@@ -37,7 +37,7 @@ describe AccountsController do
       request.env['HTTP_REFERER'] = 'http://example.com/back'
 
       expect { delete :destroy, params: { id: account.id, user_id: user.id } }
-      .to change(user.accounts, :count).by(-1)
+        .to change(user.accounts, :count).by(-1)
     end
   end
 end

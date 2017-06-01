@@ -67,7 +67,7 @@ describe 'cookbook collaboration' do
         navigate_to_cookbook
         find('#manage').click
         find('[rel*=add-collaborator]').click
-        obj = find('.groups', visible: false).set(group.id)
+        find('.groups', visible: false).set(group.id)
 
         click_button('Add')
       end
@@ -87,7 +87,7 @@ describe 'cookbook collaboration' do
         before do
           visit group_path(group)
           click_link('Add Group Member')
-          find(:xpath, "//input[@id='user_ids']", visible: false).set "#{existing_user.id}"
+          find(:xpath, "//input[@id='user_ids']", visible: false).set existing_user.id.to_s
           click_button('Add Member')
           navigate_to_cookbook
         end
@@ -138,7 +138,7 @@ describe 'cookbook collaboration' do
             expect(page).to have_link(group.name)
             find('#manage').click
             find('[rel*=add-collaborator]').click
-            obj = find('.groups', visible: false).set(group_2.id)
+            find('.groups', visible: false).set(group_2.id)
             click_button('Add')
           end
 
@@ -177,7 +177,7 @@ describe 'cookbook collaboration' do
 
           find('#manage').click
           find('[rel*=add-collaborator]').click
-          obj = find('.collaborators.multiple', visible: false).set(new_user.id)
+          find('.collaborators.multiple', visible: false).set(new_user.id)
 
           click_button('Add')
         end
@@ -192,7 +192,7 @@ describe 'cookbook collaboration' do
 
             find('#manage').click
             find('[rel*=add-collaborator]').click
-            obj = find('.groups', visible: false).set(new_group.id)
+            find('.groups', visible: false).set(new_group.id)
             click_button('Add')
             expect(page).to have_link(new_group.name)
           end
@@ -234,7 +234,7 @@ describe 'cookbook collaboration' do
 
           find('#manage').click
           find('[rel*=add-collaborator]').click
-          obj = find('.groups', visible: false).set(group.id)
+          find('.groups', visible: false).set(group.id)
 
           click_button('Add')
 
@@ -256,7 +256,7 @@ describe 'cookbook collaboration' do
           click_button('Transfer')
 
           within('.owner_avatar') do
-            expect(page).to have_link("#{non_admin_group_member.user.username}", href: user_path(non_admin_group_member.user))
+            expect(page).to have_link(non_admin_group_member.user.username, href: user_path(non_admin_group_member.user))
           end
         end
 

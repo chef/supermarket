@@ -27,38 +27,38 @@ class QualityMetric < ApplicationRecord
   end
 
   def self.foodcritic_metric
-    QualityMetric.where(name: 'Foodcritic').first_or_create!
+    QualityMetric.find_or_create_by!(name: 'Foodcritic')
   end
 
   def self.collaborator_num_metric
-    QualityMetric.where(name: 'Collaborator Number').first_or_create!
+    QualityMetric.find_or_create_by!(name: 'Collaborator Number')
   end
 
   def self.publish_metric
-    QualityMetric.where(name: 'Publish').first_or_create!
+    QualityMetric.find_or_create_by!(name: 'Publish')
   end
 
   def self.license_metric
-    QualityMetric.where(name: 'License').first_or_create!
+    QualityMetric.find_or_create_by!(name: 'License')
   end
 
   def self.supported_platforms_metric
-    QualityMetric.where(name: 'Supported Platforms').first_or_create!
+    QualityMetric.find_or_create_by!(name: 'Supported Platforms')
   end
 
   def self.contributing_file_metric
-    QualityMetric.where(name: 'Contributing File').first_or_create!
+    QualityMetric.find_or_create_by!(name: 'Contributing File')
   end
 
   def self.testing_file_metric
-    QualityMetric.where(name: 'Testing File').first_or_create!
+    QualityMetric.find_or_create_by!(name: 'Testing File')
   end
 
   def self.version_tag_metric
-    QualityMetric.where(name: 'Version Tag').first_or_create!
+    QualityMetric.find_or_create_by!(name: 'Version Tag')
   end
 
   def self.no_binaries_metric
-    QualityMetric.where(name: 'No Binaries').first_or_create!
+    QualityMetric.find_or_create_by!(name: 'No Binaries')
   end
 end

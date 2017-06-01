@@ -29,6 +29,5 @@ namespace :quality_metrics do
       result, message = RunQualityMetrics.on_version args[:cookbook_name], args[:version]
       puts "#{result.to_s.upcase}: #{message}"
     end
-
   end
 end

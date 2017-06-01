@@ -54,7 +54,7 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-  %w(SMTP_ADDRESS SMTP_PORT SMTP_USER_NAME SMTP_PASSWORD).tap do |keys|
+  %w[SMTP_ADDRESS SMTP_PORT SMTP_USER_NAME SMTP_PASSWORD].tap do |keys|
     # If SMTP is setup use those settings otherwise just use sendmail
     if keys.any? { |key| ENV.fetch(key, nil).present? }
       config.action_mailer.delivery_method = :smtp
@@ -86,7 +86,7 @@ Rails.application.configure do
   config.logger    = ActiveSupport::TaggedLogging.new(logger)
   config.log_level = (ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].downcase : 'warn').to_sym
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'

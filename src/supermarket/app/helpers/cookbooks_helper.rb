@@ -84,7 +84,7 @@ module CookbooksHelper
         'data-tooltip' => true
       ) do
         if block
-          block.call(false)
+          yield(false)
         else
           follow_html
         end
@@ -102,7 +102,7 @@ module CookbooksHelper
         remote: true
       ) do
         if block
-          block.call(true)
+          yield(true)
         else
           unfollow_html
         end
@@ -118,7 +118,7 @@ module CookbooksHelper
         remote: true
       ) do
         if block
-          block.call(false)
+          yield(false)
         else
           follow_html
         end

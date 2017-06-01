@@ -97,7 +97,7 @@ describe Api::V1::UsersController do
       it 'sorts the github accounts by username' do
         get :show, params: { user: 'clive', format: :json }
 
-        expect(assigns[:github_usernames]).to eql(%w(clive xanadu))
+        expect(assigns[:github_usernames]).to eql(%w[clive xanadu])
       end
 
       it 'sends the owned cookbooks to the view' do

@@ -25,8 +25,6 @@ describe UsersController do
     end
 
     it '404s when when a user somehow has a Chef account but does not exist' do
-      username = user.username
-
       User.where(id: user.id).delete_all
 
       get :show, params: { id: user.username, user_tab_string: 'activity' }

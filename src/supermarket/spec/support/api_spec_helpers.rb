@@ -123,7 +123,7 @@ module ApiSpecHelpers
   def cookbook_upload(cookbook_name, opts = {})
     begin
       if cookbook_name.ends_with?('.tgz')
-        tarball = File.new("#{Rails.root}/spec/support/cookbook_fixtures/#{cookbook_name}")
+        tarball = File.new(Rails.root.join('spec', 'support', 'cookbook_fixtures', cookbook_name))
       else
         custom_metadata = opts.fetch(:custom_metadata, {})
 

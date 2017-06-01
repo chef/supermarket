@@ -27,6 +27,11 @@ RedundantBegin:
   Enabled: false
 EachWithObject:
   Enabled: false
+Lint/UselessAssignment:
+  Exclude:
+    - config.rb
+Lint/UnifiedInteger: # enable this when we switch to Ruby 2.4
+  Enabled: false
 Metrics/BlockLength:
   Exclude:
     - Guardfile

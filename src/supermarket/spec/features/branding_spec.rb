@@ -2,12 +2,11 @@ require 'spec_helper'
 require 'tempfile'
 
 describe 'the set of SASS assets', type: :feature do
-
   # A custom branding file.
   class BrandingFile
     # append datetime after name for uniqueness.
     def initialize(name, content = nil)
-      t = Time.new
+      t = Time.zone.now
       @filename = "#{name}_#{t.to_i}_#{t.usec}.scss"
       @fullname = File.join(BrandingFile.branding_dir, @filename)
       write(content) if content
@@ -30,7 +29,7 @@ describe 'the set of SASS assets', type: :feature do
 
   before do
     sign_in(create(:user))
-    cookbook = create_list(:cookbook, 2)
+    create_list(:cookbook, 2)
   end
 
   # Compile SCSS file and return the content.
@@ -53,7 +52,6 @@ describe 'the set of SASS assets', type: :feature do
   end
 
   context 'when a custom branding file redefines the search input background' do
-
     before do
       @b = BrandingFile.new('zzzz', '$search_input_bg_color: SOMEVALUE;')
     end
@@ -64,11 +62,9 @@ describe 'the set of SASS assets', type: :feature do
       expected = /input\[type=\"search\"\].cookbook_search_textfield {\n  background-color: SOMEVALUE;/
       expect(get_compiled_css('cookbooks/search.scss')).to match(expected)
     end
-
   end
 
   context 'when many custom branding file redefine the search input background' do
-
     before do
       @b2 = BrandingFile.new('zzzz2', '$search_input_bg_color: ANOTHERVALUE;')
       @b1 = BrandingFile.new('zzzz1', '$search_input_bg_color: unusedvalue;')
@@ -83,11 +79,9 @@ describe 'the set of SASS assets', type: :feature do
       expected = /input\[type=\"search\"\].cookbook_search_textfield {\n  background-color: ANOTHERVALUE;/
       expect(get_compiled_css('cookbooks/search.scss')).to match(expected)
     end
-
   end
 
   context 'when one custom branding file is deleted' do
-
     before do
       @b2 = BrandingFile.new('zzzz2', '$search_input_bg_color: ANOTHERVALUE;')
       @b1 = BrandingFile.new('zzzz1', '$search_input_bg_color: unusedvalue;')
@@ -104,7 +98,6 @@ describe 'the set of SASS assets', type: :feature do
       @b2.delete
       expect(get_compiled_css('cookbooks/search.scss')).to match(expected)
     end
-
   end
 
   context 'when a branding file replaces the appheader logo' do
@@ -123,7 +116,5 @@ $appheader_logo_png: 'branding/SOMELOGO.png';"
       expect(css).to match(expected_svg)
       expect(css).to match(expected_png)
     end
-
   end
-
 end

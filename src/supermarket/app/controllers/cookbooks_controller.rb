@@ -56,22 +56,18 @@ class CookbooksController < ApplicationController
   # Return the three most recently updated and created cookbooks.
   #
   def directory
-    @recently_updated_cookbooks = Cookbook.
-      order_by_latest_upload_date.
-      limit(5)
-    @most_downloaded_cookbooks = Cookbook.
-      includes(:cookbook_versions).
-      ordered_by('most_downloaded').
-      limit(5)
-    @most_followed_cookbooks = Cookbook.
-      includes(:cookbook_versions).
-      ordered_by('most_followed').
-      limit(5)
-    @featured_cookbooks = Cookbook.
-      includes(:cookbook_versions).
-      featured.
-      order(:name).
-      limit(5)
+    @recently_updated_cookbooks = Cookbook.order_by_latest_upload_date
+                                          .limit(5)
+    @most_downloaded_cookbooks = Cookbook.includes(:cookbook_versions)
+                                         .ordered_by('most_downloaded')
+                                         .limit(5)
+    @most_followed_cookbooks = Cookbook.includes(:cookbook_versions)
+                                       .ordered_by('most_followed')
+                                       .limit(5)
+    @featured_cookbooks = Cookbook.includes(:cookbook_versions)
+                                  .featured
+                                  .order(:name)
+                                  .limit(5)
 
     @cookbook_count = Cookbook.count
     @user_count = User.count
@@ -158,8 +154,9 @@ class CookbooksController < ApplicationController
   # Makes the current user unfollow the specified cookbook.
   #
   def unfollow
-    cookbook_follower = @cookbook.cookbook_followers.
-      where(user: current_user).first!
+    cookbook_follower = @cookbook.cookbook_followers
+                                 .where(user: current_user)
+                                 .first!
     cookbook_follower.destroy
     Supermarket::Metrics.increment 'cookbook.unfollowed'
 
@@ -245,7 +242,7 @@ class CookbooksController < ApplicationController
       notice: t(
         'cookbook.featured',
         cookbook: @cookbook.name,
-        state: "#{@cookbook.featured? ? 'featured' : 'unfeatured'}"
+        state: @cookbook.featured? ? 'featured' : 'unfeatured'
       )
     )
   end
@@ -284,7 +281,7 @@ class CookbooksController < ApplicationController
   end
 
   def cookbook_index_params
-    params.permit(:q, :featured, :order, :page, :badges => [], :platforms => [])
+    params.permit(:q, :featured, :order, :page, badges: [], platforms: [])
   end
 
   def cookbook_urls_params
@@ -308,11 +305,11 @@ class CookbooksController < ApplicationController
   end
 
   def apply_filters(params)
-    if params[:platforms].present? && !params[:platforms][0].blank?
+    if params[:platforms].present? && params[:platforms][0].present?
       @cookbooks = @cookbooks.filter_platforms(params[:platforms])
     end
 
-    if params[:badges].present? && !params[:badges][0].blank?
+    if params[:badges].present? && params[:badges][0].present?
       @cookbooks = @cookbooks.filter_badges(params[:badges])
     end
   end

@@ -2,7 +2,7 @@ class User < ApplicationRecord
   include Authorizable
   include PgSearch
 
-  ALLOWED_INSTALL_PREFERENCES = %w(berkshelf knife librarian policyfile)
+  ALLOWED_INSTALL_PREFERENCES = %w[berkshelf knife librarian policyfile].freeze
 
   # Associations
   # --------------------
@@ -66,8 +66,8 @@ class User < ApplicationRecord
   # +SystemEmail+ in question
   #
   def email_preference_for(name)
-    email_preferences.includes(:system_email).
-      where(system_emails: { name: name }).first
+    email_preferences.includes(:system_email)
+                     .find_by(system_emails: { name: name })
   end
 
   #
@@ -148,21 +148,6 @@ class User < ApplicationRecord
   end
 
   #
-  # Find a user from a GitHub login. If there is no user with that GitHub login,
-  # return a new user.
-  #
-  # @param [String] github_login The GitHub login/username to find the user by
-  #
-  # @return [User] The user with that GitHub login. If none exists, return a new
-  #                user.
-  #
-  def self.find_by_github_login(github_login)
-    account = Account.for('github').with_username(github_login).first
-
-    account.try(:user) || User.new
-  end
-
-  #
   # Find or create a user based on the oc-id auth hash. If the user already
   # exists, its +first_name+, +last_name+, and +public_key+ will be updated to
   # reflect the extracted values.
@@ -233,7 +218,7 @@ class User < ApplicationRecord
   end
 
   def public_key_signature
-    return nil unless public_key.present?
+    return nil if public_key.blank?
     # Inspired by https://stelfox.net/blog/2014/04/calculating-rsa-key-fingerprints-in-ruby/
     # Verifiable by an end-user either:
     #   with private key: openssl rsa -in private_key.pem -pubout -outform DER | openssl md5 -c

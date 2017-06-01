@@ -18,7 +18,7 @@ describe Api::V1::CookbooksController do
 
       cookbook_names = assigns[:cookbooks].map(&:name)
 
-      expect(cookbook_names).to eql(%W(sashimi slow_cooking))
+      expect(cookbook_names).to eql(%w[sashimi slow_cooking])
     end
 
     it 'allows ordering by recently updated' do

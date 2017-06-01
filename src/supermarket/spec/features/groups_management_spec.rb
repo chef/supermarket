@@ -117,7 +117,7 @@ feature 'groups management' do
 
           context 'when the create is successful' do
             before do
-              find(:xpath, "//input[@id='user_ids']", visible: false).set "#{existing_user.id}"
+              find(:xpath, "//input[@id='user_ids']", visible: false).set existing_user.id.to_s
               click_button('Add Member')
             end
 
@@ -200,7 +200,6 @@ feature 'groups management' do
               end
             end
           end
-
         end
 
         context 'showing the group on the user\'s groups profile page' do

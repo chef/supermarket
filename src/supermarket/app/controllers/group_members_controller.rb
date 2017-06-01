@@ -40,11 +40,10 @@ class GroupMembersController < ApplicationController
       end
 
       flash[:notice] = 'Member successfully removed'
-      redirect_to group_path(@group_member.group)
     else
       flash[:warning] = 'An error has occurred'
-      redirect_to group_path(@group_member.group)
     end
+    redirect_to group_path(@group_member.group)
   end
 
   def make_admin

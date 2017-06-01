@@ -30,7 +30,7 @@ begin
       maintainers = Tomlrb.load_file SOURCE
       out = "<!-- This is a generated file. Please do not edit directly -->\n\n"
       out << '# ' + maintainers['Preamble']['title'] + "\n\n"
-      out <<  maintainers['Preamble']['text'] + "\n"
+      out << maintainers['Preamble']['text'] + "\n"
       out << '# ' + maintainers['Org']['Lead']['title'] + "\n\n"
       out << person(maintainers['people'], maintainers['Org']['Lead']['person']) + "\n\n"
       out << components(maintainers['people'], maintainers['Org']['Components'])

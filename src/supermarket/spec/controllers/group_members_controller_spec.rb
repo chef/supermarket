@@ -197,7 +197,7 @@ describe GroupMembersController do
         let!(:group_member) { create(:group_member, user: user, group: group) }
 
         let(:input) do
-          { group_id: group.id, user_ids: "#{user.id}" }
+          { group_id: group.id, user_ids: user.id.to_s }
         end
 
         before do

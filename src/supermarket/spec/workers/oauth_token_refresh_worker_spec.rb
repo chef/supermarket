@@ -83,7 +83,6 @@ describe OauthTokenRefreshWorker do
   end
 
   context 'dealing with custom chef oauth2 urls' do
-
     let!(:account) { create(:account) }
 
     let(:worker) { OauthTokenRefreshWorker.new }
@@ -94,8 +93,7 @@ describe OauthTokenRefreshWorker do
       double('OmniAuth2::AccessToken',
              token: 'Iamatoken',
              expires_at: Time.current + 1.hour,
-             refresh_token: 'AnotherToken'
-      )
+             refresh_token: 'AnotherToken')
     end
 
     let(:access_token) { double('OmniAuth2::AccessToken', refresh!: refreshed_token) }

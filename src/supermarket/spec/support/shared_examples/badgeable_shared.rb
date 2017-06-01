@@ -31,11 +31,11 @@ shared_examples 'a badgeable thing' do
 
   it 'answers identityish questions about a thing having a badge' do
     subject.badges = :partner
-    expect(subject.is? :partner).to eq(true)
+    expect(subject.is?(:partner)).to eq(true)
   end
 
   it 'answers whether it has all of a given set of badges (really pending more badges being added)' do
     subject.badges = :partner
-    expect(subject.all? :partner).to eq(true)
+    expect(subject.all?(:partner)).to eq(true)
   end
 end

@@ -20,7 +20,7 @@ class RunQualityMetrics
   def self.on_latest(cookbook_name)
     return [:error, I18n.t('fieri.not_enabled')] unless ROLLOUT.active? :fieri
 
-    cookbook = Cookbook.find_by_name cookbook_name
+    cookbook = Cookbook.find_by name: cookbook_name
     return [:error, I18n.t('cookbook.not_found', name: cookbook_name)] unless cookbook
 
     latest_cookbook_version = cookbook.latest_cookbook_version
@@ -32,10 +32,10 @@ class RunQualityMetrics
   def self.on_version(cookbook_name, version)
     return [:error, I18n.t('fieri.not_enabled')] unless ROLLOUT.active? :fieri
 
-    cookbook = Cookbook.find_by_name cookbook_name
+    cookbook = Cookbook.find_by name: cookbook_name
     return [:error, I18n.t('cookbook.not_found', name: cookbook_name)] unless cookbook
 
-    cookbook_version = cookbook.cookbook_versions.find_by_version version
+    cookbook_version = cookbook.cookbook_versions.find_by version: version
     return [:error, I18n.t('cookbook.version_not_found', name: cookbook_name, version: version)] unless cookbook_version
 
     FieriNotifyWorker.perform_async cookbook_version.id

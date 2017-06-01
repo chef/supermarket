@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
 
     unless current_user.linked_github_account?
       store_location!
-      redirect_to link_github_profile_path,  notice: t('requires_linked_github')
+      redirect_to link_github_profile_path, notice: t('requires_linked_github')
     end
   end
 end

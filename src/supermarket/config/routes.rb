@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   mount Fieri::Engine, at: '/fieri', constraints: proc { ROLLOUT.active?(:fieri) }
 
-  namespace :api, defaults: { format: :json }  do
+  namespace :api, defaults: { format: :json } do
     namespace :v1 do
       get 'metrics' => 'metrics#show'
       get 'health' => 'health#show'

@@ -7,13 +7,13 @@ describe GrantBadgeToCookbook do
 
   context 'finding the cookbook' do
     it 'searches for the cookbook by name' do
-      expect(Cookbook).to receive(:find_by_name).with(cookbook.name).and_return(cookbook)
+      expect(Cookbook).to receive(:find_by).with(name: cookbook.name).and_return(cookbook)
       badge_granter.call
     end
 
     context 'when it does not exist' do
       before do
-        allow(Cookbook).to receive(:find_by_name).and_return([])
+        allow(Cookbook).to receive(:find_by).and_return([])
       end
 
       it 'returns an error' do
@@ -24,7 +24,7 @@ describe GrantBadgeToCookbook do
 
   context 'granting the badge to a cookbook' do
     before do
-      allow(Cookbook).to receive(:find_by_name).with(cookbook.name).and_return(cookbook)
+      allow(Cookbook).to receive(:find_by).with(name: cookbook.name).and_return(cookbook)
     end
 
     context 'when successful' do
@@ -47,7 +47,7 @@ describe GrantBadgeToCookbook do
 
     context 'when not successful' do
       before do
-        allow(Cookbook).to receive(:find_by_name).and_return(cookbook)
+        allow(Cookbook).to receive(:find_by).and_return(cookbook)
         allow(cookbook).to receive(:save).and_return(false)
       end
 

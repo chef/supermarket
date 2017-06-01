@@ -7,36 +7,44 @@ describe 'GET /universe' do
   let(:tarball) do
     File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
   end
-
-  before do
-    redis_version1 = create(
+  let!(:redis_version1) do
+    create(
       :cookbook_version,
       cookbook: redis,
       license: 'MIT',
       version: '1.2.0',
       tarball: tarball
     )
-    redis_version2 = create(
+  end
+  let!(:redis_version2) do
+    create(
       :cookbook_version,
       cookbook: redis,
       license: 'MIT',
       version: '1.3.0',
       tarball: tarball
     )
-    apt_version = create(
+  end
+  let!(:apt_version) do
+    create(
       :cookbook_version,
       cookbook: apt,
       license: 'BSD',
       version: '1.1.0',
       tarball: tarball
     )
-    narf_version = create(
+  end
+  let!(:narf_version) do
+    create(
       :cookbook_version,
       cookbook: narf,
       license: 'GPL',
       version: '1.4.0',
       tarball: tarball
     )
+  end
+
+  before do
     create(:cookbook_dependency, cookbook_version: redis_version1, cookbook: apt, name: 'apt', version_constraint: '>= 1.0.0')
     create(:cookbook_dependency, cookbook_version: redis_version1, cookbook: narf, name: 'narf', version_constraint: '>= 1.1.0')
     create(:cookbook_dependency, cookbook_version: redis_version2, cookbook: apt, name: 'apt', version_constraint: '>= 1.0.0')

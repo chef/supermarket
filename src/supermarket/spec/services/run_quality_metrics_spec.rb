@@ -58,7 +58,7 @@ describe RunQualityMetrics do
       end
 
       it 'returns an error when a cookbook is not found with a given version' do
-        cookbook = create(:cookbook, name: 'got-no-nines')
+        create(:cookbook, name: 'got-no-nines')
         expect(FieriNotifyWorker).not_to receive(:perform_async)
         error_message = I18n.t('cookbook.version_not_found', name: 'got-no-nines', version: '9.9.9')
 

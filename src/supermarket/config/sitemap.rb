@@ -1,9 +1,9 @@
 # Set the host name for URL creation
-if Rails.env.production?
-  SitemapGenerator::Sitemap.default_host = Supermarket::Host.full_url
-else
-  SitemapGenerator::Sitemap.default_host = 'http://www.example.com'
-end
+SitemapGenerator::Sitemap.default_host = if Rails.env.production?
+                                           Supermarket::Host.full_url
+                                         else
+                                           'http://www.example.com'
+                                         end
 
 # Disable sitemap task status output when using SitemapGenerator in-code
 SitemapGenerator.verbose = false

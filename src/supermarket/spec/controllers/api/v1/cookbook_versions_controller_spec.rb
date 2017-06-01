@@ -34,8 +34,7 @@ describe Api::V1::CookbookVersionsController do
       qm = create(:foodcritic_metric)
       metric_result = create(:metric_result,
                              cookbook_version: redis_1_0_0,
-                             quality_metric: qm
-                            )
+                             quality_metric: qm)
 
       get :show, params: { cookbook: 'redis', version: '1.0.0', format: :json }
 

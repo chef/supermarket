@@ -22,7 +22,6 @@ describe FakesController do
 
   context 'adding users' do
     context 'finding non-eligible user ids' do
-
       before do
         allow(Collaborator).to receive(:ineligible_collaborators_for).and_return(users)
       end

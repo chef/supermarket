@@ -7,8 +7,7 @@ atom_feed language: 'en-US' do |feed|
       entry.title t('cookbook.activity',
                     maintainer: cookbook_version.published_by.name,
                     version: cookbook_version.version,
-                    cookbook: cookbook_version.cookbook.name
-                   )
+                    cookbook: cookbook_version.cookbook.name)
       entry.content cookbook_atom_content(cookbook_version), type: 'html'
 
       entry.author do |author|

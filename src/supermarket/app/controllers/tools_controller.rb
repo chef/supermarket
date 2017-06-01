@@ -12,11 +12,11 @@ class ToolsController < ApplicationController
   def index
     @current_params = tool_index_params
 
-    if @current_params[:order] == 'created_at'
-      @tools = Tool.order(:created_at)
-    else
-      @tools = Tool.order(:name)
-    end
+    @tools = if @current_params[:order] == 'created_at'
+               Tool.order(:created_at)
+             else
+               Tool.order(:name)
+             end
 
     if @current_params[:q].present?
       @tools = @tools.search(@current_params[:q])

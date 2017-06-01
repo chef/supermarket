@@ -99,7 +99,7 @@ describe CookbookVersionsController do
       get :show, params: { cookbook_id: cookbook.name, version: version.version }
 
       expect(assigns(:supported_platforms).map(&:name)).
-        to match_array(%w(one two))
+        to match_array(%w[one two])
     end
 
     context 'displaying metrics' do
@@ -112,8 +112,7 @@ describe CookbookVersionsController do
                cookbook_version: version,
                quality_metric:   foodcritic_qm,
                failure:          true,
-               feedback:         'it failed'
-              )
+               feedback:         'it failed')
       end
 
       let(:collab_result) do
@@ -121,8 +120,7 @@ describe CookbookVersionsController do
                cookbook_version: version,
                quality_metric:   collab_num_qm,
                failure:          false,
-               feedback:         'it passed'
-              )
+               feedback:         'it passed')
       end
 
       let(:publish_result) do
@@ -130,8 +128,7 @@ describe CookbookVersionsController do
                cookbook_version: version,
                quality_metric:   publish_qm,
                failure:          false,
-               feedback:         'it passed'
-              )
+               feedback:         'it passed')
       end
 
       before do

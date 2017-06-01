@@ -24,7 +24,7 @@ module TarballHelpers
           JSON.dump(name: name, description: 'neat')
         end
 
-        block.call(base)
+        yield(base)
       end.to_io(AndFeathers::GzippedTarball)
 
       file.write(io.read)

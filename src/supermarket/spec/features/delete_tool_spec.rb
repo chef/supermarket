@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'deleting a tool' do
   before do
     user = create(:user)
-    tool = create(:tool, name: 'butter', owner: user)
+    create(:tool, name: 'butter', owner: user)
 
     sign_in(user)
 

@@ -22,8 +22,7 @@ describe ApplicationController do
         end
       end
 
-      def edit
-      end
+      def edit; end
     end
 
     it '404s when HTML is requested by JSON is served' do

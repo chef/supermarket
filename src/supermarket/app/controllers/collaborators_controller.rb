@@ -12,9 +12,9 @@ class CollaboratorsController < ApplicationController
   # for a given resource.
   #
   def index
-    @collaborators = User.includes(:chef_account).
-      where.not(id: params[:ineligible_user_ids]).
-      limit(20)
+    @collaborators = User.includes(:chef_account)
+                         .where.not(id: params[:ineligible_user_ids])
+                         .limit(20)
 
     if params[:q]
       @collaborators = @collaborators.search(params[:q])
@@ -31,7 +31,7 @@ class CollaboratorsController < ApplicationController
   # Add a collaborator to a resource.
   #
   def create
-    if %w(Cookbook Tool).include?(collaborator_params[:resourceable_type])
+    if %w[Cookbook Tool].include?(collaborator_params[:resourceable_type])
       resource = collaborator_params[:resourceable_type].constantize.find(
         collaborator_params[:resourceable_id]
       )
@@ -72,7 +72,7 @@ class CollaboratorsController < ApplicationController
   def destroy_group
     group = Group.find(params[:id])
 
-    if %w(Cookbook Tool).include?(params[:resourceable_type])
+    if %w[Cookbook Tool].include?(params[:resourceable_type])
       resource = params[:resourceable_type].constantize.find(
         params[:resourceable_id]
       )
@@ -86,11 +86,11 @@ class CollaboratorsController < ApplicationController
       flash[:notice] = t('collaborator.group_removed', name: group.name) + ' '
 
       dup_user_collaborators(collaborator_users, resource).each do |collaborator|
-        if collaborator.group.present?
-          flash[:notice] << "#{collaborator.user.username} is still a collaborator associated with #{collaborator.group.name}" + ' '
-        else
-          flash[:notice] << "#{collaborator.user.username} is still a collaborator on this #{params[:resourceable_type]}" ' '
-        end
+        flash[:notice] << if collaborator.group.present?
+                            "#{collaborator.user.username} is still a collaborator associated with #{collaborator.group.name}" + ' '
+                          else
+                            "#{collaborator.user.username} is still a collaborator on this #{params[:resourceable_type]}" ' '
+                          end
       end
 
       redirect_to(
@@ -146,14 +146,11 @@ class CollaboratorsController < ApplicationController
   # Params used when creating one or more +Collaborator+.
   #
   def collaborator_params
-    params.require(:collaborator).permit(
-                                          [
-                                            :resourceable_type,
-                                            :resourceable_id,
-                                            :user_ids,
-                                            :group_ids
-                                          ]
-                                        )
+    params.require(:collaborator)
+          .permit(:resourceable_type,
+                  :resourceable_id,
+                  :user_ids,
+                  :group_ids)
   end
 
   def group_collaborators(resource, group)

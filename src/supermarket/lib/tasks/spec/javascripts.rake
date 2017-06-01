@@ -15,11 +15,11 @@ namespace :spec do
     end
 
     def karma_bin
-      "#{Rails.root}/node_modules/.bin/karma"
+      Rails.root('node_modules', '.bin', 'karma')
     end
 
     def karma_command
-      "#{karma_bin} start #{Rails.root}/spec/javascripts/config/karma.conf.js"
+      "#{karma_bin} start #{Rails.root('spec', 'javascripts', 'config', 'karma.conf.js')}"
     end
   end
 end

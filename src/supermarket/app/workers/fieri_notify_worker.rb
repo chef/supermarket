@@ -24,6 +24,6 @@ class FieriNotifyWorker
       'cookbook_artifact_url' => cookbook_version.cookbook_artifact_url
     }
 
-    response = Net::HTTP.post_form(uri, data)
+    Net::HTTP.post_form(uri, data)
   end
 end

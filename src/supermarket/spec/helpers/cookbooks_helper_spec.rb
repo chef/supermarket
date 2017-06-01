@@ -17,7 +17,7 @@ describe CookbooksHelper do
   describe '#latest_cookbook_version_url' do
     it 'should return an api url to the latest cookbook version' do
       apt = create(:cookbook, name: 'apt')
-      version = create(:cookbook_version, cookbook: apt, version: '10.10.10')
+      create(:cookbook_version, cookbook: apt, version: '10.10.10')
       output = helper.latest_cookbook_version_url(apt.reload)
       expect(output).to eql('http://test.host/api/v1/cookbooks/apt/versions/10.10.10')
     end

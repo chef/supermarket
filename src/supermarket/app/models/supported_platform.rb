@@ -21,12 +21,6 @@ class SupportedPlatform < ApplicationRecord
   # @param version [String] the version constraint
   #
   def self.for_name_and_version(name, version)
-    platform = where(name: name, version_constraint: version).first
-
-    if platform
-      platform
-    else
-      create! name: name, version_constraint: version
-    end
+    find_or_create_by!(name: name, version_constraint: version)
   end
 end
