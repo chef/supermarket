@@ -27,8 +27,13 @@ RedundantBegin:
   Enabled: false
 EachWithObject:
   Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
 Metrics/PerceivedComplexity:
   Enabled: false
+Style/SymbolArray:
+  EnforcedStyle: brackets
 Style/NumericLiterals:
   Enabled: false
 Style/RaiseArgs:

@@ -23,7 +23,7 @@ class ContributingFileWorker < SourceRepoWorker
     repo = source_repo(cookbook_json)
 
     # if no match for repo from #source_user_repo, fails metric
-    return true unless repo.present?
+    return true if repo.blank?
 
     begin
       octokit_client.contents(repo, path: 'CONTRIBUTING.md')

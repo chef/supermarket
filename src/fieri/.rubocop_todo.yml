@@ -9,7 +9,3 @@
 # Offense count: 3
 Metrics/AbcSize:
   Max: 37
-
-# Offense count: 3
-Rails/HttpPositionalArguments:
-  Enabled: false

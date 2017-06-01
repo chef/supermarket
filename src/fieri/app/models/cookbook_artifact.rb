@@ -113,7 +113,7 @@ class CookbookArtifact
       # need to check for application/xml explicitly because only versions of
       # libmagic < 5.26 are available on Ubuntu 14.04 and 16.04 which are our
       # CI (Travis and Automate) node platforms
-      !(magic.file(filepath) =~ %r{^(text\/|inode\/x-empty|application\/xml)})
+      magic.file(filepath) !~ %r{^(text\/|inode\/x-empty|application\/xml)}
     ensure
       magic.close
     end
