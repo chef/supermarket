@@ -32,7 +32,7 @@ class Collaborator < ApplicationRecord # Associations
   # Returns the ineligible users for collaboration for a given resource.
   #
   def self.ineligible_collaborators_for(resource)
-    [resource.collaborator_users, resource.owner].flatten
+    [resource.direct_collaborator_users, resource.owner].flatten
   end
 
   #

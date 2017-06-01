@@ -11,6 +11,8 @@ class Tool < ApplicationRecord
   has_one :chef_account, through: :owner
   has_many :collaborators, as: :resourceable
   has_many :collaborator_users, through: :collaborators, source: :user
+  has_many :direct_collaborators, -> { where(group_id: nil) }, as: :resourceable, class_name: "Collaborator"
+  has_many :direct_collaborator_users, through: :direct_collaborators, source: :user
   has_many :group_resources, as: :resourceable
 
   # Validations

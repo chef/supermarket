@@ -171,7 +171,6 @@ describe 'cookbook collaboration' do
 
       context 'when a user is already a collaborator NOT affiliated with a group' do
         let(:new_user) { create(:user, first_name: 'Already', last_name: 'Collab') }
-        let!(:dup_collaborator_group_member) { create(:group_member, group: group, user: new_user) }
 
         before do
           navigate_to_cookbook
