@@ -7,8 +7,6 @@ class User < ApplicationRecord
   # Associations
   # --------------------
   has_many :accounts
-  has_many :icla_signatures
-  has_many :ccla_signatures
   has_many :owned_cookbooks, class_name: 'Cookbook', foreign_key: 'user_id'
   has_many :cookbook_versions
   has_many :collaborators
