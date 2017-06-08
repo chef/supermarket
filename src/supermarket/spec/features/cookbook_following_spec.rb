@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'cookbook following' do
   before do
     sign_in(create(:user))
-    cookbook = create_list(:cookbook, 2)
+    create_list(:cookbook, 2)
   end
 
   context 'from the cookbook partial' do
@@ -35,7 +35,7 @@ describe 'cookbook following' do
       expect(page).to have_xpath("//a[starts-with(@rel, 'unfollow')]")
     end
 
-    it 'allows a user to unfollow a cookbook', use_poltergeist: true  do
+    it 'allows a user to unfollow a cookbook', use_poltergeist: true do
       within '.cookbook_show' do
         follow_relation 'follow'
       end

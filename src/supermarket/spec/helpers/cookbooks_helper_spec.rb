@@ -17,7 +17,7 @@ describe CookbooksHelper do
   describe '#latest_cookbook_version_url' do
     it 'should return an api url to the latest cookbook version' do
       apt = create(:cookbook, name: 'apt')
-      version = create(:cookbook_version, cookbook: apt, version: '10.10.10')
+      create(:cookbook_version, cookbook: apt, version: '10.10.10')
       output = helper.latest_cookbook_version_url(apt.reload)
       expect(output).to eql('http://test.host/api/v1/cookbooks/apt/versions/10.10.10')
     end
@@ -80,37 +80,29 @@ describe CookbooksHelper do
   end
 
   describe '#link_to_sorted_cookbooks' do
-    it 'returns an active link if the :order param is the given ordering' do
-      allow(helper).to receive(:params) do
-        { order: 'excellent', controller: 'cookbooks', action: 'index' }
-      end
+    let(:params) do
+      { order: 'excellent', controller: 'cookbooks', action: 'index' }
+    end
 
+    it 'returns an active link if the :order param is the given ordering' do
       link = Nokogiri::HTML(
-        helper.link_to_sorted_cookbooks('Excellent', 'excellent')
+        helper.link_to_sorted_cookbooks('Excellent', params, 'excellent')
       ).css('a').first
 
       expect(link['class']).to match(/active/)
     end
 
     it 'returns a non-active link if the :order param is not the given ordering' do
-      allow(helper).to receive(:params) do
-        { order: 'excellent', controller: 'cookbooks', action: 'index' }
-      end
-
       link = Nokogiri::HTML(
-        helper.link_to_sorted_cookbooks('Not Excellent', 'not_excellent')
+        helper.link_to_sorted_cookbooks('Not Excellent', params, 'not_excellent')
       ).css('a').first
 
       expect(link['class'].to_s.split(' ')).to_not include('active')
     end
 
     it 'generates a link to the current page with the given ordering' do
-      allow(helper).to receive(:params) do
-        { order: 'excellent', controller: 'cookbooks', action: 'index' }
-      end
-
       link = Nokogiri::HTML(
-        helper.link_to_sorted_cookbooks('Not Excellent', 'not_excellent')
+        helper.link_to_sorted_cookbooks('Not Excellent', params, 'not_excellent')
       ).css('a').first
 
       expect(URI(link['href']).path).

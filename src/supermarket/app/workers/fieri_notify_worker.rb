@@ -19,11 +19,19 @@ class FieriNotifyWorker
     uri = URI.parse(ENV['FIERI_URL'])
 
     data = {
-      'cookbook_name' => cookbook_version.name,
-      'cookbook_version' => cookbook_version.version,
-      'cookbook_artifact_url' => cookbook_version.cookbook_artifact_url
+      'fieri_key' => ENV['FIERI_KEY'],
+      'cookbook' =>
+      {
+        'name' => cookbook_version.name,
+        'version' => cookbook_version.version,
+        'artifact_url' => cookbook_version.cookbook_artifact_url
+      }
     }
 
-    response = Net::HTTP.post_form(uri, data)
+    req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
+    req.body = data.to_json
+    Net::HTTP.start(uri.hostname, uri.port) do |http|
+      http.request(req)
+    end
   end
 end

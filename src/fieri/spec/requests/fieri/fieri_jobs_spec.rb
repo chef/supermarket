@@ -2,13 +2,16 @@ require 'rails_helper'
 
 RSpec.describe 'Jobs', type: :request do
   describe 'POST /fieri_jobs' do
-    context 'a valid job is posted' do
-      let(:valid_params) do
-        { cookbook_name: 'redis',
-          cookbook_version: '1.2.0',
-          cookbook_artifact_url: 'http://example.com/apache.tar.gz' }
-      end
+    let(:valid_params) do
+      { fieri_key: ENV['FIERI_KEY'],
+        cookbook: {
+          name: 'redis',
+          version: '1.2.0',
+          artifact_url: 'http://example.com/apache.tar.gz'
+        } }
+    end
 
+    context 'a valid job is posted' do
       before do
         stub_request(:get, 'http://localhost:13000/api/v1/cookbooks/redis').
           to_return(status: 200, body: '', headers: {})
@@ -44,7 +47,7 @@ RSpec.describe 'Jobs', type: :request do
       end
 
       it 'should return a 400' do
-        post fieri.jobs_path(cookbook_name: 'redis')
+        post fieri.jobs_path(valid_params.merge(cookbook: { name: 'without_other_req_params' }))
         expect(response).to have_http_status(400)
       end
     end

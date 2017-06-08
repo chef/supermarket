@@ -90,25 +90,25 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
       end
 
       it 'returns a 200' do
-        get json_body['versions'].find { |v| v =~ /0.1.0/ }
+        get(json_body['versions'].find { |v| v =~ /0.1.0/ })
 
         expect(response.status.to_i).to eql(200)
       end
 
       it 'returns a version of the cookbook' do
-        get json_body['versions'].find { |v| v =~ /0.1.0/ }
+        get(json_body['versions'].find { |v| v =~ /0.1.0/ })
 
         expect(signature(json_body)).to include(cookbook_version_signature)
       end
 
       it 'returns the date the version was published' do
-        get json_body['versions'].find { |v| v =~ /0.1.0/ }
+        get(json_body['versions'].find { |v| v =~ /0.1.0/ })
 
         expect(signature(json_body)).to include("published_at" => cookbook_version.created_at.iso8601)
       end
 
       it 'includes a list of supported platforms' do
-        get json_body['versions'].find { |v| v =~ /0.1.0/ }
+        get(json_body['versions'].find { |v| v =~ /0.1.0/ })
 
         supported_platforms_signature = { "supports" => { "ubuntu" => ">= 12.0.0" } }
 

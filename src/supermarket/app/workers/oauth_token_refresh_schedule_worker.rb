@@ -25,8 +25,8 @@ class OauthTokenRefreshScheduleWorker
   #   otherwise unused.
   #
   def perform(_last_occurrence, current_occurrence)
-    lower_bound = Time.at(current_occurrence.floor)
-    upper_bound = Time.at(current_occurrence.ceil + 1) + 25.minutes
+    lower_bound = Time.zone.at(current_occurrence.floor)
+    upper_bound = Time.zone.at(current_occurrence.ceil + 1) + 25.minutes
 
     Account.
       joins(:user).

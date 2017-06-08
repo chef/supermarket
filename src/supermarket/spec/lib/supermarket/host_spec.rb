@@ -21,7 +21,7 @@ describe Supermarket::Host do
     end
 
     it 'should not display the port in the url if it is 80 or 443' do
-      %w(80 443).each do |port|
+      %w[80 443].each do |port|
         ENV['PORT'] = port
         ENV['FQDN'] = 'example.com'
         ENV['PROTOCOL'] = 'http'

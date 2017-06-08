@@ -19,7 +19,6 @@ describe Collaborator do
     it { should validate_presence_of(:resourceable) }
 
     context 'of resourceable id' do
-
       it 'validates uniqueness scoped to user id and resourceable type' do
         expect(original_cookbook_collaborator.errors[:resourceable_id].size).to be 0
         expect(original_tool_collaborator.errors[:resourceable_id].size).to be 0

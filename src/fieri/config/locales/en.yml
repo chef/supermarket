@@ -1,4 +1,9 @@
 en:
+  api:
+    error_codes:
+      unauthorized: "UNAUTHORIZED"
+    error_messages:
+      unauthorized_post_error: "You are not authorized to POST to this end-point"
   quality_metrics:
     collaborator:
       success: 'passed the Collaborators Metric with %{num_collaborators} collaborators.'

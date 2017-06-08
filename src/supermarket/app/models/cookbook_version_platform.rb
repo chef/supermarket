@@ -1,4 +1,4 @@
-class CookbookVersionPlatform < ActiveRecord::Base
+class CookbookVersionPlatform < ApplicationRecord
   # Associations
   # --------------------
   belongs_to :cookbook_version

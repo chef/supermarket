@@ -1,7 +1,7 @@
-class Tool < ActiveRecord::Base
+class Tool < ApplicationRecord
   include PgSearch
 
-  ALLOWED_TYPES = %w(knife_plugin ohai_plugin chef_tool handler provisioning_driver kitchen_driver powershell_module dsc_resource compliance_profile)
+  ALLOWED_TYPES = %w[knife_plugin ohai_plugin chef_tool handler provisioning_driver kitchen_driver powershell_module dsc_resource compliance_profile].freeze
 
   self.inheritance_column = nil
 
@@ -11,6 +11,8 @@ class Tool < ActiveRecord::Base
   has_one :chef_account, through: :owner
   has_many :collaborators, as: :resourceable
   has_many :collaborator_users, through: :collaborators, source: :user
+  has_many :direct_collaborators, -> { where(group_id: nil) }, as: :resourceable, class_name: "Collaborator"
+  has_many :direct_collaborator_users, through: :direct_collaborators, source: :user
   has_many :group_resources, as: :resourceable
 
   # Validations
@@ -77,9 +79,9 @@ class Tool < ActiveRecord::Base
 
   scope :index, lambda { |opts = {}|
     includes(owner: :chef_account)
-    .ordered_by(opts.fetch(:order, 'name ASC'))
-    .limit(opts.fetch(:limit, 10))
-    .offset(opts.fetch(:start, 0))
+      .ordered_by(opts.fetch(:order, 'name ASC'))
+      .limit(opts.fetch(:limit, 10))
+      .offset(opts.fetch(:start, 0))
   }
 
   #

@@ -1,4 +1,4 @@
-class EmailPreference < ActiveRecord::Base
+class EmailPreference < ApplicationRecord
   include Tokenable
 
   # Associations
@@ -24,8 +24,8 @@ class EmailPreference < ActiveRecord::Base
   # @param user [User] the +User+ to subscribe emails to
   #
   def self.default_set_for_user(user)
-    SystemEmail.all.each do |email|
-      EmailPreference.where(user: user, system_email: email).first_or_create!
+    SystemEmail.find_each do |email|
+      EmailPreference.find_or_create_by!(user: user, system_email: email)
     end
   end
 

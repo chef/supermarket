@@ -301,7 +301,7 @@ class Api::V1::QualityMetricsController < Api::V1Controller
   end
 
   def check_cookbook_name_present
-    unless params[:cookbook_name].present?
+    if params[:cookbook_name].blank?
       error(
         error_code: t('api.error_codes.invalid_data'),
         error_messages: [t("api.error_messages.missing_cookbook_name")]

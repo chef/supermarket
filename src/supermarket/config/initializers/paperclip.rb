@@ -27,16 +27,16 @@ end
       )
     end
 
-    if ENV['CDN_URL'].present?
-      options = options.merge(
-        url: ':s3_alias_url',
-        s3_host_alias: ENV['CDN_URL']
-      )
-    else
-      options = options.merge(
-        url: ENV['S3_DOMAIN_STYLE']
-      )
-    end
+    options = if ENV['CDN_URL'].present?
+                options.merge(
+                  url: ':s3_alias_url',
+                  s3_host_alias: ENV['CDN_URL']
+                )
+              else
+                options.merge(
+                  url: ENV['S3_DOMAIN_STYLE']
+                )
+              end
 
     ::Paperclip::Attachment.default_options.update(options)
   else

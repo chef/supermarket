@@ -6,14 +6,14 @@
     <h1 class="title">
       <%= pluralize(@number_of_cookbooks, 'Cookbook') %>
       <small>
-        <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
+        <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, @current_params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
       </small>
     </h1>
 
     <div class="buttons">
       <span>Sort by</span>
-      <%= link_to_sorted_cookbooks 'Most Followed', 'most_followed' %>
-      <%= link_to_sorted_cookbooks 'Recently Updated', 'recently_updated' %>
+      <%= link_to_sorted_cookbooks 'Most Followed', @current_params, 'most_followed' %>
+      <%= link_to_sorted_cookbooks 'Recently Updated', @current_params, 'recently_updated' %>
     </div>
   </div>
 

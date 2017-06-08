@@ -1,4 +1,4 @@
-class OwnershipTransferRequest < ActiveRecord::Base
+class OwnershipTransferRequest < ApplicationRecord
   include Tokenable
 
   # Associations
@@ -29,7 +29,7 @@ class OwnershipTransferRequest < ActiveRecord::Base
     return unless accepted.nil?
     update_attribute(:accepted, true)
     if add_owner_as_collaborator
-      Collaborator.where(user_id: cookbook.owner.id, resourceable: cookbook).first_or_create!
+      Collaborator.find_or_create_by!(user_id: cookbook.owner.id, resourceable: cookbook)
     end
 
     cookbook.update_attribute(:user_id, recipient.id)

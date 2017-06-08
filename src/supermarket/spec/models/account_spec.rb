@@ -22,10 +22,10 @@ describe Account do
 
   context 'scopes' do
     describe 'for' do
-      it 'returns the first account with that username' do
-        github_account = create(:account, provider: 'github')
-        chef_account = create(:account, provider: 'chef_oauth2')
+      let(:github_account) { create(:account, provider: 'github') }
+      let(:chef_account) { create(:account, provider: 'chef_oauth2') }
 
+      it 'returns the first account with that username' do
         expect(Account.for('github')).to_not include(chef_account)
       end
     end

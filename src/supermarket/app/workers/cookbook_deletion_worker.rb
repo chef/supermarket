@@ -11,17 +11,15 @@ class CookbookDeletionWorker
   def perform(cookbook)
     id = cookbook['id']
 
-    subscribed_user_ids = SystemEmail.find_by!(name: 'Cookbook deleted').
-      subscribed_users.
-      pluck(:id)
+    subscribed_user_ids = SystemEmail.find_by!(name: 'Cookbook deleted')
+                                     .subscribed_users
+                                     .pluck(:id)
 
-    followers_or_collaborators = CookbookFollower.where(
-      cookbook_id: id
-    ).includes(:user) +
-      Collaborator.where(
-        resourceable_id: id,
-        resourceable_type: 'Cookbook'
-    ).includes(:user)
+    followers_or_collaborators = CookbookFollower.where(cookbook_id: id)
+                                                 .includes(:user) +
+                                 Collaborator.where(resourceable_id: id,
+                                                    resourceable_type: 'Cookbook')
+                                             .includes(:user)
 
     users = followers_or_collaborators.map(&:user).uniq.select { |u| subscribed_user_ids.include?(u.id) }
 

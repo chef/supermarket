@@ -35,7 +35,7 @@ describe GroupsController do
       end
 
       it 'returns groups only matching the query string' do
-        get :index, q: 'a', format: :json
+        get :index, params: { q: 'a', format: :json }
         group = assigns(:groups)
         expect(group.count(:all)).to eq(1)
       end
@@ -75,7 +75,7 @@ describe GroupsController do
         end
 
         it 'does not save the new group to the database' do
-          expect { post :create, group: group_input }.to change(Group, :count).by(0)
+          expect { post :create, params: { group: group_input } }.to change(Group, :count).by(0)
         end
       end
 
@@ -85,7 +85,7 @@ describe GroupsController do
         end
 
         it 'saves the new group to the database' do
-          expect { post :create, group: group_input }.to change(Group, :count).by(1)
+          expect { post :create, params: { group: group_input } }.to change(Group, :count).by(1)
         end
 
         context 'after the save' do
@@ -97,23 +97,23 @@ describe GroupsController do
           end
 
           it 'shows a success message' do
-            post :create, group: group_input
+            post :create, params: { group: group_input }
             expect(flash[:notice]).to include('Group successfully created!')
           end
 
           it 'rendirects to the group show template' do
-            post :create, group: group_input
+            post :create, params: { group: group_input }
             expect(response).to redirect_to(group_path(assigns[:group]))
           end
 
           context 'group members' do
             it 'adds the creating user as a member' do
-              post :create, group: group_input
+              post :create, params: { group: group_input }
               expect(Group.last.members).to include(user)
             end
 
             it 'sets the creating user as an admin member' do
-              post :create, group: group_input
+              post :create, params: { group: group_input }
               expect(GroupMember.last.admin).to eq(true)
             end
           end
@@ -126,7 +126,7 @@ describe GroupsController do
         end
 
         it 'does not save the group to the database' do
-          expect { post :create, group: group_input }.to change(Group, :count).by(0)
+          expect { post :create, params: { group: group_input } }.to change(Group, :count).by(0)
         end
 
         context 'after the save' do
@@ -138,12 +138,12 @@ describe GroupsController do
           end
 
           it 'shows an error' do
-            post :create, group: group_input
+            post :create, params: { group: group_input }
             expect(flash[:warning]).to include('An error has occurred')
           end
 
           it 'redirects to the new group template' do
-            post :create, group: group_input
+            post :create, params: { group: group_input }
             expect(response).to redirect_to(new_group_path)
           end
         end
@@ -170,7 +170,7 @@ describe GroupsController do
     end
 
     it 'finds the correct group' do
-      get :show, id: group
+      get :show, params: { id: group }
       expect(assigns(:group)).to eq(group)
     end
 
@@ -181,30 +181,30 @@ describe GroupsController do
       end
 
       it 'includes users who are admins' do
-        get :show, id: group
+        get :show, params: { id: group }
         expect(assigns(:admin_members)).to include(admin_member)
       end
 
       it 'does not include users who are not admins' do
-        get :show, id: group
+        get :show, params: { id: group }
         expect(assigns(:admin_members)).to_not include(user)
       end
     end
 
     context 'listing group members' do
       it 'includes users who are members' do
-        get :show, id: group
+        get :show, params: { id: group }
         expect(assigns(:members)).to include(member)
       end
 
       it 'does not include admin members' do
-        get :show, id: group
+        get :show, params: { id: group }
         expect(assigns(:members)).to_not include(admin_member)
       end
     end
 
     it 'renders the group show template' do
-      get :show, id: group
+      get :show, params: { id: group }
       expect(response).to render_template('show')
     end
   end

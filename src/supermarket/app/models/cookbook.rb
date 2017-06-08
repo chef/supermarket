@@ -1,4 +1,4 @@
-class Cookbook < ActiveRecord::Base
+class Cookbook < ApplicationRecord
   include PgSearch
   include Badgeable
   extend Badgeable::ClassMethods
@@ -34,9 +34,9 @@ class Cookbook < ActiveRecord::Base
 
   scope :order_by_latest_upload_date, lambda {
     joins(:cookbook_versions)
-    .select('cookbooks.*', 'MAX(cookbook_versions.created_at) AS latest_upload')
-    .group('cookbooks.id')
-    .order('latest_upload DESC')
+      .select('cookbooks.*', 'MAX(cookbook_versions.created_at) AS latest_upload')
+      .group('cookbooks.id')
+      .order('latest_upload DESC')
   }
 
   scope :owned_by, lambda { |username|
@@ -45,17 +45,17 @@ class Cookbook < ActiveRecord::Base
 
   scope :index, lambda { |opts = {}|
     includes(:cookbook_versions, owner: :chef_account)
-    .ordered_by(opts.fetch(:order, 'name ASC'))
-    .limit(opts.fetch(:limit, 10))
-    .offset(opts.fetch(:start, 0))
+      .ordered_by(opts.fetch(:order, 'name ASC'))
+      .limit(opts.fetch(:limit, 10))
+      .offset(opts.fetch(:start, 0))
   }
 
   scope :featured, -> { where(featured: true) }
 
   scope :filter_platforms, lambda { |platforms|
     joins(cookbook_versions: :supported_platforms)
-    .where('supported_platforms.name IN (?)', platforms).distinct
-    .select('cookbooks.*', '(cookbooks.web_download_count + cookbooks.api_download_count)')
+      .where('supported_platforms.name IN (?)', platforms).distinct
+      .select('cookbooks.*', '(cookbooks.web_download_count + cookbooks.api_download_count)')
   }
 
   scope :filter_badges, lambda { |badges|
@@ -96,6 +96,8 @@ class Cookbook < ActiveRecord::Base
   belongs_to :replacement, class_name: 'Cookbook', foreign_key: :replacement_id
   has_many :collaborators, as: :resourceable
   has_many :collaborator_users, through: :collaborators, source: :user
+  has_many :direct_collaborators, -> { where(group_id: nil) }, as: :resourceable, class_name: "Collaborator"
+  has_many :direct_collaborator_users, through: :direct_collaborators, source: :user
   has_many :group_resources, as: :resourceable
 
   # Delegations
@@ -226,7 +228,7 @@ class Cookbook < ActiveRecord::Base
   # @return [CookbookVersion] the +CookbookVersion+ with the version specified
   #
   def get_version!(version)
-    version.gsub!('_', '.')
+    version.tr!('_', '.')
 
     if version == 'latest'
       latest_cookbook_version
@@ -251,8 +253,8 @@ class Cookbook < ActiveRecord::Base
     metadata = params.metadata
 
     if metadata.privacy &&
-        ENV['ENFORCE_PRIVACY'].present? &&
-        ENV['ENFORCE_PRIVACY'] == 'true'
+       ENV['ENFORCE_PRIVACY'].present? &&
+       ENV['ENFORCE_PRIVACY'] == 'true'
       errors.add(:base, I18n.t('api.error_messages.privacy_violation'))
       raise ActiveRecord::RecordInvalid.new(self)
     end
@@ -329,13 +331,13 @@ class Cookbook < ActiveRecord::Base
   #
   def contingents
     CookbookDependency.includes(cookbook_version: :cookbook)
-      .where(cookbook_id: id)
-      .sort_by do |cd|
-        [
-          cd.cookbook_version.cookbook.name,
-          Semverse::Version.new(cd.cookbook_version.version)
-        ]
-      end
+                      .where(cookbook_id: id)
+                      .sort_by do |cd|
+      [
+        cd.cookbook_version.cookbook.name,
+        Semverse::Version.new(cd.cookbook_version.version)
+      ]
+    end
   end
 
   #
@@ -369,7 +371,7 @@ class Cookbook < ActiveRecord::Base
   #   and  saved
   #
   def deprecate(replacement_cookbook_name = '')
-    replacement_cookbook = Cookbook.find_by_name replacement_cookbook_name
+    replacement_cookbook = Cookbook.find_by name: replacement_cookbook_name
 
     if replacement_cookbook.present? && replacement_cookbook.deprecated?
       errors.add(:base, I18n.t('cookbook.deprecate_with_deprecated_failure'))
@@ -408,19 +410,19 @@ class Cookbook < ActiveRecord::Base
   end
 
   def create_new_collaborator(initiator)
-    collaborators.where(user_id: initiator.id).first_or_create!
+    collaborators.find_or_create_by!(user_id: initiator.id)
   end
 
   def delete_old_collaborator(user)
     if collaborator_users.include?(user)
-      collaborator = collaborators.where(
+      collaborator = collaborators.find_by(
         user_id: user.id,
         resourceable: self,
         group_id: nil
-      ).first
+      )
       # Do not destroy collaborator is collaborator does not exist
       # OR if the collaborator is associated with a group
-      collaborator.destroy if collaborator
+      collaborator&.destroy
     end
   end
 end

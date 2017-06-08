@@ -28,11 +28,11 @@ if Rails.env.development?
     end
 
     def contributor_request_email
-      contributor_request = ContributorRequest.where(
+      contributor_request = ContributorRequest.find_or_create_by(
         user_id: user.id,
         organization_id: organization.id,
         ccla_signature_id: ccla_signature.id
-      ).first_or_create
+      )
 
       admin = organization.admins.first.user
 
@@ -40,21 +40,21 @@ if Rails.env.development?
     end
 
     def request_accepted_email
-      contributor_request = ContributorRequest.where(
+      contributor_request = ContributorRequest.find_or_create_by(
         user_id: user.id,
         organization_id: organization.id,
         ccla_signature_id: ccla_signature.id
-      ).first_or_create
+      )
 
       ContributorRequestMailer.request_accepted_email(contributor_request)
     end
 
     def request_declined_email
-      contributor_request = ContributorRequest.where(
+      contributor_request = ContributorRequest.find_or_create_by(
         user_id: user.id,
         organization_id: organization.id,
         ccla_signature_id: ccla_signature.id
-      ).first_or_create
+      )
 
       ContributorRequestMailer.request_declined_email(contributor_request)
     end
@@ -98,7 +98,7 @@ if Rails.env.development?
     end
 
     def collaborator
-      Collaborator.where(user: user, resourceable: cookbook).first_or_create!
+      Collaborator.find_or_create_by!(user: user, resourceable: cookbook)
     end
 
     def cla_report

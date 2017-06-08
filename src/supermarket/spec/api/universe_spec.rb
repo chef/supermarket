@@ -7,36 +7,44 @@ describe 'GET /universe' do
   let(:tarball) do
     File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz')
   end
-
-  before do
-    redis_version1 = create(
+  let!(:redis_version1) do
+    create(
       :cookbook_version,
       cookbook: redis,
       license: 'MIT',
       version: '1.2.0',
       tarball: tarball
     )
-    redis_version2 = create(
+  end
+  let!(:redis_version2) do
+    create(
       :cookbook_version,
       cookbook: redis,
       license: 'MIT',
       version: '1.3.0',
       tarball: tarball
     )
-    apt_version = create(
+  end
+  let!(:apt_version) do
+    create(
       :cookbook_version,
       cookbook: apt,
       license: 'BSD',
       version: '1.1.0',
       tarball: tarball
     )
-    narf_version = create(
+  end
+  let!(:narf_version) do
+    create(
       :cookbook_version,
       cookbook: narf,
       license: 'GPL',
       version: '1.4.0',
       tarball: tarball
     )
+  end
+
+  before do
     create(:cookbook_dependency, cookbook_version: redis_version1, cookbook: apt, name: 'apt', version_constraint: '>= 1.0.0')
     create(:cookbook_dependency, cookbook_version: redis_version1, cookbook: narf, name: 'narf', version_constraint: '>= 1.1.0')
     create(:cookbook_dependency, cookbook_version: redis_version2, cookbook: apt, name: 'apt', version_constraint: '>= 1.0.0')
@@ -45,12 +53,12 @@ describe 'GET /universe' do
   end
 
   it 'returns a 200' do
-    get '/universe', format: :json
+    get '/universe', params: { format: :json }
     expect(response).to be_success
   end
 
   it 'returns http URLs by default' do
-    get '/universe', format: :json
+    get '/universe', params: { format: :json }
 
     expect(response).to be_success
     expect(json_body['redis']['1.2.0']['location_path']).to match(%r{http://.*/api/v1})
@@ -60,17 +68,17 @@ describe 'GET /universe' do
   it 'has an http specific cache key' do
     expect(Rails.cache).to receive(:fetch).with('http-universe')
 
-    get '/universe', format: :json
+    get '/universe', params: { format: :json }
   end
 
   it 'has an https specific cache key' do
     expect(Rails.cache).to receive(:fetch).with('https-universe')
 
-    get '/universe', { format: :json }, 'HTTPS' => 'on'
+    get '/universe', params: { format: :json }, headers: { 'HTTPS' => 'on' }
   end
 
   it "returns https URLs when ENV['PROTOCOL']=https" do
-    get '/universe', { format: :json }, 'HTTPS' => 'on'
+    get '/universe', params: { format: :json }, headers: { 'HTTPS' => 'on' }
 
     expect(response).to be_success
     expect(json_body['redis']['1.2.0']['location_path']).to match(%r{https://.*/api/v1})
@@ -78,7 +86,7 @@ describe 'GET /universe' do
   end
 
   it 'lists out cookbooks, their versions, and dependencies' do
-    get '/universe', format: :json
+    get '/universe', params: { format: :json }
     body = json_body
     expect(body.keys).to include('redis', 'apt', 'narf')
     expect(body['redis'].keys).to include('1.2.0', '1.3.0')

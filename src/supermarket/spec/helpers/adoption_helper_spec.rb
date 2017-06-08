@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe AdoptionHelper do
   before do
-    fake_policy = double(:policy, :manage_adoption? => true)
+    fake_policy = double(:policy, manage_adoption?: true)
     allow(helper).to receive(:policy) { fake_policy }
   end
 

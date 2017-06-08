@@ -1,17 +1,18 @@
 # frozen_string_literal: true
+
 module Universe
-  COOKBOOK = 'cookbook'.freeze
-  VERSION = 'version'.freeze
-  DEPENDENCY = 'dependency'.freeze
-  DEPENDENCY_CONSTRAINT = 'dependency_constraint'.freeze
-  LOCATION_PATH = 'location_path'.freeze
-  LOCATION_TYPE = 'location_type'.freeze
-  DOWNLOAD_URL = 'download_url'.freeze
-  DEPENDENCIES = 'dependencies'.freeze
+  COOKBOOK = 'cookbook'
+  VERSION = 'version'
+  DEPENDENCY = 'dependency'
+  DEPENDENCY_CONSTRAINT = 'dependency_constraint'
+  LOCATION_PATH = 'location_path'
+  LOCATION_TYPE = 'location_type'
+  DOWNLOAD_URL = 'download_url'
+  DEPENDENCIES = 'dependencies'
   # TODO: change this value to 'chef' once the `remote_cookbook.location_type` in Berkshelf
   # https://github.com/berkshelf/berkshelf/blob/master/lib/berkshelf/downloader.rb#L60-151
   # has been updated from 'opscode' to 'chef'
-  CHEF = 'opscode'.freeze
+  CHEF = 'opscode'
 
   module_function
 

@@ -11,14 +11,14 @@ class UsersController < ApplicationController
   # the user owns.
   #
   def show
-    case params[:tab]
-    when 'collaborates'
-      @cookbooks = @user.collaborated_cookbooks
-    when 'follows'
-      @cookbooks = @user.followed_cookbooks
-    else
-      @cookbooks = @user.owned_cookbooks
-    end
+    @cookbooks = case params[:tab]
+                 when 'collaborates'
+                   @user.collaborated_cookbooks
+                 when 'follows'
+                   @user.followed_cookbooks
+                 else
+                   @user.owned_cookbooks
+                 end
 
     @cookbooks = @cookbooks.order(:name).page(params[:page]).per(20)
   end

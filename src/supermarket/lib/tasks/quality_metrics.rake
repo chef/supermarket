@@ -1,5 +1,4 @@
 namespace :quality_metrics do
-
   desc 'List the names of quality metrics'
   task list: :environment do
     puts "Quality Metrics:"
@@ -63,7 +62,7 @@ namespace :quality_metrics do
         exit 1
       end
 
-      quality_metric = QualityMetric.find_by_name(metric_name)
+      quality_metric = QualityMetric.find_by(name: metric_name)
       unless quality_metric
         puts "ERROR: No quality metric found with the name '#{metric_name}'."
         exit 1
@@ -83,7 +82,7 @@ namespace :quality_metrics do
         exit 1
       end
 
-      quality_metric = QualityMetric.find_by_name(metric_name)
+      quality_metric = QualityMetric.find_by(name: metric_name)
       unless quality_metric
         puts "ERROR: No quality metric found with the name '#{metric_name}'."
         exit 1

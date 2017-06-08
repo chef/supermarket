@@ -8,17 +8,15 @@ require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'capybara-screenshot/rspec'
+require 'factory_girl_rails'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[File.expand_path(File.join(File.dirname(__FILE__), 'support', '**', '*.rb'))].each { |f| require f }
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
-
-# Load factories from FactoryGirl
-FactoryGirl.find_definitions
 
 # Treat Sidekiq like ActionMailer. In most cases, tests which queue jobs should
 # only care that the job was queued, and not care about the result.
@@ -123,7 +121,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     Dir.mkdir('tmp') unless File.exist?('tmp')
-    extensions = %w(pg_trgm plpgsql)
+    extensions = %w[pg_trgm plpgsql]
     extensions.each do |ext|
       ActiveRecord::Base.connection.execute("CREATE EXTENSION IF NOT EXISTS #{ext}")
     end
@@ -137,11 +135,11 @@ RSpec.configure do |config|
 
   config.before(:each) do |example|
     Rails.cache.clear
-    if example.metadata[:js] || example.metadata[:type] == :feature
-      DatabaseCleaner.strategy = :truncation
-    else
-      DatabaseCleaner.strategy = :transaction
-    end
+    DatabaseCleaner.strategy = if example.metadata[:js] || example.metadata[:type] == :feature
+                                 :truncation
+                               else
+                                 :transaction
+                               end
     DatabaseCleaner.start
   end
 

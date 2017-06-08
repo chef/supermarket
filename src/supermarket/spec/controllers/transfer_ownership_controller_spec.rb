@@ -6,7 +6,7 @@ describe TransferOwnershipController do
     let(:new_owner) { create(:user) }
 
     before do
-      cookbook_collection = double('cookbook_collection', :first! => cookbook)
+      cookbook_collection = double('cookbook_collection', first!: cookbook)
       allow(Cookbook).to receive(:with_name) { cookbook_collection }
     end
 
@@ -19,7 +19,7 @@ describe TransferOwnershipController do
           new_owner,
           false
         ) { 'cookbook.ownership_transfer.done' }
-        put :transfer, id: cookbook, cookbook: { user_id: new_owner.id, add_owner_as_collaborator: "0" }
+        put :transfer, params: { id: cookbook, cookbook: { user_id: new_owner.id, add_owner_as_collaborator: "0" } }
       end
 
       it 'attempts to change the cookbooks owner and save the current owner as a contributor' do
@@ -28,11 +28,11 @@ describe TransferOwnershipController do
           new_owner,
           true
         ) { 'cookbook.ownership_transfer.done' }
-        put :transfer, id: cookbook, cookbook: { user_id: new_owner.id, add_owner_as_collaborator: "1" }
+        put :transfer, params: { id: cookbook, cookbook: { user_id: new_owner.id, add_owner_as_collaborator: "1" } }
       end
 
       it 'redirects back to the cookbook' do
-        put :transfer, id: cookbook, cookbook: { user_id: new_owner.id }
+        put :transfer, params: { id: cookbook, cookbook: { user_id: new_owner.id } }
         expect(response).to redirect_to(assigns[:cookbook])
       end
     end
@@ -51,7 +51,7 @@ describe TransferOwnershipController do
       before { sign_in(create(:user)) }
 
       it 'returns a 404' do
-        put :transfer, id: cookbook, cookbook: { user_id: new_owner.id }
+        put :transfer, params: { id: cookbook, cookbook: { user_id: new_owner.id } }
         expect(response.status.to_i).to eql(404)
       end
     end
@@ -62,18 +62,18 @@ describe TransferOwnershipController do
 
     shared_examples 'a transfer request' do
       it 'redirects back to the cookbook' do
-        post :accept, token: transfer_request
+        post :accept, params: { token: transfer_request }
         expect(response).to redirect_to(assigns[:transfer_request].cookbook)
       end
 
       it 'finds transfer requests based on token' do
-        post :accept, token: transfer_request
+        post :accept, params: { token: transfer_request }
         expect(assigns[:transfer_request]).to eql(transfer_request)
       end
 
       it 'returns a 404 if the transfer request given has already been updated' do
         transfer_request.update_attribute(:accepted, true)
-        post :accept, token: transfer_request
+        post :accept, params: { token: transfer_request }
         expect(response.status.to_i).to eql(404)
       end
     end
@@ -83,7 +83,7 @@ describe TransferOwnershipController do
         allow(OwnershipTransferRequest).to receive(:find_by!) { transfer_request }
         expect(transfer_request.accepted).to be_nil
         expect(transfer_request).to receive(:accept!)
-        get :accept, token: transfer_request
+        get :accept, params: { token: transfer_request }
       end
 
       it_behaves_like 'a transfer request'
@@ -94,7 +94,7 @@ describe TransferOwnershipController do
         allow(OwnershipTransferRequest).to receive(:find_by!) { transfer_request }
         expect(transfer_request.accepted).to be_nil
         expect(transfer_request).to receive(:decline!)
-        get :decline, token: transfer_request
+        get :decline, params: { token: transfer_request }
       end
 
       it_behaves_like 'a transfer request'

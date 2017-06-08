@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe FeatureFlagHelper do
-
   describe '#air_gap?' do
     context 'when the feature flag is set to true' do
       before do

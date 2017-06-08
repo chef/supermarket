@@ -1,4 +1,5 @@
-Supermarket::Application.routes.draw do
+Rails.application.routes.draw do
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   VERSION_PATTERN = /latest|([0-9_\-\.]+)/ unless defined?(VERSION_PATTERN)
 
   if Rails.env.development?
@@ -7,7 +8,7 @@ Supermarket::Application.routes.draw do
 
   mount Fieri::Engine, at: '/fieri', constraints: proc { ROLLOUT.active?(:fieri) }
 
-  namespace :api, defaults: { format: :json }  do
+  namespace :api, defaults: { format: :json } do
     namespace :v1 do
       get 'metrics' => 'metrics#show'
       get 'health' => 'health#show'

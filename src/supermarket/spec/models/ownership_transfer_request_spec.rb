@@ -43,20 +43,17 @@ describe OwnershipTransferRequest do
 
       it 'should transfer ownership to someone else' do
         cookbook = transfer_request.cookbook
-        sally = cookbook.owner
         jimmy = transfer_request.recipient
         transfer_request.accept!
         cookbook.reload
         expect(cookbook.owner).to eql(jimmy)
       end
 
-      it_should_behave_like 'returning early'
+      it_behaves_like 'returning early'
 
       context 'current owner wants to become a collaborator' do
         it 'should transfer the ownership and keep the old owner as a collaborator' do
           cookbook = transfer_request.cookbook
-          sally = cookbook.owner
-          jimmy = transfer_request.recipient
           transfer_request.add_owner_as_collaborator = true
           cookbook.reload
 
@@ -74,7 +71,7 @@ describe OwnershipTransferRequest do
         expect(transfer_request.accepted).to eql(false)
       end
 
-      it_should_behave_like 'returning early'
+      it_behaves_like 'returning early'
     end
   end
 end

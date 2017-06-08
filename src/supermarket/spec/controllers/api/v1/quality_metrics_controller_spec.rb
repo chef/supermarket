@@ -38,30 +38,14 @@ describe Api::V1::QualityMetricsController do
     context 'the request is authorized' do
       context 'the cookbook version exists' do
         it 'finds the correct cookbook version' do
-          post(
-            :foodcritic_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version_2.to_param,
-            foodcritic_failure: true,
-            foodcritic_feedback: 'E066',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:foodcritic_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version_2.to_param, foodcritic_failure: true, foodcritic_feedback: 'E066', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(assigns[:cookbook_version]).to eq(version_2)
         end
 
         context 'the required params are provided' do
           it 'returns a 200' do
-            post(
-              :foodcritic_evaluation,
-              cookbook_name: cookbook.name,
-              cookbook_version: version.to_param,
-              foodcritic_failure: true,
-              foodcritic_feedback: 'E066',
-              fieri_key: 'YOUR_FIERI_KEY',
-              format: :json
-            )
+            post(:foodcritic_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.to_param, foodcritic_failure: true, foodcritic_feedback: 'E066', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
             expect(response.status.to_i).to eql(200)
           end
@@ -69,29 +53,14 @@ describe Api::V1::QualityMetricsController do
           it "adds a metric result for foodcritic" do
             quality_metric = create(:foodcritic_metric)
 
-            post(
-              :foodcritic_evaluation,
-              cookbook_name: cookbook.name,
-              cookbook_version: version.to_param,
-              foodcritic_failure: true,
-              foodcritic_feedback: 'E066',
-              fieri_key: 'YOUR_FIERI_KEY',
-              format: :json
-            )
+            post(:foodcritic_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.to_param, foodcritic_failure: true, foodcritic_feedback: 'E066', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
             expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
           end
 
           context 'the required params are not provided' do
             it 'returns a 400' do
-              post(
-                :foodcritic_evaluation,
-                cookbook_name: cookbook.name,
-                foodcritic_failure: 'false',
-                foodcritic_feedback: '',
-                fieri_key: 'YOUR_FIERI_KEY',
-                format: :json
-              )
+              post(:foodcritic_evaluation, params: { cookbook_name: cookbook.name, foodcritic_failure: 'false', foodcritic_feedback: '', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
               expect(response.status.to_i).to eql(400)
 
@@ -108,15 +77,7 @@ describe Api::V1::QualityMetricsController do
 
       context 'the cookbook version does not exist' do
         it 'returns a 404' do
-          post(
-            :foodcritic_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: '1010101.1.1',
-            foodcritic_failure: true,
-            foodcritic_feedback: 'E066',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:foodcritic_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: '1010101.1.1', foodcritic_failure: true, foodcritic_feedback: 'E066', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(response.status.to_i).to eql(404)
         end
@@ -125,15 +86,7 @@ describe Api::V1::QualityMetricsController do
 
     context 'the request is not authorized' do
       it 'renders a 401 error about unauthorized post' do
-        post(
-          :foodcritic_evaluation,
-          cookbook_name: cookbook.name,
-          cookbook_version: '1010101.1.1',
-          foodcritic_failure: true,
-          foodcritic_feedback: 'E066',
-          fieri_key: 'not_the_key',
-          format: :json
-        )
+        post(:foodcritic_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: '1010101.1.1', foodcritic_failure: true, foodcritic_feedback: 'E066', fieri_key: 'not_the_key', format: :json })
 
         expect(response.status.to_i).to eql(401)
         expect(JSON.parse(response.body)).to eql(
@@ -154,30 +107,14 @@ describe Api::V1::QualityMetricsController do
     context 'the request is authorized' do
       context 'the cookbook version exists' do
         it 'finds the correct cookbook version' do
-          post(
-            :no_binaries_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version_2.to_param,
-            no_binaries_failure: true,
-            no_binaries_evaluation: 'Binaries inside. :(',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:no_binaries_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version_2.to_param, no_binaries_failure: true, no_binaries_evaluation: 'Binaries inside. :(', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(assigns[:cookbook_version]).to eq(version_2)
         end
 
         context 'the required params are provided' do
           it 'returns a 200' do
-            post(
-              :no_binaries_evaluation,
-              cookbook_name: cookbook.name,
-              cookbook_version: version.to_param,
-              no_binaries_failure: true,
-              no_binaries_feedback: 'Binaries inside. :(',
-              fieri_key: 'YOUR_FIERI_KEY',
-              format: :json
-            )
+            post(:no_binaries_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.to_param, no_binaries_failure: true, no_binaries_feedback: 'Binaries inside. :(', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
             expect(response.status.to_i).to eql(200)
           end
@@ -185,29 +122,14 @@ describe Api::V1::QualityMetricsController do
           it "adds a metric result for no binaries check" do
             quality_metric = create(:no_binaries_metric)
 
-            post(
-              :no_binaries_evaluation,
-              cookbook_name: cookbook.name,
-              cookbook_version: version.to_param,
-              no_binaries_failure: true,
-              no_binaries_feedback: 'Binaries inside. :(',
-              fieri_key: 'YOUR_FIERI_KEY',
-              format: :json
-            )
+            post(:no_binaries_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.to_param, no_binaries_failure: true, no_binaries_feedback: 'Binaries inside. :(', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
             expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
           end
 
           context 'the required params are not provided' do
             it 'returns a 400' do
-              post(
-                :no_binaries_evaluation,
-                cookbook_name: cookbook.name,
-                no_binaries_failure: 'false',
-                no_binaries_feedback: '',
-                fieri_key: 'YOUR_FIERI_KEY',
-                format: :json
-              )
+              post(:no_binaries_evaluation, params: { cookbook_name: cookbook.name, no_binaries_failure: 'false', no_binaries_feedback: '', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
               expect(response.status.to_i).to eql(400)
 
@@ -224,15 +146,7 @@ describe Api::V1::QualityMetricsController do
 
       context 'the cookbook version does not exist' do
         it 'returns a 404' do
-          post(
-            :no_binaries_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: '1010101.1.1',
-            no_binaries_failure: true,
-            no_binaries_feedback: 'Binaries inside. :(',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:no_binaries_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: '1010101.1.1', no_binaries_failure: true, no_binaries_feedback: 'Binaries inside. :(', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(response.status.to_i).to eql(404)
         end
@@ -241,15 +155,7 @@ describe Api::V1::QualityMetricsController do
 
     context 'the request is not authorized' do
       it 'renders a 401 error about unauthorized post' do
-        post(
-          :no_binaries_evaluation,
-          cookbook_name: cookbook.name,
-          cookbook_version: '1010101.1.1',
-          no_binaries_failure: true,
-          no_binaries_feedback: 'Binaries inside. :(',
-          fieri_key: 'not_the_key',
-          format: :json
-        )
+        post(:no_binaries_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: '1010101.1.1', no_binaries_failure: true, no_binaries_feedback: 'Binaries inside. :(', fieri_key: 'not_the_key', format: :json })
 
         expect(response.status.to_i).to eql(401)
         expect(JSON.parse(response.body)).to eql(
@@ -270,40 +176,19 @@ describe Api::V1::QualityMetricsController do
     context 'the request is authorized' do
       context 'the required params are provided' do
         it 'finds the latest cookbook version' do
-          post(
-            :collaborators_evaluation,
-            cookbook_name: cookbook.name,
-            collaborator_failure: false,
-            collaborator_feedback: 'This cookbook does not have sufficient collaborators.',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:collaborators_evaluation, params: { cookbook_name: cookbook.name, collaborator_failure: false, collaborator_feedback: 'This cookbook does not have sufficient collaborators.', fieri_key: 'YOUR_FIERI_KEY', format: :json })
           expect(assigns[:cookbook_version]).to eq(version_2)
         end
 
         it 'returns a 200' do
-          post(
-            :collaborators_evaluation,
-            cookbook_name: cookbook.name,
-            collaborator_failure: false,
-            collaborator_feedback: 'This cookbook does not have sufficient collaborators.',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:collaborators_evaluation, params: { cookbook_name: cookbook.name, collaborator_failure: false, collaborator_feedback: 'This cookbook does not have sufficient collaborators.', fieri_key: 'YOUR_FIERI_KEY', format: :json })
           expect(response.status.to_i).to eql(200)
         end
 
         it "updates the cookbook version's collaborator attributes" do
           quality_metric = create(:collaborator_num_metric)
 
-          post(
-            :collaborators_evaluation,
-            cookbook_name: cookbook.name,
-            collaborator_failure: false,
-            collaborator_feedback: 'This cookbook does not have sufficient collaborators.',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:collaborators_evaluation, params: { cookbook_name: cookbook.name, collaborator_failure: false, collaborator_feedback: 'This cookbook does not have sufficient collaborators.', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(version_2.metric_results.where(quality_metric: quality_metric).count).to eq(1)
         end
@@ -311,13 +196,7 @@ describe Api::V1::QualityMetricsController do
 
       context 'the required params are not provided' do
         it 'returns a 400' do
-          post(
-            :collaborators_evaluation,
-            collaborator_failure: false,
-            collaborator_feedback: '',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:collaborators_evaluation, params: { collaborator_failure: false, collaborator_feedback: '', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(response.status.to_i).to eql(400)
 
@@ -333,14 +212,7 @@ describe Api::V1::QualityMetricsController do
 
     context 'the request is not authorized' do
       it 'renders a 401 error about unauthorized post' do
-        post(
-          :collaborators_evaluation,
-          cookbook_name: cookbook.name,
-          collaborator_failure: true,
-          collaborator_feedback: 'E066',
-          fieri_key: 'not_the_key',
-          format: :json
-        )
+        post(:collaborators_evaluation, params: { cookbook_name: cookbook.name, collaborator_failure: true, collaborator_feedback: 'E066', fieri_key: 'not_the_key', format: :json })
 
         expect(response.status.to_i).to eql(401)
         expect(JSON.parse(response.body)).to eql(
@@ -361,40 +233,19 @@ describe Api::V1::QualityMetricsController do
     context 'the request is authorized' do
       context 'the required params are provided' do
         it 'returns a 200' do
-          post(
-            :publish_evaluation,
-            cookbook_name: cookbook.name,
-            publish_failure: false,
-            publish_feedback: 'This cookbook does not exist.',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:publish_evaluation, params: { cookbook_name: cookbook.name, publish_failure: false, publish_feedback: 'This cookbook does not exist.', fieri_key: 'YOUR_FIERI_KEY', format: :json })
           expect(response.status.to_i).to eql(200)
         end
 
         it "creates a publish metric" do
-          post(
-            :publish_evaluation,
-            cookbook_name: cookbook.name,
-            publish_failure: false,
-            publish_feedback: 'This cookbook does not exist.',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:publish_evaluation, params: { cookbook_name: cookbook.name, publish_failure: false, publish_feedback: 'This cookbook does not exist.', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           version.reload
           expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
         end
 
         it 'finds the correct cookbook version' do
-          post(
-            :publish_evaluation,
-            cookbook_name: cookbook.name,
-            publish_failure: false,
-            publish_feedback: 'This cookbook does not exist.',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:publish_evaluation, params: { cookbook_name: cookbook.name, publish_failure: false, publish_feedback: 'This cookbook does not exist.', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(assigns[:cookbook_version]).to eq(version)
         end
@@ -402,14 +253,7 @@ describe Api::V1::QualityMetricsController do
 
       context 'the required params are not provided' do
         it 'returns a 400' do
-          post(
-            :publish_evaluation,
-            cookbook_name: cookbook.name,
-            publish_failure: false,
-            publish_feedback: '',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:publish_evaluation, params: { cookbook_name: cookbook.name, publish_failure: false, publish_feedback: '', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(response.status.to_i).to eql(400)
 
@@ -425,14 +269,7 @@ describe Api::V1::QualityMetricsController do
 
     context 'the request is not authorized' do
       it 'renders a 401 error about unauthorized post' do
-        post(
-          :publish_evaluation,
-          cookbook_name: cookbook.name,
-          publish_failure: false,
-          publish_feedback: '',
-          fieri_key: 'not_the_key',
-          format: :json
-        )
+        post(:publish_evaluation, params: { cookbook_name: cookbook.name, publish_failure: false, publish_feedback: '', fieri_key: 'not_the_key', format: :json })
 
         expect(response.status.to_i).to eql(401)
         expect(JSON.parse(response.body)).to eql(
@@ -453,44 +290,20 @@ describe Api::V1::QualityMetricsController do
     context 'the request is authorized' do
       context 'the required params are provided' do
         it 'returns a 200' do
-          post(
-            :license_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            license_failure: false,
-            license_feedback: 'This cookbook does not exist.',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:license_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, license_failure: false, license_feedback: 'This cookbook does not exist.', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(response.status.to_i).to eql(200)
         end
 
         it 'creates a license metric' do
-          post(
-            :license_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            license_failure: false,
-            license_feedback: 'This cookbook does not exist.',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:license_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, license_failure: false, license_feedback: 'This cookbook does not exist.', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           version.reload
           expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
         end
 
         it 'finds the correct cookbook version' do
-          post(
-            :license_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            license_failure: false,
-            license_feedback: 'This cookbook does not exist.',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:license_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, license_failure: false, license_feedback: 'This cookbook does not exist.', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(assigns[:cookbook_version]).to eq(version)
         end
@@ -498,13 +311,7 @@ describe Api::V1::QualityMetricsController do
 
       context 'the required params are not provided' do
         it 'returns a 400' do
-          post(
-            :license_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:license_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(response.status.to_i).to eql(400)
         end
@@ -513,15 +320,7 @@ describe Api::V1::QualityMetricsController do
 
     context 'the request is not authorized' do
       it 'renders a 401 error about unauthorized post' do
-        post(
-          :license_evaluation,
-          cookbook_name: cookbook.name,
-          cookbook_version: version.version,
-          license_failure: false,
-          license_feedback: 'This cookbook does not exist.',
-          fieri_key: 'not_the_key',
-          format: :json
-        )
+        post(:license_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, license_failure: false, license_feedback: 'This cookbook does not exist.', fieri_key: 'not_the_key', format: :json })
 
         expect(response.status.to_i).to eql(401)
         expect(JSON.parse(response.body)).to eql(
@@ -542,44 +341,20 @@ describe Api::V1::QualityMetricsController do
     context 'the request is authorized' do
       context 'the required params are provided' do
         it 'returns a 200' do
-          post(
-            :supported_platforms_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            supported_platforms_failure: false,
-            supported_platforms_feedback: 'This cookbook does not exist.',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:supported_platforms_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, supported_platforms_failure: false, supported_platforms_feedback: 'This cookbook does not exist.', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(response.status.to_i).to eql(200)
         end
 
         it 'creates a supported platforms metric' do
-          post(
-            :supported_platforms_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            supported_platforms_failure: false,
-            supported_platforms_feedback: 'This cookbook does not exist.',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:supported_platforms_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, supported_platforms_failure: false, supported_platforms_feedback: 'This cookbook does not exist.', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           version.reload
           expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
         end
 
         it 'finds the correct cookbook version' do
-          post(
-            :supported_platforms_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            supported_platforms_failure: false,
-            supported_platforms_feedback: 'This cookbook does not exist.',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:supported_platforms_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, supported_platforms_failure: false, supported_platforms_feedback: 'This cookbook does not exist.', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(assigns[:cookbook_version]).to eq(version)
         end
@@ -587,13 +362,7 @@ describe Api::V1::QualityMetricsController do
 
       context 'the required params are not provided' do
         it 'returns a 400' do
-          post(
-            :supported_platforms_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:supported_platforms_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(response.status.to_i).to eql(400)
         end
@@ -602,15 +371,7 @@ describe Api::V1::QualityMetricsController do
 
     context 'the request is not authorized' do
       it 'renders a 401 error about unauthorized post' do
-        post(
-          :supported_platforms_evaluation,
-          cookbook_name: cookbook.name,
-          cookbook_version: version.version,
-          supported_platforms_failure: false,
-          supported_platforms_feedback: 'This cookbook does not exist.',
-          fieri_key: 'not_the_key',
-          format: :json
-        )
+        post(:supported_platforms_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, supported_platforms_failure: false, supported_platforms_feedback: 'This cookbook does not exist.', fieri_key: 'not_the_key', format: :json })
 
         expect(response.status.to_i).to eql(401)
         expect(JSON.parse(response.body)).to eql(
@@ -631,29 +392,13 @@ describe Api::V1::QualityMetricsController do
     context 'the request is authorized' do
       context 'the required params are provided' do
         it 'returns a 200' do
-          post(
-            :contributing_file_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            contributing_file_failure: false,
-            contributing_file_feedback: 'passed',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:contributing_file_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, contributing_file_failure: false, contributing_file_feedback: 'passed', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(response.status.to_i).to eql(200)
         end
 
         it 'creates a contributing file metric' do
-          post(
-            :contributing_file_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            contributing_file_failure: false,
-            contributing_file_feedback: 'passed',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:contributing_file_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, contributing_file_failure: false, contributing_file_feedback: 'passed', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           version.reload
           expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
@@ -661,15 +406,7 @@ describe Api::V1::QualityMetricsController do
         end
 
         it 'finds the correct cookbook version' do
-          post(
-            :contributing_file_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            contributing_file_failure: false,
-            contributing_file_feedback: 'passed',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:contributing_file_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, contributing_file_failure: false, contributing_file_feedback: 'passed', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(assigns[:cookbook_version]).to eq(version)
         end
@@ -677,13 +414,7 @@ describe Api::V1::QualityMetricsController do
 
       context 'the required params are not provided' do
         it 'returns a 400' do
-          post(
-            :contributing_file_evaluation,
-            cookbook_name: cookbook.name,
-            contributing_file_failure: false,
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:contributing_file_evaluation, params: { cookbook_name: cookbook.name, contributing_file_failure: false, fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(response.status.to_i).to eql(400)
         end
@@ -692,14 +423,7 @@ describe Api::V1::QualityMetricsController do
 
     context 'the request is not authorized' do
       it 'renders a 401 error about unauthorized post' do
-        post(
-          :contributing_file_evaluation,
-          cookbook_name: cookbook.name,
-          cookbook_version: version.version,
-          contributing_file_failure: false,
-          fieri_key: 'not_the_key',
-          format: :json
-        )
+        post(:contributing_file_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, contributing_file_failure: false, fieri_key: 'not_the_key', format: :json })
 
         expect(response.status.to_i).to eql(401)
       end
@@ -714,29 +438,13 @@ describe Api::V1::QualityMetricsController do
     context 'the request is authorized' do
       context 'the required params are provided' do
         it 'returns a 200' do
-          post(
-            :testing_file_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            testing_file_failure: false,
-            testing_file_feedback: 'passed',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:testing_file_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, testing_file_failure: false, testing_file_feedback: 'passed', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(response.status.to_i).to eql(200)
         end
 
         it 'creates a testing file metric' do
-          post(
-            :testing_file_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            testing_file_failure: false,
-            testing_file_feedback: 'passed',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:testing_file_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, testing_file_failure: false, testing_file_feedback: 'passed', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           version.reload
           expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
@@ -744,15 +452,7 @@ describe Api::V1::QualityMetricsController do
         end
 
         it 'finds the correct cookbook version' do
-          post(
-            :testing_file_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            testing_file_failure: false,
-            testing_file_feedback: 'passed',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:testing_file_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, testing_file_failure: false, testing_file_feedback: 'passed', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(assigns[:cookbook_version]).to eq(version)
         end
@@ -760,14 +460,7 @@ describe Api::V1::QualityMetricsController do
 
       context 'the required params are not provided' do
         it 'returns a 400' do
-          post(
-            :testing_file_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            testing_file_failure: false,
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:testing_file_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, testing_file_failure: false, fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(response.status.to_i).to eql(400)
         end
@@ -775,15 +468,7 @@ describe Api::V1::QualityMetricsController do
 
       context 'the request is not authorized' do
         it 'renders a 401 error about unauthorized post' do
-          post(
-            :testing_file_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            testing_file_failure: false,
-            testing_file_feedback: 'passed',
-            fieri_key: 'not_the_key',
-            format: :json
-          )
+          post(:testing_file_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, testing_file_failure: false, testing_file_feedback: 'passed', fieri_key: 'not_the_key', format: :json })
 
           expect(response.status.to_i).to eql(401)
         end
@@ -799,29 +484,13 @@ describe Api::V1::QualityMetricsController do
     context 'the request is authorized' do
       context 'the required params are provided' do
         it 'returns a 200' do
-          post(
-            :version_tag_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            version_tag_failure: false,
-            version_tag_feedback: 'passed',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:version_tag_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, version_tag_failure: false, version_tag_feedback: 'passed', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(response.status.to_i).to eql(200)
         end
 
         it 'creates a testing file metric' do
-          post(
-            :version_tag_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            version_tag_failure: false,
-            version_tag_feedback: 'passed',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:version_tag_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, version_tag_failure: false, version_tag_feedback: 'passed', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           version.reload
           expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
@@ -829,15 +498,7 @@ describe Api::V1::QualityMetricsController do
         end
 
         it 'finds the correct cookbook version' do
-          post(
-            :version_tag_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            version_tag_failure: false,
-            version_tag_feedback: 'passed',
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:version_tag_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, version_tag_failure: false, version_tag_feedback: 'passed', fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(assigns[:cookbook_version]).to eq(version)
         end
@@ -845,14 +506,7 @@ describe Api::V1::QualityMetricsController do
 
       context 'the required params are not provided' do
         it 'returns a 400' do
-          post(
-            :version_tag_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            version_tag_failure: false,
-            fieri_key: 'YOUR_FIERI_KEY',
-            format: :json
-          )
+          post(:version_tag_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, version_tag_failure: false, fieri_key: 'YOUR_FIERI_KEY', format: :json })
 
           expect(response.status.to_i).to eql(400)
         end
@@ -860,15 +514,7 @@ describe Api::V1::QualityMetricsController do
 
       context 'the request is not authorized' do
         it 'renders a 401 error about unauthorized post' do
-          post(
-            :version_tag_evaluation,
-            cookbook_name: cookbook.name,
-            cookbook_version: version.version,
-            version_tag_failure: false,
-            version_tag_feedback: 'passed',
-            fieri_key: 'not_the_key',
-            format: :json
-          )
+          post(:version_tag_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, version_tag_failure: false, version_tag_feedback: 'passed', fieri_key: 'not_the_key', format: :json })
 
           expect(response.status.to_i).to eql(401)
         end

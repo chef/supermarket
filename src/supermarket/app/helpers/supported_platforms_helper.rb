@@ -30,6 +30,6 @@ module SupportedPlatformsHelper
       'ubuntu' => 'ubuntu',
       'windows' => 'windows',
       'zlinux' => 'zlinux'
-    }.fetch(platform.name.parameterize('_'), 'generic')
+    }.fetch(platform.name.parameterize(separator: '_'), 'generic')
   end
 end

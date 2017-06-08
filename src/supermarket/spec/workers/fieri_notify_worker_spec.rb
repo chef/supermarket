@@ -19,8 +19,8 @@ describe FieriNotifyWorker do
     before do
       allow(CookbookVersion).to receive(:find).and_return(version)
 
-      stub_request(:post, ENV['FIERI_URL']).
-       to_return(:status => 200, :body => "", :headers => {})
+      stub_request(:post, ENV['FIERI_URL'])
+        .to_return(status: 200, body: "", headers: {})
     end
 
     it 'includes the correct cookbook artifact url' do

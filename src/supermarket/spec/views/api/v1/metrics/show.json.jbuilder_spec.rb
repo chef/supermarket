@@ -10,8 +10,7 @@ describe 'api/v1/metrics/show' do
            total_users: 6,
            total_hits: {
              '/universe' => 3
-           }
-    )
+           })
   end
 
   it 'displays the metrics' do

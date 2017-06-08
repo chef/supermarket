@@ -1,4 +1,4 @@
-class CookbookFollower < ActiveRecord::Base
+class CookbookFollower < ApplicationRecord
   # Associations
   # --------------------
   belongs_to :cookbook, counter_cache: true

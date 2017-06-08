@@ -1,6 +1,6 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 require 'dotenv'
-require 'rails'
+require 'rails/all'
 
 # Workaround to avoid the "Celluloid is not yet started; use Celluloid.boot" error
 # with Celluloid 0.17.4 https://github.com/endofunky/sidetiq/issues/160
@@ -14,12 +14,12 @@ Dotenv.overload('.env', ".env.#{Rails.env}").tap do |env|
   end
 end
 
-%w(
+%w[
   active_record
   action_controller
   action_mailer
   sprockets
-).each do |framework|
+].each do |framework|
   begin
     require "#{framework}/railtie"
   rescue LoadError
@@ -30,8 +30,8 @@ end
 require_relative '../lib/supermarket/host'
 
 # Require the gems listed in Gemfile, including any gems
-# you have limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env)
+# you've limited to :test, :development, or :production.
+Bundler.require(*Rails.groups)
 
 module Supermarket
   class Application < Rails::Application
@@ -52,10 +52,10 @@ module Supermarket
     config.assets.paths << Rails.root.join('vendor', 'assets', 'images')
 
     # Ensure fonts and images are precompiled during asset compilation
-    config.assets.precompile += %w(*.svg *.eot *.woff *.ttf *.gif *.png)
+    config.assets.precompile += %w[*.svg *.eot *.woff *.ttf *.gif *.png]
 
     # Ensurer mailer assets are precompiled during asset compilation
-    config.assets.precompile += %w(mailers.css)
+    config.assets.precompile += %w[mailers.css]
 
     # Use a custom exception handling application
     config.exceptions_app = proc do |env|
@@ -67,10 +67,6 @@ module Supermarket
       'Supermarket::Authorization::NoAuthorizerError'  => :not_implemented,
       'Supermarket::Authorization::NotAuthorizedError' => :unauthorized
     )
-
-    # Opting in to Rails 4.2's optional (and 5's default) behavior to propagate
-    # exceptions from within AR callbacks instead of swallowing and logging them.
-    config.active_record.raise_in_transactional_callbacks = true
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.

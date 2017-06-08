@@ -70,7 +70,7 @@ describe Cookbook do
 
     it 'validates that issues_url is a http(s) url' do
       cookbook = create(:cookbook)
-      cookbook_version = create(:cookbook_version, cookbook: cookbook)
+      create(:cookbook_version, cookbook: cookbook)
       cookbook.issues_url = 'com.http.com'
 
       expect(cookbook).to_not be_valid
@@ -79,7 +79,7 @@ describe Cookbook do
 
     it 'validates that source_url is a http(s) url' do
       cookbook = create(:cookbook)
-      cookbook_version = create(:cookbook_version, cookbook: cookbook)
+      create(:cookbook_version, cookbook: cookbook)
       cookbook.source_url = 'com.http.com'
 
       expect(cookbook).to_not be_valid
@@ -148,7 +148,7 @@ describe Cookbook do
 
       context 'admin is not the owner' do
         it 'keeps the owner as a collaborator' do
-          result = cookbook.transfer_ownership(sally, hank, true)
+          cookbook.transfer_ownership(sally, hank, true)
           cookbook.reload
           collaborators_users = cookbook.collaborators.map(&:user)
           expect(collaborators_users).to include(jimmy)
@@ -468,7 +468,7 @@ describe Cookbook do
       cookbook.publish_version!(params, user)
       supported_platforms = cookbook.reload.supported_platforms
 
-      expect(supported_platforms.map(&:name)).to match_array(%w(debian ubuntu))
+      expect(supported_platforms.map(&:name)).to match_array(%w[debian ubuntu])
       expect(supported_platforms.map(&:version_constraint)).
         to match_array(['= 12.04', '>= 0.0.0'])
     end
@@ -478,7 +478,7 @@ describe Cookbook do
 
       dependencies = cookbook.reload.cookbook_dependencies
 
-      expect(dependencies.map(&:name)).to match_array(%w(apt yum))
+      expect(dependencies.map(&:name)).to match_array(%w[apt yum])
       expect(dependencies.map(&:version_constraint)).
         to match_array(['= 1.2.3', '~> 2.1.3'])
     end
@@ -698,8 +698,8 @@ describe Cookbook do
     it 'returns cookbooks that support some of given platforms' do
       expect(Cookbook.filter_platforms(['debian'])).to include(erlang)
       expect(Cookbook.filter_platforms(['debian'])).to include(ruby)
-      expect(Cookbook.filter_platforms(%w(windows ubuntu))).to include(ruby)
-      expect(Cookbook.filter_platforms(%w(windows ubuntu))).to include(erlang)
+      expect(Cookbook.filter_platforms(%w[windows ubuntu])).to include(ruby)
+      expect(Cookbook.filter_platforms(%w[windows ubuntu])).to include(erlang)
     end
 
     it 'only returns cookbooks that support some of given platforms' do
@@ -713,14 +713,14 @@ describe Cookbook do
     let!(:cookbook) { create(:cookbook, name: 'cookbook') }
 
     it 'orders by name ascending by default' do
-      expect(Cookbook.ordered_by(nil).map(&:name)).to eql(%w(cookbook great))
+      expect(Cookbook.ordered_by(nil).map(&:name)).to eql(%w[cookbook great])
     end
 
     it 'orders by updated_at descending when given "recently_updated"' do
       great.touch
 
       expect(Cookbook.ordered_by('recently_updated').map(&:name)).
-        to eql(%w(great cookbook))
+        to eql(%w[great cookbook])
     end
 
     it 'orders by created_at descending when given "recently_added"' do
@@ -734,7 +734,7 @@ describe Cookbook do
       cookbook.update_attributes(web_download_count: 5, api_download_count: 70)
 
       expect(Cookbook.ordered_by('most_downloaded').map(&:name)).
-        to eql(%w(great cookbook))
+        to eql(%w[great cookbook])
     end
 
     it 'orders by cookbook_followers_count when given "most_followed"' do
@@ -742,7 +742,7 @@ describe Cookbook do
       cookbook.update_attributes(cookbook_followers_count: 50)
 
       expect(Cookbook.ordered_by('most_followed').map(&:name)).
-        to eql(%w(great cookbook))
+        to eql(%w[great cookbook])
     end
 
     it 'orders secondarily by id when cookbook follower counts are equal' do
@@ -750,7 +750,7 @@ describe Cookbook do
       cookbook.update_attributes(cookbook_followers_count: 100)
 
       expect(Cookbook.ordered_by('most_followed').map(&:name)).
-        to eql(%w(great cookbook))
+        to eql(%w[great cookbook])
     end
 
     it 'orders secondarily by id when download counts are equal' do
@@ -758,7 +758,7 @@ describe Cookbook do
       cookbook.update_attributes(web_download_count: 5, api_download_count: 100)
 
       expect(Cookbook.ordered_by('most_followed').map(&:name)).
-        to eql(%w(great cookbook))
+        to eql(%w[great cookbook])
     end
   end
 
@@ -782,7 +782,7 @@ describe Cookbook do
       cookbook = create(:cookbook, name: 'CookBook')
       mybook = create(:cookbook, name: 'MYBook')
 
-      scope = Cookbook.with_name(%w(Cookbook MyBook))
+      scope = Cookbook.with_name(%w[Cookbook MyBook])
 
       expect(scope).to include(cookbook)
       expect(scope).to include(mybook)

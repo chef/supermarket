@@ -35,7 +35,7 @@ class ChefOauth2Extractor < Extractor::Base
   # @return [Time]
   #
   def oauth_expires
-    Time.at(auth['credentials']['expires_at'])
+    Time.zone.at(auth['credentials']['expires_at'])
   end
 
   #

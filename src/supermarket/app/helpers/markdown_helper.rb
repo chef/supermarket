@@ -24,7 +24,7 @@ module MarkdownHelper
     #
     def image(url, title, alt)
       options = {
-        src: relative_url = url.sub(/\Ahttps?:/, ''),
+        src: url.sub(/\Ahttps?:/, ''),
         alt: String(alt),
         title: title
       }

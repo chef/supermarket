@@ -8,7 +8,7 @@ describe CookbookVersionsController do
     before { sign_in user }
 
     it '302s to the latest cookbook version file' do
-      get :download, cookbook_id: cookbook.name, version: version.to_param
+      get :download, params: { cookbook_id: cookbook.name, version: version.to_param }
 
       expect(response).to redirect_to(version.cookbook_artifact_url)
       expect(response.status.to_i).to eql(302)
@@ -16,24 +16,24 @@ describe CookbookVersionsController do
 
     it 'logs the web download count for the cookbook version' do
       expect do
-        get :download, cookbook_id: cookbook.name, version: version.to_param
+        get :download, params: { cookbook_id: cookbook.name, version: version.to_param }
       end.to change { version.reload.web_download_count }.by(1)
     end
 
     it 'logs the web download count for the cookbook' do
       expect do
-        get :download, cookbook_id: cookbook.name, version: version.to_param
+        get :download, params: { cookbook_id: cookbook.name, version: version.to_param }
       end.to change { cookbook.reload.web_download_count }.by(1)
     end
 
     it '404s when the cookbook does not exist' do
-      get :download, cookbook_id: 'snarfle', version: '100.1.1'
+      get :download, params: { cookbook_id: 'snarfle', version: '100.1.1' }
 
       expect(response.status.to_i).to eql(404)
     end
 
     it '404s when the cookbook version does not exist' do
-      get :download, cookbook_id: cookbook.name, version: '100.1.1'
+      get :download, params: { cookbook_id: cookbook.name, version: '100.1.1' }
 
       expect(response.status.to_i).to eql(404)
     end
@@ -49,7 +49,7 @@ describe CookbookVersionsController do
 
       it 'calls for the artifact url' do
         expect(version).to receive(:cookbook_artifact_url).and_return(version.cookbook_artifact_url)
-        get :download, cookbook_id: cookbook.name, version: version.to_param
+        get :download, params: { cookbook_id: cookbook.name, version: version.to_param }
       end
     end
   end
@@ -63,31 +63,31 @@ describe CookbookVersionsController do
     end
 
     it 'provides the cookbook to the view' do
-      get :show, cookbook_id: cookbook.name, version: version.version
+      get :show, params: { cookbook_id: cookbook.name, version: version.version }
 
       expect(assigns(:cookbook)).to_not be_nil
     end
 
     it 'provides the cookbook version to the view' do
-      get :show, cookbook_id: cookbook.name, version: version.version
+      get :show, params: { cookbook_id: cookbook.name, version: version.version }
 
       expect(assigns(:version)).to_not be_nil
     end
 
     it "provides all of the cookbook's versions to the view" do
-      get :show, cookbook_id: cookbook.name, version: version.version
+      get :show, params: { cookbook_id: cookbook.name, version: version.version }
 
       expect(assigns(:cookbook_versions)).to_not be_nil
     end
 
     it "provides the cookbook's maintainer to the view" do
-      get :show, cookbook_id: cookbook.name, version: version.version
+      get :show, params: { cookbook_id: cookbook.name, version: version.version }
 
       expect(assigns(:owner)).to_not be_nil
     end
 
     it "provides the cookbook's collaborators to the view" do
-      get :show, cookbook_id: cookbook.name, version: version.version
+      get :show, params: { cookbook_id: cookbook.name, version: version.version }
 
       expect(assigns(:collaborators)).to_not be_nil
     end
@@ -96,10 +96,10 @@ describe CookbookVersionsController do
       version.supported_platforms.create!(name: 'one')
       version.supported_platforms.create!(name: 'two')
 
-      get :show, cookbook_id: cookbook.name, version: version.version
+      get :show, params: { cookbook_id: cookbook.name, version: version.version }
 
       expect(assigns(:supported_platforms).map(&:name)).
-        to match_array(%w(one two))
+        to match_array(%w[one two])
     end
 
     context 'displaying metrics' do
@@ -112,8 +112,7 @@ describe CookbookVersionsController do
                cookbook_version: version,
                quality_metric:   foodcritic_qm,
                failure:          true,
-               feedback:         'it failed'
-              )
+               feedback:         'it failed')
       end
 
       let(:collab_result) do
@@ -121,8 +120,7 @@ describe CookbookVersionsController do
                cookbook_version: version,
                quality_metric:   collab_num_qm,
                failure:          false,
-               feedback:         'it passed'
-              )
+               feedback:         'it passed')
       end
 
       let(:publish_result) do
@@ -130,8 +128,7 @@ describe CookbookVersionsController do
                cookbook_version: version,
                quality_metric:   publish_qm,
                failure:          false,
-               feedback:         'it passed'
-              )
+               feedback:         'it passed')
       end
 
       before do
@@ -140,24 +137,24 @@ describe CookbookVersionsController do
 
       context 'public metrics' do
         it 'sends the public metrics results to the view' do
-          get :show, cookbook_id: cookbook.name, version: version.version
+          get :show, params: { cookbook_id: cookbook.name, version: version.version }
           expect(assigns(:public_metric_results)).to include(foodcritic_result, collab_result)
         end
 
         it 'does not include the admin only metrics' do
-          get :show, cookbook_id: cookbook.name, version: version.version
+          get :show, params: { cookbook_id: cookbook.name, version: version.version }
           expect(assigns(:public_metric_results)).to_not include(publish_result)
         end
       end
 
       context 'admin only metrics' do
         it 'sends the admin only metrics to the view' do
-          get :show, cookbook_id: cookbook.name, version: version.version
+          get :show, params: { cookbook_id: cookbook.name, version: version.version }
           expect(assigns(:admin_metric_results)).to include(publish_result)
         end
 
         it 'does not include the public metrics' do
-          get :show, cookbook_id: cookbook.name, version: version.version
+          get :show, params: { cookbook_id: cookbook.name, version: version.version }
           expect(assigns(:admin_metric_results)).to_not include(foodcritic_result, collab_result)
         end
       end

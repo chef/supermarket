@@ -31,7 +31,7 @@ describe Api::V1::ToolsController do
     end
 
     it 'sends start to view' do
-      get :index, start: 4, format: :json
+      get :index, params: { start: 4, format: :json }
 
       expect(assigns[:start]).to eql(4)
     end
@@ -53,18 +53,18 @@ describe Api::V1::ToolsController do
 
       tool_names = assigns[:tools].map(&:name)
 
-      expect(tool_names).to eql(%W(berkshelf metal))
+      expect(tool_names).to eql(%w[berkshelf metal])
     end
 
     it 'allows ordering by recently added' do
-      get :index, order: :recently_added, format: :json
+      get :index, params: { order: :recently_added, format: :json }
       tools = assigns[:tools]
       expect(tools.first).to eql(berkshelf)
       expect(tools.last).to eql(metal)
     end
 
     it 'uses the start param to offset the tools sent to the view' do
-      get :index, start: 1, format: :json
+      get :index, params: { start: 1, format: :json }
 
       tool_names = assigns[:tools].map(&:name)
 
@@ -72,7 +72,7 @@ describe Api::V1::ToolsController do
     end
 
     it 'uses the items param to limit the tools sent to the view' do
-      get :index, items: 1, format: :json
+      get :index, params: { items: 1, format: :json }
 
       tool_names = assigns[:tools].map(&:name)
 
@@ -80,7 +80,7 @@ describe Api::V1::ToolsController do
     end
 
     it 'handles the start and items param' do
-      get :index, items: 1, start: 1, format: :json
+      get :index, params: { items: 1, start: 1, format: :json }
 
       tools_names = assigns[:tools].map(&:name)
 
@@ -101,19 +101,19 @@ describe Api::V1::ToolsController do
 
     it 'limits the number of items to the configured limit' do
       allow(subject).to receive(:item_limit).and_return(100)
-      get :index, items: 101, format: :json
+      get :index, params: { items: 101, format: :json }
 
       expect(assigns[:items]).to eql(100)
     end
 
     it 'returns a 400 if start is negative' do
-      get :index, start: -1, format: :json
+      get :index, params: { start: -1, format: :json }
 
       expect(response.status).to eql(400)
     end
 
     it 'returns a 400 if items is negative' do
-      get :index, items: -1, format: :json
+      get :index, params: { items: -1, format: :json }
 
       expect(response.status).to eql(400)
     end
@@ -124,13 +124,13 @@ describe Api::V1::ToolsController do
       let!(:berkshelf_tool) { create(:tool, name: 'berkshelf') }
 
       it 'responds with a 200' do
-        get :show, tool: berkshelf_tool.slug, format: :json
+        get :show, params: { tool: berkshelf_tool.slug, format: :json }
 
         expect(response.status.to_i).to eql(200)
       end
 
       it 'sends the tool to the view' do
-        get :show, tool: berkshelf_tool.slug, format: :json
+        get :show, params: { tool: berkshelf_tool.slug, format: :json }
 
         expect(assigns[:tool]).to eql(berkshelf_tool)
       end
@@ -138,7 +138,7 @@ describe Api::V1::ToolsController do
 
     context 'when a tool does not exist' do
       it 'responds with a 404' do
-        get :show, tool: 'trololol', format: :json
+        get :show, params: { tool: 'trololol', format: :json }
 
         expect(response.status.to_i).to eql(404)
       end
@@ -158,38 +158,38 @@ describe Api::V1::ToolsController do
     end
 
     it 'sends tool search result to the view' do
-      get :search, q: 'knife-tool', format: :json
+      get :search, params: { q: 'knife-tool', format: :json }
 
       expect(assigns[:results]).to include(knife_tool)
     end
 
     it 'sends the total number of search results to the view' do
-      get :search, q: 'berks', format: :json
+      get :search, params: { q: 'berks', format: :json }
 
       expect(assigns[:total]).to eql(2)
     end
 
     it 'searches based on the query' do
-      get :search, q: 'knife-tool', format: :json
+      get :search, params: { q: 'knife-tool', format: :json }
 
       expect(assigns[:results]).to include(knife_tool)
       expect(assigns[:results]).to_not include(wut_wut)
     end
 
     it 'sends start param to the view if it is present' do
-      get :search, q: 'berks', start: '1', format: :json
+      get :search, params: { q: 'berks', start: '1', format: :json }
 
       expect(assigns[:start]).to eql(1)
     end
 
     it 'defaults the start param to 0 if it is not present' do
-      get :search, q: 'berks', format: :json
+      get :search, params: { q: 'berks', format: :json }
 
       expect(assigns[:start]).to eql(0)
     end
 
     it 'handles the start param' do
-      get :search, q: 'berks', start: 1, format: :json
+      get :search, params: { q: 'berks', start: 1, format: :json }
 
       tool_names = assigns[:results].map(&:name)
 
@@ -201,7 +201,7 @@ describe Api::V1::ToolsController do
         create(:tool, name: "jam#{index}")
       end
 
-      get :search, q: 'jam', items: 5, format: :json
+      get :search, params: { q: 'jam', items: 5, format: :json }
       tools = assigns[:results]
       expect(tools.count(:all)).to eql 5
     end

@@ -7,9 +7,13 @@ module Fieri
     describe '#create' do
       let(:params) do
         {
-          'cookbook_artifact_url' => 'http://example.com/apache.tar.gz',
-          'cookbook_name' => 'apache2',
-          'cookbook_version' => '1.2.0'
+          'fieri_key' => ENV['FIERI_KEY'],
+          'cookbook' =>
+          {
+            'name' => 'apache2',
+            'version' => '1.2.0',
+            'artifact_url' => 'http://example.com/apache.tar.gz'
+          }
         }
       end
 
@@ -24,8 +28,24 @@ module Fieri
       end
 
       it 'calls the MetricsRunner' do
-        expect(MetricsRunner).to receive(:perform_async).with(hash_including(params))
-        post :create, params
+        expect(MetricsRunner).to receive(:perform_async).with(hash_including(params['cookbook']))
+        post :create, params: params
+      end
+
+      context 'authenticating submissions for cookbook evaluation' do
+        it 'fails when the fieri_key is not present' do
+          post :create, params: params.except('fieri_key')
+
+          expect(response.status).to eq(400)
+        end
+
+        it 'fails when the fieri_key does not match' do
+          expect(subject).to receive(:fieri_key).and_return('totally_not_the_fieri_key')
+
+          post :create, params: params
+
+          expect(response.status).to eq(401)
+        end
       end
     end
   end

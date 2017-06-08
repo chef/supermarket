@@ -160,7 +160,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
     }
   end
 
-  alias_method :require_upload_params, :upload_params
+  alias require_upload_params upload_params
 
   #
   # Finds a user specified in the request header or renders an error if

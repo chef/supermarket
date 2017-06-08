@@ -237,7 +237,7 @@ module FeatureHelpers
       ticks += 1
 
       break if ticks > 5
-      break if condition.call
+      break if yield
     end
   end
 end

@@ -1,4 +1,4 @@
-class SystemEmail < ActiveRecord::Base
+class SystemEmail < ApplicationRecord
   # Associations
   # --------------------
   has_many :email_preferences

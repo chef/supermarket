@@ -27,7 +27,7 @@ describe Authorizer::Base do
 
       it 'raises an exception if a method is undefined' do
         expect { described_class.new(user, record).create? }
-        .to raise_error(RuntimeError)
+          .to raise_error(RuntimeError)
       end
     end
 

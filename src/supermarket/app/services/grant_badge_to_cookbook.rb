@@ -7,7 +7,7 @@ class GrantBadgeToCookbook
   end
 
   def call
-    cookbook = Cookbook.find_by_name(cookbook_name)
+    cookbook = Cookbook.find_by(name: cookbook_name)
     cookbook.present? ? add_badge_to_cookbook(cookbook) : cookbook_not_found_message
   end
 

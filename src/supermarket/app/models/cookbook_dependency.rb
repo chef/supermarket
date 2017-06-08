@@ -1,6 +1,6 @@
 require 'active_model/validations/chef_version_constraint_validator'
 
-class CookbookDependency < ActiveRecord::Base
+class CookbookDependency < ApplicationRecord
   include SeriousErrors
 
   # Associations

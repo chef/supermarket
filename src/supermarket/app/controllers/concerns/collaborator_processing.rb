@@ -6,7 +6,11 @@ module CollaboratorProcessing
   end
 
   def add_users_as_collaborators(resource, user_ids, group_id = nil)
-    user_ids = user_ids.split(',') - ineligible_ids(resource)
+    # sometimes user_ids comes in as a string; need it to be an array
+    user_ids = user_ids.split(',') if user_ids.class == String
+    # unless users are coming in associated with a group, filter out users that
+    # are already collaborators
+    user_ids -= ineligible_ids(resource) unless group_id
 
     User.where(id: user_ids).each do |user|
       collaborator = Collaborator.new(

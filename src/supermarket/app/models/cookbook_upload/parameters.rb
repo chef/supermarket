@@ -178,7 +178,7 @@ class CookbookUpload
         errors.add(:base, I18n.t('api.error_messages.tarball_corrupt', error: e))
       end
 
-      block.call(errors, metadata)
+      yield(errors, metadata)
     end
 
     #
@@ -217,7 +217,7 @@ class CookbookUpload
         errors.add(:base, I18n.t('api.error_messages.tarball_corrupt', error: e))
       end
 
-      block.call(errors, readme)
+      yield(errors, readme)
     end
 
     #
@@ -235,21 +235,21 @@ class CookbookUpload
       begin
         path = archive.find(%r{\A(\.\/)?#{cookbook}\/changelog(\.\w+)?\Z}i).first
 
-        if path
-          changelog = Document.new(
-            contents: archive.read(path),
-            extension: File.extname(path)[1..-1].to_s
-          )
-        else
-          changelog = Document.new
-        end
+        changelog = if path
+                      Document.new(
+                        contents: archive.read(path),
+                        extension: File.extname(path)[1..-1].to_s
+                      )
+                    else
+                      Document.new
+                    end
       rescue Archive::Error
         errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
       rescue Archive::NoPath
         errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
       end
 
-      block.call(errors, changelog)
+      yield(errors, changelog)
     end
 
     #
@@ -269,7 +269,7 @@ class CookbookUpload
         errors.add(:base, I18n.t('api.error_messages.cookbook_not_json'))
       end
 
-      block.call(errors, json)
+      yield(errors, json)
     end
   end
 end

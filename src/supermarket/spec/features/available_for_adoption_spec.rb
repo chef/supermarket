@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'adoptable cookbooks directory' do
-
   # let!(:adoptable_cookbook) { create(:cookbook, up_for_adoption: true ) }
 
   before do
@@ -9,7 +8,7 @@ describe 'adoptable cookbooks directory' do
 
     visit '/available_for_adoption'
 
-    click_link "#{@adoptable_cookbook.name}"
+    click_link @adoptable_cookbook.name
   end
 
   it 'shows an adoptable cookbook' do

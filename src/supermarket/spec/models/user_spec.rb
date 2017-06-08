@@ -96,7 +96,6 @@ describe User do
   end
 
   describe '#linked_github_account?' do
-
     let(:user) { create(:user) }
 
     it 'is false when the user has not linked a GitHub account' do
@@ -108,7 +107,6 @@ describe User do
 
       expect(user.linked_github_account?).to eql(true)
     end
-
   end
 
   describe '#username' do
@@ -125,19 +123,6 @@ describe User do
       user.accounts.destroy_all # unlink all accounts aka destroy them
 
       expect(user.username).to eql('')
-    end
-  end
-
-  describe '.find_by_github_login' do
-    it 'returns the user with that GitHub login' do
-      user = create(:user)
-      account = create(:account, user: user, provider: 'github')
-
-      expect(User.find_by_github_login(account.username)).to eql(user)
-    end
-
-    it 'returns a new user if there is no user with that GitHub login' do
-      expect(User.find_by_github_login('trex').persisted?).to be false
     end
   end
 
@@ -166,7 +151,7 @@ describe User do
         user = User.find_or_create_from_chef_oauth(auth).reload
         account = user.chef_account
 
-        expected_expiration = Time.at(OmniAuthControl::EXPIRATION)
+        expected_expiration = Time.zone.at(OmniAuthControl::EXPIRATION)
 
         expect(account.username).to eql(auth['info']['username'])
         expect(account.uid).to eql(auth['uid'])
@@ -255,13 +240,13 @@ describe User do
 
     it 'displays the username if there are no names at all' do
       user = create(:user, first_name: nil, last_name: nil, create_chef_account: false)
-      account = create(:account, username: 'superman', user: user, provider: 'chef_oauth2')
+      create(:account, username: 'superman', user: user, provider: 'chef_oauth2')
       expect(user.name).to eql('superman')
     end
 
     it 'displays the username if first and last names are empty' do
       user = create(:user, first_name: '', last_name: '', create_chef_account: false)
-      account = create(:account, username: 'superman', user: user, provider: 'chef_oauth2')
+      create(:account, username: 'superman', user: user, provider: 'chef_oauth2')
       expect(user.name).to eql('superman')
     end
   end

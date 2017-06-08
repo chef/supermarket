@@ -5,9 +5,12 @@ RSpec.describe 'Jobs', type: :request do
   describe 'GET /status' do
     describe 'when a valid job is posted' do
       let(:valid_params) do
-        { cookbook_name: 'redis',
-          cookbook_version: '1.2.0',
-          cookbook_artifact_url: 'http://example.com/apache.tar.gz' }
+        { fieri_key: ENV['FIERI_KEY'],
+          cookbook: {
+            name: 'redis',
+            version: '1.2.0',
+            artifact_url: 'http://example.com/apache.tar.gz'
+          } }
       end
 
       before do

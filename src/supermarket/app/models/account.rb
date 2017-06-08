@@ -1,4 +1,4 @@
-class Account < ActiveRecord::Base
+class Account < ApplicationRecord
   # Associations
   # --------------------
   belongs_to :user
