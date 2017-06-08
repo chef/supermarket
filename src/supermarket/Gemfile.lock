@@ -31,7 +31,7 @@ PATH
       octokit (~> 4.0)
       rails (~> 5.0.0)
       ruby-filemagic
-      sidekiq
+      sidekiq (~> 4.2)
 
 GEM
   remote: https://rubygems.org/

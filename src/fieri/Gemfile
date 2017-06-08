@@ -14,6 +14,7 @@ gemspec
 # gem 'debugger'
 group :development, :test do
   gem 'bundler-audit', git: 'https://github.com/rubysec/bundler-audit.git', ref: '4e32fca'
+  gem 'pry'
   gem 'rspec-rails', '~> 3.0'
   gem 'rubocop'
   gem 'sqlite3'

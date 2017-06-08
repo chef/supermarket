@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 describe MetricsRunner do
-  let(:params) do
+  let(:cookbook) do
     {
-      'cookbook_artifact_url' => 'http://example.com/apache.tar.gz',
-      'cookbook_name' => 'apache2',
-      'cookbook_version' => '1.2.0'
+      'name' => 'apache2',
+      'version' => '1.2.0',
+      'artifact_url' => 'http://example.com/apache.tar.gz'
     }
   end
 
@@ -23,45 +23,45 @@ describe MetricsRunner do
 
   describe 'getting the information from supermarket' do
     it 'calls the cookbook_api_response method' do
-      expect_any_instance_of(SupermarketApiRunner).to receive(:cookbook_api_response).with(params['cookbook_name']).and_return(cookbook_json_response).once
-      metrics_runner.perform(params)
+      expect_any_instance_of(SupermarketApiRunner).to receive(:cookbook_api_response).with(cookbook['name']).and_return(cookbook_json_response).once
+      metrics_runner.perform(cookbook)
     end
 
     it 'calls the cookbook_version_api_response method' do
-      expect_any_instance_of(SupermarketApiRunner).to receive(:cookbook_version_api_response).with(params['cookbook_name'], params['cookbook_version']).and_return(cookbook_json_response).once
-      metrics_runner.perform(params)
+      expect_any_instance_of(SupermarketApiRunner).to receive(:cookbook_version_api_response).with(cookbook['name'], cookbook['version']).and_return(cookbook_json_response).once
+      metrics_runner.perform(cookbook)
     end
   end
 
   describe 'calling individual metrics' do
     it 'calls the collaborator worker' do
-      expect(CollaboratorWorker).to receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
+      expect(CollaboratorWorker).to receive(:perform_async).with(cookbook_json_response, cookbook['name'])
 
-      metrics_runner.perform(params)
+      metrics_runner.perform(cookbook)
     end
 
     it 'calls the foodcritic worker' do
-      expect(FoodcriticWorker).to receive(:perform_async).with(hash_including(params))
+      expect(FoodcriticWorker).to receive(:perform_async).with(hash_including(cookbook))
 
-      metrics_runner.perform(params)
+      metrics_runner.perform(cookbook)
     end
 
     it 'calls the publish worker' do
-      expect(PublishWorker).to receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
+      expect(PublishWorker).to receive(:perform_async).with(cookbook_json_response, cookbook['name'])
 
-      metrics_runner.perform(params)
+      metrics_runner.perform(cookbook)
     end
 
     it 'calls the license worker' do
-      expect(LicenseWorker).to receive(:perform_async).with(version_json_response, params['cookbook_name'])
+      expect(LicenseWorker).to receive(:perform_async).with(version_json_response, cookbook['name'])
 
-      metrics_runner.perform(params)
+      metrics_runner.perform(cookbook)
     end
 
     it 'calls the no binaries worker' do
-      expect(NoBinariesWorker).to receive(:perform_async).with(hash_including(params))
+      expect(NoBinariesWorker).to receive(:perform_async).with(hash_including(cookbook))
 
-      metrics_runner.perform(params)
+      metrics_runner.perform(cookbook)
     end
 
     context 'when not in airgapped environments' do
@@ -70,18 +70,18 @@ describe MetricsRunner do
       end
 
       it 'calls the contributing file worker' do
-        expect(ContributingFileWorker).to receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
-        metrics_runner.perform(params)
+        expect(ContributingFileWorker).to receive(:perform_async).with(cookbook_json_response, cookbook['name'])
+        metrics_runner.perform(cookbook)
       end
 
       it 'calls the testing file worker' do
-        expect(TestingFileWorker).to receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
-        metrics_runner.perform(params)
+        expect(TestingFileWorker).to receive(:perform_async).with(cookbook_json_response, cookbook['name'])
+        metrics_runner.perform(cookbook)
       end
 
       it 'calls the version tag worker' do
-        expect(VersionTagWorker).to receive(:perform_async).with(cookbook_json_response, params['cookbook_name'], params['cookbook_version'])
-        metrics_runner.perform(params)
+        expect(VersionTagWorker).to receive(:perform_async).with(cookbook_json_response, cookbook['name'], cookbook['version'])
+        metrics_runner.perform(cookbook)
       end
     end
 
@@ -91,18 +91,18 @@ describe MetricsRunner do
       end
 
       it 'does not call the contributing file worker' do
-        expect(ContributingFileWorker).to_not receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
-        metrics_runner.perform(params)
+        expect(ContributingFileWorker).to_not receive(:perform_async).with(cookbook_json_response, cookbook['name'])
+        metrics_runner.perform(cookbook)
       end
 
       it 'does not call the testing file worker' do
-        expect(TestingFileWorker).to_not receive(:perform_async).with(cookbook_json_response, params['cookbook_name'])
-        metrics_runner.perform(params)
+        expect(TestingFileWorker).to_not receive(:perform_async).with(cookbook_json_response, cookbook['name'])
+        metrics_runner.perform(cookbook)
       end
 
       it 'does not call the version tag worker' do
-        expect(VersionTagWorker).to_not receive(:perform_async).with(cookbook_json_response, params['cookbook_name'], params['cookbook_version'])
-        metrics_runner.perform(params)
+        expect(VersionTagWorker).to_not receive(:perform_async).with(cookbook_json_response, cookbook['name'], cookbook['cookbook_version'])
+        metrics_runner.perform(cookbook)
       end
     end
   end
