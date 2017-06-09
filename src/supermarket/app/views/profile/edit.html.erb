@@ -8,7 +8,7 @@
 
     <dl class="tabs radius" data-tab data-options="deep_linking:true">
       <dd class="active"><a href="#profile" rel="manage_profile">Edit Profile</a></dd>
-      <% if ROLLOUT.active?(:github) %>
+      <% if ::ROLLOUT.active?(:github) %>
         <dd><a href="#github-accounts" rel="manage_github_accounts">GitHub Accounts</a></dd>
       <% end %>
       <dd><a href="#collaborations" rel="manage_collaborations">Collaborations</a></dd>
@@ -50,7 +50,7 @@
         <% end %>
       </div>
 
-      <% if ROLLOUT.active?(:github) %>
+      <% if ::ROLLOUT.active?(:github) %>
         <div class="content" id="github-accounts">
           <p>Linking your account lets other cookbook shoppers find you on GitHub for feedback, collaboration, and kudos. The link requests access only to your GitHub account's public information.</p>
           <table>

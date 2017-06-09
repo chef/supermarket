@@ -16,7 +16,7 @@ module UsersHelper
   #   gravatar.
   #
   def gravatar_for(user, options = {})
-    ROLLOUT.active?(:gravatar) ? gravatar_image(user, options) : no_gravatar_image(user)
+    ::ROLLOUT.active?(:gravatar) ? gravatar_image(user, options) : no_gravatar_image(user)
   end
 
   #

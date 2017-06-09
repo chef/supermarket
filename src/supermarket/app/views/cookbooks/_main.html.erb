@@ -60,7 +60,7 @@
     <% if version.changelog %>
       <dd><a href="#changelog" rel="changelog">Changelog</a></dd>
     <% end %>
-    <% if ROLLOUT.active?(:fieri) %>
+    <% if ::ROLLOUT.active?(:fieri) %>
       <dd>
       <a href="#quality" rel="quality">Quality</a>
       </dd>
@@ -110,7 +110,7 @@
         <%= render_document(version.changelog, version.changelog_extension) %>
       </div>
     <% end %>
-    <% if ROLLOUT.active?(:fieri) %>
+    <% if ::ROLLOUT.active?(:fieri) %>
       <%= render partial: 'cookbooks/metrics', locals: { version: version } %>
     <% end %>
   </div>

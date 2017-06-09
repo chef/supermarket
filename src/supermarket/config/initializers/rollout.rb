@@ -1,3 +1,5 @@
+# lazy constant definition trickery here to avoid requiring a running Redis for
+# rake tasks (e.g. asset compilation)
 def Object.const_missing(const)
   if const == :ROLLOUT
     require 'redis'
