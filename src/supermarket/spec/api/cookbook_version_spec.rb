@@ -117,7 +117,7 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
 
       context 'when the fieri feature is active' do
         before do
-          allow(::ROLLOUT).to receive(:active?).with(:fieri).and_return(true)
+          allow(Feature).to receive(:active?).with(:fieri).and_return(true)
         end
 
         it 'returns quality metrics for the cookbook version' do
@@ -140,7 +140,7 @@ describe 'GET /api/v1/cookbooks/:cookbook/versions/:version' do
 
       context 'when the fieri feature is not active' do
         before do
-          allow(::ROLLOUT).to receive(:active?).with(:fieri).and_return(false)
+          allow(Feature).to receive(:active?).with(:fieri).and_return(false)
         end
 
         it 'does not return quality metrics for the cookbook version' do
