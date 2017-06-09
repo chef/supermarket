@@ -46,8 +46,8 @@ describe ApplicationController do
   end
 
   describe 'github integration' do
-    before { ROLLOUT.deactivate(:github) }
-    after { ROLLOUT.activate(:github) }
+    before { ::ROLLOUT.deactivate(:github) }
+    after { ::ROLLOUT.activate(:github) }
 
     controller do
       before_action :require_linked_github_account!

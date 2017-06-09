@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     mount MailPreview => 'mail_view'
   end
 
-  mount Fieri::Engine, at: '/fieri', constraints: proc { ROLLOUT.active?(:fieri) }
+  mount Fieri::Engine, at: '/fieri', constraints: proc { ::ROLLOUT.active?(:fieri) }
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
@@ -24,23 +24,23 @@ Rails.application.routes.draw do
       get 'users/:user' => 'users#show', as: :user
 
       # This was the original route, which has a misspelling (cookbook-verisons rather than cookbook-versions).  Keeping this here so as not to break anyone who is still depending on the original route.
-      post '/cookbook-verisons/foodcritic_evaluation' => 'quality_metrics#foodcritic_evaluation', constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/cookbook-verisons/foodcritic_evaluation' => 'quality_metrics#foodcritic_evaluation', constraints: proc { ::ROLLOUT.active?(:fieri) }
 
       # This route has the correct spelling of cookbook-versions
-      post '/cookbook-versions/foodcritic_evaluation' => 'quality_metrics#foodcritic_evaluation', as: :cookbook_versions_foodcritic_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
-      post '/cookbook-versions/collaborators_evaluation' => 'quality_metrics#collaborators_evaluation', as: :cookbook_versions_collaborators_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
-      post '/cookbook-versions/publish_evaluation' => 'quality_metrics#publish_evaluation', as: :cookbook_versions_publish_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
-      post '/cookbook-versions/license_evaluation' => 'quality_metrics#license_evaluation', as: :cookbook_versions_license_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/cookbook-versions/foodcritic_evaluation' => 'quality_metrics#foodcritic_evaluation', as: :cookbook_versions_foodcritic_evaluation, constraints: proc { ::ROLLOUT.active?(:fieri) }
+      post '/cookbook-versions/collaborators_evaluation' => 'quality_metrics#collaborators_evaluation', as: :cookbook_versions_collaborators_evaluation, constraints: proc { ::ROLLOUT.active?(:fieri) }
+      post '/cookbook-versions/publish_evaluation' => 'quality_metrics#publish_evaluation', as: :cookbook_versions_publish_evaluation, constraints: proc { ::ROLLOUT.active?(:fieri) }
+      post '/cookbook-versions/license_evaluation' => 'quality_metrics#license_evaluation', as: :cookbook_versions_license_evaluation, constraints: proc { ::ROLLOUT.active?(:fieri) }
 
-      post '/quality_metrics/foodcritic_evaluation' => 'quality_metrics#foodcritic_evaluation', as: :quality_metrics_foodcritic_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
-      post '/quality_metrics/collaborators_evaluation' => 'quality_metrics#collaborators_evaluation', as: :quality_metrics_collaborators_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
-      post '/quality_metrics/publish_evaluation' => 'quality_metrics#publish_evaluation', as: :quality_metrics_publish_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
-      post '/quality_metrics/license_evaluation' => 'quality_metrics#license_evaluation', as: :quality_metrics_license_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
-      post '/quality_metrics/supported_platforms_evaluation' => 'quality_metrics#supported_platforms_evaluation', as: :quality_metrics_supported_platforms_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
-      post '/quality_metrics/contributing_file_evaluation' => 'quality_metrics#contributing_file_evaluation', as: :quality_metrics_contributing_file_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
-      post '/quality_metrics/testing_file_evaluation' => 'quality_metrics#testing_file_evaluation', as: :quality_metrics_testing_file_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
-      post '/quality_metrics/version_tag_evaluation' => 'quality_metrics#version_tag_evaluation', as: :quality_metrics_version_tag_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
-      post '/quality_metrics/no_binaries_evaluation' => 'quality_metrics#no_binaries_evaluation', as: :quality_metrics_no_binaries_evaluation, constraints: proc { ROLLOUT.active?(:fieri) }
+      post '/quality_metrics/foodcritic_evaluation' => 'quality_metrics#foodcritic_evaluation', as: :quality_metrics_foodcritic_evaluation, constraints: proc { ::ROLLOUT.active?(:fieri) }
+      post '/quality_metrics/collaborators_evaluation' => 'quality_metrics#collaborators_evaluation', as: :quality_metrics_collaborators_evaluation, constraints: proc { ::ROLLOUT.active?(:fieri) }
+      post '/quality_metrics/publish_evaluation' => 'quality_metrics#publish_evaluation', as: :quality_metrics_publish_evaluation, constraints: proc { ::ROLLOUT.active?(:fieri) }
+      post '/quality_metrics/license_evaluation' => 'quality_metrics#license_evaluation', as: :quality_metrics_license_evaluation, constraints: proc { ::ROLLOUT.active?(:fieri) }
+      post '/quality_metrics/supported_platforms_evaluation' => 'quality_metrics#supported_platforms_evaluation', as: :quality_metrics_supported_platforms_evaluation, constraints: proc { ::ROLLOUT.active?(:fieri) }
+      post '/quality_metrics/contributing_file_evaluation' => 'quality_metrics#contributing_file_evaluation', as: :quality_metrics_contributing_file_evaluation, constraints: proc { ::ROLLOUT.active?(:fieri) }
+      post '/quality_metrics/testing_file_evaluation' => 'quality_metrics#testing_file_evaluation', as: :quality_metrics_testing_file_evaluation, constraints: proc { ::ROLLOUT.active?(:fieri) }
+      post '/quality_metrics/version_tag_evaluation' => 'quality_metrics#version_tag_evaluation', as: :quality_metrics_version_tag_evaluation, constraints: proc { ::ROLLOUT.active?(:fieri) }
+      post '/quality_metrics/no_binaries_evaluation' => 'quality_metrics#no_binaries_evaluation', as: :quality_metrics_no_binaries_evaluation, constraints: proc { ::ROLLOUT.active?(:fieri) }
 
       get 'tools/:tool' => 'tools#show', as: :tool
       get 'tools' => 'tools#index', as: :tools
@@ -85,7 +85,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     member do
-      get :tools, constraints: proc { ROLLOUT.active?(:tools) }
+      get :tools, constraints: proc { ::ROLLOUT.active?(:tools) }
       get :groups
 
       put :make_admin
@@ -104,12 +104,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tools, constraints: proc { ROLLOUT.active?(:tools) } do
+  resources :tools, constraints: proc { ::ROLLOUT.active?(:tools) } do
     member do
       post :adoption
     end
   end
-  get 'tools-directory' => 'tools#directory', constraints: proc { ROLLOUT.active?(:tools) }
+  get 'tools-directory' => 'tools#directory', constraints: proc { ::ROLLOUT.active?(:tools) }
 
   resource :profile, controller: 'profile', only: [:update, :edit] do
     post :update_install_preference, format: :json

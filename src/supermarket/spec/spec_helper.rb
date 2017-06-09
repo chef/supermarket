@@ -115,7 +115,7 @@ RSpec.configure do |config|
     OmniAuthControl.stub_chef!
 
     ENV['FEATURES'].to_s.split(',').each do |feature|
-      ROLLOUT.activate(feature)
+      ::ROLLOUT.activate(feature)
     end
   end
 

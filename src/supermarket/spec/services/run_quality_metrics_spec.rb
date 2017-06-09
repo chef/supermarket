@@ -3,7 +3,7 @@ require 'spec_helper'
 describe RunQualityMetrics do
   context 'when fieri is enabled' do
     before :each do
-      expect(ROLLOUT).to receive(:active?).with(:fieri).and_return(true)
+      expect(::ROLLOUT).to receive(:active?).with(:fieri).and_return(true)
     end
 
     context 'on the latest version of a single cookbook' do
@@ -91,7 +91,7 @@ describe RunQualityMetrics do
 
   context 'when fieri is not enabled' do
     before :each do
-      expect(ROLLOUT).to receive(:active?).with(:fieri).and_return(false)
+      expect(::ROLLOUT).to receive(:active?).with(:fieri).and_return(false)
     end
 
     let(:error_message) { I18n.t('fieri.not_enabled') }

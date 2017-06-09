@@ -135,7 +135,7 @@ class CollaboratorsController < ApplicationController
   # Check if Fieri features are active and run Fieri
   #
   def perform_fieri(cookbook)
-    if ROLLOUT.active?(:fieri) && ENV['FIERI_URL'].present?
+    if ::ROLLOUT.active?(:fieri) && ENV['FIERI_URL'].present?
       FieriNotifyWorker.perform_async(
         cookbook.latest_cookbook_version.id
       )

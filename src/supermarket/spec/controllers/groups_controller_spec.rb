@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe GroupsController do
   before do
-    ROLLOUT.activate(:collaborator_groups)
+    ::ROLLOUT.activate(:collaborator_groups)
   end
 
   describe 'GET #index' do
@@ -70,8 +70,8 @@ describe GroupsController do
 
       context 'when the groups feature is not active' do
         before do
-          ROLLOUT.deactivate(:collaborator_groups)
-          expect(ROLLOUT.active?(:collaborator_groups)).to eq(false)
+          ::ROLLOUT.deactivate(:collaborator_groups)
+          expect(::ROLLOUT.active?(:collaborator_groups)).to eq(false)
         end
 
         it 'does not save the new group to the database' do
@@ -81,7 +81,7 @@ describe GroupsController do
 
       context 'when the groups feature is active' do
         before do
-          expect(ROLLOUT.active?(:collaborator_groups)).to eq(true)
+          expect(::ROLLOUT.active?(:collaborator_groups)).to eq(true)
         end
 
         it 'saves the new group to the database' do

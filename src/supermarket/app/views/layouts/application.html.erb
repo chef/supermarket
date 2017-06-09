@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
     <title><%= [content_for(:title), 'Chef Supermarket'].compact.join(' - ').html_safe %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Supermarket" %>">
-    <% if ROLLOUT.active?(:no_crawl) %>
+    <% if ::ROLLOUT.active?(:no_crawl) %>
       <meta name="robots" content="noindex, nofollow">
     <% end %>
     <link rel="shortcut icon" href="<%= image_url('favicon.ico') %>" type="image/x-icon">
@@ -30,7 +30,7 @@
         <aside class="left-off-canvas-menu">
           <ul class="off-canvas-list show-for-medium-down">
             <li><%= link_to 'Cookbooks', cookbooks_directory_path %></li>
-            <% if ROLLOUT.active?(:tools) %>
+            <% if ::ROLLOUT.active?(:tools) %>
               <li><%= link_to 'Tools & Plugins', tools_path %></li>
             <% end %>
             <li class="more-info"><a>More Info</a></li>
@@ -57,7 +57,7 @@
           </div>
         </header>
 
-        <% if ROLLOUT.active?(:announcement) %>
+        <% if ::ROLLOUT.active?(:announcement) %>
           <%= render partial: 'announcement_banner' %>
         <% end %>
 
