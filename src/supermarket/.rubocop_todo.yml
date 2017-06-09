@@ -103,12 +103,12 @@ Style/GuardClause:
     - 'app/controllers/group_members_controller.rb'
     - 'app/controllers/groups_controller.rb'
     - 'app/helpers/adoption_helper.rb'
+    - 'app/lib/authorizer/base.rb'
+    - 'app/lib/supermarket/authentication.rb'
     - 'app/models/account.rb'
     - 'app/models/cookbook.rb'
     - 'app/workers/oauth_token_refresh_worker.rb'
     - 'config/initializers/i18n.rb'
-    - 'lib/authorizer/base.rb'
-    - 'lib/supermarket/authentication.rb'
     - 'spec/support/i18n/exceptions.rb'
 
 # Offense count: 1
@@ -119,7 +119,7 @@ Style/IfInsideElse:
 # Offense count: 1
 Style/MethodMissing:
   Exclude:
-    - 'lib/authorizer/base.rb'
+    - 'app/lib/authorizer/base.rb'
 
 # Offense count: 3
 # Cop supports --auto-correct.

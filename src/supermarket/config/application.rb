@@ -27,7 +27,7 @@ end
   end
 end
 
-require_relative '../lib/supermarket/host'
+require_relative '../app/lib/supermarket/host'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -38,12 +38,6 @@ module Supermarket
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-
-    # Autoload everything in lib
-    config.autoload_paths += Dir["#{config.root}/lib", "#{config.root}/lib/**/*"]
-
-    # Autoload everything in app
-    config.autoload_paths += Dir["#{config.root}/app", "#{config.root}/app/**/*"]
 
     # Include vendor fonts in the asset pipeline
     config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
