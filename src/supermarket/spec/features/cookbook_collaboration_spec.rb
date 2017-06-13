@@ -48,8 +48,8 @@ describe 'cookbook collaboration' do
 
     context 'when the collaborator_groups feature is not active' do
       before do
-        ::ROLLOUT.deactivate(:collaborator_groups)
-        expect(::ROLLOUT.active?(:collaborator_groups)).to eq(false)
+        Feature.deactivate(:collaborator_groups)
+        expect(Feature.active?(:collaborator_groups)).to eq(false)
       end
 
       it 'does not show the groups field' do
@@ -62,8 +62,8 @@ describe 'cookbook collaboration' do
 
     context 'when the collaborator groups feature is active' do
       before do
-        ::ROLLOUT.activate(:collaborator_groups)
-        expect(::ROLLOUT.active?(:collaborator_groups)).to eq(true)
+        Feature.activate(:collaborator_groups)
+        expect(Feature.active?(:collaborator_groups)).to eq(true)
         navigate_to_cookbook
         find('#manage').click
         find('[rel*=add-collaborator]').click
@@ -229,7 +229,7 @@ describe 'cookbook collaboration' do
           sally.roles = ['admin']
           sally.save!
 
-          ::ROLLOUT.activate(:collaborator_groups)
+          Feature.activate(:collaborator_groups)
           navigate_to_cookbook
 
           find('#manage').click

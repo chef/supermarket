@@ -1,6 +1,6 @@
 class RunQualityMetrics
   def self.all_the_latest
-    return [:error, I18n.t('fieri.not_enabled')] unless ::ROLLOUT.active? :fieri
+    return [:error, I18n.t('fieri.not_enabled')] unless Feature.active? :fieri
 
     cookbook_version_ids = CookbookVersion.where('
       cookbook_versions.created_at = (
@@ -18,7 +18,7 @@ class RunQualityMetrics
   end
 
   def self.on_latest(cookbook_name)
-    return [:error, I18n.t('fieri.not_enabled')] unless ::ROLLOUT.active? :fieri
+    return [:error, I18n.t('fieri.not_enabled')] unless Feature.active? :fieri
 
     cookbook = Cookbook.find_by name: cookbook_name
     return [:error, I18n.t('cookbook.not_found', name: cookbook_name)] unless cookbook
@@ -30,7 +30,7 @@ class RunQualityMetrics
   end
 
   def self.on_version(cookbook_name, version)
-    return [:error, I18n.t('fieri.not_enabled')] unless ::ROLLOUT.active? :fieri
+    return [:error, I18n.t('fieri.not_enabled')] unless Feature.active? :fieri
 
     cookbook = Cookbook.find_by name: cookbook_name
     return [:error, I18n.t('cookbook.not_found', name: cookbook_name)] unless cookbook

@@ -6,7 +6,7 @@ describe UsersHelper do
   describe '#gravatar_for' do
     context 'when gravatar feature is enabled' do
       before do
-        allow(::ROLLOUT).to receive(:active?).with(:gravatar).and_return(true)
+        allow(Feature).to receive(:active?).with(:gravatar).and_return(true)
       end
 
       it "returns the image tag for the specified user's gravtar image" do
@@ -20,7 +20,7 @@ describe UsersHelper do
 
     context 'when gravatar feature is disabled' do
       before do
-        allow(::ROLLOUT).to receive(:active?).with(:gravatar).and_return(false)
+        allow(Feature).to receive(:active?).with(:gravatar).and_return(false)
       end
 
       it 'returns the image tag for the chef logo image' do
