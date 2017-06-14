@@ -81,7 +81,7 @@ GEM
     erubis (2.7.0)
     faraday (0.12.1)
       multipart-post (>= 1.2, < 3)
-    foodcritic (11.1.0)
+    foodcritic (11.2.0)
       cucumber-core (>= 1.3)
       erubis
       nokogiri (>= 1.5, < 2.0)
