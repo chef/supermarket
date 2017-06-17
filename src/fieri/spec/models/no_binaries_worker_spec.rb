@@ -2,9 +2,9 @@ require 'rails_helper'
 
 describe NoBinariesWorker do
   let(:valid_params) do
-    { 'cookbook_artifact_url' => 'http://example.com/apache.tar.gz',
-      'cookbook_name' => 'apache2',
-      'cookbook_version' => '1.2.0' }
+    { 'artifact_url' => 'http://example.com/apache.tar.gz',
+      'name' => 'apache2',
+      'version' => '1.2.0' }
   end
 
   let(:test_evaluation_endpoint) do
@@ -40,7 +40,7 @@ describe NoBinariesWorker do
 
   describe 'when posting results back to Supermarket' do
     let(:not_gonna_work_params) do
-      valid_params.merge('cookbook_name' => 'not_gonna_work')
+      valid_params.merge('name' => 'not_gonna_work')
     end
 
     it 'rescues a POST error' do
