@@ -1,21 +1,16 @@
 require 'redis'
 
-class Feature
+module Feature
+  extend Forwardable
+
+  # feature flag methods delegated to the adapter to wrap the flip/check implementation
+  # if more methods from the adapter need to be exposed, add them to the list of delegated
+  # methods here
+  module_function(*def_delegators('Feature.adapter', :active?, :activate, :deactivate))
+
   @rollout = nil
 
-  def self.active?(*args)
-    rollout.active?(*args)
-  end
-
-  def self.activate(*args)
-    rollout.activate(*args)
-  end
-
-  def self.deactivate(*args)
-    rollout.deactivate(*args)
-  end
-
-  def self.rollout
+  def self.adapter
     return @rollout if @rollout
 
     redis_url = ENV['REDIS_URL'] || 'redis://localhost:6379/0/supermarket'
@@ -42,6 +37,4 @@ class Feature
 
     @rollout
   end
-
-  private_class_method :rollout
 end
