@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 0212438d74eb408791724d737afba83868e416ed
+  revision: 78b14bacba818c78e08b9b007be42b966b2aafe3
   specs:
-    omnibus (5.5.0)
+    omnibus (5.6.1)
       aws-sdk (~> 2)
       chef-sugar (~> 3.3)
       cleanroom (~> 1.0)
@@ -29,14 +29,14 @@ GEM
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     artifactory (2.8.1)
-    awesome_print (1.7.0)
-    aws-sdk (2.9.41)
-      aws-sdk-resources (= 2.9.41)
-    aws-sdk-core (2.9.41)
+    awesome_print (1.8.0)
+    aws-sdk (2.10.1)
+      aws-sdk-resources (= 2.10.1)
+    aws-sdk-core (2.10.1)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.9.41)
-      aws-sdk-core (= 2.9.41)
+    aws-sdk-resources (2.10.1)
+      aws-sdk-core (= 2.10.1)
     aws-sigv4 (1.0.0)
     berkshelf (5.6.5)
       addressable (~> 2.3, >= 2.3.4)
@@ -82,7 +82,7 @@ GEM
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
-    ffi-yajl (2.3.0)
+    ffi-yajl (2.3.1)
       libyajl2 (~> 1.2)
     fuzzyurl (0.9.0)
     hashie (3.5.5)
@@ -123,7 +123,7 @@ GEM
     nio4r (2.0.0)
     octokit (4.7.0)
       sawyer (~> 0.8.0, >= 0.5.3)
-    ohai (8.24.0)
+    ohai (8.24.1)
       chef-config (>= 12.5.0.alpha.1, < 14)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
@@ -201,4 +201,4 @@ DEPENDENCIES
   test-kitchen
 
 BUNDLED WITH
-   1.13.6
+   1.15.1
