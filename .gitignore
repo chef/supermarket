@@ -1,1 +1,10 @@
 .DS_Store
+/.delivery/cli.toml
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*_override.tf
+# License Scout
+license-cache
