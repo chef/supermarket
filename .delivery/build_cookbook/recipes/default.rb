@@ -11,6 +11,7 @@ secrets = get_project_secrets
 #########################################################################
 
 es_github_service_user 'chef-delivery' do
+  github_repo "chef/#{workflow_change_project}"
   action :configure
 end
 
