@@ -14,7 +14,6 @@ include_recipe 'delivery-truck::publish'
 
 # Bump the version and add a tag to Github
 expeditor_version workflow_change_project do
-  github_repo "chef/#{workflow_change_project}"
   action :bump
   not_if { artifact_exists_for_change? || skip_omnibus_build? }
 end
