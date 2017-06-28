@@ -1,0 +1,7 @@
+# Slack channel in Chef Software slack to send notifications about build failures, etc
+slack:
+  notify_channel: supermarket
+
+github:
+  enforce_workflow: true
+  maintainer_group: chef/supermarket

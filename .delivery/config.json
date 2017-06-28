@@ -5,11 +5,11 @@
     "path": ".delivery/build_cookbook"
   },
   "skip_phases": [
+    "lint",
     "syntax",
     "quality",
-    "provision",
-    "deploy",
-    "smoke"
+    "syntax",
+    "security"
   ],
   "job_dispatch": {
     "version": "v2",

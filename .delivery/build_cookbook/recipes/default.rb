@@ -4,41 +4,32 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-if node['delivery']['change']['phase'] == "unit"
-  include_recipe 'build_cookbook::_install_docker'
-  include_recipe 'build_cookbook::_install_phantomjs'
+secrets = get_project_secrets
+
+#########################################################################
+# github.com SCM Integration
+#########################################################################
+
+es_github_service_user 'chef-delivery' do
+  action :configure
 end
 
 #########################################################################
-# Install Ruby and dependency packages
+# AWS CLI
 #########################################################################
 
-ruby_install node['build_cookbook']['ruby_version']
-
-%w(
-  libmagic-dev
-  libpq-dev
-  libsqlite3-dev
-  nodejs
-).each do |dependency|
-  package dependency
-end
-
-# get to the project root and use it as a cache
-# as it is persistent between build jobs
-gem_cache = File.join(node['delivery']['workspace']['root'], "../../../project_gem_cache")
-
-directory gem_cache do
-  # set the owner to the dbuild so that the other recipes can write to here
-  owner node['delivery_builder']['build_user']
-  mode '0755'
-  recursive true
-  action :create
+es_aws_cli aws_profile do
+  key_name aws_key_name
+  key_contents secrets['chef-cd-aws']['private_key']
+  access_key_id secrets['chef-cd-aws']['access_key_id']
+  secret_access_key secrets['chef-cd-aws']['secret_access_key']
+  action :configure
 end
 
 #########################################################################
-# Ensure Java is installed for remote triggering of Jenkins jobs with
-# `jenkins_job`
+# Terraform
 #########################################################################
-node.normal['java']['jdk_version'] = '7'
-include_recipe 'java::default'
+
+es_terraform node['build-cookbook']['terraform_version'] do
+  action :install
+end

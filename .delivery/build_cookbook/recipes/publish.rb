@@ -4,71 +4,37 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-#########################################################################
-# TODO: set these things in `delivery-bus`
-#########################################################################
-delivery_bus_secrets = DeliverySugar::ChefServer.new.encrypted_data_bag_item('delivery-bus', 'secrets')
-
-node.normal['jenkins']['master']['endpoint']  = 'http://wilson.ci.chef.co'
-node.normal['jenkins']['executor']['timeout'] = 12_600 # wait up to 3.5 for jobs to complete
-node.run_state[:jenkins_private_key]       = delivery_bus_secrets['jenkins_private_key']
-
-#########################################################################
-# BUMP AND PUBLISH TAGS
-#
-# TODO: We need to create a resource/primitive that handles all the tag
-#       bumping and pushing as we have exceeded the Rule of Three. That
-#       is to say this is the fourth project we have done this logic in
-#       (first three were Delivery, Compliance and Chef Backend).
-#
-#########################################################################
-
-git_ssh = File.join(delivery_workspace, 'bin', 'git_ssh')
-
-execute 'Set a user and email for git operations' do
-  command <<-CMD
-git config user.name "Delivery Builder - Supermarket Pipeline" && \
-git config user.email "chef-delivery@users.noreply.github.com"
-CMD
-  cwd delivery_workspace_repo
-  environment({"GIT_SSH" => git_ssh})
+# Create Acceptance environment (if missing) so we can pin the cookbooks
+chef_environment workflow_project_acceptance_environment do
+  chef_server automate_chef_server_details
+  action :create
 end
 
-execute 'Fetch latest tags from Workflow server' do
-  command "git fetch --tags"
-  cwd delivery_workspace_repo
-  environment({"GIT_SSH" => git_ssh})
+include_recipe 'delivery-truck::publish'
+
+# Bump the version and add a tag to Github
+expeditor_version workflow_change_project do
+  github_repo "chef/#{workflow_change_project}"
+  action :bump
+  not_if { artifact_exists_for_change? || skip_omnibus_build? }
 end
 
-# Push changes up to the GitHub repo
-delivery_github 'chef/supermarket' do
-  tag lazy { VersionBumper.next_version(delivery_workspace_repo) }
-  deploy_key delivery_bus_secrets['github_private_key']
-  branch node['delivery']['change']['pipeline']
-  remote_url "git@github.com:chef/supermarket.git"
-  repo_path node['delivery']['workspace']['repo']
-  cache_path node['delivery']['workspace']['cache']
-  action :push
+# Trigger a jenkins build
+expeditor_jenkins_job "#{workflow_change_project}-build" do # ~FC005
+  git_ref workflow_change_merge_sha
+  initiated_by workflow_project_slug
+  action :trigger_async
+  not_if { artifact_exists_for_change? || skip_omnibus_build? }
 end
 
-execute 'Push the new tag to Workflow server' do
-  command 'git push origin --tags'
-  cwd delivery_workspace_repo
-  environment({ 'GIT_SSH' => git_ssh })
-end
+# If there are every additional activities that you want to do while your
+# omnibus build is happening (i.e. build habitat packages), you can do them
+# here between the async trigger and the wait_for_complete.
 
-
-
-#########################################################################
-# Execute the build in Jenkins. The `jenkins_job` resource will block
-# until completion AND stream back log output into the current CCR.
-#########################################################################
-jenkins_job "supermarket-build" do
-  parameters(
-    'GIT_REF' => node['delivery']['change']['sha'], # TODO: expose the change SHA in delivery-sugar,
-    'APPEND_TIMESTAMP' => 'false', # ensure we don't append a timestamp to our build version
-    'DELIVERY_CHANGE' => delivery_change_id,
-    'DELIVERY_SHA' => node['delivery']['change']['sha'],
-  )
-  action :build
+# Wait for the jenkins build to finish
+expeditor_jenkins_job "#{workflow_change_project}-build" do
+  git_ref workflow_change_merge_sha
+  initiated_by workflow_project_slug
+  action :wait_until_complete
+  not_if { artifact_exists_for_change? || skip_omnibus_build? }
 end
