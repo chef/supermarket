@@ -8,7 +8,7 @@ end
 
 shared_examples 'a badgeable thing' do
   it 'has a badges_mask to remember badges assigned' do
-    expect(subject.badges_mask.class).to eq(Fixnum)
+    expect(subject.badges_mask.class).to eq(Integer)
   end
 
   context 'has badgeable methods' do

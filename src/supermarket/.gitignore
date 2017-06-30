@@ -15,7 +15,6 @@
 .rspec
 
 # The Gemfile declares Ruby 2.0, so let's not argue over patch levels
-.ruby-version
 .rbenv-version
 .rvmrc
 .direnv
