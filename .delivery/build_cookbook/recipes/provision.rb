@@ -23,4 +23,10 @@ expeditor_artifactory workflow_change_project do
   only_if { workflow_stage?('union') }
 end
 
-# TODO: Terraform up some environments!
+# Stand up the Supermarket instance
+execute 'apply-terraform' do
+  command 'make apply'
+  cwd supermarket_repo_terraform_directory
+  environment supermarket_terraform_environment_vars
+  live_stream true
+end

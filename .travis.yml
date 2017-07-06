@@ -1,41 +1,79 @@
-sudo: false
-addons:
-  postgresql: '9.3'
-  apt:
-    packages:
-    - libxslt1-dev
-    - libxml2-dev
-    - libmagic-dev
-before_install:
-- cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle config build.nokogiri --use-system-libraries
-before_script:
-- cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake $COMPONENT:travis:before_script
 branches:
   only:
-  - master
-bundler_args: "--without development --jobs 7"
+    - master
+
+sudo: false
+
 cache:
   apt: true
   bundler: true
   directories:
-  - "$TRAVIS_BUILD_DIR/src/$COMPONENT/vendor/bundle"
+    - $HOME/tools
+    - "$TRAVIS_BUILD_DIR/src/$COMPONENT/vendor/bundle"
+
 env:
   global:
-  - CAPYBARA_SCREENSHOT_TO_S3=true
-  - secure: zmBguz2BE0upyqhYJbr73wXVPkLO8Me1WisL4bh6B+HVAK6fCHSkdf/FGiiGz1h+HLF39K8DweNw7uPoyQfDxpN3E14MCUkk+jG7I+0IyT5istEsLeJXEBDp2sqgBYcPpCvw73Q4SGYsG2Uf+Ofz5ihKTw4zaxYGYkbuJ7UAs80=
-  - secure: RfOhiaSlkbK0x798woj4sASE0VM2gGn6tdUqkWLWeOYvlRT1wqWs8ZLrVALfpyDiutFyxSPFIALp1fObCBTzswOtBxAQXc347dqVbYmqH92VbTp+qSJO9+dOHIoGe9hrV89Fe73AeL85n2rXzPEXLSJoE3Ap4F8nAGbkpbSf/+M=
-  matrix:
-  - COMPONENT=supermarket
-  - COMPONENT=fieri
+    - CAPYBARA_SCREENSHOT_TO_S3=true
+    - secure: zmBguz2BE0upyqhYJbr73wXVPkLO8Me1WisL4bh6B+HVAK6fCHSkdf/FGiiGz1h+HLF39K8DweNw7uPoyQfDxpN3E14MCUkk+jG7I+0IyT5istEsLeJXEBDp2sqgBYcPpCvw73Q4SGYsG2Uf+Ofz5ihKTw4zaxYGYkbuJ7UAs80=
+    - secure: RfOhiaSlkbK0x798woj4sASE0VM2gGn6tdUqkWLWeOYvlRT1wqWs8ZLrVALfpyDiutFyxSPFIALp1fObCBTzswOtBxAQXc347dqVbYmqH92VbTp+qSJO9+dOHIoGe9hrV89Fe73AeL85n2rXzPEXLSJoE3Ap4F8nAGbkpbSf/+M=
+
 language: ruby
+rvm:
+  - 2.4.1
+bundler_args: "--without development --jobs 7"
+
 notifications:
   email: false
   slack:
     secure: P9Mioa/7QFudKan2uKfJgP68xcvOLbLwqtjg5Sx1mnY41OzVKT4f5HM/T1gmhEC6s4nDlM/q+OBnNwOvi/5wNY+EkOFQsnfVlODsyVHdtPzo+421HD5mCIyIQocBSTsA720vGVHU3QNOM8hgnkTokWmFVVcF0Z66ICQMHzlS7E4=
-rvm:
-- 2.4.1
-script:
-- cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake $COMPONENT:travis:script
-services:
-- redis-server
-- postgresql
+
+matrix:
+  include:
+
+    # Supermarket Spec
+    - env:
+        - COMPONENT=supermarket
+      addons:
+        postgresql: '9.3'
+        apt:
+          packages:
+            - libxslt1-dev
+            - libxml2-dev
+            - libmagic-dev
+      services:
+        - redis-server
+        - postgresql
+      before_install:
+        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle config build.nokogiri --use-system-libraries
+      before_script:
+        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake $COMPONENT:travis:before_script
+      script:
+        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake $COMPONENT:travis:script
+
+    # Fieri Spec
+    - env:
+        - COMPONENT=fieri
+      addons:
+        postgresql: '9.3'
+        apt:
+          packages:
+            - libxslt1-dev
+            - libxml2-dev
+            - libmagic-dev
+      services:
+        - redis-server
+        - postgresql
+      before_install:
+        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle config build.nokogiri --use-system-libraries
+      before_script:
+        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake $COMPONENT:travis:before_script
+      script:
+        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake $COMPONENT:travis:script
+
+    # Terraform Lint
+    - env:
+        - NAME=lint-terraform
+        - PATH=$HOME/tools/terraform-0.8.1:$PATH
+      install: ./scripts/install_terraform.sh
+      before_script: cd terraform
+      script: make lint
