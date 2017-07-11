@@ -64,6 +64,18 @@ module BuildCookbook
     end
 
     #########################################################################
+    # Deploy Helpers
+    #########################################################################
+
+    # Determine which recipe to use for the given scenario
+    def recipe_for(infra_node)
+      package_type = infra_node.attribute?('scenario_package_type') ? infra_node['scenario_package_type'] : 'omnibus'
+      topology = infra_node.attribute?('scenario_topology') ? infra_node['scenario_topology'] : 'standalone'
+
+      "#{package_type}_#{topology}"
+    end
+
+    #########################################################################
     # Inspec
     #########################################################################
     # Coming soon!
