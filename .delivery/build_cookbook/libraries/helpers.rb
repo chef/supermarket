@@ -45,7 +45,7 @@ module BuildCookbook
     end
 
     # Construct a hash that can be provided to a chef_managed_instance terraform module
-    def supermarket_terraform_environment_vars(stage = workflow_stage, environment = workflow_environment)
+    def supermarket_terraform_environment_vars(stage = workflow_stage, environment = workflow_chef_environment_for_stage)
       {
         'AWS_PROFILE' => aws_profile,
         'HOME' => workflow_workspace,
