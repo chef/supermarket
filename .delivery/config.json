@@ -21,6 +21,15 @@
       }
     }
   },
+  "delivery-truck": {
+    "lint": {
+      "enable_cookstyle": true,
+      "ignore_rules": ["FC009", "FC014", "FC015", "FC023", "FC048"]
+    },
+    "publish": {
+      "chef_server": true
+    }
+  },
   "dependencies": [
     "engineering-services/cd-infrastructure"
   ]
