@@ -107,7 +107,7 @@ where a service is started.
 1. Install a Ruby manager - if you don't already have one, you will need a Ruby manager to install Ruby 2.3.0 such as:
    * [RVM](https://rvm.io)
    * [Rbenv](https://github.com/rbenv/rbenv)
-   * [chruby] (https://github.com/postmodern/chruby)
+   * [chruby](https://github.com/postmodern/chruby)
    * or any other Ruby version manager that may come along
 
 1. Use your ruby manager to install Ruby 2.3.0.  For instructions on this, please see the manager's documentation.
@@ -307,7 +307,7 @@ which tracked outside of Supermarket.
 
 |                      |                                          |
 |:---------------------|:-----------------------------------------|
-| **Copyright:**       | Copyright (c) 2014-2015 Chef Software, Inc.
+| **Copyright:**       | Copyright (c) 2014-2017 Chef Software, Inc.
 | **License:**         | Apache License, Version 2.0
 
 ```text
