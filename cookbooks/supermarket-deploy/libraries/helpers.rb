@@ -24,7 +24,7 @@ module ChefWorkflow
         "#{product_key}.chef.co"
       else
         # A-U-R instances include the environment
-        "#{product_key}-#{environment}.cd.chef.co"
+        "#{product_key}-#{environment}.chef.co"
       end
     end
   end
