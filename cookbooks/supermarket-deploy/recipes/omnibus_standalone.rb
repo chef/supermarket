@@ -4,8 +4,6 @@
 #
 # Copyright:: 2017, Chef Software Inc Engineering, All Rights Reserved.
 
-include_recipe 'supermarket-deploy::default'
-
 ################################################################
 # Download SSL Certs from Citadel
 ################################################################
@@ -35,7 +33,7 @@ supermarket_ocid = Chef::JSONCompat.from_json(Chef::HTTP.new("https://#{server_f
 
 chef_ingredient 'supermarket' do
   channel omnibus_channel_for_environment
-  version supermarket_version_for_environment
+  version version_for_environment('supermarket')
   config Chef::JSONCompat.to_json_pretty(
     fqdn: server_fqdn_for('supermarket'),
     host: server_fqdn_for('supermarket'),
