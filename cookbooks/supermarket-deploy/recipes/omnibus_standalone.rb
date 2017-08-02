@@ -39,7 +39,7 @@ end
 supermarket_ocid = Chef::JSONCompat.from_json(Chef::HTTP.new("https://#{server_fqdn_for('chef-server')}").get('/supermarket-credentials'))
 
 chef_ingredient 'supermarket' do
-  channel omnibus_channel_for_environment
+  channel omnibus_channel_for_environment('supermarket')
   version version_for_environment('supermarket')
   config Chef::JSONCompat.to_json_pretty(
     fqdn: server_fqdn_for('supermarket'),
