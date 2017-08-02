@@ -26,7 +26,7 @@ end
 # Stand up the Supermarket instance
 execute 'apply-terraform' do
   command 'make apply'
-  cwd supermarket_repo_terraform_directory
-  environment supermarket_terraform_environment_vars
+  cwd repo_terraform_directory
+  environment default_terraform_environment_vars
   live_stream true
 end

@@ -4,4 +4,4 @@ metadata
 
 cookbook 'expeditor-build',
          git: 'git@github.com:chef-cookbooks/expeditor-build.git',
-         branch: 'schisamo/inspec-helpers'
+         branch: 'tduffield/add-terraform'
