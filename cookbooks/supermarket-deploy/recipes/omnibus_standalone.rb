@@ -4,6 +4,13 @@
 #
 # Copyright:: 2017, Chef Software Inc Engineering, All Rights Reserved.
 
+# By default we daemonize chef-client across all of our infrastructure nodes. We
+# do not want this behavior on the Supermarket instances as we want the pipeline
+# to control the roll out of changes.
+edit_resource(:service, 'chef-client') do
+  action [:disable, :stop]
+end
+
 ################################################################
 # Download SSL Certs from Citadel
 ################################################################
