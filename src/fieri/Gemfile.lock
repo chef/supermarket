@@ -81,19 +81,22 @@ GEM
     erubis (2.7.0)
     faraday (0.12.1)
       multipart-post (>= 1.2, < 3)
-    foodcritic (11.2.0)
+    ffi-yajl (2.3.1)
+      libyajl2 (~> 1.2)
+    foodcritic (11.3.0)
       cucumber-core (>= 1.3)
       erubis
+      ffi-yajl (~> 2.0)
       nokogiri (>= 1.5, < 2.0)
       rake
       rufus-lru (~> 1.0)
       treetop (~> 1.4)
-      yajl-ruby (~> 1.1)
     gherkin (4.1.3)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     hashdiff (0.3.4)
     i18n (0.8.4)
+    libyajl2 (1.2.0)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.5)
@@ -214,7 +217,6 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
-    yajl-ruby (1.3.0)
 
 PLATFORMS
   ruby
@@ -229,4 +231,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.14.6
+   1.15.3
