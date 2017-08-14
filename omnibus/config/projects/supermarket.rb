@@ -28,7 +28,7 @@ install_dir "#{default_root}/#{name}"
 build_version Omnibus::BuildVersion.semver
 build_iteration 1
 
-override :postgresql, version: '9.3.14'
+override :postgresql, version: '9.3.18'
 override :ruby, version: "2.4.1"
 override :'chef-gem', version: '12.19.36'
 override :openssl, version: '1.0.2k'
