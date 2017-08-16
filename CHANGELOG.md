@@ -9,6 +9,313 @@
 <!-- latest_stable_release -->
 <!-- latest_stable_release -->
 
+## 3.1.25 (2017-08-16)
+
+**Security Updates**
+
++ updated embedded git to v2.14.1 to address CVE-2017-1000117 [#1653]
++ updated OpenSSL to v1.0.2k (CVE-2017-3731, CVE-2017-3732, CVE-2016-7055) [#1653]
++ updated PostgreSQL to v9.3.18 (CVE-2017-7547, CVE-2017-7546, CVE-2017-7486, CVE-2017-7484, CVE-2017-7485) [#1654]
+
+## 3.1.23 (2017-08-10)
+
+**Fixes**
+
++ Upgraded sysctl cookbook internal to the omnibus install should fix installs on RHEL-like OSes (e.g. SuSE). [#1649]
+
+**Updates**
+
++ Upgraded quality metrics to use Foodcritic v11.3.0. [#1648]
+
+## 3.1.22 (2017-07-24)
+
+**Fixes**
+
++ Fix Foodcritic and No Binaries quality metrics (use the new method signature for retrieving the cookbook tarball). [#1621]
+
+**Updates**
+
++ Upgraded Ruby to v2.4.1 [#1627]
++ Several changes to internal test/build pipeline.
+
+## 3.1.14 (2017-06-17)
+
+**Security Updates**
+
++ Includes an updated version of zlib dependency [#1620]
+
+**Updates**
+
++ Upgraded Foodcritic to v11.2.0 [#1618]
++ Changed links to old IRC to new Chef Community Slack [#1603]
+
+## 3.1.10 (2017-06-14)
+
+**Security Fixes**
+
++ Fixes secret token checking for Fieri, the quality metrics job runner [#1607]
+
+**Fixes**
+
++ Fixes a bug in the Collaborator Groups feature where users were not getting added as collaborators when a group they are a member of was added to a cookbook. [#1607]
+
+**Updates**
+
++ Upgrade web application from Rails 4.2 to 5.0 [#1607]
++ Minor internal changes to the implementation of feature flags [#1616]
+
+**Deprecations/Removals**
+
++ Individual/Corproate Contributor License Agreement tracking (a.k.a. Curry) has been removed after a period of deprecation. [#1608]
+
+## 3.1.6 (2017-05-19)
+
+**Enhancements**
+
+* More Foodcritic rules included with an upgrade to v11.1.0 [#1610, #1611]
+
+## 3.1.4 (2017-05-15)
+
+**Fixes**
+
++ Display a useful message when a user's account does not have a public_key associated with it. [#1600]
++ Update versions of embedded monitoring agents (Datadog, New Relic, Sentry). [#1605]
+
+## 3.1.1 (2017-04-24)
+
+**Enhancement**
+
+* Added subcommands to `supermarket-ctl` to change the visibility of quality metrics. [#1599]
+
+## 3.1.0 (2017-04-20)
+
+**New Behavior**
+
+* The cookbook quality metrics currently implemented have all been changed to publicly visible as a default for new installations. For existing pre-3.1.0 Supermarket installations, this release will _not_ automatically change the public visibility of metrics. [#1596]
+
+**Fixes**
+
+* Reënable Foodcritic rule FC045 now that the version of Foodcritic included doesn't alert when a cookbook is published without metadata.rb. [#1593]
+* Display quality metric results in a consistent order. [#1595]
+* Update links to mailing list to take readers to the Chef Community Mailing List (Discourse site). Thanks to [Roland Moriz](https://github.com/rmoriz) for the catch and fix! [#1598]
+
+## 3.0.2 (2017-04-13)
+
+**Updates**
+
++ Update to Foodcritic 10.3.1 for new rules, particularly around licensing. (#1590)
+
+**Bugs Fixed**
+
+ + Provide an omnibus configuration default fallback to bare hostname for a Supermarket's FQDN when a host's FQDN is indeterminate. Production Supermarket instances are generally expected to have an FQDN specified in an override—or at least be reliably resolvable via ohai on a single host—so that production SSL certificates have a stable name to match against. This fallback fix is expected to solve a problem that only should occur in test environments. (Fixes #1591 via #1592)
+
+## 3.0.0 (2017-04-10)
+
+**⚠️ Breaking Change ⚠️**
+
+**Attention: AWS S3 Users**
+
+Private Supermarkets using AWS S3 have two new settings to consider following an upgrade to the Paperclip and AWS SDK gems:
+
++ `s3_region` _must_ be set for the bucket in which cookbooks will be stored.
++ `s3_domain_style` has a new default of `:s3_domain_url`. However, if the S3 bucket name contains periods (`.`), the bucket _must_ be in AWS US-East-1 and the `s3_domain_style` _must_ be `:s3_path_url`.
+
+The `supermarket-ctl reconfigure` action will error with an exception and message if these settings are missing or incompatible.
+
+**Updates**
+
++ Upgraded Paperclip and AWS SDK gems. (#1411)
++ Upgraded the New Relic and Datadog monitoring agents. (#1588 & #1589)
+
+**Bugs Fixed**
+
++ Fixed binary file detection to not think zero-byte empty files are binary. (#1584)
++ Added the current ChefDK version of open source license strings as acceptable for the license quality metric. (#1586)
++ Fixed inconsistencies in the display of the navigation menus between the top nav bar and the left side drawer menu. (#1411)
+
+## 2.9.30 (2017-04-04)
+
+**Bugs Fixed**
+
++ Fixed looking up GitHub repo identifiers from source_url for quality metrics that check on a source repository (same fix as in 2.9.29, but applied to the other workers). (#1583)
++ Upgrade Octokit client to v4+ to support GitHub API's new redirect behavior. (Also #1583)
+
+## 2.9.29 (2017-04-03)
+
+**Enhancements**
+
++ License quality metric now standardized on checking against SPDX format license strings. (#1577)
++ Upgraded to [Foodcritic 10.2.2](https://github.com/acrmp/foodcritic/blob/master/CHANGELOG.md#1022-2017-03-31) for new rules and fixes. (#1582)
++ Upgraded to latest Ruby 2.3 (2.3.3). (#1581)
+
+**Bugs Fixed**
+
++ Fixed displaying the first and last name or username of the person publishing a new version of a cookbook in the activity feed. (#1578)
++ Fixed looking up GitHub repo identifiers from source_url for quality metrics that check on a source repository. (#1579)
+
+## 2.9.21 (2017-03-17)
+
+**Enhancements**
+
++ **New Quality Metrics**:
+    + [QM012](https://github.com/chef-cookbooks/cookbook-quality-metrics/blob/fda3f14d9199bfd1bb894d00e7a8e25c85a6b35d/quality-metrics/qm-012-binaries.md) - cookbook artifact does not include binary files
+    + [QM014](https://github.com/chef-cookbooks/cookbook-quality-metrics/blob/fda3f14d9199bfd1bb894d00e7a8e25c85a6b35d/quality-metrics/qm-014-version_tags.md) - source repo has a version tag present that matches the version declared in metadata
+
+**Security Update**
+
++ Upgraded Rails and Nokogiri to address [CVE-2016-4658](http://people.canonical.com/~ubuntu-security/cve/2016/CVE-2016-4658.html) and [CVE-2016-5131](http://people.canonical.com/~ubuntu-security/cve/2016/CVE-2016-5131.html) in [libxml2 vendored within Nokogiri](https://github.com/sparklemotion/nokogiri/issues/1615).
+
+
+## 2.9.15 (2017-03-14)
+
+**Enhancements**
+
++ **New Quality Metrics** that check a cookbook's GitHub repository (if present):
+    + [QM011](https://github.com/chef-cookbooks/cookbook-quality-metrics/blob/fda3f14d9199bfd1bb894d00e7a8e25c85a6b35d/quality-metrics/qm-011-contributing_doc.md) - cookbook includes instructions on how to contribute (CONTRIBUTING
+      document)
+    + [QM013](https://github.com/chef-cookbooks/cookbook-quality-metrics/blob/fda3f14d9199bfd1bb894d00e7a8e25c85a6b35d/quality-metrics/qm-013-testing_doc.md) - cookbook includes instructions on how to test (TESTING document)
++ **Rerun Quality Metrics** with supermarket-ctl commands added. A sysadmin/operator can re-run quality metrics on the latest versions of all cookbooks, on the latest version of a single cookbook, or on a specific version of a single cookbook.
++ **Optional Dedicated Redis for Jobs** Provide an optional configuration item
+`['supermarket']['redis_jobq_url']` to  specify a Redis connection URL specific
+to handling the background job queue. This allows a Supermarket to separate job
+processing needs from operations that affect request response times like caching
+and feature flag checks.
+
+**Fixes**
+
++ Remove duplicate quality metric results produced by re-runs.
++ Reliably disable the Datadog application metrics tracer. No more log spam!
+
+## 2.9.7 (2017-02-17)
+
+**Enhancements**
+
+- **Configurable API item limit**:: Use `api_item_limit` in the configuration passed to omnibus install to set the upper limit on the number of items to return for API requests. Defaults to 100 items.
+- **Datadog APM Tracer included**:: The Supermarket web application now includes the Datadog APM Tracer agent. The agent defaults to disabled, but can be turned on with `datadog_tracer_enabled` for a Supermarket instance to be monitored with [Datadog APM](https://www.datadoghq.com/apm/).
+
+## 2.9.3 (2017-02-02)
+
+**Enhancements**
+
+- New quality metric to check for [a cookbook declaring what platforms it supports](https://github.com/chef-cookbooks/cookbook-quality-metrics/blob/52be6b20a891e0b2f0915df2ec58beb5588141b5/quality-metrics/qm-006-supports.md).
+
+**Fixes**
+
+- Trim the temporary directory from the foodcritic metric output to reduce the noise in its feedback.
+- Fix linkage to the Supermarket API documentation.
+
+**Security Update**
+- Update to mixlib-archive used in the Fieri component to address a security vulnerability in handling tar files. If you run Fieri in your private Supermarket, this is a recommended upgrade.
+
+## 2.8.61 (2017-01-30)
+
+**Enhancements**
+
+- Cookbook version API endpoint now includes `published_at` the publication date  on which the version was uploaded to Supermarket.
+- Cookbook view displays supported `chef_versions` and `ohai_versions` for currently selected cookbook version if those values exist in the cookbook metadata.
+- Several updates to user profile display and management:
+  - The Keys tab under user profile management now displays the fingerprint for the public key associated with the user. Instructions are also given for verifying this fingerprint matches the user's local workstation key and for how to tell Supermarket to update its copy of the user's key from the associated Chef Server.
+  - Field label text added for contact information. Previously, the label text would only appear in empty fields in the form.
+  - JIRA username removed.
+
+**Fixes**
+
+- Upgrade to runit cookbook used in the omnibus install and configuration.
+- Upgrade project to Ruby 2.3.1.
+- Tweaks to the nginx log format to make it more easily parsed.
+
+**Deprecations**
+
+- CLA signatures and management have been removed from the user profile tabs.
+
+## 2.8.43 (2016-12-05)
+
+**Enhancements**
+
+- **Admin-Only Quality Metrics**: In the effort to add new quality metrics to the system, metrics can now be flagged as only visible to Supermarket admins. As metrics are added and tested, they will start as admin-only. Toggling involves console commands as of this release and will become easier as this feature gets fleshed out!
+- **New Quality Metrics** (set to admin-only by default):
+  - [QM001](https://github.com/chef-cookbooks/cookbook-quality-metrics/blob/52be6b20a891e0b2f0915df2ec58beb5588141b5/quality-metrics/qm-001-published.md): Cookbook is published to the Supermarket and not deprecated or up for adoption.
+  - [QM003](https://github.com/chef-cookbooks/cookbook-quality-metrics/blob/52be6b20a891e0b2f0915df2ec58beb5588141b5/quality-metrics/qm-003-license.md): Cookbook released under a recognized open source license.
+- Upgraded Fieri's Foodcritic to v8.1.0+
+
+**Fixes**
+
+- Set default configuration for Foodcritic metric to match that declared by [QM009](https://github.com/chef-cookbooks/cookbook-quality-metrics/blob/52be6b20a891e0b2f0915df2ec58beb5588141b5/quality-metrics/qm-009-foodcritic.md)
+
+**Meta**
+- Clarify contributing instructions around the Developer's Certificate of Origin
+- Add a [code of conduct](https://github.com/chef/supermarket/blob/master/CODE_OF_CONDUCT.md), referencing the Chef Community Guidelines
+
+## 2.8.34 (2016-11-10)
+
+**Security Updates**
+
+- [#1462] - Upgraded curl to [v7.51.0](https://github.com/chef/omnibus-software/pull/758). curl is bundled in the omnibus package as a dependency of git.
+
+**Enhancements**
+
+- [#1454] - The `tool-search` API endpoint now has two new parameters: `type` to constrain search to a single type of tool and `order` to select alphabetical-by-name (`name`) or reverse-chronological-by-creation-time (`recently_added`). This was added to support searching for compliance profiles from the `inspec` command line tool (see chef/inspec#1219 and chef/inspec#1255 for more).
+
+**Bug Fixes**
+
+- [#1460] - UI was tweaked for the "Advanced Options" search toggle for small viewports, e.g. mobile. (Thanks, @tristanoneil!)
+
+
+## 2.8.30 (2016-10-17)
+
+**Fixes & Updates**
+
+- [#1452](https://github.com/chef/supermarket/pull/1452) - fixes a bug in 2.8.29 where downloading a cookbook version would break if the version had only the food critic metric result and not the collaborator metric result included with it.
+
+
+## 2.8.29 (2016-10-10) (2.8.29)
+
+DO NOT USE!  There is a bug in this release!
+
+**Fixes & Updates**
+
++ [#1433](https://github.com/chef/supermarket/pull/1433) Refactor quality metrics code
++ [#1443](https://github.com/chef/supermarket/pull/1443) Show Fieri Version and tags from Foodcritic runs
+
+## 2.8.27 (2016-10-03) (2.8.27)
+
+**Security Updates**
+
++ [#1436](https://github.com/chef/supermarket/pull/1436) Upgrades to OpenSSL 1.0.2j
+
+**Fixes & Updates**
+
++ [#1426](https://github.com/chef/supermarket/pull/1426) Bumps Berkshelf version
+
+## 2.8.25 (2016-09-13) (2.8.25)
+
+**Security Updates**
+
+- [#1427] Upgrade PostgreSQL from 9.3.6 to 9.3.14 to address [several CVEs](https://github.com/chef/supermarket/pull/1427). We don't believe that Supermarket was particularly susceptible to any of the vulnerabilities, but upgrading makes them a non-issue.
+- [#1423] Upgrade OpenSSL from 1.0.1t to 1.0.2h in preparation for [1.0.1's end-of-life](https://www.openssl.org/policies/releasestrat.html). No additional CVEs covered as 1.0.1t was the most up-to-date version for 1.0.1.
+
+**Fixes & Updates**
+
+- [#1414] Added Policyfile as an installation example to the cookbook view.
+- [#1425] Set the mouse cursor type to `auto` for most of the web UI so that users would see a cursor style for the thing the cursor is over that is consistent with how most other web sites work. Tip of the hat to [Peter Fern](https://github.com/pdf) for pointing the way 😉 to the fix.
+
+## 2.8.0 (2016-07-05) (2.8.0)
+
+**Updates**
+
+- [#1342] Adds Quality Metrics API
+- [#1345] Adds tests for Fieri untarring tarballs
+- [#1357] Refactor fieri environmental variables
+
+
+## 2.8.15 (2016-08-31) (2.8.15)
+
+**Fixes**
+
+- [#1418] Fix for an infinite redirect [#1412] from the Supermarket site when uppercase characters appear in the FQDN - Appeared when no fqdn was given and the install defaulted to the node's hostname which was mixed case.
+- [#1415] Address deprecation warnings by changing `node.set` to `node.normal` in cookbooks
+- Supermarket now built in a Chef Automate pipeline! Adds a build_cookbook for testing and packaging.
+
 ## 2.8.3 (2016-08-22)
 - [#1402] Use "Chef" and "chef.io" consistently in links.
 - [#1405] Use correct URL for Foodcritic project.
