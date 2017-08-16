@@ -15,19 +15,19 @@ end
 # Download SSL Certs from Citadel
 ################################################################
 
-directory "/var/opt/supermarket/ssl/ca" do
-  mode "0755"
+directory '/var/opt/supermarket/ssl/ca' do
+  mode '0755'
   recursive true
 end
 
-file "/var/opt/supermarket/ssl/ca/wildcard.chef.co.crt" do
-  mode "0600"
+file '/var/opt/supermarket/ssl/ca/wildcard.chef.co.crt' do
+  mode '0600'
   content citadel['wildcard.chef.co.crt']
   sensitive true
 end
 
-file "/var/opt/supermarket/ssl/ca/wildcard.chef.co.key" do
-  mode "0600"
+file '/var/opt/supermarket/ssl/ca/wildcard.chef.co.key' do
+  mode '0600'
   content citadel['wildcard.chef.co.key']
   sensitive true
 end
@@ -48,8 +48,8 @@ chef_ingredient 'supermarket' do
     chef_oauth2_app_id: supermarket_ocid['uid'],
     chef_oauth2_secret: supermarket_ocid['secret'],
     ssl: {
-      certificate: "/var/opt/supermarket/ssl/ca/wildcard.chef.co.crt",
-      certificate_key: "/var/opt/supermarket/ssl/ca/wildcard.chef.co.key",
+      certificate: '/var/opt/supermarket/ssl/ca/wildcard.chef.co.crt',
+      certificate_key: '/var/opt/supermarket/ssl/ca/wildcard.chef.co.key',
     }
   )
 
