@@ -77,3 +77,37 @@ matrix:
       install: ./scripts/install_terraform.sh
       before_script: cd terraform
       script: make lint
+
+    # supermarket-deploy-cookbook-cookstyle
+    - env:
+        - NAME=lint-supermarket-deploy-cookbook-cookstyle
+      addons:
+        apt:
+          sources:
+            - chef-stable-precise
+          packages:
+            - chefdk
+      cache:
+        directories:
+          - $HOME/.berkshelf
+      install:
+        - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+      before_script: cd cookbooks/supermarket-deploy
+      script: chef exec cookstyle
+
+    # supermarket-deploy-cookbook-foodcritic
+    - env:
+        - NAME=supermarket-deploy-cookbook-foodcritic
+      addons:
+        apt:
+          sources:
+            - chef-stable-precise
+          packages:
+            - chefdk
+      cache:
+        directories:
+          - $HOME/.berkshelf
+      install:
+        - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+      before_script: cd cookbooks/supermarket-deploy
+      script: chef exec foodcritic . -t ~supermarket

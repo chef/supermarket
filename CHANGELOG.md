@@ -1,8 +1,13 @@
 # Supermarket Changelog
 
-THIS DOCUMENT IS NOW DEPRECATED
+<!-- latest_release -->
+<!-- latest_release -->
 
-Please see the [Releases page](https://github.com/chef/supermarket/releases) for Changelog details
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
+<!-- latest_stable_release -->
 
 ## 2.8.3 (2016-08-22)
 - [#1402] Use "Chef" and "chef.io" consistently in links.
