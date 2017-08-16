@@ -2,7 +2,7 @@ product_key: supermarket
 
 # Slack channel in Chef Software slack to send notifications about build failures, etc
 slack:
-  notify_channel: supermarket
+  notify_channel: supermarket-notify
 
 github:
   # The file where the MAJOR.MINOR.PATCH version is kept. The version in this file
