@@ -25,7 +25,7 @@ bundler_args: "--without development --jobs 7"
 notifications:
   email: false
   slack:
-    secure: P9Mioa/7QFudKan2uKfJgP68xcvOLbLwqtjg5Sx1mnY41OzVKT4f5HM/T1gmhEC6s4nDlM/q+OBnNwOvi/5wNY+EkOFQsnfVlODsyVHdtPzo+421HD5mCIyIQocBSTsA720vGVHU3QNOM8hgnkTokWmFVVcF0Z66ICQMHzlS7E4=
+    secure: BfVg7BimLzBORMe8MmiBFghvq3znxSg4pQbCBiN62wCx5D9qTDLr4pvDgPZkuPqSGjUe9hB0Y0tQACqScbDLZx7IqP8+Naf5sQ4SvjNUjEMc+fQ2RJg5VqmSchgJlC4h6xwW4ArJ0Gms74Ov9klHBJQ3nzqAOV0y8Yk5Sv3FNcw=
 
 matrix:
   include:
