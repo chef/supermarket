@@ -309,8 +309,7 @@ GEM
     minitest (5.10.2)
     mixlib-archive (0.4.1)
       mixlib-log
-    mixlib-authentication (1.4.1)
-      mixlib-log
+    mixlib-authentication (1.4.2)
     mixlib-cli (1.7.0)
     mixlib-config (2.2.4)
     mixlib-log (1.7.1)
