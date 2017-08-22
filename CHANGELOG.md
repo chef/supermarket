@@ -1,22 +1,20 @@
 # Supermarket Changelog
 
-<!-- latest_release 3.1.28 -->
-## [3.1.28](https://github.com/chef/supermarket/tree/3.1.28) (2017-08-17)
-
-#### Merged Pull Requests
-- update mixlib-authn to fix un/sharing with large keys [#1661](https://github.com/chef/supermarket/pull/1661) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.1.25 -->
-### Changes since 3.1.25 release
-
-#### Merged Pull Requests
-- update mixlib-authn to fix un/sharing with large keys [#1661](https://github.com/chef/supermarket/pull/1661) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.28 -->
-- Update pipeline to use latest ES patterns [#1657](https://github.com/chef/supermarket/pull/1657) ([schisamo](https://github.com/schisamo)) <!-- 3.1.26 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.1.28](https://github.com/chef/supermarket/tree/3.1.28) (2017-08-22)
+
+#### Merged Pull Requests
+- Update pipeline to use latest ES patterns [#1657](https://github.com/chef/supermarket/pull/1657) ([schisamo](https://github.com/schisamo))
+- update mixlib-authn to fix un/sharing with large keys [#1661](https://github.com/chef/supermarket/pull/1661) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_stable_release -->
+
+
 
 ## 3.1.25 (2017-08-16)
 
