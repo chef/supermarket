@@ -1,9 +1,17 @@
 # Supermarket Changelog
 
-<!-- latest_release -->
+<!-- latest_release 3.1.29 -->
+## [3.1.29](https://github.com/chef/supermarket/tree/3.1.29) (2017-08-31)
+
+#### Merged Pull Requests
+- trigger build for updated RubyGems 2.6.13 [#1664](https://github.com/chef/supermarket/pull/1664) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.1.28 -->
+### Changes since 3.1.28 release
+
+#### Merged Pull Requests
+- trigger build for updated RubyGems 2.6.13 [#1664](https://github.com/chef/supermarket/pull/1664) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.29 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
