@@ -22,10 +22,10 @@
               <%= t('cookbook.activity',
                     maintainer: link_to(cookbook_version.owner.name, cookbook_version.owner),
                     version: cookbook_version.version,
-                    cookbook: link_to(cookbook_version.name, cookbook_version.cookbook)
+                    cookbook: link_to(cookbook_version.name, cookbook_version.cookbook),
+                    publisher: link_to(cookbook_version.published_by.name, cookbook_version.published_by),
                    ).html_safe %>
               <%= link_to gravatar_for(cookbook_version.published_by), cookbook_version.published_by %>
-              <%= link_to(cookbook_version.published_by.name, cookbook_version.published_by) %>
             </div>
             <small class="date"><%= cookbook_version.created_at.to_s(:longish) %></small>
           </li>
