@@ -45,15 +45,88 @@ Bad:  Added some feature
 Bad:  Adding some feature
 Good: Add some feature
 ```
+### Running Locally
+
+##### Known issues with `bundle install`
+
+- the `ruby-filemagic` gem fails to build natively:
+  ```
+  Gem::Ext::BuildError: ERROR: Failed to build gem native extension.
+
+      current directory:  /path/to/your/gems/ruby-filemagic-0.7.1/ext/filemagic
+  /path/to/your/ruby/bin/ruby -r ./siteconf20170901-8901-w35pcu.rb extconf.rb
+  checking for -lgnurx... no
+  checking for magic_open() in -lmagic... no
+  *** ERROR: missing required library to compile this module
+  *** extconf.rb failed ***
+  ```
+
+  This gem [requires](https://stackoverflow.com/questions/15577171/missing-library-while-installing-ruby-filemagic-gem-on-linux) that the `libmagic` library be installed before its native extensions will build.
+
+  For Linux: `sudo apt-get install libmagic-dev`
+
+  For Mac: `brew install libmagic`
+
+  Then `gem` or `bundle` install again.
+
+- the `pg` gem fails to build natively:
+  ```
+  Gem::Ext::BuildError: ERROR: Failed to build gem native extension.
+
+    current directory: /path/to/your/gems/pg-0.20.0/ext
+  /path/to/your/ruby/ruby -r ./siteconf20170901-11813-1qvk88g.rb extconf.rb
+  checking for pg_config... no
+  No pg_config... trying anyway. If building fails, please try again with
+   --with-pg-config=/path/to/pg_config
+  checking for libpq-fe.h... no
+  Can't find the 'libpq-fe.h header
+  *** extconf.rb failed ***
+  ```
+
+  For Linux: `sudo apt-get install libpq-dev`
+
+  For Mac: `brew update` then `brew install prostgresql`
+
+  Then `gem` or `bundle` install again.
 
 ### Writing Tests
+
 In order to ensure the integrity of the project (and prevent regressions), we _cannot_ merge any patch that does not have adequate test coverage. Even if you have never written tests before, the existing tests serve as great boilerplate examples. At minimum, changes to a model must have a unit spec, changes to a controller must have a request spec, changes to a view must have a view or capybara spec, changes to the javascript must have a poltergeist spec.
+
+### Running Tests
+
+There is `docker-compose.yml` file in `src/supermarket` which configures a [`Docker`](https://www.docker.com/) container to host postgres and redis for local development.
+
+In `src/supermarket`:
+
+```
+docker-compose up
+bundle exec rake db:setup
+```
+
+The first line starts up the docker container to make redis and postgres available to the specs by mapping the expected ports.  The rake task then initializes the `supermarket_test` db schema expected by the specs.
+
+Finally, `bundle exec rake -T` will show you the available tasks.
+
+You can run all or a subset of the specs:
+
+```
+bundle exec rake spec:views
+```
 
 ### Adding Dependencies
 If you are adding dependencies to the project (gems in the Gemfile or npm packages in `packages.json`, please run `license_finder` to make sure that none of the added dependencies conflict  with the project's whitelisted licenses.
 
 ### Code Style
-[Rubocop](https://github.com/bbatsov/rubocop) is used to enforce a specific Ruby style guide. You can run Rubocop by running the `rubocop` command. Rubocop will let you know what the offenses are and where they occur. It is also worth noting that Travis CI runs Rubocop, and the build will fail if Rubocop fails.
+[Rubocop](https://github.com/bbatsov/rubocop) is used to enforce a specific Ruby style guide. This tool can let you know what the offenses are and where they occur.
+
+It is worth noting that Travis CI runs Rubocop and will fail the build if it detects any style violations.
+
+Before opening your PR you can run Rubocop locally in the `src/supermarket` directory:
+
+```
+bundle exec rake spec:rubocop
+```
 
 ### CSS
 [Foundation](http://foundation.zurb.com) is used as a CSS framework and for various bits of JavaScript functionality. The Foundation framework is included in its entirety and is overwritten within the application. Most of the overrides are just small color and typographical changes so most of the [Foundation Docs](http://foundation.zurb.com/docs) apply to Supermarket. One exception is the use of the grid presentational classes (row, x columns, etc.) are eschewed in favor of using the SCSS grid mixins. You can find more information about the SCSS grid mixins [here](http://foundation.zurb.com/docs/components/grid.html).
