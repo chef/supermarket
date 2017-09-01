@@ -58,7 +58,7 @@ describe 'users/followed_cookbook_activity.atom.builder' do
     it 'displays information about cookbook activity' do
       activity = xml_body['feed']['entry'].first
 
-      expect(activity['title']).to match(/#{test_cookbook.name}/)
+      expect(activity['title']).to eql("#{test_cookbook_5_0.user.name}: #{test_cookbook_5_0.name} v#{test_cookbook_5_0.version} released by #{test_cookbook_5_0.published_by.name}")
       expect(activity['content']).to match(/this cookbook is so rad/)
       expect(activity['content']).to match(/we added so much stuff/)
       expect(activity['author']['name']).to eql(test_cookbook_5_0.user.name)
