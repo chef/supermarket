@@ -1,5 +1,5 @@
 # Supermarket Changelog
-
+<!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
 <!-- latest_release 3.1.30 -->
 ## [3.1.30](https://github.com/chef/supermarket/tree/3.1.30) (2017-09-01)
 
