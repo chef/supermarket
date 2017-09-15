@@ -1,26 +1,23 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.31 -->
-## [3.1.31](https://github.com/chef/supermarket/tree/3.1.31) (2017-09-14)
-
-#### Merged Pull Requests
-- upgrade to Ruby 2.4.2 [#1668](https://github.com/chef/supermarket/pull/1668) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.1.29 -->
-### Changes since 3.1.29 release
-
-#### Merged Pull Requests
-- upgrade to Ruby 2.4.2 [#1668](https://github.com/chef/supermarket/pull/1668) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.31 -->
-- Fix the activity feed, give credit where it is due [#1665](https://github.com/chef/supermarket/pull/1665) ([davidalpert](https://github.com/davidalpert)) <!-- 3.1.30 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.1.31](https://github.com/chef/supermarket/tree/3.1.31) (2017-09-15)
+
+#### Merged Pull Requests
+- Fix the activity feed, give credit where it is due [#1665](https://github.com/chef/supermarket/pull/1665) ([davidalpert](https://github.com/davidalpert))
+- upgrade to Ruby 2.4.2 [#1668](https://github.com/chef/supermarket/pull/1668) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_stable_release -->
+
 ## [3.1.29](https://github.com/chef/supermarket/tree/3.1.29) (2017-08-31)
 
 #### Merged Pull Requests
 - trigger build for updated RubyGems 2.6.13 [#1664](https://github.com/chef/supermarket/pull/1664) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.1.28](https://github.com/chef/supermarket/tree/3.1.28) (2017-08-22)
 
