@@ -262,7 +262,7 @@ installed for the test suite to pass.
 ### JavaScript Tests
 
 The JavaScript specs are run with [Karma](http://karma-runner.github.io) and use
-the [Mocha](http://visionmedia.github.io/mocha/) test framework and the [Chai
+the [Mocha](http://mochajs.org/) test framework and the [Chai
 Assertion Library](http://chaijs.com/)
 
 The specs live in spec/javascripts. Run `rake spec:javascripts` to run the
