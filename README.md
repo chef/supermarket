@@ -56,28 +56,7 @@ These instructions are tested and verified on Mac OS X Yosemite
 1. Install the hypervisor of your choice (e.g. [VirtualBox](https://www.virtualbox.org/wiki/Downloads),
   VMWare Fusion).
 
-1. Install `docker-machine` and `docker`. With [Homebrew](http://brew.sh/):
-
-  ```
-  $ brew install docker-machine docker
-  ```
-
-1. Create a `docker-machine` host on which to run Docker services. The following
-  command assumes your hypervisor is VirtualBox and that you will name this host
-  "default".
-
-  ```
-  $ docker-machine create --drive virtualbox default
-  ```
-
-1. Set environment variables for the Supermarket configuration:
-
-  ```
-  eval $(docker-machine env default)
-  export DOCKER_IP=$(docker-machine ip default)
-  export POSTGRES_IP=$DOCKER_IP
-  export REDIS_URL="redis://${DOCKER_IP}:6379/0/supermarket"
-  ```
+1. Install `docker`
 
 **NOTE:** You will still need a version of PostgreSQL installed on the local
 filesystem for development libraries to be available for building the `pg` gem.
