@@ -87,6 +87,10 @@ class CookbookVersion < ApplicationRecord
     user || cookbook.owner
   end
 
+  def metric_result_pass_rate
+    ((metric_results.where(failure: false).count / metric_results.count.to_f) * 100).round(0)
+  end
+
   private
 
   #
