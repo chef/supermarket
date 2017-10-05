@@ -88,7 +88,7 @@ if Rails.env.development?
         description: Faker::Lorem.sentences(1).first,
         license: 'MIT',
         tarball: File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz'),
-        readme: File.read('../../README.md'),
+        readme: '# This is a README',
         readme_extension: 'md',
         user: user
       )

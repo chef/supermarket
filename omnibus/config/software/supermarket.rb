@@ -30,7 +30,7 @@ dependency "redis"
 dependency "ruby"
 dependency "runit"
 dependency "logrotate"
-dependency "fieri"
+dependency "file"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)

@@ -9,7 +9,9 @@ cache:
   bundler: true
   directories:
     - $HOME/tools
-    - "$TRAVIS_BUILD_DIR/src/$COMPONENT/vendor/bundle"
+    - "$TRAVIS_BUILD_DIR/src/$NAME/vendor/bundle"
+    - src/supermarket/vendor/bundle
+    - src/supermarket/engines/fieri/vendor/bundle
 
 before_install:
   - curl https://raw.githubusercontent.com/chef/ci-studio-common/pre-1.0/install.sh | bash
@@ -36,7 +38,7 @@ matrix:
 
     # Supermarket Spec
     - env:
-        - COMPONENT=supermarket
+        - NAME=supermarket
       addons:
         postgresql: '9.3'
         apt:
@@ -49,19 +51,19 @@ matrix:
         - postgresql
       before_install:
         - gem install bundler --no-ri --no-rdoc
-        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle config build.nokogiri --use-system-libraries
+        - cd $TRAVIS_BUILD_DIR/src/$NAME && bundle config build.nokogiri --use-system-libraries
       before_script:
         - psql -c 'create database supermarket_test;' -U postgres
-        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake db:schema:load
+        - cd $TRAVIS_BUILD_DIR/src/$NAME && bundle exec rake db:schema:load
       script:
-        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT
+        - cd $TRAVIS_BUILD_DIR/src/$NAME
         - bundle exec rake spec
         - bundle exec rubocop
         - bundle exec bundle-audit check --update
 
     # Fieri Spec
     - env:
-        - COMPONENT=fieri
+        - NAME=fieri
       addons:
         postgresql: '9.3'
         apt:
@@ -74,9 +76,9 @@ matrix:
         - postgresql
       before_install:
         - gem install bundler --no-ri --no-rdoc
-        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle config build.nokogiri --use-system-libraries
+        - cd $TRAVIS_BUILD_DIR/src/supermarket/engines/$NAME && bundle config build.nokogiri --use-system-libraries
       script:
-        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT
+        - cd $TRAVIS_BUILD_DIR/src/supermarket/engines/$NAME
         - bundle exec rake spec
         - bundle exec rubocop
         - bundle exec bundle-audit check --update
