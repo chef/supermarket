@@ -22,7 +22,7 @@ GIT
       thor (~> 0.18)
 
 PATH
-  remote: ../fieri
+  remote: engines/fieri
   specs:
     fieri (0.0.1)
       dotenv-rails
