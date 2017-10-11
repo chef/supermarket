@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.1.35 -->
+## [3.1.35](https://github.com/chef/supermarket/tree/3.1.35) (2017-10-11)
+
+#### Merged Pull Requests
+- add QM pass rate percentage to search results, show page [#1679](https://github.com/chef/supermarket/pull/1679) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.1.34 -->
+### Changes since 3.1.34 release
+
+#### Merged Pull Requests
+- add QM pass rate percentage to search results, show page [#1679](https://github.com/chef/supermarket/pull/1679) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.35 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
