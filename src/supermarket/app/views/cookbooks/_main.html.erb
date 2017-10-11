@@ -62,7 +62,7 @@
     <% end %>
     <% if Feature.active?(:fieri) %>
       <dd>
-      <a href="#quality" rel="quality">Quality</a>
+      <a href="#quality" rel="quality">Quality <i class="fa fa-dashboard"></i> <%= version.metric_result_pass_rate %>%</a>
       </dd>
     <% end %>
   </dl>
