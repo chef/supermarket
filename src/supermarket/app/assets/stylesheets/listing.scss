@@ -76,6 +76,12 @@
         margin: rem-calc(10 0 0);
         text-align: right;
 
+        .has-tip {
+          border-bottom: none;
+          color: $concrete;
+          font: $normal rem-calc(12) $accent_font;
+        }
+
         .fa {
           @include inline-block;
           color: $silver;
