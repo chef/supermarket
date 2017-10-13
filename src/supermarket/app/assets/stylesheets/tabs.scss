@@ -29,6 +29,15 @@
         background-color: transparent;
         color: $silver;
       }
+
+      .has-tip {
+        border-bottom: none;
+        color: $concrete;
+        font: {
+          size: rem-calc(14);
+          weight: $normal;
+        }
+      }
     }
 
     &.active {
@@ -44,6 +53,15 @@
         line-height: rem-calc(10);
         padding-bottom: rem-calc(19);
         margin-bottom: rem-calc(-1);
+
+        .has-tip {
+          border-bottom: none;
+          color: $primary_blue;
+          font: {
+            size: rem-calc(14);
+            weight: $bold;
+          }
+        }
       }
     }
   }

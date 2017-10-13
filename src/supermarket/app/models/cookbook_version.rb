@@ -92,7 +92,7 @@ class CookbookVersion < ApplicationRecord
     if total_metric_results.positive?
       ((metric_results.where(failure: false).count / total_metric_results.to_f) * 100).round(0)
     else
-      0
+      '-'
     end
   end
 

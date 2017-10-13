@@ -62,7 +62,10 @@
     <% end %>
     <% if Feature.active?(:fieri) %>
       <dd>
-      <a href="#quality" rel="quality">Quality <i class="fa fa-dashboard"></i> <%= version.metric_result_pass_rate %>%</a>
+      <a href="#quality" rel="quality">Quality
+      <span class="has-tip" title="<%= t('cookbook.quality_metric_pass_rate_tip') %>">
+        <i class="fa fa-dashboard"></i> <%= version.metric_result_pass_rate %>%</a>
+      </span>
       </dd>
     <% end %>
   </dl>
