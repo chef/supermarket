@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.37 -->
-## [3.1.37](https://github.com/chef/supermarket/tree/3.1.37) (2017-10-13)
+<!-- latest_release 3.1.38 -->
+## [3.1.38](https://github.com/chef/supermarket/tree/3.1.38) (2017-10-13)
 
 #### Merged Pull Requests
-- add a tooltip to explain the metric pass rate display [#1682](https://github.com/chef/supermarket/pull/1682) ([robbkidd](https://github.com/robbkidd))
+- remove some interpolated default attributes for sensible ocid default [#1681](https://github.com/chef/supermarket/pull/1681) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.34 -->
 ### Changes since 3.1.34 release
 
 #### Merged Pull Requests
+- remove some interpolated default attributes for sensible ocid default [#1681](https://github.com/chef/supermarket/pull/1681) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.38 -->
 - add a tooltip to explain the metric pass rate display [#1682](https://github.com/chef/supermarket/pull/1682) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.37 -->
 - prevent dividing by zero when there are no quality metric results [#1680](https://github.com/chef/supermarket/pull/1680) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.36 -->
 - add QM pass rate percentage to search results, show page [#1679](https://github.com/chef/supermarket/pull/1679) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.35 -->
