@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.39 -->
-## [3.1.39](https://github.com/chef/supermarket/tree/3.1.39) (2017-10-13)
+<!-- latest_release 3.1.40 -->
+## [3.1.40](https://github.com/chef/supermarket/tree/3.1.40) (2017-10-20)
 
 #### Merged Pull Requests
-- use Forwardable for all the feature flag delegation [#1623](https://github.com/chef/supermarket/pull/1623) ([robbkidd](https://github.com/robbkidd))
+- set openssl to install the latest default in omnibus-software [#1683](https://github.com/chef/supermarket/pull/1683) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.34 -->
 ### Changes since 3.1.34 release
 
 #### Merged Pull Requests
+- set openssl to install the latest default in omnibus-software [#1683](https://github.com/chef/supermarket/pull/1683) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.40 -->
 - use Forwardable for all the feature flag delegation [#1623](https://github.com/chef/supermarket/pull/1623) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.39 -->
 - remove some interpolated default attributes for sensible ocid default [#1681](https://github.com/chef/supermarket/pull/1681) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.38 -->
 - add a tooltip to explain the metric pass rate display [#1682](https://github.com/chef/supermarket/pull/1682) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.37 -->
