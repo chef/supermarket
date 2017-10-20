@@ -8,3 +8,6 @@
 *_override.tf
 # License Scout
 license-cache
+# direnv files
+.envrc
+.direnv/**/*
