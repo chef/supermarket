@@ -323,6 +323,7 @@ default['supermarket']['github_access_token'] = nil
 default['supermarket']['github_key'] = nil
 default['supermarket']['github_secret'] = nil
 default['supermarket']['google_analytics_id'] = nil
+default['supermarket']['segment_write_key'] = nil
 default['supermarket']['newrelic_agent_enabled'] = 'false'
 default['supermarket']['newrelic_app_name'] = nil
 default['supermarket']['newrelic_license_key'] = nil
