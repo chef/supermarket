@@ -1,33 +1,30 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.41 -->
-## [3.1.41](https://github.com/chef/supermarket/tree/3.1.41) (2017-10-20)
-
-#### Merged Pull Requests
-- Upgrade Foodcritic to 12 - new critics for deprecated chef features [#1687](https://github.com/chef/supermarket/pull/1687) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.1.34 -->
-### Changes since 3.1.34 release
-
-#### Merged Pull Requests
-- Upgrade Foodcritic to 12 - new critics for deprecated chef features [#1687](https://github.com/chef/supermarket/pull/1687) ([tas50](https://github.com/tas50)) <!-- 3.1.41 -->
-- set openssl to install the latest default in omnibus-software [#1683](https://github.com/chef/supermarket/pull/1683) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.40 -->
-- use Forwardable for all the feature flag delegation [#1623](https://github.com/chef/supermarket/pull/1623) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.39 -->
-- remove some interpolated default attributes for sensible ocid default [#1681](https://github.com/chef/supermarket/pull/1681) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.38 -->
-- add a tooltip to explain the metric pass rate display [#1682](https://github.com/chef/supermarket/pull/1682) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.37 -->
-- prevent dividing by zero when there are no quality metric results [#1680](https://github.com/chef/supermarket/pull/1680) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.36 -->
-- add QM pass rate percentage to search results, show page [#1679](https://github.com/chef/supermarket/pull/1679) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.35 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.1.41](https://github.com/chef/supermarket/tree/3.1.41) (2017-10-25)
+
+#### Merged Pull Requests
+- add QM pass rate percentage to search results, show page [#1679](https://github.com/chef/supermarket/pull/1679) ([robbkidd](https://github.com/robbkidd))
+- prevent dividing by zero when there are no quality metric results [#1680](https://github.com/chef/supermarket/pull/1680) ([robbkidd](https://github.com/robbkidd))
+- add a tooltip to explain the metric pass rate display [#1682](https://github.com/chef/supermarket/pull/1682) ([robbkidd](https://github.com/robbkidd))
+- remove some interpolated default attributes for sensible ocid default [#1681](https://github.com/chef/supermarket/pull/1681) ([robbkidd](https://github.com/robbkidd))
+- use Forwardable for all the feature flag delegation [#1623](https://github.com/chef/supermarket/pull/1623) ([robbkidd](https://github.com/robbkidd))
+- set openssl to install the latest default in omnibus-software [#1683](https://github.com/chef/supermarket/pull/1683) ([robbkidd](https://github.com/robbkidd))
+- Upgrade Foodcritic to 12 - new critics for deprecated chef features [#1687](https://github.com/chef/supermarket/pull/1687) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [3.1.34](https://github.com/chef/supermarket/tree/3.1.34) (2017-09-28)
 
 #### Merged Pull Requests
 - update nokogiri to address CVE-2017-9050 [#1674](https://github.com/chef/supermarket/pull/1674) ([robbkidd](https://github.com/robbkidd))
 - Update Foodcritic to 11.4.0 [#1671](https://github.com/chef/supermarket/pull/1671) ([tas50](https://github.com/tas50))
 - update embedded libxml2 and libxslt [#1676](https://github.com/chef/supermarket/pull/1676) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.1.31](https://github.com/chef/supermarket/tree/3.1.31) (2017-09-15)
 
