@@ -1,20 +1,18 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.42 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [3.1.42](https://github.com/chef/supermarket/tree/3.1.42) (2017-10-30)
 
 #### Merged Pull Requests
 - add segment.io JS snippet for more analytic options [#1690](https://github.com/chef/supermarket/pull/1690) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_release -->
-
-<!-- release_rollup since=3.1.41 -->
-### Changes since 3.1.41 release
-
-#### Merged Pull Requests
-- add segment.io JS snippet for more analytic options [#1690](https://github.com/chef/supermarket/pull/1690) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.42 -->
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [3.1.41](https://github.com/chef/supermarket/tree/3.1.41) (2017-10-25)
 
 #### Merged Pull Requests
@@ -25,7 +23,6 @@
 - use Forwardable for all the feature flag delegation [#1623](https://github.com/chef/supermarket/pull/1623) ([robbkidd](https://github.com/robbkidd))
 - set openssl to install the latest default in omnibus-software [#1683](https://github.com/chef/supermarket/pull/1683) ([robbkidd](https://github.com/robbkidd))
 - Upgrade Foodcritic to 12 - new critics for deprecated chef features [#1687](https://github.com/chef/supermarket/pull/1687) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [3.1.34](https://github.com/chef/supermarket/tree/3.1.34) (2017-09-28)
 
