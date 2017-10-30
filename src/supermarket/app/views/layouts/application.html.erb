@@ -20,7 +20,7 @@
     <% end %>
     <%= csrf_meta_tags %>
     <% unless air_gapped? %>
-      <%= render 'google_analytics' %>
+      <%= render 'analytics' %>
     <% end %>
   </head>
   <body class="<%= controller.controller_name %>">
