@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.1.42 -->
+## [3.1.42](https://github.com/chef/supermarket/tree/3.1.42) (2017-10-30)
+
+#### Merged Pull Requests
+- add segment.io JS snippet for more analytic options [#1690](https://github.com/chef/supermarket/pull/1690) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.1.41 -->
+### Changes since 3.1.41 release
+
+#### Merged Pull Requests
+- add segment.io JS snippet for more analytic options [#1690](https://github.com/chef/supermarket/pull/1690) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.42 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
