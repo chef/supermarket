@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.1.43 -->
+## [3.1.43](https://github.com/chef/supermarket/tree/3.1.43) (2017-11-01)
+
+#### Merged Pull Requests
+- Update Foodcritic to 12.1 [#1692](https://github.com/chef/supermarket/pull/1692) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.1.42 -->
+### Changes since 3.1.42 release
+
+#### Merged Pull Requests
+- Update Foodcritic to 12.1 [#1692](https://github.com/chef/supermarket/pull/1692) ([tas50](https://github.com/tas50)) <!-- 3.1.43 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
