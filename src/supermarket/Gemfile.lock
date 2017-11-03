@@ -577,6 +577,8 @@ GEM
       polyglot (~> 0.3)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2017.3)
+      tzinfo (>= 1.0.0)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.2.1)
@@ -681,6 +683,7 @@ DEPENDENCIES
   sprockets
   statsd-ruby
   tomlrb
+  tzinfo-data
   uglifier
   unicorn
   unicorn-rails

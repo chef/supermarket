@@ -1,0 +1,140 @@
+fqdn = ''
+port = '443'
+protocol = 'https'
+log_level = 'warn'
+secret_key_base = ''
+
+# ### Chef OAuth2 Settings
+#
+# These settings configure the service to talk to a Chef identity service.
+#
+# An Application must be created on the Chef server's identity service to do
+# this. With the following in /etc/opscode/chef-server.rb:
+#
+#   oc_id['applications'] = {
+#     'my_supermarket' => {
+#       'redirect_uri' => 'https://my.supermarket.server.fqdn/auth/chef_oauth2/callback'
+#     }
+#   }
+#
+# Run `chef-server-ctl reconfigure`, then these values should available in
+# /etc/opscode/oc-id-applications/my_supermarket.json.
+#
+# The chef_oauth2_url should be the root URL of your Chef server.
+#
+# If you are using a self-signed certificate on your Chef server without a
+# properly configured certificate authority, chef_oauth2_verify_ssl must be
+# false.
+chef_oauth2_app_id = ''
+chef_oauth2_secret = ''
+chef_oauth2_url = ''
+chef_oauth2_verify_ssl = true
+
+# ### Linkage to Chef Sites
+chef_identity_url = "https://id.chef.io"
+chef_profile_url = "https://www.chef.io/account"
+chef_sign_up_url = "https://manage.chef.io/signup?ref=community"
+chef_domain = "chef.io"
+chef_blog_url = "https://www.chef.io/blog"
+chef_docs_url = "https://docs.chef.io"
+chef_downloads_url = "https://downloads.chef.io"
+chef_www_url = "https://www.chef.io"
+learn_chef_url = "https://learn.chef.io"
+
+
+
+# ### Features
+#
+# These control the feature flags that turn features on and off.
+#
+# Available features are:
+#
+# * announcement: Display the Supermarket initial launch announcement banner
+#   (this will most likely be of no use to you, but could be made a
+#   configurable thing in the future.)
+# * cla: Enable the Contributor License Agreement features
+# * collaborator_groups: Enable collaborator groups, allowing management of collaborators through groups
+# * fieri: Use the fieri service to report on cookbook quality (requires
+#   fieri_url, fieri_supermarket_endpoint, and fieri_key to be set.)
+# * github: Enable GitHub integration, used with CLA signing
+# * gravatar: Enable Gravatar integration, used for user avatars
+# * join_ccla: Enable joining of Corporate CLAs
+# * tools: Enable the tools section
+features = 'tools,gravatar'
+# enforce_privacy: ?
+enforce_privacy = true
+# air_gapped: sets whether your Supermarket will reach out to 3rd party services
+# like certain fonts and Google Analytics.
+air_gapped = false
+
+
+# ### Fieri
+#
+# Fieri, the cookbook criticizer and metric measurer
+fieri_url = 'http://localhost:13000/fieri/jobs' # can this be looked up via a bind?
+fieri_supermarket_endpoint = '' # could this just be the fqdn?
+fieri_key = ''
+fieri_foodcritic_tags = 'metadata,correctness ~fc031 ~fc045'
+fieri_foodcritic_fail_tags = 'any'
+
+# ### 3rd Party Settings
+google_analytics_id = ''
+sentry_url = ''
+new_relic_agent_enabled = 'false'
+new_relic_app_name = ''
+new_relic_license_key = ''
+github_access_token = ''
+github_key = ''
+github_secret = ''
+
+# ### robots.txt Settings
+#
+# These control the "Allow" and "Disallow" paths in /robots.txt. See
+# http://www.robotstxt.org/robotstxt.html for more information. Only a single
+# line for each item is supported. If a value is nil, the line will not be
+# present in the file.
+robots_allow = '/'
+robots_disallow = ''
+
+# ### S3 Settings
+#
+# If these are not set, uploaded cookbooks will be stored on the local
+# filesystem (this means that running multiple application servers will require
+# some kind of shared storage, which is not provided.)
+#
+# If these are set, cookbooks will be uploaded to the to the given S3 bucket
+# using the provided credentials. A cdn_url can be used for an alias if the
+# given S3 bucket is behind a CDN like CloudFront.
+#
+# All of the required settings below must have values for S3 storage to be
+# enabled.
+# - begin required
+s3_bucket = ''
+s3_access_key_id = ''
+s3_secret_access_key = ''
+s3_region = ''
+# - end required
+# optional s3 settings
+s3_path = ''
+s3_private_objects = false
+cdn_url = ''
+
+
+# ### SMTP Settings
+#
+# If none of these are set, the :sendmail delivery method will be used. Using
+# the sendmail delivery method requires that a working mail transfer agent
+# (usually set up with a relay host) be configured on this machine.
+#
+# SMTP will use the 'plain' authentication method.
+from_email = ''
+smtp_address = ''
+smtp_password = ''
+smtp_port = ''
+smtp_user_name = ''
+
+# ### StatsD Settings
+#
+# If these are present, metrics can be reported to a StatsD server.
+statsd_url = ''
+statsd_port = ''
