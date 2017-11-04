@@ -11,6 +11,8 @@ module "supermarket_omnibus_standalone_inplace_upgrade_server" {
   aws_root_volume_size = 200
   aws_subdomain        = "supermarket"
 
+  aws_disable_api_termination = "${var.environment == "delivered" ? true : false}"
+
   # AWS Tags
   aws_tag_chef_product      = "supermarket"
   aws_tag_automate_project  = "${var.automate_project}"
