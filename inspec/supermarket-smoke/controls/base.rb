@@ -19,12 +19,9 @@ title 'Supermarket Smoke Tests'
   end
 end
 
-# Only perform SSL verification on hosts where we know the SSL certs are
-# properly configured
-verify = fetch_target_host.include?('cd.chef.co') ? false : true
 supermarket_version = fetch_supermarket_version
 
-describe http("https://#{fetch_target_host}/status", ssl_verify: verify) do
+describe http("https://#{fetch_target_host}/status") do
   its('status') { should eq 200 }
 end
 
