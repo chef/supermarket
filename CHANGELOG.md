@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.44 -->
-## [3.1.44](https://github.com/chef/supermarket/tree/3.1.44) (2017-11-09)
+<!-- latest_release 3.1.45 -->
+## [3.1.45](https://github.com/chef/supermarket/tree/3.1.45) (2017-11-14)
 
 #### Merged Pull Requests
-- InSpec smoke test improvements [#1695](https://github.com/chef/supermarket/pull/1695) ([schisamo](https://github.com/schisamo))
+- Use Foodcritic 12.2.1 [#1696](https://github.com/chef/supermarket/pull/1696) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.42 -->
 ### Changes since 3.1.42 release
 
 #### Merged Pull Requests
+- Use Foodcritic 12.2.1 [#1696](https://github.com/chef/supermarket/pull/1696) ([tas50](https://github.com/tas50)) <!-- 3.1.45 -->
 - InSpec smoke test improvements [#1695](https://github.com/chef/supermarket/pull/1695) ([schisamo](https://github.com/schisamo)) <!-- 3.1.44 -->
 - Update Foodcritic to 12.1 [#1692](https://github.com/chef/supermarket/pull/1692) ([tas50](https://github.com/tas50)) <!-- 3.1.43 -->
 <!-- release_rollup -->
