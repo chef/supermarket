@@ -8,3 +8,7 @@
 *_override.tf
 # License Scout
 license-cache
+*.swp
+
+# Habitat
+results/

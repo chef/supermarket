@@ -1,0 +1,9 @@
+version: '3'
+services:
+  supermarket-webproxy:
+    image: $HAB_ORIGIN/supermarket-webproxy
+    environment:
+      - FOO=bar
+    ports:
+      - 80:8080
+      - 443:8443
