@@ -177,7 +177,7 @@ describe CookbookVersion do
 
         it 'includes the expiration' do
           expect(version.tarball).to receive(:expiring_url)
-            .with(ENV['S3_URLS_EXPIRE'])
+            .with(ENV['S3_URLS_EXPIRE'].to_i)
 
           version.cookbook_artifact_url
         end
