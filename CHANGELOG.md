@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.46 -->
-## [3.1.46](https://github.com/chef/supermarket/tree/3.1.46) (2017-11-20)
+<!-- latest_release 3.1.47 -->
+## [3.1.47](https://github.com/chef/supermarket/tree/3.1.47) (2017-11-29)
 
 #### Merged Pull Requests
-- Update yajl-ruby [#1697](https://github.com/chef/supermarket/pull/1697) ([robbkidd](https://github.com/robbkidd))
+- Convert S3_URLS_EXPIRE to a number on use [#1698](https://github.com/chef/supermarket/pull/1698) ([KierranM](https://github.com/KierranM))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.42 -->
 ### Changes since 3.1.42 release
 
 #### Merged Pull Requests
+- Convert S3_URLS_EXPIRE to a number on use [#1698](https://github.com/chef/supermarket/pull/1698) ([KierranM](https://github.com/KierranM)) <!-- 3.1.47 -->
 - Update yajl-ruby [#1697](https://github.com/chef/supermarket/pull/1697) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.46 -->
 - Use Foodcritic 12.2.1 [#1696](https://github.com/chef/supermarket/pull/1696) ([tas50](https://github.com/tas50)) <!-- 3.1.45 -->
 - InSpec smoke test improvements [#1695](https://github.com/chef/supermarket/pull/1695) ([schisamo](https://github.com/schisamo)) <!-- 3.1.44 -->
