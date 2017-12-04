@@ -1,29 +1,26 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.47 -->
-## [3.1.47](https://github.com/chef/supermarket/tree/3.1.47) (2017-11-29)
-
-#### Merged Pull Requests
-- Convert S3_URLS_EXPIRE to a number on use [#1698](https://github.com/chef/supermarket/pull/1698) ([KierranM](https://github.com/KierranM))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.1.42 -->
-### Changes since 3.1.42 release
-
-#### Merged Pull Requests
-- Convert S3_URLS_EXPIRE to a number on use [#1698](https://github.com/chef/supermarket/pull/1698) ([KierranM](https://github.com/KierranM)) <!-- 3.1.47 -->
-- Update yajl-ruby [#1697](https://github.com/chef/supermarket/pull/1697) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.46 -->
-- Use Foodcritic 12.2.1 [#1696](https://github.com/chef/supermarket/pull/1696) ([tas50](https://github.com/tas50)) <!-- 3.1.45 -->
-- InSpec smoke test improvements [#1695](https://github.com/chef/supermarket/pull/1695) ([schisamo](https://github.com/schisamo)) <!-- 3.1.44 -->
-- Update Foodcritic to 12.1 [#1692](https://github.com/chef/supermarket/pull/1692) ([tas50](https://github.com/tas50)) <!-- 3.1.43 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.1.47](https://github.com/chef/supermarket/tree/3.1.47) (2017-12-04)
+
+#### Merged Pull Requests
+- Update Foodcritic to 12.1 [#1692](https://github.com/chef/supermarket/pull/1692) ([tas50](https://github.com/tas50))
+- InSpec smoke test improvements [#1695](https://github.com/chef/supermarket/pull/1695) ([schisamo](https://github.com/schisamo))
+- Use Foodcritic 12.2.1 [#1696](https://github.com/chef/supermarket/pull/1696) ([tas50](https://github.com/tas50))
+- Update yajl-ruby [#1697](https://github.com/chef/supermarket/pull/1697) ([robbkidd](https://github.com/robbkidd))
+- Convert S3_URLS_EXPIRE to a number on use [#1698](https://github.com/chef/supermarket/pull/1698) ([KierranM](https://github.com/KierranM))
+<!-- latest_stable_release -->
+
 ## [3.1.42](https://github.com/chef/supermarket/tree/3.1.42) (2017-10-30)
 
 #### Merged Pull Requests
 - add segment.io JS snippet for more analytic options [#1690](https://github.com/chef/supermarket/pull/1690) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.1.41](https://github.com/chef/supermarket/tree/3.1.41) (2017-10-25)
 
