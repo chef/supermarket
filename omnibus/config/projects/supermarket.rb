@@ -31,6 +31,7 @@ build_iteration 1
 override :postgresql, version: '9.3.18'
 override :ruby, version: "2.4.2"
 override :'chef-gem', version: '12.19.36'
+override :rubygems, version: '2.6.14'
 
 # Creates required build directories
 dependency "preparation"
