@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: db9cfd23c7ccbdd69a26f53ce52d72362953e8a7
+  revision: d6accc79f166cc6fc552e07088951bf467c30989
   specs:
     omnibus-software (4.0.0)
       chef-sugar (>= 3.4.0)
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: e3807801e61b9012ea2e0677a60c2bf72c0e4972
+  revision: f6f9973bd65af06a6b3077b3ee094ca203b1d612
   specs:
     omnibus (5.6.1)
       aws-sdk (~> 2)
@@ -30,13 +30,13 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     artifactory (2.8.2)
     awesome_print (1.8.0)
-    aws-sdk (2.10.64)
-      aws-sdk-resources (= 2.10.64)
-    aws-sdk-core (2.10.64)
+    aws-sdk (2.10.98)
+      aws-sdk-resources (= 2.10.98)
+    aws-sdk-core (2.10.98)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.10.64)
-      aws-sdk-core (= 2.10.64)
+    aws-sdk-resources (2.10.98)
+      aws-sdk-core (= 2.10.98)
     aws-sigv4 (1.0.2)
     berkshelf (6.3.0)
       buff-config (~> 2.0)
@@ -102,7 +102,7 @@ GEM
       fuzzyurl
       mixlib-config (~> 2.0)
       mixlib-shellout (~> 2.0)
-    chef-sugar (3.5.0)
+    chef-sugar (3.6.0)
     chef-zero (5.3.2)
       ffi-yajl (~> 2.2)
       hashie (>= 2.0, < 4.0)
@@ -166,7 +166,7 @@ GEM
     nio4r (2.1.0)
     octokit (4.7.0)
       sawyer (~> 0.8.0, >= 0.5.3)
-    ohai (8.24.1)
+    ohai (8.25.1)
       chef-config (>= 12.5.0.alpha.1, < 14)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
@@ -187,7 +187,7 @@ GEM
     plist (3.3.0)
     progressbar (1.9.0)
     proxifier (1.0.3)
-    public_suffix (3.0.0)
+    public_suffix (3.0.1)
     rack (2.0.3)
     retryable (2.0.4)
     ridley (5.1.1)
