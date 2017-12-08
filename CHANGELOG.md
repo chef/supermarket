@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.49 -->
-## [3.1.49](https://github.com/chef/supermarket/tree/3.1.49) (2017-12-07)
+<!-- latest_release 3.1.50 -->
+## [3.1.50](https://github.com/chef/supermarket/tree/3.1.50) (2017-12-08)
 
 #### Merged Pull Requests
-- fix omnibus build, pin rubygems to 2.6.x [#1703](https://github.com/chef/supermarket/pull/1703) ([robbkidd](https://github.com/robbkidd))
+- upgrade omnibus for new openssl [#1702](https://github.com/chef/supermarket/pull/1702) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.47 -->
 ### Changes since 3.1.47 release
 
 #### Merged Pull Requests
+- upgrade omnibus for new openssl [#1702](https://github.com/chef/supermarket/pull/1702) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.50 -->
 - fix omnibus build, pin rubygems to 2.6.x [#1703](https://github.com/chef/supermarket/pull/1703) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.49 -->
 - upgrade redis-store to address CVE-2017-1000248 [#1701](https://github.com/chef/supermarket/pull/1701) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.48 -->
 <!-- release_rollup -->
