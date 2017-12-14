@@ -1,5 +1,34 @@
-fqdn = ''
-port = '443'
+lang = "en_US.UTF-8"
+rack_env = "production"
+rails_env = "production"
+# scaffolding expects secret_key_base at the TOML root or it
+# will get appended to the end of the default.toml; the plan uses
+# app.secret_key_base for the real value
+secret_key_base = ""
+
+
+[db]
+adapter = 'postgresql'
+name = 'supermarket_production'
+user = 'supermarket'
+password = 'supermarket'
+
+[redis]
+db = '0'
+password = 'supermarket'
+
+[sidekiq]
+concurrency = '25'
+timeout = '30'
+
+[unicorn]
+timeout = 15
+worker_processes = 2
+
+[app]
+fqdn = 'localhost'
+listen_on = 'localhost'
+port = '13000'
 protocol = 'https'
 log_level = 'warn'
 secret_key_base = ''
