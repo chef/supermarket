@@ -1,27 +1,24 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.51 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [3.1.51](https://github.com/chef/supermarket/tree/3.1.51) (2017-12-18)
 
 #### Merged Pull Requests
 - upgrade version of omnibus-embedded nginx [#1706](https://github.com/chef/supermarket/pull/1706) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_release -->
-
-<!-- release_rollup since=3.1.50 -->
-### Changes since 3.1.50 release
-
-#### Merged Pull Requests
-- upgrade version of omnibus-embedded nginx [#1706](https://github.com/chef/supermarket/pull/1706) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.51 -->
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [3.1.50](https://github.com/chef/supermarket/tree/3.1.50) (2017-12-08)
 
 #### Merged Pull Requests
 - upgrade redis-store to address CVE-2017-1000248 [#1701](https://github.com/chef/supermarket/pull/1701) ([robbkidd](https://github.com/robbkidd))
 - fix omnibus build, pin rubygems to 2.6.x [#1703](https://github.com/chef/supermarket/pull/1703) ([robbkidd](https://github.com/robbkidd))
 - upgrade omnibus for new openssl [#1702](https://github.com/chef/supermarket/pull/1702) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.1.47](https://github.com/chef/supermarket/tree/3.1.47) (2017-12-04)
 
