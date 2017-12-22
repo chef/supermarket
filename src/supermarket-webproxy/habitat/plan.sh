@@ -21,6 +21,10 @@ pkg_description="Openresty configuration for supermarket server"
 pkg_upstream_url="https://docs.chef.io/supermarket.html#private-supermarket"
 pkg_svc_run="openresty -c ${pkg_svc_config_path}/nginx.conf -p ${pkg_svc_var_path}"
 
+pkg_binds=(
+  [upstream]="port"
+)
+
 do_download() {
   return 0
 }

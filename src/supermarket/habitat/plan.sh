@@ -13,6 +13,14 @@ pkg_build_deps=(
   core/git
 )
 
+pkg_exports=(
+  [fqdn]="app.fqdn"
+  [port]="app.port"
+  [listen_post]="app.listen_port"
+)
+
+pkg_exposes=(port)
+
 pkg_binds_optional=(
   [redis]="port"
 )

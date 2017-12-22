@@ -27,9 +27,10 @@ worker_processes = 2
 
 [app]
 fqdn = 'localhost'
-listen_on = 'localhost'
-port = '13000'
+port = '443'
 protocol = 'https'
+listen_if = 'localhost'
+listen_port = '13000'
 log_level = 'warn'
 secret_key_base = ''
 

@@ -1,4 +1,4 @@
-listen "{{cfg.app.listen_on}}:{{cfg.app.port}}"
+listen "{{cfg.app.listen_if}}:{{cfg.app.listen_port}}"
 
 
 # What the timeout for killing busy workers is, in seconds
