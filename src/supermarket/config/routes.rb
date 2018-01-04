@@ -120,9 +120,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'chat' => 'irc_logs#index'
-  get 'chat/:channel' => 'irc_logs#show'
-  get 'chat/:channel/:date' => 'irc_logs#show'
+  get 'chat' => 'slack_logs#index'
 
   # when signing in or up with chef account
   match 'auth/chef_oauth2/callback' => 'sessions#create', as: :auth_session_callback, via: [:get, :post]
