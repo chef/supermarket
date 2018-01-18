@@ -1,3 +1,5 @@
+require 'chef/version_class'
+
 class Cookbook < ApplicationRecord
   include PgSearch
   include Badgeable
@@ -135,7 +137,7 @@ class Cookbook < ApplicationRecord
   # @return [Array<CookbookVersion>] the sorted CookbookVersion records
   #
   def sorted_cookbook_versions
-    @sorted_cookbook_versions ||= cookbook_versions.sort_by { |v| Semverse::Version.new(v.version) }.reverse
+    @sorted_cookbook_versions ||= cookbook_versions.sort_by { |v| Chef::Version.new(v.version) }.reverse
   end
 
   #
@@ -335,7 +337,7 @@ class Cookbook < ApplicationRecord
                       .sort_by do |cd|
       [
         cd.cookbook_version.cookbook.name,
-        Semverse::Version.new(cd.cookbook_version.version)
+        Chef::Version.new(cd.cookbook_version.version)
       ]
     end
   end

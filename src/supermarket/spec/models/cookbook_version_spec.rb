@@ -11,37 +11,49 @@ describe CookbookVersion do
     it { should validate_presence_of(:description) }
     it { should validate_presence_of(:version) }
     it { should validate_presence_of(:readme) }
-    it "validates uniqueness of version for a cookbook" do
-      cookbook = create(:cookbook)
-      create(:cookbook_version, cookbook: cookbook)
-      should validate_uniqueness_of(:version).scoped_to(:cookbook_id)
-    end
     it { should validate_length_of(:license).is_at_most(255) }
 
-    it 'seriously validates the uniqueness of cookbook version numbers' do
-      cookbook = create(:cookbook)
-      cookbook_version = create(:cookbook_version, cookbook: cookbook)
+    context 'for version number' do
+      let(:cookbook) { create(:cookbook) }
+      let(:cookbook_version) { create(:cookbook_version, cookbook: cookbook) }
 
-      duplicate_version = CookbookVersion.new(
-        cookbook: cookbook,
-        license: cookbook_version.license,
-        tarball: cookbook_version.tarball,
-        version: cookbook_version.version
-      )
+      it 'passes for a valid version number format x.y.z' do
+        cookbook_version.version = '1.2.3'
+        expect(cookbook_version).to be_valid
+        expect(cookbook_version.errors[:version]).to be_empty
+      end
 
-      expect do
-        duplicate_version.save(validate: false)
-      end.to raise_error(ActiveRecord::RecordNotUnique)
-    end
+      it "validates uniqueness of version for a cookbook" do
+        cookbook_version
+        should validate_uniqueness_of(:version).scoped_to(:cookbook_id)
+      end
 
-    it 'validates that the version number is semantically correct' do
-      cookbook = create(:cookbook)
-      cookbook_version = build(:cookbook_version, cookbook: cookbook, version: 'hahano')
-      expect(cookbook_version).to_not be_valid
-      expect(cookbook_version.errors[:version]).to_not be_empty
-      cookbook_version.version = '8.7.6'
-      expect(cookbook_version).to be_valid
-      expect(cookbook_version.errors[:version]).to be_empty
+      it 'seriously validates the uniqueness of cookbook version numbers' do
+        duplicate_version = CookbookVersion.new(
+          cookbook: cookbook,
+          license: cookbook_version.license,
+          tarball: cookbook_version.tarball,
+          version: cookbook_version.version
+        )
+
+        expect do
+          duplicate_version.save(validate: false)
+        end.to raise_error(ActiveRecord::RecordNotUnique)
+      end
+
+      context 'if not a valid chef version' do
+        it 'fails on just a string of silliness' do
+          cookbook_version.version = 'hahahano'
+          expect(cookbook_version).to_not be_valid
+          expect(cookbook_version.errors[:version]).to include(a_string_matching('not a valid Chef version'))
+        end
+
+        it 'fails on a dashed extra info like RC or pre' do
+          cookbook_version.version = '1.2.3-RC1'
+          expect(cookbook_version).to_not be_valid
+          expect(cookbook_version.errors[:version]).to include(a_string_matching('not a valid Chef version'))
+        end
+      end
     end
 
     context 'when something that is not a tarball is given' do

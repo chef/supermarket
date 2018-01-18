@@ -524,7 +524,6 @@ GEM
     sawyer (0.8.1)
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
-    semverse (2.0.0)
     sentry-raven (2.4.0)
       faraday (>= 0.7.6, < 1.0)
     serverspec (2.38.1)
@@ -670,7 +669,6 @@ DEPENDENCIES
   rubocop (>= 0.23.0)
   sass-globbing
   sass-rails
-  semverse
   sentry-raven
   shoulda-matchers (~> 2.8)
   sidekiq (~> 4.2)

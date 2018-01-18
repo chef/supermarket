@@ -43,7 +43,6 @@ gem 'rinku', require: 'rails_rinku'
 gem 'rollout'
 gem 'sass-globbing'
 gem 'sass-rails'
-gem 'semverse'
 gem 'sentry-raven', require: false
 gem 'sitemap_generator'
 gem 'sprockets'
