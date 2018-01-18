@@ -1,3 +1,5 @@
+require 'active_model/validations/chef_version_validator'
+
 class CookbookVersion < ApplicationRecord
   include SeriousErrors
 
@@ -20,8 +22,7 @@ class CookbookVersion < ApplicationRecord
   validates :license, presence: true, length: { maximum: 255 }
   validates :description, presence: true
   validates :readme, presence: true
-  validates :version, presence: true, uniqueness: { scope: :cookbook }
-  validate :semantic_version
+  validates :version, presence: true, uniqueness: { scope: :cookbook }, chef_version: true
   validates_attachment(
     :tarball,
     presence: true,
@@ -93,20 +94,6 @@ class CookbookVersion < ApplicationRecord
       ((metric_results.where(failure: false).count / total_metric_results.to_f) * 100).round(0)
     else
       '-'
-    end
-  end
-
-  private
-
-  #
-  # Ensure that the version string we have been given conforms to semantic
-  # versioning at http://semver.org
-  #
-  def semantic_version
-    begin
-      Semverse::Version.new(version)
-    rescue Semverse::InvalidVersionFormat
-      errors.add(:version, 'is formatted incorrectly')
     end
   end
 end

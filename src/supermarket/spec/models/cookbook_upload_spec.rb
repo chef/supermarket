@@ -122,6 +122,19 @@ describe CookbookUpload do
       expect(version).to be_present
     end
 
+    it 'yields an error if the version number is not a valid Chef version' do
+      tarball = build_cookbook_tarball('invalid_version') do |tar|
+        tar.file('metadata.json') { JSON.dump(name: 'invalid_version', version: '1.2.3-rc4') }
+        tar.file('README.md') { "# Check for a bad version" }
+      end
+
+      upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
+      errors = upload.finish { |e, _| e }
+
+      expect(errors.full_messages).
+        to include(a_string_matching('not a valid Chef version'))
+    end
+
     it 'yields an error if the cookbook is not valid JSON' do
       upload = CookbookUpload.new(user, cookbook: 'ack!', tarball: 'tarball')
       errors = upload.finish { |e, _| e }
@@ -199,13 +212,8 @@ describe CookbookUpload do
     end
 
     it 'yields an error if the metadata.json has a malformed platforms hash' do
-      tarball = Tempfile.new('bad_platforms', 'tmp').tap do |file|
-        io = AndFeathers.build('cookbook') do |cookbook|
-          cookbook.file('metadata.json') { JSON.dump(platforms: '') }
-        end.to_io(AndFeathers::GzippedTarball)
-
-        file.write(io.read)
-        file.rewind
+      tarball = build_cookbook_tarball('bad_platforms') do |tar|
+        tar.file('metadata.json') { JSON.dump(name: 'bad_platforms', platforms: '') }
       end
 
       upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
@@ -216,13 +224,8 @@ describe CookbookUpload do
     end
 
     it 'yields an error if the metadata.json has a malformed dependencies hash' do
-      tarball = Tempfile.new('bad_dependencies', 'tmp').tap do |file|
-        io = AndFeathers.build('cookbook') do |cookbook|
-          cookbook.file('metadata.json') { JSON.dump(dependencies: '') }
-        end.to_io(AndFeathers::GzippedTarball)
-
-        file.write(io.read)
-        file.rewind
+      tarball = build_cookbook_tarball('bad_dependencies') do |tar|
+        tar.file('metadata.json') { JSON.dump(name: 'bad_dependencies', dependencies: '') }
       end
 
       upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)

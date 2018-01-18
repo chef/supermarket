@@ -38,18 +38,13 @@ describe CookbookUpload::Parameters do
     end
 
     it 'is extracted from the top-level metadata.json' do
-      tarball = Tempfile.new('multiple-metadata', 'tmp').tap do |file|
-        io = AndFeathers.build('multiple-metadata') do |base|
-          base.file('metadata.json') do
-            JSON.dump(name: 'multiple')
-          end
-          base.file('PaxHeader/metadata.json') do
-            JSON.dump(name: 'PaxHeader-multiple')
-          end
-        end.to_io(AndFeathers::GzippedTarball, :reverse_each)
-
-        file.write(io.read)
-        file.rewind
+      tarball = build_cookbook_tarball('multiple-metadata') do |base|
+        base.file('metadata.json') do
+          JSON.dump(name: 'multiple')
+        end
+        base.file('PaxHeader/metadata.json') do
+          JSON.dump(name: 'PaxHeader-multiple')
+        end
       end
 
       params = params(cookbook: '{}', tarball: tarball)
@@ -99,18 +94,13 @@ describe CookbookUpload::Parameters do
     end
 
     it 'is extracted from the top-level README' do
-      tarball = Tempfile.new('multiple-readme', 'tmp').tap do |file|
-        io = AndFeathers.build('multiple-readme') do |base|
-          base.file('metadata.json') { JSON.dump(name: 'multiple-readme') }
-          base.file('README') { 'readme' }
-          base.file('PaxHeader/metadata.json') do
-            JSON.dump(name: 'multiple-readme')
-          end
-          base.file('PaxHeader/README') { 'impostor readme' }
-        end.to_io(AndFeathers::GzippedTarball, :reverse_each)
-
-        file.write(io.read)
-        file.rewind
+      tarball = build_cookbook_tarball('multiple-readme') do |base|
+        base.file('metadata.json') { JSON.dump(name: 'multiple-readme') }
+        base.file('README') { 'readme' }
+        base.file('PaxHeader/metadata.json') do
+          JSON.dump(name: 'multiple-readme')
+        end
+        base.file('PaxHeader/README') { 'impostor readme' }
       end
 
       params = params(cookbook: '{}', tarball: tarball)
