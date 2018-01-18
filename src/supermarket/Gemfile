@@ -66,7 +66,6 @@ group :development do
   gem 'guard-rspec', require: false
   gem 'guard-rubocop', require: false
   gem 'license_finder'
-  gem 'pry-rails'
   gem 'spring'
   gem 'spring-commands-rspec'
 end
@@ -91,6 +90,7 @@ group :development, :test do
   gem 'byebug'
   gem 'launchy'
   gem 'mail_view'
+  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'rubocop', '>= 0.23.0'
 
