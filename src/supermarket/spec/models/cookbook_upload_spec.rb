@@ -212,13 +212,8 @@ describe CookbookUpload do
     end
 
     it 'yields an error if the metadata.json has a malformed platforms hash' do
-      tarball = Tempfile.new('bad_platforms', 'tmp').tap do |file|
-        io = AndFeathers.build('cookbook') do |cookbook|
-          cookbook.file('metadata.json') { JSON.dump(platforms: '') }
-        end.to_io(AndFeathers::GzippedTarball)
-
-        file.write(io.read)
-        file.rewind
+      tarball = build_cookbook_tarball('bad_platforms') do |tar|
+        tar.file('metadata.json') { JSON.dump(name: 'bad_platforms', platforms: '') }
       end
 
       upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)
@@ -229,13 +224,8 @@ describe CookbookUpload do
     end
 
     it 'yields an error if the metadata.json has a malformed dependencies hash' do
-      tarball = Tempfile.new('bad_dependencies', 'tmp').tap do |file|
-        io = AndFeathers.build('cookbook') do |cookbook|
-          cookbook.file('metadata.json') { JSON.dump(dependencies: '') }
-        end.to_io(AndFeathers::GzippedTarball)
-
-        file.write(io.read)
-        file.rewind
+      tarball = build_cookbook_tarball('bad_dependencies') do |tar|
+        tar.file('metadata.json') { JSON.dump(name: 'bad_dependencies', dependencies: '') }
       end
 
       upload = CookbookUpload.new(user, cookbook: '{}', tarball: tarball)

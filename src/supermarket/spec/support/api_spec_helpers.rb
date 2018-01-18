@@ -1,6 +1,4 @@
-require 'and_feathers'
-require 'and_feathers/gzipped_tarball'
-require 'tempfile'
+require_relative 'tarball_helpers'
 require 'mixlib/authentication/signedheaderauth'
 
 module ApiSpecHelpers
@@ -140,16 +138,11 @@ module ApiSpecHelpers
           }
         }.merge(custom_metadata)
 
-        tarball = Tempfile.new([cookbook_name, '.tgz'], 'tmp').tap do |file|
-          io = AndFeathers.build(cookbook_name) do |base_dir|
-            base_dir.file('README.md') { '# README' }
-            base_dir.file('metadata.json') do
-              JSON.dump(metadata)
-            end
-          end.to_io(AndFeathers::GzippedTarball)
-
-          file.write(io.read)
-          file.rewind
+        tarball = build_cookbook_tarball(cookbook_name) do |base_dir|
+          base_dir.file('README.md') { '# README' }
+          base_dir.file('metadata.json') do
+            JSON.dump(metadata)
+          end
         end
       end
 
