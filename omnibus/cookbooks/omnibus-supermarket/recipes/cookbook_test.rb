@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: supermarket
+# Cookbook Name:: omnibus-supermarket
 # Recipe:: cookbook_test
 #
 # Copyright 2014 Chef Software, Inc.
