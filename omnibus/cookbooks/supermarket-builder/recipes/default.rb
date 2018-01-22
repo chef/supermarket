@@ -21,11 +21,10 @@
 
 # ensure packages available up-to-date
 case node['platform_family']
-  when 'debian'
-    include_recipe 'apt::default'
-  when 'rhel'
-    include_recipe 'yum-epel::default'
-  end
+when 'debian'
+  include_recipe 'apt::default'
+when 'rhel'
+  include_recipe 'yum-epel::default'
 end
 
 # configure the omnibus build environment
