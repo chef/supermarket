@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.54 -->
-## [3.1.54](https://github.com/chef/supermarket/tree/3.1.54) (2018-01-18)
+<!-- latest_release 3.1.55 -->
+## [3.1.55](https://github.com/chef/supermarket/tree/3.1.55) (2018-01-23)
 
 #### Merged Pull Requests
-- Fix version validation against chef&#39;s required format [#1715](https://github.com/chef/supermarket/pull/1715) ([robbkidd](https://github.com/robbkidd))
+- Update Foodcritic to 12.3 [#1717](https://github.com/chef/supermarket/pull/1717) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.51 -->
 ### Changes since 3.1.51 release
 
 #### Merged Pull Requests
+- Update Foodcritic to 12.3 [#1717](https://github.com/chef/supermarket/pull/1717) ([tas50](https://github.com/tas50)) <!-- 3.1.55 -->
 - Fix version validation against chef&#39;s required format [#1715](https://github.com/chef/supermarket/pull/1715) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.54 -->
 - Converge runner with no fork [#1713](https://github.com/chef/supermarket/pull/1713) ([scotthain](https://github.com/scotthain)) <!-- 3.1.53 -->
 - Bump Foodcritic to 12.2.2 [#1708](https://github.com/chef/supermarket/pull/1708) ([tas50](https://github.com/tas50)) <!-- 3.1.52 -->
