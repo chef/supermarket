@@ -28,6 +28,20 @@ build do
   command "berks vendor #{cookbooks_path}", env: env
 
   block do
+    all_the_gem_deps = {}
+    Dir.glob(cookbooks_path + '/**/metadata.json').each do |metadata|
+      cookbook_name = File.basename(File.dirname(metadata))
+      metadata_json = FFI_Yajl::Parser.parse(File.read(metadata))
+      gem_deps = metadata_json.fetch('gems', [])
+      all_the_gem_deps[cookbook_name] = gem_deps unless gem_deps.empty?
+    end
+
+    unless all_the_gem_deps.empty?
+      raise Omnibus::Error, "Nope. Gem dependencies found in the following cookbooks used during ctl-reconfigure. This will break airgapped installs.\n#{all_the_gem_deps}"
+    end
+  end
+
+  block do
     open("#{cookbooks_path}/dna.json", "w") do |file|
       file.write FFI_Yajl::Encoder.encode(run_list: ['recipe[omnibus-supermarket::default]'])
     end
