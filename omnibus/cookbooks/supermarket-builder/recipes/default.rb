@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: supermarket
-# Recipe:: build_package
+# Cookbook Name:: supermarket-builder
+# Recipe:: default
 #
-# Copyright 2014 Chef Software, Inc.
+# Copyright 2018 Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,6 +19,27 @@
 
 # Used to build a package in the Test Kitchen build lab
 
+# ensure packages available up-to-date
+case node['platform_family']
+when 'debian'
+  include_recipe 'apt::default'
+when 'rhel'
+  include_recipe 'yum-epel::default'
+end
+
+# configure the omnibus build environment
+node.set['omnibus']['build_user'] = 'vagrant'
+node.set['omnibus']['build_user_home'] = '/home/vagrant'
+node.set['omnibus']['build_dir'] = '/home/vagrant/supermarket/omnibus'
+node.set['omnibus']['install_dir'] = '/opt/supermarket'
+
+include_recipe 'omnibus::default'
+
+execute 'fix bundler directory permissions' do
+  command "chown -R #{node['omnibus']['build_user']} #{node['omnibus']['build_user_home']}/.bundle"
+end
+
+# do the build
 omnibus_build 'supermarket' do
   environment 'HOME' => node['omnibus']['build_user_home']
   project_dir node['omnibus']['build_dir']

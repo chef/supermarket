@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: supermarket
+# Cookbook Name:: omnibus-supermarket
 # Recipe:: cookbook_test
 #
 # Copyright 2014 Chef Software, Inc.
@@ -54,10 +54,6 @@ end
 
 # Sync the local cookbooks into embedded
 execute 'rsync -avz /tmp/kitchen/cookbooks/* /opt/supermarket/embedded/cookbooks/'
-# Test kitchen excludes the test directory but puts it in /tmp/busser when verified
-execute 'rsync -avz /tmp/busser/suites/serverspec/* /opt/supermarket/embedded/cookbooks/omnibus-supermarket/test/integration/default/serverspec/' do
-  only_if { File.directory? '/tmp/busser/suites/serverspec' }
-end
 
 # Reconfigure the app
 execute 'supermarket-ctl reconfigure'

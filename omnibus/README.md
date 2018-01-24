@@ -91,14 +91,14 @@ liking, you can bring up an individual build environment using the `kitchen`
 command.
 
 ```shell
-$ bin/kitchen converge ubuntu-1204
+$ kitchen converge ubuntu-1404
 ```
 
 Then login to the instance and build the project as described in the Usage
 section:
 
 ```shell
-$ bundle exec kitchen login ubuntu-1204
+$ kitchen login ubuntu-1404
 [vagrant@ubuntu...] $ cd supermarket
 [vagrant@ubuntu...] $ bundle install
 [vagrant@ubuntu...] $ ...

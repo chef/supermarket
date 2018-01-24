@@ -20,6 +20,7 @@ license :project_license
 dependency "omnibus-ctl"
 dependency "chef-gem"
 dependency "runit"
+dependency "inspec"
 
 source path: "cookbooks/omnibus-supermarket"
 

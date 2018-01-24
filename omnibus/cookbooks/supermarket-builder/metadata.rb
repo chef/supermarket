@@ -1,0 +1,12 @@
+name             'supermarket-builder'
+maintainer       'Chef Supermarket Team'
+maintainer_email 'supermarket@chef.io'
+license          'Apache-2.0'
+description      'Builds a Supermarket omnibus package for development/testing'
+long_description 'Builds a Supermarket omnibus package for development/testing'
+version          '1.0.0'
+
+depends          'apt'
+depends          'yum-epel'
+depends          'enterprise'
+depends          'omnibus'
