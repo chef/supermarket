@@ -1,29 +1,26 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.56 -->
-## [3.1.56](https://github.com/chef/supermarket/tree/3.1.56) (2018-01-24)
-
-#### Merged Pull Requests
-- Fix ctl-reconfigure failing in air-gapped environments [#1716](https://github.com/chef/supermarket/pull/1716) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.1.51 -->
-### Changes since 3.1.51 release
-
-#### Merged Pull Requests
-- Fix ctl-reconfigure failing in air-gapped environments [#1716](https://github.com/chef/supermarket/pull/1716) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.56 -->
-- Update Foodcritic to 12.3 [#1717](https://github.com/chef/supermarket/pull/1717) ([tas50](https://github.com/tas50)) <!-- 3.1.55 -->
-- Fix version validation against chef&#39;s required format [#1715](https://github.com/chef/supermarket/pull/1715) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.54 -->
-- Converge runner with no fork [#1713](https://github.com/chef/supermarket/pull/1713) ([scotthain](https://github.com/scotthain)) <!-- 3.1.53 -->
-- Bump Foodcritic to 12.2.2 [#1708](https://github.com/chef/supermarket/pull/1708) ([tas50](https://github.com/tas50)) <!-- 3.1.52 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.1.56](https://github.com/chef/supermarket/tree/3.1.56) (2018-01-24)
+
+#### Merged Pull Requests
+- Bump Foodcritic to 12.2.2 [#1708](https://github.com/chef/supermarket/pull/1708) ([tas50](https://github.com/tas50))
+- Converge runner with no fork [#1713](https://github.com/chef/supermarket/pull/1713) ([scotthain](https://github.com/scotthain))
+- Fix version validation against chef&#39;s required format [#1715](https://github.com/chef/supermarket/pull/1715) ([robbkidd](https://github.com/robbkidd))
+- Update Foodcritic to 12.3 [#1717](https://github.com/chef/supermarket/pull/1717) ([tas50](https://github.com/tas50))
+- Fix ctl-reconfigure failing in air-gapped environments [#1716](https://github.com/chef/supermarket/pull/1716) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_stable_release -->
+
 ## [3.1.51](https://github.com/chef/supermarket/tree/3.1.51) (2017-12-18)
 
 #### Merged Pull Requests
 - upgrade version of omnibus-embedded nginx [#1706](https://github.com/chef/supermarket/pull/1706) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.1.50](https://github.com/chef/supermarket/tree/3.1.50) (2017-12-08)
 
