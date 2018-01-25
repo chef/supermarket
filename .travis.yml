@@ -11,10 +11,6 @@ cache:
     - $HOME/tools
     - "$TRAVIS_BUILD_DIR/src/$COMPONENT/vendor/bundle"
 
-before_install:
-  - curl https://raw.githubusercontent.com/chef/ci-studio-common/master/install.sh | bash
-  - export PATH="$PATH:$HOME/ci-studio-common/bin:$HOME/tools/bin"
-
 env:
   global:
     - CAPYBARA_SCREENSHOT_TO_S3=true
@@ -77,6 +73,9 @@ matrix:
     # Terraform Lint
     - env:
         - NAME=lint-terraform
+      before_install:
+        - curl https://raw.githubusercontent.com/chef/ci-studio-common/master/install.sh | bash
+        - export PATH="$PATH:$HOME/ci-studio-common/bin:$HOME/tools/bin"
       install: install-tool terraform 0.11.2
       before_script: cd terraform
       script: make lint
