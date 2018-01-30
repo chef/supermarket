@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'webmock/rspec'
 
 describe CookbookVersion do
   context 'associations' do
@@ -81,6 +82,28 @@ describe CookbookVersion do
         expect(cookbook_version).to_not be_valid
         expect(cookbook_version.errors[:tarball].first).to eql('has contents that are not what they are reported to be')
         expect(cookbook_version.errors.full_messages.first).to eql('Tarball has contents that are not what they are reported to be')
+      end
+
+      it 'raises exception when a URL is given instead of tarball contents' do
+        stub_request(:any, 'nope.example.com').to_raise("Attaching a URL should not make a network call.")
+        cookbook = create(:cookbook)
+        expect do
+          build(:cookbook_version,
+                cookbook: cookbook,
+                tarball: 'http://nope.example.com/some/remote/file.tgz')
+        end.to raise_error(Paperclip::AdapterRegistry::NoHandlerError)
+      end
+
+      it 'raises exception when Base64 content is given instead of tarball contents' do
+        cookbook = create(:cookbook)
+        naughty_tarball = build_cookbook_tarball('naughty') do |base|
+          base.file('README.md') { '# This will be Base64 encoded' }
+        end
+        expect do
+          build(:cookbook_version,
+                cookbook: cookbook,
+                tarball: "data:;base64,#{Base64.encode64(naughty_tarball.read)}")
+        end.to raise_error(Paperclip::AdapterRegistry::NoHandlerError)
       end
     end
   end

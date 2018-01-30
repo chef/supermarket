@@ -291,6 +291,23 @@ describe CookbookUpload do
       expect(errors).to_not be_empty
     end
 
+    context 'bad tarballs' do
+      it 'errors if tarball is a URL' do
+        upload = CookbookUpload.new(user, cookbook: cookbook, tarball: 'http://nope.example.com/some.tgz')
+        errors = upload.finish { |e, _| e }
+
+        expect(errors.full_messages).to include("Multipart POST part 'tarball' must be a file.")
+      end
+
+      it 'errors if tarball is Base64 encoded' do
+        tarball = Base64.encode64("I'm a naughty file.")
+        upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
+        errors = upload.finish { |e, _| e }
+
+        expect(errors.full_messages).to include("Multipart POST part 'tarball' must be a file.")
+      end
+    end
+
     it 'strips self-dependencies out of cookbooks on upload' do
       tarball = File.open('spec/support/cookbook_fixtures/with-self-dependency.tgz')
 
