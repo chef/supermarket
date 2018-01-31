@@ -36,6 +36,15 @@ describe Cookbook do
         cookbook.destroy
         expect { collaborator.reload }.to_not raise_error
       end
+
+      it 'should not destroy cookbooks that have been deprecated in favor of a cookbook' do
+        some_crusty_old_cookbook = create(:cookbook)
+        some_crusty_old_cookbook.deprecate(cookbook.name)
+        expect(some_crusty_old_cookbook.replacement).to eq(cookbook)
+        cookbook.destroy
+        expect { some_crusty_old_cookbook.reload }.to_not raise_error
+        expect(some_crusty_old_cookbook.replacement).to be_nil
+      end
     end
   end
 

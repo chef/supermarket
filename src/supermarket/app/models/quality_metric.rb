@@ -1,5 +1,5 @@
 class QualityMetric < ApplicationRecord
-  has_many :metric_results
+  has_many :metric_results, dependent: :destroy
 
   scope :open, -> { where(admin_only: false) }
   scope :admin_only, -> { where(admin_only: true) }

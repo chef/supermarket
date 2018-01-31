@@ -40,6 +40,11 @@ Rails/FilePath:
   Exclude:
     - 'lib/tasks/spec/javascripts.rake'
 
+Rails/HasManyOrHasOneDependent:
+  Exclude:
+    - 'app/models/group.rb'
+    - 'app/models/user.rb'
+
 # Offense count: 5
 Rails/OutputSafety:
   Exclude:

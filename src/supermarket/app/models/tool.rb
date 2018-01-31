@@ -9,11 +9,11 @@ class Tool < ApplicationRecord
   # --------------------
   belongs_to :owner, class_name: 'User', foreign_key: :user_id, inverse_of: :tools
   has_one :chef_account, through: :owner
-  has_many :collaborators, as: :resourceable, inverse_of: :resourceable
+  has_many :collaborators, as: :resourceable, inverse_of: :resourceable, dependent: :destroy
   has_many :collaborator_users, through: :collaborators, source: :user
   has_many :direct_collaborators, -> { where(group_id: nil) }, as: :resourceable, class_name: "Collaborator", inverse_of: :resourceable
   has_many :direct_collaborator_users, through: :direct_collaborators, source: :user
-  has_many :group_resources, as: :resourceable, inverse_of: :resourceable
+  has_many :group_resources, as: :resourceable, inverse_of: :resourceable, dependent: :destroy
 
   # Validations
   # --------------------
