@@ -9,8 +9,12 @@ describe Cookbook do
     it { should belong_to(:owner) }
     it { should have_many(:collaborators) }
     it { should have_many(:collaborator_users) }
+    it { should have_many(:direct_collaborators) }
+    it { should have_many(:direct_collaborator_users) }
     it { should have_one(:chef_account) }
     it { should have_many(:group_resources) }
+    it { should belong_to(:replacement) }
+    it { should have_many(:replaces) }
 
     context 'dependent deletions' do
       let!(:cookbook) { create(:cookbook) }
@@ -316,6 +320,7 @@ describe Cookbook do
         cookbook.deprecate(replacement_cookbook.name)
 
         expect(cookbook.replacement).to eql(replacement_cookbook)
+        expect(replacement_cookbook.replaces).to include(cookbook)
       end
     end
 

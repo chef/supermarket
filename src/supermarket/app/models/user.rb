@@ -7,7 +7,7 @@ class User < ApplicationRecord
   # Associations
   # --------------------
   has_many :accounts
-  has_many :owned_cookbooks, class_name: 'Cookbook', foreign_key: 'user_id'
+  has_many :owned_cookbooks, class_name: 'Cookbook', foreign_key: 'user_id', inverse_of: :owner
   has_many :cookbook_versions
   has_many :collaborators
   has_many :cookbook_followers
@@ -17,10 +17,12 @@ class User < ApplicationRecord
   has_many :collaborated_tools, through: :collaborators, source: :resourceable, source_type: 'Tool'
   has_many :email_preferences
   has_many :system_emails, through: :email_preferences
-  has_one :chef_account, -> { self.for('chef_oauth2') }, class_name: 'Account'
-  has_one :github_account, -> { self.for('github') }, class_name: 'Account'
+  has_one :chef_account, -> { self.for('chef_oauth2') }, class_name: 'Account', inverse_of: :user
+  has_one :github_account, -> { self.for('github') }, class_name: 'Account', inverse_of: :user
   has_many :group_members
   has_many :memberships, through: :group_members, source: :group
+  has_many :initiated_ownership_transfer_requests, class_name: 'OwnershipTransferRequest', foreign_key: :sender_id, inverse_of: :sender
+  has_many :received_ownership_transfer_requests, class_name: 'OwnershipTransferRequest', foreign_key: :recipient_id, inverse_of: :recipient
 
   # Validations
   # --------------------

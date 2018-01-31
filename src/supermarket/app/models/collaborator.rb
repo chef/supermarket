@@ -1,3 +1,8 @@
+#
+# represents a "collaboration" - linking a thing that can be collaborated on
+# (e.g. a "resourceable thing" like a cookbook or tool) with the humans that
+# help work on that thing
+#
 class Collaborator < ApplicationRecord # Associations
   # Associations
   # --------------------

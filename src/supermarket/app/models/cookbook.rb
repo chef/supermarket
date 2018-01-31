@@ -93,14 +93,15 @@ class Cookbook < ApplicationRecord
   has_many :cookbook_followers
   has_many :followers, through: :cookbook_followers, source: :user
   belongs_to :category
-  belongs_to :owner, class_name: 'User', foreign_key: :user_id
+  belongs_to :owner, class_name: 'User', foreign_key: :user_id, inverse_of: :owned_cookbooks
   has_one :chef_account, through: :owner
-  belongs_to :replacement, class_name: 'Cookbook', foreign_key: :replacement_id
-  has_many :collaborators, as: :resourceable
+  belongs_to :replacement, class_name: 'Cookbook', foreign_key: :replacement_id, inverse_of: :replaces
+  has_many :replaces, class_name: 'Cookbook', foreign_key: :replacement_id, inverse_of: :replacement
+  has_many :collaborators, as: :resourceable, inverse_of: :resourceable
   has_many :collaborator_users, through: :collaborators, source: :user
-  has_many :direct_collaborators, -> { where(group_id: nil) }, as: :resourceable, class_name: "Collaborator"
+  has_many :direct_collaborators, -> { where(group_id: nil) }, as: :resourceable, class_name: "Collaborator", inverse_of: :resourceable
   has_many :direct_collaborator_users, through: :direct_collaborators, source: :user
-  has_many :group_resources, as: :resourceable
+  has_many :group_resources, as: :resourceable, inverse_of: :resourceable
 
   # Delegations
   # --------------------
