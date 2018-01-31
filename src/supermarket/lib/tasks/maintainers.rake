@@ -17,8 +17,8 @@
 
 require 'rake'
 
-SOURCE = File.join(File.dirname(__FILE__), '../..', 'MAINTAINERS.toml')
-TARGET = File.join(File.dirname(__FILE__), '../..', 'MAINTAINERS.md')
+SOURCE = File.join(File.dirname(__FILE__), '../../../..', 'MAINTAINERS.toml')
+TARGET = File.join(File.dirname(__FILE__), '../../../..', 'MAINTAINERS.md')
 
 begin
   require 'tomlrb'
@@ -49,7 +49,7 @@ begin
     end
     out << maintainers(list, cmp.delete('maintainers')) + "\n" if cmp.key?('maintainers')
     cmp.delete('paths')
-    cmp.each { |_k, v| out << components(list, v) }
+    cmp.each_value { |v| out << components(list, v) }
     out
   end
 
