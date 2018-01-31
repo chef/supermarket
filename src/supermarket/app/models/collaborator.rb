@@ -3,7 +3,7 @@
 # (e.g. a "resourceable thing" like a cookbook or tool) with the humans that
 # help work on that thing
 #
-class Collaborator < ApplicationRecord # Associations
+class Collaborator < ApplicationRecord
   # Associations
   # --------------------
   belongs_to :resourceable, polymorphic: true
