@@ -11,10 +11,10 @@ module OmniAuthControl
 
   def self.github_hash(user = User.new)
     github_username = user.accounts.for('github').first.try(:username)
-    chef_username = user.username.present? ? user.username : nil
+    chef_username = user.username.presence
 
     username = github_username || chef_username || 'github_johndoe'
-    email = user.email.present? ? user.email : 'johndoe@example.com'
+    email = user.email.presence || 'johndoe@example.com'
 
     OmniAuth::AuthHash.new(
       provider: 'github',
@@ -33,8 +33,8 @@ module OmniAuthControl
   end
 
   def self.chef_hash(user = User.new)
-    chef_username = user.username.present? ? user.username : 'johndoe'
-    email = user.email.present? ? user.email : 'johndoe@example.com'
+    chef_username = user.username.presence || 'johndoe'
+    email = user.email.presence || 'johndoe@example.com'
 
     OmniAuth::AuthHash.new(
       provider: 'chef_oauth2',
