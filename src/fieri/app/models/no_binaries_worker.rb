@@ -17,7 +17,7 @@ class NoBinariesWorker
 
     make_post(params, feedback, failure)
     cookbook.cleanup
-  rescue => e
+  rescue StandardError => e
     log_error(e)
   end
 

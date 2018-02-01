@@ -9,7 +9,7 @@ class FoodcriticWorker
     feedback, status = cookbook.criticize
     make_post(params, feedback, status)
     cookbook.cleanup
-  rescue => e
+  rescue StandardError => e
     log_error(e)
   end
 

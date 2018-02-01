@@ -88,18 +88,10 @@ describe Api::V1::CookbookUploadsController do
       before do
         allow(subject).to receive(:authenticate_user!) { true }
         allow(subject).to receive(:current_user) { create(:user) }
-
-        allow_any_instance_of(CookbookUpload).
-          to receive(:finish).
-          and_yield(
-            [],
-            double('Cookbook', name: 'cookbook', id: 1),
-            double('CookbookVersion', version: '1.1.1', id: 1, cookbook_id: 1)
-          )
       end
 
       it 'renders an error informing the the user that they may not modify the cookbook' do
-        post :create, params: { cookbook: 'cookbook', tarball: 'tarball', format: :json }
+        post :create, params: { cookbook: 'not valid data because', tarball: 'this upload should not even be processed', format: :json }
 
         expect(JSON.parse(response.body)).to eql(
           'error_code' => I18n.t('api.error_codes.unauthorized'),
@@ -108,7 +100,7 @@ describe Api::V1::CookbookUploadsController do
       end
 
       it 'returns a 401' do
-        post :create, params: { cookbook: 'cookbook', tarball: 'tarball', format: :json }
+        post :create, params: { cookbook: 'not valid data because', tarball: 'this upload should not even be processed', format: :json }
 
         expect(response.status.to_i).to eql(401)
       end
