@@ -41,14 +41,14 @@ class PublishWorker
   private
 
   def cookbook_exists?(cookbook_output, cookbook_name)
-    cookbook_output['name'] == cookbook_name ? true : false
+    cookbook_output['name'] == cookbook_name
   end
 
   def cookbook_not_deprecated?(cookbook_output)
-    cookbook_output['deprecated'] == true ? false : true
+    cookbook_output['deprecated'] != true
   end
 
   def cookbook_not_for_adoption?(cookbook_output)
-    cookbook_output['up_for_adoption'] == true ? false : true
+    cookbook_output['up_for_adoption'] != true
   end
 end
