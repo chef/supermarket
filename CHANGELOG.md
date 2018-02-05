@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.57 -->
-## [3.1.57](https://github.com/chef/supermarket/tree/3.1.57) (2018-01-30)
+<!-- latest_release 3.1.58 -->
+## [3.1.58](https://github.com/chef/supermarket/tree/3.1.58) (2018-02-05)
 
 #### Merged Pull Requests
-- disable remote fetching in Paperclip [#1719](https://github.com/chef/supermarket/pull/1719) ([robbkidd](https://github.com/robbkidd))
+- upgrade to Ruby 2.5.0 [#1722](https://github.com/chef/supermarket/pull/1722) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.56 -->
 ### Changes since 3.1.56 release
 
 #### Merged Pull Requests
+- upgrade to Ruby 2.5.0 [#1722](https://github.com/chef/supermarket/pull/1722) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.58 -->
 - disable remote fetching in Paperclip [#1719](https://github.com/chef/supermarket/pull/1719) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.57 -->
 <!-- release_rollup -->
 
