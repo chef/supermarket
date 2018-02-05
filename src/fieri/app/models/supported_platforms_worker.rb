@@ -21,7 +21,7 @@ class SupportedPlatformsWorker
 
     return if response.is_a? Net::HTTPSuccess
     raise "Unable to POST Supported Platforms Evaluation of #{cookbook_name}: #{response.code} #{response.message}"
-  rescue => e
+  rescue StandardError => e
     log_error(e)
   end
 

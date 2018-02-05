@@ -40,11 +40,11 @@ module CookbookVersionsHelper
           anchor: 'changelog'
         )
       )
-      <<-EOS
+      <<-ATOM_CONTENT_SNIPPET
         <p>#{cookbook_version.description}</p>
         #{HTML_Truncator.truncate(changelog, 30, ellipsis: '')}
         <p>#{changelog_link}</p>
-      EOS
+      ATOM_CONTENT_SNIPPET
     else
       cookbook_version.description
     end

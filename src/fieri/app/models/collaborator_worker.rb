@@ -18,7 +18,7 @@ class CollaboratorWorker
   private
 
   def sufficient_collaborators?(number_of_collaborators)
-    number_of_collaborators >= CollaboratorWorker::SUFFICENT_COLLABORATORS ? true : false
+    number_of_collaborators >= CollaboratorWorker::SUFFICENT_COLLABORATORS
   end
 
   def get_collaborator_count(json)

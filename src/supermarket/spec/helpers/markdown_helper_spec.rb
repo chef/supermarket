@@ -7,11 +7,11 @@ describe MarkdownHelper do
     end
 
     it 'renders fenced code blocks' do
-      codeblock = <<-EOH.strip_heredoc
+      codeblock = <<-CODEBLOCK.strip_heredoc
         ```sh
         $ bundle exec rake spec:all
         ```
-      EOH
+      CODEBLOCK
 
       expect(helper.render_markdown(codeblock)).to match(/<pre><code class="sh">/)
     end
@@ -23,21 +23,21 @@ describe MarkdownHelper do
   end
 
   it 'renders tables' do
-    table = <<-EOH.strip_heredoc
+    table = <<-TABLE.strip_heredoc
       | name | version |
       | ---- | ------- |
       | apt  | 0.25    |
       | yum  | 0.75    |
-    EOH
+    TABLE
 
     expect(helper.render_markdown(table)).to match(/<table>/)
   end
 
   it "doesn't adds br tags on hard wraps" do
-    markdown = <<-EOH.strip_heredoc
+    markdown = <<-HARDWRAP.strip_heredoc
       There is no hard
       wrap.
-    EOH
+    HARDWRAP
 
     expect(helper.render_markdown(markdown)).to_not match(/<br>/)
   end

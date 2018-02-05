@@ -7,7 +7,7 @@ class Category < ApplicationRecord
 
   # Associations
   # --------------------
-  has_many :cookbooks
+  has_many :cookbooks, dependent: :nullify
 
   #
   # Returns the name of the +Category+ parameterized.

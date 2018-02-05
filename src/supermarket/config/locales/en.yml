@@ -114,9 +114,9 @@ en:
     error_messages:
       privacy_violation: 'Private cookbook upload not allowed'
       not_found: "Resource does not exist."
-      missing_cookbook: "Mulipart POST must include a part named 'cookbook'."
-      cookbook_not_json: "Mulipart POST part 'cookbook' must be a valid JSON string."
-      missing_tarball: "Mulipart POST must include a part named 'tarball'."
+      missing_cookbook: "Multipart POST must include a part named 'cookbook'."
+      cookbook_not_json: "Multipart POST part 'cookbook' must be a valid JSON string."
+      missing_tarball: "Multipart POST must include a part named 'tarball'."
       tarball_has_no_path: "Multipart POST part 'tarball' must be a file."
       tarball_corrupt: "Multipart POST part 'tarball' is corrupt: %{error}"
       non_existent_category: "Category '%{category_name}' does not exist."

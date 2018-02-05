@@ -5,7 +5,7 @@ class SupportedPlatform < ApplicationRecord
 
   # Associations
   # --------------------
-  has_many :cookbook_version_platforms
+  has_many :cookbook_version_platforms, dependent: :destroy
   has_many :cookbook_versions, through: :cookbook_version_platforms
 
   # Validations

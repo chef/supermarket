@@ -42,7 +42,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
 
     begin
       authorize! cookbook_upload.cookbook
-    rescue
+    rescue Pundit::NotAuthorizedError
       render_not_authorized([t('api.error_messages.unauthorized_upload_error')])
     else
       cookbook_upload.finish do |errors, cookbook, cookbook_version|
@@ -84,7 +84,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
 
     begin
       authorize! @cookbook
-    rescue
+    rescue Pundit::NotAuthorizedError
       error({}, 403)
     else
       @latest_cookbook_version_url = api_v1_cookbook_version_url(
@@ -135,7 +135,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
               error_messages: [t('api.error_messages.only_cookbook_version')],
               error: t('api.error_messages.only_cookbook_version') },
             409)
-    rescue
+    rescue Pundit::NotAuthorizedError
       error({}, 403)
     else
       @cookbook_version.destroy
