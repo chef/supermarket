@@ -27,12 +27,6 @@ when 'rhel'
   include_recipe 'yum-epel::default'
 end
 
-# configure the omnibus build environment
-node.set['omnibus']['build_user'] = 'vagrant'
-node.set['omnibus']['build_user_home'] = '/home/vagrant'
-node.set['omnibus']['build_dir'] = '/home/vagrant/supermarket/omnibus'
-node.set['omnibus']['install_dir'] = '/opt/supermarket'
-
 include_recipe 'omnibus::default'
 
 execute 'fix bundler directory permissions' do
@@ -44,6 +38,7 @@ omnibus_build 'supermarket' do
   environment 'HOME' => node['omnibus']['build_user_home']
   project_dir node['omnibus']['build_dir']
   log_level :internal
+  live_stream true
   config_overrides(
     append_timestamp: true
   )

@@ -18,5 +18,12 @@ platforms:
 
 suites:
   - name: default
+    attributes:
+      omnibus:
+        build_user: vagrant
+        build_user_group: vagrant
+        build_user_home: /home/vagrant
+        build_dir: /home/vagrant/supermarket/omnibus
+        install_dir: /opt/supermarket
     run_list:
       - supermarket-builder
