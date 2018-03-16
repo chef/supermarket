@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.60 -->
-## [3.1.60](https://github.com/chef/supermarket/tree/3.1.60) (2018-03-13)
+<!-- latest_release 3.1.61 -->
+## [3.1.61](https://github.com/chef/supermarket/tree/3.1.61) (2018-03-16)
 
 #### Merged Pull Requests
-- update rack-protection (addresses underlying CVE audit that does not apply to Supermarket installs) [#1728](https://github.com/chef/supermarket/pull/1728) ([robbkidd](https://github.com/robbkidd))
+- upgrade Foodcritic to v13.0.0 [#1727](https://github.com/chef/supermarket/pull/1727) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.56 -->
 ### Changes since 3.1.56 release
 
 #### Merged Pull Requests
+- upgrade Foodcritic to v13.0.0 [#1727](https://github.com/chef/supermarket/pull/1727) ([tas50](https://github.com/tas50)) <!-- 3.1.61 -->
 - update rack-protection (addresses underlying CVE audit that does not apply to Supermarket installs) [#1728](https://github.com/chef/supermarket/pull/1728) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.60 -->
 - upgrade nokogiri &amp; libxml2 [#1726](https://github.com/chef/supermarket/pull/1726) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.59 -->
 - upgrade to Ruby 2.5.0 [#1722](https://github.com/chef/supermarket/pull/1722) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.58 -->
