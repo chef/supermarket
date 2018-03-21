@@ -1,24 +1,22 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.61 -->
-## [3.1.61](https://github.com/chef/supermarket/tree/3.1.61) (2018-03-16)
-
-#### Merged Pull Requests
-- upgrade Foodcritic to v13.0.0 [#1727](https://github.com/chef/supermarket/pull/1727) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.1.56 -->
-### Changes since 3.1.56 release
-
-#### Merged Pull Requests
-- upgrade Foodcritic to v13.0.0 [#1727](https://github.com/chef/supermarket/pull/1727) ([tas50](https://github.com/tas50)) <!-- 3.1.61 -->
-- update rack-protection (addresses underlying CVE audit that does not apply to Supermarket installs) [#1728](https://github.com/chef/supermarket/pull/1728) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.60 -->
-- upgrade nokogiri &amp; libxml2 [#1726](https://github.com/chef/supermarket/pull/1726) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.59 -->
-- upgrade to Ruby 2.5.0 [#1722](https://github.com/chef/supermarket/pull/1722) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.58 -->
-- disable remote fetching in Paperclip [#1719](https://github.com/chef/supermarket/pull/1719) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.57 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.1.61](https://github.com/chef/supermarket/tree/3.1.61) (2018-03-21)
+
+#### Merged Pull Requests
+- disable remote fetching in Paperclip [#1719](https://github.com/chef/supermarket/pull/1719) ([robbkidd](https://github.com/robbkidd))
+- upgrade to Ruby 2.5.0 [#1722](https://github.com/chef/supermarket/pull/1722) ([robbkidd](https://github.com/robbkidd))
+- upgrade nokogiri &amp; libxml2 [#1726](https://github.com/chef/supermarket/pull/1726) ([robbkidd](https://github.com/robbkidd))
+- update rack-protection (addresses underlying CVE audit that does not apply to Supermarket installs) [#1728](https://github.com/chef/supermarket/pull/1728) ([robbkidd](https://github.com/robbkidd))
+- upgrade Foodcritic to v13.0.0 [#1727](https://github.com/chef/supermarket/pull/1727) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [3.1.56](https://github.com/chef/supermarket/tree/3.1.56) (2018-01-24)
 
 #### Merged Pull Requests
@@ -27,7 +25,6 @@
 - Fix version validation against chef&#39;s required format [#1715](https://github.com/chef/supermarket/pull/1715) ([robbkidd](https://github.com/robbkidd))
 - Update Foodcritic to 12.3 [#1717](https://github.com/chef/supermarket/pull/1717) ([tas50](https://github.com/tas50))
 - Fix ctl-reconfigure failing in air-gapped environments [#1716](https://github.com/chef/supermarket/pull/1716) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.1.51](https://github.com/chef/supermarket/tree/3.1.51) (2017-12-18)
 
