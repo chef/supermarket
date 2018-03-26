@@ -1,25 +1,22 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.63 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [3.1.63](https://github.com/chef/supermarket/tree/3.1.63) (2018-03-26)
 
 #### Merged Pull Requests
 - update rails-html-sanitizer (CVE-2018-3741) [#1731](https://github.com/chef/supermarket/pull/1731) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_release -->
-
-<!-- release_rollup since=3.1.62 -->
-### Changes since 3.1.62 release
-
-#### Merged Pull Requests
-- update rails-html-sanitizer (CVE-2018-3741) [#1731](https://github.com/chef/supermarket/pull/1731) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.63 -->
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [3.1.62](https://github.com/chef/supermarket/tree/3.1.62) (2018-03-26)
 
 #### Merged Pull Requests
 - update loofah (CVE-2018-8048) [#1730](https://github.com/chef/supermarket/pull/1730) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.1.61](https://github.com/chef/supermarket/tree/3.1.61) (2018-03-21)
 
