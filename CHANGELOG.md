@@ -1,20 +1,18 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.62 -->
-## [3.1.62](https://github.com/chef/supermarket/tree/3.1.62) (2018-03-21)
-
-#### Merged Pull Requests
-- update loofah (CVE-2018-8048) [#1730](https://github.com/chef/supermarket/pull/1730) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.1.61 -->
-### Changes since 3.1.61 release
-
-#### Merged Pull Requests
-- update loofah (CVE-2018-8048) [#1730](https://github.com/chef/supermarket/pull/1730) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.62 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.1.62](https://github.com/chef/supermarket/tree/3.1.62) (2018-03-26)
+
+#### Merged Pull Requests
+- update loofah (CVE-2018-8048) [#1730](https://github.com/chef/supermarket/pull/1730) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_stable_release -->
+
 ## [3.1.61](https://github.com/chef/supermarket/tree/3.1.61) (2018-03-21)
 
 #### Merged Pull Requests
@@ -23,7 +21,6 @@
 - upgrade nokogiri &amp; libxml2 [#1726](https://github.com/chef/supermarket/pull/1726) ([robbkidd](https://github.com/robbkidd))
 - update rack-protection (addresses underlying CVE audit that does not apply to Supermarket installs) [#1728](https://github.com/chef/supermarket/pull/1728) ([robbkidd](https://github.com/robbkidd))
 - upgrade Foodcritic to v13.0.0 [#1727](https://github.com/chef/supermarket/pull/1727) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [3.1.56](https://github.com/chef/supermarket/tree/3.1.56) (2018-01-24)
 
