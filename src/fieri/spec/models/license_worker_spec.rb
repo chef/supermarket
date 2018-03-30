@@ -94,6 +94,19 @@ describe LicenseWorker do
         end
       end
     end
+
+    context 'when the cookbook version has the BSD 3 Clause License' do
+      let(:bsd_3_clause_license_version_json_response) { File.read('spec/support/cookbook_version_bsd_3_clause_license.json') }
+      let(:cookbook_version) { JSON.parse(bsd_3_clause_license_version_json_response)['version'] }
+
+      it 'passes the metric' do
+        lw.perform(bsd_3_clause_license_version_json_response, cookbook_name)
+
+        assert_requested(:post, "#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/license_evaluation", times: 1) do |req|
+          expect(req.body).to include('license_failure=false')
+        end
+      end
+    end
   end
 
   context 'non-acceptable license' do
