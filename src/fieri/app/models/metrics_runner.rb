@@ -10,7 +10,6 @@ class MetricsRunner
     CollaboratorWorker.perform_async(cookbook_data, cookbook['name'])
     FoodcriticWorker.perform_async(cookbook)
     PublishWorker.perform_async(cookbook_data, cookbook['name'])
-    LicenseWorker.perform_async(cookbook_version_data, cookbook['name'])
     SupportedPlatformsWorker.perform_async(cookbook_version_data, cookbook['name'])
     NoBinariesWorker.perform_async(cookbook)
 

@@ -52,12 +52,6 @@ describe MetricsRunner do
       metrics_runner.perform(cookbook)
     end
 
-    it 'calls the license worker' do
-      expect(LicenseWorker).to receive(:perform_async).with(version_json_response, cookbook['name'])
-
-      metrics_runner.perform(cookbook)
-    end
-
     it 'calls the no binaries worker' do
       expect(NoBinariesWorker).to receive(:perform_async).with(hash_including(cookbook))
 
