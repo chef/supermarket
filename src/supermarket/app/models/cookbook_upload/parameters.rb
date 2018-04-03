@@ -174,7 +174,7 @@ class CookbookUpload
         errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
       rescue Archive::NoPath
         errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
-      rescue Gem::Package::TarInvalidError => e
+      rescue ArgumentError, Gem::Package::TarInvalidError => e
         errors.add(:base, I18n.t('api.error_messages.tarball_corrupt', error: e))
       end
 
@@ -213,7 +213,7 @@ class CookbookUpload
         errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
       rescue Archive::NoPath
         errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
-      rescue Gem::Package::TarInvalidError => e
+      rescue ArgumentError, Gem::Package::TarInvalidError => e
         errors.add(:base, I18n.t('api.error_messages.tarball_corrupt', error: e))
       end
 

@@ -168,7 +168,7 @@ describe CookbookUpload do
       errors = upload.finish { |e, _| e }
 
       expect(errors.full_messages).
-        to include(I18n.t('api.error_messages.tarball_corrupt', error: 'tar is corrupt, name contains null byte'))
+        to include(I18n.t('api.error_messages.tarball_corrupt', error: '"\x00\x00\x00\x00\x00\x0001" is not an octal string'))
     end
 
     it 'yields an error if the tarball has no metadata.json entry' do
