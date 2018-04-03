@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.1.64 -->
+## [3.1.64](https://github.com/chef/supermarket/tree/3.1.64) (2018-04-03)
+
+#### Merged Pull Requests
+- upgrade to Ruby 2.5.1 [#1734](https://github.com/chef/supermarket/pull/1734) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.1.63 -->
+### Changes since 3.1.63 release
+
+#### Merged Pull Requests
+- upgrade to Ruby 2.5.1 [#1734](https://github.com/chef/supermarket/pull/1734) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.64 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
