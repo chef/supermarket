@@ -29,7 +29,7 @@ build_version   IO.read(File.expand_path("../../../../VERSION", __FILE__)).strip
 build_iteration 1
 
 override :postgresql, version: '9.3.18'
-override :ruby, version: "2.5.0"
+override :ruby, version: "2.5.1"
 override :rubygems, version: '2.6.14'
 override :nginx, version: '1.10.2'
 override :'chef-gem', version: '13.6.4'
