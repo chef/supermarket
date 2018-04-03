@@ -48,6 +48,7 @@ matrix:
         - redis-server
         - postgresql
       before_install:
+        - gem install bundler --no-ri --no-rdoc
         - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle config build.nokogiri --use-system-libraries
       before_script:
         - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake $COMPONENT:travis:before_script
@@ -68,6 +69,7 @@ matrix:
         - redis-server
         - postgresql
       before_install:
+        - gem install bundler --no-ri --no-rdoc
         - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle config build.nokogiri --use-system-libraries
       before_script:
         - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake $COMPONENT:travis:before_script
