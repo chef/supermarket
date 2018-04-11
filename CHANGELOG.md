@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.64 -->
-## [3.1.64](https://github.com/chef/supermarket/tree/3.1.64) (2018-04-03)
+<!-- latest_release 3.1.65 -->
+## [3.1.65](https://github.com/chef/supermarket/tree/3.1.65) (2018-04-11)
 
 #### Merged Pull Requests
-- upgrade to Ruby 2.5.1 [#1734](https://github.com/chef/supermarket/pull/1734) ([robbkidd](https://github.com/robbkidd))
+- Update Foodcritic to 13.0.1 [#1735](https://github.com/chef/supermarket/pull/1735) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.63 -->
 ### Changes since 3.1.63 release
 
 #### Merged Pull Requests
+- Update Foodcritic to 13.0.1 [#1735](https://github.com/chef/supermarket/pull/1735) ([tas50](https://github.com/tas50)) <!-- 3.1.65 -->
 - upgrade to Ruby 2.5.1 [#1734](https://github.com/chef/supermarket/pull/1734) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.64 -->
 <!-- release_rollup -->
 
