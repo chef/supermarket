@@ -2,7 +2,7 @@
   <dl data-tab data-options="deep_linking:true; scroll_to_content: false;" class="<%= 'persist-install-method' if current_user %>">
     <% if current_user && current_user.install_preference.present? %>
       <dd class="<%= %w(berkshelf librarian).include? current_user.install_preference ? 'active' : '' %>">
-        <a href="#berkshelf" class="button tiny secondary">Berkshelf/Librarian</a>
+        <a href="#berkshelf" class="button tiny secondary">Berkshelf</a>
       </dd>
 
       <dd class="<%= current_user.install_preference == 'policyfile' ? 'active' : '' %>">
@@ -14,7 +14,7 @@
       </dd>
     <% else %>
       <dd class="active">
-        <a href="#berkshelf" class="button tiny secondary">Berkshelf/Librarian</a>
+        <a href="#berkshelf" class="button tiny secondary">Berkshelf</a>
       </dd>
 
       <dd>
