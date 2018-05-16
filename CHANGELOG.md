@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.67 -->
-## [3.1.67](https://github.com/chef/supermarket/tree/3.1.67) (2018-05-09)
+<!-- latest_release 3.1.68 -->
+## [3.1.68](https://github.com/chef/supermarket/tree/3.1.68) (2018-05-16)
 
 #### Merged Pull Requests
-- Remove the librarian wording from the cookbook pages [#1738](https://github.com/chef/supermarket/pull/1738) ([tas50](https://github.com/tas50))
+- remove license quality metric (covered by foodcritic rule 78) [#1733](https://github.com/chef/supermarket/pull/1733) ([nathenharvey](https://github.com/nathenharvey))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.63 -->
 ### Changes since 3.1.63 release
 
 #### Merged Pull Requests
+- remove license quality metric (covered by foodcritic rule 78) [#1733](https://github.com/chef/supermarket/pull/1733) ([nathenharvey](https://github.com/nathenharvey)) <!-- 3.1.68 -->
 - Remove the librarian wording from the cookbook pages [#1738](https://github.com/chef/supermarket/pull/1738) ([tas50](https://github.com/tas50)) <!-- 3.1.67 -->
 - Update to Foodcritic 13.1.1 [#1736](https://github.com/chef/supermarket/pull/1736) ([tas50](https://github.com/tas50)) <!-- 3.1.66 -->
 - Update Foodcritic to 13.0.1 [#1735](https://github.com/chef/supermarket/pull/1735) ([tas50](https://github.com/tas50)) <!-- 3.1.65 -->
