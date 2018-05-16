@@ -58,6 +58,21 @@ describe Api::V1::QualityMetricsController do
             expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
           end
 
+          # License metric has been deprecated in favor of the equivalent Foodcritic rule.
+          # Remove old License metric results now that a Foodcritic result has been made that
+          # checks for licensing.
+          it "removes an existing license metric" do
+            create(:foodcritic_metric)
+            license_metric = create(:license_metric)
+            create :metric_result, cookbook_version: version, quality_metric: license_metric
+
+            expect(version.metric_results.where(quality_metric: license_metric).count).to eq(1)
+
+            post(:foodcritic_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.to_param, foodcritic_failure: true, foodcritic_feedback: 'E066', fieri_key: 'YOUR_FIERI_KEY', format: :json })
+
+            expect(version.metric_results.where(quality_metric: license_metric).count).to eq(0)
+          end
+
           context 'the required params are not provided' do
             it 'returns a 400' do
               post(:foodcritic_evaluation, params: { cookbook_name: cookbook.name, foodcritic_failure: 'false', foodcritic_feedback: '', fieri_key: 'YOUR_FIERI_KEY', format: :json })
@@ -282,54 +297,15 @@ describe Api::V1::QualityMetricsController do
     end
   end
 
-  describe '#license_evaluation' do
-    let(:cookbook) { create(:cookbook) }
-    let!(:version) { create(:cookbook_version, cookbook: cookbook) }
-    let!(:quality_metric) { create(:license_metric) }
-
-    context 'the request is authorized' do
-      context 'the required params are provided' do
-        it 'returns a 200' do
-          post(:license_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, license_failure: false, license_feedback: 'This cookbook does not exist.', fieri_key: 'YOUR_FIERI_KEY', format: :json })
-
-          expect(response.status.to_i).to eql(200)
-        end
-
-        it 'creates a license metric' do
-          post(:license_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, license_failure: false, license_feedback: 'This cookbook does not exist.', fieri_key: 'YOUR_FIERI_KEY', format: :json })
-
-          version.reload
-          expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
-        end
-
-        it 'finds the correct cookbook version' do
-          post(:license_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, license_failure: false, license_feedback: 'This cookbook does not exist.', fieri_key: 'YOUR_FIERI_KEY', format: :json })
-
-          expect(assigns[:cookbook_version]).to eq(version)
-        end
-      end
-
-      context 'the required params are not provided' do
-        it 'returns a 400' do
-          post(:license_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, fieri_key: 'YOUR_FIERI_KEY', format: :json })
-
-          expect(response.status.to_i).to eql(400)
-        end
-      end
+  describe '#license_evaluation (deprecated)' do
+    it 'returns a 410 Gone' do
+      post(:license_evaluation, params: { literally: "anything" })
+      expect(response.status.to_i).to eql(410)
     end
 
-    context 'the request is not authorized' do
-      it 'renders a 401 error about unauthorized post' do
-        post(:license_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, license_failure: false, license_feedback: 'This cookbook does not exist.', fieri_key: 'not_the_key', format: :json })
-
-        expect(response.status.to_i).to eql(401)
-        expect(JSON.parse(response.body)).to eql(
-          'error_code' => I18n.t('api.error_codes.unauthorized'),
-          'error_messages' => [
-            I18n.t('api.error_messages.unauthorized_post_error')
-          ]
-        )
-      end
+    it 'includes a friendly message in the response' do
+      post(:license_evaluation, params: { literally: "anything" })
+      expect(response.body).to match(/deprecated/)
     end
   end
 

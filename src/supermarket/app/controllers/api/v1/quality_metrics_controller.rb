@@ -1,7 +1,7 @@
 class Api::V1::QualityMetricsController < Api::V1Controller
-  before_action :check_cookbook_name_present
-  before_action :check_authorization
-  before_action :find_cookbook_version
+  before_action :check_cookbook_name_present, except: :license_evaluation
+  before_action :check_authorization, except: :license_evaluation
+  before_action :find_cookbook_version, except: :license_evaluation
 
   #
   # POST /api/v1/quality_metrics/foodcritic_evaluation
@@ -26,6 +26,13 @@ class Api::V1::QualityMetricsController < Api::V1Controller
       params[:foodcritic_failure],
       params[:foodcritic_feedback]
     )
+
+    # License metric has been deprecated in favor of the equivalent Foodcritic rule.
+    # Remove old License metric results now that a Foodcritic result has been made that
+    # checks for licensing.
+    MetricResult
+      .where(cookbook_version: @cookbook_version, quality_metric: QualityMetric.license_metric)
+      .delete_all
 
     head 200
   end
@@ -85,27 +92,16 @@ class Api::V1::QualityMetricsController < Api::V1Controller
   #
   # POST /api/v1/cookbook-versions/license_evaluation
   #
-  # Take the license evaluation results from Fieri and store them as a
-  # metric result
-  #
+  # License evaluation is handled by Foodcritic now, so this endpoint
+  # is deprecation and will no longer accept License metric results.
   # If the +CookbookVersion+ does not exist, render a 404 not_found.
   #
-  # If the request is unauthorized, render unauthorized.
-  #
-  # This endpoint expects +cookbook_name+, +cookbook_version+,
-  # +license_failure+, +license_feedback+, and +fieri_key+.
+  # Will return a 410 Gone because this resource has been intentionally removed
   #
   def license_evaluation
-    require_license_params
-
-    create_metric(
-      @cookbook_version,
-      QualityMetric.license_metric,
-      params[:license_failure],
-      params[:license_feedback]
-    )
-
-    head 200
+    response = { message: "Endpoint deprecated. License metric results are now produced by Foodcritic." }
+    render json: response,
+           status: 410
   end
 
   #
@@ -229,12 +225,6 @@ class Api::V1::QualityMetricsController < Api::V1Controller
     params.require(:cookbook_name)
     params.require(:collaborator_failure)
     params.require(:collaborator_feedback)
-  end
-
-  def require_license_params
-    params.require(:cookbook_name)
-    params.require(:cookbook_version)
-    params.require(:license_failure)
   end
 
   def require_supported_platforms_params
