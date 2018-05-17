@@ -1,7 +1,6 @@
 # Supermarket
 
 [![Build Status](https://travis-ci.org/chef/supermarket.svg?branch=master)](https://travis-ci.org/chef/supermarket)
-[![Dependency Status](https://gemnasium.com/chef/supermarket.svg)](https://gemnasium.com/chef/supermarket)
 [![Code Climate](https://codeclimate.com/github/chef/supermarket.svg)](https://codeclimate.com/github/chef/supermarket)
 [![Inline docs](http://inch-ci.org/github/chef/supermarket.svg)](http://inch-ci.org/github/chef/supermarket)
 
