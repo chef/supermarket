@@ -11,7 +11,8 @@ class CookbookVersion < ApplicationRecord
   has_many :metric_results, -> { includes :quality_metric }, inverse_of: :cookbook_version
 
   belongs_to :cookbook
-  belongs_to :user
+  belongs_to :user, -> { includes :chef_account }, inverse_of: :cookbook_versions
+  has_one :owner, -> { includes :chef_account }, through: :cookbook
 
   # Attachments
   # --------------------

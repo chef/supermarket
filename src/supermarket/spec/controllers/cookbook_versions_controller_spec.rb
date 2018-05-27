@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe CookbookVersionsController do
+  describe '#index' do
+    let(:cookbook) { create(:cookbook) }
+    let(:version) { create(:cookbook_version, cookbook: cookbook) }
+
+    it 'responds to a GET' do
+      get :index
+      expect(assigns[:cookbook_versions]).to_not be_nil
+    end
+  end
+
   describe '#download' do
     let(:cookbook) { create(:cookbook) }
     let(:version) { create(:cookbook_version, cookbook: cookbook) }

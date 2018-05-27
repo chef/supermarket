@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   put 'cookbooks/:id/transfer_ownership' => 'transfer_ownership#transfer', as: :transfer_ownership
   get 'ownership_transfer/:token/accept' => 'transfer_ownership#accept', as: :accept_transfer
   get 'ownership_transfer/:token/decline' => 'transfer_ownership#decline', as: :decline_transfer
+  get 'cookbooks/versions' => 'cookbook_versions#index', as: :cookbook_releases
 
   resources :cookbooks, only: [:index, :show, :update] do
     member do
