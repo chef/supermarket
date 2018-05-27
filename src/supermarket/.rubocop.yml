@@ -39,6 +39,7 @@ Metrics/BlockLength:
   Exclude:
     - Guardfile
     - Vagrantfile
+    - config/routes.rb
     - lib/tasks/**/*
     - spec/**/*
 Metrics/PerceivedComplexity:
