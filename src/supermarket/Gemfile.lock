@@ -26,7 +26,7 @@ PATH
   specs:
     fieri (0.0.1)
       dotenv-rails
-      foodcritic (~> 13.0)
+      foodcritic (~> 14.0)
       mixlib-archive (~> 0.4)
       octokit (~> 4.0)
       rails (~> 5.0.0)
@@ -217,7 +217,7 @@ GEM
     ffi (1.9.18)
     ffi-yajl (2.3.1)
       libyajl2 (~> 1.2)
-    foodcritic (13.1.1)
+    foodcritic (14.0.0)
       cucumber-core (>= 1.3)
       erubis
       ffi-yajl (~> 2.0)
@@ -229,7 +229,7 @@ GEM
       thor (~> 0.19.1)
     formatador (0.2.5)
     fuzzyurl (0.9.0)
-    gherkin (5.0.0)
+    gherkin (5.1.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     guard (2.14.1)
@@ -690,4 +690,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
