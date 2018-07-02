@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.69 -->
-## [3.1.69](https://github.com/chef/supermarket/tree/3.1.69) (2018-07-01)
+<!-- latest_release 3.1.70 -->
+## [3.1.70](https://github.com/chef/supermarket/tree/3.1.70) (2018-07-02)
 
 #### Merged Pull Requests
-- Upgrade Sprockets [CVE-2018-3760] [#1743](https://github.com/chef/supermarket/pull/1743) ([pwelch](https://github.com/pwelch))
+- Update Foodcritic to 14 [#1741](https://github.com/chef/supermarket/pull/1741) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.68 -->
 ### Changes since 3.1.68 release
 
 #### Merged Pull Requests
+- Update Foodcritic to 14 [#1741](https://github.com/chef/supermarket/pull/1741) ([tas50](https://github.com/tas50)) <!-- 3.1.70 -->
 - Upgrade Sprockets [CVE-2018-3760] [#1743](https://github.com/chef/supermarket/pull/1743) ([pwelch](https://github.com/pwelch)) <!-- 3.1.69 -->
 <!-- release_rollup -->
 
