@@ -1,21 +1,19 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.70 -->
-## [3.1.70](https://github.com/chef/supermarket/tree/3.1.70) (2018-07-02)
-
-#### Merged Pull Requests
-- Update Foodcritic to 14 [#1741](https://github.com/chef/supermarket/pull/1741) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.1.68 -->
-### Changes since 3.1.68 release
-
-#### Merged Pull Requests
-- Update Foodcritic to 14 [#1741](https://github.com/chef/supermarket/pull/1741) ([tas50](https://github.com/tas50)) <!-- 3.1.70 -->
-- Upgrade Sprockets [CVE-2018-3760] [#1743](https://github.com/chef/supermarket/pull/1743) ([pwelch](https://github.com/pwelch)) <!-- 3.1.69 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.1.70](https://github.com/chef/supermarket/tree/3.1.70) (2018-07-09)
+
+#### Merged Pull Requests
+- Upgrade Sprockets [CVE-2018-3760] [#1743](https://github.com/chef/supermarket/pull/1743) ([pwelch](https://github.com/pwelch))
+- Update Foodcritic to 14 [#1741](https://github.com/chef/supermarket/pull/1741) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [3.1.68](https://github.com/chef/supermarket/tree/3.1.68) (2018-05-16)
 
 #### Merged Pull Requests
@@ -24,7 +22,6 @@
 - Update to Foodcritic 13.1.1 [#1736](https://github.com/chef/supermarket/pull/1736) ([tas50](https://github.com/tas50))
 - Remove the librarian wording from the cookbook pages [#1738](https://github.com/chef/supermarket/pull/1738) ([tas50](https://github.com/tas50))
 - remove license quality metric (covered by foodcritic rule 78) [#1733](https://github.com/chef/supermarket/pull/1733) ([nathenharvey](https://github.com/nathenharvey))
-<!-- latest_stable_release -->
 
 ## [3.1.63](https://github.com/chef/supermarket/tree/3.1.63) (2018-03-26)
 
