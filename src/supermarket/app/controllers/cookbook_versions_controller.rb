@@ -7,9 +7,21 @@ class CookbookVersionsController < ApplicationController
   # Returns a collection of cookbook versions (releases)
   #
   def index
+    index_params = params.permit(:page, :owned_by)
+    @page = index_params[:page].to_i
+
     @cookbook_versions = CookbookVersion.includes(:cookbook, :user)
-                                        .limit(10)
                                         .order('id desc')
+                                        .page(@page)
+                                        .per(20)
+
+    if index_params[:owned_by].present?
+      @cookbook_versions.owned_by(index_params[:owned_by])
+    end
+
+    respond_to do |format|
+      format.atom { render layout: false }
+    end
   end
 
   #

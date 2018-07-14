@@ -1,6 +1,7 @@
 atom_feed language: 'en-US' do |feed|
   feed.title 'Cookbook Releases'
   feed.updated safe_updated_at(@cookbook_versions)
+  feed.link rel_next_prev_link_tags @cookbook_versions
 
   @cookbook_versions.each do |release|
     feed.entry release,
