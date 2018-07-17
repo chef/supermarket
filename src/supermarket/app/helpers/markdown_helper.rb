@@ -18,6 +18,7 @@ module MarkdownHelper
       HTML::Pipeline::MarkdownFilter,
       HTML::Pipeline::SanitizationFilter,
       HTML::Pipeline::ImageMaxWidthFilter,
+      HTML::Pipeline::TableOfContentsFilter,
       HTML::Pipeline::HttpsFilter,
       HTML::Pipeline::MentionFilter
     ], context.merge(gfm: true)
