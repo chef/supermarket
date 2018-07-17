@@ -33,13 +33,13 @@ describe MarkdownHelper do
     expect(helper.render_markdown(table)).to match(/<table>/)
   end
 
-  it "doesn't adds br tags on hard wraps" do
-    markdown = <<-HARDWRAP.strip_heredoc
-      There is no hard
+  it "adds br tags on hard wraps" do
+    markdown = <<~HARDWRAP.strip_heredoc
+      There is a hard
       wrap.
     HARDWRAP
 
-    expect(helper.render_markdown(markdown)).to_not match(/<br>/)
+    expect(helper.render_markdown(markdown)).to match(/<br>/)
   end
 
   it "doesn't emphasize underscored words" do
