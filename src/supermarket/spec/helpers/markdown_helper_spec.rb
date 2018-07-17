@@ -54,10 +54,6 @@ describe MarkdownHelper do
     expect(helper.render_markdown('~~Ignore This~~')).to match(/<del>/)
   end
 
-  it 'superscripts text using ^ with a sup tag' do
-    expect(helper.render_markdown('Supermarket^2')).to match(/<sup>/)
-  end
-
   context 'protocol in URLs for images get converted' do
     it 'HTTP -> protocol-relative' do
       html = helper.render_markdown('![](http://img.example.com)')
