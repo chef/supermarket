@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CookbookVersionsHelper do
   describe '#render_document' do
     it 'converts markdown to html when the extension is "md"' do
-      expect(render_document('*hi*', 'md')).to eql("<p><em>hi</em></p>\n")
+      expect(render_document('*hi*', 'md')).to eql("<p><em>hi</em></p>")
     end
 
     it 'returns the content if no extension is specified' do
