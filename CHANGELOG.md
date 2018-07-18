@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.1.71 -->
+## [3.1.71](https://github.com/chef/supermarket/tree/3.1.71) (2018-07-18)
+
+#### Merged Pull Requests
+- update nokogiri to quiet gem audit finding [#1745](https://github.com/chef/supermarket/pull/1745) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.1.70 -->
+### Changes since 3.1.70 release
+
+#### Merged Pull Requests
+- update nokogiri to quiet gem audit finding [#1745](https://github.com/chef/supermarket/pull/1745) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.71 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
