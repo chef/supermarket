@@ -12,7 +12,7 @@ cache:
     - "$TRAVIS_BUILD_DIR/src/$COMPONENT/vendor/bundle"
 
 before_install:
-  - curl https://raw.githubusercontent.com/chef/ci-studio-common/master/install.sh | bash
+  - curl https://raw.githubusercontent.com/chef/ci-studio-common/pre-1.0/install.sh | bash
   - export PATH="$PATH:$HOME/ci-studio-common/bin:$HOME/tools/bin"
 
 env:
