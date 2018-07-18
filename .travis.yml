@@ -12,7 +12,7 @@ cache:
     - "$TRAVIS_BUILD_DIR/src/$COMPONENT/vendor/bundle"
 
 before_install:
-  - curl https://raw.githubusercontent.com/chef/ci-studio-common/master/install.sh | bash
+  - curl https://raw.githubusercontent.com/chef/ci-studio-common/pre-1.0/install.sh | bash
   - export PATH="$PATH:$HOME/ci-studio-common/bin:$HOME/tools/bin"
 
 env:
@@ -51,9 +51,13 @@ matrix:
         - gem install bundler --no-ri --no-rdoc
         - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle config build.nokogiri --use-system-libraries
       before_script:
-        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake $COMPONENT:travis:before_script
+        - psql -c 'create database supermarket_test;' -U postgres
+        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake db:schema:load
       script:
-        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake $COMPONENT:travis:script
+        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT
+        - bundle exec rake spec
+        - bundle exec rubocop
+        - bundle exec bundle-audit check --update
 
     # Fieri Spec
     - env:
@@ -71,10 +75,11 @@ matrix:
       before_install:
         - gem install bundler --no-ri --no-rdoc
         - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle config build.nokogiri --use-system-libraries
-      before_script:
-        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake $COMPONENT:travis:before_script
       script:
-        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT && bundle exec rake $COMPONENT:travis:script
+        - cd $TRAVIS_BUILD_DIR/src/$COMPONENT
+        - bundle exec rake spec
+        - bundle exec rubocop
+        - bundle exec bundle-audit check --update
 
     # Terraform Lint
     - env:
