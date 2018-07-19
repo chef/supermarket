@@ -2,34 +2,51 @@ module MarkdownHelper
   #
   # Make auto-links target=_blank
   #
-  class SupermarketRenderer < Redcarpet::Render::HTML
+  class SupermarketRenderer < Redcarpet::Render::Safe
     include ActionView::Helpers::TagHelper
 
     def initialize(extensions = {})
       super extensions.merge(
         link_attributes: { target: '_blank' },
-        with_toc_data: true,
-        escape_html: true
+        with_toc_data: true
       )
     end
 
     #
-    # Create an image tag with a protocol-relative URL
+    # Last stop opportunity to transform the HTML Redcarpet has generated
+    # from markdown input.
     #
-    # @param url [String] the image URL
-    # @param title [String, nil] the image title
-    # @param alt [String, nil] the image's alternative text
+    # @param html_document [String] the Redcarpet rendered markdown-to-HTML
     #
-    # @return [String] an image tag
+    # @return [String] HTML document fragrant ready for display
     #
-    def image(url, title, alt)
-      options = {
-        src: url.sub(/\Ahttps?:/, ''),
-        alt: String(alt),
-        title: title
-      }
+    def postprocess(html_document)
+      # if more transforms are added here, some sort of proper pipeline
+      # should be considered
+      doc = Nokogiri::HTML::DocumentFragment.parse(html_document)
+      doc = make_img_src_urls_protocol_relative(doc)
+      doc.to_s
+    end
 
-      tag(:img, options, true)
+    private
+
+    #
+    # Transform generated image tags to use protocol-relative URL
+    #
+    # @param doc [Nokogiri::HTML::DocumentFragment] already-parsed HTML
+    #
+    # @return [Nokogiri::HTML::DocumentFragment] transformed, parsed HTML
+    #
+    def make_img_src_urls_protocol_relative(doc)
+      doc.search("img").each do |img|
+        next if img['src'].nil?
+        src = img['src'].strip
+        if src.start_with? 'http'
+          img["src"] = src.sub!(/\Ahttps?:/, '')
+        end
+      end
+
+      doc
     end
   end
 
