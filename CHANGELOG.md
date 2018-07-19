@@ -1,27 +1,24 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.72 -->
-## [3.1.72](https://github.com/chef/supermarket/tree/3.1.72) (2018-07-19)
-
-#### Merged Pull Requests
-- fix markdown rendering links and images with unsafe protocols [#1746](https://github.com/chef/supermarket/pull/1746) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.1.70 -->
-### Changes since 3.1.70 release
-
-#### Merged Pull Requests
-- fix markdown rendering links and images with unsafe protocols [#1746](https://github.com/chef/supermarket/pull/1746) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.72 -->
-- update nokogiri to quiet gem audit finding [#1745](https://github.com/chef/supermarket/pull/1745) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.71 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.1.72](https://github.com/chef/supermarket/tree/3.1.72) (2018-07-19)
+
+#### Merged Pull Requests
+- update nokogiri to quiet gem audit finding [#1745](https://github.com/chef/supermarket/pull/1745) ([robbkidd](https://github.com/robbkidd))
+- fix markdown rendering links and images with unsafe protocols [#1746](https://github.com/chef/supermarket/pull/1746) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_stable_release -->
+
 ## [3.1.70](https://github.com/chef/supermarket/tree/3.1.70) (2018-07-09)
 
 #### Merged Pull Requests
 - Upgrade Sprockets [CVE-2018-3760] [#1743](https://github.com/chef/supermarket/pull/1743) ([pwelch](https://github.com/pwelch))
 - Update Foodcritic to 14 [#1741](https://github.com/chef/supermarket/pull/1741) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [3.1.68](https://github.com/chef/supermarket/tree/3.1.68) (2018-05-16)
 
