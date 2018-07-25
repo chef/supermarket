@@ -64,12 +64,20 @@ class Supermarket
     end
 
     def self.audit_s3_config(config)
-      required_s3_vars = %w(s3_bucket s3_access_key_id s3_secret_access_key s3_region).freeze
-      any_s3_settings = required_s3_vars.any? { |key| !(config[key].nil? || config[key].empty?) }
-      all_s3_settings = required_s3_vars.all? { |key| !(config[key].nil? || config[key].empty?) }
+      required_s3_vars = %w(s3_bucket s3_region).freeze
+      any_required_s3_vars = required_s3_vars.any? { |key| !config[key].nil? }
+      all_required_s3_vars = required_s3_vars.all? { |key| !(config[key].nil? || config[key].empty?) }
 
-      if any_s3_settings && !all_s3_settings
-        raise IncompleteConfig, "Got some, but not all, of the required S3 configs. Must provide none or all of #{required_s3_vars} to configure cookbook storage in an S3 bucket."
+      if any_required_s3_vars && !all_required_s3_vars
+        raise IncompleteConfig, "Got some, but not all, of the required S3 configs. Must provide #{required_s3_vars} to configure cookbook storage in an S3 bucket."
+      end
+
+      static_s3_creds = %w(s3_access_key_id s3_secret_access_key).freeze
+      any_static_s3_creds = static_s3_creds.any? { |key| !config[key].nil? }
+      all_static_s3_creds = static_s3_creds.all? { |key| !(config[key].nil? || config[key].empty?) }
+
+      if any_static_s3_creds && !all_static_s3_creds
+        raise IncompleteConfig, "Got some, but not all, of AWS user credentials. To access an S3 bucket with IAM user credentials, provide #{static_s3_creds}. To use an IAM role, do not set these."
       end
 
       if config['s3_bucket'] =~ /\./ &&
