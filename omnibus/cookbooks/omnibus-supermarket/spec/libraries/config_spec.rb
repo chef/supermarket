@@ -44,20 +44,62 @@ describe Supermarket::Config do
     let(:all_required_settings) do
       {
         's3_bucket' => 'bettergetabucket',
-        's3_access_key_id' => 'thisismyidtherearemanylikeitbutthisoneismine',
-        's3_secret_access_key' => 'superdupersecret',
         's3_region' => 'over-yonder-1',
       }
     end
-    it 'passes if all required S3 config values are present' do
-      expect { described_class.audit_s3_config(all_required_settings) }
-        .not_to raise_error
+    let(:default_settings) do
+      { 's3_bucket' => nil, 's3_region' => nil }
     end
 
-    it 'fails the chef run if S3 config is incomplete' do
-      incomplete_s3_config = { 's3_bucket' => 'bettergetabucket' }
-      expect { described_class.audit_s3_config(incomplete_s3_config) }
-        .to raise_error(Supermarket::Config::IncompleteConfig)
+    context 'with settings required to enable S3 storage' do
+      it 'passes if all required settings are present' do
+        expect { described_class.audit_s3_config(all_required_settings) }
+          .not_to raise_error
+      end
+
+      it 'passes if all required settings set to defaults' do
+        expect { described_class.audit_s3_config(default_settings) }
+          .not_to raise_error
+      end
+
+      it 'fails the chef run if required settings are incomplete' do
+        incomplete_s3_config = default_settings.merge('s3_bucket' => 'bettergetabucket')
+        expect { described_class.audit_s3_config(incomplete_s3_config) }
+          .to raise_error(Supermarket::Config::IncompleteConfig)
+      end
+
+      it 'fails the chef run if required settings are set to empty values' do
+        blank_s3_config = default_settings.merge('s3_bucket' => '', 's3_region' => '')
+        expect { described_class.audit_s3_config(blank_s3_config) }
+          .to raise_error(Supermarket::Config::IncompleteConfig)
+      end
+    end
+
+    context 'with static IAM user credentials' do
+      let(:all_required_static_credentials) do
+        {
+          's3_access_key_id' => 'thisismyidtherearemanylikeitbutthisoneismine',
+          's3_secret_access_key' => 'superdupersecret',
+        }
+      end
+
+      it 'passes if all required credentials are present' do
+        with_static_credentials = all_required_settings.merge(all_required_static_credentials)
+        expect { described_class.audit_s3_config(with_static_credentials) }
+          .not_to raise_error
+      end
+
+      it 'fails the chef run if some but not all static credentials are present' do
+        incomplete_static_credentials = all_required_settings.merge('s3_access_key_id' => 'thisismyidtherearemanylikeitbutthisoneismine')
+        expect { described_class.audit_s3_config(incomplete_static_credentials) }
+          .to raise_error(Supermarket::Config::IncompleteConfig)
+      end
+
+      it 'fails the chef run if the static credentials are set to empty values' do
+        blank_static_credentials = all_required_settings.merge('s3_access_key_id' => '', 's3_secret_access_key' => '')
+        expect { described_class.audit_s3_config(blank_static_credentials) }
+          .to raise_error(Supermarket::Config::IncompleteConfig)
+      end
     end
 
     context 'with compatible S3 bucket configurations' do

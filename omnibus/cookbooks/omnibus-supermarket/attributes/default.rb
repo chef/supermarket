@@ -445,23 +445,34 @@ default['supermarket']['robots_disallow'] = nil
 # If these are not set, uploaded cookbooks will be stored on the local
 # filesystem (this means that running multiple application servers will require
 # some kind of shared storage, which is not provided.)
-#
-# If these are set, cookbooks will be uploaded to the to the given S3 bucket
-# using the provided credentials. A cdn_url can be used for an alias if the
-# given S3 bucket is behind a CDN like CloudFront.
-default['supermarket']['s3_access_key_id'] = nil
+
+# #### Required S3
+
+# If these are set, cookbooks will be uploaded to the to the given S3 bucket.
+# The default is to rely on an IAM role with access to the bucket be attached to
+# the compute resources running Supermarket.
 default['supermarket']['s3_bucket'] = nil
-default['supermarket']['s3_secret_access_key'] = nil
+default['supermarket']['s3_region'] = nil
+
+# #### Optional S3
+
+# A cdn_url can be used for an alias if the S3 bucket is behind a CDN like CloudFront.
 default['supermarket']['cdn_url'] = nil
 
-# ### Additional S3 Settings
-# By default, Supermarket will use domain style S3 urls that look like this
-# bucketname.s3.amazonaws.com
-# This style of url will work across all regions
+# If using IAM user credentials for bucket access, set these.
+default['supermarket']['s3_access_key_id'] = nil
+default['supermarket']['s3_secret_access_key'] = nil
+
+# By default, Supermarket will use domain style S3 urls that look like this:
+#
+#   bucketname.s3.amazonaws.com
+#
+# This style of url will work across all regions.
+#
 # If this is set as ':s3_path_url', the S3 urls will look like this
 # s3.amazonaws.com/bucketname.
 # This will only work if the S3 bucket is in N. Virginia.
-# If your S3 bucket name as had "." in it - i.e. "my.bucket.name",
+# If your S3 bucket name contains any periods "." - i.e. "my.bucket.name",
 # you must use the path style url and your S3 bucket must be in N. Virginia
 default['supermarket']['s3_domain_style'] = ':s3_domain_url'
 
