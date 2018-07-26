@@ -18,7 +18,6 @@
 #
 
 include_recipe 'omnibus-supermarket::config'
-include_recipe 'sysctl'
 include_recipe 'enterprise::runit'
 
 # Create directories
@@ -43,7 +42,7 @@ template "#{node['supermarket']['redis']['directory']}/etc/redis.conf" do
 end
 
 # Redis gives you a warning if you don't do this
-sysctl_param 'vm.overcommit_memory' do
+sysctl 'vm.overcommit_memory' do
   value 1
 end
 

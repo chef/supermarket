@@ -18,13 +18,12 @@
 #
 
 include_recipe 'omnibus-supermarket::config'
-include_recipe 'sysctl'
 include_recipe 'enterprise::runit'
 
 # These sysctl settings make the shared memory settings work for larger
 # instances
 %w[ shmmax shmall ].each do |param|
-  sysctl_param "kernel.#{param}" do
+  sysctl "kernel.#{param}" do
     value node['supermarket']['postgresql'][param]
   end
 end
