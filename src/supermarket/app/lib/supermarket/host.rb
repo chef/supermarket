@@ -7,5 +7,9 @@ module Supermarket
         "#{ENV['PROTOCOL']}://#{ENV['FQDN']}"
       end
     end
+
+    def self.secure_session_cookie?
+      ENV['PROTOCOL'] == 'https'
+    end
   end
 end
