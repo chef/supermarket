@@ -30,4 +30,16 @@ describe Supermarket::Host do
       end
     end
   end
+
+  describe "#secure_session_cookie?" do
+    it "returns true if using SSL" do
+      allow(ENV).to receive(:[]).with('PROTOCOL').and_return('https')
+      expect(described_class.secure_session_cookie?).to be true
+    end
+
+    it "returns false if not using SSL" do
+      allow(ENV).to receive(:[]).with('PROTOCOL').and_return('http')
+      expect(described_class.secure_session_cookie?).to be false
+    end
+  end
 end
