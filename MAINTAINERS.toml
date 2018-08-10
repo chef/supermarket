@@ -27,9 +27,10 @@ a maintainer, lieutenant, or the project lead.
       text = """
 The core Supermarket application is a Rails application.  This component manages this Rails application.
 """
-      lieutenant = "nellshamrell"
+      lieutenant = "robbkidd"
       maintainers = [
-        "robbkidd"
+        "nellshamrell",
+        "pwelch"
       ]
 
    [Org.Components.OmnibusSupermarket]
@@ -37,9 +38,9 @@ The core Supermarket application is a Rails application.  This component manages
      text = """
 Supermarket is packaged in an Omnibus package to allow easy deploy with all required services included.
 """
-      lieutenant = "nellshamrell"
+      lieutenant = "robbkidd"
       maintainers = [
-        "robbkidd"
+        "nellshamrell"
       ]
 
 [people]
@@ -50,6 +51,10 @@ Supermarket is packaged in an Omnibus package to allow easy deploy with all requ
   [people.nellshamrell]
     Name = "Nell Shamrell-Harrington"
     GitHub = "nellshamrell"
+
+  [people.pwelch]
+    Name = "Paul Welch"
+    GitHub = "pwelch"
 
   [people.robbkidd]
     Name = "Robb Kidd"
