@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.1.73 -->
+## [3.1.73](https://github.com/chef/supermarket/tree/3.1.73) (2018-08-10)
+
+#### Merged Pull Requests
+- set session cookie to secure when sent over an HTTPS connection [#1750](https://github.com/chef/supermarket/pull/1750) ([Vasu1105](https://github.com/Vasu1105))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.1.72 -->
+### Changes since 3.1.72 release
+
+#### Merged Pull Requests
+- set session cookie to secure when sent over an HTTPS connection [#1750](https://github.com/chef/supermarket/pull/1750) ([Vasu1105](https://github.com/Vasu1105)) <!-- 3.1.73 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
