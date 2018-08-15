@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Ruby version isn't specified here anymore, as it's pinned in Omnibus
 # https://github.com/chef/omnibus-supermarket/blob/master/config/projects/supermarket.rb
 
-gem 'fieri', path: '../fieri'
+gem 'fieri', path: 'engines/fieri'
 gem 'rails', '~> 5.0.0'
 
 gem 'omniauth'
