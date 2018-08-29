@@ -2,12 +2,6 @@ require_relative 'boot'
 require 'dotenv'
 require 'rails/all'
 
-# Workaround to avoid the "Celluloid is not yet started; use Celluloid.boot" error
-# with Celluloid 0.17.4 https://github.com/endofunky/sidetiq/issues/160
-require 'celluloid'
-Celluloid.boot
-require 'sidetiq'
-
 Dotenv.overload('.env', ".env.#{Rails.env}").tap do |env|
   if env.empty?
     fail 'Cannot run Supermarket without a .env file.'
