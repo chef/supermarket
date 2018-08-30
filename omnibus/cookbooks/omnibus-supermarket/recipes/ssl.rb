@@ -57,7 +57,7 @@ if node['supermarket']['ssl']['enabled']
     ssl_keyfile = File.join(supermarket_ca_dir, "#{node['supermarket']['fqdn']}.key")
     ssl_crtfile = File.join(supermarket_ca_dir, "#{node['supermarket']['fqdn']}.crt")
 
-    openssl_x509 ssl_crtfile do
+    openssl_x509_certificate ssl_crtfile do
       common_name node['supermarket']['fqdn']
       org node['supermarket']['ssl']['company_name']
       org_unit node['supermarket']['ssl']['organizational_unit_name']
