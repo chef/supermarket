@@ -96,7 +96,7 @@ matrix:
       addons:
         apt:
           sources:
-            - chef-stable-precise
+            - chef-stable-trusty
           packages:
             - chefdk
       cache:
@@ -113,7 +113,7 @@ matrix:
       addons:
         apt:
           sources:
-            - chef-stable-precise
+            - chef-stable-trusty
           packages:
             - chefdk
       cache:
