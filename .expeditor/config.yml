@@ -18,6 +18,13 @@ github:
   # details from the Pull Request via the `built_in:update_changelog` merge_action.
   changelog_file: "CHANGELOG.md"
 
+changelog:
+  categories:
+    - "Feature": "New Features"
+    - "Enhancement": "Enhancements"
+    - "Bug": "Bug Fixes"
+    - "Security": "Security Fixes"
+
 # These actions are taken, in order they are specified, anytime a Pull Request is merged.
 merge_actions:
   - built_in:bump_version:
