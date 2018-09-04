@@ -16,6 +16,12 @@ class Account < ApplicationRecord
   scope :for, ->(id) { where(provider: id) }
   scope :with_username, ->(username) { where(username: username) }
 
+  # this query gets to define "soon"
+  def self.tokens_expiring_soon(nowish)
+    soon = nowish + 25.minutes + 1.second
+    where(oauth_expires: nowish..soon)
+  end
+
   private
 
   #

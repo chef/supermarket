@@ -37,5 +37,21 @@ describe Account do
         expect(Account.with_username('solidsnake').first!).to eql(account)
       end
     end
+
+    describe 'tokens_expiring_soon' do
+      it 'returns accounts whose oauth2 access token will expire soon' do
+        nowish = Time.zone.now
+
+        [-0.1, 0, 12.5, 25, 26.1].each do |expiry|
+          create(:user).tap do |user|
+            user.chef_account.update_attributes!(
+              oauth_expires: nowish + expiry.minutes
+            )
+          end
+        end
+
+        expect(Account.tokens_expiring_soon(nowish).count).to eq(3)
+      end
+    end
   end
 end

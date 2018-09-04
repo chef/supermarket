@@ -4,6 +4,19 @@ redis_for_job_queue = ENV['REDIS_JOBQ_URL'].presence ||
 
 Sidekiq.configure_server do |config|
   config.redis = { url: redis_for_job_queue }
+
+  # make Sidekiq load the schedule, because Redis
+  # probably reachable at this point
+  Sidekiq::Cron::Job.load_from_hash(
+    'Daily refresh of the sitemap' => {
+      class: 'SitemapRefreshWorker',
+      cron: '@daily'
+    },
+    'Schedule refresh of expiring tokens' => {
+      class: 'OauthTokenRefreshScheduleWorker',
+      cron: '*/5 * * * *'
+    }
+  )
 end
 
 Sidekiq.configure_client do |config|

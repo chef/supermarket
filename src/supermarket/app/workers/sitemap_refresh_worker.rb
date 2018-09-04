@@ -6,9 +6,6 @@ require 'sitemap_generator'
 #
 class SitemapRefreshWorker
   include Sidekiq::Worker
-  include Sidetiq::Schedulable
-
-  recurrence { daily }
 
   #
   # Refresh the sitemap and ping search engines using the SitemapGenerator
