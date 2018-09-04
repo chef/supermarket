@@ -1,14 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.75 -->
-## [3.1.75](https://github.com/chef/supermarket/tree/3.1.75) (2018-08-21)
+<!-- latest_release 3.1.76 -->
+## [3.1.76](https://github.com/chef/supermarket/tree/3.1.76) (2018-09-04)
 
-#### Merged Pull Requests
-- upgrade to OpenSSL 1.0.2p [#1752](https://github.com/chef/supermarket/pull/1752) ([robbkidd](https://github.com/robbkidd))
+#### Bug Fixes
+- replace periodic job scheduler with one that is maintained [#1756](https://github.com/chef/supermarket/pull/1756) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.72 -->
 ### Changes since 3.1.72 release
+
+#### Bug Fixes
+- replace periodic job scheduler with one that is maintained [#1756](https://github.com/chef/supermarket/pull/1756) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.76 -->
 
 #### Merged Pull Requests
 - upgrade to OpenSSL 1.0.2p [#1752](https://github.com/chef/supermarket/pull/1752) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.75 -->
