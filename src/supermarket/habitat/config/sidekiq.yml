@@ -1,0 +1,6 @@
+---
+:concurrency: {{cfg.sidekiq.concurrency}}
+:timeout: {{cfg.sidekiq.timeout}}
+:pidfile: {{pkg.svc_var_path}}/sidekiq.pid
+:queues:
+  - default

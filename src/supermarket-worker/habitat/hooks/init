@@ -1,0 +1,5 @@
+#!{{pkgPathFor "core/bash"}}/bin/bash -e
+
+if [[ ! -d /hab/svc/supermarket ]]; then
+  ln -s {{pkg.svc_path}} /hab/svc/supermarket
+fi
