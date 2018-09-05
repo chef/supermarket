@@ -51,10 +51,11 @@ merge_actions:
 # within Chef's internal artifact storage system.
 #
 # TODO: add promoted_to_unstable action to update changelog with modified omnibus components
-artifact_actions:
-  promoted_to_unstable:
-    - built_in:update_acc
-  promoted_to_current:
-  promoted_to_stable:
-    - built_in:rollover_changelog
-    - built_in:notify_chefio_slack_channels
+subscriptions:
+  - workload: artifact_published:unstable:supermarket:*
+    actions:
+      - built_in:update_acc
+  - workload: artifact_published:stable:supermarket:*
+    actions:
+      - built_in:rollover_changelog
+      - built_in:notify_chefio_slack_channels
