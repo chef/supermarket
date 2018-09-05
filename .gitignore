@@ -8,3 +8,4 @@
 *_override.tf
 # License Scout
 license-cache
+results/
