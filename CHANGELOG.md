@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.76 -->
-## [3.1.76](https://github.com/chef/supermarket/tree/3.1.76) (2018-09-04)
+<!-- latest_release 3.1.77 -->
+## [3.1.77](https://github.com/chef/supermarket/tree/3.1.77) (2018-09-05)
 
-#### Bug Fixes
-- replace periodic job scheduler with one that is maintained [#1756](https://github.com/chef/supermarket/pull/1756) ([robbkidd](https://github.com/robbkidd))
+#### Merged Pull Requests
+- habitat skeleton to get started [#1761](https://github.com/chef/supermarket/pull/1761) ([jtimberman](https://github.com/jtimberman))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.72 -->
@@ -14,6 +14,7 @@
 - replace periodic job scheduler with one that is maintained [#1756](https://github.com/chef/supermarket/pull/1756) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.76 -->
 
 #### Merged Pull Requests
+- habitat skeleton to get started [#1761](https://github.com/chef/supermarket/pull/1761) ([jtimberman](https://github.com/jtimberman)) <!-- 3.1.77 -->
 - upgrade to OpenSSL 1.0.2p [#1752](https://github.com/chef/supermarket/pull/1752) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.75 -->
 - reorganize the fieri subcomponent to make supermarket more container friendly [#1704](https://github.com/chef/supermarket/pull/1704) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.74 -->
 - set session cookie to secure when sent over an HTTPS connection [#1750](https://github.com/chef/supermarket/pull/1750) ([Vasu1105](https://github.com/Vasu1105)) <!-- 3.1.73 -->
