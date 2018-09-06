@@ -12,7 +12,7 @@ a maintainer, lieutenant, or the project lead.
 
 # Project Lead
 
-* [Nathen Harvey](https://github.com/nathenharvey)
+* [Mike Krasnow](https://github.com/krasnow)
 
 ## Components
 
