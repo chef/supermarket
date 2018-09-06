@@ -38,8 +38,8 @@
       </div>
 
       <div class="content <%= current_user.install_preference == 'knife' ? 'active' : '' %>" id="knife">
-        <pre class="install">knife cookbook site install <%= cookbook.name %></pre>
-        <pre class="install">knife cookbook site download <%= cookbook.name %></pre>
+        <pre class="install">knife supermarket install <%= cookbook.name %></pre>
+        <pre class="install">knife supermarket download <%= cookbook.name %></pre>
       </div>
     <% else %>
       <div class="content active" id="berkshelf">
@@ -51,8 +51,8 @@
       </div>
 
       <div class="content" id="knife">
-        <pre class="install">knife cookbook site install <%= cookbook.name %></pre>
-        <pre class="install">knife cookbook site download <%= cookbook.name %></pre>
+        <pre class="install">knife supermarket install <%= cookbook.name %></pre>
+        <pre class="install">knife supermarket download <%= cookbook.name %></pre>
       </div>
     <% end %>
   </div>

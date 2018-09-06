@@ -57,7 +57,7 @@ server {
     set $redirect_to_canonical 0;
   }
 
-  # This stops redirects for knife cookbook site share, which uses net/http,
+  # This stops redirects for knife supermarket share, which uses net/http,
   # and thus 'Ruby' as the user agent.
   if ($http_user_agent ~ 'Ruby') {
     set $redirect_to_canonical 0;
