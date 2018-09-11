@@ -35,9 +35,8 @@ http {
   <% unless @nginx['disable_access_log'] -%>
   access_log	<%= @nginx['log_dir'] %>/access.log supermarket;
   <% end %>
-  <% if @nginx['server_tokens'] -%>
-  server_tokens <%= @nginx['server_tokens'] %>;
-  <% end -%>
+  
+  server_tokens off;
 
   sendfile <%= @nginx['sendfile'] %>;
   tcp_nopush on;
