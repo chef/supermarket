@@ -1,14 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.79 -->
-## [3.1.79](https://github.com/chef/supermarket/tree/3.1.79) (2018-09-06)
+<!-- latest_release 3.1.80 -->
+## [3.1.80](https://github.com/chef/supermarket/tree/3.1.80) (2018-09-12)
 
-#### Merged Pull Requests
-- update ffi gem to reduce CVE audit noise [#1763](https://github.com/chef/supermarket/pull/1763) ([robbkidd](https://github.com/robbkidd))
+#### Security Fixes
+- update rubyzip [#1766](https://github.com/chef/supermarket/pull/1766) ([rhass](https://github.com/rhass))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.72 -->
 ### Changes since 3.1.72 release
+
+#### Security Fixes
+- update rubyzip [#1766](https://github.com/chef/supermarket/pull/1766) ([rhass](https://github.com/rhass)) <!-- 3.1.80 -->
 
 #### Bug Fixes
 - replace periodic job scheduler with one that is maintained [#1756](https://github.com/chef/supermarket/pull/1756) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.76 -->
