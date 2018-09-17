@@ -66,10 +66,24 @@ control "proxy" do
     its('protocols') { should include 'tcp' }
   end
 
+  describe "http GET to Port #{property['supermarket']['nginx']['non_ssl_port']}" do
+    subject { http("http://localhost:#{property['supermarket']['nginx']['non_ssl_port']}") }
+    it "should not include server version number in response headers" do
+      expect(subject.headers.server).to cmp("nginx")
+    end
+  end
+
   if property['supermarket']['ssl']['enabled'] && property['supermarket']['nginx']['force_ssl']
     describe port(property['supermarket']['nginx']['ssl_port']) do
       it { should be_listening }
       its('protocols') { should include 'tcp' }
+    end
+
+    describe "http GET to Port #{property['supermarket']['nginx']['ssl_port']}" do
+      subject { http("http://localhost:#{property['supermarket']['nginx']['ssl_port']}", ssl_verify: false) }
+      it "should not include server version number in response headers" do
+        expect(subject.headers.server).to cmp("nginx")
+      end
     end
   end
 end
