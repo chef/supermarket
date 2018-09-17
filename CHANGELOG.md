@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.80 -->
-## [3.1.80](https://github.com/chef/supermarket/tree/3.1.80) (2018-09-12)
+<!-- latest_release 3.1.81 -->
+## [3.1.81](https://github.com/chef/supermarket/tree/3.1.81) (2018-09-17)
 
 #### Security Fixes
-- update rubyzip [#1766](https://github.com/chef/supermarket/pull/1766) ([rhass](https://github.com/rhass))
+- omit web server version from response headers [#1765](https://github.com/chef/supermarket/pull/1765) ([Nimesh-Msys](https://github.com/Nimesh-Msys))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.72 -->
 ### Changes since 3.1.72 release
 
 #### Security Fixes
+- omit web server version from response headers [#1765](https://github.com/chef/supermarket/pull/1765) ([Nimesh-Msys](https://github.com/Nimesh-Msys)) <!-- 3.1.81 -->
 - update rubyzip [#1766](https://github.com/chef/supermarket/pull/1766) ([rhass](https://github.com/rhass)) <!-- 3.1.80 -->
 
 #### Bug Fixes
