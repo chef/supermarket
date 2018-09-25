@@ -1,0 +1,99 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: <%= ENV['APP'] %>
+---
+apiVersion: v1
+data:
+  .dockerconfigjson: <%= ENV['DOCKER_CONFIG_JSON'] %>
+kind: Secret
+metadata:
+  name: registry-secret
+  namespace: <%= ENV['APP'] %>
+type: kubernetes.io/dockerconfigjson
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: default
+  namespace: <%= ENV['APP'] %>
+imagePullSecrets:
+- name: registry-secret
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: habitat-operator
+  namespace: <%= ENV['APP'] %>
+imagePullSecrets:
+- name: registry-secret
+---
+apiVersion: habitat.sh/v1beta1
+kind: Habitat
+metadata:
+  name: <%= ENV['APP'] %>-<%= ENV['ENVIRONMENT'] %>
+  namespace: <%= ENV['APP'] %>
+  labels:
+    app: <%= ENV['APP'] %>-<%= ENV['ENVIRONMENT'] %>
+customVersion: v1beta2
+spec:
+  v1beta2:
+    image: chefops/<%= ENV['APP'] %>:<%= ENV['IMAGE_TAG'] %>
+    count: 1
+    service:
+      name: <%= ENV['APP'] %>
+      topology: standalone
+      configSecretName: <%= ENV['APP'] %>-<%= ENV['ENVIRONMENT'] == 'production' ? ENV['ENVIRONMENT'] : 'nonproduction' %>
+---
+apiVersion: habitat.sh/v1beta1
+kind: Habitat
+metadata:
+  name: <%= ENV['APP'] %>-worker-<%= ENV['ENVIRONMENT'] %>
+  namespace: <%= ENV['APP'] %>
+  labels:
+    app: <%= ENV['APP'] %>-worker-<%= ENV['ENVIRONMENT'] %>
+customVersion: v1beta2
+spec:
+  v1beta2:
+    image: chefops/<%= ENV['APP'] %>-worker:<%= ENV['WORKER_IMAGE_TAG'] %>
+    count: 1
+    service:
+      name: <%= ENV['APP'] %>-worker
+      topology: standalone
+      configSecretName: <%= ENV['APP'] %>-<%= ENV['ENVIRONMENT'] == 'production' ? ENV['ENVIRONMENT'] : 'nonproduction' %>
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    <%- if ENV['ENVIRONMENT'] == 'production' -%>
+    service.beta.kubernetes.io/aws-load-balancer-access-log-enabled: "true"
+    service.beta.kubernetes.io/aws-load-balancer-access-log-emit-interval: "60"
+    service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-name: "<%= ENV['ELB_ACCESS_LOG_BUCKET_NAME'] %>"
+    service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-prefix: "<%= ENV['APP'] %>-<%= ENV['ENVIRONMENT'] %>"
+    <%- end -%>
+    <%- if ENV.has_key?('AWS_SSL_ARN') -%>
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: <%= ENV['AWS_SSL_ARN'] %>
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+    <%- end -%>
+  labels:
+    run: <%= ENV['APP'] %>-<%= ENV['ENVIRONMENT'] %>
+  name: <%= ENV['APP'] %>-<%= ENV['ENVIRONMENT'] %>
+  namespace: <%= ENV['APP'] %>
+spec:
+  ports:
+  <%- if ENV.has_key?('AWS_SSL_ARN') -%>
+  - name: https
+    port: 443
+  <%- else -%>
+  - name: http
+    port: 80
+    <%- end -%>
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    habitat-name: <%= ENV['APP'] %>-<%= ENV['ENVIRONMENT'] %>
+  sessionAffinity: None
+  type: LoadBalancer
