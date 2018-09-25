@@ -1,38 +1,35 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.81 -->
-## [3.1.81](https://github.com/chef/supermarket/tree/3.1.81) (2018-09-17)
-
-#### Security Fixes
-- omit web server version from response headers [#1765](https://github.com/chef/supermarket/pull/1765) ([Nimesh-Msys](https://github.com/Nimesh-Msys))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.1.72 -->
-### Changes since 3.1.72 release
-
-#### Security Fixes
-- omit web server version from response headers [#1765](https://github.com/chef/supermarket/pull/1765) ([Nimesh-Msys](https://github.com/Nimesh-Msys)) <!-- 3.1.81 -->
-- update rubyzip [#1766](https://github.com/chef/supermarket/pull/1766) ([rhass](https://github.com/rhass)) <!-- 3.1.80 -->
-
-#### Bug Fixes
-- replace periodic job scheduler with one that is maintained [#1756](https://github.com/chef/supermarket/pull/1756) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.76 -->
-
-#### Merged Pull Requests
-- update ffi gem to reduce CVE audit noise [#1763](https://github.com/chef/supermarket/pull/1763) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.79 -->
-- change &quot;knife cookbook site&quot; references to &quot;knife supermarket&quot; [#1762](https://github.com/chef/supermarket/pull/1762) ([tas50](https://github.com/tas50)) <!-- 3.1.78 -->
-- habitat skeleton to get started [#1761](https://github.com/chef/supermarket/pull/1761) ([jtimberman](https://github.com/jtimberman)) <!-- 3.1.77 -->
-- upgrade to OpenSSL 1.0.2p [#1752](https://github.com/chef/supermarket/pull/1752) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.75 -->
-- reorganize the fieri subcomponent to make supermarket more container friendly [#1704](https://github.com/chef/supermarket/pull/1704) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.74 -->
-- set session cookie to secure when sent over an HTTPS connection [#1750](https://github.com/chef/supermarket/pull/1750) ([Vasu1105](https://github.com/Vasu1105)) <!-- 3.1.73 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.1.81](https://github.com/chef/supermarket/tree/3.1.81) (2018-09-25)
+
+#### Bug Fixes
+- replace periodic job scheduler with one that is maintained [#1756](https://github.com/chef/supermarket/pull/1756) ([robbkidd](https://github.com/robbkidd))
+
+#### Security Fixes
+- update rubyzip [#1766](https://github.com/chef/supermarket/pull/1766) ([rhass](https://github.com/rhass))
+- omit web server version from response headers [#1765](https://github.com/chef/supermarket/pull/1765) ([Nimesh-Msys](https://github.com/Nimesh-Msys))
+
+#### Merged Pull Requests
+- set session cookie to secure when sent over an HTTPS connection [#1750](https://github.com/chef/supermarket/pull/1750) ([Vasu1105](https://github.com/Vasu1105))
+- reorganize the fieri subcomponent to make supermarket more container friendly [#1704](https://github.com/chef/supermarket/pull/1704) ([robbkidd](https://github.com/robbkidd))
+- upgrade to OpenSSL 1.0.2p [#1752](https://github.com/chef/supermarket/pull/1752) ([robbkidd](https://github.com/robbkidd))
+- habitat skeleton to get started [#1761](https://github.com/chef/supermarket/pull/1761) ([jtimberman](https://github.com/jtimberman))
+- change &quot;knife cookbook site&quot; references to &quot;knife supermarket&quot; [#1762](https://github.com/chef/supermarket/pull/1762) ([tas50](https://github.com/tas50))
+- update ffi gem to reduce CVE audit noise [#1763](https://github.com/chef/supermarket/pull/1763) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_stable_release -->
+
 ## [3.1.72](https://github.com/chef/supermarket/tree/3.1.72) (2018-07-19)
 
 #### Merged Pull Requests
 - update nokogiri to quiet gem audit finding [#1745](https://github.com/chef/supermarket/pull/1745) ([robbkidd](https://github.com/robbkidd))
 - fix markdown rendering links and images with unsafe protocols [#1746](https://github.com/chef/supermarket/pull/1746) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.1.70](https://github.com/chef/supermarket/tree/3.1.70) (2018-07-09)
 
