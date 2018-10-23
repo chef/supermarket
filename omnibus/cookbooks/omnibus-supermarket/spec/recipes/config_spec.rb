@@ -1,9 +1,8 @@
+require 'spec_helper'
+
 describe 'omnibus-supermarket::config' do
-  let(:chef_run) do
-    ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04') do |node|
-      node.automatic['memory']['total'] = '16000MB'
-    end.converge(described_recipe)
-  end
+  platform 'ubuntu', '16.04'
+  automatic_attributes['memory']['total'] = '16000MB'
 
   it 'creates the supermarket user' do
     expect(chef_run).to create_user('supermarket')

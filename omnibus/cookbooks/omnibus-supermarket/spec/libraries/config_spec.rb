@@ -24,6 +24,23 @@ describe Supermarket::Config do
   end
 
   describe '#audit_config' do
+    before(:each) do
+      allow(described_class).to receive(:audit_s3_config)
+      allow(described_class).to receive(:audit_fips_config)
+    end
+
+    it 'checks that the S3 configuration is valid' do
+      expect(described_class).to receive(:audit_s3_config).with(some: 'stuff')
+      described_class.audit_config(some: 'stuff')
+    end
+
+    it 'checks that the FIPS configuration is valid' do
+      expect(described_class).to receive(:audit_fips_config).with(some: 'stuff')
+      described_class.audit_config(some: 'stuff')
+    end
+  end
+
+  describe '#audit_s3_config' do
     let(:all_required_settings) do
       {
         's3_bucket' => 'bettergetabucket',
@@ -33,13 +50,13 @@ describe Supermarket::Config do
       }
     end
     it 'passes if all required S3 config values are present' do
-      expect { described_class.audit_config(all_required_settings) }
+      expect { described_class.audit_s3_config(all_required_settings) }
         .not_to raise_error
     end
 
     it 'fails the chef run if S3 config is incomplete' do
       incomplete_s3_config = { 's3_bucket' => 'bettergetabucket' }
-      expect { described_class.audit_config(incomplete_s3_config) }
+      expect { described_class.audit_s3_config(incomplete_s3_config) }
         .to raise_error(Supermarket::Config::IncompleteConfig)
     end
 
@@ -57,7 +74,7 @@ describe Supermarket::Config do
             's3_region' => s3_region,
             's3_domain_style' => s3_domain_style
           )
-          expect { described_class.audit_config(ok_config) }
+          expect { described_class.audit_s3_config(ok_config) }
             .not_to raise_error
         end
       end
@@ -75,8 +92,142 @@ describe Supermarket::Config do
             's3_region' => s3_region,
             's3_domain_style' => s3_domain_style
           )
-          expect { described_class.audit_config(incompatible_config) }
+          expect { described_class.audit_s3_config(incompatible_config) }
             .to raise_error(Supermarket::Config::IncompatibleConfig)
+        end
+      end
+    end
+  end
+
+  describe '#audit_fips_config' do
+    let(:default_config) do
+      { 'fips_enabled' => nil }
+    end
+
+    context 'when the installer was built to support FIPS' do
+      it 'does not raise' do
+        expect(described_class).to receive(:built_with_fips?).and_return(true)
+
+        expect { described_class.audit_fips_config(default_config) }
+          .not_to raise_error
+      end
+    end
+
+    context 'when the installer was not built to support FIPS' do
+      before(:each) do
+        expect(described_class).to receive(:built_with_fips?).and_return(false)
+      end
+
+      context 'and FIPS is not enabled in the kernel' do
+        before(:each) do
+          allow(described_class).to receive(:fips_enabled_in_kernel?).and_return(false)
+        end
+
+        it 'does not raise an error with the default config' do
+          expect { described_class.audit_fips_config(default_config) }
+            .not_to raise_error
+        end
+
+        it 'raises an error if user has explicitly enabled FIPS in config' do
+          explicitly_enable_fips = { 'fips_enabled' => true }
+
+          expect { described_class.audit_fips_config(explicitly_enable_fips) }
+            .to raise_error(Supermarket::Config::IncompatibleConfig)
+        end
+      end
+
+      it 'raises an error if FIPS is enabled in the kernel' do
+        expect(described_class).to receive(:fips_enabled_in_kernel?).and_return(true)
+
+        expect { described_class.audit_fips_config(default_config) }
+          .to raise_error(Supermarket::Config::IncompatibleConfig)
+      end
+    end
+  end
+
+  describe '#maybe_turn_on_fips' do
+    let(:node) { Chef::Node.new() }
+
+    context 'with the default setting' do
+      before(:each) do
+        node.default['supermarket']['fips_enabled'] = nil
+      end
+
+      context 'and a kernel without FIPS enabled (the usual path)' do
+        before(:each) do
+          allow(described_class).to receive(:fips_enabled_in_kernel?).and_return(false)
+        end
+
+        it 'does not enable FIPS' do
+          described_class.maybe_turn_on_fips(node)
+          expect(node['supermarket']['fips_enabled']).to be false
+        end
+      end
+
+      context 'and a kernel with FIPS enabled' do
+        before(:each) do
+          allow(described_class).to receive(:fips_enabled_in_kernel?).and_return(true)
+        end
+
+        it 'enables FIPS and logs messages about it' do
+          expect(Chef::Log).to receive(:warn).with('Detected FIPS-enabled kernel; enabling FIPS 140-2 for Supermarket services.')
+          described_class.maybe_turn_on_fips(node)
+          expect(node['supermarket']['fips_enabled']).to be true
+        end
+      end
+    end
+
+    context 'with fips_enabled set to true' do
+      before(:each) do
+        node.consume_attributes('supermarket' => { 'fips_enabled' => true })
+      end
+
+      it 'enables FIPS and logs messages about it' do
+        expect(Chef::Log).to receive(:warn).with('Overriding FIPS detection: FIPS 140-2 mode is ON.')
+        described_class.maybe_turn_on_fips(node)
+        expect(node['supermarket']['fips_enabled']).to be true
+      end
+    end
+
+    context 'with fips_enabled set to false' do
+      before(:each) do
+        node.consume_attributes('supermarket' => { 'fips_enabled' => false })
+      end
+
+      context 'and a kernel without FIPS enabled' do
+        before(:each) do
+          allow(described_class).to receive(:fips_enabled_in_kernel?).and_return(false)
+        end
+
+        it 'does not enable FIPS' do
+          described_class.maybe_turn_on_fips(node)
+          expect(node['supermarket']['fips_enabled']).to be false
+        end
+      end
+
+      context 'and a kernel with FIPS enabled' do
+        before(:each) do
+          allow(described_class).to receive(:fips_enabled_in_kernel?).and_return(true)
+        end
+
+        it 'enables FIPS anyway and logs messages about why you gotta FIPS when it is enabled in the kernel' do
+          expect(Chef::Log).to receive(:warn).with('Detected FIPS-enabled kernel; enabling FIPS 140-2 for Supermarket services.')
+          expect(Chef::Log).to receive(:warn).with('fips_enabled was set to false; ignoring this and setting to true or else Supermarket services will fail with crypto errors.')
+          described_class.maybe_turn_on_fips(node)
+          expect(node['supermarket']['fips_enabled']).to be true
+        end
+      end
+    end
+
+    context 'with fips_enabled set to anything other than nil or boolean true/false' do
+      ['true', 'false', 'FALSE!', 'PLEASE! TURN THIS OFF!', 42].each do |anything|
+        it "assumes the #{anything.class} '#{anything}' means 'turn it on' and enables FIPS" do
+          node.consume_attributes('supermarket' => { 'fips_enabled' => anything })
+
+          expect(Chef::Log).to receive(:warn).with('Overriding FIPS detection: FIPS 140-2 mode is ON.')
+          expect(Chef::Log).to receive(:warn).with('fips_enabled is set to something other than boolean true/false; assuming FIPS mode should be enabled.')
+          described_class.maybe_turn_on_fips(node)
+          expect(node['supermarket']['fips_enabled']).to be true
         end
       end
     end

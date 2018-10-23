@@ -58,18 +58,68 @@ class Supermarket
       node.consume_attributes('supermarket' => secrets)
     end
 
-    def self.audit_config(node)
+    def self.audit_config(config)
+      audit_s3_config(config)
+      audit_fips_config(config)
+    end
+
+    def self.audit_s3_config(config)
       required_s3_vars = %w(s3_bucket s3_access_key_id s3_secret_access_key s3_region).freeze
-      any_s3_settings = required_s3_vars.any? { |key| !(node[key].nil? || node[key].empty?) }
-      all_s3_settings = required_s3_vars.all? { |key| !(node[key].nil? || node[key].empty?) }
+      any_s3_settings = required_s3_vars.any? { |key| !(config[key].nil? || config[key].empty?) }
+      all_s3_settings = required_s3_vars.all? { |key| !(config[key].nil? || config[key].empty?) }
 
       if any_s3_settings && !all_s3_settings
         raise IncompleteConfig, "Got some, but not all, of the required S3 configs. Must provide none or all of #{required_s3_vars} to configure cookbook storage in an S3 bucket."
       end
 
-      if node['s3_bucket'] =~ /\./ &&
-         (node['s3_domain_style'] != ':s3_path_url' || node['s3_region'] != 'us-east-1')
+      if config['s3_bucket'] =~ /\./ &&
+         (config['s3_domain_style'] != ':s3_path_url' || config['s3_region'] != 'us-east-1')
         raise IncompatibleConfig, "Incompatible S3 bucket settings. If the bucket name contains periods, the bucket must be in us-east-1 and the domain style must be :s3_path_url.\nAmazon recommends against periods in bucket names. See: https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html"
+      end
+    end
+
+    def self.audit_fips_config(config)
+      unless built_with_fips?(config['install_directory'])
+        if fips_enabled_in_kernel?
+          raise IncompatibleConfig, 'Detected FIPS is enabled in the kernel, but FIPS is not supported by this installer.'
+        end
+        if config['fips_enabled']
+          raise IncompatibleConfig, 'You have enabled FIPS in your configuration, but FIPS is not supported by this installer.'
+        end
+      end
+    end
+
+    def self.built_with_fips?(install_directory)
+      File.exist?("#{install_directory}/embedded/lib/fipscanister.o")
+    end
+
+    def self.fips_enabled_in_kernel?
+      fips_path = '/proc/sys/crypto/fips_enabled'
+      (File.exist?(fips_path) && File.read(fips_path).chomp != '0')
+    end
+
+    def self.maybe_turn_on_fips(node)
+      # the compexity of this method is currently needed to figure out what words to display
+      # to the poor human who has to deal with FIPS
+      case node['supermarket']['fips_enabled']
+      when nil
+        # the default value, set fips mode based on whether it is enabled in the kernel
+        node.normal['supermarket']['fips_enabled'] = Supermarket::Config.fips_enabled_in_kernel?
+        if node['supermarket']['fips_enabled']
+          Chef::Log.warn('Detected FIPS-enabled kernel; enabling FIPS 140-2 for Supermarket services.')
+        end
+      when false
+        node.normal['supermarket']['fips_enabled'] = Supermarket::Config.fips_enabled_in_kernel?
+        if node['supermarket']['fips_enabled']
+          Chef::Log.warn('Detected FIPS-enabled kernel; enabling FIPS 140-2 for Supermarket services.')
+          Chef::Log.warn('fips_enabled was set to false; ignoring this and setting to true or else Supermarket services will fail with crypto errors.')
+        end
+      when true
+        Chef::Log.warn('Overriding FIPS detection: FIPS 140-2 mode is ON.')
+      else
+        node.normal['supermarket']['fips_enabled'] = true
+        Chef::Log.warn('fips_enabled is set to something other than boolean true/false; assuming FIPS mode should be enabled.')
+        Chef::Log.warn('Overriding FIPS detection: FIPS 140-2 mode is ON.')
       end
     end
 

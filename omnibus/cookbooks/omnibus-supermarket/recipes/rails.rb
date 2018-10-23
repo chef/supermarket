@@ -49,6 +49,7 @@ template 'rails.nginx.conf' do
   variables(nginx: node['supermarket']['nginx'],
             rails: node['supermarket']['rails'],
             fqdn: node['supermarket']['fqdn'],
+            fips_enabled: node['supermarket']['fips_enabled'],
             ssl: node['supermarket']['ssl'],
             app_directory: node['supermarket']['app_directory'])
 end

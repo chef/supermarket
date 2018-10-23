@@ -35,6 +35,7 @@ Supermarket::Config.load_or_create_secrets!(
 )
 
 Supermarket::Config.audit_config(node['supermarket'])
+Supermarket::Config.maybe_turn_on_fips(node)
 
 # Copy things we need from the supermarket namespace to the top level. This is
 # necessary for some community cookbooks.
