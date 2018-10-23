@@ -29,8 +29,10 @@ end
 
 include_recipe 'omnibus::default'
 
-execute 'fix bundler directory permissions' do
-  command "chown -R #{node['omnibus']['build_user']} #{node['omnibus']['build_user_home']}/.bundle"
+directory "the one bundler might write to during a build" do
+  path "#{node['omnibus']['build_user_home']}/.bundle"
+  owner node['omnibus']['build_user']
+  recursive true
 end
 
 # do the build
