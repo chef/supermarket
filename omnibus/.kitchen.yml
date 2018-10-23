@@ -9,9 +9,11 @@ driver:
 
 provisioner:
   name: chef_zero
-  require_chef_omnibus: 13.6.4
+  require_chef_omnibus: 14.5.33
 
 platforms:
+  # for Ubuntu, only need earliest supported version for build
+  # testing occurs on earliest supported and later in a different kitchen
   - name: ubuntu-14.04
   - name: centos-6
   - name: centos-7
