@@ -17,7 +17,7 @@ a maintainer, lieutenant, or the project lead.
 [Org]
   [Org.Lead]
     title = "Project Lead"
-    person = "nathenharvey"
+    person = "krasnow"
 
   [Org.Components]
     title = "Components"
@@ -44,10 +44,6 @@ Supermarket is packaged in an Omnibus package to allow easy deploy with all requ
       ]
 
 [people]
-  [people.nathenharvey]
-    Name = "Nathen Harvey"
-    GitHub = "nathenharvey"
-
   [people.nellshamrell]
     Name = "Nell Shamrell-Harrington"
     GitHub = "nellshamrell"
@@ -55,6 +51,10 @@ Supermarket is packaged in an Omnibus package to allow easy deploy with all requ
   [people.pwelch]
     Name = "Paul Welch"
     GitHub = "pwelch"
+
+  [people.krasnow]
+    Name = "Mike Krasnow"
+    GitHub = "krasnow"
 
   [people.robbkidd]
     Name = "Robb Kidd"
