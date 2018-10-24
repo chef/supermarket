@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.84 -->
-## [3.1.84](https://github.com/chef/supermarket/tree/3.1.84) (2018-10-23)
+<!-- latest_release 3.1.85 -->
+## [3.1.85](https://github.com/chef/supermarket/tree/3.1.85) (2018-10-24)
 
 #### Merged Pull Requests
-- reduce package size with compression for omnibus DEB &amp; RPM configs [#1770](https://github.com/chef/supermarket/pull/1770) ([tas50](https://github.com/tas50))
+- Update Ruby to 2.5.3 [#1769](https://github.com/chef/supermarket/pull/1769) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.81 -->
 ### Changes since 3.1.81 release
 
 #### Merged Pull Requests
+- Update Ruby to 2.5.3 [#1769](https://github.com/chef/supermarket/pull/1769) ([tas50](https://github.com/tas50)) <!-- 3.1.85 -->
 - reduce package size with compression for omnibus DEB &amp; RPM configs [#1770](https://github.com/chef/supermarket/pull/1770) ([tas50](https://github.com/tas50)) <!-- 3.1.84 -->
 - update omnibus ctl test command for Inspec 3.0 [#1772](https://github.com/chef/supermarket/pull/1772) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.83 -->
 - update nokogiri to quiet CVE audit [#1771](https://github.com/chef/supermarket/pull/1771) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.82 -->
