@@ -25,7 +25,7 @@ env:
 
 language: ruby
 rvm:
-  - 2.5.1
+  - 2.5.3
 bundler_args: "--without development --jobs 7"
 
 notifications:
