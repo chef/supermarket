@@ -19,13 +19,13 @@ describe 'omnibus-supermarket::postgresql' do
   end
 
   it 'sets shmmax sysctl param' do
-    expect(chef_run).to apply_sysctl_param('kernel.shmmax').with(
+    expect(chef_run).to apply_sysctl('kernel.shmmax').with(
       value: 17179869184
     )
   end
 
   it 'sets shmall sysctl param' do
-    expect(chef_run).to apply_sysctl_param('kernel.shmall').with(
+    expect(chef_run).to apply_sysctl('kernel.shmall').with(
       value: 4194304
     )
   end

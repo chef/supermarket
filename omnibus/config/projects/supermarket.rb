@@ -1,5 +1,5 @@
 #
-# Copyright 2014 Chef Software, Inc.
+# Copyright 2014-2016 Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ override :postgresql, version: '9.3.18'
 override :ruby, version: "2.5.3"
 override :rubygems, version: '2.6.14'
 override :nginx, version: '1.10.2'
-override :'chef-gem', version: '13.6.4'
+override :'chef-gem', version: '14.5.33'
 override :berkshelf, version: 'v6.3.1'
 
 # Creates required build directories
