@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.87 -->
-## [3.1.87](https://github.com/chef/supermarket/tree/3.1.87) (2018-10-24)
+<!-- latest_release 3.1.88 -->
+## [3.1.88](https://github.com/chef/supermarket/tree/3.1.88) (2018-10-25)
 
 #### Merged Pull Requests
-- update to latest omnibus and omnibus-software definitions [#1774](https://github.com/chef/supermarket/pull/1774) ([scotthain](https://github.com/scotthain))
+- bring omnibus-internal cookbook up to Chef 14 standards [#1748](https://github.com/chef/supermarket/pull/1748) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.81 -->
 ### Changes since 3.1.81 release
 
 #### Merged Pull Requests
+- bring omnibus-internal cookbook up to Chef 14 standards [#1748](https://github.com/chef/supermarket/pull/1748) ([tas50](https://github.com/tas50)) <!-- 3.1.88 -->
 - update to latest omnibus and omnibus-software definitions [#1774](https://github.com/chef/supermarket/pull/1774) ([scotthain](https://github.com/scotthain)) <!-- 3.1.87 -->
 - Update Foodcritic to 14.3 [#1773](https://github.com/chef/supermarket/pull/1773) ([tas50](https://github.com/tas50)) <!-- 3.1.86 -->
 - Update Ruby to 2.5.3 [#1769](https://github.com/chef/supermarket/pull/1769) ([tas50](https://github.com/tas50)) <!-- 3.1.85 -->
