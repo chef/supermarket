@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :ownership_transfer_request do
     association :cookbook
     association :recipient, factory: :user

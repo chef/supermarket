@@ -1,15 +1,15 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :cookbook do
     association :category
     association :owner, factory: :user
     sequence(:name) { |n| "redis-#{n}" }
-    source_url 'http://example.com'
-    issues_url 'http://example.com/issues'
-    deprecated false
-    featured false
+    source_url { 'http://example.com' }
+    issues_url { 'http://example.com/issues' }
+    deprecated { false }
+    featured { false }
 
     transient do
-      cookbook_versions_count 2
+      cookbook_versions_count { 2 }
     end
 
     before(:create) do |cookbook, evaluator|
@@ -18,7 +18,7 @@ FactoryGirl.define do
 
     factory :partner_cookbook do
       sequence(:name) { |n| "partner-#{n}" }
-      badges_mask 1
+      badges_mask { 1 }
     end
   end
 end

@@ -185,10 +185,10 @@ GEM
     et-orbi (1.1.5)
       tzinfo
     execjs (2.7.0)
-    factory_girl (4.8.0)
+    factory_bot (4.11.1)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.8.0)
-      factory_girl (~> 4.8.0)
+    factory_bot_rails (4.11.1)
+      factory_bot (~> 4.11.1)
       railties (>= 3.0.0)
     faker (1.7.3)
       i18n (~> 0.5)
@@ -609,7 +609,7 @@ DEPENDENCIES
   database_cleaner
   ddtrace
   dotenv
-  factory_girl_rails
+  factory_bot_rails
   faker
   fieri!
   foreman

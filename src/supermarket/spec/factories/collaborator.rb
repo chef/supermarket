@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :cookbook_collaborator, class: 'Collaborator' do
     association :resourceable, factory: :cookbook
     association :user

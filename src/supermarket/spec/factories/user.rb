@@ -1,13 +1,13 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
-    first_name 'John'
-    last_name 'Doe'
+    first_name { 'John' }
+    last_name { 'Doe' }
     public_key { File.read('spec/support/key_fixtures/valid_public_key.pub') }
 
     sequence(:email) { |n| "johndoe#{n}@example.com" }
 
     transient do
-      create_chef_account true
+      create_chef_account { true }
     end
 
     after(:create) do |user, evaluator|
@@ -17,9 +17,9 @@ FactoryGirl.define do
     end
 
     factory :admin, class: User do
-      first_name 'Admin'
-      last_name 'User'
-      roles_mask 1
+      first_name { 'Admin' }
+      last_name { 'User' }
+      roles_mask { 1 }
     end
   end
 end

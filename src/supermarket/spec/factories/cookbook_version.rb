@@ -1,12 +1,12 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :cookbook_version do
     association :user
-    description 'An awesome cookbook!'
-    license 'MIT'
+    description { 'An awesome cookbook!' }
+    license { 'MIT' }
     sequence(:version) { |n| "1.2.#{n}" }
     tarball { File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz') }
-    readme '# redis cookbook'
-    readme_extension 'md'
+    readme { '# redis cookbook' }
+    readme_extension { 'md' }
 
     trait :debian do
       after(:build) do |cookbook_version, evaluator|
