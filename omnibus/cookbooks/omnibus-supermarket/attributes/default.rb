@@ -337,6 +337,7 @@ default['supermarket']['redis_url'] = 'redis://127.0.0.1:16379/0/supermarket'
 default['supermarket']['redis_jobq_url'] = nil
 default['supermarket']['sentry_url'] = nil
 default['supermarket']['api_item_limit'] = 100
+default['supermarket']['rails_log_to_stdout'] = true
 
 # ### Chef URL Settings
 #
