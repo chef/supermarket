@@ -38,6 +38,7 @@ Metrics/ModuleLength:
 # Offense count: 1
 Rails/FilePath:
   Exclude:
+    - 'config/environments/development.rb'
     - 'lib/tasks/spec/javascripts.rake'
 
 Rails/HasManyOrHasOneDependent:

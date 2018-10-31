@@ -1,11 +1,11 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :group_member do
     association :user
     association :group
-    admin nil
+    admin { nil }
 
     factory :admin_group_member, class: GroupMember do
-      admin true
+      admin { true }
     end
   end
 end

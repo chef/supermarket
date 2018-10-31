@@ -4,7 +4,7 @@ describe OauthTokenRefreshScheduleWorker do
   let(:worker) { OauthTokenRefreshScheduleWorker.new }
 
   it 'refreshes only tokens which expire soon' do
-    expiring_users = FactoryGirl.create_list(:user, 3)
+    expiring_users = FactoryBot.create_list(:user, 3)
 
     expect(Account)
       .to receive(:tokens_expiring_soon)

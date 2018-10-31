@@ -8,7 +8,7 @@ require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'capybara-screenshot/rspec'
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -58,8 +58,8 @@ if ENV['CAPYBARA_SCREENSHOT_TO_S3'] == 'true'
 end
 
 RSpec.configure do |config|
-  # Include FactoryGirl mixin for syntax
-  config.include FactoryGirl::Syntax::Methods
+  # Include FactoryBot mixin for syntax
+  config.include FactoryBot::Syntax::Methods
 
   # Include Paperclip matchers
   config.include Paperclip::Shoulda::Matchers

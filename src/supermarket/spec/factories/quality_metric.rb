@@ -1,39 +1,39 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :quality_metric, class: 'QualityMetric' do
     trait :foodcritic do
-      name "Foodcritic"
+      name { "Foodcritic" }
     end
 
     trait :collaborator_num do
-      name "Collaborator Number"
+      name { "Collaborator Number" }
     end
 
     trait :publish do
-      name "Publish"
+      name { "Publish" }
     end
 
     trait :license do
-      name "License"
+      name { "License" }
     end
 
     trait :supported_platforms do
-      name "Supported Platforms"
+      name { "Supported Platforms" }
     end
 
     trait :contributing_file do
-      name "Contributing File"
+      name { "Contributing File" }
     end
 
     trait :testing_file do
-      name "Testing File"
+      name { "Testing File" }
     end
 
     trait :version_tag do
-      name "Version Tag"
+      name { "Version Tag" }
     end
 
     trait :no_binaries do
-      name "No Binaries"
+      name { "No Binaries" }
     end
 
     factory :foodcritic_metric, traits: [:foodcritic]

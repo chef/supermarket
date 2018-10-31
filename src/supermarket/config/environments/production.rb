@@ -42,6 +42,15 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
+  # default production log level has historically been WARN
+  # TODO: consider setting to DEBUG so that the default provides
+  # maximum diagnostic information after ensuring log rotation
+  # schedule handles the increased output
+  config.log_level = (ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].downcase : 'warn').to_sym
+
+  # Prepend all log lines with the following tags.
+  config.log_tags = [ :request_id ]
+
   # Use a different cache store in production.
   config.cache_store = :redis_store, ENV['REDIS_URL'] || 'redis://localhost:6379/0/supermarket'
 
@@ -80,17 +89,16 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-  logger           = ActiveSupport::Logger.new(STDOUT)
-  logger.formatter = config.log_formatter
-  logger.level     = Logger.const_get(ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].upcase : 'WARN')
-  config.logger    = ActiveSupport::TaggedLogging.new(logger)
-  config.log_level = (ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].downcase : 'warn').to_sym
-  # Prepend all log lines with the following tags.
-  config.log_tags = [:request_id]
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
+
+  if ENV["RAILS_LOG_TO_STDOUT"].present?
+    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = config.log_formatter
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
+  end
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false

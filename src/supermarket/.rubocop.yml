@@ -27,6 +27,9 @@ RedundantBegin:
   Enabled: false
 EachWithObject:
   Enabled: false
+Layout/SpaceInsideArrayLiteralBrackets:
+  Exclude:
+    - config/environments/production.rb
 Lint/UselessAssignment:
   Exclude:
     - config.rb
@@ -42,6 +45,9 @@ Metrics/PerceivedComplexity:
   Enabled: false
 Style/SymbolArray:
   EnforcedStyle: brackets
+Style/MixinUsage:
+  Exclude:
+    - bin/*
 Style/NumericLiterals:
   Enabled: false
 Style/RaiseArgs:

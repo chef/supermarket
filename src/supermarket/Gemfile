@@ -57,7 +57,6 @@ group :doc do
 end
 
 group :development do
-  gem 'faker'
   gem 'guard'
   gem 'guard-rspec', require: false
   gem 'guard-rubocop', require: false
@@ -69,13 +68,10 @@ end
 group :test do
   gem 'capybara'
   gem 'capybara-screenshot'
-  gem 'factory_girl_rails', require: false
-  gem 'poltergeist'
-
-  gem 'shoulda-matchers', '~> 2.8'
-
   gem 'database_cleaner'
+  gem 'poltergeist'
   gem 'rails-controller-testing'
+  gem 'shoulda-matchers', '~> 2.8'
   gem 'vcr', require: false
   gem 'webmock', require: false
 end
@@ -84,6 +80,8 @@ group :development, :test do
   gem 'brakeman'
   gem 'bundler-audit', git: 'https://github.com/rubysec/bundler-audit.git', ref: '4e32fca'
   gem 'byebug'
+  gem 'factory_bot_rails', require: false
+  gem 'faker'
   gem 'launchy'
   gem 'mail_view'
   gem 'pry-rails'
