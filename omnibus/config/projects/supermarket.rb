@@ -46,6 +46,9 @@ dependency "supermarket-ctl"
 # Version manifest file
 dependency "version-manifest"
 
+# remove lots of ruby clutter we don't need
+dependency "ruby-cleanup"
+
 exclude "**/.git"
 exclude "**/bundler/git"
 
