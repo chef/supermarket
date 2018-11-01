@@ -1,14 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.90 -->
-## [3.1.90](https://github.com/chef/supermarket/tree/3.1.90) (2018-10-31)
+<!-- latest_release 3.1.91 -->
+## [3.1.91](https://github.com/chef/supermarket/tree/3.1.91) (2018-11-01)
 
-#### Merged Pull Requests
-- upgrade loofah to 2.2.3 [#1778](https://github.com/chef/supermarket/pull/1778) ([robbkidd](https://github.com/robbkidd))
+#### Bug Fixes
+-  fix search engines knowing the correct cookbook create/update datetimes [#1779](https://github.com/chef/supermarket/pull/1779) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.81 -->
 ### Changes since 3.1.81 release
+
+#### Bug Fixes
+-  fix search engines knowing the correct cookbook create/update datetimes [#1779](https://github.com/chef/supermarket/pull/1779) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.91 -->
 
 #### Merged Pull Requests
 - upgrade loofah to 2.2.3 [#1778](https://github.com/chef/supermarket/pull/1778) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.90 -->
