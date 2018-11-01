@@ -1,31 +1,29 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.91 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [3.1.91](https://github.com/chef/supermarket/tree/3.1.91) (2018-11-01)
 
 #### Bug Fixes
 -  fix search engines knowing the correct cookbook create/update datetimes [#1779](https://github.com/chef/supermarket/pull/1779) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_release -->
-
-<!-- release_rollup since=3.1.81 -->
-### Changes since 3.1.81 release
-
-#### Bug Fixes
--  fix search engines knowing the correct cookbook create/update datetimes [#1779](https://github.com/chef/supermarket/pull/1779) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.91 -->
 
 #### Merged Pull Requests
-- upgrade loofah to 2.2.3 [#1778](https://github.com/chef/supermarket/pull/1778) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.90 -->
-- upgrade rails to 5.0.7 [#1777](https://github.com/chef/supermarket/pull/1777) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.89 -->
-- bring omnibus-internal cookbook up to Chef 14 standards [#1748](https://github.com/chef/supermarket/pull/1748) ([tas50](https://github.com/tas50)) <!-- 3.1.88 -->
-- update to latest omnibus and omnibus-software definitions [#1774](https://github.com/chef/supermarket/pull/1774) ([scotthain](https://github.com/scotthain)) <!-- 3.1.87 -->
-- Update Foodcritic to 14.3 [#1773](https://github.com/chef/supermarket/pull/1773) ([tas50](https://github.com/tas50)) <!-- 3.1.86 -->
-- Update Ruby to 2.5.3 [#1769](https://github.com/chef/supermarket/pull/1769) ([tas50](https://github.com/tas50)) <!-- 3.1.85 -->
-- reduce package size with compression for omnibus DEB &amp; RPM configs [#1770](https://github.com/chef/supermarket/pull/1770) ([tas50](https://github.com/tas50)) <!-- 3.1.84 -->
-- update omnibus ctl test command for Inspec 3.0 [#1772](https://github.com/chef/supermarket/pull/1772) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.83 -->
-- update nokogiri to quiet CVE audit [#1771](https://github.com/chef/supermarket/pull/1771) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.82 -->
-<!-- release_rollup -->
-
+- update nokogiri to quiet CVE audit [#1771](https://github.com/chef/supermarket/pull/1771) ([robbkidd](https://github.com/robbkidd))
+- update omnibus ctl test command for Inspec 3.0 [#1772](https://github.com/chef/supermarket/pull/1772) ([robbkidd](https://github.com/robbkidd))
+- reduce package size with compression for omnibus DEB &amp; RPM configs [#1770](https://github.com/chef/supermarket/pull/1770) ([tas50](https://github.com/tas50))
+- Update Ruby to 2.5.3 [#1769](https://github.com/chef/supermarket/pull/1769) ([tas50](https://github.com/tas50))
+- Update Foodcritic to 14.3 [#1773](https://github.com/chef/supermarket/pull/1773) ([tas50](https://github.com/tas50))
+- update to latest omnibus and omnibus-software definitions [#1774](https://github.com/chef/supermarket/pull/1774) ([scotthain](https://github.com/scotthain))
+- bring omnibus-internal cookbook up to Chef 14 standards [#1748](https://github.com/chef/supermarket/pull/1748) ([tas50](https://github.com/tas50))
+- upgrade rails to 5.0.7 [#1777](https://github.com/chef/supermarket/pull/1777) ([robbkidd](https://github.com/robbkidd))
+- upgrade loofah to 2.2.3 [#1778](https://github.com/chef/supermarket/pull/1778) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_stable_release -->
+
 ## [3.1.81](https://github.com/chef/supermarket/tree/3.1.81) (2018-09-25)
 
 #### Bug Fixes
@@ -42,7 +40,6 @@
 - habitat skeleton to get started [#1761](https://github.com/chef/supermarket/pull/1761) ([jtimberman](https://github.com/jtimberman))
 - change &quot;knife cookbook site&quot; references to &quot;knife supermarket&quot; [#1762](https://github.com/chef/supermarket/pull/1762) ([tas50](https://github.com/tas50))
 - update ffi gem to reduce CVE audit noise [#1763](https://github.com/chef/supermarket/pull/1763) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.1.72](https://github.com/chef/supermarket/tree/3.1.72) (2018-07-19)
 
