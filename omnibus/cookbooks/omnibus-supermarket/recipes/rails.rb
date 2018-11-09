@@ -40,7 +40,7 @@ template 'unicorn.rb' do
   variables(node['supermarket']['unicorn'].to_hash)
 end
 
-template "rails.nginx.conf" do
+template 'rails.nginx.conf' do
   path "#{node['supermarket']['nginx']['directory']}/sites-enabled/rails"
   source 'rails.nginx.conf.erb'
   owner node['supermarket']['user']

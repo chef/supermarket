@@ -45,11 +45,11 @@ EOF
 
     context 'with compatible S3 bucket configurations' do
       [
-        ["no-dot-in-bucket-name", "us-east-1", ":s3_domain_url"],
-        ["no-dot-in-bucket-name", "us-east-1", ":s3_path_url"],
-        ["no-dot-in-bucket-name", "not-nova-1", ":s3_domain_url"],
-        ["no-dot-in-bucket-name", "not-nova-1", ":s3_path_url"],
-        ["bucket.name.has.dots", "us-east-1", ":s3_path_url"]
+        ['no-dot-in-bucket-name', 'us-east-1', ':s3_domain_url'],
+        ['no-dot-in-bucket-name', 'us-east-1', ':s3_path_url'],
+        ['no-dot-in-bucket-name', 'not-nova-1', ':s3_domain_url'],
+        ['no-dot-in-bucket-name', 'not-nova-1', ':s3_path_url'],
+        ['bucket.name.has.dots', 'us-east-1', ':s3_path_url']
       ].each do |s3_bucket, s3_region, s3_domain_style|
         it "passes with #{s3_bucket}, #{s3_region}, and #{s3_domain_style}" do
           ok_config = all_required_settings.merge({
@@ -65,9 +65,9 @@ EOF
 
     context 'with incompatible S3 bucket configurations' do
       [
-        ["bucket.name.has.dots", "us-east-1", ":s3_domain_url"],
-        ["bucket.name.has.dots", "not-nova-1", ":s3_domain_url"],
-        ["bucket.name.has.dots", "not-nova-1", ":s3_path_url"]
+        ['bucket.name.has.dots', 'us-east-1', ':s3_domain_url'],
+        ['bucket.name.has.dots', 'not-nova-1', ':s3_domain_url'],
+        ['bucket.name.has.dots', 'not-nova-1', ':s3_path_url']
       ].each do |s3_bucket, s3_region, s3_domain_style|
         it "fails the chef run with #{s3_bucket}, #{s3_region}, and #{s3_domain_style}" do
           incompatible_config = all_required_settings.merge({

@@ -80,7 +80,7 @@ class Supermarket
     # If the value is a String or Number and the attribute name is attr_name.
     # Used to write out environment variables to a file.
     def self.environment_variables_from(attributes)
-      attributes.reduce "" do |str, attr|
+      attributes.reduce '' do |str, attr|
         if attr[1].is_a?(String) || attr[1].is_a?(Numeric) || attr[1] == true || attr[1] == false
           str << "export #{attr[0].upcase}=\"#{attr[1]}\"\n"
         else

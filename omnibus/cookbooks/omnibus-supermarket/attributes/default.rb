@@ -191,7 +191,7 @@ default['supermarket']['postgresql']['port'] = 15432
 default['supermarket']['postgresql']['shared_buffers'] = "#{(node['memory']['total'].to_i / 4) / (1024)}MB"
 default['supermarket']['postgresql']['shmmax'] = 17179869184
 default['supermarket']['postgresql']['shmall'] = 4194304
-default['supermarket']['postgresql']['work_mem'] = "8MB"
+default['supermarket']['postgresql']['work_mem'] = '8MB'
 
 # ## Rails
 #
@@ -243,12 +243,12 @@ default['supermarket']['ssl']['certificate_key'] = nil
 default['supermarket']['ssl']['ssl_dhparam'] = nil
 
 # These are used in creating a self-signed cert if you haven't brought your own.
-default['supermarket']['ssl']['country_name'] = "US"
-default['supermarket']['ssl']['state_name'] = "WA"
-default['supermarket']['ssl']['locality_name'] = "Seattle"
-default['supermarket']['ssl']['company_name'] = "My Supermarket"
-default['supermarket']['ssl']['organizational_unit_name'] = "Operations"
-default['supermarket']['ssl']['email_address'] = "you@example.com"
+default['supermarket']['ssl']['country_name'] = 'US'
+default['supermarket']['ssl']['state_name'] = 'WA'
+default['supermarket']['ssl']['locality_name'] = 'Seattle'
+default['supermarket']['ssl']['company_name'] = 'My Supermarket'
+default['supermarket']['ssl']['organizational_unit_name'] = 'Operations'
+default['supermarket']['ssl']['email_address'] = 'you@example.com'
 
 # ### Cipher settings
 #

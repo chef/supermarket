@@ -15,22 +15,22 @@ def run_a_rake_command(rake_task_and_args)
 end
 
 add_command_under_category 'qm-list', 'quality-metrics', 'List the names of defined quality metrics', 2 do
-  run_a_rake_command "quality_metrics:list"
+  run_a_rake_command 'quality_metrics:list'
 end
 
 add_command_under_category 'qm-flip-all-admin-only', 'quality-metrics',  'Flip all quality metrics visible to only admin users', 2 do
-  run_a_rake_command "quality_metrics:flip:all_admin_only"
+  run_a_rake_command 'quality_metrics:flip:all_admin_only'
 end
 
 add_command_under_category 'qm-flip-all-public', 'quality-metrics',  'Flip all quality metrics visible to all users', 2 do
-  run_a_rake_command "quality_metrics:flip:all_public"
+  run_a_rake_command 'quality_metrics:flip:all_public'
 end
 
 add_command_under_category 'qm-flip-admin-only', 'quality-metrics',  'Flip a given quality metric visible to only admin users', 2 do
   args = ARGV[3..-1]
   metric_name = args.join('\ ') # handle spaces in the metric names
   if metric_name.empty?
-    puts "ERROR: Nothing to do without a metric name. e.g. qm-flip-admin-only METRIC_NAME"
+    puts 'ERROR: Nothing to do without a metric name. e.g. qm-flip-admin-only METRIC_NAME'
     exit 1
   end
 
@@ -41,7 +41,7 @@ add_command_under_category 'qm-flip-public', 'quality-metrics',  'Flip a given q
   args = ARGV[3..-1]
   metric_name = args.join('\ ') # handle spaces in the metric names
   if metric_name.empty?
-    puts "ERROR: Nothing to do without a metric name. e.g. qm-flip-public METRIC_NAME"
+    puts 'ERROR: Nothing to do without a metric name. e.g. qm-flip-public METRIC_NAME'
     exit 1
   end
 
@@ -49,14 +49,14 @@ add_command_under_category 'qm-flip-public', 'quality-metrics',  'Flip a given q
 end
 
 add_command_under_category 'qm-run-all-the-latest', 'quality-metrics', 'Run quality metrics on the latest version of all cookbooks', 2 do
-  run_a_rake_command "quality_metrics:run:all_the_latest"
+  run_a_rake_command 'quality_metrics:run:all_the_latest'
 end
 
 add_command_under_category 'qm-run-on-latest', 'quality-metrics', 'Run quality metrics on the latest version of a given cookbook', 2 do
   args = ARGV[3..-1]
   cookbook_name = args.shift
   unless cookbook_name
-    puts "ERROR: Nothing to do without a cookbook name. e.g. qm-run-on-latest COOKBOOK_NAME"
+    puts 'ERROR: Nothing to do without a cookbook name. e.g. qm-run-on-latest COOKBOOK_NAME'
     exit 1
   end
 
@@ -68,7 +68,7 @@ add_command_under_category 'qm-run-on-version', 'quality-metrics', 'Run quality 
   cookbook_name = args.shift
   cookbook_version = args.shift
   unless cookbook_name && cookbook_version
-    puts "ERROR: Nothing to do without a cookbook name and version. e.g. qm-run-on-version COOKBOOK_NAME VERSION"
+    puts 'ERROR: Nothing to do without a cookbook name and version. e.g. qm-run-on-version COOKBOOK_NAME VERSION'
     exit 1
   end
 

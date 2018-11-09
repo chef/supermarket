@@ -1,26 +1,26 @@
 require 'json'
 property = json('/etc/supermarket/supermarket-running.json')
 
-control "supermarket-ctl-perms" do
-  title "Check that the -ctl commands error correctly"
+control 'supermarket-ctl-perms' do
+  title 'Check that the -ctl commands error correctly'
   # run as someone other that the supermarket OS user
-  describe command("supermarket-ctl console") do
+  describe command('supermarket-ctl console') do
     its(:stderr) { should match /supermarket-ctl console should be run as the supermarket OS user./ }
   end
 
   # run as someone other that the supermarket OS user
-  describe command("supermarket-ctl make-admin") do
+  describe command('supermarket-ctl make-admin') do
     its(:stderr) { should match /supermarket-ctl make-admin should be run as the supermarket OS user./ }
   end
 
   # run as supermarket user, but with a user that doesn't exist
-  describe command("sudo -u supermarket supermarket-ctl make-admin user=nope") do
+  describe command('sudo -u supermarket supermarket-ctl make-admin user=nope') do
     its(:stdout) { should match /nope was not found in Supermarket./ }
   end
 end
 
-control "ssl-config" do
-  title "Configurations for SSL"
+control 'ssl-config' do
+  title 'Configurations for SSL'
 
   only_if { property['supermarket']['ssl']['enabled'] }
 
@@ -31,11 +31,11 @@ control "ssl-config" do
 
   describe file('/var/opt/supermarket/nginx/etc/sites-enabled/rails') do
     its(:content) { should match /ssl_dhparam/ }
- end
+  end
 end
 
-control "log-management" do
-  title "Manage The Logs"
+control 'log-management' do
+  title 'Manage The Logs'
 
   describe file(property['supermarket']['var_directory'] + '/etc/logrotate.d') do
     it { should be_directory }
@@ -57,8 +57,8 @@ control "log-management" do
   end
 end
 
-control "proxy" do
-  title "Reverse Proxy"
+control 'proxy' do
+  title 'Reverse Proxy'
   only_if { property['supermarket']['nginx']['enable'] }
 
   describe port(property['supermarket']['nginx']['non_ssl_port']) do
@@ -68,8 +68,8 @@ control "proxy" do
 
   describe "http GET to Port #{property['supermarket']['nginx']['non_ssl_port']}" do
     subject { http("http://localhost:#{property['supermarket']['nginx']['non_ssl_port']}") }
-    it "should not include server version number in response headers" do
-      expect(subject.headers.server).to cmp("nginx")
+    it 'should not include server version number in response headers' do
+      expect(subject.headers.server).to cmp('nginx')
     end
   end
 
@@ -81,15 +81,15 @@ control "proxy" do
 
     describe "http GET to Port #{property['supermarket']['nginx']['ssl_port']}" do
       subject { http("http://localhost:#{property['supermarket']['nginx']['ssl_port']}", ssl_verify: false) }
-      it "should not include server version number in response headers" do
-        expect(subject.headers.server).to cmp("nginx")
+      it 'should not include server version number in response headers' do
+        expect(subject.headers.server).to cmp('nginx')
       end
     end
   end
 end
 
-control "database" do
-  title "Database"
+control 'database' do
+  title 'Database'
   only_if { property['supermarket']['postgresql']['enable'] }
 
   describe port(property['supermarket']['postgresql']['port']) do
@@ -98,8 +98,8 @@ control "database" do
   end
 end
 
-control "cache-dirs" do
-  title "Happy cache directories"
+control 'cache-dirs' do
+  title 'Happy cache directories'
 
   describe file(property['supermarket']['var_directory'] + '/cache') do
     it { should be_directory }
@@ -110,8 +110,8 @@ control "cache-dirs" do
   end
 end
 
-control "redis" do
-  title "Redis"
+control 'redis' do
+  title 'Redis'
   only_if { property['supermarket']['redis']['enable'] }
 
   describe port(property['supermarket']['redis']['port']) do
@@ -120,8 +120,8 @@ control "redis" do
   end
 end
 
-control "web-app" do
-  title "Web App"
+control 'web-app' do
+  title 'Web App'
   only_if { property['supermarket']['rails']['enable'] }
   describe port(property['supermarket']['rails']['port']) do
     it { should be_listening }

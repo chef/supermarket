@@ -31,20 +31,20 @@ directory "#{node['supermarket']['var_directory']}/etc/logrotate.d" do
 end
 
 template "#{node['supermarket']['var_directory']}/etc/logrotate.conf" do
-  source "logrotate.conf.erb"
-  mode   "0644"
-  owner  "root"
-  group  "root"
+  source 'logrotate.conf.erb'
+  mode   '0644'
+  owner  'root'
+  group  'root'
   variables(
     var_directory: node['supermarket']['var_directory'],
   )
 end
 
-template "/etc/cron.hourly/supermarket_logrotate" do
-  source "logrotate.cron.erb"
-  mode   "0755"
-  owner  "root"
-  group  "root"
+template '/etc/cron.hourly/supermarket_logrotate' do
+  source 'logrotate.cron.erb'
+  mode   '0755'
+  owner  'root'
+  group  'root'
   variables(
     install_directory: node['supermarket']['install_directory'],
     var_directory: node['supermarket']['var_directory'],

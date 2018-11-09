@@ -23,7 +23,7 @@ include_recipe 'omnibus-supermarket::config'
 include_recipe 'omnibus-supermarket::rails'
 include_recipe 'omnibus-supermarket::sidekiq'
 
-file "environment-variables" do
+file 'environment-variables' do
   path "#{node['supermarket']['var_directory']}/etc/env"
   content Supermarket::Config.environment_variables_from(node['supermarket'])
   owner node['supermarket']['user']
