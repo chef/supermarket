@@ -123,3 +123,54 @@ matrix:
         - eval "$(/opt/chefdk/bin/chef shell-init bash)"
       before_script: cd cookbooks/supermarket-deploy
       script: chef exec foodcritic . -t ~supermarket
+
+    # omnibus-supermarket-reconfigure-cookstyle
+    - env:
+        - NAME=lint-omnibus-supermarket-reconfigure-cookstyle
+      addons:
+        apt:
+          sources:
+            - chef-stable-trusty
+          packages:
+            - chefdk
+      cache:
+        directories:
+          - $HOME/.berkshelf
+      install:
+        - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+      before_script: cd omnibus/cookbooks/omnibus-supermarket
+      script: chef exec cookstyle
+
+    # omnibus-supermarket-reconfigure-foodcritic
+    - env:
+        - NAME=omnibus-supermarket-reconfigure-foodcritic
+      addons:
+        apt:
+          sources:
+            - chef-stable-trusty
+          packages:
+            - chefdk
+      cache:
+        directories:
+          - $HOME/.berkshelf
+      install:
+        - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+      before_script: cd omnibus/cookbooks/omnibus-supermarket
+      script: chef exec foodcritic . -t ~supermarket
+
+    # omnibus-supermarket-reconfigure-unit
+    - env:
+        - NAME=omnibus-supermarket-reconfigure-unit
+      addons:
+        apt:
+          sources:
+            - chef-stable-trusty
+          packages:
+            - chefdk
+      cache:
+        directories:
+          - $HOME/.berkshelf
+      install:
+        - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+      before_script: cd omnibus/cookbooks/omnibus-supermarket
+      script: chef exec rspec
