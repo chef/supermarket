@@ -37,18 +37,21 @@ link "#{node['supermarket']['nginx']['directory']}/mime.types" do
   to "#{node['supermarket']['install_directory']}/embedded/conf/mime.types"
 end
 
-template "#{node['supermarket']['nginx']['directory']}/nginx.conf" do
+template 'nginx.conf' do
+  path "#{node['supermarket']['nginx']['directory']}/nginx.conf"
   source 'nginx.conf.erb'
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'
   variables(nginx: node['supermarket']['nginx'])
-  notifies :hup, 'runit_service[nginx]' if node['supermarket']['nginx']['enable']
 end
 
 if node['supermarket']['nginx']['enable']
   component_runit_service 'nginx' do
     package 'supermarket'
+    action :enable
+    subscribes :restart, 'template[nginx.conf]'
+    subscribes :restart, 'template[rails.nginx.conf]'
   end
 else
   runit_service 'nginx' do

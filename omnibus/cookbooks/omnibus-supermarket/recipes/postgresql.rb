@@ -36,14 +36,16 @@ directory node['supermarket']['postgresql']['log_directory'] do
 end
 
 if node['supermarket']['postgresql']['enable']
-  enterprise_pg_cluster node['supermarket']['postgresql']['data_directory'] do
+  enterprise_pg_cluster 'supermarket' do
+    data_dir node['supermarket']['postgresql']['data_directory']
     encoding 'UTF8'
-    notifies :restart, 'runit_service[postgresql]'
   end
 
   component_runit_service 'postgresql' do
     package 'supermarket'
     control ['t']
+    action :enable
+    subscribes :restart, 'enterprise_pg_cluster[supermarket]'
   end
 else
   runit_service 'postgresql' do

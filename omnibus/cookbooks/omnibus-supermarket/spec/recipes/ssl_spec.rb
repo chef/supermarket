@@ -1,4 +1,9 @@
+require 'spec_helper'
+
 describe 'omnibus-supermarket::ssl' do
+  platform 'ubuntu', '18.04'
+  automatic_attributes['memory']['total'] = '16000MB'
+
   # Shared Example Sets
   # - :create_directories - Creates the directories for SSL
   # - :create_certificates - When the recipe should create certs
@@ -26,7 +31,7 @@ describe 'omnibus-supermarket::ssl' do
 
   shared_examples_for :create_certificates do
     it 'creates /var/opt/supermarket/ssl/ca/fauxhai.local.crt' do
-      expect(chef_run).to create_x509_certificate(
+      expect(chef_run).to create_openssl_x509_certificate(
         '/var/opt/supermarket/ssl/ca/fauxhai.local.crt'
       ).with(
         common_name: 'fauxhai.local',
@@ -44,7 +49,7 @@ describe 'omnibus-supermarket::ssl' do
 
   shared_examples_for :create_dhparams do
     it 'creates /var/opt/supermarket/ssl/ca/dhparams.pem' do
-      expect(chef_run).to create_dhparam_pem(
+      expect(chef_run).to create_openssl_dhparam(
         '/var/opt/supermarket/ssl/ca/dhparams.pem'
       ).with(
         key_length: 2048,
@@ -58,14 +63,14 @@ describe 'omnibus-supermarket::ssl' do
 
   shared_examples_for :no_create_certificates do
     it 'does not create an x509 certificate' do
-      expect(chef_run).not_to create_x509_certificate(
+      expect(chef_run).not_to create_openssl_x509_certificate(
         '/var/opt/supermarket/ssl/ca/fauxhai.local.crt')
     end
   end
 
   shared_examples_for :no_create_dhparams do
     it 'does not create a dhparams.pem file' do
-      expect(chef_run).not_to create_dhparam_pem(
+      expect(chef_run).not_to create_openssl_dhparam(
         '/var/opt/supermarket/ssl/ca/dhparams.pem'
       )
     end
@@ -78,12 +83,6 @@ describe 'omnibus-supermarket::ssl' do
   # - With certificate location & SSL disabled: Tests that ssl disable
   #   supercedes supplied certificate behavior.
   context 'When all attributes are default, on a fauxhai\'d platform:' do
-    let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
-      runner.node.automatic['memory']['total'] = '16000MB'
-      runner.converge(described_recipe)
-    end
-
     it_behaves_like :create_directories
     it_behaves_like :create_certificates
     it_behaves_like :create_dhparams
@@ -107,12 +106,7 @@ describe 'omnibus-supermarket::ssl' do
   end
 
   context 'When a certificate is supplied, on a fauxhai\'d platform:' do
-    let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
-      runner.node.automatic['memory']['total'] = '16000MB'
-      runner.node.normal['supermarket']['ssl']['certificate'] = '/etc/mycert.pem'
-      runner.converge(described_recipe)
-    end
+    normal_attributes['supermarket']['ssl']['certificate'] = '/etc/mycert.pem'
 
     it_behaves_like :create_directories
     it_behaves_like :no_create_certificates
@@ -137,12 +131,7 @@ describe 'omnibus-supermarket::ssl' do
   end
 
   context 'when ssl is disabled, on a fauxhai\'d platform' do
-    let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
-      runner.node.automatic['memory']['total'] = '16000MB'
-      runner.node.normal['supermarket']['ssl']['enabled'] = false
-      runner.converge(described_recipe)
-    end
+    normal_attributes['supermarket']['ssl']['enabled'] = false
 
     it_behaves_like :create_directories
     it_behaves_like :no_create_certificates
@@ -165,13 +154,8 @@ describe 'omnibus-supermarket::ssl' do
 
   context 'when ssl is disabled & a certificate is supplied, ' \
           'on a fauxhai\'d platform' do
-    let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
-      runner.node.automatic['memory']['total'] = '16000MB'
-      runner.node.normal['supermarket']['ssl']['enabled'] = false
-      runner.node.normal['supermarket']['ssl']['certificate'] = '/etc/mycert.pem'
-      runner.converge(described_recipe)
-    end
+    normal_attributes['supermarket']['ssl']['enabled'] = false
+    normal_attributes['supermarket']['ssl']['certificate'] = '/etc/mycert.pem'
 
     it_behaves_like :create_directories
     it_behaves_like :no_create_certificates

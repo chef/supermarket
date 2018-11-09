@@ -33,12 +33,12 @@ include_recipe 'enterprise::runit'
   end
 end
 
-template "#{node['supermarket']['redis']['directory']}/etc/redis.conf" do
+template 'redis.conf' do
+  path "#{node['supermarket']['redis']['directory']}/etc/redis.conf"
   source 'redis.conf.erb'
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'
-  notifies :restart, 'runit_service[redis]' if node['supermarket']['redis']['enable']
 end
 
 # Redis gives you a warning if you don't do this
@@ -49,6 +49,8 @@ end
 if node['supermarket']['redis']['enable']
   component_runit_service 'redis' do
     package 'supermarket'
+    action :enable
+    subscribes :restart, 'template[redis.conf]'
   end
 else
   runit_service 'redis' do

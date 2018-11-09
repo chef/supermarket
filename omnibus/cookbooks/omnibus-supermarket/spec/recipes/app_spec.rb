@@ -1,9 +1,8 @@
+require 'spec_helper'
+
 describe 'omnibus-supermarket::app' do
-  let(:chef_run) do
-    ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04') do |node|
-      node.automatic['memory']['total'] = '16000MB'
-    end.converge(described_recipe)
-  end
+  platform 'ubuntu', '16.04'
+  automatic_attributes['memory']['total'] = '16000MB'
 
   it 'creates /var/opt/supermarket/etc/env' do
     expect(chef_run).to create_file('/var/opt/supermarket/etc/env').with(
