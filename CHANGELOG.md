@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.93 -->
-## [3.1.93](https://github.com/chef/supermarket/tree/3.1.93) (2018-11-28)
+<!-- latest_release 3.1.94 -->
+## [3.1.94](https://github.com/chef/supermarket/tree/3.1.94) (2018-11-30)
 
 #### Security Fixes
-- update Rails to 5.0.7.1 [#1784](https://github.com/chef/supermarket/pull/1784) ([robbkidd](https://github.com/robbkidd))
+- update rack (&amp; other gems) in the omnibus build environment [#1785](https://github.com/chef/supermarket/pull/1785) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.91 -->
 ### Changes since 3.1.91 release
 
 #### Security Fixes
+- update rack (&amp; other gems) in the omnibus build environment [#1785](https://github.com/chef/supermarket/pull/1785) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.94 -->
 - update Rails to 5.0.7.1 [#1784](https://github.com/chef/supermarket/pull/1784) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.93 -->
 
 #### Merged Pull Requests
