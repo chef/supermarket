@@ -263,6 +263,8 @@ default['supermarket']['ssl']['ciphers'] = 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-EC
 default['supermarket']['ssl']['protocols'] = 'TLSv1 TLSv1.1 TLSv1.2'
 default['supermarket']['ssl']['session_cache'] = 'shared:SSL:4m'
 default['supermarket']['ssl']['session_timeout'] = '5m'
+default['supermarket']['ssl']['ocsp'] = false
+default['supermarket']['ssl']['resolver'] = '8.8.8.8 8.8.4.4'
 
 # ## Unicorn
 #
