@@ -55,5 +55,9 @@ end
 # Sync the local cookbooks into embedded
 execute 'rsync -avz /tmp/kitchen/cookbooks/* /opt/supermarket/embedded/cookbooks/'
 
+# Put the tests back into omnibus-supermarket so that `supermarket-ctl test` works
+# kitchen removes them by default when copying cookbooks to /tmp/kitchen/cookbooks
+execute 'rsync -avz /tmp/omnibus-supermarket-cookbook/test /opt/supermarket/embedded/cookbooks/omnibus-supermarket'
+
 # Reconfigure the app
 execute 'supermarket-ctl reconfigure'

@@ -4,6 +4,7 @@ driver:
   network:
     - ['private_network', type: 'dhcp']
   synced_folders:
+    - ['.', '/tmp/omnibus-supermarket-cookbook']
     - ['../../pkg', '/tmp/packages', 'create: true, type: :rsync']
 
 provisioner:
