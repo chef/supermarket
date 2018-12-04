@@ -34,7 +34,7 @@ if node['supermarket']['ssl']['enabled']
   supermarket_ca_dir = File.join(node['supermarket']['ssl']['directory'], 'ca')
   ssl_dhparam = File.join(supermarket_ca_dir, 'dhparams.pem')
 
-  #Generate dhparams.pem for perfect forward secrecy
+  # Generate dhparams.pem for perfect forward secrecy
   openssl_dhparam ssl_dhparam do
     key_length 2048
     generator 2

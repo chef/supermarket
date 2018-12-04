@@ -346,10 +346,10 @@ default['supermarket']['rails_log_to_stdout'] = true
 # These have defaults in the app based on the chef_server_url along the lines of the interpolations below.
 # Override if you need to set these URLs to targets other than the configured chef_server_url.
 #
-#default['supermarket']['chef_identity_url'] = "#{node['supermarket']['chef_server_url']}/id"
-#default['supermarket']['chef_manage_url'] = node['supermarket']['chef_server_url']
-#default['supermarket']['chef_profile_url'] = node['supermarket']['chef_server_url']
-#default['supermarket']['chef_sign_up_url'] = "#{node['supermarket']['chef_server_url']}/signup?ref=community"
+# default['supermarket']['chef_identity_url'] = "#{node['supermarket']['chef_server_url']}/id"
+# default['supermarket']['chef_manage_url'] = node['supermarket']['chef_server_url']
+# default['supermarket']['chef_profile_url'] = node['supermarket']['chef_server_url']
+# default['supermarket']['chef_sign_up_url'] = "#{node['supermarket']['chef_server_url']}/signup?ref=community"
 
 # URLs for Chef Software, Inc. sites. Most of these have defaults set in
 # Supermarket already, but you can customize them here to your liking
@@ -359,10 +359,10 @@ default['supermarket']['chef_www_url'] = 'https://www.chef.io'
 # These have defaults in the app based on the chef_domain along the lines of the interpolations below.
 # Override if you need to set these URLs to targets other than the configured chef_domain.
 #
-#default['supermarket']['chef_blog_url'] = "https://www.#{node['supermarket']['chef_domain']}/blog"
-#default['supermarket']['chef_docs_url'] = "https://docs.#{node['supermarket']['chef_domain']}"
-#default['supermarket']['chef_downloads_url'] = "https://downloads.#{node['supermarket']['chef_domain']}"
-#default['supermarket']['learn_chef_url'] = "https://learn.#{node['supermarket']['chef_domain']}"
+# default['supermarket']['chef_blog_url'] = "https://www.#{node['supermarket']['chef_domain']}/blog"
+# default['supermarket']['chef_docs_url'] = "https://docs.#{node['supermarket']['chef_domain']}"
+# default['supermarket']['chef_downloads_url'] = "https://downloads.#{node['supermarket']['chef_domain']}"
+# default['supermarket']['learn_chef_url'] = "https://learn.#{node['supermarket']['chef_domain']}"
 
 # ### Chef OAuth2 Settings
 #
