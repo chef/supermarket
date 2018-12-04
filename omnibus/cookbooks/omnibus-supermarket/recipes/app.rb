@@ -65,10 +65,10 @@ end
 execute 'database schema' do
   command 'bundle exec rake db:migrate db:seed'
   cwd node['supermarket']['app_directory']
-  environment({
+  environment(
     'RAILS_ENV' => 'production',
     'HOME' => node['supermarket']['app_directory'],
-  })
+  )
   user node['supermarket']['user']
 end
 

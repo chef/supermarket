@@ -52,11 +52,11 @@ EOF
         ['bucket.name.has.dots', 'us-east-1', ':s3_path_url']
       ].each do |s3_bucket, s3_region, s3_domain_style|
         it "passes with #{s3_bucket}, #{s3_region}, and #{s3_domain_style}" do
-          ok_config = all_required_settings.merge({
+          ok_config = all_required_settings.merge(
             's3_bucket' => s3_bucket,
             's3_region' => s3_region,
             's3_domain_style' => s3_domain_style,
-          })
+          )
           expect { described_class.audit_config(ok_config) }
             .not_to raise_error
         end
@@ -70,11 +70,11 @@ EOF
         ['bucket.name.has.dots', 'not-nova-1', ':s3_path_url']
       ].each do |s3_bucket, s3_region, s3_domain_style|
         it "fails the chef run with #{s3_bucket}, #{s3_region}, and #{s3_domain_style}" do
-          incompatible_config = all_required_settings.merge({
+          incompatible_config = all_required_settings.merge(
             's3_bucket' => s3_bucket,
             's3_region' => s3_region,
             's3_domain_style' => s3_domain_style,
-          })
+          )
           expect { described_class.audit_config(incompatible_config) }
             .to raise_error(Supermarket::Config::IncompatibleConfig)
         end
