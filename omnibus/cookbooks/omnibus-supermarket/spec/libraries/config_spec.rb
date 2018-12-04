@@ -33,13 +33,13 @@ EOF
       }
     end
     it 'passes if all required S3 config values are present' do
-      expect{ described_class.audit_config(all_required_settings) }
+      expect { described_class.audit_config(all_required_settings) }
         .not_to raise_error
     end
 
     it 'fails the chef run if S3 config is incomplete' do
       incomplete_s3_config = { 's3_bucket' => 'bettergetabucket' }
-      expect{ described_class.audit_config(incomplete_s3_config) }
+      expect { described_class.audit_config(incomplete_s3_config) }
         .to raise_error(Supermarket::Config::IncompleteConfig)
     end
 
@@ -57,7 +57,7 @@ EOF
             's3_region' => s3_region,
             's3_domain_style' => s3_domain_style
           })
-          expect{ described_class.audit_config(ok_config) }
+          expect { described_class.audit_config(ok_config) }
             .not_to raise_error
         end
       end
@@ -75,7 +75,7 @@ EOF
             's3_region' => s3_region,
             's3_domain_style' => s3_domain_style
           })
-          expect{ described_class.audit_config(incompatible_config) }
+          expect { described_class.audit_config(incompatible_config) }
             .to raise_error(Supermarket::Config::IncompatibleConfig)
         end
       end
