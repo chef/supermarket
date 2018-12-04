@@ -17,9 +17,9 @@ describe 'omnibus-supermarket::app' do
              '/opt/supermarket/embedded/service/supermarket/public/sitemap1.xml.gz']
     files.each do |file|
       expect(chef_run).to create_file(file)
-        .with( owner: 'supermarket',
-               group: 'supermarket',
-               mode:  '0664' )
+        .with(owner: 'supermarket',
+              group: 'supermarket',
+              mode:  '0664')
     end
   end
 
