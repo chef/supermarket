@@ -132,7 +132,7 @@ default['supermarket']['nginx']['gzip_comp_level'] = '2'
 default['supermarket']['nginx']['gzip_proxied'] = 'any'
 default['supermarket']['nginx']['gzip_vary'] = 'off'
 default['supermarket']['nginx']['gzip_buffers'] = nil
-default['supermarket']['nginx']['gzip_types'] = %w[
+default['supermarket']['nginx']['gzip_types'] = %w(
   text/plain
   text/css
   application/x-javascript
@@ -143,7 +143,7 @@ default['supermarket']['nginx']['gzip_types'] = %w[
   text/javascript
   application/javascript
   application/json
-]
+)
 default['supermarket']['nginx']['gzip_min_length'] = 1000
 default['supermarket']['nginx']['gzip_disable'] = 'MSIE [1-6]\.'
 default['supermarket']['nginx']['keepalive'] = 'on'
