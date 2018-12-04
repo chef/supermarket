@@ -11,7 +11,7 @@ describe Supermarket::Config do
         'test5' => 'def',
         'test6' => true,
         'test7' => false,
-        'test8' => nil,
+        'test8' => nil
       )).to eq(<<EOF
 export TEST1="123"
 export TEST2="abc"

@@ -8,7 +8,7 @@ describe 'omnibus-supermarket::app' do
     expect(chef_run).to create_file('/var/opt/supermarket/etc/env').with(
       owner: 'supermarket',
       group: 'supermarket',
-      mode: '0600',
+      mode: '0600'
     )
   end
 

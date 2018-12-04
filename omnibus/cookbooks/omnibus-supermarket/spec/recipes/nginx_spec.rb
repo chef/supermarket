@@ -8,7 +8,7 @@ describe 'omnibus-supermarket::nginx' do
     expect(chef_run).to create_directory('/var/log/supermarket/nginx').with(
       user: 'supermarket',
       group: 'supermarket',
-      mode: '0700',
+      mode: '0700'
     )
   end
 
@@ -16,7 +16,7 @@ describe 'omnibus-supermarket::nginx' do
     expect(chef_run).to create_directory('/var/opt/supermarket/nginx/etc').with(
       user: 'supermarket',
       group: 'supermarket',
-      mode: '0700',
+      mode: '0700'
     )
   end
 
@@ -24,7 +24,7 @@ describe 'omnibus-supermarket::nginx' do
     expect(chef_run).to create_directory('/var/opt/supermarket/nginx/etc/conf.d').with(
       user: 'supermarket',
       group: 'supermarket',
-      mode: '0700',
+      mode: '0700'
     )
   end
 
@@ -32,7 +32,7 @@ describe 'omnibus-supermarket::nginx' do
     expect(chef_run).to create_directory('/var/opt/supermarket/nginx/etc/sites-enabled').with(
       user: 'supermarket',
       group: 'supermarket',
-      mode: '0700',
+      mode: '0700'
     )
   end
 
@@ -41,7 +41,7 @@ describe 'omnibus-supermarket::nginx' do
       source: 'nginx.conf.erb',
       owner: 'supermarket',
       group: 'supermarket',
-      mode: '0600',
+      mode: '0600'
     )
   end
 

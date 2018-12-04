@@ -71,6 +71,6 @@ template "#{node['supermarket']['var_directory']}/etc/logrotate.d/nginx" do
     'log_rotation' => node['supermarket']['nginx']['log_rotation'],
     'postrotate' => "#{node['supermarket']['install_directory']}/embedded/sbin/nginx -c #{node['supermarket']['nginx']['directory']}/nginx.conf -s reopen",
     'owner' => 'root',
-    'group' => 'root',
+    'group' => 'root'
   )
 end

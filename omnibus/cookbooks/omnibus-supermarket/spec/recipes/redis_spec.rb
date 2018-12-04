@@ -13,7 +13,7 @@ describe 'omnibus-supermarket::redis' do
     expect(chef_run).to create_directory('/var/log/supermarket/redis').with(
       user: 'supermarket',
       group: 'supermarket',
-      mode: '0700',
+      mode: '0700'
     )
   end
 
@@ -21,7 +21,7 @@ describe 'omnibus-supermarket::redis' do
     expect(chef_run).to create_directory('/var/opt/supermarket/redis/etc').with(
       user: 'supermarket',
       group: 'supermarket',
-      mode: '0700',
+      mode: '0700'
     )
   end
 
@@ -31,7 +31,7 @@ describe 'omnibus-supermarket::redis' do
     ).with(
       owner: 'supermarket',
       group: 'supermarket',
-      mode: '0600',
+      mode: '0600'
     )
   end
 
@@ -39,7 +39,7 @@ describe 'omnibus-supermarket::redis' do
     expect(chef_run).to create_directory('/var/opt/supermarket/lib/redis').with(
       user: 'supermarket',
       group: 'supermarket',
-      mode: '0700',
+      mode: '0700'
     )
   end
 
@@ -47,7 +47,7 @@ describe 'omnibus-supermarket::redis' do
     expect(chef_run).to create_directory('/var/opt/supermarket/redis/run').with(
       user: 'supermarket',
       group: 'supermarket',
-      mode: '0700',
+      mode: '0700'
     )
   end
 

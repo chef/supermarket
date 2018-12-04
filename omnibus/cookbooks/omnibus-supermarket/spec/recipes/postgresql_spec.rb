@@ -13,7 +13,7 @@ describe 'omnibus-supermarket::postgresql' do
     expect(chef_run).to create_directory('/var/log/supermarket/postgresql').with(
       user: 'supermarket',
       group: 'supermarket',
-      mode: '0700',
+      mode: '0700'
     )
   end
 
