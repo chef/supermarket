@@ -91,7 +91,7 @@ class Supermarket
 
     def self.create_directory!(filename)
       dir = File.dirname(filename)
-      FileUtils.mkdir(dir, :mode => 0700) unless Dir.exist?(dir)
+      FileUtils.mkdir(dir, mode: 0700) unless Dir.exist?(dir)
     rescue Errno::EACCES => e
       Chef::Log.warn "Could not create #{dir}: #{e}"
     end
