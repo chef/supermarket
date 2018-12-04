@@ -25,7 +25,7 @@ describe 'omnibus-supermarket::app' do
 
   it 'links the env file' do
     expect(chef_run.link(
-      '/opt/supermarket/embedded/service/supermarket/.env.production'
+             '/opt/supermarket/embedded/service/supermarket/.env.production'
     )).to link_to('/var/opt/supermarket/etc/env')
   end
 
