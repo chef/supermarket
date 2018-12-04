@@ -9,7 +9,7 @@ class CtlCommandHelper
     if Process.uid != Etc.getpwnam(user).uid
       exit_failure "supermarket-ctl #{command_name} should be run as the #{user} OS user."
     end
-  rescue ArgumentError => e
+  rescue ArgumentError
     exit_failure "supermarket-ctl requires that a #{user} OS user exist"
   end
 
