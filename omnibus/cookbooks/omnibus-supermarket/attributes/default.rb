@@ -303,7 +303,7 @@ default['supermarket']['database']['name'] = 'supermarket'
 default['supermarket']['database']['host'] = node['supermarket']['postgresql']['listen_address']
 default['supermarket']['database']['port'] = node['supermarket']['postgresql']['port']
 default['supermarket']['database']['pool'] = node['supermarket']['sidekiq']['concurrency']
-default['supermarket']['database']['extensions'] = { 'plpgsql' => true, 'pg_trgm' => 'true' }
+default['supermarket']['database']['extensions'] = { 'plpgsql' => true, 'pg_trgm' => true }
 
 # ## App-specific top-level attributes
 #

@@ -7,7 +7,7 @@ add_command 'test', 'Run the Supermarket installation test suite', 2 do
     opts.on '-J', '--junit-xml PATH' do |junit_xml|
       options[:junit_xml] = junit_xml
     end
-    opts.on '-v', '--verbose' do |verbose|
+    opts.on '-v', '--verbose' do |_verbose|
       options[:verbose] = true
     end
   end.parse!

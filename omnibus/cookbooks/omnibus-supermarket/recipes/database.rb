@@ -42,7 +42,7 @@ enterprise_pg_database node['supermarket']['database']['name'] do
   owner node['supermarket']['database']['user']
 end
 
-node['supermarket']['database']['extensions'].each do |ext, enable|
+node['supermarket']['database']['extensions'].each do |ext, _enable|
   execute "create postgresql #{ext} extension" do
     user node['supermarket']['database']['user']
     command "echo 'CREATE EXTENSION IF NOT EXISTS #{ext}' | psql"
