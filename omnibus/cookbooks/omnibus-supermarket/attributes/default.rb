@@ -446,7 +446,6 @@ default['supermarket']['s3_bucket'] = nil
 default['supermarket']['s3_secret_access_key'] = nil
 default['supermarket']['cdn_url'] = nil
 
-
 # ### Additional S3 Settings
 # By default, Supermarket will use domain style S3 urls that look like this
 # bucketname.s3.amazonaws.com

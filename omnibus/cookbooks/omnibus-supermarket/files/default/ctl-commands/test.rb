@@ -20,7 +20,6 @@ add_command 'test', 'Run the Supermarket installation test suite', 2 do
     command_text += " --reporter junit:#{options[:junit_xml]}"
   end
 
-
   shell_out = Mixlib::ShellOut.new(command_text)
   shell_out.run_command
   $stdout.puts shell_out.stdout
