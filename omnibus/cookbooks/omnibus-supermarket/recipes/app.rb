@@ -67,7 +67,7 @@ execute 'database schema' do
   cwd node['supermarket']['app_directory']
   environment(
     'RAILS_ENV' => 'production',
-    'HOME' => node['supermarket']['app_directory'],
+    'HOME' => node['supermarket']['app_directory']
   )
   user node['supermarket']['user']
 end
