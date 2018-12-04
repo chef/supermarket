@@ -69,7 +69,7 @@ class Supermarket
 
       if node['s3_bucket'] =~ /\./ &&
          (node['s3_domain_style'] != ':s3_path_url' || node['s3_region'] != 'us-east-1')
-         raise IncompatibleConfig, "Incompatible S3 bucket settings. If the bucket name contains periods, the bucket must be in us-east-1 and the domain style must be :s3_path_url.\nAmazon recommends against periods in bucket names. See: https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html"
+        raise IncompatibleConfig, "Incompatible S3 bucket settings. If the bucket name contains periods, the bucket must be in us-east-1 and the domain style must be :s3_path_url.\nAmazon recommends against periods in bucket names. See: https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html"
       end
     end
 
