@@ -3,7 +3,6 @@ require 'spec_helper'
 describe 'omnibus-supermarket::redis' do
   platform 'ubuntu', '16.04'
   automatic_attributes['memory']['total'] = '16000MB'
-#      node.normal['sysctl']['conf_dir'] = '/var/log/supermarket/postgresql'
 
   before :each do
     stub_command("grep 'SUP:123456:respawn:/opt/supermarket/embedded/bin/runsvdir-start' /etc/inittab")
