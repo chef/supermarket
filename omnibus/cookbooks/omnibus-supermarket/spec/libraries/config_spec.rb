@@ -74,7 +74,7 @@ EOF
             's3_bucket' => s3_bucket,
             's3_region' => s3_region,
             's3_domain_style' => s3_domain_style
-            })
+          })
           expect{ described_class.audit_config(incompatible_config) }
             .to raise_error(Supermarket::Config::IncompatibleConfig)
         end
