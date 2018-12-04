@@ -18,15 +18,15 @@ add_command_under_category 'qm-list', 'quality-metrics', 'List the names of defi
   run_a_rake_command 'quality_metrics:list'
 end
 
-add_command_under_category 'qm-flip-all-admin-only', 'quality-metrics',  'Flip all quality metrics visible to only admin users', 2 do
+add_command_under_category 'qm-flip-all-admin-only', 'quality-metrics', 'Flip all quality metrics visible to only admin users', 2 do
   run_a_rake_command 'quality_metrics:flip:all_admin_only'
 end
 
-add_command_under_category 'qm-flip-all-public', 'quality-metrics',  'Flip all quality metrics visible to all users', 2 do
+add_command_under_category 'qm-flip-all-public', 'quality-metrics', 'Flip all quality metrics visible to all users', 2 do
   run_a_rake_command 'quality_metrics:flip:all_public'
 end
 
-add_command_under_category 'qm-flip-admin-only', 'quality-metrics',  'Flip a given quality metric visible to only admin users', 2 do
+add_command_under_category 'qm-flip-admin-only', 'quality-metrics', 'Flip a given quality metric visible to only admin users', 2 do
   args = ARGV[3..-1]
   metric_name = args.join('\ ') # handle spaces in the metric names
   if metric_name.empty?
@@ -37,7 +37,7 @@ add_command_under_category 'qm-flip-admin-only', 'quality-metrics',  'Flip a giv
   run_a_rake_command "quality_metrics:flip:admin_only['#{metric_name}']"
 end
 
-add_command_under_category 'qm-flip-public', 'quality-metrics',  'Flip a given quality metric visible to all users', 2 do
+add_command_under_category 'qm-flip-public', 'quality-metrics', 'Flip a given quality metric visible to all users', 2 do
   args = ARGV[3..-1]
   metric_name = args.join('\ ') # handle spaces in the metric names
   if metric_name.empty?
