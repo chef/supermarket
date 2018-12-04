@@ -26,7 +26,7 @@ control 'ssl-config' do
 
   describe file('/var/opt/supermarket/ssl/ca/dhparams.pem') do
     it { should be_file }
-    its(:content) { should match /BEGIN DH PARAMETERS/}
+    its(:content) { should match /BEGIN DH PARAMETERS/ }
   end
 
   describe file('/var/opt/supermarket/nginx/etc/sites-enabled/rails') do
@@ -53,7 +53,7 @@ control 'log-management' do
 
   describe file(property['supermarket']['var_directory'] + '/etc/logrotate.d/nginx') do
     it { should be_file }
-    its(:content) { should match /#{property['supermarket']['nginx']['log_directory'] + '/\*.log'}/}
+    its(:content) { should match /#{property['supermarket']['nginx']['log_directory'] + '/\*.log'}/ }
   end
 end
 
