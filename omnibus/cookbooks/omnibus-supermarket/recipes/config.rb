@@ -23,15 +23,15 @@
 # in it.
 Supermarket::Config.load_or_create!(
   "#{node['supermarket']['config_directory']}/supermarket.rb",
-  node,
+  node
 )
 Supermarket::Config.load_from_json!(
   "#{node['supermarket']['config_directory']}/supermarket.json",
-  node,
+  node
 )
 Supermarket::Config.load_or_create_secrets!(
   "#{node['supermarket']['config_directory']}/secrets.json",
-  node,
+  node
 )
 
 Supermarket::Config.audit_config(node['supermarket'])

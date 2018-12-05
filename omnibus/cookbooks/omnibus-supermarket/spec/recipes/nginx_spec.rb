@@ -1,15 +1,14 @@
+require 'spec_helper'
+
 describe 'omnibus-supermarket::nginx' do
-  let(:chef_run) do
-    ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04') do |node|
-      node.automatic['memory']['total'] = '16000MB'
-    end.converge(described_recipe)
-  end
+  platform 'ubuntu', '16.04'
+  automatic_attributes['memory']['total'] = '16000MB'
 
   it 'creates /var/log/supermarket/nginx' do
     expect(chef_run).to create_directory('/var/log/supermarket/nginx').with(
       user: 'supermarket',
       group: 'supermarket',
-      mode: '0700',
+      mode: '0700'
     )
   end
 
@@ -17,7 +16,7 @@ describe 'omnibus-supermarket::nginx' do
     expect(chef_run).to create_directory('/var/opt/supermarket/nginx/etc').with(
       user: 'supermarket',
       group: 'supermarket',
-      mode: '0700',
+      mode: '0700'
     )
   end
 
@@ -25,7 +24,7 @@ describe 'omnibus-supermarket::nginx' do
     expect(chef_run).to create_directory('/var/opt/supermarket/nginx/etc/conf.d').with(
       user: 'supermarket',
       group: 'supermarket',
-      mode: '0700',
+      mode: '0700'
     )
   end
 
@@ -33,7 +32,7 @@ describe 'omnibus-supermarket::nginx' do
     expect(chef_run).to create_directory('/var/opt/supermarket/nginx/etc/sites-enabled').with(
       user: 'supermarket',
       group: 'supermarket',
-      mode: '0700',
+      mode: '0700'
     )
   end
 
@@ -42,7 +41,7 @@ describe 'omnibus-supermarket::nginx' do
       source: 'nginx.conf.erb',
       owner: 'supermarket',
       group: 'supermarket',
-      mode: '0600',
+      mode: '0600'
     )
   end
 
@@ -54,7 +53,7 @@ describe 'omnibus-supermarket::nginx' do
 
   it 'notifies nginx to reload when it renders the config' do
     expect(chef_run.template('/var/opt/supermarket/nginx/etc/nginx.conf'))
-      .to notify('runit_service[nginx]').to(:hup)
+      .to notify('component_runit_service[nginx]').to(:restart)
   end
 
   it 'creates /var/opt/supermarket/etc/logrotate.d/nginx' do

@@ -1,6 +1,3 @@
 source 'https://supermarket.chef.io'
 
 metadata
-
-cookbook 'enterprise',
-         git: 'https://github.com/chef-cookbooks/enterprise-chef-common.git'

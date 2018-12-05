@@ -17,7 +17,7 @@ describe 'omnibus-supermarket::config' do
   it 'creates /etc/supermarket' do
     expect(chef_run).to create_directory('/etc/supermarket').with(
       user: 'supermarket',
-      group: 'supermarket',
+      group: 'supermarket'
     )
   end
 
@@ -25,7 +25,7 @@ describe 'omnibus-supermarket::config' do
     expect(chef_run).to create_file('/etc/supermarket/supermarket.rb').with(
       user: 'supermarket',
       group: 'supermarket',
-      mode: '0600',
+      mode: '0600'
     )
   end
 
@@ -33,7 +33,7 @@ describe 'omnibus-supermarket::config' do
     expect(chef_run).to create_directory('/var/opt/supermarket').with(
       user: 'supermarket',
       group: 'supermarket',
-      mode: '0700',
+      mode: '0700'
     )
   end
 
@@ -41,7 +41,7 @@ describe 'omnibus-supermarket::config' do
     expect(chef_run).to create_directory('/var/opt/supermarket/etc').with(
       user: 'supermarket',
       group: 'supermarket',
-      mode: '0700',
+      mode: '0700'
     )
   end
 end

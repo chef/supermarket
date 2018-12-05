@@ -26,6 +26,8 @@ end
 if node['supermarket']['sidekiq']['enable']
   component_runit_service 'sidekiq' do
     package 'supermarket'
+    action :enable
+    subscribes :restart, 'file[environment-variables]'
   end
 else
   runit_service 'sidekiq' do

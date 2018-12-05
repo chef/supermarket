@@ -30,17 +30,18 @@ include_recipe 'omnibus-supermarket::nginx'
   end
 end
 
-template "#{node['supermarket']['var_directory']}/etc/unicorn.rb" do
+template 'unicorn.rb' do
+  path "#{node['supermarket']['var_directory']}/etc/unicorn.rb"
   source 'unicorn.rb.erb'
   cookbook 'unicorn'
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'
   variables(node['supermarket']['unicorn'].to_hash)
-  notifies :restart, 'runit_service[rails]'
 end
 
-template "#{node['supermarket']['nginx']['directory']}/sites-enabled/rails" do
+template 'rails.nginx.conf' do
+  path "#{node['supermarket']['nginx']['directory']}/sites-enabled/rails"
   source 'rails.nginx.conf.erb'
   owner node['supermarket']['user']
   group node['supermarket']['group']
@@ -50,12 +51,14 @@ template "#{node['supermarket']['nginx']['directory']}/sites-enabled/rails" do
             fqdn: node['supermarket']['fqdn'],
             ssl: node['supermarket']['ssl'],
             app_directory: node['supermarket']['app_directory'])
-  notifies :reload, 'runit_service[nginx]' if node['supermarket']['nginx']['enable']
 end
 
 if node['supermarket']['rails']['enable']
   component_runit_service 'rails' do
     package 'supermarket'
+    action :enable
+    subscribes :restart, 'template[unicorn.rb]'
+    subscribes :restart, 'file[environment-variables]'
   end
 else
   runit_service 'rails' do

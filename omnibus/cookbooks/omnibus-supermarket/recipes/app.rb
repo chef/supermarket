@@ -23,13 +23,12 @@ include_recipe 'omnibus-supermarket::config'
 include_recipe 'omnibus-supermarket::rails'
 include_recipe 'omnibus-supermarket::sidekiq'
 
-file "#{node['supermarket']['var_directory']}/etc/env" do
+file 'environment-variables' do
+  path "#{node['supermarket']['var_directory']}/etc/env"
   content Supermarket::Config.environment_variables_from(node['supermarket'])
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'
-  notifies :restart, 'runit_service[sidekiq]' if node['supermarket']['sidekiq']['enable']
-  notifies :restart, 'runit_service[rails]' if node['supermarket']['rails']['enable']
 end
 
 link "#{node['supermarket']['app_directory']}/.env.production" do
@@ -66,10 +65,10 @@ end
 execute 'database schema' do
   command 'bundle exec rake db:migrate db:seed'
   cwd node['supermarket']['app_directory']
-  environment({
+  environment(
     'RAILS_ENV' => 'production',
     'HOME' => node['supermarket']['app_directory']
-  })
+  )
   user node['supermarket']['user']
 end
 

@@ -1,5 +1,4 @@
 source 'https://supermarket.chef.io'
 
-cookbook 'enterprise', git: 'https://github.com/chef-cookbooks/enterprise-chef-common'
 cookbook 'supermarket-builder',
          path: File.expand_path("cookbooks/supermarket-builder", File.dirname(__FILE__))

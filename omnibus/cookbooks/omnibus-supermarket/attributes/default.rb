@@ -132,7 +132,7 @@ default['supermarket']['nginx']['gzip_comp_level'] = '2'
 default['supermarket']['nginx']['gzip_proxied'] = 'any'
 default['supermarket']['nginx']['gzip_vary'] = 'off'
 default['supermarket']['nginx']['gzip_buffers'] = nil
-default['supermarket']['nginx']['gzip_types'] = %w[
+default['supermarket']['nginx']['gzip_types'] = %w(
   text/plain
   text/css
   application/x-javascript
@@ -143,7 +143,7 @@ default['supermarket']['nginx']['gzip_types'] = %w[
   text/javascript
   application/javascript
   application/json
-]
+)
 default['supermarket']['nginx']['gzip_min_length'] = 1000
 default['supermarket']['nginx']['gzip_disable'] = 'MSIE [1-6]\.'
 default['supermarket']['nginx']['keepalive'] = 'on'
@@ -188,10 +188,10 @@ default['supermarket']['postgresql']['listen_address'] = '127.0.0.1'
 default['supermarket']['postgresql']['max_connections'] = 350
 default['supermarket']['postgresql']['md5_auth_cidr_addresses'] = ['127.0.0.1/32', '::1/128']
 default['supermarket']['postgresql']['port'] = 15432
-default['supermarket']['postgresql']['shared_buffers'] = "#{(node['memory']['total'].to_i / 4) / (1024)}MB"
+default['supermarket']['postgresql']['shared_buffers'] = "#{(node['memory']['total'].to_i / 4) / 1024}MB"
 default['supermarket']['postgresql']['shmmax'] = 17179869184
 default['supermarket']['postgresql']['shmall'] = 4194304
-default['supermarket']['postgresql']['work_mem'] = "8MB"
+default['supermarket']['postgresql']['work_mem'] = '8MB'
 
 # ## Rails
 #
@@ -243,12 +243,12 @@ default['supermarket']['ssl']['certificate_key'] = nil
 default['supermarket']['ssl']['ssl_dhparam'] = nil
 
 # These are used in creating a self-signed cert if you haven't brought your own.
-default['supermarket']['ssl']['country_name'] = "US"
-default['supermarket']['ssl']['state_name'] = "WA"
-default['supermarket']['ssl']['locality_name'] = "Seattle"
-default['supermarket']['ssl']['company_name'] = "My Supermarket"
-default['supermarket']['ssl']['organizational_unit_name'] = "Operations"
-default['supermarket']['ssl']['email_address'] = "you@example.com"
+default['supermarket']['ssl']['country_name'] = 'US'
+default['supermarket']['ssl']['state_name'] = 'WA'
+default['supermarket']['ssl']['locality_name'] = 'Seattle'
+default['supermarket']['ssl']['company_name'] = 'My Supermarket'
+default['supermarket']['ssl']['organizational_unit_name'] = 'Operations'
+default['supermarket']['ssl']['email_address'] = 'you@example.com'
 
 # ### Cipher settings
 #
@@ -303,7 +303,7 @@ default['supermarket']['database']['name'] = 'supermarket'
 default['supermarket']['database']['host'] = node['supermarket']['postgresql']['listen_address']
 default['supermarket']['database']['port'] = node['supermarket']['postgresql']['port']
 default['supermarket']['database']['pool'] = node['supermarket']['sidekiq']['concurrency']
-default['supermarket']['database']['extensions'] = { 'plpgsql' => true, 'pg_trgm' => 'true' }
+default['supermarket']['database']['extensions'] = { 'plpgsql' => true, 'pg_trgm' => true }
 
 # ## App-specific top-level attributes
 #
@@ -346,10 +346,10 @@ default['supermarket']['rails_log_to_stdout'] = true
 # These have defaults in the app based on the chef_server_url along the lines of the interpolations below.
 # Override if you need to set these URLs to targets other than the configured chef_server_url.
 #
-#default['supermarket']['chef_identity_url'] = "#{node['supermarket']['chef_server_url']}/id"
-#default['supermarket']['chef_manage_url'] = node['supermarket']['chef_server_url']
-#default['supermarket']['chef_profile_url'] = node['supermarket']['chef_server_url']
-#default['supermarket']['chef_sign_up_url'] = "#{node['supermarket']['chef_server_url']}/signup?ref=community"
+# default['supermarket']['chef_identity_url'] = "#{node['supermarket']['chef_server_url']}/id"
+# default['supermarket']['chef_manage_url'] = node['supermarket']['chef_server_url']
+# default['supermarket']['chef_profile_url'] = node['supermarket']['chef_server_url']
+# default['supermarket']['chef_sign_up_url'] = "#{node['supermarket']['chef_server_url']}/signup?ref=community"
 
 # URLs for Chef Software, Inc. sites. Most of these have defaults set in
 # Supermarket already, but you can customize them here to your liking
@@ -359,10 +359,10 @@ default['supermarket']['chef_www_url'] = 'https://www.chef.io'
 # These have defaults in the app based on the chef_domain along the lines of the interpolations below.
 # Override if you need to set these URLs to targets other than the configured chef_domain.
 #
-#default['supermarket']['chef_blog_url'] = "https://www.#{node['supermarket']['chef_domain']}/blog"
-#default['supermarket']['chef_docs_url'] = "https://docs.#{node['supermarket']['chef_domain']}"
-#default['supermarket']['chef_downloads_url'] = "https://downloads.#{node['supermarket']['chef_domain']}"
-#default['supermarket']['learn_chef_url'] = "https://learn.#{node['supermarket']['chef_domain']}"
+# default['supermarket']['chef_blog_url'] = "https://www.#{node['supermarket']['chef_domain']}/blog"
+# default['supermarket']['chef_docs_url'] = "https://docs.#{node['supermarket']['chef_domain']}"
+# default['supermarket']['chef_downloads_url'] = "https://downloads.#{node['supermarket']['chef_domain']}"
+# default['supermarket']['learn_chef_url'] = "https://learn.#{node['supermarket']['chef_domain']}"
 
 # ### Chef OAuth2 Settings
 #
@@ -445,7 +445,6 @@ default['supermarket']['s3_access_key_id'] = nil
 default['supermarket']['s3_bucket'] = nil
 default['supermarket']['s3_secret_access_key'] = nil
 default['supermarket']['cdn_url'] = nil
-
 
 # ### Additional S3 Settings
 # By default, Supermarket will use domain style S3 urls that look like this

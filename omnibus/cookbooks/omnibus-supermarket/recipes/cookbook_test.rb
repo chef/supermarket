@@ -26,13 +26,13 @@
 package_path = node['supermarket']['test']['package_path'] || '/tmp/packages'
 version_to_install = node['supermarket']['test']['version_to_install'] || 'nope_set_VERSION_TO_INSTALL'
 
-package 'supermarket' do
-  case node['platform_family']
-  when 'debian'
-    provider Chef::Provider::Package::Dpkg
+case node['platform_family']
+when 'debian'
+  dpkg_package 'supermarket' do
     source "#{package_path}/supermarket_#{version_to_install}-1_amd64.deb"
-  when 'rhel'
-    provider Chef::Provider::Package::Rpm
+  end
+when 'rhel'
+  rpm_package 'supermarket' do
     source "#{package_path}/supermarket-#{version_to_install}-1.el#{node['platform_version'].to_i}.x86_64.rpm"
   end
 end
@@ -54,6 +54,10 @@ end
 
 # Sync the local cookbooks into embedded
 execute 'rsync -avz /tmp/kitchen/cookbooks/* /opt/supermarket/embedded/cookbooks/'
+
+# Put the tests back into omnibus-supermarket so that `supermarket-ctl test` works
+# kitchen removes them by default when copying cookbooks to /tmp/kitchen/cookbooks
+execute 'rsync -avz /tmp/omnibus-supermarket-cookbook/test /opt/supermarket/embedded/cookbooks/omnibus-supermarket'
 
 # Reconfigure the app
 execute 'supermarket-ctl reconfigure'
