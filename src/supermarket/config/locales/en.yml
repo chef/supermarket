@@ -110,6 +110,7 @@ en:
       invalid_data: "INVALID_DATA"
       authentication_failed: "AUTHENTICATION_FAILED"
       unauthorized: "UNAUTHORIZED"
+      forbidden: "FORBIDDEN"
       conflict: "CONFLICT"
     error_messages:
       privacy_violation: 'Private cookbook upload not allowed'
@@ -132,6 +133,7 @@ en:
       authentication_request_error: "Authentication failed due to an invalid signed request."
       authentication_key_error: "Authentication failed due to an invalid public/private key pair. If you have changed your keys recently try logging out and logging back in to Supermarket."
       unauthorized_upload_error: "You are not authorized to upload this cookbook."
+      unauthorized_destroy_error: "You are not authorized to destroy this cookbook. If you are the cookbook owner, this Supermarket has disabled artifact removal by owner per Chef RFC072. Contact the administrators if there are concerns."
       unauthorized_post_error: "You are not authorized to POST to this end-point"
       missing_public_key_error: "Before you can perform knife activities that require authentication, you must log into %{current_host} and grant it permission to access your Chef account information."
       negative_parameter: "Start and item parameters must be positive numbers but they are start: %{start} and items: %{items}."

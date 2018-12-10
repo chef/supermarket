@@ -339,6 +339,12 @@ default['supermarket']['sentry_url'] = nil
 default['supermarket']['api_item_limit'] = 100
 default['supermarket']['rails_log_to_stdout'] = true
 
+# Allow owners to remove their cookbooks, cookbook versions, or tools.
+# Added as a step towards implementing RFC072 Artifact Yanking
+# https://github.com/chef/chef-rfc/blob/f8250a4746d2df530b605ecfaa2dc5ae9b7dc7ff/rfc072-artifact-yanking.md
+# recommend false; set to true as default for backward compatibility
+default['supermarket']['owners_can_remove_artifacts'] = true
+
 # ### Chef URL Settings
 #
 # URLs for various links used within Supermarket

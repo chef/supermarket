@@ -85,7 +85,13 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
     begin
       authorize! @cookbook
     rescue Pundit::NotAuthorizedError
-      error({}, 403)
+      error(
+        {
+          error_code: t('api.error_codes.forbidden'),
+          error_messages: [t('api.error_messages.unauthorized_destroy_error')]
+        },
+        403
+      )
     else
       @latest_cookbook_version_url = api_v1_cookbook_version_url(
         @cookbook, @cookbook.latest_cookbook_version

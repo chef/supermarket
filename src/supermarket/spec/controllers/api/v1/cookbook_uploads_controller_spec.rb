@@ -124,16 +124,14 @@ describe Api::V1::CookbookUploadsController do
   end
 
   describe '#destroy' do
+    let(:user) { create(:user) }
+
     before do
       allow(subject).to receive(:authenticate_user!) { true }
-      allow(subject).to receive(:current_user) { create(:user) }
+      allow(subject).to receive(:current_user) { user }
     end
 
-    context 'when a cookbook exists' do
-      let!(:cookbook) { create(:cookbook) }
-      let(:unshare) { delete :destroy, params: { cookbook: cookbook.name, format: :json } }
-      before { auto_authorize!(Cookbook, 'destroy') }
-
+    shared_examples 'authorized to destroy cookbook' do
       it 'sends the cookbook to the view' do
         unshare
         expect(assigns[:cookbook]).to eql(cookbook)
@@ -160,6 +158,80 @@ describe Api::V1::CookbookUploadsController do
       it 'regenerates the universe cache' do
         expect(UniverseCache).to receive(:flush)
         unshare
+      end
+    end
+
+    shared_examples 'not authorized to destroy cookbook' do
+      it 'sends the cookbook to the view' do
+        unshare
+        expect(assigns[:cookbook]).to eql(cookbook)
+      end
+
+      it 'responds with unauthorized' do
+        unshare
+        expect(response.status.to_i).to eql(403)
+      end
+
+      it 'does not destroy a cookbook' do
+        expect { unshare }.not_to change(Cookbook, :count)
+      end
+
+      it 'does not destroy all associated cookbook versions' do
+        expect { unshare }.not_to change(CookbookVersion, :count)
+      end
+
+      it 'does not kick off a deletion process in a worker' do
+        expect(CookbookDeletionWorker).not_to receive(:perform_async)
+        unshare
+      end
+
+      it 'does not regenerate the universe cache' do
+        expect(UniverseCache).not_to receive(:flush)
+        unshare
+      end
+    end
+
+    context 'when a cookbook exists' do
+      context 'and the current user is the owner' do
+        let!(:cookbook) { create(:cookbook, owner: user) }
+        let(:unshare) { delete :destroy, params: { cookbook: cookbook.name, format: :json } }
+        context 'and owners are allowed to remove cookbooks' do
+          before do
+            allow(ENV).to receive(:[]).with('OWNERS_CAN_REMOVE_ARTIFACTS').and_return('true')
+          end
+
+          it_behaves_like 'authorized to destroy cookbook'
+        end
+
+        context 'and owners are not allowed to remove cookbooks' do
+          before do
+            allow(ENV).to receive(:[]).with('OWNERS_CAN_REMOVE_ARTIFACTS').and_return('false')
+          end
+
+          it_behaves_like 'not authorized to destroy cookbook'
+        end
+      end
+
+      context 'and the current user is an admin' do
+        let(:user) { create(:admin) }
+        let!(:cookbook) { create(:cookbook) }
+        let(:unshare) { delete :destroy, params: { cookbook: cookbook.name, format: :json } }
+
+        context 'and owners are allowed to remove cookbooks' do
+          before do
+            allow(ENV).to receive(:[]).with('OWNERS_CAN_REMOVE_ARTIFACTS').and_return('true')
+          end
+
+          it_behaves_like 'authorized to destroy cookbook'
+        end
+
+        context 'and owners are not allowed to remove cookbooks' do
+          before do
+            allow(ENV).to receive(:[]).with('OWNERS_CAN_REMOVE_ARTIFACTS').and_return('false')
+          end
+
+          it_behaves_like 'authorized to destroy cookbook'
+        end
       end
     end
 
