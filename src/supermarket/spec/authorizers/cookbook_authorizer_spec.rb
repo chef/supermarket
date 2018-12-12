@@ -8,8 +8,13 @@ describe CookbookAuthorizer do
 
     subject { described_class.new(user, record) }
 
+    context 'when configuration permits owner artifact removal' do
+      before { allow(ENV).to receive(:[]).with('OWNERS_CAN_REMOVE_ARTIFACTS').and_return('true') }
+      it { should permit_authorization(:destroy) }
+    end
+
     it { should permit_authorization(:create) }
-    it { should permit_authorization(:destroy) }
+    it { should_not permit_authorization(:destroy) }
     it { should permit_authorization(:create_collaborator) }
     it { should permit_authorization(:manage_cookbook_urls) }
     it { should permit_authorization(:deprecate) }
@@ -64,7 +69,7 @@ describe CookbookAuthorizer do
     it { should permit_authorization(:toggle_featured) }
     it { should permit_authorization(:manage) }
     it { should_not permit_authorization(:create) }
-    it { should_not permit_authorization(:destroy) }
+    it { should permit_authorization(:destroy) }
     it { should permit_authorization(:create_collaborator) }
     it { should permit_authorization(:manage_cookbook_urls) }
     it { should permit_authorization(:manage_adoption) }

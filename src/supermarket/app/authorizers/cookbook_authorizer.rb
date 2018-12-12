@@ -10,7 +10,7 @@ class CookbookAuthorizer < Authorizer::Base
   # Owners of a cookbook can destroy a cookbook.
   #
   def destroy?
-    owner?
+    ENV['OWNERS_CAN_REMOVE_ARTIFACTS'] == 'true' ? owner_or_admin? : admin?
   end
 
   #
