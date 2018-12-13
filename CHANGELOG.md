@@ -1,26 +1,24 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.96 -->
-## [3.1.96](https://github.com/chef/supermarket/tree/3.1.96) (2018-12-12)
-
-#### Merged Pull Requests
-- RFC072 Artifact Yanking: disallow cookbook removal by owner [#1789](https://github.com/chef/supermarket/pull/1789) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.1.91 -->
-### Changes since 3.1.91 release
-
-#### Security Fixes
-- update rack (&amp; other gems) in the omnibus build environment [#1785](https://github.com/chef/supermarket/pull/1785) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.94 -->
-- update Rails to 5.0.7.1 [#1784](https://github.com/chef/supermarket/pull/1784) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.93 -->
-
-#### Merged Pull Requests
-- RFC072 Artifact Yanking: disallow cookbook removal by owner [#1789](https://github.com/chef/supermarket/pull/1789) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.96 -->
-- update omnibus to use latest enterprise cookbook [#1788](https://github.com/chef/supermarket/pull/1788) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.95 -->
-- update rack for CVE-2018-16471 [#1782](https://github.com/chef/supermarket/pull/1782) ([robbkidd](https://github.com/robbkidd)) <!-- 3.1.92 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.1.96](https://github.com/chef/supermarket/tree/3.1.96) (2018-12-13)
+
+#### Security Fixes
+- update Rails to 5.0.7.1 [#1784](https://github.com/chef/supermarket/pull/1784) ([robbkidd](https://github.com/robbkidd))
+- update rack (&amp; other gems) in the omnibus build environment [#1785](https://github.com/chef/supermarket/pull/1785) ([robbkidd](https://github.com/robbkidd))
+
+#### Merged Pull Requests
+- update rack for CVE-2018-16471 [#1782](https://github.com/chef/supermarket/pull/1782) ([robbkidd](https://github.com/robbkidd))
+- update omnibus to use latest enterprise cookbook [#1788](https://github.com/chef/supermarket/pull/1788) ([robbkidd](https://github.com/robbkidd))
+- RFC072 Artifact Yanking: disallow cookbook removal by owner [#1789](https://github.com/chef/supermarket/pull/1789) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_stable_release -->
+
 ## [3.1.91](https://github.com/chef/supermarket/tree/3.1.91) (2018-11-01)
 
 #### Bug Fixes
@@ -36,7 +34,6 @@
 - bring omnibus-internal cookbook up to Chef 14 standards [#1748](https://github.com/chef/supermarket/pull/1748) ([tas50](https://github.com/tas50))
 - upgrade rails to 5.0.7 [#1777](https://github.com/chef/supermarket/pull/1777) ([robbkidd](https://github.com/robbkidd))
 - upgrade loofah to 2.2.3 [#1778](https://github.com/chef/supermarket/pull/1778) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.1.81](https://github.com/chef/supermarket/tree/3.1.81) (2018-09-25)
 
