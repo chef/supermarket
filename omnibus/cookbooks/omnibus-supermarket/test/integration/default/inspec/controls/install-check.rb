@@ -34,6 +34,22 @@ control 'ssl-config' do
   end
 end
 
+control 'FIPS' do
+  title 'FIPS 140-2 enablement'
+
+  only_if { property['supermarket']['fips_enabled'] }
+
+  %w(nginx rails sidekiq).each do |service_name|
+    describe file("/opt/supermarket/service/#{service_name}/run") do
+      its(:content) { should match(/export OPENSSL_FIPS=1/) }
+    end
+  end
+
+  describe file('/var/opt/supermarket/nginx/etc/sites-enabled/rails') do
+    its(:content) { should match(/ssl_ciphers FIPS/) }
+  end
+end
+
 control 'log-management' do
   title 'Manage The Logs'
 

@@ -34,6 +34,7 @@ override :rubygems, version: '2.6.14'
 override :nginx, version: '1.10.2'
 override :'chef-gem', version: '14.5.33'
 override :berkshelf, version: 'v6.3.1'
+override :'openssl-fips', version: '2.0.16'
 
 # Creates required build directories
 dependency "preparation"

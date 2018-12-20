@@ -5,6 +5,7 @@ export PATH=<%= node['supermarket']['install_directory'] %>/embedded/bin:$PATH
 export LD_LIBRARY_PATH=<%= node['supermarket']['install_directory'] %>/embedded/lib
 export DIR=<%= node['supermarket']['app_directory'] %>
 export HOME=$DIR
+<%= "export OPENSSL_FIPS=1" if node['supermarket']['fips_enabled'] == true %>
 
 cd $DIR
 
