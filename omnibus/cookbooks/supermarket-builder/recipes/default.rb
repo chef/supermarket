@@ -22,7 +22,7 @@
 # ensure packages available up-to-date
 case node['platform_family']
 when 'debian'
-  include_recipe 'apt::default'
+  apt_update
 when 'rhel'
   include_recipe 'yum-epel::default'
 end
