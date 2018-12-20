@@ -1,20 +1,18 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.0 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [3.2.0](https://github.com/chef/supermarket/tree/3.2.0) (2018-12-20)
 
 #### Enhancements
 - add FIPS 140-2 support [#1768](https://github.com/chef/supermarket/pull/1768) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_release -->
-
-<!-- release_rollup since=3.1.96 -->
-### Changes since 3.1.96 release
-
-#### Enhancements
-- add FIPS 140-2 support [#1768](https://github.com/chef/supermarket/pull/1768) ([robbkidd](https://github.com/robbkidd)) <!-- 3.2.0 -->
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [3.1.96](https://github.com/chef/supermarket/tree/3.1.96) (2018-12-13)
 
 #### Security Fixes
@@ -25,7 +23,6 @@
 - update rack for CVE-2018-16471 [#1782](https://github.com/chef/supermarket/pull/1782) ([robbkidd](https://github.com/robbkidd))
 - update omnibus to use latest enterprise cookbook [#1788](https://github.com/chef/supermarket/pull/1788) ([robbkidd](https://github.com/robbkidd))
 - RFC072 Artifact Yanking: disallow cookbook removal by owner [#1789](https://github.com/chef/supermarket/pull/1789) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.1.91](https://github.com/chef/supermarket/tree/3.1.91) (2018-11-01)
 
