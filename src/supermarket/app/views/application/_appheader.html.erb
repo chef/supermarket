@@ -14,7 +14,7 @@
     </ul>
   <% else %>
     <%= gravatar_for current_user, size: 80 %>
-    <%= current_user.username %> <i class="fa fa-caret-down"></i>
+    <%= current_user.name %> <i class="fa fa-caret-down"></i>
     <ul class="userdropdown">
       <li><%= link_to 'View Profile', current_user, class: 'fa fa-user', rel: 'view_profile' %></li>
       <li><%= link_to 'Manage Profile', edit_profile_path, class: 'fa fa-cog', rel: 'manage_profile' %></li>
