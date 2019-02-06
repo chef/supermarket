@@ -30,6 +30,13 @@ changelog:
     - "Bug": "Bug Fixes"
     - "Security": "Security Fixes"
 
+pipelines:
+  - omnibus/release
+  - omnibus/adhoc:
+      definition: .expeditor/release.omnibus.yml
+      env:
+        - ADHOC: true
+
 # These actions are taken, in order they are specified, anytime a Pull Request is merged.
 merge_actions:
   - built_in:bump_version:
