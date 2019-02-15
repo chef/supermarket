@@ -49,22 +49,19 @@ merge_actions:
         - "Expeditor: Skip Changelog"
         - "Expeditor: Skip All"
         - "Expeditor: ACC Only"
-  - built_in:trigger_omnibus_build:
+  - trigger_pipeline:omnibus/release:
       ignore_labels:
         - "Expeditor: Skip Omnibus"
         - "Expeditor: Skip All"
         - "Expeditor: ACC Only"
       only_if: built_in:bump_version
-  - built_in:update_acc:
-      only_if_labels:
-        - "Expeditor: ACC Only"
 
 # These actions are taken, in the order specified, when an Omnibus artifact is promoted
 # within Chef's internal artifact storage system.
 #
 # TODO: add promoted_to_unstable action to update changelog with modified omnibus components
 subscriptions:
-  - workload: artifact_published:unstable:supermarket:*
+  - workload: artifact_published:current:supermarket:*
     actions:
       - built_in:update_acc
   - workload: artifact_published:stable:supermarket:*
