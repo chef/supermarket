@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.2.1 -->
+## [3.2.1](https://github.com/chef/supermarket/tree/3.2.1) (2019-02-15)
+
+#### Merged Pull Requests
+- upgrade omnibus-embedded nginx [#1790](https://github.com/chef/supermarket/pull/1790) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.2.0 -->
+### Changes since 3.2.0 release
+
+#### Merged Pull Requests
+- upgrade omnibus-embedded nginx [#1790](https://github.com/chef/supermarket/pull/1790) ([robbkidd](https://github.com/robbkidd)) <!-- 3.2.1 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
