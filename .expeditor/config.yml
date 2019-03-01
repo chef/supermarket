@@ -68,3 +68,11 @@ subscriptions:
     actions:
       - built_in:rollover_changelog
       - built_in:notify_chefio_slack_channels
+
+promote:
+  actions:
+    - built_in:promote_artifactory_artifact
+  channels:
+    - unstable
+    - current
+    - stable
