@@ -1,6 +1,7 @@
-#!/bin/bash
+#!<%= embedded_bin %>/ruby
+
 #
-# Copyright 2014 Chef Software, Inc.
+# Copyright 2014-2019 Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,20 +16,32 @@
 # limitations under the License.
 #
 
-# Ensure the calling environment (disapproval look Bundler) does not infect our
-# Ruby environment if called from a Ruby script.
-for ruby_env_var in RUBYOPT \
-                    BUNDLE_BIN_PATH \
-                    BUNDLE_GEMFILE \
-                    GEM_PATH \
-                    GEM_ROOT \
-                    GEM_HOME
-do
-  unset $ruby_env_var
-done
+require "omnibus-ctl"
 
-# This bumps the default svwait timeout from 7 seconds to 30 seconds
-# As documented at http://smarden.org/runit/sv.8.html
-export SVWAIT=30
+module Omnibus
+  # This is coded to override omnibus-ctl 0.3.6, which is wayyyyy behind master, but
+  # thats what Supermarket is pinned to (via omnibus-ctl software definition)
+  class SupermarketCtl < Omnibus::Ctl
 
-<%= embedded_bin %>/omnibus-ctl supermarket <%= embedded_service %>/omnibus-ctl $@
+    # Need to allow '--accept-license' to be passed to the reconfigure command
+    def initialize(name, service_commands=true)
+      super
+      @category_command_map["general"]["reconfigure"][:arity] = 2
+    end
+
+    # Override reconfigure to first perform license-acceptance flow
+    def reconfigure(*args)
+      require "license_acceptance/acceptor"
+      LicenseAcceptance::Acceptor.check_and_persist!("supermarket", "<%= version %>")
+
+      super
+    end
+
+  end
+end
+
+# Copied the logic of https://github.com/chef/omnibus-ctl/blob/master/bin/omnibus-ctl
+ctl = Omnibus::SupermarketCtl.new("supermarket")
+ctl.load_files("<%= embedded_service %>/omnibus-ctl")
+ctl.run(ARGV)
+exit 0

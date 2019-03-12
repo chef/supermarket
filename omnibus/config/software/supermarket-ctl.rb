@@ -1,5 +1,5 @@
 #
-# Copyright 2014 Chef Software, Inc.
+# Copyright 2014-2019 Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,6 +27,10 @@ source path: "cookbooks/omnibus-supermarket"
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
+  # This gem is required for the `supermarket-ctl` executable to run successfully
+  # supermarket-ctl is not appbundled so we can just install it into the embedded ruby
+  gem "install license-acceptance --version \"~> 0.2\"", env: env
+
   bundle "install", env: env
 
   block do
@@ -36,6 +40,7 @@ build do
         vars: {
           embedded_bin: "#{install_dir}/embedded/bin",
           embedded_service: "#{install_dir}/embedded/service",
+          version: IO.read(File.expand_path("../../../../VERSION", __FILE__)).strip
         }
   end
 
