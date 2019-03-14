@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.1 -->
-## [3.2.1](https://github.com/chef/supermarket/tree/3.2.1) (2019-02-15)
+<!-- latest_release 3.2.2 -->
+## [3.2.2](https://github.com/chef/supermarket/tree/3.2.2) (2019-03-14)
 
 #### Merged Pull Requests
-- upgrade omnibus-embedded nginx [#1790](https://github.com/chef/supermarket/pull/1790) ([robbkidd](https://github.com/robbkidd))
+- upgrade OpenSSL, RubyGems, and Rails to address multiple CVEs [#1798](https://github.com/chef/supermarket/pull/1798) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.2.0 -->
 ### Changes since 3.2.0 release
 
 #### Merged Pull Requests
+- upgrade OpenSSL, RubyGems, and Rails to address multiple CVEs [#1798](https://github.com/chef/supermarket/pull/1798) ([robbkidd](https://github.com/robbkidd)) <!-- 3.2.2 -->
 - upgrade omnibus-embedded nginx [#1790](https://github.com/chef/supermarket/pull/1790) ([robbkidd](https://github.com/robbkidd)) <!-- 3.2.1 -->
 <!-- release_rollup -->
 
