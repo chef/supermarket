@@ -1,14 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.0 -->
-## [3.3.0](https://github.com/chef/supermarket/tree/3.3.0) (2019-04-18)
+<!-- latest_release 3.3.1 -->
+## [3.3.1](https://github.com/chef/supermarket/tree/3.3.1) (2019-04-18)
 
-#### Enhancements
-- add support for S3 storage using IAM roles (IAM user and a key no longer required) [#1747](https://github.com/chef/supermarket/pull/1747) ([pavel-kazhavets](https://github.com/pavel-kazhavets))
+#### Bug Fixes
+- pin inspec to fix &#39;-ctl test&#39; requiring license acceptance [#1802](https://github.com/chef/supermarket/pull/1802) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.2.2 -->
 ### Changes since 3.2.2 release
+
+#### Bug Fixes
+- pin inspec to fix &#39;-ctl test&#39; requiring license acceptance [#1802](https://github.com/chef/supermarket/pull/1802) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.1 -->
 
 #### Enhancements
 - add support for S3 storage using IAM roles (IAM user and a key no longer required) [#1747](https://github.com/chef/supermarket/pull/1747) ([pavel-kazhavets](https://github.com/pavel-kazhavets)) <!-- 3.3.0 -->
