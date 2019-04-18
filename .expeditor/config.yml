@@ -25,10 +25,18 @@ github:
 
 changelog:
   categories:
-    - "Feature": "New Features"
-    - "Enhancement": "Enhancements"
+    - "Aspect: Correctness": "Bug Fixes"
+    - "Aspect: Security": "Security Fixes"
     - "Bug": "Bug Fixes"
-    - "Security": "Security Fixes"
+    - "Enhancement": "Enhancements"
+    - "Feature": "Enhancements"
+    - "Type: Breaking Change": "Breaking Changes"
+    - "Type: Bug": "Bug Fixes"
+    - "Type: Chore": "Maintenance Updates"
+    - "Type: Deprecation": "Deprecations"
+    - "Type: Enhancement": "Enhancements"
+    - "Type: Regression": "Bug Fixes"
+    - "Type: Tech Debt": "Maintenance Updates"
 
 pipelines:
   - omnibus/release
