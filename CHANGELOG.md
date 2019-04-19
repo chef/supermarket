@@ -11,13 +11,8 @@
 
 #### Enhancements
 - add support for S3 storage using IAM roles (IAM user and a key no longer required) [#1747](https://github.com/chef/supermarket/pull/1747) ([pavel-kazhavets](https://github.com/pavel-kazhavets))
-- add support for S3 storage using IAM roles (IAM user and a key no longer required) [#1747](https://github.com/chef/supermarket/pull/1747) ([pavel-kazhavets](https://github.com/pavel-kazhavets))
-- add support for S3 storage using IAM roles (IAM user and a key no longer required) [#1747](https://github.com/chef/supermarket/pull/1747) ([pavel-kazhavets](https://github.com/pavel-kazhavets))
 
 #### Bug Fixes
-- pin inspec to fix &#39;-ctl test&#39; requiring license acceptance [#1802](https://github.com/chef/supermarket/pull/1802) ([robbkidd](https://github.com/robbkidd))
-- pin inspec to fix &#39;-ctl test&#39; requiring license acceptance [#1802](https://github.com/chef/supermarket/pull/1802) ([robbkidd](https://github.com/robbkidd))
-- pin inspec to fix &#39;-ctl test&#39; requiring license acceptance [#1802](https://github.com/chef/supermarket/pull/1802) ([robbkidd](https://github.com/robbkidd))
 - pin inspec to fix &#39;-ctl test&#39; requiring license acceptance [#1802](https://github.com/chef/supermarket/pull/1802) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_stable_release -->
 
