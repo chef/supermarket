@@ -1,29 +1,31 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.1 -->
-## [3.3.1](https://github.com/chef/supermarket/tree/3.3.1) (2019-04-18)
-
-#### Bug Fixes
-- pin inspec to fix &#39;-ctl test&#39; requiring license acceptance [#1802](https://github.com/chef/supermarket/pull/1802) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.2.2 -->
-### Changes since 3.2.2 release
-
-#### Bug Fixes
-- pin inspec to fix &#39;-ctl test&#39; requiring license acceptance [#1802](https://github.com/chef/supermarket/pull/1802) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.1 -->
-
-#### Enhancements
-- add support for S3 storage using IAM roles (IAM user and a key no longer required) [#1747](https://github.com/chef/supermarket/pull/1747) ([pavel-kazhavets](https://github.com/pavel-kazhavets)) <!-- 3.3.0 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.3.1](https://github.com/chef/supermarket/tree/3.3.1) (2019-04-19)
+
+#### Enhancements
+- add support for S3 storage using IAM roles (IAM user and a key no longer required) [#1747](https://github.com/chef/supermarket/pull/1747) ([pavel-kazhavets](https://github.com/pavel-kazhavets))
+- add support for S3 storage using IAM roles (IAM user and a key no longer required) [#1747](https://github.com/chef/supermarket/pull/1747) ([pavel-kazhavets](https://github.com/pavel-kazhavets))
+- add support for S3 storage using IAM roles (IAM user and a key no longer required) [#1747](https://github.com/chef/supermarket/pull/1747) ([pavel-kazhavets](https://github.com/pavel-kazhavets))
+
+#### Bug Fixes
+- pin inspec to fix &#39;-ctl test&#39; requiring license acceptance [#1802](https://github.com/chef/supermarket/pull/1802) ([robbkidd](https://github.com/robbkidd))
+- pin inspec to fix &#39;-ctl test&#39; requiring license acceptance [#1802](https://github.com/chef/supermarket/pull/1802) ([robbkidd](https://github.com/robbkidd))
+- pin inspec to fix &#39;-ctl test&#39; requiring license acceptance [#1802](https://github.com/chef/supermarket/pull/1802) ([robbkidd](https://github.com/robbkidd))
+- pin inspec to fix &#39;-ctl test&#39; requiring license acceptance [#1802](https://github.com/chef/supermarket/pull/1802) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_stable_release -->
+
 ## [3.2.2](https://github.com/chef/supermarket/tree/3.2.2) (2019-03-14)
 
 #### Merged Pull Requests
 - upgrade omnibus-embedded nginx [#1790](https://github.com/chef/supermarket/pull/1790) ([robbkidd](https://github.com/robbkidd))
 - upgrade OpenSSL, RubyGems, and Rails to address multiple CVEs [#1798](https://github.com/chef/supermarket/pull/1798) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.2.0](https://github.com/chef/supermarket/tree/3.2.0) (2018-12-20)
 
