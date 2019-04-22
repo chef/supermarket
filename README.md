@@ -8,6 +8,12 @@ Supermarket is Chef's community repository for cookbooks, currently hosted
 at [supermarket.chef.io](supermarket.chef.io). Supermarket can also be run
 internally, behind-the-firewall.
 
+**Umbrella Project**: [Supermarket](https://github.com/chef/chef-oss-practices/blob/master/projects/supermarket.md)
+
+* **[Project State](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** Maintained
+* **Issues [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
+* **Pull Request [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
+
 The code is designed to be easy for others to contribute to. To that end,
 the goal of this README is to introduce you to the project and get you up and
 running. More information about Supermarket can be found in [the
