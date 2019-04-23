@@ -40,7 +40,7 @@ echo "Reconfiguring $product"
 echo "============================================================"
 echo ""
 
-sudo supermarket-ctl reconfigure || true
+sudo supermarket-ctl reconfigure --chef-license accept-no-persist || true
 sleep 120
 
 echo ""
