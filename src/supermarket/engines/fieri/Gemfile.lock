@@ -115,7 +115,7 @@ GEM
     mixlib-log (1.7.1)
     multipart-post (2.0.0)
     nio4r (2.3.1)
-    nokogiri (1.10.1)
+    nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
     octokit (4.7.0)
       sawyer (~> 0.8.0, >= 0.5.3)
@@ -233,4 +233,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.17.1
+   1.17.3
