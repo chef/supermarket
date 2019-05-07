@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.3.2 -->
+## [3.3.2](https://github.com/chef/supermarket/tree/3.3.2) (2019-05-07)
+
+#### Security Fixes
+- upgrade nokogiri (CVE-2019-11068) [#1808](https://github.com/chef/supermarket/pull/1808) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.3.1 -->
+### Changes since 3.3.1 release
+
+#### Security Fixes
+- upgrade nokogiri (CVE-2019-11068) [#1808](https://github.com/chef/supermarket/pull/1808) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.2 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
