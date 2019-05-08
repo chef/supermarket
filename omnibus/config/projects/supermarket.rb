@@ -18,8 +18,8 @@ name "supermarket"
 maintainer "Chef Supermarket Team <supermarket@chef.io>"
 homepage "https://supermarket.chef.io"
 
-license "Apache-2.0"
-license_file "../LICENSE"
+license "Chef EULA"
+license_file "CHEF-EULA.md"
 
 # Defaults to C:/supermarket on Windows
 # and /opt/supermarket on all other platforms
