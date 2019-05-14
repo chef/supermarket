@@ -195,6 +195,8 @@ GEM
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
+    ffi-libarchive (0.4.6)
+      ffi (~> 1.0)
     ffi-yajl (2.3.1)
       libyajl2 (~> 1.2)
     foodcritic (14.3.0)
@@ -611,6 +613,7 @@ DEPENDENCIES
   dotenv
   factory_bot_rails
   faker
+  ffi-libarchive
   fieri!
   foreman
   guard
@@ -646,6 +649,7 @@ DEPENDENCIES
   rollout
   rspec-rails
   rubocop (>= 0.23.0)
+  ruby-filemagic
   sass-globbing
   sass-rails
   sentry-raven

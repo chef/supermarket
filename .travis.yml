@@ -46,6 +46,7 @@ matrix:
             - libxslt1-dev
             - libxml2-dev
             - libmagic-dev
+            - libarchive-dev
       services:
         - redis-server
         - postgresql
