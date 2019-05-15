@@ -1,5 +1,6 @@
 .DS_Store
 /.delivery/cli.toml
+.chef-workstation
 
 # Terraform
 .terraform/
