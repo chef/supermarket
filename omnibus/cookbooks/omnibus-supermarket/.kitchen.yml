@@ -8,8 +8,9 @@ driver:
     - ['../../pkg', '/tmp/packages', 'create: true, type: :rsync']
 
 provisioner:
-  name: chef_solo
-  solo_rb:
+  name: chef_zero
+  client_rb:
+    chef_license: accept
     ssl_verify_mode: verify_peer
 
 verifier:
