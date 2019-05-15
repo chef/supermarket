@@ -1,23 +1,24 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.3 -->
-## [3.3.3](https://github.com/chef/supermarket/tree/3.3.3) (2019-05-15)
-
-#### Bug Fixes
-- fix upload error when cookbook tarball uid/gid is very large [#1810](https://github.com/chef/supermarket/pull/1810) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.3.1 -->
-### Changes since 3.3.1 release
-
-#### Bug Fixes
-- fix upload error when cookbook tarball uid/gid is very large [#1810](https://github.com/chef/supermarket/pull/1810) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.3 -->
-
-#### Security Fixes
-- upgrade nokogiri (CVE-2019-11068) [#1808](https://github.com/chef/supermarket/pull/1808) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.2 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.3.3](https://github.com/chef/supermarket/tree/3.3.3) (2019-05-15)
+
+#### Security Fixes
+- upgrade nokogiri (CVE-2019-11068) [#1808](https://github.com/chef/supermarket/pull/1808) ([robbkidd](https://github.com/robbkidd))
+
+#### Bug Fixes
+- fix upload error when cookbook tarball uid/gid is very large [#1810](https://github.com/chef/supermarket/pull/1810) ([robbkidd](https://github.com/robbkidd))
+- fix upload error when cookbook tarball uid/gid is very large [#1810](https://github.com/chef/supermarket/pull/1810) ([robbkidd](https://github.com/robbkidd))
+- fix upload error when cookbook tarball uid/gid is very large [#1810](https://github.com/chef/supermarket/pull/1810) ([robbkidd](https://github.com/robbkidd))
+- fix upload error when cookbook tarball uid/gid is very large [#1810](https://github.com/chef/supermarket/pull/1810) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_stable_release -->
+
 ## [3.3.1](https://github.com/chef/supermarket/tree/3.3.1) (2019-04-19)
 
 #### Enhancements
@@ -25,7 +26,6 @@
 
 #### Bug Fixes
 - pin inspec to fix &#39;-ctl test&#39; requiring license acceptance [#1802](https://github.com/chef/supermarket/pull/1802) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.2.2](https://github.com/chef/supermarket/tree/3.2.2) (2019-03-14)
 
