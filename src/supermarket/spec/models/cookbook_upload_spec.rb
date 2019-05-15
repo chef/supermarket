@@ -113,6 +113,15 @@ describe CookbookUpload do
       expect(version).to be_present
     end
 
+    it 'yields the cookbook version when the tarball has uid/gid greater than 8^8' do
+      tarball = File.open('spec/support/cookbook_fixtures/big-gid.tgz')
+
+      upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
+      version = upload.finish { |_, _, v| v }
+
+      expect(version).to be_present
+    end
+
     it 'yields the cookbook version if the README has no extension' do
       tarball = File.open('spec/support/cookbook_fixtures/readme-no-extension.tgz')
 
@@ -168,7 +177,7 @@ describe CookbookUpload do
       errors = upload.finish { |e, _| e }
 
       expect(errors.full_messages).
-        to include(I18n.t('api.error_messages.tarball_corrupt', error: '"\x00\x00\x00\x00\x00\x0001" is not an octal string'))
+        to include(I18n.t('api.error_messages.tarball_corrupt', error: 'Damaged tar archive'))
     end
 
     it 'yields an error if the tarball has no metadata.json entry' do

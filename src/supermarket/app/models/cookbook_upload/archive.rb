@@ -1,4 +1,5 @@
-require 'rubygems/package'
+require 'ffi-libarchive'
+require 'filemagic'
 
 class CookbookUpload
   #
@@ -19,6 +20,8 @@ class CookbookUpload
     # Indicates that the source could not be processed
     #
     class Error < RuntimeError; end
+    class CorruptTarball < Error; end
+    class NotGzipped < Error; end
 
     #
     # Creates a new Archive
@@ -39,10 +42,10 @@ class CookbookUpload
     def find(pattern)
       matches = []
 
-      each do |entry|
-        next unless entry.full_name.match(pattern)
+      each_entry do |entry, _|
+        next unless entry.pathname.match(pattern)
 
-        matches << entry.full_name
+        matches << entry.pathname
       end
 
       matches
@@ -59,10 +62,10 @@ class CookbookUpload
     def read(path)
       match = nil
 
-      each do |entry|
-        next unless entry.full_name == path
+      each_entry do |entry, contents|
+        next unless entry.pathname == path
 
-        match = entry.read
+        match = contents
 
         break
       end
@@ -78,7 +81,8 @@ class CookbookUpload
     # @raise [NoPath] if the source has no path
     # @raise [Error] if the source is not a compatible archive
     #
-    # @yieldparam [::Gem::Package::TarReader::Entry] entry
+    # @yieldparam [::Archive::Entry] entry
+    # @yieldparam [::String] contents
     #
     # @example
     #   archive = CookbookUpload::Archive.new(tarball)
@@ -86,18 +90,42 @@ class CookbookUpload
     #     puts "#{entry.full_name} has the following content:\n#{entry.read}"
     #   end
     #
-    def each
+    def each_entry
       raise NoPath unless @source.respond_to?(:path)
+      raise NotGzipped unless gzipped?
 
       begin
-        Zlib::GzipReader.open(@source.path) do |gzip|
-          Gem::Package::TarReader.new(gzip) do |tar|
-            tar.each { |entry| yield entry }
+        ::Archive::Reader.open_filename(@source.path) do |tar|
+          tar.each_entry_with_data do |entry, data|
+            contents = data.is_a?(String) ? data : ''
+            yield entry, contents
           end
         end
-      rescue Zlib::GzipFile::Error => e
-        raise Error, e.message
+      rescue ::Archive::Error => e
+        case e.message
+        when /Damaged tar archive/
+          raise CorruptTarball, e.message
+        else
+          raise e
+        end
       end
+    end
+
+    #
+    # Determines whether a file at a path is gzipped or not
+    #
+    # @return true/false
+    #
+    def gzipped?
+      # mime types returned for GZips have looked like:
+      #   "application/x-gzip; charset=binary" on macOS
+      #   "application/gzip; charset=binary" on Ubuntu
+      # This regex settled on after tinkering in Rubular.
+      # ref: https://rubular.com/r/bNfFNbNYqqFof4
+      #
+      # It's possible the implementation for this detection will need
+      # to change. Please feel empowered, dear readers of the future.
+      FileMagic.mime.file(@source.path).match? %r{application\/x?-?gzip;}
     end
   end
 end

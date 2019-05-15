@@ -170,11 +170,11 @@ class CookbookUpload
         errors.add(:base, I18n.t('api.error_messages.metadata_not_json'))
       rescue Virtus::CoercionError
         errors.add(:base, I18n.t('api.error_messages.invalid_metadata'))
-      rescue Archive::Error
+      rescue Archive::NotGzipped
         errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
       rescue Archive::NoPath
         errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
-      rescue ArgumentError, Gem::Package::TarInvalidError => e
+      rescue Archive::CorruptTarball => e
         errors.add(:base, I18n.t('api.error_messages.tarball_corrupt', error: e))
       end
 

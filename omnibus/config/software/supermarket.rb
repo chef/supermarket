@@ -31,6 +31,7 @@ dependency "ruby"
 dependency "runit"
 dependency "logrotate"
 dependency "file"
+dependency "libarchive"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)

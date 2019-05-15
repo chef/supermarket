@@ -19,6 +19,7 @@ gem 'chef', require: false
 gem 'compass-rails'
 gem 'ddtrace', require: false
 gem 'dotenv'
+gem 'ffi-libarchive'
 gem 'foreman'
 gem 'html_truncator'
 gem 'jbuilder'
@@ -37,6 +38,7 @@ gem 'redcarpet' # markdown parsing
 gem 'redis-rails'
 gem 'rinku', require: 'rails_rinku'
 gem 'rollout'
+gem 'ruby-filemagic'
 gem 'sass-globbing'
 gem 'sass-rails'
 gem 'sentry-raven', require: false
