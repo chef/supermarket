@@ -29,6 +29,8 @@ pkg_binds_optional=(
   [redis]="port"
 )
 
+pkg_svc_run="supermarket-run"
+
 do_prepare() {
   do_default_prepare
   mkdir -p .bundle
@@ -48,6 +50,7 @@ do_install() {
 declare -A scaffolding_process_bins
 scaffolding_process_bins[dbcreate]="bundle exec rake db:create db:schema:load db:seed"
 scaffolding_process_bins[release]="bundle exec rake db:migrate db:seed"
+scaffolding_process_bins[run]="bundle exec foreman start"
 
 declare -A scaffolding_env
 scaffolding_env[FQDN]={{cfg.app.fqdn}}

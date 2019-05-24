@@ -8,6 +8,23 @@ mkdir -pv '{{pkg.svc_var_path}}/log'
 mkdir -pv '{{pkg.svc_var_path}}/tmp'
 mkdir -pv '{{pkg.svc_var_path}}/public/system'
 
+# TODO: Clean this up. Make sure supermarket account is created when binding
+{{~#if bind.database}}
+{{#with bind.database.first as |pg| ~}}
+export PGPASSWORD={{pg.cfg.superuser_password}}
+export PGUSER={{pg.cfg.superuser_name}}
+export PGHOST={{pg.sys.ip}}
+{{/with}}
+
+# We always want to make sure the password is up to date, hence the additional alter
+# Creating as superuser to make this work, as we needed a bit more than DB owner.
+# This should get clamped down
+psql -d postgres << EOF
+CREATE USER {{cfg.db.user}} WITH SUPERUSER PASSWORD '{{cfg.db.password}}';
+CREATE DATABASE {{cfg.db.name}} WITH OWNER = {{cfg.db.user}};
+ALTER USER {{cfg.db.user}} WITH PASSWORD '{{cfg.db.password}}';
+EOF
+{{~/if}}
 
 # Check that the 'SECRET_KEY_BASE' environment variable is non-empty
 if [ -z "${SECRET_KEY_BASE:-}" ]; then
