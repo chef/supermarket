@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.3.4 -->
+## [3.3.4](https://github.com/chef/supermarket/tree/3.3.4) (2019-05-29)
+
+#### Security Fixes
+- update packaged OpenSSL to 1.0.2s [#1813](https://github.com/chef/supermarket/pull/1813) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.3.3 -->
+### Changes since 3.3.3 release
+
+#### Security Fixes
+- update packaged OpenSSL to 1.0.2s [#1813](https://github.com/chef/supermarket/pull/1813) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.4 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
