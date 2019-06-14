@@ -10,7 +10,7 @@
   <% if !signed_in? %>
     <ul>
       <li class="sign_in_create_account"><%= link_to 'Create Account', chef_sign_up_url %></li>
-      <li class="sign_in_create_account"><%= link_to 'Sign In', sign_in_path, rel: 'sign_in' %></li>
+      <li class="sign_in_create_account"><%= link_to 'Sign In', auth_path(:chef_oauth2), rel: 'sign_in', method: :post %></li>
     </ul>
   <% else %>
     <%= gravatar_for current_user, size: 80 %>

@@ -127,13 +127,13 @@ Rails.application.routes.draw do
   # when signing in or up with chef account
   match 'auth/chef_oauth2/callback' => 'sessions#create', as: :auth_session_callback, via: [:get, :post]
   get 'auth/failure' => 'sessions#failure', as: :auth_failure
-  get 'login'   => redirect('/sign-in'), as: nil
-  get 'signin'  => redirect('/sign-in'), as: nil
+  get 'login'   => redirect('/sign-in', status: 302), as: nil
+  get 'signin'  => redirect('/sign-in', status: 302), as: nil
   get 'sign-in' => 'sessions#new', as: :sign_in
   get 'sign-up' => 'sessions#new', as: :sign_up
 
-  delete 'logout'   => redirect('/sign-out'), as: nil
-  delete 'signout'  => redirect('/sign-out'), as: nil
+  delete 'logout'   => redirect('/sign-out', status: 302), as: nil
+  delete 'signout'  => redirect('/sign-out', status: 302), as: nil
   delete 'sign-out' => 'sessions#destroy', as: :sign_out
 
   # when linking an oauth account

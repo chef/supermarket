@@ -35,7 +35,7 @@
             <% end %>
             <li class="more-info"><a>More Info</a></li>
             <% if !signed_in? %>
-              <li><%= link_to 'Sign In', sign_in_path, rel: 'sign_in' %></li>
+              <li><%= link_to 'Sign In', auth_path(:chef_oauth2), rel: 'sign_in', method: :post %></li>
             <% end %>
           </ul>
           <ul class="off-canvas-list">
