@@ -19,14 +19,14 @@ describe 'omnibus-supermarket::app' do
       expect(chef_run).to create_file(file)
         .with(owner: 'supermarket',
               group: 'supermarket',
-              mode:  '0664')
+              mode: '0664')
     end
   end
 
   it 'links the env file' do
     expect(chef_run.link(
              '/opt/supermarket/embedded/service/supermarket/.env.production'
-    )).to link_to('/var/opt/supermarket/etc/env')
+           )).to link_to('/var/opt/supermarket/etc/env')
   end
 
   it 'creates /var/opt/supermarket/etc/database.yml' do
