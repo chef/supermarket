@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.5 -->
-## [3.3.5](https://github.com/chef/supermarket/tree/3.3.5) (2019-05-29)
+<!-- latest_release 3.3.6 -->
+## [3.3.6](https://github.com/chef/supermarket/tree/3.3.6) (2019-06-17)
 
 #### Security Fixes
-- update to use curl 7.65.0 [#1814](https://github.com/chef/supermarket/pull/1814) ([robbkidd](https://github.com/robbkidd))
+- require POSTs during sign-in (CVE-2015-9284) [#1815](https://github.com/chef/supermarket/pull/1815) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.3 -->
 ### Changes since 3.3.3 release
 
 #### Security Fixes
+- require POSTs during sign-in (CVE-2015-9284) [#1815](https://github.com/chef/supermarket/pull/1815) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.6 -->
 - update to use curl 7.65.0 [#1814](https://github.com/chef/supermarket/pull/1814) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.5 -->
 - update packaged OpenSSL to 1.0.2s [#1813](https://github.com/chef/supermarket/pull/1813) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.4 -->
 <!-- release_rollup -->
