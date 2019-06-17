@@ -4,11 +4,9 @@ class SessionsController < ApplicationController
   #
   # GET /sign-in
   #
-  # Redirects the user to the OmniAuth path for authentication
+  # Show page with authentication options.
   #
-  def new
-    redirect_to '/auth/chef_oauth2'
-  end
+  def new; end
 
   #
   # POST /auth/chef_oauth2/callback

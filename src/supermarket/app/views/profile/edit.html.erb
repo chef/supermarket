@@ -62,7 +62,7 @@
             <% end %>
           </table>
 
-          <%= link_to '<i class="fa fa-github"></i> Connect GitHub Account'.html_safe, auth_path(:github), class: 'button radius', rel: 'connect_github' %>
+          <%= link_to '<i class="fa fa-github"></i> Connect GitHub Account'.html_safe, auth_path(:github), method: :post, class: 'button radius', rel: 'connect_github' %>
         </div>
       <% end %>
       <div class="content" id="collaborations">
