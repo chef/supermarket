@@ -31,7 +31,6 @@ build_iteration 1
 override :postgresql, version: '9.3.18'
 override :ruby, version: "2.5.3"
 override :'chef-gem', version: '14.5.33'
-override :berkshelf, version: 'v6.3.1'
 override :'openssl-fips', version: '2.0.16'
 override :inspec, version: 'v3.9.2' # TODO: remove when license_acceptance is added
 
