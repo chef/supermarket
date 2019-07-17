@@ -1,14 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.6 -->
-## [3.3.6](https://github.com/chef/supermarket/tree/3.3.6) (2019-06-17)
+<!-- latest_release unreleased -->
+## Unreleased
 
-#### Security Fixes
-- require POSTs during sign-in (CVE-2015-9284) [#1815](https://github.com/chef/supermarket/pull/1815) ([robbkidd](https://github.com/robbkidd))
+#### Merged Pull Requests
+- No more Ubuntu 14 builds. Canonical ended support for trusty in April 2019. [#1818](https://github.com/chef/supermarket/pull/1818) ([christopher-snapp](https://github.com/christopher-snapp))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.3 -->
 ### Changes since 3.3.3 release
+
+#### Merged Pull Requests
+- No more Ubuntu 14 builds. Canonical ended support for trusty in April 2019. [#1818](https://github.com/chef/supermarket/pull/1818) ([christopher-snapp](https://github.com/christopher-snapp)) <!-- 3.3.6 -->
 
 #### Security Fixes
 - require POSTs during sign-in (CVE-2015-9284) [#1815](https://github.com/chef/supermarket/pull/1815) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.6 -->
