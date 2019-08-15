@@ -33,7 +33,6 @@ end
 template 'unicorn.rb' do
   path "#{node['supermarket']['var_directory']}/etc/unicorn.rb"
   source 'unicorn.rb.erb'
-  cookbook 'unicorn'
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'
