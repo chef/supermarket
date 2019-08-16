@@ -16,6 +16,7 @@ add_command 'test', 'Run the Supermarket installation test suite', 2 do
   command_text += ' /opt/supermarket/embedded/cookbooks/omnibus-supermarket/test/integration/default/inspec'
   command_text += ' --color'
   command_text += ' --no-distinct-exit' # skipped tests are OK
+  command_text += ' --chef-license=accept-no-persist'
 
   if options[:junit_xml]
     command_text += " --reporter junit:#{options[:junit_xml]}"
