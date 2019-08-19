@@ -33,6 +33,7 @@ override :ruby, version: "2.5.3"
 override :bundler, version: "1.17.3" # this must match the BUNDLED WITH in all the repo's Gemfile.locks
 override :'chef-gem', version: '14.5.33'
 override :'openssl-fips', version: '2.0.16'
+override :'omnibus-ctl', version: 'master'
 
 # Creates required build directories
 dependency "preparation"
