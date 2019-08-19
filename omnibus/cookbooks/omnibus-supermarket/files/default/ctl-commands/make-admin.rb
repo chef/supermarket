@@ -9,7 +9,7 @@ rescue LoadError
 end
 
 # supermarket-ctl make_admin username
-add_command 'make-admin', 'Make a Supermarket user an admin', 2 do
+add_command_under_category 'make-admin', 'user-management', 'Make a Supermarket user an admin', 2 do
   cmd_helper = CtlCommandHelper.new('make-admin')
   cmd_helper.must_run_as 'supermarket'
 

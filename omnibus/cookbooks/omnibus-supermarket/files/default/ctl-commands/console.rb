@@ -7,7 +7,7 @@ rescue LoadError
   require '/opt/supermarket/embedded/service/omnibus-ctl/helpers/ctl_command_helper'
 end
 
-add_command 'console', 'Enter the rails console for Supermarket', 1 do
+add_command_under_category 'console', 'general', 'Enter the rails console for Supermarket', 1 do
   cmd_helper = CtlCommandHelper.new('console')
   cmd_helper.must_run_as 'supermarket'
 

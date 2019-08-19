@@ -1,7 +1,7 @@
 require 'mixlib/shellout'
 require 'optparse'
 
-add_command 'test', 'Run the Supermarket installation test suite', 2 do
+add_command_under_category 'test', 'general', 'Run the Supermarket installation test suite', 2 do
   options = {}
   OptionParser.new do |opts|
     opts.on '-J', '--junit-xml PATH' do |junit_xml|
