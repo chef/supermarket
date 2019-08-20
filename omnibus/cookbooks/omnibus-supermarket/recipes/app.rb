@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: supermarket
+# Cookbook:: supermarket
 # Recipe:: app
 #
-# Copyright 2014 Chef Software, Inc.
+# Copyright:: 2014 Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ execute 'database schema' do
   user node['supermarket']['user']
 end
 
-# Cookbook data is uploaded to /opt/supermarket/embedded/service/supermarket/public/system
+# tar files for cookbooks are uploaded to /opt/supermarket/embedded/service/supermarket/public/system
 directory node['supermarket']['data_directory'] do
   owner node['supermarket']['user']
   group node['supermarket']['group']
