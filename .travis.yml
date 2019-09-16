@@ -41,7 +41,7 @@ matrix:
     - env:
         - NAME=supermarket
       addons:
-        postgresql: '9.3'
+        postgresql: '9.4'
         apt:
           packages:
             - libxslt1-dev
