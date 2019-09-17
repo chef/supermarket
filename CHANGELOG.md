@@ -1,9 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release unreleased -->
-## Unreleased
+<!-- latest_release 3.3.7 -->
+## [3.3.7](https://github.com/chef/supermarket/tree/3.3.7) (2019-09-17)
 
 #### Merged Pull Requests
+- omnibus build fixes [#1821](https://github.com/chef/supermarket/pull/1821) ([robbkidd](https://github.com/robbkidd))
 - No more Ubuntu 14 builds. Canonical ended support for trusty in April 2019. [#1818](https://github.com/chef/supermarket/pull/1818) ([christopher-snapp](https://github.com/christopher-snapp))
 <!-- latest_release -->
 
@@ -11,6 +12,7 @@
 ### Changes since 3.3.3 release
 
 #### Merged Pull Requests
+- omnibus build fixes [#1821](https://github.com/chef/supermarket/pull/1821) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.7 -->
 - No more Ubuntu 14 builds. Canonical ended support for trusty in April 2019. [#1818](https://github.com/chef/supermarket/pull/1818) ([christopher-snapp](https://github.com/christopher-snapp)) <!-- 3.3.6 -->
 
 #### Security Fixes
