@@ -10,4 +10,3 @@ chef_version     '>= 14.0'
 
 depends          'enterprise'
 depends          'runit', '>= 3.0.3'
-depends          'unicorn'

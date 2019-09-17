@@ -1,7 +1,7 @@
 require 'mixlib/shellout'
 require 'optparse'
 
-add_command 'test', 'Run the Supermarket installation test suite', 2 do
+add_command_under_category 'test', 'general', 'Run the Supermarket installation test suite', 2 do
   options = {}
   OptionParser.new do |opts|
     opts.on '-J', '--junit-xml PATH' do |junit_xml|
@@ -16,6 +16,7 @@ add_command 'test', 'Run the Supermarket installation test suite', 2 do
   command_text += ' /opt/supermarket/embedded/cookbooks/omnibus-supermarket/test/integration/default/inspec'
   command_text += ' --color'
   command_text += ' --no-distinct-exit' # skipped tests are OK
+  command_text += ' --chef-license=accept-no-persist'
 
   if options[:junit_xml]
     command_text += " --reporter junit:#{options[:junit_xml]}"

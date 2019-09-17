@@ -10,7 +10,7 @@ driver:
 provisioner:
   name: chef_zero
   client_rb:
-    chef_license: accept
+    chef_license: accept-no-persist
     ssl_verify_mode: verify_peer
 
 verifier:

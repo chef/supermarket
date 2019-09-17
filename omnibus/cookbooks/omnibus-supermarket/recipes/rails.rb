@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: supermarket
+# Cookbook:: supermarket
 # Recipe:: rails
 #
-# Copyright 2014 Chef Software, Inc.
+# Copyright:: 2014 Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -33,7 +33,6 @@ end
 template 'unicorn.rb' do
   path "#{node['supermarket']['var_directory']}/etc/unicorn.rb"
   source 'unicorn.rb.erb'
-  cookbook 'unicorn'
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'

@@ -41,7 +41,7 @@ matrix:
     - env:
         - NAME=supermarket
       addons:
-        postgresql: '9.3'
+        postgresql: '9.4'
         apt:
           packages:
             - libxslt1-dev
@@ -61,7 +61,7 @@ matrix:
         - cd $TRAVIS_BUILD_DIR/src/$NAME
         - bundle exec rake spec
         - bundle exec rubocop
-        - bundle exec bundle-audit check --update
+        - bundle exec bundle-audit check --update --ignore CVE-2015-9284
 
     # Fieri Spec
     - env:
