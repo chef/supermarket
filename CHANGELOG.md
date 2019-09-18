@@ -1,27 +1,24 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.7 -->
-## [3.3.7](https://github.com/chef/supermarket/tree/3.3.7) (2019-09-17)
-
-#### Merged Pull Requests
-- omnibus build fixes [#1821](https://github.com/chef/supermarket/pull/1821) ([robbkidd](https://github.com/robbkidd))
-- No more Ubuntu 14 builds. Canonical ended support for trusty in April 2019. [#1818](https://github.com/chef/supermarket/pull/1818) ([christopher-snapp](https://github.com/christopher-snapp))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.3.3 -->
-### Changes since 3.3.3 release
-
-#### Merged Pull Requests
-- omnibus build fixes [#1821](https://github.com/chef/supermarket/pull/1821) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.7 -->
-- No more Ubuntu 14 builds. Canonical ended support for trusty in April 2019. [#1818](https://github.com/chef/supermarket/pull/1818) ([christopher-snapp](https://github.com/christopher-snapp)) <!-- 3.3.6 -->
-
-#### Security Fixes
-- require POSTs during sign-in (CVE-2015-9284) [#1815](https://github.com/chef/supermarket/pull/1815) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.6 -->
-- update to use curl 7.65.0 [#1814](https://github.com/chef/supermarket/pull/1814) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.5 -->
-- update packaged OpenSSL to 1.0.2s [#1813](https://github.com/chef/supermarket/pull/1813) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.4 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.3.7](https://github.com/chef/supermarket/tree/3.3.7) (2019-09-18)
+
+#### Security Fixes
+- update packaged OpenSSL to 1.0.2s [#1813](https://github.com/chef/supermarket/pull/1813) ([robbkidd](https://github.com/robbkidd))
+- update to use curl 7.65.0 [#1814](https://github.com/chef/supermarket/pull/1814) ([robbkidd](https://github.com/robbkidd))
+- require POSTs during sign-in (CVE-2015-9284) [#1815](https://github.com/chef/supermarket/pull/1815) ([robbkidd](https://github.com/robbkidd))
+
+#### Merged Pull Requests
+- No more Ubuntu 14 builds. Canonical ended support for trusty in April 2019. [#1818](https://github.com/chef/supermarket/pull/1818) ([christopher-snapp](https://github.com/christopher-snapp))
+- omnibus build fixes [#1821](https://github.com/chef/supermarket/pull/1821) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_stable_release -->
+
 ## [3.3.3](https://github.com/chef/supermarket/tree/3.3.3) (2019-05-15)
 
 #### Security Fixes
@@ -32,7 +29,6 @@
 - fix upload error when cookbook tarball uid/gid is very large [#1810](https://github.com/chef/supermarket/pull/1810) ([robbkidd](https://github.com/robbkidd))
 - fix upload error when cookbook tarball uid/gid is very large [#1810](https://github.com/chef/supermarket/pull/1810) ([robbkidd](https://github.com/robbkidd))
 - fix upload error when cookbook tarball uid/gid is very large [#1810](https://github.com/chef/supermarket/pull/1810) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.3.1](https://github.com/chef/supermarket/tree/3.3.1) (2019-04-19)
 
