@@ -1,0 +1,23 @@
+expeditor:
+  defaults:
+    buildkite:
+      timeout_in_minutes: 30
+
+steps:
+
+- label: supermarket
+  command:
+    - apt-get update -y && apt-get install -y libxslt1-dev libxml2-dev libmagic-dev postgresql-9.4
+    - service redis-server restart
+    - service postgresql restart
+    - gem install bundler --no-document
+    - cd /workdir/src/supermarket && bundle config build.nokogiri --use-system-libraries
+    - psql -c 'create database supermarket_test;' -U postgres
+    - cd /workdir/src/supermarket && bundle exec rake db:schema:load
+    - cd /workdir/src/supermarket
+    - bundle exec rake spec
+    - bundle exec rubocop
+    - bundle exec bundle-audit check --update --ignore CVE-2015-9284
+  expeditor:
+    executor:
+      docker:
