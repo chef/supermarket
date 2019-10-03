@@ -240,8 +240,6 @@ GEM
     html_truncator (0.4.1)
       nokogiri (~> 1.5)
     htmlentities (4.3.4)
-    httparty (0.15.2)
-      multi_xml (>= 0.5.2)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -269,12 +267,12 @@ GEM
     launchy (2.4.3)
       addressable (~> 2.3)
     libyajl2 (1.2.0)
-    license_finder (3.0.0)
+    license_finder (5.10.2)
       bundler
-      httparty
       rubyzip
       thor
-      with_env (> 1.0)
+      toml (= 0.2.0)
+      with_env (= 1.1.0)
       xml-simple
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -371,6 +369,7 @@ GEM
     parallel (1.12.1)
     parser (2.4.0.2)
       ast (~> 2.3)
+    parslet (1.8.2)
     pg (0.20.0)
     pg_search (2.0.1)
       activerecord (>= 4.2)
@@ -497,7 +496,7 @@ GEM
     ruby-filemagic (0.7.2)
     ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
-    rubyzip (1.2.2)
+    rubyzip (2.0.0)
     rufus-lru (1.1.0)
     safe_yaml (1.0.4)
     sass (3.4.24)
@@ -556,6 +555,8 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.7)
+    toml (0.2.0)
+      parslet (~> 1.8.0)
     tomlrb (1.2.4)
     treetop (1.6.10)
       polyglot (~> 0.3)
