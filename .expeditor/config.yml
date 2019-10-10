@@ -39,7 +39,8 @@ changelog:
     - "Type: Tech Debt": "Maintenance Updates"
 
 pipelines:
-  - verify
+  - verify:
+      public: true
   - omnibus/release
   - omnibus/adhoc:
       definition: .expeditor/release.omnibus.yml

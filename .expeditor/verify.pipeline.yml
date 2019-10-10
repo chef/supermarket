@@ -1,23 +1,93 @@
-expeditor:
-  defaults:
-    buildkite:
-      timeout_in_minutes: 30
-
+---
 steps:
 
 - label: supermarket
+  timeout_in_minutes: 20
+  plugins:
+      - docker-compose#v2.5.1:
+          pull: supermarket-rspec
+          run: supermarket-rspec
+          config:
+            - src/supermarket/docker-compose.yml
+
+- label: fieri
   command:
-    - apt-get update -y && apt-get install -y libxslt1-dev libxml2-dev libmagic-dev postgresql-9.4
-    - service redis-server restart
-    - service postgresql restart
-    - gem install bundler --no-document
-    - cd /workdir/src/supermarket && bundle config build.nokogiri --use-system-libraries
-    - psql -c 'create database supermarket_test;' -U postgres
-    - cd /workdir/src/supermarket && bundle exec rake db:schema:load
-    - cd /workdir/src/supermarket
-    - bundle exec rake spec
-    - bundle exec rubocop
-    - bundle exec bundle-audit check --update --ignore CVE-2015-9284
+    - cd /workdir/src/supermarket/engines/fieri
+    - /workdir/src/supermarket/scripts/bk_fieri.sh
   expeditor:
     executor:
       docker:
+        image: redis:3.0
+
+- label: ":terraform: Lint"
+  command:
+    - cd terraform
+    - make lint
+  expeditor:
+    executor:
+      docker:
+
+- label: lint-supermarket-deploy-cookbook-cookstyle
+  command:
+    - eval "/opt/chefdk/bin/chef shell-init bash"
+    - ruby --version
+    - cd cookbooks/supermarket-deploy
+    - chef exec cookstyle
+  expeditor:
+    executor:
+      docker:
+        image: chef/chefdk
+        environment:
+          - CHEF_LICENSE=accept-no-persist
+
+- label: lint-supermarket-deploy-cookbook-foodcritic
+  command:
+    - eval "/opt/chefdk/bin/chef shell-init bash"
+    - ruby --version
+    - cd cookbooks/supermarket-deploy
+    - chef exec foodcritic . -t ~supermarket
+  expeditor:
+    executor:
+      docker:
+        image: chef/chefdk
+        environment:
+          - CHEF_LICENSE=accept-no-persist
+
+- label: lint-omnibus-supermarket-reconfigure-cookstyle
+  command:
+    - eval "/opt/chefdk/bin/chef shell-init bash"
+    - ruby --version
+    - cd omnibus/cookbooks/omnibus-supermarket
+    - chef exec cookstyle
+  expeditor:
+    executor:
+      docker:
+        image: chef/chefdk
+        environment:
+          - CHEF_LICENSE=accept-no-persist
+
+- label: lint-omnibus-supermarket-reconfigure-foodcritic
+  command:
+    - eval "/opt/chefdk/bin/chef shell-init bash"
+    - ruby --version
+    - cd omnibus/cookbooks/omnibus-supermarket
+    - chef exec foodcritic . -t ~supermarket
+  expeditor:
+    executor:
+      docker:
+        image: chef/chefdk
+        environment:
+          - CHEF_LICENSE=accept-no-persist
+
+- label: lint-omnibus-supermarket-reconfigure-unit
+  command:
+    - eval "/opt/chefdk/bin/chef shell-init bash"
+    - ruby --version
+    - cd omnibus/cookbooks/omnibus-supermarket
+    - chef exec rspec
+  expeditor:
+    executor:
+      docker:
+        image: chef/chefdk
+        environment:
+          - CHEF_LICENSE=accept-no-persist
