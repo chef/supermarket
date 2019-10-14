@@ -1,12 +1,6 @@
 .DS_Store
-/.delivery/cli.toml
 .chef-workstation
 
-# Terraform
-.terraform/
-*.tfstate
-*.tfstate.backup
-*_override.tf
 # License Scout
 license-cache
 results/
