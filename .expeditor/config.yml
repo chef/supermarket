@@ -39,7 +39,6 @@ changelog:
     - "Type: Tech Debt": "Maintenance Updates"
 
 pipelines:
-  - verify
   - omnibus/release
   - omnibus/adhoc:
       definition: .expeditor/release.omnibus.yml
@@ -52,17 +51,14 @@ merge_actions:
       ignore_labels:
         - "Expeditor: Skip Version Bump"
         - "Expeditor: Skip All"
-        - "Expeditor: ACC Only"
   - built_in:update_changelog:
       ignore_labels:
         - "Expeditor: Skip Changelog"
         - "Expeditor: Skip All"
-        - "Expeditor: ACC Only"
   - trigger_pipeline:omnibus/release:
       ignore_labels:
         - "Expeditor: Skip Omnibus"
         - "Expeditor: Skip All"
-        - "Expeditor: ACC Only"
       only_if: built_in:bump_version
 
 # These actions are taken, in the order specified, when an Omnibus artifact is promoted
@@ -70,9 +66,6 @@ merge_actions:
 #
 # TODO: add promoted_to_unstable action to update changelog with modified omnibus components
 subscriptions:
-  - workload: artifact_published:current:supermarket:*
-    actions:
-      - built_in:update_acc
   - workload: artifact_published:stable:supermarket:*
     actions:
       - built_in:rollover_changelog

@@ -1,9 +1,5 @@
 # Order is important. The last matching pattern has the most precedence.
 
 *                                @chef/supermarket-reviewers
-.delivery/**                     @chef/jex-team
 .expeditor/**                    @chef/jex-team
 .travis.yml                      @chef/supermarket-reviewers @chef/jex-team
-cookbooks/supermarket-deploy/**  @chef/jex-team
-inspec/**                        @chef/jex-team
-terraform/**                     @chef/jex-team
