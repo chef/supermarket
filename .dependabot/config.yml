@@ -1,0 +1,14 @@
+version: 1
+update_configs:
+  - package_manager: "ruby:bundler"
+    directory: "/src/supermarket"
+    update_schedule: "daily"
+    allowed_updates:
+      - match:
+          update_type: "security"
+  - package_manager: "ruby:bundler"
+    directory: "/src/supermarket/engines/fieri"
+    update_schedule: "daily"
+    allowed_updates:
+      - match:
+          update_type: "security"
