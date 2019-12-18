@@ -43,6 +43,7 @@ class Supermarket
     def self.load_or_create_secrets!(filename, node)
       create_directory!(filename)
       secrets = Chef::JSONCompat.from_json(File.open(filename).read)
+      node.consume_attributes('supermarket' => secrets)
     rescue Errno::ENOENT
       begin
         secrets = { 'secret_key_base' => SecureRandom.hex(50) }
