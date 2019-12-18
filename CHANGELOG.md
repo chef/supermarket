@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.10 -->
-## [3.3.10](https://github.com/chef/supermarket/tree/3.3.10) (2019-11-08)
+<!-- latest_release 3.3.11 -->
+## [3.3.11](https://github.com/chef/supermarket/tree/3.3.11) (2019-12-18)
 
 #### Security Fixes
-- Bump loofah from 2.2.3 to 2.3.1 [#1830](https://github.com/chef/supermarket/pull/1830) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- update for CVE-2019-13117 &amp; CVE-2019-16782 [#1833](https://github.com/chef/supermarket/pull/1833) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.7 -->
 ### Changes since 3.3.7 release
 
 #### Security Fixes
+- update for CVE-2019-13117 &amp; CVE-2019-16782 [#1833](https://github.com/chef/supermarket/pull/1833) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.11 -->
 - Bump loofah from 2.2.3 to 2.3.1 [#1830](https://github.com/chef/supermarket/pull/1830) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.3.10 -->
 
 #### Merged Pull Requests
