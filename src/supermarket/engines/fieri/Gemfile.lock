@@ -115,7 +115,7 @@ GEM
     mixlib-log (1.7.1)
     multipart-post (2.0.0)
     nio4r (2.3.1)
-    nokogiri (1.10.4)
+    nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
     octokit (4.7.0)
       sawyer (~> 0.8.0, >= 0.5.3)
@@ -129,7 +129,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     public_suffix (2.0.5)
-    rack (2.0.6)
+    rack (2.0.8)
     rack-protection (2.0.1)
       rack
     rack-test (0.6.3)
