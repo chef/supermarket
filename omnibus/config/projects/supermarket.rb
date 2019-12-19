@@ -30,6 +30,7 @@ build_iteration 1
 
 override :postgresql, version: '9.3.18'
 override :ruby, version: "2.5.3"
+override :rubygems, version: "3.0.3" # rubygems ships its own bundler which may differ from bundler defined below and then we get double bundler which makes the omnibus environment unhappy. Make sure these versions match before bumping either.
 override :bundler, version: "1.17.3" # this must match the BUNDLED WITH in all the repo's Gemfile.locks
 override :'chef-gem', version: '14.5.33'
 override :'openssl-fips', version: '2.0.16'
