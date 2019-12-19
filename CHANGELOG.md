@@ -12,12 +12,12 @@
 
 #### Security Fixes
 - include secrets found in secrets.json in runtime omnibus config [#1832](https://github.com/chef/supermarket/pull/1832) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.13 -->
+- Bump rack from 2.0.7 to 2.0.8 in /omnibus [#1834](https://github.com/chef/supermarket/pull/1834) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.3.12 -->
 - update for CVE-2019-13117 &amp; CVE-2019-16782 [#1833](https://github.com/chef/supermarket/pull/1833) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.11 -->
 - Bump loofah from 2.2.3 to 2.3.1 [#1830](https://github.com/chef/supermarket/pull/1830) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.3.10 -->
+- update rubyzip to address CVE-2019-16892 [#1825](https://github.com/chef/supermarket/pull/1825) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.9 -->
 
 #### Merged Pull Requests
-- Bump rack from 2.0.7 to 2.0.8 in /omnibus [#1834](https://github.com/chef/supermarket/pull/1834) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.3.12 -->
-- update rubyzip to address CVE-2019-16892 [#1825](https://github.com/chef/supermarket/pull/1825) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.9 -->
 - add a version command to supermarket-ctl [#1811](https://github.com/chef/supermarket/pull/1811) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.8 -->
 <!-- release_rollup -->
 
