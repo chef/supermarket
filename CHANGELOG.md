@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.13 -->
-## [3.3.13](https://github.com/chef/supermarket/tree/3.3.13) (2019-12-18)
+<!-- latest_release 3.3.14 -->
+## [3.3.14](https://github.com/chef/supermarket/tree/3.3.14) (2019-12-19)
 
-#### Security Fixes
-- include secrets found in secrets.json in runtime omnibus config [#1832](https://github.com/chef/supermarket/pull/1832) ([robbkidd](https://github.com/robbkidd))
+#### Merged Pull Requests
+- avoid Double Bundler by pinning rubygems version [#1835](https://github.com/chef/supermarket/pull/1835) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.7 -->
@@ -18,6 +18,7 @@
 - update rubyzip to address CVE-2019-16892 [#1825](https://github.com/chef/supermarket/pull/1825) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.9 -->
 
 #### Merged Pull Requests
+- avoid Double Bundler by pinning rubygems version [#1835](https://github.com/chef/supermarket/pull/1835) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.14 -->
 - add a version command to supermarket-ctl [#1811](https://github.com/chef/supermarket/pull/1811) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.8 -->
 <!-- release_rollup -->
 
