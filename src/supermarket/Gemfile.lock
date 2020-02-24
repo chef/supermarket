@@ -320,7 +320,7 @@ GEM
     net-telnet (0.1.1)
     newrelic_rpm (4.1.0.333)
     nio4r (2.3.1)
-    nokogiri (1.10.7)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
