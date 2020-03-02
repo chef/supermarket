@@ -12,20 +12,20 @@
 
     <% if @user.twitter_username.present? %>
       <li class="has-tip" title="<%= posessivize(@user.name) %> Twitter Username">
-        <a href="https://twitter.com/<%= @user.twitter_username %>" target="_blank"><i class="fa fa-twitter"></i> <%= @user.twitter_username %></a>
+        <a href="https://twitter.com/<%= @user.twitter_username %>" target="_blank" rel="noopener"><i class="fa fa-twitter"></i> <%= @user.twitter_username %></a>
       </li>
     <% end %>
     <% if current_user %>
       <% if current_user.roles.include?('admin') && @user.email.present? %>
         <li class="has-tip" title="<%= posessivize(@user.name) %> Email">
-          <a href="mailto:<%= @user.email %>" target="_blank"><i class="fa fa-envelope"></i> <%= @user.email %></a>
+          <a href="mailto:<%= @user.email %>" target="_blank" rel="noopener"><i class="fa fa-envelope"></i> <%= @user.email %></a>
         </li>
       <% end %>
     <% end %>
 
     <% @user.accounts.for(:github).each do |account| %>
       <li class="has-tip" title="<%= posessivize(@user.name) %> GitHub Username">
-        <a href="https://github.com/<%= account.username %>" target="_blank"><i class="fa fa-github"></i> <%= account.username %></a>
+        <a href="https://github.com/<%= account.username %>" target="_blank" rel="noopener"><i class="fa fa-github"></i> <%= account.username %></a>
       </li>
     <% end %>
 

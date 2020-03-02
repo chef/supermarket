@@ -25,7 +25,7 @@
   <div class="bottom">
     <div class="bottom-content">
       <% if tool.source_url.present? %>
-        <%= link_to 'View Source', tool.source_url, class: 'button tiny radius secondary', target: '_blank', itemprop: 'codeRepository' %>
+        <%= link_to 'View Source', tool.source_url, class: 'button tiny radius secondary', target: '_blank', rel: 'noopener', itemprop: 'codeRepository' %>
       <% end %>
 
       <% if policy(tool).update? %>

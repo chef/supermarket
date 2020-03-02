@@ -7,7 +7,7 @@ module MarkdownHelper
 
     def initialize(extensions = {})
       super extensions.merge(
-        link_attributes: { target: '_blank' },
+        link_attributes: { target: '_blank', rel: 'noopener' },
         with_toc_data: true
       )
     end
