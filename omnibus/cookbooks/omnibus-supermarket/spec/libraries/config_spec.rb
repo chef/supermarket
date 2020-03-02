@@ -24,6 +24,60 @@ describe Supermarket::Config do
     end
   end
 
+  describe '#load_or_create_secrets!' do
+    let(:test_node) { Chef::Node.new }
+
+    it 'populates the node object with keys/values from a JSON file' do
+      secrets_file = Tempfile.new('test_secrets.json')
+      secrets_file.write(JSON.generate(secret_key_base: 'value_from_json'))
+      secrets_file.close
+
+      described_class.load_or_create_secrets!(secrets_file.path, test_node)
+
+      expect(test_node['supermarket']['secret_key_base']).to eq('value_from_json')
+      secrets_file.unlink
+    end
+
+    context 'when the secrets JSON file does not exist' do
+      let(:secrets_file) { Pathname.new(Dir.tmpdir).join('missing_secrets.json') }
+
+      before do
+        allow(Chef::Log).to receive(:warn)
+      end
+
+      after do
+        File.delete(secrets_file)
+      end
+
+      context 'and a secret_key_base is set on the node object already' do
+        it 'uses that secret_key_base, writes it to the file, and loads it' do
+          test_node.consume_attributes('supermarket' => { 'secret_key_base' => 'value_set_already_elsewhere' })
+          expect(SecureRandom).not_to receive(:hex)
+
+          described_class.load_or_create_secrets!(secrets_file, test_node)
+
+          expect(test_node['supermarket']['secret_key_base']).to eq('value_set_already_elsewhere')
+          expect(File.exist?(secrets_file)).to be true
+          expect(File.read(secrets_file)).to include('value_set_already_elsewhere')
+          expect(Chef::Log).to have_received(:warn)
+        end
+      end
+
+      context 'and no secret_key_base is already defined' do
+        it 'generates a secret_key_base, writes it to the file, and loads it' do
+          allow(SecureRandom).to receive(:hex).and_return('generated_value')
+
+          described_class.load_or_create_secrets!(secrets_file, test_node)
+
+          expect(test_node['supermarket']['secret_key_base']).to eq('generated_value')
+          expect(File.exist?(secrets_file)).to be true
+          expect(File.read(secrets_file)).to include('generated_value')
+          expect(Chef::Log).to have_received(:warn)
+        end
+      end
+    end
+  end
+
   describe '#audit_config' do
     before(:each) do
       allow(described_class).to receive(:audit_s3_config)
