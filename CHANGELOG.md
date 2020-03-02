@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.15 -->
-## [3.3.15](https://github.com/chef/supermarket/tree/3.3.15) (2020-03-02)
+<!-- latest_release 3.3.16 -->
+## [3.3.16](https://github.com/chef/supermarket/tree/3.3.16) (2020-03-02)
 
 #### Security Fixes
-- Bump nokogiri from 1.10.7 to 1.10.9 [#1848](https://github.com/chef/supermarket/pull/1848) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump rake from 12.3.2 to 13.0.1 [#1844](https://github.com/chef/supermarket/pull/1844) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.7 -->
 ### Changes since 3.3.7 release
 
 #### Security Fixes
+- Bump rake from 12.3.2 to 13.0.1 [#1844](https://github.com/chef/supermarket/pull/1844) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.3.16 -->
 - Bump nokogiri from 1.10.7 to 1.10.9 [#1848](https://github.com/chef/supermarket/pull/1848) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.3.15 -->
 - include secrets found in secrets.json in runtime omnibus config [#1832](https://github.com/chef/supermarket/pull/1832) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.13 -->
 - Bump rack from 2.0.7 to 2.0.8 in /omnibus [#1834](https://github.com/chef/supermarket/pull/1834) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.3.12 -->
