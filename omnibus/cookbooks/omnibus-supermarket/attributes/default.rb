@@ -459,6 +459,12 @@ default['supermarket']['s3_region'] = nil
 # A cdn_url can be used for an alias if the S3 bucket is behind a CDN like CloudFront.
 default['supermarket']['cdn_url'] = nil
 
+# If set then supermarket will apply an object-level private ACL. For this to work,
+# the relevant IAM and bucket policies will need to allow PutObjectACL permissions.
+# Note: if this is not set, and "Block all public access" is on for the bucket then Chef
+# Supermarket will be unable to update cookbooks.
+# default['supermarket']['s3_private_objects'] = nil
+
 # If using IAM user credentials for bucket access, set these.
 default['supermarket']['s3_access_key_id'] = nil
 default['supermarket']['s3_secret_access_key'] = nil
