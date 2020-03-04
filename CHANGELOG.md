@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.17 -->
-## [3.3.17](https://github.com/chef/supermarket/tree/3.3.17) (2020-03-03)
+<!-- latest_release 3.3.18 -->
+## [3.3.18](https://github.com/chef/supermarket/tree/3.3.18) (2020-03-04)
 
-#### Security Fixes
-- Bump omniauth from 1.9.0 to 1.9.1 [#1851](https://github.com/chef/supermarket/pull/1851) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+#### Merged Pull Requests
+- upgrade Ruby to 2.6.5 [#1852](https://github.com/chef/supermarket/pull/1852) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.7 -->
@@ -21,6 +21,7 @@
 - update rubyzip to address CVE-2019-16892 [#1825](https://github.com/chef/supermarket/pull/1825) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.9 -->
 
 #### Merged Pull Requests
+- upgrade Ruby to 2.6.5 [#1852](https://github.com/chef/supermarket/pull/1852) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.18 -->
 - avoid Double Bundler by pinning rubygems version [#1835](https://github.com/chef/supermarket/pull/1835) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.14 -->
 - add a version command to supermarket-ctl [#1811](https://github.com/chef/supermarket/pull/1811) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.8 -->
 <!-- release_rollup -->
