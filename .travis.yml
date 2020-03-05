@@ -99,6 +99,7 @@ matrix:
           - $HOME/.berkshelf
       install:
         - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+        - chef --version
       before_script: cd omnibus/cookbooks/omnibus-supermarket
       script: chef exec cookstyle
 
@@ -116,6 +117,7 @@ matrix:
           - $HOME/.berkshelf
       install:
         - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+        - chef --version
       before_script: cd omnibus/cookbooks/omnibus-supermarket
       script: chef exec foodcritic . -t ~supermarket
 
@@ -133,5 +135,6 @@ matrix:
           - $HOME/.berkshelf
       install:
         - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+        - chef --version
       before_script: cd omnibus/cookbooks/omnibus-supermarket
       script: chef exec rspec
