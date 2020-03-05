@@ -43,7 +43,7 @@ node.consume_attributes('runit' => node['supermarket']['runit'])
 
 # set chef_oauth2_url from chef_server_url after this value has been loaded from config
 if node['supermarket']['chef_server_url'] && node['supermarket']['chef_oauth2_url'].nil?
-  node.normal['supermarket']['chef_oauth2_url'] = node['supermarket']['chef_server_url']
+  node.default['supermarket']['chef_oauth2_url'] = node['supermarket']['chef_server_url']
 end
 
 user node['supermarket']['user']
