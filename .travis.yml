@@ -91,9 +91,9 @@ matrix:
       addons:
         apt:
           sources:
-            - chef-stable-trusty
+            - chef-stable-xenial
           packages:
-            - chefdk
+            - chef-workstation
       cache:
         directories:
           - $HOME/.berkshelf
@@ -109,9 +109,9 @@ matrix:
       addons:
         apt:
           sources:
-            - chef-stable-trusty
+            - chef-stable-xenial
           packages:
-            - chefdk
+            - chef-workstation
       cache:
         directories:
           - $HOME/.berkshelf
@@ -127,9 +127,9 @@ matrix:
       addons:
         apt:
           sources:
-            - chef-stable-trusty
+            - chef-stable-xenial
           packages:
-            - chefdk
+            - chef-workstation
       cache:
         directories:
           - $HOME/.berkshelf
