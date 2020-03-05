@@ -5,17 +5,17 @@ control 'supermarket-ctl-perms' do
   title 'Check that the -ctl commands error correctly'
   # run as someone other that the supermarket OS user
   describe command('supermarket-ctl console') do
-    its(:stderr) { should match /supermarket-ctl console should be run as the supermarket OS user./ }
+    its(:stderr) { should include('supermarket-ctl console should be run as the supermarket OS user.') }
   end
 
   # run as someone other that the supermarket OS user
   describe command('supermarket-ctl make-admin') do
-    its(:stderr) { should match /supermarket-ctl make-admin should be run as the supermarket OS user./ }
+    its(:stderr) { should include('supermarket-ctl make-admin should be run as the supermarket OS user.') }
   end
 
   # run as supermarket user, but with a user that doesn't exist
   describe command('sudo -u supermarket supermarket-ctl make-admin user=nope') do
-    its(:stdout) { should match /nope was not found in Supermarket./ }
+    its(:stdout) { should include('nope was not found in Supermarket.') }
   end
 end
 
@@ -26,11 +26,11 @@ control 'ssl-config' do
 
   describe file('/var/opt/supermarket/ssl/ca/dhparams.pem') do
     it { should be_file }
-    its(:content) { should match /BEGIN DH PARAMETERS/ }
+    its(:content) { should include('BEGIN DH PARAMETERS') }
   end
 
   describe file('/var/opt/supermarket/nginx/etc/sites-enabled/rails') do
-    its(:content) { should match /ssl_dhparam/ }
+    its(:content) { should include('ssl_dhparam') }
   end
 end
 
@@ -41,12 +41,12 @@ control 'FIPS' do
 
   %w(nginx rails sidekiq).each do |service_name|
     describe file("/opt/supermarket/service/#{service_name}/run") do
-      its(:content) { should match(/export OPENSSL_FIPS=1/) }
+      its(:content) { should include('export OPENSSL_FIPS=1') }
     end
   end
 
   describe file('/var/opt/supermarket/nginx/etc/sites-enabled/rails') do
-    its(:content) { should match(/ssl_ciphers FIPS/) }
+    its(:content) { should include('ssl_ciphers FIPS') }
   end
 end
 
@@ -59,17 +59,17 @@ control 'log-management' do
 
   describe file(property['supermarket']['var_directory'] + '/etc/logrotate.conf') do
     it { should be_file }
-    its(:content) { should match /#{'include ' + property['supermarket']['var_directory'] + '/etc/logrotate.d'}/ }
+    its(:content) { should include("include #{property['supermarket']['var_directory']}/etc/logrotate.d") }
   end
 
   describe file('/etc/cron.hourly/supermarket_logrotate') do
     it { should be_file }
-    its(:content) { should match /#{'logrotate /var/opt/supermarket/etc/logrotate.conf'}/ }
+    its(:content) { should include('logrotate /var/opt/supermarket/etc/logrotate.conf') }
   end
 
   describe file(property['supermarket']['var_directory'] + '/etc/logrotate.d/nginx') do
     it { should be_file }
-    its(:content) { should match /#{property['supermarket']['nginx']['log_directory'] + '/\*.log'}/ }
+    its(:content) { should include("#{property['supermarket']['nginx']['log_directory']}/*.log") }
   end
 end
 

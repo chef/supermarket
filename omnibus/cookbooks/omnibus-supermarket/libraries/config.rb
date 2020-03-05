@@ -46,7 +46,15 @@ class Supermarket
       node.consume_attributes('supermarket' => secrets)
     rescue Errno::ENOENT
       begin
-        secrets = { 'secret_key_base' => SecureRandom.hex(50) }
+        secret_key_base = if node['supermarket'] && node['supermarket']['secret_key_base']
+                            Chef::Log.warn 'Using secret_key_base from supermarket.rb or .json. This value should really be managed in secrets.json. Writing to secrets.json.'
+                            node['supermarket']['secret_key_base']
+                          else
+                            Chef::Log.warn 'No secret_key_base set! Generating and writing one to secrets.json. If this Supermarket installation has multiple hosts, you must duplicate the secrets.json file exactly across all hosts.'
+                            SecureRandom.hex(50)
+                          end
+
+        secrets = { 'secret_key_base' => secret_key_base }
 
         open(filename, 'w') do |file|
           file.puts Chef::JSONCompat.to_json_pretty(secrets)
