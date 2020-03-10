@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.19 -->
-## [3.3.19](https://github.com/chef/supermarket/tree/3.3.19) (2020-03-05)
+<!-- latest_release 3.3.20 -->
+## [3.3.20](https://github.com/chef/supermarket/tree/3.3.20) (2020-03-10)
 
 #### Security Fixes
-- generate secrets.json with warning messages [#1849](https://github.com/chef/supermarket/pull/1849) ([robbkidd](https://github.com/robbkidd))
+- Prevent unsafe links to cross-origin destinations [#1846](https://github.com/chef/supermarket/pull/1846) ([cattywampus](https://github.com/cattywampus))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.7 -->
 ### Changes since 3.3.7 release
 
 #### Security Fixes
+- Prevent unsafe links to cross-origin destinations [#1846](https://github.com/chef/supermarket/pull/1846) ([cattywampus](https://github.com/cattywampus)) <!-- 3.3.20 -->
 - generate secrets.json with warning messages [#1849](https://github.com/chef/supermarket/pull/1849) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.19 -->
 - Bump omniauth from 1.9.0 to 1.9.1 [#1851](https://github.com/chef/supermarket/pull/1851) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.3.17 -->
 - Bump rake from 12.3.2 to 13.0.1 [#1844](https://github.com/chef/supermarket/pull/1844) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.3.16 -->
