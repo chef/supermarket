@@ -1,34 +1,32 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.20 -->
-## [3.3.20](https://github.com/chef/supermarket/tree/3.3.20) (2020-03-10)
-
-#### Security Fixes
-- Prevent unsafe links to cross-origin destinations [#1846](https://github.com/chef/supermarket/pull/1846) ([cattywampus](https://github.com/cattywampus))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.3.7 -->
-### Changes since 3.3.7 release
-
-#### Security Fixes
-- Prevent unsafe links to cross-origin destinations [#1846](https://github.com/chef/supermarket/pull/1846) ([cattywampus](https://github.com/cattywampus)) <!-- 3.3.20 -->
-- generate secrets.json with warning messages [#1849](https://github.com/chef/supermarket/pull/1849) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.19 -->
-- Bump omniauth from 1.9.0 to 1.9.1 [#1851](https://github.com/chef/supermarket/pull/1851) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.3.17 -->
-- Bump rake from 12.3.2 to 13.0.1 [#1844](https://github.com/chef/supermarket/pull/1844) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.3.16 -->
-- Bump nokogiri from 1.10.7 to 1.10.9 [#1848](https://github.com/chef/supermarket/pull/1848) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.3.15 -->
-- include secrets found in secrets.json in runtime omnibus config [#1832](https://github.com/chef/supermarket/pull/1832) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.13 -->
-- Bump rack from 2.0.7 to 2.0.8 in /omnibus [#1834](https://github.com/chef/supermarket/pull/1834) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.3.12 -->
-- update for CVE-2019-13117 &amp; CVE-2019-16782 [#1833](https://github.com/chef/supermarket/pull/1833) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.11 -->
-- Bump loofah from 2.2.3 to 2.3.1 [#1830](https://github.com/chef/supermarket/pull/1830) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.3.10 -->
-- update rubyzip to address CVE-2019-16892 [#1825](https://github.com/chef/supermarket/pull/1825) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.9 -->
-
-#### Merged Pull Requests
-- upgrade Ruby to 2.6.5 [#1852](https://github.com/chef/supermarket/pull/1852) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.18 -->
-- avoid Double Bundler by pinning rubygems version [#1835](https://github.com/chef/supermarket/pull/1835) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.14 -->
-- add a version command to supermarket-ctl [#1811](https://github.com/chef/supermarket/pull/1811) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.8 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.3.20](https://github.com/chef/supermarket/tree/3.3.20) (2020-03-16)
+
+#### Security Fixes
+- update rubyzip to address CVE-2019-16892 [#1825](https://github.com/chef/supermarket/pull/1825) ([robbkidd](https://github.com/robbkidd))
+- Bump loofah from 2.2.3 to 2.3.1 [#1830](https://github.com/chef/supermarket/pull/1830) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- update for CVE-2019-13117 &amp; CVE-2019-16782 [#1833](https://github.com/chef/supermarket/pull/1833) ([robbkidd](https://github.com/robbkidd))
+- Bump rack from 2.0.7 to 2.0.8 in /omnibus [#1834](https://github.com/chef/supermarket/pull/1834) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- include secrets found in secrets.json in runtime omnibus config [#1832](https://github.com/chef/supermarket/pull/1832) ([robbkidd](https://github.com/robbkidd))
+- Bump nokogiri from 1.10.7 to 1.10.9 [#1848](https://github.com/chef/supermarket/pull/1848) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump rake from 12.3.2 to 13.0.1 [#1844](https://github.com/chef/supermarket/pull/1844) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omniauth from 1.9.0 to 1.9.1 [#1851](https://github.com/chef/supermarket/pull/1851) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- generate secrets.json with warning messages [#1849](https://github.com/chef/supermarket/pull/1849) ([robbkidd](https://github.com/robbkidd))
+- Prevent unsafe links to cross-origin destinations [#1846](https://github.com/chef/supermarket/pull/1846) ([cattywampus](https://github.com/cattywampus))
+
+#### Merged Pull Requests
+- add a version command to supermarket-ctl [#1811](https://github.com/chef/supermarket/pull/1811) ([robbkidd](https://github.com/robbkidd))
+- avoid Double Bundler by pinning rubygems version [#1835](https://github.com/chef/supermarket/pull/1835) ([robbkidd](https://github.com/robbkidd))
+- upgrade Ruby to 2.6.5 [#1852](https://github.com/chef/supermarket/pull/1852) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_stable_release -->
+
 ## [3.3.7](https://github.com/chef/supermarket/tree/3.3.7) (2019-09-18)
 
 #### Security Fixes
@@ -39,7 +37,6 @@
 #### Merged Pull Requests
 - No more Ubuntu 14 builds. Canonical ended support for trusty in April 2019. [#1818](https://github.com/chef/supermarket/pull/1818) ([christopher-snapp](https://github.com/christopher-snapp))
 - omnibus build fixes [#1821](https://github.com/chef/supermarket/pull/1821) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.3.3](https://github.com/chef/supermarket/tree/3.3.3) (2019-05-15)
 
