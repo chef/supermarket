@@ -25,7 +25,7 @@ include_recipe 'omnibus-supermarket::sidekiq'
 
 file 'environment-variables' do
   path "#{node['supermarket']['var_directory']}/etc/env"
-  content Supermarket::Config.environment_variables_from(node['supermarket'])
+  content Supermarket::Config.environment_variables_from(node['supermarket'].merge('force_ssl' => node['supermarket']['nginx']['force_ssl']))
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'

@@ -95,11 +95,13 @@ control 'proxy' do
       its('protocols') { should include 'tcp' }
     end
 
-    describe "http GET to Port #{property['supermarket']['nginx']['ssl_port']}" do
-      subject { http("http://localhost:#{property['supermarket']['nginx']['ssl_port']}", ssl_verify: false) }
+    describe http("https://#{property['supermarket']['fqdn']}:#{property['supermarket']['nginx']['ssl_port']}", ssl_verify: false) do
       it 'should not include server version number in response headers' do
         expect(subject.headers.server).to cmp('nginx')
       end
+
+      its('headers.keys') { should include('strict-transport-security') }
+      its('headers.Strict-Transport-Security') { should include('max-age=') }
     end
   end
 end
