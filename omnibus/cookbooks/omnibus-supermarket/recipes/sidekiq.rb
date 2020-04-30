@@ -20,7 +20,7 @@
 directory "#{node['supermarket']['log_directory']}/sidekiq" do
   owner node['supermarket']['user']
   group node['supermarket']['group']
-  mode '0700'
+  mode node['supermarket']['log_directory']['mode']
 end
 
 if node['supermarket']['sidekiq']['enable']

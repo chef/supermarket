@@ -28,7 +28,7 @@ include_recipe 'enterprise::runit'
   directory dir do
     owner node['supermarket']['user']
     group node['supermarket']['group']
-    mode '0700'
+    mode node['supermarket']['log_directory']['mode']
     recursive true
   end
 end

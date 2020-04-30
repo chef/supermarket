@@ -31,7 +31,7 @@ end
 directory node['supermarket']['postgresql']['log_directory'] do
   owner node['supermarket']['user']
   group node['supermarket']['group']
-  mode '0700'
+  mode node['supermarket']['log_directory']['mode']
   recursive true
 end
 
