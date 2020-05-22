@@ -226,7 +226,7 @@ class User < ApplicationRecord
     #   with private key: openssl rsa -in private_key.pem -pubout -outform DER | openssl md5 -c
     #   with public key: openssl rsa -in public_key.pub -pubin -outform DER | openssl md5 -c
     key_in_der_format = OpenSSL::PKey::RSA.new(public_key).to_der
-    OpenSSL::Digest::MD5.hexdigest(key_in_der_format).scan(/../).join(':')
+    OpenSSL::Digest.hexdigest('MD5', key_in_der_format).scan(/../).join(':')
   end
 
   private
