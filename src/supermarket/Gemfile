@@ -81,7 +81,6 @@ end
 
 group :development, :test do
   gem 'brakeman'
-  gem 'bundler-audit', git: 'https://github.com/rubysec/bundler-audit.git', ref: '4e32fca'
   gem 'byebug'
   gem 'factory_bot_rails', require: false
   gem 'faker'
