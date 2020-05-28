@@ -61,7 +61,6 @@ matrix:
         - cd $TRAVIS_BUILD_DIR/src/$NAME
         - bundle exec rake spec
         - bundle exec rubocop
-        - bundle exec bundle-audit check --update --ignore CVE-2015-9284
 
     # Fieri Spec
     - env:
@@ -83,7 +82,6 @@ matrix:
         - cd $TRAVIS_BUILD_DIR/src/supermarket/engines/$NAME
         - bundle exec rake spec
         - bundle exec rubocop
-        - bundle exec bundle-audit check --update
 
     # omnibus-supermarket-reconfigure-cookstyle
     - env:
