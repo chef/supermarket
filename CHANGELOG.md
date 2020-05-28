@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.3.21 -->
+## [3.3.21](https://github.com/chef/supermarket/tree/3.3.21) (2020-05-28)
+
+#### Merged Pull Requests
+- Remove bundler-audit from tests; we&#39;re auditing with GitHub [#1861](https://github.com/chef/supermarket/pull/1861) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.3.20 -->
+### Changes since 3.3.20 release
+
+#### Merged Pull Requests
+- Remove bundler-audit from tests; we&#39;re auditing with GitHub [#1861](https://github.com/chef/supermarket/pull/1861) ([tas50](https://github.com/tas50)) <!-- 3.3.21 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
