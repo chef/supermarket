@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.22 -->
-## [3.3.22](https://github.com/chef/supermarket/tree/3.3.22) (2020-05-28)
+<!-- latest_release 3.3.23 -->
+## [3.3.23](https://github.com/chef/supermarket/tree/3.3.23) (2020-05-29)
 
 #### Security Fixes
-- [Security] Bump rack from 2.0.8 to 2.2.2 in quality metrics engine [#1858](https://github.com/chef/supermarket/pull/1858) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- [Security] Bump kaminari from 1.0.1 to 1.2.1 in /src/supermarket [#1862](https://github.com/chef/supermarket/pull/1862) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.20 -->
 ### Changes since 3.3.20 release
 
 #### Security Fixes
+- [Security] Bump kaminari from 1.0.1 to 1.2.1 in /src/supermarket [#1862](https://github.com/chef/supermarket/pull/1862) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.3.23 -->
 - [Security] Bump rack from 2.0.8 to 2.2.2 in quality metrics engine [#1858](https://github.com/chef/supermarket/pull/1858) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.3.22 -->
 
 #### Merged Pull Requests
