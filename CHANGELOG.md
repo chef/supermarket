@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.23 -->
-## [3.3.23](https://github.com/chef/supermarket/tree/3.3.23) (2020-05-29)
+<!-- latest_release 3.3.24 -->
+## [3.3.24](https://github.com/chef/supermarket/tree/3.3.24) (2020-06-04)
 
-#### Security Fixes
-- [Security] Bump kaminari from 1.0.1 to 1.2.1 in /src/supermarket [#1862](https://github.com/chef/supermarket/pull/1862) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+#### Merged Pull Requests
+- Resolve upcoming OpenSSL Ruby library deprecation of algorithm constants [#1860](https://github.com/chef/supermarket/pull/1860) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.20 -->
@@ -15,6 +15,7 @@
 - [Security] Bump rack from 2.0.8 to 2.2.2 in quality metrics engine [#1858](https://github.com/chef/supermarket/pull/1858) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.3.22 -->
 
 #### Merged Pull Requests
+- Resolve upcoming OpenSSL Ruby library deprecation of algorithm constants [#1860](https://github.com/chef/supermarket/pull/1860) ([tas50](https://github.com/tas50)) <!-- 3.3.24 -->
 - Remove bundler-audit from tests; we&#39;re auditing with GitHub [#1861](https://github.com/chef/supermarket/pull/1861) ([tas50](https://github.com/tas50)) <!-- 3.3.21 -->
 <!-- release_rollup -->
 
