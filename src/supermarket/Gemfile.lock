@@ -562,7 +562,7 @@ GEM
     unicorn-rails (2.2.1)
       rack
       unicorn
-    utf8-cleaner (0.2.5)
+    utf8-cleaner (1.0.0)
       activesupport
     uuidtools (2.1.5)
     validate_url (1.0.2)
