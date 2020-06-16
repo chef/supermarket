@@ -22,7 +22,12 @@ class CookbookVersion < ApplicationRecord
   validates :license, presence: true, length: { maximum: 255 }
   validates :description, presence: true
   validates :readme, presence: true
-  validates :version, presence: true, uniqueness: { scope: :cookbook }, chef_version: true
+  validates :version, presence: true,
+                      uniqueness: {
+                        scope: :cookbook_id,
+                        case_sensitive: false
+                      },
+                      chef_version: true
   validates_attachment(
     :tarball,
     presence: true,

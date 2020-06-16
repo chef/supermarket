@@ -26,7 +26,9 @@ describe CookbookVersion do
 
       it "validates uniqueness of version for a cookbook" do
         cookbook_version
-        should validate_uniqueness_of(:version).scoped_to(:cookbook_id)
+        should validate_uniqueness_of(:version)
+          .scoped_to(:cookbook_id)
+          .case_insensitive
       end
 
       it 'seriously validates the uniqueness of cookbook version numbers' do

@@ -57,6 +57,13 @@ if ENV['CAPYBARA_SCREENSHOT_TO_S3'] == 'true'
   end
 end
 
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+
 RSpec.configure do |config|
   # Include FactoryBot mixin for syntax
   config.include FactoryBot::Syntax::Methods

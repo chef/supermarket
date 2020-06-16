@@ -2,19 +2,21 @@ require 'spec_helper'
 
 describe SupportedPlatform do
   context 'validations' do
+    subject { build(:supported_platform) }
+
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name).scoped_to(:version_constraint) }
 
     it 'allows ">= 0.0.0" as a version constraint' do
-      platform = SupportedPlatform.new(version_constraint: '>= 0.0.0')
+      platform = build(:supported_platform, version_constraint: '>= 0.0.0')
 
       platform.valid?
 
       expect(platform.errors[:version_constraint]).to be_empty
     end
 
-    it 'does not allow "snarfle" as a version constraint' do
-      platform = SupportedPlatform.new(version_constraint: 'snarfle')
+    it 'does not allow an alpha string as a version constraint' do
+      platform = build(:supported_platform, version_constraint: 'snarfle')
 
       expect { platform.valid? }
         .to change { platform.errors[:version_constraint] }
@@ -22,7 +24,7 @@ describe SupportedPlatform do
     end
 
     it 'does not allow blank version constraints' do
-      platform = SupportedPlatform.new(version_constraint: '')
+      platform = build(:supported_platform, version_constraint: '')
 
       expect { platform.valid? }
         .to change { platform.errors[:version_constraint] }

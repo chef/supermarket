@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe SystemEmail do
+  subject { build(:system_email) }
+
   context 'associations' do
     it { should have_many(:email_preferences) }
     it { should have_many(:subscribed_users) }

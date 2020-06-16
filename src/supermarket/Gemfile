@@ -74,7 +74,7 @@ group :test do
   gem 'database_cleaner'
   gem 'poltergeist'
   gem 'rails-controller-testing'
-  gem 'shoulda-matchers', '~> 2.8'
+  gem 'shoulda-matchers'
   gem 'vcr', require: false
   gem 'webmock', require: false
 end
