@@ -98,7 +98,7 @@ class CookbookArtifact
   #
   def download
     File.open(Tempfile.new('archive'), 'wb') do |saved_file|
-      open(url, 'rb') do |read_file|
+      URI.open(url, 'rb') do |read_file|
         saved_file.write(read_file.read)
       end
       saved_file

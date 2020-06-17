@@ -6,7 +6,7 @@ PATH
       foodcritic (~> 14.0)
       mixlib-archive (~> 0.4)
       octokit (~> 4.0)
-      rails (~> 5.0.0)
+      rails (>= 5.0, < 5.2)
       ruby-filemagic
       sidekiq (~> 4.2)
 
