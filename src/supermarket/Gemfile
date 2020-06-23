@@ -25,7 +25,7 @@ gem 'foreman'
 gem 'html_truncator'
 gem 'jbuilder'
 gem 'kaminari'
-gem 'mixlib-authentication'
+gem 'mixlib-authentication', '~> 3.0'
 gem 'newrelic_rpm'
 gem 'nokogiri'
 gem 'octokit', require: false
@@ -81,11 +81,11 @@ end
 
 group :development, :test do
   gem 'brakeman'
-  gem 'byebug'
   gem 'factory_bot_rails', require: false
   gem 'faker'
   gem 'launchy'
   gem 'mail_view'
+  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'rubocop', '>= 0.23.0'
