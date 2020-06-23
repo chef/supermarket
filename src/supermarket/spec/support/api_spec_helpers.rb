@@ -20,6 +20,9 @@ module ApiSpecHelpers
     cookbook_params = {}
 
     tarball = cookbook_upload(cookbook_name, opts)
+    body = tarball.read
+    tarball.rewind
+
     private_key = private_key(opts.fetch(:with_invalid_private_key, false))
 
     header = Mixlib::Authentication::SignedHeaderAuth.signing_object(
@@ -27,7 +30,7 @@ module ApiSpecHelpers
       path: cookbooks_path,
       user_id: user.username,
       timestamp: Time.current.utc.iso8601,
-      body: tarball.read
+      body: body
     ).sign(private_key)
 
     opts.fetch(:omitted_headers, []).each { |h| header.delete(h) }
