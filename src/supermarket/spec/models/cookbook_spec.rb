@@ -5,7 +5,7 @@ describe Cookbook do
     it { should have_many(:cookbook_versions) }
     it { should have_many(:cookbook_followers) }
     it { should have_many(:followers) }
-    it { should belong_to(:category) }
+    it { should belong_to(:category).optional }
     it { should belong_to(:owner) }
     it { should have_many(:collaborators) }
     it { should have_many(:collaborator_users) }
@@ -13,7 +13,7 @@ describe Cookbook do
     it { should have_many(:direct_collaborator_users) }
     it { should have_one(:chef_account) }
     it { should have_many(:group_resources) }
-    it { should belong_to(:replacement) }
+    it { should belong_to(:replacement).optional }
     it { should have_many(:replaces) }
 
     context 'dependent deletions' do
@@ -398,7 +398,7 @@ describe Cookbook do
 
   describe '#get_version!' do
     let!(:kiwi_0_1_0) do
-      create(
+      build(
         :cookbook_version,
         version: '0.1.0',
         license: 'MIT'
@@ -406,7 +406,7 @@ describe Cookbook do
     end
 
     let!(:kiwi_0_2_0) do
-      create(
+      build(
         :cookbook_version,
         version: '0.2.0',
         license: 'MIT'
@@ -619,7 +619,7 @@ describe Cookbook do
         category: create(:category, name: 'datastore'),
         owner: create(:user, chef_account: create(:account, provider: 'chef_oauth2', username: 'johndoe'), create_chef_account: false),
         cookbook_versions: [
-          create(
+          build(
             :cookbook_version,
             description: 'Redis: a fast, flexible datastore offering an extremely useful set of data structure primitives'
           )
@@ -634,7 +634,7 @@ describe Cookbook do
         category: create(:category, name: 'datastore'),
         owner: create(:user, chef_account: create(:account, provider: 'chef_oauth2', username: 'fanny'), create_chef_account: false),
         cookbook_versions: [
-          create(
+          build(
             :cookbook_version,
             description: 'Installs/Configures redis. Created by the formidable johndoe, johndoe is pretty awesome.'
           )
@@ -682,7 +682,7 @@ describe Cookbook do
         :cookbook,
         name: 'erlang',
         cookbook_versions: [
-          create(
+          build(
             :cookbook_version,
             supported_platforms: [
               debian_platform,
@@ -698,7 +698,7 @@ describe Cookbook do
         :cookbook,
         name: 'ruby',
         cookbook_versions: [
-          create(
+          build(
             :cookbook_version,
             supported_platforms: [
               debian_platform,

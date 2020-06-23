@@ -6,7 +6,7 @@ class CookbookDependency < ApplicationRecord
   # Associations
   # --------------------
   belongs_to :cookbook_version
-  belongs_to :cookbook
+  belongs_to :cookbook, optional: true
 
   # Validations
   # --------------------

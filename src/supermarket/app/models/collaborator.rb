@@ -8,7 +8,7 @@ class Collaborator < ApplicationRecord
   # --------------------
   belongs_to :resourceable, polymorphic: true
   belongs_to :user
-  belongs_to :group
+  belongs_to :group, optional: true
 
   # Validations
   # --------------------

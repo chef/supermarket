@@ -4,7 +4,7 @@ describe Collaborator do
   context 'associations' do
     it { should belong_to(:resourceable) }
     it { should belong_to(:user) }
-    it { should belong_to(:group) }
+    it { should belong_to(:group).optional }
   end
 
   context 'validations' do
