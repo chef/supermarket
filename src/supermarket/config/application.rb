@@ -73,13 +73,15 @@ module Supermarket
     # true.
     config.i18n.enforce_available_locales = false
 
-    # Set default URL for ActionMailer
-    config.action_mailer.default_url_options = {
+    # Give application URL info so it can build full links back to itself
+    self.default_url_options = {
       host: ENV['FQDN'],
       port: ENV['PORT'],
       protocol: ENV['PROTOCOL']
     }
 
+    # Configure the email renderer for building links back to the site
+    config.action_mailer.default_url_options = default_url_options
     config.action_mailer.asset_host = Supermarket::Host.full_url
 
     # Set default from email for ActionMailer
