@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :cookbook_version do
+    association :cookbook
     association :user
     description { 'An awesome cookbook!' }
     license { 'MIT' }
