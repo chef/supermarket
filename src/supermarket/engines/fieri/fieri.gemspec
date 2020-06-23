@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'foodcritic', '~> 14.0'
   s.add_dependency 'mixlib-archive', '~> 0.4'
   s.add_dependency 'octokit', '~> 4.0'
-  s.add_dependency 'rails', ['>= 5.0', '< 5.2']
+  s.add_dependency 'rails', ['>= 5.1', '< 6']
   s.add_dependency 'ruby-filemagic'
   s.add_dependency 'sidekiq', '~> 4.2'
 end
