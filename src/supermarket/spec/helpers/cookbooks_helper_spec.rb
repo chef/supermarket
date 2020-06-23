@@ -106,7 +106,7 @@ describe CookbooksHelper do
       ).css('a').first
 
       expect(URI(link['href']).path).
-        to eql(url_for(controller: 'cookbooks', action: 'index'))
+        to eql('/cookbooks')
       expect(URI(link['href']).query).to include('order=not_excellent')
     end
   end
