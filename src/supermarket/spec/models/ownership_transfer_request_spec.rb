@@ -24,9 +24,9 @@ describe OwnershipTransferRequest do
 
     shared_examples "returning early" do
       it "should not do anything if it has already been accepted or declined" do
-        transfer_request.update_attribute(:accepted, false)
+        transfer_request.update(accepted: false)
         transfer_request.reload
-        expect(transfer_request).to_not receive(:update_attribute)
+        expect(transfer_request).to_not receive(:update)
         transfer_request.accept!
         transfer_request.reload
         expect(transfer_request.accepted).to eql(false)

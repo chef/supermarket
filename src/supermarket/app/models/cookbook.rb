@@ -159,7 +159,7 @@ class Cookbook < ApplicationRecord
     original_owner = owner
 
     if initiator.is?(:admin) || collaborator_users.include?(recipient)
-      update_attribute(:user_id, recipient.id)
+      update(user_id: recipient.id)
 
       if add_owner_as_collaborator
         create_new_collaborator(original_owner)

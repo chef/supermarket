@@ -12,5 +12,9 @@ AllCops:
     - node_modules/**/*
 Layout/MultilineOperationIndentation:
   EnforcedStyle: aligned
+Rails/SkipsModelValidations:
+  Whitelist:
+    - increment_counter
+    - touch
 Style/SymbolArray:
   EnforcedStyle: brackets

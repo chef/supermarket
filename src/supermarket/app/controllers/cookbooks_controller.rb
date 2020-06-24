@@ -240,7 +240,7 @@ class CookbooksController < ApplicationController
   def toggle_featured
     authorize! @cookbook
 
-    @cookbook.update_attribute(:featured, !@cookbook.featured)
+    @cookbook.update(featured: !@cookbook.featured)
 
     redirect_to(
       @cookbook,

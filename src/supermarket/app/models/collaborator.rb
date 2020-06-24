@@ -28,7 +28,7 @@ class Collaborator < ApplicationRecord
   def transfer_ownership
     transaction do
       Collaborator.create resourceable: resourceable, user: resourceable.owner
-      resourceable.update_attribute(:owner, user)
+      resourceable.update(owner: user)
       destroy
     end
   end

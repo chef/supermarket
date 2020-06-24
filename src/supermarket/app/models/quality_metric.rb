@@ -7,12 +7,12 @@ class QualityMetric < ApplicationRecord
   validates :name, uniqueness: true
 
   def self.flip_public
-    update_all(admin_only: false)
+    update_all(admin_only: false) # rubocop:disable Rails/SkipsModelValidations
     all
   end
 
   def self.flip_admin_only
-    update_all(admin_only: true)
+    update_all(admin_only: true) # rubocop:disable Rails/SkipsModelValidations
     all
   end
 

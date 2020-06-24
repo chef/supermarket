@@ -13,7 +13,7 @@ describe CookbookNotifyWorker do
     end
 
     cookbook.cookbook_followers.first.user.tap do |imported_user|
-      imported_user.chef_account.update_attribute(:oauth_token, "imported")
+      imported_user.chef_account.update(oauth_token: "imported")
     end
 
     worker = CookbookNotifyWorker.new

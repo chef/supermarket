@@ -72,7 +72,7 @@ describe TransferOwnershipController do
       end
 
       it "returns a 404 if the transfer request given has already been updated" do
-        transfer_request.update_attribute(:accepted, true)
+        transfer_request.update(accepted: true)
         post :accept, params: { token: transfer_request }
         expect(response.status.to_i).to eql(404)
       end
