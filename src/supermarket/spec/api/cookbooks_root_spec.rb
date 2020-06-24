@@ -48,8 +48,8 @@ describe "GET /api/v1/cookbooks" do
 
       expect(json_body["start"]).to eql(0)
       expect(json_body["total"]).to eql(2)
-      expect(json_body["items"]).
-        to match_array([redis_test_signature, redisio_test_signature])
+      expect(json_body["items"])
+        .to match_array([redis_test_signature, redisio_test_signature])
     end
   end
 end

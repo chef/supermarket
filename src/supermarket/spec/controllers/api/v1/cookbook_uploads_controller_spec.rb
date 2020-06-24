@@ -8,9 +8,9 @@ describe Api::V1::CookbookUploadsController do
         allow(subject).to receive(:authenticate_user!) { true }
         allow(subject).to receive(:current_user) { user }
 
-        allow_any_instance_of(CookbookUpload).
-          to receive(:finish).
-          and_yield(
+        allow_any_instance_of(CookbookUpload)
+          .to receive(:finish)
+          .and_yield(
             [],
             double("Cookbook", name: "cookbook", id: 1),
             double("CookbookVersion", version: "1.1.1", id: 1, cookbook_id: 1)
@@ -62,9 +62,9 @@ describe Api::V1::CookbookUploadsController do
           e.add(:base, "This cookbook is no good")
         end
 
-        allow_any_instance_of(CookbookUpload).
-          to receive(:finish).
-          and_yield(errors, double("Cookbook"), double("CookbookVersion"))
+        allow_any_instance_of(CookbookUpload)
+          .to receive(:finish)
+          .and_yield(errors, double("Cookbook"), double("CookbookVersion"))
         auto_authorize!(Cookbook, "create")
       end
 

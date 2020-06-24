@@ -143,8 +143,8 @@ describe CookbookVersion do
 
       url = URI(cookbook_version.tarball.url)
 
-      expect(url.path).
-        to end_with("cookbook_versions/tarballs/101/original/redis-test-v1.tgz")
+      expect(url.path)
+        .to end_with("cookbook_versions/tarballs/101/original/redis-test-v1.tgz")
     end
 
     it "contains the Supermarket ID if it is a Supermarket-only version" do
@@ -153,8 +153,8 @@ describe CookbookVersion do
       url = URI(cookbook_version.tarball.url)
       id = cookbook_version.id
 
-      expect(url.path).
-        to end_with("cookbook_versions/tarballs/#{id}/original/redis-test-v1.tgz")
+      expect(url.path)
+        .to end_with("cookbook_versions/tarballs/#{id}/original/redis-test-v1.tgz")
     end
   end
 

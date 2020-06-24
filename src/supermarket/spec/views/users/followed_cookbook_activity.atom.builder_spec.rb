@@ -63,8 +63,8 @@ describe "users/followed_cookbook_activity.atom.builder" do
       expect(activity["content"]).to match(/we added so much stuff/)
       expect(activity["author"]["name"]).to eql(test_cookbook_5_0.user.name)
       expect(activity["author"]["uri"]).to eql(user_url(test_cookbook_5_0.user))
-      expect(activity["link"]["href"]).
-        to eql(cookbook_version_url(test_cookbook, test_cookbook.cookbook_versions.first.version))
+      expect(activity["link"]["href"])
+        .to eql(cookbook_version_url(test_cookbook, test_cookbook.cookbook_versions.first.version))
     end
   end
 

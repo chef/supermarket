@@ -140,24 +140,24 @@ describe CookbookUpload do
       upload = CookbookUpload.new(user, cookbook: "{}", tarball: tarball)
       errors = upload.finish { |e, _| e }
 
-      expect(errors.full_messages).
-        to include(a_string_matching("not a valid Chef version"))
+      expect(errors.full_messages)
+        .to include(a_string_matching("not a valid Chef version"))
     end
 
     it "yields an error if the cookbook is not valid JSON" do
       upload = CookbookUpload.new(user, cookbook: "ack!", tarball: "tarball")
       errors = upload.finish { |e, _| e }
 
-      expect(errors.full_messages).
-        to include(I18n.t("api.error_messages.cookbook_not_json"))
+      expect(errors.full_messages)
+        .to include(I18n.t("api.error_messages.cookbook_not_json"))
     end
 
     it "yields an error if the tarball does not seem to be an uploaded File" do
       upload = CookbookUpload.new(user, cookbook: "{}", tarball: "cool")
       errors = upload.finish { |e, _| e }
 
-      expect(errors.full_messages).
-        to include(I18n.t("api.error_messages.tarball_has_no_path"))
+      expect(errors.full_messages)
+        .to include(I18n.t("api.error_messages.tarball_has_no_path"))
     end
 
     it "yields an error if the tarball is not GZipped" do
@@ -166,8 +166,8 @@ describe CookbookUpload do
       upload = CookbookUpload.new(user, cookbook: "{}", tarball: tarball)
       errors = upload.finish { |e, _| e }
 
-      expect(errors.full_messages).
-        to include(I18n.t("api.error_messages.tarball_not_gzipped"))
+      expect(errors.full_messages)
+        .to include(I18n.t("api.error_messages.tarball_not_gzipped"))
     end
 
     it "yields an error if the tarball is corrupted" do
@@ -176,8 +176,8 @@ describe CookbookUpload do
       upload = CookbookUpload.new(user, cookbook: "{}", tarball: tarball)
       errors = upload.finish { |e, _| e }
 
-      expect(errors.full_messages).
-        to include(I18n.t("api.error_messages.tarball_corrupt", error: "Damaged tar archive"))
+      expect(errors.full_messages)
+        .to include(I18n.t("api.error_messages.tarball_corrupt", error: "Damaged tar archive"))
     end
 
     it "yields an error if the tarball has no metadata.json entry" do
@@ -186,8 +186,8 @@ describe CookbookUpload do
       upload = CookbookUpload.new(user, cookbook: "{}", tarball: tarball)
       errors = upload.finish { |e, _| e }
 
-      expect(errors.full_messages).
-        to include(I18n.t("api.error_messages.missing_metadata"))
+      expect(errors.full_messages)
+        .to include(I18n.t("api.error_messages.missing_metadata"))
     end
 
     it "yields an error if the tarball has no README entry" do
@@ -196,8 +196,8 @@ describe CookbookUpload do
       upload = CookbookUpload.new(user, cookbook: "{}", tarball: tarball)
       errors = upload.finish { |e, _| e }
 
-      expect(errors.full_messages).
-        to include(I18n.t("api.error_messages.missing_readme"))
+      expect(errors.full_messages)
+        .to include(I18n.t("api.error_messages.missing_readme"))
     end
 
     it "yields an error if the tarball has a zero-length README entry" do
@@ -206,8 +206,8 @@ describe CookbookUpload do
       upload = CookbookUpload.new(user, cookbook: "{}", tarball: tarball)
       errors = upload.finish { |e, _| e }
 
-      expect(errors.full_messages).
-        to include(I18n.t("api.error_messages.missing_readme"))
+      expect(errors.full_messages)
+        .to include(I18n.t("api.error_messages.missing_readme"))
     end
 
     it "yields an error if the tarball's metadata.json is not actually JSON" do
@@ -216,8 +216,8 @@ describe CookbookUpload do
       upload = CookbookUpload.new(user, cookbook: "{}", tarball: tarball)
       errors = upload.finish { |e, _| e }
 
-      expect(errors.full_messages).
-        to include(I18n.t("api.error_messages.metadata_not_json"))
+      expect(errors.full_messages)
+        .to include(I18n.t("api.error_messages.metadata_not_json"))
     end
 
     it "yields an error if the metadata.json has a malformed platforms hash" do
@@ -228,8 +228,8 @@ describe CookbookUpload do
       upload = CookbookUpload.new(user, cookbook: "{}", tarball: tarball)
       errors = upload.finish { |e, _| e }
 
-      expect(errors.full_messages).
-        to include(I18n.t("api.error_messages.invalid_metadata"))
+      expect(errors.full_messages)
+        .to include(I18n.t("api.error_messages.invalid_metadata"))
     end
 
     it "yields an error if the metadata.json has a malformed dependencies hash" do
@@ -240,8 +240,8 @@ describe CookbookUpload do
       upload = CookbookUpload.new(user, cookbook: "{}", tarball: tarball)
       errors = upload.finish { |e, _| e }
 
-      expect(errors.full_messages).
-        to include(I18n.t("api.error_messages.invalid_metadata"))
+      expect(errors.full_messages)
+        .to include(I18n.t("api.error_messages.invalid_metadata"))
     end
 
     it "does not yield an error if the cookbook parameters do not specify a category" do
@@ -277,8 +277,8 @@ describe CookbookUpload do
 
       CookbookUpload.new(user, cookbook: cookbook, tarball: tarball).finish
 
-      allow_any_instance_of(ActiveRecord::Validations::UniquenessValidator).
-        to receive(:validate_each)
+      allow_any_instance_of(ActiveRecord::Validations::UniquenessValidator)
+        .to receive(:validate_each)
 
       upload = CookbookUpload.new(user, cookbook: cookbook, tarball: tarball)
 

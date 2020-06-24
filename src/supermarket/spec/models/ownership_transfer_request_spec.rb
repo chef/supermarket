@@ -57,8 +57,8 @@ describe OwnershipTransferRequest do
           transfer_request.add_owner_as_collaborator = true
           cookbook.reload
 
-          expect { transfer_request.accept! }.
-            to change(cookbook.collaborators, :count).from(0).to(1)
+          expect { transfer_request.accept! }
+            .to change(cookbook.collaborators, :count).from(0).to(1)
         end
       end
     end

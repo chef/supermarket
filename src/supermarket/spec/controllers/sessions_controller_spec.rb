@@ -26,8 +26,8 @@ describe SessionsController do
 
     it "notifies the user they have signed in" do
       post :create, params: { provider: "chef_oauth2" }
-      expect(flash[:notice]).
-        to eql(I18n.t("user.signed_in", name: "John Doe"))
+      expect(flash[:notice])
+        .to eql(I18n.t("user.signed_in", name: "John Doe"))
     end
   end
 
@@ -39,8 +39,8 @@ describe SessionsController do
 
     it "notifies the user they have signed out" do
       delete :destroy
-      expect(flash[:notice]).
-        to eql(I18n.t("user.signed_out"))
+      expect(flash[:notice])
+        .to eql(I18n.t("user.signed_out"))
     end
   end
 

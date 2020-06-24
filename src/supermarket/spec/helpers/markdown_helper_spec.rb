@@ -17,8 +17,8 @@ describe MarkdownHelper do
     end
 
     it "auto renders links with target blank" do
-      expect(helper.render_markdown("http://chef.io")).
-        to match(Regexp.quote('<a href="http://chef.io" target="_blank" rel="noopener">http://chef.io</a>'))
+      expect(helper.render_markdown("http://chef.io"))
+        .to match(Regexp.quote('<a href="http://chef.io" target="_blank" rel="noopener">http://chef.io</a>'))
     end
   end
 

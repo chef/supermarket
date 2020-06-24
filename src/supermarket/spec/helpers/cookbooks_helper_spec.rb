@@ -105,8 +105,8 @@ describe CookbooksHelper do
         helper.link_to_sorted_cookbooks("Not Excellent", params, "not_excellent")
       ).css("a").first
 
-      expect(URI(link["href"]).path).
-        to eql("/cookbooks")
+      expect(URI(link["href"]).path)
+        .to eql("/cookbooks")
       expect(URI(link["href"]).query).to include("order=not_excellent")
     end
   end

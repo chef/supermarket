@@ -760,8 +760,8 @@ describe CookbooksController do
               } })
 
           expect(response).to redirect_to(cookbook)
-          expect(flash[:notice]).
-            to eql(I18n.t("cookbook.deprecate_with_deprecated_failure"))
+          expect(flash[:notice])
+            .to eql(I18n.t("cookbook.deprecate_with_deprecated_failure"))
         end
       end
     end

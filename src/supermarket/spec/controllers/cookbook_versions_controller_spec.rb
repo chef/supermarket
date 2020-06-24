@@ -98,8 +98,8 @@ describe CookbookVersionsController do
 
       get :show, params: { cookbook_id: cookbook.name, version: version.version }
 
-      expect(assigns(:supported_platforms).map(&:name)).
-        to match_array(%w{one two})
+      expect(assigns(:supported_platforms).map(&:name))
+        .to match_array(%w{one two})
     end
 
     context "displaying metrics" do

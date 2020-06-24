@@ -82,8 +82,8 @@ describe "api/v1/cookbooks/show" do
 
   it "displays the url to cookbook's latest version" do
     latest_version_url = json_body["latest_version"]
-    expect(latest_version_url).
-      to eql("http://test.host/api/v1/cookbooks/redis/versions/2.1.0")
+    expect(latest_version_url)
+      .to eql("http://test.host/api/v1/cookbooks/redis/versions/2.1.0")
   end
 
   it "displays the cookbook's external url" do
@@ -113,13 +113,13 @@ describe "api/v1/cookbooks/show" do
 
   # let's roll with when the latest cookbook was last updated_at
   it "displays the date the cookbook was last updated at" do
-    expect(Time.parse(json_body["updated_at"]).to_i).
-      to be_within(1).of(cookbook.updated_at.to_i)
+    expect(Time.parse(json_body["updated_at"]).to_i)
+      .to be_within(1).of(cookbook.updated_at.to_i)
   end
 
   it "displays the date the cookbook was created at" do
-    expect(Time.parse(json_body["created_at"]).to_i).
-      to be_within(1).of(cookbook.created_at.to_i)
+    expect(Time.parse(json_body["created_at"]).to_i)
+      .to be_within(1).of(cookbook.created_at.to_i)
   end
 
   it "displays the total download count" do

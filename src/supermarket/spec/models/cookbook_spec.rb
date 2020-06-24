@@ -435,8 +435,8 @@ describe Cookbook do
     end
 
     it "raises ActiveRecord::RecordNotFound if the version does not exist" do
-      expect { kiwi.get_version!("0_4_0") }.
-        to raise_error(ActiveRecord::RecordNotFound)
+      expect { kiwi.get_version!("0_4_0") }
+        .to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
@@ -483,8 +483,8 @@ describe Cookbook do
       supported_platforms = cookbook.reload.supported_platforms
 
       expect(supported_platforms.map(&:name)).to match_array(%w{debian ubuntu})
-      expect(supported_platforms.map(&:version_constraint)).
-        to match_array(["= 12.04", ">= 0.0.0"])
+      expect(supported_platforms.map(&:version_constraint))
+        .to match_array(["= 12.04", ">= 0.0.0"])
     end
 
     it "creates cookbook dependencies from the metadata" do
@@ -493,8 +493,8 @@ describe Cookbook do
       dependencies = cookbook.reload.cookbook_dependencies
 
       expect(dependencies.map(&:name)).to match_array(%w{apt yum})
-      expect(dependencies.map(&:version_constraint)).
-        to match_array(["= 1.2.3", "~> 2.1.3"])
+      expect(dependencies.map(&:version_constraint))
+        .to match_array(["= 1.2.3", "~> 2.1.3"])
     end
 
     it "bumps the updated at date" do
@@ -733,8 +733,8 @@ describe Cookbook do
     it 'orders by updated_at descending when given "recently_updated"' do
       great.touch
 
-      expect(Cookbook.ordered_by("recently_updated").map(&:name)).
-        to eql(%w{great cookbook})
+      expect(Cookbook.ordered_by("recently_updated").map(&:name))
+        .to eql(%w{great cookbook})
     end
 
     it 'orders by created_at descending when given "recently_added"' do
@@ -747,32 +747,32 @@ describe Cookbook do
       great.update_attributes(web_download_count: 1, api_download_count: 100)
       cookbook.update_attributes(web_download_count: 5, api_download_count: 70)
 
-      expect(Cookbook.ordered_by("most_downloaded").map(&:name)).
-        to eql(%w{great cookbook})
+      expect(Cookbook.ordered_by("most_downloaded").map(&:name))
+        .to eql(%w{great cookbook})
     end
 
     it 'orders by cookbook_followers_count when given "most_followed"' do
       great.update_attributes(cookbook_followers_count: 100)
       cookbook.update_attributes(cookbook_followers_count: 50)
 
-      expect(Cookbook.ordered_by("most_followed").map(&:name)).
-        to eql(%w{great cookbook})
+      expect(Cookbook.ordered_by("most_followed").map(&:name))
+        .to eql(%w{great cookbook})
     end
 
     it "orders secondarily by id when cookbook follower counts are equal" do
       great.update_attributes(cookbook_followers_count: 100)
       cookbook.update_attributes(cookbook_followers_count: 100)
 
-      expect(Cookbook.ordered_by("most_followed").map(&:name)).
-        to eql(%w{great cookbook})
+      expect(Cookbook.ordered_by("most_followed").map(&:name))
+        .to eql(%w{great cookbook})
     end
 
     it "orders secondarily by id when download counts are equal" do
       great.update_attributes(web_download_count: 5, api_download_count: 100)
       cookbook.update_attributes(web_download_count: 5, api_download_count: 100)
 
-      expect(Cookbook.ordered_by("most_followed").map(&:name)).
-        to eql(%w{great cookbook})
+      expect(Cookbook.ordered_by("most_followed").map(&:name))
+        .to eql(%w{great cookbook})
     end
   end
 
