@@ -22,9 +22,10 @@ TARGET = File.join(File.dirname(__FILE__), '../../../..', 'MAINTAINERS.md')
 
 begin
   require 'tomlrb'
-  task default: :generate
 
   namespace :maintainers do
+    task default: :generate
+
     desc 'Generate MarkDown version of MAINTAINERS file'
     task :generate do
       maintainers = Tomlrb.load_file SOURCE

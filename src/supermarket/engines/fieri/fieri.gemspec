@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.rdoc']
 
+  s.add_dependency 'cookstyle'
   s.add_dependency 'dotenv-rails'
   s.add_dependency 'foodcritic', '~> 14.0'
   s.add_dependency 'mixlib-archive', '~> 0.4'

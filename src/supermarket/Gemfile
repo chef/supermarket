@@ -81,6 +81,7 @@ end
 
 group :development, :test do
   gem 'brakeman'
+  gem 'chefstyle'
   gem 'factory_bot_rails', require: false
   gem 'faker'
   gem 'launchy'
@@ -88,7 +89,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
-  gem 'rubocop', '>= 0.23.0'
+  gem 'rubocop-rails'
 
   # Pinned to be greater than or equal to 1.0.0.pre because the gems were prior
   # to 1.0.0 release when added
