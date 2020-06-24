@@ -2,7 +2,7 @@ class User < ApplicationRecord
   include Authorizable
   include PgSearch
 
-  ALLOWED_INSTALL_PREFERENCES = %w[berkshelf knife librarian policyfile].freeze
+  ALLOWED_INSTALL_PREFERENCES = %w{berkshelf knife librarian policyfile}.freeze
 
   # Associations
   # --------------------

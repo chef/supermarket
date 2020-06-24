@@ -31,7 +31,7 @@ class CollaboratorsController < ApplicationController
   # Add a collaborator to a resource.
   #
   def create
-    if %w[Cookbook Tool].include?(collaborator_params[:resourceable_type])
+    if %w{Cookbook Tool}.include?(collaborator_params[:resourceable_type])
       resource = collaborator_params[:resourceable_type].constantize.find(
         collaborator_params[:resourceable_id]
       )
@@ -72,7 +72,7 @@ class CollaboratorsController < ApplicationController
   def destroy_group
     group = Group.find(params[:id])
 
-    if %w[Cookbook Tool].include?(params[:resourceable_type])
+    if %w{Cookbook Tool}.include?(params[:resourceable_type])
       resource = params[:resourceable_type].constantize.find(
         params[:resourceable_id]
       )

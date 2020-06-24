@@ -33,7 +33,7 @@ module Universe
     # and we're calling it in a loop.
     #
 
-    sql = %(
+    sql = %{
       SELECT cookbook_versions.version,
         cookbooks.name AS cookbook,
         cookbook_dependencies.name AS dependency,
@@ -42,7 +42,7 @@ module Universe
         INNER JOIN cookbooks ON cookbooks.id = cookbook_versions.cookbook_id
         LEFT JOIN cookbook_dependencies ON cookbook_dependencies.cookbook_version_id = cookbook_versions.id
           AND cookbook_dependencies.name != cookbooks.name
-    )
+    }
 
     cookbooks = ActiveRecord::Base.connection.execute(sql).to_a
 
@@ -83,10 +83,10 @@ module Universe
   # Again, doing this in raw sql instead of AR for performance reasons.
   #
   def track_hit
-    sql = %(WITH upd AS
+    sql = %{WITH upd AS
             (UPDATE hits SET total=total+1 WHERE label='universe' RETURNING *)
             INSERT INTO hits (label, total)
-            SELECT 'universe', 1 WHERE NOT EXISTS (SELECT * FROM upd))
+            SELECT 'universe', 1 WHERE NOT EXISTS (SELECT * FROM upd)}
     ActiveRecord::Base.connection.execute(sql)
   end
 

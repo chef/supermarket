@@ -53,7 +53,7 @@ describe Api::V1::ToolsController do
 
       tool_names = assigns[:tools].map(&:name)
 
-      expect(tool_names).to eql(%w[berkshelf metal])
+      expect(tool_names).to eql(%w{berkshelf metal})
     end
 
     it "allows ordering by recently added" do

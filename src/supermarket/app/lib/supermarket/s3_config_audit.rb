@@ -2,8 +2,8 @@ module Supermarket
   module S3ConfigAudit
     class IncompleteConfig < StandardError; end
 
-    REQUIRED_S3_VARS = %w[S3_BUCKET S3_REGION].freeze
-    REQUIRED_S3_STATIC_CREDS_VARS = %w[S3_ACCESS_KEY_ID S3_SECRET_ACCESS_KEY].freeze
+    REQUIRED_S3_VARS = %w{S3_BUCKET S3_REGION}.freeze
+    REQUIRED_S3_STATIC_CREDS_VARS = %w{S3_ACCESS_KEY_ID S3_SECRET_ACCESS_KEY}.freeze
 
     def self.use_s3?(environment)
       any_s3_settings = REQUIRED_S3_VARS.any? { |key| environment.key?(key) }

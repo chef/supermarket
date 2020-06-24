@@ -72,10 +72,10 @@ class CookbookMailer < ActionMailer::Base
                                    " and add themselves as a collaborator"
                                  end
 
-    subject = %(
+    subject = %{
       #{@sender} wants to transfer ownership of the #{@cookbook} cookbook to
       you#{@add_owner_as_collaborator}.
-    ).squish
+    }.squish
 
     mail(to: transfer_request.recipient.email, subject: subject)
   end

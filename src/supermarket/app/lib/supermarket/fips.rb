@@ -7,7 +7,7 @@ module Supermarket
     # FIPS Publication 186-4 to identify several algorithms as the
     # Secure Hash Standard (SHS). Algorithms listed here are in the SHS
     # and are used in various places in the Rails framework.
-    SECURE_HASHES = %w[SHA1 SHA256 SHA512].freeze
+    SECURE_HASHES = %w{SHA1 SHA256 SHA512}.freeze
 
     def self.enable!
       OpenSSL.fips_mode = true

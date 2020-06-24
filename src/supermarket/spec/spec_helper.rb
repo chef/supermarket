@@ -128,7 +128,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     Dir.mkdir("tmp") unless File.exist?("tmp")
-    extensions = %w[pg_trgm plpgsql]
+    extensions = %w{pg_trgm plpgsql}
     extensions.each do |ext|
       ActiveRecord::Base.connection.execute("CREATE EXTENSION IF NOT EXISTS #{ext}")
     end

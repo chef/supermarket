@@ -149,13 +149,13 @@ describe CookbooksController do
       end
 
       it "returns @cookbooks that support some of given platforms" do
-        get :index, params: { platforms: %w[ubuntu windows] }
+        get :index, params: { platforms: %w{ubuntu windows} }
         expect(assigns[:cookbooks]).to include(erlang)
         expect(assigns[:cookbooks]).to include(ruby)
       end
 
       it "does not return @cookbooks that does not support any of given platforms" do
-        get :index, params: { platforms: %w[windows] }
+        get :index, params: { platforms: %w{windows} }
         expect(assigns[:cookbooks]).not_to include(erlang)
       end
 
@@ -166,7 +166,7 @@ describe CookbooksController do
       end
 
       it "works correctly with search" do
-        get :index, params: { q: "ruby", platforms: %w[debian] }
+        get :index, params: { q: "ruby", platforms: %w{debian} }
         expect(assigns[:cookbooks]).to include(ruby)
         expect(assigns[:cookbooks]).not_to include(erlang)
       end
@@ -175,7 +175,7 @@ describe CookbooksController do
         erlang.update_attributes(web_download_count: 10, api_download_count: 100)
         ruby.update_attributes(web_download_count: 5, api_download_count: 101)
 
-        get :index, params: { order: "most_downloaded", platforms: %w[debian] }
+        get :index, params: { order: "most_downloaded", platforms: %w{debian} }
         expect(assigns[:cookbooks][0]).to eql(erlang)
         expect(assigns[:cookbooks][1]).to eql(ruby)
       end
@@ -187,12 +187,12 @@ describe CookbooksController do
       let!(:unknown_cookbook) { create(:cookbook, name: "could_be_good_i_dunno") }
 
       it "returns cookbooks with badges" do
-        get :index, params: { badges: %w[partner] }
+        get :index, params: { badges: %w{partner} }
         expect(assigns[:cookbooks]).to include(awesome_cookbook)
       end
 
       it "does not return cookbooks without badges" do
-        get :index, params: { badges: %w[partner] }
+        get :index, params: { badges: %w{partner} }
         expect(assigns[:cookbooks]).not_to include(unknown_cookbook)
       end
 
@@ -203,7 +203,7 @@ describe CookbooksController do
       end
 
       it "works correctly with search" do
-        get :index, params: { q: "sauce", badges: %w[partner] }
+        get :index, params: { q: "sauce", badges: %w{partner} }
         expect(assigns[:cookbooks]).to include(awesome_cookbook)
         expect(assigns[:cookbooks]).not_to include(but_not_saucy)
       end
@@ -212,7 +212,7 @@ describe CookbooksController do
         awesome_cookbook.update_attributes(web_download_count: 10, api_download_count: 100)
         but_not_saucy.update_attributes(web_download_count: 5, api_download_count: 101)
 
-        get :index, params: { order: "most_downloaded", badges: %w[partner] }
+        get :index, params: { order: "most_downloaded", badges: %w{partner} }
         expect(assigns[:cookbooks][0]).to eql(awesome_cookbook)
         expect(assigns[:cookbooks][1]).to eql(but_not_saucy)
       end

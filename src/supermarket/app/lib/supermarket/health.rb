@@ -11,7 +11,7 @@ module Supermarket
     REACHABLE = "reachable"
     UNKNOWN = "unknown"
     UNREACHABLE = "unreachable"
-    ALL_FEATURES = %w[cla join_ccla tools fieri announcement github no_crawl].freeze
+    ALL_FEATURES = %w{cla join_ccla tools fieri announcement github no_crawl}.freeze
 
     attr_reader :status, :supermarket, :postgresql, :sidekiq, :redis, :features
 
@@ -128,7 +128,7 @@ module Supermarket
       redis_health_metric do
         redis_info = Sidekiq.redis(&:info)
 
-        %w[uptime_in_seconds connected_clients used_memory used_memory_peak].each do |key|
+        %w{uptime_in_seconds connected_clients used_memory used_memory_peak}.each do |key|
           @redis.store(key, redis_info.fetch(key, -1).to_i)
         end
       end

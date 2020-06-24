@@ -61,7 +61,7 @@ module CookbookVersionsHelper
   # @return [String] the Document content ready to be rendered
   #
   def render_document(content, extension)
-    if %w[md mdown markdown].include?(extension.downcase)
+    if %w{md mdown markdown}.include?(extension.downcase)
       render_markdown(content)
     else
       content

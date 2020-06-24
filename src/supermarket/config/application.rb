@@ -8,12 +8,12 @@ Dotenv.overload(".env", ".env.#{Rails.env}").tap do |env|
   end
 end
 
-%w[
+%w{
   active_record
   action_controller
   action_mailer
   sprockets
-].each do |framework|
+}.each do |framework|
   begin
     require "#{framework}/railtie"
   rescue LoadError
@@ -43,10 +43,10 @@ module Supermarket
     config.assets.paths << Rails.root.join("vendor/assets/images")
 
     # Ensure fonts and images are precompiled during asset compilation
-    config.assets.precompile += %w[*.svg *.eot *.woff *.ttf *.gif *.png]
+    config.assets.precompile += %w{*.svg *.eot *.woff *.ttf *.gif *.png}
 
     # Ensurer mailer assets are precompiled during asset compilation
-    config.assets.precompile += %w[mailers.css]
+    config.assets.precompile += %w{mailers.css}
 
     # Use a custom exception handling application
     config.exceptions_app = proc do |env|

@@ -2,11 +2,11 @@ module Supermarket
   module Migration
     module RemoveDuplicateCookbookDependencies
       def self.call
-        query = %(
+        query = %{
           SELECT cookbook_version_id, name, version_constraint, count(*) as cnt
           FROM cookbook_dependencies
           GROUP BY cookbook_version_id, name, version_constraint
-        )
+        }
 
         rows = ActiveRecord::Base.connection.execute(query).select do |row|
           row["cnt"].to_i > 1
