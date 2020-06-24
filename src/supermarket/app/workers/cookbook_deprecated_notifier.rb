@@ -26,7 +26,7 @@ class CookbookDeprecatedNotifier
   private
 
   def users_to_email(cookbook)
-    subscribed_user_ids = SystemEmail.find_by!(name: 'Cookbook deprecated')
+    subscribed_user_ids = SystemEmail.find_by!(name: "Cookbook deprecated")
                                      .subscribed_users
                                      .pluck(:id)
 

@@ -4,8 +4,8 @@ class OwnershipTransferRequest < ApplicationRecord
   # Associations
   # --------------------
   belongs_to :cookbook
-  belongs_to :recipient, class_name: 'User', inverse_of: :received_ownership_transfer_requests
-  belongs_to :sender, class_name: 'User', inverse_of: :initiated_ownership_transfer_requests
+  belongs_to :recipient, class_name: "User", inverse_of: :received_ownership_transfer_requests
+  belongs_to :sender, class_name: "User", inverse_of: :initiated_ownership_transfer_requests
 
   # Validations
   # --------------------

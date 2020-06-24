@@ -1,5 +1,5 @@
 class AdoptionMailer < ActionMailer::Base
-  layout 'mailer'
+  layout "mailer"
 
   #
   # Sends an email to the owner of a cookbook or tool, letting them know that

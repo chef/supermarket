@@ -59,10 +59,10 @@ class CookbooksController < ApplicationController
     @recently_updated_cookbooks = Cookbook.order_by_latest_upload_date
                                           .limit(5)
     @most_downloaded_cookbooks = Cookbook.includes(:cookbook_versions)
-                                         .ordered_by('most_downloaded')
+                                         .ordered_by("most_downloaded")
                                          .limit(5)
     @most_followed_cookbooks = Cookbook.includes(:cookbook_versions)
-                                       .ordered_by('most_followed')
+                                       .ordered_by("most_followed")
                                        .limit(5)
     @featured_cookbooks = Cookbook.includes(:cookbook_versions)
                                   .featured
@@ -118,19 +118,19 @@ class CookbooksController < ApplicationController
     @cookbook.update_attributes(cookbook_urls_params)
 
     if cookbook_urls_params.key?(:up_for_adoption)
-      if cookbook_urls_params[:up_for_adoption] == 'true'
+      if cookbook_urls_params[:up_for_adoption] == "true"
         AdoptionMailer.delay.follower_email(@cookbook)
       end
     end
 
     key = if cookbook_urls_params.key?(:up_for_adoption)
-            if cookbook_urls_params[:up_for_adoption] == 'true'
-              'adoption.up'
+            if cookbook_urls_params[:up_for_adoption] == "true"
+              "adoption.up"
             else
-              'adoption.down'
+              "adoption.down"
             end
           else
-            'cookbook.updated'
+            "cookbook.updated"
           end
 
     redirect_to @cookbook, notice: t(key, name: @cookbook.name)
@@ -143,7 +143,7 @@ class CookbooksController < ApplicationController
   #
   def follow
     @cookbook.cookbook_followers.create(user: current_user)
-    Supermarket::Metrics.increment 'cookbook.followed'
+    Supermarket::Metrics.increment "cookbook.followed"
 
     render_follow_button
   end
@@ -158,7 +158,7 @@ class CookbooksController < ApplicationController
                                  .where(user: current_user)
                                  .first!
     cookbook_follower.destroy
-    Supermarket::Metrics.increment 'cookbook.unfollowed'
+    Supermarket::Metrics.increment "cookbook.unfollowed"
 
     render_follow_button
   end
@@ -180,12 +180,12 @@ class CookbooksController < ApplicationController
       redirect_to(
         @cookbook,
         notice: t(
-          'cookbook.deprecated',
+          "cookbook.deprecated",
           cookbook: @cookbook.name
         )
       )
     else
-      redirect_to @cookbook, notice: @cookbook.errors.full_messages.join(', ')
+      redirect_to @cookbook, notice: @cookbook.errors.full_messages.join(", ")
     end
   end
 
@@ -202,7 +202,7 @@ class CookbooksController < ApplicationController
     redirect_to(
       @cookbook,
       notice: t(
-        'cookbook.undeprecated',
+        "cookbook.undeprecated",
         cookbook: @cookbook.name
       )
     )
@@ -220,7 +220,7 @@ class CookbooksController < ApplicationController
     redirect_to(
       @cookbook,
       notice: t(
-        'adoption.email_sent',
+        "adoption.email_sent",
         cookbook_or_tool: @cookbook.name
       )
     )
@@ -240,9 +240,9 @@ class CookbooksController < ApplicationController
     redirect_to(
       @cookbook,
       notice: t(
-        'cookbook.featured',
+        "cookbook.featured",
         cookbook: @cookbook.name,
-        state: @cookbook.featured? ? 'featured' : 'unfeatured'
+        state: @cookbook.featured? ? "featured" : "unfeatured"
       )
     )
   end
@@ -298,9 +298,9 @@ class CookbooksController < ApplicationController
     @cookbook.reload
 
     if params[:list].present?
-      render partial: 'follow_button_list', locals: { cookbook: @cookbook }
+      render partial: "follow_button_list", locals: { cookbook: @cookbook }
     else
-      render partial: 'follow_button_show', locals: { cookbook: @cookbook }
+      render partial: "follow_button_show", locals: { cookbook: @cookbook }
     end
   end
 

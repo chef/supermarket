@@ -1,4 +1,4 @@
-require 'active_model/validations/chef_version_validator'
+require "active_model/validations/chef_version_validator"
 
 class CookbookVersion < ApplicationRecord
   include SeriousErrors
@@ -32,15 +32,15 @@ class CookbookVersion < ApplicationRecord
     :tarball,
     presence: true,
     content_type: {
-      content_type: ['application/x-gzip', 'application/gzip',
-                     'application/octet-stream', 'application/x-tar',
-                     'application/x-compressed-tar', 'application/x-gtar',
-                     'application/x-bzip2', 'application/gzipped-tar',
-                     'application/x-compressed', 'application/download',
-                     'application/x-gtar-compressed', 'application/zip',
-                     'application/x-bzip', 'application/x-zip-compressed',
-                     'application/cap', 'application/x-tar-gz',
-                     'application/postscript', 'application/x-targz'],
+      content_type: ["application/x-gzip", "application/gzip",
+                     "application/octet-stream", "application/x-tar",
+                     "application/x-compressed-tar", "application/x-gtar",
+                     "application/x-bzip2", "application/gzipped-tar",
+                     "application/x-compressed", "application/download",
+                     "application/x-gtar-compressed", "application/zip",
+                     "application/x-bzip", "application/x-zip-compressed",
+                     "application/cap", "application/x-tar-gz",
+                     "application/postscript", "application/x-targz"],
       message: ->(_, info) { "can not be #{info[:value]}." }
     }
   )
@@ -82,8 +82,8 @@ class CookbookVersion < ApplicationRecord
   end
 
   def cookbook_artifact_url
-    if Paperclip::Attachment.default_options[:storage] == 's3'
-      ENV['S3_URLS_EXPIRE'].present? ? tarball.expiring_url(ENV['S3_URLS_EXPIRE'].to_i) : tarball.url
+    if Paperclip::Attachment.default_options[:storage] == "s3"
+      ENV["S3_URLS_EXPIRE"].present? ? tarball.expiring_url(ENV["S3_URLS_EXPIRE"].to_i) : tarball.url
     else
       "#{Supermarket::Host.full_url}#{tarball.url}"
     end
@@ -98,7 +98,7 @@ class CookbookVersion < ApplicationRecord
     if total_metric_results.positive?
       ((metric_results.where(failure: false).count / total_metric_results.to_f) * 100).round(0)
     else
-      '-'
+      "-"
     end
   end
 end

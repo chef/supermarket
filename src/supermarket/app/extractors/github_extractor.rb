@@ -11,27 +11,27 @@ class GithubExtractor < Extractor::Base
 
   # @see Extractor::Base#email
   def email
-    auth['info']['email']
+    auth["info"]["email"]
   end
 
   # @see Extractor::Base#username
   def username
-    auth['info']['nickname']
+    auth["info"]["nickname"]
   end
 
   # @see Extractor::Base#image_url
   def image_url
-    auth['info']['image']
+    auth["info"]["image"]
   end
 
   # @see Extractor::Base#uid
   def uid
-    auth['uid']
+    auth["uid"]
   end
 
   # @see Extractor::Base#oauth_token
   def oauth_token
-    auth['credentials']['token']
+    auth["credentials"]["token"]
   end
 
   #

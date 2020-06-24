@@ -1,4 +1,4 @@
-require 'authorizer/base'
+require "authorizer/base"
 
 class UserAuthorizer < Authorizer::Base
   #

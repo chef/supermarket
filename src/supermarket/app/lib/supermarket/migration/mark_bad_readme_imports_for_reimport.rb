@@ -2,7 +2,7 @@ module Supermarket
   module Migration
     module MarkBadReadmeImportsForReimport
       def self.call
-        CookbookVersion.where('readme like ?', '%ctime=%').each do |cv|
+        CookbookVersion.where("readme like ?", "%ctime=%").each do |cv|
           cv.record_timestamps = false
 
           cv.transaction do

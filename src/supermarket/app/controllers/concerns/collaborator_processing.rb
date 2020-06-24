@@ -7,7 +7,7 @@ module CollaboratorProcessing
 
   def add_users_as_collaborators(resource, user_ids, group_id = nil)
     # sometimes user_ids comes in as a string; need it to be an array
-    user_ids = user_ids.split(',') if user_ids.class == String
+    user_ids = user_ids.split(",") if user_ids.class == String
     # unless users are coming in associated with a group, filter out users that
     # are already collaborators
     user_ids -= ineligible_ids(resource) unless group_id
@@ -21,7 +21,7 @@ module CollaboratorProcessing
 
       # Passes object and action to Supermarket::Authorization,
       # which in turn passes them to Pundit for authorization
-      authorize!(collaborator, 'create?')
+      authorize!(collaborator, "create?")
 
       collaborator.save!
       CollaboratorMailer.delay.added_email(collaborator)
@@ -29,14 +29,14 @@ module CollaboratorProcessing
   end
 
   def add_group_members_as_collaborators(resource, group_ids)
-    group_ids.split(',').each do |group_id|
+    group_ids.split(",").each do |group_id|
       add_users_as_collaborators(resource, group_user_ids(group_id), group_id)
       associate_group_to_resource(group_id, resource)
     end
   end
 
   def remove_collaborator(collaborator)
-    authorize!(collaborator, 'destroy?')
+    authorize!(collaborator, "destroy?")
     collaborator.destroy
   end
 

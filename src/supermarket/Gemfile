@@ -1,98 +1,98 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
 # Ruby version isn't specified here anymore, as it's pinned in Omnibus
 # https://github.com/chef/omnibus-supermarket/blob/master/config/projects/supermarket.rb
 
-gem 'fieri', path: 'engines/fieri'
-gem 'rails', '~> 5.1.0'
+gem "fieri", path: "engines/fieri"
+gem "rails", "~> 5.1.0"
 
-gem 'omniauth'
-gem 'omniauth-chef-oauth2'
-gem 'omniauth-github'
-gem 'omniauth-oauth2', '~> 1.3.1'
-gem 'omniauth-rails_csrf_protection'
+gem "omniauth"
+gem "omniauth-chef-oauth2"
+gem "omniauth-github"
+gem "omniauth-oauth2", "~> 1.3.1"
+gem "omniauth-rails_csrf_protection"
 
-gem 'sidekiq', '~> 4.2'
-gem 'sidekiq-cron'
+gem "sidekiq", "~> 4.2"
+gem "sidekiq-cron"
 
-gem 'aws-sdk'
-gem 'chef', require: false
-gem 'compass-rails'
-gem 'ddtrace', require: false
-gem 'dotenv'
-gem 'ffi-libarchive'
-gem 'foreman'
-gem 'html_truncator'
-gem 'jbuilder'
-gem 'kaminari'
-gem 'mixlib-authentication', '~> 3.0'
-gem 'newrelic_rpm'
-gem 'nokogiri'
-gem 'octokit', require: false
-gem 'paperclip'
-gem 'pg'
-gem 'pg_search'
-gem 'premailer-rails', group: [:development, :production]
-gem 'pundit'
-gem 'rb-readline'
-gem 'redcarpet' # markdown parsing
-gem 'redis-rails'
-gem 'rinku', require: 'rails_rinku'
-gem 'rollout'
-gem 'ruby-filemagic'
-gem 'sass-globbing'
-gem 'sass-rails'
-gem 'sentry-raven', require: false
-gem 'sitemap_generator'
-gem 'sprockets'
-gem 'statsd-ruby'
-gem 'tomlrb'
-gem 'uglifier'
-gem 'unicorn'
-gem 'unicorn-rails'
-gem 'utf8-cleaner'
-gem 'validate_url'
-gem 'virtus', '1.0.2', require: false # Pin to a version before the handling of nil in collection coercion was fixed.
-gem 'yajl-ruby'
+gem "aws-sdk"
+gem "chef", require: false
+gem "compass-rails"
+gem "ddtrace", require: false
+gem "dotenv"
+gem "ffi-libarchive"
+gem "foreman"
+gem "html_truncator"
+gem "jbuilder"
+gem "kaminari"
+gem "mixlib-authentication", "~> 3.0"
+gem "newrelic_rpm"
+gem "nokogiri"
+gem "octokit", require: false
+gem "paperclip"
+gem "pg"
+gem "pg_search"
+gem "premailer-rails", group: [:development, :production]
+gem "pundit"
+gem "rb-readline"
+gem "redcarpet" # markdown parsing
+gem "redis-rails"
+gem "rinku", require: "rails_rinku"
+gem "rollout"
+gem "ruby-filemagic"
+gem "sass-globbing"
+gem "sass-rails"
+gem "sentry-raven", require: false
+gem "sitemap_generator"
+gem "sprockets"
+gem "statsd-ruby"
+gem "tomlrb"
+gem "uglifier"
+gem "unicorn"
+gem "unicorn-rails"
+gem "utf8-cleaner"
+gem "validate_url"
+gem "virtus", "1.0.2", require: false # Pin to a version before the handling of nil in collection coercion was fixed.
+gem "yajl-ruby"
 
 group :doc do
-  gem 'yard', require: false
+  gem "yard", require: false
 end
 
 group :development do
-  gem 'guard'
-  gem 'guard-rspec', require: false
-  gem 'guard-rubocop', require: false
-  gem 'license_finder'
-  gem 'spring'
-  gem 'spring-commands-rspec'
+  gem "guard"
+  gem "guard-rspec", require: false
+  gem "guard-rubocop", require: false
+  gem "license_finder"
+  gem "spring"
+  gem "spring-commands-rspec"
 end
 
 group :test do
-  gem 'capybara'
-  gem 'capybara-screenshot'
-  gem 'database_cleaner'
-  gem 'poltergeist'
-  gem 'rails-controller-testing'
-  gem 'shoulda-matchers'
-  gem 'vcr', require: false
-  gem 'webmock', require: false
+  gem "capybara"
+  gem "capybara-screenshot"
+  gem "database_cleaner"
+  gem "poltergeist"
+  gem "rails-controller-testing"
+  gem "shoulda-matchers"
+  gem "vcr", require: false
+  gem "webmock", require: false
 end
 
 group :development, :test do
-  gem 'brakeman'
-  gem 'chefstyle'
-  gem 'factory_bot_rails', require: false
-  gem 'faker'
-  gem 'launchy'
-  gem 'mail_view'
-  gem 'pry-byebug'
-  gem 'pry-rails'
-  gem 'rspec-rails'
-  gem 'rubocop-rails'
+  gem "brakeman"
+  gem "chefstyle"
+  gem "factory_bot_rails", require: false
+  gem "faker"
+  gem "launchy"
+  gem "mail_view"
+  gem "pry-byebug"
+  gem "pry-rails"
+  gem "rspec-rails"
+  gem "rubocop-rails"
 
   # Pinned to be greater than or equal to 1.0.0.pre because the gems were prior
   # to 1.0.0 release when added
-  gem 'and_feathers', '>= 1.0.0.pre', require: false
-  gem 'and_feathers-gzipped_tarball', '>= 1.0.0.pre', require: false
+  gem "and_feathers", ">= 1.0.0.pre", require: false
+  gem "and_feathers-gzipped_tarball", ">= 1.0.0.pre", require: false
 end

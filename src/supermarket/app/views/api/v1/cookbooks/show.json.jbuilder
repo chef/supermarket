@@ -1,4 +1,4 @@
-json.partial! 'cookbook', cookbook: @cookbook
+json.partial! "cookbook", cookbook: @cookbook
 json.deprecated @cookbook.deprecated
 if @cookbook.deprecated? && @cookbook.replacement.present?
   json.replacement api_v1_cookbook_url(@cookbook.replacement)

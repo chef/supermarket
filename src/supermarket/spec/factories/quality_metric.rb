@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :quality_metric, class: 'QualityMetric' do
+  factory :quality_metric, class: "QualityMetric" do
     trait :foodcritic do
       name { "Foodcritic" }
     end

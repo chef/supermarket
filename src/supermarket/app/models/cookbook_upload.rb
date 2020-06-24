@@ -1,4 +1,4 @@
-require 'cookbook_upload/parameters'
+require "cookbook_upload/parameters"
 
 class CookbookUpload
   #
@@ -40,7 +40,7 @@ class CookbookUpload
         metadata = @params.metadata
 
         version_not_unique = I18n.t(
-          'api.error_messages.version_not_unique',
+          "api.error_messages.version_not_unique",
           name: metadata.name,
           version: metadata.version
         )
@@ -93,7 +93,7 @@ class CookbookUpload
 
       if category.nil? && @params.category_name.present?
         message = I18n.t(
-          'api.error_messages.non_existent_category',
+          "api.error_messages.non_existent_category",
           category_name: @params.category_name
         )
 

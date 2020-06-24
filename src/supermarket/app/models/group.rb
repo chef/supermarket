@@ -5,5 +5,5 @@ class Group < ApplicationRecord
   has_many :members, through: :group_members, source: :user
   has_many :group_resources
 
-  pg_search_scope :search, against: :name, using: { tsearch: { prefix: true, dictionary: 'english' }, trigram: { threshold: 0.2 } }
+  pg_search_scope :search, against: :name, using: { tsearch: { prefix: true, dictionary: "english" }, trigram: { threshold: 0.2 } }
 end

@@ -5,7 +5,7 @@ class IrcLogsController < ApplicationController
   # Redirects to the botbot.me dashboard (list of IRC channels).
   #
   def index
-    redirect_to('https://botbot.me/freenode/chef/')
+    redirect_to("https://botbot.me/freenode/chef/")
   end
 
   #
@@ -25,8 +25,8 @@ class IrcLogsController < ApplicationController
   #   GET /chat/chef/2014-09-24
   #
   def show
-    botbot_base_url = 'https://botbot.me/freenode/'
-    github_repo_url = 'https://github.com/chef/irc_log_archives'
+    botbot_base_url = "https://botbot.me/freenode/"
+    github_repo_url = "https://github.com/chef/irc_log_archives"
 
     channel = params[:channel]
     date_str = params.fetch(:date, nil)
@@ -36,12 +36,12 @@ class IrcLogsController < ApplicationController
     rescue ArgumentError
       not_found!
     else
-      cutoff_date = Date.parse('2013-08-08')
+      cutoff_date = Date.parse("2013-08-08")
 
       if date_str.nil?
         redirect_to(botbot_base_url + channel)
       elsif date > cutoff_date
-        redirect_to(botbot_base_url + channel + '/' + date_str)
+        redirect_to(botbot_base_url + channel + "/" + date_str)
       else
         redirect_to(github_repo_url)
       end

@@ -1,5 +1,5 @@
-require 'sidekiq'
-require 'net/http'
+require "sidekiq"
+require "net/http"
 
 class PublishWorker
   include ::Sidekiq::Worker
@@ -8,7 +8,7 @@ class PublishWorker
     parsed = JSON.parse(cookbook_json)
 
     failure = false
-    publish_feedback = ''
+    publish_feedback = ""
 
     unless cookbook_exists?(parsed, cookbook_name)
       failure = true
@@ -30,8 +30,8 @@ class PublishWorker
     end
 
     Net::HTTP.post_form(
-      URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/publish_evaluation"),
-      fieri_key: ENV['FIERI_KEY'],
+      URI.parse("#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/publish_evaluation"),
+      fieri_key: ENV["FIERI_KEY"],
       cookbook_name: cookbook_name,
       publish_failure: failure,
       publish_feedback: publish_feedback
@@ -41,14 +41,14 @@ class PublishWorker
   private
 
   def cookbook_exists?(cookbook_output, cookbook_name)
-    cookbook_output['name'] == cookbook_name
+    cookbook_output["name"] == cookbook_name
   end
 
   def cookbook_not_deprecated?(cookbook_output)
-    cookbook_output['deprecated'] != true
+    cookbook_output["deprecated"] != true
   end
 
   def cookbook_not_for_adoption?(cookbook_output)
-    cookbook_output['up_for_adoption'] != true
+    cookbook_output["up_for_adoption"] != true
   end
 end

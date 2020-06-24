@@ -1,12 +1,12 @@
-require_dependency 'fieri/application_controller'
+require_dependency "fieri/application_controller"
 
 module Fieri
   class StatusController < ApplicationController
-    require 'sidekiq/api'
+    require "sidekiq/api"
 
-    REACHABLE = 'REACHABLE'.freeze
-    UNKNOWN = 'UNKNOWN'.freeze
-    UNREACHABLE = 'UNREACHABLE'.freeze
+    REACHABLE = "REACHABLE".freeze
+    UNKNOWN = "UNKNOWN".freeze
+    UNREACHABLE = "UNREACHABLE".freeze
 
     def show
       redis_health = { status: REACHABLE }
@@ -40,17 +40,17 @@ module Fieri
         redis_health.store(:status, UNREACHABLE)
       end
 
-      status = if redis_health.fetch(:status) == 'REACHABLE' &&
-                  sidekiq_health.fetch(:status) == 'REACHABLE'
-                 'ok'
+      status = if redis_health.fetch(:status) == "REACHABLE" &&
+                  sidekiq_health.fetch(:status) == "REACHABLE"
+                 "ok"
                else
-                 'not ok'
+                 "not ok"
                end
 
       response = {
-        'status' => status,
-        'sidekiq' => sidekiq_health,
-        'redis' => redis_health
+        "status" => status,
+        "sidekiq" => sidekiq_health,
+        "redis" => redis_health
       }.to_json
 
       render json: response

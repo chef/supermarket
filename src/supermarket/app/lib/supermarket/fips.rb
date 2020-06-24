@@ -1,5 +1,5 @@
-require 'digest'
-require 'openssl'
+require "digest"
+require "openssl"
 
 module Supermarket
   class FIPS

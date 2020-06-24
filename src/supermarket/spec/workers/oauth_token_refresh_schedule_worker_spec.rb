@@ -1,9 +1,9 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe OauthTokenRefreshScheduleWorker do
   let(:worker) { OauthTokenRefreshScheduleWorker.new }
 
-  it 'refreshes only tokens which expire soon' do
+  it "refreshes only tokens which expire soon" do
     expiring_users = FactoryBot.create_list(:user, 3)
 
     expect(Account)

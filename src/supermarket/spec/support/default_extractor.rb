@@ -8,26 +8,26 @@ class DefaultExtractor < Extractor::Base
   end
 
   def uid
-    auth['uid']
+    auth["uid"]
   end
 
   def username
-    auth['info']['username']
+    auth["info"]["username"]
   end
 
   def email
-    auth['info']['email']
+    auth["info"]["email"]
   end
 
   def oauth_token
-    auth['credentials']['token']
+    auth["credentials"]["token"]
   end
 
   def oauth_secret
-    auth['credentials']['secret']
+    auth["credentials"]["secret"]
   end
 
   def oauth_expires
-    auth['credentials']['expires']
+    auth["credentials"]["expires"]
   end
 end

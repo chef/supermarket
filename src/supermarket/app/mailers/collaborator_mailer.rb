@@ -1,5 +1,5 @@
 class CollaboratorMailer < ActionMailer::Base
-  layout 'mailer'
+  layout "mailer"
 
   #
   # Creates an email to send to people when they have been added as

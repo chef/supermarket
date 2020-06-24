@@ -14,7 +14,7 @@ module Badgeable
     def with_badges(badges)
       badges = Array(badges).map(&:to_s)
       search_mask = (badges & BADGES).map { |b| 2**BADGES.index(b) }.inject(0, :+)
-      where('badges_mask & ? > 0', search_mask)
+      where("badges_mask & ? > 0", search_mask)
     end
   end
 

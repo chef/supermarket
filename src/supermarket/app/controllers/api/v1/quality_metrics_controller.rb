@@ -208,7 +208,7 @@ class Api::V1::QualityMetricsController < Api::V1Controller
 
   rescue_from ActionController::ParameterMissing do |e|
     error(
-      error_code: t('api.error_codes.invalid_data'),
+      error_code: t("api.error_codes.invalid_data"),
       error_messages: [t("api.error_messages.missing_#{e.param}")]
     )
   end
@@ -275,7 +275,7 @@ class Api::V1::QualityMetricsController < Api::V1Controller
     )
     MetricResult
       .where(cookbook_version: cookbook_version, quality_metric: quality_metric)
-      .where('id != ?', metric.id)
+      .where("id != ?", metric.id)
       .delete_all
     metric
   end
@@ -293,15 +293,15 @@ class Api::V1::QualityMetricsController < Api::V1Controller
   def check_cookbook_name_present
     if params[:cookbook_name].blank?
       error(
-        error_code: t('api.error_codes.invalid_data'),
+        error_code: t("api.error_codes.invalid_data"),
         error_messages: [t("api.error_messages.missing_cookbook_name")]
       )
     end
   end
 
   def check_authorization
-    unless ENV['FIERI_KEY'] == params['fieri_key']
-      render_not_authorized([t('api.error_messages.unauthorized_post_error')])
+    unless ENV["FIERI_KEY"] == params["fieri_key"]
+      render_not_authorized([t("api.error_messages.unauthorized_post_error")])
     end
   end
 end

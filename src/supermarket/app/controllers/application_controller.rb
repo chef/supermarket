@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def define_search
-    @search = { path: cookbooks_path, name: 'Cookbooks' }
+    @search = { path: cookbooks_path, name: "Cookbooks" }
   end
 
   protected
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
       options[:notice] = error.message
     end
 
-    render 'exceptions/404.html.erb', options
+    render "exceptions/404.html.erb", options
   end
 
   def after_sign_in_path_for(_resource)
@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
 
     unless current_user.linked_github_account?
       store_location!
-      redirect_to link_github_profile_path, notice: t('requires_linked_github')
+      redirect_to link_github_profile_path, notice: t("requires_linked_github")
     end
   end
 end

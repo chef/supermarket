@@ -9,9 +9,9 @@ module AdoptionHelper
   def link_to_adoption(obj)
     if policy(obj).manage_adoption?
       txt, up = if obj.up_for_adoption?
-                  ['Disable adoption', false]
+                  ["Disable adoption", false]
                 else
-                  ['Put up for adoption', true]
+                  ["Put up for adoption", true]
                 end
 
       content_tag(:li, adoption_url(obj, txt, up))

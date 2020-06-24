@@ -1,5 +1,5 @@
-atom_feed language: 'en-US' do |feed|
-  feed.title 'Tools & Plugins'
+atom_feed language: "en-US" do |feed|
+  feed.title "Tools & Plugins"
   feed.updated Time.current
 
   @tools.each do |tool|

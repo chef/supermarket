@@ -1,4 +1,4 @@
-require 'chef/version_class'
+require "chef/version_class"
 
 class Cookbook < ApplicationRecord
   include PgSearch
@@ -27,27 +27,27 @@ class Cookbook < ApplicationRecord
 
   scope :ordered_by, lambda { |ordering|
     reorder({
-      'recently_updated' => 'updated_at DESC',
-      'recently_added' => 'id DESC',
-      'most_downloaded' => '(cookbooks.web_download_count + cookbooks.api_download_count) DESC, id ASC',
-      'most_followed' => 'cookbook_followers_count DESC, id ASC'
-    }.fetch(ordering, 'name ASC'))
+      "recently_updated" => "updated_at DESC",
+      "recently_added" => "id DESC",
+      "most_downloaded" => "(cookbooks.web_download_count + cookbooks.api_download_count) DESC, id ASC",
+      "most_followed" => "cookbook_followers_count DESC, id ASC"
+    }.fetch(ordering, "name ASC"))
   }
 
   scope :order_by_latest_upload_date, lambda {
     joins(:cookbook_versions)
-      .select('cookbooks.*', 'MAX(cookbook_versions.created_at) AS latest_upload')
-      .group('cookbooks.id')
-      .order('latest_upload DESC')
+      .select("cookbooks.*", "MAX(cookbook_versions.created_at) AS latest_upload")
+      .group("cookbooks.id")
+      .order("latest_upload DESC")
   }
 
   scope :owned_by, lambda { |username|
-    joins(owner: :chef_account).where('accounts.username = ?', username)
+    joins(owner: :chef_account).where("accounts.username = ?", username)
   }
 
   scope :index, lambda { |opts = {}|
     includes(:cookbook_versions, owner: :chef_account)
-      .ordered_by(opts.fetch(:order, 'name ASC'))
+      .ordered_by(opts.fetch(:order, "name ASC"))
       .limit(opts.fetch(:limit, 10))
       .offset(opts.fetch(:start, 0))
   }
@@ -56,8 +56,8 @@ class Cookbook < ApplicationRecord
 
   scope :filter_platforms, lambda { |platforms|
     joins(cookbook_versions: :supported_platforms)
-      .where('supported_platforms.name IN (?)', platforms).distinct
-      .select('cookbooks.*', '(cookbooks.web_download_count + cookbooks.api_download_count)')
+      .where("supported_platforms.name IN (?)", platforms).distinct
+      .select("cookbooks.*", "(cookbooks.web_download_count + cookbooks.api_download_count)")
   }
 
   scope :filter_badges, lambda { |badges|
@@ -69,18 +69,18 @@ class Cookbook < ApplicationRecord
   pg_search_scope(
     :search,
     against: {
-      name: 'A'
+      name: "A"
     },
     associated_against: {
-      chef_account: { username: 'B' },
-      cookbook_versions: { description: 'C' }
+      chef_account: { username: "B" },
+      cookbook_versions: { description: "C" }
     },
     using: {
-      tsearch: { dictionary: 'english', only: [:username, :description], prefix: true },
+      tsearch: { dictionary: "english", only: [:username, :description], prefix: true },
       trigram: { only: [:name] }
     },
-    ranked_by: ':trigram + (0.5 * :tsearch)',
-    order_within_rank: 'cookbooks.name'
+    ranked_by: ":trigram + (0.5 * :tsearch)",
+    order_within_rank: "cookbooks.name"
   )
 
   # Callbacks
@@ -93,10 +93,10 @@ class Cookbook < ApplicationRecord
   has_many :cookbook_followers # rubocop:disable Rails/HasManyOrHasOneDependent
   has_many :followers, through: :cookbook_followers, source: :user
   belongs_to :category, optional: true
-  belongs_to :owner, class_name: 'User', foreign_key: :user_id, inverse_of: :owned_cookbooks
+  belongs_to :owner, class_name: "User", foreign_key: :user_id, inverse_of: :owned_cookbooks
   has_one :chef_account, through: :owner
-  belongs_to :replacement, class_name: 'Cookbook', foreign_key: :replacement_id, inverse_of: :replaces, optional: true
-  has_many :replaces, class_name: 'Cookbook', foreign_key: :replacement_id, inverse_of: :replacement, dependent: :nullify
+  belongs_to :replacement, class_name: "Cookbook", foreign_key: :replacement_id, inverse_of: :replaces, optional: true
+  has_many :replaces, class_name: "Cookbook", foreign_key: :replacement_id, inverse_of: :replacement, dependent: :nullify
   has_many :collaborators, as: :resourceable, inverse_of: :resourceable # rubocop:disable Rails/HasManyOrHasOneDependent
   has_many :collaborator_users, through: :collaborators, source: :user
   has_many :direct_collaborators, -> { where(group_id: nil) }, as: :resourceable, class_name: "Collaborator", inverse_of: :resourceable
@@ -166,7 +166,7 @@ class Cookbook < ApplicationRecord
       end
 
       delete_old_collaborator(recipient)
-      'cookbook.ownership_transfer.done'
+      "cookbook.ownership_transfer.done"
     else
       transfer_request = OwnershipTransferRequest.create(
         sender: initiator,
@@ -175,7 +175,7 @@ class Cookbook < ApplicationRecord
         cookbook: self
       )
       CookbookMailer.delay.transfer_ownership_email(transfer_request)
-      'cookbook.ownership_transfer.email_sent'
+      "cookbook.ownership_transfer.email_sent"
     end
   end
 
@@ -195,7 +195,7 @@ class Cookbook < ApplicationRecord
   # @return [Array<String>] all the error messages
   #
   def seriously_all_of_the_errors
-    messages = errors.full_messages.reject { |e| e == 'Cookbook versions is invalid' }
+    messages = errors.full_messages.reject { |e| e == "Cookbook versions is invalid" }
 
     cookbook_versions.each do |version|
       almost_everything = version.errors.full_messages.reject { |x| x =~ /Tarball can not be/ }
@@ -231,9 +231,9 @@ class Cookbook < ApplicationRecord
   # @return [CookbookVersion] the +CookbookVersion+ with the version specified
   #
   def get_version!(version)
-    version.tr!('_', '.')
+    version.tr!("_", ".")
 
-    if version == 'latest'
+    if version == "latest"
       latest_cookbook_version
     else
       cookbook_versions.find_by!(version: version)
@@ -256,9 +256,9 @@ class Cookbook < ApplicationRecord
     metadata = params.metadata
 
     if metadata.privacy &&
-       ENV['ENFORCE_PRIVACY'].present? &&
-       ENV['ENFORCE_PRIVACY'] == 'true'
-      errors.add(:base, I18n.t('api.error_messages.privacy_violation'))
+       ENV["ENFORCE_PRIVACY"].present? &&
+       ENV["ENFORCE_PRIVACY"] == "true"
+      errors.add(:base, I18n.t("api.error_messages.privacy_violation"))
       raise ActiveRecord::RecordInvalid.new(self)
     end
 
@@ -373,11 +373,11 @@ class Cookbook < ApplicationRecord
   # @return [Boolean] whether or not the cookbook was successfully deprecated
   #   and  saved
   #
-  def deprecate(replacement_cookbook_name = '')
+  def deprecate(replacement_cookbook_name = "")
     replacement_cookbook = Cookbook.find_by name: replacement_cookbook_name
 
     if replacement_cookbook.present? && replacement_cookbook.deprecated?
-      errors.add(:base, I18n.t('cookbook.deprecate_with_deprecated_failure'))
+      errors.add(:base, I18n.t("cookbook.deprecate_with_deprecated_failure"))
       return false
     end
 

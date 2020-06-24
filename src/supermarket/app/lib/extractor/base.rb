@@ -11,7 +11,7 @@ module Extractor
       # @return [~Extractor::Base]
       #
       def load(auth)
-        provider = auth['provider'].classify
+        provider = auth["provider"].classify
 
         begin
           "#{provider}Extractor".constantize.new(auth)
@@ -52,7 +52,7 @@ module Extractor
     # @return [Symbol]
     #
     def provider
-      auth['provider']
+      auth["provider"]
     end
 
     #
@@ -121,11 +121,11 @@ module Extractor
     private
 
     def split_name
-      name = auth['info']['name']
+      name = auth["info"]["name"]
 
-      if name.include?(' ')
-        last_name  = name.split(' ').last
-        first_name = name.split(' ')[0...-1].join(' ')
+      if name.include?(" ")
+        last_name  = name.split(" ").last
+        first_name = name.split(" ")[0...-1].join(" ")
       else
         first_name = name
         last_name  = nil

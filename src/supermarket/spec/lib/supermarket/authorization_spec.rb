@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 class ReadOnly
   class Policy
@@ -28,16 +28,16 @@ describe Supermarket::Authorization do
 
   let(:read_only_object) { ReadOnly.new }
 
-  describe '#authorize!' do
-    it 'raises an error if the user is not authorized' do
-      allow(subject).to receive(:params).and_return(action: 'edit')
+  describe "#authorize!" do
+    it "raises an error if the user is not authorized" do
+      allow(subject).to receive(:params).and_return(action: "edit")
 
       expect { subject.authorize!(read_only_object) }
         .to raise_error(Supermarket::Authorization::NotAuthorizedError)
     end
 
-    it 'does nothing with the user is authorized' do
-      allow(subject).to receive(:params).and_return(action: 'show')
+    it "does nothing with the user is authorized" do
+      allow(subject).to receive(:params).and_return(action: "show")
       expect { subject.authorize!(read_only_object) }.to_not raise_error
     end
   end

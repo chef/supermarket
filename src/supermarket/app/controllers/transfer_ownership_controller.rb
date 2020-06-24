@@ -25,7 +25,7 @@ class TransferOwnershipController < ApplicationController
     @transfer_request.accept!
     redirect_to @transfer_request.cookbook,
                 notice: t(
-                  'cookbook.ownership_transfer.invite_accepted',
+                  "cookbook.ownership_transfer.invite_accepted",
                   cookbook: @transfer_request.cookbook.name
                 )
   end
@@ -39,7 +39,7 @@ class TransferOwnershipController < ApplicationController
     @transfer_request.decline!
     redirect_to @transfer_request.cookbook,
                 notice: t(
-                  'cookbook.ownership_transfer.invite_declined',
+                  "cookbook.ownership_transfer.invite_declined",
                   cookbook: @transfer_request.cookbook.name
                 )
   end

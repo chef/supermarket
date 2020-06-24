@@ -1,10 +1,10 @@
-require_relative 'boot'
-require 'dotenv'
-require 'rails/all'
+require_relative "boot"
+require "dotenv"
+require "rails/all"
 
-Dotenv.overload('.env', ".env.#{Rails.env}").tap do |env|
+Dotenv.overload(".env", ".env.#{Rails.env}").tap do |env|
   if env.empty?
-    fail 'Cannot run Supermarket without a .env file.'
+    fail "Cannot run Supermarket without a .env file."
   end
 end
 
@@ -21,7 +21,7 @@ end
   end
 end
 
-require_relative '../app/lib/supermarket/host'
+require_relative "../app/lib/supermarket/host"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -37,10 +37,10 @@ module Supermarket
     # -- all .rb files in that directory are automatically loaded.
 
     # Include vendor fonts in the asset pipeline
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
+    config.assets.paths << Rails.root.join("vendor/assets/fonts")
 
     # Include vendor images in the asset pipeline
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'images')
+    config.assets.paths << Rails.root.join("vendor/assets/images")
 
     # Ensure fonts and images are precompiled during asset compilation
     config.assets.precompile += %w[*.svg *.eot *.woff *.ttf *.gif *.png]
@@ -55,8 +55,8 @@ module Supermarket
 
     # Define the status codes for rescuing our custom exceptions
     config.action_dispatch.rescue_responses.merge!(
-      'Supermarket::Authorization::NoAuthorizerError'  => :not_implemented,
-      'Supermarket::Authorization::NotAuthorizedError' => :unauthorized
+      "Supermarket::Authorization::NoAuthorizerError"  => :not_implemented,
+      "Supermarket::Authorization::NotAuthorizedError" => :unauthorized
     )
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
@@ -75,9 +75,9 @@ module Supermarket
 
     # Give application URL info so it can build full links back to itself
     self.default_url_options = {
-      host: ENV['FQDN'],
-      port: ENV['PORT'],
-      protocol: ENV['PROTOCOL']
+      host: ENV["FQDN"],
+      port: ENV["PORT"],
+      protocol: ENV["PROTOCOL"]
     }
 
     # Configure the email renderer for building links back to the site
@@ -85,6 +85,6 @@ module Supermarket
     config.action_mailer.asset_host = Supermarket::Host.full_url
 
     # Set default from email for ActionMailer
-    ActionMailer::Base.default from: ENV['FROM_EMAIL']
+    ActionMailer::Base.default from: ENV["FROM_EMAIL"]
   end
 end

@@ -12,5 +12,5 @@
 #
 def auto_authorize!(model, action)
   allow_any_instance_of(model.policy_class.constantize)
-    .to receive((action + '?').to_sym) { true }
+    .to receive((action + "?").to_sym) { true }
 end

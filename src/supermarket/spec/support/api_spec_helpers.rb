@@ -1,5 +1,5 @@
-require_relative 'tarball_helpers'
-require 'mixlib/authentication/signedheaderauth'
+require_relative "tarball_helpers"
+require "mixlib/authentication/signedheaderauth"
 
 module ApiSpecHelpers
   #
@@ -16,7 +16,7 @@ module ApiSpecHelpers
   # @option opts [String] :payload a JSON representation of the request body
   #
   def share_cookbook(cookbook_name, user, opts = {})
-    cookbooks_path = '/api/v1/cookbooks'
+    cookbooks_path = "/api/v1/cookbooks"
     cookbook_params = {}
 
     tarball = cookbook_upload(cookbook_name, opts)
@@ -26,7 +26,7 @@ module ApiSpecHelpers
     private_key = private_key(opts.fetch(:with_invalid_private_key, false))
 
     header = Mixlib::Authentication::SignedHeaderAuth.signing_object(
-      http_method: 'post',
+      http_method: "post",
       path: cookbooks_path,
       user_id: user.username,
       timestamp: Time.current.utc.iso8601,
@@ -35,7 +35,7 @@ module ApiSpecHelpers
 
     opts.fetch(:omitted_headers, []).each { |h| header.delete(h) }
 
-    category = opts.fetch(:category, 'other')
+    category = opts.fetch(:category, "other")
 
     unless category.nil?
       new_category = create(:category, name: category.titleize)
@@ -57,11 +57,11 @@ module ApiSpecHelpers
     cookbook_path = "/api/v1/cookbooks/#{cookbook_name}"
 
     header = Mixlib::Authentication::SignedHeaderAuth.signing_object(
-      http_method: 'delete',
+      http_method: "delete",
       path: cookbook_path,
       user_id: user.username,
       timestamp: Time.current.utc.iso8601,
-      body: ''
+      body: ""
     ).sign(private_key)
 
     delete cookbook_path, params: {}, headers: header
@@ -78,11 +78,11 @@ module ApiSpecHelpers
     cookbook_version_path = "/api/v1/cookbooks/#{cookbook_name}/versions/#{version}"
 
     header = Mixlib::Authentication::SignedHeaderAuth.signing_object(
-      http_method: 'delete',
+      http_method: "delete",
       path: cookbook_version_path,
       user_id: user.username,
       timestamp: Time.current.utc.iso8601,
-      body: ''
+      body: ""
     ).sign(private_key)
 
     delete cookbook_version_path, params: {}, headers: header
@@ -93,13 +93,13 @@ module ApiSpecHelpers
   end
 
   def signature(resource)
-    resource.except('created_at', 'updated_at', 'file', 'tarball_file_size')
+    resource.except("created_at", "updated_at", "file", "tarball_file_size")
   end
 
   def error_404
     {
-      'error_messages' => [I18n.t('api.error_messages.not_found')],
-      'error_code' => I18n.t('api.error_codes.not_found')
+      "error_messages" => [I18n.t("api.error_messages.not_found")],
+      "error_code" => I18n.t("api.error_codes.not_found")
     }
   end
 
@@ -114,7 +114,7 @@ module ApiSpecHelpers
   private
 
   def private_key(invalid = false)
-    key_name = invalid ? 'invalid_private_key.pem' : 'valid_private_key.pem'
+    key_name = invalid ? "invalid_private_key.pem" : "valid_private_key.pem"
 
     OpenSSL::PKey::RSA.new(
       File.read("spec/support/key_fixtures/#{key_name}")
@@ -123,33 +123,33 @@ module ApiSpecHelpers
 
   def cookbook_upload(cookbook_name, opts = {})
     begin
-      if cookbook_name.ends_with?('.tgz')
-        tarball = File.new(Rails.root.join('spec', 'support', 'cookbook_fixtures', cookbook_name))
+      if cookbook_name.ends_with?(".tgz")
+        tarball = File.new(Rails.root.join("spec", "support", "cookbook_fixtures", cookbook_name))
       else
         custom_metadata = opts.fetch(:custom_metadata, {})
 
         metadata = {
           name: cookbook_name,
-          version: '1.0.0',
+          version: "1.0.0",
           description: "Installs/Configures #{cookbook_name}",
-          license: 'MIT',
+          license: "MIT",
           platforms: {
-            'ubuntu' => '>= 12.0.0'
+            "ubuntu" => ">= 12.0.0"
           },
           dependencies: {
-            'apt' => '~> 1.0.0'
+            "apt" => "~> 1.0.0"
           }
         }.merge(custom_metadata)
 
         tarball = build_cookbook_tarball(cookbook_name) do |base_dir|
-          base_dir.file('README.md') { '# README' }
-          base_dir.file('metadata.json') do
+          base_dir.file("README.md") { "# README" }
+          base_dir.file("metadata.json") do
             JSON.dump(metadata)
           end
         end
       end
 
-      content_type = opts.fetch(:content_type, 'application/x-gzip')
+      content_type = opts.fetch(:content_type, "application/x-gzip")
       fixture_file_upload(tarball.path, content_type)
     ensure
       tarball.close

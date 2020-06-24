@@ -11,8 +11,8 @@ class OauthTokenRefreshWorker
 
     strategy = OmniAuth::Strategies::ChefOAuth2.new(
       Rails.application,
-      client_id: ENV['CHEF_OAUTH2_APP_ID'],
-      client_secret: ENV['CHEF_OAUTH2_SECRET'],
+      client_id: ENV["CHEF_OAUTH2_APP_ID"],
+      client_secret: ENV["CHEF_OAUTH2_SECRET"],
       client_options: client_options
     )
 
@@ -44,7 +44,7 @@ class OauthTokenRefreshWorker
 
   def client_options
     options = {}
-    options[:site] = ENV['CHEF_OAUTH2_URL'] if ENV['CHEF_OAUTH2_URL'].present?
+    options[:site] = ENV["CHEF_OAUTH2_URL"] if ENV["CHEF_OAUTH2_URL"].present?
     options
   end
 end

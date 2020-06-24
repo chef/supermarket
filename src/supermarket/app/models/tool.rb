@@ -7,7 +7,7 @@ class Tool < ApplicationRecord
 
   # Associations
   # --------------------
-  belongs_to :owner, class_name: 'User', foreign_key: :user_id, inverse_of: :tools
+  belongs_to :owner, class_name: "User", foreign_key: :user_id, inverse_of: :tools
   has_one :chef_account, through: :owner
   has_many :collaborators, as: :resourceable, inverse_of: :resourceable, dependent: :destroy
   has_many :collaborator_users, through: :collaborators, source: :user
@@ -30,18 +30,18 @@ class Tool < ApplicationRecord
   pg_search_scope(
     :search,
     against: {
-      name: 'A',
-      description: 'C'
+      name: "A",
+      description: "C"
     },
     associated_against: {
-      chef_account: { username: 'B' }
+      chef_account: { username: "B" }
     },
     using: {
-      tsearch: { dictionary: 'english', only: [:username, :description], prefix: true },
+      tsearch: { dictionary: "english", only: [:username, :description], prefix: true },
       trigram: { only: [:name] }
     },
-    ranked_by: ':trigram + (0.5 * :tsearch)',
-    order_within_rank: 'tools.name'
+    ranked_by: ":trigram + (0.5 * :tsearch)",
+    order_within_rank: "tools.name"
   )
 
   # Callbacks
@@ -73,13 +73,13 @@ class Tool < ApplicationRecord
 
   scope :ordered_by, lambda { |ordering|
     reorder({
-      'recently_added' => 'id DESC'
-    }.fetch(ordering, 'name ASC'))
+      "recently_added" => "id DESC"
+    }.fetch(ordering, "name ASC"))
   }
 
   scope :index, lambda { |opts = {}|
     includes(owner: :chef_account)
-      .ordered_by(opts.fetch(:order, 'name ASC'))
+      .ordered_by(opts.fetch(:order, "name ASC"))
       .limit(opts.fetch(:limit, 10))
       .offset(opts.fetch(:start, 0))
   }
@@ -99,7 +99,7 @@ class Tool < ApplicationRecord
   # @return [ActiveRecord::Relation<Tool>] an ActiveRecord::Relation of Tools
   #
   def others_from_this_owner
-    Tool.where('user_id = ? AND id <> ?', user_id, id).order(:name)
+    Tool.where("user_id = ? AND id <> ?", user_id, id).order(:name)
   end
 
   #

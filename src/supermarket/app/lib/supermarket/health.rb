@@ -8,9 +8,9 @@ module Supermarket
     # side-effects, not their return values.
     #
 
-    REACHABLE = 'reachable'
-    UNKNOWN = 'unknown'
-    UNREACHABLE = 'unreachable'
+    REACHABLE = "reachable"
+    UNKNOWN = "unknown"
+    UNREACHABLE = "unreachable"
     ALL_FEATURES = %w[cla join_ccla tools fieri announcement github no_crawl].freeze
 
     attr_reader :status, :supermarket, :postgresql, :sidekiq, :redis, :features
@@ -43,7 +43,7 @@ module Supermarket
     # Which features are enabled?
     #
     def check_features
-      current_features = ENV['FEATURES'].split(',')
+      current_features = ENV["FEATURES"].split(",")
 
       @features = ALL_FEATURES.reduce({}) do |result, feature|
         result[feature] = current_features.include?(feature)
@@ -56,8 +56,8 @@ module Supermarket
     #
     def expired_ocid_tokens
       postgres_health_metric do
-        @supermarket[:expired_ocid_tokens] = Account.for('chef_oauth2')
-                                                    .where('oauth_expires < ?', Time.current)
+        @supermarket[:expired_ocid_tokens] = Account.for("chef_oauth2")
+                                                    .where("oauth_expires < ?", Time.current)
                                                     .count
       end
     end
@@ -81,7 +81,7 @@ module Supermarket
     def connections
       postgres_health_metric do
         ActiveRecord::Base.connection.query(
-          'SELECT count(*) FROM pg_stat_activity'
+          "SELECT count(*) FROM pg_stat_activity"
         ).flatten.first.to_i.tap do |connections|
           @postgresql[:connections] = connections
         end
@@ -141,9 +141,9 @@ module Supermarket
       @status = if @sidekiq[:status] == REACHABLE &&
                    @postgresql[:status] == REACHABLE &&
                    @redis[:status] == REACHABLE
-                  'ok'
+                  "ok"
                 else
-                  'not ok'
+                  "not ok"
                 end
     end
 

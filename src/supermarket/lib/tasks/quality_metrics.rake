@@ -1,5 +1,5 @@
 namespace :quality_metrics do
-  desc 'List the names of quality metrics'
+  desc "List the names of quality metrics"
   task list: :environment do
     puts "Quality Metrics:"
     QualityMetric.all.each do |qm|
@@ -8,13 +8,13 @@ namespace :quality_metrics do
   end
 
   namespace :run do
-    desc 'Run quality metrics on latest version of all cookbooks'
+    desc "Run quality metrics on latest version of all cookbooks"
     task all_the_latest: :environment do
       result, message = RunQualityMetrics.all_the_latest
       puts "#{result.to_s.upcase}: #{message}"
     end
 
-    desc 'Run quality metrics on latest version of a named cookbook'
+    desc "Run quality metrics on latest version of a named cookbook"
     task :on_latest, [:cookbook_name] => :environment do |t, args|
       args.with_defaults(cookbook_name: nil)
       unless args[:cookbook_name]
@@ -26,7 +26,7 @@ namespace :quality_metrics do
       puts "#{result.to_s.upcase}: #{message}"
     end
 
-    desc 'Run quality metrics on given version of a named cookbook'
+    desc "Run quality metrics on given version of a named cookbook"
     task :on_version, [:cookbook_name, :version] => :environment do |t, args|
       args.with_defaults(cookbook_name: nil, version: nil)
       unless args[:cookbook_name] && args[:version]
@@ -40,19 +40,19 @@ namespace :quality_metrics do
   end
 
   namespace :flip do
-    desc 'Flip all quality metrics visible to all users'
+    desc "Flip all quality metrics visible to all users"
     task all_public: :environment do
       QualityMetric.flip_public
       puts "OK: All quality metrics are now visible to all users."
     end
 
-    desc 'Flip all quality metrics visible to only admin users'
+    desc "Flip all quality metrics visible to only admin users"
     task all_admin_only: :environment do
       QualityMetric.flip_admin_only
       puts "OK: All quality metrics are now visible to only admin users."
     end
 
-    desc 'Flip a given quality metric visible to all users'
+    desc "Flip a given quality metric visible to all users"
     task :public, [:metric_name] => :environment do |t, args|
       args.with_defaults(metric_name: nil)
 
@@ -72,7 +72,7 @@ namespace :quality_metrics do
       puts "OK: The #{metric_name} quality metric is now visible to all users."
     end
 
-    desc 'Flip a given quality metric visible to only admin users'
+    desc "Flip a given quality metric visible to only admin users"
     task :admin_only, [:metric_name] => :environment do |t, args|
       args.with_defaults(metric_name: nil)
 

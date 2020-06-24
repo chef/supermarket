@@ -1,4 +1,4 @@
-require 'virtus'
+require "virtus"
 
 class CookbookUpload
   class Document
@@ -16,7 +16,7 @@ class CookbookUpload
 
     values do
       attribute :contents, String
-      attribute :extension, String, default: ''
+      attribute :extension, String, default: ""
     end
   end
 end

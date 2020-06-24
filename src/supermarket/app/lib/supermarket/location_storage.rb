@@ -30,7 +30,7 @@ module Supermarket
     private
 
     def storage_key
-      'location_storage_return_to'
+      "location_storage_return_to"
     end
   end
 end

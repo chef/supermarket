@@ -13,10 +13,10 @@ class CookbookNotifyWorker
     cookbook_version = CookbookVersion.find(cookbook_version_id)
 
     active_user_ids = User.joins(:accounts)
-                          .where('provider = ? AND oauth_token != ?', 'chef_oauth2', 'imported')
+                          .where("provider = ? AND oauth_token != ?", "chef_oauth2", "imported")
                           .pluck(:id)
 
-    subscribed_user_ids = SystemEmail.find_by!(name: 'New cookbook version')
+    subscribed_user_ids = SystemEmail.find_by!(name: "New cookbook version")
                                      .subscribed_users
                                      .pluck(:id)
 

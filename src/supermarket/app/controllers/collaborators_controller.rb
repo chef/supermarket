@@ -44,7 +44,7 @@ class CollaboratorsController < ApplicationController
         perform_fieri(resource)
       end
 
-      redirect_to resource, notice: t('collaborator.added')
+      redirect_to resource, notice: t("collaborator.added")
     else
       not_found!
     end
@@ -83,13 +83,13 @@ class CollaboratorsController < ApplicationController
 
       GroupResource.where(group: group, resourceable: resource).each(&:destroy)
 
-      flash[:notice] = t('collaborator.group_removed', name: group.name) + ' '
+      flash[:notice] = t("collaborator.group_removed", name: group.name) + " "
 
       dup_user_collaborators(collaborator_users, resource).each do |collaborator|
         flash[:notice] << if collaborator.group.present?
-                            "#{collaborator.user.username} is still a collaborator associated with #{collaborator.group.name}" + ' '
+                            "#{collaborator.user.username} is still a collaborator associated with #{collaborator.group.name}" + " "
                           else
-                            "#{collaborator.user.username} is still a collaborator on this #{params[:resourceable_type]}" ' '
+                            "#{collaborator.user.username} is still a collaborator on this #{params[:resourceable_type]}" " "
                           end
       end
 
@@ -114,7 +114,7 @@ class CollaboratorsController < ApplicationController
 
     redirect_to(
       @collaborator.resourceable,
-      notice: t('collaborator.owner_changed',
+      notice: t("collaborator.owner_changed",
                 resource: @collaborator.resourceable.name,
                 user: @collaborator.user.username)
     )
@@ -135,7 +135,7 @@ class CollaboratorsController < ApplicationController
   # Check if Fieri features are active and run Fieri
   #
   def perform_fieri(cookbook)
-    if Feature.active?(:fieri) && ENV['FIERI_URL'].present?
+    if Feature.active?(:fieri) && ENV["FIERI_URL"].present?
       FieriNotifyWorker.perform_async(
         cookbook.latest_cookbook_version.id
       )

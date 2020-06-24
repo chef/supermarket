@@ -4,10 +4,10 @@ namespace :supermarket do
     task :before_script do
       fail unless system "psql -c 'create database supermarket_test;' -U postgres"
 
-      Rake::Task['db:schema:load'].invoke
+      Rake::Task["db:schema:load"].invoke
     end
 
     desc "Tests to run during Travis' script phase"
-    task script: [:spec, 'spec:rubocop', 'spec:bundle_audit']
+    task script: [:spec, "spec:rubocop", "spec:bundle_audit"]
   end
 end

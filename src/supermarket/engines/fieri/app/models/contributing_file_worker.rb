@@ -1,6 +1,6 @@
-require 'sidekiq'
-require 'net/http'
-require 'octokit'
+require "sidekiq"
+require "net/http"
+require "octokit"
 
 class ContributingFileWorker < SourceRepoWorker
   include ::Sidekiq::Worker
@@ -9,8 +9,8 @@ class ContributingFileWorker < SourceRepoWorker
     evaluate_result = evaluate(cookbook_json)
 
     Net::HTTP.post_form(
-      URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/contributing_file_evaluation"),
-      fieri_key: ENV['FIERI_KEY'],
+      URI.parse("#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/contributing_file_evaluation"),
+      fieri_key: ENV["FIERI_KEY"],
       cookbook_name: cookbook_name,
       contributing_file_failure: evaluate_result,
       contributing_file_feedback: give_feedback(evaluate_result)
@@ -26,7 +26,7 @@ class ContributingFileWorker < SourceRepoWorker
     return true if repo.blank?
 
     begin
-      octokit_client.contents(repo, path: 'CONTRIBUTING.md')
+      octokit_client.contents(repo, path: "CONTRIBUTING.md")
       # if found, does not fail the metric
       false
     rescue Octokit::NotFound
@@ -38,11 +38,11 @@ class ContributingFileWorker < SourceRepoWorker
   def give_feedback(failure_result)
     if failure_result
       I18n.t(
-        'quality_metrics.contributing_file.failure'
+        "quality_metrics.contributing_file.failure"
       )
     else
       I18n.t(
-        'quality_metrics.contributing_file.success'
+        "quality_metrics.contributing_file.success"
       )
     end
   end

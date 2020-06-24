@@ -8,9 +8,9 @@ class ProfileController < ApplicationController
   #
   def update
     if current_user.update_attributes(user_params)
-      redirect_to current_user, notice: t('profile.updated')
+      redirect_to current_user, notice: t("profile.updated")
     else
-      render 'edit'
+      render "edit"
     end
   end
 

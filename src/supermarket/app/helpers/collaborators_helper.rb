@@ -30,9 +30,9 @@ module CollaboratorsHelper
   #
   def collaborator_removal_text(collaborator)
     if current_user == collaborator
-      'Remove Collaborator'
+      "Remove Collaborator"
     else
-      'Remove Myself'
+      "Remove Myself"
     end
   end
 

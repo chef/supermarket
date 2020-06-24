@@ -1,4 +1,4 @@
-require 'active_model/validations/chef_version_constraint_validator'
+require "active_model/validations/chef_version_constraint_validator"
 
 class SupportedPlatform < ApplicationRecord
   include SeriousErrors

@@ -6,7 +6,7 @@ class GroupMember < ApplicationRecord
   validates :user, presence: true
 
   validates :user_id, uniqueness: { scope: [:group_id],
-                                    message: 'cannot be added to a group multiple times' }
+                                    message: "cannot be added to a group multiple times" }
 
   # Accessors
   # --------------------

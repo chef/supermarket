@@ -21,7 +21,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -50,13 +50,13 @@ Rails.application.configure do
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   # config.log_level = :debug
-  config.log_level = (ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].downcase : 'warn').to_sym
+  config.log_level = (ENV["LOG_LEVEL"] ? ENV["LOG_LEVEL"].downcase : "warn").to_sym
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
 
   # Use a different cache store in production.
-  config.cache_store = :redis_store, ENV['REDIS_URL'] || 'redis://localhost:6379/0/supermarket'
+  config.cache_store = :redis_store, ENV["REDIS_URL"] || "redis://localhost:6379/0/supermarket"
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
@@ -73,11 +73,11 @@ Rails.application.configure do
       config.action_mailer.delivery_method = :smtp
 
       config.action_mailer.smtp_settings = {
-        address: ENV['SMTP_ADDRESS'],
-        port: ENV['SMTP_PORT'],
-        user_name: ENV['SMTP_USER_NAME'],
-        password: ENV['SMTP_PASSWORD'],
-        authentication: 'plain'
+        address: ENV["SMTP_ADDRESS"],
+        port: ENV["SMTP_PORT"],
+        user_name: ENV["SMTP_USER_NAME"],
+        password: ENV["SMTP_PASSWORD"],
+        authentication: "plain"
       }
     else
       config.action_mailer.delivery_method = :sendmail

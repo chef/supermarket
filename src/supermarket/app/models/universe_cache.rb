@@ -3,7 +3,7 @@ class UniverseCache
   # Flush both the http cache and the https cache
   #
   def self.flush
-    ['http://', 'https://'].each do |protocol|
+    ["http://", "https://"].each do |protocol|
       new(protocol).delete
     end
   end

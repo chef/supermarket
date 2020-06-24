@@ -3,8 +3,8 @@ FactoryBot.define do
     association :category
     association :owner, factory: :user
     sequence(:name) { |n| "redis-#{n}" }
-    source_url { 'http://example.com' }
-    issues_url { 'http://example.com/issues' }
+    source_url { "http://example.com" }
+    issues_url { "http://example.com/issues" }
     deprecated { false }
     featured { false }
 

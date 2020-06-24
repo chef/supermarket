@@ -1,20 +1,20 @@
-require 'spec_helper'
+require "spec_helper"
 
-describe 'cookbook feed' do
-  it 'lists cookbooks by a metadata search term' do
-    create(:cookbook, name: 'AmazingCookbook')
+describe "cookbook feed" do
+  it "lists cookbooks by a metadata search term" do
+    create(:cookbook, name: "AmazingCookbook")
 
-    visit '/'
+    visit "/"
 
-    within '.appnav' do
-      click_link 'Cookbooks'
+    within ".appnav" do
+      click_link "Cookbooks"
     end
 
-    within '.search_form' do
-      fill_in 'q', with: 'Amazing'
+    within ".search_form" do
+      fill_in "q", with: "Amazing"
       submit_form
     end
 
-    expect(all('.listing').size).to eql(1)
+    expect(all(".listing").size).to eql(1)
   end
 end

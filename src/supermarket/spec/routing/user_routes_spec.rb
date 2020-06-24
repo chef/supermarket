@@ -1,8 +1,8 @@
-require 'spec_helper'
+require "spec_helper"
 
-describe 'user routes' do
-  context 'to show a user' do
-    it 'uses the Chef Account username as the id parameter' do
+describe "user routes" do
+  context "to show a user" do
+    it "uses the Chef Account username as the id parameter" do
       # NOTE: if this fails, be sure to update
       # app/views/contributors/index.html.erb, which uses the optimized user
       # route helper

@@ -1,5 +1,5 @@
-require 'dotenv-rails'
-Dotenv.load('.env')
+require "dotenv-rails"
+Dotenv.load(".env")
 
 module Fieri
   class Engine < ::Rails::Engine

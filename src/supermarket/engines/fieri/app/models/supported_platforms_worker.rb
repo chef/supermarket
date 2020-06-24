@@ -1,5 +1,5 @@
-require 'sidekiq'
-require 'net/http'
+require "sidekiq"
+require "net/http"
 
 class SupportedPlatformsWorker
   include ::Sidekiq::Worker
@@ -11,10 +11,10 @@ class SupportedPlatformsWorker
     @cookbook_name = cookbook_name
 
     response = Net::HTTP.post_form(
-      URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/supported_platforms_evaluation"),
-      fieri_key: ENV['FIERI_KEY'],
+      URI.parse("#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/supported_platforms_evaluation"),
+      fieri_key: ENV["FIERI_KEY"],
       cookbook_name: cookbook_name,
-      cookbook_version: version_info['version'],
+      cookbook_version: version_info["version"],
       supported_platforms_failure: supported_platforms_failure?,
       supported_platforms_feedback: supported_platforms_feedback
     )
@@ -26,18 +26,18 @@ class SupportedPlatformsWorker
   end
 
   def supported_platforms_failure?
-    !(version_info.key?('supports') && version_info['supports'].length >= 1)
+    !(version_info.key?("supports") && version_info["supports"].length >= 1)
   end
 
   def supported_platforms_feedback
     if supported_platforms_failure?
       I18n.t(
-        'quality_metrics.supported_platforms.failure',
+        "quality_metrics.supported_platforms.failure",
         cookbook_name: cookbook_name
       )
     else
       I18n.t(
-        'quality_metrics.supported_platforms.success',
+        "quality_metrics.supported_platforms.success",
         cookbook_name: cookbook_name
       )
     end

@@ -86,7 +86,7 @@ if Rails.env.development?
     end
 
     def user
-      User.where(email: 'john@example.com').first!
+      User.where(email: "john@example.com").first!
     end
 
     def cookbook

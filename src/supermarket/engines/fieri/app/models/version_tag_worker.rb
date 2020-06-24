@@ -1,6 +1,6 @@
-require 'sidekiq'
-require 'net/http'
-require 'octokit'
+require "sidekiq"
+require "net/http"
+require "octokit"
 
 class VersionTagWorker < SourceRepoWorker
   include ::Sidekiq::Worker
@@ -9,8 +9,8 @@ class VersionTagWorker < SourceRepoWorker
     evaluate_result = evaluate(cookbook_json, cookbook_version)
 
     Net::HTTP.post_form(
-      URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/version_tag_evaluation"),
-      fieri_key: ENV['FIERI_KEY'],
+      URI.parse("#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/version_tag_evaluation"),
+      fieri_key: ENV["FIERI_KEY"],
       cookbook_name: cookbook_name,
       cookbook_version: cookbook_version,
       version_tag_failure: evaluate_result,
@@ -39,7 +39,7 @@ class VersionTagWorker < SourceRepoWorker
   end
 
   def tag_names(repo)
-    octokit_client.tags(repo).map { |tag| tag['name'] }
+    octokit_client.tags(repo).map { |tag| tag["name"] }
   rescue Octokit::NotFound
     []
   end
@@ -47,11 +47,11 @@ class VersionTagWorker < SourceRepoWorker
   def give_feedback(failure_result)
     if failure_result
       I18n.t(
-        'quality_metrics.version_tag.failure'
+        "quality_metrics.version_tag.failure"
       )
     else
       I18n.t(
-        'quality_metrics.version_tag.success'
+        "quality_metrics.version_tag.success"
       )
     end
   end
