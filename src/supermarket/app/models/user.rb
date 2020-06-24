@@ -68,8 +68,9 @@ class User < ApplicationRecord
   # +SystemEmail+ in question
   #
   def email_preference_for(name)
-    email_preferences.includes(:system_email)
-                     .find_by(system_emails: { name: name })
+    email_preferences
+      .includes(:system_email)
+      .find_by(system_emails: { name: name })
   end
 
   #

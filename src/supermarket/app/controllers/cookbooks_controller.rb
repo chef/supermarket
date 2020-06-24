@@ -56,18 +56,22 @@ class CookbooksController < ApplicationController
   # Return the three most recently updated and created cookbooks.
   #
   def directory
-    @recently_updated_cookbooks = Cookbook.order_by_latest_upload_date
-                                          .limit(5)
-    @most_downloaded_cookbooks = Cookbook.includes(:cookbook_versions)
-                                         .ordered_by("most_downloaded")
-                                         .limit(5)
-    @most_followed_cookbooks = Cookbook.includes(:cookbook_versions)
-                                       .ordered_by("most_followed")
-                                       .limit(5)
-    @featured_cookbooks = Cookbook.includes(:cookbook_versions)
-                                  .featured
-                                  .order(:name)
-                                  .limit(5)
+    @recently_updated_cookbooks = Cookbook
+      .order_by_latest_upload_date
+      .limit(5)
+    @most_downloaded_cookbooks = Cookbook
+      .includes(:cookbook_versions)
+      .ordered_by("most_downloaded")
+      .limit(5)
+    @most_followed_cookbooks = Cookbook
+      .includes(:cookbook_versions)
+      .ordered_by("most_followed")
+      .limit(5)
+    @featured_cookbooks = Cookbook
+      .includes(:cookbook_versions)
+      .featured
+      .order(:name)
+      .limit(5)
 
     @cookbook_count = Cookbook.count
     @user_count = User.count
@@ -154,9 +158,10 @@ class CookbooksController < ApplicationController
   # Makes the current user unfollow the specified cookbook.
   #
   def unfollow
-    cookbook_follower = @cookbook.cookbook_followers
-                                 .where(user: current_user)
-                                 .first!
+    cookbook_follower = @cookbook
+      .cookbook_followers
+      .where(user: current_user)
+      .first!
     cookbook_follower.destroy
     Supermarket::Metrics.increment "cookbook.unfollowed"
 

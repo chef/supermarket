@@ -56,9 +56,10 @@ module Supermarket
     #
     def expired_ocid_tokens
       postgres_health_metric do
-        @supermarket[:expired_ocid_tokens] = Account.for("chef_oauth2")
-                                                    .where("oauth_expires < ?", Time.current)
-                                                    .count
+        @supermarket[:expired_ocid_tokens] = Account
+          .for("chef_oauth2")
+          .where("oauth_expires < ?", Time.current)
+          .count
       end
     end
 

@@ -5,11 +5,12 @@ end
 # Paperclip has a few remote-fetcher adapters for retrieving attachments from some other place.
 # We don't want to use them. Remove these adapters, if they are present in the adapter registry.
 remote_adapters = [Paperclip::UriAdapter, Paperclip::HttpUrlProxyAdapter, Paperclip::DataUriAdapter]
-Paperclip.io_adapters
-         .registered_handlers
-         .delete_if do |_block, handler_class|
-           remote_adapters.include?(handler_class)
-         end
+Paperclip
+  .io_adapters
+  .registered_handlers
+  .delete_if do |_block, handler_class|
+    remote_adapters.include?(handler_class)
+  end
 
 ":class/:attachment/:compatible_id/:style/:basename.:extension".tap do |path|
   if Supermarket::S3ConfigAudit.use_s3?(ENV)

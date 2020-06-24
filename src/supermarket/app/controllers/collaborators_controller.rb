@@ -12,9 +12,10 @@ class CollaboratorsController < ApplicationController
   # for a given resource.
   #
   def index
-    @collaborators = User.includes(:chef_account)
-                         .where.not(id: params[:ineligible_user_ids])
-                         .limit(20)
+    @collaborators = User
+      .includes(:chef_account)
+      .where.not(id: params[:ineligible_user_ids])
+      .limit(20)
 
     if params[:q]
       @collaborators = @collaborators.search(params[:q])
@@ -146,11 +147,12 @@ class CollaboratorsController < ApplicationController
   # Params used when creating one or more +Collaborator+.
   #
   def collaborator_params
-    params.require(:collaborator)
-          .permit(:resourceable_type,
-                  :resourceable_id,
-                  :user_ids,
-                  :group_ids)
+    params
+      .require(:collaborator)
+      .permit(:resourceable_type,
+              :resourceable_id,
+              :user_ids,
+              :group_ids)
   end
 
   def group_collaborators(resource, group)

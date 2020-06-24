@@ -89,8 +89,9 @@ class Api::V1::CookbooksController < Api::V1Controller
   private
 
   def assign_cookbook
-    @cookbook = Cookbook.with_name(params[:cookbook])
-                        .includes(:cookbook_versions)
-                        .first!
+    @cookbook = Cookbook
+      .with_name(params[:cookbook])
+      .includes(:cookbook_versions)
+      .first!
   end
 end

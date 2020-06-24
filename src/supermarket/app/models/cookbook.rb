@@ -333,14 +333,15 @@ class Cookbook < ApplicationRecord
   # @return [Array<CookbookDependency>]
   #
   def contingents
-    CookbookDependency.includes(cookbook_version: :cookbook)
-                      .where(cookbook_id: id)
-                      .sort_by do |cd|
-      [
-        cd.cookbook_version.cookbook.name,
-        Chef::Version.new(cd.cookbook_version.version)
-      ]
-    end
+    CookbookDependency
+      .includes(cookbook_version: :cookbook)
+      .where(cookbook_id: id)
+      .sort_by do |cd|
+        [
+          cd.cookbook_version.cookbook.name,
+          Chef::Version.new(cd.cookbook_version.version)
+        ]
+      end
   end
 
   #
