@@ -7,7 +7,7 @@ RSpec.describe "Jobs", type: :request do
         cookbook: {
           name: "redis",
           version: "1.2.0",
-          artifact_url: "http://example.com/apache.tar.gz"
+          artifact_url: "http://example.com/apache.tar.gz",
         } }
     end
 

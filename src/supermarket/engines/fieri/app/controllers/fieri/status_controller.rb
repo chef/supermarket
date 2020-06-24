@@ -50,7 +50,7 @@ module Fieri
       response = {
         "status" => status,
         "sidekiq" => sidekiq_health,
-        "redis" => redis_health
+        "redis" => redis_health,
       }.to_json
 
       render json: response

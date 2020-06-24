@@ -5,7 +5,7 @@ describe MetricsRunner do
     {
       "name" => "apache2",
       "version" => "1.2.0",
-      "artifact_url" => "http://example.com/apache.tar.gz"
+      "artifact_url" => "http://example.com/apache.tar.gz",
     }
   end
 

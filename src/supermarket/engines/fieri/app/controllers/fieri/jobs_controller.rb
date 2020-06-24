@@ -21,7 +21,7 @@ module Fieri
       unless fieri_key == params.require(:fieri_key)
         error = {
           error_code: t("api.error_codes.unauthorized"),
-          error_messages: [t("api.error_messages.unauthorized_post_error")]
+          error_messages: [t("api.error_messages.unauthorized_post_error")],
         }
         render json: error, status: 401
       end
