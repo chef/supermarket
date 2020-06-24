@@ -29,7 +29,7 @@ module Fieri
 
         redis_info = Sidekiq.redis(&:info)
 
-        %w[uptime_in_seconds connected_clients used_memory used_memory_peak].each do |key|
+        %w{uptime_in_seconds connected_clients used_memory used_memory_peak}.each do |key|
           redis_health.store(key, redis_info.fetch(key, -1).to_i)
         end
       rescue Redis::TimeoutError
