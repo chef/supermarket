@@ -23,7 +23,7 @@ module Fieri
           error_code: t("api.error_codes.unauthorized"),
           error_messages: [t("api.error_messages.unauthorized_post_error")],
         }
-        render json: error, status: 401
+        render json: error, status: :unauthorized
       end
     end
 

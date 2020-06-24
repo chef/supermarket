@@ -5,8 +5,11 @@ module Fieri
     private
 
     def param_missing_error(exception)
-      render status: 400, json: { status: "error",
-                                  message: exception.message }
+      error = {
+        status: "error",
+        message: exception.message,
+      }
+      render status: :bad_request, json: error
     end
   end
 end
