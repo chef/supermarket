@@ -9,5 +9,7 @@ AllCops:
     - db/**/*
     - vendor/**/*
     - node_modules/**/*
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: aligned
 Style/SymbolArray:
   EnforcedStyle: brackets
