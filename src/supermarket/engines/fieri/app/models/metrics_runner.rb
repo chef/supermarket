@@ -16,6 +16,7 @@ class MetricsRunner
     # do not call metrics that depend on external services if running
     # in an airgapped environment
     return if ENV["AIR_GAPPED"] == "true"
+
     external_service_metrics(cookbook_data, cookbook["name"], cookbook["version"])
   end
 

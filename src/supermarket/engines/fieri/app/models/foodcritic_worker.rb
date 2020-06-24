@@ -27,6 +27,7 @@ class FoodcriticWorker
       foodcritic_failure: status
     )
     return if response.is_a? Net::HTTPSuccess
+
     raise "Unable to POST Foodcritic Evaluation of #{params["name"]} " + response.message
   end
 

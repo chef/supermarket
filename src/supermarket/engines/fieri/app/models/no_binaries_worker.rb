@@ -35,6 +35,7 @@ class NoBinariesWorker
       no_binaries_failure: failure
     )
     return if response.is_a? Net::HTTPSuccess
+
     raise "Unable to POST No Binaries Evaluation of #{params["name"]} " + response.message
   end
 end
