@@ -119,7 +119,7 @@ class CookbooksController < ApplicationController
   def update
     authorize! @cookbook, :manage_cookbook_urls?
 
-    @cookbook.update_attributes(cookbook_urls_params)
+    @cookbook.update(cookbook_urls_params)
 
     if cookbook_urls_params.key?(:up_for_adoption)
       if cookbook_urls_params[:up_for_adoption] == "true"
@@ -202,7 +202,7 @@ class CookbooksController < ApplicationController
   def undeprecate
     authorize! @cookbook
 
-    @cookbook.update_attributes(deprecated: false, replacement: nil)
+    @cookbook.update(deprecated: false, replacement: nil)
 
     redirect_to(
       @cookbook,

@@ -39,7 +39,7 @@ describe OauthTokenRefreshWorker do
 
   it "updates the account's OAuth tokens" do
     account = create(:user).chef_account
-    account.update_attributes!(
+    account.update!(
       oauth_token: ENV["VALID_OCID_OAUTH_TOKEN"],
       oauth_refresh_token: ENV["VALID_OCID_REFRESH_TOKEN"]
     )
@@ -63,7 +63,7 @@ describe OauthTokenRefreshWorker do
 
   it "fails quietly if the account's refresh token is bad" do
     account = create(:user).chef_account
-    account.update_attributes!(oauth_refresh_token: "dorfle")
+    account.update!(oauth_refresh_token: "dorfle")
 
     worker = OauthTokenRefreshWorker.new
 

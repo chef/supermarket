@@ -25,7 +25,7 @@ class OauthTokenRefreshWorker
 
     refreshed_token = access_token.refresh!
 
-    account.update_attributes!(
+    account.update!(
       oauth_token: refreshed_token.token,
       oauth_expires: Time.zone.at(refreshed_token.expires_at),
       oauth_refresh_token: refreshed_token.refresh_token

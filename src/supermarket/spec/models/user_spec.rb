@@ -113,7 +113,7 @@ describe User do
     it "returns the chef username for the user" do
       user = create(:user)
       account = user.accounts.for("chef_oauth2").first
-      account.update_attributes(username: "fanny")
+      account.update(username: "fanny")
 
       expect(user.username).to eql("fanny")
     end

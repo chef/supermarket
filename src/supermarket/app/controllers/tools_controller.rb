@@ -94,7 +94,7 @@ class ToolsController < ApplicationController
 
     authorize! @tool
 
-    if @tool.update_attributes(tool_params)
+    if @tool.update(tool_params)
       key = if tool_params.key?(:up_for_adoption)
               if tool_params[:up_for_adoption] == "true"
                 "adoption.up"

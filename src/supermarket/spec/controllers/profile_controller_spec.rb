@@ -49,7 +49,7 @@ describe ProfileController do
           },
         }
 
-        expect(fake_user).to receive(:update_attributes).with(attrs)
+        expect(fake_user).to receive(:update).with(attrs)
         allow(controller).to receive(:current_user) { fake_user }
 
         patch :update, params: { user: attributes_for(:user, attrs) }

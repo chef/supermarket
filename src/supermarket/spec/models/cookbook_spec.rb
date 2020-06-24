@@ -744,32 +744,32 @@ describe Cookbook do
     end
 
     it 'orders by download_count descending when given "most_downloaded"' do
-      great.update_attributes(web_download_count: 1, api_download_count: 100)
-      cookbook.update_attributes(web_download_count: 5, api_download_count: 70)
+      great.update(web_download_count: 1, api_download_count: 100)
+      cookbook.update(web_download_count: 5, api_download_count: 70)
 
       expect(Cookbook.ordered_by("most_downloaded").map(&:name))
         .to eql(%w{great cookbook})
     end
 
     it 'orders by cookbook_followers_count when given "most_followed"' do
-      great.update_attributes(cookbook_followers_count: 100)
-      cookbook.update_attributes(cookbook_followers_count: 50)
+      great.update(cookbook_followers_count: 100)
+      cookbook.update(cookbook_followers_count: 50)
 
       expect(Cookbook.ordered_by("most_followed").map(&:name))
         .to eql(%w{great cookbook})
     end
 
     it "orders secondarily by id when cookbook follower counts are equal" do
-      great.update_attributes(cookbook_followers_count: 100)
-      cookbook.update_attributes(cookbook_followers_count: 100)
+      great.update(cookbook_followers_count: 100)
+      cookbook.update(cookbook_followers_count: 100)
 
       expect(Cookbook.ordered_by("most_followed").map(&:name))
         .to eql(%w{great cookbook})
     end
 
     it "orders secondarily by id when download counts are equal" do
-      great.update_attributes(web_download_count: 5, api_download_count: 100)
-      cookbook.update_attributes(web_download_count: 5, api_download_count: 100)
+      great.update(web_download_count: 5, api_download_count: 100)
+      cookbook.update(web_download_count: 5, api_download_count: 100)
 
       expect(Cookbook.ordered_by("most_followed").map(&:name))
         .to eql(%w{great cookbook})

@@ -44,7 +44,7 @@ describe Account do
 
         [-0.1, 0, 12.5, 25, 26.1].each do |expiry|
           create(:user).tap do |user|
-            user.chef_account.update_attributes!(
+            user.chef_account.update!(
               oauth_expires: nowish + expiry.minutes
             )
           end

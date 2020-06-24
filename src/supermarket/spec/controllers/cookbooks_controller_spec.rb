@@ -172,8 +172,8 @@ describe CookbooksController do
       end
 
       it "works correctly with order" do
-        erlang.update_attributes(web_download_count: 10, api_download_count: 100)
-        ruby.update_attributes(web_download_count: 5, api_download_count: 101)
+        erlang.update(web_download_count: 10, api_download_count: 100)
+        ruby.update(web_download_count: 5, api_download_count: 101)
 
         get :index, params: { order: "most_downloaded", platforms: %w{debian} }
         expect(assigns[:cookbooks][0]).to eql(erlang)
@@ -209,8 +209,8 @@ describe CookbooksController do
       end
 
       it "works correctly with order" do
-        awesome_cookbook.update_attributes(web_download_count: 10, api_download_count: 100)
-        but_not_saucy.update_attributes(web_download_count: 5, api_download_count: 101)
+        awesome_cookbook.update(web_download_count: 10, api_download_count: 100)
+        but_not_saucy.update(web_download_count: 5, api_download_count: 101)
 
         get :index, params: { order: "most_downloaded", badges: %w{partner} }
         expect(assigns[:cookbooks][0]).to eql(awesome_cookbook)
