@@ -7,8 +7,8 @@ describe CollaboratorWorker do
   let(:uri) { "#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/cookbooks/#{cookbook_name}" }
 
   before do
-    stub_request(:post, "#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/publish_evaluation").
-      to_return(status: 200, body: "", headers: {})
+    stub_request(:post, "#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/publish_evaluation")
+      .to_return(status: 200, body: "", headers: {})
   end
 
   it "parses the response as json" do

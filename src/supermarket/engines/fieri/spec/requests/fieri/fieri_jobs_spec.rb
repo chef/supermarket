@@ -13,11 +13,11 @@ RSpec.describe "Jobs", type: :request do
 
     context "a valid job is posted" do
       before do
-        stub_request(:get, "http://localhost:13000/api/v1/cookbooks/redis").
-          to_return(status: 200, body: "", headers: {})
+        stub_request(:get, "http://localhost:13000/api/v1/cookbooks/redis")
+          .to_return(status: 200, body: "", headers: {})
 
-        stub_request(:get, "http://localhost:13000/api/v1/cookbooks/redis/versions/1.2.0").
-          to_return(status: 200, body: "", headers: {})
+        stub_request(:get, "http://localhost:13000/api/v1/cookbooks/redis/versions/1.2.0")
+          .to_return(status: 200, body: "", headers: {})
       end
 
       it "should return a 200" do
@@ -36,14 +36,14 @@ RSpec.describe "Jobs", type: :request do
 
     describe "when an invalid job is posted" do
       before do
-        stub_request(:get, "http://localhost:13000/api/v1/cookbooks/redis").
-          to_return(status: 200, body: "", headers: {})
+        stub_request(:get, "http://localhost:13000/api/v1/cookbooks/redis")
+          .to_return(status: 200, body: "", headers: {})
 
-        stub_request(:get, "http://localhost:13000/api/v1/cookbooks/redis/versions/").
-          to_return(status: 200, body: "", headers: {})
+        stub_request(:get, "http://localhost:13000/api/v1/cookbooks/redis/versions/")
+          .to_return(status: 200, body: "", headers: {})
 
-        stub_request(:get, "http://localhost:13000/api/v1/cookbooks/redis/versions/1.2.0").
-          to_return(status: 200, body: "", headers: {})
+        stub_request(:get, "http://localhost:13000/api/v1/cookbooks/redis/versions/1.2.0")
+          .to_return(status: 200, body: "", headers: {})
       end
 
       it "should return a 400" do

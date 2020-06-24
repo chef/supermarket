@@ -5,8 +5,8 @@ describe ContributingFileWorker do
   let(:cookbook_name) { "apache" }
 
   before do
-    stub_request(:post, "#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/contributing_file_evaluation").
-      to_return(status: 200, body: "", headers: {})
+    stub_request(:post, "#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/contributing_file_evaluation")
+      .to_return(status: 200, body: "", headers: {})
   end
 
   context "when a source repo is present" do
@@ -29,8 +29,8 @@ describe ContributingFileWorker do
       let(:parsed_response) { JSON.parse(cookbook_json_response) }
 
       before do
-        stub_request(:get, "https://api.github.com/repos/johndoe/example_repo/contents/CONTRIBUTING.md").
-          to_return(status: 200, body: "", headers: {})
+        stub_request(:get, "https://api.github.com/repos/johndoe/example_repo/contents/CONTRIBUTING.md")
+          .to_return(status: 200, body: "", headers: {})
       end
 
       it "parses the cookbook_json" do

@@ -5,8 +5,8 @@ describe CollaboratorWorker do
   let(:cookbook_name) { "apache" }
 
   before do
-    stub_request(:post, "#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/collaborators_evaluation").
-      to_return(status: 200, body: "", headers: {})
+    stub_request(:post, "#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/collaborators_evaluation")
+      .to_return(status: 200, body: "", headers: {})
   end
 
   context "when there is a sufficient number of collaborators" do

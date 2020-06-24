@@ -5,8 +5,8 @@ describe LicenseWorker do
   let(:lw) { LicenseWorker.new }
 
   before do
-    stub_request(:post, "#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/license_evaluation").
-      to_return(status: 200, body: "", headers: {})
+    stub_request(:post, "#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/license_evaluation")
+      .to_return(status: 200, body: "", headers: {})
   end
 
   context "when the cookbook version has a license" do

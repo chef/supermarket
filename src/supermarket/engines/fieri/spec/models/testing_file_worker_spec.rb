@@ -6,8 +6,8 @@ describe TestingFileWorker do
   let(:cookbook_name) { "apache" }
 
   before do
-    stub_request(:post, "#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/testing_file_evaluation").
-      to_return(status: 200, body: "", headers: {})
+    stub_request(:post, "#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/testing_file_evaluation")
+      .to_return(status: 200, body: "", headers: {})
   end
 
   context "when a source url is present" do

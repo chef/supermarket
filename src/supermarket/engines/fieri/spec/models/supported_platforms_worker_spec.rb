@@ -9,8 +9,8 @@ describe SupportedPlatformsWorker do
   let(:cookbook_name) { "apt" }
 
   before do
-    stub_request(:post, "http://localhost:13000/api/v1/quality_metrics/supported_platforms_evaluation").
-      to_return(status: 200, body: "", headers: {})
+    stub_request(:post, "http://localhost:13000/api/v1/quality_metrics/supported_platforms_evaluation")
+      .to_return(status: 200, body: "", headers: {})
   end
 
   context "when the cookbook version has supported platforms" do
@@ -44,9 +44,9 @@ describe SupportedPlatformsWorker do
     let(:cookbook_name) { "not_gonna_work" }
 
     it "rescues a POST error" do
-      stub_request(:post, evaluation_endpoint).
-        with(body: hash_including(cookbook_name: "not_gonna_work")).
-        to_return(status: 502, body: "", headers: {})
+      stub_request(:post, evaluation_endpoint)
+        .with(body: hash_including(cookbook_name: "not_gonna_work"))
+        .to_return(status: 502, body: "", headers: {})
 
       expect(subject).to receive(:log_error)
 
@@ -54,9 +54,9 @@ describe SupportedPlatformsWorker do
     end
 
     it "rescues a timeout" do
-      stub_request(:post, evaluation_endpoint).
-        with(body: hash_including(cookbook_name: "not_gonna_work")).
-        to_timeout
+      stub_request(:post, evaluation_endpoint)
+        .with(body: hash_including(cookbook_name: "not_gonna_work"))
+        .to_timeout
 
       expect(subject).to receive(:log_error)
 

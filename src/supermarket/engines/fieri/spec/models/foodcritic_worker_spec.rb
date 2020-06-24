@@ -25,14 +25,14 @@ describe FoodcriticWorker do
     allow_any_instance_of(CookbookArtifact).to receive(:cleanup)
       .and_return(0)
 
-    stub_request(:get, "http://example.com/apache.tar.gz").
-      to_return(
+    stub_request(:get, "http://example.com/apache.tar.gz")
+      .to_return(
         body: File.open(File.expand_path("./spec/fixtures/apache.tar.gz")),
         status: 200
       )
 
-    stub_request(:post, test_evaluation_endpoint).
-      with(body: hash_including(cookbook_name: "apache2"))
+    stub_request(:post, test_evaluation_endpoint)
+      .with(body: hash_including(cookbook_name: "apache2"))
   end
 
   it "sends a post request to the results endpoint" do
@@ -58,9 +58,9 @@ describe FoodcriticWorker do
     end
 
     it "rescues a POST error" do
-      stub_request(:post, test_evaluation_endpoint).
-        with(body: hash_including(cookbook_name: "not_gonna_work")).
-        to_return(status: 502, body: "", headers: {})
+      stub_request(:post, test_evaluation_endpoint)
+        .with(body: hash_including(cookbook_name: "not_gonna_work"))
+        .to_return(status: 502, body: "", headers: {})
 
       expect(subject).to receive(:log_error)
 
@@ -68,9 +68,9 @@ describe FoodcriticWorker do
     end
 
     it "rescues a timeout" do
-      stub_request(:post, test_evaluation_endpoint).
-        with(body: hash_including(cookbook_name: "not_gonna_work")).
-        to_timeout
+      stub_request(:post, test_evaluation_endpoint)
+        .with(body: hash_including(cookbook_name: "not_gonna_work"))
+        .to_timeout
 
       expect(subject).to receive(:log_error)
 

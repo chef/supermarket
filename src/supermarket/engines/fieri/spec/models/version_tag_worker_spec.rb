@@ -6,8 +6,8 @@ describe VersionTagWorker do
   let(:cookbook_version) { "2.9.16" }
 
   before do
-    stub_request(:post, "#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/version_tag_evaluation").
-      to_return(status: 200, body: "", headers: {})
+    stub_request(:post, "#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/version_tag_evaluation")
+      .to_return(status: 200, body: "", headers: {})
   end
 
   context "when a version tag is present" do
@@ -18,8 +18,8 @@ describe VersionTagWorker do
     before do
       allow(Octokit::Client).to receive(:new).and_return(octokit)
 
-      stub_request(:get, "https://api.github.com/repos/johndoe/example_repo/tags").
-        to_return(status: 200, body: JSON.parse(github_tag_present_response), headers: {})
+      stub_request(:get, "https://api.github.com/repos/johndoe/example_repo/tags")
+        .to_return(status: 200, body: JSON.parse(github_tag_present_response), headers: {})
     end
 
     it "calls the Octokit API wrapper" do
@@ -106,8 +106,8 @@ describe VersionTagWorker do
         before do
           allow(Octokit::Client).to receive(:new).and_return(octokit)
 
-          stub_request(:get, "https://api.github.com/repos/johndoe/example_repo/tags").
-            to_return(status: 200, body: JSON.parse(github_tag_present_response), headers: {})
+          stub_request(:get, "https://api.github.com/repos/johndoe/example_repo/tags")
+            .to_return(status: 200, body: JSON.parse(github_tag_present_response), headers: {})
         end
 
         it "posts a passing metric" do

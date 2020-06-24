@@ -12,11 +12,11 @@ describe SupermarketApiRunner do
   let(:version_json_response) { File.read("spec/support/cookbook_version_fixture.json") }
 
   before do
-    stub_request(:get, cookbook_uri).
-      to_return(status: 200, body: cookbook_json_response, headers: {})
+    stub_request(:get, cookbook_uri)
+      .to_return(status: 200, body: cookbook_json_response, headers: {})
 
-    stub_request(:get, version_uri).
-      to_return(status: 200, body: version_json_response, headers: {})
+    stub_request(:get, version_uri)
+      .to_return(status: 200, body: version_json_response, headers: {})
   end
 
   describe "#cookbook_api_response" do

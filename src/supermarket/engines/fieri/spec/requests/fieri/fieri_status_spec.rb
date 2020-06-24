@@ -14,11 +14,11 @@ RSpec.describe "Jobs", type: :request do
       end
 
       before do
-        stub_request(:get, "http://localhost:13000/api/v1/cookbooks/redis").
-          to_return(status: 200, body: "", headers: {})
+        stub_request(:get, "http://localhost:13000/api/v1/cookbooks/redis")
+          .to_return(status: 200, body: "", headers: {})
 
-        stub_request(:get, "http://localhost:13000/api/v1/cookbooks/redis/versions/1.2.0").
-          to_return(status: 200, body: "", headers: {})
+        stub_request(:get, "http://localhost:13000/api/v1/cookbooks/redis/versions/1.2.0")
+          .to_return(status: 200, body: "", headers: {})
       end
 
       it "should return a 200" do

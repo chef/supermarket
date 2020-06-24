@@ -5,8 +5,8 @@ describe CookbookArtifact do
 
   describe "when checking cookbooks that have metadata.rb" do
     before do
-      stub_request(:get, "http://example.com/apache.tar.gz").
-        to_return(
+      stub_request(:get, "http://example.com/apache.tar.gz")
+        .to_return(
           body: File.open(File.expand_path("./spec/fixtures/apache.tar.gz")),
           status: 200
         )
@@ -67,8 +67,8 @@ describe CookbookArtifact do
     let(:artifact) { CookbookArtifact.new("http://example.com/apache.tar.gz", "somejobid2") }
 
     before do
-      stub_request(:get, "http://example.com/apache.tar.gz").
-        to_return(
+      stub_request(:get, "http://example.com/apache.tar.gz")
+        .to_return(
           body: File.open(File.expand_path("./spec/fixtures/apache-no-metadata.rb.tar.gz")),
           status: 200
         )
@@ -86,8 +86,8 @@ describe CookbookArtifact do
     let(:artifact) { CookbookArtifact.new("http://example.com/apache.tar.gz", "somejobid2") }
 
     before do
-      stub_request(:get, "http://example.com/apache.tar.gz").
-        to_return(
+      stub_request(:get, "http://example.com/apache.tar.gz")
+        .to_return(
           body: File.open(File.expand_path("./spec/fixtures/apache-with-binaries.tar.gz")),
           status: 200
         )
