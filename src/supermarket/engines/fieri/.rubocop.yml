@@ -9,3 +9,5 @@ AllCops:
     - db/**/*
     - vendor/**/*
     - node_modules/**/*
+Style/SymbolArray:
+  EnforcedStyle: brackets
