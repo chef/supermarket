@@ -44,15 +44,15 @@ class User < ApplicationRecord
     against: {
       first_name: "A",
       last_name: "B",
-      email: "C"
+      email: "C",
     },
     associated_against: {
       chef_account: :username,
-      github_account: :username
+      github_account: :username,
     },
     using: {
       tsearch: { prefix: true, dictionary: "english" },
-      trigram: { threshold: 0.2 }
+      trigram: { threshold: 0.2 },
     }
   )
 

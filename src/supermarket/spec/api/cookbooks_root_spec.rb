@@ -23,7 +23,7 @@ describe "GET /api/v1/cookbooks" do
         "cookbook_name" => "redis-test",
         "cookbook_maintainer" => user.username,
         "cookbook_description" => "Installs/Configures redis-test",
-        "cookbook" => "http://www.example.com/api/v1/cookbooks/redis-test"
+        "cookbook" => "http://www.example.com/api/v1/cookbooks/redis-test",
       }
     end
 
@@ -32,7 +32,7 @@ describe "GET /api/v1/cookbooks" do
         "cookbook_name" => "redisio-test",
         "cookbook_maintainer" => user.username,
         "cookbook_description" => "Installs/Configures redisio-test",
-        "cookbook" => "http://www.example.com/api/v1/cookbooks/redisio-test"
+        "cookbook" => "http://www.example.com/api/v1/cookbooks/redisio-test",
       }
     end
 

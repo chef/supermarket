@@ -20,12 +20,12 @@ Paperclip.io_adapters
     options = {
       storage: "s3",
       s3_credentials: {
-        bucket: ENV["S3_BUCKET"]
+        bucket: ENV["S3_BUCKET"],
       },
       path: path,
       bucket: ENV["S3_BUCKET"],
       s3_protocol: ENV["PROTOCOL"],
-      s3_region: ENV["S3_REGION"]
+      s3_region: ENV["S3_REGION"],
     }
 
     # If static creds are present in config - use them
@@ -33,7 +33,7 @@ Paperclip.io_adapters
       options = options.merge(
         s3_credentials: {
           access_key_id: ENV["S3_ACCESS_KEY_ID"],
-          secret_access_key: ENV["S3_SECRET_ACCESS_KEY"]
+          secret_access_key: ENV["S3_SECRET_ACCESS_KEY"],
         }
       )
     end

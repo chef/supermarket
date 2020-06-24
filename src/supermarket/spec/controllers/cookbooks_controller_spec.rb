@@ -268,7 +268,7 @@ describe CookbooksController do
         patch :update, params: { id: cookbook, cookbook: {
           source_url: "http://example.com/cookbook",
           issues_url: "http://example.com/cookbook/issues",
-          up_for_adoption: true
+          up_for_adoption: true,
         } }
 
         cookbook.reload
@@ -284,7 +284,7 @@ describe CookbooksController do
           patch :update, params: { id: cookbook, cookbook: {
             source_url: "http://example.com/cookbook",
             issues_url: "http://example.com/cookbook/issues",
-            up_for_adoption: "true"
+            up_for_adoption: "true",
           } }
           expect(ActionMailer::Base.deliveries.map(&:to).flatten).to include(cookbook_follower.user.email)
         end
@@ -293,7 +293,7 @@ describe CookbooksController do
       it "redirects to @cookbook" do
         patch :update, params: { id: cookbook, cookbook: {
           source_url: "http://example.com/cookbook",
-          issues_url: "http://example.com/cookbook/issues"
+          issues_url: "http://example.com/cookbook/issues",
         } }
 
         expect(response).to redirect_to(assigns[:cookbook])
@@ -664,7 +664,7 @@ describe CookbooksController do
 
         it "deprecates the cookbook and sets the replacement" do
           put(:deprecate, params: { id: cookbook, cookbook: {
-                replacement: ""
+                replacement: "",
               } })
 
           cookbook.reload
@@ -675,7 +675,7 @@ describe CookbooksController do
 
         it "redirects back to the cookbook w/ success notice" do
           put(:deprecate, params: { id: cookbook, cookbook: {
-                replacement: ""
+                replacement: "",
               } })
 
           expect(response).to redirect_to(cookbook)
@@ -691,7 +691,7 @@ describe CookbooksController do
         it "starts the cookbook deprecated notifier worker" do
           expect do
             put(:deprecate, params: { id: cookbook, cookbook: {
-                  replacement: ""
+                  replacement: "",
                 } })
           end.to change(CookbookDeprecatedNotifier.jobs, :size).by(1)
         end
@@ -704,7 +704,7 @@ describe CookbooksController do
 
         it "deprecates the cookbook and sets the replacement" do
           put(:deprecate, params: { id: cookbook, cookbook: {
-                replacement: replacement_cookbook.name
+                replacement: replacement_cookbook.name,
               } })
 
           cookbook.reload
@@ -715,7 +715,7 @@ describe CookbooksController do
 
         it "redirects back to the cookbook w/ success notice" do
           put(:deprecate, params: { id: cookbook, cookbook: {
-                replacement: replacement_cookbook.name
+                replacement: replacement_cookbook.name,
               } })
 
           expect(response).to redirect_to(cookbook)
@@ -731,7 +731,7 @@ describe CookbooksController do
         it "starts the cookbook deprecated notifier worker" do
           expect do
             put(:deprecate, params: { id: cookbook, cookbook: {
-                  replacement: replacement_cookbook
+                  replacement: replacement_cookbook,
                 } })
           end.to change(CookbookDeprecatedNotifier.jobs, :size).by(1)
         end
@@ -745,7 +745,7 @@ describe CookbooksController do
 
         it "fails to deprecate and set replacement" do
           put(:deprecate, params: { id: cookbook, cookbook: {
-                replacement: deprecated_cookbook
+                replacement: deprecated_cookbook,
               } })
 
           cookbook.reload
@@ -756,7 +756,7 @@ describe CookbooksController do
 
         it "redirects back to the cookbook w/ an error notice" do
           put(:deprecate, params: { id: cookbook, cookbook: {
-                replacement: deprecated_cookbook
+                replacement: deprecated_cookbook,
               } })
 
           expect(response).to redirect_to(cookbook)
@@ -771,7 +771,7 @@ describe CookbooksController do
 
       it "returns a 404" do
         put(:deprecate, params: { id: cookbook, cookbook: {
-              replacement: replacement_cookbook
+              replacement: replacement_cookbook,
             } })
 
         expect(response.status.to_i).to eql(404)

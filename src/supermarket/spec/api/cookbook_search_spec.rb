@@ -8,7 +8,7 @@ describe "GET /api/v1/search" do
       "cookbook_name" => "redis-test",
       "cookbook_description" => "Installs/Configures redis-test",
       "cookbook" => "http://www.example.com/api/v1/cookbooks/redis-test",
-      "cookbook_maintainer" => user.username
+      "cookbook_maintainer" => user.username,
     }
   end
 
@@ -17,7 +17,7 @@ describe "GET /api/v1/search" do
       "cookbook_name" => "redisio-test",
       "cookbook_description" => "Installs/Configures redisio-test",
       "cookbook" => "http://www.example.com/api/v1/cookbooks/redisio-test",
-      "cookbook_maintainer" => user.username
+      "cookbook_maintainer" => user.username,
     }
   end
 
@@ -36,7 +36,7 @@ describe "GET /api/v1/search" do
     search_response = {
       "items" => [redis_test_signature, redisio_test_signature],
       "total" => 2,
-      "start" => 0
+      "start" => 0,
     }
 
     get "/api/v1/search?q=redis"
@@ -48,7 +48,7 @@ describe "GET /api/v1/search" do
     search_response = {
       "items" => [redisio_test_signature],
       "total" => 1,
-      "start" => 1
+      "start" => 1,
     }
 
     get "/api/v1/search?q=redis&start=1&items=1"

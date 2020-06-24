@@ -9,7 +9,7 @@ describe Universe do
       opts = {
         host: "narf.example.com",
         port: 6060,
-        protocol: "https"
+        protocol: "https",
       }
 
       expect(Universe.protocol_host_port(opts)).to eql("https://narf.example.com:6060")
@@ -28,7 +28,7 @@ describe Universe do
     it "uses the fqdn environmental variable" do
       opts = {
         port: 6060,
-        protocol: "https"
+        protocol: "https",
       }
 
       expect(Universe.protocol_host_port(opts)).to eql("https://#{expected_fqdn}:6060")
@@ -39,7 +39,7 @@ describe Universe do
   it "does not print the port if it is not set" do
     opts = {
       host: "narf.example.com",
-      port: nil
+      port: nil,
     }
 
     expect(Universe.protocol_host_port(opts)).to eql("http://narf.example.com")

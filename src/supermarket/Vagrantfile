@@ -40,12 +40,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       postgres: {
         user: "vagrant",
         database: "supermarket_development",
-        auth_method: "trust"
+        auth_method: "trust",
       },
       supermarket: {
         host: "localhost",
-        port: VM_PORT
-      }
+        port: VM_PORT,
+      },
     }
 
     chef.run_list = [

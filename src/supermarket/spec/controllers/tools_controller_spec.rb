@@ -133,7 +133,7 @@ describe ToolsController do
                type: "ohai_plugin",
                description: "Great plugin.",
                source_url: "http://example.com",
-               instructions: "Use with care"
+               instructions: "Use with care",
              } })
       end.to change { Tool.count }.by(1)
     end
@@ -145,7 +145,7 @@ describe ToolsController do
              type: "ohai_plugin",
              description: "Great plugin.",
              source_url: "http://example.com",
-             instructions: "Use with care"
+             instructions: "Use with care",
            } })
 
       expect(response).to redirect_to(tools_user_path(user))

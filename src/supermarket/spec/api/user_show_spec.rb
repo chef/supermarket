@@ -30,25 +30,25 @@ describe "GET /api/v1/users/:user" do
         "cookbooks" => {
           "owns" => {
             "macand" => "http://www.example.com/api/v1/cookbooks/macand",
-            "redis-test" => "http://www.example.com/api/v1/cookbooks/redis-test"
+            "redis-test" => "http://www.example.com/api/v1/cookbooks/redis-test",
           },
           "collaborates" => {
-            "zeromq" => "http://www.example.com/api/v1/cookbooks/zeromq"
+            "zeromq" => "http://www.example.com/api/v1/cookbooks/zeromq",
           },
           "follows" => {
             "ruby" => "http://www.example.com/api/v1/cookbooks/ruby",
-            "postgres" => "http://www.example.com/api/v1/cookbooks/postgres"
-          }
+            "postgres" => "http://www.example.com/api/v1/cookbooks/postgres",
+          },
         },
         "tools" => {
           "owns" => {
             "berkshelf" => "http://www.example.com/api/v1/tools/berkshelf",
-            "knife_supermarket" => "http://www.example.com/api/v1/tools/knife_supermarket"
+            "knife_supermarket" => "http://www.example.com/api/v1/tools/knife_supermarket",
           },
           "collaborates" => {
-            "dull_knife" => "http://www.example.com/api/v1/tools/dull_knife"
-          }
-        }
+            "dull_knife" => "http://www.example.com/api/v1/tools/dull_knife",
+          },
+        },
       }
     end
 

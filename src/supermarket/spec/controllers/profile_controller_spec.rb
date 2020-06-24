@@ -10,7 +10,7 @@ describe ProfileController do
       it "updates the user" do
         patch :update, params: { user: {
           first_name: "Bob",
-          last_name:  "Loblaw"
+          last_name:  "Loblaw",
         } }
         user.reload
 
@@ -36,17 +36,17 @@ describe ProfileController do
           "email_preferences_attributes" => {
             "0" => {
               "_destroy" => "0",
-              "system_email_id" => "2"
+              "system_email_id" => "2",
             },
             "1" => {
               "_destroy" => "1",
-              "system_email_id" => "3"
+              "system_email_id" => "3",
             },
             "2" => {
               "_destroy" => "0",
-              "system_email_id" => "1"
-            }
-          }
+              "system_email_id" => "1",
+            },
+          },
         }
 
         expect(fake_user).to receive(:update_attributes).with(attrs)

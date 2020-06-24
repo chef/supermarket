@@ -22,7 +22,7 @@ class Tool < ApplicationRecord
   validates :slug, presence: true, uniqueness: { case_sensitive: false }, format: /\A[\w_-]+\z/i
   validates :source_url, url: {
     allow_blank: true,
-    allow_nil: true
+    allow_nil: true,
   }
 
   # Search
@@ -31,14 +31,14 @@ class Tool < ApplicationRecord
     :search,
     against: {
       name: "A",
-      description: "C"
+      description: "C",
     },
     associated_against: {
-      chef_account: { username: "B" }
+      chef_account: { username: "B" },
     },
     using: {
       tsearch: { dictionary: "english", only: [:username, :description], prefix: true },
-      trigram: { only: [:name] }
+      trigram: { only: [:name] },
     },
     ranked_by: ":trigram + (0.5 * :tsearch)",
     order_within_rank: "tools.name"
@@ -73,7 +73,7 @@ class Tool < ApplicationRecord
 
   scope :ordered_by, lambda { |ordering|
     reorder({
-      "recently_added" => "id DESC"
+      "recently_added" => "id DESC",
     }.fetch(ordering, "name ASC"))
   }
 

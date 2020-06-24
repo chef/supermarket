@@ -59,7 +59,7 @@ module Universe
         LOCATION_TYPE => CHEF,
         LOCATION_PATH => location_path,
         DOWNLOAD_URL => download_url(name, version, url_base),
-        DEPENDENCIES => {}
+        DEPENDENCIES => {},
       }
 
       if dependency && dependency_constraint

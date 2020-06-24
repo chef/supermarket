@@ -12,7 +12,7 @@ class Api::V1Controller < ApplicationController
     error(
       {
         error_messages: [t("api.error_messages.not_found")],
-        error_code: t("api.error_codes.not_found")
+        error_code: t("api.error_codes.not_found"),
       },
       404
     )
@@ -27,7 +27,7 @@ class Api::V1Controller < ApplicationController
     error(
       {
         error_code: t("api.error_codes.unauthorized"),
-        error_messages: messages
+        error_messages: messages,
       },
       401
     )

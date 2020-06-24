@@ -88,7 +88,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
       error(
         {
           error_code: t("api.error_codes.forbidden"),
-          error_messages: [t("api.error_messages.unauthorized_destroy_error")]
+          error_messages: [t("api.error_messages.unauthorized_destroy_error")],
         },
         403
       )
@@ -162,7 +162,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
   def upload_params
     {
       cookbook: params.require(:cookbook),
-      tarball: params.require(:tarball)
+      tarball: params.require(:tarball),
     }
   end
 
@@ -181,7 +181,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
       return error(
         {
           error_code: t("api.error_codes.authentication_failed"),
-          error_messages: [t("api.error_messages.invalid_username", username: username)]
+          error_messages: [t("api.error_messages.invalid_username", username: username)],
         },
         401
       )
@@ -191,7 +191,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
       return error(
         {
           error_code: t("api.error_codes.authentication_failed"),
-          error_messages: [t("api.error_messages.missing_public_key_error", current_host: request.base_url)]
+          error_messages: [t("api.error_messages.missing_public_key_error", current_host: request.base_url)],
         },
         401
       )
@@ -208,7 +208,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
       error(
         {
           error_code: t("api.error_codes.authentication_failed"),
-          error_messages: [t("api.error_messages.authentication_key_error")]
+          error_messages: [t("api.error_messages.authentication_key_error")],
         },
         401
       )

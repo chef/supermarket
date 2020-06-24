@@ -10,11 +10,11 @@ Sidekiq.configure_server do |config|
   Sidekiq::Cron::Job.load_from_hash(
     "Daily refresh of the sitemap" => {
       class: "SitemapRefreshWorker",
-      cron: "@daily"
+      cron: "@daily",
     },
     "Schedule refresh of expiring tokens" => {
       class: "OauthTokenRefreshScheduleWorker",
-      cron: "*/5 * * * *"
+      cron: "*/5 * * * *",
     }
   )
 end

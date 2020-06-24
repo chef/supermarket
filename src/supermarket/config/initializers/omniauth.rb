@@ -25,8 +25,8 @@ Rails.application.config.middleware.use(OmniAuth::Builder) do
   client_options = {
     ssl: {
       verify: ENV["CHEF_OAUTH2_VERIFY_SSL"].present? &&
-              ENV["CHEF_OAUTH2_VERIFY_SSL"] != "false"
-    }
+              ENV["CHEF_OAUTH2_VERIFY_SSL"] != "false",
+    },
   }
 
   if ENV["CHEF_OAUTH2_URL"].present?

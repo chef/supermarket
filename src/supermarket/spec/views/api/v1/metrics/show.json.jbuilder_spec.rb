@@ -9,7 +9,7 @@ describe "api/v1/metrics/show" do
            total_follows: 2,
            total_users: 6,
            total_hits: {
-             "/universe" => 3
+             "/universe" => 3,
            })
   end
 

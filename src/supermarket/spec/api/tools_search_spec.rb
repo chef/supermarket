@@ -14,7 +14,7 @@ describe "GET /api/v1/tools/search" do
     search_response = {
       "items" => [search_signature(berkshelf), search_signature(berkshelf_2)],
       "total" => 2,
-      "start" => 0
+      "start" => 0,
     }
 
     get "/api/v1/tools-search?q=berkshelf"
@@ -26,7 +26,7 @@ describe "GET /api/v1/tools/search" do
     search_response = {
       "items" => [search_signature(berkshelf_2), search_signature(berkshelf)],
       "total" => 2,
-      "start" => 0
+      "start" => 0,
     }
 
     get "/api/v1/tools-search?q=berkshelf&order=recently_added"
@@ -38,7 +38,7 @@ describe "GET /api/v1/tools/search" do
     search_response = {
       "items" => [search_signature(berkshelf_2)],
       "total" => 1,
-      "start" => 1
+      "start" => 1,
     }
 
     get "/api/v1/tools-search?q=berkshelf&start=1&items=1"
@@ -52,7 +52,7 @@ describe "GET /api/v1/tools/search" do
     search_response = {
       "items" => [search_signature(policy)],
       "total" => 1,
-      "start" => 0
+      "start" => 0,
     }
 
     get "/api/v1/tools-search?type=compliance_profile"
@@ -68,6 +68,6 @@ def search_signature(tool)
     "tool_source_url" => tool.source_url,
     "tool_description" => tool.description,
     "tool_owner" => tool.maintainer,
-    "tool" => "http://www.example.com/api/v1/tools/#{tool.slug}"
+    "tool" => "http://www.example.com/api/v1/tools/#{tool.slug}",
   }
 end

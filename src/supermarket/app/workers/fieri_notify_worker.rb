@@ -24,8 +24,8 @@ class FieriNotifyWorker
       {
         "name" => cookbook_version.name,
         "version" => cookbook_version.version,
-        "artifact_url" => cookbook_version.cookbook_artifact_url
-      }
+        "artifact_url" => cookbook_version.cookbook_artifact_url,
+      },
     }
 
     req = Net::HTTP::Post.new(uri, "Content-Type" => "application/json")

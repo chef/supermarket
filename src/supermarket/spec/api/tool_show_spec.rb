@@ -12,7 +12,7 @@ describe "GET /api/v1/tools/:tool" do
         "source_url" => tool.source_url,
         "description" => tool.description,
         "instructions" => tool.instructions,
-        "owner" => tool.maintainer
+        "owner" => tool.maintainer,
       }
     end
 

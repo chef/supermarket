@@ -23,11 +23,11 @@ module OmniAuthControl
         nickname: username,
         email: email,
         name: "John Doe",
-        image: "https://image-url.com"
+        image: "https://image-url.com",
       },
       credentials: {
         token: "oauth_token",
-        expires: false
+        expires: false,
       }
     )
   end
@@ -44,13 +44,13 @@ module OmniAuthControl
         email: email,
         first_name: "John",
         last_name: "Doe",
-        public_key: File.read("spec/support/key_fixtures/valid_public_key.pub")
+        public_key: File.read("spec/support/key_fixtures/valid_public_key.pub"),
       },
       credentials: {
         token: "oauth_token",
         refresh_token: "refresh_token",
         expires_at: EXPIRATION,
-        expires: true
+        expires: true,
       }
     )
   end

@@ -36,7 +36,7 @@ module UsersHelper
 
   def gravatar_image(user, options = {})
     options = {
-      size: 48
+      size: 48,
     }.merge(options)
 
     size = options[:size]

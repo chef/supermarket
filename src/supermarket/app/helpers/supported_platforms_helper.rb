@@ -29,7 +29,7 @@ module SupportedPlatformsHelper
       "suse" => "suse",
       "ubuntu" => "ubuntu",
       "windows" => "windows",
-      "zlinux" => "zlinux"
+      "zlinux" => "zlinux",
     }.fetch(platform.name.parameterize(separator: "_"), "generic")
   end
 end

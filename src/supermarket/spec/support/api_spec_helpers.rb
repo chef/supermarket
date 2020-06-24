@@ -99,7 +99,7 @@ module ApiSpecHelpers
   def error_404
     {
       "error_messages" => [I18n.t("api.error_messages.not_found")],
-      "error_code" => I18n.t("api.error_codes.not_found")
+      "error_code" => I18n.t("api.error_codes.not_found"),
     }
   end
 
@@ -134,11 +134,11 @@ module ApiSpecHelpers
           description: "Installs/Configures #{cookbook_name}",
           license: "MIT",
           platforms: {
-            "ubuntu" => ">= 12.0.0"
+            "ubuntu" => ">= 12.0.0",
           },
           dependencies: {
-            "apt" => "~> 1.0.0"
-          }
+            "apt" => "~> 1.0.0",
+          },
         }.merge(custom_metadata)
 
         tarball = build_cookbook_tarball(cookbook_name) do |base_dir|

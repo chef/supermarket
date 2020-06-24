@@ -17,7 +17,7 @@ describe "GET /api/v1/cookbooks/:cookbook/versions/:version" do
           "license" => "MIT",
           "version" => "0.2.0",
           "average_rating" => nil,
-          "cookbook" => "http://www.example.com/api/v1/cookbooks/redis-test"
+          "cookbook" => "http://www.example.com/api/v1/cookbooks/redis-test",
         }
       end
 
@@ -42,7 +42,7 @@ describe "GET /api/v1/cookbooks/:cookbook/versions/:version" do
           "license" => "MIT",
           "version" => "0.1.0",
           "average_rating" => nil,
-          "cookbook" => "http://www.example.com/api/v1/cookbooks/redis-test"
+          "cookbook" => "http://www.example.com/api/v1/cookbooks/redis-test",
         }
       end
 
@@ -74,14 +74,14 @@ describe "GET /api/v1/cookbooks/:cookbook/versions/:version" do
             {
               "name" => quality_metric_foodcritic.name,
               "failed" => foodcritic_result.failure,
-              "feedback" => foodcritic_result.feedback
+              "feedback" => foodcritic_result.feedback,
             },
             {
               "name" => quality_metric_collab_num.name,
               "failed" => collab_result.failure,
-              "feedback" => collab_result.feedback
+              "feedback" => collab_result.feedback,
             }
-          ]
+          ],
         }
       end
 

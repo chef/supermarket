@@ -20,7 +20,7 @@ describe "GET /api/v1/cookbooks/:cookbook" do
           ],
         "description" => "Installs/Configures redis-test",
         "average_rating" => nil,
-        "deprecated" => false
+        "deprecated" => false,
       }
     end
 

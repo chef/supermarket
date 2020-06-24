@@ -77,7 +77,7 @@ module Supermarket
     self.default_url_options = {
       host: ENV["FQDN"],
       port: ENV["PORT"],
-      protocol: ENV["PROTOCOL"]
+      protocol: ENV["PROTOCOL"],
     }
 
     # Configure the email renderer for building links back to the site

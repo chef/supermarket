@@ -25,7 +25,7 @@ class CookbookVersion < ApplicationRecord
   validates :version, presence: true,
                       uniqueness: {
                         scope: :cookbook_id,
-                        case_sensitive: false
+                        case_sensitive: false,
                       },
                       chef_version: true
   validates_attachment(
@@ -41,7 +41,7 @@ class CookbookVersion < ApplicationRecord
                      "application/x-bzip", "application/x-zip-compressed",
                      "application/cap", "application/x-tar-gz",
                      "application/postscript", "application/x-targz"],
-      message: ->(_, info) { "can not be #{info[:value]}." }
+      message: ->(_, info) { "can not be #{info[:value]}." },
     }
   )
 

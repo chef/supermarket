@@ -40,6 +40,6 @@ def index_signature(tool)
     "tool_source_url" => tool.source_url,
     "tool_description" => tool.description,
     "tool_owner" => tool.maintainer,
-    "tool" => "http://www.example.com/api/v1/tools/#{tool.slug}"
+    "tool" => "http://www.example.com/api/v1/tools/#{tool.slug}",
   }
 end

@@ -36,7 +36,7 @@ module ApplicationHelper
     {
       "notice" => "success",
       "alert" => "alert",
-      "warning" => "warning"
+      "warning" => "warning",
     }.fetch(name)
   end
 end

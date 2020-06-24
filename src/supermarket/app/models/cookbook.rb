@@ -30,7 +30,7 @@ class Cookbook < ApplicationRecord
       "recently_updated" => "updated_at DESC",
       "recently_added" => "id DESC",
       "most_downloaded" => "(cookbooks.web_download_count + cookbooks.api_download_count) DESC, id ASC",
-      "most_followed" => "cookbook_followers_count DESC, id ASC"
+      "most_followed" => "cookbook_followers_count DESC, id ASC",
     }.fetch(ordering, "name ASC"))
   }
 
@@ -69,15 +69,15 @@ class Cookbook < ApplicationRecord
   pg_search_scope(
     :search,
     against: {
-      name: "A"
+      name: "A",
     },
     associated_against: {
       chef_account: { username: "B" },
-      cookbook_versions: { description: "C" }
+      cookbook_versions: { description: "C" },
     },
     using: {
       tsearch: { dictionary: "english", only: [:username, :description], prefix: true },
-      trigram: { only: [:name] }
+      trigram: { only: [:name] },
     },
     ranked_by: ":trigram + (0.5 * :tsearch)",
     order_within_rank: "cookbooks.name"
@@ -116,11 +116,11 @@ class Cookbook < ApplicationRecord
   validates :cookbook_versions, presence: true
   validates :source_url, url: {
     allow_blank: true,
-    allow_nil: true
+    allow_nil: true,
   }
   validates :issues_url, url: {
     allow_blank: true,
-    allow_nil: true
+    allow_nil: true,
   }
 
   #

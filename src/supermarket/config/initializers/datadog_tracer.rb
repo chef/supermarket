@@ -8,6 +8,6 @@ if ENV["DATADOG_TRACER_ENABLED"] && ENV["DATADOG_TRACER_ENABLED"] == "true"
       auto_instrument: true,
       auto_instrument_redis: true,
       default_service: ENV["DATADOG_APP_NAME"] || "rails_app",
-      env: ENV["DATADOG_ENVIRONMENT"] || nil
+      env: ENV["DATADOG_ENVIRONMENT"] || nil,
     }
 end

@@ -460,11 +460,11 @@ describe Cookbook do
             description: "Description",
             platforms: {
               "ubuntu" => "= 12.04",
-              "debian" => ">= 0.0.0"
+              "debian" => ">= 0.0.0",
             },
             dependencies: {
               "apt" => "= 1.2.3",
-              "yum" => "~> 2.1.3"
+              "yum" => "~> 2.1.3",
             },
             source_url: opts[:source_url],
             issues_url: opts[:issues_url]
@@ -564,11 +564,11 @@ describe Cookbook do
               description: "Description",
               platforms: {
                 "ubuntu" => "= 12.04",
-                "debian" => ">= 0.0.0"
+                "debian" => ">= 0.0.0",
               },
               dependencies: {
                 "apt" => "= 1.2.3",
-                "yum" => "~> 2.1.3"
+                "yum" => "~> 2.1.3",
               },
               source_url: opts[:source_url],
               issues_url: opts[:issues_url],
