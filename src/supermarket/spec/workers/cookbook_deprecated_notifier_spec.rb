@@ -16,13 +16,13 @@ describe CookbookDeprecatedNotifier do
         :cookbook_follower,
         cookbook: cookbook,
         user: disinterested_user
-      )
+      ),
     ]
 
     users_to_email = [
       cookbook.owner,
       cookbook_collaborator.user,
-      cookbook_followers[0].user
+      cookbook_followers[0].user,
     ]
 
     Sidekiq::Testing.inline! do

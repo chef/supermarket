@@ -25,7 +25,7 @@ describe "api/v1/cookbooks/index" do
         create(
           :cookbook_version,
           description: "test cookbook"
-        )
+        ),
       ],
       cookbook_versions_count: 0
     )

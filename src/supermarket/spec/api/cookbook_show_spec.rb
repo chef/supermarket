@@ -16,7 +16,7 @@ describe "GET /api/v1/cookbooks/:cookbook" do
         "versions" =>
           [
             "http://www.example.com/api/v1/cookbooks/redis-test/versions/0.2.0",
-            "http://www.example.com/api/v1/cookbooks/redis-test/versions/0.1.0"
+            "http://www.example.com/api/v1/cookbooks/redis-test/versions/0.1.0",
           ],
         "description" => "Installs/Configures redis-test",
         "average_rating" => nil,

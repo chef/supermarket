@@ -53,7 +53,7 @@ describe "api/v1/cookbooks/show" do
       :cookbook_versions_urls,
       [
         "http://test.host/api/v1/cookbooks/redis/versions/2_0_0",
-        "http://test.host/api/v1/cookbooks/redis/versions/2_1_0"
+        "http://test.host/api/v1/cookbooks/redis/versions/2_1_0",
       ]
     )
 
@@ -106,7 +106,7 @@ describe "api/v1/cookbooks/show" do
     expect(versions).to eql(
       [
         "http://test.host/api/v1/cookbooks/redis/versions/2_0_0",
-        "http://test.host/api/v1/cookbooks/redis/versions/2_1_0"
+        "http://test.host/api/v1/cookbooks/redis/versions/2_1_0",
       ]
     )
   end

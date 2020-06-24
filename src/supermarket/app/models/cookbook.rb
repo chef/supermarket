@@ -339,7 +339,7 @@ class Cookbook < ApplicationRecord
       .sort_by do |cd|
         [
           cd.cookbook_version.cookbook.name,
-          Chef::Version.new(cd.cookbook_version.version)
+          Chef::Version.new(cd.cookbook_version.version),
         ]
       end
   end

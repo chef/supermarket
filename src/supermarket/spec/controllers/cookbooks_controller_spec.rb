@@ -125,9 +125,9 @@ describe CookbooksController do
               :cookbook_version,
               supported_platforms: [
                 debian_platform,
-                create(:supported_platform, name: "ubuntu")
+                create(:supported_platform, name: "ubuntu"),
               ]
-            )
+            ),
           ]
         )
       end
@@ -141,9 +141,9 @@ describe CookbooksController do
               :cookbook_version,
               supported_platforms: [
                 debian_platform,
-                create(:supported_platform, name: "windows")
+                create(:supported_platform, name: "windows"),
               ]
-            )
+            ),
           ]
         )
       end

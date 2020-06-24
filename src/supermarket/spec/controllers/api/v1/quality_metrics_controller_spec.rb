@@ -82,7 +82,7 @@ describe Api::V1::QualityMetricsController do
               expect(JSON.parse(response.body)).to eql(
                 "error_code" => I18n.t("api.error_codes.invalid_data"),
                 "error_messages" => [
-                  I18n.t("api.error_messages.missing_cookbook_version")
+                  I18n.t("api.error_messages.missing_cookbook_version"),
                 ]
               )
             end
@@ -107,7 +107,7 @@ describe Api::V1::QualityMetricsController do
         expect(JSON.parse(response.body)).to eql(
           "error_code" => I18n.t("api.error_codes.unauthorized"),
           "error_messages" => [
-            I18n.t("api.error_messages.unauthorized_post_error")
+            I18n.t("api.error_messages.unauthorized_post_error"),
           ]
         )
       end
@@ -151,7 +151,7 @@ describe Api::V1::QualityMetricsController do
               expect(JSON.parse(response.body)).to eql(
                 "error_code" => I18n.t("api.error_codes.invalid_data"),
                 "error_messages" => [
-                  I18n.t("api.error_messages.missing_cookbook_version")
+                  I18n.t("api.error_messages.missing_cookbook_version"),
                 ]
               )
             end
@@ -176,7 +176,7 @@ describe Api::V1::QualityMetricsController do
         expect(JSON.parse(response.body)).to eql(
           "error_code" => I18n.t("api.error_codes.unauthorized"),
           "error_messages" => [
-            I18n.t("api.error_messages.unauthorized_post_error")
+            I18n.t("api.error_messages.unauthorized_post_error"),
           ]
         )
       end
@@ -218,7 +218,7 @@ describe Api::V1::QualityMetricsController do
           expect(JSON.parse(response.body)).to eql(
             "error_code" => I18n.t("api.error_codes.invalid_data"),
             "error_messages" => [
-              I18n.t("api.error_messages.missing_cookbook_name")
+              I18n.t("api.error_messages.missing_cookbook_name"),
             ]
           )
         end
@@ -233,7 +233,7 @@ describe Api::V1::QualityMetricsController do
         expect(JSON.parse(response.body)).to eql(
           "error_code" => I18n.t("api.error_codes.unauthorized"),
           "error_messages" => [
-            I18n.t("api.error_messages.unauthorized_post_error")
+            I18n.t("api.error_messages.unauthorized_post_error"),
           ]
         )
       end
@@ -275,7 +275,7 @@ describe Api::V1::QualityMetricsController do
           expect(JSON.parse(response.body)).to eql(
             "error_code" => I18n.t("api.error_codes.invalid_data"),
             "error_messages" => [
-              I18n.t("api.error_messages.missing_publish_feedback")
+              I18n.t("api.error_messages.missing_publish_feedback"),
             ]
           )
         end
@@ -290,7 +290,7 @@ describe Api::V1::QualityMetricsController do
         expect(JSON.parse(response.body)).to eql(
           "error_code" => I18n.t("api.error_codes.unauthorized"),
           "error_messages" => [
-            I18n.t("api.error_messages.unauthorized_post_error")
+            I18n.t("api.error_messages.unauthorized_post_error"),
           ]
         )
       end
@@ -353,7 +353,7 @@ describe Api::V1::QualityMetricsController do
         expect(JSON.parse(response.body)).to eql(
           "error_code" => I18n.t("api.error_codes.unauthorized"),
           "error_messages" => [
-            I18n.t("api.error_messages.unauthorized_post_error")
+            I18n.t("api.error_messages.unauthorized_post_error"),
           ]
         )
       end

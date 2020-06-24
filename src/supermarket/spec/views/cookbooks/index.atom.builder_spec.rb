@@ -26,7 +26,7 @@ describe "cookbooks/index.atom.builder" do
       name: "test-2",
       cookbook_versions_count: 0,
       cookbook_versions: [
-        create(:cookbook_version, description: "test cookbook")
+        create(:cookbook_version, description: "test cookbook"),
       ]
     )
   end

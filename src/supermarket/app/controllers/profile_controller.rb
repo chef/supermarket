@@ -55,7 +55,7 @@ class ProfileController < ApplicationController
       email_preferences_attributes: [
         :_destroy,
         :id,
-        :system_email_id
+        :system_email_id,
       ]
     ).to_h
   end

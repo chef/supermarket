@@ -622,7 +622,7 @@ describe Cookbook do
           build(
             :cookbook_version,
             description: "Redis: a fast, flexible datastore offering an extremely useful set of data structure primitives"
-          )
+          ),
         ]
       )
     end
@@ -637,7 +637,7 @@ describe Cookbook do
           build(
             :cookbook_version,
             description: "Installs/Configures redis. Created by the formidable johndoe, johndoe is pretty awesome."
-          )
+          ),
         ],
         cookbook_versions_count: 0
       )
@@ -686,9 +686,9 @@ describe Cookbook do
             :cookbook_version,
             supported_platforms: [
               debian_platform,
-              create(:supported_platform, name: "ubuntu")
+              create(:supported_platform, name: "ubuntu"),
             ]
-          )
+          ),
         ]
       )
     end
@@ -702,9 +702,9 @@ describe Cookbook do
             :cookbook_version,
             supported_platforms: [
               debian_platform,
-              create(:supported_platform, name: "windows")
+              create(:supported_platform, name: "windows"),
             ]
-          )
+          ),
         ]
       )
     end

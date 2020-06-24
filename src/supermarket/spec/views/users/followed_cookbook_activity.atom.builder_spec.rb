@@ -25,7 +25,7 @@ describe "users/followed_cookbook_activity.atom.builder" do
       :cookbook,
       name: "test-2",
       cookbook_versions: [
-        create(:cookbook_version, description: "test cookbook")
+        create(:cookbook_version, description: "test cookbook"),
       ],
       cookbook_versions_count: 0
     )

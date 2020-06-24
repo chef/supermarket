@@ -80,7 +80,7 @@ describe "GET /api/v1/cookbooks/:cookbook/versions/:version" do
               "name" => quality_metric_collab_num.name,
               "failed" => collab_result.failure,
               "feedback" => collab_result.feedback,
-            }
+            },
           ],
         }
       end
