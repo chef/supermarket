@@ -95,7 +95,7 @@ class CookbookVersion < ApplicationRecord
 
   def metric_result_pass_rate
     total_metric_results = metric_results.count
-    if total_metric_results.positive?
+    if total_metric_results > 0
       ((metric_results.where(failure: false).count / total_metric_results.to_f) * 100).round(0)
     else
       "-"
