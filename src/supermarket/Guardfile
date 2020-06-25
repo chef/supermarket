@@ -39,7 +39,7 @@ group :red_green_refactor, halt_on_fail: true do
     # Capybara features specs
     watch(rails.view_dirs)     { |m| rspec.spec.call("features/#{m[1]}") }
     watch(rails.layouts)       { |m| rspec.spec.call("features/#{m[1]}") }
-  end
+  end # rubocop:disable Layout/BlockAlignment
 
   guard :rubocop, all_on_start: true do
     watch(/.+\.rb$/)
