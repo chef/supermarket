@@ -65,7 +65,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
           Supermarket::Metrics.increment "cookbook.version.published"
           UniverseCache.flush
 
-          render :create, status: 201
+          render :create, status: :created
         end
       end
     end
