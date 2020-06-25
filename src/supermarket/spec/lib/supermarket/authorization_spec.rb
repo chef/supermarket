@@ -20,7 +20,7 @@ end
 
 describe Supermarket::Authorization do
   subject do
-    Class.new(ActionController::Base) do
+    Class.new(ApplicationController) do
       include Supermarket::Authorization
       def current_user; end
     end.new

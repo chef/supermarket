@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Supermarket::Authentication do
   subject do
-    Class.new(ActionController::Base) do
+    Class.new(ApplicationController) do
       include Supermarket::Authentication
     end.new
   end
