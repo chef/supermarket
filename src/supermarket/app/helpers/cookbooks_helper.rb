@@ -37,7 +37,7 @@ module CookbooksHelper
   def dependency_link(dep)
     name_and_version = "#{dep.name} #{dep.version_constraint}"
 
-    content_tag(:td) do
+    tag.td do
       if dep.cookbook
         link_to name_and_version, cookbook_url(dep.cookbook), rel: "cookbook_dependency"
       else
@@ -64,10 +64,9 @@ module CookbooksHelper
   # @return [String] a link based on the following state for the current cookbook.
   #
   def follow_button_for(cookbook, params = {}, &block)
-    fa_icon = content_tag(:i, "", class: "fa fa-users")
+    fa_icon = tag.i("", class: "fa fa-users")
     followers_count = cookbook.cookbook_followers_count.to_s
-    followers_count_span = content_tag(
-      :span,
+    followers_count_span = tag.span(
       number_with_delimiter(followers_count),
       class: "cookbook_follow_count"
     )

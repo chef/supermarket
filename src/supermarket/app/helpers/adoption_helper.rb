@@ -14,7 +14,7 @@ module AdoptionHelper
                   ["Put up for adoption", true]
                 end
 
-      content_tag(:li, adoption_url(obj, txt, up))
+      tag.li(adoption_url(obj, txt, up))
     end
   end
 

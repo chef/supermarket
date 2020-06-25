@@ -29,7 +29,7 @@ module UsersHelper
   #
   def pluralized_stats(count, thing)
     new_count, new_thing = pluralize(count, thing).split(" ")
-    raw "#{new_count} #{content_tag(:span, new_thing)}"
+    raw "#{new_count} #{tag.span(new_thing)}"
   end
 
   private
