@@ -12,6 +12,9 @@ AllCops:
     - node_modules/**/*
 Layout/MultilineOperationIndentation:
   EnforcedStyle: aligned
+Lint/UselessAssignment:
+  Exclude:
+    - config.rb
 Rails/SkipsModelValidations:
   Whitelist:
     - increment_counter
