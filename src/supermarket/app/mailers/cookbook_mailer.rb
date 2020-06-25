@@ -1,5 +1,4 @@
-class CookbookMailer < ActionMailer::Base
-  layout "mailer"
+class CookbookMailer < ApplicationMailer
   add_template_helper(CookbookVersionsHelper)
 
   #
