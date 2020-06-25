@@ -122,37 +122,35 @@ module ApiSpecHelpers
   end
 
   def cookbook_upload(cookbook_name, opts = {})
-    begin
-      if cookbook_name.ends_with?(".tgz")
-        tarball = File.new(Rails.root.join("spec", "support", "cookbook_fixtures", cookbook_name))
-      else
-        custom_metadata = opts.fetch(:custom_metadata, {})
+    if cookbook_name.ends_with?(".tgz")
+      tarball = File.new(Rails.root.join("spec", "support", "cookbook_fixtures", cookbook_name))
+    else
+      custom_metadata = opts.fetch(:custom_metadata, {})
 
-        metadata = {
-          name: cookbook_name,
-          version: "1.0.0",
-          description: "Installs/Configures #{cookbook_name}",
-          license: "MIT",
-          platforms: {
-            "ubuntu" => ">= 12.0.0",
-          },
-          dependencies: {
-            "apt" => "~> 1.0.0",
-          },
-        }.merge(custom_metadata)
+      metadata = {
+        name: cookbook_name,
+        version: "1.0.0",
+        description: "Installs/Configures #{cookbook_name}",
+        license: "MIT",
+        platforms: {
+          "ubuntu" => ">= 12.0.0",
+        },
+        dependencies: {
+          "apt" => "~> 1.0.0",
+        },
+      }.merge(custom_metadata)
 
-        tarball = build_cookbook_tarball(cookbook_name) do |base_dir|
-          base_dir.file("README.md") { "# README" }
-          base_dir.file("metadata.json") do
-            JSON.dump(metadata)
-          end
+      tarball = build_cookbook_tarball(cookbook_name) do |base_dir|
+        base_dir.file("README.md") { "# README" }
+        base_dir.file("metadata.json") do
+          JSON.dump(metadata)
         end
       end
-
-      content_type = opts.fetch(:content_type, "application/x-gzip")
-      fixture_file_upload(tarball.path, content_type)
-    ensure
-      tarball.close
     end
+
+    content_type = opts.fetch(:content_type, "application/x-gzip")
+    fixture_file_upload(tarball.path, content_type)
+  ensure
+    tarball.close
   end
 end

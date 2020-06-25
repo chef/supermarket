@@ -153,13 +153,11 @@ module Supermarket
     # appropriate status.
     #
     def postgres_health_metric
-      begin
-        yield
-      rescue ActiveRecord::ConnectionTimeoutError
-        @postgresql[:status] = UNKNOWN
-      rescue PG::ConnectionBad
-        @postgresql[:status] = UNREACHABLE
-      end
+      yield
+    rescue ActiveRecord::ConnectionTimeoutError
+      @postgresql[:status] = UNKNOWN
+    rescue PG::ConnectionBad
+      @postgresql[:status] = UNREACHABLE
     end
 
     #
@@ -167,15 +165,13 @@ module Supermarket
     # appropriate status.
     #
     def redis_health_metric
-      begin
-        yield
-      rescue Redis::TimeoutError
-        @sidekiq[:status] = UNKNOWN
-        @redis[:status] = UNKNOWN
-      rescue Redis::CannotConnectError
-        @sidekiq[:status] = UNREACHABLE
-        @redis[:status] = UNREACHABLE
-      end
+      yield
+    rescue Redis::TimeoutError
+      @sidekiq[:status] = UNKNOWN
+      @redis[:status] = UNKNOWN
+    rescue Redis::CannotConnectError
+      @sidekiq[:status] = UNREACHABLE
+      @redis[:status] = UNREACHABLE
     end
   end
 end

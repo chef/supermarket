@@ -14,11 +14,9 @@ end
   action_mailer
   sprockets
 }.each do |framework|
-  begin
-    require "#{framework}/railtie"
-  rescue LoadError
-    Rails.logger.info "Unable to load #{framework}."
-  end
+  require "#{framework}/railtie"
+rescue LoadError
+  Rails.logger.info "Unable to load #{framework}."
 end
 
 require_relative "../app/lib/supermarket/host"

@@ -216,13 +216,11 @@ module FeatureHelpers
   end
 
   def in_user_menu
-    begin
-      find(".usermenu").hover
+    find(".usermenu").hover
+    yield
+  rescue NotImplementedError
+    within(".usermenu") do
       yield
-    rescue NotImplementedError
-      within(".usermenu") do
-        yield
-      end
     end
   end
 
