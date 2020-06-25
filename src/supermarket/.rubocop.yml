@@ -15,6 +15,10 @@ Layout/MultilineOperationIndentation:
 Lint/UselessAssignment:
   Exclude:
     - config.rb
+Rails/RakeEnvironment:
+  Exclude:
+    - lib/tasks/setup.rake
+    - lib/tasks/spec/javascripts.rake
 Rails/SkipsModelValidations:
   Whitelist:
     - increment_counter
