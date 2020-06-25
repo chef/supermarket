@@ -114,14 +114,8 @@ class Cookbook < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }, format: /\A[\w_-]+\z/i
   validates :lowercase_name, presence: true, uniqueness: true
   validates :cookbook_versions, presence: true
-  validates :source_url, url: {
-    allow_blank: true,
-    allow_nil: true,
-  }
-  validates :issues_url, url: {
-    allow_blank: true,
-    allow_nil: true,
-  }
+  validates :source_url, url: { allow_blank: true }
+  validates :issues_url, url: { allow_blank: true }
 
   #
   # The total number of times a cookbook has been downloaded from Supermarket
