@@ -4,7 +4,7 @@ require "rails/all"
 
 Dotenv.overload(".env", ".env.#{Rails.env}").tap do |env|
   if env.empty?
-    fail "Cannot run Supermarket without a .env file."
+    raise "Cannot run Supermarket without a .env file."
   end
 end
 
