@@ -7,7 +7,7 @@ class User < ApplicationRecord
   # Associations
   # --------------------
   has_many :accounts
-  has_many :owned_cookbooks, class_name: "Cookbook", foreign_key: "user_id", inverse_of: :owner
+  has_many :owned_cookbooks, class_name: "Cookbook", inverse_of: :owner
   has_many :cookbook_versions
   has_many :collaborators
   has_many :cookbook_followers

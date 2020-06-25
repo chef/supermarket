@@ -95,7 +95,7 @@ class Cookbook < ApplicationRecord
   belongs_to :category, optional: true
   belongs_to :owner, class_name: "User", foreign_key: :user_id, inverse_of: :owned_cookbooks
   has_one :chef_account, through: :owner
-  belongs_to :replacement, class_name: "Cookbook", foreign_key: :replacement_id, inverse_of: :replaces, optional: true
+  belongs_to :replacement, class_name: "Cookbook", inverse_of: :replaces, optional: true
   has_many :replaces, class_name: "Cookbook", foreign_key: :replacement_id, inverse_of: :replacement, dependent: :nullify
   has_many :collaborators, as: :resourceable, inverse_of: :resourceable # rubocop:disable Rails/HasManyOrHasOneDependent
   has_many :collaborator_users, through: :collaborators, source: :user
