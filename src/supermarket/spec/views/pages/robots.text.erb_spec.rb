@@ -15,12 +15,12 @@ describe "pages/robots.text.erb" do
   it "configures Allow based on environment variables" do
     ENV["ROBOTS_ALLOW"] = "/"
     render
-    expect(rendered).to match(/Allow: \//)
+    expect(rendered).to match(%r{Allow: /})
   end
 
   it "configures Disallow based on environment variables" do
     ENV["ROBOTS_DISALLOW"] = "/admin"
     render
-    expect(rendered).to match(/Disallow: \/admin/)
+    expect(rendered).to match(%r{Disallow: /admin})
   end
 end

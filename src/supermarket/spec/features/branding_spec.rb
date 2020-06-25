@@ -110,8 +110,8 @@ $appheader_logo_png: 'branding/SOMELOGO.png';"
     after { @b.delete }
 
     it "should replace the logo" do
-      expected_svg = /logochef {\n  background: url\(image-path\("branding\/SOMELOGO.svg"\)\)/
-      expected_png = /\.no-svg \.logochef {\n    background: url\(image-path\(\"branding\/SOMELOGO.png\"\)\)/
+      expected_svg = %r{logochef \{\n  background: url\(image-path\("branding/SOMELOGO.svg"\)\)}
+      expected_png = %r{\.no-svg \.logochef \{\n    background: url\(image-path\(\"branding/SOMELOGO.png\"\)\)}
       css = get_compiled_css("appheader.scss")
       expect(css).to match(expected_svg)
       expect(css).to match(expected_png)
