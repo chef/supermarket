@@ -24,10 +24,14 @@ class GroupMembersController < ApplicationController
           end
         else
           (flash[:warning] ||= "") << group_member.errors.full_messages.join(", ")
-          return
+          break
         end
       end
-      flash[:notice] = "Members successfully added!"
+
+      if flash[:warning].blank?
+        flash[:notice] = "Members successfully added!"
+      end
+
       redirect_to group_path(group_member_params[:group_id])
     end
   end
