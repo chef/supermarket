@@ -27,6 +27,7 @@ class OwnershipTransferRequest < ApplicationRecord
   #
   def accept!
     return unless accepted.nil?
+
     update(accepted: true)
     if add_owner_as_collaborator
       Collaborator.find_or_create_by!(user_id: cookbook.owner.id, resourceable: cookbook)
@@ -44,6 +45,7 @@ class OwnershipTransferRequest < ApplicationRecord
   #
   def decline!
     return unless accepted.nil?
+
     update(accepted: false)
   end
 

@@ -114,6 +114,7 @@ class CookbookUpload
     #
     def errors
       return @errors if @errors
+
       error_messages = Set.new.tap do |messages|
         parse_cookbook_json do |parsing_errors, _|
           parsing_errors.full_messages.each do |message|

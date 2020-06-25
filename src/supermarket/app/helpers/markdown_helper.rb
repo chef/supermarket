@@ -40,6 +40,7 @@ module MarkdownHelper
     def make_img_src_urls_protocol_relative(doc)
       doc.search("img").each do |img|
         next if img["src"].nil?
+
         src = img["src"].strip
         if src.start_with? "http"
           img["src"] = src.sub!(/\Ahttps?:/, "")

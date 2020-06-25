@@ -223,6 +223,7 @@ class User < ApplicationRecord
 
   def public_key_signature
     return nil if public_key.blank?
+
     # Inspired by https://stelfox.net/blog/2014/04/calculating-rsa-key-fingerprints-in-ruby/
     # Verifiable by an end-user either:
     #   with private key: openssl rsa -in private_key.pem -pubout -outform DER | openssl md5 -c

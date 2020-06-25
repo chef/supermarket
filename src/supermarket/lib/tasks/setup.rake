@@ -37,6 +37,7 @@ namespace :setup do
   desc "spin up docker containers running dependency services"
   task :docker do
     fail "FATAL: Cannot contact running docker services." unless system("docker info")
+
     system("docker run \
       --detach=true \
       --env POSTGRES_USER=#{ENV["USER"]}  \

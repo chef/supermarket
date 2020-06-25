@@ -13,6 +13,7 @@ module Supermarket
         raise IncompleteConfig.new "Got some, but not all, of the required S3 configs. Must provide #{REQUIRED_S3_VARS} to configure cookbook storage in an S3 bucket."
       end
       return true if all_s3_settings
+
       false
     end
 
@@ -25,6 +26,7 @@ module Supermarket
         raise IncompleteConfig.new "Got some, but not all, of AWS user credentials. To access an S3 bucket with IAM user credentials, provide #{REQUIRED_S3_STATIC_CREDS_VARS}. To use an IAM role, do not set these."
       end
       return true if all_s3_creds
+
       false
     end
   end
