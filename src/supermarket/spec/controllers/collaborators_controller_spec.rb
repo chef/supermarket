@@ -17,7 +17,7 @@ describe CollaboratorsController do
       collaborators = assigns[:collaborators]
       expect(collaborators.count(:all)).to eql(2)
       expect(collaborators.first).to eql(hank)
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it "doesn't return users that are ineligible" do
@@ -28,7 +28,7 @@ describe CollaboratorsController do
       expect(collaborators).to include(hanky)
       expect(collaborators).to_not include(fanny)
       expect(collaborators).to_not include(existing_collaborator)
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 

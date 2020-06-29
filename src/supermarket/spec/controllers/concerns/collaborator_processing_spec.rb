@@ -213,7 +213,7 @@ describe FakesController do
         subject.remove_collaborator(collaborator)
       end.to change { Collaborator.count }.by(-1)
 
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it "allows a collaborator to remove themselves as a collaborator" do
@@ -223,7 +223,7 @@ describe FakesController do
         subject.remove_collaborator(collaborator)
       end.to change { Collaborator.count }.by(-1)
 
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it "does not allow a non-collaborator to remove a collaborator" do

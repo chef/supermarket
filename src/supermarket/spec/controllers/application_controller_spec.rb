@@ -68,7 +68,7 @@ describe ApplicationController do
     it "skips the require_linked_github_account! filter if github integration is disabled" do
       get :index
 
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response.body).to eql("haha")
     end
   end

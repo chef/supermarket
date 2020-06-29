@@ -54,13 +54,13 @@ describe "GET /universe" do
 
   it "returns a 200" do
     get "/universe", params: { format: :json }
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it "returns http URLs by default" do
     get "/universe", params: { format: :json }
 
-    expect(response).to be_success
+    expect(response).to be_successful
     expect(json_body["redis"]["1.2.0"]["location_path"]).to match(%r{http://.*/api/v1})
     expect(json_body["redis"]["1.2.0"]["download_url"]).to match(%r{http://.*/api/v1/cookbooks/redis/versions/1.2.0/download})
   end
@@ -80,7 +80,7 @@ describe "GET /universe" do
   it "returns https URLs when ENV['PROTOCOL']=https" do
     get "/universe", params: { format: :json }, headers: { "HTTPS" => "on" }
 
-    expect(response).to be_success
+    expect(response).to be_successful
     expect(json_body["redis"]["1.2.0"]["location_path"]).to match(%r{https://.*/api/v1})
     expect(json_body["redis"]["1.2.0"]["download_url"]).to match(%r{https://.*/api/v1/cookbooks/redis/versions/1.2.0/download})
   end

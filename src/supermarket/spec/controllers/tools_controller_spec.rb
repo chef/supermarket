@@ -67,7 +67,7 @@ describe ToolsController do
       before { get :show, params: { id: tool } }
 
       it "responds with a 200" do
-        expect(response).to be_success
+        expect(response).to be_successful
       end
 
       it "assigns a new tool" do

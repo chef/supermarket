@@ -22,7 +22,7 @@ describe GroupsController do
     it "renders the json format when requested" do
       get :index, format: :json
 
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     context "when passing a query string" do

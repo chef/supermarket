@@ -6,7 +6,7 @@ describe EmailPreferencesController do
   describe "GET /unsubscribe/:token" do
     it "should succeed" do
       get :unsubscribe, params: { token: email_preference }
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it "should 404 if the token does not exist" do

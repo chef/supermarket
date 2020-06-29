@@ -4,7 +4,7 @@ describe Api::V1::MetricsController do
   describe "#show" do
     it "retrieves metrics" do
       get :show, format: :json
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(assigns(:metrics)).to_not be_nil
     end
   end
