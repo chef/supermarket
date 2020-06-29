@@ -2,15 +2,19 @@ require "spec_helper"
 
 describe User do
   context "associations" do
-    it { should have_many(:accounts) }
-    it { should have_many(:owned_cookbooks) }
-    it { should have_many(:collaborators) }
+    it { should have_many(:accounts).dependent(:destroy) }
+    it { should have_many(:owned_cookbooks).dependent(:restrict_with_exception) }
+    it { should have_many(:cookbook_versions).dependent(:nullify) }
+    it { should have_many(:collaborators).dependent(:destroy) }
     it { should have_many(:collaborated_cookbooks) }
-    it { should have_many(:cookbook_followers) }
+    it { should have_many(:cookbook_followers).dependent(:destroy) }
+    it { should have_many(:email_preferences).dependent(:destroy) }
     it { should have_many(:followed_cookbooks) }
-    it { should have_many(:tools) }
-    it { should have_many(:group_members) }
+    it { should have_many(:tools).dependent(:restrict_with_exception) }
+    it { should have_many(:group_members).dependent(:destroy) }
     it { should have_many(:memberships) }
+    it { should have_many(:initiated_ownership_transfer_requests).dependent(:restrict_with_exception) }
+    it { should have_many(:received_ownership_transfer_requests).dependent(:restrict_with_exception) }
   end
 
   context "validations" do

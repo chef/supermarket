@@ -6,23 +6,31 @@ class User < ApplicationRecord
 
   # Associations
   # --------------------
-  has_many :accounts
-  has_many :owned_cookbooks, class_name: "Cookbook", inverse_of: :owner
-  has_many :cookbook_versions
-  has_many :collaborators
-  has_many :cookbook_followers
+  has_many :accounts, dependent: :destroy
+  has_many :owned_cookbooks, class_name: "Cookbook", inverse_of: :owner, dependent: :restrict_with_exception
+  has_many :cookbook_versions, dependent: :nullify
+  has_many :collaborators, dependent: :destroy
+  has_many :cookbook_followers, dependent: :destroy
   has_many :followed_cookbooks, through: :cookbook_followers, source: :cookbook
   has_many :collaborated_cookbooks, through: :collaborators, source: :resourceable, source_type: "Cookbook"
-  has_many :tools
+  has_many :tools, dependent: :restrict_with_exception
   has_many :collaborated_tools, through: :collaborators, source: :resourceable, source_type: "Tool"
-  has_many :email_preferences
+  has_many :email_preferences, dependent: :destroy
   has_many :system_emails, through: :email_preferences
   has_one :chef_account, -> { self.for("chef_oauth2") }, class_name: "Account", inverse_of: :user
   has_one :github_account, -> { self.for("github") }, class_name: "Account", inverse_of: :user
-  has_many :group_members
+  has_many :group_members, dependent: :destroy
   has_many :memberships, through: :group_members, source: :group
-  has_many :initiated_ownership_transfer_requests, class_name: "OwnershipTransferRequest", foreign_key: :sender_id, inverse_of: :sender
-  has_many :received_ownership_transfer_requests, class_name: "OwnershipTransferRequest", foreign_key: :recipient_id, inverse_of: :recipient
+  has_many :initiated_ownership_transfer_requests,
+    class_name: "OwnershipTransferRequest",
+    foreign_key: :sender_id,
+    inverse_of: :sender,
+    dependent: :restrict_with_exception
+  has_many :received_ownership_transfer_requests,
+    class_name: "OwnershipTransferRequest",
+    foreign_key: :recipient_id,
+    inverse_of: :recipient,
+    dependent: :restrict_with_exception
 
   # Validations
   # --------------------

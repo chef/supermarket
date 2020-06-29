@@ -2,9 +2,9 @@ require "spec_helper"
 
 describe Group do
   context "associations" do
-    it { should have_many(:group_members) }
+    it { should have_many(:group_members).dependent(:destroy) }
     it { should have_many(:members) }
-    it { should have_many(:group_resources) }
+    it { should have_many(:group_resources).dependent(:destroy) }
   end
 
   it "requires a name" do
