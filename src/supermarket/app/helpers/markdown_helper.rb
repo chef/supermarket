@@ -69,6 +69,6 @@ module MarkdownHelper
       superscript: true
     ).render(
       text
-    ).html_safe
+    ).html_safe # rubocop:todo Rails/OutputSafety
   end
 end
