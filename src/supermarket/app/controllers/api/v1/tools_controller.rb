@@ -20,7 +20,7 @@ class Api::V1::ToolsController < Api::V1Controller
   #
   def index
     @total = Tool.count
-    @tools = Tool.index(order: @order, limit: @items, start: @start)
+    @tools = Tool.paginated_with_owner(order: @order, limit: @items, start: @start)
   end
 
   #

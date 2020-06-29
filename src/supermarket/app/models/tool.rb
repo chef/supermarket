@@ -75,7 +75,7 @@ class Tool < ApplicationRecord
     }.fetch(ordering, "name ASC"))
   }
 
-  scope :index, lambda { |opts = {}|
+  scope :paginated_with_owner, lambda { |opts = {}|
     includes(owner: :chef_account)
       .ordered_by(opts.fetch(:order, "name ASC"))
       .limit(opts.fetch(:limit, 10))

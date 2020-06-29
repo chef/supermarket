@@ -45,7 +45,7 @@ class Cookbook < ApplicationRecord
     joins(owner: :chef_account).where("accounts.username = ?", username)
   }
 
-  scope :index, lambda { |opts = {}|
+  scope :paginated_with_owner_and_versions, lambda { |opts = {}|
     includes(:cookbook_versions, owner: :chef_account)
       .ordered_by(opts.fetch(:order, "name ASC"))
       .limit(opts.fetch(:limit, 10))
