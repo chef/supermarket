@@ -1,4 +1,4 @@
-class AddSlugToTools < ActiveRecord::Migration
+class AddSlugToTools < ActiveRecord::Migration[4.2]
   def up
     add_column :tools, :slug, :string
     add_index :tools, :slug, unique: true

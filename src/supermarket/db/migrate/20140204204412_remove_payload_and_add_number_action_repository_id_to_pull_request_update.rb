@@ -1,4 +1,4 @@
-class RemovePayloadAndAddNumberActionRepositoryIdToPullRequestUpdate < ActiveRecord::Migration
+class RemovePayloadAndAddNumberActionRepositoryIdToPullRequestUpdate < ActiveRecord::Migration[4.2]
   def change
     remove_column :curry_pull_request_updates, :payload
     add_column :curry_pull_request_updates, :number, :string

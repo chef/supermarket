@@ -1,4 +1,4 @@
-class AddChangelogColumnsToCookbookVersions < ActiveRecord::Migration
+class AddChangelogColumnsToCookbookVersions < ActiveRecord::Migration[4.2]
   def change
     change_table :cookbook_versions do |t|
       t.text :changelog

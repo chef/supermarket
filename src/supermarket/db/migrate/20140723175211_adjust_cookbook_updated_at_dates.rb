@@ -1,4 +1,4 @@
-class AdjustCookbookUpdatedAtDates < ActiveRecord::Migration
+class AdjustCookbookUpdatedAtDates < ActiveRecord::Migration[4.2]
   def change
     Cookbook.all.each do |cookbook|
       latest_version_creation_date = cookbook.cookbook_versions.

@@ -1,4 +1,4 @@
-class CookbookNamesAreUnique < ActiveRecord::Migration
+class CookbookNamesAreUnique < ActiveRecord::Migration[4.2]
   def up
     change_table :cookbooks do |t|
       t.string :lowercase_name

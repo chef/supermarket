@@ -1,4 +1,4 @@
-class CreateMetricResults < ActiveRecord::Migration
+class CreateMetricResults < ActiveRecord::Migration[4.2]
   def change
     create_table :metric_results do |t|
       t.references :cookbook_version

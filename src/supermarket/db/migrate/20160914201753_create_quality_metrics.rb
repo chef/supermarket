@@ -1,4 +1,4 @@
-class CreateQualityMetrics < ActiveRecord::Migration
+class CreateQualityMetrics < ActiveRecord::Migration[4.2]
   def change
     create_table :quality_metrics do |t|
       t.string :name

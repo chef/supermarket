@@ -21,14 +21,14 @@ class Curry::PullRequestCommitAuthor < ActiveRecord::Base
   def self.table_name_prefix
     'curry_'
   end
-  
+
   belongs_to :commit_author
   belongs_to :pull_request
 
   validates :commit_author_id, uniqueness: { scope: :pull_request_id }
 end
 
-class CommitAuthorsHaveUniqueEmailsAndLogins < ActiveRecord::Migration
+class CommitAuthorsHaveUniqueEmailsAndLogins < ActiveRecord::Migration[4.2]
   def change
     emails = Curry::CommitAuthor.with_known_email.pluck(:email)
     logins = Curry::CommitAuthor.with_known_login.pluck(:login)

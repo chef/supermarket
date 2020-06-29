@@ -1,4 +1,4 @@
-class MakeToolNameUnique < ActiveRecord::Migration
+class MakeToolNameUnique < ActiveRecord::Migration[4.2]
   def up
     add_column :tools, :lowercase_name, :string
     add_index :tools, :lowercase_name, unique: true

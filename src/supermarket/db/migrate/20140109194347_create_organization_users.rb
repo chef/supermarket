@@ -1,4 +1,4 @@
-class CreateOrganizationUsers < ActiveRecord::Migration
+class CreateOrganizationUsers < ActiveRecord::Migration[4.2]
   def change
     create_table :organization_users do |t|
       t.references :user, index: true

@@ -1,4 +1,4 @@
-class EnforceCookbookDependencyUniqueness < ActiveRecord::Migration
+class EnforceCookbookDependencyUniqueness < ActiveRecord::Migration[4.2]
   def change
     add_index(
       :cookbook_dependencies,

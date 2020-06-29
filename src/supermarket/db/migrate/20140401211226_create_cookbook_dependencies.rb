@@ -1,4 +1,4 @@
-class CreateCookbookDependencies < ActiveRecord::Migration
+class CreateCookbookDependencies < ActiveRecord::Migration[4.2]
   def change
     create_table :cookbook_dependencies do |t|
       t.string :name, null: false

@@ -1,4 +1,4 @@
-class CreateSupportedPlatforms < ActiveRecord::Migration
+class CreateSupportedPlatforms < ActiveRecord::Migration[4.2]
   def change
     create_table :supported_platforms do |t|
       t.string :name, null: false

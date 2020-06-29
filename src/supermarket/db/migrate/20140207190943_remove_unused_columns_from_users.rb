@@ -1,4 +1,4 @@
-class RemoveUnusedColumnsFromUsers < ActiveRecord::Migration
+class RemoveUnusedColumnsFromUsers < ActiveRecord::Migration[4.2]
   def change
     remove_column :users, :prefix, :string
     remove_column :users, :middle_name, :string

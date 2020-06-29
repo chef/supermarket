@@ -1,4 +1,4 @@
-class CreateCurryUnknownCommitters < ActiveRecord::Migration
+class CreateCurryUnknownCommitters < ActiveRecord::Migration[4.2]
   def change
     create_table :curry_unknown_committers do |t|
       t.string :login

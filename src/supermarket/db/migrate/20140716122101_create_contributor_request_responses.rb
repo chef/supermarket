@@ -1,4 +1,4 @@
-class CreateContributorRequestResponses < ActiveRecord::Migration
+class CreateContributorRequestResponses < ActiveRecord::Migration[4.2]
   def change
     create_table :contributor_request_responses do |t|
       t.integer :contributor_request_id, null: false

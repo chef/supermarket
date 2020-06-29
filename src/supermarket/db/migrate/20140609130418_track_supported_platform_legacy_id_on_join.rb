@@ -1,4 +1,4 @@
-class TrackSupportedPlatformLegacyIdOnJoin < ActiveRecord::Migration
+class TrackSupportedPlatformLegacyIdOnJoin < ActiveRecord::Migration[4.2]
   def change
     remove_index :supported_platforms, column: :legacy_id, unique: true
     remove_column :supported_platforms, :legacy_id, :integer

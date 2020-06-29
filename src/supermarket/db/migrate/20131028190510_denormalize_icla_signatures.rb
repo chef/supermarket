@@ -1,4 +1,4 @@
-class DenormalizeIclaSignatures < ActiveRecord::Migration
+class DenormalizeIclaSignatures < ActiveRecord::Migration[4.2]
   def change
     add_column :icla_signatures, :prefix, :string
     add_column :icla_signatures, :first_name, :string

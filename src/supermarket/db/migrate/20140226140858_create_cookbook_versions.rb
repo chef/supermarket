@@ -1,4 +1,4 @@
-class CreateCookbookVersions < ActiveRecord::Migration
+class CreateCookbookVersions < ActiveRecord::Migration[4.2]
   def change
     create_table :cookbook_versions do |t|
       t.integer :cookbook_id
