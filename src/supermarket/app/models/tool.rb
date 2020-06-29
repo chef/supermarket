@@ -17,7 +17,8 @@ class Tool < ApplicationRecord
 
   # Validations
   # --------------------
-  validates :name, uniqueness: { case_sensitive: false }, presence: true
+  validates :name, uniqueness: { case_sensitive: false }, presence: true # rubocop:disable Rails/UniqueValidationWithoutIndex
+  validates :lowercase_name, presence: true, uniqueness: true
   validates :type, inclusion: { in: ALLOWED_TYPES }
   validates :slug, presence: true, uniqueness: { case_sensitive: false }, format: /\A[\w_-]+\z/i
   validates :source_url, url: { allow_blank: true }
