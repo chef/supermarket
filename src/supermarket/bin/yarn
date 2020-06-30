@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
-VENDOR_PATH = File.expand_path("..", __dir__)
-Dir.chdir(VENDOR_PATH) do
+APP_ROOT = File.expand_path("..", __dir__)
+Dir.chdir(APP_ROOT) do
   exec "yarnpkg #{ARGV.join(" ")}"
 rescue Errno::ENOENT
   warn "Yarn executable was not detected in the system."
