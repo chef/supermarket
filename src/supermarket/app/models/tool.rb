@@ -1,5 +1,5 @@
 class Tool < ApplicationRecord
-  include PgSearch
+  include PgSearch::Model
 
   ALLOWED_TYPES = %w{knife_plugin ohai_plugin chef_tool handler provisioning_driver kitchen_driver powershell_module dsc_resource compliance_profile}.freeze
 

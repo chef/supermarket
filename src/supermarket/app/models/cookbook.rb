@@ -1,7 +1,7 @@
 require "chef/version_class"
 
 class Cookbook < ApplicationRecord
-  include PgSearch
+  include PgSearch::Model
   include Badgeable
   extend Badgeable::ClassMethods
 
@@ -25,13 +25,17 @@ class Cookbook < ApplicationRecord
     where(lowercase_name: lowercase_names)
   }
 
-  scope :ordered_by, lambda { |ordering|
-    reorder({
-      "recently_updated" => "updated_at DESC",
-      "recently_added" => "id DESC",
-      "most_downloaded" => "(cookbooks.web_download_count + cookbooks.api_download_count) DESC, id ASC",
-      "most_followed" => "cookbook_followers_count DESC, id ASC",
-    }.fetch(ordering, "name ASC"))
+  ORDER_OPTIONS = {
+    "recently_updated" => Arel.sql("updated_at DESC"),
+    "recently_added" => Arel.sql("id DESC"),
+    "most_downloaded" => Arel.sql("(cookbooks.web_download_count + cookbooks.api_download_count) DESC, id ASC"),
+    "most_followed" => Arel.sql("cookbook_followers_count DESC, id ASC"),
+    "by_name" => Arel.sql("name ASC"),
+  }.freeze
+
+  scope :ordered_by, lambda { |option|
+    ordering = ORDER_OPTIONS.fetch(option, ORDER_OPTIONS["by_name"] )
+    reorder(ordering)
   }
 
   scope :order_by_latest_upload_date, lambda {

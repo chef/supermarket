@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   include Authorizable
-  include PgSearch
+  include PgSearch::Model
 
   ALLOWED_INSTALL_PREFERENCES = %w{berkshelf knife librarian policyfile}.freeze
 
