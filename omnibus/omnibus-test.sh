@@ -34,4 +34,4 @@ sleep 120
 
 echo "--- Running verification for $channel $product $version"
 
-sudo supermarket-ctl test -J pedant.xml
+sudo supermarket-ctl test
