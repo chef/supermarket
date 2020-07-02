@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.25 -->
-## [3.3.25](https://github.com/chef/supermarket/tree/3.3.25) (2020-07-02)
+<!-- latest_release 3.3.26 -->
+## [3.3.26](https://github.com/chef/supermarket/tree/3.3.26) (2020-07-02)
 
 #### Security Fixes
-- Rails 5.0 -&gt; 5.1 -&gt; 5.2 upgrade; adoption of ChefStyle [#1867](https://github.com/chef/supermarket/pull/1867) ([robbkidd](https://github.com/robbkidd))
+- Bump rack from 2.2.2 to 2.2.3 in /omnibus [#1868](https://github.com/chef/supermarket/pull/1868) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.20 -->
 ### Changes since 3.3.20 release
 
 #### Security Fixes
+- Bump rack from 2.2.2 to 2.2.3 in /omnibus [#1868](https://github.com/chef/supermarket/pull/1868) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.3.26 -->
 - Rails 5.0 -&gt; 5.1 -&gt; 5.2 upgrade; adoption of ChefStyle [#1867](https://github.com/chef/supermarket/pull/1867) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.25 -->
 - [Security] Bump kaminari from 1.0.1 to 1.2.1 in /src/supermarket [#1862](https://github.com/chef/supermarket/pull/1862) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.3.23 -->
 - [Security] Bump rack from 2.0.8 to 2.2.2 in quality metrics engine [#1858](https://github.com/chef/supermarket/pull/1858) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.3.22 -->
