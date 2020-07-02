@@ -1,11 +1,20 @@
 require 'mixlib/shellout'
 require 'optparse'
+# due to how things are being exec'ed, the CWD will be all wrong,
+# so we want to use the full path when loaded from omnibus-ctl,
+# but we need the local relative path for it to work with rspec
+begin
+  require 'helpers/ctl_command_helper'
+rescue LoadError
+  require '/opt/supermarket/embedded/service/omnibus-ctl/helpers/ctl_command_helper'
+end
 
 # give this a string with everything that should come after 'rake'
 def run_a_rake_command(rake_task_and_args)
-  command_text = "cd /opt/supermarket/embedded/service/supermarket && \
-                  RAILS_ENV=\"production\" env PATH=/opt/supermarket/embedded/bin \
-                  bin/rake #{rake_task_and_args}"
+  cmd_helper = CtlCommandHelper.new('qm-<command>')
+  cmd_helper.must_run_as 'supermarket'
+
+  command_text = cmd_helper.rails_env_cmd("bin/rake #{rake_task_and_args}")
 
   shell_out = Mixlib::ShellOut.new(command_text)
   shell_out.run_command
