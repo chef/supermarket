@@ -28,24 +28,24 @@ module UsersHelper
   # @return [String] the pluralized string with appropriate formatting
   #
   def pluralized_stats(count, thing)
-    new_count, new_thing = pluralize(count, thing).split(' ')
-    raw "#{new_count} #{content_tag(:span, new_thing)}"
+    new_count, new_thing = pluralize(count, thing).split(" ")
+    safe_join([new_count, " ", tag.span(new_thing)])
   end
 
   private
 
   def gravatar_image(user, options = {})
     options = {
-      size: 48
+      size: 48,
     }.merge(options)
 
     size = options[:size]
     gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
-    image_tag(gravatar_url, alt: user.name, class: 'gravatar')
+    image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
 
   def no_gravatar_image(user)
-    image_tag('apple-touch-icon.png', alt: user.name, class: 'gravatar')
+    image_tag("apple-touch-icon.png", alt: user.name, class: "gravatar")
   end
 end

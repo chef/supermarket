@@ -1,4 +1,4 @@
-class CreateCclaSignatures < ActiveRecord::Migration
+class CreateCclaSignatures < ActiveRecord::Migration[4.2]
   def change
     create_table :ccla_signatures do |t|
       t.references :user, index: true

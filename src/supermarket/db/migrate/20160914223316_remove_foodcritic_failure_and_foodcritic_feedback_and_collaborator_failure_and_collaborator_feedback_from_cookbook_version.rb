@@ -1,4 +1,4 @@
-class RemoveFoodcriticFailureAndFoodcriticFeedbackAndCollaboratorFailureAndCollaboratorFeedbackFromCookbookVersion < ActiveRecord::Migration
+class RemoveFoodcriticFailureAndFoodcriticFeedbackAndCollaboratorFailureAndCollaboratorFeedbackFromCookbookVersion < ActiveRecord::Migration[4.2]
   def change
     remove_column :cookbook_versions, :foodcritic_failure, :boolean
     remove_column :cookbook_versions, :foodcritic_feedback, :text

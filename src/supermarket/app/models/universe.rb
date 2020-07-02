@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
 module Universe
-  COOKBOOK = 'cookbook'
-  VERSION = 'version'
-  DEPENDENCY = 'dependency'
-  DEPENDENCY_CONSTRAINT = 'dependency_constraint'
-  LOCATION_PATH = 'location_path'
-  LOCATION_TYPE = 'location_type'
-  DOWNLOAD_URL = 'download_url'
-  DEPENDENCIES = 'dependencies'
+  COOKBOOK = "cookbook"
+  VERSION = "version"
+  DEPENDENCY = "dependency"
+  DEPENDENCY_CONSTRAINT = "dependency_constraint"
+  LOCATION_PATH = "location_path"
+  LOCATION_TYPE = "location_type"
+  DOWNLOAD_URL = "download_url"
+  DEPENDENCIES = "dependencies"
   # TODO: change this value to 'chef' once the `remote_cookbook.location_type` in Berkshelf
   # https://github.com/berkshelf/berkshelf/blob/master/lib/berkshelf/downloader.rb#L60-151
   # has been updated from 'opscode' to 'chef'
-  CHEF = 'opscode'
+  CHEF = "opscode"
 
   module_function
 
@@ -33,7 +33,7 @@ module Universe
     # and we're calling it in a loop.
     #
 
-    sql = %(
+    sql = %{
       SELECT cookbook_versions.version,
         cookbooks.name AS cookbook,
         cookbook_dependencies.name AS dependency,
@@ -42,7 +42,7 @@ module Universe
         INNER JOIN cookbooks ON cookbooks.id = cookbook_versions.cookbook_id
         LEFT JOIN cookbook_dependencies ON cookbook_dependencies.cookbook_version_id = cookbook_versions.id
           AND cookbook_dependencies.name != cookbooks.name
-    )
+    }
 
     cookbooks = ActiveRecord::Base.connection.execute(sql).to_a
 
@@ -59,7 +59,7 @@ module Universe
         LOCATION_TYPE => CHEF,
         LOCATION_PATH => location_path,
         DOWNLOAD_URL => download_url(name, version, url_base),
-        DEPENDENCIES => {}
+        DEPENDENCIES => {},
       }
 
       if dependency && dependency_constraint
@@ -83,10 +83,10 @@ module Universe
   # Again, doing this in raw sql instead of AR for performance reasons.
   #
   def track_hit
-    sql = %(WITH upd AS
+    sql = %{WITH upd AS
             (UPDATE hits SET total=total+1 WHERE label='universe' RETURNING *)
             INSERT INTO hits (label, total)
-            SELECT 'universe', 1 WHERE NOT EXISTS (SELECT * FROM upd))
+            SELECT 'universe', 1 WHERE NOT EXISTS (SELECT * FROM upd)}
     ActiveRecord::Base.connection.execute(sql)
   end
 
@@ -98,7 +98,7 @@ module Universe
   def show_hits
     sql = "SELECT total FROM hits WHERE label='universe'"
     result = ActiveRecord::Base.connection.execute(sql).to_a.first
-    result.nil? ? 0 : result['total'].to_i
+    result.nil? ? 0 : result["total"].to_i
   end
 
   #
@@ -125,13 +125,13 @@ module Universe
   #
   # @return [String] protocol://host:port
   def protocol_host_port(opts = {})
-    host = opts.fetch(:host, ENV['FQDN'])
-    port = opts.fetch(:port, ENV['PORT'])
+    host = opts.fetch(:host, ENV["FQDN"])
+    port = opts.fetch(:port, ENV["PORT"])
     # port may be nil or empty, and if so we don't want to have a port
     # string, but if not, then we want to prepend a colon for the URI
     # we return.
-    port_string = port.nil? || port.to_s.empty? ? '' : ":#{port}"
-    protocol = opts.fetch(:protocol, 'http')
+    port_string = port.nil? || port.to_s.empty? ? "" : ":#{port}"
+    protocol = opts.fetch(:protocol, "http")
     "#{protocol}://#{host}#{port_string}"
   end
 end

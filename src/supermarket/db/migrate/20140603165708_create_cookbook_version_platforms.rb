@@ -1,4 +1,4 @@
-class CreateCookbookVersionPlatforms < ActiveRecord::Migration
+class CreateCookbookVersionPlatforms < ActiveRecord::Migration[4.2]
   def change
     create_table :cookbook_version_platforms do |t|
       t.references :cookbook_version

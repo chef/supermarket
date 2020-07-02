@@ -1,6 +1,6 @@
-require 'active_model'
-require 'chef/version_constraint'
-require 'chef/exceptions'
+require "active_model"
+require "chef/version_constraint"
+require "chef/exceptions"
 
 module ActiveModel
   module Validations
@@ -18,7 +18,7 @@ module ActiveModel
       #
       def initialize(options)
         options.fetch(:message) do
-          options.store(:message, 'is not a valid Chef version constraint')
+          options.store(:message, "is not a valid Chef version constraint")
         end
 
         super(options)

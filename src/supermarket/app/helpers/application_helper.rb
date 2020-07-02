@@ -18,7 +18,7 @@ module ApplicationHelper
   def posessivize(name)
     return name if name.blank?
 
-    if name.last == 's'
+    if name.last == "s"
       name + "'"
     else
       name + "'s"
@@ -34,9 +34,9 @@ module ApplicationHelper
   #
   def flash_message_class_for(name)
     {
-      'notice' => 'success',
-      'alert' => 'alert',
-      'warning' => 'warning'
+      "notice" => "success",
+      "alert" => "alert",
+      "warning" => "warning",
     }.fetch(name)
   end
 end

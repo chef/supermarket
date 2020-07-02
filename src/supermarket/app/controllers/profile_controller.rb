@@ -7,10 +7,10 @@ class ProfileController < ApplicationController
   # Update the current_user's profile
   #
   def update
-    if current_user.update_attributes(user_params)
-      redirect_to current_user, notice: t('profile.updated')
+    if current_user.update(user_params)
+      redirect_to current_user, notice: t("profile.updated")
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -55,7 +55,7 @@ class ProfileController < ApplicationController
       email_preferences_attributes: [
         :_destroy,
         :id,
-        :system_email_id
+        :system_email_id,
       ]
     ).to_h
   end

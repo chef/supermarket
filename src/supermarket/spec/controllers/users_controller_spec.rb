@@ -1,40 +1,40 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe UsersController do
   let(:user) { create(:user) }
 
-  describe 'GET #show' do
-    it 'assigns a user' do
+  describe "GET #show" do
+    it "assigns a user" do
       get :show, params: { id: user.username }
 
       expect(assigns[:user]).to eql(user)
     end
 
-    it 'assigns cookbooks' do
+    it "assigns cookbooks" do
       get :show, params: { id: user.username }
 
       expect(assigns[:cookbooks]).to_not be_nil
     end
 
-    it 'assigns a specific context of cookbooks given the tab parameter' do
+    it "assigns a specific context of cookbooks given the tab parameter" do
       followed_cookbook = create(:cookbook_follower, user: user).cookbook
 
-      get :show, params: { id: user.username, tab: 'follows' }
+      get :show, params: { id: user.username, tab: "follows" }
 
       expect(assigns[:cookbooks]).to include(followed_cookbook)
     end
 
-    it '404s when when a user somehow has a Chef account but does not exist' do
+    it "404s when when a user somehow has a Chef account but does not exist" do
       User.where(id: user.id).delete_all
 
-      get :show, params: { id: user.username, user_tab_string: 'activity' }
+      get :show, params: { id: user.username, user_tab_string: "activity" }
 
       expect(response.status.to_i).to eql(404)
     end
   end
 
-  describe 'GET #tools' do
-    it 'assigns a user' do
+  describe "GET #tools" do
+    it "assigns a user" do
       get :tools, params: { id: user.username }
 
       expect(assigns[:user]).to eql(user)
@@ -48,21 +48,21 @@ describe UsersController do
       expect(assigns[:tools].to_a).to eql(user.tools.to_a)
     end
 
-    it 'sets the default search context as tools' do
+    it "sets the default search context as tools" do
       get :tools, params: { id: user.username }
 
-      expect(assigns[:search][:name]).to eql('Tools')
+      expect(assigns[:search][:name]).to eql("Tools")
       expect(assigns[:search][:path]).to eql(tools_path)
     end
   end
 
-  describe 'GET #groups' do
-    it 'assigns a user' do
+  describe "GET #groups" do
+    it "assigns a user" do
       get :groups, params: { id: user.username }
       expect(assigns[:user]).to eql(user)
     end
 
-    context 'finding a user\'s groups' do
+    context "finding a user's groups" do
       let!(:group_1) { create(:group) }
       let!(:group_2) { create(:group) }
 
@@ -73,20 +73,20 @@ describe UsersController do
         expect(user.memberships).to_not include(group_2)
       end
 
-      it 'includes all groups user is a member of' do
+      it "includes all groups user is a member of" do
         get :groups, params: { id: user.username }
         expect(assigns(:groups)).to include(group_1)
       end
 
-      it 'does not include groups user is NOT a member of' do
+      it "does not include groups user is NOT a member of" do
         get :groups, params: { id: user.username }
         expect(assigns(:groups)).to_not include(group_2)
       end
     end
   end
 
-  describe 'GET #followed_cookbook_activity' do
-    it 'assigns a user' do
+  describe "GET #followed_cookbook_activity" do
+    it "assigns a user" do
       get :tools, params: { id: user.username }
 
       expect(assigns[:user]).to eql(user)
@@ -99,56 +99,56 @@ describe UsersController do
     end
   end
 
-  describe 'PUT #make_admin' do
+  describe "PUT #make_admin" do
     let(:user) { create(:user) }
 
-    context 'the current user is an admin' do
+    context "the current user is an admin" do
       before { sign_in(create(:admin)) }
 
-      it 'adds the admin role to a user' do
+      it "adds the admin role to a user" do
         put :make_admin, params: { id: user }
         user.reload
-        expect(user.roles).to include('admin')
+        expect(user.roles).to include("admin")
       end
 
-      it 'redirects back to a user' do
+      it "redirects back to a user" do
         put :make_admin, params: { id: user }
         expect(response).to redirect_to(assigns[:user])
       end
     end
 
-    context 'the current user is not an admin' do
+    context "the current user is not an admin" do
       before { sign_in(create(:user)) }
 
-      it 'renders 404' do
+      it "renders 404" do
         put :make_admin, params: { id: user }
         expect(response.status.to_i).to eql(404)
       end
     end
   end
 
-  describe 'DELETE #revoke_admin' do
+  describe "DELETE #revoke_admin" do
     let(:user) { create(:admin) }
 
-    context 'the current user is an admin' do
+    context "the current user is an admin" do
       before { sign_in(create(:admin)) }
 
-      it 'removes the admin role to a user' do
+      it "removes the admin role to a user" do
         delete :revoke_admin, params: { id: user }
         user.reload
-        expect(user.roles).to_not include('admin')
+        expect(user.roles).to_not include("admin")
       end
 
-      it 'redirects back to a user' do
+      it "redirects back to a user" do
         delete :revoke_admin, params: { id: user }
         expect(response).to redirect_to(assigns[:user])
       end
     end
 
-    context 'the current user is not an admin' do
+    context "the current user is not an admin" do
       before { sign_in(create(:user)) }
 
-      it 'renders 404' do
+      it "renders 404" do
         delete :revoke_admin, params: { id: user }
         expect(response.status.to_i).to eql(404)
       end

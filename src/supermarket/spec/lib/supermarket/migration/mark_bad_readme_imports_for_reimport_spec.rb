@@ -1,15 +1,15 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Supermarket::Migration::MarkBadReadmeImportsForReimport do
-  it 'resets the state of attributes set by metadata' do
+  it "resets the state of attributes set by metadata" do
     cookbook_version = create(
       :cookbook_version,
       dependencies_imported: true,
-      readme: 'some junk ctime=12345678 some other junk'
+      readme: "some junk ctime=12345678 some other junk"
     )
 
-    cookbook_version.supported_platforms.create!(name: 'ubuntu')
-    cookbook_version.cookbook_dependencies.create!(name: 'apt')
+    cookbook_version.supported_platforms.create!(name: "ubuntu")
+    cookbook_version.cookbook_dependencies.create!(name: "apt")
 
     Supermarket::Migration::MarkBadReadmeImportsForReimport.call
 
@@ -18,15 +18,15 @@ describe Supermarket::Migration::MarkBadReadmeImportsForReimport do
     expect(cookbook_version.reload.cookbook_dependencies).to be_empty
   end
 
-  it 'does not affect cookbook versions which do not appear to have bad READMEs' do
+  it "does not affect cookbook versions which do not appear to have bad READMEs" do
     cookbook_version = create(
       :cookbook_version,
       dependencies_imported: true,
-      readme: 'some junk and some other junk'
+      readme: "some junk and some other junk"
     )
 
-    cookbook_version.supported_platforms.create!(name: 'ubuntu')
-    cookbook_version.cookbook_dependencies.create!(name: 'apt')
+    cookbook_version.supported_platforms.create!(name: "ubuntu")
+    cookbook_version.cookbook_dependencies.create!(name: "apt")
 
     Supermarket::Migration::MarkBadReadmeImportsForReimport.call
 

@@ -33,16 +33,16 @@ module CookbookVersionsHelper
         cookbook_version.changelog, cookbook_version.changelog_extension
       )
       changelog_link = link_to(
-        'View Full Changelog',
+        "View Full Changelog",
         cookbook_version_url(
           cookbook_version.cookbook,
           cookbook_version,
-          anchor: 'changelog'
+          anchor: "changelog"
         )
       )
       <<-ATOM_CONTENT_SNIPPET
         <p>#{cookbook_version.description}</p>
-        #{HTML_Truncator.truncate(changelog, 30, ellipsis: '')}
+        #{HTML_Truncator.truncate(changelog, 30, ellipsis: "")}
         <p>#{changelog_link}</p>
       ATOM_CONTENT_SNIPPET
     else
@@ -61,7 +61,7 @@ module CookbookVersionsHelper
   # @return [String] the Document content ready to be rendered
   #
   def render_document(content, extension)
-    if %w[md mdown markdown].include?(extension.downcase)
+    if %w{md mdown markdown}.include?(extension.downcase)
       render_markdown(content)
     else
       content
@@ -69,18 +69,18 @@ module CookbookVersionsHelper
   end
 
   def versions_string(versions)
-    versions_string = ''
+    versions_string = ""
 
     if versions.first.class == Array
       versions.each do |version_set|
         versions_string += "(#{combined_set(version_set)})"
-        versions_string += ' OR ' unless version_set == versions.last
+        versions_string += " OR " unless version_set == versions.last
       end
     elsif versions.first.class == String
       # This is a bandaid until https://github.com/chef/supermarket/issues/1505
       versions.each do |version|
         versions_string += version
-        versions_string += ' AND ' unless version == versions.last
+        versions_string += " AND " unless version == versions.last
       end
     end
 
@@ -90,6 +90,6 @@ module CookbookVersionsHelper
   private
 
   def combined_set(set)
-    set.join(' AND ')
+    set.join(" AND ")
   end
 end

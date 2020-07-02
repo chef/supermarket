@@ -1,5 +1,5 @@
 module Exportable
-  require 'csv'
+  require "csv"
 
   def self.included(base)
     base.extend ClassMethods

@@ -1,12 +1,12 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe MarkdownHelper do
-  describe '#render_markdown' do
-    it 'renders markdown' do
-      expect(helper.render_markdown('# Test')).to match(/h1/)
+  describe "#render_markdown" do
+    it "renders markdown" do
+      expect(helper.render_markdown("# Test")).to match(/h1/)
     end
 
-    it 'renders fenced code blocks' do
+    it "renders fenced code blocks" do
       codeblock = <<-CODEBLOCK.strip_heredoc
         ```sh
         $ bundle exec rake spec:all
@@ -16,13 +16,13 @@ describe MarkdownHelper do
       expect(helper.render_markdown(codeblock)).to match(/<pre><code>/)
     end
 
-    it 'auto renders links with target blank' do
-      expect(helper.render_markdown('http://chef.io')).
-        to match(Regexp.quote('<a href="http://chef.io" target="_blank" rel="noopener">http://chef.io</a>'))
+    it "auto renders links with target blank" do
+      expect(helper.render_markdown("http://chef.io"))
+        .to match(Regexp.quote('<a href="http://chef.io" target="_blank" rel="noopener">http://chef.io</a>'))
     end
   end
 
-  it 'renders tables' do
+  it "renders tables" do
     table = <<-TABLE.strip_heredoc
       | name | version |
       | ---- | ------- |
@@ -43,43 +43,43 @@ describe MarkdownHelper do
   end
 
   it "doesn't emphasize underscored words" do
-    expect(helper.render_markdown('some_long_method_name')).to_not match(/<em>/)
+    expect(helper.render_markdown("some_long_method_name")).to_not match(/<em>/)
   end
 
-  it 'adds HTML anchors to headers' do
-    expect(helper.render_markdown('# Tests')).to match(/id="tests"/)
+  it "adds HTML anchors to headers" do
+    expect(helper.render_markdown("# Tests")).to match(/id="tests"/)
   end
 
-  it 'strikesthrough text using ~~ with a del tag' do
-    expect(helper.render_markdown('~~Ignore This~~')).to match(/<del>/)
+  it "strikesthrough text using ~~ with a del tag" do
+    expect(helper.render_markdown("~~Ignore This~~")).to match(/<del>/)
   end
 
-  it 'superscripts text using ^ with a sup tag' do
-    expect(helper.render_markdown('Supermarket^2')).to match(/<sup>/)
+  it "superscripts text using ^ with a sup tag" do
+    expect(helper.render_markdown("Supermarket^2")).to match(/<sup>/)
   end
 
-  context 'protocol in URLs for images get converted' do
-    it 'HTTP -> protocol-relative' do
-      html = helper.render_markdown('![](http://img.example.com)')
+  context "protocol in URLs for images get converted" do
+    it "HTTP -> protocol-relative" do
+      html = helper.render_markdown("![](http://img.example.com)")
       expect(html).to include('<img src="//img.example.com" alt="">')
     end
 
-    it 'HTTPS -> protocol-relative' do
-      html = helper.render_markdown('![](https://img.example.com)')
+    it "HTTPS -> protocol-relative" do
+      html = helper.render_markdown("![](https://img.example.com)")
       expect(html).to include('<img src="//img.example.com" alt="">')
     end
   end
 
-  describe 'to prevent XSS attacks' do
+  describe "to prevent XSS attacks" do
     # most of these payloads were found at the very helpful
     # https://github.com/cujanovic/Markdown-XSS-Payloads
 
-    it 'escapes bare-html iframes' do
+    it "escapes bare-html iframes" do
       html = helper.render_markdown("<iframe src=javascript:alert('hahaha')></iframe>")
       expect(html).to include("<p>&lt;iframe")
     end
 
-    it 'renders only one link when there is a link within a link' do
+    it "renders only one link when there is a link within a link" do
       html = helper.render_markdown('[text](http://example.com " [@chef](/cheffery) ")')
       expect(html).to include("<p><a href=\"http://example.com\" title=\" [@chef](/cheffery) \" target=\"_blank\" rel=\"noopener\">text</a></p>")
     end
@@ -169,7 +169,7 @@ describe MarkdownHelper do
         html = helper.render_markdown(payload)
         # note URL detection will see a URL and create a link for it within this payload
         # but the auto refresh/redirect to it is prevented
-        expect(html).to include('<p>&lt;http://&lt;meta')
+        expect(html).to include("<p>&lt;http://&lt;meta")
       end
     end
   end

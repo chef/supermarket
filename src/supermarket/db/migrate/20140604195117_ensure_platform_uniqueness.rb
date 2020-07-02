@@ -1,4 +1,4 @@
-class EnsurePlatformUniqueness < ActiveRecord::Migration
+class EnsurePlatformUniqueness < ActiveRecord::Migration[4.2]
   def up
     add_index :supported_platforms, [:name, :version_constraint], unique: true
     remove_column :supported_platforms, :cookbook_version_id

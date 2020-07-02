@@ -1,4 +1,4 @@
-shared_context 'env stashing' do
+shared_context "env stashing" do
   let(:stash) { {} }
 
   before do

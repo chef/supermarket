@@ -1,4 +1,4 @@
-class CreateCurryPullRequests < ActiveRecord::Migration
+class CreateCurryPullRequests < ActiveRecord::Migration[4.2]
   def change
     create_table :curry_pull_requests do |t|
       t.string :number, null: false

@@ -6,9 +6,9 @@ class GroupMembersController < ApplicationController
 
   def create
     if group_member_params[:user_ids].present?
-      user_ids = group_member_params[:user_ids].split(',')
+      user_ids = group_member_params[:user_ids].split(",")
     else
-      flash[:warning] = 'At least one user must be added!'
+      flash[:warning] = "At least one user must be added!"
       redirect_to group_path(group_member_params[:group_id])
     end
 
@@ -23,11 +23,15 @@ class GroupMembersController < ApplicationController
             add_users_as_collaborators(resource, group_member.user.id.to_s, group_member.group.id)
           end
         else
-          (flash[:warning] ||= '') << group_member.errors.full_messages.join(', ')
-          return
+          (flash[:warning] ||= "") << group_member.errors.full_messages.join(", ")
+          break
         end
       end
-      flash[:notice] = 'Members successfully added!'
+
+      if flash[:warning].blank?
+        flash[:notice] = "Members successfully added!"
+      end
+
       redirect_to group_path(group_member_params[:group_id])
     end
   end
@@ -39,9 +43,9 @@ class GroupMembersController < ApplicationController
         remove_collaborator(collaborator) if collaborator.present?
       end
 
-      flash[:notice] = 'Member successfully removed'
+      flash[:notice] = "Member successfully removed"
     else
-      flash[:warning] = 'An error has occurred'
+      flash[:warning] = "An error has occurred"
     end
     redirect_to group_path(@group_member.group)
   end
@@ -50,9 +54,9 @@ class GroupMembersController < ApplicationController
     if current_user_admin?
       @group_member.admin = true
       @group_member.save
-      flash[:notice] = 'Member has successfully been made an admin!'
+      flash[:notice] = "Member has successfully been made an admin!"
     else
-      flash[:error] = 'You must be an admin member of the group to do that.'
+      flash[:error] = "You must be an admin member of the group to do that."
     end
 
     redirect_to group_path(@group_member.group)
@@ -79,7 +83,7 @@ class GroupMembersController < ApplicationController
   def check_admin_member_present
     if @group_member.admin?
       unless @group_member.group.group_members.where(admin: true).count > 1
-        flash[:warning] = 'Member could not be removed because a group must have at least one admin member'
+        flash[:warning] = "Member could not be removed because a group must have at least one admin member"
         redirect_to group_path(@group_member.group)
       end
     end

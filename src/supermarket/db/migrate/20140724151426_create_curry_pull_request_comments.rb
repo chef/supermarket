@@ -1,4 +1,4 @@
-class CreateCurryPullRequestComments < ActiveRecord::Migration
+class CreateCurryPullRequestComments < ActiveRecord::Migration[4.2]
   def change
     create_table :curry_pull_request_comments do |t|
       t.integer :github_id, null: false

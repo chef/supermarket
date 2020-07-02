@@ -56,7 +56,6 @@ public/sitemap*
 
 # Ignore local configuration
 .env.development
-.env.test
 .envrc
 
 # Ignore branding adjustments, user should track that separately

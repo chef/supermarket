@@ -3,8 +3,8 @@ FactoryBot.define do
     association :category
     association :owner, factory: :user
     sequence(:name) { |n| "redis-#{n}" }
-    source_url { 'http://example.com' }
-    issues_url { 'http://example.com/issues' }
+    source_url { "http://example.com" }
+    issues_url { "http://example.com/issues" }
     deprecated { false }
     featured { false }
 
@@ -13,7 +13,7 @@ FactoryBot.define do
     end
 
     before(:create) do |cookbook, evaluator|
-      cookbook.cookbook_versions << create_list(:cookbook_version, evaluator.cookbook_versions_count)
+      cookbook.cookbook_versions << build_list(:cookbook_version, evaluator.cookbook_versions_count)
     end
 
     factory :partner_cookbook do

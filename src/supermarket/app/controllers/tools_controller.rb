@@ -12,7 +12,7 @@ class ToolsController < ApplicationController
   def index
     @current_params = tool_index_params
 
-    @tools = if @current_params[:order] == 'created_at'
+    @tools = if @current_params[:order] == "created_at"
                Tool.order(:created_at)
              else
                Tool.order(:name)
@@ -66,7 +66,7 @@ class ToolsController < ApplicationController
     if @tool.save
       redirect_to(
         tools_user_path(@tool.owner),
-        notice: t('tool.created', name: @tool.name)
+        notice: t("tool.created", name: @tool.name)
       )
     else
       render :new
@@ -94,15 +94,15 @@ class ToolsController < ApplicationController
 
     authorize! @tool
 
-    if @tool.update_attributes(tool_params)
+    if @tool.update(tool_params)
       key = if tool_params.key?(:up_for_adoption)
-              if tool_params[:up_for_adoption] == 'true'
-                'adoption.up'
+              if tool_params[:up_for_adoption] == "true"
+                "adoption.up"
               else
-                'adoption.down'
+                "adoption.down"
               end
             else
-              'tool.updated'
+              "tool.updated"
             end
 
       redirect_to(
@@ -125,7 +125,7 @@ class ToolsController < ApplicationController
     @tool.destroy
     redirect_to(
       tools_user_path(@tool.owner),
-      notice: t('tool.deleted', name: @tool.name)
+      notice: t("tool.deleted", name: @tool.name)
     )
   end
 
@@ -135,7 +135,7 @@ class ToolsController < ApplicationController
   # Displays general information about tools and the most recently added ones.
   #
   def directory
-    @recently_added_tools = Tool.ordered_by('recently_added').limit(5)
+    @recently_added_tools = Tool.ordered_by("recently_added").limit(5)
   end
 
   #
@@ -150,7 +150,7 @@ class ToolsController < ApplicationController
     redirect_to(
       @tool,
       notice: t(
-        'adoption.email_sent',
+        "adoption.email_sent",
         cookbook_or_tool: @tool.name
       )
     )
@@ -188,6 +188,6 @@ class ToolsController < ApplicationController
   # Override the default search settings.
   #
   def override_search
-    @search = { path: tools_path, name: 'Tools' }
+    @search = { path: tools_path, name: "Tools" }
   end
 end

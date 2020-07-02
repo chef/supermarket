@@ -1,54 +1,27 @@
-inherit_from: .rubocop_todo.yml
+require:
+  - chefstyle
+  - rubocop-rails
 Rails:
   Enabled: true
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.6
   Exclude:
     - db/**/*
+    - engines/**/*
     - vendor/**/*
     - node_modules/**/*
-IfUnlessModifier:
-  Enabled: false
-Loop:
-  Enabled: false
-ClassLength:
-  Enabled: false
-LineLength:
-  Enabled: false
-MethodLength:
-  Enabled: false
-SignalException:
-  Enabled: false
-Documentation:
-  Enabled: false
-DotPosition:
-  Enabled: false
-RedundantBegin:
-  Enabled: false
-EachWithObject:
-  Enabled: false
-Layout/SpaceInsideArrayLiteralBrackets:
-  Exclude:
-    - config/environments/production.rb
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: aligned
 Lint/UselessAssignment:
   Exclude:
     - config.rb
-Lint/UnifiedInteger: # enable this when we switch to Ruby 2.4
-  Enabled: false
-Metrics/BlockLength:
+Rails/RakeEnvironment:
   Exclude:
-    - Guardfile
-    - Vagrantfile
-    - lib/tasks/**/*
-    - spec/**/*
-Metrics/PerceivedComplexity:
-  Enabled: false
+    - lib/tasks/setup.rake
+    - lib/tasks/spec/javascripts.rake
+Rails/SkipsModelValidations:
+  Whitelist:
+    - increment_counter
+    - touch
 Style/SymbolArray:
   EnforcedStyle: brackets
-Style/MixinUsage:
-  Exclude:
-    - bin/*
-Style/NumericLiterals:
-  Enabled: false
-Style/RaiseArgs:
-  Enabled: false

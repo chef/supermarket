@@ -1,4 +1,4 @@
-class CreateCookbookCollaborators < ActiveRecord::Migration
+class CreateCookbookCollaborators < ActiveRecord::Migration[4.2]
   def change
     create_table :cookbook_collaborators do |t|
       t.references :cookbook

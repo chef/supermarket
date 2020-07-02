@@ -7,7 +7,7 @@ module MarkdownHelper
 
     def initialize(extensions = {})
       super extensions.merge(
-        link_attributes: { target: '_blank', rel: 'noopener' },
+        link_attributes: { target: "_blank", rel: "noopener" },
         with_toc_data: true
       )
     end
@@ -39,10 +39,11 @@ module MarkdownHelper
     #
     def make_img_src_urls_protocol_relative(doc)
       doc.search("img").each do |img|
-        next if img['src'].nil?
-        src = img['src'].strip
-        if src.start_with? 'http'
-          img["src"] = src.sub!(/\Ahttps?:/, '')
+        next if img["src"].nil?
+
+        src = img["src"].strip
+        if src.start_with? "http"
+          img["src"] = src.sub!(/\Ahttps?:/, "")
         end
       end
 
@@ -68,6 +69,6 @@ module MarkdownHelper
       superscript: true
     ).render(
       text
-    ).html_safe
+    ).html_safe # rubocop:todo Rails/OutputSafety
   end
 end

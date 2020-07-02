@@ -1,6 +1,4 @@
-class AdoptionMailer < ActionMailer::Base
-  layout 'mailer'
-
+class AdoptionMailer < ApplicationMailer
   #
   # Sends an email to the owner of a cookbook or tool, letting them know that
   # someone is interested in taking over ownership.

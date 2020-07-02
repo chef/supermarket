@@ -1,4 +1,4 @@
-require 'pundit'
+require "pundit"
 
 module Supermarket
   module Authorization

@@ -1,4 +1,4 @@
-class CreateSystemEmails < ActiveRecord::Migration
+class CreateSystemEmails < ActiveRecord::Migration[4.2]
   def change
     create_table :system_emails do |t|
       t.string :name, null: false

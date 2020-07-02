@@ -1,4 +1,4 @@
-require 'sidekiq'
+require "sidekiq"
 
 class MetricsRunner
   include ::Sidekiq::Worker
@@ -7,26 +7,27 @@ class MetricsRunner
     cookbook_data = cookbook_api_response(cookbook)
     cookbook_version_data = cookbook_version_api_response(cookbook)
 
-    CollaboratorWorker.perform_async(cookbook_data, cookbook['name'])
+    CollaboratorWorker.perform_async(cookbook_data, cookbook["name"])
     FoodcriticWorker.perform_async(cookbook)
-    PublishWorker.perform_async(cookbook_data, cookbook['name'])
-    SupportedPlatformsWorker.perform_async(cookbook_version_data, cookbook['name'])
+    PublishWorker.perform_async(cookbook_data, cookbook["name"])
+    SupportedPlatformsWorker.perform_async(cookbook_version_data, cookbook["name"])
     NoBinariesWorker.perform_async(cookbook)
 
     # do not call metrics that depend on external services if running
     # in an airgapped environment
-    return if ENV['AIR_GAPPED'] == 'true'
-    external_service_metrics(cookbook_data, cookbook['name'], cookbook['version'])
+    return if ENV["AIR_GAPPED"] == "true"
+
+    external_service_metrics(cookbook_data, cookbook["name"], cookbook["version"])
   end
 
   private
 
   def cookbook_api_response(cookbook)
-    SupermarketApiRunner.new.cookbook_api_response(cookbook['name'])
+    SupermarketApiRunner.new.cookbook_api_response(cookbook["name"])
   end
 
   def cookbook_version_api_response(cookbook)
-    SupermarketApiRunner.new.cookbook_version_api_response(cookbook['name'], cookbook['version'])
+    SupermarketApiRunner.new.cookbook_version_api_response(cookbook["name"], cookbook["version"])
   end
 
   def external_service_metrics(cookbook_data, cookbook_name, cookbook_version)

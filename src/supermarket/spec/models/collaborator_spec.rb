@@ -1,13 +1,13 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Collaborator do
-  context 'associations' do
+  context "associations" do
     it { should belong_to(:resourceable) }
     it { should belong_to(:user) }
-    it { should belong_to(:group) }
+    it { should belong_to(:group).optional }
   end
 
-  context 'validations' do
+  context "validations" do
     let(:cookbook) { create(:cookbook) }
     let(:tool) { create(:tool) }
     let(:user) { create(:user) }
@@ -18,14 +18,14 @@ describe Collaborator do
 
     it { should validate_presence_of(:resourceable) }
 
-    context 'of resourceable id' do
-      it 'validates uniqueness scoped to user id and resourceable type' do
+    context "of resourceable id" do
+      it "validates uniqueness scoped to user id and resourceable type" do
         expect(original_cookbook_collaborator.errors[:resourceable_id].size).to be 0
         expect(original_tool_collaborator.errors[:resourceable_id].size).to be 0
         expect(duplicate_cookbook_collaborator.errors[:resourceable_id].size).to be 1
       end
 
-      it 'validates uniqueness scoped to user id and resourceable type and group_id' do
+      it "validates uniqueness scoped to user id and resourceable type and group_id" do
         expect(Collaborator.where(user: user, resourceable: cookbook).count).to_not eq 0
         group = create(:group)
 
@@ -35,7 +35,7 @@ describe Collaborator do
     end
   end
 
-  it 'facilitates the transfer of ownership' do
+  it "facilitates the transfer of ownership" do
     sally = create(:user)
     hank = create(:user)
     cookbook = create(:cookbook, owner: sally)

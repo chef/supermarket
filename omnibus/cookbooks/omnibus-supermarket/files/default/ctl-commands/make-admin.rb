@@ -17,10 +17,10 @@ add_command_under_category 'make-admin', 'user-management', 'Make a Supermarket 
   username = ARGV[3]
 
   # Run rake task
-  command_text = "cd /opt/supermarket/embedded/service/supermarket && RAILS_ENV=\"production\" env PATH=/opt/supermarket/embedded/bin bin/rake user:make_admin user=\"#{username}\""
+  cmd = cmd_helper.rails_env_cmd("bin/rake user:make_admin user='#{username}'")
 
   # Return output to user
-  shell_out = Mixlib::ShellOut.new(command_text)
+  shell_out = Mixlib::ShellOut.new(cmd)
   shell_out.run_command
   $stdout.puts shell_out.stdout
   $stderr.puts shell_out.stderr

@@ -1,4 +1,4 @@
-class RemoveEmailNotificationsFromUser < ActiveRecord::Migration
+class RemoveEmailNotificationsFromUser < ActiveRecord::Migration[4.2]
   def up
     remove_column :users, :email_notifications
   end

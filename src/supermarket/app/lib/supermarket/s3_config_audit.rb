@@ -2,8 +2,8 @@ module Supermarket
   module S3ConfigAudit
     class IncompleteConfig < StandardError; end
 
-    REQUIRED_S3_VARS = %w[S3_BUCKET S3_REGION].freeze
-    REQUIRED_S3_STATIC_CREDS_VARS = %w[S3_ACCESS_KEY_ID S3_SECRET_ACCESS_KEY].freeze
+    REQUIRED_S3_VARS = %w{S3_BUCKET S3_REGION}.freeze
+    REQUIRED_S3_STATIC_CREDS_VARS = %w{S3_ACCESS_KEY_ID S3_SECRET_ACCESS_KEY}.freeze
 
     def self.use_s3?(environment)
       any_s3_settings = REQUIRED_S3_VARS.any? { |key| environment.key?(key) }
@@ -13,6 +13,7 @@ module Supermarket
         raise IncompleteConfig.new "Got some, but not all, of the required S3 configs. Must provide #{REQUIRED_S3_VARS} to configure cookbook storage in an S3 bucket."
       end
       return true if all_s3_settings
+
       false
     end
 
@@ -25,6 +26,7 @@ module Supermarket
         raise IncompleteConfig.new "Got some, but not all, of AWS user credentials. To access an S3 bucket with IAM user credentials, provide #{REQUIRED_S3_STATIC_CREDS_VARS}. To use an IAM role, do not set these."
       end
       return true if all_s3_creds
+
       false
     end
   end

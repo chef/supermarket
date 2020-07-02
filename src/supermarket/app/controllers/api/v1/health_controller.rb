@@ -1,4 +1,4 @@
-require 'sidekiq/api'
+require "sidekiq/api"
 
 class Api::V1::HealthController < Api::V1Controller
   #

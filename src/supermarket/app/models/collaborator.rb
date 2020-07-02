@@ -8,7 +8,7 @@ class Collaborator < ApplicationRecord
   # --------------------
   belongs_to :resourceable, polymorphic: true
   belongs_to :user
-  belongs_to :group
+  belongs_to :group, optional: true
 
   # Validations
   # --------------------
@@ -28,7 +28,7 @@ class Collaborator < ApplicationRecord
   def transfer_ownership
     transaction do
       Collaborator.create resourceable: resourceable, user: resourceable.owner
-      resourceable.update_attribute(:owner, user)
+      resourceable.update(owner: user)
       destroy
     end
   end

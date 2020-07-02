@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
 # Declare your gem's dependencies in fieri.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
@@ -13,9 +13,10 @@ gemspec
 # To use debugger
 # gem 'debugger'
 group :development, :test do
-  gem 'pry'
-  gem 'rspec-rails', '~> 3.0'
-  gem 'rubocop'
-  gem 'sqlite3'
-  gem 'webmock'
+  gem "chefstyle"
+  gem "pry"
+  gem "rspec-rails", "~> 3.0"
+  gem "rubocop-rails", require: false
+  gem "sqlite3"
+  gem "webmock"
 end

@@ -30,7 +30,7 @@ module Supermarket
     #
     def authenticate_user!
       unless signed_in?
-        redirect_to sign_in_url, notice: t('user.must_be_signed_in')
+        redirect_to sign_in_url, notice: t("user.must_be_signed_in")
       end
     end
   end

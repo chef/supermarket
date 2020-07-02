@@ -1,25 +1,25 @@
-require 'spec_helper'
+require "spec_helper"
 
-feature 'admin transfers cookbook ownership' do
+feature "admin transfers cookbook ownership" do
   let(:cookbook) { create(:cookbook) }
   let(:new_owner) { create(:user) }
 
   before do
     sign_in(create(:admin))
     visit cookbook_path(cookbook)
-    follow_relation 'transfer_ownership'
+    follow_relation "transfer_ownership"
 
-    within '#transfer' do
-      find('#cookbook_user_id', visible: false).set(new_owner.id)
+    within "#transfer" do
+      find("#cookbook_user_id", visible: false).set(new_owner.id)
       submit_form
     end
   end
 
-  it 'displays a success message' do
+  it "displays a success message" do
     expect_to_see_success_message
   end
 
-  it 'changes the owner' do
+  it "changes the owner" do
     expect(page).to have_content(new_owner.username)
   end
 end

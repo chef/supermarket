@@ -1,12 +1,12 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe CookbookDeprecatedNotifier do
-  let!(:system_email1) { create(:system_email, name: 'Cookbook deleted') }
-  let!(:system_email2) { create(:system_email, name: 'Cookbook deprecated') }
+  let!(:system_email1) { create(:system_email, name: "Cookbook deleted") }
+  let!(:system_email2) { create(:system_email, name: "Cookbook deprecated") }
 
-  it 'sends emails to cookbook owner, collaborators and followers who want to receive emails' do
+  it "sends emails to cookbook owner, collaborators and followers who want to receive emails" do
     disinterested_user = create(:user)
-    disinterested_user.email_preference_for('Cookbook deprecated').destroy
+    disinterested_user.email_preference_for("Cookbook deprecated").destroy
     cookbook = create(:cookbook)
     cookbook.deprecate(create(:cookbook).name)
     cookbook_collaborator = create(:cookbook_collaborator, resourceable: cookbook)
@@ -16,13 +16,13 @@ describe CookbookDeprecatedNotifier do
         :cookbook_follower,
         cookbook: cookbook,
         user: disinterested_user
-      )
+      ),
     ]
 
     users_to_email = [
       cookbook.owner,
       cookbook_collaborator.user,
-      cookbook_followers[0].user
+      cookbook_followers[0].user,
     ]
 
     Sidekiq::Testing.inline! do

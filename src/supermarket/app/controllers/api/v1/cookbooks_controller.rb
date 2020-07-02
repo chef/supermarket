@@ -25,7 +25,7 @@ class Api::V1::CookbooksController < Api::V1Controller
   #
   def index
     @total = Cookbook.count
-    @cookbooks = Cookbook.index(order: @order, limit: @items, start: @start)
+    @cookbooks = Cookbook.paginated_with_owner_and_versions(order: @order, limit: @items, start: @start)
 
     if params[:user]
       @cookbooks = @cookbooks.owned_by(params[:user])
@@ -89,8 +89,9 @@ class Api::V1::CookbooksController < Api::V1Controller
   private
 
   def assign_cookbook
-    @cookbook = Cookbook.with_name(params[:cookbook])
-                        .includes(:cookbook_versions)
-                        .first!
+    @cookbook = Cookbook
+      .with_name(params[:cookbook])
+      .includes(:cookbook_versions)
+      .first!
   end
 end

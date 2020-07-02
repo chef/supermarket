@@ -1,18 +1,18 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
-require 'rspec/rails'
-require 'paperclip/matchers'
-require 'sidekiq/testing'
-require 'capybara/rails'
-require 'capybara/rspec'
-require 'capybara/poltergeist'
-require 'capybara-screenshot/rspec'
-require 'factory_bot_rails'
+ENV["RAILS_ENV"] ||= "test"
+require File.expand_path("../../config/environment", __FILE__)
+require "rspec/rails"
+require "paperclip/matchers"
+require "sidekiq/testing"
+require "capybara/rails"
+require "capybara/rspec"
+require "capybara/poltergeist"
+require "capybara-screenshot/rspec"
+require "factory_bot_rails"
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[File.expand_path(File.join(File.dirname(__FILE__), 'support', '**', '*.rb'))].each { |f| require f }
+Dir[File.expand_path(File.join(File.dirname(__FILE__), "support", "**", "*.rb"))].each { |f| require f }
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -42,18 +42,25 @@ end
 
 Capybara.javascript_driver = :quiet_ghost
 
-if ENV['CAPYBARA_SCREENSHOT_TO_S3'] == 'true'
-  if ENV['SCREENIE_AWS_ID'].present? && ENV['SCREENIE_AWS_SECRET'].present?
+if ENV["CAPYBARA_SCREENSHOT_TO_S3"] == "true"
+  if ENV["SCREENIE_AWS_ID"].present? && ENV["SCREENIE_AWS_SECRET"].present?
     Capybara::Screenshot.s3_configuration = {
       s3_client_credentials: {
-        access_key_id: ENV['SCREENIE_AWS_ID'],
-        secret_access_key: ENV['SCREENIE_AWS_SECRET'],
-        region: "us-east-1"
+        access_key_id: ENV["SCREENIE_AWS_ID"],
+        secret_access_key: ENV["SCREENIE_AWS_SECRET"],
+        region: "us-east-1",
       },
-      bucket_name: "supermarket-test-screenshots"
+      bucket_name: "supermarket-test-screenshots",
     }
   else
     puts "WARN: asked to save screenshots to S3, but SCREENIE_AWS_ID and SCREENIE_AWS_SECRET are not set. Saving screenshots to local filesystem."
+  end
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
   end
 end
 
@@ -101,7 +108,7 @@ RSpec.configure do |config|
 
   # Skip specs that require secure environment variables when running them
   # with Travis CI.
-  if ENV['TRAVIS_SECURE_ENV_VARS'] == 'false'
+  if ENV["TRAVIS_SECURE_ENV_VARS"] == "false"
     config.filter_run_excluding uses_secrets: true
   end
 
@@ -114,14 +121,14 @@ RSpec.configure do |config|
     OmniAuthControl.stub_github!
     OmniAuthControl.stub_chef!
 
-    ENV['FEATURES'].to_s.split(',').each do |feature|
+    ENV["FEATURES"].to_s.split(",").each do |feature|
       Feature.activate(feature)
     end
   end
 
   config.before(:suite) do
-    Dir.mkdir('tmp') unless File.exist?('tmp')
-    extensions = %w[pg_trgm plpgsql]
+    Dir.mkdir("tmp") unless File.exist?("tmp")
+    extensions = %w{pg_trgm plpgsql}
     extensions.each do |ext|
       ActiveRecord::Base.connection.execute("CREATE EXTENSION IF NOT EXISTS #{ext}")
     end
@@ -160,5 +167,5 @@ RSpec.configure do |config|
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
   #     --seed 1234
-  config.order = 'random'
+  config.order = "random"
 end

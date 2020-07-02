@@ -1,4 +1,4 @@
-class MoveCookbookMaintainerAndDescriptionToCookbookVersions < ActiveRecord::Migration
+class MoveCookbookMaintainerAndDescriptionToCookbookVersions < ActiveRecord::Migration[4.2]
   def change
     remove_column :cookbooks, :maintainer, :string
     remove_column :cookbooks, :description, :text

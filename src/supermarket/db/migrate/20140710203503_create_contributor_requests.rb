@@ -1,4 +1,4 @@
-class CreateContributorRequests < ActiveRecord::Migration
+class CreateContributorRequests < ActiveRecord::Migration[4.2]
   def change
     create_table :contributor_requests do |t|
       t.integer :organization_id, null: false

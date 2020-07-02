@@ -1,4 +1,4 @@
-class RemoveDataImportColumns < ActiveRecord::Migration
+class RemoveDataImportColumns < ActiveRecord::Migration[4.2]
   def change
     %w(
       cookbook_collaborators

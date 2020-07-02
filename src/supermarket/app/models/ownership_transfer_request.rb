@@ -4,8 +4,8 @@ class OwnershipTransferRequest < ApplicationRecord
   # Associations
   # --------------------
   belongs_to :cookbook
-  belongs_to :recipient, class_name: 'User', inverse_of: :received_ownership_transfer_requests
-  belongs_to :sender, class_name: 'User', inverse_of: :initiated_ownership_transfer_requests
+  belongs_to :recipient, class_name: "User", inverse_of: :received_ownership_transfer_requests
+  belongs_to :sender, class_name: "User", inverse_of: :initiated_ownership_transfer_requests
 
   # Validations
   # --------------------
@@ -27,12 +27,13 @@ class OwnershipTransferRequest < ApplicationRecord
   #
   def accept!
     return unless accepted.nil?
-    update_attribute(:accepted, true)
+
+    update(accepted: true)
     if add_owner_as_collaborator
       Collaborator.find_or_create_by!(user_id: cookbook.owner.id, resourceable: cookbook)
     end
 
-    cookbook.update_attribute(:user_id, recipient.id)
+    cookbook.update(user_id: recipient.id)
   end
 
   #
@@ -44,7 +45,8 @@ class OwnershipTransferRequest < ApplicationRecord
   #
   def decline!
     return unless accepted.nil?
-    update_attribute(:accepted, false)
+
+    update(accepted: false)
   end
 
   def to_param

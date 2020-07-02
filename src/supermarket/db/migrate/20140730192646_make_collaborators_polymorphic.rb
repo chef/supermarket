@@ -1,4 +1,4 @@
-class MakeCollaboratorsPolymorphic < ActiveRecord::Migration
+class MakeCollaboratorsPolymorphic < ActiveRecord::Migration[4.2]
   def up
     remove_index :cookbook_collaborators, name: 'index_cookbook_collaborators_on_user_id_and_cookbook_id'
     add_column :cookbook_collaborators, :resourceable_type, :string

@@ -1,5 +1,4 @@
-class CookbookMailer < ActionMailer::Base
-  layout 'mailer'
+class CookbookMailer < ApplicationMailer
   add_template_helper(CookbookVersionsHelper)
 
   #
@@ -12,7 +11,7 @@ class CookbookMailer < ActionMailer::Base
   #
   def follower_notification_email(cookbook_version, user)
     @cookbook_version = cookbook_version
-    @email_preference = user.email_preference_for('New cookbook version')
+    @email_preference = user.email_preference_for("New cookbook version")
     @to = user.email
 
     mail(to: @to, subject: "A new version of the #{@cookbook_version.name} cookbook has been released")
@@ -27,7 +26,7 @@ class CookbookMailer < ActionMailer::Base
   #
   def cookbook_deleted_email(name, user)
     @name = name
-    @email_preference = user.email_preference_for('Cookbook deleted')
+    @email_preference = user.email_preference_for("Cookbook deleted")
     @to = user.email
 
     mail(to: @to, subject: "The #{name} cookbook has been deleted")
@@ -45,7 +44,7 @@ class CookbookMailer < ActionMailer::Base
   def cookbook_deprecated_email(cookbook, replacement_cookbook, user)
     @cookbook = cookbook
     @replacement_cookbook = replacement_cookbook
-    @email_preference = user.email_preference_for('Cookbook deprecated')
+    @email_preference = user.email_preference_for("Cookbook deprecated")
     @to = user.email
 
     subject = "The #{@cookbook.name} cookbook has been deprecated"
@@ -72,10 +71,10 @@ class CookbookMailer < ActionMailer::Base
                                    " and add themselves as a collaborator"
                                  end
 
-    subject = %(
+    subject = %{
       #{@sender} wants to transfer ownership of the #{@cookbook} cookbook to
       you#{@add_owner_as_collaborator}.
-    ).squish
+    }.squish
 
     mail(to: transfer_request.recipient.email, subject: subject)
   end

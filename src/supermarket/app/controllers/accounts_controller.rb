@@ -8,13 +8,13 @@ class AccountsController < ApplicationController
   # for the current user
   #
   def create
-    account = current_user.account_from_oauth(request.env['omniauth.auth'])
+    account = current_user.account_from_oauth(request.env["omniauth.auth"])
 
     if account.save
       redirect_to after_link_location, notice: "Successfully
-        connected #{request.env['omniauth.auth']['provider']}."
+        connected #{request.env["omniauth.auth"]["provider"]}."
     else
-      redirect_to edit_profile_path, alert: account.errors.full_messages.join(', ')
+      redirect_to edit_profile_path, alert: account.errors.full_messages.join(", ")
     end
   end
 
@@ -27,7 +27,7 @@ class AccountsController < ApplicationController
   def destroy
     current_user.accounts.find(params[:id]).destroy
 
-    redirect_back notice: t('account.disconnected'), fallback_location: edit_profile_path
+    redirect_back notice: t("account.disconnected"), fallback_location: edit_profile_path
   end
 
   private

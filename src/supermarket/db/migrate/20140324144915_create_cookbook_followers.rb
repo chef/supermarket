@@ -1,4 +1,4 @@
-class CreateCookbookFollowers < ActiveRecord::Migration
+class CreateCookbookFollowers < ActiveRecord::Migration[4.2]
   def change
     create_table :cookbook_followers do |t|
       t.integer :cookbook_id, null: false

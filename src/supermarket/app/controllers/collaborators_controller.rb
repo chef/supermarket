@@ -12,9 +12,10 @@ class CollaboratorsController < ApplicationController
   # for a given resource.
   #
   def index
-    @collaborators = User.includes(:chef_account)
-                         .where.not(id: params[:ineligible_user_ids])
-                         .limit(20)
+    @collaborators = User
+      .includes(:chef_account)
+      .where.not(id: params[:ineligible_user_ids])
+      .limit(20)
 
     if params[:q]
       @collaborators = @collaborators.search(params[:q])
@@ -31,7 +32,7 @@ class CollaboratorsController < ApplicationController
   # Add a collaborator to a resource.
   #
   def create
-    if %w[Cookbook Tool].include?(collaborator_params[:resourceable_type])
+    if %w{Cookbook Tool}.include?(collaborator_params[:resourceable_type])
       resource = collaborator_params[:resourceable_type].constantize.find(
         collaborator_params[:resourceable_id]
       )
@@ -44,7 +45,7 @@ class CollaboratorsController < ApplicationController
         perform_fieri(resource)
       end
 
-      redirect_to resource, notice: t('collaborator.added')
+      redirect_to resource, notice: t("collaborator.added")
     else
       not_found!
     end
@@ -72,7 +73,7 @@ class CollaboratorsController < ApplicationController
   def destroy_group
     group = Group.find(params[:id])
 
-    if %w[Cookbook Tool].include?(params[:resourceable_type])
+    if %w{Cookbook Tool}.include?(params[:resourceable_type])
       resource = params[:resourceable_type].constantize.find(
         params[:resourceable_id]
       )
@@ -83,13 +84,13 @@ class CollaboratorsController < ApplicationController
 
       GroupResource.where(group: group, resourceable: resource).each(&:destroy)
 
-      flash[:notice] = t('collaborator.group_removed', name: group.name) + ' '
+      flash[:notice] = t("collaborator.group_removed", name: group.name) + " "
 
       dup_user_collaborators(collaborator_users, resource).each do |collaborator|
         flash[:notice] << if collaborator.group.present?
-                            "#{collaborator.user.username} is still a collaborator associated with #{collaborator.group.name}" + ' '
+                            "#{collaborator.user.username} is still a collaborator associated with #{collaborator.group.name}" + " "
                           else
-                            "#{collaborator.user.username} is still a collaborator on this #{params[:resourceable_type]}" ' '
+                            "#{collaborator.user.username} is still a collaborator on this #{params[:resourceable_type]}" " "
                           end
       end
 
@@ -114,7 +115,7 @@ class CollaboratorsController < ApplicationController
 
     redirect_to(
       @collaborator.resourceable,
-      notice: t('collaborator.owner_changed',
+      notice: t("collaborator.owner_changed",
                 resource: @collaborator.resourceable.name,
                 user: @collaborator.user.username)
     )
@@ -135,7 +136,7 @@ class CollaboratorsController < ApplicationController
   # Check if Fieri features are active and run Fieri
   #
   def perform_fieri(cookbook)
-    if Feature.active?(:fieri) && ENV['FIERI_URL'].present?
+    if Feature.active?(:fieri) && ENV["FIERI_URL"].present?
       FieriNotifyWorker.perform_async(
         cookbook.latest_cookbook_version.id
       )
@@ -146,11 +147,12 @@ class CollaboratorsController < ApplicationController
   # Params used when creating one or more +Collaborator+.
   #
   def collaborator_params
-    params.require(:collaborator)
-          .permit(:resourceable_type,
-                  :resourceable_id,
-                  :user_ids,
-                  :group_ids)
+    params
+      .require(:collaborator)
+      .permit(:resourceable_type,
+              :resourceable_id,
+              :user_ids,
+              :group_ids)
   end
 
   def group_collaborators(resource, group)

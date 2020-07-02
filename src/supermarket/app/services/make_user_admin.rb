@@ -11,25 +11,25 @@ class MakeUserAdmin
   private
 
   def user_not_found_message(user_name)
-    I18n.t('user.not_found', name: user_name)
+    I18n.t("user.not_found", name: user_name)
   end
 
   def successful_promotion_message(user)
-    I18n.t('user.successful_promotion_message', name: user.username)
+    I18n.t("user.successful_promotion_message", name: user.username)
   end
 
   def unsuccessful_promotion_message(user)
-    I18n.t('user.unsuccessful_promotion_message', name: user.username)
+    I18n.t("user.unsuccessful_promotion_message", name: user.username)
   end
 
   def user_already_admin_message(user)
-    I18n.t('user.already_admin', name: user.username)
+    I18n.t("user.already_admin", name: user.username)
   end
 
   def add_admin_role(user)
-    return user_already_admin_message(user) if user.roles.include?('admin')
+    return user_already_admin_message(user) if user.roles.include?("admin")
 
-    user.roles = user.roles + ['admin']
+    user.roles = user.roles + ["admin"]
     user.save ? successful_promotion_message(user) : unsuccessful_promotion_message(user)
   end
 end

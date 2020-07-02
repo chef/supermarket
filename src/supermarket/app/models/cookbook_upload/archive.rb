@@ -1,5 +1,5 @@
-require 'ffi-libarchive'
-require 'filemagic'
+require "ffi-libarchive"
+require "filemagic"
 
 class CookbookUpload
   #
@@ -97,7 +97,7 @@ class CookbookUpload
       begin
         ::Archive::Reader.open_filename(@source.path) do |tar|
           tar.each_entry_with_data do |entry, data|
-            contents = data.is_a?(String) ? data : ''
+            contents = data.is_a?(String) ? data : ""
             yield entry, contents
           end
         end

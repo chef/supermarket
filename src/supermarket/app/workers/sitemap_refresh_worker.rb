@@ -1,4 +1,4 @@
-require 'sitemap_generator'
+require "sitemap_generator"
 
 #
 # Worker that refreshes Supermarket's sitemap once a day at midnight. Uses

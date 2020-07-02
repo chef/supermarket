@@ -1,4 +1,4 @@
-class RemoveDuplicateCookbookDependencies < ActiveRecord::Migration
+class RemoveDuplicateCookbookDependencies < ActiveRecord::Migration[4.2]
   def up
     require 'supermarket/migration/remove_duplicate_cookbook_dependencies'
 

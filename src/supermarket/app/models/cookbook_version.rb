@@ -1,4 +1,4 @@
-require 'active_model/validations/chef_version_validator'
+require "active_model/validations/chef_version_validator"
 
 class CookbookVersion < ApplicationRecord
   include SeriousErrors
@@ -22,21 +22,26 @@ class CookbookVersion < ApplicationRecord
   validates :license, presence: true, length: { maximum: 255 }
   validates :description, presence: true
   validates :readme, presence: true
-  validates :version, presence: true, uniqueness: { scope: :cookbook }, chef_version: true
+  validates :version, presence: true,
+                      uniqueness: {
+                        scope: :cookbook_id,
+                        case_sensitive: false,
+                      },
+                      chef_version: true
   validates_attachment(
     :tarball,
     presence: true,
     content_type: {
-      content_type: ['application/x-gzip', 'application/gzip',
-                     'application/octet-stream', 'application/x-tar',
-                     'application/x-compressed-tar', 'application/x-gtar',
-                     'application/x-bzip2', 'application/gzipped-tar',
-                     'application/x-compressed', 'application/download',
-                     'application/x-gtar-compressed', 'application/zip',
-                     'application/x-bzip', 'application/x-zip-compressed',
-                     'application/cap', 'application/x-tar-gz',
-                     'application/postscript', 'application/x-targz'],
-      message: ->(_, info) { "can not be #{info[:value]}." }
+      content_type: ["application/x-gzip", "application/gzip",
+                     "application/octet-stream", "application/x-tar",
+                     "application/x-compressed-tar", "application/x-gtar",
+                     "application/x-bzip2", "application/gzipped-tar",
+                     "application/x-compressed", "application/download",
+                     "application/x-gtar-compressed", "application/zip",
+                     "application/x-bzip", "application/x-zip-compressed",
+                     "application/cap", "application/x-tar-gz",
+                     "application/postscript", "application/x-targz"],
+      message: ->(_, info) { "can not be #{info[:value]}." },
     }
   )
 
@@ -77,8 +82,8 @@ class CookbookVersion < ApplicationRecord
   end
 
   def cookbook_artifact_url
-    if Paperclip::Attachment.default_options[:storage] == 's3'
-      ENV['S3_URLS_EXPIRE'].present? ? tarball.expiring_url(ENV['S3_URLS_EXPIRE'].to_i) : tarball.url
+    if Paperclip::Attachment.default_options[:storage] == "s3"
+      ENV["S3_URLS_EXPIRE"].present? ? tarball.expiring_url(ENV["S3_URLS_EXPIRE"].to_i) : tarball.url
     else
       "#{Supermarket::Host.full_url}#{tarball.url}"
     end
@@ -90,10 +95,10 @@ class CookbookVersion < ApplicationRecord
 
   def metric_result_pass_rate
     total_metric_results = metric_results.count
-    if total_metric_results.positive?
+    if total_metric_results > 0
       ((metric_results.where(failure: false).count / total_metric_results.to_f) * 100).round(0)
     else
-      '-'
+      "-"
     end
   end
 end

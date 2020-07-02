@@ -9,8 +9,8 @@ module ToolsHelper
   # @return [String] The titleized tool type
   #
   def pretty_type(type)
-    if type == 'dsc_resource'
-      'DSC Resource'
+    if type == "dsc_resource"
+      "DSC Resource"
     else
       type.titleize
     end

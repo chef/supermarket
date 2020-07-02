@@ -1,4 +1,4 @@
-class CreateClaReports < ActiveRecord::Migration
+class CreateClaReports < ActiveRecord::Migration[4.2]
   def change
     create_table :cla_reports do |t|
       t.integer :first_ccla_id

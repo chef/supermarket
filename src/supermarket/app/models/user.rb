@@ -1,28 +1,36 @@
 class User < ApplicationRecord
   include Authorizable
-  include PgSearch
+  include PgSearch::Model
 
-  ALLOWED_INSTALL_PREFERENCES = %w[berkshelf knife librarian policyfile].freeze
+  ALLOWED_INSTALL_PREFERENCES = %w{berkshelf knife librarian policyfile}.freeze
 
   # Associations
   # --------------------
-  has_many :accounts
-  has_many :owned_cookbooks, class_name: 'Cookbook', foreign_key: 'user_id', inverse_of: :owner
-  has_many :cookbook_versions
-  has_many :collaborators
-  has_many :cookbook_followers
+  has_many :accounts, dependent: :destroy
+  has_many :owned_cookbooks, class_name: "Cookbook", inverse_of: :owner, dependent: :restrict_with_exception
+  has_many :cookbook_versions, dependent: :nullify
+  has_many :collaborators, dependent: :destroy
+  has_many :cookbook_followers, dependent: :destroy
   has_many :followed_cookbooks, through: :cookbook_followers, source: :cookbook
-  has_many :collaborated_cookbooks, through: :collaborators, source: :resourceable, source_type: 'Cookbook'
-  has_many :tools
-  has_many :collaborated_tools, through: :collaborators, source: :resourceable, source_type: 'Tool'
-  has_many :email_preferences
+  has_many :collaborated_cookbooks, through: :collaborators, source: :resourceable, source_type: "Cookbook"
+  has_many :tools, dependent: :restrict_with_exception
+  has_many :collaborated_tools, through: :collaborators, source: :resourceable, source_type: "Tool"
+  has_many :email_preferences, dependent: :destroy
   has_many :system_emails, through: :email_preferences
-  has_one :chef_account, -> { self.for('chef_oauth2') }, class_name: 'Account', inverse_of: :user
-  has_one :github_account, -> { self.for('github') }, class_name: 'Account', inverse_of: :user
-  has_many :group_members
+  has_one :chef_account, -> { self.for("chef_oauth2") }, class_name: "Account", inverse_of: :user
+  has_one :github_account, -> { self.for("github") }, class_name: "Account", inverse_of: :user
+  has_many :group_members, dependent: :destroy
   has_many :memberships, through: :group_members, source: :group
-  has_many :initiated_ownership_transfer_requests, class_name: 'OwnershipTransferRequest', foreign_key: :sender_id, inverse_of: :sender
-  has_many :received_ownership_transfer_requests, class_name: 'OwnershipTransferRequest', foreign_key: :recipient_id, inverse_of: :recipient
+  has_many :initiated_ownership_transfer_requests,
+    class_name: "OwnershipTransferRequest",
+    foreign_key: :sender_id,
+    inverse_of: :sender,
+    dependent: :restrict_with_exception
+  has_many :received_ownership_transfer_requests,
+    class_name: "OwnershipTransferRequest",
+    foreign_key: :recipient_id,
+    inverse_of: :recipient,
+    dependent: :restrict_with_exception
 
   # Validations
   # --------------------
@@ -35,24 +43,24 @@ class User < ApplicationRecord
   # Scope
   # --------------------
   scope :with_email, ->(email) { where(email: email) }
-  scope :with_username, ->(username) { joins(:chef_account).where('accounts.username' => username) }
+  scope :with_username, ->(username) { joins(:chef_account).where("accounts.username" => username) }
 
   # Search
   # --------------------
   pg_search_scope(
     :search,
     against: {
-      first_name: 'A',
-      last_name: 'B',
-      email: 'C'
+      first_name: "A",
+      last_name: "B",
+      email: "C",
     },
     associated_against: {
       chef_account: :username,
-      github_account: :username
+      github_account: :username,
     },
     using: {
-      tsearch: { prefix: true, dictionary: 'english' },
-      trigram: { threshold: 0.2 }
+      tsearch: { prefix: true, dictionary: "english" },
+      trigram: { threshold: 0.2 },
     }
   )
 
@@ -68,8 +76,9 @@ class User < ApplicationRecord
   # +SystemEmail+ in question
   #
   def email_preference_for(name)
-    email_preferences.includes(:system_email)
-                     .find_by(system_emails: { name: name })
+    email_preferences
+      .includes(:system_email)
+      .find_by(system_emails: { name: name })
   end
 
   #
@@ -78,9 +87,10 @@ class User < ApplicationRecord
   # @return [CookbookVersion]
   #
   def followed_cookbook_versions
-    CookbookVersion.joins(:cookbook).
-      merge(followed_cookbooks).
-      order('created_at DESC')
+    CookbookVersion
+      .joins(:cookbook)
+      .merge(followed_cookbooks)
+      .order("created_at DESC")
   end
 
   #
@@ -93,7 +103,7 @@ class User < ApplicationRecord
   #
   def name
     if first_name.present? || last_name.present?
-      [first_name, last_name].join(' ').strip
+      [first_name, last_name].join(" ").strip
     else
       username
     end
@@ -136,7 +146,7 @@ class User < ApplicationRecord
   # @return [Boolean]
   #
   def linked_github_account?
-    accounts.for('github').any?
+    accounts.for("github").any?
   end
 
   #
@@ -221,12 +231,13 @@ class User < ApplicationRecord
 
   def public_key_signature
     return nil if public_key.blank?
+
     # Inspired by https://stelfox.net/blog/2014/04/calculating-rsa-key-fingerprints-in-ruby/
     # Verifiable by an end-user either:
     #   with private key: openssl rsa -in private_key.pem -pubout -outform DER | openssl md5 -c
     #   with public key: openssl rsa -in public_key.pub -pubin -outform DER | openssl md5 -c
     key_in_der_format = OpenSSL::PKey::RSA.new(public_key).to_der
-    OpenSSL::Digest.hexdigest('MD5', key_in_der_format).scan(/../).join(':')
+    OpenSSL::Digest.hexdigest("MD5", key_in_der_format).scan(/../).join(":")
   end
 
   private

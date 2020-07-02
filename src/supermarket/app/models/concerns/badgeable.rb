@@ -5,7 +5,7 @@ module Badgeable
   # of the badge text in this array. If you change the order--and therefore the
   # index--the integers stored in the database for a record's badges_mask will
   # no longer match the badges that the record was assigned.
-  BADGES = %w[partner].freeze
+  BADGES = %w{partner}.freeze
 
   module ClassMethods
     #
@@ -14,7 +14,7 @@ module Badgeable
     def with_badges(badges)
       badges = Array(badges).map(&:to_s)
       search_mask = (badges & BADGES).map { |b| 2**BADGES.index(b) }.inject(0, :+)
-      where('badges_mask & ? > 0', search_mask)
+      where("badges_mask & ? > 0", search_mask)
     end
   end
 
@@ -43,7 +43,7 @@ module Badgeable
   #
   def badges
     BADGES.reject do |b|
-      (badges_mask.to_i & 2**BADGES.index(b)).zero?
+      (badges_mask.to_i & 2**BADGES.index(b)) == 0
     end
   end
 

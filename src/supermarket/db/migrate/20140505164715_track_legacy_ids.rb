@@ -1,4 +1,4 @@
-class TrackLegacyIds < ActiveRecord::Migration
+class TrackLegacyIds < ActiveRecord::Migration[4.2]
   def change
     change_table :cookbook_versions do |t|
       t.integer :legacy_id

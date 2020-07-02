@@ -37,9 +37,9 @@ module CookbooksHelper
   def dependency_link(dep)
     name_and_version = "#{dep.name} #{dep.version_constraint}"
 
-    content_tag(:td) do
+    tag.td do
       if dep.cookbook
-        link_to name_and_version, cookbook_url(dep.cookbook), rel: 'cookbook_dependency'
+        link_to name_and_version, cookbook_url(dep.cookbook), rel: "cookbook_dependency"
       else
         name_and_version
       end
@@ -64,24 +64,23 @@ module CookbooksHelper
   # @return [String] a link based on the following state for the current cookbook.
   #
   def follow_button_for(cookbook, params = {}, &block)
-    fa_icon = content_tag(:i, '', class: 'fa fa-users')
+    fa_icon = tag.i("", class: "fa fa-users")
     followers_count = cookbook.cookbook_followers_count.to_s
-    followers_count_span = content_tag(
-      :span,
+    followers_count_span = tag.span(
       number_with_delimiter(followers_count),
-      class: 'cookbook_follow_count'
+      class: "cookbook_follow_count"
     )
-    follow_html = fa_icon + 'Follow' + followers_count_span
-    unfollow_html = fa_icon + 'Unfollow' + followers_count_span
+    follow_html = fa_icon + "Follow" + followers_count_span
+    unfollow_html = fa_icon + "Unfollow" + followers_count_span
 
     unless current_user
       return link_to(
         follow_cookbook_path(cookbook, params),
-        method: 'put',
-        rel: 'sign-in-to-follow',
-        class: 'button radius tiny follow',
-        title: 'You must be signed in to follow a cookbook.',
-        'data-tooltip' => true
+        method: "put",
+        rel: "sign-in-to-follow",
+        class: "button radius tiny follow",
+        title: "You must be signed in to follow a cookbook.",
+        "data-tooltip" => true
       ) do
         if block
           yield(false)
@@ -94,11 +93,11 @@ module CookbooksHelper
     if cookbook.followed_by?(current_user)
       link_to(
         unfollow_cookbook_path(cookbook, params),
-        method: 'delete',
-        rel: 'unfollow',
-        class: 'button radius tiny follow',
-        id: 'unfollow_cookbook',
-        'data-cookbook' => cookbook.name,
+        method: "delete",
+        rel: "unfollow",
+        class: "button radius tiny follow",
+        id: "unfollow_cookbook",
+        "data-cookbook" => cookbook.name,
         remote: true
       ) do
         if block
@@ -110,11 +109,11 @@ module CookbooksHelper
     else
       link_to(
         follow_cookbook_path(cookbook, params),
-        method: 'put',
-        rel: 'follow',
-        class: 'button radius tiny follow',
-        id: 'follow_cookbook',
-        'data-cookbook' => cookbook.name,
+        method: "put",
+        rel: "follow",
+        class: "button radius tiny follow",
+        id: "follow_cookbook",
+        "data-cookbook" => cookbook.name,
         remote: true
       ) do
         if block
@@ -140,23 +139,9 @@ module CookbooksHelper
   #
   def link_to_sorted_cookbooks(linked_text, params, ordering)
     if params[:order] == ordering
-      link_to linked_text, params.except(:order), class: 'button radius secondary active'
+      link_to linked_text, params.except(:order), class: "button radius secondary active"
     else
-      link_to linked_text, params.merge(order: ordering), class: 'button radius secondary'
-    end
-  end
-
-  def foodcritic_info(feedback, failing_status = '')
-    return 'No foodcritic feedback available' if feedback.nil?
-
-    if failing_status == false # When a cookbook version passes foodcritic # The feedback from Fieri has a \n at the beginning # of it.
-      feedback.gsub(/^\n/, '').html_safe
-    else
-      # When a cookbook version does not pass foodcritic
-      # The feedback from Fieri includes \n in between
-      # failing rules
-      # This replaces those with <br /> tags for rendering
-      feedback.gsub(/\n/, '<br />').html_safe
+      link_to linked_text, params.merge(order: ordering), class: "button radius secondary"
     end
   end
 end

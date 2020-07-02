@@ -8,10 +8,10 @@ module Supermarket
     # side-effects, not their return values.
     #
 
-    REACHABLE = 'reachable'
-    UNKNOWN = 'unknown'
-    UNREACHABLE = 'unreachable'
-    ALL_FEATURES = %w[cla join_ccla tools fieri announcement github no_crawl].freeze
+    REACHABLE = "reachable"
+    UNKNOWN = "unknown"
+    UNREACHABLE = "unreachable"
+    ALL_FEATURES = %w{cla join_ccla tools fieri announcement github no_crawl}.freeze
 
     attr_reader :status, :supermarket, :postgresql, :sidekiq, :redis, :features
 
@@ -43,7 +43,7 @@ module Supermarket
     # Which features are enabled?
     #
     def check_features
-      current_features = ENV['FEATURES'].split(',')
+      current_features = ENV["FEATURES"].split(",")
 
       @features = ALL_FEATURES.reduce({}) do |result, feature|
         result[feature] = current_features.include?(feature)
@@ -56,9 +56,10 @@ module Supermarket
     #
     def expired_ocid_tokens
       postgres_health_metric do
-        @supermarket[:expired_ocid_tokens] = Account.for('chef_oauth2')
-                                                    .where('oauth_expires < ?', Time.current)
-                                                    .count
+        @supermarket[:expired_ocid_tokens] = Account
+          .for("chef_oauth2")
+          .where("oauth_expires < ?", Time.current)
+          .count
       end
     end
 
@@ -81,7 +82,7 @@ module Supermarket
     def connections
       postgres_health_metric do
         ActiveRecord::Base.connection.query(
-          'SELECT count(*) FROM pg_stat_activity'
+          "SELECT count(*) FROM pg_stat_activity"
         ).flatten.first.to_i.tap do |connections|
           @postgresql[:connections] = connections
         end
@@ -128,7 +129,7 @@ module Supermarket
       redis_health_metric do
         redis_info = Sidekiq.redis(&:info)
 
-        %w[uptime_in_seconds connected_clients used_memory used_memory_peak].each do |key|
+        %w{uptime_in_seconds connected_clients used_memory used_memory_peak}.each do |key|
           @redis.store(key, redis_info.fetch(key, -1).to_i)
         end
       end
@@ -141,9 +142,9 @@ module Supermarket
       @status = if @sidekiq[:status] == REACHABLE &&
                    @postgresql[:status] == REACHABLE &&
                    @redis[:status] == REACHABLE
-                  'ok'
+                  "ok"
                 else
-                  'not ok'
+                  "not ok"
                 end
     end
 
@@ -152,13 +153,11 @@ module Supermarket
     # appropriate status.
     #
     def postgres_health_metric
-      begin
-        yield
-      rescue ActiveRecord::ConnectionTimeoutError
-        @postgresql[:status] = UNKNOWN
-      rescue PG::ConnectionBad
-        @postgresql[:status] = UNREACHABLE
-      end
+      yield
+    rescue ActiveRecord::ConnectionTimeoutError
+      @postgresql[:status] = UNKNOWN
+    rescue PG::ConnectionBad
+      @postgresql[:status] = UNREACHABLE
     end
 
     #
@@ -166,15 +165,13 @@ module Supermarket
     # appropriate status.
     #
     def redis_health_metric
-      begin
-        yield
-      rescue Redis::TimeoutError
-        @sidekiq[:status] = UNKNOWN
-        @redis[:status] = UNKNOWN
-      rescue Redis::CannotConnectError
-        @sidekiq[:status] = UNREACHABLE
-        @redis[:status] = UNREACHABLE
-      end
+      yield
+    rescue Redis::TimeoutError
+      @sidekiq[:status] = UNKNOWN
+      @redis[:status] = UNKNOWN
+    rescue Redis::CannotConnectError
+      @sidekiq[:status] = UNREACHABLE
+      @redis[:status] = UNREACHABLE
     end
   end
 end

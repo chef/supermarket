@@ -21,10 +21,10 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     if @group.save
       GroupMember.create!(user: current_user, group: @group, admin: true)
-      flash[:notice] = 'Group successfully created!'
+      flash[:notice] = "Group successfully created!"
       redirect_to group_path(@group)
     else
-      flash[:warning] = "An error has occurred #{@group.errors.full_messages.join(', ')}"
+      flash[:warning] = "An error has occurred #{@group.errors.full_messages.join(", ")}"
       redirect_to new_group_path
     end
   end
@@ -43,7 +43,7 @@ class GroupsController < ApplicationController
 
   def collaborator_groups_feature_check
     unless Feature.active?(:collaborator_groups)
-      flash[:warning] = 'You must activate the collaborator_groups feature to create a group'
+      flash[:warning] = "You must activate the collaborator_groups feature to create a group"
       redirect_to new_group_path
     end
   end

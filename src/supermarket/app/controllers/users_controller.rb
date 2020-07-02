@@ -12,9 +12,9 @@ class UsersController < ApplicationController
   #
   def show
     @cookbooks = case params[:tab]
-                 when 'collaborates'
+                 when "collaborates"
                    @user.collaborated_cookbooks
-                 when 'follows'
+                 when "follows"
                    @user.followed_cookbooks
                  else
                    @user.owned_cookbooks
@@ -59,9 +59,9 @@ class UsersController < ApplicationController
   #
   def make_admin
     authorize! @user
-    @user.roles = @user.roles + ['admin']
+    @user.roles = @user.roles + ["admin"]
     @user.save
-    redirect_to @user, notice: t('user.made_admin', name: @user.username)
+    redirect_to @user, notice: t("user.made_admin", name: @user.username)
   end
 
   #
@@ -72,18 +72,18 @@ class UsersController < ApplicationController
   #
   def revoke_admin
     authorize! @user
-    @user.roles = @user.roles - ['admin']
+    @user.roles = @user.roles - ["admin"]
     @user.save
-    redirect_to @user, notice: t('user.revoked_admin', name: @user.username)
+    redirect_to @user, notice: t("user.revoked_admin", name: @user.username)
   end
 
   private
 
   def assign_user
-    @user = Account.for('chef_oauth2').joins(:user).with_username(params[:id]).first!.user
+    @user = Account.for("chef_oauth2").joins(:user).with_username(params[:id]).first!.user
   end
 
   def override_search
-    @search = { path: tools_path, name: 'Tools' }
+    @search = { path: tools_path, name: "Tools" }
   end
 end

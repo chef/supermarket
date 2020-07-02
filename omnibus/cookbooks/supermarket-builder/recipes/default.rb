@@ -23,15 +23,17 @@
 case node['platform_family']
 when 'debian'
   apt_update
+
+  # not sure why, but debian/ubuntu need this owner change on the dir
+  # so that the bundle install for the omnibus build environment succeeds
+  execute 'fix bundler directory permissions' do
+    command "chown -R #{node['omnibus']['build_user']} #{node['omnibus']['build_user_home']}/.bundle"
+  end
 when 'rhel'
   include_recipe 'yum-epel::default'
 end
 
 include_recipe 'omnibus::default'
-
-execute 'fix bundler directory permissions' do
-  command "chown -R #{node['omnibus']['build_user']} #{node['omnibus']['build_user_home']}/.bundle"
-end
 
 # do the build
 omnibus_build 'supermarket' do

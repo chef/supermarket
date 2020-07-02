@@ -9,12 +9,12 @@ module AdoptionHelper
   def link_to_adoption(obj)
     if policy(obj).manage_adoption?
       txt, up = if obj.up_for_adoption?
-                  ['Disable adoption', false]
+                  ["Disable adoption", false]
                 else
-                  ['Put up for adoption', true]
+                  ["Put up for adoption", true]
                 end
 
-      content_tag(:li, adoption_url(obj, txt, up))
+      tag.li(adoption_url(obj, txt, up))
     end
   end
 
@@ -33,7 +33,9 @@ module AdoptionHelper
   #
   def adoption_url(obj, txt, up)
     link_to(polymorphic_path(obj, obj.class.name.downcase => { up_for_adoption: up }), method: :patch, data: { confirm: "Are you sure you want to put this up for adoption?" }) do
-      "<i class=\"fa fa-heart\"></i> #{txt}".html_safe
+      tag
+        .i(class: %w{fa fa-heart})
+        .concat(txt)
     end
   end
 end

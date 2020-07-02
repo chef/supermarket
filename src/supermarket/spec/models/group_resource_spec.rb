@@ -1,41 +1,41 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe GroupResource do
-  context 'associations' do
+  context "associations" do
     it { should belong_to(:group) }
     it { should belong_to(:resourceable) }
 
-    context 'validations' do
+    context "validations" do
       let(:cookbook) { create(:cookbook) }
       let(:group) { create(:group) }
 
-      it 'requires a group id' do
+      it "requires a group id" do
         group_resource = GroupResource.new(group: nil, resourceable: cookbook)
         expect(group_resource).to_not be_valid
       end
 
-      it 'requires a resourceable' do
+      it "requires a resourceable" do
         group_resource = GroupResource.new(group: group, resourceable: nil)
         expect(group_resource).to_not be_valid
       end
     end
 
-    describe '#resourceable' do
+    describe "#resourceable" do
       let(:group) { create(:group) }
 
-      context 'when the resourceable is a cookbook' do
+      context "when the resourceable is a cookbook" do
         let(:cookbook) { create(:cookbook) }
 
-        it 'returns the cookbook' do
+        it "returns the cookbook" do
           group_resource = GroupResource.new(group: group, resourceable: cookbook)
           expect(group_resource.resourceable).to eq(cookbook)
         end
       end
 
-      context 'when the resourceable is a tool' do
+      context "when the resourceable is a tool" do
         let(:tool) { create(:tool) }
 
-        it 'returns the tool' do
+        it "returns the tool" do
           group_resource = GroupResource.new(group: group, resourceable: tool)
           expect(group_resource.resourceable).to eq(tool)
         end

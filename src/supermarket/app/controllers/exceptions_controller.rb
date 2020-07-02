@@ -6,10 +6,10 @@ class ExceptionsController < ApplicationController
   # The default failure application.
   #
   def show
-    template = if template_exists?(status_code, 'exceptions')
+    template = if template_exists?(status_code, "exceptions")
                  "exceptions/#{status_code}"
                else
-                 'exceptions/500'
+                 "exceptions/500"
                end
 
     respond_to do |format|
@@ -37,7 +37,7 @@ class ExceptionsController < ApplicationController
   # @return [~Exception]
   #
   def exception
-    env['action_dispatch.exception']
+    env["action_dispatch.exception"]
   end
 
   #

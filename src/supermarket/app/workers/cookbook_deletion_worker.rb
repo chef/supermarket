@@ -9,24 +9,30 @@ class CookbookDeletionWorker
   # @param [Hash] cookbook a hash representation of the cookbook to delete
   #
   def perform(cookbook)
-    id = cookbook['id']
+    id = cookbook["id"]
 
-    subscribed_user_ids = SystemEmail.find_by!(name: 'Cookbook deleted')
-                                     .subscribed_users
-                                     .pluck(:id)
+    subscribed_user_ids = SystemEmail
+      .find_by!(name: "Cookbook deleted")
+      .subscribed_users
+      .pluck(:id)
 
-    followers_or_collaborators = CookbookFollower.where(cookbook_id: id)
-                                                 .includes(:user) +
-                                 Collaborator.where(resourceable_id: id,
-                                                    resourceable_type: 'Cookbook')
-                                             .includes(:user)
+    follows = CookbookFollower
+      .where(cookbook_id: id)
+      .includes(:user)
+    collaborations = Collaborator
+      .where(resourceable_id: id, resourceable_type: "Cookbook")
+      .includes(:user)
+    follows_and_collaborations = follows + collaborations
 
-    users = followers_or_collaborators.map(&:user).uniq.select { |u| subscribed_user_ids.include?(u.id) }
+    users = follows_and_collaborations
+      .map(&:user)
+      .uniq
+      .select { |u| subscribed_user_ids.include?(u.id) }
 
     users.each do |user|
-      CookbookMailer.cookbook_deleted_email(cookbook['name'], user).deliver_now
+      CookbookMailer.cookbook_deleted_email(cookbook["name"], user).deliver_now
     end
 
-    followers_or_collaborators.each(&:destroy)
+    follows_and_collaborations.each(&:destroy)
   end
 end

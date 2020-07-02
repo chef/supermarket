@@ -1,9 +1,9 @@
-require 'active_model/errors'
-require 'cookbook_upload/archive'
-require 'cookbook_upload/metadata'
-require 'cookbook_upload/document'
-require 'json'
-require 'set'
+require "active_model/errors"
+require "cookbook_upload/archive"
+require "cookbook_upload/metadata"
+require "cookbook_upload/document"
+require "json"
+require "set"
 
 class CookbookUpload
   class Parameters
@@ -43,9 +43,9 @@ class CookbookUpload
     def category_name
       parse_cookbook_json do |parsing_errors, json|
         if parsing_errors.any?
-          ''
+          ""
         else
-          json.fetch('category', '').to_s
+          json.fetch("category", "").to_s
         end
       end
     end
@@ -114,6 +114,7 @@ class CookbookUpload
     #
     def errors
       return @errors if @errors
+
       error_messages = Set.new.tap do |messages|
         parse_cookbook_json do |parsing_errors, _|
           parsing_errors.full_messages.each do |message|
@@ -160,22 +161,22 @@ class CookbookUpload
         if path
           metadata = Metadata.new(JSON.parse(archive.read(path)))
         else
-          errors.add(:base, I18n.t('api.error_messages.missing_metadata'))
+          errors.add(:base, I18n.t("api.error_messages.missing_metadata"))
         end
 
         # transparently clean self-dependnecies from the uploaded metadata
         # (in the distant future this should be an error)
         metadata.dependencies.reject! { |key, _value| key == metadata.name }
       rescue JSON::ParserError
-        errors.add(:base, I18n.t('api.error_messages.metadata_not_json'))
+        errors.add(:base, I18n.t("api.error_messages.metadata_not_json"))
       rescue Virtus::CoercionError
-        errors.add(:base, I18n.t('api.error_messages.invalid_metadata'))
+        errors.add(:base, I18n.t("api.error_messages.invalid_metadata"))
       rescue Archive::NotGzipped
-        errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
+        errors.add(:base, I18n.t("api.error_messages.tarball_not_gzipped"))
       rescue Archive::NoPath
-        errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
+        errors.add(:base, I18n.t("api.error_messages.tarball_has_no_path"))
       rescue Archive::CorruptTarball => e
-        errors.add(:base, I18n.t('api.error_messages.tarball_corrupt', error: e))
+        errors.add(:base, I18n.t("api.error_messages.tarball_corrupt", error: e))
       end
 
       yield(errors, metadata)
@@ -204,17 +205,17 @@ class CookbookUpload
 
           if readme.contents.blank?
             readme = nil
-            errors.add(:base, I18n.t('api.error_messages.missing_readme'))
+            errors.add(:base, I18n.t("api.error_messages.missing_readme"))
           end
         else
-          errors.add(:base, I18n.t('api.error_messages.missing_readme'))
+          errors.add(:base, I18n.t("api.error_messages.missing_readme"))
         end
       rescue Archive::Error
-        errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
+        errors.add(:base, I18n.t("api.error_messages.tarball_not_gzipped"))
       rescue Archive::NoPath
-        errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
+        errors.add(:base, I18n.t("api.error_messages.tarball_has_no_path"))
       rescue ArgumentError, Gem::Package::TarInvalidError => e
-        errors.add(:base, I18n.t('api.error_messages.tarball_corrupt', error: e))
+        errors.add(:base, I18n.t("api.error_messages.tarball_corrupt", error: e))
       end
 
       yield(errors, readme)
@@ -244,9 +245,9 @@ class CookbookUpload
                       Document.new
                     end
       rescue Archive::Error
-        errors.add(:base, I18n.t('api.error_messages.tarball_not_gzipped'))
+        errors.add(:base, I18n.t("api.error_messages.tarball_not_gzipped"))
       rescue Archive::NoPath
-        errors.add(:base, I18n.t('api.error_messages.tarball_has_no_path'))
+        errors.add(:base, I18n.t("api.error_messages.tarball_has_no_path"))
       end
 
       yield(errors, changelog)
@@ -266,7 +267,7 @@ class CookbookUpload
       begin
         json = JSON.parse(@cookbook_data)
       rescue JSON::ParserError
-        errors.add(:base, I18n.t('api.error_messages.cookbook_not_json'))
+        errors.add(:base, I18n.t("api.error_messages.cookbook_not_json"))
       end
 
       yield(errors, json)

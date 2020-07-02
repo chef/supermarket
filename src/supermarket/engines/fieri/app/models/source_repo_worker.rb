@@ -1,6 +1,6 @@
-require 'sidekiq'
-require 'net/http'
-require 'octokit'
+require "sidekiq"
+require "net/http"
+require "octokit"
 
 class SourceRepoWorker
   private
@@ -12,12 +12,12 @@ class SourceRepoWorker
   end
 
   def source_repo_url(cookbook_json)
-    JSON.parse(cookbook_json).fetch('source_url', '') || ''
+    JSON.parse(cookbook_json).fetch("source_url", "") || ""
   end
 
   def octokit_client
     Octokit::Client.new(
-      access_token: ENV['GITHUB_ACCESS_TOKEN']
+      access_token: ENV["GITHUB_ACCESS_TOKEN"]
     )
   end
 end

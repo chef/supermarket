@@ -1,5 +1,5 @@
-require 'and_feathers'
-require 'and_feathers/gzipped_tarball'
+require "and_feathers"
+require "and_feathers/gzipped_tarball"
 
 module TarballHelpers
   #
@@ -17,11 +17,11 @@ module TarballHelpers
   #
   # @return [Tempfile]
   #
-  def build_cookbook_tarball(name = 'mycookbook', &block)
-    Tempfile.new('tarball-fixture', 'tmp').tap do |file|
+  def build_cookbook_tarball(name = "mycookbook", &block)
+    Tempfile.new("tarball-fixture", "tmp").tap do |file|
       io = AndFeathers.build(name) do |base|
-        base.file('metadata.json') do
-          JSON.dump(name: name, description: 'neat')
+        base.file("metadata.json") do
+          JSON.dump(name: name, description: "neat")
         end
 
         yield(base)

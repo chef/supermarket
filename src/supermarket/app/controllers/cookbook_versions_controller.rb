@@ -9,7 +9,7 @@ class CookbookVersionsController < ApplicationController
   def download
     CookbookVersion.increment_counter(:web_download_count, @version.id)
     Cookbook.increment_counter(:web_download_count, @cookbook.id)
-    Supermarket::Metrics.increment('cookbook.downloads.web')
+    Supermarket::Metrics.increment("cookbook.downloads.web")
 
     redirect_to @version.cookbook_artifact_url
   end

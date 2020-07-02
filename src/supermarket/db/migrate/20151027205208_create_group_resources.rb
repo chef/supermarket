@@ -1,4 +1,4 @@
-class CreateGroupResources < ActiveRecord::Migration
+class CreateGroupResources < ActiveRecord::Migration[4.2]
   def change
     create_table :group_resources do |t|
       t.integer :group_id

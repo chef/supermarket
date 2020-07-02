@@ -1,4 +1,4 @@
-class MoveQualityMetricResults < ActiveRecord::Migration
+class MoveQualityMetricResults < ActiveRecord::Migration[4.2]
   def change
     foodcritic_qm = QualityMetric.create!(name: 'Foodcritic')
     collab_num_qm = QualityMetric.create!(name: 'Collaborator Number')

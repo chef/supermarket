@@ -1,4 +1,4 @@
-class CreateCurryRepositoryMaintainers < ActiveRecord::Migration
+class CreateCurryRepositoryMaintainers < ActiveRecord::Migration[4.2]
   def change
     create_table :curry_repository_maintainers do |t|
       t.integer :repository_id

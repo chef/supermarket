@@ -1,5 +1,5 @@
-require 'cookbook_upload'
-require 'mixlib/authentication/signatureverification'
+require "cookbook_upload"
+require "mixlib/authentication/signatureverification"
 
 class Api::V1::CookbookUploadsController < Api::V1Controller
   before_action :require_upload_params, only: :create
@@ -43,12 +43,12 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
     begin
       authorize! cookbook_upload.cookbook
     rescue Pundit::NotAuthorizedError
-      render_not_authorized([t('api.error_messages.unauthorized_upload_error')])
+      render_not_authorized([t("api.error_messages.unauthorized_upload_error")])
     else
       cookbook_upload.finish do |errors, cookbook, cookbook_version|
         if errors.any?
           error(
-            error_code: t('api.error_codes.invalid_data'),
+            error_code: t("api.error_codes.invalid_data"),
             error_messages: errors.full_messages
           )
         else
@@ -56,16 +56,16 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
 
           CookbookNotifyWorker.perform_async(cookbook_version.id)
 
-          if Feature.active?(:fieri) && ENV['FIERI_URL'].present?
+          if Feature.active?(:fieri) && ENV["FIERI_URL"].present?
             FieriNotifyWorker.perform_async(
               cookbook_version.id
             )
           end
 
-          Supermarket::Metrics.increment 'cookbook.version.published'
+          Supermarket::Metrics.increment "cookbook.version.published"
           UniverseCache.flush
 
-          render :create, status: 201
+          render :create, status: :created
         end
       end
     end
@@ -87,8 +87,8 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
     rescue Pundit::NotAuthorizedError
       error(
         {
-          error_code: t('api.error_codes.forbidden'),
-          error_messages: [t('api.error_messages.unauthorized_destroy_error')]
+          error_code: t("api.error_codes.forbidden"),
+          error_messages: [t("api.error_messages.unauthorized_destroy_error")],
         },
         403
       )
@@ -101,7 +101,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
 
       if @cookbook.destroyed?
         CookbookDeletionWorker.perform_async(@cookbook.as_json)
-        Supermarket::Metrics.increment 'cookbook.deleted'
+        Supermarket::Metrics.increment "cookbook.deleted"
         UniverseCache.flush
       end
     end
@@ -109,15 +109,15 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
 
   rescue_from ActionController::ParameterMissing do |e|
     error(
-      error_code: t('api.error_codes.invalid_data'),
+      error_code: t("api.error_codes.invalid_data"),
       error_messages: [t("api.error_messages.missing_#{e.param}")]
     )
   end
 
   rescue_from Mixlib::Authentication::AuthenticationError do |_e|
     error(
-      error_code: t('api.error_codes.authentication_failed'),
-      error_messages: [t('api.error_messages.authentication_request_error')]
+      error_code: t("api.error_codes.authentication_failed"),
+      error_messages: [t("api.error_messages.authentication_request_error")]
     )
   end
 
@@ -137,9 +137,9 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
       authorize! @cookbook, :destroy?
       raise VersionMustExist if @cookbook.cookbook_versions.count == 1
     rescue VersionMustExist
-      error({ error_code: t('api.error_codes.conflict'),
-              error_messages: [t('api.error_messages.only_cookbook_version')],
-              error: t('api.error_messages.only_cookbook_version') },
+      error({ error_code: t("api.error_codes.conflict"),
+              error_messages: [t("api.error_messages.only_cookbook_version")],
+              error: t("api.error_messages.only_cookbook_version") },
             409)
     rescue Pundit::NotAuthorizedError
       error({}, 403)
@@ -162,7 +162,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
   def upload_params
     {
       cookbook: params.require(:cookbook),
-      tarball: params.require(:tarball)
+      tarball: params.require(:tarball),
     }
   end
 
@@ -174,14 +174,14 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
   # against the users public key or renders an error if it fails.
   #
   def authenticate_user!
-    username = request.headers['X-Ops-Userid']
-    user = Account.for('chef_oauth2').where(username: username).first.try(:user)
+    username = request.headers["X-Ops-Userid"]
+    user = Account.for("chef_oauth2").where(username: username).first.try(:user)
 
     unless user
       return error(
         {
-          error_code: t('api.error_codes.authentication_failed'),
-          error_messages: [t('api.error_messages.invalid_username', username: username)]
+          error_code: t("api.error_codes.authentication_failed"),
+          error_messages: [t("api.error_messages.invalid_username", username: username)],
         },
         401
       )
@@ -190,8 +190,8 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
     if user.public_key.nil?
       return error(
         {
-          error_code: t('api.error_codes.authentication_failed'),
-          error_messages: [t('api.error_messages.missing_public_key_error', current_host: request.base_url)]
+          error_code: t("api.error_codes.authentication_failed"),
+          error_messages: [t("api.error_messages.missing_public_key_error", current_host: request.base_url)],
         },
         401
       )
@@ -207,8 +207,8 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
     else
       error(
         {
-          error_code: t('api.error_codes.authentication_failed'),
-          error_messages: [t('api.error_messages.authentication_key_error')]
+          error_code: t("api.error_codes.authentication_failed"),
+          error_messages: [t("api.error_messages.authentication_key_error")],
         },
         401
       )

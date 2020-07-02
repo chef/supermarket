@@ -1,5 +1,5 @@
-require 'sidekiq'
-require 'net/http'
+require "sidekiq"
+require "net/http"
 
 class SupermarketApiRunner
   def cookbook_api_response(cookbook_name)
@@ -13,11 +13,11 @@ class SupermarketApiRunner
   private
 
   def cookbook_api_uri(cookbook_name)
-    URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbooks/#{cookbook_name}")
+    URI.parse("#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/cookbooks/#{cookbook_name}")
   end
 
   def cookbook_version_api_uri(cookbook_name, cookbook_version)
-    URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/cookbooks/#{cookbook_name}/versions/#{cookbook_version}")
+    URI.parse("#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/cookbooks/#{cookbook_name}/versions/#{cookbook_version}")
   end
 
   def get_api_response(uri)

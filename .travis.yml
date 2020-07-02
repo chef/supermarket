@@ -2,7 +2,8 @@ branches:
   only:
     - master
 
-sudo: false
+os: linux
+dist: xenial
 
 cache:
   apt: true
@@ -34,7 +35,7 @@ notifications:
   slack:
     secure: BfVg7BimLzBORMe8MmiBFghvq3znxSg4pQbCBiN62wCx5D9qTDLr4pvDgPZkuPqSGjUe9hB0Y0tQACqScbDLZx7IqP8+Naf5sQ4SvjNUjEMc+fQ2RJg5VqmSchgJlC4h6xwW4ArJ0Gms74Ov9klHBJQ3nzqAOV0y8Yk5Sv3FNcw=
 
-matrix:
+jobs:
   include:
 
     # Supermarket Spec
@@ -49,7 +50,7 @@ matrix:
             - libmagic-dev
             - libarchive-dev
       services:
-        - redis-server
+        - redis
         - postgresql
       before_install:
         - gem install bundler --no-document
@@ -59,8 +60,7 @@ matrix:
         - cd $TRAVIS_BUILD_DIR/src/$NAME && bundle exec rake db:schema:load
       script:
         - cd $TRAVIS_BUILD_DIR/src/$NAME
-        - bundle exec rake spec
-        - bundle exec rubocop
+        - bundle exec rake --trace
 
     # Fieri Spec
     - env:
@@ -73,15 +73,14 @@ matrix:
             - libxml2-dev
             - libmagic-dev
       services:
-        - redis-server
+        - redis
         - postgresql
       before_install:
         - gem install bundler --no-document
         - cd $TRAVIS_BUILD_DIR/src/supermarket/engines/$NAME && bundle config build.nokogiri --use-system-libraries
       script:
         - cd $TRAVIS_BUILD_DIR/src/supermarket/engines/$NAME
-        - bundle exec rake spec
-        - bundle exec rubocop
+        - bundle exec rake --trace
 
     # omnibus-supermarket-reconfigure-cookstyle
     - env:

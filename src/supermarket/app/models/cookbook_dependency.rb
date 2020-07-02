@@ -1,4 +1,4 @@
-require 'active_model/validations/chef_version_constraint_validator'
+require "active_model/validations/chef_version_constraint_validator"
 
 class CookbookDependency < ApplicationRecord
   include SeriousErrors
@@ -6,7 +6,7 @@ class CookbookDependency < ApplicationRecord
   # Associations
   # --------------------
   belongs_to :cookbook_version
-  belongs_to :cookbook
+  belongs_to :cookbook, optional: true
 
   # Validations
   # --------------------

@@ -1,6 +1,6 @@
-require 'sidekiq'
-require 'net/http'
-require 'octokit'
+require "sidekiq"
+require "net/http"
+require "octokit"
 
 class TestingFileWorker < SourceRepoWorker
   include ::Sidekiq::Worker
@@ -9,8 +9,8 @@ class TestingFileWorker < SourceRepoWorker
     evaluate_result = evaluate(cookbook_json)
 
     Net::HTTP.post_form(
-      URI.parse("#{ENV['FIERI_SUPERMARKET_ENDPOINT']}/api/v1/quality_metrics/testing_file_evaluation"),
-      fieri_key: ENV['FIERI_KEY'],
+      URI.parse("#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/testing_file_evaluation"),
+      fieri_key: ENV["FIERI_KEY"],
       cookbook_name: cookbook_name,
       testing_file_failure: evaluate_result,
       testing_file_feedback: give_feedback(evaluate_result)
@@ -26,7 +26,7 @@ class TestingFileWorker < SourceRepoWorker
     return true if repo.blank?
 
     begin
-      octokit_client.contents(repo, path: 'TESTING.md')
+      octokit_client.contents(repo, path: "TESTING.md")
       # if found, does not fail the metric
       false
     rescue Octokit::NotFound
@@ -38,11 +38,11 @@ class TestingFileWorker < SourceRepoWorker
   def give_feedback(failure_result)
     if failure_result
       I18n.t(
-        'quality_metrics.testing_file.failure'
+        "quality_metrics.testing_file.failure"
       )
     else
       I18n.t(
-        'quality_metrics.testing_file.success'
+        "quality_metrics.testing_file.success"
       )
     end
   end

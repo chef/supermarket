@@ -11,8 +11,8 @@ class Api::V1Controller < ApplicationController
   def render_404
     error(
       {
-        error_messages: [t('api.error_messages.not_found')],
-        error_code: t('api.error_codes.not_found')
+        error_messages: [t("api.error_messages.not_found")],
+        error_code: t("api.error_codes.not_found"),
       },
       404
     )
@@ -26,8 +26,8 @@ class Api::V1Controller < ApplicationController
   def render_not_authorized(messages)
     error(
       {
-        error_code: t('api.error_codes.unauthorized'),
-        error_messages: messages
+        error_code: t("api.error_codes.unauthorized"),
+        error_messages: messages,
       },
       401
     )
@@ -50,14 +50,14 @@ class Api::V1Controller < ApplicationController
 
     if @start < 0 || @items < 0
       return error(
-        error_code: t('api.error_codes.invalid_data'),
-        error_messages: [t('api.error_messages.negative_parameter',
-                           start: params.fetch(:start, 'not provided'),
-                           items: params.fetch(:items, 'not provided'))]
+        error_code: t("api.error_codes.invalid_data"),
+        error_messages: [t("api.error_messages.negative_parameter",
+                           start: params.fetch(:start, "not provided"),
+                           items: params.fetch(:items, "not provided"))]
       )
     end
 
-    @order = params.fetch(:order, 'name ASC').to_s
+    @order = params.fetch(:order, "name ASC").to_s
   end
 
   #
@@ -65,7 +65,7 @@ class Api::V1Controller < ApplicationController
   # Inteded to wrap the mechanism by which the limit is configured
   #
   def item_limit
-    configured_limit = ENV['API_ITEM_LIMIT'].to_i
+    configured_limit = ENV["API_ITEM_LIMIT"].to_i
     if configured_limit > 0
       configured_limit
     else
