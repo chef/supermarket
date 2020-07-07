@@ -1,27 +1,25 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.26 -->
-## [3.3.26](https://github.com/chef/supermarket/tree/3.3.26) (2020-07-02)
-
-#### Security Fixes
-- Bump rack from 2.2.2 to 2.2.3 in /omnibus [#1868](https://github.com/chef/supermarket/pull/1868) ([dependabot[bot]](https://github.com/dependabot[bot]))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.3.20 -->
-### Changes since 3.3.20 release
-
-#### Security Fixes
-- Bump rack from 2.2.2 to 2.2.3 in /omnibus [#1868](https://github.com/chef/supermarket/pull/1868) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.3.26 -->
-- Rails 5.0 -&gt; 5.1 -&gt; 5.2 upgrade; adoption of ChefStyle [#1867](https://github.com/chef/supermarket/pull/1867) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.25 -->
-- [Security] Bump kaminari from 1.0.1 to 1.2.1 in /src/supermarket [#1862](https://github.com/chef/supermarket/pull/1862) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.3.23 -->
-- [Security] Bump rack from 2.0.8 to 2.2.2 in quality metrics engine [#1858](https://github.com/chef/supermarket/pull/1858) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.3.22 -->
-
-#### Merged Pull Requests
-- Resolve upcoming OpenSSL Ruby library deprecation of algorithm constants [#1860](https://github.com/chef/supermarket/pull/1860) ([tas50](https://github.com/tas50)) <!-- 3.3.24 -->
-- Remove bundler-audit from tests; we&#39;re auditing with GitHub [#1861](https://github.com/chef/supermarket/pull/1861) ([tas50](https://github.com/tas50)) <!-- 3.3.21 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.3.26](https://github.com/chef/supermarket/tree/3.3.26) (2020-07-07)
+
+#### Security Fixes
+- [Security] Bump rack from 2.0.8 to 2.2.2 in quality metrics engine [#1858](https://github.com/chef/supermarket/pull/1858) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- [Security] Bump kaminari from 1.0.1 to 1.2.1 in /src/supermarket [#1862](https://github.com/chef/supermarket/pull/1862) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Rails 5.0 -&gt; 5.1 -&gt; 5.2 upgrade; adoption of ChefStyle [#1867](https://github.com/chef/supermarket/pull/1867) ([robbkidd](https://github.com/robbkidd))
+- Bump rack from 2.2.2 to 2.2.3 in /omnibus [#1868](https://github.com/chef/supermarket/pull/1868) ([dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Merged Pull Requests
+- Remove bundler-audit from tests; we&#39;re auditing with GitHub [#1861](https://github.com/chef/supermarket/pull/1861) ([tas50](https://github.com/tas50))
+- Resolve upcoming OpenSSL Ruby library deprecation of algorithm constants [#1860](https://github.com/chef/supermarket/pull/1860) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [3.3.20](https://github.com/chef/supermarket/tree/3.3.20) (2020-03-16)
 
 #### Security Fixes
@@ -40,7 +38,6 @@
 - add a version command to supermarket-ctl [#1811](https://github.com/chef/supermarket/pull/1811) ([robbkidd](https://github.com/robbkidd))
 - avoid Double Bundler by pinning rubygems version [#1835](https://github.com/chef/supermarket/pull/1835) ([robbkidd](https://github.com/robbkidd))
 - upgrade Ruby to 2.6.5 [#1852](https://github.com/chef/supermarket/pull/1852) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.3.7](https://github.com/chef/supermarket/tree/3.3.7) (2019-09-18)
 
