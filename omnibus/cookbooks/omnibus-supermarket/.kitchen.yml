@@ -23,6 +23,7 @@ platforms:
   - name: centos-6
   - name: centos-7
   - name: centos-8
+  - name: amazonlinux-2
 
 suites:
   - name: default
