@@ -1,14 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.28 -->
-## [3.3.28](https://github.com/chef/supermarket/tree/3.3.28) (2020-08-06)
+<!-- latest_release 3.3.29 -->
+## [3.3.29](https://github.com/chef/supermarket/tree/3.3.29) (2020-08-06)
 
-#### Security Fixes
-- Update Ruby to 2.6.6 to resolve 2 CVEs [#1877](https://github.com/chef/supermarket/pull/1877) ([tas50](https://github.com/tas50))
+#### Merged Pull Requests
+- add packages for Amazon Linux 2 to the pipeline [#1875](https://github.com/chef/supermarket/pull/1875) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.26 -->
 ### Changes since 3.3.26 release
+
+#### Merged Pull Requests
+- add packages for Amazon Linux 2 to the pipeline [#1875](https://github.com/chef/supermarket/pull/1875) ([tas50](https://github.com/tas50)) <!-- 3.3.29 -->
 
 #### Security Fixes
 - Update Ruby to 2.6.6 to resolve 2 CVEs [#1877](https://github.com/chef/supermarket/pull/1877) ([tas50](https://github.com/tas50)) <!-- 3.3.28 -->
