@@ -37,7 +37,7 @@ repositories are:
 
 ## Requirements
 
-- Ruby 2.3.3
+- Ruby 2.6.6
 - PostgreSQL 9.3
 - Redis 2.4+
 
@@ -52,6 +52,7 @@ goes into detail about the not-so-straightforward configuration that needs
 to happen to get Supermarket working locally.
 
 ### Local Environment
+
 These instructions are tested and verified on Mac OS X Yosemite
 
 #### Dependency Services
@@ -142,6 +143,7 @@ where a service is started.
   If you receive errors, make sure that redis and Postgres are running.
 
 ## Setting up Auth
+
 Supermarket uses oc-id running on a Chef server to authenticate users to Supermarket.
 
 IF YOU ARE AN INTERNAL CHEF STAFFER - there are some special things we need to do to set you up with oc-id.  Consult the internal wiki on setting up your Supermarket dev environment (or ask a friendly team member!).
@@ -286,12 +288,11 @@ which tracked outside of Supermarket.
 * cla
 * join_ccla
 
-
-# License
+## License
 
 |                      |                                          |
 |:---------------------|:-----------------------------------------|
-| **Copyright:**       | Copyright (c) 2014-2017 Chef Software, Inc.
+| **Copyright:**       | Copyright (c) Chef Software, Inc.
 | **License:**         | Apache License, Version 2.0
 
 ```text
