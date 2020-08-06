@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.27 -->
-## [3.3.27](https://github.com/chef/supermarket/tree/3.3.27) (2020-08-06)
+<!-- latest_release 3.3.28 -->
+## [3.3.28](https://github.com/chef/supermarket/tree/3.3.28) (2020-08-06)
 
 #### Security Fixes
-- update deps: includes nginx 1.18.0 (addresses CVE-2019-20372 tripping up scanners) [#1874](https://github.com/chef/supermarket/pull/1874) ([tas50](https://github.com/tas50))
+- Update Ruby to 2.6.6 to resolve 2 CVEs [#1877](https://github.com/chef/supermarket/pull/1877) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.26 -->
 ### Changes since 3.3.26 release
 
 #### Security Fixes
+- Update Ruby to 2.6.6 to resolve 2 CVEs [#1877](https://github.com/chef/supermarket/pull/1877) ([tas50](https://github.com/tas50)) <!-- 3.3.28 -->
 - update deps: includes nginx 1.18.0 (addresses CVE-2019-20372 tripping up scanners) [#1874](https://github.com/chef/supermarket/pull/1874) ([tas50](https://github.com/tas50)) <!-- 3.3.27 -->
 <!-- release_rollup -->
 
