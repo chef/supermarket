@@ -17,7 +17,7 @@ internally, behind-the-firewall.
 The code is designed to be easy for others to contribute to. To that end,
 the goal of this README is to introduce you to the project and get you up and
 running. More information about Supermarket can be found in [the
-wiki](https://github.com/chef/supermarket/wiki).  You can [follow along with the project development in
+wiki](https://github.com/chef/supermarket/wiki). You can [follow along with the project development in
 waffle.io](https://waffle.io/chef/supermarket).
 
 If you want to contribute to Supermarket, read the [contributor's
@@ -53,7 +53,7 @@ to happen to get Supermarket working locally.
 
 ### Local Environment
 
-These instructions are tested and verified on Mac OS X Yosemite
+These instructions are tested and verified on macOS Catalina (10.15)
 
 #### Dependency Services
 
@@ -71,14 +71,14 @@ where a service is started.
 ##### As Locally Running Processes
 
 1. Install Postgres - There are a few ways to get PostgreSQL running on OS X
-  * Install the [Postgres App](http://postgresapp.com/).  This is probably the simplest way to get Postgres running on your mac, it "just works."  You can then start a Postgres server through the GUI of the app. If you go this route then you'll have to add "/Applications/Postgres.app/Contents/Versions/9.4/bin/" or the equivalent to your PATH in order to get the pg gem to build.
-  * Through [Homebrew](http://brew.sh/).  When installed through homebrew, Postgres often requires additional configuration, see this [blog post](https://www.codefellows.org/blog/three-battle-tested-ways-to-install-postgresql) for instructions.  You can then start the Postgresql server with
+  * Install the [Postgres App](http://postgresapp.com/). This is probably the simplest way to get Postgres running on your mac, it "just works."  You can then start a Postgres server through the GUI of the app. If you go this route then you'll have to add "/Applications/Postgres.app/Contents/Versions/9.4/bin/" or the equivalent to your PATH in order to get the pg gem to build.
+  * Through [Homebrew](http://brew.sh/). When installed through homebrew, Postgres often requires additional configuration, see this [blog post](https://www.codefellows.org/blog/three-battle-tested-ways-to-install-postgresql) for instructions. You can then start the Postgresql server with
 
   ```
   $ pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
   ```
 
-1. Install Redis.  You can install this with Homebrew.  Follow the instructions in the install output to start the redis server.
+1. Install Redis. You can install this with Homebrew. Follow the instructions in the install output to start the redis server.
 
   ```
   $ brew install redis
@@ -94,7 +94,7 @@ where a service is started.
    * [chruby](https://github.com/postmodern/chruby)
    * or any other Ruby version manager that may come along
 
-1. Use your ruby manager to install Ruby 2.4.2.  For instructions on this, please see the manager's documentation.
+1. Use your ruby manager to install Ruby 2.4.2. For instructions on this, please see the manager's documentation.
 
 1. Install bundler
 
@@ -145,13 +145,13 @@ where a service is started.
 
 Supermarket uses oc-id running on a Chef server to authenticate users to Supermarket.
 
-IF YOU ARE AN INTERNAL CHEF STAFFER - there are some special things we need to do to set you up with oc-id.  Consult the internal wiki on setting up your Supermarket dev environment (or ask a friendly team member!).
+IF YOU ARE AN INTERNAL CHEF STAFFER - there are some special things we need to do to set you up with oc-id. Consult the internal wiki on setting up your Supermarket dev environment (or ask a friendly team member!).
 
-NOTE: Authentication currently requires a live chef server running oc-id.  We are working on a solution which would allow a developer to run the authentication locally, stay tuned.
+NOTE: Authentication currently requires a live chef server running oc-id. We are working on a solution which would allow a developer to run the authentication locally, stay tuned.
 
-Create a new application and register it on oc-id (I called my application "Application:Supermarket Development").  Set the callback url to http://localhost:3000/auth/chef_oauth2/callback or whatever localhost domain you use.
+Create a new application and register it on oc-id (I called my application "Application:Supermarket Development"). Set the callback url to http://localhost:3000/auth/chef_oauth2/callback or whatever localhost domain you use.
 
-In your local copy of the Supermarket repo, copy the .env file to .env.development.  Open up .env.development and replace these values:
+In your local copy of the Supermarket repo, copy the .env file to .env.development. Open up .env.development and replace these values:
 
   ```
   CHEF_OAUTH2_APP_ID=YOUR_CHEF_OAUTH2_APP_ID
@@ -178,13 +178,13 @@ development environment by creating an application with your Github account. To
 do this:
 
 1. Log into your Github account if you aren't already.
-2. Click on your username in the upper right hand corner.  This will bring you to your Profile page.
+2. Click on your username in the upper right hand corner. This will bring you to your Profile page.
 3. Click the "Edit Profile" button in the upper right corner of the Profile page.
 4. Click on "Applications" in the vertical menu on the left hand side
 5. At the top of the screen you'll see a section labeled "Developer applications" with a button that says "Register new Application."  Click on this button.
-6.  Name your application whatever you like (I use "Chef-Supermarket-Testing"), the set the homepage url as http://localhost:3000 (or whatever localhost domain that you use).  Also set the Authorization callback URL to http://localhost:3000 (or your localhost domain of choice).
+6. Name your application whatever you like (I use "Chef-Supermarket-Testing"), the set the homepage url as http://localhost:3000 (or whatever localhost domain that you use). Also set the Authorization callback URL to http://localhost:3000 (or your localhost domain of choice).
 7. Click the "Register application" button.
-8.  Open up the .env.development file in your local copy of the Supermarket repo.  Replace these values:
+8. Open up the .env.development file in your local copy of the Supermarket repo. Replace these values:
 
   ```
   GITHUB_KEY=YOUR_GITHUB_KEY
@@ -198,7 +198,7 @@ do this:
   GITHUB_SECRET=[Your new application's client secret]
   ```
 
-Next, create a Github Access token.  You also do this from the "Applications" section of your Profile page.
+Next, create a Github Access token. You also do this from the "Applications" section of your Profile page.
 
 1. Look at the "Personal access tokens section heading." Click on the "Generate new token" button.
 2. When prompted, enter your Github password.
