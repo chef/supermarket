@@ -59,10 +59,9 @@ These instructions are tested and verified on Mac OS X Yosemite
 
 ##### As Docker Containers
 
-1. Install the hypervisor of your choice (e.g. [VirtualBox](https://www.virtualbox.org/wiki/Downloads),
-  VMWare Fusion).
-
 1. Install `docker`
+
+`brew cask install docker`
 
 **NOTE:** You will still need a version of PostgreSQL installed on the local
 filesystem for development libraries to be available for building the `pg` gem.
