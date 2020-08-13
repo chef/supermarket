@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.31 -->
-## [3.3.31](https://github.com/chef/supermarket/tree/3.3.31) (2020-08-07)
+<!-- latest_release 3.3.32 -->
+## [3.3.32](https://github.com/chef/supermarket/tree/3.3.32) (2020-08-13)
 
 #### Merged Pull Requests
-- Bump Cookstyle / Chefstyle to the latest [#1882](https://github.com/chef/supermarket/pull/1882) ([tas50](https://github.com/tas50))
+- Require Chef 14+ in omnibus now [#1883](https://github.com/chef/supermarket/pull/1883) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.26 -->
@@ -14,6 +14,7 @@
 - Update Foodcritic from 14.3 to 16.3 [#1881](https://github.com/chef/supermarket/pull/1881) ([tas50](https://github.com/tas50)) <!-- 3.3.30 -->
 
 #### Merged Pull Requests
+- Require Chef 14+ in omnibus now [#1883](https://github.com/chef/supermarket/pull/1883) ([tas50](https://github.com/tas50)) <!-- 3.3.32 -->
 - Bump Cookstyle / Chefstyle to the latest [#1882](https://github.com/chef/supermarket/pull/1882) ([tas50](https://github.com/tas50)) <!-- 3.3.31 -->
 - add packages for Amazon Linux 2 to the pipeline [#1875](https://github.com/chef/supermarket/pull/1875) ([tas50](https://github.com/tas50)) <!-- 3.3.29 -->
 
