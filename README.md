@@ -88,19 +88,13 @@ where a service is started.
 
 1. Make sure you have XCode installed
 
-1. Install a Ruby manager - if you don't already have one, you will need a Ruby manager to install Ruby 2.4.2 such as:
+1. Install a Ruby manager - if you don't already have one, you will need a Ruby manager to install the appropriate Ruby release such as:
    * [RVM](https://rvm.io)
    * [Rbenv](https://github.com/rbenv/rbenv)
    * [chruby](https://github.com/postmodern/chruby)
    * or any other Ruby version manager that may come along
 
-1. Use your ruby manager to install Ruby 2.4.2. For instructions on this, please see the manager's documentation.
-
-1. Install bundler
-
-  ```
-  $ gem install bundler
-  ```
+1. Use your ruby manager to install the necessary Ruby release. For instructions on this, please see the manager's documentation.
 
 1. Make sure you have the Supermarket repo cloned to your machine, then change into that directory
 
@@ -111,7 +105,7 @@ where a service is started.
 1. Then change into the src
 
   ```
-  $ cd src
+  $ cd src/supermarket
   ```
 
 1. Install required gems:
