@@ -8,4 +8,4 @@ version          '1.0.0'
 depends          'yum-epel'
 depends          'omnibus'
 
-chef_version     '>= 13.0'
+chef_version     '>= 14.0'
