@@ -1,5 +1,5 @@
-require "net/http"
-require "uri"
+require "net/http" unless defined?(Net::HTTP)
+require "uri" unless defined?(URI)
 
 class FieriNotifyWorker
   include Sidekiq::Worker

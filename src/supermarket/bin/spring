@@ -4,7 +4,7 @@
 # It gets overwritten when you run the `spring binstub` command
 
 unless defined?(Spring)
-  require "rubygems"
+  require "rubygems" unless defined?(Gem)
   require "bundler"
   match = Bundler.default_lockfile.read.match(/^GEM$.*?^    spring \((.*?)\)$.*?^$/m)
   if match

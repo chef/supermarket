@@ -1,6 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= "test"
-require File.expand_path('../config/environment', __dir__)
+require File.expand_path("../config/environment", __dir__)
 require "rspec/rails"
 require "paperclip/matchers"
 require "sidekiq/testing"

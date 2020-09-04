@@ -1,6 +1,6 @@
 shared_examples_for "exportable" do
   context "as CSV" do
-    require "csv"
+    require "csv" unless defined?(CSV)
     let!(:model) { described_class }
     let!(:exportable_thing) { FactoryBot.create(model.to_s.underscore.to_sym) }
     let!(:export_output) { model.as_csv }

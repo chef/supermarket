@@ -1,5 +1,5 @@
 require "spec_helper"
-require "tempfile"
+require "tempfile" unless defined?(Tempfile)
 
 describe "the set of SASS assets", type: :feature do
   # A custom branding file.

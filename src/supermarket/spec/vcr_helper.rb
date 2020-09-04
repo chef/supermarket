@@ -1,4 +1,4 @@
-require "cgi"
+require "cgi" unless defined?(CGI)
 require "vcr"
 
 VCR.configure do |c|

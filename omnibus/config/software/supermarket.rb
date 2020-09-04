@@ -17,7 +17,7 @@
 name "supermarket"
 license :project_license
 
-source path: File.expand_path('../../../../src/supermarket', project.filepath)
+source path: File.expand_path("../../../../src/supermarket", project.filepath)
 
 dependency "bundler"
 dependency "cacerts"
@@ -45,10 +45,10 @@ build do
          " --without development",
          env: env
   # This fails because we're installing Ruby C extensions in the wrong place!
-  bundle "exec rake assets:precompile", env: env.merge('RAILS_ENV' => 'production')
+  bundle "exec rake assets:precompile", env: env.merge("RAILS_ENV" => "production")
 
   sync project_dir, "#{install_dir}/embedded/service/supermarket/",
-    exclude: %w( .cookbooks .direnv .envrc .env.* .gitignore .kitchen*
+    exclude: %w{ .cookbooks .direnv .envrc .env.* .gitignore .kitchen*
                  app/assets/**/branding coverage log node_modules pkg
-                 public/system spec tmp )
+                 public/system spec tmp }
 end

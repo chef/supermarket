@@ -1,5 +1,5 @@
 require "sidekiq"
-require "net/http"
+require "net/http" unless defined?(Net::HTTP)
 
 class LicenseWorker
   include ::Sidekiq::Worker

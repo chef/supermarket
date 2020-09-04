@@ -1,7 +1,7 @@
-require "open-uri"
-require "rubygems/package"
+require "open-uri" unless defined?(OpenURI)
+require "rubygems/package" unless defined?(Gem::Package)
 require "foodcritic"
-require "mixlib/archive"
+require "mixlib/archive" unless defined?(Mixlib::Archive)
 require "filemagic"
 
 class CookbookArtifact

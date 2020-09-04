@@ -1,7 +1,7 @@
 require "and_feathers"
 require "and_feathers/gzipped_tarball"
 require "spec_helper"
-require "tempfile"
+require "tempfile" unless defined?(Tempfile)
 
 describe CookbookUpload do
   describe "#finish(user)" do

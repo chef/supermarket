@@ -1,5 +1,5 @@
 require "sidekiq"
-require "net/http"
+require "net/http" unless defined?(Net::HTTP)
 
 class SupermarketApiRunner
   def cookbook_api_response(cookbook_name)

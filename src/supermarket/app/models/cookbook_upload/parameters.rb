@@ -2,8 +2,8 @@ require "active_model/errors"
 require "cookbook_upload/archive"
 require "cookbook_upload/metadata"
 require "cookbook_upload/document"
-require "json"
-require "set"
+require "json" unless defined?(JSON)
+require "set" unless defined?(Set)
 
 class CookbookUpload
   class Parameters

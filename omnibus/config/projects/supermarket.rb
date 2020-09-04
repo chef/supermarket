@@ -25,16 +25,16 @@ license_file "../LICENSE"
 # and /opt/supermarket on all other platforms
 install_dir "#{default_root}/#{name}"
 
-build_version   IO.read(File.expand_path('../../../VERSION', __dir__)).strip
+build_version   IO.read(File.expand_path("../../../VERSION", __dir__)).strip
 build_iteration 1
 
-override :postgresql, version: '9.3.18'
+override :postgresql, version: "9.3.18"
 override :ruby, version: "2.6.6"
 override :rubygems, version: "3.1.2" # rubygems ships its own bundler which may differ from bundler defined below and then we get double bundler which makes the omnibus environment unhappy. Make sure these versions match before bumping either.
 override :bundler, version: "2.1.2" # this must match the BUNDLED WITH in all the repo's Gemfile.locks
-override :'chef-gem', version: '14.14.29'
-override :'openssl-fips', version: '2.0.16'
-override :'omnibus-ctl', version: 'master'
+override :'chef-gem', version: "14.14.29"
+override :'openssl-fips', version: "2.0.16"
+override :'omnibus-ctl', version: "master"
 
 # Creates required build directories
 dependency "preparation"
@@ -59,7 +59,7 @@ package :deb do
 end
 
 package :rpm do
-  signing_passphrase ENV['OMNIBUS_RPM_SIGNING_PASSPHRASE']
+  signing_passphrase ENV["OMNIBUS_RPM_SIGNING_PASSPHRASE"]
   compression_level 1
   compression_type :xz
 end

@@ -6,10 +6,10 @@
 # this file is here to facilitate running it.
 #
 
-require "pathname"
+require "pathname" unless defined?(Pathname)
 ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../../Gemfile", Pathname.new(__FILE__).realpath)
 
-require "rubygems"
+require "rubygems" unless defined?(Gem)
 require "bundler/setup"
 
 load Gem.bin_path("rspec-core", "rspec")
