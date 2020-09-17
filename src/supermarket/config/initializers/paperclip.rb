@@ -45,6 +45,12 @@ Paperclip
       )
     end
 
+    if ENV["S3_ENCRYPTION"].present?
+      options = options.merge(
+        s3_server_side_encryption: ENV["S3_ENCRYPTION"].to_sym
+      )
+    end
+
     options = if ENV["CDN_URL"].present?
                 options.merge(
                   url: ":s3_alias_url",
