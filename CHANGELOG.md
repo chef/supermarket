@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.32 -->
-## [3.3.32](https://github.com/chef/supermarket/tree/3.3.32) (2020-08-13)
+<!-- latest_release 3.3.33 -->
+## [3.3.33](https://github.com/chef/supermarket/tree/3.3.33) (2020-09-21)
 
-#### Merged Pull Requests
-- Require Chef 14+ in omnibus now [#1883](https://github.com/chef/supermarket/pull/1883) ([tas50](https://github.com/tas50))
+#### Security Fixes
+- [Security] Bump actionview from 5.2.4.3 to 5.2.4.4 (no CVE in Supermarket itself) [#1887](https://github.com/chef/supermarket/pull/1887) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.26 -->
@@ -19,6 +19,7 @@
 - add packages for Amazon Linux 2 to the pipeline [#1875](https://github.com/chef/supermarket/pull/1875) ([tas50](https://github.com/tas50)) <!-- 3.3.29 -->
 
 #### Security Fixes
+- [Security] Bump actionview from 5.2.4.3 to 5.2.4.4 (no CVE in Supermarket itself) [#1887](https://github.com/chef/supermarket/pull/1887) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.3.33 -->
 - Update Ruby to 2.6.6 to resolve 2 CVEs [#1877](https://github.com/chef/supermarket/pull/1877) ([tas50](https://github.com/tas50)) <!-- 3.3.28 -->
 - update deps: includes nginx 1.18.0 (addresses CVE-2019-20372 tripping up scanners) [#1874](https://github.com/chef/supermarket/pull/1874) ([tas50](https://github.com/tas50)) <!-- 3.3.27 -->
 <!-- release_rollup -->
