@@ -13,55 +13,8 @@ Paperclip
   end
 
 ":class/:attachment/:compatible_id/:style/:basename.:extension".tap do |path|
-  if Supermarket::S3ConfigAudit.use_s3?(ENV)
-    if ENV["S3_PATH"].present?
-      path = "#{ENV["S3_PATH"]}/#{path}"
-    end
-
-    options = {
-      storage: "s3",
-      s3_credentials: {
-        bucket: ENV["S3_BUCKET"],
-      },
-      path: path,
-      bucket: ENV["S3_BUCKET"],
-      s3_protocol: ENV["PROTOCOL"],
-      s3_region: ENV["S3_REGION"],
-    }
-
-    # If static creds are present in config - use them
-    if Supermarket::S3ConfigAudit.use_s3_with_static_creds?(ENV)
-      options = options.merge(
-        s3_credentials: {
-          access_key_id: ENV["S3_ACCESS_KEY_ID"],
-          secret_access_key: ENV["S3_SECRET_ACCESS_KEY"],
-        }
-      )
-    end
-
-    if ENV["S3_PRIVATE_OBJECTS"] == "true"
-      options = options.merge(
-        s3_permissions: :private
-      )
-    end
-
-    if ENV["S3_ENCRYPTION"].present?
-      options = options.merge(
-        s3_server_side_encryption: ENV["S3_ENCRYPTION"].to_sym
-      )
-    end
-
-    options = if ENV["CDN_URL"].present?
-                options.merge(
-                  url: ":s3_alias_url",
-                  s3_host_alias: ENV["CDN_URL"]
-                )
-              else
-                options.merge(
-                  url: ENV["S3_DOMAIN_STYLE"]
-                )
-              end
-
+  if Supermarket::S3Config.use_s3?(ENV)
+    options = Supermarket::S3Config.new(path, ENV).to_paperclip_options
     ::Paperclip::Attachment.default_options.update(options)
   else
     ::Paperclip::Attachment.default_options.update(
