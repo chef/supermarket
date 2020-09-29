@@ -1,14 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.33 -->
-## [3.3.33](https://github.com/chef/supermarket/tree/3.3.33) (2020-09-21)
+<!-- latest_release 3.3.34 -->
+## [3.3.34](https://github.com/chef/supermarket/tree/3.3.34) (2020-09-29)
 
-#### Security Fixes
-- [Security] Bump actionview from 5.2.4.3 to 5.2.4.4 (no CVE in Supermarket itself) [#1887](https://github.com/chef/supermarket/pull/1887) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+#### Enhancements
+- Add support for enabling Server Side Encryption when storing cookbooks in AWS S3 [#1888](https://github.com/chef/supermarket/pull/1888) ([bdwyertech](https://github.com/bdwyertech))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.26 -->
 ### Changes since 3.3.26 release
+
+#### Enhancements
+- Add support for enabling Server Side Encryption when storing cookbooks in AWS S3 [#1888](https://github.com/chef/supermarket/pull/1888) ([bdwyertech](https://github.com/bdwyertech)) <!-- 3.3.34 -->
 
 #### Maintenance Updates
 - Update Foodcritic from 14.3 to 16.3 [#1881](https://github.com/chef/supermarket/pull/1881) ([tas50](https://github.com/tas50)) <!-- 3.3.30 -->
