@@ -456,6 +456,9 @@ default['supermarket']['s3_region'] = nil
 
 # #### Optional S3
 
+# S3 Server Side Encryption can be enabled by setting to AES256
+default['supermarket']['s3_encryption'] = nil
+
 # A cdn_url can be used for an alias if the S3 bucket is behind a CDN like CloudFront.
 default['supermarket']['cdn_url'] = nil
 
