@@ -1,33 +1,31 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.34 -->
-## [3.3.34](https://github.com/chef/supermarket/tree/3.3.34) (2020-09-29)
-
-#### Enhancements
-- Add support for enabling Server Side Encryption when storing cookbooks in AWS S3 [#1888](https://github.com/chef/supermarket/pull/1888) ([bdwyertech](https://github.com/bdwyertech))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.3.26 -->
-### Changes since 3.3.26 release
-
-#### Enhancements
-- Add support for enabling Server Side Encryption when storing cookbooks in AWS S3 [#1888](https://github.com/chef/supermarket/pull/1888) ([bdwyertech](https://github.com/bdwyertech)) <!-- 3.3.34 -->
-
-#### Maintenance Updates
-- Update Foodcritic from 14.3 to 16.3 [#1881](https://github.com/chef/supermarket/pull/1881) ([tas50](https://github.com/tas50)) <!-- 3.3.30 -->
-
-#### Merged Pull Requests
-- Require Chef 14+ in omnibus now [#1883](https://github.com/chef/supermarket/pull/1883) ([tas50](https://github.com/tas50)) <!-- 3.3.32 -->
-- Bump Cookstyle / Chefstyle to the latest [#1882](https://github.com/chef/supermarket/pull/1882) ([tas50](https://github.com/tas50)) <!-- 3.3.31 -->
-- add packages for Amazon Linux 2 to the pipeline [#1875](https://github.com/chef/supermarket/pull/1875) ([tas50](https://github.com/tas50)) <!-- 3.3.29 -->
-
-#### Security Fixes
-- [Security] Bump actionview from 5.2.4.3 to 5.2.4.4 (no CVE in Supermarket itself) [#1887](https://github.com/chef/supermarket/pull/1887) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.3.33 -->
-- Update Ruby to 2.6.6 to resolve 2 CVEs [#1877](https://github.com/chef/supermarket/pull/1877) ([tas50](https://github.com/tas50)) <!-- 3.3.28 -->
-- update deps: includes nginx 1.18.0 (addresses CVE-2019-20372 tripping up scanners) [#1874](https://github.com/chef/supermarket/pull/1874) ([tas50](https://github.com/tas50)) <!-- 3.3.27 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.3.35](https://github.com/chef/supermarket/tree/3.3.35) (2020-09-29)
+
+#### Security Fixes
+- update deps: includes nginx 1.18.0 (addresses CVE-2019-20372 tripping up scanners) [#1874](https://github.com/chef/supermarket/pull/1874) ([tas50](https://github.com/tas50))
+- Update Ruby to 2.6.6 to resolve 2 CVEs [#1877](https://github.com/chef/supermarket/pull/1877) ([tas50](https://github.com/tas50))
+- [Security] Bump actionview from 5.2.4.3 to 5.2.4.4 (no CVE in Supermarket itself) [#1887](https://github.com/chef/supermarket/pull/1887) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Enhancements
+- Add support for enabling Server Side Encryption when storing cookbooks in AWS S3 [#1888](https://github.com/chef/supermarket/pull/1888) ([bdwyertech](https://github.com/bdwyertech))
+
+#### Maintenance Updates
+- Update Foodcritic from 14.3 to 16.3 [#1881](https://github.com/chef/supermarket/pull/1881) ([tas50](https://github.com/tas50))
+
+#### Merged Pull Requests
+- add packages for Amazon Linux 2 to the pipeline [#1875](https://github.com/chef/supermarket/pull/1875) ([tas50](https://github.com/tas50))
+- Bump Cookstyle / Chefstyle to the latest [#1882](https://github.com/chef/supermarket/pull/1882) ([tas50](https://github.com/tas50))
+- Require Chef 14+ in omnibus now [#1883](https://github.com/chef/supermarket/pull/1883) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [3.3.26](https://github.com/chef/supermarket/tree/3.3.26) (2020-07-07)
 
 #### Security Fixes
@@ -39,7 +37,6 @@
 #### Merged Pull Requests
 - Remove bundler-audit from tests; we&#39;re auditing with GitHub [#1861](https://github.com/chef/supermarket/pull/1861) ([tas50](https://github.com/tas50))
 - Resolve upcoming OpenSSL Ruby library deprecation of algorithm constants [#1860](https://github.com/chef/supermarket/pull/1860) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [3.3.20](https://github.com/chef/supermarket/tree/3.3.20) (2020-03-16)
 
