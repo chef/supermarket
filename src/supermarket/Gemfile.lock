@@ -177,6 +177,8 @@ GEM
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.4)
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.5)
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
@@ -199,6 +201,9 @@ GEM
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.13.1)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
     ffi-libarchive (1.0.0)
       ffi (~> 1.0)
     ffi-yajl (2.3.3)
@@ -243,9 +248,21 @@ GEM
     hashdiff (1.0.1)
     hashie (4.1.0)
     highline (2.0.3)
+    honeycomb-beeline (2.2.0)
+      libhoney (~> 1.14, >= 1.14.2)
     html_truncator (0.4.1)
       nokogiri (~> 1.5)
     htmlentities (4.3.4)
+    http (4.4.1)
+      addressable (~> 2.3)
+      http-cookie (~> 1.0)
+      http-form_data (~> 2.2)
+      http-parser (~> 1.2.0)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
+    http-form_data (2.3.0)
+    http-parser (1.2.1)
+      ffi-compiler (>= 1.0, < 2.0)
     httpclient (2.8.3)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
@@ -272,6 +289,9 @@ GEM
     kgio (2.11.2)
     launchy (2.4.3)
       addressable (~> 2.3)
+    libhoney (1.14.6)
+      addressable (~> 2.0)
+      http (>= 2.0, < 5.0)
     libyajl2 (1.2.0)
     license-acceptance (1.0.19)
       pastel (~> 0.7)
@@ -612,6 +632,9 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.7)
     unicode-display_width (1.7.0)
     unicode_utils (1.4.0)
     unicorn (5.4.0)
@@ -686,6 +709,7 @@ DEPENDENCIES
   guard
   guard-rspec
   guard-rubocop
+  honeycomb-beeline
   html_truncator
   jbuilder
   kaminari
