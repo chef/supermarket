@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.3.36 -->
+## [3.3.36](https://github.com/chef/supermarket/tree/3.3.36) (2020-10-05)
+
+#### Bug Fixes
+- disambiguate columns used in query ordering [#1893](https://github.com/chef/supermarket/pull/1893) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.3.35 -->
+### Changes since 3.3.35 release
+
+#### Bug Fixes
+- disambiguate columns used in query ordering [#1893](https://github.com/chef/supermarket/pull/1893) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.36 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
