@@ -51,5 +51,37 @@ describe "GET /api/v1/cookbooks" do
       expect(json_body["items"])
         .to match_array([redis_test_signature, redisio_test_signature])
     end
+
+    context "returns results for a user with ordering options" do
+      it "recently_updated" do
+        get "/api/v1/cookbooks?order=recently_updated&user=#{user.username}"
+
+        expect(json_body["total"]).to eql(2)
+      end
+
+      it "recently_added" do
+        get "/api/v1/cookbooks?order=recently_added&user=#{user.username}"
+
+        expect(json_body["total"]).to eql(2)
+      end
+
+      it "most_downloaded" do
+        get "/api/v1/cookbooks?order=most_downloaded&user=#{user.username}"
+
+        expect(json_body["total"]).to eql(2)
+      end
+
+      it "most_followed" do
+        get "/api/v1/cookbooks?order=most_followed&user=#{user.username}"
+
+        expect(json_body["total"]).to eql(2)
+      end
+
+      it "by_name" do
+        get "/api/v1/cookbooks?order=by_name&user=#{user.username}"
+
+        expect(json_body["total"]).to eql(2)
+      end
+    end
   end
 end
