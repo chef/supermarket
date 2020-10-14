@@ -1,7 +1,4 @@
 class ExceptionsController < ApplicationController
-  # Expose helper methods in the view
-  helper_method :exception, :backtrace, :status_code
-
   #
   # The default failure application.
   #
@@ -15,7 +12,7 @@ class ExceptionsController < ApplicationController
     respond_to do |format|
       format.html { render template: template, status: status_code }
       format.json do
-        render json: { message: exception.message }, status: status_code
+        render json: { message: message }, status: status_code
       end
     end
   end
@@ -23,40 +20,39 @@ class ExceptionsController < ApplicationController
   protected
 
   #
-  # The application backtrace from the exception.
-  #
-  # @return [Array<String>]
-  #
-  def backtrace
-    wrapper.application_trace
-  end
-
-  #
-  # The exception that was raised.
-  #
-  # @return [~Exception]
-  #
-  def exception
-    env["action_dispatch.exception"]
-  end
-
-  #
   # The Rack status code for the error.
   #
   # @return [Integer]
   #
   def status_code
-    wrapper.status_code.to_i
+    wrapped_exception.status_code.to_i
+  end
+
+  #
+  # The message for the error.
+  #
+  # @return [String]
+  #
+  def message
+    original_exception.message
   end
 
   private
 
   #
-  # The exception wrapper.
+  # An exception wrapper to perform, among other things, backtrace cleaning
   #
   # @return [ActionDispatch::ExceptionWrapper]
   #
-  def wrapper
-    @wrapper ||= ActionDispatch::ExceptionWrapper.new(env, exception)
+  def wrapped_exception
+    @wrapped_exception ||= ActionDispatch::ExceptionWrapper.new(backtrace_cleaner, original_exception)
+  end
+
+  def backtrace_cleaner
+    request.env["action_dispatch.backtrace_cleaner"]
+  end
+
+  def original_exception
+    request.env["action_dispatch.exception"]
   end
 end
