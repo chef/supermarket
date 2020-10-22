@@ -36,7 +36,7 @@ link "#{node['supermarket']['app_directory']}/.env.production" do
 end
 
 file "#{node['supermarket']['var_directory']}/etc/database.yml" do
-  content({
+  content(YAML.dump({
     'production' => {
       'adapter' => 'postgresql',
       'database' => node['supermarket']['database']['name'],
@@ -46,7 +46,7 @@ file "#{node['supermarket']['var_directory']}/etc/database.yml" do
       'port' => node['supermarket']['database']['port'],
       'pool' => node['supermarket']['database']['pool'],
     },
-  }.to_yaml)
+  }))
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'
