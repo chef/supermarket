@@ -1,14 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.38 -->
-## [3.3.38](https://github.com/chef/supermarket/tree/3.3.38) (2020-10-22)
+<!-- latest_release 3.4.0 -->
+## [3.4.0](https://github.com/chef/supermarket/tree/3.4.0) (2020-11-12)
 
-#### Bug Fixes
-- [omnibus] use YAML.dump to serialize simple hashes to disk [#1896](https://github.com/chef/supermarket/pull/1896) ([robbkidd](https://github.com/robbkidd))
+#### Maintenance Updates
+- drop support for RHEL6 builds [#1898](https://github.com/chef/supermarket/pull/1898) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.35 -->
 ### Changes since 3.3.35 release
+
+#### Maintenance Updates
+- drop support for RHEL6 builds [#1898](https://github.com/chef/supermarket/pull/1898) ([robbkidd](https://github.com/robbkidd)) <!-- 3.4.0 -->
 
 #### Bug Fixes
 - [omnibus] use YAML.dump to serialize simple hashes to disk [#1896](https://github.com/chef/supermarket/pull/1896) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.38 -->
