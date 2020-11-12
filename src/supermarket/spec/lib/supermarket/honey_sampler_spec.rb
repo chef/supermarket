@@ -52,4 +52,24 @@ RSpec.describe Supermarket::HoneySampler do
       expect(rate).to match(300)
     end
   end
+
+  context "with a health check from load balancers" do
+    let(:trace) {
+      {
+        "request.header.user_agent" => "ELB-HealthChecker/1.0",
+        "trace.trace_id" => trace_id,
+      }
+    }
+
+    it "samples if check is successful" do
+      is_sampled, rate = described_class.sample(trace.merge({ "response.status_code" => 200 }))
+      expect(is_sampled).to be_in [true, false]
+      expect(rate).to match(300)
+    end
+
+    it "does not sample if check is unsuccessful" do
+      result = described_class.sample(trace.merge({ "response.status_code" => 500 }))
+      expect(result).to eq([true, 1])
+    end
+  end
 end
