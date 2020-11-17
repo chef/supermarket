@@ -1,14 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.0 -->
-## [3.4.0](https://github.com/chef/supermarket/tree/3.4.0) (2020-11-12)
+<!-- latest_release 3.4.1 -->
+## [3.4.1](https://github.com/chef/supermarket/tree/3.4.1) (2020-11-17)
 
-#### Maintenance Updates
-- drop support for RHEL6 builds [#1898](https://github.com/chef/supermarket/pull/1898) ([robbkidd](https://github.com/robbkidd))
+#### Security Fixes
+- add HTTP strict transport security header when force SSL is enabled [#1855](https://github.com/chef/supermarket/pull/1855) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.35 -->
 ### Changes since 3.3.35 release
+
+#### Security Fixes
+- add HTTP strict transport security header when force SSL is enabled [#1855](https://github.com/chef/supermarket/pull/1855) ([robbkidd](https://github.com/robbkidd)) <!-- 3.4.1 -->
 
 #### Maintenance Updates
 - drop support for RHEL6 builds [#1898](https://github.com/chef/supermarket/pull/1898) ([robbkidd](https://github.com/robbkidd)) <!-- 3.4.0 -->
