@@ -1,28 +1,26 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.1 -->
-## [3.4.1](https://github.com/chef/supermarket/tree/3.4.1) (2020-11-17)
-
-#### Security Fixes
-- add HTTP strict transport security header when force SSL is enabled [#1855](https://github.com/chef/supermarket/pull/1855) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.3.35 -->
-### Changes since 3.3.35 release
-
-#### Security Fixes
-- add HTTP strict transport security header when force SSL is enabled [#1855](https://github.com/chef/supermarket/pull/1855) ([robbkidd](https://github.com/robbkidd)) <!-- 3.4.1 -->
-
-#### Maintenance Updates
-- drop support for RHEL6 builds [#1898](https://github.com/chef/supermarket/pull/1898) ([robbkidd](https://github.com/robbkidd)) <!-- 3.4.0 -->
-
-#### Bug Fixes
-- [omnibus] use YAML.dump to serialize simple hashes to disk [#1896](https://github.com/chef/supermarket/pull/1896) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.38 -->
-- Fix exceptions thrown by displaying an error [#1894](https://github.com/chef/supermarket/pull/1894) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.37 -->
-- disambiguate columns used in query ordering [#1893](https://github.com/chef/supermarket/pull/1893) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.36 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.4.1](https://github.com/chef/supermarket/tree/3.4.1) (2020-11-20)
+
+#### Bug Fixes
+- disambiguate columns used in query ordering [#1893](https://github.com/chef/supermarket/pull/1893) ([robbkidd](https://github.com/robbkidd))
+- Fix exceptions thrown by displaying an error [#1894](https://github.com/chef/supermarket/pull/1894) ([robbkidd](https://github.com/robbkidd))
+- [omnibus] use YAML.dump to serialize simple hashes to disk [#1896](https://github.com/chef/supermarket/pull/1896) ([robbkidd](https://github.com/robbkidd))
+
+#### Security Fixes
+- add HTTP strict transport security header when force SSL is enabled [#1855](https://github.com/chef/supermarket/pull/1855) ([robbkidd](https://github.com/robbkidd))
+
+#### Maintenance Updates
+- drop support for RHEL6 builds [#1898](https://github.com/chef/supermarket/pull/1898) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_stable_release -->
+
 ## [3.3.35](https://github.com/chef/supermarket/tree/3.3.35) (2020-09-29)
 
 #### Security Fixes
@@ -40,7 +38,6 @@
 - add packages for Amazon Linux 2 to the pipeline [#1875](https://github.com/chef/supermarket/pull/1875) ([tas50](https://github.com/tas50))
 - Bump Cookstyle / Chefstyle to the latest [#1882](https://github.com/chef/supermarket/pull/1882) ([tas50](https://github.com/tas50))
 - Require Chef 14+ in omnibus now [#1883](https://github.com/chef/supermarket/pull/1883) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [3.3.26](https://github.com/chef/supermarket/tree/3.3.26) (2020-07-07)
 
