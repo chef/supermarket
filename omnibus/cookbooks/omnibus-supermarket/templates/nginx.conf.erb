@@ -35,8 +35,9 @@ http {
   <% unless @nginx['disable_access_log'] -%>
   access_log	<%= @nginx['log_dir'] %>/access.log supermarket;
   <% end %>
-  
+
   server_tokens off;
+  add_header X-Clacks-Overhead "GNU Terry Pratchett";
 
   sendfile <%= @nginx['sendfile'] %>;
   tcp_nopush on;

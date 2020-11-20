@@ -67,12 +67,21 @@ module Supermarket
     # Check to see if any Postgres connections are waiting on a lock
     #
     def waiting_on_lock
+      wait_query = if ActiveRecord::Base.connection.postgresql_version < 90600
+                     "select count(*) from pg_stat_activity where waiting='t'"
+                   else
+                     "select count(*) from pg_stat_activity WHERE wait_event is not NULL"
+                   end
+
       postgres_health_metric do
-        ActiveRecord::Base.connection.query(
-          "select count(*) from pg_stat_activity where waiting='t'"
-        ).flatten.first.to_i.tap do |waiting_on_lock|
-          @postgresql[:waiting_on_lock] = waiting_on_lock
-        end
+        ActiveRecord::Base.connection
+          .query(wait_query)
+          .flatten
+          .first
+          .to_i
+          .tap do |waiting_on_lock|
+            @postgresql[:waiting_on_lock] = waiting_on_lock
+          end
       end
     end
 

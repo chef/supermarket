@@ -39,10 +39,9 @@ jobs:
   include:
 
     # Supermarket Spec
-    - env:
-        - NAME=supermarket
+    - name: supermarket
       addons:
-        postgresql: '9.4'
+        postgresql: '9.6'
         apt:
           packages:
             - libxslt1-dev
@@ -54,19 +53,18 @@ jobs:
         - postgresql
       before_install:
         - gem install bundler --no-document
-        - cd $TRAVIS_BUILD_DIR/src/$NAME && bundle config build.nokogiri --use-system-libraries
+        - cd $TRAVIS_BUILD_DIR/src/supermarket && bundle config build.nokogiri --use-system-libraries
       before_script:
         - psql -c 'create database supermarket_test;' -U postgres
-        - cd $TRAVIS_BUILD_DIR/src/$NAME && bundle exec rake db:schema:load
+        - cd $TRAVIS_BUILD_DIR/src/supermarket && bundle exec rake db:schema:load
       script:
-        - cd $TRAVIS_BUILD_DIR/src/$NAME
+        - cd $TRAVIS_BUILD_DIR/src/supermarket
         - bundle exec rake --trace
 
     # Fieri Spec
-    - env:
-        - NAME=fieri
+    - name: fieri
       addons:
-        postgresql: '9.3'
+        postgresql: '9.6'
         apt:
           packages:
             - libxslt1-dev
@@ -77,14 +75,13 @@ jobs:
         - postgresql
       before_install:
         - gem install bundler --no-document
-        - cd $TRAVIS_BUILD_DIR/src/supermarket/engines/$NAME && bundle config build.nokogiri --use-system-libraries
+        - cd $TRAVIS_BUILD_DIR/src/supermarket/engines/fieri && bundle config build.nokogiri --use-system-libraries
       script:
-        - cd $TRAVIS_BUILD_DIR/src/supermarket/engines/$NAME
+        - cd $TRAVIS_BUILD_DIR/src/supermarket/engines/fieri
         - bundle exec rake --trace
 
     # omnibus-supermarket-reconfigure-cookstyle
-    - env:
-        - NAME=lint-omnibus-supermarket-reconfigure-cookstyle
+    - name: cookstyle ctl-reconfigure
       addons:
         apt:
           sources:
@@ -101,8 +98,7 @@ jobs:
       script: chef exec cookstyle
 
     # omnibus-supermarket-reconfigure-unit
-    - env:
-        - NAME=omnibus-supermarket-reconfigure-unit
+    - name: chefspec ctl-reconfigure
       addons:
         apt:
           sources:
