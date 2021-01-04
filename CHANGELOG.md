@@ -1,14 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.2 -->
-## [3.4.2](https://github.com/chef/supermarket/tree/3.4.2) (2020-11-20)
+<!-- latest_release 3.4.3 -->
+## [3.4.3](https://github.com/chef/supermarket/tree/3.4.3) (2021-01-04)
 
-#### Maintenance Updates
-- support PostgreSQL 9.6+ [#1895](https://github.com/chef/supermarket/pull/1895) ([robbkidd](https://github.com/robbkidd))
+#### Security Fixes
+- [Security] Bump nokogiri from 1.10.10 to 1.11.0 in /src/supermarket [#1901](https://github.com/chef/supermarket/pull/1901) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.1 -->
 ### Changes since 3.4.1 release
+
+#### Security Fixes
+- [Security] Bump nokogiri from 1.10.10 to 1.11.0 in /src/supermarket [#1901](https://github.com/chef/supermarket/pull/1901) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.3 -->
 
 #### Maintenance Updates
 - support PostgreSQL 9.6+ [#1895](https://github.com/chef/supermarket/pull/1895) ([robbkidd](https://github.com/robbkidd)) <!-- 3.4.2 -->
