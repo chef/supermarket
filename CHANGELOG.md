@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.11 -->
-## [3.4.11](https://github.com/chef/supermarket/tree/3.4.11) (2021-05-05)
+<!-- latest_release 3.4.12 -->
+## [3.4.12](https://github.com/chef/supermarket/tree/3.4.12) (2021-05-05)
 
-#### Security Fixes
-- [Security] Bump rexml from 3.2.4 to 3.2.5 in /src/supermarket [#1911](https://github.com/chef/supermarket/pull/1911) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+#### Merged Pull Requests
+- Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.1 -->
 ### Changes since 3.4.1 release
 
 #### Merged Pull Requests
+- Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 - Update Rails to 5.2.5 [#1912](https://github.com/chef/supermarket/pull/1912) ([tas50](https://github.com/tas50)) <!-- 3.4.10 -->
 - bump openssl-1.0.2y [#1906](https://github.com/chef/supermarket/pull/1906) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.4.7 -->
 - clarification for cookbook transfer policy [#1886](https://github.com/chef/supermarket/pull/1886) ([bennyvasquez](https://github.com/bennyvasquez)) <!-- 3.4.4 -->
