@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'omnibus-supermarket::nginx' do
-  platform 'ubuntu', '16.04'
+  platform 'ubuntu', '18.04'
   automatic_attributes['memory']['total'] = '16000MB'
 
   it 'creates /var/log/supermarket/nginx' do
