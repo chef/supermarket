@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'omnibus-supermarket::postgresql' do
-  platform 'ubuntu', '16.04'
+  platform 'ubuntu', '18.04'
   automatic_attributes['memory']['total'] = '16000MB'
   normal_attributes['sysctl']['conf_dir'] = '/var/log/supermarket/postgresql'
 
