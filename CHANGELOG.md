@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.10 -->
-## [3.4.10](https://github.com/chef/supermarket/tree/3.4.10) (2021-05-05)
+<!-- latest_release 3.4.11 -->
+## [3.4.11](https://github.com/chef/supermarket/tree/3.4.11) (2021-05-05)
 
-#### Merged Pull Requests
-- Update Rails to 5.2.5 [#1912](https://github.com/chef/supermarket/pull/1912) ([tas50](https://github.com/tas50))
+#### Security Fixes
+- [Security] Bump rexml from 3.2.4 to 3.2.5 in /src/supermarket [#1911](https://github.com/chef/supermarket/pull/1911) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.1 -->
@@ -16,6 +16,7 @@
 - clarification for cookbook transfer policy [#1886](https://github.com/chef/supermarket/pull/1886) ([bennyvasquez](https://github.com/bennyvasquez)) <!-- 3.4.4 -->
 
 #### Security Fixes
+- [Security] Bump rexml from 3.2.4 to 3.2.5 in /src/supermarket [#1911](https://github.com/chef/supermarket/pull/1911) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.11 -->
 - [Security] Bump rexml from 3.2.4 to 3.2.5 in /src/supermarket/engines/fieri [#1910](https://github.com/chef/supermarket/pull/1910) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.9 -->
 - [Security] Bump activerecord from 5.2.4.4 to 5.2.4.5 in /src/supermarket/engines/fieri [#1905](https://github.com/chef/supermarket/pull/1905) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.8 -->
 - [Security] Bump redcarpet from 3.4.0 to 3.5.1 in /src/supermarket [#1904](https://github.com/chef/supermarket/pull/1904) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.6 -->
