@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.12 -->
-## [3.4.12](https://github.com/chef/supermarket/tree/3.4.12) (2021-05-05)
+<!-- latest_release 3.4.13 -->
+## [3.4.13](https://github.com/chef/supermarket/tree/3.4.13) (2021-05-05)
 
 #### Merged Pull Requests
-- Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50))
+- Stop producing Ubuntu 16.04 packages [#1914](https://github.com/chef/supermarket/pull/1914) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.1 -->
 ### Changes since 3.4.1 release
 
 #### Merged Pull Requests
+- Stop producing Ubuntu 16.04 packages [#1914](https://github.com/chef/supermarket/pull/1914) ([tas50](https://github.com/tas50)) <!-- 3.4.13 -->
 - Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 - Update Rails to 5.2.5 [#1912](https://github.com/chef/supermarket/pull/1912) ([tas50](https://github.com/tas50)) <!-- 3.4.10 -->
 - bump openssl-1.0.2y [#1906](https://github.com/chef/supermarket/pull/1906) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.4.7 -->
