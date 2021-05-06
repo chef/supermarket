@@ -23,7 +23,9 @@ build do
   cookbooks_path = "#{install_dir}/embedded/cookbooks"
   env = with_standard_compiler_flags(with_embedded_path)
 
-  shellout!("bundle exec gem install berkshelf", { cwd: Omnibus::Config.project_root })
+  block do
+    shellout!("bundle exec gem install berkshelf", { cwd: Omnibus::Config.project_root })
+  end
 
   command "berks vendor #{cookbooks_path}", env: env
 
