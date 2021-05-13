@@ -19,7 +19,7 @@ license :project_license
 
 source path: File.expand_path('../../../../src/supermarket', project.filepath)
 
-dependency "bundler"
+dependency "rubygems"
 dependency "cacerts"
 dependency "chef-gem"
 dependency "git"
