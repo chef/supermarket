@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.13 -->
-## [3.4.13](https://github.com/chef/supermarket/tree/3.4.13) (2021-05-05)
+<!-- latest_release 3.4.14 -->
+## [3.4.14](https://github.com/chef/supermarket/tree/3.4.14) (2021-05-20)
 
-#### Merged Pull Requests
-- Stop producing Ubuntu 16.04 packages [#1914](https://github.com/chef/supermarket/pull/1914) ([tas50](https://github.com/tas50))
+#### Security Fixes
+- [Security] Bump nokogiri from 1.11.1 to 1.11.5 in /src/supermarket/engines/fieri [#1921](https://github.com/chef/supermarket/pull/1921) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.1 -->
@@ -18,6 +18,7 @@
 - clarification for cookbook transfer policy [#1886](https://github.com/chef/supermarket/pull/1886) ([bennyvasquez](https://github.com/bennyvasquez)) <!-- 3.4.4 -->
 
 #### Security Fixes
+- [Security] Bump nokogiri from 1.11.1 to 1.11.5 in /src/supermarket/engines/fieri [#1921](https://github.com/chef/supermarket/pull/1921) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.14 -->
 - [Security] Bump rexml from 3.2.4 to 3.2.5 in /src/supermarket [#1911](https://github.com/chef/supermarket/pull/1911) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.11 -->
 - [Security] Bump rexml from 3.2.4 to 3.2.5 in /src/supermarket/engines/fieri [#1910](https://github.com/chef/supermarket/pull/1910) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.9 -->
 - [Security] Bump activerecord from 5.2.4.4 to 5.2.4.5 in /src/supermarket/engines/fieri [#1905](https://github.com/chef/supermarket/pull/1905) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.8 -->
