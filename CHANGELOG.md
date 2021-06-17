@@ -7,32 +7,39 @@
 - [Security] Bump actionpack from 5.2.4.5 to 5.2.6 in /src/supermarket/engines/fieri [#1915](https://github.com/chef/supermarket/pull/1915) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
-<!-- release_rollup since=3.4.1 -->
-### Changes since 3.4.1 release
-
-#### Merged Pull Requests
-- Stop producing Ubuntu 16.04 packages [#1914](https://github.com/chef/supermarket/pull/1914) ([tas50](https://github.com/tas50)) <!-- 3.4.13 -->
-- Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
-- Update Rails to 5.2.5 [#1912](https://github.com/chef/supermarket/pull/1912) ([tas50](https://github.com/tas50)) <!-- 3.4.10 -->
-- bump openssl-1.0.2y [#1906](https://github.com/chef/supermarket/pull/1906) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.4.7 -->
-- clarification for cookbook transfer policy [#1886](https://github.com/chef/supermarket/pull/1886) ([bennyvasquez](https://github.com/bennyvasquez)) <!-- 3.4.4 -->
+<!-- release_rollup since=3.4.8 -->
+### Changes since 3.4.8 release
 
 #### Security Fixes
-- [Security] Bump actionpack from 5.2.4.5 to 5.2.6 in /src/supermarket/engines/fieri [#1915](https://github.com/chef/supermarket/pull/1915) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.16 -->
-- [Security] Bump nokogiri from 1.11.3 to 1.11.5 in /src/supermarket [#1920](https://github.com/chef/supermarket/pull/1920) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.15 -->
-- [Security] Bump nokogiri from 1.11.1 to 1.11.5 in /src/supermarket/engines/fieri [#1921](https://github.com/chef/supermarket/pull/1921) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.14 -->
-- [Security] Bump rexml from 3.2.4 to 3.2.5 in /src/supermarket [#1911](https://github.com/chef/supermarket/pull/1911) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.11 -->
 - [Security] Bump rexml from 3.2.4 to 3.2.5 in /src/supermarket/engines/fieri [#1910](https://github.com/chef/supermarket/pull/1910) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.9 -->
-- [Security] Bump activerecord from 5.2.4.4 to 5.2.4.5 in /src/supermarket/engines/fieri [#1905](https://github.com/chef/supermarket/pull/1905) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.8 -->
-- [Security] Bump redcarpet from 3.4.0 to 3.5.1 in /src/supermarket [#1904](https://github.com/chef/supermarket/pull/1904) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.6 -->
-- [Security] Bump nokogiri from 1.10.10 to 1.11.1 in /src/supermarket/engines/fieri [#1902](https://github.com/chef/supermarket/pull/1902) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.5 -->
-- [Security] Bump nokogiri from 1.10.10 to 1.11.0 in /src/supermarket [#1901](https://github.com/chef/supermarket/pull/1901) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.3 -->
+- [Security] Bump rexml from 3.2.4 to 3.2.5 in /src/supermarket [#1911](https://github.com/chef/supermarket/pull/1911) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.11 -->
+- [Security] Bump nokogiri from 1.11.1 to 1.11.5 in /src/supermarket/engines/fieri [#1921](https://github.com/chef/supermarket/pull/1921) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.14 -->
+- [Security] Bump nokogiri from 1.11.3 to 1.11.5 in /src/supermarket [#1920](https://github.com/chef/supermarket/pull/1920) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.15 -->
+- [Security] Bump actionpack from 5.2.4.5 to 5.2.6 in /src/supermarket/engines/fieri [#1915](https://github.com/chef/supermarket/pull/1915) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.16 -->
 
-#### Maintenance Updates
-- support PostgreSQL 9.6+ [#1895](https://github.com/chef/supermarket/pull/1895) ([robbkidd](https://github.com/robbkidd)) <!-- 3.4.2 -->
+#### Merged Pull Requests
+- Update Rails to 5.2.5 [#1912](https://github.com/chef/supermarket/pull/1912) ([tas50](https://github.com/tas50)) <!-- 3.4.10 -->
+- Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
+- Stop producing Ubuntu 16.04 packages [#1914](https://github.com/chef/supermarket/pull/1914) ([tas50](https://github.com/tas50)) <!-- 3.4.13 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [3.4.8](https://github.com/chef/supermarket/tree/3.4.8) (2021-06-17)
+
+#### Security Fixes
+- [Security] Bump nokogiri from 1.10.10 to 1.11.0 in /src/supermarket [#1901](https://github.com/chef/supermarket/pull/1901) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- [Security] Bump nokogiri from 1.10.10 to 1.11.1 in /src/supermarket/engines/fieri [#1902](https://github.com/chef/supermarket/pull/1902) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- [Security] Bump redcarpet from 3.4.0 to 3.5.1 in /src/supermarket [#1904](https://github.com/chef/supermarket/pull/1904) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- [Security] Bump activerecord from 5.2.4.4 to 5.2.4.5 in /src/supermarket/engines/fieri [#1905](https://github.com/chef/supermarket/pull/1905) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Maintenance Updates
+- support PostgreSQL 9.6+ [#1895](https://github.com/chef/supermarket/pull/1895) ([robbkidd](https://github.com/robbkidd))
+
+#### Merged Pull Requests
+- clarification for cookbook transfer policy [#1886](https://github.com/chef/supermarket/pull/1886) ([bennyvasquez](https://github.com/bennyvasquez))
+- bump openssl-1.0.2y [#1906](https://github.com/chef/supermarket/pull/1906) ([dheerajd-msys](https://github.com/dheerajd-msys))
+<!-- latest_stable_release -->
+
 ## [3.4.1](https://github.com/chef/supermarket/tree/3.4.1) (2020-11-20)
 
 #### Bug Fixes
@@ -45,7 +52,6 @@
 
 #### Maintenance Updates
 - drop support for RHEL6 builds [#1898](https://github.com/chef/supermarket/pull/1898) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [3.3.35](https://github.com/chef/supermarket/tree/3.3.35) (2020-09-29)
 
