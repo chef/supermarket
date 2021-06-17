@@ -507,7 +507,7 @@ GEM
     regexp_parser (1.7.1)
     rexml (3.2.5)
     rinku (2.0.6)
-    rollout (2.4.1)
+    rollout (2.4.3)
     rspec (3.6.0)
       rspec-core (~> 3.6.0)
       rspec-expectations (~> 3.6.0)
