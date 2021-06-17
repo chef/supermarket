@@ -170,7 +170,7 @@ GEM
     ipaddress (0.8.3)
     jmespath (1.4.0)
     json (2.5.1)
-    kitchen-vagrant (1.6.1)
+    kitchen-vagrant (1.8.0)
       test-kitchen (>= 1.4, < 3)
     libyajl2 (2.1.0)
     license-acceptance (2.1.13)
