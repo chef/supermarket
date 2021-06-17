@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.16 -->
-## [3.4.16](https://github.com/chef/supermarket/tree/3.4.16) (2021-05-20)
+<!-- latest_release 3.4.17 -->
+## [3.4.17](https://github.com/chef/supermarket/tree/3.4.17) (2021-06-17)
 
-#### Security Fixes
-- [Security] Bump actionpack from 5.2.4.5 to 5.2.6 in /src/supermarket/engines/fieri [#1915](https://github.com/chef/supermarket/pull/1915) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+#### Merged Pull Requests
+- Bump omnibus from `f8f202c` to `87db446` in /omnibus [#1929](https://github.com/chef/supermarket/pull/1929) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -18,6 +18,7 @@
 - [Security] Bump actionpack from 5.2.4.5 to 5.2.6 in /src/supermarket/engines/fieri [#1915](https://github.com/chef/supermarket/pull/1915) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.16 -->
 
 #### Merged Pull Requests
+- Bump omnibus from `f8f202c` to `87db446` in /omnibus [#1929](https://github.com/chef/supermarket/pull/1929) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.17 -->
 - Update Rails to 5.2.5 [#1912](https://github.com/chef/supermarket/pull/1912) ([tas50](https://github.com/tas50)) <!-- 3.4.10 -->
 - Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 - Stop producing Ubuntu 16.04 packages [#1914](https://github.com/chef/supermarket/pull/1914) ([tas50](https://github.com/tas50)) <!-- 3.4.13 -->
