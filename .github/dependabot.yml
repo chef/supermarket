@@ -1,20 +1,23 @@
-version: 1
-update_configs:
-  - package_manager: "ruby:bundler"
-    directory: "/src/supermarket"
-    update_schedule: "daily"
-    allowed_updates:
-      - match:
-          update_type: "security"
-  - package_manager: "ruby:bundler"
-    directory: "/src/supermarket/engines/fieri"
-    update_schedule: "daily"
-    allowed_updates:
-      - match:
-          update_type: "security"
-  - package_manager: "ruby:bundler"
-    directory: "/omnibus"
-    update_schedule: "daily"
-    allowed_updates:
-      - match:
-          update_type: "security"
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/omnibus"
+  schedule:
+    interval: daily
+    time: "06:00"
+    timezone: America/Los_Angeles
+  open-pull-requests-limit: 10
+- package-ecosystem: bundler
+  directory: "/src/supermarket/engines/fieri"
+  schedule:
+    interval: daily
+    time: "06:00"
+    timezone: America/Los_Angeles
+  open-pull-requests-limit: 10
+- package-ecosystem: bundler
+  directory: "/src/supermarket"
+  schedule:
+    interval: daily
+    time: "06:00"
+    timezone: America/Los_Angeles
+  open-pull-requests-limit: 10
