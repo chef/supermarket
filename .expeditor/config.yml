@@ -45,36 +45,39 @@ pipelines:
       env:
         - ADHOC: true
 
-# These actions are taken, in order they are specified, anytime a Pull Request is merged.
-merge_actions:
-  - built_in:bump_version:
-      ignore_labels:
-        - "Expeditor: Skip Version Bump"
-        - "Expeditor: Skip All"
-  - built_in:update_changelog:
-      ignore_labels:
-        - "Expeditor: Skip Changelog"
-        - "Expeditor: Skip All"
-  - trigger_pipeline:omnibus/release:
-      ignore_labels:
-        - "Expeditor: Skip Omnibus"
-        - "Expeditor: Skip All"
-      only_if: built_in:bump_version
-
-# These actions are taken, in the order specified, when an Omnibus artifact is promoted
-# within Chef's internal artifact storage system.
-#
-# TODO: add promoted_to_unstable action to update changelog with modified omnibus components
 subscriptions:
+  # These actions are taken, in order they are specified, anytime a Pull Request is merged.
+  - workload: pull_request_merged:{{github_repo}}:{{release_branch}}:*
+    actions:
+      - built_in:bump_version:
+          ignore_labels:
+            - "Expeditor: Skip Version Bump"
+            - "Expeditor: Skip All"
+      - built_in:update_changelog:
+          ignore_labels:
+            - "Expeditor: Skip Changelog"
+            - "Expeditor: Skip All"
+      - trigger_pipeline:omnibus/release:
+          ignore_labels:
+            - "Expeditor: Skip Omnibus"
+            - "Expeditor: Skip All"
+          only_if: built_in:bump_version
+
+  # These actions are taken, in the order specified, when an Omnibus artifact is promoted
+  # within Chef's internal artifact storage system.
+  #
+  # TODO: add promoted_to_unstable action to update changelog with modified omnibus components
+
   - workload: artifact_published:stable:supermarket:*
     actions:
       - built_in:rollover_changelog
       - built_in:notify_chefio_slack_channels
-
-promote:
-  actions:
-    - built_in:promote_artifactory_artifact
-  channels:
-    - unstable
-    - current
-    - stable
+      
+  - workload: project_promoted:{{agent_id}}:*
+    actions:
+      - built_in:promote_artifactory_artifact
+             
+artifact_channels:
+  - unstable
+  - current
+  - stable
