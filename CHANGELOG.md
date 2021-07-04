@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.25 -->
-## [3.4.25](https://github.com/chef/supermarket/tree/3.4.25) (2021-06-22)
+<!-- latest_release 3.4.26 -->
+## [3.4.26](https://github.com/chef/supermarket/tree/3.4.26) (2021-07-04)
 
 #### Merged Pull Requests
-- Bump rubocop-rails from 2.6.0 to 2.8.1 in /src/supermarket/engines/fieri [#1936](https://github.com/chef/supermarket/pull/1936) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump all omnibus deps to the latest [#1987](https://github.com/chef/supermarket/pull/1987) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -18,6 +18,7 @@
 - [Security] Bump actionpack from 5.2.4.5 to 5.2.6 in /src/supermarket/engines/fieri [#1915](https://github.com/chef/supermarket/pull/1915) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.16 -->
 
 #### Merged Pull Requests
+- Bump all omnibus deps to the latest [#1987](https://github.com/chef/supermarket/pull/1987) ([tas50](https://github.com/tas50)) <!-- 3.4.26 -->
 - Bump rubocop-rails from 2.6.0 to 2.8.1 in /src/supermarket/engines/fieri [#1936](https://github.com/chef/supermarket/pull/1936) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.25 -->
 - Bump rails from 5.2.5 to 5.2.6 in /src/supermarket [#1941](https://github.com/chef/supermarket/pull/1941) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.24 -->
 - Bump berkshelf from 7.1.0 to 7.2.2 in /omnibus [#1947](https://github.com/chef/supermarket/pull/1947) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.23 -->
