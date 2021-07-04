@@ -4,6 +4,7 @@ require:
 Rails:
   Enabled: true
 AllCops:
+  NewCops: disable
   TargetRubyVersion: 2.6
   Exclude:
     - db/**/*
@@ -20,7 +21,7 @@ Rails/RakeEnvironment:
     - lib/tasks/setup.rake
     - lib/tasks/spec/javascripts.rake
 Rails/SkipsModelValidations:
-  Whitelist:
+  AllowedMethods:
     - increment_counter
     - touch
 Style/SymbolArray:
