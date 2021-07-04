@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.29 -->
-## [3.4.29](https://github.com/chef/supermarket/tree/3.4.29) (2021-07-04)
+<!-- latest_release 3.4.30 -->
+## [3.4.30](https://github.com/chef/supermarket/tree/3.4.30) (2021-07-04)
 
 #### Merged Pull Requests
-- Bump octokit from 4.18.0 to 4.21.0 in /src/supermarket/engines/fieri [#1927](https://github.com/chef/supermarket/pull/1927) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollout from 2.4.1 to 2.4.3 in /src/supermarket [#1942](https://github.com/chef/supermarket/pull/1942) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -21,6 +21,7 @@
 - Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 
 #### Merged Pull Requests
+- Bump rollout from 2.4.1 to 2.4.3 in /src/supermarket [#1942](https://github.com/chef/supermarket/pull/1942) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.30 -->
 - Bump octokit from 4.18.0 to 4.21.0 in /src/supermarket/engines/fieri [#1927](https://github.com/chef/supermarket/pull/1927) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.29 -->
 - Bump shoulda-matchers from 4.3.0 to 4.5.1 in /src/supermarket [#1928](https://github.com/chef/supermarket/pull/1928) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.28 -->
 - Bump chefstyle from 1.2.0 to 2.0.5 in /src/supermarket/engines/fieri [#1982](https://github.com/chef/supermarket/pull/1982) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.27 -->
