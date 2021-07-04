@@ -4,6 +4,7 @@ require:
 Rails:
   Enabled: true
 AllCops:
+  NewCops: disable
   TargetRubyVersion: 2.6
   Exclude:
     - db/**/*
