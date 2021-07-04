@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.27 -->
-## [3.4.27](https://github.com/chef/supermarket/tree/3.4.27) (2021-07-04)
+<!-- latest_release 3.4.28 -->
+## [3.4.28](https://github.com/chef/supermarket/tree/3.4.28) (2021-07-04)
 
 #### Merged Pull Requests
-- Bump chefstyle from 1.2.0 to 2.0.5 in /src/supermarket/engines/fieri [#1982](https://github.com/chef/supermarket/pull/1982) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump shoulda-matchers from 4.3.0 to 4.5.1 in /src/supermarket [#1928](https://github.com/chef/supermarket/pull/1928) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -21,6 +21,7 @@
 - Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 
 #### Merged Pull Requests
+- Bump shoulda-matchers from 4.3.0 to 4.5.1 in /src/supermarket [#1928](https://github.com/chef/supermarket/pull/1928) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.28 -->
 - Bump chefstyle from 1.2.0 to 2.0.5 in /src/supermarket/engines/fieri [#1982](https://github.com/chef/supermarket/pull/1982) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.27 -->
 - Bump all omnibus deps to the latest [#1987](https://github.com/chef/supermarket/pull/1987) ([tas50](https://github.com/tas50)) <!-- 3.4.26 -->
 - Bump rubocop-rails from 2.6.0 to 2.8.1 in /src/supermarket/engines/fieri [#1936](https://github.com/chef/supermarket/pull/1936) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.25 -->
