@@ -16,20 +16,20 @@
 - [Security] Bump nokogiri from 1.11.1 to 1.11.5 in /src/supermarket/engines/fieri [#1921](https://github.com/chef/supermarket/pull/1921) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.14 -->
 - [Security] Bump nokogiri from 1.11.3 to 1.11.5 in /src/supermarket [#1920](https://github.com/chef/supermarket/pull/1920) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.15 -->
 - [Security] Bump actionpack from 5.2.4.5 to 5.2.6 in /src/supermarket/engines/fieri [#1915](https://github.com/chef/supermarket/pull/1915) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.16 -->
+- Update PostgreSQL to 9.3.25 [#1977](https://github.com/chef/supermarket/pull/1977) ([tas50](https://github.com/tas50)) <!-- 3.4.22 -->
+- Update Rails to 5.2.5 [#1912](https://github.com/chef/supermarket/pull/1912) ([tas50](https://github.com/tas50)) <!-- 3.4.10 -->
+- Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 
 #### Merged Pull Requests
 - Bump all omnibus deps to the latest [#1987](https://github.com/chef/supermarket/pull/1987) ([tas50](https://github.com/tas50)) <!-- 3.4.26 -->
 - Bump rubocop-rails from 2.6.0 to 2.8.1 in /src/supermarket/engines/fieri [#1936](https://github.com/chef/supermarket/pull/1936) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.25 -->
 - Bump rails from 5.2.5 to 5.2.6 in /src/supermarket [#1941](https://github.com/chef/supermarket/pull/1941) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.24 -->
 - Bump berkshelf from 7.1.0 to 7.2.2 in /omnibus [#1947](https://github.com/chef/supermarket/pull/1947) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.23 -->
-- Update PostgreSQL to 9.3.25 [#1977](https://github.com/chef/supermarket/pull/1977) ([tas50](https://github.com/tas50)) <!-- 3.4.22 -->
 - Bump omnibus-software from `bdb61f0` to `68f693d` in /omnibus [#1976](https://github.com/chef/supermarket/pull/1976) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.21 -->
 - Bump kitchen-vagrant from 1.6.1 to 1.8.0 in /omnibus [#1946](https://github.com/chef/supermarket/pull/1946) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.20 -->
 - Bump test-kitchen from 2.5.4 to 2.12.0 in /omnibus [#1944](https://github.com/chef/supermarket/pull/1944) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.19 -->
 - Bump omnibus-software from `a7ed951` to `bdb61f0` in /omnibus [#1945](https://github.com/chef/supermarket/pull/1945) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.18 -->
 - Bump omnibus from `f8f202c` to `87db446` in /omnibus [#1929](https://github.com/chef/supermarket/pull/1929) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.17 -->
-- Update Rails to 5.2.5 [#1912](https://github.com/chef/supermarket/pull/1912) ([tas50](https://github.com/tas50)) <!-- 3.4.10 -->
-- Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 - Stop producing Ubuntu 16.04 packages [#1914](https://github.com/chef/supermarket/pull/1914) ([tas50](https://github.com/tas50)) <!-- 3.4.13 -->
 <!-- release_rollup -->
 
