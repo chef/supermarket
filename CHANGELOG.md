@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.60 -->
-## [3.4.60](https://github.com/chef/supermarket/tree/3.4.60) (2021-07-05)
+<!-- latest_release 3.4.61 -->
+## [3.4.61](https://github.com/chef/supermarket/tree/3.4.61) (2021-07-05)
 
 #### Merged Pull Requests
-- Bump honeycomb-beeline from 2.2.0 to 2.4.2 in /src/supermarket [#2024](https://github.com/chef/supermarket/pull/2024) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump validate_url from 1.0.2 to 1.0.13 in /src/supermarket [#2022](https://github.com/chef/supermarket/pull/2022) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -21,6 +21,7 @@
 - Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 
 #### Merged Pull Requests
+- Bump validate_url from 1.0.2 to 1.0.13 in /src/supermarket [#2022](https://github.com/chef/supermarket/pull/2022) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.61 -->
 - Bump honeycomb-beeline from 2.2.0 to 2.4.2 in /src/supermarket [#2024](https://github.com/chef/supermarket/pull/2024) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.60 -->
 - Bump dotenv from 2.7.5 to 2.7.6 in /src/supermarket [#2012](https://github.com/chef/supermarket/pull/2012) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.59 -->
 - Bump html_truncator from 0.4.1 to 0.4.2 in /src/supermarket [#2013](https://github.com/chef/supermarket/pull/2013) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.58 -->
