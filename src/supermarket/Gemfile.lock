@@ -173,8 +173,8 @@ GEM
     connection_pool (2.2.1)
     cookstyle (6.21.1)
       rubocop (= 0.93.1)
-    crack (0.4.3)
-      safe_yaml (~> 1.0.0)
+    crack (0.4.5)
+      rexml
     crass (1.0.6)
     css_parser (1.9.0)
       addressable
@@ -560,7 +560,6 @@ GEM
     rubyntlm (0.6.2)
     rubyzip (2.0.0)
     rufus-lru (1.1.0)
-    safe_yaml (1.0.5)
     sass (3.4.25)
     sass-globbing (1.1.5)
       sass (>= 3.1)
@@ -668,7 +667,7 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0.3)
       equalizer (~> 0.0.9)
-    webmock (3.8.2)
+    webmock (3.13.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
