@@ -5,9 +5,7 @@
 [![ctl-cookbook-testing](https://github.com/chef/supermarket/actions/workflows/ctl-cookbook-testing.yml/badge.svg)](https://github.com/chef/supermarket/actions/workflows/ctl-cookbook-testing.yml)
 [![Inline docs](http://inch-ci.org/github/chef/supermarket.svg)](http://inch-ci.org/github/chef/supermarket)
 
-Supermarket is Chef's community repository for cookbooks, currently hosted
-at [supermarket.chef.io](supermarket.chef.io). Supermarket can also be run
-internally, behind-the-firewall.
+Supermarket is Chef's community repository for cookbooks, currently hosted at [supermarket.chef.io](supermarket.chef.io). Supermarket can also run internally, behind-the-firewall.
 
 **Umbrella Project**: [Supermarket](https://github.com/chef/chef-oss-practices/blob/master/projects/supermarket.md)
 
@@ -16,8 +14,7 @@ internally, behind-the-firewall.
 * **Pull Request [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
 
 The code is designed to be easy for others to contribute to. To that end,
-the goal of this README is to introduce you to the project and get you up and
-running. More information about Supermarket can be found in [the
+the goal of this README is to introduce you to the project and get you up andrunning. More information about Supermarket can be found in [the
 wiki](https://github.com/chef/supermarket/wiki). You can [follow along with the project development in
 waffle.io](https://waffle.io/chef/supermarket).
 
@@ -46,11 +43,7 @@ repositories are:
 
 ### Configuring
 
-Configure the [dotenv](https://github.com/bkeepers/dotenv) keys and secrets to .
-See `.env.example` for required keys and secrets to get up and running.
-[`docs/CONFIGURING.md`](https://github.com/chef/supermarket/blob/master/src/supermarket/docs/CONFIGURING.md)
-goes into detail about the not-so-straightforward configuration that needs
-to happen to get Supermarket working locally.
+Configure the [dotenv](https://github.com/bkeepers/dotenv) keys and secrets to. See `.env.example` for required keys and secrets to get up and running. [`docs/CONFIGURING.md`](https://github.com/chef/supermarket/blob/master/src/supermarke/docs/CONFIGURING.md) goes into detail about the not-so-straightforward configuration that needs to happen to get Supermarket working locally.
 
 ### Local Environment
 
@@ -64,14 +57,11 @@ These instructions are tested and verified on macOS Catalina (10.15)
 
 `brew cask install docker`
 
-**NOTE:** You will still need a version of PostgreSQL installed on the local
-filesystem for development libraries to be available for building the `pg` gem.
-See the instructions for locally running PostgreSQL below, but omit the steps
-where a service is started.
+**NOTE:** You will still need a version of PostgreSQL installed on the local filesystem for development libraries to be available for building the `pg` gem. See the instructions for locally running PostgreSQL below, but omit the steps where a service is started.
 
 ##### As Locally Running Processes
 
-1. Install Postgres - There are a few ways to get PostgreSQL running on OS X
+1. Install Postgres - There are a few ways to get PostgreSQL running on macOS
   * Install the [Postgres App](http://postgresapp.com/). This is probably the simplest way to get Postgres running on your mac, it "just works."  You can then start a Postgres server through the GUI of the app. If you go this route then you'll have to add "/Applications/Postgres.app/Contents/Versions/9.4/bin/" or the equivalent to your PATH in order to get the pg gem to build.
   * Through [Homebrew](http://brew.sh/). When installed through homebrew, Postgres often requires additional configuration, see this [blog post](https://www.codefellows.org/blog/three-battle-tested-ways-to-install-postgresql) for instructions. You can then start the Postgresql server with
 
@@ -142,7 +132,7 @@ Supermarket uses oc-id running on a Chef server to authenticate users to Superma
 
 IF YOU ARE AN INTERNAL CHEF STAFFER - there are some special things we need to do to set you up with oc-id. Consult the internal wiki on setting up your Supermarket dev environment (or ask a friendly team member!).
 
-NOTE: Authentication currently requires a live chef server running oc-id. We are working on a solution which would allow a developer to run the authentication locally, stay tuned.
+NOTE: Authentication currently requires a live Chef Infra Server running oc-id. We are working on a solution that would allow a developer to run the authentication locally. Stay tuned.
 
 Create a new application and register it on oc-id (I called my application "Application:Supermarket Development"). Set the callback url to http://localhost:3000/auth/chef_oauth2/callback or whatever localhost domain you use.
 
@@ -225,9 +215,7 @@ $ bundle exec rake spec:all
 
 ### Acceptance Tests
 
-Acceptance tests are run with [Capybara](https://github.com/jnicklas/capybara).
-Run `rake spec:features` to run the specs in spec/features. The default `rake
-spec` also runs these.
+Acceptance tests are run with [Capybara](https://github.com/jnicklas/capybara). Run `rake spec:features` to run the specs in spec/features. The default `rake spec` also runs these.
 
 When writing feature specs, the Rack::Test driver is used by default. If the
 Poltergeist driver is required to be used (for example, an acceptance test
@@ -241,13 +229,11 @@ installed for the test suite to pass.
 
 ### JavaScript Tests
 
-The JavaScript specs are run with [Karma](http://karma-runner.github.io) and use
-the [Mocha](http://mochajs.org/) test framework and the [Chai
+The JavaScript specs are run with [Karma](http://karma-runner.github.io) and use the [Mocha](http://mochajs.org/) test framework and the [Chai
 Assertion Library](http://chaijs.com/)
 
 The specs live in spec/javascripts. Run `rake spec:javascripts` to run the
-specs, and `rake spec:javascripts:watch` to run them continuously and watch for
-changes.
+specs, and `rake spec:javascripts:watch` to run them continuously and watch for changes.
 
 [Node.js](http://nodejs.org/) is required to run the JavaScript tests.
 
@@ -263,8 +249,7 @@ key/value pairs. These key/value pairs will be exported as environment
 variables when the app runs, and Supermarket will look for these keys as
 environment variables when it needs to read a value that's configurable.
 
-One of these keys is called `FEATURES` and it controls a number of features
-that can be turned on and off. Here are the available features that can be
+One of these keys is called `FEATURES` and it controls a number of features that can be turned on and off. Here are the available features that can be
 toggled:
 
 * tools
