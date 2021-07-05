@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.48 -->
-## [3.4.48](https://github.com/chef/supermarket/tree/3.4.48) (2021-07-05)
+<!-- latest_release 3.4.49 -->
+## [3.4.49](https://github.com/chef/supermarket/tree/3.4.49) (2021-07-05)
 
 #### Merged Pull Requests
-- Bump rails-controller-testing from 1.0.1 to 1.0.5 in /src/supermarket [#2002](https://github.com/chef/supermarket/pull/2002) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump pry from 0.13.1 to 0.14.1 in /src/supermarket/engines/fieri [#1934](https://github.com/chef/supermarket/pull/1934) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -21,6 +21,7 @@
 - Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 
 #### Merged Pull Requests
+- Bump pry from 0.13.1 to 0.14.1 in /src/supermarket/engines/fieri [#1934](https://github.com/chef/supermarket/pull/1934) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.49 -->
 - Bump rails-controller-testing from 1.0.1 to 1.0.5 in /src/supermarket [#2002](https://github.com/chef/supermarket/pull/2002) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.48 -->
 - Changes Chef cookbooks text to Chef Infra Cookbooks as per issue [#2005](https://github.com/chef/supermarket/pull/2005) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.4.47 -->
 - Bump rubocop-rails from 2.8.1 to 2.11.2 in /src/supermarket/engines/fieri [#2008](https://github.com/chef/supermarket/pull/2008) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.46 -->
