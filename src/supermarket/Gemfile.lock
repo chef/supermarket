@@ -652,7 +652,7 @@ GEM
     validate_url (1.0.2)
       activemodel (>= 3.0.0)
       addressable
-    vcr (3.0.3)
+    vcr (6.0.0)
     virtus (1.0.2)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
