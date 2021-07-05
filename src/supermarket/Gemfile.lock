@@ -258,7 +258,7 @@ GEM
     highline (2.0.3)
     honeycomb-beeline (2.2.0)
       libhoney (~> 1.14, >= 1.14.2)
-    html_truncator (0.4.1)
+    html_truncator (0.4.2)
       nokogiri (~> 1.5)
     htmlentities (4.3.4)
     http (4.4.1)
