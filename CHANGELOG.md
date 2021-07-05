@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.55 -->
-## [3.4.55](https://github.com/chef/supermarket/tree/3.4.55) (2021-07-05)
+<!-- latest_release 3.4.56 -->
+## [3.4.56](https://github.com/chef/supermarket/tree/3.4.56) (2021-07-05)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `c626aa2` to `b02a8c3` to resolve Ubuntu 18.04 nodejs compilation failures [#2020](https://github.com/chef/supermarket/pull/2020) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump compass-rails from 3.0.2 to 4.0.0 in /src/supermarket [#1980](https://github.com/chef/supermarket/pull/1980) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -21,6 +21,7 @@
 - Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 
 #### Merged Pull Requests
+- Bump compass-rails from 3.0.2 to 4.0.0 in /src/supermarket [#1980](https://github.com/chef/supermarket/pull/1980) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.56 -->
 - Bump omnibus-software from `c626aa2` to `b02a8c3` to resolve Ubuntu 18.04 nodejs compilation failures [#2020](https://github.com/chef/supermarket/pull/2020) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.55 -->
 - Remove brakeman from the gemfile [#2015](https://github.com/chef/supermarket/pull/2015) ([tas50](https://github.com/tas50)) <!-- 3.4.54 -->
 - Setup Brakeman as a GitHub Action [#2014](https://github.com/chef/supermarket/pull/2014) ([tas50](https://github.com/tas50)) <!-- 3.4.53 -->
