@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.34 -->
-## [3.4.34](https://github.com/chef/supermarket/tree/3.4.34) (2021-07-05)
+<!-- latest_release 3.4.35 -->
+## [3.4.35](https://github.com/chef/supermarket/tree/3.4.35) (2021-07-05)
 
 #### Merged Pull Requests
-- Bump vcr from 3.0.3 to 6.0.0 in /src/supermarket [#1937](https://github.com/chef/supermarket/pull/1937) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rubocop-rails from 2.6.0 to 2.9.1 in /src/supermarket [#1993](https://github.com/chef/supermarket/pull/1993) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -21,6 +21,7 @@
 - Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 
 #### Merged Pull Requests
+- Bump rubocop-rails from 2.6.0 to 2.9.1 in /src/supermarket [#1993](https://github.com/chef/supermarket/pull/1993) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.35 -->
 - Bump vcr from 3.0.3 to 6.0.0 in /src/supermarket [#1937](https://github.com/chef/supermarket/pull/1937) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.34 -->
 - Move ChefSpec ctl cookbook testing to GitHub Actions [#1995](https://github.com/chef/supermarket/pull/1995) ([tas50](https://github.com/tas50)) <!-- 3.4.33 -->
 - Limit the tests that run on Travis [#1994](https://github.com/chef/supermarket/pull/1994) ([tas50](https://github.com/tas50)) <!-- 3.4.32 -->
