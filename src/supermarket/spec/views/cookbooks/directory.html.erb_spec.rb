@@ -8,5 +8,11 @@ describe "cookbooks/directory.html.erb" do
     assign(:most_followed_cookbooks, [])
   end
 
+  it "has Test Kitchen text correct" do
+    render
+    test_kitchen_text = "Test Kitchen documentation"
+    expect(rendered).to have_selector("a[href]", text: test_kitchen_text)
+  end
+
   it_behaves_like "community stats"
 end
