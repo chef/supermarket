@@ -37,7 +37,7 @@ jobs:
     - name: Scan
       continue-on-error: true
       run: |
-        brakeman src/supermarket -f sarif -o output.sarif.json .
+        brakeman src/supermarket -f sarif -o output.sarif.json
 
     # Upload the SARIF file generated in the previous step
     - name: Upload SARIF
