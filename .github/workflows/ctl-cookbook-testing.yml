@@ -1,5 +1,5 @@
 ---
-name: lint
+name: ctl-cookbook-testing
 
 'on':
   pull_request:
@@ -8,29 +8,29 @@ name: lint
       - master
 
 jobs:
-  chefstyle-supermarket:
+  cookstyle:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: ruby/setup-ruby@v1
       with:
-        working-directory: src/supermarket
+        working-directory: omnibus
         ruby-version: 2.6
         bundler-cache: true
     - uses: r7kamura/rubocop-problem-matchers-action@v1 # this shows the failures in the PR
-    - name: run chefstyle
-      run: bundle exec chefstyle
-      working-directory: src/supermarket
-  chefstyle-fieri:
+    - name: run cookstyle
+      run: bundle exec cookstyle cookbooks
+      working-directory: omnibus
+  chefspec:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: ruby/setup-ruby@v1
       with:
-        working-directory: src/supermarket/engines/fieri
+        working-directory: omnibus
         ruby-version: 2.6
         bundler-cache: true
     - uses: r7kamura/rubocop-problem-matchers-action@v1 # this shows the failures in the PR
-    - name: run chefstyle
-      run: bundle exec chefstyle
-      working-directory: src/supermarket/engines/fieri
+    - name: run chefspec
+      run: bundle exec rspec
+      working-directory: omnibus/cookbooks/omnibus-supermarket

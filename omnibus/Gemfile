@@ -23,6 +23,8 @@ group :development do
   gem 'kitchen-vagrant'
 end
 
+# gems for testing the build cookbooks
 group :test do
   gem 'cookstyle'
+  gem 'chefspec'
 end
