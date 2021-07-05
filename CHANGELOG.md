@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.46 -->
-## [3.4.46](https://github.com/chef/supermarket/tree/3.4.46) (2021-07-05)
+<!-- latest_release 3.4.47 -->
+## [3.4.47](https://github.com/chef/supermarket/tree/3.4.47) (2021-07-05)
 
 #### Merged Pull Requests
-- Bump rubocop-rails from 2.8.1 to 2.11.2 in /src/supermarket/engines/fieri [#2008](https://github.com/chef/supermarket/pull/2008) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Changes Chef cookbooks text to Chef Infra Cookbooks as per issue [#2005](https://github.com/chef/supermarket/pull/2005) ([msys-sgarg](https://github.com/msys-sgarg))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -21,6 +21,7 @@
 - Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 
 #### Merged Pull Requests
+- Changes Chef cookbooks text to Chef Infra Cookbooks as per issue [#2005](https://github.com/chef/supermarket/pull/2005) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.4.47 -->
 - Bump rubocop-rails from 2.8.1 to 2.11.2 in /src/supermarket/engines/fieri [#2008](https://github.com/chef/supermarket/pull/2008) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.46 -->
 - Changed text test-kitchen to Test Kitchen [#2006](https://github.com/chef/supermarket/pull/2006) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.4.45 -->
 - Bump cookstyle from 7.14.2 to 7.15.0 in /src/supermarket/engines/fieri [#2009](https://github.com/chef/supermarket/pull/2009) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.44 -->
