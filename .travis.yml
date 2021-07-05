@@ -38,29 +38,6 @@ notifications:
 jobs:
   include:
 
-    # Supermarket Spec
-    - name: supermarket
-      addons:
-        postgresql: '9.6'
-        apt:
-          packages:
-            - libxslt1-dev
-            - libxml2-dev
-            - libmagic-dev
-            - libarchive-dev
-      services:
-        - redis
-        - postgresql
-      before_install:
-        - gem install bundler --no-document
-        - cd $TRAVIS_BUILD_DIR/src/supermarket && bundle config build.nokogiri --use-system-libraries
-      before_script:
-        - psql -c 'create database supermarket_test;' -U postgres
-        - cd $TRAVIS_BUILD_DIR/src/supermarket && bundle exec rake db:schema:load
-      script:
-        - cd $TRAVIS_BUILD_DIR/src/supermarket
-        - bundle exec rake spec --trace
-
     # Fieri Spec
     - name: fieri
       addons:
