@@ -1,6 +1,8 @@
 # Supermarket
 
-[![Build Status](https://travis-ci.org/chef/supermarket.svg?branch=master)](https://travis-ci.org/chef/supermarket)
+[![unit](https://github.com/chef/supermarket/actions/workflows/unit.yml/badge.svg)](https://github.com/chef/supermarket/actions/workflows/unit.yml)
+[![lint](https://github.com/chef/supermarket/actions/workflows/lint.yml/badge.svg)](https://github.com/chef/supermarket/actions/workflows/lint.yml)
+[![ctl-cookbook-testing](https://github.com/chef/supermarket/actions/workflows/ctl-cookbook-testing.yml/badge.svg)](https://github.com/chef/supermarket/actions/workflows/ctl-cookbook-testing.yml)
 [![Inline docs](http://inch-ci.org/github/chef/supermarket.svg)](http://inch-ci.org/github/chef/supermarket)
 
 Supermarket is Chef's community repository for cookbooks, currently hosted
