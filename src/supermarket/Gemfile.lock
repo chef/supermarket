@@ -658,9 +658,9 @@ GEM
     utf8-cleaner (1.0.0)
       activesupport
     uuidtools (2.1.5)
-    validate_url (1.0.2)
+    validate_url (1.0.13)
       activemodel (>= 3.0.0)
-      addressable
+      public_suffix
     vcr (6.0.0)
     virtus (1.0.2)
       axiom-types (~> 0.1)
