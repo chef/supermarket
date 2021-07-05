@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.42 -->
-## [3.4.42](https://github.com/chef/supermarket/tree/3.4.42) (2021-07-05)
+<!-- latest_release 3.4.43 -->
+## [3.4.43](https://github.com/chef/supermarket/tree/3.4.43) (2021-07-05)
 
 #### Merged Pull Requests
-- Get fieri testing working in GH Actions [#2003](https://github.com/chef/supermarket/pull/2003) ([tas50](https://github.com/tas50))
+- Make sure chefstyle and yard aren&#39;t in the package [#2004](https://github.com/chef/supermarket/pull/2004) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -21,6 +21,7 @@
 - Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 
 #### Merged Pull Requests
+- Make sure chefstyle and yard aren&#39;t in the package [#2004](https://github.com/chef/supermarket/pull/2004) ([tas50](https://github.com/tas50)) <!-- 3.4.43 -->
 - Get fieri testing working in GH Actions [#2003](https://github.com/chef/supermarket/pull/2003) ([tas50](https://github.com/tas50)) <!-- 3.4.42 -->
 - Run unit tests in GitHub Actions [#2001](https://github.com/chef/supermarket/pull/2001) ([tas50](https://github.com/tas50)) <!-- 3.4.41 -->
 - Swap the full AWS SDK for just the S3 dep [#2000](https://github.com/chef/supermarket/pull/2000) ([tas50](https://github.com/tas50)) <!-- 3.4.40 -->
