@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.39 -->
-## [3.4.39](https://github.com/chef/supermarket/tree/3.4.39) (2021-07-05)
+<!-- latest_release 3.4.40 -->
+## [3.4.40](https://github.com/chef/supermarket/tree/3.4.40) (2021-07-05)
 
 #### Merged Pull Requests
-- Bump rb-readline from 0.5.4 to 0.5.5 in /src/supermarket [#1998](https://github.com/chef/supermarket/pull/1998) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Swap the full AWS SDK for just the S3 dep [#2000](https://github.com/chef/supermarket/pull/2000) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -21,6 +21,7 @@
 - Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 
 #### Merged Pull Requests
+- Swap the full AWS SDK for just the S3 dep [#2000](https://github.com/chef/supermarket/pull/2000) ([tas50](https://github.com/tas50)) <!-- 3.4.40 -->
 - Bump rb-readline from 0.5.4 to 0.5.5 in /src/supermarket [#1998](https://github.com/chef/supermarket/pull/1998) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.39 -->
 - Bump rspec-rails from 3.9.1 to 5.0.1 in /src/supermarket/engines/fieri [#1932](https://github.com/chef/supermarket/pull/1932) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.38 -->
 - Bump launchy from 2.4.3 to 2.5.0 in /src/supermarket [#1997](https://github.com/chef/supermarket/pull/1997) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.37 -->
