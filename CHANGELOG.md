@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.57 -->
-## [3.4.57](https://github.com/chef/supermarket/tree/3.4.57) (2021-07-05)
+<!-- latest_release 3.4.58 -->
+## [3.4.58](https://github.com/chef/supermarket/tree/3.4.58) (2021-07-05)
 
 #### Merged Pull Requests
-- Bump webmock from 3.8.2 to 3.13.0 in /src/supermarket [#2021](https://github.com/chef/supermarket/pull/2021) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump html_truncator from 0.4.1 to 0.4.2 in /src/supermarket [#2013](https://github.com/chef/supermarket/pull/2013) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -21,6 +21,7 @@
 - Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 
 #### Merged Pull Requests
+- Bump html_truncator from 0.4.1 to 0.4.2 in /src/supermarket [#2013](https://github.com/chef/supermarket/pull/2013) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.58 -->
 - Bump webmock from 3.8.2 to 3.13.0 in /src/supermarket [#2021](https://github.com/chef/supermarket/pull/2021) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.57 -->
 - Bump compass-rails from 3.0.2 to 4.0.0 in /src/supermarket [#1980](https://github.com/chef/supermarket/pull/1980) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.56 -->
 - Bump omnibus-software from `c626aa2` to `b02a8c3` to resolve Ubuntu 18.04 nodejs compilation failures [#2020](https://github.com/chef/supermarket/pull/2020) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.55 -->
