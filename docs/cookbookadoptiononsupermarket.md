@@ -1,4 +1,4 @@
-Sometimes cookbooks on <https://supermarket.chef.io/> lose their maintainer or fall out of maintenance for one reason or another. In the event that happens, and another maintainer wants to pick up that cookbook, the Chef Community wants to allow for the adoption of those cookbooks. Below you will find some scenarios outlined, and the steps that should be taken, which apply to both community-owned cookbooks, or Chef-owned cookbooks. 
+Sometimes cookbooks on <https://supermarket.chef.io/> lose their maintainer or fall out of maintenance for one reason or another. In the event that happens, and another maintainer wants to pick up that cookbook, the Chef Community wants to allow for the adoption of those cookbooks. Below you will find some scenarios outlined and the steps that should be taken, which apply to both community-owned cookbooks or Chef-owned cookbooks. 
 
 When a Cookbook is Up For Adoption
 ----------------------------------
@@ -8,7 +8,7 @@ When a cookbook owner puts the cookbook up for adoption(which will be reflected 
 When a Cookbook is Up For Adoption Without Response from Current Owner
 ----------------------------------------------------------------------
 
-If you (a person hoping to take ownership of the cookbook) find a cookbook that is up for adoption, and you have offered to adopt it though SuperMarket but the cookbook owner has not responded in a reasonable amount of time, you (the prospective adopter) should reach out to the current owner in other ways (email, issue on the cookbook repo, social media, etc). If the current owner is still unresponsive after a reasonable amount of time, you can request that Supermarket administrators make the transfer on behalf of the current owner in the #devrel chat room of [https://community-slack.chef.io/](Chef's Community Slack).
+If you (a person hoping to take ownership of the cookbook) find a cookbook that is up for adoption, and you have offered to adopt it through SuperMarket, but the cookbook owner has not responded in a reasonable amount of time, you (the prospective adopter) should reach out to the current owner in other ways (email, issue on the cookbook repo, social media, etc). If the current owner is still unresponsive after a reasonable amount of time, you can request that Supermarket administrators make the transfer on behalf of the current owner in the #devrel chat room of [https://community-slack.chef.io/](Chef's Community Slack).
 
 When a Cookbook is NOT Already Up for Adoption, but Appears Abandoned
 ---------------------------------------------------------------------
@@ -21,13 +21,13 @@ As a member of the Chef Community, when you (a person hoping to take ownership o
 
 #### Contacting the Current Owner
 
-If the cookbook has not yet been put up for adoption, the party hoping to take ownership of the cookbook should reach out to the current owner. The request should be made through as many avenues as possible, for example: starting a conversation on Chef Community Slack, opening a GitHub issue on the cookbook, sending the owner an email, reaching out to the owner over social media. We strongly recommend that you do not bombard the current owner though all avenues at once, but if the owner is unresponsive through one avenue, try another.
+If the cookbook has not yet been put up for adoption, the party hoping to take ownership of the cookbook should reach out to the current owner. The request should be made through as many avenues as possible, for example: starting a conversation on Chef Community Slack, opening a GitHub issue on the cookbook, sending the owner an email, reaching out to the owner over social media. We strongly recommend that you do not bombard the current owner through all avenues at once, but if the owner is unresponsive through one avenue, try another.
 
 One example of outreach might be an email to the current owner:
 
 > Hi there! You are currently the owner of this cookbook on [supermarket.chef.io](http://supermarket.chef.io), and I would like to discuss you potentially transferring this ownership to the Sous Chefs organization. The only action required of you to make the transfer on Supermarket happen would be a reply to me and CC to [mailto:community@chef.io](community@chef.io) confirming your acceptance, and we'll be able to handle that side! Transfer of the GitHub repo will need to be triggered by following the GitHub directions: [insert link to directions]
 
-We expect the current owner to be allowed ample time to respond, generally relative to their activity in a given platform. For example, if the user is relatively inactive on GitHub, it may take a few weeks to months to see a response there. If a user is more active on Twitter, it would be expected that a response would be more timely. In general, lack of response to requests made on platform where the user is active may result in a decision against transferring of ownership.
+We expect the current owner to be allowed ample time to respond, generally relative to their activity in a given platform. For example, if the user is relatively inactive on GitHub, it may take a few weeks to months to see a response there. If a user is more active on Twitter, it would be expected that a response would be more timely. In general, lack of response to requests made on a platform where the user is active may result in a decision against transferring of ownership.
 
 ### So, You Can't Reach The Owner
 
@@ -62,4 +62,4 @@ Format for Discussing Cookbook Ownership/Deprecation Status
 >
 > [insert relevant history and current state of the cookbook]
 >
-> [insert relevant history of attempts to transfer ownership]
+> [insert the relevant history of attempts to transfer ownership]
