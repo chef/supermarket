@@ -1,4 +1,4 @@
-require "spec_helper.rb"
+require "spec_helper"
 
 describe Badgeable do
   describe "the badges order matters so" do

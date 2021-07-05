@@ -1,0 +1,36 @@
+---
+name: lint
+
+'on':
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  chefstyle:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+      with:
+        working-directory: src/supermarket
+        ruby-version: 2.6
+        bundler-cache: true
+    - uses: r7kamura/rubocop-problem-matchers-action@v1 # this shows the failures in the PR
+    - name: run chefstyle
+      run: bundle exec chefstyle
+      working-directory: src/supermarket
+  supermarket-ctl-cookstyle:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+      with:
+        working-directory: omnibus
+        ruby-version: 2.6
+        bundler-cache: true
+    - uses: r7kamura/rubocop-problem-matchers-action@v1 # this shows the failures in the PR
+    - name: run cookstyle
+      run: bundle exec cookstyle cookbooks
+      working-directory: omnibus

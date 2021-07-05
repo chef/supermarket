@@ -22,3 +22,7 @@ group :development do
   gem 'test-kitchen'
   gem 'kitchen-vagrant'
 end
+
+group :test do
+  gem 'cookstyle'
+end
