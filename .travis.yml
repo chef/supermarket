@@ -80,23 +80,6 @@ jobs:
         - cd $TRAVIS_BUILD_DIR/src/supermarket/engines/fieri
         - bundle exec rake --trace
 
-    # omnibus-supermarket-reconfigure-cookstyle
-    - name: cookstyle ctl-reconfigure
-      addons:
-        apt:
-          sources:
-            - chef-stable-xenial
-          packages:
-            - chef-workstation
-      cache:
-        directories:
-          - $HOME/.berkshelf
-      install:
-        - eval "$(/opt/chefdk/bin/chef shell-init bash)"
-        - chef --version
-      before_script: cd omnibus/cookbooks/omnibus-supermarket
-      script: chef exec cookstyle
-
     # omnibus-supermarket-reconfigure-unit
     - name: chefspec ctl-reconfigure
       addons:
