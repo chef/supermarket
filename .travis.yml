@@ -59,7 +59,7 @@ jobs:
         - cd $TRAVIS_BUILD_DIR/src/supermarket && bundle exec rake db:schema:load
       script:
         - cd $TRAVIS_BUILD_DIR/src/supermarket
-        - bundle exec rake --trace
+        - bundle exec rake spec --trace
 
     # Fieri Spec
     - name: fieri
@@ -78,7 +78,7 @@ jobs:
         - cd $TRAVIS_BUILD_DIR/src/supermarket/engines/fieri && bundle config build.nokogiri --use-system-libraries
       script:
         - cd $TRAVIS_BUILD_DIR/src/supermarket/engines/fieri
-        - bundle exec rake --trace
+        - bundle exec rake spec --trace
 
     # omnibus-supermarket-reconfigure-unit
     - name: chefspec ctl-reconfigure
