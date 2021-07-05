@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.32 -->
-## [3.4.32](https://github.com/chef/supermarket/tree/3.4.32) (2021-07-05)
+<!-- latest_release 3.4.33 -->
+## [3.4.33](https://github.com/chef/supermarket/tree/3.4.33) (2021-07-05)
 
 #### Merged Pull Requests
-- Limit the tests that run on Travis [#1994](https://github.com/chef/supermarket/pull/1994) ([tas50](https://github.com/tas50))
+- Move ChefSpec ctl cookbook testing to GitHub Actions [#1995](https://github.com/chef/supermarket/pull/1995) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -21,6 +21,7 @@
 - Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 
 #### Merged Pull Requests
+- Move ChefSpec ctl cookbook testing to GitHub Actions [#1995](https://github.com/chef/supermarket/pull/1995) ([tas50](https://github.com/tas50)) <!-- 3.4.33 -->
 - Limit the tests that run on Travis [#1994](https://github.com/chef/supermarket/pull/1994) ([tas50](https://github.com/tas50)) <!-- 3.4.32 -->
 - Move linting to GitHub Actions [#1991](https://github.com/chef/supermarket/pull/1991) ([tas50](https://github.com/tas50)) <!-- 3.4.31 -->
 - Bump rollout from 2.4.1 to 2.4.3 in /src/supermarket [#1942](https://github.com/chef/supermarket/pull/1942) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.30 -->
