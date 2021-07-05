@@ -1,21 +1,25 @@
 # Contributing to Supermarket
+
 Thanks for your interest in contributing to Supermarket!
 
 The basic process:
+
 - Create a git topic branch for your patch and push it to GitHub
 - Sign all of your commits with DCO (Developer Certificate of Origin)
 - Open a pull request
 
 ## The Apache License and Contributing
+
 Licensing is very important to open source projects, it helps ensure the software continues to be available under the terms that the author desired. Chef uses the Apache 2.0 license to strike a balance between open contribution and allowing you to use the software however you would like to.
 
 The license tells you what rights you have that are provided by the copyright holder. It is important that the contributor fully understands what rights they are licensing and agrees to them. Sometimes the copyright holder isn't the contributor, most often when the contributor is doing work for a company.
 
-For more information about licensing, copyright, and why we use DCO, see Chef's [Community Contributions](https://docs.chef.io/community_contributions.html) page.
+For more information about licensing, copyright, and why we use DCO, see Chef's [Community Contributions](https://docs.chef.io/community_contributions/) page.
 
 For information on how to sign your commits with DCO, please see [DCO Sign Off Methods](https://github.com/chef/chef/blob/master/CONTRIBUTING.md#dco-sign-off-methods).
 
 ## Working with the community
+
 These resources will help you learn more about Chef and connect to other members of the Chef community:
 - [Chef](https://discourse.chef.io/) mailing list
 - [Chef community slack](http://community-slack.chef.io/)
@@ -23,7 +27,7 @@ These resources will help you learn more about Chef and connect to other members
 Also here are some additional pointers to some awesome Chef content:
 - [Chef Docs](https://docs.chef.io/)
 - [Learn Chef](https://learn.chef.io/)
-- Chef [product page](https://www.chef.io/chef)
+- Chef [product page](https://www.chef.io/products/chef-infra)
 
 ## Overview
 If you're experienced with the toolchain, here are the steps for submitting a patch to Supermarket:
@@ -37,7 +41,9 @@ If you're experienced with the toolchain, here are the steps for submitting a pa
 4. Open a [Pull Request](https://github.com/chef/supermarket/pull) against the supermarket master branch on GitHub
 
 ## Helpful Tips
+
 ### Writing Commit Messages
+
 Commit messages should be in the present tense, starting with an action verb, and contain a full predicate. Additional information, such as justification or helpful links, may be added after the commit header. See [0f1ef3fe54](https://github.com/chef/supermarket/commit/0f1ef3fe54) for an example multi-line commit.
 
 ```text
@@ -45,9 +51,10 @@ Bad:  Added some feature
 Bad:  Adding some feature
 Good: Add some feature
 ```
+
 ### Running Locally
 
-##### Known issues with `bundle install`
+#### Known issues with `bundle install`
 
 - the `ruby-filemagic` gem fails to build natively:
   ```
@@ -85,7 +92,7 @@ Good: Add some feature
 
   For Linux: `sudo apt-get install libpq-dev`
 
-  For Mac: `brew update` then `brew install prostgresql`
+  For Mac: `brew update` then `brew install postgresql`
 
   Then `gem` or `bundle` install again.
 
@@ -104,7 +111,7 @@ docker-compose up
 bundle exec rake db:setup
 ```
 
-The first line starts up the docker container to make redis and postgres available to the specs by mapping the expected ports.  The rake task then initializes the `supermarket_test` db schema expected by the specs.
+The first line starts up the docker container to make redis and postgres available to the specs by mapping the expected ports. The rake task then initializes the `supermarket_test` db schema expected by the specs.
 
 Finally, `bundle exec rake -T` will show you the available tasks.
 
@@ -115,20 +122,23 @@ bundle exec rake spec:views
 ```
 
 ### Adding Dependencies
+
 If you are adding dependencies to the project (gems in the Gemfile or npm packages in `packages.json`, please run `license_finder` to make sure that none of the added dependencies conflict  with the project's whitelisted licenses.
 
 ### Code Style
-[Rubocop](https://github.com/bbatsov/rubocop) is used to enforce a specific Ruby style guide. This tool can let you know what the offenses are and where they occur.
 
-It is worth noting that Travis CI runs Rubocop and will fail the build if it detects any style violations.
+[Chefstyle](https://github.com/chef/chefstyle) is used to enforce a specific Ruby style guide. This tool can let you know what the offenses are and where they occur.
+
+It is worth noting that Travis CI runs Chefstyle and will fail the build if it detects any style violations.
 
 Before opening your PR you can run Rubocop locally in the `src/supermarket` directory:
 
 ```
-bundle exec rake spec:rubocop
+bundle exec chefstyle
 ```
 
 ### CSS
+
 [Foundation](http://foundation.zurb.com) is used as a CSS framework and for various bits of JavaScript functionality. The Foundation framework is included in its entirety and is overwritten within the application. Most of the overrides are just small color and typographical changes so most of the [Foundation Docs](http://foundation.zurb.com/docs) apply to Supermarket. One exception is the use of the grid presentational classes (row, x columns, etc.) are eschewed in favor of using the SCSS grid mixins. You can find more information about the SCSS grid mixins [here](http://foundation.zurb.com/docs/components/grid.html).
 
 We adhere to the following SCSS style guidelines:
