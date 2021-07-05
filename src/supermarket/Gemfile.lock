@@ -91,8 +91,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (>= 2.0, < 4.0)
-    capybara-screenshot (1.0.14)
-      capybara (>= 1.0, < 3)
+    capybara-screenshot (1.0.25)
+      capybara (>= 1.0, < 4)
       launchy
     chef (16.2.44)
       addressable
