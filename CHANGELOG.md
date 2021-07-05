@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.44 -->
-## [3.4.44](https://github.com/chef/supermarket/tree/3.4.44) (2021-07-05)
+<!-- latest_release 3.4.45 -->
+## [3.4.45](https://github.com/chef/supermarket/tree/3.4.45) (2021-07-05)
 
 #### Merged Pull Requests
-- Bump cookstyle from 7.14.2 to 7.15.0 in /src/supermarket/engines/fieri [#2009](https://github.com/chef/supermarket/pull/2009) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Changed text test-kitchen to Test Kitchen [#2006](https://github.com/chef/supermarket/pull/2006) ([msys-sgarg](https://github.com/msys-sgarg))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -21,6 +21,7 @@
 - Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 
 #### Merged Pull Requests
+- Changed text test-kitchen to Test Kitchen [#2006](https://github.com/chef/supermarket/pull/2006) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.4.45 -->
 - Bump cookstyle from 7.14.2 to 7.15.0 in /src/supermarket/engines/fieri [#2009](https://github.com/chef/supermarket/pull/2009) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.44 -->
 - Make sure chefstyle and yard aren&#39;t in the package [#2004](https://github.com/chef/supermarket/pull/2004) ([tas50](https://github.com/tas50)) <!-- 3.4.43 -->
 - Get fieri testing working in GH Actions [#2003](https://github.com/chef/supermarket/pull/2003) ([tas50](https://github.com/tas50)) <!-- 3.4.42 -->
