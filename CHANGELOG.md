@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.52 -->
-## [3.4.52](https://github.com/chef/supermarket/tree/3.4.52) (2021-07-05)
+<!-- latest_release 3.4.53 -->
+## [3.4.53](https://github.com/chef/supermarket/tree/3.4.53) (2021-07-05)
 
 #### Merged Pull Requests
-- Bump jbuilder from 2.10.0 to 2.11.2 in /src/supermarket [#1943](https://github.com/chef/supermarket/pull/1943) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Setup Brakeman as a GitHub Action [#2014](https://github.com/chef/supermarket/pull/2014) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -21,6 +21,7 @@
 - Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
 
 #### Merged Pull Requests
+- Setup Brakeman as a GitHub Action [#2014](https://github.com/chef/supermarket/pull/2014) ([tas50](https://github.com/tas50)) <!-- 3.4.53 -->
 - Bump jbuilder from 2.10.0 to 2.11.2 in /src/supermarket [#1943](https://github.com/chef/supermarket/pull/1943) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.52 -->
 - Bump premailer-rails from 1.9.6 to 1.11.1 in /src/supermarket [#1988](https://github.com/chef/supermarket/pull/1988) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.51 -->
 - Bump brakeman from 3.6.1 to 5.0.4 in /src/supermarket [#1931](https://github.com/chef/supermarket/pull/1931) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.50 -->
