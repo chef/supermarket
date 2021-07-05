@@ -8,7 +8,7 @@ When a cookbook owner puts the cookbook up for adoption(which will be reflected 
 When a Cookbook is Up For Adoption Without Response from Current Owner
 ----------------------------------------------------------------------
 
-If you (a person hoping to take ownership of the cookbook) find a cookbook that is up for adoption, and you have offered to adopt it through SuperMarket, but the cookbook owner has not responded in a reasonable amount of time, you (the prospective adopter) should reach out to the current owner in other ways (email, issue on the cookbook repo, social media, etc). If the current owner is still unresponsive after a reasonable amount of time, you can request that Supermarket administrators make the transfer on behalf of the current owner in the #devrel chat room of [https://community-slack.chef.io/](Chef's Community Slack).
+If you (a person hoping to take ownership of the cookbook) find a cookbook that is up for adoption, and you have offered to adopt it through Supermarket, but the cookbook owner has not responded in a reasonable amount of time, you (the prospective adopter) should reach out to the current owner in other ways (email, issue on the cookbook repo, social media, etc). If the current owner is still unresponsive after a reasonable amount of time, you can request that Supermarket administrators make the transfer on behalf of the current owner in the #devrel chat room of [https://community-slack.chef.io/](Chef's Community Slack).
 
 When a Cookbook is NOT Already Up for Adoption, but Appears Abandoned
 ---------------------------------------------------------------------
