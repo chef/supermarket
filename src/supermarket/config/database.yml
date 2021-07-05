@@ -8,11 +8,6 @@ test:
   adapter: postgresql
   database: supermarket_test
   host: <%= ENV['POSTGRES_IP'] || 'localhost' %>
-
-ci:
-  adapter: postgresql
-  database: supermarket_test
-  host: 'localhost'
   username: <%= ENV['DB_USERNAME'] || 'postgres' %>
   password: <%= ENV['DB_PASSWORD'] || 'postgres' %>
 

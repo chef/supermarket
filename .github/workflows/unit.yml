@@ -21,8 +21,7 @@ jobs:
           POSTGRES_DB: supermarket_test
       redis:
         image: redis:latest
-        ports:
-          - 6379/tcp
+        ports: ["6379:6379"]
 
     steps:
       - uses: actions/checkout@v2
@@ -36,12 +35,12 @@ jobs:
       - name: create database schema
         run: bundle exec rake db:schema:load
         env:
-          RAILS_ENV: ci
+          RAILS_ENV: test
         working-directory: src/supermarket
       - name: run specs
         run: bundle exec rake spec --trace
         env:
-          RAILS_ENV: ci
+          RAILS_ENV: test
         working-directory: src/supermarket
 
   fieri:
@@ -57,8 +56,7 @@ jobs:
           POSTGRES_DB: supermarket_test
       redis:
         image: redis:latest
-        ports:
-          - 6379/tcp
+        ports: ["6379:6379"]
 
     steps:
       - uses: actions/checkout@v2
@@ -72,5 +70,5 @@ jobs:
       - name: run specs
         run: bundle exec rake spec --trace
         env:
-          RAILS_ENV: ci
+          RAILS_ENV: test
         working-directory: src/supermarket/engines/fieri
