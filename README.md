@@ -45,16 +45,18 @@ These instructions are tested and verified on macOS Catalina (10.15)
 
 1. Install `docker`
 
-`brew cask install docker`
+    ```shell
+    brew cask install docker
+    ```
 
-**NOTE:** You will still need a version of PostgreSQL installed on the local filesystem for development libraries to be available for building the `pg` gem. See the instructions for locally running PostgreSQL below, but omit the steps where a service is started.
+    **NOTE:** You will still need a version of PostgreSQL installed on the local filesystem for development libraries to be available for building the `pg` gem. See the instructions for locally running PostgreSQL below, but omit the steps where the service is started.
 
 1. Start the docker containers
 
-```shell
-cd src/supermarket
-docker-compose up
-```
+    ```shell
+    cd src/supermarket
+    docker-compose up
+    ```
 
 ##### As Locally Running Processes
 
