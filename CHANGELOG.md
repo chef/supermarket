@@ -19,6 +19,9 @@
 - Update PostgreSQL to 9.3.25 [#1977](https://github.com/chef/supermarket/pull/1977) ([tas50](https://github.com/tas50)) <!-- 3.4.22 -->
 - Update Rails to 5.2.5 [#1912](https://github.com/chef/supermarket/pull/1912) ([tas50](https://github.com/tas50)) <!-- 3.4.10 -->
 - Update Ruby to 2.6.7 [#1913](https://github.com/chef/supermarket/pull/1913) ([tas50](https://github.com/tas50)) <!-- 3.4.12 -->
+- Bump brakeman from 3.6.1 to 5.0.4 in /src/supermarket [#1931](https://github.com/chef/supermarket/pull/1931) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.50 -->
+- Bump omnibus-software from `c626aa2` to `b02a8c3` to resolve Ubuntu 18.04 nodejs compilation failures [#2020](https://github.com/chef/supermarket/pull/2020) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.55 -->
+- Bump rails from 5.2.5 to 5.2.6 in /src/supermarket [#1941](https://github.com/chef/supermarket/pull/1941) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.24 -->
 
 #### Merged Pull Requests
 - Updated platform list for advanced search option [#2031](https://github.com/chef/supermarket/pull/2031) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.4.63 -->
@@ -29,12 +32,10 @@
 - Bump html_truncator from 0.4.1 to 0.4.2 in /src/supermarket [#2013](https://github.com/chef/supermarket/pull/2013) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.58 -->
 - Bump webmock from 3.8.2 to 3.13.0 in /src/supermarket [#2021](https://github.com/chef/supermarket/pull/2021) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.57 -->
 - Bump compass-rails from 3.0.2 to 4.0.0 in /src/supermarket [#1980](https://github.com/chef/supermarket/pull/1980) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.56 -->
-- Bump omnibus-software from `c626aa2` to `b02a8c3` to resolve Ubuntu 18.04 nodejs compilation failures [#2020](https://github.com/chef/supermarket/pull/2020) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.55 -->
 - Remove brakeman from the gemfile [#2015](https://github.com/chef/supermarket/pull/2015) ([tas50](https://github.com/tas50)) <!-- 3.4.54 -->
 - Setup Brakeman as a GitHub Action [#2014](https://github.com/chef/supermarket/pull/2014) ([tas50](https://github.com/tas50)) <!-- 3.4.53 -->
 - Bump jbuilder from 2.10.0 to 2.11.2 in /src/supermarket [#1943](https://github.com/chef/supermarket/pull/1943) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.52 -->
 - Bump premailer-rails from 1.9.6 to 1.11.1 in /src/supermarket [#1988](https://github.com/chef/supermarket/pull/1988) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.51 -->
-- Bump brakeman from 3.6.1 to 5.0.4 in /src/supermarket [#1931](https://github.com/chef/supermarket/pull/1931) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.50 -->
 - Bump pry from 0.13.1 to 0.14.1 in /src/supermarket/engines/fieri [#1934](https://github.com/chef/supermarket/pull/1934) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.49 -->
 - Bump rails-controller-testing from 1.0.1 to 1.0.5 in /src/supermarket [#2002](https://github.com/chef/supermarket/pull/2002) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.48 -->
 - Changes Chef cookbooks text to Chef Infra Cookbooks as per issue [#2005](https://github.com/chef/supermarket/pull/2005) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.4.47 -->
@@ -60,7 +61,6 @@
 - Bump chefstyle from 1.2.0 to 2.0.5 in /src/supermarket/engines/fieri [#1982](https://github.com/chef/supermarket/pull/1982) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.27 -->
 - Bump all omnibus deps to the latest [#1987](https://github.com/chef/supermarket/pull/1987) ([tas50](https://github.com/tas50)) <!-- 3.4.26 -->
 - Bump rubocop-rails from 2.6.0 to 2.8.1 in /src/supermarket/engines/fieri [#1936](https://github.com/chef/supermarket/pull/1936) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.25 -->
-- Bump rails from 5.2.5 to 5.2.6 in /src/supermarket [#1941](https://github.com/chef/supermarket/pull/1941) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.24 -->
 - Bump berkshelf from 7.1.0 to 7.2.2 in /omnibus [#1947](https://github.com/chef/supermarket/pull/1947) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.23 -->
 - Bump omnibus-software from `bdb61f0` to `68f693d` in /omnibus [#1976](https://github.com/chef/supermarket/pull/1976) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.21 -->
 - Bump kitchen-vagrant from 1.6.1 to 1.8.0 in /omnibus [#1946](https://github.com/chef/supermarket/pull/1946) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.20 -->
