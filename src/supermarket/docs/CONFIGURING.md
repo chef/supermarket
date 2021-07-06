@@ -22,11 +22,8 @@ It is recommended to set these parameters to valid values to be able to use the 
 - `CHEF_OAUTH2_URL` is the URL for your Chef server (example: <https://example.com>.) Enterprise Chef >= 11.2 or Chef server >= 12 is required.
 - `CHEF_OAUTH2_APP_ID` and `CHEF_OAUTH2_SECRET` are generated when [registering an application on oc-id](https://id.chef.io/id/oauth/applications/). They are needed for authentication via OAuth2\. When using the application locally, be sure to create an application and set the callback url to `http://localhost:3000/auth/chef_oauth2/callback` or whatever localhost domain you use.
 - `STATSD_URL` and `STATSD_PORT` may be used to configure a StatsD server which Supermarket will report various statistics to, currently API and web download counts.
-- `CLA_REPORT_EMAIL` an email address where a monthly report of new CLA signers will be sent.
 
   **NOTE** oc-id is still a work-in-progress; as such, you may find that you are unable to register an application. If this is the case, see [#425](https://github.com/chef/supermarket/issues/550) for a discussion on how to bypass OAuth for now.
-
-- `CCLA_VERSION` and `ICLA_VERSION` set the version of the current CCLA and ICLA respectively.
 
 ### Environment Overrides
 
@@ -63,7 +60,6 @@ To make more admin users, an existing admin user should access the user's profil
 These settings are recommended when deploying Supermarket to a production environment. Any defaults provided in `.env` should be sufficient for running the test suite.
 
 - `SENTRY_URL` is the URL for logging for the error logger [Sentry](https://getsentry.com/). In development, it is okay not to set it.
-- `CLA_SIGNATURE_NOTIFICATION_EMAIL` is the email that gets notified when CLAs are signed.
 - `FROM_EMAIL` is the default sender email address for all Supermarket mailers.
 - `S3_BUCKET` specifies the S3 bucket to use to save uploaded cookbook artifacts
 - `S3_PATH` specifies the path in the S3 Bucket to save the uploaded cookbook artifacts to (i.e. if you had a test/supermarket folder (also known as a directory or a prefix) in your bucket that you wanted to save your cookbooks to, you would use "test/supermarket" as your path).
@@ -79,15 +75,6 @@ These settings are recommended when deploying Supermarket to a production enviro
 If you are in an air-gapped environment or another situation where you cannot have your Supermarket call out to 3rd party services (i.e. fonts, Google Analytics)
 
 - `AIR_GAPPED` can be set to true to avoid calls to 3rd party services. It is set to false by default.
-
-## Configuring Curry
-
-Curry verifies that all contributing parties on a Pull Request have signed a CLA. The default values provided in `.env` should be sufficient to run the test suite.
-
-- `GITHUB_ACCESS_TOKEN` is used for interacting with the GitHub API. Supermarket uses the GitHub API for CLA signature verification checking. Generate a personal access token within Account Settings > Applications > Personal Access Tokens. **This must be set to run Supermarket locally.**
-- `PUBSUBHUBBUB_SECRET` is used for Supermarket to subscribe to repositories. It can be set to anything in development.
-- `PUBSUBHUBBUB_CALLBACK_URL` is intended for development and test environments. When Curry subscribes to a repository, this URL will receive periodic heartbeats from GitHub, as well as notifications of Pull Request activity. In production, it is best left unspecified, in which case Supermarket will use the `curry_pull_request_updates_url`.
-- `CURRY_SUCCESS_LABEL` is the text of the label Curry will add to Pull Requests whose contributors have all signed a CLA.
 
 ## SMTP Settings
 
@@ -109,10 +96,8 @@ Supermarket bundles the NewRelic agent and uses two environment variables in its
 
 Certain features of Supermarket can be enabled or disabled using `FEATURES`. The `FEATURES` ENV variable should be defined as a comma separated list of features to be enabled. Supermarket supports the following features.
 
-- `cla`, Enables the ability to sign the ICLA and CCLA, as well as Curry
-- 'gravatar', Enables Supermarket to use gravatars for user avatar icons
+- `gravatar`, Enables Supermarket to use gravatars for user avatar icons
 - `tools`, Enables the ability to add and view Chef tools and plugins.
-- `join_ccla`, Enables the ability for users to join CCLAs that they don't be long to.
 - `no_crawl`, Adds noindex, nofollow meta tags so search engines won't crawl Supermarket.
 - `fieri`, Enables the ability for Cookbook Versions to be evaluated by Fieri
 - `announcement`, Enables the foldable announcement banner that is displayed on all views. when uploaded

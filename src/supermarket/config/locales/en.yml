@@ -94,15 +94,6 @@ en:
     updated: "The %{name} tool has been successfully updated."
     deleted: "The %{name} tool was successfully deleted."
     confirm_deletion: "Are you sure you want to delete %{name}? It cannot be undone."
-  curry:
-    repositories:
-      evaluate: "Curry is now evaluating all open Pull Requests on %{name}."
-      subscribe:
-        failure: "That repository does not exist on GitHub."
-        success: "Supermarket is now monitoring this repository."
-      unsubscribe:
-        failure: "There was an issue unsubscribing Supermarket from the repo."
-        success: "Supermarket is no longer monitoring this repo."
   api:
     error_codes:
       not_found: "NOT_FOUND"

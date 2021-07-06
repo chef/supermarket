@@ -394,19 +394,6 @@ default['supermarket']['chef_oauth2_secret'] = nil
 default['supermarket']['chef_oauth2_url'] = nil
 default['supermarket']['chef_oauth2_verify_ssl'] = true
 
-# ### CLA Settings
-#
-# These are used for the Contributor License Agreement features. You only need
-# them if the cla and/or join_ccla features are enabled (see "Features" below.)
-default['supermarket']['ccla_version'] = nil
-default['supermarket']['cla_signature_notification_email'] = nil
-default['supermarket']['cla_report_email'] = nil
-default['supermarket']['curry_cla_location'] = nil
-default['supermarket']['curry_success_label'] = nil
-default['supermarket']['icla_location'] = nil
-default['supermarket']['icla_version'] = nil
-default['supermarket']['seed_cla_data'] = nil
-
 # ### Features
 #
 # These control the feature flags that turn features on and off.
@@ -416,13 +403,11 @@ default['supermarket']['seed_cla_data'] = nil
 # * announcement: Display the Supermarket initial launch announcement banner
 #   (this will most likely be of no use to you, but could be made a
 #   configurable thing in the future.)
-# * cla: Enable the Contributor License Agreement features
 # * collaborator_groups: Enable collaborator groups, allowing management of collaborators through groups
 # * fieri: Use the fieri service to report on cookbook quality (requires
 #   fieri_url, fieri_supermarket_endpoint, and fieri_key to be set.)
 # * github: Enable GitHub integration, used with CLA signing
 # * gravatar: Enable Gravatar integration, used for user avatars
-# * join_ccla: Enable joining of Corporate CLAs
 # * tools: Enable the tools section
 default['supermarket']['features'] = 'tools, gravatar'
 
