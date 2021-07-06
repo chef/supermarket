@@ -61,18 +61,18 @@ These instructions are tested and verified on macOS Catalina (10.15)
 ##### As Locally Running Processes
 
 1. Install Postgres - There are a few ways to get PostgreSQL running on macOS
-  * Install the [Postgres App](http://postgresapp.com/). This is probably the simplest way to get Postgres running on your mac, it "just works."  You can then start a Postgres server through the GUI of the app. If you go this route then you'll have to add "/Applications/Postgres.app/Contents/Versions/9.4/bin/" or the equivalent to your PATH in order to get the pg gem to build.
-  * Through [Homebrew](http://brew.sh/). When installed through homebrew, Postgres often requires additional configuration, see this [blog post](https://www.codefellows.org/blog/three-battle-tested-ways-to-install-postgresql) for instructions. You can then start the Postgresql server with
+    * Install the [Postgres App](http://postgresapp.com/). This is probably the simplest way to get Postgres running on your mac, it "just works."  You can then start a Postgres server through the GUI of the app. If you go this route then you'll have to add "/Applications/Postgres.app/Contents/Versions/9.4/bin/" or the equivalent to your PATH in order to get the pg gem to build.
+    * Through [Homebrew](http://brew.sh/). When installed through homebrew, Postgres often requires additional configuration, see this [blog post](https://www.codefellows.org/blog/three-battle-tested-ways-to-install-postgresql) for instructions. You can then start the Postgresql server with
 
-  ```
-  $ pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
-  ```
+    ```shell
+    pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+    ```
 
 1. Install Redis. You can install this with Homebrew. Follow the instructions in the install output to start the redis server.
 
-  ```
-  $ brew install redis
-  ```
+    ```shell
+    brew install redis
+    ```
 
 #### Development Environment
 
