@@ -33,7 +33,7 @@ This repository has the code for the Supermarket application and the omnibus def
 
 ### Configuring
 
-Configure the [dotenv](https://github.com/bkeepers/dotenv) keys and secrets to. See `.env.example` for required keys and secrets to get up and running. [`docs/CONFIGURING.md`](https://github.com/chef/supermarket/blob/master/src/supermarke/docs/CONFIGURING.md) goes into detail about the not-so-straightforward configuration that needs to happen to get Supermarket working locally.
+Configure the [dotenv](https://github.com/bkeepers/dotenv) keys and secrets to. See `.env.example` for required keys and secrets to get up and running. [`docs/CONFIGURING.md`](https://github.com/chef/supermarket/blob/master/src/supermarket/docs/CONFIGURING.md) goes into detail about the not-so-straightforward configuration that needs to happen to get Supermarket working locally.
 
 ### Local Environment
 
