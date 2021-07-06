@@ -46,7 +46,7 @@
     <h4> Select Supported Platforms </h4>
     <div class = "advanced_search_platforms" >
 
-      <% %w(aix amazon centos debian fedora freebsd gentoo mac_os_x omnios openbsd opensuse opensuseleap oracle redhat ubuntu scientific smartos solaris suse windows zlinux).each do |platform| %>
+      <% %w(aix amazon centos debian fedora freebsd mac_os_x opensuseleap oracle redhat ubuntu scientific smartos solaris suse windows).each do |platform| %>
         <div class="advanced_search_platform">
             <label>
               <%=check_box_tag 'platforms[]', platform, params[:platforms] ? params[:platforms].include?(platform) : false %>
