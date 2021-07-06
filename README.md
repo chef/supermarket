@@ -13,31 +13,21 @@ Supermarket is Chef's community repository for cookbooks, currently hosted at [s
 * **Issues [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
 * **Pull Request [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
 
-The code is designed to be easy for others to contribute to. To that end,
-the goal of this README is to introduce you to the project and get you up andrunning. More information about Supermarket can be found in [the
-wiki](https://github.com/chef/supermarket/wiki). You can [follow along with the project development in
-waffle.io](https://waffle.io/chef/supermarket).
+The code is designed to be easy for others to contribute to. To that end, the goal of this README is to introduce you to the project and get you up and running. More information about Supermarket can be found in [the wiki](https://github.com/chef/supermarket/wiki). You can [follow along with the project development in ZenHub](https://app.zenhub.com/workspaces/supermarket-60cbda5a95f583001207255f).
 
-If you want to contribute to Supermarket, read the [contributor's
-workflow](https://github.com/chef/supermarket/blob/master/CONTRIBUTING.md)
-for license information and helpful tips to get you started. There are project artifacts such as planning docs, wireframes, recorded
-demos, and team retrospectives in a [public Google Drive
-folder](https://drive.google.com/a/gofullstack.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8).
+If you want to contribute to Supermarket, read the [contributor's workflow](https://github.com/chef/supermarket/blob/master/CONTRIBUTING.md) for license information and helpful tips to get you started. There are project artifacts such as planning docs, wireframes, recorded demos, and team retrospectives in a [public Google Drive folder](https://drive.google.com/a/gofullstack.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8).
 
-If you have questions, feature ideas, or other suggestions, please [open a
-GitHub Issue](https://github.com/chef/supermarket/issues/new).
+If you have questions, feature ideas, or other suggestions, please [open a GitHub Issue](https://github.com/chef/supermarket/issues/new).
 
-This repository has the code for the Supermarket application, related
-repositories are:
+This repository has the code for the Supermarket application and the omnibus definition used to build the deb/rpm packages. Other Supermarket related repositories are:
 
 * [chef-cookbooks/supermarket-omnibus-cookbook](https://github.com/chef-cookbooks/supermarket-omnibus-cookbook): This cookbook is used to deploy Supermarket through the Supermarket omnibus package. For details on using this cookbook to install Supermarket omnibus, check out [this webinar by the Supermarket Engineering team](https://www.chef.io/webinars/?commid=164925).
-* [chef/omnibus-supermarket](https://github.com/chef/omnibus-supermarket): Code used to build RPM and DEB packages
 
 ## Requirements
 
-- Ruby 2.6.7
-- PostgreSQL 9.3
-- Redis 2.4+
+* Ruby 2.6.7
+* PostgreSQL 9.3
+* Redis 2.4+
 
 ## Development
 
@@ -58,6 +48,13 @@ These instructions are tested and verified on macOS Catalina (10.15)
 `brew cask install docker`
 
 **NOTE:** You will still need a version of PostgreSQL installed on the local filesystem for development libraries to be available for building the `pg` gem. See the instructions for locally running PostgreSQL below, but omit the steps where a service is started.
+
+1. Start the docker containers
+
+```shell
+cd src/supermarket
+docker-compose up
+```
 
 ##### As Locally Running Processes
 
@@ -128,7 +125,7 @@ These instructions are tested and verified on macOS Catalina (10.15)
 
 ## Setting up Auth
 
-Supermarket uses oc-id running on a Chef server to authenticate users to Supermarket.
+Supermarket uses oc-id running on a Chef Infra Server to authenticate users to Supermarket.
 
 IF YOU ARE AN INTERNAL CHEF STAFFER - there are some special things we need to do to set you up with oc-id. Consult the internal wiki on setting up your Supermarket dev environment (or ask a friendly team member!).
 
@@ -157,10 +154,7 @@ NOTE: If you receive an omniauth csrf detected error, try clearing your browser'
 
 ## Connecting your Github Account
 
-There are a couple features that depend on GitHub integration (CLA signing,
-some quality metrics in Fieri). You can set up an integration for your
-development environment by creating an application with your Github account. To
-do this:
+There are a couple features that depend on GitHub integration (CLA signing, some quality metrics in Fieri). You can set up an integration for your development environment by creating an application with your Github account. To do this:
 
 1. Log into your Github account if you aren't already.
 2. Click on your username in the upper right hand corner. This will bring you to your Profile page.
@@ -217,40 +211,27 @@ $ bundle exec rake spec:all
 
 Acceptance tests are run with [Capybara](https://github.com/jnicklas/capybara). Run `rake spec:features` to run the specs in spec/features. The default `rake spec` also runs these.
 
-When writing feature specs, the Rack::Test driver is used by default. If the
-Poltergeist driver is required to be used (for example, an acceptance test
-that uses AJAX), add the `use_poltergeist: true` metadata to the spec. See
-[the remove_members_from_ccla_spec.rb spec]
-(https://github.com/chef/supermarket/blob/master/spec/features/remove_members_from_ccla_spec.rb#L17)
-for an example.
+When writing feature specs, the Rack::Test driver is used by default. If the Poltergeist driver is required to be used (for example, an acceptance test that uses AJAX), add the `use_poltergeist: true` metadata to the spec. See [the remove_members_from_ccla_spec.rb spec](https://github.com/chef/supermarket/blob/master/spec/features/remove_members_from_ccla_spec.rb#L17) for an example.
 
-Some specs run using [PhantomJS](http://phantomjs.org/), which must be
-installed for the test suite to pass.
+Some specs run using [PhantomJS](http://phantomjs.org/), which must be installed for the test suite to pass.
 
 ### JavaScript Tests
 
-The JavaScript specs are run with [Karma](http://karma-runner.github.io) and use the [Mocha](http://mochajs.org/) test framework and the [Chai
-Assertion Library](http://chaijs.com/)
+The JavaScript specs are run with [Karma](http://karma-runner.github.io) and use the [Mocha](http://mochajs.org/) test framework and the [Chai Assertion Library](http://chaijs.com/)
 
-The specs live in spec/javascripts. Run `rake spec:javascripts` to run the
-specs, and `rake spec:javascripts:watch` to run them continuously and watch for changes.
+The specs live in spec/javascripts. Run `rake spec:javascripts` to run the specs, and `rake spec:javascripts:watch` to run them continuously and watch for changes.
 
 [Node.js](http://nodejs.org/) is required to run the JavaScript tests.
 
 ## Background Jobs
 
-[Read about Supermarket's background jobs in the wiki]
-(https://github.com/chef/supermarket/wiki/Background-Jobs).
+[Read about Supermarket's background jobs in the wiki](https://github.com/chef/supermarket/wiki/Background-Jobs).
 
 ## Feature Flags
 
-Supermarket uses a `.env` file to configure itself. Inside this file are
-key/value pairs. These key/value pairs will be exported as environment
-variables when the app runs, and Supermarket will look for these keys as
-environment variables when it needs to read a value that's configurable.
+Supermarket uses a `.env` file to configure itself. Inside this file are key/value pairs. These key/value pairs will be exported as environment variables when the app runs, and Supermarket will look for these keys as environment variables when it needs to read a value that's configurable.
 
-One of these keys is called `FEATURES` and it controls a number of features that can be turned on and off. Here are the available features that can be
-toggled:
+One of these keys is called `FEATURES` and it controls a number of features that can be turned on and off. Here are the available features that can be toggled:
 
 * tools
 * fieri
@@ -260,9 +241,7 @@ toggled:
 
 Deprecated Features
 
-CLA signing still works, but has been disabled in the public site in favor of
-[the DCO process](https://github.com/chef/chef/blob/master/CONTRIBUTING.md#developer-certification-of-origin-dco)
-which tracked outside of Supermarket.
+CLA signing still works, but has been disabled in the public site in favor of [the DCO process](https://github.com/chef/chef/blob/master/CONTRIBUTING.md#developer-certification-of-origin-dco) which tracked outside of Supermarket.
 
 * cla
 * join_ccla
