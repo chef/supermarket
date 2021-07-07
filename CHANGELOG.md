@@ -4,6 +4,7 @@
 ## Unreleased
 
 #### Merged Pull Requests
+- Bump chefstyle from 2.0.5 to 2.0.6 in /src/supermarket/engines/fieri [#2034](https://github.com/chef/supermarket/pull/2034) ([dependabot[bot]](https://github.com/dependabot[bot]))
 - Bump cookstyle from 7.15.0 to 7.15.1 in /omnibus [#2033](https://github.com/chef/supermarket/pull/2033) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
@@ -24,6 +25,7 @@
 - Bump rails from 5.2.5 to 5.2.6 in /src/supermarket [#1941](https://github.com/chef/supermarket/pull/1941) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.24 -->
 
 #### Merged Pull Requests
+- Bump chefstyle from 2.0.5 to 2.0.6 in /src/supermarket/engines/fieri [#2034](https://github.com/chef/supermarket/pull/2034) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.65 -->
 - Bump cookstyle from 7.15.0 to 7.15.1 in /omnibus [#2033](https://github.com/chef/supermarket/pull/2033) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.65 -->
 - Removed link botbotirc from application.html file [#2032](https://github.com/chef/supermarket/pull/2032) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.4.65 -->
 - Changed link for chef dk in directory file [#2030](https://github.com/chef/supermarket/pull/2030) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.4.64 -->
