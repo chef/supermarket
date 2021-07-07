@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.65 -->
-## [3.4.65](https://github.com/chef/supermarket/tree/3.4.65) (2021-07-07)
+<!-- latest_release unreleased -->
+## Unreleased
 
 #### Merged Pull Requests
-- Removed link botbotirc from application.html file [#2032](https://github.com/chef/supermarket/pull/2032) ([msys-sgarg](https://github.com/msys-sgarg))
+- Bump cookstyle from 7.15.0 to 7.15.1 in /omnibus [#2033](https://github.com/chef/supermarket/pull/2033) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -24,6 +24,7 @@
 - Bump rails from 5.2.5 to 5.2.6 in /src/supermarket [#1941](https://github.com/chef/supermarket/pull/1941) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.24 -->
 
 #### Merged Pull Requests
+- Bump cookstyle from 7.15.0 to 7.15.1 in /omnibus [#2033](https://github.com/chef/supermarket/pull/2033) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.65 -->
 - Removed link botbotirc from application.html file [#2032](https://github.com/chef/supermarket/pull/2032) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.4.65 -->
 - Changed link for chef dk in directory file [#2030](https://github.com/chef/supermarket/pull/2030) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.4.64 -->
 - Updated platform list for advanced search option [#2031](https://github.com/chef/supermarket/pull/2031) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.4.63 -->
