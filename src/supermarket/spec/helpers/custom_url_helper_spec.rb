@@ -14,6 +14,11 @@ describe CustomUrlHelper do
     expect(helper.chef_domain).to eql("chef.io")
   end
 
+  it "should have a default progress domain" do
+    expect(ENV["PROGRESS_DOMAIN"]).to be_nil
+    expect(helper.progress_domain).to eql("progress.com")
+  end
+
   it "should have a server url" do
     expect(ENV["CHEF_SERVER_URL"]).to be_nil
     expect(helper.chef_server_url).to eql("https://api.chef.io")

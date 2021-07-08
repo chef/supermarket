@@ -9,12 +9,21 @@ module CustomUrlHelper
     ENV["CHEF_DOMAIN"] || "chef.io"
   end
 
+  def progress_domain
+    ENV["PROGRESS_DOMAIN"] || "progress.com"
+  end
+
   def chef_server_url
     ENV["CHEF_SERVER_URL"] || "https://api.chef.io"
   end
 
   def chef_www_url(extra = nil)
     url = ENV["CHEF_WWW_URL"] || "https://www.#{chef_domain}"
+    extra_dispatch(url, extra)
+  end
+
+  def progress_www_url(extra = nil)
+    url = ENV["CHEF_WWW_URL"] || "https://www.#{progress_domain}"
     extra_dispatch(url, extra)
   end
 
