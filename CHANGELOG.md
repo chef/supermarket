@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.66 -->
-## [3.4.66](https://github.com/chef/supermarket/tree/3.4.66) (2021-07-08)
+<!-- latest_release 3.4.67 -->
+## [3.4.67](https://github.com/chef/supermarket/tree/3.4.67) (2021-07-08)
 
-#### Merged Pull Requests
-- Added new url helper for progress.com and updated footer links [#2038](https://github.com/chef/supermarket/pull/2038) ([msys-sgarg](https://github.com/msys-sgarg))
-- Bump chefstyle from 2.0.5 to 2.0.6 in /src/supermarket/engines/fieri [#2034](https://github.com/chef/supermarket/pull/2034) ([dependabot[bot]](https://github.com/dependabot[bot]))
-- Bump cookstyle from 7.15.0 to 7.15.1 in /omnibus [#2033](https://github.com/chef/supermarket/pull/2033) ([dependabot[bot]](https://github.com/dependabot[bot]))
+#### Maintenance Updates
+- Remove provisioning driver from tools directory [#2036](https://github.com/chef/supermarket/pull/2036) ([dheerajd-msys](https://github.com/dheerajd-msys))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
 ### Changes since 3.4.8 release
+
+#### Maintenance Updates
+- Remove provisioning driver from tools directory [#2036](https://github.com/chef/supermarket/pull/2036) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.4.67 -->
 
 #### Security Fixes
 - [Security] Bump rexml from 3.2.4 to 3.2.5 in /src/supermarket/engines/fieri [#1910](https://github.com/chef/supermarket/pull/1910) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.9 -->
