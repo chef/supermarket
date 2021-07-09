@@ -83,57 +83,73 @@ These instructions are tested and verified on macOS Catalina (10.15)
     ```shell
     brew install redis
     ```
+    
+    Run the redis server using command:
+    ```
+    redis-server --daemonize yes
+    ```
+    
 
 #### Development Environment
 
 1. Make sure you have Xcode installed
 
-1. Install a Ruby manager - if you don't already have one, you will need a Ruby manager to install the appropriate Ruby release such as:
+2. Install a Ruby manager - if you don't already have one, you will need a Ruby manager to install the appropriate Ruby release such as:
    * [RVM](https://rvm.io)
    * [Rbenv](https://github.com/rbenv/rbenv)
    * [chruby](https://github.com/postmodern/chruby)
    * or any other Ruby version manager that may come along
 
-1. Use your ruby manager to install the necessary Ruby release. For instructions on this, please see the manager's documentation.
+3. Use your ruby manager to install the necessary Ruby release. For instructions on this, please see the manager's documentation.
 
-1. Make sure you have the Supermarket repo cloned to your machine, then change into that directory
+4. Make sure you have the Supermarket repo cloned to your machine, then change into that directory
 
   ```
-  $ cd supermarket-repo
+  $ cd <supermarket-repo>
   ```
 
-1. Then change into the src
+5. Then change into the src
 
   ```
   $ cd src/supermarket
   ```
 
-1. Install required gems:
+6. Install Bundler gem
+```
+gem install bundler:2.1.4 --user-install
+```
+
+7. Install required gems:
+```
+bundle install
+```
+N.B. you might get the following errors. Listing them with the fixes.
+ - Error installing gem: ***ruby-filemagic***
+   - Fix -> `brew install libmagic`
+ - Error installing gem: ***mimemagic***
+   - Fix-> `brew install shared-mime-info`
+
+8. Create the database, migrate the database and seed the database:
 
   ```
-  $ bundle
+  $ bundle exec rails db:setup
   ```
 
-1. Create the database, migrate the database and seed the database:
-
-  ```
-  $ bundle exec rake db:setup
-  ```
-
-1. Add required Postgres extensions.
+9. Add required Postgres extensions.
 
   ```
   $ psql supermarket_development -c 'create extension plpgsql'
   $ psql supermarket_development -c 'create extension pg_trgm'
   ```
+  N.B. Ignore if the above 2 commands gives error: extenstion already exists.
 
-1. Start the server:
+10. Start the server:
 
   ```
   $ bundle exec foreman start
   ```
 
-  If you receive errors, make sure that redis and Postgres are running.
+  N.B. ***If you receive errors, make sure that redis and Postgres are running.***
 
 ## Setting up Auth
 
