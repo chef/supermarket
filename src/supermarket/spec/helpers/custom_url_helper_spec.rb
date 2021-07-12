@@ -38,7 +38,7 @@ describe CustomUrlHelper do
 
   describe "blog url" do
     let(:meth) { :chef_blog_url }
-    let(:url) { "https://www.chef.io/blog" }
+    let(:url) { "https://blog.chef.io/" }
 
     it "should have a blog url that uses the www url" do
       expect(ENV["CHEF_BLOG_URL"]).to be_nil
