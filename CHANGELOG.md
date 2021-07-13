@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.69 -->
-## [3.4.69](https://github.com/chef/supermarket/tree/3.4.69) (2021-07-12)
+<!-- latest_release 3.4.70 -->
+## [3.4.70](https://github.com/chef/supermarket/tree/3.4.70) (2021-07-13)
 
 #### Merged Pull Requests
-- Changes for blog url link change [#2044](https://github.com/chef/supermarket/pull/2044) ([msys-sgarg](https://github.com/msys-sgarg))
+- Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -27,6 +27,7 @@
 - Bump rails from 5.2.5 to 5.2.6 in /src/supermarket [#1941](https://github.com/chef/supermarket/pull/1941) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.24 -->
 
 #### Merged Pull Requests
+- Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 - Changes for blog url link change [#2044](https://github.com/chef/supermarket/pull/2044) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.4.69 -->
 - Bump omnibus-software from `b02a8c3` to `e9feb35` in /omnibus [#2043](https://github.com/chef/supermarket/pull/2043) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.68 -->
 - Updated readme; Added missing steps and how to fix guidelines; [#2039](https://github.com/chef/supermarket/pull/2039) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 3.4.67 -->
