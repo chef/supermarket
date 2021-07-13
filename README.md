@@ -25,7 +25,7 @@ This repository has the code for the Supermarket application and the omnibus def
 
 ## Requirements
 
-* Ruby 2.6.7
+* Ruby 2.6.8
 * PostgreSQL 9.3
 * Redis 3.0
 
@@ -83,12 +83,12 @@ These instructions are tested and verified on macOS Catalina (10.15)
     ```shell
     brew install redis
     ```
-    
+
     Run the redis server using command:
     ```
     redis-server --daemonize yes
     ```
-    
+
 
 #### Development Environment
 
