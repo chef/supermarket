@@ -179,7 +179,8 @@ GEM
     css_parser (1.9.0)
       addressable
     database_cleaner (1.6.1)
-    ddtrace (0.7.1)
+    ddtrace (0.51.1)
+      ffi (~> 1.0)
       msgpack
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -350,7 +351,7 @@ GEM
     mixlib-log (3.0.8)
     mixlib-shellout (3.2.5)
       chef-utils
-    msgpack (1.1.0)
+    msgpack (1.4.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
