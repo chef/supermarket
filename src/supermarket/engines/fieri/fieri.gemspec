@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency "cookstyle"
   s.add_dependency "dotenv-rails"
   s.add_dependency "foodcritic", "~> 16.3"
-  s.add_dependency "mixlib-archive", "~> 0.4"
+  s.add_dependency "mixlib-archive", ">= 0.4", "< 2.0"
   s.add_dependency "octokit", "~> 4.0"
   s.add_dependency "rails", [">= 5.1", "< 6"]
   s.add_dependency "ruby-filemagic"
