@@ -343,7 +343,7 @@ GEM
     minitest (5.14.4)
     mixlib-archive (0.4.20)
       mixlib-log
-    mixlib-authentication (3.0.6)
+    mixlib-authentication (3.0.10)
     mixlib-cli (2.1.6)
     mixlib-config (3.0.6)
       tomlrb
