@@ -53,7 +53,7 @@ gem "unicorn"
 gem "unicorn-rails"
 gem "utf8-cleaner"
 gem "validate_url"
-gem "virtus", "1.0.2", require: false # Pin to a version before the handling of nil in collection coercion was fixed.
+gem "virtus", "2.0.0", require: false # Pin to a version before the handling of nil in collection coercion was fixed.
 gem "yajl-ruby"
 
 group :doc do
