@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.73 -->
-## [3.4.73](https://github.com/chef/supermarket/tree/3.4.73) (2021-07-15)
+<!-- latest_release 3.4.74 -->
+## [3.4.74](https://github.com/chef/supermarket/tree/3.4.74) (2021-07-19)
 
 #### Merged Pull Requests
-- Bump rspec-rails from 3.6.0 to 5.0.1 in /src/supermarket [#2027](https://github.com/chef/supermarket/pull/2027) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Changes for removing .html from docs links [#2045](https://github.com/chef/supermarket/pull/2045) ([msys-sgarg](https://github.com/msys-sgarg))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -27,6 +27,7 @@
 - Bump rails from 5.2.5 to 5.2.6 in /src/supermarket [#1941](https://github.com/chef/supermarket/pull/1941) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.24 -->
 
 #### Merged Pull Requests
+- Changes for removing .html from docs links [#2045](https://github.com/chef/supermarket/pull/2045) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.4.74 -->
 - Bump rspec-rails from 3.6.0 to 5.0.1 in /src/supermarket [#2027](https://github.com/chef/supermarket/pull/2027) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.73 -->
 - Bump omnibus-software from `e9feb35` to `b9473ec` in /omnibus [#2051](https://github.com/chef/supermarket/pull/2051) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.72 -->
 - Bump omnibus from `5c1b453` to `5803fdc` in /omnibus [#2052](https://github.com/chef/supermarket/pull/2052) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.71 -->
