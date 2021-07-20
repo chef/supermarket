@@ -19,7 +19,7 @@ class CookbooksController < ApplicationController
   #   GET /cookbooks?order=recently_updated
   #
   def index
-    @cookbooks = Cookbook.includes(:cookbook_versions)
+    @cookbooks = Cookbook.includes(:cookbook_versions).order(:deprecated)
 
     @current_params = cookbook_index_params
 
