@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.76 -->
-## [3.4.76](https://github.com/chef/supermarket/tree/3.4.76) (2021-07-20)
+<!-- latest_release 3.4.77 -->
+## [3.4.77](https://github.com/chef/supermarket/tree/3.4.77) (2021-07-20)
 
 #### Merged Pull Requests
-- Fix Ruby 2.6.8 compilation [#2061](https://github.com/chef/supermarket/pull/2061) ([tas50](https://github.com/tas50))
+- Created documentation for setting up test env in local for supermarket [#2059](https://github.com/chef/supermarket/pull/2059) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -27,6 +27,7 @@
 - Bump rails from 5.2.5 to 5.2.6 in /src/supermarket [#1941](https://github.com/chef/supermarket/pull/1941) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.24 -->
 
 #### Merged Pull Requests
+- Created documentation for setting up test env in local for supermarket [#2059](https://github.com/chef/supermarket/pull/2059) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 3.4.77 -->
 - Fix Ruby 2.6.8 compilation [#2061](https://github.com/chef/supermarket/pull/2061) ([tas50](https://github.com/tas50)) <!-- 3.4.76 -->
 - Update omnibus / omnibus-software to the latest [#2060](https://github.com/chef/supermarket/pull/2060) ([tas50](https://github.com/tas50)) <!-- 3.4.75 -->
 - Changes for removing .html from docs links [#2045](https://github.com/chef/supermarket/pull/2045) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.4.74 -->
