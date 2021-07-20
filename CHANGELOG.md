@@ -25,6 +25,7 @@
 - Bump brakeman from 3.6.1 to 5.0.4 in /src/supermarket [#1931](https://github.com/chef/supermarket/pull/1931) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.50 -->
 - Bump omnibus-software from `c626aa2` to `b02a8c3` to resolve Ubuntu 18.04 nodejs compilation failures [#2020](https://github.com/chef/supermarket/pull/2020) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.55 -->
 - Bump rails from 5.2.5 to 5.2.6 in /src/supermarket [#1941](https://github.com/chef/supermarket/pull/1941) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.24 -->
+- Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
 - Improve error message when S3 environmental variables are not correct [#2064](https://github.com/chef/supermarket/pull/2064) ([tas50](https://github.com/tas50)) <!-- 3.4.79 -->
@@ -36,7 +37,6 @@
 - Bump rspec-rails from 3.6.0 to 5.0.1 in /src/supermarket [#2027](https://github.com/chef/supermarket/pull/2027) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.73 -->
 - Bump omnibus-software from `e9feb35` to `b9473ec` in /omnibus [#2051](https://github.com/chef/supermarket/pull/2051) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.72 -->
 - Bump omnibus from `5c1b453` to `5803fdc` in /omnibus [#2052](https://github.com/chef/supermarket/pull/2052) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.71 -->
-- Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 - Changes for blog url link change [#2044](https://github.com/chef/supermarket/pull/2044) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.4.69 -->
 - Bump omnibus-software from `b02a8c3` to `e9feb35` in /omnibus [#2043](https://github.com/chef/supermarket/pull/2043) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.68 -->
 - Updated readme; Added missing steps and how to fix guidelines; [#2039](https://github.com/chef/supermarket/pull/2039) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 3.4.67 -->
