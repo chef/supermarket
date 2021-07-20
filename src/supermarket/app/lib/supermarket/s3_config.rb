@@ -13,6 +13,7 @@ module Supermarket
     end
 
     def self.use_s3?(environment)
+      puts "Hey TIM this is the environment #{environment.to_h}"
       any_s3_settings = REQUIRED_S3_VARS.any? { |key| environment.key?(key) }
       all_s3_settings = REQUIRED_S3_VARS.all? { |key| environment[key].present? }
 
