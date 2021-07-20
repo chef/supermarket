@@ -35,6 +35,7 @@ dependency "libarchive"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
+  env.delete("S3_BUCKET") # s3 caching in buildkite includes this
 
   bundle "package --all --no-install"
 
