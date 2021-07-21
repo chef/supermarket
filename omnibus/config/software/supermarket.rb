@@ -35,7 +35,6 @@ dependency "libarchive"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
-  env.delete("S3_BUCKET") # s3 caching in buildkite includes this
 
   bundle "package --all --no-install"
 
@@ -45,8 +44,15 @@ build do
          " --path=vendor/bundle" \
          " --without development doc",
          env: env
+
+  # tas50 7/20/2021 note: Why do we set S3_REGION us-west-2 here?
+  # supermarket includes validation for s3 configurations set by the user to ensure that if either S3_BUCKET or S3_REGION
+  # are set that the other is also set. Currently buildkite sets S3_BUCKET and the workaround is to set this var that doesn't
+  # get used. I tried removing the var from the env above, but it's not actually set at that point :shrug:. Feel free
+  # to solve this in a better way.
+
   # This fails because we're installing Ruby C extensions in the wrong place!
-  bundle "exec rake assets:precompile", env: env.merge('RAILS_ENV' => 'production')
+  bundle "exec rake assets:precompile", env: env.merge('RAILS_ENV' => 'production', 'S3_REGION' => 'us-west-2')
 
   sync project_dir, "#{install_dir}/embedded/service/supermarket/",
     exclude: %w( .cookbooks .direnv .envrc .env.* .gitignore .kitchen*
