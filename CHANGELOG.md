@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.79 -->
-## [3.4.79](https://github.com/chef/supermarket/tree/3.4.79) (2021-07-20)
+<!-- latest_release 3.4.80 -->
+## [3.4.80](https://github.com/chef/supermarket/tree/3.4.80) (2021-07-21)
 
 #### Merged Pull Requests
-- Improve error message when S3 environmental variables are not correct [#2064](https://github.com/chef/supermarket/pull/2064) ([tas50](https://github.com/tas50))
+- Fix S3_BUCKET validation failures in buildkite + improve error messages [#2063](https://github.com/chef/supermarket/pull/2063) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -28,6 +28,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Fix S3_BUCKET validation failures in buildkite + improve error messages [#2063](https://github.com/chef/supermarket/pull/2063) ([tas50](https://github.com/tas50)) <!-- 3.4.80 -->
 - Improve error message when S3 environmental variables are not correct [#2064](https://github.com/chef/supermarket/pull/2064) ([tas50](https://github.com/tas50)) <!-- 3.4.79 -->
 - Added documentation for connecting chef-supermarket and chef-server i… [#2062](https://github.com/chef/supermarket/pull/2062) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 3.4.78 -->
 - Created documentation for setting up test env in local for supermarket [#2059](https://github.com/chef/supermarket/pull/2059) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 3.4.77 -->
