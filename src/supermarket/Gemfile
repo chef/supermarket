@@ -4,7 +4,7 @@ source "https://rubygems.org"
 # https://github.com/chef/omnibus-supermarket/blob/master/config/projects/supermarket.rb
 
 gem "fieri", path: "engines/fieri"
-gem "rails", "~> 5.2.6"
+gem "rails", "~> 6.1.4"
 
 gem "omniauth"
 gem "omniauth-chef-oauth2"
@@ -78,6 +78,7 @@ group :test do
   gem "shoulda-matchers"
   gem "vcr", require: false
   gem "webmock", require: false
+  gem "puma"
 end
 
 group :development, :test do
