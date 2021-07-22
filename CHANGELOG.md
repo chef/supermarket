@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.81 -->
-## [3.4.81](https://github.com/chef/supermarket/tree/3.4.81) (2021-07-21)
+<!-- latest_release 3.4.82 -->
+## [3.4.82](https://github.com/chef/supermarket/tree/3.4.82) (2021-07-22)
 
-#### Merged Pull Requests
-- Don&#39;t install berks now that it&#39;s in omnibus-toolchain [#2065](https://github.com/chef/supermarket/pull/2065) ([tas50](https://github.com/tas50))
+#### Maintenance Updates
+- Delete the incomplete habitat plan [#2066](https://github.com/chef/supermarket/pull/2066) ([dheerajd-msys](https://github.com/dheerajd-msys))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
 ### Changes since 3.4.8 release
 
 #### Maintenance Updates
+- Delete the incomplete habitat plan [#2066](https://github.com/chef/supermarket/pull/2066) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.4.82 -->
 - Remove provisioning driver from tools directory [#2036](https://github.com/chef/supermarket/pull/2036) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.4.67 -->
 
 #### Security Fixes
