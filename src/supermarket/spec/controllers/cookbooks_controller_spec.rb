@@ -871,7 +871,7 @@ describe CookbooksController do
     it "responds with JSON" do
       get :deprecate_search, params: { id: postgresql, q: "postgresql", format: :json }
 
-      expect(response.content_type).to eql("application/json")
+      expect(response.content_type).to eql("application/json; charset=utf-8")
     end
 
     it "assigns results" do
