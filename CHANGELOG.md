@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.82 -->
-## [3.4.82](https://github.com/chef/supermarket/tree/3.4.82) (2021-07-22)
+<!-- latest_release 3.4.83 -->
+## [3.4.83](https://github.com/chef/supermarket/tree/3.4.83) (2021-07-23)
 
-#### Maintenance Updates
-- Delete the incomplete habitat plan [#2066](https://github.com/chef/supermarket/pull/2066) ([dheerajd-msys](https://github.com/dheerajd-msys))
+#### Merged Pull Requests
+- Bump omnibus-software from `07291b0` to `a4f73e4` in /omnibus [#2070](https://github.com/chef/supermarket/pull/2070) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -29,6 +29,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Bump omnibus-software from `07291b0` to `a4f73e4` in /omnibus [#2070](https://github.com/chef/supermarket/pull/2070) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.83 -->
 - Don&#39;t install berks now that it&#39;s in omnibus-toolchain [#2065](https://github.com/chef/supermarket/pull/2065) ([tas50](https://github.com/tas50)) <!-- 3.4.81 -->
 - Fix S3_BUCKET validation failures in buildkite + improve error messages [#2063](https://github.com/chef/supermarket/pull/2063) ([tas50](https://github.com/tas50)) <!-- 3.4.80 -->
 - Improve error message when S3 environmental variables are not correct [#2064](https://github.com/chef/supermarket/pull/2064) ([tas50](https://github.com/tas50)) <!-- 3.4.79 -->
