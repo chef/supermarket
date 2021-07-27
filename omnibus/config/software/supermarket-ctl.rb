@@ -22,11 +22,14 @@ dependency "chef-gem"
 dependency "runit"
 
 source path: "cookbooks/omnibus-supermarket"
+# source path: File.expand_path('../../../../src/supermarket', project.filepath)
+require 'pry'
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
-  bundle "install", env: env
+  # bundle "install"
+  # bundle "install", env: env
 
   block do
     erb source: "supermarket-ctl.erb",

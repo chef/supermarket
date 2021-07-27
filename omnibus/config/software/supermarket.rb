@@ -14,6 +14,7 @@
 # limitations under the License.
 #
 
+require 'pry'
 name "supermarket"
 license :project_license
 
@@ -52,7 +53,8 @@ build do
   # to solve this in a better way.
 
   # This fails because we're installing Ruby C extensions in the wrong place!
-  bundle "exec rake assets:precompile", env: env.merge('RAILS_ENV' => 'production', 'S3_REGION' => 'us-west-2')
+  #bundle "exec rake assets:precompile", env: env.merge('RAILS_ENV' => 'production', 'S3_REGION' => 'us-west-2', 'S3_BUCKET' => 'opscode-omnibus-cache')
+  bundle "exec rake assets:precompile", env: env.merge('RAILS_ENV' => 'production')
 
   sync project_dir, "#{install_dir}/embedded/service/supermarket/",
     exclude: %w( .cookbooks .direnv .envrc .env.* .gitignore .kitchen*
