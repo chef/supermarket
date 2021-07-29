@@ -37,7 +37,11 @@ build do
   env = with_standard_compiler_flags(with_embedded_path)
   env['PATH'] = "#{env['PATH']}:#{install_dir}/embedded/nodejs/bin"
 
-  bundle "package --all --no-install"
+  if Bundler.feature_flag.cache_all?
+    bundle "package --no-install"
+  else
+    bundle "package --all --no-install"
+  end
 
   bundle "install" \
          " --jobs #{workers}" \
