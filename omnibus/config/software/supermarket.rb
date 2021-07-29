@@ -36,7 +36,11 @@ dependency "libarchive"
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
-  bundle "package --all --no-install"
+  if Bundler.feature_flag.cache_all?
+    bundle "package --no-install"
+  else
+    bundle "package --all --no-install"
+  end
 
   bundle "install" \
          " --jobs #{workers}" \
