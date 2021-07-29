@@ -15,9 +15,9 @@ ln -sf /opt/supermarket/bin/supermarket-ctl /usr/bin || error_exit "Cannot link 
 
 echo
 if [ -e /etc/supermarket/supermarket-running.json ]; then
-  echo -e "\033[1mYou have upgraded Supermarket!\033[0m"
+  echo -e "\033[1mYou have upgraded Chef Supermarket!\033[0m"
 else
-  echo -e "\033[1mThank you for installing Supermarket!\033[0m"
+  echo -e "\033[1mThank you for installing Chef Supermarket!\033[0m"
 fi
 
 echo
