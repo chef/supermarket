@@ -45,7 +45,8 @@ build do
          " --without development doc",
          env: env
   # This fails because we're installing Ruby C extensions in the wrong place!
-  bundle "exec rake assets:precompile", env: env.merge('RAILS_ENV' => 'production')
+  # bundle "exec rake assets:precompile", env: env.merge('RAILS_ENV' => 'production')
+  bundle "exec rake assets:precompile"
 
   sync project_dir, "#{install_dir}/embedded/service/supermarket/",
     exclude: %w( .cookbooks .direnv .envrc .env.* .gitignore .kitchen*
