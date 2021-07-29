@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.90 -->
-## [3.4.90](https://github.com/chef/supermarket/tree/3.4.90) (2021-07-28)
+<!-- latest_release 3.4.91 -->
+## [3.4.91](https://github.com/chef/supermarket/tree/3.4.91) (2021-07-29)
 
 #### Merged Pull Requests
-- Add back the gemfile to fix build failures [#2082](https://github.com/chef/supermarket/pull/2082) ([tas50](https://github.com/tas50))
+- Back out the s3_region env var workaround [#2083](https://github.com/chef/supermarket/pull/2083) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -29,6 +29,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Back out the s3_region env var workaround [#2083](https://github.com/chef/supermarket/pull/2083) ([tas50](https://github.com/tas50)) <!-- 3.4.91 -->
 - Add back the gemfile to fix build failures [#2082](https://github.com/chef/supermarket/pull/2082) ([tas50](https://github.com/tas50)) <!-- 3.4.90 -->
 - Changes for sorting cookbooks with deprecated flag [#2058](https://github.com/chef/supermarket/pull/2058) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.4.89 -->
 - Bump cookstyle from 7.15.1 to 7.15.2 in /omnibus [#2079](https://github.com/chef/supermarket/pull/2079) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.88 -->
