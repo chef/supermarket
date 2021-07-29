@@ -763,7 +763,6 @@ DEPENDENCIES
   sitemap_generator
   spring
   spring-commands-rspec
-  sprockets
   statsd-ruby
   tomlrb
   uglifier

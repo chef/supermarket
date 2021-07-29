@@ -1,8 +1,5 @@
 source "https://rubygems.org"
 
-# Ruby version isn't specified here anymore, as it's pinned in Omnibus
-# https://github.com/chef/omnibus-supermarket/blob/master/config/projects/supermarket.rb
-
 gem "fieri", path: "engines/fieri"
 gem "rails", "~> 5.2.6"
 
@@ -45,7 +42,6 @@ gem "sass-globbing"
 gem "sass-rails"
 gem "sentry-raven", require: false
 gem "sitemap_generator"
-gem "sprockets"
 gem "statsd-ruby"
 gem "tomlrb"
 gem "uglifier"

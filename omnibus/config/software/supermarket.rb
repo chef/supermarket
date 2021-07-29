@@ -24,7 +24,7 @@ dependency "cacerts"
 dependency "chef-gem"
 dependency "git"
 dependency "nginx"
-dependency "nodejs"
+dependency "nodejs-binary"
 dependency "postgresql"
 dependency "redis"
 dependency "ruby"
@@ -35,6 +35,7 @@ dependency "libarchive"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
+  env['PATH'] = "#{env['PATH']}:#{install_dir}/embedded/nodejs/bin"
 
   bundle "package --all --no-install"
 
@@ -44,6 +45,8 @@ build do
          " --path=vendor/bundle" \
          " --without development doc",
          env: env
+
+  command "npm install yarn -g", env: env
 
   # This fails because we're installing Ruby C extensions in the wrong place!
   bundle "exec rake assets:precompile", env: env.merge('RAILS_ENV' => 'production')
