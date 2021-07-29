@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 # This gemfile is currently used in the omnibus build for the -ctl command
 # Why is it here? Great question. This needs to get refactored away with the
@@ -13,4 +13,5 @@ gem 'inspec-bin'
 group :test do
   gem 'chefspec'
   gem 'chef', '< 17'
+  gem 'berkshelf'
 end
