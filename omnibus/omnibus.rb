@@ -37,7 +37,7 @@ s3_bucket      ENV['AWS_S3_BUCKET'] || 'opscode-omnibus-cache'
 
 # Customize compiler bits
 # ------------------------------
-build_retries 5
+build_retries 1
 fetcher_read_timeout 120
 
 # Load additional software
