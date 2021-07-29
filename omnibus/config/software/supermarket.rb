@@ -24,7 +24,7 @@ dependency "cacerts"
 dependency "chef-gem"
 dependency "git"
 dependency "nginx"
-dependency "nodejs-binary"
+dependency "nodejs"
 dependency "postgresql"
 dependency "redis"
 dependency "ruby"
@@ -35,7 +35,6 @@ dependency "libarchive"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
-  env['PATH'] = "#{env['PATH']}:#{install_dir}/embedded/nodejs/bin"
 
   bundle "package --all --no-install"
 
