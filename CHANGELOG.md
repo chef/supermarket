@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.93 -->
-## [3.4.93](https://github.com/chef/supermarket/tree/3.4.93) (2021-07-29)
+<!-- latest_release 3.4.94 -->
+## [3.4.94](https://github.com/chef/supermarket/tree/3.4.94) (2021-07-30)
 
 #### Merged Pull Requests
-- Supermarket -&gt; Chef Supermarket in the installer [#2085](https://github.com/chef/supermarket/pull/2085) ([tas50](https://github.com/tas50))
+- Bump omnibus from `6d109b6` to `9ffcd89` in /omnibus [#2090](https://github.com/chef/supermarket/pull/2090) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -29,6 +29,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Bump omnibus from `6d109b6` to `9ffcd89` in /omnibus [#2090](https://github.com/chef/supermarket/pull/2090) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.94 -->
 - Supermarket -&gt; Chef Supermarket in the installer [#2085](https://github.com/chef/supermarket/pull/2085) ([tas50](https://github.com/tas50)) <!-- 3.4.93 -->
 - Switch to the binary install of nodejs and install yarn [#2084](https://github.com/chef/supermarket/pull/2084) ([tas50](https://github.com/tas50)) <!-- 3.4.92 -->
 - Back out the s3_region env var workaround [#2083](https://github.com/chef/supermarket/pull/2083) ([tas50](https://github.com/tas50)) <!-- 3.4.91 -->
