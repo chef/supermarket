@@ -30,7 +30,6 @@ build_iteration 1
 
 # NOTE: see the omnibus-supermarket cookbook gemfile for controlling the infra client version
 override :chef, version: "v17.5.22" #with the new change in chef we have to specify the exact version
-override :postgresql, version: '9.3.25'
 override :ruby, version: "2.7.5"
 override :'openssl-fips', version: '2.0.16'
 override :'omnibus-ctl', version: 'main'
