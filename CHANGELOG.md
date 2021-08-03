@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.98 -->
-## [3.4.98](https://github.com/chef/supermarket/tree/3.4.98) (2021-08-03)
+<!-- latest_release 3.4.99 -->
+## [3.4.99](https://github.com/chef/supermarket/tree/3.4.99) (2021-08-03)
 
-#### Merged Pull Requests
-- Bump omnibus from `9ffcd89` to `a4bf7ea` in /omnibus [#2094](https://github.com/chef/supermarket/pull/2094) ([dependabot[bot]](https://github.com/dependabot[bot]))
+#### Security Fixes
+- Fixed redirection errors identified by Brakeman [#2095](https://github.com/chef/supermarket/pull/2095) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -15,6 +15,7 @@
 - Remove provisioning driver from tools directory [#2036](https://github.com/chef/supermarket/pull/2036) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.4.67 -->
 
 #### Security Fixes
+- Fixed redirection errors identified by Brakeman [#2095](https://github.com/chef/supermarket/pull/2095) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 3.4.99 -->
 - [Security] Bump rexml from 3.2.4 to 3.2.5 in /src/supermarket/engines/fieri [#1910](https://github.com/chef/supermarket/pull/1910) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.9 -->
 - [Security] Bump rexml from 3.2.4 to 3.2.5 in /src/supermarket [#1911](https://github.com/chef/supermarket/pull/1911) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.11 -->
 - [Security] Bump nokogiri from 1.11.1 to 1.11.5 in /src/supermarket/engines/fieri [#1921](https://github.com/chef/supermarket/pull/1921) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.14 -->
