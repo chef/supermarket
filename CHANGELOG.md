@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.96 -->
-## [3.4.96](https://github.com/chef/supermarket/tree/3.4.96) (2021-08-03)
+<!-- latest_release 3.4.97 -->
+## [3.4.97](https://github.com/chef/supermarket/tree/3.4.97) (2021-08-03)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `f6b11c2` to `c172afb` in /omnibus [#2092](https://github.com/chef/supermarket/pull/2092) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump cookstyle from 7.15.2 to 7.15.4 in /omnibus [#2091](https://github.com/chef/supermarket/pull/2091) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -29,6 +29,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Bump cookstyle from 7.15.2 to 7.15.4 in /omnibus [#2091](https://github.com/chef/supermarket/pull/2091) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.97 -->
 - Bump omnibus-software from `f6b11c2` to `c172afb` in /omnibus [#2092](https://github.com/chef/supermarket/pull/2092) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.96 -->
 - Bump cookstyle from 7.15.2 to 7.15.4 in /src/supermarket/engines/fieri [#2089](https://github.com/chef/supermarket/pull/2089) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.95 -->
 - Bump omnibus from `6d109b6` to `9ffcd89` in /omnibus [#2090](https://github.com/chef/supermarket/pull/2090) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.94 -->
