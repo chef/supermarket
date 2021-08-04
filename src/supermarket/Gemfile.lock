@@ -98,7 +98,6 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    bcrypt_pbkdf (1.1.0.rc1)
     brakeman (5.1.1)
     builder (3.2.4)
     byebug (11.1.3)
