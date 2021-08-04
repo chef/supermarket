@@ -1,15 +1,12 @@
 source "https://rubygems.org"
 
-# Ruby version isn't specified here anymore, as it's pinned in Omnibus
-# https://github.com/chef/omnibus-supermarket/blob/master/config/projects/supermarket.rb
-
 gem "fieri", path: "engines/fieri"
 gem "rails", "~> 6.1.4"
 
 gem "omniauth"
 gem "omniauth-chef-oauth2"
 gem "omniauth-github"
-gem "omniauth-oauth2", "~> 1.3.1"
+gem "omniauth-oauth2", "~> 1.7.1"
 gem "omniauth-rails_csrf_protection"
 
 gem "sidekiq", "~> 4.2"
@@ -45,7 +42,6 @@ gem "sass-globbing"
 gem "sass-rails"
 gem "sentry-raven", require: false
 gem "sitemap_generator"
-gem "sprockets"
 gem "statsd-ruby"
 gem "tomlrb"
 gem "uglifier"
@@ -71,6 +67,7 @@ group :development do
   gem "license_finder"
   gem "spring"
   gem "spring-commands-rspec"
+  gem "brakeman"
 end
 
 group :test do

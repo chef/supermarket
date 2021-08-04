@@ -13,7 +13,7 @@ class TransferOwnershipController < ApplicationController
     recipient = User.find(transfer_ownership_params[:user_id])
 
     msg = @cookbook.transfer_ownership(current_user, recipient, add_owner_as_collaborator?)
-    redirect_to @cookbook, notice: t(msg, cookbook: @cookbook.name, user: recipient.username)
+    redirect_to cookbook_path(@cookbook), notice: t(msg, cookbook: @cookbook.name, user: recipient.username)
   end
 
   #

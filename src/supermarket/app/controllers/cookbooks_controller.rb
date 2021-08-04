@@ -19,7 +19,7 @@ class CookbooksController < ApplicationController
   #   GET /cookbooks?order=recently_updated
   #
   def index
-    @cookbooks = Cookbook.includes(:cookbook_versions)
+    @cookbooks = Cookbook.includes(:cookbook_versions).order(:deprecated)
 
     @current_params = cookbook_index_params
 
@@ -137,7 +137,7 @@ class CookbooksController < ApplicationController
             "cookbook.updated"
           end
 
-    redirect_to @cookbook, notice: t(key, name: @cookbook.name)
+    redirect_to cookbook_path(@cookbook), notice: t(key, name: @cookbook.name)
   end
 
   #
@@ -183,14 +183,14 @@ class CookbooksController < ApplicationController
       CookbookDeprecatedNotifier.perform_async(@cookbook.id)
 
       redirect_to(
-        @cookbook,
+        cookbook_path(@cookbook),
         notice: t(
           "cookbook.deprecated",
           cookbook: @cookbook.name
         )
       )
     else
-      redirect_to @cookbook, notice: @cookbook.errors.full_messages.join(", ")
+      redirect_to cookbook_path(@cookbook), notice: @cookbook.errors.full_messages.join(", ")
     end
   end
 
@@ -205,7 +205,7 @@ class CookbooksController < ApplicationController
     @cookbook.update(deprecated: false, replacement: nil)
 
     redirect_to(
-      @cookbook,
+      cookbook_path(@cookbook),
       notice: t(
         "cookbook.undeprecated",
         cookbook: @cookbook.name
@@ -223,7 +223,7 @@ class CookbooksController < ApplicationController
     AdoptionMailer.delay.interest_email(@cookbook, current_user)
 
     redirect_to(
-      @cookbook,
+      cookbook_path(@cookbook),
       notice: t(
         "adoption.email_sent",
         cookbook_or_tool: @cookbook.name
@@ -243,7 +243,7 @@ class CookbooksController < ApplicationController
     @cookbook.update(featured: !@cookbook.featured)
 
     redirect_to(
-      @cookbook,
+      cookbook_path(@cookbook),
       notice: t(
         "cookbook.featured",
         cookbook: @cookbook.name,

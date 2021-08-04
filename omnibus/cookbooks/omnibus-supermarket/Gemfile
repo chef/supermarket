@@ -1,0 +1,17 @@
+source 'https://rubygems.org'
+
+# This gemfile is currently used in the omnibus build for the -ctl command
+# Why is it here? Great question. This needs to get refactored away with the
+# ctl command have its own gemspec.
+
+gem 'inspec'
+gem 'inspec-bin'
+
+# gems for testing the build cookbooks
+# once we get the ctl omnibus def using its own gemspec this whole file can die
+# including this group here
+group :test do
+  gem 'chefspec'
+  gem 'chef', '< 17'
+  gem 'berkshelf'
+end
