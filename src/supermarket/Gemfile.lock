@@ -98,11 +98,8 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-<<<<<<< HEAD
-=======
     bcrypt_pbkdf (1.1.0.rc1)
     brakeman (5.1.1)
->>>>>>> 0d958fd9caab38aec08dddb54eb99f6f588ff228
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.35.3)
@@ -205,11 +202,7 @@ GEM
       msgpack
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
-<<<<<<< HEAD
-    diff-lcs (1.3)
-=======
     diff-lcs (1.4.4)
->>>>>>> 0d958fd9caab38aec08dddb54eb99f6f588ff228
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.6)
@@ -228,7 +221,6 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
-<<<<<<< HEAD
     faker (2.18.0)
       i18n (>= 1.6, < 2)
     faraday (1.4.3)
@@ -237,11 +229,6 @@ GEM
       faraday-excon (~> 1.1)
       faraday-net_http (~> 1.0)
       faraday-net_http_persistent (~> 1.1)
-=======
-    faker (1.7.3)
-      i18n (~> 0.5)
-    faraday (0.17.4)
->>>>>>> 0d958fd9caab38aec08dddb54eb99f6f588ff228
       multipart-post (>= 1.2, < 3)
       ruby2_keywords (>= 0.0.4)
     faraday-em_http (1.0.0)
@@ -553,11 +540,7 @@ GEM
       rake (>= 0.13)
       thor (~> 1.0)
     rainbow (3.0.0)
-<<<<<<< HEAD
     raindrops (0.19.2)
-=======
-    raindrops (0.19.0)
->>>>>>> 0d958fd9caab38aec08dddb54eb99f6f588ff228
     rake (13.0.6)
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
@@ -594,12 +577,9 @@ GEM
     rspec-expectations (3.10.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
-<<<<<<< HEAD
     rspec-its (1.3.0)
       rspec-core (>= 3.0.0)
       rspec-expectations (>= 3.0.0)
-=======
->>>>>>> 0d958fd9caab38aec08dddb54eb99f6f588ff228
     rspec-mocks (3.10.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
@@ -612,11 +592,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
-<<<<<<< HEAD
     rubocop (1.18.3)
-=======
-    rubocop (0.93.1)
->>>>>>> 0d958fd9caab38aec08dddb54eb99f6f588ff228
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -640,7 +616,6 @@ GEM
     sass (3.4.25)
     sass-globbing (1.1.5)
       sass (>= 3.1)
-<<<<<<< HEAD
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -651,14 +626,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-=======
-    sass-rails (5.0.8)
-      railties (>= 5.2.0)
-      sass (~> 3.1)
-      sprockets (>= 2.8, < 4.0)
-      sprockets-rails (>= 2.0, < 4.0)
-      tilt (>= 1.1, < 3)
->>>>>>> 0d958fd9caab38aec08dddb54eb99f6f588ff228
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
@@ -793,12 +760,8 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yajl-ruby (1.4.1)
-<<<<<<< HEAD
     yard (0.9.26)
     zeitwerk (2.4.2)
-=======
-    yard (0.9.20)
->>>>>>> 0d958fd9caab38aec08dddb54eb99f6f588ff228
 
 PLATFORMS
   ruby
