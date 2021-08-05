@@ -34,7 +34,7 @@ dependency "libarchive"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
-  env['PATH'] = "#{env['PATH']}:#{install_dir}/embedded/nodejs/bin"
+  # env['PATH'] = "#{env['PATH']}:#{install_dir}/embedded/nodejs/bin"
 
   if Bundler.feature_flag.cache_all?
     bundle "package --no-install"
@@ -49,7 +49,7 @@ build do
          " --without development doc",
          env: env
 
-  command "npm install yarn -g", env: env
+  # command "npm install yarn -g", env: env
 
   # This fails because we're installing Ruby C extensions in the wrong place!
   # bundle "exec rake assets:precompile", env: env.merge('RAILS_ENV' => 'production')
