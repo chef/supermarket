@@ -225,7 +225,7 @@ GEM
     et-orbi (1.2.4)
       tzinfo
     excon (0.84.0)
-    execjs (2.8.1)
+    execjs (2.7.0)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -795,7 +795,7 @@ DEPENDENCIES
   database_cleaner
   ddtrace
   dotenv
-  execjs
+  execjs (~> 2.7.0)
   factory_bot_rails
   faker
   ffi-libarchive
