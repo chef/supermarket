@@ -52,6 +52,7 @@ gem "validate_url"
 gem "virtus", "1.0.2", require: false # Pin to a version before the handling of nil in collection coercion was fixed.
 gem "yajl-ruby"
 
+gem 'inspec-core', '~> 4.38'
 # gem 'execjs', "~> 2.7.0"
 # gem 'mini_racer', "~> 0.3.1", platforms: :ruby
 gem 'listen'
