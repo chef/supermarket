@@ -418,7 +418,6 @@ DEPENDENCIES
   berkshelf
   chefspec
   cookstyle
-  inspec-core (~> 4.38)
   kitchen-vagrant
   omnibus!
   omnibus-software!

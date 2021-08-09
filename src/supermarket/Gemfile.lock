@@ -802,7 +802,6 @@ DEPENDENCIES
   guard-rubocop
   honeycomb-beeline
   html_truncator
-  inspec-core (~> 4.38)
   jbuilder
   kaminari
   launchy
