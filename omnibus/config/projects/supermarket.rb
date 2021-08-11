@@ -64,4 +64,3 @@ package :rpm do
   compression_level 1
   compression_type :xz
 end
-{"mode":"full","isActive":false}
