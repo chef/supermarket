@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.4 -->
-## [3.5.4](https://github.com/chef/supermarket/tree/3.5.4) (2021-08-11)
+<!-- latest_release 3.5.5 -->
+## [3.5.5](https://github.com/chef/supermarket/tree/3.5.5) (2021-08-11)
 
 #### Merged Pull Requests
-- Bump honeycomb-beeline from 2.4.2 to 2.6.0 in /src/supermarket [#2113](https://github.com/chef/supermarket/pull/2113) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump webmock from 3.13.0 to 3.14.0 in /src/supermarket [#2114](https://github.com/chef/supermarket/pull/2114) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -31,6 +31,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Bump webmock from 3.13.0 to 3.14.0 in /src/supermarket [#2114](https://github.com/chef/supermarket/pull/2114) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.5 -->
 - Bump honeycomb-beeline from 2.4.2 to 2.6.0 in /src/supermarket [#2113](https://github.com/chef/supermarket/pull/2113) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.4 -->
 - Bump aws-sdk-s3 from 1.96.1 to 1.98.0 in /src/supermarket [#2115](https://github.com/chef/supermarket/pull/2115) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.3 -->
 - Bump chefstyle from 2.0.6 to 2.0.7 in /src/supermarket [#2116](https://github.com/chef/supermarket/pull/2116) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.2 -->
