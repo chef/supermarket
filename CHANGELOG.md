@@ -39,7 +39,6 @@
 - Bump honeycomb-beeline from 2.4.2 to 2.6.0 in /src/supermarket [#2113](https://github.com/chef/supermarket/pull/2113) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.4 -->
 - Bump aws-sdk-s3 from 1.96.1 to 1.98.0 in /src/supermarket [#2115](https://github.com/chef/supermarket/pull/2115) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.3 -->
 - Bump chefstyle from 2.0.6 to 2.0.7 in /src/supermarket [#2116](https://github.com/chef/supermarket/pull/2116) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.2 -->
-- Upgraded to rails 6.1.4 (DO NOT MERGE) [#2078](https://github.com/chef/supermarket/pull/2078) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 3.5.1 -->
 - update deps: includes nginx 1.20.1 [#2102](https://github.com/chef/supermarket/pull/2102) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.4.103 -->
 - Bump cookstyle from 7.15.4 to 7.16.1 in /omnibus [#2103](https://github.com/chef/supermarket/pull/2103) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.102 -->
 - Bump cookstyle from 7.15.4 to 7.16.1 in /src/supermarket/engines/fieri [#2104](https://github.com/chef/supermarket/pull/2104) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.101 -->
