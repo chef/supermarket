@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.9 -->
-## [3.5.9](https://github.com/chef/supermarket/tree/3.5.9) (2021-08-11)
+<!-- latest_release 3.5.10 -->
+## [3.5.10](https://github.com/chef/supermarket/tree/3.5.10) (2021-08-11)
 
 #### Merged Pull Requests
-- Bump guard from 2.14.1 to 2.18.0 in /src/supermarket [#2057](https://github.com/chef/supermarket/pull/2057) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Remove the gem install of Berkshelf [#2120](https://github.com/chef/supermarket/pull/2120) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -31,6 +31,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Remove the gem install of Berkshelf [#2120](https://github.com/chef/supermarket/pull/2120) ([tas50](https://github.com/tas50)) <!-- 3.5.10 -->
 - Bump guard from 2.14.1 to 2.18.0 in /src/supermarket [#2057](https://github.com/chef/supermarket/pull/2057) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.9 -->
 - Remove unused Cookstyle dep in fieri [#2108](https://github.com/chef/supermarket/pull/2108) ([tas50](https://github.com/tas50)) <!-- 3.5.8 -->
 - Make sure we have octokit 4.16+ [#2107](https://github.com/chef/supermarket/pull/2107) ([tas50](https://github.com/tas50)) <!-- 3.5.7 -->
