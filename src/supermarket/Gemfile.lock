@@ -2,7 +2,6 @@ PATH
   remote: engines/fieri
   specs:
     fieri (0.0.1)
-      cookstyle
       dotenv-rails
       foodcritic (~> 16.3)
       mixlib-archive (~> 0.4)
@@ -193,8 +192,6 @@ GEM
       compass (~> 1.0.0)
     concurrent-ruby (1.1.9)
     connection_pool (2.2.5)
-    cookstyle (7.16.1)
-      rubocop (= 1.18.4)
     crack (0.4.5)
       rexml
     crass (1.0.6)
