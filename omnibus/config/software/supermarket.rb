@@ -37,7 +37,11 @@ build do
   env = with_standard_compiler_flags(with_embedded_path)
   env['PATH'] = "#{env['PATH']}:#{install_dir}/embedded/nodejs/bin"
 
-  bundle "package --all --no-install"
+  if Bundler.feature_flag.cache_all?
+    bundle "package --no-install", env: env
+  else
+    bundle "package --all --no-install", env: env
+  end
 
   bundle "install" \
          " --jobs #{workers}" \
@@ -46,10 +50,9 @@ build do
          " --without development doc",
          env: env
 
-  command "npm install yarn -g", env: env
 
   # This fails because we're installing Ruby C extensions in the wrong place!
-  bundle "exec rake assets:precompile", env: env.merge('RAILS_ENV' => 'production')
+  bundle "exec rake assets:precompile", env: env
 
   sync project_dir, "#{install_dir}/embedded/service/supermarket/",
     exclude: %w( .cookbooks .direnv .envrc .env.* .gitignore .kitchen*

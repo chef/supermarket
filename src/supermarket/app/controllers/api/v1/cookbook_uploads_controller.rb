@@ -37,6 +37,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
   # @see CookbookUpload
   # @see CookbookUpload::Parameters
   #
+
   def create
     cookbook_upload = CookbookUpload.new(current_user, upload_params)
 
@@ -65,7 +66,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
           Supermarket::Metrics.increment "cookbook.version.published"
           UniverseCache.flush
 
-          render :create, status: :created
+          render :create, status: 201
         end
       end
     end

@@ -101,7 +101,7 @@ class Api::V1::QualityMetricsController < Api::V1Controller
   def license_evaluation
     response = { message: "Endpoint deprecated. License metric results are now produced by Foodcritic." }
     render json: response,
-           status: :gone
+           status: 410
   end
 
   #

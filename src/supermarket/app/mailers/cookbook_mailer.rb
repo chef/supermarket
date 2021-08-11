@@ -1,5 +1,5 @@
 class CookbookMailer < ApplicationMailer
-  add_template_helper(CookbookVersionsHelper)
+  helper CookbookVersionsHelper
 
   #
   # Creates an email to a user that is a cookbook follower

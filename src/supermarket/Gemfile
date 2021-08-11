@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem "fieri", path: "engines/fieri"
-gem "rails", "~> 5.2.6"
+gem "rails", "~> 6.1.4"
 
 gem "omniauth"
 gem "omniauth-chef-oauth2"
@@ -13,7 +13,7 @@ gem "sidekiq", "~> 4.2"
 gem "sidekiq-cron"
 
 gem "aws-sdk-s3"
-gem "chef", require: false
+gem "chef", "~> 16.13", require: false
 gem "compass-rails"
 gem "ddtrace", require: false
 gem "dotenv"
@@ -52,6 +52,9 @@ gem "validate_url"
 gem "virtus", "1.0.2", require: false # Pin to a version before the handling of nil in collection coercion was fixed.
 gem "yajl-ruby"
 
+gem "listen"
+gem "therubyracer", platforms: :ruby
+
 group :doc do
   gem "yard", require: false
 end
@@ -75,6 +78,7 @@ group :test do
   gem "shoulda-matchers"
   gem "vcr", require: false
   gem "webmock", require: false
+  gem "puma"
 end
 
 group :development, :test do

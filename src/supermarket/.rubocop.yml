@@ -26,3 +26,6 @@ Rails/SkipsModelValidations:
     - touch
 Style/SymbolArray:
   EnforcedStyle: brackets
+Rails/HttpStatus:
+  Enabled: true
+  EnforcedStyle: numeric

@@ -1,8 +1,8 @@
 @import "common";
 @import "foundation/components/grid";
-@import "compass/css3/transition";
-@import "compass/css3/border-radius";
-@import "compass/css3/inline-block";
+@import "../compass/css3/transition";
+@import "../compass/css3/border-radius";
+@import "../compass/css3/inline-block";
 
 // Basic structural elements
 html, body { height: 100%; min-height: 100%; }
