@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.17 -->
-## [3.5.17](https://github.com/chef/supermarket/tree/3.5.17) (2021-08-11)
+<!-- latest_release 3.5.18 -->
+## [3.5.18](https://github.com/chef/supermarket/tree/3.5.18) (2021-08-11)
 
 #### Merged Pull Requests
-- Skip the test group when installing the ctl cookbook [#2124](https://github.com/chef/supermarket/pull/2124) ([tas50](https://github.com/tas50))
+- Produce EL 8 specific pacakges [#2125](https://github.com/chef/supermarket/pull/2125) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -31,6 +31,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Produce EL 8 specific pacakges [#2125](https://github.com/chef/supermarket/pull/2125) ([tas50](https://github.com/tas50)) <!-- 3.5.18 -->
 - Skip the test group when installing the ctl cookbook [#2124](https://github.com/chef/supermarket/pull/2124) ([tas50](https://github.com/tas50)) <!-- 3.5.17 -->
 - Switch from inspec to inspec-core [#2123](https://github.com/chef/supermarket/pull/2123) ([tas50](https://github.com/tas50)) <!-- 3.5.16 -->
 - Remove the binary nodejs [#2122](https://github.com/chef/supermarket/pull/2122) ([tas50](https://github.com/tas50)) <!-- 3.5.15 -->
