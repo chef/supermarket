@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.2 -->
-## [3.5.2](https://github.com/chef/supermarket/tree/3.5.2) (2021-08-11)
+<!-- latest_release 3.5.3 -->
+## [3.5.3](https://github.com/chef/supermarket/tree/3.5.3) (2021-08-11)
 
 #### Merged Pull Requests
-- Bump chefstyle from 2.0.6 to 2.0.7 in /src/supermarket [#2116](https://github.com/chef/supermarket/pull/2116) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump aws-sdk-s3 from 1.96.1 to 1.98.0 in /src/supermarket [#2115](https://github.com/chef/supermarket/pull/2115) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -31,6 +31,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Bump aws-sdk-s3 from 1.96.1 to 1.98.0 in /src/supermarket [#2115](https://github.com/chef/supermarket/pull/2115) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.3 -->
 - Bump chefstyle from 2.0.6 to 2.0.7 in /src/supermarket [#2116](https://github.com/chef/supermarket/pull/2116) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.2 -->
 - Upgraded to rails 6.1.4 (DO NOT MERGE) [#2078](https://github.com/chef/supermarket/pull/2078) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 3.5.1 -->
 - update deps: includes nginx 1.20.1 [#2102](https://github.com/chef/supermarket/pull/2102) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.4.103 -->
