@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.6 -->
-## [3.5.6](https://github.com/chef/supermarket/tree/3.5.6) (2021-08-11)
+<!-- latest_release 3.5.7 -->
+## [3.5.7](https://github.com/chef/supermarket/tree/3.5.7) (2021-08-11)
 
 #### Merged Pull Requests
-- Bump omnibus from `62bf487` to `999a4e0` in /omnibus [#2109](https://github.com/chef/supermarket/pull/2109) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Make sure we have octokit 4.16+ [#2107](https://github.com/chef/supermarket/pull/2107) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -31,6 +31,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Make sure we have octokit 4.16+ [#2107](https://github.com/chef/supermarket/pull/2107) ([tas50](https://github.com/tas50)) <!-- 3.5.7 -->
 - Bump omnibus from `62bf487` to `999a4e0` in /omnibus [#2109](https://github.com/chef/supermarket/pull/2109) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.6 -->
 - Bump webmock from 3.13.0 to 3.14.0 in /src/supermarket [#2114](https://github.com/chef/supermarket/pull/2114) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.5 -->
 - Bump honeycomb-beeline from 2.4.2 to 2.6.0 in /src/supermarket [#2113](https://github.com/chef/supermarket/pull/2113) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.4 -->
