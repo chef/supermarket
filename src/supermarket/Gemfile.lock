@@ -217,6 +217,7 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
+    ed25519 (1.2.4)
     equalizer (0.0.11)
     erubi (1.10.0)
     erubis (2.7.0)
@@ -399,8 +400,6 @@ GEM
       rake
     mini_mime (1.1.0)
     mini_portile2 (2.5.3)
-    mini_racer (0.4.0)
-      libv8-node (~> 15.14.0.0)
     minitest (5.14.4)
     mixlib-archive (0.4.20)
       mixlib-log
@@ -453,7 +452,7 @@ GEM
       mixlib-cli (>= 1.7.0)
       mixlib-config (>= 2.0, < 4.0)
       mixlib-log (>= 2.0.1, < 4.0)
-      mixlib-shellout (~> 3.2, >= 3.2.5)
+      mixlib-shellout (>= 2.0, < 4.0)
       plist (~> 3.1)
       train-core
       wmi-lite (~> 1.0)
@@ -796,7 +795,6 @@ DEPENDENCIES
   database_cleaner
   ddtrace
   dotenv
-  execjs
   factory_bot_rails
   faker
   ffi-libarchive
@@ -813,7 +811,6 @@ DEPENDENCIES
   license_finder
   listen
   mail_view
-  mini_racer
   mixlib-authentication (~> 3.0)
   newrelic_rpm
   nokogiri
