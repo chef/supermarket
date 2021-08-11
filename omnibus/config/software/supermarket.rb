@@ -19,7 +19,6 @@ license :project_license
 
 source path: File.expand_path('../../../../src/supermarket', project.filepath)
 
-dependency "bundler"
 dependency "cacerts"
 dependency "chef-gem"
 dependency "git"
@@ -37,11 +36,7 @@ build do
   env = with_standard_compiler_flags(with_embedded_path)
   env['PATH'] = "#{env['PATH']}:#{install_dir}/embedded/nodejs/bin"
 
-  if Bundler.feature_flag.cache_all?
-    bundle "package --no-install", env: env
-  else
-    bundle "package --all --no-install", env: env
-  end
+  bundle "package --no-install", env: env
 
   bundle "install" \
          " --jobs #{workers}" \
