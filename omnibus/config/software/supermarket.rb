@@ -50,7 +50,6 @@ build do
          " --without development doc",
          env: env
 
-  # command "npm install yarn -g", env: env
 
   # This fails because we're installing Ruby C extensions in the wrong place!
   # bundle "exec rake assets:precompile", env: env.merge('RAILS_ENV' => 'production')
