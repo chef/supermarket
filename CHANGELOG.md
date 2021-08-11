@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.11 -->
-## [3.5.11](https://github.com/chef/supermarket/tree/3.5.11) (2021-08-11)
+<!-- latest_release 3.5.12 -->
+## [3.5.12](https://github.com/chef/supermarket/tree/3.5.12) (2021-08-11)
 
 #### Merged Pull Requests
-- Bump nokogiri from 1.11.7 to 1.12.3 in /src/supermarket [#2112](https://github.com/chef/supermarket/pull/2112) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump listen from 3.5.1 to 3.6.0 in /src/supermarket [#2110](https://github.com/chef/supermarket/pull/2110) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -31,6 +31,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Bump listen from 3.5.1 to 3.6.0 in /src/supermarket [#2110](https://github.com/chef/supermarket/pull/2110) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.12 -->
 - Bump nokogiri from 1.11.7 to 1.12.3 in /src/supermarket [#2112](https://github.com/chef/supermarket/pull/2112) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.11 -->
 - Remove the gem install of Berkshelf [#2120](https://github.com/chef/supermarket/pull/2120) ([tas50](https://github.com/tas50)) <!-- 3.5.10 -->
 - Bump guard from 2.14.1 to 2.18.0 in /src/supermarket [#2057](https://github.com/chef/supermarket/pull/2057) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.9 -->
