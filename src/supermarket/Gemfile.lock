@@ -224,7 +224,7 @@ GEM
     erubis (2.7.0)
     et-orbi (1.2.4)
       tzinfo
-    excon (0.84.0)
+    excon (0.85.0)
     execjs (2.7.0)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -295,7 +295,7 @@ GEM
     hashdiff (1.0.1)
     hashie (4.1.0)
     highline (2.0.3)
-    honeycomb-beeline (2.4.2)
+    honeycomb-beeline (2.6.0)
       libhoney (~> 1.14, >= 1.14.2)
     html_truncator (0.4.2)
       nokogiri (~> 1.5)
@@ -359,7 +359,7 @@ GEM
     kgio (2.11.4)
     launchy (2.5.0)
       addressable (~> 2.7)
-    libhoney (1.18.0)
+    libhoney (1.20.0)
       addressable (~> 2.0)
       excon
       http (>= 2.0, < 5.0)
