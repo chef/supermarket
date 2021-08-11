@@ -60,7 +60,7 @@ class CollaboratorsController < ApplicationController
     respond_to do |format|
       format.js do
         remove_collaborator(@collaborator)
-        head :ok
+        head 200
       end
     end
   end
