@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.103 -->
-## [3.4.103](https://github.com/chef/supermarket/tree/3.4.103) (2021-08-09)
+<!-- latest_release 3.5.0 -->
+## [3.5.0](https://github.com/chef/supermarket/tree/3.5.0) (2021-08-11)
 
-#### Merged Pull Requests
-- update deps: includes nginx 1.20.1 [#2102](https://github.com/chef/supermarket/pull/2102) ([dheerajd-msys](https://github.com/dheerajd-msys))
+#### Security Fixes
+- Upgrade rails to 6.1 and migrate nodejs to mini_racer [#2093](https://github.com/chef/supermarket/pull/2093) ([saghoshprogress](https://github.com/saghoshprogress))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -15,6 +15,7 @@
 - Remove provisioning driver from tools directory [#2036](https://github.com/chef/supermarket/pull/2036) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.4.67 -->
 
 #### Security Fixes
+- Upgrade rails to 6.1 and migrate nodejs to mini_racer [#2093](https://github.com/chef/supermarket/pull/2093) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 3.5.0 -->
 - Fixed redirection errors identified by Brakeman [#2095](https://github.com/chef/supermarket/pull/2095) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 3.4.99 -->
 - [Security] Bump rexml from 3.2.4 to 3.2.5 in /src/supermarket/engines/fieri [#1910](https://github.com/chef/supermarket/pull/1910) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.9 -->
 - [Security] Bump rexml from 3.2.4 to 3.2.5 in /src/supermarket [#1911](https://github.com/chef/supermarket/pull/1911) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.11 -->
