@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.0 -->
-## [3.5.0](https://github.com/chef/supermarket/tree/3.5.0) (2021-08-11)
+<!-- latest_release 3.5.1 -->
+## [3.5.1](https://github.com/chef/supermarket/tree/3.5.1) (2021-08-11)
 
-#### Security Fixes
-- Upgrade rails to 6.1 and migrate nodejs to mini_racer [#2093](https://github.com/chef/supermarket/pull/2093) ([saghoshprogress](https://github.com/saghoshprogress))
+#### Merged Pull Requests
+- Upgraded to rails 6.1.4 (DO NOT MERGE) [#2078](https://github.com/chef/supermarket/pull/2078) ([saghoshprogress](https://github.com/saghoshprogress))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -31,6 +31,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Upgraded to rails 6.1.4 (DO NOT MERGE) [#2078](https://github.com/chef/supermarket/pull/2078) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 3.5.1 -->
 - update deps: includes nginx 1.20.1 [#2102](https://github.com/chef/supermarket/pull/2102) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.4.103 -->
 - Bump cookstyle from 7.15.4 to 7.16.1 in /omnibus [#2103](https://github.com/chef/supermarket/pull/2103) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.102 -->
 - Bump cookstyle from 7.15.4 to 7.16.1 in /src/supermarket/engines/fieri [#2104](https://github.com/chef/supermarket/pull/2104) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.101 -->
