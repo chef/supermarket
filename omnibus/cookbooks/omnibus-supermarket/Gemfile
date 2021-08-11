@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Why is it here? Great question. This needs to get refactored away with the
 # ctl command have its own gemspec.
 
-gem 'inspec'
+gem 'inspec-core'
 gem 'inspec-bin'
 gem 'mini_racer', '~> 0.3.1', platforms: :ruby
 
