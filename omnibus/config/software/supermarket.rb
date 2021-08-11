@@ -52,7 +52,6 @@ build do
 
 
   # This fails because we're installing Ruby C extensions in the wrong place!
-  # bundle "exec rake assets:precompile", env: env.merge('RAILS_ENV' => 'production')
   bundle "exec rake assets:precompile", env: env
 
   sync project_dir, "#{install_dir}/embedded/service/supermarket/",
