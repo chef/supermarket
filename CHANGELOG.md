@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.21 -->
-## [3.5.21](https://github.com/chef/supermarket/tree/3.5.21) (2021-08-12)
+<!-- latest_release 3.5.22 -->
+## [3.5.22](https://github.com/chef/supermarket/tree/3.5.22) (2021-08-12)
 
 #### Merged Pull Requests
-- Use Chef Infra Client 16.14 in supermarket-ctl [#2126](https://github.com/chef/supermarket/pull/2126) ([tas50](https://github.com/tas50))
+- Remove chef-gem dependency entirely [#2129](https://github.com/chef/supermarket/pull/2129) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -31,6 +31,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Remove chef-gem dependency entirely [#2129](https://github.com/chef/supermarket/pull/2129) ([tas50](https://github.com/tas50)) <!-- 3.5.22 -->
 - Use Chef Infra Client 16.14 in supermarket-ctl [#2126](https://github.com/chef/supermarket/pull/2126) ([tas50](https://github.com/tas50)) <!-- 3.5.21 -->
 - Add .bundle back to the supermarket install as possible [#2128](https://github.com/chef/supermarket/pull/2128) ([tas50](https://github.com/tas50)) <!-- 3.5.20 -->
 - Exclude additional files from the Supermarket install [#2127](https://github.com/chef/supermarket/pull/2127) ([tas50](https://github.com/tas50)) <!-- 3.5.19 -->
