@@ -35,7 +35,7 @@ override :bundler, version: "2.1.2" # this must match the BUNDLED WITH in all th
 override :'chef-gem', version: '14.14.29'
 override :'openssl-fips', version: '2.0.16'
 override :'omnibus-ctl', version: 'master'
-override :'openssl', version: '1.0.2y'
+override :openssl, version: '1.0.2y'
 
 # Creates required build directories
 dependency "preparation"
