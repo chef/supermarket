@@ -20,7 +20,6 @@ license :project_license
 source path: File.expand_path('../../../../src/supermarket', project.filepath)
 
 dependency "cacerts"
-dependency "chef-gem"
 dependency "git"
 dependency "nginx"
 dependency "postgresql"
