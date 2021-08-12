@@ -50,6 +50,6 @@ build do
   sync project_dir, "#{install_dir}/embedded/service/supermarket/",
     exclude: %w( .cookbooks .direnv .envrc .env.* .gitignore .kitchen*
                  app/assets/**/branding coverage log node_modules pkg
-                 public/system spec tmp docs .bundle .rubocop.yml Berksfile
+                 public/system spec tmp docs .rubocop.yml Berksfile
                  docker-compose.yml Guardfile )
 end
