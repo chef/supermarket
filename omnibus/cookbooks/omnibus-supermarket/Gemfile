@@ -7,7 +7,7 @@ source 'https://rubygems.org'
 gem 'chef', '~> 16.14'
 gem 'chef-bin', '~> 16.14'
 gem 'inspec-core'
-gem 'inspec-bin'
+gem 'inspec-core-bin'
 gem 'mini_racer', '~> 0.3.1', platforms: :ruby
 
 # gems for testing the build cookbooks
