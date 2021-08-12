@@ -29,7 +29,7 @@ build do
     remove_directory "#{install_dir}/embedded/service/supermarket/vendor/cache"
 
     # this expands into the appropriate Ruby release number dir
-    vendor_ruby_dir = File.expand_path("#{install_dir}/embedded/service/supermarket/vendor/bundle/ruby/*/")
+    vendor_ruby_dir = File.expand_path("#{install_dir}/embedded/service/supermarket/vendor/bundle/ruby/*")
 
     remove_directory "#{vendor_ruby_dir}/build_info"
     remove_directory "#{vendor_ruby_dir}/bundle/ruby/*/cache"
