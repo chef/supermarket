@@ -48,6 +48,7 @@ dependency "version-manifest"
 
 # remove lots of ruby clutter we don't need
 dependency "ruby-cleanup"
+dependency "more-ruby-cleanup-supermarket"
 
 exclude "**/.git"
 exclude "**/bundler/git"
