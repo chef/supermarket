@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.24 -->
-## [3.5.24](https://github.com/chef/supermarket/tree/3.5.24) (2021-08-12)
+<!-- latest_release 3.5.25 -->
+## [3.5.25](https://github.com/chef/supermarket/tree/3.5.25) (2021-08-12)
 
 #### Merged Pull Requests
-- Switch from inspec-bin to inspec-core-bin [#2131](https://github.com/chef/supermarket/pull/2131) ([tas50](https://github.com/tas50))
+- Changed cookie serializer from :hybrid to :json as hybrid serializer has security issues; Fixed collaboration_controller dynamic resource path brakeman issue; [#2101](https://github.com/chef/supermarket/pull/2101) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -31,6 +31,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Changed cookie serializer from :hybrid to :json as hybrid serializer has security issues; Fixed collaboration_controller dynamic resource path brakeman issue; [#2101](https://github.com/chef/supermarket/pull/2101) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 3.5.25 -->
 - Switch from inspec-bin to inspec-core-bin [#2131](https://github.com/chef/supermarket/pull/2131) ([tas50](https://github.com/tas50)) <!-- 3.5.24 -->
 - Add a cleanup definition for all the gem cache junk [#2130](https://github.com/chef/supermarket/pull/2130) ([tas50](https://github.com/tas50)) <!-- 3.5.23 -->
 - Remove chef-gem dependency entirely [#2129](https://github.com/chef/supermarket/pull/2129) ([tas50](https://github.com/tas50)) <!-- 3.5.22 -->
