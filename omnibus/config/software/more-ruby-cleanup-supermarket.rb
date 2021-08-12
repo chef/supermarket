@@ -26,11 +26,13 @@ dependency "ruby"
 
 build do
   block "Delete bundler git cache, docs, and build info" do
-    vendor_dir = File.expand_path("#{install_dir}/embedded/service/supermarket/vendor/")
+    remove_directory "#{install_dir}/embedded/service/supermarket/vendor/cache"
 
-    remove_directory "#{vendor_dir}/bundle/ruby/*/build_info"
-    remove_directory "#{vendor_dir}/bundle/ruby/*/cache"
-    remove_directory "#{vendor_dir}/bundle/ruby/*/doc"
-    remove_directory "#{vendor_dir}/cache"
+    # this expands into the appropriate Ruby release number dir
+    vendor_ruby_dir = File.expand_path("#{install_dir}/embedded/service/supermarket/vendor/bundle/ruby/*/")
+
+    remove_directory "#{vendor_ruby_dir}//build_info"
+    remove_directory "#{vendor_ruby_dir}/bundle/ruby/*/cache"
+    remove_directory "#{vendor_ruby_dir}/bundle/ruby/*/doc"
   end
 end
