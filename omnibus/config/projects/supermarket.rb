@@ -28,9 +28,9 @@ install_dir "#{default_root}/#{name}"
 build_version   IO.read(File.expand_path("../../../../VERSION", __FILE__)).strip
 build_iteration 1
 
+# NOTE: see the omnibus-supermarket cookbook gemfile for controlling the infra client version
 override :postgresql, version: '9.3.25'
 override :ruby, version: "2.7.4"
-override :'chef-gem', version: '16.14.1'
 override :'openssl-fips', version: '2.0.16'
 override :'omnibus-ctl', version: 'master'
 override :openssl, version: '1.0.2y'
