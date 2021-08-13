@@ -790,6 +790,7 @@ DEPENDENCIES
   capybara-screenshot
   chef (~> 16.13)
   chefstyle
+  coderay
   compass-rails
   database_cleaner
   ddtrace

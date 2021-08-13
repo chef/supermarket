@@ -13,7 +13,20 @@ describe MarkdownHelper do
         ```
       CODEBLOCK
 
-      expect(helper.render_markdown(codeblock)).to match(/<pre><code>/)
+      expect(helper.render_markdown(codeblock)).to include("<div class=\"CodeRay\">\n  "\
+                                                            "<div class=\"code\"><pre>"\
+                                                            "$ bundle exec rake spec:all\n</pre>")
+    end
+
+    it "renders code block with syntax highlighting" do
+      codeblock = <<-CODEBLOCK.strip_heredoc
+        ```ruby
+        require 'redcarpet'
+        ```
+      CODEBLOCK
+
+      expect(helper.render_markdown(codeblock)).to include("<div class=\"CodeRay\">\n  "\
+                                                            "<div class=\"code\"><pre>require")
     end
 
     it "auto renders links with target blank" do
@@ -33,13 +46,13 @@ describe MarkdownHelper do
     expect(helper.render_markdown(table)).to match(/<table>/)
   end
 
-  it "doesn't adds br tags on hard wraps" do
+  it "adds br tags on hard wraps" do
     markdown = <<-HARDWRAP.strip_heredoc
       There is no hard
       wrap.
     HARDWRAP
 
-    expect(helper.render_markdown(markdown)).to_not match(/<br>/)
+    expect(helper.render_markdown(markdown)).to match(/<br>/)
   end
 
   it "doesn't emphasize underscored words" do
@@ -58,6 +71,10 @@ describe MarkdownHelper do
     expect(helper.render_markdown("Supermarket^2")).to match(/<sup>/)
   end
 
+  it "removes escaped comments" do
+    expect(helper.render_markdown("<!-- Comment --><p>Hello</p>")).to_not include("&lt;!-- Comment --&gt;")
+  end
+
   context "protocol in URLs for images get converted" do
     it "HTTP -> protocol-relative" do
       html = helper.render_markdown("![](http://img.example.com)")
@@ -68,6 +85,7 @@ describe MarkdownHelper do
       html = helper.render_markdown("![](https://img.example.com)")
       expect(html).to include('<img src="//img.example.com" alt="">')
     end
+
   end
 
   describe "to prevent XSS attacks" do
