@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.28 -->
-## [3.5.28](https://github.com/chef/supermarket/tree/3.5.28) (2021-08-13)
+<!-- latest_release 3.5.29 -->
+## [3.5.29](https://github.com/chef/supermarket/tree/3.5.29) (2021-08-13)
 
 #### Merged Pull Requests
-- Bump cookstyle from 7.16.1 to 7.17.0 in /omnibus [#2137](https://github.com/chef/supermarket/pull/2137) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- chefstyle changes [#2133](https://github.com/chef/supermarket/pull/2133) ([msys-sgarg](https://github.com/msys-sgarg))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -31,6 +31,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- chefstyle changes [#2133](https://github.com/chef/supermarket/pull/2133) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.5.29 -->
 - Bump cookstyle from 7.16.1 to 7.17.0 in /omnibus [#2137](https://github.com/chef/supermarket/pull/2137) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.28 -->
 - Improve markdown rendering is changelogs / readmes [#2081](https://github.com/chef/supermarket/pull/2081) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.5.27 -->
 - Fix the cleanup of cached gems [#2132](https://github.com/chef/supermarket/pull/2132) ([tas50](https://github.com/tas50)) <!-- 3.5.26 -->
