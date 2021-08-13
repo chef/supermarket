@@ -11,6 +11,9 @@ builder-to-testers-map:
     - amazon-2-x86_64
   el-8-x86_64:
     - el-8-x86_64
+  sles-12-x86_64:
+    - sles-12-x86_64
+    - sles-15-x86_64
   ubuntu-18.04-x86_64:
     - ubuntu-18.04-x86_64
     - ubuntu-20.04-x86_64
