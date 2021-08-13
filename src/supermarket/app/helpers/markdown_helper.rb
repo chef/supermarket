@@ -15,7 +15,7 @@ module MarkdownHelper
       )
     end
 
-    #Syntax highlighting using CodeRay library
+    # Syntax highlighting using CodeRay library
     def block_code(code, language)
       if language.present?
         CodeRay.scan(code, language).div
@@ -24,7 +24,7 @@ module MarkdownHelper
       end
     end
 
-    #process doc to remove markdown comments as the same is not supported by RedCarpet
+    # process doc to remove markdown comments as it's not supported by RedCarpet
     def remove_comments(raw_html)
       raw_html.gsub(/&lt;!--(.*?)--&gt;/, "")
     end
