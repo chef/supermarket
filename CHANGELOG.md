@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.31 -->
-## [3.5.31](https://github.com/chef/supermarket/tree/3.5.31) (2021-08-16)
+<!-- latest_release 3.5.32 -->
+## [3.5.32](https://github.com/chef/supermarket/tree/3.5.32) (2021-08-16)
 
 #### Merged Pull Requests
-- Bump rspec-rails from 5.0.1 to 5.0.2 in /src/supermarket/engines/fieri [#2142](https://github.com/chef/supermarket/pull/2142) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump cookstyle from 7.17.0 to 7.18.0 in /omnibus [#2141](https://github.com/chef/supermarket/pull/2141) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -31,6 +31,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Bump cookstyle from 7.17.0 to 7.18.0 in /omnibus [#2141](https://github.com/chef/supermarket/pull/2141) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.32 -->
 - Bump rspec-rails from 5.0.1 to 5.0.2 in /src/supermarket/engines/fieri [#2142](https://github.com/chef/supermarket/pull/2142) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.31 -->
 - Bump rspec-rails from 5.0.1 to 5.0.2 in /src/supermarket [#2143](https://github.com/chef/supermarket/pull/2143) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.30 -->
 - chefstyle changes [#2133](https://github.com/chef/supermarket/pull/2133) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.5.29 -->
