@@ -7,7 +7,7 @@ gem "omniauth"
 gem "omniauth-chef-oauth2"
 gem "omniauth-github"
 gem "omniauth-oauth2", "~> 1.7.1"
-gem "omniauth-rails_csrf_protection"
+# gem "omniauth-rails_csrf_protection"
 gem "coderay" # markdown doc - syntax highlighting
 
 gem "sidekiq", "~> 4.2"

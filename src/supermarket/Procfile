@@ -1,2 +1,2 @@
-web: bundle exec rails server --binding localhost
+web: bundle exec rails server --binding localhost -p 3000
 worker: bundle exec sidekiq
