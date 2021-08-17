@@ -37,6 +37,7 @@ http {
   <% end %>
 
   server_tokens off;
+  more_clear_headers Server;
   add_header X-Clacks-Overhead "GNU Terry Pratchett";
 
   sendfile <%= @nginx['sendfile'] %>;
