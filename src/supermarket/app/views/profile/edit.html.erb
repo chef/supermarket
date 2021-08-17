@@ -76,7 +76,12 @@
               <tr>
                 <td><%= link_to collaborator.resourceable.name, collaborator.resourceable %></td>
                 <td><%= collaborator.resourceable.class.name %></td>
-                <td class="text-right"><%= link_to 'Remove Myself as a Collaborator', collaborator_path(collaborator), remote: true, method: :delete, class: 'button tiny alert radius', rel: 'remove_collaboration' %></td>
+                <td class="text-right"><%= link_to 'Remove Myself as a Collaborator',
+                collaborator_path(collaborator), remote: true, method: :delete,
+                data: {confirm: "Are you sure you want to remove yourself as a collaborator "\
+                "from the cookbook #{collaborator.resourceable.name} ? You will not be able to add yourself back without the help of the "\
+                "cookbook owner."},
+                class: 'button tiny alert radius', rel: 'remove_collaboration' %></td>
               </tr>
             <% end %>
           <% end %>
