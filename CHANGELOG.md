@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.39 -->
-## [3.5.39](https://github.com/chef/supermarket/tree/3.5.39) (2021-08-17)
+<!-- latest_release 3.5.40 -->
+## [3.5.40](https://github.com/chef/supermarket/tree/3.5.40) (2021-08-17)
 
 #### Merged Pull Requests
-- Better describe cookbooks and update links [#2154](https://github.com/chef/supermarket/pull/2154) ([tas50](https://github.com/tas50))
+- Update copy in the supermarket.rb config file [#2156](https://github.com/chef/supermarket/pull/2156) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -31,6 +31,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Update copy in the supermarket.rb config file [#2156](https://github.com/chef/supermarket/pull/2156) ([tas50](https://github.com/tas50)) <!-- 3.5.40 -->
 - Better describe cookbooks and update links [#2154](https://github.com/chef/supermarket/pull/2154) ([tas50](https://github.com/tas50)) <!-- 3.5.39 -->
 - Update tools copy to not mention Foodcritic [#2153](https://github.com/chef/supermarket/pull/2153) ([tas50](https://github.com/tas50)) <!-- 3.5.38 -->
 - Bump aws-sdk-s3 from 1.98.0 to 1.99.0 in /src/supermarket [#2146](https://github.com/chef/supermarket/pull/2146) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.37 -->
