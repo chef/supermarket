@@ -5,7 +5,7 @@ gem 'omnibus', git: 'https://github.com/chef/omnibus.git'
 
 # Use Chef's software definitions. It is recommended that you write your own
 # software definitions, but you can clone/fork Chef's to get you started.
-gem 'omnibus-software', git: 'https://github.com/chef/omnibus-software.git'
+gem 'omnibus-software', git: 'https://github.com/chef/omnibus-software.git', branch: 'dheerajd-msys:dheeraj/upgrade_redis6'
 
 # Install artifactory. Used for publishing packages.
 gem 'artifactory'
