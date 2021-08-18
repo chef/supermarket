@@ -36,7 +36,7 @@ Capybara.register_driver :poltergeist do |app|
     # so that tests the navmenu appears at the top of the window, otherwise
     # capybara will complain about
     #   Unable to find css "[rel*=thinginthenavmenu]"
-    window_size: [1100, 764]
+    window_size: [1920, 1080]
   )
 end
 
