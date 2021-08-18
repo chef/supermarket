@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.45 -->
-## [3.5.45](https://github.com/chef/supermarket/tree/3.5.45) (2021-08-18)
+<!-- latest_release unreleased -->
+## Unreleased
 
 #### Merged Pull Requests
-- Added the content security policy settings [#2145](https://github.com/chef/supermarket/pull/2145) ([saghoshprogress](https://github.com/saghoshprogress))
+- Automate release announcements + minor expeditor config updates [#2166](https://github.com/chef/supermarket/pull/2166) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -37,6 +37,7 @@
 
 
 #### Merged Pull Requests
+- Automate release announcements + minor expeditor config updates [#2166](https://github.com/chef/supermarket/pull/2166) ([tas50](https://github.com/tas50)) <!-- 3.5.45 -->
 - Bump omnibus-software from `c12454a` to `01f52a2` in /omnibus [#2165](https://github.com/chef/supermarket/pull/2165) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.44 -->
 - Added prompt before delete action for collaborator [#2148](https://github.com/chef/supermarket/pull/2148) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.5.42 -->
 - Redis major upgrade  [#2158](https://github.com/chef/supermarket/pull/2158) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.5.41 -->
