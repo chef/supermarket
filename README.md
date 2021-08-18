@@ -25,7 +25,7 @@ This repository has the code for the Supermarket application and the omnibus def
 
 ## Requirements
 
-* Ruby 2.6.8
+* Ruby 2.7.4
 * PostgreSQL 9.3
 * Redis 6.2.5
 
