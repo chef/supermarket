@@ -15,6 +15,11 @@
 - Remove provisioning driver from tools directory [#2036](https://github.com/chef/supermarket/pull/2036) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.4.67 -->
 
 #### Security Fixes
+- Added the content security policy settings [#2145](https://github.com/chef/supermarket/pull/2145) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 3.5.45 -->
+- Hide nginx server header from response [#2161](https://github.com/chef/supermarket/pull/2161) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 3.5.43 -->
+- Produce EL 8 specific packages [#2125](https://github.com/chef/supermarket/pull/2125) ([tas50](https://github.com/tas50)) <!-- 3.5.18 -->
+- Remove the binary nodejs [#2122](https://github.com/chef/supermarket/pull/2122) ([tas50](https://github.com/tas50)) <!-- 3.5.15 -->
+- Enable FIPS for the Ubuntu builds [#2053](https://github.com/chef/supermarket/pull/2053) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.5.13 -->
 - Upgrade rails to 6.1 and migrate nodejs to mini_racer [#2093](https://github.com/chef/supermarket/pull/2093) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 3.5.0 -->
 - Fixed redirection errors identified by Brakeman [#2095](https://github.com/chef/supermarket/pull/2095) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 3.4.99 -->
 - [Security] Bump rexml from 3.2.4 to 3.2.5 in /src/supermarket/engines/fieri [#1910](https://github.com/chef/supermarket/pull/1910) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.4.9 -->
@@ -30,10 +35,9 @@
 - Bump rails from 5.2.5 to 5.2.6 in /src/supermarket [#1941](https://github.com/chef/supermarket/pull/1941) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.24 -->
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
+
 #### Merged Pull Requests
-- Added the content security policy settings [#2145](https://github.com/chef/supermarket/pull/2145) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 3.5.45 -->
 - Bump omnibus-software from `c12454a` to `01f52a2` in /omnibus [#2165](https://github.com/chef/supermarket/pull/2165) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.44 -->
-- Hide nginx server header from response [#2161](https://github.com/chef/supermarket/pull/2161) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 3.5.43 -->
 - Added prompt before delete action for collaborator [#2148](https://github.com/chef/supermarket/pull/2148) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.5.42 -->
 - Redis major upgrade  [#2158](https://github.com/chef/supermarket/pull/2158) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.5.41 -->
 - Update the ruby release in the rubocop configs to 2.7 [#2157](https://github.com/chef/supermarket/pull/2157) ([tas50](https://github.com/tas50)) <!-- 3.5.40 -->
@@ -59,12 +63,9 @@
 - Use Chef Infra Client 16.14 in supermarket-ctl [#2126](https://github.com/chef/supermarket/pull/2126) ([tas50](https://github.com/tas50)) <!-- 3.5.21 -->
 - Add .bundle back to the supermarket install as possible [#2128](https://github.com/chef/supermarket/pull/2128) ([tas50](https://github.com/tas50)) <!-- 3.5.20 -->
 - Exclude additional files from the Supermarket install [#2127](https://github.com/chef/supermarket/pull/2127) ([tas50](https://github.com/tas50)) <!-- 3.5.19 -->
-- Produce EL 8 specific pacakges [#2125](https://github.com/chef/supermarket/pull/2125) ([tas50](https://github.com/tas50)) <!-- 3.5.18 -->
 - Skip the test group when installing the ctl cookbook [#2124](https://github.com/chef/supermarket/pull/2124) ([tas50](https://github.com/tas50)) <!-- 3.5.17 -->
 - Switch from inspec to inspec-core [#2123](https://github.com/chef/supermarket/pull/2123) ([tas50](https://github.com/tas50)) <!-- 3.5.16 -->
-- Remove the binary nodejs [#2122](https://github.com/chef/supermarket/pull/2122) ([tas50](https://github.com/tas50)) <!-- 3.5.15 -->
 - Remove bundler install in omnibus [#2121](https://github.com/chef/supermarket/pull/2121) ([tas50](https://github.com/tas50)) <!-- 3.5.14 -->
-- Enable FIPS for the Ubuntu builds [#2053](https://github.com/chef/supermarket/pull/2053) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.5.13 -->
 - Bump listen from 3.5.1 to 3.6.0 in /src/supermarket [#2110](https://github.com/chef/supermarket/pull/2110) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.12 -->
 - Bump nokogiri from 1.11.7 to 1.12.3 in /src/supermarket [#2112](https://github.com/chef/supermarket/pull/2112) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.11 -->
 - Remove the gem install of Berkshelf [#2120](https://github.com/chef/supermarket/pull/2120) ([tas50](https://github.com/tas50)) <!-- 3.5.10 -->
