@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.43 -->
-## [3.5.43](https://github.com/chef/supermarket/tree/3.5.43) (2021-08-18)
+<!-- latest_release 3.5.44 -->
+## [3.5.44](https://github.com/chef/supermarket/tree/3.5.44) (2021-08-18)
 
 #### Merged Pull Requests
-- Hide nginx server header from response [#2161](https://github.com/chef/supermarket/pull/2161) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Bump omnibus-software from `c12454a` to `01f52a2` in /omnibus [#2165](https://github.com/chef/supermarket/pull/2165) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -31,6 +31,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Bump omnibus-software from `c12454a` to `01f52a2` in /omnibus [#2165](https://github.com/chef/supermarket/pull/2165) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.44 -->
 - Hide nginx server header from response [#2161](https://github.com/chef/supermarket/pull/2161) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 3.5.43 -->
 - Added prompt before delete action for collaborator [#2148](https://github.com/chef/supermarket/pull/2148) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.5.42 -->
 - Redis major upgrade  [#2158](https://github.com/chef/supermarket/pull/2158) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.5.41 -->
