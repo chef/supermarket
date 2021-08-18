@@ -1,11 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.41 -->
-## [3.5.41](https://github.com/chef/supermarket/tree/3.5.41) (2021-08-18)
+<!-- latest_release 3.5.42 -->
+## [3.5.42](https://github.com/chef/supermarket/tree/3.5.42) (2021-08-18)
 
 #### Merged Pull Requests
-- Redis major upgrade  [#2158](https://github.com/chef/supermarket/pull/2158) ([dheerajd-msys](https://github.com/dheerajd-msys))
-- Update the ruby release in the rubocop configs to 2.7 [#2157](https://github.com/chef/supermarket/pull/2157) ([tas50](https://github.com/tas50))
+- Added prompt before delete action for collaborator [#2148](https://github.com/chef/supermarket/pull/2148) ([msys-sgarg](https://github.com/msys-sgarg))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -32,6 +31,7 @@
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
 #### Merged Pull Requests
+- Added prompt before delete action for collaborator [#2148](https://github.com/chef/supermarket/pull/2148) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.5.42 -->
 - Redis major upgrade  [#2158](https://github.com/chef/supermarket/pull/2158) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.5.41 -->
 - Update the ruby release in the rubocop configs to 2.7 [#2157](https://github.com/chef/supermarket/pull/2157) ([tas50](https://github.com/tas50)) <!-- 3.5.40 -->
 - Update copy in the supermarket.rb config file [#2156](https://github.com/chef/supermarket/pull/2156) ([tas50](https://github.com/tas50)) <!-- 3.5.40 -->
