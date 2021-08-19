@@ -1,9 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release unreleased -->
-## Unreleased
+<!-- latest_release 3.5.46 -->
+## [3.5.46](https://github.com/chef/supermarket/tree/3.5.46) (2021-08-19)
 
 #### Merged Pull Requests
+- Changes for progress url being picked from wrong ENV variable [#2160](https://github.com/chef/supermarket/pull/2160) ([msys-sgarg](https://github.com/msys-sgarg))
 - Automate release announcements + minor expeditor config updates [#2166](https://github.com/chef/supermarket/pull/2166) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
@@ -37,6 +38,7 @@
 
 
 #### Merged Pull Requests
+- Changes for progress url being picked from wrong ENV variable [#2160](https://github.com/chef/supermarket/pull/2160) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.5.46 -->
 - Automate release announcements + minor expeditor config updates [#2166](https://github.com/chef/supermarket/pull/2166) ([tas50](https://github.com/tas50)) <!-- 3.5.45 -->
 - Bump omnibus-software from `c12454a` to `01f52a2` in /omnibus [#2165](https://github.com/chef/supermarket/pull/2165) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.44 -->
 - Added prompt before delete action for collaborator [#2148](https://github.com/chef/supermarket/pull/2148) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.5.42 -->
