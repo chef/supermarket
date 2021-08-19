@@ -1,11 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.46 -->
-## [3.5.46](https://github.com/chef/supermarket/tree/3.5.46) (2021-08-19)
+<!-- latest_release 3.5.47 -->
+## [3.5.47](https://github.com/chef/supermarket/tree/3.5.47) (2021-08-19)
 
 #### Merged Pull Requests
-- Changes for progress url being picked from wrong ENV variable [#2160](https://github.com/chef/supermarket/pull/2160) ([msys-sgarg](https://github.com/msys-sgarg))
-- Automate release announcements + minor expeditor config updates [#2166](https://github.com/chef/supermarket/pull/2166) ([tas50](https://github.com/tas50))
+- Bump cookstyle from 7.19.0 to 7.20.0 in /omnibus [#2167](https://github.com/chef/supermarket/pull/2167) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -38,6 +37,7 @@
 
 
 #### Merged Pull Requests
+- Bump cookstyle from 7.19.0 to 7.20.0 in /omnibus [#2167](https://github.com/chef/supermarket/pull/2167) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.47 -->
 - Changes for progress url being picked from wrong ENV variable [#2160](https://github.com/chef/supermarket/pull/2160) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.5.46 -->
 - Automate release announcements + minor expeditor config updates [#2166](https://github.com/chef/supermarket/pull/2166) ([tas50](https://github.com/tas50)) <!-- 3.5.45 -->
 - Bump omnibus-software from `c12454a` to `01f52a2` in /omnibus [#2165](https://github.com/chef/supermarket/pull/2165) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.44 -->
