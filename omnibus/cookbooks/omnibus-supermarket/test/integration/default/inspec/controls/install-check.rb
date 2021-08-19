@@ -95,7 +95,7 @@ control 'proxy' do
       its('protocols') { should include 'tcp' }
     end
 
-    describe http("https://#{property['supermarket']['fqdn']}:#{property['supermarket']['nginx']['ssl_port']}", ssl_verify: false) do
+    describe http("https://localhost:#{property['supermarket']['nginx']['ssl_port']}", ssl_verify: false) do
       it 'should not include server version number in response headers' do
         expect(subject.headers.server).to be_nil
       end
