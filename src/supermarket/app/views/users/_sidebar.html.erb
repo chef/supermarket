@@ -30,7 +30,7 @@
     <% end %>
 
     <% if @user.slack_username.present? %>
-      <li class="has-tip" title="<%= posessivize(@user.name) %> Slack Nickname">
+      <li class="has-tip" title="<%= posessivize(@user.name) %> Slack Username">
         <i class="fa fa-comment"></i> <%= @user.slack_username %>
       </li>
     <% end %>
