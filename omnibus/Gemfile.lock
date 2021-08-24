@@ -131,7 +131,7 @@ GEM
       rack (~> 2.0, >= 2.0.6)
       uuidtools (~> 2.1)
       webrick
-    chefspec (9.3.0)
+    chefspec (9.3.1)
       chef (>= 15)
       chef-cli
       fauxhai-ng (>= 7.5)
@@ -180,7 +180,7 @@ GEM
     highline (2.0.3)
     httpclient (2.8.3)
     iniparse (1.5.0)
-    inspec-core (4.38.9)
+    inspec-core (4.41.2)
       addressable (~> 2.4)
       chef-telemetry (~> 1.0, >= 1.0.8)
       faraday (>= 0.9.0, < 1.5)
@@ -239,7 +239,7 @@ GEM
     mixlib-shellout (3.2.5)
       chef-utils
     mixlib-versioning (1.2.12)
-    molinillo (0.7.0)
+    molinillo (0.8.0)
     multi_json (1.15.0)
     multipart-post (2.1.1)
     net-scp (3.0.0)
