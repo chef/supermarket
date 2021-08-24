@@ -5,7 +5,7 @@ name: unit
   pull_request:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   supermarket:

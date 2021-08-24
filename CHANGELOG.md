@@ -682,7 +682,7 @@ and feature flag checks.
 
 **Meta**
 - Clarify contributing instructions around the Developer's Certificate of Origin
-- Add a [code of conduct](https://github.com/chef/supermarket/blob/master/CODE_OF_CONDUCT.md), referencing the Chef Community Guidelines
+- Add a [code of conduct](https://github.com/chef/supermarket/blob/main/CODE_OF_CONDUCT.md), referencing the Chef Community Guidelines
 
 ## 2.8.34 (2016-11-10)
 
@@ -697,7 +697,6 @@ and feature flag checks.
 **Bug Fixes**
 
 - [#1460] - UI was tweaked for the "Advanced Options" search toggle for small viewports, e.g. mobile. (Thanks, @tristanoneil!)
-
 
 ## 2.8.30 (2016-10-17)
 
