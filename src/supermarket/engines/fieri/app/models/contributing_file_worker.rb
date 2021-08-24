@@ -26,11 +26,11 @@ class ContributingFileWorker < SourceRepoWorker
     return true if repo.blank?
 
     begin
-      octokit_client.contents(repo, path: "CONTRIBUTING.md")
-      # if found, does not fail the metric
-      false
-    rescue Octokit::NotFound
-      # if not found, does fail the metric
+      repo_contents = octokit_client.contents(repo)
+      # if found then returns false, and does not fail the metric
+      return !repo_contents.any? {|file| file[:name] =~ /^contributing.md$/i}
+    rescue Octokit::InvalidRepository, Octokit::NotFound
+      # if repository not found, does fail the metric
       true
     end
   end
