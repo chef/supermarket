@@ -37,6 +37,11 @@ jobs:
         env:
           RAILS_ENV: test
         working-directory: src/supermarket
+      - name: run db migration for running unit tests (specs)
+        run: bundle exec rake db:migrate
+        env:
+          RAILS_ENV: test
+        working-directory: src/supermarket
       - name: run specs
         run: bundle exec rake spec --trace
         env:
