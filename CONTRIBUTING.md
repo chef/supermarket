@@ -16,7 +16,7 @@ The license tells you what rights you have that are provided by the copyright ho
 
 For more information about licensing, copyright, and why we use DCO, see Chef's [Community Contributions](https://docs.chef.io/community_contributions/) page.
 
-For information on how to sign your commits with DCO, please see [DCO Sign Off Methods](https://github.com/chef/chef/blob/master/CONTRIBUTING.md#dco-sign-off-methods).
+For information on how to sign your commits with DCO, please see [DCO Sign Off Methods](https://github.com/chef/chef/blob/main/CONTRIBUTING.md#dco-sign-off-methods).
 
 ## Working with the community
 
