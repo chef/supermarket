@@ -93,3 +93,8 @@ sitemap_files.each do |sitemap_file|
     action :create
   end
 end
+
+execute 'sles command' do
+  puts "inside the sles command"
+  command 'sudo chmod 0775 -R /opt/supermarket/embedded/bin'
+ end

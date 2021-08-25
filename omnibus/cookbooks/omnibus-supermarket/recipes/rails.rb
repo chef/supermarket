@@ -30,6 +30,20 @@ include_recipe 'omnibus-supermarket::nginx'
   end
 end
 
+
+["#{node['supermarket']['install_directory']}/embedded/bin"].each do |dir|
+  puts "test change permission #{dir}"
+  directory dir do
+    mode '4755'
+    recursive true
+  end
+end
+
+execute 'sles command' do
+  puts "inside the sles command"
+  command 'sudo chmod 4755 -R /opt/supermarket/embedded/bin'
+end
+
 template 'unicorn.rb' do
   path "#{node['supermarket']['var_directory']}/etc/unicorn.rb"
   source 'unicorn.rb.erb'

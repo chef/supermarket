@@ -22,6 +22,8 @@ source path: "cookbooks/omnibus-supermarket"
 build do
   cookbooks_path = "#{install_dir}/embedded/cookbooks"
   env = with_standard_compiler_flags(with_embedded_path)
+  #for dev build
+  gem "install berkshelf"
   
   command "berks vendor #{cookbooks_path}", env: env
 
