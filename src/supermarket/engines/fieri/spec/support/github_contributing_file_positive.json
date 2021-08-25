@@ -1,20 +1,20 @@
-{:name=>"CONTRIBUTING.md",
-  :path=>"CONTRIBUTING.md",
-  :sha=>"253074c7703892156822bf4b21c05e538f531bdb",
-  :size=>5417,
-  :url=>
+[{"name": "CONTRIBUTING.md",
+  "path": "CONTRIBUTING.md",
+  "sha": "253074c7703892156822bf4b21c05e538f531bdb",
+  "size": 5417,
+  "url": 
     "https://api.github.com/repos/johndoe/example_repo/contents/CONTRIBUTING.md?ref=master",
-  :html_url=>"https://github.com/johndoe/example_repo/blob/master/CONTRIBUTING.md",
-  :git_url=>
+  "html_url": "https://github.com/johndoe/example_repo/blob/master/CONTRIBUTING.md",
+  "git_url": 
     "https://api.github.com/repos/johndoe/example_repo/git/blobs/253074c7703892156822bf4b21c05e538f531bdb",
-  :download_url=>
+  "download_url": 
     "https://raw.githubusercontent.com/johndoe/example_repo/master/CONTRIBUTING.md",
-  :type=>"file",
-  :content=> "xyz",
-  :encoding=>"base64",
-  :_links=>
-  {:self=>
+  "type": "file",
+  "content":  "xyz",
+  "encoding": "base64",
+  "_links": 
+  {"self": 
     "https://api.github.com/repos/johndoe/example_repo/contents/CONTRIBUTING.md?ref=master",
-    :git=>
+    "git": 
       "https://api.github.com/repos/johndoe/example_repo/git/blobs/253074c7703892156822bf4b21c05e538f531bdb",
-    :html=>"https://github.com/johndoe/example_repo/blob/master/CONTRIBUTING.md"}}
+    "html": "https://github.com/johndoe/example_repo/blob/master/CONTRIBUTING.md"}}]

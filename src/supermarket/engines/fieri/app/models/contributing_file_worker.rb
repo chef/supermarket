@@ -28,7 +28,7 @@ class ContributingFileWorker < SourceRepoWorker
     begin
       repo_contents = octokit_client.contents(repo)
       # if found then returns false, and does not fail the metric
-      return !repo_contents.any? {|file| file[:name] =~ /^contributing.md$/i}
+      return !repo_contents.any? {|file| file.with_indifferent_access["name"] =~ /^contributing\.md$/i}
     rescue Octokit::InvalidRepository, Octokit::NotFound
       # if repository not found, does fail the metric
       true
