@@ -1,11 +1,14 @@
 source 'https://rubygems.org'
 
 # Install omnibus
-gem 'omnibus', git: 'https://github.com/chef/omnibus.git'
+# gem 'omnibus', git: 'https://github.com/chef/omnibus.git'
+
+gem 'omnibus', :git => 'git@github.com:chef/omnibus.git', :branch => 'main'
 
 # Use Chef's software definitions. It is recommended that you write your own
 # software definitions, but you can clone/fork Chef's to get you started.
-gem 'omnibus-software', git: 'https://github.com/chef/omnibus-software.git'
+# gem 'omnibus-software', git: 'https://github.com/chef/omnibus-software.git'
+gem 'omnibus-software', :git => 'git@github.com:chef/omnibus.git', :branch => 'main'
 
 # Install artifactory. Used for publishing packages.
 gem 'artifactory'
