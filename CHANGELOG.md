@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.53 -->
-## [3.5.53](https://github.com/chef/supermarket/tree/3.5.53) (2021-08-24)
+<!-- latest_release 3.5.54 -->
+## [3.5.54](https://github.com/chef/supermarket/tree/3.5.54) (2021-08-25)
 
 #### Merged Pull Requests
-- Bump faker from 2.18.0 to 2.19.0 in /src/supermarket [#2177](https://github.com/chef/supermarket/pull/2177) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Replace deprecated --without flag with bundle config [#2189](https://github.com/chef/supermarket/pull/2189) ([skeshari12](https://github.com/skeshari12))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -37,6 +37,7 @@
 
 
 #### Merged Pull Requests
+- Replace deprecated --without flag with bundle config [#2189](https://github.com/chef/supermarket/pull/2189) ([skeshari12](https://github.com/skeshari12)) <!-- 3.5.54 -->
 - Bump faker from 2.18.0 to 2.19.0 in /src/supermarket [#2177](https://github.com/chef/supermarket/pull/2177) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.53 -->
 - Bump rails from 6.1.4 to 6.1.4.1 in /src/supermarket [#2171](https://github.com/chef/supermarket/pull/2171) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.52 -->
 - Added slack username and removed irc nickname from user profile [#2172](https://github.com/chef/supermarket/pull/2172) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 3.5.51 -->
