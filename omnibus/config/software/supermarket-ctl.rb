@@ -25,7 +25,8 @@ source path: "cookbooks/omnibus-supermarket"
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
-  bundle "install --binstubs --without test", env: env
+  bundle "config set --local without test", env: env
+  bundle "install --binstubs", env: env
 
   block do
     erb source: "supermarket-ctl.erb",
