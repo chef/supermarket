@@ -4,6 +4,7 @@
 ## Unreleased
 
 #### Merged Pull Requests
+- Bump kitchen-vagrant from 1.9.0 to 1.10.0 in /omnibus [#2191](https://github.com/chef/supermarket/pull/2191) ([dependabot[bot]](https://github.com/dependabot[bot]))
 - Bump cookstyle from 7.20.0 to 7.21.0 in /omnibus [#2190](https://github.com/chef/supermarket/pull/2190) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
@@ -37,6 +38,7 @@
 
 
 #### Merged Pull Requests
+- Bump kitchen-vagrant from 1.9.0 to 1.10.0 in /omnibus [#2191](https://github.com/chef/supermarket/pull/2191) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.54 -->
 - Bump cookstyle from 7.20.0 to 7.21.0 in /omnibus [#2190](https://github.com/chef/supermarket/pull/2190) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.54 -->
 - Replace deprecated --without flag with bundle config [#2189](https://github.com/chef/supermarket/pull/2189) ([skeshari12](https://github.com/skeshari12)) <!-- 3.5.54 -->
 - Bump faker from 2.18.0 to 2.19.0 in /src/supermarket [#2177](https://github.com/chef/supermarket/pull/2177) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.53 -->
