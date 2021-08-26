@@ -23,7 +23,7 @@ module CustomUrlHelper
   end
 
   def progress_www_url(extra = nil)
-    url = ENV["CHEF_WWW_URL"] || "https://www.#{progress_domain}"
+    url = ENV["PROGRESS_WWW_URL"] || "https://www.#{progress_domain}"
     extra_dispatch(url, extra)
   end
 

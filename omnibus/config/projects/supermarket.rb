@@ -1,5 +1,5 @@
 #
-# Copyright 2014-2016 Chef Software, Inc.
+# Copyright:: Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ build_iteration 1
 override :postgresql, version: '9.3.25'
 override :ruby, version: "2.7.4"
 override :'openssl-fips', version: '2.0.16'
-override :'omnibus-ctl', version: 'master'
+override :'omnibus-ctl', version: 'main'
 override :openssl, version: '1.0.2y'
 
 # Creates required build directories

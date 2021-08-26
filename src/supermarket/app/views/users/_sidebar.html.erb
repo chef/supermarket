@@ -29,9 +29,9 @@
       </li>
     <% end %>
 
-    <% if @user.irc_nickname.present? %>
-      <li class="has-tip" title="<%= posessivize(@user.name) %> IRC Nickname">
-        <i class="fa fa-comment"></i> <%= @user.irc_nickname %>
+    <% if @user.slack_username.present? %>
+      <li class="has-tip" title="<%= posessivize(@user.name) %> Slack Username">
+        <i class="fa fa-comment"></i> <%= @user.slack_username %>
       </li>
     <% end %>
 

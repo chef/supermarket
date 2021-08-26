@@ -3,7 +3,7 @@ json.name @user.name
 json.company @user.company
 json.github Array(@github_usernames)
 json.twitter @user.twitter_username
-json.irc @user.irc_nickname
+json.slack @user.slack_username
 json.cookbooks do
   json.set! :owns do
     @owned_cookbooks.each do |cookbook|

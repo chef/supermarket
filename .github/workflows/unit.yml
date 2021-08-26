@@ -5,7 +5,7 @@ name: unit
   pull_request:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   supermarket:
@@ -34,6 +34,11 @@ jobs:
       - uses: r7kamura/rubocop-problem-matchers-action@v1 # this shows the failures in the PR
       - name: create database schema
         run: bundle exec rake db:schema:load
+        env:
+          RAILS_ENV: test
+        working-directory: src/supermarket
+      - name: run db migration for running unit tests (specs)
+        run: bundle exec rake db:migrate
         env:
           RAILS_ENV: test
         working-directory: src/supermarket
