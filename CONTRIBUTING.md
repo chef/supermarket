@@ -38,7 +38,7 @@ If you're experienced with the toolchain, here are the steps for submitting a pa
   $ git checkout -b my_feature
   ```
 3. Make your changes, writing excellent commit messages and adding appropriate test coverage.
-4. Open a [Pull Request](https://github.com/chef/supermarket/pull) against the supermarket master branch on GitHub
+4. Open a [Pull Request](https://github.com/chef/supermarket/pull) against the supermarket main branch on GitHub
 
 ## Helpful Tips
 
