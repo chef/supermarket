@@ -589,7 +589,7 @@ The `supermarket-ctl reconfigure` action will error with an exception and messag
 **Enhancements**
 
 + License quality metric now standardized on checking against SPDX format license strings. (#1577)
-+ Upgraded to [Foodcritic 10.2.2](https://github.com/acrmp/foodcritic/blob/master/CHANGELOG.md#1022-2017-03-31) for new rules and fixes. (#1582)
++ Upgraded to [Foodcritic 10.2.2](https://github.com/acrmp/foodcritic/blob/main/CHANGELOG.md#1022-2017-03-31) for new rules and fixes. (#1582)
 + Upgraded to latest Ruby 2.3 (2.3.3). (#1581)
 
 **Bugs Fixed**
