@@ -1,12 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.55 -->
-## [3.5.55](https://github.com/chef/supermarket/tree/3.5.55) (2021-08-26)
+<!-- latest_release 3.5.56 -->
+## [3.5.56](https://github.com/chef/supermarket/tree/3.5.56) (2021-08-26)
 
 #### Merged Pull Requests
-- Made contributing.md file name check case insensitive in the cookbook source_url repo; Fixed github url regex; [#2180](https://github.com/chef/supermarket/pull/2180) ([RajeshPaul38](https://github.com/RajeshPaul38))
-- Bump kitchen-vagrant from 1.9.0 to 1.10.0 in /omnibus [#2191](https://github.com/chef/supermarket/pull/2191) ([dependabot[bot]](https://github.com/dependabot[bot]))
-- Bump cookstyle from 7.20.0 to 7.21.0 in /omnibus [#2190](https://github.com/chef/supermarket/pull/2190) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Specify our branches explicitly in omnibus + updates [#2192](https://github.com/chef/supermarket/pull/2192) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -39,6 +37,7 @@
 
 
 #### Merged Pull Requests
+- Specify our branches explicitly in omnibus + updates [#2192](https://github.com/chef/supermarket/pull/2192) ([tas50](https://github.com/tas50)) <!-- 3.5.56 -->
 - Made contributing.md file name check case insensitive in the cookbook source_url repo; Fixed github url regex; [#2180](https://github.com/chef/supermarket/pull/2180) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 3.5.55 -->
 - Bump kitchen-vagrant from 1.9.0 to 1.10.0 in /omnibus [#2191](https://github.com/chef/supermarket/pull/2191) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.54 -->
 - Bump cookstyle from 7.20.0 to 7.21.0 in /omnibus [#2190](https://github.com/chef/supermarket/pull/2190) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.54 -->
