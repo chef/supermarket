@@ -1,4 +1,4 @@
-# # Supermarket configuration
+# # Chef Supermarket configuration
 #
 # Attributes here will be applied to configure the application and the services
 # it uses.
@@ -22,8 +22,8 @@
 #
 # ### Chef Identity
 #
-# You will have to set this up in order to log into Supermarket and upload
-# cookbooks with your Chef server keys.
+# You will have to set this up in order to log into Chef Supermarket and upload
+# cookbooks with your Chef Infra Server keys.
 #
 # See the "Chef OAuth2 Settings" section below
 #
@@ -118,7 +118,7 @@ default['supermarket']['nginx']['cache']['directory'] = "#{node['supermarket']['
 #
 # These will be copied to the top-level nginx namespace and used in a
 # template from the community nginx cookbook
-# (https://github.com/miketheman/nginx/blob/master/templates/default/nginx.conf.erb)
+# (https://github.com/sous-chefs/nginx/blob/main/templates/default/nginx.conf.erb)
 default['supermarket']['nginx']['user'] = node['supermarket']['user']
 default['supermarket']['nginx']['group'] = node['supermarket']['group']
 default['supermarket']['nginx']['dir'] = node['supermarket']['nginx']['directory']
@@ -312,7 +312,7 @@ default['supermarket']['database']['extensions'] = { 'plpgsql' => true, 'pg_trgm
 # environment variables to be used by the app.
 #
 # Items that are set to nil here and also set in the development environment
-# configuration (https://github.com/chef/supermarket/blob/master/.env) will
+# configuration (https://github.com/chef/supermarket/blob/main/.env) will
 # use the value from the development environment. Set them to something other
 # than nil to change them.
 

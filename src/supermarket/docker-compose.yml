@@ -7,6 +7,6 @@ services:
     environment:
       - POSTGRES_USER=${USER}
   cache:
-    image: redis:3.0
+    image: redis:6.2.5
     ports:
       - "127.0.0.1:6379:6379"

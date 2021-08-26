@@ -36,6 +36,18 @@ describe CustomUrlHelper do
     it_should_behave_like "a url with extra pieces"
   end
 
+  describe "prgress www url" do
+    let(:meth) { :progress_www_url }
+    let(:url) { "https://www.progress.com" }
+
+    it "should have a www url that uses the default domain" do
+      expect(ENV["PROGRESS_WWW_URL"]).to be_nil
+      expect(helper.send(meth)).to eql(url)
+    end
+
+    it_should_behave_like "a url with extra pieces"
+
+  end
   describe "blog url" do
     let(:meth) { :chef_blog_url }
     let(:url) { "https://blog.chef.io/" }

@@ -1,5 +1,5 @@
 #
-# Copyright 2014-2016 Chef Software, Inc.
+# Copyright:: Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ override :rubygems, version: "3.1.2" # rubygems ships its own bundler which may 
 override :bundler, version: "2.1.2" # this must match the BUNDLED WITH in all the repo's Gemfile.locks
 override :'chef-gem', version: '14.14.29'
 override :'openssl-fips', version: '2.0.16'
-override :'omnibus-ctl', version: 'master'
+override :'omnibus-ctl', version: 'main'
 override :openssl, version: '1.0.2y'
 
 # Creates required build directories

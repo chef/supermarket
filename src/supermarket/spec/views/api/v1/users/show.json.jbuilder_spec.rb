@@ -9,7 +9,7 @@ describe "api/v1/users/show" do
       company: "FannyInternational",
       twitter_username: "fannyfannyfanny",
       email: "fanny@fanny.com",
-      irc_nickname: "fannyfunnyfanny"
+      slack_username: "fannyfunnyfanny"
     )
   end
 
@@ -92,8 +92,8 @@ describe "api/v1/users/show" do
   end
 
   it "displays the user's irc handle" do
-    irc = json_body["irc"]
-    expect(irc).to eql(user.irc_nickname)
+    slack = json_body["slack"]
+    expect(slack).to eql(user.slack_username)
   end
 
   it "displays the cookbooks the user owns" do

@@ -21,7 +21,7 @@ source path: File.expand_path('../../../../src/supermarket', project.filepath)
 
 dependency "cacerts"
 dependency "git"
-dependency "nginx"
+dependency "openresty"
 dependency "postgresql"
 dependency "redis"
 dependency "ruby"

@@ -52,16 +52,14 @@
     <div class="learn_about_cookbooks_content">
       <h3>What is a cookbook?</h3>
       <p>A cookbook is the fundamental unit of configuration and policy
-      distribution in Chef. Each cookbook defines a scenario, such as everything
-      needed to install and configure MySQL, and then it contains all of the
-      components that are required to support that scenario. Chef maintains a
-      collection of cookbooks that are important to Chef and are widely used by
-      the Chef community.</p>
+      distribution in Chef Infra. Each cookbook defines a scenario, such as everything
+      needed to install and configure PostgreSQL, and then it contains all of the
+      components that are required to support that scenario.</p>
 
       <h3>How do I use a cookbook?</h3>
       <p>Interact with cookbooks by using the <code>knife cookbook</code> commands.
       With <code>knife cookbook</code>, you can create, delete, show, list,
-      download and upload cookbooks. Read the <%= link_to 'knife cookbook commands documentation', chef_docs_url('workstation/knife_cookbook') %> for more information.</p>
+      download and upload cookbooks on your Chef Infra Server. Read the <%= link_to 'knife cookbook commands documentation', chef_docs_url('workstation/knife_cookbook') %> for more information.</p>
 
       <h3>How do I share a cookbook?</h3>
       <p>In order to share and interact with cookbooks on Supermarket, use the
@@ -91,10 +89,6 @@
         </li>
 
         <li>
-          <%= link_to 'Berkshelf documentation', chef_docs_url('workstation/berkshelf') %>
-        </li>
-
-        <li>
           <%= link_to 'knife documentation', chef_docs_url('workstation/knife') %>
         </li>
 
@@ -103,7 +97,7 @@
         </li>
 
         <li>
-          <%= link_to 'Foodcritic documentation', 'http://www.foodcritic.io/' %>
+          <%= link_to 'Cookstyle documentation', chef_docs_url('workstation/cookstyle') %>
         </li>
 
         <li>
@@ -112,6 +106,10 @@
 
         <li>
           <a href="https://github.com/chef-cookbooks">Cookbooks maintained and supported by Chef Software, Inc.</a>
+        </li>
+
+        <li>
+          <a href="https://github.com/sous-chefs">Cookbooks maintained by the Sous Chefs commmunity.</a>
         </li>
       </ul>
     </div>

@@ -29,6 +29,7 @@ describe VersionTagWorker do
 
     context "parsing the source url" do
       let(:parsed_response) { JSON.parse(cookbook_json_response) }
+      let(:github_repo_url_regex) { %r{^(https?\://)?(github\.com/)(\w+/\w+)} }
 
       it "parses the cookbook_json" do
         expect(JSON).to receive(:parse).with(cookbook_json_response).and_return(parsed_response)
@@ -38,7 +39,8 @@ describe VersionTagWorker do
       it "attempts to find a match for a github url" do
         sample_source_url = "https://github.com/johndoe/example_repo"
         allow_any_instance_of(SourceRepoWorker).to receive(:source_repo_url).and_return(sample_source_url)
-        expect(sample_source_url).to receive(:match).with(%r{(?<=github.com\/)[\w-]+\/[\w-]+}).and_return("johndoe/example_repo")
+        expect(github_repo_url_regex).to match(sample_source_url)
+        expect(sample_source_url.match(github_repo_url_regex)[3]).to eq("johndoe/example_repo")
         vfw.perform(cookbook_json_response, cookbook_name, cookbook_version)
       end
     end

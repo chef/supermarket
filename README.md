@@ -15,7 +15,7 @@ Supermarket is Chef's community repository for cookbooks, currently hosted at [s
 
 The code is designed to be easy for others to contribute to. To that end, the goal of this README is to introduce you to the project and get you up and running. More information about Supermarket can be found in [the wiki](https://github.com/chef/supermarket/wiki). You can [follow along with the project development in ZenHub](https://app.zenhub.com/workspaces/supermarket-60cbda5a95f583001207255f).
 
-If you want to contribute to Supermarket, read the [contributor's workflow](https://github.com/chef/supermarket/blob/master/CONTRIBUTING.md) for license information and helpful tips to get you started. There are project artifacts such as planning docs, wireframes, recorded demos, and team retrospectives in a [public Google Drive folder](https://drive.google.com/a/gofullstack.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8).
+If you want to contribute to Supermarket, read the [contributor's workflow](https://github.com/chef/supermarket/blob/main/CONTRIBUTING.md) for license information and helpful tips to get you started. There are project artifacts such as planning docs, wireframes, recorded demos, and team retrospectives in a [public Google Drive folder](https://drive.google.com/a/gofullstack.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8).
 
 If you have questions, feature ideas, or other suggestions, please [open a GitHub Issue](https://github.com/chef/supermarket/issues/new).
 
@@ -25,15 +25,15 @@ This repository has the code for the Supermarket application and the omnibus def
 
 ## Requirements
 
-* Ruby 2.6.8
+* Ruby 2.7.4
 * PostgreSQL 9.3
-* Redis 3.0
+* Redis 6.2.5
 
 ## Development
 
 ### Configuring
 
-Configure the [dotenv](https://github.com/bkeepers/dotenv) keys and secrets to. See `.env.example` for required keys and secrets to get up and running. [`docs/CONFIGURING.md`](https://github.com/chef/supermarket/blob/master/src/supermarket/docs/CONFIGURING.md) goes into detail about the not-so-straightforward configuration that needs to happen to get Supermarket working locally.
+Configure the [dotenv](https://github.com/bkeepers/dotenv) keys and secrets to. See `.env.example` for required keys and secrets to get up and running. [`docs/CONFIGURING.md`](https://github.com/chef/supermarket/blob/main/src/supermarket/docs/CONFIGURING.md) goes into detail about the not-so-straightforward configuration that needs to happen to get Supermarket working locally.
 
 ### Local Environment
 
@@ -239,7 +239,7 @@ $ bundle exec rake spec:all
 
 Acceptance tests are run with [Capybara](https://github.com/jnicklas/capybara). Run `rake spec:features` to run the specs in spec/features. The default `rake spec` also runs these.
 
-When writing feature specs, the Rack::Test driver is used by default. If the Poltergeist driver is required to be used (for example, an acceptance test that uses AJAX), add the `use_poltergeist: true` metadata to the spec. See [the remove_members_from_ccla_spec.rb spec](https://github.com/chef/supermarket/blob/master/spec/features/remove_members_from_ccla_spec.rb#L17) for an example.
+When writing feature specs, the Rack::Test driver is used by default. If the Poltergeist driver is required to be used (for example, an acceptance test that uses AJAX), add the `use_poltergeist: true` metadata to the spec. See [the remove_members_from_ccla_spec.rb spec](https://github.com/chef/supermarket/blob/main/spec/features/remove_members_from_ccla_spec.rb#L17) for an example.
 
 Some specs run using [PhantomJS](http://phantomjs.org/), which must be installed for the test suite to pass.
 
@@ -269,7 +269,7 @@ One of these keys is called `FEATURES` and it controls a number of features that
 
 Deprecated Features
 
-CLA signing still works, but has been disabled in the public site in favor of [the DCO process](https://github.com/chef/chef/blob/master/CONTRIBUTING.md#developer-certification-of-origin-dco) which tracked outside of Supermarket.
+CLA signing still works, but has been disabled in the public site in favor of [the DCO process](https://github.com/chef/chef/blob/main/CONTRIBUTING.md#developer-certification-of-origin-dco) which tracked outside of Supermarket.
 
 * cla
 * join_ccla
