@@ -171,7 +171,7 @@ default['supermarket']['nginx']['default']['modules'] = []
 
 default['supermarket']['postgresql']['enable'] = true
 default['supermarket']['postgresql']['username'] = node['supermarket']['user']
-default['supermarket']['postgresql']['data_directory'] = "#{node['supermarket']['var_directory']}/postgresql/9.3/data"
+default['supermarket']['postgresql']['data_directory'] = "#{node['supermarket']['var_directory']}/postgresql/13.4/data"
 
 # ### Logs
 default['supermarket']['postgresql']['log_directory'] = "#{node['supermarket']['log_directory']}/postgresql"
