@@ -393,19 +393,8 @@ default['supermarket']['chef_oauth2_app_id'] = nil
 default['supermarket']['chef_oauth2_secret'] = nil
 default['supermarket']['chef_oauth2_url'] = nil
 default['supermarket']['chef_oauth2_verify_ssl'] = true
-
-# ### CLA Settings
-#
-# These are used for the Contributor License Agreement features. You only need
-# them if the cla and/or join_ccla features are enabled (see "Features" below.)
-default['supermarket']['ccla_version'] = nil
-default['supermarket']['cla_signature_notification_email'] = nil
-default['supermarket']['cla_report_email'] = nil
 default['supermarket']['curry_cla_location'] = nil
 default['supermarket']['curry_success_label'] = nil
-default['supermarket']['icla_location'] = nil
-default['supermarket']['icla_version'] = nil
-default['supermarket']['seed_cla_data'] = nil
 
 # ### Features
 #
@@ -422,7 +411,6 @@ default['supermarket']['seed_cla_data'] = nil
 #   fieri_url, fieri_supermarket_endpoint, and fieri_key to be set.)
 # * github: Enable GitHub integration, used with CLA signing
 # * gravatar: Enable Gravatar integration, used for user avatars
-# * join_ccla: Enable joining of Corporate CLAs
 # * tools: Enable the tools section
 default['supermarket']['features'] = 'tools, gravatar'
 
