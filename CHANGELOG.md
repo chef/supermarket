@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.57 -->
-## [3.5.57](https://github.com/chef/supermarket/tree/3.5.57) (2021-08-27)
+<!-- latest_release 3.5.58 -->
+## [3.5.58](https://github.com/chef/supermarket/tree/3.5.58) (2021-08-27)
 
 #### Merged Pull Requests
-- Bump cookstyle from 7.21.0 to 7.22.3 in /omnibus [#2198](https://github.com/chef/supermarket/pull/2198) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump chefstyle from 2.0.8 to 2.0.9 in /src/supermarket [#2197](https://github.com/chef/supermarket/pull/2197) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -37,6 +37,7 @@
 
 
 #### Merged Pull Requests
+- Bump chefstyle from 2.0.8 to 2.0.9 in /src/supermarket [#2197](https://github.com/chef/supermarket/pull/2197) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.58 -->
 - Bump cookstyle from 7.21.0 to 7.22.3 in /omnibus [#2198](https://github.com/chef/supermarket/pull/2198) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.57 -->
 - Specify our branches explicitly in omnibus + updates [#2192](https://github.com/chef/supermarket/pull/2192) ([tas50](https://github.com/tas50)) <!-- 3.5.56 -->
 - Made contributing.md file name check case insensitive in the cookbook source_url repo; Fixed github url regex; [#2180](https://github.com/chef/supermarket/pull/2180) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 3.5.55 -->
