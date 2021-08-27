@@ -21,9 +21,6 @@ en:
     unsuccessful_grant_message: "%{grantee} was not able to be granted the %{name} badge."
     already_granted: "%{grantee} already has the %{name} badge."
     not_a_valid_badge_name: "%{name} is not a valid badge."
-  ccla:
-    successful_signature: "You successfully signed the CCLA."
-    successful_resignature: "You successfully re-signed the CCLA."
   collaborator:
     added: 'Collaborator added.'
     owner_changed: 'You successfully transferred ownership of %{resource} to %{user}.'
@@ -58,14 +55,9 @@ en:
     scheduled:
       single: "Scheduled quality metric evaluation for %{name} %{version}."
       multiple: "Scheduled quality metric evaluations for %{count} cookbook(s)."
-  icla:
-    successful_signature: "You successfully signed the ICLA. Thank you!"
-    successful_resignature: "You successfully re-signed the ICLA."
-    duplicate_signature: "You have already signed the ICLA. You can view and update your signature within Manage Profile."
   invitation:
     accept:
       success: "Successfully joined %{organization}"
-      duplicate: "You have already signed %{organization} CCLA. Please sign in as a different user to accept the invitation. If this invitation was sent in error, no action is required."
     decline: "Declined invitation to join %{organization}"
   profile:
     updated: "Profile successfully updated."

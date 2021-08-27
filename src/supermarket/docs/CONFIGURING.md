@@ -106,10 +106,8 @@ Supermarket bundles the NewRelic agent and uses two environment variables in its
 
 Certain features of Supermarket can be enabled or disabled using `FEATURES`. The `FEATURES` ENV variable should be defined as a comma separated list of features to be enabled. Supermarket supports the following features.
 
-- `cla`, Enables the ability to sign the ICLA and CCLA, as well as Curry
 - 'gravatar', Enables Supermarket to use gravatars for user avatar icons
 - `tools`, Enables the ability to add and view Chef tools and plugins.
-- `join_ccla`, Enables the ability for users to join CCLAs that they don't be long to.
 - `no_crawl`, Adds noindex, nofollow meta tags so search engines won't crawl Supermarket.
 - `fieri`, Enables the ability for Cookbook Versions to be evaluated by Fieri
 - `announcement`, Enables the foldable announcement banner that is displayed on all views. when uploaded

@@ -1,5 +1,6 @@
 require "cookbook_upload"
 require "mixlib/authentication/signatureverification"
+require "pry-byebug"
 
 class Api::V1::CookbookUploadsController < Api::V1Controller
   before_action :require_upload_params, only: :create
