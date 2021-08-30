@@ -96,5 +96,10 @@ end
 
 execute 'special permission change for SLES OS' do
   # unicorn needs different permission to run rails
-  command 'sudo chmod 4755 -R /opt/supermarket/embedded/bin/ruby'
+  #command "sudo chmod 4755 -R #{node['supermarket']['install_directory']}/embedded/bin/ruby"
+  directory "#{node['supermarket']['install_directory']}/embedded/bin/ruby" do
+    owner node['supermarket']['user']
+    group node['supermarket']['group']
+    mode '4755'
+  end
 end
