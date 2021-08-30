@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.59 -->
-## [3.5.59](https://github.com/chef/supermarket/tree/3.5.59) (2021-08-27)
+<!-- latest_release 3.5.60 -->
+## [3.5.60](https://github.com/chef/supermarket/tree/3.5.60) (2021-08-30)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `2ffd4e4` to `7f6f282` in /omnibus [#2196](https://github.com/chef/supermarket/pull/2196) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump guard-rubocop from 1.4.0 to 1.5.0 in /src/supermarket [#2202](https://github.com/chef/supermarket/pull/2202) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -37,6 +37,7 @@
 
 
 #### Merged Pull Requests
+- Bump guard-rubocop from 1.4.0 to 1.5.0 in /src/supermarket [#2202](https://github.com/chef/supermarket/pull/2202) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.60 -->
 - Bump omnibus-software from `2ffd4e4` to `7f6f282` in /omnibus [#2196](https://github.com/chef/supermarket/pull/2196) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.59 -->
 - Bump chefstyle from 2.0.8 to 2.0.9 in /src/supermarket [#2197](https://github.com/chef/supermarket/pull/2197) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.58 -->
 - Bump cookstyle from 7.21.0 to 7.22.3 in /omnibus [#2198](https://github.com/chef/supermarket/pull/2198) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.57 -->
