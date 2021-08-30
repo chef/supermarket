@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_27_062432) do
+ActiveRecord::Schema.define(version: 2021_08_30_065034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -155,67 +155,6 @@ ActiveRecord::Schema.define(version: 2021_08_27_062432) do
     t.index ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true
     t.index ["name"], name: "index_cookbooks_on_name"
     t.index ["user_id"], name: "index_cookbooks_on_user_id"
-  end
-
-  create_table "curry_commit_authors", id: :serial, force: :cascade do |t|
-    t.string "login"
-    t.string "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean "authorized_to_contribute", default: false, null: false
-    t.index ["email"], name: "index_curry_commit_authors_on_email", unique: true
-    t.index ["login"], name: "index_curry_commit_authors_on_login", unique: true
-  end
-
-  create_table "curry_pull_request_comments", id: :serial, force: :cascade do |t|
-    t.integer "github_id", null: false
-    t.integer "pull_request_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "unauthorized_commit_authors", default: [], array: true
-    t.index ["github_id"], name: "index_curry_pull_request_comments_on_github_id", unique: true
-    t.index ["pull_request_id"], name: "index_curry_pull_request_comments_on_pull_request_id"
-  end
-
-  create_table "curry_pull_request_commit_authors", id: :serial, force: :cascade do |t|
-    t.integer "pull_request_id", null: false
-    t.integer "commit_author_id", null: false
-    t.index ["commit_author_id", "pull_request_id"], name: "curry_pr_commit_author_ids", unique: true
-    t.index ["commit_author_id"], name: "index_curry_pull_request_commit_authors_on_commit_author_id"
-    t.index ["pull_request_id"], name: "index_curry_pull_request_commit_authors_on_pull_request_id"
-  end
-
-  create_table "curry_pull_request_updates", id: :serial, force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "action"
-    t.integer "pull_request_id", null: false
-  end
-
-  create_table "curry_pull_requests", id: :serial, force: :cascade do |t|
-    t.string "number", null: false
-    t.integer "repository_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer "maintainer_id"
-    t.index ["maintainer_id"], name: "index_curry_pull_requests_on_maintainer_id"
-    t.index ["number", "repository_id"], name: "index_curry_pull_requests_on_number_and_repository_id", unique: true
-    t.index ["repository_id"], name: "index_curry_pull_requests_on_repository_id"
-  end
-
-  create_table "curry_repositories", id: :serial, force: :cascade do |t|
-    t.string "owner", null: false
-    t.string "name", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "callback_url", null: false
-  end
-
-  create_table "curry_repository_maintainers", id: :serial, force: :cascade do |t|
-    t.integer "repository_id"
-    t.integer "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "email_preferences", id: :serial, force: :cascade do |t|

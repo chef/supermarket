@@ -393,8 +393,6 @@ default['supermarket']['chef_oauth2_app_id'] = nil
 default['supermarket']['chef_oauth2_secret'] = nil
 default['supermarket']['chef_oauth2_url'] = nil
 default['supermarket']['chef_oauth2_verify_ssl'] = true
-default['supermarket']['curry_cla_location'] = nil
-default['supermarket']['curry_success_label'] = nil
 
 # ### Features
 #
