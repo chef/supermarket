@@ -96,5 +96,6 @@ end
 
 execute 'sles command' do
   puts "inside the sles command"
-  command 'sudo chmod 0775 -R /opt/supermarket/embedded/bin'
+  command 'sudo chmod 0755 -R /opt/supermarket/embedded/bin'
+  command 'sudo chmod 4755 -R /opt/supermarket/embedded/bin/ruby'
  end
