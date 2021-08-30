@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.62 -->
-## [3.5.62](https://github.com/chef/supermarket/tree/3.5.62) (2021-08-30)
+<!-- latest_release 3.5.63 -->
+## [3.5.63](https://github.com/chef/supermarket/tree/3.5.63) (2021-08-30)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `7f6f282` to `e87ce07` in /omnibus [#2199](https://github.com/chef/supermarket/pull/2199) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump nokogiri from 1.12.3 to 1.12.4 in /src/supermarket [#2201](https://github.com/chef/supermarket/pull/2201) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -37,6 +37,7 @@
 
 
 #### Merged Pull Requests
+- Bump nokogiri from 1.12.3 to 1.12.4 in /src/supermarket [#2201](https://github.com/chef/supermarket/pull/2201) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.63 -->
 - Bump omnibus-software from `7f6f282` to `e87ce07` in /omnibus [#2199](https://github.com/chef/supermarket/pull/2199) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.62 -->
 - Bump chefstyle from 2.0.8 to 2.0.9 in /src/supermarket/engines/fieri [#2195](https://github.com/chef/supermarket/pull/2195) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.61 -->
 - Bump guard-rubocop from 1.4.0 to 1.5.0 in /src/supermarket [#2202](https://github.com/chef/supermarket/pull/2202) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.60 -->
