@@ -97,4 +97,4 @@ end
 execute 'special permission change for SLES OS' do
   # unicorn needs different permission to run rails
   command 'sudo chmod 4755 -R /opt/supermarket/embedded/bin/ruby'
- end
+end
