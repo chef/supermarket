@@ -94,8 +94,7 @@ sitemap_files.each do |sitemap_file|
   end
 end
 
-execute 'sles command' do
-  puts "inside the sles command"
-  command 'sudo chmod 0755 -R /opt/supermarket/embedded/bin'
+execute 'special permission change for SLES OS' do
+  # unicorn needs different permission to run rails
   command 'sudo chmod 4755 -R /opt/supermarket/embedded/bin/ruby'
  end
