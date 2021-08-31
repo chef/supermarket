@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.67 -->
-## [3.5.67](https://github.com/chef/supermarket/tree/3.5.67) (2021-08-31)
+<!-- latest_release 3.5.68 -->
+## [3.5.68](https://github.com/chef/supermarket/tree/3.5.68) (2021-08-31)
 
 #### Merged Pull Requests
-- Removed references to icla/ccla configurations [#2194](https://github.com/chef/supermarket/pull/2194) ([msys-sgarg](https://github.com/msys-sgarg))
+- Bump omnibus-software from `e87ce07` to `b774203` in /omnibus [#2204](https://github.com/chef/supermarket/pull/2204) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -37,6 +37,7 @@
 
 
 #### Merged Pull Requests
+- Bump omnibus-software from `e87ce07` to `b774203` in /omnibus [#2204](https://github.com/chef/supermarket/pull/2204) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.68 -->
 - Removed references to icla/ccla configurations [#2194](https://github.com/chef/supermarket/pull/2194) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.5.67 -->
 - Changes for applying scrollbar to contributors table [#2174](https://github.com/chef/supermarket/pull/2174) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.5.66 -->
 - Bump pundit from 2.1.0 to 2.1.1 in /src/supermarket [#2138](https://github.com/chef/supermarket/pull/2138) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.65 -->
