@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.65 -->
-## [3.5.65](https://github.com/chef/supermarket/tree/3.5.65) (2021-08-30)
+<!-- latest_release 3.5.66 -->
+## [3.5.66](https://github.com/chef/supermarket/tree/3.5.66) (2021-08-31)
 
 #### Merged Pull Requests
-- Bump pundit from 2.1.0 to 2.1.1 in /src/supermarket [#2138](https://github.com/chef/supermarket/pull/2138) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Changes for applying scrollbar to contributors table [#2174](https://github.com/chef/supermarket/pull/2174) ([msys-sgarg](https://github.com/msys-sgarg))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -37,6 +37,7 @@
 
 
 #### Merged Pull Requests
+- Changes for applying scrollbar to contributors table [#2174](https://github.com/chef/supermarket/pull/2174) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.5.66 -->
 - Bump pundit from 2.1.0 to 2.1.1 in /src/supermarket [#2138](https://github.com/chef/supermarket/pull/2138) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.65 -->
 - Bump aws-sdk-s3 from 1.99.0 to 1.100.0 in /src/supermarket [#2200](https://github.com/chef/supermarket/pull/2200) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.64 -->
 - Bump nokogiri from 1.12.3 to 1.12.4 in /src/supermarket [#2201](https://github.com/chef/supermarket/pull/2201) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.63 -->
