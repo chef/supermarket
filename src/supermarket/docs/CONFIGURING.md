@@ -77,15 +77,6 @@ If you are in an air-gapped environment or another situation where you cannot ha
 
 - `AIR_GAPPED` can be set to true to avoid calls to 3rd party services. It is set to false by default.
 
-## Configuring Curry
-
-Curry verifies that all contributing parties on a Pull Request have signed a CLA. The default values provided in `.env` should be sufficient to run the test suite.
-
-- `GITHUB_ACCESS_TOKEN` is used for interacting with the GitHub API. Supermarket uses the GitHub API for CLA signature verification checking. Generate a personal access token within Account Settings > Applications > Personal Access Tokens. **This must be set to run Supermarket locally.**
-- `PUBSUBHUBBUB_SECRET` is used for Supermarket to subscribe to repositories. It can be set to anything in development.
-- `PUBSUBHUBBUB_CALLBACK_URL` is intended for development and test environments. When Curry subscribes to a repository, this URL will receive periodic heartbeats from GitHub, as well as notifications of Pull Request activity. In production, it is best left unspecified, in which case Supermarket will use the `curry_pull_request_updates_url`.
-- `CURRY_SUCCESS_LABEL` is the text of the label Curry will add to Pull Requests whose contributors have all signed a CLA.
-
 ## SMTP Settings
 
 By default, Supermarket will use sendmail to send emails. If any of the below environment variables are specified, Supermarket will send email via SMTP instead.
@@ -106,10 +97,8 @@ Supermarket bundles the NewRelic agent and uses two environment variables in its
 
 Certain features of Supermarket can be enabled or disabled using `FEATURES`. The `FEATURES` ENV variable should be defined as a comma separated list of features to be enabled. Supermarket supports the following features.
 
-- `cla`, Enables the ability to sign the ICLA and CCLA, as well as Curry
 - 'gravatar', Enables Supermarket to use gravatars for user avatar icons
 - `tools`, Enables the ability to add and view Chef tools and plugins.
-- `join_ccla`, Enables the ability for users to join CCLAs that they don't be long to.
 - `no_crawl`, Adds noindex, nofollow meta tags so search engines won't crawl Supermarket.
 - `fieri`, Enables the ability for Cookbook Versions to be evaluated by Fieri
 - `announcement`, Enables the foldable announcement banner that is displayed on all views. when uploaded

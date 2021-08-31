@@ -27,5 +27,4 @@ $(function () {
     }
   }
 
-  $('.transfer-ccla-organization').select2(settings);
 });
