@@ -403,7 +403,6 @@ default['supermarket']['chef_oauth2_verify_ssl'] = true
 # * announcement: Display the Supermarket initial launch announcement banner
 #   (this will most likely be of no use to you, but could be made a
 #   configurable thing in the future.)
-# * cla: Enable the Contributor License Agreement features
 # * collaborator_groups: Enable collaborator groups, allowing management of collaborators through groups
 # * fieri: Use the fieri service to report on cookbook quality (requires
 #   fieri_url, fieri_supermarket_endpoint, and fieri_key to be set.)
