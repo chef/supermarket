@@ -93,3 +93,11 @@ sitemap_files.each do |sitemap_file|
     action :create
   end
 end
+
+case node['platform_family']
+when 'suse'
+  execute 'special permission change for SLES OS' do
+    # unicorn needs different permission to run rails in SLES
+    command "chmod 4755 -R #{node['supermarket']['install_directory']}/embedded/bin/ruby"
+  end
+end

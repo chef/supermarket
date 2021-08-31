@@ -83,7 +83,7 @@ control 'proxy' do
   end
 
   describe "http GET to Port #{property['supermarket']['nginx']['non_ssl_port']}" do
-    subject { http("http://localhost:#{property['supermarket']['nginx']['non_ssl_port']}") }
+    subject { http("http://#{property['supermarket']['fqdn']}:#{property['supermarket']['nginx']['non_ssl_port']}") }
     it 'should not include server version number in response headers' do
       expect(subject.headers.server).to be_nil
     end
