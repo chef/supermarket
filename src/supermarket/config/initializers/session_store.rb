@@ -2,4 +2,5 @@
 
 Rails.application.config.session_store :cookie_store,
                                        key: "_supermarket_session",
-                                       secure: Supermarket::Host.secure_session_cookie?
+                                       secure: Rails.env.production? && \
+                                               Supermarket::Host.secure_session_cookie?
