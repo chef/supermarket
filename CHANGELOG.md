@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.1 -->
-## [4.0.1](https://github.com/chef/supermarket/tree/4.0.1) (2021-08-31)
+<!-- latest_release 4.0.2 -->
+## [4.0.2](https://github.com/chef/supermarket/tree/4.0.2) (2021-09-01)
 
 #### Merged Pull Requests
-- Build Supermarket on SLES [#2096](https://github.com/chef/supermarket/pull/2096) ([dheerajd-msys](https://github.com/dheerajd-msys))
+- Bump ddtrace from 0.7.1 to 0.52.0 in /src/supermarket [#2106](https://github.com/chef/supermarket/pull/2106) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -37,6 +37,7 @@
 
 
 #### Merged Pull Requests
+- Bump ddtrace from 0.7.1 to 0.52.0 in /src/supermarket [#2106](https://github.com/chef/supermarket/pull/2106) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.2 -->
 - Build Supermarket on SLES [#2096](https://github.com/chef/supermarket/pull/2096) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 4.0.1 -->
 - Bump to 4.0.0 [#2205](https://github.com/chef/supermarket/pull/2205) ([tas50](https://github.com/tas50)) <!-- 4.0.0 -->
 - Bump omnibus-software from `e87ce07` to `b774203` in /omnibus [#2204](https://github.com/chef/supermarket/pull/2204) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.68 -->
