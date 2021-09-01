@@ -33,7 +33,7 @@ override :postgresql, version: '9.3.25'
 override :ruby, version: "2.7.4"
 override :'openssl-fips', version: '2.0.16'
 override :'omnibus-ctl', version: 'main'
-override :openssl, version: '1.0.2y'
+override :openssl, version: '1.0.2za'
 
 # Creates required build directories
 dependency "preparation"
