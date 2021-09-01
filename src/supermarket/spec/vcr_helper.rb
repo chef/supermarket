@@ -13,9 +13,6 @@ VCR.configure do |c|
   c.filter_sensitive_data("<PUBSUBHUBBUB_SECRET>") do
     CGI.escape(ENV["PUBSUBHUBBUB_SECRET"])
   end
-  c.filter_sensitive_data("<PUBSUBHUBBUB_CALLBACK_COMPUTED>") do
-    CGI.escape("http://localhost:3000/curry/pull_request_updates")
-  end
   c.filter_sensitive_data("<PUBSUBHUBBUB_CALLBACK_OVERRIDDEN>") do
     CGI.escape("https://example.com/overridden_callback_url")
   end

@@ -21,12 +21,6 @@ describe Supermarket::LocationStorage do
 
       expect(subject.stored_location).to eql("/profile")
     end
-
-    it "stores the passed in location" do
-      subject.store_location!("/icla_signatures/new")
-
-      expect(subject.stored_location).to eql("/icla_signatures/new")
-    end
   end
 
   describe "#stored_location" do

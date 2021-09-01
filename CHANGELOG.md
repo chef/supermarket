@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.56 -->
-## [3.5.56](https://github.com/chef/supermarket/tree/3.5.56) (2021-08-26)
+<!-- latest_release 4.0.2 -->
+## [4.0.2](https://github.com/chef/supermarket/tree/4.0.2) (2021-09-01)
 
 #### Merged Pull Requests
-- Specify our branches explicitly in omnibus + updates [#2192](https://github.com/chef/supermarket/pull/2192) ([tas50](https://github.com/tas50))
+- Bump ddtrace from 0.7.1 to 0.52.0 in /src/supermarket [#2106](https://github.com/chef/supermarket/pull/2106) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -37,6 +37,21 @@
 
 
 #### Merged Pull Requests
+- Bump ddtrace from 0.7.1 to 0.52.0 in /src/supermarket [#2106](https://github.com/chef/supermarket/pull/2106) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.2 -->
+- Build Supermarket on SLES [#2096](https://github.com/chef/supermarket/pull/2096) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 4.0.1 -->
+- Bump to 4.0.0 [#2205](https://github.com/chef/supermarket/pull/2205) ([tas50](https://github.com/tas50)) <!-- 4.0.0 -->
+- Bump omnibus-software from `e87ce07` to `b774203` in /omnibus [#2204](https://github.com/chef/supermarket/pull/2204) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.68 -->
+- Removed references to icla/ccla configurations [#2194](https://github.com/chef/supermarket/pull/2194) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.5.67 -->
+- Changes for applying scrollbar to contributors table [#2174](https://github.com/chef/supermarket/pull/2174) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 3.5.66 -->
+- Bump pundit from 2.1.0 to 2.1.1 in /src/supermarket [#2138](https://github.com/chef/supermarket/pull/2138) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.65 -->
+- Bump aws-sdk-s3 from 1.99.0 to 1.100.0 in /src/supermarket [#2200](https://github.com/chef/supermarket/pull/2200) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.64 -->
+- Bump nokogiri from 1.12.3 to 1.12.4 in /src/supermarket [#2201](https://github.com/chef/supermarket/pull/2201) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.63 -->
+- Bump omnibus-software from `7f6f282` to `e87ce07` in /omnibus [#2199](https://github.com/chef/supermarket/pull/2199) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.62 -->
+- Bump chefstyle from 2.0.8 to 2.0.9 in /src/supermarket/engines/fieri [#2195](https://github.com/chef/supermarket/pull/2195) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.61 -->
+- Bump guard-rubocop from 1.4.0 to 1.5.0 in /src/supermarket [#2202](https://github.com/chef/supermarket/pull/2202) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.60 -->
+- Bump omnibus-software from `2ffd4e4` to `7f6f282` in /omnibus [#2196](https://github.com/chef/supermarket/pull/2196) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.59 -->
+- Bump chefstyle from 2.0.8 to 2.0.9 in /src/supermarket [#2197](https://github.com/chef/supermarket/pull/2197) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.58 -->
+- Bump cookstyle from 7.21.0 to 7.22.3 in /omnibus [#2198](https://github.com/chef/supermarket/pull/2198) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.57 -->
 - Specify our branches explicitly in omnibus + updates [#2192](https://github.com/chef/supermarket/pull/2192) ([tas50](https://github.com/tas50)) <!-- 3.5.56 -->
 - Made contributing.md file name check case insensitive in the cookbook source_url repo; Fixed github url regex; [#2180](https://github.com/chef/supermarket/pull/2180) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 3.5.55 -->
 - Bump kitchen-vagrant from 1.9.0 to 1.10.0 in /omnibus [#2191](https://github.com/chef/supermarket/pull/2191) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.5.54 -->

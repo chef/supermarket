@@ -29,16 +29,6 @@ db_migrated() {
   return \$?
 }
 
-db_seeded() {
-  as_postgres "SELECT * FROM iclas;" | grep "0 rows" 2>&1 > /dev/null
-
-  if [ \$? != 0 ]; then
-    return 0
-  else
-    return 1
-  fi
-}
-
 ./bin/rake db:create 2>&1 > /dev/null
 
 if ! db_initialized; then

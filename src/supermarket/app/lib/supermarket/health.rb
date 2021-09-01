@@ -11,7 +11,7 @@ module Supermarket
     REACHABLE = "reachable"
     UNKNOWN = "unknown"
     UNREACHABLE = "unreachable"
-    ALL_FEATURES = %w{cla join_ccla tools fieri announcement github no_crawl}.freeze
+    ALL_FEATURES = %w{tools fieri announcement github no_crawl}.freeze
 
     attr_reader :status, :supermarket, :postgresql, :sidekiq, :redis, :features
 

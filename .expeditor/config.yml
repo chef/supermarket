@@ -21,6 +21,9 @@ github:
   # allow bumping the minor release via label
   minor_bump_labels:
     - "Expeditor: Bump Version Minor"
+  # allow bumping the major release via label
+  major_bump_labels:
+    - "Expeditor: Bump Version Major"
   # The file where the MAJOR.MINOR.PATCH version is kept. The version in this file
   # is bumped automatically via the `built_in:bump_version` merge_action.
   version_file: "VERSION"

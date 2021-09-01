@@ -5261,3 +5261,9 @@ th.hide-for-touch {
 
 .touch th.show-for-touch {
   display: table-cell !important; }
+
+div.scrollWrapper{
+  width: 100%;
+  height: 400px;
+  overflow: auto;
+}

@@ -41,7 +41,6 @@ class ApplicationController < ActionController::Base
   #
   # Redirect the user to their profile page if they do not have any linked
   # GitHub accounts with the notice to instruct them to link a GitHub account
-  # before signing a CCLA.
   #
   # If GitHub integration is disabled, just return true.
   #
