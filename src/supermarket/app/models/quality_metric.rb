@@ -34,10 +34,6 @@ class QualityMetric < ApplicationRecord
     QualityMetric.find_or_create_by!(name: "Collaborator Number")
   end
 
-  def self.publish_metric
-    QualityMetric.find_or_create_by!(name: "Publish")
-  end
-
   def self.license_metric
     QualityMetric.find_or_create_by!(name: "License")
   end

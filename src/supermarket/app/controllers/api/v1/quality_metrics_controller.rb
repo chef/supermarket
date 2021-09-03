@@ -64,32 +64,6 @@ class Api::V1::QualityMetricsController < Api::V1Controller
   end
 
   #
-  # POST /api/v1/cookbook-versions/publish_evaluation
-  #
-  # Take the publish evaluation results from Fieri and store them as a
-  # metric result
-  #
-  # If the +CookbookVersion+ does not exist, render a 404 not_found.
-  #
-  # If the request is unauthorized, render unauthorized.
-  #
-  # This endpoint expects +cookbook_name+, +cookbook_version+,
-  # +publish_failure+, +publish_feedback+, and +fieri_key+.
-  #
-  def publish_evaluation
-    require_publish_params
-
-    create_metric(
-      @cookbook_version,
-      QualityMetric.publish_metric,
-      params[:publish_failure],
-      params[:publish_feedback]
-    )
-
-    head 200
-  end
-
-  #
   # POST /api/v1/cookbook-versions/license_evaluation
   #
   # License evaluation is handled by Foodcritic now, so this endpoint
@@ -232,12 +206,6 @@ class Api::V1::QualityMetricsController < Api::V1Controller
     params.require(:cookbook_version)
     params.require(:supported_platforms_failure)
     params.require(:supported_platforms_feedback)
-  end
-
-  def require_publish_params
-    params.require(:cookbook_name)
-    params.require(:publish_failure)
-    params.require(:publish_feedback)
   end
 
   def require_contributing_file_params

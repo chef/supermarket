@@ -9,7 +9,6 @@ class MetricsRunner
 
     CollaboratorWorker.perform_async(cookbook_data, cookbook["name"])
     FoodcriticWorker.perform_async(cookbook)
-    PublishWorker.perform_async(cookbook_data, cookbook["name"])
     SupportedPlatformsWorker.perform_async(cookbook_version_data, cookbook["name"])
     NoBinariesWorker.perform_async(cookbook)
 
@@ -31,7 +30,7 @@ class MetricsRunner
   end
 
   def external_service_metrics(cookbook_data, cookbook_name, cookbook_version)
-    ContributingFileWorker.perform_async(cookbook_data, cookbook_name)
+    # ContributingFileWorker.perform_async(cookbook_data, cookbook_name)
     TestingFileWorker.perform_async(cookbook_data, cookbook_name)
     VersionTagWorker.perform_async(cookbook_data, cookbook_name, cookbook_version)
   end
