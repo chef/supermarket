@@ -2,7 +2,6 @@ QualityMetric.reset_column_information
 
 QualityMetric.where(name: 'Foodcritic').first_or_create!
 QualityMetric.where(name: 'Collaborator Number').first_or_create!
-QualityMetric.where(name: 'Publish').first_or_create!
 QualityMetric.where(name: 'License').first_or_create!
 QualityMetric.where(name: 'Supported Platforms').first_or_create!
 QualityMetric.where(name: 'Contributing File').first_or_create!

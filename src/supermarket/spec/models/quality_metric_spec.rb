@@ -31,16 +31,6 @@ describe QualityMetric do
     end
   end
 
-  describe "#publish_metric" do
-    let!(:publish_metric) do
-      create(:publish_metric)
-    end
-
-    it "finds the publish metric" do
-      expect(QualityMetric.publish_metric).to eq(publish_metric)
-    end
-  end
-
   describe "#license_metric" do
     let!(:license_metric) do
       create(:license_metric)

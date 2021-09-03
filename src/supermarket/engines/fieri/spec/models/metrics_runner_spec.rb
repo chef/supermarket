@@ -46,12 +46,6 @@ describe MetricsRunner do
       metrics_runner.perform(cookbook)
     end
 
-    it "calls the publish worker" do
-      expect(PublishWorker).to receive(:perform_async).with(cookbook_json_response, cookbook["name"])
-
-      metrics_runner.perform(cookbook)
-    end
-
     it "calls the no binaries worker" do
       expect(NoBinariesWorker).to receive(:perform_async).with(hash_including(cookbook))
 
