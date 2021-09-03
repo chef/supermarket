@@ -1,14 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.6 -->
-## [4.0.6](https://github.com/chef/supermarket/tree/4.0.6) (2021-09-03)
+<!-- latest_release 4.0.7 -->
+## [4.0.7](https://github.com/chef/supermarket/tree/4.0.7) (2021-09-03)
 
-#### Merged Pull Requests
-- Bump aws-sdk-s3 from 1.100.0 to 1.102.0 in /src/supermarket [#2213](https://github.com/chef/supermarket/pull/2213) ([dependabot[bot]](https://github.com/dependabot[bot]))
+#### Breaking Changes
+- Remove the cookbook published metrics from the code [#2212](https://github.com/chef/supermarket/pull/2212) ([msys-sgarg](https://github.com/msys-sgarg))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
 ### Changes since 3.4.8 release
+
+#### Breaking Changes
+- Remove the cookbook published metrics from the code [#2212](https://github.com/chef/supermarket/pull/2212) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.0.7 -->
 
 #### Maintenance Updates
 - Delete the incomplete habitat plan [#2066](https://github.com/chef/supermarket/pull/2066) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.4.82 -->
