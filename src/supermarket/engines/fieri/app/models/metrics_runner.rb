@@ -30,7 +30,7 @@ class MetricsRunner
   end
 
   def external_service_metrics(cookbook_data, cookbook_name, cookbook_version)
-    # ContributingFileWorker.perform_async(cookbook_data, cookbook_name)
+    ContributingFileWorker.perform_async(cookbook_data, cookbook_name)
     TestingFileWorker.perform_async(cookbook_data, cookbook_name)
     VersionTagWorker.perform_async(cookbook_data, cookbook_name, cookbook_version)
   end
