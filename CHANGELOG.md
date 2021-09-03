@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.5 -->
-## [4.0.5](https://github.com/chef/supermarket/tree/4.0.5) (2021-09-03)
+<!-- latest_release 4.0.6 -->
+## [4.0.6](https://github.com/chef/supermarket/tree/4.0.6) (2021-09-03)
 
 #### Merged Pull Requests
-- Bump cookstyle from 7.22.3 to 7.24.1 in /omnibus [#2214](https://github.com/chef/supermarket/pull/2214) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump aws-sdk-s3 from 1.100.0 to 1.102.0 in /src/supermarket [#2213](https://github.com/chef/supermarket/pull/2213) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -37,6 +37,7 @@
 
 
 #### Merged Pull Requests
+- Bump aws-sdk-s3 from 1.100.0 to 1.102.0 in /src/supermarket [#2213](https://github.com/chef/supermarket/pull/2213) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.6 -->
 - Bump cookstyle from 7.22.3 to 7.24.1 in /omnibus [#2214](https://github.com/chef/supermarket/pull/2214) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.5 -->
 - Update openssl to 1.0.2za [#2209](https://github.com/chef/supermarket/pull/2209) ([tas50](https://github.com/tas50)) <!-- 4.0.4 -->
 - Omniauth gem upgrade to 2.0 [#2208](https://github.com/chef/supermarket/pull/2208) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.0.3 -->
