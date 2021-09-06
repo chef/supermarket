@@ -43,7 +43,7 @@ namespace :setup do
       --env POSTGRES_USER=#{ENV["USER"]}  \
       --publish 5432:5432 \
       --name supermarket-pg \
-      postgres:13.4")
+      postgres:13.3")
     system("docker run \
       --detach=true \
       --publish 6379:6379 \
