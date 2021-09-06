@@ -21,7 +21,7 @@ Rails/RakeEnvironment:
     - lib/tasks/setup.rake
     - lib/tasks/spec/javascripts.rake
 Rails/SkipsModelValidations:
-  Whitelist:
+  AllowedMethods:
     - increment_counter
     - touch
 Style/SymbolArray:
