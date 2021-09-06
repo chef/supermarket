@@ -170,10 +170,10 @@ default['supermarket']['nginx']['client_max_body_size'] = '250m'
 default['supermarket']['nginx']['default']['modules'] = []
 
 # ## Postgres
-
+default['supermarket']['postgresql']['version'] = '13.3'
 default['supermarket']['postgresql']['enable'] = true
 default['supermarket']['postgresql']['username'] = node['supermarket']['user']
-default['supermarket']['postgresql']['data_directory'] = "#{node['supermarket']['var_directory']}/postgresql/13.3/data"
+default['supermarket']['postgresql']['data_directory'] = "#{node['supermarket']['var_directory']}/postgresql/#{node['supermarket']['postgresql']['version']}/data"
 
 # ### Logs
 default['supermarket']['postgresql']['log_directory'] = "#{node['supermarket']['log_directory']}/postgresql"
