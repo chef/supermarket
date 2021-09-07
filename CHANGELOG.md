@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.8 -->
-## [4.0.8](https://github.com/chef/supermarket/tree/4.0.8) (2021-09-03)
+<!-- latest_release 4.0.9 -->
+## [4.0.9](https://github.com/chef/supermarket/tree/4.0.9) (2021-09-07)
 
 #### Merged Pull Requests
-- Remove Contribute to Supermarket link [#2215](https://github.com/chef/supermarket/pull/2215) ([dheerajd-msys](https://github.com/dheerajd-msys))
+- Bump honeycomb-beeline from 2.6.0 to 2.7.0 in /src/supermarket [#2218](https://github.com/chef/supermarket/pull/2218) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -40,6 +40,7 @@
 
 
 #### Merged Pull Requests
+- Bump honeycomb-beeline from 2.6.0 to 2.7.0 in /src/supermarket [#2218](https://github.com/chef/supermarket/pull/2218) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.9 -->
 - Remove Contribute to Supermarket link [#2215](https://github.com/chef/supermarket/pull/2215) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 4.0.8 -->
 - Bump aws-sdk-s3 from 1.100.0 to 1.102.0 in /src/supermarket [#2213](https://github.com/chef/supermarket/pull/2213) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.6 -->
 - Bump cookstyle from 7.22.3 to 7.24.1 in /omnibus [#2214](https://github.com/chef/supermarket/pull/2214) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.5 -->
