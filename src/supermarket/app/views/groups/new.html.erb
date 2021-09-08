@@ -2,7 +2,7 @@
   <h1 class="title">
     New Group
   </h1>
-  <%= form_for @group do |f|%>
+  <%= form_with @group do |f|%>
     <%= f.text_field :name, placeholder: 'Group Name' %>
     <%= f.submit 'Create Group', class: 'button primary radius' %>
   <% end %>

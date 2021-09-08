@@ -1,7 +1,7 @@
 <h1>Add Collaborators</h1>
 <a class="close-reveal-modal">&#215;</a>
 
-<%= form_for Collaborator.new do |f| %>
+<%= form_with Collaborator.new do |f| %>
   <div class="row collapse">
     <div class="small-12 columns">
       <%= f.hidden_field :resourceable_type, value: resource.class.name %>

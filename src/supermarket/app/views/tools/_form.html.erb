@@ -1,4 +1,4 @@
-<%= form_for(@tool, data: { abide: true }) do |f| %>
+<%= form_with(@tool, data: { abide: true }) do |f| %>
   <%= render 'application/form_errors', record: @tool %>
 
   <div class="name-field">
