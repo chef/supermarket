@@ -29,3 +29,5 @@ Style/SymbolArray:
 Rails/HttpStatus:
   Enabled: true
   EnforcedStyle: numeric
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
