@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.12 -->
-## [4.0.12](https://github.com/chef/supermarket/tree/4.0.12) (2021-09-15)
+<!-- latest_release 4.0.13 -->
+## [4.0.13](https://github.com/chef/supermarket/tree/4.0.13) (2021-09-15)
 
 #### Merged Pull Requests
-- Bump rubocop-rails from 2.11.3 to 2.12.2 in /src/supermarket/engines/fieri [#2227](https://github.com/chef/supermarket/pull/2227) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump omnibus-software from `13ad157` to `e0d92a6` in /omnibus [#2222](https://github.com/chef/supermarket/pull/2222) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -40,6 +40,7 @@
 
 
 #### Merged Pull Requests
+- Bump omnibus-software from `13ad157` to `e0d92a6` in /omnibus [#2222](https://github.com/chef/supermarket/pull/2222) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.13 -->
 - Bump rubocop-rails from 2.11.3 to 2.12.2 in /src/supermarket/engines/fieri [#2227](https://github.com/chef/supermarket/pull/2227) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.12 -->
 - Bump rubocop-rails from 2.11.3 to 2.12.2 in /src/supermarket [#2228](https://github.com/chef/supermarket/pull/2228) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.11 -->
 - Bump omnibus-software from `b774203` to `13ad157` in /omnibus [#2217](https://github.com/chef/supermarket/pull/2217) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.10 -->
