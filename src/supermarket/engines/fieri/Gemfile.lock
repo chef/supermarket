@@ -4,7 +4,7 @@ PATH
     fieri (0.0.1)
       dotenv-rails
       foodcritic (~> 16.3)
-      mixlib-archive (~> 0.4)
+      mixlib-archive (>= 0.4, < 2.0)
       octokit (~> 4.16)
       rails (>= 6.1, < 7)
       ruby-filemagic
@@ -135,7 +135,7 @@ GEM
     mini_mime (1.1.0)
     mini_portile2 (2.6.1)
     minitest (5.14.4)
-    mixlib-archive (0.4.20)
+    mixlib-archive (1.1.7)
       mixlib-log
     mixlib-log (3.0.9)
     multipart-post (2.1.1)
