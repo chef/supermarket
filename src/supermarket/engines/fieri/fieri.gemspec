@@ -22,5 +22,5 @@ Gem::Specification.new do |s|
   s.add_dependency "octokit", "~> 4.16" # 4.16+ fixes deprecations in auth
   s.add_dependency "rails", [">= 6.1", "< 7"]
   s.add_dependency "ruby-filemagic"
-  s.add_dependency "sidekiq", "~> 4.2"
+  s.add_dependency "sidekiq", ">= 4.2", "< 7.0"
 end
