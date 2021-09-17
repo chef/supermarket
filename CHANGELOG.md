@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.17 -->
-## [4.0.17](https://github.com/chef/supermarket/tree/4.0.17) (2021-09-17)
+<!-- latest_release 4.0.18 -->
+## [4.0.18](https://github.com/chef/supermarket/tree/4.0.18) (2021-09-17)
 
 #### Merged Pull Requests
-- Bump aws-sdk-s3 from 1.102.0 to 1.103.0 in /src/supermarket [#2234](https://github.com/chef/supermarket/pull/2234) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ffi-libarchive from 1.0.17 to 1.1.3 in /src/supermarket [#2235](https://github.com/chef/supermarket/pull/2235) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -40,6 +40,7 @@
 
 
 #### Merged Pull Requests
+- Bump ffi-libarchive from 1.0.17 to 1.1.3 in /src/supermarket [#2235](https://github.com/chef/supermarket/pull/2235) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.18 -->
 - Bump aws-sdk-s3 from 1.102.0 to 1.103.0 in /src/supermarket [#2234](https://github.com/chef/supermarket/pull/2234) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.17 -->
 - Bump omnibus-software from `e0d92a6` to `d880e20` in /omnibus [#2236](https://github.com/chef/supermarket/pull/2236) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.16 -->
 - Updated profile sidebar hover over text to not mention the legacy community site [#2233](https://github.com/chef/supermarket/pull/2233) ([antima-gupta](https://github.com/antima-gupta)) <!-- 4.0.15 -->
