@@ -27,7 +27,7 @@
       <h1>Transfer Ownership</h1>
       <a class="close-reveal-modal">&#215;</a>
 
-      <%= form_with cookbook, url: transfer_ownership_path(cookbook), method: :put do |f| %>
+      <%= form_with model: cookbook, url: transfer_ownership_path(cookbook), method: :put do |f| %>
         <div class="row collapse">
           <div class="small-9 columns">
             <%= f.hidden_field :user_id, class: 'collaborators', 'data-url' => collaborators_path(ineligible_user_ids: Collaborator.ineligible_owners_for(cookbook).map(&:id)) %>
@@ -62,7 +62,7 @@
 
       <a class="close-reveal-modal">&#215;</a>
 
-      <%= form_with cookbook, url: deprecate_cookbook_path(cookbook), method: :put do |f| %>
+      <%= form_with model: cookbook, url: deprecate_cookbook_path(cookbook), method: :put do |f| %>
         <div class="row collapse">
           <div class="small-12 columns">
             <%= f.hidden_field :replacement, class: 'cookbook-deprecate', 'data-url' => deprecate_search_cookbook_path(cookbook) %>

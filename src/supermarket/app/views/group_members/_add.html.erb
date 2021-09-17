@@ -1,6 +1,6 @@
 <h1>Add Group Members</h1>
 <a class="close-reveal-modal">&#215;</a>
-<%= form_with GroupMember.new do |f| %>
+<%= form_with model: GroupMember.new do |f| %>
   <%= f.hidden_field :group_id, value: group.id %>
   <%= f.hidden_field :user_ids , id: 'user_ids', class: 'users multiple', 'data-url' => collaborators_path %>
   <%= f.submit 'Add Member', class: 'button primary radius' %>

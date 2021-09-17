@@ -24,7 +24,7 @@
   <div class="cookbook-details">
     <% if policy(cookbook).manage_cookbook_urls? %>
       <div class="manage-cookbook-urls hide">
-        <%= form_with cookbook, data: { abide: true } do |f| %>
+        <%= form_with model: cookbook, data: { abide: true } do |f| %>
           <div class="source-url-field">
             <%= f.text_field :source_url, placeholder: 'Source URL: http://example.com', pattern: 'url' %>
             <small class="error">Must be formatted as a URL.</small>
