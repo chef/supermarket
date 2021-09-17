@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.15 -->
-## [4.0.15](https://github.com/chef/supermarket/tree/4.0.15) (2021-09-16)
+<!-- latest_release 4.0.16 -->
+## [4.0.16](https://github.com/chef/supermarket/tree/4.0.16) (2021-09-17)
 
 #### Merged Pull Requests
-- Updated profile sidebar hover over text to not mention the legacy community site [#2233](https://github.com/chef/supermarket/pull/2233) ([antima-gupta](https://github.com/antima-gupta))
+- Bump omnibus-software from `e0d92a6` to `d880e20` in /omnibus [#2236](https://github.com/chef/supermarket/pull/2236) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -40,6 +40,7 @@
 
 
 #### Merged Pull Requests
+- Bump omnibus-software from `e0d92a6` to `d880e20` in /omnibus [#2236](https://github.com/chef/supermarket/pull/2236) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.16 -->
 - Updated profile sidebar hover over text to not mention the legacy community site [#2233](https://github.com/chef/supermarket/pull/2233) ([antima-gupta](https://github.com/antima-gupta)) <!-- 4.0.15 -->
 - Platforms text changed to Supported Platforms [#2231](https://github.com/chef/supermarket/pull/2231) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.0.14 -->
 - Bump omnibus-software from `13ad157` to `e0d92a6` in /omnibus [#2222](https://github.com/chef/supermarket/pull/2222) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.13 -->
