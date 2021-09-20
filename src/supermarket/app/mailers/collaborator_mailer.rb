@@ -9,6 +9,8 @@ class CollaboratorMailer < ApplicationMailer
     @resource = collaborator.resourceable
     @to = collaborator.user.email
 
+    auto_reply_headers_off
+
     mail(to: @to, subject: "You have been added as a collaborator to the #{@resource.name} #{@resource.class.name}")
   end
 end
