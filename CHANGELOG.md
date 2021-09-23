@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.20 -->
-## [4.0.20](https://github.com/chef/supermarket/tree/4.0.20) (2021-09-21)
+<!-- latest_release 4.0.21 -->
+## [4.0.21](https://github.com/chef/supermarket/tree/4.0.21) (2021-09-23)
 
 #### Merged Pull Requests
-- Added headers for avoiding auto reply mails wherever we are sending m… [#2242](https://github.com/chef/supermarket/pull/2242) ([msys-sgarg](https://github.com/msys-sgarg))
+- Updated the CSS for mobile search [#2238](https://github.com/chef/supermarket/pull/2238) ([saghoshprogress](https://github.com/saghoshprogress))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -40,6 +40,7 @@
 
 
 #### Merged Pull Requests
+- Updated the CSS for mobile search [#2238](https://github.com/chef/supermarket/pull/2238) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 4.0.21 -->
 - Added headers for avoiding auto reply mails wherever we are sending m… [#2242](https://github.com/chef/supermarket/pull/2242) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.0.20 -->
 - Setup SSL protocols to TLS 1.2 by default instead of 1.0,1.1, and 1.2 [#2229](https://github.com/chef/supermarket/pull/2229) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.0.19 -->
 - Bump ffi-libarchive from 1.0.17 to 1.1.3 in /src/supermarket [#2235](https://github.com/chef/supermarket/pull/2235) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.18 -->
