@@ -79,11 +79,12 @@ subscriptions:
       - built_in:rollover_changelog
       - bash:.expeditor/announce-release.sh
       - built_in:notify_chefio_slack_channels
-      
+      - bash:.expeditor/publish-release-notes.sh
+
   - workload: project_promoted:{{agent_id}}:*
     actions:
       - built_in:promote_artifactory_artifact
-             
+
 artifact_channels:
   - unstable
   - current
