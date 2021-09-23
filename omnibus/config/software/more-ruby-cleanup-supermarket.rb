@@ -35,7 +35,7 @@ build do
     # scanning for individual ruby version directory and
     # then deleting the target folders under that as
     # remove_directory doesn't work for wildcards
-    Dir.glob("#{vendor_ruby_dir}/bundle/ruby/*").each do |ruby_version_dir|
+    Dir.glob(vendor_ruby_dir).each do |ruby_version_dir|
       puts "removing cache under: #{ruby_version_dir}"
       remove_directory "#{ruby_version_dir}/cache"
       puts "removing doc under: #{ruby_version_dir}"
