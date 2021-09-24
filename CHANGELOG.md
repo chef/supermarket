@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.21 -->
-## [4.0.21](https://github.com/chef/supermarket/tree/4.0.21) (2021-09-23)
+<!-- latest_release 4.1.0 -->
+## [4.1.0](https://github.com/chef/supermarket/tree/4.1.0) (2021-09-24)
 
 #### Merged Pull Requests
-- Updated the CSS for mobile search [#2238](https://github.com/chef/supermarket/pull/2238) ([saghoshprogress](https://github.com/saghoshprogress))
+- Rajeshpaul38/remove omnibus artifact vendor cache dir/1951 [#2246](https://github.com/chef/supermarket/pull/2246) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -40,6 +40,7 @@
 
 
 #### Merged Pull Requests
+- Rajeshpaul38/remove omnibus artifact vendor cache dir/1951 [#2246](https://github.com/chef/supermarket/pull/2246) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.1.0 -->
 - Updated the CSS for mobile search [#2238](https://github.com/chef/supermarket/pull/2238) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 4.0.21 -->
 - Added headers for avoiding auto reply mails wherever we are sending m… [#2242](https://github.com/chef/supermarket/pull/2242) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.0.20 -->
 - Setup SSL protocols to TLS 1.2 by default instead of 1.0,1.1, and 1.2 [#2229](https://github.com/chef/supermarket/pull/2229) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.0.19 -->
