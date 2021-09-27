@@ -9,7 +9,7 @@ require "capybara/rspec"
 require "capybara/poltergeist"
 require "capybara-screenshot/rspec"
 require "factory_bot_rails"
-require 'simplecov'
+require "simplecov"
 SimpleCov.start
 
 # Requires supporting ruby files with custom matchers and macros, etc,
