@@ -4,7 +4,7 @@ PATH
     fieri (0.0.1)
       dotenv-rails
       foodcritic (~> 16.3)
-      mixlib-archive (~> 0.4)
+      mixlib-archive (>= 0.4, < 2.0)
       octokit (~> 4.16)
       rails (>= 6.1, < 7)
       ruby-filemagic
