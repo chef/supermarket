@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.2 -->
-## [4.1.2](https://github.com/chef/supermarket/tree/4.1.2) (2021-09-27)
+<!-- latest_release 4.1.3 -->
+## [4.1.3](https://github.com/chef/supermarket/tree/4.1.3) (2021-09-27)
 
 #### Merged Pull Requests
-- Bump nokogiri from 1.12.3 to 1.12.5 in /src/supermarket/engines/fieri [#2261](https://github.com/chef/supermarket/pull/2261) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump nokogiri from 1.12.4 to 1.12.5 in /src/supermarket [#2260](https://github.com/chef/supermarket/pull/2260) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -40,6 +40,7 @@
 
 
 #### Merged Pull Requests
+- Bump nokogiri from 1.12.4 to 1.12.5 in /src/supermarket [#2260](https://github.com/chef/supermarket/pull/2260) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.3 -->
 - Bump nokogiri from 1.12.3 to 1.12.5 in /src/supermarket/engines/fieri [#2261](https://github.com/chef/supermarket/pull/2261) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.2 -->
 - Bump puma from 5.4.0 to 5.5.0 in /src/supermarket [#2241](https://github.com/chef/supermarket/pull/2241) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.1 -->
 - Rajeshpaul38/remove omnibus artifact vendor cache dir/1951 [#2246](https://github.com/chef/supermarket/pull/2246) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.1.0 -->
