@@ -8,10 +8,22 @@ on:
     branches: [ main ]
 
 jobs:
-  brakeman-scan:
+  simplecov-scan:
     name: Simplecov Report
     runs-on: ubuntu-latest
     steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Simplecov
       uses: aki77/simplecov-report-action@v1.3.1
+
+    # Customize the ruby version depending on your needs
+    - name: Setup Ruby
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.7'
+
+    - name: Setup Simplecov
+      env:
+        SIMPLECOV_VERSION: '0.21.2' # SARIF support is provided in Simplecov version 0.21.2+
+      run: |
+        gem install simplecov --version $SIMPLECOV_VERSION
