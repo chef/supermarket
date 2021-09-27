@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.0 -->
-## [4.1.0](https://github.com/chef/supermarket/tree/4.1.0) (2021-09-24)
+<!-- latest_release 4.1.1 -->
+## [4.1.1](https://github.com/chef/supermarket/tree/4.1.1) (2021-09-27)
 
 #### Merged Pull Requests
-- Rajeshpaul38/remove omnibus artifact vendor cache dir/1951 [#2246](https://github.com/chef/supermarket/pull/2246) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Bump puma from 5.4.0 to 5.5.0 in /src/supermarket [#2241](https://github.com/chef/supermarket/pull/2241) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -40,6 +40,7 @@
 
 
 #### Merged Pull Requests
+- Bump puma from 5.4.0 to 5.5.0 in /src/supermarket [#2241](https://github.com/chef/supermarket/pull/2241) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.1 -->
 - Rajeshpaul38/remove omnibus artifact vendor cache dir/1951 [#2246](https://github.com/chef/supermarket/pull/2246) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.1.0 -->
 - Updated the CSS for mobile search [#2238](https://github.com/chef/supermarket/pull/2238) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 4.0.21 -->
 - Added headers for avoiding auto reply mails wherever we are sending m… [#2242](https://github.com/chef/supermarket/pull/2242) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.0.20 -->
