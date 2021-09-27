@@ -8,7 +8,7 @@ PATH
       octokit (~> 4.16)
       rails (>= 6.1, < 7)
       ruby-filemagic
-      sidekiq (~> 4.2)
+      sidekiq (>= 4.2, < 7.0)
 
 GEM
   remote: https://rubygems.org/
