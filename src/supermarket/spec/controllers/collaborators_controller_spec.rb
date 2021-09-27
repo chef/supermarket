@@ -95,6 +95,13 @@ describe CollaboratorsController do
         delete :destroy, params: { id: collaborator, format: :js }
       end
 
+      it "re-evaluates collaborator rating" do
+        sign_in fanny
+        expect do
+          delete :destroy, params: { id: collaborator, format: :js }
+        end.to change(FieriNotifyWorker.jobs, :size).by(1)
+      end
+
       context "removing a group of collaborators" do
         let!(:group_member1) { create(:group_member) }
         let!(:group) { group_member1.group }
@@ -135,6 +142,13 @@ describe CollaboratorsController do
           end
 
           delete :destroy_group, params: { id: group, resourceable_id: cookbook.id, resourceable_type: "Cookbook" }
+        end
+
+        it "re-evaluates collaborator rating" do
+          sign_in fanny
+          expect do
+            delete :destroy_group, params: { id: group, resourceable_id: cookbook.id, resourceable_type: "Cookbook" }
+          end.to change(FieriNotifyWorker.jobs, :size).by(2)
         end
 
         it "removes all collaborators associated with that group" do

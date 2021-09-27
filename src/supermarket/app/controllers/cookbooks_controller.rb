@@ -124,6 +124,13 @@ class CookbooksController < ApplicationController
     if cookbook_urls_params.key?(:up_for_adoption)
       if cookbook_urls_params[:up_for_adoption] == "true"
         AdoptionMailer.delay.follower_email(@cookbook)
+
+        if Feature.active?(:fieri) && ENV["FIERI_URL"].present?
+          FieriNotifyWorker.perform_async(
+            @cookbook.latest_cookbook_version.id
+          )
+        end
+
       end
     end
 
