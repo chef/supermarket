@@ -9,7 +9,7 @@ describe AccountsController do
       request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:github]
     end
 
-    xit "creates a new account for a user" do
+    it "creates a new account for a user" do
       expect do
         post :create, params: { provider: "github" }
       end.to change(user.accounts, :count).by(1)
