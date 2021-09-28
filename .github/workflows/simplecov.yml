@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test
-        run: bundle exec rspec
+        run: cd src/supermarket && bundle exec rspec
       # Checkout the repository to the GitHub Actions runner
       - name: Simplecov
         uses: aki77/simplecov-report-action@v1.3.1
