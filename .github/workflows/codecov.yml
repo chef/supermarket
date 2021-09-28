@@ -12,6 +12,10 @@ jobs:
     name: Codecov Report
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2      
       - name: Codecov
         uses: codecov/codecov-action@v2.1.0
         with:
