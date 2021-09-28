@@ -6,7 +6,10 @@
 
 - Install supermarket artifact
   - Once build is successful it will create a supermarket installation package in the directory `/var/cache/omnibus/pkg`.
-    U can install the package using respective package installer for the selected OS.
+    U can install the package using respective package installer for the selected OS. For ubuntu I've used `dpkg` as follows
+    ```
+      sudo dpkg -i /var/cache/omnibus/pkg/<package>.deb
+    ```
 
 - Reconfigured supermarket with `supermarket-ctl reconfigure`
 
