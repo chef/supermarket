@@ -95,7 +95,7 @@ Now your chef client is configured to connect to the chef server.
     - `knife ssl fetch https://<supermarket server public IP address>`
     - You can notice that inside the `.chef` directory(inside our `chef-repo`) the certificate has been downloaded in the `trusted_certs` directory with the file name: `<supermarket server IP address>.crt`
 
-**-----Now the setup is complete to do 2 things i.e. validating supermarket server certificate and being able to connect to the chef-server through chef-client. You should now be able to manage cookbooks onto chef-server using supermarket service APIs-----**
+**Now the setup is complete to do 2 things i.e. validating supermarket server certificate and being able to connect to the chef-server through chef-client. You should now be able to manage cookbooks onto chef-server using supermarket service APIs**
 
 
 ### Upload Cookbook
