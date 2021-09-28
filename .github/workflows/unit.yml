@@ -51,6 +51,7 @@ jobs:
         uses: aki77/simplecov-report-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          failedThreshold: 40
 
   fieri:
     runs-on: ubuntu-latest
