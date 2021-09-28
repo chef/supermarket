@@ -46,4 +46,17 @@ describe ApplicationHelper do
       expect(flash_message_class_for("warning")).to eql("warning")
     end
   end
+
+  describe "#github_profile_url" do
+    let(:user) { create(:user, email: "johndoe@example.com") }
+    it "should return a user's profile url" do
+      expect(github_profile_url(user.username)).to eql("https://github.com/johndoe1")
+    end
+  end
+
+  describe "#github_profile_title" do
+    it "should return a user's github profile title" do
+      expect(github_profile_title("John Doe's")).to eql("John Doe's GitHub Username")
+    end
+  end
 end
