@@ -129,5 +129,5 @@ To unshare/delete a shared cookbook from chef server use the command:
 `knife supermarket unshare <cookbook_name> -m https://<supermarket IP>`
   
   
-**-------------Once you have completed these steps that means the supermarket version has been verified in terms of basic functional sanity.-------------**
+**Once you have completed these steps that means the supermarket version has been verified in terms of basic functional sanity.**
 
