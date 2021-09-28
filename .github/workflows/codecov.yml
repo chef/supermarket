@@ -1,0 +1,16 @@
+name: Codecov Report
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ main ]
+
+jobs:
+  codecov-scan:
+    name: Codecov Report
+    runs-on: ubuntu-latest
+    steps:
+      - name: Codecov
+        uses: codecov/codecov-action@v2.1.0
