@@ -47,6 +47,8 @@ jobs:
         env:
           RAILS_ENV: test
         working-directory: src/supermarket
+      - name: Simplecov Report
+        uses: aki77/simplecov-report-action@v1
 
   fieri:
     runs-on: ubuntu-latest
