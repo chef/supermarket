@@ -15,4 +15,4 @@ jobs:
       - name: Codecov
         uses: codecov/codecov-action@v2.1.0
         with:
-          files: ./codecov-coverage.xml
+          token: d7e2f01b-9c14-42c3-825c-4d75dd568512
