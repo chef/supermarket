@@ -12,7 +12,9 @@ jobs:
     name: Codecov Report
     runs-on: ubuntu-latest
     steps:
-      - name: Codecov
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2.1.0
-        with:
-          files: ./codecov-coverage.xml
+#        with:
+#          files: ./codecov-coverage.xml
