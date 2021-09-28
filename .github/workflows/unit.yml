@@ -52,6 +52,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           failedThreshold: 40
+          resultPath: src/supermarket/coverage/.last_run.json
 
   fieri:
     runs-on: ubuntu-latest
