@@ -17,9 +17,9 @@ end
 Rails.application.config.middleware.use(OmniAuth::Builder) do
   github_client_options = {}
 
-  if (ENV["GITHUB_CLIENT_OPTION_SITE"].present? && 
-      ENV["GITHUB_CLIENT_OPTION_AUTHORIZE_URL"].present? && 
-      ENV["GITHUB_CLIENT_OPTION_ACCESS_TOKEN_URL"].present?)
+  if ENV["GITHUB_CLIENT_OPTION_SITE"].present? &&
+     ENV["GITHUB_CLIENT_OPTION_AUTHORIZE_URL"].present? &&
+     ENV["GITHUB_CLIENT_OPTION_ACCESS_TOKEN_URL"].present?
     github_client_options[:site] = ENV["GITHUB_CLIENT_OPTION_SITE"]
     github_client_options[:authorize_url] = ENV["GITHUB_CLIENT_OPTION_AUTHORIZE_URL"]
     github_client_options[:token_url] = ENV["GITHUB_CLIENT_OPTION_ACCESS_TOKEN_URL"]
@@ -29,7 +29,7 @@ Rails.application.config.middleware.use(OmniAuth::Builder) do
     :github,
     ENV["GITHUB_KEY"],
     ENV["GITHUB_SECRET"],
-    { client_options:  github_client_options }
+    { client_options: github_client_options }
   )
 
   # Use an alternate URL for the Chef OAuth2 service if one is provided

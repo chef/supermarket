@@ -50,8 +50,8 @@ module ApplicationHelper
 
   def github_profile_url(username)
     path = ENV["GITHUB_ENTERPRISE_URL"] || ENV["GITHUB_URL"]
-    path += '/' unless path.end_with?('/')
-    path +=username
+    path += "/" unless path.end_with?("/")
+    path + username
   end
 
   #
@@ -62,6 +62,6 @@ module ApplicationHelper
   # @return [String]
   #
   def github_profile_title(name)
-    "#{name} GitHub#{ENV["GITHUB_ENTERPRISE_URL"].present? ? " Enterprise": ""} Username"
+    "#{name} GitHub#{ENV["GITHUB_ENTERPRISE_URL"].present? ? " Enterprise" : ""} Username"
   end
 end

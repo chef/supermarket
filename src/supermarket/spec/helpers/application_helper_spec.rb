@@ -48,15 +48,15 @@ describe ApplicationHelper do
   end
 
   describe "#github_profile_url" do
-    let(:user) { create(:user, email: "johndoe@example.com") }
+    ENV["GITHUB_ENTERPRISE_URL"] = "https://example.com"
     it "should return a user's profile url" do
-      expect(github_profile_url(user.username)).to eql("https://github.com/johndoe1")
+      expect(github_profile_url("johndoe")).to eql("https://example.com/johndoe")
     end
   end
 
   describe "#github_profile_title" do
     it "should return a user's github profile title" do
-      expect(github_profile_title("John Doe's")).to eql("John Doe's GitHub Username")
+      expect(github_profile_title("John Doe's")).to eql("John Doe's GitHub Enterprise Username")
     end
   end
 end

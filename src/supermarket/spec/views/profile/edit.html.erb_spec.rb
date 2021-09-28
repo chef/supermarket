@@ -17,7 +17,7 @@ describe "profile/edit.html.erb" do
       expect(rendered).to have_selector("p", text: content)
     end
 
-     it "should have Connect GitHub Account button title" do
+    it "should have Connect GitHub Account button title" do
       render
       expect(rendered).to have_selector("a[title='Connect with GitHub OR GitHub Enterprise Account']")
     end
