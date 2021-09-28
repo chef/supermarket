@@ -2,7 +2,7 @@
 
 - Build supermarket artifact with omnibus
   - Go to the supermarket repo. Inside repo go to `omnibus` directory
-  - run `bundle install --binstubs`
+  - Run `bundle install --binstubs`
 
 - Install supermarket artifact
   - Once build is successful it will create a supermarket installation package in the directory `/var/cache/omnibus/pkg`.
