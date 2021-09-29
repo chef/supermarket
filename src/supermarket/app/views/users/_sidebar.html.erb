@@ -25,8 +25,8 @@
     
 
     <% @user.accounts.for(:github).each do |account| %>
-      <li class="has-tip" title="<%= github_profile_title(posessivize(@user.name))%>">
-        <a href="<%=github_profile_url(account.username)%>" target="_blank" rel="noopener"><i class="fa fa-github"></i> <%= account.username %></a>
+      <li class="has-tip" title="<%= github_profile_title(posessivize(@user.name)) %>">
+        <a href="<%= github_profile_url(account.username) %>" target="_blank" rel="noopener"><i class="fa fa-github"></i> <%= account.username %></a>
       </li>
     <% end %>
 
