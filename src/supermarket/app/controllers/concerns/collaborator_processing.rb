@@ -38,7 +38,8 @@ module CollaboratorProcessing
   def remove_collaborator(collaborator)
     authorize!(collaborator, "destroy?")
     cookbook_related = nil
-    if collaborator.resourceable_type == "Cookbook"
+
+    if collaborator.resourceable_type == Collaborator::COOKBOOK_TYPE
       cookbook_related = Cookbook.find_by(id: collaborator.resourceable_id)
     end
     collaborator.destroy
