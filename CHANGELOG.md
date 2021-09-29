@@ -8,7 +8,7 @@
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
-### Changes since 3.0.21 release
+### Changes since 4.0.21 release
 
 #### Merged Pull Requests
 
