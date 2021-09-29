@@ -8,10 +8,23 @@
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
-### Changes since 3.4.8 release
+### Changes since 3.0.21 release
+
+#### Merged Pull Requests
+
+- Changes for Content security policy to allow inline css [#2268](https://github.com/chef/supermarket/pull/2268) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.1.4 -->
+- Bump nokogiri from 1.12.4 to 1.12.5 in /src/supermarket [#2260](https://github.com/chef/supermarket/pull/2260) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.3 -->
+- Bump nokogiri from 1.12.3 to 1.12.5 in /src/supermarket/engines/fieri [#2261](https://github.com/chef/supermarket/pull/2261) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.2 -->
+- Bump puma from 5.4.0 to 5.5.0 in /src/supermarket [#2241](https://github.com/chef/supermarket/pull/2241) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.1 -->
+- Rajeshpaul38/remove omnibus artifact vendor cache dir/1951 [#2246](https://github.com/chef/supermarket/pull/2246) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.1.0 -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
+## [4.0.21](https://github.com/chef/supermarket/tree/4.0.21) (2021-09-29)
 
 #### Breaking Changes
 - Remove the cookbook published metrics from the code [#2212](https://github.com/chef/supermarket/pull/2212) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.0.7 -->
+- Setup SSL protocols to TLS 1.2 by default instead of 1.0,1.1, and 1.2 [#2229](https://github.com/chef/supermarket/pull/2229) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.0.19 -->
 
 #### Maintenance Updates
 - Delete the incomplete habitat plan [#2066](https://github.com/chef/supermarket/pull/2066) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 3.4.82 -->
@@ -38,16 +51,9 @@
 - Bump rails from 5.2.5 to 5.2.6 in /src/supermarket [#1941](https://github.com/chef/supermarket/pull/1941) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.24 -->
 - Update Ruby to 2.6.8 [#2048](https://github.com/chef/supermarket/pull/2048) ([tas50](https://github.com/tas50)) <!-- 3.4.70 -->
 
-
 #### Merged Pull Requests
-- Changes for Content security policy to allow inline css [#2268](https://github.com/chef/supermarket/pull/2268) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.1.4 -->
-- Bump nokogiri from 1.12.4 to 1.12.5 in /src/supermarket [#2260](https://github.com/chef/supermarket/pull/2260) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.3 -->
-- Bump nokogiri from 1.12.3 to 1.12.5 in /src/supermarket/engines/fieri [#2261](https://github.com/chef/supermarket/pull/2261) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.2 -->
-- Bump puma from 5.4.0 to 5.5.0 in /src/supermarket [#2241](https://github.com/chef/supermarket/pull/2241) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.1 -->
-- Rajeshpaul38/remove omnibus artifact vendor cache dir/1951 [#2246](https://github.com/chef/supermarket/pull/2246) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.1.0 -->
 - Updated the CSS for mobile search [#2238](https://github.com/chef/supermarket/pull/2238) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 4.0.21 -->
 - Added headers for avoiding auto reply mails wherever we are sending m… [#2242](https://github.com/chef/supermarket/pull/2242) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.0.20 -->
-- Setup SSL protocols to TLS 1.2 by default instead of 1.0,1.1, and 1.2 [#2229](https://github.com/chef/supermarket/pull/2229) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.0.19 -->
 - Bump ffi-libarchive from 1.0.17 to 1.1.3 in /src/supermarket [#2235](https://github.com/chef/supermarket/pull/2235) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.18 -->
 - Bump aws-sdk-s3 from 1.102.0 to 1.103.0 in /src/supermarket [#2234](https://github.com/chef/supermarket/pull/2234) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.17 -->
 - Bump omnibus-software from `e0d92a6` to `d880e20` in /omnibus [#2236](https://github.com/chef/supermarket/pull/2236) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.0.16 -->
@@ -215,9 +221,8 @@
 - Bump omnibus-software from `a7ed951` to `bdb61f0` in /omnibus [#1945](https://github.com/chef/supermarket/pull/1945) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.18 -->
 - Bump omnibus from `f8f202c` to `87db446` in /omnibus [#1929](https://github.com/chef/supermarket/pull/1929) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 3.4.17 -->
 - Stop producing Ubuntu 16.04 packages [#1914](https://github.com/chef/supermarket/pull/1914) ([tas50](https://github.com/tas50)) <!-- 3.4.13 -->
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [3.4.8](https://github.com/chef/supermarket/tree/3.4.8) (2021-06-17)
 
 #### Security Fixes
@@ -232,7 +237,7 @@
 #### Merged Pull Requests
 - clarification for cookbook transfer policy [#1886](https://github.com/chef/supermarket/pull/1886) ([bennyvasquez](https://github.com/bennyvasquez))
 - bump openssl-1.0.2y [#1906](https://github.com/chef/supermarket/pull/1906) ([dheerajd-msys](https://github.com/dheerajd-msys))
-<!-- latest_stable_release -->
+
 
 ## [3.4.1](https://github.com/chef/supermarket/tree/3.4.1) (2020-11-20)
 
