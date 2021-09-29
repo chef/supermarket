@@ -1,10 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.3 -->
-## [4.1.3](https://github.com/chef/supermarket/tree/4.1.3) (2021-09-27)
+<!-- latest_release 4.1.4 -->
+## [4.1.4](https://github.com/chef/supermarket/tree/4.1.4) (2021-09-29)
 
 #### Merged Pull Requests
-- Bump nokogiri from 1.12.4 to 1.12.5 in /src/supermarket [#2260](https://github.com/chef/supermarket/pull/2260) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Changes for Content security policy to allow inline css [#2268](https://github.com/chef/supermarket/pull/2268) ([msys-sgarg](https://github.com/msys-sgarg))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
@@ -40,6 +40,7 @@
 
 
 #### Merged Pull Requests
+- Changes for Content security policy to allow inline css [#2268](https://github.com/chef/supermarket/pull/2268) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.1.4 -->
 - Bump nokogiri from 1.12.4 to 1.12.5 in /src/supermarket [#2260](https://github.com/chef/supermarket/pull/2260) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.3 -->
 - Bump nokogiri from 1.12.3 to 1.12.5 in /src/supermarket/engines/fieri [#2261](https://github.com/chef/supermarket/pull/2261) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.2 -->
 - Bump puma from 5.4.0 to 5.5.0 in /src/supermarket [#2241](https://github.com/chef/supermarket/pull/2241) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.1 -->
