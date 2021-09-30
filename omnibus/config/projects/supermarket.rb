@@ -48,6 +48,7 @@ dependency "supermarket-ctl"
 dependency "version-manifest"
 
 # remove lots of ruby clutter we don't need
+dependency "chef"
 dependency "ruby-cleanup"
 dependency "more-ruby-cleanup-supermarket"
 
