@@ -47,6 +47,12 @@ jobs:
         env:
           RAILS_ENV: test
         working-directory: src/supermarket
+      - name: Simplecov Report
+        uses: aki77/simplecov-report-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          failedThreshold: 90
+          resultPath: src/supermarket/coverage/.last_run.json
 
   fieri:
     runs-on: ubuntu-latest
