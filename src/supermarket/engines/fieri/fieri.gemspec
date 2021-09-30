@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "dotenv-rails"
   s.add_dependency "foodcritic", "~> 16.3"
-  s.add_dependency "mixlib-archive", "~> 0.4"
+  s.add_dependency "mixlib-archive", ">= 0.4", "< 2.0"
   s.add_dependency "octokit", "~> 4.16" # 4.16+ fixes deprecations in auth
   s.add_dependency "rails", [">= 6.1", "< 7"]
   s.add_dependency "ruby-filemagic"
