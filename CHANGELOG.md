@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.9 -->
-## [4.1.9](https://github.com/chef/supermarket/tree/4.1.9) (2021-09-30)
+<!-- latest_release 4.1.10 -->
+## [4.1.10](https://github.com/chef/supermarket/tree/4.1.10) (2021-09-30)
 
 #### Merged Pull Requests
-- upgraded chef infra version from 16.13 to 17.5 [#2271](https://github.com/chef/supermarket/pull/2271) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Update mixlib-archive requirement from ~&gt; 0.4 to &gt;= 0.4, &lt; 2.0 in /sr… [#2257](https://github.com/chef/supermarket/pull/2257) ([dheerajd-msys](https://github.com/dheerajd-msys))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
 ### Changes since 4.0.21 release
 
 #### Merged Pull Requests
+- Update mixlib-archive requirement from ~&gt; 0.4 to &gt;= 0.4, &lt; 2.0 in /sr… [#2257](https://github.com/chef/supermarket/pull/2257) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 4.1.10 -->
 - upgraded chef infra version from 16.13 to 17.5 [#2271](https://github.com/chef/supermarket/pull/2271) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.1.9 -->
 - Changed name of allowed types to Chef Infra Handler [#2037](https://github.com/chef/supermarket/pull/2037) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.1.8 -->
 - Added simplecov github action in unit.yml [#2267](https://github.com/chef/supermarket/pull/2267) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.1.7 -->
