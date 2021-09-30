@@ -212,7 +212,6 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
-    equalizer (0.0.11)
     erubi (1.10.0)
     erubis (2.7.0)
     et-orbi (1.2.4)
@@ -736,11 +735,10 @@ GEM
     vault (0.16.0)
       aws-sigv4
     vcr (6.0.0)
-    virtus (1.0.2)
+    virtus (2.0.0)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
-      descendants_tracker (~> 0.0.3)
-      equalizer (~> 0.0.9)
+      descendants_tracker (~> 0.0, >= 0.0.3)
     webmock (3.14.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -857,7 +855,7 @@ DEPENDENCIES
   utf8-cleaner
   validate_url
   vcr
-  virtus (= 1.0.2)
+  virtus (= 2.0.0)
   webmock
   yajl-ruby
   yard
