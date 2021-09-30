@@ -780,7 +780,7 @@ DEPENDENCIES
   brakeman
   capybara
   capybara-screenshot
-  chef (~> 17.4)
+  chef (~> 17.5)
   chefstyle
   coderay
   compass-rails
