@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.8 -->
-## [4.1.8](https://github.com/chef/supermarket/tree/4.1.8) (2021-09-30)
+<!-- latest_release 4.1.9 -->
+## [4.1.9](https://github.com/chef/supermarket/tree/4.1.9) (2021-09-30)
 
 #### Merged Pull Requests
-- Changed name of allowed types to Chef Infra Handler [#2037](https://github.com/chef/supermarket/pull/2037) ([msys-sgarg](https://github.com/msys-sgarg))
+- upgraded chef infra version from 16.13 to 17.5 [#2271](https://github.com/chef/supermarket/pull/2271) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
 ### Changes since 4.0.21 release
 
 #### Merged Pull Requests
+- upgraded chef infra version from 16.13 to 17.5 [#2271](https://github.com/chef/supermarket/pull/2271) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.1.9 -->
 - Changed name of allowed types to Chef Infra Handler [#2037](https://github.com/chef/supermarket/pull/2037) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.1.8 -->
 - Added simplecov github action in unit.yml [#2267](https://github.com/chef/supermarket/pull/2267) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.1.7 -->
 - Bump omnibus from `7ce6173` to `37897ad` in /omnibus [#2270](https://github.com/chef/supermarket/pull/2270) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.6 -->
