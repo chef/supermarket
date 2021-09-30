@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.6 -->
-## [4.1.6](https://github.com/chef/supermarket/tree/4.1.6) (2021-09-29)
+<!-- latest_release 4.1.7 -->
+## [4.1.7](https://github.com/chef/supermarket/tree/4.1.7) (2021-09-30)
 
 #### Merged Pull Requests
-- Bump omnibus from `7ce6173` to `37897ad` in /omnibus [#2270](https://github.com/chef/supermarket/pull/2270) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Added simplecov github action in unit.yml [#2267](https://github.com/chef/supermarket/pull/2267) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
 ### Changes since 4.0.21 release
 
 #### Merged Pull Requests
+- Added simplecov github action in unit.yml [#2267](https://github.com/chef/supermarket/pull/2267) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.1.7 -->
 - Bump omnibus from `7ce6173` to `37897ad` in /omnibus [#2270](https://github.com/chef/supermarket/pull/2270) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.6 -->
 - Added font awesome slack icon in user profile [#2269](https://github.com/chef/supermarket/pull/2269) ([antima-gupta](https://github.com/antima-gupta)) <!-- 4.1.5 -->
 
