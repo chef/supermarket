@@ -1,7 +1,7 @@
 class Tool < ApplicationRecord
   include PgSearch::Model
 
-  ALLOWED_TYPES = %w{knife_plugin ohai_plugin chef_tool handler kitchen_driver powershell_module dsc_resource compliance_profile}.freeze
+  ALLOWED_TYPES = %w{knife_plugin ohai_plugin chef_tool chef_infra_handler kitchen_driver powershell_module dsc_resource compliance_profile}.freeze
 
   self.inheritance_column = nil
 
