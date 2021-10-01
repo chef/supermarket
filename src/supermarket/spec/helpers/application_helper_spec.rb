@@ -47,16 +47,41 @@ describe ApplicationHelper do
     end
   end
 
-  describe "#github_profile_url" do
-    ENV["GITHUB_ENTERPRISE_URL"] = "https://example.com"
-    it "should return a user's profile url" do
-      expect(github_profile_url("johndoe")).to eql("https://example.com/johndoe")
+  context "when using github account" do
+
+    before do
+      ENV["GITHUB_ENTERPRISE_URL"] = ""
+      ENV["GITHUB_URL"] = "https://github.com"
+    end
+
+    describe "#github_profile_url" do
+      it "should return a user's profile url" do
+        expect(github_profile_url("johndoe")).to eql("https://github.com/johndoe")
+      end
+    end
+
+    describe "#github_account_type" do
+      it "should return github account type" do
+        expect(github_account_type).to eql("GitHub")
+      end
     end
   end
 
-  describe "#github_profile_title" do
-    it "should return a user's github profile title" do
-      expect(github_profile_title("John Doe's")).to eql("John Doe's GitHub Enterprise Username")
+  context "when using github enterprise account" do
+    before do
+      ENV["GITHUB_ENTERPRISE_URL"] = "https://example.com"
+      ENV["GITHUB_URL"] = ""
+    end
+    describe "#github_profile_url" do
+      it "should return a user's profile url" do
+        expect(github_profile_url("johndoe")).to eql("https://example.com/johndoe")
+      end
+    end
+
+    describe "#github_account_type" do
+      it "should return github account type" do
+        expect(github_account_type).to eql("GitHub Enterprise")
+      end
     end
   end
 end
