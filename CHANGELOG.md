@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.12 -->
-## [4.1.12](https://github.com/chef/supermarket/tree/4.1.12) (2021-10-01)
+<!-- latest_release 4.1.13 -->
+## [4.1.13](https://github.com/chef/supermarket/tree/4.1.13) (2021-10-01)
 
 #### Merged Pull Requests
-- remove duplicate dependency &quot;chef&quot; [#2277](https://github.com/chef/supermarket/pull/2277) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Updated &quot;Login with Chef Server&quot; text to &quot;Login with Chef Infra Server&quot; [#2276](https://github.com/chef/supermarket/pull/2276) ([antima-gupta](https://github.com/antima-gupta))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
 ### Changes since 4.0.21 release
 
 #### Merged Pull Requests
+- Updated &quot;Login with Chef Server&quot; text to &quot;Login with Chef Infra Server&quot; [#2276](https://github.com/chef/supermarket/pull/2276) ([antima-gupta](https://github.com/antima-gupta)) <!-- 4.1.13 -->
 - remove duplicate dependency &quot;chef&quot; [#2277](https://github.com/chef/supermarket/pull/2277) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.1.12 -->
 - Bump omnibus-software from `d880e20` to `0966668` in /omnibus [#2280](https://github.com/chef/supermarket/pull/2280) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.11 -->
 - Update mixlib-archive requirement from ~&gt; 0.4 to &gt;= 0.4, &lt; 2.0 in /sr… [#2257](https://github.com/chef/supermarket/pull/2257) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 4.1.10 -->
