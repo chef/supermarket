@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.14 -->
-## [4.1.14](https://github.com/chef/supermarket/tree/4.1.14) (2021-10-01)
+<!-- latest_release 4.1.15 -->
+## [4.1.15](https://github.com/chef/supermarket/tree/4.1.15) (2021-10-04)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `0966668` to `24f508c` in /omnibus [#2281](https://github.com/chef/supermarket/pull/2281) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump test-kitchen from 3.0.0 to 3.1.0 in /omnibus [#2282](https://github.com/chef/supermarket/pull/2282) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
 ### Changes since 4.0.21 release
 
 #### Merged Pull Requests
+- Bump test-kitchen from 3.0.0 to 3.1.0 in /omnibus [#2282](https://github.com/chef/supermarket/pull/2282) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.15 -->
 - Bump omnibus-software from `0966668` to `24f508c` in /omnibus [#2281](https://github.com/chef/supermarket/pull/2281) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.14 -->
 - Updated &quot;Login with Chef Server&quot; text to &quot;Login with Chef Infra Server&quot; [#2276](https://github.com/chef/supermarket/pull/2276) ([antima-gupta](https://github.com/antima-gupta)) <!-- 4.1.13 -->
 - remove duplicate dependency &quot;chef&quot; [#2277](https://github.com/chef/supermarket/pull/2277) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.1.12 -->
