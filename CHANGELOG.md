@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.16 -->
-## [4.1.16](https://github.com/chef/supermarket/tree/4.1.16) (2021-10-04)
+<!-- latest_release 4.1.17 -->
+## [4.1.17](https://github.com/chef/supermarket/tree/4.1.17) (2021-10-04)
 
 #### Merged Pull Requests
-- Bump chefstyle from 2.0.9 to 2.1.0 in /src/supermarket [#2274](https://github.com/chef/supermarket/pull/2274) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump chefstyle from 2.0.9 to 2.1.0 in /src/supermarket/engines/fieri [#2273](https://github.com/chef/supermarket/pull/2273) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
 ### Changes since 4.0.21 release
 
 #### Merged Pull Requests
+- Bump chefstyle from 2.0.9 to 2.1.0 in /src/supermarket/engines/fieri [#2273](https://github.com/chef/supermarket/pull/2273) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.17 -->
 - Bump chefstyle from 2.0.9 to 2.1.0 in /src/supermarket [#2274](https://github.com/chef/supermarket/pull/2274) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.16 -->
 - Bump test-kitchen from 3.0.0 to 3.1.0 in /omnibus [#2282](https://github.com/chef/supermarket/pull/2282) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.15 -->
 - Bump omnibus-software from `0966668` to `24f508c` in /omnibus [#2281](https://github.com/chef/supermarket/pull/2281) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.14 -->
