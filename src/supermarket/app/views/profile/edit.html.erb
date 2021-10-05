@@ -31,9 +31,9 @@
               <%= f.label :twitter_username, "Twitter Username" %>
               <%= f.text_field :twitter_username, placeholder: 'Twitter Username', title: 'twitter username' %>
             </div>
-            <div class="ircnickname-field">
-              <%= f.label :irc_nickname, "IRC Nickname" %>
-              <%= f.text_field :irc_nickname, placeholder: 'IRC Nickname', title: 'irc nickname' %>
+            <div class="slackusername-field">
+              <%= f.label :slack_username, "Chef Community Slack Username" %>
+              <%= f.text_field :slack_username, placeholder: 'Slack Username', title: 'slack username' %>
             </div>
           </fieldset>
           <fieldset>
@@ -70,17 +70,23 @@
           <p>You are currently not a collaborator on any resources. Once you are, they will be listed here.</p>
         <% else %>
           <p>The resources you are a collaborator on.</p>
-
-          <table>
-            <% current_user.collaborators.each do |collaborator| %>
-              <tr>
-                <td><%= link_to collaborator.resourceable.name, collaborator.resourceable %></td>
-                <td><%= collaborator.resourceable.class.name %></td>
-                <td class="text-right"><%= link_to 'Remove Myself as a Collaborator', collaborator_path(collaborator), remote: true, method: :delete, class: 'button tiny alert radius', rel: 'remove_collaboration' %></td>
-              </tr>
+          <div class="scrollWrapper">
+            <table>
+              <% current_user.collaborators.each do |collaborator| %>
+                <tr>
+                  <td><%= link_to collaborator.resourceable.name, collaborator.resourceable %></td>
+                  <td><%= collaborator.resourceable.class.name %></td>
+                  <td class="text-right"><%= link_to 'Remove Myself as a Collaborator',
+                  collaborator_path(collaborator), remote: true, method: :delete,
+                  data: {confirm: "Are you sure you want to remove yourself as a collaborator "\
+                  "from the cookbook #{collaborator.resourceable.name} ? You will not be able to add yourself back without the help of the "\
+                  "cookbook owner."},
+                  class: 'button tiny alert radius', rel: 'remove_collaboration' %></td>
+                </tr>
+              <% end %>
             <% end %>
-          <% end %>
-          </table>
+            </table>
+          </div>
       </div>
       <div class="content" id="keys">
         <p>Your Supermarket key is the same as your key on the associated Chef

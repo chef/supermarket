@@ -50,7 +50,7 @@ class ProfileController < ApplicationController
       :last_name,
       :company,
       :twitter_username,
-      :irc_nickname,
+      :slack_username,
       :jira_username,
       email_preferences_attributes: [
         :_destroy,

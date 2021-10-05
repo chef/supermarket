@@ -31,7 +31,7 @@ describe ProfileController do
           "last_name" => "Smith",
           "company" => "Acme",
           "twitter_username" => "bobbo",
-          "irc_nickname" => "bobbo",
+          "slack_username" => "bobbo",
           "jira_username" => "bobbo",
           "email_preferences_attributes" => {
             "0" => {

@@ -10,7 +10,7 @@ module Universe
   DOWNLOAD_URL = "download_url"
   DEPENDENCIES = "dependencies"
   # TODO: change this value to 'chef' once the `remote_cookbook.location_type` in Berkshelf
-  # https://github.com/berkshelf/berkshelf/blob/master/lib/berkshelf/downloader.rb#L60-151
+  # https://github.com/berkshelf/berkshelf/blob/main/lib/berkshelf/downloader.rb#L60-151
   # has been updated from 'opscode' to 'chef'
   CHEF = "opscode"
 

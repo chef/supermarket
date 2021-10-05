@@ -26,9 +26,7 @@ class SessionsController < ApplicationController
   #
   def destroy
     reset_session
-
     flash[:signout] = true
-
     redirect_to root_path, notice: t("user.signed_out")
   end
 

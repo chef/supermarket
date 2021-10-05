@@ -7,8 +7,8 @@ class SourceRepoWorker
 
   def source_repo(cookbook_json)
     url = source_repo_url(cookbook_json)
-
-    url.match(%r{(?<=github.com\/)[\w-]+\/[\w-]+}).to_s
+   # https://rubular.com/r/uTLH7q6rJES5xW
+    url.match(%r{^(https?\://)?(github\.com/)(\w+/\w+)}).try(:[], 3).to_s
   end
 
   def source_repo_url(cookbook_json)

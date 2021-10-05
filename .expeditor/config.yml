@@ -1,5 +1,7 @@
-# Documentation available at http://expeditor-docs.es.chef.io/
+# Documentation available at https://expeditor.chef.io/docs/getting-started/
+---
 
+# The name of the product keys for this product (from mixlib-install)
 product_key: supermarket
 
 # Slack channel in Chef Software slack to send notifications about build failures, etc
@@ -19,17 +21,18 @@ github:
   # allow bumping the minor release via label
   minor_bump_labels:
     - "Expeditor: Bump Version Minor"
+  # allow bumping the major release via label
+  major_bump_labels:
+    - "Expeditor: Bump Version Major"
   # The file where the MAJOR.MINOR.PATCH version is kept. The version in this file
   # is bumped automatically via the `built_in:bump_version` merge_action.
   version_file: "VERSION"
 
 changelog:
+  rollup_header: Changes not yet released to stable
   categories:
     - "Aspect: Correctness": "Bug Fixes"
     - "Aspect: Security": "Security Fixes"
-    - "Bug": "Bug Fixes"
-    - "Enhancement": "Enhancements"
-    - "Feature": "Enhancements"
     - "Type: Breaking Change": "Breaking Changes"
     - "Type: Bug": "Bug Fixes"
     - "Type: Chore": "Maintenance Updates"
@@ -53,14 +56,17 @@ subscriptions:
           ignore_labels:
             - "Expeditor: Skip Version Bump"
             - "Expeditor: Skip All"
+            - "Aspect: Documentation"
       - built_in:update_changelog:
           ignore_labels:
             - "Expeditor: Skip Changelog"
             - "Expeditor: Skip All"
+            - "Aspect: Documentation"
       - trigger_pipeline:omnibus/release:
           ignore_labels:
             - "Expeditor: Skip Omnibus"
             - "Expeditor: Skip All"
+            - "Aspect: Documentation"
           only_if: built_in:bump_version
 
   # These actions are taken, in the order specified, when an Omnibus artifact is promoted
@@ -71,12 +77,14 @@ subscriptions:
   - workload: artifact_published:stable:supermarket:*
     actions:
       - built_in:rollover_changelog
+      - bash:.expeditor/publish-release-notes.sh
+      - bash:.expeditor/announce-release.sh
       - built_in:notify_chefio_slack_channels
-      
+
   - workload: project_promoted:{{agent_id}}:*
     actions:
       - built_in:promote_artifactory_artifact
-             
+
 artifact_channels:
   - unstable
   - current

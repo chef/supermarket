@@ -1,22 +1,20 @@
 source "https://rubygems.org"
 
-# Ruby version isn't specified here anymore, as it's pinned in Omnibus
-# https://github.com/chef/omnibus-supermarket/blob/master/config/projects/supermarket.rb
-
 gem "fieri", path: "engines/fieri"
-gem "rails", "~> 5.2.6"
+gem "rails", "~> 6.1.4"
 
-gem "omniauth"
+gem "omniauth", "~> 2.0.0"
 gem "omniauth-chef-oauth2"
-gem "omniauth-github"
-gem "omniauth-oauth2", "~> 1.3.1"
+gem "omniauth-github", "~> 2.0.0"
+gem "omniauth-oauth2", "~> 1.7.1"
 gem "omniauth-rails_csrf_protection"
+gem "coderay" # markdown doc - syntax highlighting
 
 gem "sidekiq", "~> 4.2"
 gem "sidekiq-cron"
 
 gem "aws-sdk-s3"
-gem "chef", require: false
+gem "chef", "~> 17.5", require: false
 gem "compass-rails"
 gem "ddtrace", require: false
 gem "dotenv"
@@ -29,7 +27,7 @@ gem "kaminari"
 gem "mixlib-authentication", "~> 3.0"
 gem "newrelic_rpm"
 gem "nokogiri"
-gem "octokit", require: false
+gem "octokit", "~> 4.16", require: false # 4.16+ fixes deprecations in auth
 gem "paperclip"
 gem "pg"
 gem "pg_search"
@@ -45,7 +43,6 @@ gem "sass-globbing"
 gem "sass-rails"
 gem "sentry-raven", require: false
 gem "sitemap_generator"
-gem "sprockets"
 gem "statsd-ruby"
 gem "tomlrb"
 gem "uglifier"
@@ -55,6 +52,9 @@ gem "utf8-cleaner"
 gem "validate_url"
 gem "virtus", "1.0.2", require: false # Pin to a version before the handling of nil in collection coercion was fixed.
 gem "yajl-ruby"
+
+gem "listen"
+gem "therubyracer", platforms: :ruby
 
 group :doc do
   gem "yard", require: false
@@ -67,6 +67,7 @@ group :development do
   gem "license_finder"
   gem "spring"
   gem "spring-commands-rspec"
+  gem "brakeman"
 end
 
 group :test do
@@ -78,6 +79,8 @@ group :test do
   gem "shoulda-matchers"
   gem "vcr", require: false
   gem "webmock", require: false
+  gem "puma"
+  gem "simplecov", require: false
 end
 
 group :development, :test do

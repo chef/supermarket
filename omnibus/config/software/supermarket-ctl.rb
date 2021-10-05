@@ -18,7 +18,6 @@ name "supermarket-ctl"
 license :project_license
 
 dependency "omnibus-ctl"
-dependency "chef-gem"
 dependency "runit"
 
 source path: "cookbooks/omnibus-supermarket"
@@ -26,7 +25,8 @@ source path: "cookbooks/omnibus-supermarket"
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
-  bundle "install", env: env
+  bundle "config set --local without test", env: env
+  bundle "install --binstubs", env: env
 
   block do
     erb source: "supermarket-ctl.erb",

@@ -2,19 +2,19 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200629195534) do
+ActiveRecord::Schema.define(version: 2021_08_30_065034) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
   enable_extension "pg_trgm"
+  enable_extension "plpgsql"
 
   create_table "accounts", id: :serial, force: :cascade do |t|
     t.integer "user_id"
@@ -39,54 +39,6 @@ ActiveRecord::Schema.define(version: 20200629195534) do
     t.datetime "updated_at"
     t.string "slug"
     t.index ["slug"], name: "index_categories_on_slug"
-  end
-
-  create_table "ccla_signatures", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "organization_id"
-    t.integer "ccla_id"
-    t.datetime "signed_at"
-    t.string "prefix"
-    t.string "first_name"
-    t.string "middle_name"
-    t.string "last_name"
-    t.string "suffix"
-    t.string "email"
-    t.string "phone"
-    t.string "company"
-    t.string "address_line_1"
-    t.string "address_line_2"
-    t.string "city"
-    t.string "state"
-    t.string "zip"
-    t.string "country"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["ccla_id"], name: "index_ccla_signatures_on_ccla_id"
-    t.index ["organization_id"], name: "index_ccla_signatures_on_organization_id"
-    t.index ["user_id"], name: "index_ccla_signatures_on_user_id"
-  end
-
-  create_table "cclas", id: :serial, force: :cascade do |t|
-    t.string "version"
-    t.text "head"
-    t.text "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["version"], name: "index_cclas_on_version"
-  end
-
-  create_table "cla_reports", id: :serial, force: :cascade do |t|
-    t.integer "first_ccla_id"
-    t.integer "last_ccla_id"
-    t.integer "first_icla_id"
-    t.integer "last_icla_id"
-    t.string "csv_file_name"
-    t.string "csv_content_type"
-    t.integer "csv_file_size"
-    t.datetime "csv_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "collaborators", id: :serial, force: :cascade do |t|
@@ -205,67 +157,6 @@ ActiveRecord::Schema.define(version: 20200629195534) do
     t.index ["user_id"], name: "index_cookbooks_on_user_id"
   end
 
-  create_table "curry_commit_authors", id: :serial, force: :cascade do |t|
-    t.string "login"
-    t.string "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean "authorized_to_contribute", default: false, null: false
-    t.index ["email"], name: "index_curry_commit_authors_on_email", unique: true
-    t.index ["login"], name: "index_curry_commit_authors_on_login", unique: true
-  end
-
-  create_table "curry_pull_request_comments", id: :serial, force: :cascade do |t|
-    t.integer "github_id", null: false
-    t.integer "pull_request_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "unauthorized_commit_authors", default: [], array: true
-    t.index ["github_id"], name: "index_curry_pull_request_comments_on_github_id", unique: true
-    t.index ["pull_request_id"], name: "index_curry_pull_request_comments_on_pull_request_id"
-  end
-
-  create_table "curry_pull_request_commit_authors", id: :serial, force: :cascade do |t|
-    t.integer "pull_request_id", null: false
-    t.integer "commit_author_id", null: false
-    t.index ["commit_author_id", "pull_request_id"], name: "curry_pr_commit_author_ids", unique: true
-    t.index ["commit_author_id"], name: "index_curry_pull_request_commit_authors_on_commit_author_id"
-    t.index ["pull_request_id"], name: "index_curry_pull_request_commit_authors_on_pull_request_id"
-  end
-
-  create_table "curry_pull_request_updates", id: :serial, force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "action"
-    t.integer "pull_request_id", null: false
-  end
-
-  create_table "curry_pull_requests", id: :serial, force: :cascade do |t|
-    t.string "number", null: false
-    t.integer "repository_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer "maintainer_id"
-    t.index ["maintainer_id"], name: "index_curry_pull_requests_on_maintainer_id"
-    t.index ["number", "repository_id"], name: "index_curry_pull_requests_on_number_and_repository_id", unique: true
-    t.index ["repository_id"], name: "index_curry_pull_requests_on_repository_id"
-  end
-
-  create_table "curry_repositories", id: :serial, force: :cascade do |t|
-    t.string "owner", null: false
-    t.string "name", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "callback_url", null: false
-  end
-
-  create_table "curry_repository_maintainers", id: :serial, force: :cascade do |t|
-    t.integer "repository_id"
-    t.integer "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "email_preferences", id: :serial, force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "system_email_id", null: false
@@ -303,36 +194,6 @@ ActiveRecord::Schema.define(version: 20200629195534) do
     t.string "label", null: false
     t.integer "total", default: 0, null: false
     t.index ["label"], name: "index_hits_on_label", unique: true
-  end
-
-  create_table "icla_signatures", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
-    t.datetime "signed_at"
-    t.string "prefix"
-    t.string "first_name"
-    t.string "middle_name"
-    t.string "last_name"
-    t.string "suffix"
-    t.string "email"
-    t.string "phone"
-    t.string "address_line_1"
-    t.string "address_line_2"
-    t.string "city"
-    t.string "state"
-    t.string "zip"
-    t.string "country"
-    t.integer "icla_id"
-    t.index ["icla_id"], name: "index_icla_signatures_on_icla_id"
-    t.index ["user_id"], name: "index_icla_signatures_on_user_id"
-  end
-
-  create_table "iclas", id: :serial, force: :cascade do |t|
-    t.string "version"
-    t.text "head"
-    t.text "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["version"], name: "index_iclas_on_version"
   end
 
   create_table "invitations", id: :serial, force: :cascade do |t|
@@ -423,10 +284,10 @@ ActiveRecord::Schema.define(version: 20200629195534) do
     t.integer "roles_mask"
     t.string "email", default: "", null: false
     t.string "jira_username"
-    t.string "irc_nickname"
     t.string "twitter_username"
     t.text "public_key"
     t.string "install_preference"
+    t.string "slack_username"
   end
 
 end

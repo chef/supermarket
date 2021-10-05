@@ -16,7 +16,7 @@ The license tells you what rights you have that are provided by the copyright ho
 
 For more information about licensing, copyright, and why we use DCO, see Chef's [Community Contributions](https://docs.chef.io/community_contributions/) page.
 
-For information on how to sign your commits with DCO, please see [DCO Sign Off Methods](https://github.com/chef/chef/blob/master/CONTRIBUTING.md#dco-sign-off-methods).
+For information on how to sign your commits with DCO, please see [DCO Sign Off Methods](https://github.com/chef/chef/blob/main/CONTRIBUTING.md#dco-sign-off-methods).
 
 ## Working with the community
 
@@ -38,7 +38,7 @@ If you're experienced with the toolchain, here are the steps for submitting a pa
   $ git checkout -b my_feature
   ```
 3. Make your changes, writing excellent commit messages and adding appropriate test coverage.
-4. Open a [Pull Request](https://github.com/chef/supermarket/pull) against the supermarket master branch on GitHub
+4. Open a [Pull Request](https://github.com/chef/supermarket/pull) against the supermarket main branch on GitHub
 
 ## Helpful Tips
 

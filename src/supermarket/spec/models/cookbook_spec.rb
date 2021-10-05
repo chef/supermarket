@@ -725,16 +725,16 @@ describe Cookbook do
   describe ".ordered_by" do
     let!(:great) { create(:cookbook, name: "great") }
     let!(:cookbook) { create(:cookbook, name: "cookbook") }
+    let!(:deprecated_cookbook) { create(:cookbook, name: "deprecated_cookbook", deprecated: "true") }
 
     it "orders by name ascending by default" do
-      expect(Cookbook.ordered_by(nil).map(&:name)).to eql(%w{cookbook great})
+      expect(Cookbook.ordered_by(nil).map(&:name)).to eql(%w{cookbook great deprecated_cookbook})
     end
 
     it 'orders by updated_at descending when given "recently_updated"' do
       great.touch
-
       expect(Cookbook.ordered_by("recently_updated").map(&:name))
-        .to eql(%w{great cookbook})
+        .to eql(%w{great cookbook deprecated_cookbook})
     end
 
     it 'orders by created_at descending when given "recently_added"' do
@@ -748,31 +748,34 @@ describe Cookbook do
       cookbook.update(web_download_count: 5, api_download_count: 70)
 
       expect(Cookbook.ordered_by("most_downloaded").map(&:name))
-        .to eql(%w{great cookbook})
+        .to eql(%w{great cookbook deprecated_cookbook})
     end
 
     it 'orders by cookbook_followers_count when given "most_followed"' do
       great.update(cookbook_followers_count: 100)
       cookbook.update(cookbook_followers_count: 50)
+      deprecated_cookbook.update( cookbook_followers_count: 50)
 
       expect(Cookbook.ordered_by("most_followed").map(&:name))
-        .to eql(%w{great cookbook})
+        .to eql(%w{great cookbook deprecated_cookbook})
     end
 
     it "orders secondarily by id when cookbook follower counts are equal" do
       great.update(cookbook_followers_count: 100)
       cookbook.update(cookbook_followers_count: 100)
+      deprecated_cookbook.update(cookbook_followers_count: 100)
 
       expect(Cookbook.ordered_by("most_followed").map(&:name))
-        .to eql(%w{great cookbook})
+        .to eql(%w{great cookbook deprecated_cookbook})
     end
 
     it "orders secondarily by id when download counts are equal" do
       great.update(web_download_count: 5, api_download_count: 100)
       cookbook.update(web_download_count: 5, api_download_count: 100)
+      deprecated_cookbook.update(web_download_count: 5, api_download_count: 100)
 
       expect(Cookbook.ordered_by("most_followed").map(&:name))
-        .to eql(%w{great cookbook})
+        .to eql(%w{great cookbook deprecated_cookbook})
     end
   end
 

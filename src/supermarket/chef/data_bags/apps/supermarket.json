@@ -20,10 +20,5 @@
   "chef_oauth2": {
     "app_id": "someAppID",
     "secret": "someSecret"
-  },
-  "curry": {
-    "github_access_token": "someAccessToken",
-    "cla_location": "claUrl",
-    "pubsubhubbub_secret": "someSecret"
   }
 }

@@ -1,0 +1,116 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "11a6322283bc54ef48d681d41a4dcd60c59cd3cce38e48d3d8ad28a27c19e242",
+      "check_name": "LinkToHref",
+      "message": "Potentially unsafe model attribute in `link_to` href",
+      "file": "app/views/tools/_tool.html.erb",
+      "line": 28,
+      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(\"View Source\", (Unresolved Model).new.source_url, :class => \"button tiny radius secondary\", :target => \"_blank\", :rel => \"noopener\", :itemprop => \"codeRepository\")",
+      "render_path": [
+        {
+          "type": "template",
+          "name": "users/tools",
+          "line": 15,
+          "file": "app/views/users/tools.html.erb",
+          "rendered": {
+            "name": "tools/_tool",
+            "file": "app/views/tools/_tool.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "tools/_tool"
+      },
+      "user_input": "(Unresolved Model).new.source_url",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "5151f802b89ff8ddb6226eddcff9095c7ca2a3564f37f3eb881e9531d1bca4c1",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/irc_logs_controller.rb",
+      "line": 44,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to((((\"https://botbot.me/freenode/\" + params[:channel]) + \"/\") + params.fetch(:date, nil)))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "IrcLogsController",
+        "method": "show"
+      },
+      "user_input": "params.fetch(:date, nil)",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "6ca20351e1a6bb8a70147de1124661cf42e7d0de7c3fe421affb5b193f30dc32",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/api/v1/cookbook_versions_controller.rb",
+      "line": 32,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(Cookbook.with_name(params[:cookbook]).first!.get_version!(params[:version]).cookbook_artifact_url)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Api::V1::CookbookVersionsController",
+        "method": "download"
+      },
+      "user_input": "Cookbook.with_name(params[:cookbook]).first!.get_version!(params[:version]).cookbook_artifact_url",
+      "confidence": "High",
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "8bd00293b526f062a8591f1f50f1af66e1acfb8522bf5734b0377fcc8eba8146",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/irc_logs_controller.rb",
+      "line": 42,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to((\"https://botbot.me/freenode/\" + params[:channel]))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "IrcLogsController",
+        "method": "show"
+      },
+      "user_input": "params[:channel]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "ace2d27e7a1866cead6fabfebcf7eaa0202456a5b848a736d4e47b7d79707a93",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/cookbook_versions_controller.rb",
+      "line": 16,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(Cookbook.with_name(params[:cookbook_id]).first!.get_version!(params[:version]).cookbook_artifact_url)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "CookbookVersionsController",
+        "method": "download"
+      },
+      "user_input": "Cookbook.with_name(params[:cookbook_id]).first!.get_version!(params[:version]).cookbook_artifact_url",
+      "confidence": "High",
+      "note": ""
+    }
+  ],
+  "updated": "2021-08-09 12:47:05 +0530",
+  "brakeman_version": "5.1.1"
+}

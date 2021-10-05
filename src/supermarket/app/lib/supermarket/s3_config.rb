@@ -17,7 +17,7 @@ module Supermarket
       all_s3_settings = REQUIRED_S3_VARS.all? { |key| environment[key].present? }
 
       if any_s3_settings && !all_s3_settings
-        raise IncompleteConfig.new "Got some, but not all, of the required S3 configs. Must provide #{REQUIRED_S3_VARS} to configure cookbook storage in an S3 bucket."
+        raise IncompleteConfig.new "Got some, but not all, of the required S3 configs. You provided: #{REQUIRED_S3_VARS & environment.keys}. You must provide #{REQUIRED_S3_VARS} to configure cookbook storage in an S3 bucket."
       end
       return true if all_s3_settings
 

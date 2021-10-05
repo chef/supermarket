@@ -11,6 +11,8 @@ class CookbookVersionsController < ApplicationController
     Cookbook.increment_counter(:web_download_count, @cookbook.id)
     Supermarket::Metrics.increment("cookbook.downloads.web")
 
+    # Ignore brakeman error: "Possible unprotected redirect"
+    # as this might be an external URL that needs to be considered along with the host URL
     redirect_to @version.cookbook_artifact_url
   end
 

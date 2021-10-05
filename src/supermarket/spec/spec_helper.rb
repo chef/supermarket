@@ -9,6 +9,8 @@ require "capybara/rspec"
 require "capybara/poltergeist"
 require "capybara-screenshot/rspec"
 require "factory_bot_rails"
+require "simplecov"
+SimpleCov.start
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -25,7 +27,7 @@ Sidekiq::Testing.fake!
 # Use a quieter Poltergeist driver
 # This eliminates the debug warnings regarding unrecognized viewport
 # arguments and the like
-Capybara.register_driver :quiet_ghost do |app|
+Capybara.register_driver :poltergeist do |app|
   error_logger = Logger.new(STDERR).tap { |l| l.level = Logger::ERROR }
 
   Capybara::Poltergeist::Driver.new(
@@ -36,11 +38,13 @@ Capybara.register_driver :quiet_ghost do |app|
     # so that tests the navmenu appears at the top of the window, otherwise
     # capybara will complain about
     #   Unable to find css "[rel*=thinginthenavmenu]"
-    window_size: [1100, 764]
+    window_size: [1920, 1080]
   )
 end
 
-Capybara.javascript_driver = :quiet_ghost
+Capybara.javascript_driver = :poltergeist
+Capybara::Screenshot.prune_strategy = { keep: 5 }
+Capybara.server = :puma, { Silent: true }
 
 if ENV["CAPYBARA_SCREENSHOT_TO_S3"] == "true"
   if ENV["SCREENIE_AWS_ID"].present? && ENV["SCREENIE_AWS_SECRET"].present?
@@ -136,26 +140,39 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = false
 
-  config.before(:suite) do
-    DatabaseCleaner.clean_with :truncation
-  end
+  #=======================OLD Cleaning strategy======================
+  # config.before(:suite) do
+  #   DatabaseCleaner.clean_with :truncation
+  # end
 
-  config.before(:each) do |example|
+  # config.before(:each) do |example|
+  #   Rails.cache.clear
+  #   DatabaseCleaner.strategy = if example.metadata[:js] || example.metadata[:type] == :feature
+  #                                :truncation
+  #                              else
+  #                                :transaction
+  #                              end
+  #   DatabaseCleaner.start
+  # end
+
+  # config.after(:each) do
+  #   DatabaseCleaner.clean
+  # end
+  #================================================================
+  config.before(:suite) do |example|
     Rails.cache.clear
-    DatabaseCleaner.strategy = if example.metadata[:js] || example.metadata[:type] == :feature
-                                 :truncation
-                               else
-                                 :transaction
-                               end
-    DatabaseCleaner.start
+    DatabaseCleaner.strategy = :deletion
+    DatabaseCleaner.clean_with(:deletion)
   end
 
-  config.after(:each) do
-    DatabaseCleaner.clean
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
   end
 
   config.before(type: :feature) do |example|
-    Capybara.current_driver = :quiet_ghost if example.metadata[:use_poltergeist] == true
+    Capybara.current_driver = :poltergeist if example.metadata[:use_poltergeist] == true
   end
 
   # If true, the base class of anonymous controllers will be inferred

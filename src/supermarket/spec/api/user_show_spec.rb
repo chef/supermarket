@@ -9,7 +9,7 @@ describe "GET /api/v1/users/:user" do
         last_name: "McNanny",
         company: "Fanny Pack",
         twitter_username: "fanny",
-        irc_nickname: "fanny",
+        slack_username: "fanny",
         chef_account: create(
           :account,
           provider: "chef_oauth2",
@@ -25,7 +25,7 @@ describe "GET /api/v1/users/:user" do
         "name" => "Fanny McNanny",
         "company" => "Fanny Pack",
         "twitter" => "fanny",
-        "irc" => "fanny",
+        "slack" => "fanny",
         "github" => ["fanny"],
         "cookbooks" => {
           "owns" => {

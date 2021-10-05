@@ -60,7 +60,7 @@ class CollaboratorsController < ApplicationController
     respond_to do |format|
       format.js do
         remove_collaborator(@collaborator)
-        head :ok
+        head 200
       end
     end
   end
@@ -93,9 +93,9 @@ class CollaboratorsController < ApplicationController
                             "#{collaborator.user.username} is still a collaborator on this #{params[:resourceable_type]}" " "
                           end
       end
-
+      resource_path_str = "#{params[:resourceable_type].underscore}_path"
       redirect_to(
-        resource
+        send(resource_path_str, resource)
       )
     else
       not_found!

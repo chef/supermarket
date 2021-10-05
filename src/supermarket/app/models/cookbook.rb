@@ -26,11 +26,11 @@ class Cookbook < ApplicationRecord
   }
 
   ORDER_OPTIONS = {
-    "recently_updated" => Arel.sql("cookbooks.updated_at DESC"),
-    "recently_added" => Arel.sql("cookbooks.id DESC"),
-    "most_downloaded" => Arel.sql("(cookbooks.web_download_count + cookbooks.api_download_count) DESC, cookbooks.id ASC"),
-    "most_followed" => Arel.sql("cookbook_followers_count DESC, cookbooks.id ASC"),
-    "by_name" => Arel.sql("cookbooks.name ASC"),
+    "recently_updated" => Arel.sql("cookbooks.deprecated, cookbooks.updated_at DESC"),
+    "recently_added" => Arel.sql("cookbooks.deprecated, cookbooks.id DESC"),
+    "most_downloaded" => Arel.sql("cookbooks.deprecated, (cookbooks.web_download_count + cookbooks.api_download_count) DESC, cookbooks.id ASC"),
+    "most_followed" => Arel.sql("cookbooks.deprecated, cookbook_followers_count DESC, cookbooks.id ASC"),
+    "by_name" => Arel.sql("cookbooks.deprecated, cookbooks.name ASC"),
   }.freeze
 
   scope :ordered_by, lambda { |option|

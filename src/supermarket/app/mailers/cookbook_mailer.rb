@@ -1,5 +1,5 @@
 class CookbookMailer < ApplicationMailer
-  add_template_helper(CookbookVersionsHelper)
+  helper CookbookVersionsHelper
 
   #
   # Creates an email to a user that is a cookbook follower
@@ -13,6 +13,8 @@ class CookbookMailer < ApplicationMailer
     @cookbook_version = cookbook_version
     @email_preference = user.email_preference_for("New cookbook version")
     @to = user.email
+
+    auto_reply_headers_off
 
     mail(to: @to, subject: "A new version of the #{@cookbook_version.name} cookbook has been released")
   end
@@ -28,6 +30,8 @@ class CookbookMailer < ApplicationMailer
     @name = name
     @email_preference = user.email_preference_for("Cookbook deleted")
     @to = user.email
+
+    auto_reply_headers_off
 
     mail(to: @to, subject: "The #{name} cookbook has been deleted")
   end
@@ -51,6 +55,8 @@ class CookbookMailer < ApplicationMailer
     if @replacement_cookbook
       subject += " in favor of the #{@replacement_cookbook.name} cookbook"
     end
+
+    auto_reply_headers_off
 
     mail(to: @to, subject: subject)
   end

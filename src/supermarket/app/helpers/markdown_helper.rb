@@ -2,14 +2,31 @@ module MarkdownHelper
   #
   # Make auto-links target=_blank
   #
+
   class SupermarketRenderer < Redcarpet::Render::Safe
     include ActionView::Helpers::TagHelper
 
     def initialize(extensions = {})
       super extensions.merge(
         link_attributes: { target: "_blank", rel: "noopener" },
-        with_toc_data: true
+        with_toc_data: true,
+        hard_wrap: true,
+        xhtml: true
       )
+    end
+
+    # Syntax highlighting using CodeRay library
+    def block_code(code, language)
+      if language.present?
+        CodeRay.scan(code, language).div
+      else
+        "<pre><code>#{code}</code></pre>"
+      end
+    end
+
+    # process doc to remove markdown comments as it's not supported by RedCarpet
+    def remove_comments(raw_html)
+      raw_html.gsub(/&lt;!--(.*?)--&gt;/, "")
     end
 
     #
@@ -25,7 +42,7 @@ module MarkdownHelper
       # should be considered
       doc = Nokogiri::HTML::DocumentFragment.parse(html_document)
       doc = make_img_src_urls_protocol_relative(doc)
-      doc.to_s
+      remove_comments(doc.to_s)
     end
 
     private

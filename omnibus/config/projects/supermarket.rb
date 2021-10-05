@@ -1,5 +1,5 @@
 #
-# Copyright 2014-2016 Chef Software, Inc.
+# Copyright:: Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,14 +28,13 @@ install_dir "#{default_root}/#{name}"
 build_version   IO.read(File.expand_path("../../../../VERSION", __FILE__)).strip
 build_iteration 1
 
+# NOTE: see the omnibus-supermarket cookbook gemfile for controlling the infra client version
+override :chef, version: "17.5"
 override :postgresql, version: '9.3.25'
-override :ruby, version: "2.6.7"
-override :rubygems, version: "3.1.2" # rubygems ships its own bundler which may differ from bundler defined below and then we get double bundler which makes the omnibus environment unhappy. Make sure these versions match before bumping either.
-override :bundler, version: "2.1.2" # this must match the BUNDLED WITH in all the repo's Gemfile.locks
-override :'chef-gem', version: '14.14.29'
+override :ruby, version: "2.7.4"
 override :'openssl-fips', version: '2.0.16'
-override :'omnibus-ctl', version: 'master'
-override :'openssl', version: '1.0.2y'
+override :'omnibus-ctl', version: 'main'
+override :openssl, version: '1.0.2za'
 
 # Creates required build directories
 dependency "preparation"
@@ -48,8 +47,10 @@ dependency "supermarket-ctl"
 # Version manifest file
 dependency "version-manifest"
 
+dependency "chef"
 # remove lots of ruby clutter we don't need
 dependency "ruby-cleanup"
+dependency "more-ruby-cleanup-supermarket"
 
 exclude "**/.git"
 exclude "**/bundler/git"

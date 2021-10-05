@@ -1,4 +1,4 @@
-# # Supermarket configuration
+# # Chef Supermarket configuration
 #
 # Attributes here will be applied to configure the application and the services
 # it uses.
@@ -22,8 +22,8 @@
 #
 # ### Chef Identity
 #
-# You will have to set this up in order to log into Supermarket and upload
-# cookbooks with your Chef server keys.
+# You will have to set this up in order to log into Chef Supermarket and upload
+# cookbooks with your Chef Infra Server keys.
 #
 # See the "Chef OAuth2 Settings" section below
 #
@@ -118,7 +118,7 @@ default['supermarket']['nginx']['cache']['directory'] = "#{node['supermarket']['
 #
 # These will be copied to the top-level nginx namespace and used in a
 # template from the community nginx cookbook
-# (https://github.com/miketheman/nginx/blob/master/templates/default/nginx.conf.erb)
+# (https://github.com/sous-chefs/nginx/blob/main/templates/default/nginx.conf.erb)
 default['supermarket']['nginx']['user'] = node['supermarket']['user']
 default['supermarket']['nginx']['group'] = node['supermarket']['group']
 default['supermarket']['nginx']['dir'] = node['supermarket']['nginx']['directory']
@@ -261,7 +261,7 @@ default['supermarket']['ssl']['email_address'] = 'you@example.com'
 # "SSLv3" to the below line.
 default['supermarket']['ssl']['ciphers'] = 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA'
 default['supermarket']['ssl']['fips_ciphers'] = 'FIPS@STRENGTH:!aNULL:!eNULL'
-default['supermarket']['ssl']['protocols'] = 'TLSv1 TLSv1.1 TLSv1.2'
+default['supermarket']['ssl']['protocols'] = 'TLSv1.2'
 default['supermarket']['ssl']['session_cache'] = 'shared:SSL:4m'
 default['supermarket']['ssl']['session_timeout'] = '5m'
 
@@ -312,7 +312,7 @@ default['supermarket']['database']['extensions'] = { 'plpgsql' => true, 'pg_trgm
 # environment variables to be used by the app.
 #
 # Items that are set to nil here and also set in the development environment
-# configuration (https://github.com/chef/supermarket/blob/master/.env) will
+# configuration (https://github.com/chef/supermarket/blob/main/.env) will
 # use the value from the development environment. Set them to something other
 # than nil to change them.
 
@@ -394,19 +394,6 @@ default['supermarket']['chef_oauth2_secret'] = nil
 default['supermarket']['chef_oauth2_url'] = nil
 default['supermarket']['chef_oauth2_verify_ssl'] = true
 
-# ### CLA Settings
-#
-# These are used for the Contributor License Agreement features. You only need
-# them if the cla and/or join_ccla features are enabled (see "Features" below.)
-default['supermarket']['ccla_version'] = nil
-default['supermarket']['cla_signature_notification_email'] = nil
-default['supermarket']['cla_report_email'] = nil
-default['supermarket']['curry_cla_location'] = nil
-default['supermarket']['curry_success_label'] = nil
-default['supermarket']['icla_location'] = nil
-default['supermarket']['icla_version'] = nil
-default['supermarket']['seed_cla_data'] = nil
-
 # ### Features
 #
 # These control the feature flags that turn features on and off.
@@ -416,13 +403,11 @@ default['supermarket']['seed_cla_data'] = nil
 # * announcement: Display the Supermarket initial launch announcement banner
 #   (this will most likely be of no use to you, but could be made a
 #   configurable thing in the future.)
-# * cla: Enable the Contributor License Agreement features
 # * collaborator_groups: Enable collaborator groups, allowing management of collaborators through groups
 # * fieri: Use the fieri service to report on cookbook quality (requires
 #   fieri_url, fieri_supermarket_endpoint, and fieri_key to be set.)
 # * github: Enable GitHub integration, used with CLA signing
 # * gravatar: Enable Gravatar integration, used for user avatars
-# * join_ccla: Enable joining of Corporate CLAs
 # * tools: Enable the tools section
 default['supermarket']['features'] = 'tools, gravatar'
 

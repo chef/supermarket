@@ -81,8 +81,6 @@ Rails.application.routes.draw do
     end
   end
 
-  post "curry/pull_request_updates", to: proc { [410, {}, ["Curry/CLA feature has been removed."]] }
-
   resources :users, only: [:show] do
     member do
       get :tools, constraints: proc { Feature.active?(:tools) }
