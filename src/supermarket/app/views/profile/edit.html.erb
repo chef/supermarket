@@ -52,7 +52,7 @@
 
       <% if Feature.active?(:github) %>
         <div class="content" id="github-accounts">
-          <p>Linking your account lets other cookbook shoppers find you on GitHub for feedback, collaboration, and kudos. The link requests access only to your GitHub account's public information.</p>
+          <p>Linking your account lets other cookbook shoppers find you on <%= github_account_type %> for feedback, collaboration, and kudos. The link requests access only to your <%= github_account_type %> account's public information.</p>
           <table>
             <% current_user.accounts.for('github').each do |account| %>
               <tr>
@@ -62,7 +62,7 @@
             <% end %>
           </table>
 
-          <%= link_to '<i class="fa fa-github"></i> Connect GitHub Account'.html_safe, auth_path(:github), method: :post, class: 'button radius', rel: 'connect_github' %>
+          <%= link_to "<i class='fa fa-github'></i> Connect #{ github_account_type } Account".html_safe, auth_path(:github), method: :post, class: 'button radius', rel: 'connect_github', title: "Connect with #{ github_account_type } Account"%>
         </div>
       <% end %>
       <div class="content" id="collaborations">

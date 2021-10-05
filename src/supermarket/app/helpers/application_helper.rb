@@ -39,4 +39,28 @@ module ApplicationHelper
       "warning" => "warning",
     }.fetch(name)
   end
+
+  #
+  # Returns a github user's profile url
+  #
+  # @param name [String]
+  #
+  # @return [String]
+  #
+
+  def github_profile_url(username)
+    path = ENV["GITHUB_ENTERPRISE_URL"].presence || ENV["GITHUB_URL"]
+    path += "/" unless path.end_with?("/")
+    path + username
+  end
+
+  #
+  # Returns a github account type
+  #
+  # @return [String]
+  #
+
+  def github_account_type
+    ENV["GITHUB_ENTERPRISE_URL"].present? ? "GitHub Enterprise" : "GitHub"
+  end
 end
