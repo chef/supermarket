@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.19 -->
-## [4.1.19](https://github.com/chef/supermarket/tree/4.1.19) (2021-10-05)
+<!-- latest_release 4.1.20 -->
+## [4.1.20](https://github.com/chef/supermarket/tree/4.1.20) (2021-10-06)
 
 #### Merged Pull Requests
-- supermarket release checklist documentation [#2258](https://github.com/chef/supermarket/pull/2258) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Bump chef from 17.5.22 to 17.6.18 in /src/supermarket [#2283](https://github.com/chef/supermarket/pull/2283) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
 ### Changes since 4.0.21 release
 
 #### Merged Pull Requests
+- Bump chef from 17.5.22 to 17.6.18 in /src/supermarket [#2283](https://github.com/chef/supermarket/pull/2283) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.20 -->
 - supermarket release checklist documentation [#2258](https://github.com/chef/supermarket/pull/2258) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.1.19 -->
 - Bump cookstyle from 7.24.1 to 7.25.6 in /omnibus [#2272](https://github.com/chef/supermarket/pull/2272) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.18 -->
 - Bump chefstyle from 2.0.9 to 2.1.0 in /src/supermarket/engines/fieri [#2273](https://github.com/chef/supermarket/pull/2273) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.17 -->
