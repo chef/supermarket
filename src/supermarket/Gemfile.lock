@@ -78,13 +78,13 @@ GEM
     and_feathers-gzipped_tarball (1.0.0.pre)
     ast (2.4.2)
     aws-eventstream (1.2.0)
-    aws-partitions (1.502.0)
-    aws-sdk-core (3.121.0)
+    aws-partitions (1.510.0)
+    aws-sdk-core (3.121.1)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
-    aws-sdk-kms (1.48.0)
+    aws-sdk-kms (1.49.0)
       aws-sdk-core (~> 3, >= 3.120.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-s3 (1.103.0)
@@ -114,12 +114,12 @@ GEM
     capybara-screenshot (1.0.25)
       capybara (>= 1.0, < 4)
       launchy
-    chef (17.5.22)
+    chef (17.6.18)
       addressable
       aws-sdk-s3 (~> 1.91)
       aws-sdk-secretsmanager (~> 1.46)
-      chef-config (= 17.5.22)
-      chef-utils (= 17.5.22)
+      chef-config (= 17.6.18)
+      chef-utils (= 17.6.18)
       chef-vault
       chef-zero (>= 14.0.11)
       diff-lcs (>= 1.2.4, < 1.4.0)
@@ -144,9 +144,9 @@ GEM
       train-winrm (>= 0.2.5)
       uuidtools (>= 2.1.5, < 3.0)
       vault (~> 0.16)
-    chef-config (17.5.22)
+    chef-config (17.6.18)
       addressable
-      chef-utils (= 17.5.22)
+      chef-utils (= 17.6.18)
       fuzzyurl
       mixlib-config (>= 2.2.12, < 4.0)
       mixlib-shellout (>= 2.0, < 4.0)
@@ -154,7 +154,7 @@ GEM
     chef-telemetry (1.1.1)
       chef-config
       concurrent-ruby (~> 1.0)
-    chef-utils (17.5.22)
+    chef-utils (17.6.18)
       concurrent-ruby
     chef-vault (4.1.4)
     chef-zero (15.0.9)
@@ -307,7 +307,7 @@ GEM
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     iniparse (1.5.0)
-    inspec-core (4.41.20)
+    inspec-core (4.46.13)
       addressable (~> 2.4)
       chef-telemetry (~> 1.0, >= 1.0.8)
       faraday (>= 0.9.0, < 1.5)
@@ -395,7 +395,7 @@ GEM
     mini_mime (1.1.1)
     mini_portile2 (2.6.1)
     minitest (5.14.4)
-    mixlib-archive (0.4.20)
+    mixlib-archive (1.1.7)
       mixlib-log
     mixlib-authentication (3.0.10)
     mixlib-cli (2.1.8)
@@ -432,7 +432,7 @@ GEM
     octokit (4.21.0)
       faraday (>= 0.9)
       sawyer (~> 0.8.0, >= 0.5.3)
-    ohai (17.5.2)
+    ohai (17.6.0)
       chef-config (>= 14.12, < 18)
       chef-utils (>= 16.0, < 18)
       ffi (~> 1.9)
@@ -787,7 +787,7 @@ DEPENDENCIES
   brakeman
   capybara
   capybara-screenshot
-  chef (~> 17.5)
+  chef (~> 17.6)
   chefstyle
   coderay
   compass-rails
