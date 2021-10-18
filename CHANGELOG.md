@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.25 -->
-## [4.1.25](https://github.com/chef/supermarket/tree/4.1.25) (2021-10-18)
+<!-- latest_release 4.1.26 -->
+## [4.1.26](https://github.com/chef/supermarket/tree/4.1.26) (2021-10-18)
 
 #### Merged Pull Requests
-- Remove `supermarket contribution link` from welcome page [#2300](https://github.com/chef/supermarket/pull/2300) ([dheerajd-msys](https://github.com/dheerajd-msys))
+- Bump rubocop-rails from 2.12.3 to 2.12.4 in /src/supermarket/engines/fieri [#2304](https://github.com/chef/supermarket/pull/2304) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
 ### Changes since 4.0.21 release
 
 #### Merged Pull Requests
+- Bump rubocop-rails from 2.12.3 to 2.12.4 in /src/supermarket/engines/fieri [#2304](https://github.com/chef/supermarket/pull/2304) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.26 -->
 - Remove `supermarket contribution link` from welcome page [#2300](https://github.com/chef/supermarket/pull/2300) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 4.1.25 -->
 - &quot;Chef versions&quot; in cookbook view should be &quot;Required Chef Infra Client&quot;. [#2301](https://github.com/chef/supermarket/pull/2301) ([antima-gupta](https://github.com/antima-gupta)) <!-- 4.1.24 -->
 - Bump omnibus-software from `24f508c` to `a2a70e2` in /omnibus [#2288](https://github.com/chef/supermarket/pull/2288) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.23 -->
