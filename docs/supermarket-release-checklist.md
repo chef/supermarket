@@ -67,7 +67,7 @@ To manage cookbooks between supermarket and chef-server we need to install chef-
   - You will be able to manage your cookbooks and other resources from inside `chef-repo`
 - Inside the chef repo you need to configure your chef server credentials as follows:
   - Create a directory .chef inside the `chef-repo`. Command: `mkdir .chef`
-  - Copy the `user.pem` and `org-validator.pem` to the `.chef` directory. Need to mention these 2 pemfiles in the following step.
+  - Copy the `<user>.pem` and `<org-validator>.pem` to the `.chef` directory. Need to mention these 2 pemfiles in the following step.
   - Create a new file inside chef-repo with: ```vim .chef/config.rb``` and add the following content and replace the placeholders ( e.g. `<placeholder>`) with respective values: 
 
     ```
