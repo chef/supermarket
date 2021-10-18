@@ -34,12 +34,12 @@ Initially the fqdn was the private DNS which was something like: **ip-xxx-xx-xx-
 I had to set the hostname of the instance to the public IP address which was like: <x.xxx.xxx.xxx>
 The command used is as follows:
 ```
-sudo hostnamectl set-hostname <supermarket ec2 IP address>
+sudo hostnamectl set-hostname <supermarket ec2 public IP address>
 ```
 
 Had to set the same IP in the redirect url in chef server oc-id applications as follows:
 ```
-"redirect_uri": "https://<supermarket ec2 IP address>/auth/chef_oauth2/callback"
+"redirect_uri": "https://<supermarket ec2 public IP address>/auth/chef_oauth2/callback"
 ```
 
 Now it's able to authorize supermarket with oc-id. But the only issue remains is that it's saying the certificate in supermarket is self signed and hence not setting the authorization token in cookie when there is a redirect happening from chef-server to supermarket callback URL. We need to stop ssl verification of supermarket for `chef-oauth`. We need to make certain changes in our supermarket instance configuration to resolve the self signed certificate issue as follows:
@@ -51,13 +51,13 @@ Now it's able to authorize supermarket with oc-id. But the only issue remains is
 - Now as you have changed the ssl verification to false you need to reconfigure your supermarket with the command:
   `supermarket-ctl reconfigure`
 - To validate if the changes are properly done you can check the file: `/etc/supermarket/supermarket-running.json`. There you should be able to find the same flag: `chef_oauth2_verify_ssl`. You can validate if it's set to `false`. This will ensure your changes have taken effect.
-- Now go to the your development supermarket website: `https://<supermarket ec2 IP address>` and try to login to supermarket using correct chef-server credentials. Authorize supermarket from the chef-server page and it should log you in to supermarket as the chef-server user.
+- Now go to the your development supermarket website: `https://<supermarket ec2 public IP address>` and try to login to supermarket using correct chef-server credentials. Authorize supermarket from the chef-server page and it should log you in to supermarket as the chef-server user.
 
 ### Connect to chef-server using Chef-Client
 
 To manage cookbooks between supermarket and chef-server we need to install chef-client in our supermarket instance to connect to chef-server as per the following instructions:
 
-- Get the <user>.pem and <org-validator>.pem file from your chef server into supermarket server through scp command. You will mostly find these 2 pemfiles in the `/tmp` directory in the chef-server host.
+- Get the `<user>.pem` and `<org-validator>.pem` file from your chef server into supermarket server through scp command. You will mostly find these 2 pemfiles in the `/tmp` directory in the chef-server host.
 - To install chef client in supermarket instance do the following:
   - ssh into the supermarket ec2 instance.
   - ```wget https://packages.chef.io/files/stable/chef-workstation/20.6.62/debian/10/chef-workstation_20.6.62-1_amd64.deb```
