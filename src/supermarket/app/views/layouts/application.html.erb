@@ -57,15 +57,7 @@
         </header>
 
         <% if Feature.active?(:announcement) %>
-          <div id="banner_for_annoucements">
-            <% if ENV["ANNOUNCEMENT_TEXT"].present? && @dashboard%>
-              <%= render partial: 'application/supermarket_banner' %>
-            <%end%>
-          </div>
-
-          <div id="more_info_menu_content">
-            <%= render partial: 'application/announcement_banner'%>
-          </div>
+          <%= render partial: 'application/announcement_banner'%>
         <% end %>
 
         <%= render partial: 'application/flash' %>
