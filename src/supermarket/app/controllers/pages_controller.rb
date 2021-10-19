@@ -9,7 +9,6 @@ class PagesController < ApplicationController
   # user a taste of what Supermarket is all about.
   #
   def welcome
-    @dashboard = true
     redirect_to dashboard_path if current_user.present?
 
     @cookbook_count = Cookbook.count
@@ -23,7 +22,6 @@ class PagesController < ApplicationController
   # collaborated cookbooks and new versions of cookbooks that the user follows.
   #
   def dashboard
-    @dashboard = true
     @cookbooks = current_user.owned_cookbooks.limit(5)
     @collaborated_cookbooks = current_user.collaborated_cookbooks.limit(5)
     @tools = current_user.tools.limit(5)

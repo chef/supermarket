@@ -2,15 +2,12 @@ require "spec_helper"
 
 describe "layouts/application.html.erb" do
   let!(:search) { { path: cookbooks_path, name: "Cookbooks" } }
-  let!(:dashboard) { true }
 
   before :each do
     ENV["ANNOUNCEMENT_TEXT"] = "supermarket announcement text"
     assign(:search, search)
-    assign(:dashboard, dashboard)
 
     allow(view).to receive(:search).and_return(search)
-    allow(view).to receive(:dashboard).and_return(true)
     allow(view).to receive(:signed_in?).and_return(false)
     allow(Feature).to receive(:active).with(:announcement).and_return(true)
   end
