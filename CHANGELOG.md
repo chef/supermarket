@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.28 -->
-## [4.1.28](https://github.com/chef/supermarket/tree/4.1.28) (2021-10-18)
+<!-- latest_release 4.1.29 -->
+## [4.1.29](https://github.com/chef/supermarket/tree/4.1.29) (2021-10-21)
 
 #### Merged Pull Requests
-- Bump puma from 5.5.0 to 5.5.2 in /src/supermarket [#2294](https://github.com/chef/supermarket/pull/2294) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump omnibus from `37897ad` to `b1f410b` in /omnibus [#2311](https://github.com/chef/supermarket/pull/2311) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.8 -->
 ### Changes since 4.0.21 release
 
 #### Merged Pull Requests
+- Bump omnibus from `37897ad` to `b1f410b` in /omnibus [#2311](https://github.com/chef/supermarket/pull/2311) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.29 -->
 - Bump puma from 5.5.0 to 5.5.2 in /src/supermarket [#2294](https://github.com/chef/supermarket/pull/2294) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.28 -->
 - Bump rubocop-rails from 2.12.3 to 2.12.4 in /src/supermarket [#2305](https://github.com/chef/supermarket/pull/2305) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.27 -->
 - Bump rubocop-rails from 2.12.3 to 2.12.4 in /src/supermarket/engines/fieri [#2304](https://github.com/chef/supermarket/pull/2304) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.26 -->
