@@ -181,8 +181,12 @@ default['supermarket']['postgresql']['log_rotation']['file_maxbytes'] = 10485760
 default['supermarket']['postgresql']['log_rotation']['num_to_keep'] = 10
 
 # ### DB settings
+# The following 2 attributes are introduced for upgrading postgres to v13.3
+default['supermarket']['postgresql']['max_wal_size'] = '1GB'
+default['supermarket']['postgresql']['min_wal_size'] = '80MB'
+
+default['supermarket']['postgresql']['checkpoint_flush_after'] = '256kB'
 default['supermarket']['postgresql']['checkpoint_completion_target'] = 0.5
-default['supermarket']['postgresql']['checkpoint_segments'] = 3
 default['supermarket']['postgresql']['checkpoint_timeout'] = '5min'
 default['supermarket']['postgresql']['checkpoint_warning'] = '30s'
 default['supermarket']['postgresql']['effective_cache_size'] = '128MB'

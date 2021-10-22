@@ -171,10 +171,11 @@ work_mem = <%= node['supermarket']['postgresql']['work_mem'] %>				# min 64kB
 
 # - Checkpoints -
 
-checkpoint_segments =  <%= node['supermarket']['postgresql']['checkpoint_segments'] %>		# in logfile segments, min 1, 16MB each, default 3
 checkpoint_timeout = <%= node['supermarket']['postgresql']['checkpoint_timeout'] %>		# range 30s-1h, default 5min
 checkpoint_completion_target = <%= node['supermarket']['postgresql']['checkpoint_completion_target'] %>	# checkpoint target duration, 0.0 - 1.0, default 0.5
 checkpoint_warning = <%= node['supermarket']['postgresql']['checkpoint_warning'] %>		# 0 disables, default 30s
+max_wal_size = <%= node['supermarket']['postgresql']['max_wal_size'] %>                # integer, defaults to 1GB
+min_wal_size = <%= node['supermarket']['postgresql']['min_wal_size'] %>                # integer, defaults to 80MB
 
 # - Archiving -
 
