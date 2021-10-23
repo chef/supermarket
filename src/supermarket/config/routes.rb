@@ -2,9 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   VERSION_PATTERN = /latest|([0-9_\-\.]+)/.freeze unless defined?(VERSION_PATTERN)
 
-  if Rails.env.development?
-    mount MailPreview => "mail_view"
-  end
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   mount Fieri::Engine, at: "/fieri", constraints: proc { Feature.active?(:fieri) }
 

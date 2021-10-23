@@ -68,6 +68,7 @@ group :development do
   gem "spring"
   gem "spring-commands-rspec"
   gem "brakeman"
+  gem "letter_opener_web", "~> 1.0"
 end
 
 group :test do
@@ -88,7 +89,6 @@ group :development, :test do
   gem "factory_bot_rails", require: false
   gem "faker"
   gem "launchy"
-  gem "mail_view"
   gem "pry-byebug"
   gem "pry-rails"
   gem "rspec-rails"
