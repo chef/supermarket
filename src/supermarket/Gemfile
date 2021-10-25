@@ -88,11 +88,11 @@ group :development, :test do
   gem "factory_bot_rails", require: false
   gem "faker"
   gem "launchy"
-  gem "mail_view"
   gem "pry-byebug"
   gem "pry-rails"
   gem "rspec-rails"
   gem "rubocop-rails"
+  gem "letter_opener_web", "~> 1.0"
 
   # Pinned to be greater than or equal to 1.0.0.pre because the gems were prior
   # to 1.0.0 release when added

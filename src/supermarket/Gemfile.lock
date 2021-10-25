@@ -351,6 +351,12 @@ GEM
     kgio (2.11.4)
     launchy (2.5.0)
       addressable (~> 2.7)
+    letter_opener (1.7.0)
+      launchy (~> 2.2)
+    letter_opener_web (1.4.1)
+      actionmailer (>= 3.2)
+      letter_opener (~> 1.0)
+      railties (>= 3.2)
     libhoney (1.20.0)
       addressable (~> 2.0)
       excon
@@ -382,8 +388,6 @@ GEM
     lumberjack (1.2.8)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
-    mail_view (2.0.4)
-      tilt
     marcel (1.0.1)
     method_source (1.0.0)
     mime-types (3.3.1)
@@ -812,9 +816,9 @@ DEPENDENCIES
   jbuilder
   kaminari
   launchy
+  letter_opener_web (~> 1.0)
   license_finder
   listen
-  mail_view
   mixlib-authentication (~> 3.0)
   newrelic_rpm
   nokogiri
