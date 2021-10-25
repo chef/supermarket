@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.8 -->
-## [4.2.8](https://github.com/chef/supermarket/tree/4.2.8) (2021-10-25)
+<!-- latest_release 4.2.9 -->
+## [4.2.9](https://github.com/chef/supermarket/tree/4.2.9) (2021-10-25)
 
 #### Merged Pull Requests
-- Bump chefstyle from 2.1.0 to 2.1.1 in /src/supermarket/engines/fieri [#2316](https://github.com/chef/supermarket/pull/2316) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump cookstyle from 7.25.6 to 7.25.8 in /omnibus [#2315](https://github.com/chef/supermarket/pull/2315) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump cookstyle from 7.25.6 to 7.25.8 in /omnibus [#2315](https://github.com/chef/supermarket/pull/2315) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.9 -->
 - Bump chefstyle from 2.1.0 to 2.1.1 in /src/supermarket/engines/fieri [#2316](https://github.com/chef/supermarket/pull/2316) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.8 -->
 - Bump honeycomb-beeline from 2.7.0 to 2.7.1 in /src/supermarket [#2317](https://github.com/chef/supermarket/pull/2317) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.7 -->
 - Bump chefstyle from 2.1.0 to 2.1.1 in /src/supermarket [#2318](https://github.com/chef/supermarket/pull/2318) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.6 -->
