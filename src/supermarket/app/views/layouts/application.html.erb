@@ -20,7 +20,7 @@
     <% end %>
     <%= csrf_meta_tags %>
     <% unless air_gapped? %>
-      <%= render 'analytics' %>
+      <%= render 'application/analytics' %>
     <% end %>
   </head>
   <body class="<%= controller.controller_name %>">
@@ -52,16 +52,16 @@
             <div class="logo_and_nav_toggle">
               <h2 class="logochef"><%= link_to root_path do %><span>Chef Supermarket</span><% end %></h2>
             </div>
-            <%= render partial: 'appheader' %>
+            <%= render 'application/appheader' %>
           </div>
         </header>
 
         <% if Feature.active?(:announcement) %>
-          <%= render partial: 'announcement_banner' %>
+          <%= render 'application/announcement_banner'%>
         <% end %>
 
-        <%= render partial: 'flash' %>
-        <%= render partial: 'search' %>
+        <%= render 'application/flash' %>
+        <%= render 'application/search' %>
 
         <div class="container">
           <%= yield %>

@@ -1,6 +1,6 @@
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
-    <div data-alert class="alert-box <%= flash_message_class_for(name) %>">
+    <div data-alert class="alert-box alert-box-fade <%= flash_message_class_for(name) %>">
       <%= content_tag :div, msg %>
       <a href="#" class="close">&times;</a>
     </div>

@@ -1,5 +1,5 @@
 $(function() {
   setTimeout(function() {
-    $('.alert-box').fadeOut();
+    $('.alert-box-fade').fadeOut();
   }, 7000)
 });

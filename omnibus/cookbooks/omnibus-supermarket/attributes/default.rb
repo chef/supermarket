@@ -487,3 +487,6 @@ default['supermarket']['smtp_user_name'] = nil
 # If these are present, metrics can be reported to a StatsD server.
 default['supermarket']['statsd_url'] = nil
 default['supermarket']['statsd_port'] = nil
+
+# announcement text for banner
+default['supermarket']['announcement_text'] = nil
