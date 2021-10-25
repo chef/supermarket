@@ -1,4 +1,5 @@
 require "spec_helper"
+require "webmock/rspec"
 
 describe CookbooksController do
   describe "GET #index" do
@@ -269,7 +270,12 @@ describe CookbooksController do
         cookbook: cookbook
       )
     end
-    before { sign_in user }
+
+    before {
+      sign_in user
+      stub_request(:post, ENV["FIERI_URL"])
+        .to_return(status: 200, body: "", headers: {})
+    }
 
     context "the params are valid" do
       it "updates the cookbook" do
@@ -321,6 +327,17 @@ describe CookbooksController do
         expect(response).to redirect_to(assigns[:cookbook])
       end
     end
+
+    it "re-evaluates quality metrics on update of up_for_adoption" do
+      expect do
+        patch :update, params: { id: cookbook, cookbook: {
+          source_url: "http://example.com/cookbook",
+          issues_url: "http://example.com/cookbook/issues",
+          up_for_adoption: true,
+        } }
+      end.to change(FieriNotifyWorker.jobs, :size).by(1)
+    end
+
   end
 
   describe "GET #directory" do

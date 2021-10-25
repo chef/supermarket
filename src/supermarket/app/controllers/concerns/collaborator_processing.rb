@@ -37,7 +37,21 @@ module CollaboratorProcessing
 
   def remove_collaborator(collaborator)
     authorize!(collaborator, "destroy?")
+    cookbook_related = nil
+
+    if collaborator.resourceable_type == Collaborator::COOKBOOK_TYPE
+      cookbook_related = Cookbook.find_by(id: collaborator.resourceable_id)
+    end
     collaborator.destroy
+
+    # get collaborator cookbook and run quality metrics
+    if cookbook_related.present?
+      if Feature.active?(:fieri) && ENV["FIERI_URL"].present?
+        FieriNotifyWorker.perform_async(
+          cookbook_related.latest_cookbook_version.id
+        )
+      end
+    end
   end
 
   def remove_group_collaborators(collaborators)

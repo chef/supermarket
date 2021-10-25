@@ -21,6 +21,8 @@ class Collaborator < ApplicationRecord
   attr_accessor :user_ids
   attr_accessor :group_ids
 
+  COOKBOOK_TYPE = "Cookbook".freeze
+
   #
   # Transfers ownership of this cookbook to this user. The existing owner is
   # automatically demoted to a collaborator.

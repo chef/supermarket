@@ -86,6 +86,15 @@ describe TransferOwnershipController do
         get :accept, params: { token: transfer_request }
       end
 
+      it "re-evaluates collaborator rating" do
+        allow(OwnershipTransferRequest).to receive(:find_by!) { transfer_request }
+        expect(transfer_request.accepted).to be_nil
+        expect(transfer_request).to receive(:accept!)
+        expect do
+          get :accept, params: { token: transfer_request }
+        end.to change(FieriNotifyWorker.jobs, :size).by(1)
+      end
+
       it_behaves_like "a transfer request"
     end
 

@@ -23,6 +23,12 @@ class TransferOwnershipController < ApplicationController
   #
   def accept
     @transfer_request.accept!
+    if Feature.active?(:fieri) && ENV["FIERI_URL"].present?
+      FieriNotifyWorker.perform_async(
+        @transfer_request.cookbook.latest_cookbook_version.id
+      )
+    end
+
     redirect_to @transfer_request.cookbook,
                 notice: t(
                   "cookbook.ownership_transfer.invite_accepted",
