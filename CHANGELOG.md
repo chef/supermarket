@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.10 -->
-## [4.2.10](https://github.com/chef/supermarket/tree/4.2.10) (2021-10-25)
+<!-- latest_release 4.2.11 -->
+## [4.2.11](https://github.com/chef/supermarket/tree/4.2.11) (2021-10-25)
 
 #### Merged Pull Requests
-- GitHub Enterprise feature [#2287](https://github.com/chef/supermarket/pull/2287) ([antima-gupta](https://github.com/antima-gupta))
+- Bump ddtrace from 0.52.0 to 0.53.0 in /src/supermarket [#2291](https://github.com/chef/supermarket/pull/2291) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump ddtrace from 0.52.0 to 0.53.0 in /src/supermarket [#2291](https://github.com/chef/supermarket/pull/2291) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.11 -->
 - GitHub Enterprise feature [#2287](https://github.com/chef/supermarket/pull/2287) ([antima-gupta](https://github.com/antima-gupta)) <!-- 4.2.10 -->
 - Bump cookstyle from 7.25.6 to 7.25.8 in /omnibus [#2315](https://github.com/chef/supermarket/pull/2315) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.9 -->
 - Bump chefstyle from 2.1.0 to 2.1.1 in /src/supermarket/engines/fieri [#2316](https://github.com/chef/supermarket/pull/2316) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.8 -->
