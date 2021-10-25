@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.0 -->
-## [4.2.0](https://github.com/chef/supermarket/tree/4.2.0) (2021-10-22)
+<!-- latest_release 4.2.1 -->
+## [4.2.1](https://github.com/chef/supermarket/tree/4.2.1) (2021-10-25)
 
 #### Merged Pull Requests
-- Quality metrics logic added on transfer of ownership and up for adoption [#2255](https://github.com/chef/supermarket/pull/2255) ([msys-sgarg](https://github.com/msys-sgarg))
+- Update supermarket-release-checklist.md [#2303](https://github.com/chef/supermarket/pull/2303) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update supermarket-release-checklist.md [#2303](https://github.com/chef/supermarket/pull/2303) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.1 -->
 - Quality metrics logic added on transfer of ownership and up for adoption [#2255](https://github.com/chef/supermarket/pull/2255) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.2.0 -->
 - Bump omnibus from `37897ad` to `b1f410b` in /omnibus [#2311](https://github.com/chef/supermarket/pull/2311) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.29 -->
 - Bump omnibus-software from `a2a70e2` to `0f8338a` in /omnibus [#2310](https://github.com/chef/supermarket/pull/2310) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.1.30 -->
