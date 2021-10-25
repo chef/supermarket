@@ -225,6 +225,61 @@ Next, create a Github Access token. You also do this from the "Applications" sec
   GITHUB_ACCESS_TOKEN=[Token you just generated through Github]
   ```
 
+## Connecting your Github Enterprise Account
+
+There are a couple features that depend on GitHub Enterprise integration (CLA signing, some quality metrics in Fieri). You can set up an integration for your development environment by creating an application with your Github Enterprise account. To do this:
+
+1. Log into your Github Enterprise account if you aren't already.
+2. Click on your username in the upper right hand corner.
+3. Click the "User settings" in the vertical menu on the right corner. This will bring you to your Public Profile page.
+4. Click on "Developer settings" in the vertical menu on the left hand side
+5. At the top of the screen you'll see a section labeled "Developer settings" with text "OAuth App"  Click on this. 
+6. Click on button "new OAuth App". This will bring you to Register a new OAuth application page.
+7. Name your application whatever you like (I use "testing-supermarket-app"), the set the homepage url as http://localhost:3000 (or whatever localhost domain that you use). Also set the Authorization callback URL to http://localhost:3000/auth/github/callback (or your localhost domain of choice).
+8. Click the "Register application" button.
+9. Open up the .env.development file in your local copy of the Supermarket repo. Replace these values:
+
+  ```
+  GITHUB_KEY=YOUR_GITHUB_KEY
+  GITHUB_SECRET=YOUR_GITHUB_SECRET
+  GITHUB_ENTERPRISE_URL=YOUR_GITHUB_ENTERPRISE_URL
+  GITHUB_CLIENT_OPTION_SITE=YOUR_GITHUB_ENTERPRISE_SITE
+  GITHUB_CLIENT_OPTION_AUTHORIZE_URL=YOUR_GITHUB_ENTERPRISE_AUTHORIZE_URL
+  GITHUB_CLIENT_OPTION_ACCESS_TOKEN_URL=YOUR_GITHUB_ENTERPRISE_ACCESS_TOKEN_URL
+  ```
+
+  with these values:
+
+  ```
+  GITHUB_KEY=[Your new application's client ID]
+  GITHUB_SECRET=[Your new application's client secret]
+  GITHUB_ENTERPRISE_URL=[Your GitHub Enterprise URL]
+  GITHUB_CLIENT_OPTION_SITE=YOURGITHUBENTERPRISEURL/api/v3
+  GITHUB_CLIENT_OPTION_AUTHORIZE_URL=YOURGITHUBENTERPRISEURL/login/oauth/authorize
+  GITHUB_CLIENT_OPTION_ACCESS_TOKEN_URL=YOURGITHUBENTERPRISEURL/login/oauth/access_token
+  ```
+
+Next, create a Github Access token. You also do this from the "Developer settings" section.
+
+1. Click on "Personal access tokens". This will bring you to Personal access tokens page.
+2. Look at the "Personal access tokens section heading." Click on the "Generate new token" button.
+3. When prompted, enter your Github password.
+4. Enter whatever you like for the Token description, I use "testing-supermarket"
+5. Leave the scopes at the defaults
+6. Click the "Generate token" button
+7. Copy the token it generates and put it somewhere safe!
+8. Open up your .env.development file again and replace this value:
+
+  ```
+  GITHUB_ACCESS_TOKEN=YOUR_GITHUB_ACCESS_TOKEN
+  ```
+
+  with this value:
+
+  ```
+  GITHUB_ACCESS_TOKEN=[Token you just generated through Github]
+  ```
+
 ## Tests
 
 Requirements for tests: PhantomJS 1.8, Node

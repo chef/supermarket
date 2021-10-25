@@ -340,6 +340,11 @@ default['supermarket']['sentry_url'] = nil
 default['supermarket']['api_item_limit'] = 100
 default['supermarket']['rails_log_to_stdout'] = true
 default['supermarket']['fips_enabled'] = nil
+default['supermarket']['github_url'] = nil
+default['supermarket']['github_enterprise_url'] = nil
+default['supermarket']['github_client_option_authorize_url'] = nil
+default['supermarket']['github_client_option_site'] = nil
+default['supermarket']['github_client_option_access_token_url'] = nil
 
 # Allow owners to remove their cookbooks, cookbook versions, or tools.
 # Added as a step towards implementing RFC072 Artifact Yanking
