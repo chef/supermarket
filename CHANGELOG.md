@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.5 -->
-## [4.2.5](https://github.com/chef/supermarket/tree/4.2.5) (2021-10-25)
+<!-- latest_release 4.2.6 -->
+## [4.2.6](https://github.com/chef/supermarket/tree/4.2.6) (2021-10-25)
 
 #### Merged Pull Requests
-- Replace mail_view with letter-opener [#2313](https://github.com/chef/supermarket/pull/2313) ([msys-sgarg](https://github.com/msys-sgarg))
+- Bump chefstyle from 2.1.0 to 2.1.1 in /src/supermarket [#2318](https://github.com/chef/supermarket/pull/2318) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump chefstyle from 2.1.0 to 2.1.1 in /src/supermarket [#2318](https://github.com/chef/supermarket/pull/2318) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.6 -->
 - Replace mail_view with letter-opener [#2313](https://github.com/chef/supermarket/pull/2313) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.2.5 -->
 - Changes for supermarket banner for announcements [#2306](https://github.com/chef/supermarket/pull/2306) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.2.4 -->
 - Bump spring from 2.1.1 to 3.0.0 in /src/supermarket [#2224](https://github.com/chef/supermarket/pull/2224) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.3 -->
