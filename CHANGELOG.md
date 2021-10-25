@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.3 -->
-## [4.2.3](https://github.com/chef/supermarket/tree/4.2.3) (2021-10-25)
+<!-- latest_release 4.2.4 -->
+## [4.2.4](https://github.com/chef/supermarket/tree/4.2.4) (2021-10-25)
 
 #### Merged Pull Requests
-- Bump spring from 2.1.1 to 3.0.0 in /src/supermarket [#2224](https://github.com/chef/supermarket/pull/2224) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Changes for supermarket banner for announcements [#2306](https://github.com/chef/supermarket/pull/2306) ([msys-sgarg](https://github.com/msys-sgarg))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Changes for supermarket banner for announcements [#2306](https://github.com/chef/supermarket/pull/2306) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.2.4 -->
 - Bump spring from 2.1.1 to 3.0.0 in /src/supermarket [#2224](https://github.com/chef/supermarket/pull/2224) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.3 -->
 - Update sidekiq requirement from ~&gt; 4.2 to &gt;= 4.2, &lt; 7.0 in /src/supermarket/engines/fieri [#2237](https://github.com/chef/supermarket/pull/2237) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 4.2.2 -->
 - Update supermarket-release-checklist.md [#2303](https://github.com/chef/supermarket/pull/2303) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.1 -->
