@@ -5,7 +5,7 @@ describe 'omnibus-supermarket::config' do
   automatic_attributes['memory']['total'] = '16000MB'
 
   it 'creates the supermarket user' do
-    expect(chef_run).to create_user('supermarket')
+    expect(chef_run).to create_user('supermarket').with(shell: '/bin/false', system: true)
   end
 
   it 'creates the supermarket group' do
