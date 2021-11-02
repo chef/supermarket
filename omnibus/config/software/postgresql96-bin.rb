@@ -14,9 +14,9 @@
 # limitations under the License.
 #
 
-name "postgresql93-bin"
+name "postgresql96-bin"
 
-default_version "9.3.25"
+default_version "9.6.23"
 
 license "PostgreSQL"
 license_file "COPYRIGHT"
@@ -30,7 +30,7 @@ dependency "libossp-uuid"
 dependency "config_guess"
 
 source url: "https://ftp.postgresql.org/pub/source/v#{version}/postgresql-#{version}.tar.bz2"
-version("9.3.25") { source sha256: "e4953e80415d039ccd33d34be74526a090fd585cf93f296cd9c593972504b6db" }
+version("9.6.23") { source sha256: "a849f798401ab8c6dfa653ebbcd853b43f2200b4e3bc1ea3cb5bec9a691947b9" }
 
 relative_path "postgresql-#{version}"
 
