@@ -35,9 +35,6 @@ directory node['supermarket']['postgresql']['log_directory'] do
   recursive true
 end
 
-# Upgrade the cluster if you gotta
-pg_upgrade 'upgrade_if_necessary'
-
 if node['supermarket']['postgresql']['enable']
   enterprise_pg_cluster 'supermarket' do
     data_dir node['supermarket']['postgresql']['data_directory']

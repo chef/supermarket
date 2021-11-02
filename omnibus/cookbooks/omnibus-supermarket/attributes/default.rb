@@ -170,7 +170,8 @@ default['supermarket']['nginx']['client_max_body_size'] = '250m'
 default['supermarket']['nginx']['default']['modules'] = []
 
 # ## Postgres
-default['supermarket']['postgresql']['version'] = '13.3'
+default['supermarket']['postgresql']['external'] = false
+default['supermarket']['postgresql']['version'] = '13'
 default['supermarket']['postgresql']['enable'] = true
 default['supermarket']['postgresql']['username'] = node['supermarket']['user']
 default['supermarket']['postgresql']['data_directory'] = "#{node['supermarket']['var_directory']}/postgresql/#{node['supermarket']['postgresql']['version']}/data"
@@ -187,6 +188,8 @@ default['supermarket']['postgresql']['min_wal_size'] = '80MB'
 
 default['supermarket']['postgresql']['checkpoint_flush_after'] = '256kB'
 default['supermarket']['postgresql']['checkpoint_completion_target'] = 0.5
+# commenting this as this attribute is deprecated after postgres 9.3
+# default['supermarket']['postgresql']['checkpoint_segments'] = 3
 default['supermarket']['postgresql']['checkpoint_timeout'] = '5min'
 default['supermarket']['postgresql']['checkpoint_warning'] = '30s'
 default['supermarket']['postgresql']['effective_cache_size'] = '128MB'

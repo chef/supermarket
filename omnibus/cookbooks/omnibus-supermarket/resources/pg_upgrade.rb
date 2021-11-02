@@ -26,7 +26,7 @@
 #   pg_upgrade process is run as
 #
 # Assumes that binaries are stored in
-# /opt/opscode/embedded/postgresql/$VERSION/bin.
+# /opt/supermarket/embedded/postgresql/$VERSION/bin.
 
 # ASSUMPTIONS
 #
@@ -69,6 +69,7 @@ action :upgrade do
       check_required_disk_space unless ENV['CS_SKIP_PG_DISK_CHECK'] == '1'
       shutdown_postgres
       initialize_new_cluster
+      # setup_version_binary_folder
       update_to_latest_version
     end
   end
@@ -232,7 +233,7 @@ action_class do
   #   like "9.1.9" or "9.2.4"
   # @return [String] the absolute path to the binaries.
   def binary_path_for(version)
-    "/opt/opscode/embedded/postgresql/#{version}/bin"
+    "/opt/supermarket/embedded/postgresql/#{version}/bin"
   end
 
   def update_to_latest_version
@@ -264,6 +265,49 @@ action_class do
       cwd new_data_dir # TODO: Should this be some other directory, instead?
       creates sentinel_file
       timeout node['private_chef']['postgresql']['pg_upgrade_timeout']
+    end
+  end
+
+  # this will setup a version specific directory for postgres where all the binaries related to postgres will be 
+  def setup_version_binary_folder
+    old_version = version_from_data_dir(old_data_dir)
+    old_bin_path = binary_path_for(old_version)
+    unless Dir.exist?(old_bin_path)
+      Chef::Log.debug("Copying binaries to version directory")
+      Dir.create(old_bin_path)
+      pg_binaries = %w[clusterdb
+                        createdb
+                        createuser
+                        dropdb
+                        dropuser
+                        ecpg
+                        initdb
+                        oid2name
+                        pg_archivecleanup
+                        pg_basebackup
+                        pg_config
+                        pg_controldata
+                        pg_ctl
+                        pg_dump
+                        pg_dumpall
+                        pg_isready
+                        pg_recvlogical
+                        pg_restore
+                        pg_rewind
+                        pg_standby
+                        pg_test_fsync
+                        pg_test_timing
+                        pg_upgrade
+                        pgbench
+                        postgres
+                        psql
+                        reindexdb
+                        vacuumdb
+                        vacuumlo]
+      pg_binaries.each do |binary|
+        FileUtils.cp(filename, old_bins)
+      end
+      Chef::Log.debug("DONE: Copying binaries to version directory")
     end
   end
 end

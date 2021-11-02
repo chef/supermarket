@@ -22,7 +22,9 @@ source path: File.expand_path('../../../../src/supermarket', project.filepath)
 dependency "cacerts"
 dependency "git"
 dependency "openresty"
-dependency "postgresql"
+dependency "postgresql93-bin" # for upgrading 9.3 -> 13.3
+dependency "postgresql13"
+# dependency "postgresql"
 dependency "redis"
 dependency "ruby"
 dependency "runit"

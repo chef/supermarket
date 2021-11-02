@@ -20,7 +20,7 @@
 include_recipe 'omnibus-supermarket::config'
 include_recipe 'omnibus-supermarket::log_management'
 include_recipe 'omnibus-supermarket::ssl'
-include_recipe 'omnibus-supermarket::postgresql'
+# include_recipe 'omnibus-supermarket::postgresql'
 include_recipe 'omnibus-supermarket::redis'
 include_recipe 'omnibus-supermarket::nginx'
 include_recipe 'omnibus-supermarket::database'
@@ -32,4 +32,31 @@ file "#{node['supermarket']['config_directory']}/supermarket-running.json" do
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'
+end
+
+%w(
+  postgresql
+).each do |service|
+  if node['supermarket'][service]['external']
+    begin
+      # Perform any necessary configuration of the external service:
+      include_recipe "omnibus-supermarket::#{service}-external"
+    rescue Chef::Exceptions::RecipeNotFound
+      raise "#{service} has the 'external' attribute set true, but does not currently support being run externally."
+    end
+    # Disable the actual local service since what is enabled is an
+    # externally managed version. Given that bootstrap isn't
+    # externalizable, we don't need special handling for it as we do
+    # in the normal disable case below.
+    component_runit_service service do
+      action :disable
+    end
+  elsif node['supermarket'][service]['enable']
+    include_recipe "omnibus-supermarket::#{service}"
+  else
+    # All non-enabled services get disabled;
+    component_runit_service service do
+      action :disable
+    end
+  end
 end
