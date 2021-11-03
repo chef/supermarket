@@ -36,7 +36,9 @@ relative_path "postgresql-#{version}"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
-  short_version = version.gsub(/^([0-9]+).([0-9]+).[0-9]+$/, '\1.\2')
+  # short_version = version.gsub(/^([0-9]+).([0-9]+).[0-9]+$/, '\1.\2')
+  # We need to consider only the major version for postgres 13
+  short_version = version.match(/^([0-9]+)/).to_s
 
   update_config_guess(target: "config")
 
