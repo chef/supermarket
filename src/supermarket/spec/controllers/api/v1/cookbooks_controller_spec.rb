@@ -13,6 +13,11 @@ describe Api::V1::CookbooksController do
   it_behaves_like "an API v1 controller"
 
   describe "#index" do
+
+    before :each do
+      ENV["API_ITEM_LIMIT"] = "0"
+    end
+
     it "orders the cookbooks by their name by default" do
       get :index, format: :json
 
@@ -251,10 +256,10 @@ describe Api::V1::CookbooksController do
       expect(assigns[:results]).to include(redis)
     end
 
-    it "sends the total number of search results to the view" do
+    it "sends the total number of cookbooks present in system to the view" do
       get :search, params: { q: "redis", format: :json }
 
-      expect(assigns[:total]).to eql(2)
+      expect(assigns[:total]).to eql(5)
     end
 
     it "searches based on the query" do

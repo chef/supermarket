@@ -12,6 +12,10 @@ describe Api::V1::ToolsController do
       create(:tool, name: "berkshelf")
     end
 
+    before :each do
+      ENV["API_ITEM_LIMIT"] = "0"
+    end
+
     it "responds with a 200" do
       get :index, format: :json
 
