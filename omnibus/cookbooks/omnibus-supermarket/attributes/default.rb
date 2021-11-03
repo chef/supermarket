@@ -201,6 +201,9 @@ default['supermarket']['postgresql']['shared_buffers'] = "#{(node['memory']['tot
 default['supermarket']['postgresql']['shmmax'] = 17179869184
 default['supermarket']['postgresql']['shmall'] = 4194304
 default['supermarket']['postgresql']['work_mem'] = '8MB'
+# These settings affect the pg_upgrade process.  For example, when
+# migrating from postgresql 9.2 to 9.6
+default['supermarket']['postgresql']['pg_upgrade_timeout'] = 7200
 
 # ## Rails
 #

@@ -17,27 +17,26 @@
 # limitations under the License.
 #
 
-include_recipe 'omnibus-supermarket::config'
-include_recipe 'omnibus-supermarket::log_management'
-include_recipe 'omnibus-supermarket::ssl'
+# include_recipe 'omnibus-supermarket::config'
+# include_recipe 'omnibus-supermarket::log_management'
+# include_recipe 'omnibus-supermarket::ssl'
 # include_recipe 'omnibus-supermarket::postgresql'
-include_recipe 'omnibus-supermarket::redis'
-include_recipe 'omnibus-supermarket::nginx'
-include_recipe 'omnibus-supermarket::database'
-include_recipe 'omnibus-supermarket::app'
-
-# Write out a supermarket-running.json at the end of the run
-file "#{node['supermarket']['config_directory']}/supermarket-running.json" do
-  content Chef::JSONCompat.to_json_pretty('supermarket' => node['supermarket'])
-  owner node['supermarket']['user']
-  group node['supermarket']['group']
-  mode '0600'
-end
+# include_recipe 'omnibus-supermarket::redis'
+# include_recipe 'omnibus-supermarket::nginx'
+# include_recipe 'omnibus-supermarket::database'
+# include_recipe 'omnibus-supermarket::app'
 
 %w(
+  config
+  log_management
+  ssl
   postgresql
+  redis
+  nginx
+  database
+  app
 ).each do |service|
-  if node['supermarket'][service]['external']
+  if node['supermarket'].dig(service, 'external')
     begin
       # Perform any necessary configuration of the external service:
       include_recipe "omnibus-supermarket::#{service}-external"
@@ -51,12 +50,24 @@ end
     component_runit_service service do
       action :disable
     end
-  elsif node['supermarket'][service]['enable']
-    include_recipe "omnibus-supermarket::#{service}"
   else
-    # All non-enabled services get disabled;
-    component_runit_service service do
-      action :disable
-    end
+    include_recipe "omnibus-supermarket::#{service}"
   end
+  # elsif node['supermarket'][service]['enable']
+  #   include_recipe "omnibus-supermarket::#{service}"
+  # else
+  #   # All non-enabled services get disabled;
+  #   component_runit_service service do
+  #     action :disable
+  #   end
+  # end
+end
+
+
+# Write out a supermarket-running.json at the end of the run
+file "#{node['supermarket']['config_directory']}/supermarket-running.json" do
+  content Chef::JSONCompat.to_json_pretty('supermarket' => node['supermarket'])
+  owner node['supermarket']['user']
+  group node['supermarket']['group']
+  mode '0600'
 end

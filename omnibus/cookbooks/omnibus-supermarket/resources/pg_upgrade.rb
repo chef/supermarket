@@ -64,11 +64,12 @@
 provides :pg_upgrade
 
 action :upgrade do
+  puts "->1"
   if upgrade_required?
     converge_by('Upgrading database cluster') do
       check_required_disk_space unless ENV['CS_SKIP_PG_DISK_CHECK'] == '1'
       shutdown_postgres
-      initialize_new_cluster
+      # initialize_new_cluster
       # setup_version_binary_folder
       update_to_latest_version
     end
@@ -107,21 +108,27 @@ action_class do
   # why-run message to describe what we're doing (or why we're not doing
   # anything)
   def upgrade_required?
+    puts "->2"
+    puts "old_data_dir -> #{old_data_dir}"
+    puts "new_data_dir -> #{new_data_dir}"
     if old_data_dir.nil?
+      puts "->3"
       # This will only happen if we've never successfully completed a
       # Private Chef installation on this machine before.  In that case,
       # there is (by definition) nothing to upgrade
-      Chef::Log.debug 'No prior database cluster detected; nothing to upgrade'
+      puts 'No prior database cluster detected; nothing to upgrade'
       false
     elsif old_data_dir == new_data_dir
+      puts "->4"
       # If the directories are the same, then we're not changing anything
       # (since we keep data directories in version-scoped
       # directories); i.e., this is just another garden-variety chef run
-      Chef::Log.debug 'Database cluster is unchanged; nothing to upgrade'
+      puts 'Database cluster is unchanged; nothing to upgrade'
       false
     elsif Dir.exist?(new_data_dir) &&
           cluster_initialized?(new_data_dir) &&
           ::File.exist?(sentinel_file)
+      puts "->5"
       # If the directories are different, we may need to do an upgrade,
       # but only if all the steps along the way haven't been completed
       # yet.  We'll look for a sentinel file (which we'll write out
@@ -130,9 +137,10 @@ action_class do
       # If we then make it all the way through the chef run, then the next
       # time through, the old_data_dir will be the same as our
       # new_data_dir
-      Chef::Log.debug 'Database cluster already upgraded from previous installation; nothing to do'
+      puts 'Database cluster already upgraded from previous installation; nothing to do'
       false
     else
+      puts "->6"
       # Hmm, looks like we need to upgrade after all
       true
     end
@@ -143,6 +151,7 @@ action_class do
   # enough space for another copy of the postgresql data.
   #
   def check_required_disk_space
+    puts "->7"
     old_data_dir_size = Du.du(old_data_dir)
     # new_data_dir might not exist at the point of making this check.
     # In that case check the first existing directory above it.
@@ -150,11 +159,13 @@ action_class do
     free_disk_space = Statfs.new(new_dir).free_space
 
     if old_data_dir_size < (free_disk_space * 0.90)
-      Chef::Log.debug("Old data dir size: #{old_data_dir_size}")
-      Chef::Log.debug("Free disk space: #{free_disk_space}")
-      Chef::Log.debug('Free space is sufficient to start upgrade')
+      puts "->8"
+      puts("Old data dir size: #{old_data_dir_size}")
+      puts("Free disk space: #{free_disk_space}")
+      puts('Free space is sufficient to start upgrade')
       true
     else
+      puts "->9"
       Chef::Log.fatal('Insufficient free space on disk to complete upgrade.')
       Chef::Log.fatal("The current postgresql data directory contains #{old_data_dir_size} KB of data but only #{free_disk_space} KB is available on disk.")
       Chef::Log.fatal("The upgrade process requires at least #{old_data_dir_size / 0.90} KB.")
@@ -163,6 +174,7 @@ action_class do
   end
 
   def dir_or_existing_parent(dir)
+    puts "->10"
     return dir if ::File.exist?(dir)
     return dir if ::File.expand_path(dir) == '/'
 
@@ -172,6 +184,7 @@ action_class do
   # If a pre-existing postgres service exists it will need to be shut
   # down prior to running the upgrade step.
   def shutdown_postgres
+    puts "->11"
     component_runit_service 'postgresql' do
       action :nothing # can this just be 'action :stop'?
     end
@@ -183,16 +196,19 @@ action_class do
   end
 
   def initialize_new_cluster
+    puts "->12"
     private_chef_pg_cluster new_data_dir
   end
 
   # Use the existence of a PG_VERSION file in a cluster's data directory
   # as an indicator of it having been already set up.
   def cluster_initialized?(data_dir)
+    puts "->13"
     ::File.exist?(version_file_for(data_dir))
   end
 
   def version_file_for(data_dir)
+    puts "->14"
     ::File.join(data_dir, 'PG_VERSION')
   end
 
@@ -207,8 +223,11 @@ action_class do
   #   `data_dir`, or `nil` if the directory does not exist, or if a
   #   cluster has not yet been initialized in it
   def version_from_data_dir(data_dir)
+    puts "->15"
     if Dir.exist?(data_dir)
+      puts "->16"
       if cluster_initialized?(data_dir)
+        puts "->17"
         # Might not be initialized yet if a prior Chef run failed between
         # creating the directory and initializing a cluster in it
 
@@ -233,11 +252,14 @@ action_class do
   #   like "9.1.9" or "9.2.4"
   # @return [String] the absolute path to the binaries.
   def binary_path_for(version)
+    puts "->18"
     "/opt/supermarket/embedded/postgresql/#{version}/bin"
   end
 
   def update_to_latest_version
+    puts "->19"
     execute 'upgrade_postgres_cluster' do
+      puts "->20"
       command lazy {
         old_version = version_from_data_dir(old_data_dir)
 
@@ -261,10 +283,10 @@ action_class do
         && date > #{sentinel_file}
       EOM
       }
-      user node['private_chef']['postgresql']['username']
+      user node['supermarket']['postgresql']['username']
       cwd new_data_dir # TODO: Should this be some other directory, instead?
       creates sentinel_file
-      timeout node['private_chef']['postgresql']['pg_upgrade_timeout']
+      timeout node['supermarket']['postgresql']['pg_upgrade_timeout']
     end
   end
 
@@ -273,7 +295,7 @@ action_class do
     old_version = version_from_data_dir(old_data_dir)
     old_bin_path = binary_path_for(old_version)
     unless Dir.exist?(old_bin_path)
-      Chef::Log.debug("Copying binaries to version directory")
+      puts("Copying binaries to version directory")
       Dir.create(old_bin_path)
       pg_binaries = %w[clusterdb
                         createdb
@@ -307,7 +329,7 @@ action_class do
       pg_binaries.each do |binary|
         FileUtils.cp(filename, old_bins)
       end
-      Chef::Log.debug("DONE: Copying binaries to version directory")
+      puts("DONE: Copying binaries to version directory")
     end
   end
 end
