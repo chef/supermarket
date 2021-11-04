@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.15 -->
-## [4.2.15](https://github.com/chef/supermarket/tree/4.2.15) (2021-11-04)
+<!-- latest_release 4.2.16 -->
+## [4.2.16](https://github.com/chef/supermarket/tree/4.2.16) (2021-11-04)
 
 #### Merged Pull Requests
-- Bump aws-sdk-s3 from 1.103.0 to 1.104.0 in /src/supermarket [#2308](https://github.com/chef/supermarket/pull/2308) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump chefstyle from 2.1.1 to 2.1.2 in /src/supermarket [#2328](https://github.com/chef/supermarket/pull/2328) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump chefstyle from 2.1.1 to 2.1.2 in /src/supermarket [#2328](https://github.com/chef/supermarket/pull/2328) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.16 -->
 - Bump aws-sdk-s3 from 1.103.0 to 1.104.0 in /src/supermarket [#2308](https://github.com/chef/supermarket/pull/2308) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.15 -->
 - Bump cookstyle from 7.25.8 to 7.25.9 in /omnibus [#2327](https://github.com/chef/supermarket/pull/2327) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.14 -->
 - Bump chef from 17.6.18 to 17.7.29 in /src/supermarket [#2331](https://github.com/chef/supermarket/pull/2331) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.13 -->
