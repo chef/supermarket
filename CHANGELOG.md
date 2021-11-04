@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.12 -->
-## [4.2.12](https://github.com/chef/supermarket/tree/4.2.12) (2021-10-29)
+<!-- latest_release 4.2.13 -->
+## [4.2.13](https://github.com/chef/supermarket/tree/4.2.13) (2021-11-04)
 
 #### Merged Pull Requests
-- Bump brakeman from 5.1.1 to 5.1.2 in /src/supermarket [#2330](https://github.com/chef/supermarket/pull/2330) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump chef from 17.6.18 to 17.7.29 in /src/supermarket [#2331](https://github.com/chef/supermarket/pull/2331) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump chef from 17.6.18 to 17.7.29 in /src/supermarket [#2331](https://github.com/chef/supermarket/pull/2331) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.13 -->
 - Bump brakeman from 5.1.1 to 5.1.2 in /src/supermarket [#2330](https://github.com/chef/supermarket/pull/2330) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.12 -->
 - Bump ddtrace from 0.52.0 to 0.53.0 in /src/supermarket [#2291](https://github.com/chef/supermarket/pull/2291) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.11 -->
 - GitHub Enterprise feature [#2287](https://github.com/chef/supermarket/pull/2287) ([antima-gupta](https://github.com/antima-gupta)) <!-- 4.2.10 -->
