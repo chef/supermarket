@@ -1,12 +1,12 @@
 <div class="installs" data-update-url="<%= update_install_preference_profile_url %>">
   <dl data-tab data-options="deep_linking:true; scroll_to_content: false;" class="<%= 'persist-install-method' if current_user %>">
     <% if current_user && current_user.install_preference.present? %>
-      <dd class="<%= %w(berkshelf librarian).include? current_user.install_preference ? 'active' : '' %>">
-        <a href="#berkshelf" class="button tiny secondary">Berkshelf</a>
-      </dd>
-
       <dd class="<%= current_user.install_preference == 'policyfile' ? 'active' : '' %>">
         <a href="#policyfile" class="button tiny secondary">Policyfile</a>
+      </dd>
+
+      <dd class="<%= %w(berkshelf librarian).include? current_user.install_preference ? 'active' : '' %>">
+        <a href="#berkshelf" class="button tiny secondary">Berkshelf</a>
       </dd>
 
       <dd class="<%= current_user.install_preference == 'knife' ? 'active' : '' %>">
@@ -14,11 +14,11 @@
       </dd>
     <% else %>
       <dd class="active">
-        <a href="#berkshelf" class="button tiny secondary">Berkshelf</a>
+        <a href="#policyfile" class="button tiny secondary">Policyfile</a>
       </dd>
 
       <dd>
-        <a href="#policyfile" class="button tiny secondary">Policyfile</a>
+        <a href="#berkshelf" class="button tiny secondary">Berkshelf</a>
       </dd>
 
       <dd>
