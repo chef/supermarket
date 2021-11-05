@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.18 -->
-## [4.2.18](https://github.com/chef/supermarket/tree/4.2.18) (2021-11-05)
+<!-- latest_release 4.2.19 -->
+## [4.2.19](https://github.com/chef/supermarket/tree/4.2.19) (2021-11-05)
 
 #### Merged Pull Requests
-- Bump aws-sdk-s3 from 1.104.0 to 1.105.0 in /src/supermarket [#2337](https://github.com/chef/supermarket/pull/2337) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump omnibus-software from `0f8338a` to `485b535` in /omnibus [#2336](https://github.com/chef/supermarket/pull/2336) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `0f8338a` to `485b535` in /omnibus [#2336](https://github.com/chef/supermarket/pull/2336) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.19 -->
 - Bump aws-sdk-s3 from 1.104.0 to 1.105.0 in /src/supermarket [#2337](https://github.com/chef/supermarket/pull/2337) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.18 -->
 - Changes for Cookbook count to be included in total items search api [#2333](https://github.com/chef/supermarket/pull/2333) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.2.17 -->
 - Bump chefstyle from 2.1.1 to 2.1.2 in /src/supermarket [#2328](https://github.com/chef/supermarket/pull/2328) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.16 -->
