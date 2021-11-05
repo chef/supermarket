@@ -115,7 +115,7 @@ class Cookbook < ApplicationRecord
 
   # Validations
   # --------------------
-  validates :name, presence: true, uniqueness: { case_sensitive: false }, format: /\A[\w_-]+\z/i # rubocop:disable Rails/UniqueValidationWithoutIndex
+  validates :name, presence: true, uniqueness: { case_sensitive: false }, format: /\A[\w\._-]+\z/i # rubocop:disable Rails/UniqueValidationWithoutIndex
   validates :lowercase_name, presence: true, uniqueness: true
   validates :cookbook_versions, presence: true
   validates :source_url, url: { allow_blank: true }

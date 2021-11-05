@@ -111,8 +111,8 @@ describe Cookbook do
       expect(cookbook.errors[:name]).to be_empty
     end
 
-    it "allows letters, numbers, dashes, and underscores in cookbook names" do
-      cookbook = Cookbook.new(name: "Cookbook_-1")
+    it "allows letters, numbers, dashes, dots, and underscores in cookbook names" do
+      cookbook = Cookbook.new(name: "Cookbook_.-1")
       cookbook.valid?
 
       expect(cookbook.errors[:name]).to be_empty
