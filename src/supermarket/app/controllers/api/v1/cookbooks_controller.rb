@@ -69,7 +69,7 @@ class Api::V1::CookbooksController < Api::V1Controller
       params.fetch(:q, nil)
     ).offset(@start).limit(@items)
 
-    @total = @results.count(:all)
+    @total = Cookbook.count
   end
 
   #

@@ -47,7 +47,7 @@ describe "GET /api/v1/search" do
   it "handles the start and items params" do
     search_response = {
       "items" => [redisio_test_signature],
-      "total" => 1,
+      "total" => 2,
       "start" => 1,
     }
 
