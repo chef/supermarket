@@ -46,7 +46,10 @@ if node['supermarket']['chef_server_url'] && node['supermarket']['chef_oauth2_ur
   node.default['supermarket']['chef_oauth2_url'] = node['supermarket']['chef_server_url']
 end
 
-user node['supermarket']['user']
+user node['supermarket']['user'] do
+  system true
+  shell '/bin/false'
+end
 
 group node['supermarket']['group'] do
   members [node['supermarket']['user']]
