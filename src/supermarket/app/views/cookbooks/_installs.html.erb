@@ -29,12 +29,12 @@
 
   <div class="tabs-content">
     <% if current_user && current_user.install_preference.present? %>
-      <div class="content <%= %w(berkshelf librarian).include? current_user.install_preference ? 'active' : '' %>" id="berkshelf">
-        <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>'</pre>
-      </div>
-
       <div class="content <%= current_user.install_preference == 'policyfile' ? 'active' : '' %>" id="policyfile">
         <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>', :supermarket</pre>
+      </div>
+
+      <div class="content <%= %w(berkshelf librarian).include? current_user.install_preference ? 'active' : '' %>" id="berkshelf">
+        <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>'</pre>
       </div>
 
       <div class="content <%= current_user.install_preference == 'knife' ? 'active' : '' %>" id="knife">
@@ -42,12 +42,12 @@
         <pre class="install">knife supermarket download <%= cookbook.name %></pre>
       </div>
     <% else %>
-      <div class="content active" id="berkshelf">
-        <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>'</pre>
+      <div class="content active" id="policyfile">
+        <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>', :supermarket</pre>
       </div>
 
-      <div class="content" id="policyfile">
-        <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>', :supermarket</pre>
+      <div class="content" id="berkshelf">
+        <pre class="install">cookbook '<%= cookbook.name %>', <% if version == cookbook.latest_cookbook_version %>'~&gt;<% else %>'=<% end %> <%= version.version %>'</pre>
       </div>
 
       <div class="content" id="knife">
