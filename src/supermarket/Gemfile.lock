@@ -558,7 +558,7 @@ GEM
       ffi (~> 1.0)
     rb-readline (0.5.5)
     redcarpet (3.5.1)
-    redis (3.3.5)
+    redis (4.5.1)
     redis-actionpack (5.2.0)
       actionpack (>= 5, < 7)
       redis-rack (>= 2.1.0, < 3)
@@ -647,11 +647,10 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (5.0.0)
       activesupport (>= 5.2.0)
-    sidekiq (4.2.10)
-      concurrent-ruby (~> 1.0)
-      connection_pool (~> 2.2, >= 2.2.0)
-      rack-protection (>= 1.5.0)
-      redis (~> 3.2, >= 3.2.1)
+    sidekiq (6.3.1)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
     sidekiq-cron (1.2.0)
       fugit (~> 1.1)
       sidekiq (>= 4.2.1)
@@ -852,7 +851,7 @@ DEPENDENCIES
   sass-rails
   sentry-raven
   shoulda-matchers
-  sidekiq (~> 4.2)
+  sidekiq (~> 6.3)
   sidekiq-cron
   simplecov
   sitemap_generator
