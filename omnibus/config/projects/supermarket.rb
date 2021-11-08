@@ -29,7 +29,7 @@ build_version   IO.read(File.expand_path("../../../../VERSION", __FILE__)).strip
 build_iteration 1
 
 # NOTE: see the omnibus-supermarket cookbook gemfile for controlling the infra client version
-override :chef, version: "17.5"
+override :chef, version: "17.5.22"
 override :postgresql, version: '9.3.25'
 override :ruby, version: "2.7.4"
 override :'openssl-fips', version: '2.0.16'
