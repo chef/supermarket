@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.20 -->
-## [4.2.20](https://github.com/chef/supermarket/tree/4.2.20) (2021-11-06)
+<!-- latest_release 4.2.21 -->
+## [4.2.21](https://github.com/chef/supermarket/tree/4.2.21) (2021-11-08)
 
 #### Merged Pull Requests
-- Recipe change to create supermarket as system user [#2321](https://github.com/chef/supermarket/pull/2321) ([msys-sgarg](https://github.com/msys-sgarg))
+- Rajeshpaul38/merge dependabot pr/2341 [#2342](https://github.com/chef/supermarket/pull/2342) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Rajeshpaul38/merge dependabot pr/2341 [#2342](https://github.com/chef/supermarket/pull/2342) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.21 -->
 - Recipe change to create supermarket as system user [#2321](https://github.com/chef/supermarket/pull/2321) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.2.20 -->
 - Bump omnibus-software from `0f8338a` to `485b535` in /omnibus [#2336](https://github.com/chef/supermarket/pull/2336) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.19 -->
 - Bump aws-sdk-s3 from 1.104.0 to 1.105.0 in /src/supermarket [#2337](https://github.com/chef/supermarket/pull/2337) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.18 -->
