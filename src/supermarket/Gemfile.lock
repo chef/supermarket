@@ -304,7 +304,7 @@ GEM
       domain_name (~> 0.5)
     http-form_data (2.3.0)
     httpclient (2.8.3)
-    i18n (1.8.10)
+    i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     iniparse (1.5.0)
@@ -354,10 +354,11 @@ GEM
       addressable (~> 2.7)
     letter_opener (1.7.0)
       launchy (~> 2.2)
-    letter_opener_web (1.4.1)
-      actionmailer (>= 3.2)
-      letter_opener (~> 1.0)
-      railties (>= 3.2)
+    letter_opener_web (2.0.0)
+      actionmailer (>= 5.2)
+      letter_opener (~> 1.7)
+      railties (>= 5.2)
+      rexml
     libhoney (1.21.0)
       addressable (~> 2.0)
       excon
@@ -400,7 +401,7 @@ GEM
     mimemagic (0.3.10)
       nokogiri (~> 1)
       rake
-    mini_mime (1.1.1)
+    mini_mime (1.1.2)
     mini_portile2 (2.6.1)
     minitest (5.14.4)
     mixlib-archive (1.1.7)
@@ -513,7 +514,7 @@ GEM
     pundit (2.1.1)
       activesupport (>= 3.0.0)
     raabro (1.4.0)
-    racc (1.5.2)
+    racc (1.6.0)
     rack (2.2.3)
     rack-protection (2.1.0)
       rack
@@ -541,7 +542,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.4.1)
+    rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
     railties (6.1.4.1)
       actionpack (= 6.1.4.1)
@@ -784,7 +785,7 @@ GEM
       nokogiri (~> 1.8)
     yajl-ruby (1.4.1)
     yard (0.9.26)
-    zeitwerk (2.4.2)
+    zeitwerk (2.5.1)
 
 PLATFORMS
   ruby
@@ -816,7 +817,7 @@ DEPENDENCIES
   jbuilder
   kaminari
   launchy
-  letter_opener_web (~> 1.0)
+  letter_opener_web (~> 2.0)
   license_finder
   listen
   mixlib-authentication (~> 3.0)
