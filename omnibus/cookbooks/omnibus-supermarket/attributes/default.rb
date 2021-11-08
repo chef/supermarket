@@ -204,6 +204,9 @@ default['supermarket']['postgresql']['work_mem'] = '8MB'
 # These settings affect the pg_upgrade process.  For example, when
 # migrating from postgresql 9.2 to 9.6
 default['supermarket']['postgresql']['pg_upgrade_timeout'] = 7200
+# To be used if we want to automate PG post upgrade steps
+# default['supermarket']['postgresql']['pg_backup_timeout'] = 3600
+# default['supermarket']['postgresql']['pg_vacuum_timeout'] = 3600
 
 # ## Rails
 #

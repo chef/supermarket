@@ -72,6 +72,9 @@ action :upgrade do
       # initialize_new_cluster
       # setup_version_binary_folder
       update_to_latest_version
+      # backup_database
+      # vacuum_database
+      # reindex_database
     end
   end
 end
@@ -195,10 +198,10 @@ action_class do
     end
   end
 
-  def initialize_new_cluster
-    puts "->12"
-    private_chef_pg_cluster new_data_dir
-  end
+  # def initialize_new_cluster
+  #   puts "->12"
+  #   private_chef_pg_cluster new_data_dir
+  # end
 
   # Use the existence of a PG_VERSION file in a cluster's data directory
   # as an indicator of it having been already set up.
@@ -256,6 +259,58 @@ action_class do
     "/opt/supermarket/embedded/postgresql/#{version}/bin"
   end
 
+  # def backup_database
+  #   execute 'backup_database' do
+  #     puts "->21"
+  #     command lazy {
+  #       new_version = version_from_data_dir(new_data_dir)
+  #       new_bin_path = binary_path_for(new_version)
+  #       Dir.create(tmp_path) unless Dir.exist?(tmp_path)
+  #       <<-EOM.gsub(/\s+/, ' ').strip!
+  #         #{new_bin_path}/pg_dumpall 
+  #         -U #{node['supermarket']['postgresql']['username']} 
+  #         -p #{node['supermarket']['postgresql']['port']} > #{tmp_path}/#{node['supermarket']['database']['name']}-#{new_version}-dump.sql
+  #       EOM
+  #     }
+  #     user node['supermarket']['postgresql']['username']
+  #     timeout node['supermarket']['postgresql']['pg_backup_timeout']
+  #   end
+  # end
+
+  # def vacuum_database
+  #   execute 'vacuum_database' do
+  #     puts "->22"
+  #     command lazy {
+  #       new_version = version_from_data_dir(new_data_dir)
+  #       new_bin_path = binary_path_for(new_version)
+  #       <<-EOM.gsub(/\s+/, ' ').strip!
+  #         #{new_bin_path}/vacuumdb --all --full -p #{node['supermarket']['postgresql']['port']}
+  #       EOM
+  #     }
+  #     user node['supermarket']['postgresql']['username']
+  #     timeout node['supermarket']['postgresql']['pg_vacuum_timeout']
+  #   end
+  # end
+
+  # def reindex_database
+  #   execute 'reindex_database' do
+  #     puts "->22"
+  #     command lazy {
+  #       new_version = version_from_data_dir(new_data_dir)
+  #       new_bin_path = binary_path_for(new_version)
+  #       <<-EOM.gsub(/\s+/, ' ').strip!
+  #         #{new_bin_path}/reindexdb --all -p #{node['supermarket']['postgresql']['port']}
+  #       EOM
+  #     }
+  #     user node['supermarket']['postgresql']['username']
+  #     timeout node['supermarket']['postgresql']['pg_reindex_timeout']
+  #   end
+  # end
+
+  # def tmp_path
+  #   "/tmp"
+  # end
+
   def update_to_latest_version
     puts "->19"
     execute 'upgrade_postgres_cluster' do
@@ -287,49 +342,6 @@ action_class do
       cwd new_data_dir # TODO: Should this be some other directory, instead?
       creates sentinel_file
       timeout node['supermarket']['postgresql']['pg_upgrade_timeout']
-    end
-  end
-
-  # this will setup a version specific directory for postgres where all the binaries related to postgres will be 
-  def setup_version_binary_folder
-    old_version = version_from_data_dir(old_data_dir)
-    old_bin_path = binary_path_for(old_version)
-    unless Dir.exist?(old_bin_path)
-      puts("Copying binaries to version directory")
-      Dir.create(old_bin_path)
-      pg_binaries = %w[clusterdb
-                        createdb
-                        createuser
-                        dropdb
-                        dropuser
-                        ecpg
-                        initdb
-                        oid2name
-                        pg_archivecleanup
-                        pg_basebackup
-                        pg_config
-                        pg_controldata
-                        pg_ctl
-                        pg_dump
-                        pg_dumpall
-                        pg_isready
-                        pg_recvlogical
-                        pg_restore
-                        pg_rewind
-                        pg_standby
-                        pg_test_fsync
-                        pg_test_timing
-                        pg_upgrade
-                        pgbench
-                        postgres
-                        psql
-                        reindexdb
-                        vacuumdb
-                        vacuumlo]
-      pg_binaries.each do |binary|
-        FileUtils.cp(filename, old_bins)
-      end
-      puts("DONE: Copying binaries to version directory")
     end
   end
 end
