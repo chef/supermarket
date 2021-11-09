@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.22 -->
-## [4.2.22](https://github.com/chef/supermarket/tree/4.2.22) (2021-11-09)
+<!-- latest_release 4.2.23 -->
+## [4.2.23](https://github.com/chef/supermarket/tree/4.2.23) (2021-11-09)
 
 #### Merged Pull Requests
-- Rajeshpaul38/merge dependabot pr/2347 [#2348](https://github.com/chef/supermarket/pull/2348) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Sabya/change chef version [#2354](https://github.com/chef/supermarket/pull/2354) ([saghoshprogress](https://github.com/saghoshprogress))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Sabya/change chef version [#2354](https://github.com/chef/supermarket/pull/2354) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 4.2.23 -->
 - Rajeshpaul38/merge dependabot pr/2347 [#2348](https://github.com/chef/supermarket/pull/2348) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.22 -->
 - Rajeshpaul38/merge dependabot pr/2341 [#2342](https://github.com/chef/supermarket/pull/2342) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.21 -->
 - Recipe change to create supermarket as system user [#2321](https://github.com/chef/supermarket/pull/2321) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.2.20 -->
