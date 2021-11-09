@@ -10,7 +10,7 @@ gem "omniauth-oauth2", "~> 1.7.2"
 gem "omniauth-rails_csrf_protection"
 gem "coderay" # markdown doc - syntax highlighting
 
-gem "sidekiq", "~> 4.2"
+gem "sidekiq", "~> 6.3"
 gem "sidekiq-cron"
 
 gem "aws-sdk-s3"
@@ -92,7 +92,7 @@ group :development, :test do
   gem "pry-rails"
   gem "rspec-rails"
   gem "rubocop-rails"
-  gem "letter_opener_web", "~> 1.0"
+  gem "letter_opener_web", "~> 2.0"
 
   # Pinned to be greater than or equal to 1.0.0.pre because the gems were prior
   # to 1.0.0 release when added
