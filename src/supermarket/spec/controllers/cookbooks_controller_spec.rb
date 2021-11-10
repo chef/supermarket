@@ -661,7 +661,7 @@ describe CookbooksController do
     let!(:cookbook) { create(:cookbook, owner: user) }
     let!(:other_cookbook) { create(:cookbook, owner: user) }
     let!(:replacement_cookbook) { create(:cookbook) }
-    let!(:deprecation_reason) {"This cookbook is deprecated."}
+    let!(:deprecation_reason) { "This cookbook is deprecated." }
 
     context "cookbook owner" do
       context "no replacement" do
