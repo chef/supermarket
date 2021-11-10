@@ -399,11 +399,7 @@ class Cookbook < ApplicationRecord
   end
 
   def cookbook_deprecation_reason
-    if self.deprecation_reason.present?
-      self.deprecation_reason
-    else
-      I18n.t("cookbook.default_deprecation_reason", name: self.name)
-    end
+    deprecation_reason.presence || I18n.t("cookbook.default_deprecation_reason", name: name)
   end
 
   private
