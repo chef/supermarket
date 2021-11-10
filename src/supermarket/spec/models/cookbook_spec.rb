@@ -333,6 +333,35 @@ describe Cookbook do
       end
     end
 
+    context "deprecate with reason and replacement is valid" do
+      let!(:replacement_cookbook) { create(:cookbook, name: "mild_curry") }
+      let!(:deprecation_reason) { "This is cookbook is deprecated." }
+
+      it "returns true" do
+        result = cookbook.deprecate(replacement_cookbook.name, deprecation_reason)
+        expect(result).to eql(true)
+      end
+
+      it "sets the deprecated attribute to true" do
+        cookbook.deprecate(replacement_cookbook.name, deprecation_reason)
+
+        expect(cookbook.deprecated?).to eql(true)
+      end
+
+      it "sets the deprecation reason" do
+        cookbook.deprecate(replacement_cookbook.name, deprecation_reason)
+
+        expect(cookbook.deprecation_reason).to eql(deprecation_reason)
+      end
+
+      it "sets the replacement" do
+        cookbook.deprecate(replacement_cookbook.name)
+
+        expect(cookbook.replacement).to eql(replacement_cookbook)
+        expect(replacement_cookbook.replaces).to include(cookbook)
+      end
+    end
+
     context "replacement cookbook is deprecated" do
       let!(:replacement_cookbook) do
         create(
