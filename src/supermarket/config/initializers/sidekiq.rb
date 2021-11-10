@@ -22,3 +22,5 @@ end
 Sidekiq.configure_client do |config|
   config.redis = { url: redis_for_job_queue }
 end
+
+Sidekiq::Extensions.enable_delay!
