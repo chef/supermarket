@@ -69,9 +69,9 @@ describe "cookbooks/show.html.erb" do
 
      it "has policyfile, berkshelf and knife tabs rendered" do
       render
-      expect(rendered).to have_selector("div", id: 'policyfile')
-      expect(rendered).to have_selector("div", id: 'berkshelf')
-      expect(rendered).to have_selector("div", id: 'knife')
+      expect(rendered).to have_selector("div", id: "policyfile")
+      expect(rendered).to have_selector("div", id: "berkshelf")
+      expect(rendered).to have_selector("div", id: "knife")
     end
   end
 
