@@ -62,8 +62,8 @@ file "#{node['supermarket']['app_directory']}/db/schema.rb" do
   owner node['supermarket']['user']
 end
 
-file "#{node['supermarket']['app_directory']}/assets/data/licenses.json" do
-  content Net::HTTP.get(URI.parse("#{node.default["supermarket"]["spdx_license_url"]}")).to_s
+file "#{node['supermarket']['app_directory']}/app/assets/data/licenses.json" do
+  content Net::HTTP.get(URI.parse("#{node.default['supermarket']['spdx_license_url']}")).to_s
   owner node['supermarket']['user']
   group node['supermarket']['group']
   mode '0600'
