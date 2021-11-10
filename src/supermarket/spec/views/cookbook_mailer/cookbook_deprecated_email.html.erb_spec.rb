@@ -2,6 +2,8 @@ require "spec_helper"
 describe "cookbook_mailer/cookbook_deprecated_email.html.erb" do
   context "renders mailer page" do
     let!(:current_user) { create(:user, first_name: "test_user") }
+    let!(:system_email) { create(:system_email, name: "Cookbook deprecated") }
+    let!(:email_preference) { create(:email_preference, user_id: current_user.id, system_email_id: system_email.id) }
     let!(:cookbook) {
       create(
         :cookbook,
