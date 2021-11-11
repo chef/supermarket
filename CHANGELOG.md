@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.24 -->
-## [4.2.24](https://github.com/chef/supermarket/tree/4.2.24) (2021-11-09)
+<!-- latest_release 4.2.25 -->
+## [4.2.25](https://github.com/chef/supermarket/tree/4.2.25) (2021-11-11)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `485b535` to `9222241` in /omnibus [#2355](https://github.com/chef/supermarket/pull/2355) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Add back builds on Ubuntu 16.04 [#2338](https://github.com/chef/supermarket/pull/2338) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Add back builds on Ubuntu 16.04 [#2338](https://github.com/chef/supermarket/pull/2338) ([tas50](https://github.com/tas50)) <!-- 4.2.25 -->
 - Bump omnibus-software from `485b535` to `9222241` in /omnibus [#2355](https://github.com/chef/supermarket/pull/2355) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.24 -->
 - Sabya/change chef version [#2354](https://github.com/chef/supermarket/pull/2354) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 4.2.23 -->
 - Rajeshpaul38/merge dependabot pr/2347 [#2348](https://github.com/chef/supermarket/pull/2348) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.22 -->
