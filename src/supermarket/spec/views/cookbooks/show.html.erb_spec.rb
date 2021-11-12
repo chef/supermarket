@@ -51,7 +51,6 @@ describe "cookbooks/show.html.erb" do
       allow(view).to receive(:current_user).and_return(current_user)
     end
 
-
     it "has license text rendered" do
       render
       license_id = "MIT"
