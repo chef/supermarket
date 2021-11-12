@@ -13,6 +13,10 @@ product = ["client", "server", "workstation"]
     weight = 10
 +++
 
+About supermarket.
+
+Don't merge this.
+
 {{% supermarket_summary %}}
 
 ## Public Supermarket
