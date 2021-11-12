@@ -816,6 +816,24 @@ describe Cookbook do
     end
   end
 
+  describe ".deprecated" do
+    let(:deprecated) { create(:cookbook, deprecated: true) }
+
+    it "only returns deprecated cookbooks" do
+      expect(Cookbook.deprecated).to include(deprecated)
+    end
+  end
+
+  describe ".undeprecated" do
+    let(:undeprecated) {create(:cookbook, deprecated: false) }
+    let(:deprecated) { create(:cookbook, deprecated: true) }
+
+    it "only returns deprecated cookbooks" do
+      expect(Cookbook.undeprecated).to include(undeprecated)
+      expect(Cookbook.undeprecated).to_not include(deprecated)
+    end
+  end
+
   describe "#followed_by?" do
     it "returns true if the user passed follows the cookbook" do
       user = create(:user)

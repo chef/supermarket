@@ -58,6 +58,10 @@ class Cookbook < ApplicationRecord
 
   scope :featured, -> { where(featured: true) }
 
+  scope :deprecated, -> { where(deprecated:true) }
+
+  scope :undeprecated, -> { where(deprecated: false)}
+
   scope :filter_platforms, lambda { |platforms|
     joins(cookbook_versions: :supported_platforms)
       .where("supported_platforms.name IN (?)", platforms).distinct

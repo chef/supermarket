@@ -53,10 +53,22 @@ describe CookbooksController do
         )
       end
 
+      let!(:cookbook_3) do
+        create(
+          :cookbook,
+          name: "mysql-admin-tools-1",
+          web_download_count: 1,
+          api_download_count: 50,
+          cookbook_followers_count: 50,
+          deprecated: true
+        )
+      end
+
       it "orders @cookbooks by updated at" do
         cookbook_2.touch
         get :index, params: { order: "recently_updated" }
         expect(assigns[:cookbooks].first).to eql(cookbook_2)
+        expect(assigns[:cookbooks].first).to_not eql(cookbook_3)
       end
 
       it "orders @cookbooks with the most recently created first" do

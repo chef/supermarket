@@ -31,8 +31,12 @@ class CookbooksController < ApplicationController
       @cookbooks = @cookbooks.featured
     end
 
-    if @current_params[:order].present?
+    if (order = @current_params[:order]).present?
       @cookbooks = @cookbooks.ordered_by(@current_params[:order])
+
+      if order == "recently_updated" 
+        @cookbooks = @cookbooks.undeprecated
+      end
     end
 
     if @current_params[:order].blank? && @current_params[:q].blank?
