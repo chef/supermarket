@@ -825,7 +825,7 @@ describe Cookbook do
   end
 
   describe ".undeprecated" do
-    let(:undeprecated) {create(:cookbook, deprecated: false) }
+    let(:undeprecated) { create(:cookbook, deprecated: false) }
     let(:deprecated) { create(:cookbook, deprecated: true) }
 
     it "only returns deprecated cookbooks" do

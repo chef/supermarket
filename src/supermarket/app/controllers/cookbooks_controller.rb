@@ -33,7 +33,7 @@ class CookbooksController < ApplicationController
 
     if (order = @current_params[:order]).present?
 
-      if order == "recently_updated" 
+      if order == "recently_updated"
         @cookbooks = @cookbooks.undeprecated
       end
 
