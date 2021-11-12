@@ -216,6 +216,28 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
+    dry-configurable (0.13.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 0.6)
+    dry-container (0.9.0)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 0.13, >= 0.13.0)
+    dry-core (0.7.1)
+      concurrent-ruby (~> 1.0)
+    dry-inflector (0.2.1)
+    dry-logic (1.2.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 0.5, >= 0.5)
+    dry-struct (1.4.0)
+      dry-core (~> 0.5, >= 0.5)
+      dry-types (~> 1.5)
+      ice_nine (~> 0.11)
+    dry-types (1.5.1)
+      concurrent-ruby (~> 1.0)
+      dry-container (~> 0.3)
+      dry-core (~> 0.5, >= 0.5)
+      dry-inflector (~> 0.1, >= 0.1.2)
+      dry-logic (~> 1.0, >= 1.0.2)
     equalizer (0.0.11)
     erubi (1.10.0)
     erubis (2.7.0)
@@ -805,6 +827,7 @@ DEPENDENCIES
   database_cleaner
   ddtrace
   dotenv
+  dry-struct (~> 1.4)
   factory_bot_rails
   faker
   ffi-libarchive
