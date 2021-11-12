@@ -20,12 +20,12 @@ class UpdateSpdxLicenseUrl
     cookbook = Cookbook.find_by name: cookbook_name
     return [:error, I18n.t("cookbook.not_found", name: cookbook_name)] unless cookbook
 
-    cookbook_version = cookbook.cookbook_versions.latest_cookbook_version
+    cookbook_version = cookbook.latest_cookbook_version
     return [:error, I18n.t("cookbook.version_not_found", name: cookbook_name, version: version)] unless cookbook_version
 
     SpdxLicenseUpdateWorker.perform_async(FetchSpdxLicenseJson.spdx_license_json, cookbook_version.id)
 
-    [:ok, I18n.t("spdx_license.scheduled.single", name: cookbook.name, version: cookbook_version.id)]
+    [:ok, I18n.t("spdx_license.scheduled.latest", name: cookbook.name)]
   end
 
   def self.on_version(cookbook_name, version)

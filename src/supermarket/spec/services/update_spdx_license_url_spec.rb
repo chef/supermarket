@@ -51,4 +51,26 @@ describe UpdateSpdxLicenseUrl do
         .to eq([:ok, success_message])
     end
   end
+
+  context "on latest version of provided cookbook" do
+    let(:cookbook) { create :cookbook }
+    let(:cookbook_version) { cookbook.latest_cookbook_version }
+
+    it "returns a message about successful scheduling" do
+      allow(SpdxLicenseUpdateWorker).to receive(:perform_async)
+      success_message = I18n.t("spdx_license.scheduled.latest", name: cookbook.name)
+
+      expect(UpdateSpdxLicenseUrl.on_latest(cookbook.name))
+        .to eql([:ok, success_message])
+    end
+
+    it "returns an error when a cookbook is not found with a given name" do
+      expect(SpdxLicenseUpdateWorker).not_to receive(:perform_async)
+      error_message = I18n.t("cookbook.not_found", name: "nope")
+
+      expect(UpdateSpdxLicenseUrl.on_latest("nope"))
+        .to eql([:error, error_message])
+    end
+
+  end
 end

@@ -26,8 +26,8 @@ add_command_under_category 'spdx-all', 'spdx-license', 'update spdx license for 
   run_a_rake_command 'update_spdx_license:run:all_cookbooks'
 end
 
-add_command_under_category 'spdx-latest', 'spdx-license', 'update spdx license for given version of a named cookbook', 2 do
-  args = ARGV[2..-1]
+add_command_under_category 'spdx-latest', 'spdx-license', 'update spdx license for latest version of a named cookbook', 2 do
+  args = ARGV[3..-1]
   cookbook_name = args.shift
   unless cookbook_name
     puts 'ERROR: Nothing to do without a cookbook name. e.g. spdx-on-latest COOKBOOK_NAME'
@@ -37,7 +37,7 @@ add_command_under_category 'spdx-latest', 'spdx-license', 'update spdx license f
   run_a_rake_command "update_spdx_license:run:on_latest[#{cookbook_name}]"
 end
 
-add_command_under_category 'spdx-on-version', 'spdx-license', 'update spdx license for latest version of a named cookbook', 2 do
+add_command_under_category 'spdx-on-version', 'spdx-license', 'update spdx license for given version of a named cookbook', 2 do
   args = ARGV[3..-1]
   cookbook_name = args.shift
   cookbook_version = args.shift

@@ -60,6 +60,7 @@ en:
     scheduled:
       single: "Scheduled spdx license evaluation for %{name} %{version}."
       multiple: "Scheduled spdx licese evaluation for %{count} cookbooks"
+      latest: "Scheduled spdx license evaluation for %{name} latest version"
   invitation:
     accept:
       success: "Successfully joined %{organization}"

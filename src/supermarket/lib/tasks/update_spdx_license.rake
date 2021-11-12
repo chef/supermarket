@@ -20,9 +20,9 @@ namespace :update_spdx_license do
 
     desc "update spdx license url for latest version of a named cookbook"
     task :on_latest, [:cookbook_name] => :environment do |t, args|
-      args.with_defaults(cookbook_name: nil, version: nil)
-      unless args[:cookbook_name] && args[:version]
-        puts "ERROR: Nothing to do without a cookbook name and version. e.g. #{t}[cookbook_name,version]"
+      args.with_defaults(cookbook_name: nil)
+      unless args[:cookbook_name]
+        puts "ERROR: Nothing to do without a cookbook name. e.g. #{t}[cookbook_name]"
         exit 1
       end
 
