@@ -32,11 +32,12 @@ class CookbooksController < ApplicationController
     end
 
     if (order = @current_params[:order]).present?
-      @cookbooks = @cookbooks.ordered_by(@current_params[:order])
 
       if order == "recently_updated" 
         @cookbooks = @cookbooks.undeprecated
       end
+
+      @cookbooks = @cookbooks.ordered_by(@current_params[:order])
     end
 
     if @current_params[:order].blank? && @current_params[:q].blank?
