@@ -69,7 +69,7 @@
           </div>
           <div class="small-12 columns">
             <%= f.label :deprecation_reason %>
-            <%= f.text_area :deprecation_reason, class: '', placeholder: 'Reason of deprecation', value: cookbook.cookbook_deprecation_reason %>
+            <%= f.text_area :deprecation_reason, class: 'form-control', placeholder: 'Reason of deprecation', value: cookbook.cookbook_deprecation_reason, rows: 3 %>
           </div>
           <div class="medium-3 columns">
             <%= f.submit 'Deprecate', class: 'button radius postfix submit-deprecation' %>
