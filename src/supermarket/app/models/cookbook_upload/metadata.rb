@@ -77,20 +77,6 @@ class CookbookUpload
     #   inner array elements are joined by "&&" while the outer array is joined by "||" operators.
     #   So a cookbook version with the example would work with Ohai Version 8.0.1 AND 8.0.2 OR Chef Version 8.1.1 AND 8.1.2
 
-    # values do
-    #   attribute :name, String, default: ""
-    #   attribute :version, String, default: ""
-    #   attribute :description, String, default: ""
-    #   attribute :license, String, default: ""
-    #   attribute :platforms, Hash[String => String]
-    #   attribute :dependencies, Hash[String => String]
-    #   attribute :source_url, String, default: ""
-    #   attribute :issues_url, String, default: ""
-    #   attribute :privacy, Boolean, default: false
-    #   attribute :chef_versions, JSON, default: []
-    #   attribute :ohai_versions, JSON, default: []
-    # end
-
     attribute :name, SchemaDefiner::Types::Coercible::String.default("", shared: true)
     attribute :version, SchemaDefiner::Types::Coercible::String.default("", shared: true)
     attribute :description, SchemaDefiner::Types::Coercible::String.default("", shared: true)
