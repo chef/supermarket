@@ -1,6 +1,6 @@
 class CookbookUpload
   class Document < SchemaDefiner::SymbolizeStruct
-    
+
     #
     # @!attribute [r] contents
     #   @return [String] The text of the Document
