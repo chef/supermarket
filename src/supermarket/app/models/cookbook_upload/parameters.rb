@@ -169,7 +169,7 @@ class CookbookUpload
         metadata.dependencies.reject! { |key, _value| key == metadata.name }
       rescue JSON::ParserError
         errors.add(:base, I18n.t("api.error_messages.metadata_not_json"))
-      rescue Virtus::CoercionError
+      rescue Dry::Struct::Error
         errors.add(:base, I18n.t("api.error_messages.invalid_metadata"))
       rescue Archive::NotGzipped
         errors.add(:base, I18n.t("api.error_messages.tarball_not_gzipped"))

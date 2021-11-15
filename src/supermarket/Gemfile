@@ -50,7 +50,6 @@ gem "unicorn"
 gem "unicorn-rails"
 gem "utf8-cleaner"
 gem "validate_url"
-gem "virtus", "1.0.2", require: false # Pin to a version before the handling of nil in collection coercion was fixed.
 gem "dry-struct", "~>1.4" # This gem is to replace the deprecated gem: virtus. Once tested virtus needs to be removed.
 gem "yajl-ruby"
 

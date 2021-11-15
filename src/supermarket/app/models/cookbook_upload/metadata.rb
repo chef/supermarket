@@ -1,5 +1,3 @@
-require "virtus"
-
 class CookbookUpload
   #
   # Acts as a schema for a cookbook's metadata.json. It only provides fields
@@ -13,9 +11,7 @@ class CookbookUpload
   #   metadata = CookbookUpload::Metadata.new(name: "Apache")
   #   metadata.name #=> "Apache"
   #
-  class Metadata
-    include Virtus.value_object(strict: true)
-
+  class Metadata < SchemaDefiner::SymbolizeStruct
     #
     # @!attribute [r] name
     #   @return [String] The cookbook name
@@ -81,18 +77,30 @@ class CookbookUpload
     #   inner array elements are joined by "&&" while the outer array is joined by "||" operators.
     #   So a cookbook version with the example would work with Ohai Version 8.0.1 AND 8.0.2 OR Chef Version 8.1.1 AND 8.1.2
 
-    values do
-      attribute :name, String, default: ""
-      attribute :version, String, default: ""
-      attribute :description, String, default: ""
-      attribute :license, String, default: ""
-      attribute :platforms, Hash[String => String]
-      attribute :dependencies, Hash[String => String]
-      attribute :source_url, String, default: ""
-      attribute :issues_url, String, default: ""
-      attribute :privacy, Boolean, default: false
-      attribute :chef_versions, JSON, default: []
-      attribute :ohai_versions, JSON, default: []
-    end
+    # values do
+    #   attribute :name, String, default: ""
+    #   attribute :version, String, default: ""
+    #   attribute :description, String, default: ""
+    #   attribute :license, String, default: ""
+    #   attribute :platforms, Hash[String => String]
+    #   attribute :dependencies, Hash[String => String]
+    #   attribute :source_url, String, default: ""
+    #   attribute :issues_url, String, default: ""
+    #   attribute :privacy, Boolean, default: false
+    #   attribute :chef_versions, JSON, default: []
+    #   attribute :ohai_versions, JSON, default: []
+    # end
+
+    attribute :name, SchemaDefiner::Types::Coercible::String.default("", shared: true)
+    attribute :version, SchemaDefiner::Types::Coercible::String.default("", shared: true)
+    attribute :description, SchemaDefiner::Types::Coercible::String.default("", shared: true)
+    attribute :license, SchemaDefiner::Types::Coercible::String.default("", shared: true)
+    attribute :platforms, SchemaDefiner::Types::Coercible::Hash.default({}, shared: true)
+    attribute :dependencies, SchemaDefiner::Types::Coercible::Hash.default({}, shared: true)
+    attribute :source_url, SchemaDefiner::Types::Coercible::String.default("", shared: true)
+    attribute :issues_url, SchemaDefiner::Types::Coercible::String.default("", shared: true)
+    attribute :privacy, SchemaDefiner::Types::Bool.default(false)
+    attribute :chef_versions, SchemaDefiner::Types::JSON::Array.default([], shared: true)
+    attribute :ohai_versions, SchemaDefiner::Types::JSON::Array.default([], shared: true)
   end
 end

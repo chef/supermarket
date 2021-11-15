@@ -5,17 +5,17 @@ describe CookbookUpload::Metadata do
     it "fails loudly if Hash coercion fails" do
       expect do
         CookbookUpload::Metadata.new(platforms: "")
-      end.to raise_error(Virtus::CoercionError)
+      end.to raise_error(Dry::Struct::Error)
     end
 
-    it "can coerce Arrays into Hashes" do
-      metadata = CookbookUpload::Metadata.new(platforms: ["ubuntu"])
+    it "can't coerce Arrays into Hashes" do
+      expect do
+        CookbookUpload::Metadata.new(platforms: ["ubuntu"])
+      end.to raise_error(Dry::Struct::Error)
 
-      expect(metadata.platforms).to eql("ubuntu" => nil)
-
-      metadata = CookbookUpload::Metadata.new(platforms: ["ubuntu", "1.0.0"])
-
-      expect(metadata.platforms).to eql("ubuntu" => nil, "1.0.0" => nil)
+      expect do
+        CookbookUpload::Metadata.new(platforms: ["ubuntu", "1.0.0"])
+      end.to raise_error(Dry::Struct::Error)
     end
 
     it "accepts a Hash mapping Strings to Strings" do

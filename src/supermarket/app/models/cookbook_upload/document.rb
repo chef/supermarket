@@ -1,7 +1,6 @@
 class CookbookUpload
-  class Document < Dry::Struct
-
-    attribute? :contents, SchemaDefiner::Types::String
-    attribute :extension, SchemaDefiner::Types::String.default("".freeze)
+  class Document < SchemaDefiner::SymbolizeStruct
+    attribute :contents, SchemaDefiner::Types::Coercible::String.default(nil)
+    attribute :extension, SchemaDefiner::Types::Coercible::String.default("", shared: true)
   end
 end
