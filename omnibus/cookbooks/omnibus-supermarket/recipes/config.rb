@@ -70,7 +70,7 @@ end
 directory node['supermarket']['log_directory'] do
   owner node['supermarket']['user']
   group node['supermarket']['group']
-  mode '0700'
+  mode node['supermarket']['log_mode']
   recursive true
 end
 
