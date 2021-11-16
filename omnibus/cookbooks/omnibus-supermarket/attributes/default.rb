@@ -170,9 +170,9 @@ default['supermarket']['nginx']['client_max_body_size'] = '250m'
 default['supermarket']['nginx']['default']['modules'] = []
 
 # ## Postgres
+default['supermarket']['postgresql']['enable'] = true
 default['supermarket']['postgresql']['external'] = false
 default['supermarket']['postgresql']['version'] = '13'
-default['supermarket']['postgresql']['enable'] = true
 default['supermarket']['postgresql']['username'] = node['supermarket']['user']
 default['supermarket']['postgresql']['data_directory'] = "#{node['supermarket']['var_directory']}/postgresql/#{node['supermarket']['postgresql']['version']}/data"
 
@@ -188,7 +188,7 @@ default['supermarket']['postgresql']['min_wal_size'] = '80MB'
 
 default['supermarket']['postgresql']['checkpoint_flush_after'] = '256kB'
 default['supermarket']['postgresql']['checkpoint_completion_target'] = 0.5
-# commenting this as this attribute is deprecated after postgres 9.3
+# This attribute has been deprecated after postgres 9.3
 # default['supermarket']['postgresql']['checkpoint_segments'] = 3
 default['supermarket']['postgresql']['checkpoint_timeout'] = '5min'
 default['supermarket']['postgresql']['checkpoint_warning'] = '30s'
@@ -201,12 +201,7 @@ default['supermarket']['postgresql']['shared_buffers'] = "#{(node['memory']['tot
 default['supermarket']['postgresql']['shmmax'] = 17179869184
 default['supermarket']['postgresql']['shmall'] = 4194304
 default['supermarket']['postgresql']['work_mem'] = '8MB'
-# These settings affect the pg_upgrade process.  For example, when
-# migrating from postgresql 9.2 to 9.6
 default['supermarket']['postgresql']['pg_upgrade_timeout'] = 7200
-# To be used if we want to automate PG post upgrade steps
-# default['supermarket']['postgresql']['pg_backup_timeout'] = 3600
-# default['supermarket']['postgresql']['pg_vacuum_timeout'] = 3600
 
 # ## Rails
 #
@@ -313,7 +308,7 @@ default['supermarket']['unicorn']['before_fork'] = nil
 default['supermarket']['unicorn']['after_fork'] = nil
 
 # ## Database
-
+default['supermarket']['database']['enabled'] = true
 default['supermarket']['database']['user'] = node['supermarket']['postgresql']['username']
 default['supermarket']['database']['name'] = 'supermarket'
 default['supermarket']['database']['host'] = node['supermarket']['postgresql']['listen_address']
@@ -509,3 +504,9 @@ default['supermarket']['statsd_port'] = nil
 default['supermarket']['announcement_text'] = nil
 default['supermarket']['spdx_license_url'] = 'https://raw.githubusercontent.com/spdx/license-list-data/master/json/licenses.json'
 default['supermarket']['cookstyle_cops'] = 'Chef/Deprecations,Chef/Correctness,Chef/Sharing,Chef/RedundantCode,Chef/Modernize'
+
+# enable/disable miscelaneous services
+default['supermarket']['config']['enabled'] = true
+default['supermarket']['log_management']['enabled'] = true
+# This service is essential for supermarket to run and this flag should never be set to false.
+default['supermarket']['app']['enabled'] = true

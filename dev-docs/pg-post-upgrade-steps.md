@@ -1,4 +1,4 @@
-### Below are the steps to be followed after upgrading postgres server version
+### Follow these steps in case Postgres major version is being upgraded.
 
  - Stop currently running supermarket application
 ```

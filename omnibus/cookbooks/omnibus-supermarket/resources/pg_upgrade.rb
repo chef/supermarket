@@ -68,12 +68,7 @@ action :upgrade do
     converge_by('Upgrading database cluster') do
       check_required_disk_space unless ENV['CS_SKIP_PG_DISK_CHECK'] == '1'
       shutdown_postgres
-      # initialize_new_cluster
-      # setup_version_binary_folder
       update_to_latest_version
-      # backup_database
-      # vacuum_database
-      # reindex_database
     end
   end
 end
@@ -185,11 +180,6 @@ action_class do
     end
   end
 
-  # def initialize_new_cluster
-  #   puts "->12"
-  #   private_chef_pg_cluster new_data_dir
-  # end
-
   # Use the existence of a PG_VERSION file in a cluster's data directory
   # as an indicator of it having been already set up.
   def cluster_initialized?(data_dir)
@@ -239,58 +229,6 @@ action_class do
   def binary_path_for(version)
     "/opt/supermarket/embedded/postgresql/#{version}/bin"
   end
-
-  # def backup_database
-  #   execute 'backup_database' do
-  #     puts "->21"
-  #     command lazy {
-  #       new_version = version_from_data_dir(new_data_dir)
-  #       new_bin_path = binary_path_for(new_version)
-  #       Dir.create(tmp_path) unless Dir.exist?(tmp_path)
-  #       <<-EOM.gsub(/\s+/, ' ').strip!
-  #         #{new_bin_path}/pg_dumpall 
-  #         -U #{node['supermarket']['postgresql']['username']} 
-  #         -p #{node['supermarket']['postgresql']['port']} > #{tmp_path}/#{node['supermarket']['database']['name']}-#{new_version}-dump.sql
-  #       EOM
-  #     }
-  #     user node['supermarket']['postgresql']['username']
-  #     timeout node['supermarket']['postgresql']['pg_backup_timeout']
-  #   end
-  # end
-
-  # def vacuum_database
-  #   execute 'vacuum_database' do
-  #     puts "->22"
-  #     command lazy {
-  #       new_version = version_from_data_dir(new_data_dir)
-  #       new_bin_path = binary_path_for(new_version)
-  #       <<-EOM.gsub(/\s+/, ' ').strip!
-  #         #{new_bin_path}/vacuumdb --all --full -p #{node['supermarket']['postgresql']['port']}
-  #       EOM
-  #     }
-  #     user node['supermarket']['postgresql']['username']
-  #     timeout node['supermarket']['postgresql']['pg_vacuum_timeout']
-  #   end
-  # end
-
-  # def reindex_database
-  #   execute 'reindex_database' do
-  #     puts "->22"
-  #     command lazy {
-  #       new_version = version_from_data_dir(new_data_dir)
-  #       new_bin_path = binary_path_for(new_version)
-  #       <<-EOM.gsub(/\s+/, ' ').strip!
-  #         #{new_bin_path}/reindexdb --all -p #{node['supermarket']['postgresql']['port']}
-  #       EOM
-  #     }
-  #     user node['supermarket']['postgresql']['username']
-  #     timeout node['supermarket']['postgresql']['pg_reindex_timeout']
-  #   end
-  # end
-
-  # def tmp_path
-  #   "/tmp"
-  # end
 
   def update_to_latest_version
     execute 'upgrade_postgres_cluster' do

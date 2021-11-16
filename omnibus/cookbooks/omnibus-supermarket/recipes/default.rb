@@ -17,15 +17,6 @@
 # limitations under the License.
 #
 
-# include_recipe 'omnibus-supermarket::config'
-# include_recipe 'omnibus-supermarket::log_management'
-# include_recipe 'omnibus-supermarket::ssl'
-# include_recipe 'omnibus-supermarket::postgresql'
-# include_recipe 'omnibus-supermarket::redis'
-# include_recipe 'omnibus-supermarket::nginx'
-# include_recipe 'omnibus-supermarket::database'
-# include_recipe 'omnibus-supermarket::app'
-
 %w(
   config
   log_management
@@ -50,19 +41,15 @@
     component_runit_service service do
       action :disable
     end
-  else
+  elsif node['supermarket'][service]['enable']
     include_recipe "omnibus-supermarket::#{service}"
+  else
+    # All non-enabled services get disabled;
+    component_runit_service service do
+      action :disable
+    end
   end
-  # elsif node['supermarket'][service]['enable']
-  #   include_recipe "omnibus-supermarket::#{service}"
-  # else
-  #   # All non-enabled services get disabled;
-  #   component_runit_service service do
-  #     action :disable
-  #   end
-  # end
 end
-
 
 # Write out a supermarket-running.json at the end of the run
 file "#{node['supermarket']['config_directory']}/supermarket-running.json" do
