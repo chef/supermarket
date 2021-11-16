@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.28 -->
-## [4.2.28](https://github.com/chef/supermarket/tree/4.2.28) (2021-11-16)
+<!-- latest_release 4.2.29 -->
+## [4.2.29](https://github.com/chef/supermarket/tree/4.2.29) (2021-11-16)
 
 #### Merged Pull Requests
-- Bump chefstyle from 2.1.2 to 2.1.3 in /src/supermarket [#2384](https://github.com/chef/supermarket/pull/2384) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump cookstyle from 7.25.9 to 7.25.10 in /omnibus [#2383](https://github.com/chef/supermarket/pull/2383) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump cookstyle from 7.25.9 to 7.25.10 in /omnibus [#2383](https://github.com/chef/supermarket/pull/2383) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.29 -->
 - Bump chefstyle from 2.1.2 to 2.1.3 in /src/supermarket [#2384](https://github.com/chef/supermarket/pull/2384) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.28 -->
 - Move Supermarket docs from chef-web-docs [#2372](https://github.com/chef/supermarket/pull/2372) ([IanMadd](https://github.com/IanMadd)) <!-- 4.2.27 -->
 - Smriti/announcement banner flag [#2371](https://github.com/chef/supermarket/pull/2371) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.2.26 -->
