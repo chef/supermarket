@@ -131,7 +131,7 @@ describe 'omnibus-supermarket::ssl' do
   end
 
   context 'when ssl is disabled, on a fauxhai\'d platform' do
-    normal_attributes['supermarket']['ssl']['enabled'] = false
+    normal_attributes['supermarket']['ssl']['enable'] = false
 
     it_behaves_like :create_directories
     it_behaves_like :no_create_certificates
@@ -154,7 +154,7 @@ describe 'omnibus-supermarket::ssl' do
 
   context 'when ssl is disabled & a certificate is supplied, ' \
           'on a fauxhai\'d platform' do
-    normal_attributes['supermarket']['ssl']['enabled'] = false
+    normal_attributes['supermarket']['ssl']['enable'] = false
     normal_attributes['supermarket']['ssl']['certificate'] = '/etc/mycert.pem'
 
     it_behaves_like :create_directories

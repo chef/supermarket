@@ -184,7 +184,12 @@ supermarket-ctl help
 
 ### reconfigure
 
-The `reconfigure` subcommand is used when changes are made to the supermarket.rb file to reconfigure the server. When changes are made to the supermarket.rb file, they will not be applied to the Chef Supermarket configuration until after this command is run. This subcommand will also restart any services for which the `service_name['enabled']` setting is set to `true`.
+The `reconfigure` subcommand is used when changes are made to the
+supermarket.rb file to reconfigure the server. When changes are made to
+the supermarket.rb file, they will not be applied to the Chef
+Supermarket configuration until after this command is run. This
+subcommand will also restart any services for which the
+`service_name['enable']` setting is set to `true`.
 
 This subcommand has the following syntax:
 
