@@ -61,6 +61,8 @@
 # fail between them), we're going to drop off a sentinel file that we
 # can check to see if we've been migrated.
 
+unified_mode true
+
 provides :pg_upgrade
 
 action :upgrade do
