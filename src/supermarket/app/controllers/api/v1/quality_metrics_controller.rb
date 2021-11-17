@@ -4,9 +4,9 @@ class Api::V1::QualityMetricsController < Api::V1Controller
   before_action :find_cookbook_version, except: :license_evaluation
 
   #
-  # POST /api/v1/quality_metrics/foodcritic_evaluation
+  # POST /api/v1/quality_metrics/cookstyle_evaluation
   #
-  # Take the foodcritic evaluation results from Fieri and store them on the
+  # Take the cookstyle evaluation results from Fieri and store them on the
   # applicable +CookbookVersion+.
   #
   # If the +CookbookVersion+ does not exist, render a 404 not_found.
@@ -14,24 +14,23 @@ class Api::V1::QualityMetricsController < Api::V1Controller
   # If the request is unauthorized, render unauthorized.
   #
   # This endpoint expects +cookbook_name+, +cookbook_version+,
-  # +foodcritic_failure+, +foodcritic_feedback+, and +fieri_key+.
+  # +cookstyle_failure+, +cookstyle_feedback+, and +fieri_key+.
   #
 
-  def foodcritic_evaluation
+  def cookstyle_evaluation
     require_evaluation_params
 
     create_metric(
       @cookbook_version,
-      QualityMetric.foodcritic_metric,
-      params[:foodcritic_failure],
-      params[:foodcritic_feedback]
+      QualityMetric.cookstyle_metric,
+      params[:cookstyle_failure],
+      params[:cookstyle_feedback]
     )
 
-    # License metric has been deprecated in favor of the equivalent Foodcritic rule.
-    # Remove old License metric results now that a Foodcritic result has been made that
-    # checks for licensing.
+    # Foodcritic metric has been deprecated in favour of cookstyle metric
+    # hence we will delete all the results which were for foodcritic metric
     MetricResult
-      .where(cookbook_version: @cookbook_version, quality_metric: QualityMetric.license_metric)
+      .where(cookbook_version: @cookbook_version, quality_metric: [QualityMetric.foodcritic_metric, QualityMetric.license_metric])
       .delete_all
 
     head 200
@@ -192,7 +191,7 @@ class Api::V1::QualityMetricsController < Api::V1Controller
   def require_evaluation_params
     params.require(:cookbook_name)
     params.require(:cookbook_version)
-    params.require(:foodcritic_failure)
+    params.require(:cookstyle_failure)
   end
 
   def require_collaborator_params

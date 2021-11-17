@@ -19,4 +19,7 @@ group :development, :test do
   gem "rubocop-rails", require: false
   gem "sqlite3"
   gem "webmock"
+  gem 'mixlib-shellout', '~> 2.2', '>= 2.2.6'
+  gem "mixlib-archive", ">= 0.4", "< 2.0"
+  gem "cookstyle"
 end

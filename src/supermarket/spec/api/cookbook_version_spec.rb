@@ -48,18 +48,18 @@ describe "GET /api/v1/cookbooks/:cookbook/versions/:version" do
 
       let(:cookbook_version) { cookbook.cookbook_versions.where(version: "0.1.0").first }
 
-      let(:quality_metric_foodcritic) do
-        create(:foodcritic_metric)
+      let(:quality_metric_cookstyle) do
+        create(:cookstyle_metric)
       end
 
       let(:quality_metric_collab_num) do
         create(:collaborator_num_metric)
       end
 
-      let!(:foodcritic_result) do
+      let!(:cookstyle_result) do
         create(:metric_result,
                cookbook_version: cookbook_version,
-               quality_metric: quality_metric_foodcritic)
+               quality_metric: quality_metric_cookstyle)
       end
 
       let!(:collab_result) do
@@ -72,9 +72,9 @@ describe "GET /api/v1/cookbooks/:cookbook/versions/:version" do
         {
           "quality_metrics" => [
             {
-              "name" => quality_metric_foodcritic.name,
-              "failed" => foodcritic_result.failure,
-              "feedback" => foodcritic_result.feedback,
+              "name" => quality_metric_cookstyle.name,
+              "failed" => cookstyle_result.failure,
+              "feedback" => cookstyle_result.feedback,
             },
             {
               "name" => quality_metric_collab_num.name,
@@ -125,7 +125,7 @@ describe "GET /api/v1/cookbooks/:cookbook/versions/:version" do
           expect(JSON.parse(response.body)).to include(quality_metrics)
         end
 
-        context "when the cookbook has only the foodcritic metric" do
+        context "when the cookbook has only the cookstyle metric" do
           before do
             collab_result.destroy
           end

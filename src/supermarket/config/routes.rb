@@ -21,16 +21,14 @@ Rails.application.routes.draw do
       delete "cookbooks/:cookbook/versions/:version" => "cookbook_uploads#destroy_version", constraints: { version: VERSION_PATTERN }
       get "users/:user" => "users#show", as: :user
 
-      # This was the original route, which has a misspelling (cookbook-verisons rather than cookbook-versions).  Keeping this here so as not to break anyone who is still depending on the original route.
-      post "/cookbook-verisons/foodcritic_evaluation" => "quality_metrics#foodcritic_evaluation", constraints: proc { Feature.active?(:fieri) }
-
-      # This route has the correct spelling of cookbook-versions
-      post "/cookbook-versions/foodcritic_evaluation" => "quality_metrics#foodcritic_evaluation", as: :cookbook_versions_foodcritic_evaluation, constraints: proc { Feature.active?(:fieri) }
+      # All the routes related to foodcritic have been removed in favour of cookstyle
+      # as per discussion with Tim.. Since we are sure that none of the supermarket APIs are called externally
+      post "/cookbook-versions/cookstyle_evaluation" => "quality_metrics#cookstyle_evaluation", as: :cookbook_versions_cookstyle_evaluation, constraints: proc { Feature.active?(:fieri) }
       post "/cookbook-versions/collaborators_evaluation" => "quality_metrics#collaborators_evaluation", as: :cookbook_versions_collaborators_evaluation, constraints: proc { Feature.active?(:fieri) }
       post "/cookbook-versions/publish_evaluation" => "quality_metrics#publish_evaluation", as: :cookbook_versions_publish_evaluation, constraints: proc { Feature.active?(:fieri) }
       post "/cookbook-versions/license_evaluation" => "quality_metrics#license_evaluation", as: :cookbook_versions_license_evaluation, constraints: proc { Feature.active?(:fieri) }
 
-      post "/quality_metrics/foodcritic_evaluation" => "quality_metrics#foodcritic_evaluation", as: :quality_metrics_foodcritic_evaluation, constraints: proc { Feature.active?(:fieri) }
+      post "/quality_metrics/cookstyle_evaluation" => "quality_metrics#cookstyle_evaluation", as: :quality_metrics_cookstyle_evaluation, constraints: proc { Feature.active?(:fieri) }
       post "/quality_metrics/collaborators_evaluation" => "quality_metrics#collaborators_evaluation", as: :quality_metrics_collaborators_evaluation, constraints: proc { Feature.active?(:fieri) }
       post "/quality_metrics/publish_evaluation" => "quality_metrics#publish_evaluation", as: :quality_metrics_publish_evaluation, constraints: proc { Feature.active?(:fieri) }
       post "/quality_metrics/license_evaluation" => "quality_metrics#license_evaluation", as: :quality_metrics_license_evaluation, constraints: proc { Feature.active?(:fieri) }

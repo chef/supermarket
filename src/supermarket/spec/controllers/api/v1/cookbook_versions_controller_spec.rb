@@ -31,7 +31,7 @@ describe Api::V1::CookbookVersionsController do
     end
 
     it "includes the cookbook version's metric results" do
-      qm = create(:foodcritic_metric)
+      qm = create(:cookstyle_metric)
       metric_result = create(:metric_result,
                              cookbook_version: redis_1_0_0,
                              quality_metric: qm)

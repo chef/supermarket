@@ -3,7 +3,6 @@ PATH
   specs:
     fieri (0.0.1)
       dotenv-rails
-      foodcritic (~> 16.3)
       mixlib-archive (>= 0.4, < 2.0)
       octokit (~> 4.16)
       rails (>= 6.1, < 7)
@@ -184,6 +183,8 @@ GEM
       compass (~> 1.0.0)
     concurrent-ruby (1.1.9)
     connection_pool (2.2.5)
+    cookstyle (7.25.10)
+      rubocop (= 1.23.0)
     corefoundation (0.3.4)
       ffi (>= 1.15.0)
     crack (0.4.5)
@@ -266,13 +267,6 @@ GEM
       ffi (~> 1.0)
     ffi-yajl (2.4.0)
       libyajl2 (>= 1.2)
-    foodcritic (16.3.0)
-      erubis
-      ffi-yajl (~> 2.0)
-      nokogiri (>= 1.5, < 2.0)
-      rake
-      rufus-lru (~> 1.0)
-      treetop (~> 1.4)
     foreman (0.87.2)
     formatador (0.3.0)
     fugit (1.5.2)
@@ -506,7 +500,6 @@ GEM
       capybara (>= 2.1, < 4)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
-    polyglot (0.3.5)
     premailer (1.15.0)
       addressable
       css_parser (>= 1.6.0)
@@ -640,7 +633,6 @@ GEM
     ruby2_keywords (0.0.5)
     rubyntlm (0.6.3)
     rubyzip (2.3.2)
-    rufus-lru (1.1.0)
     sass (3.4.25)
     sass-globbing (1.1.5)
       sass (>= 3.1)
@@ -715,8 +707,6 @@ GEM
       winrm (>= 2.3.6, < 3.0)
       winrm-elevated (~> 1.2.2)
       winrm-fs (~> 1.0)
-    treetop (1.6.11)
-      polyglot (~> 0.3)
     tty-box (0.7.0)
       pastel (~> 0.8)
       strings (~> 0.2.0)
@@ -811,6 +801,7 @@ DEPENDENCIES
   chefstyle
   coderay
   compass-rails
+  cookstyle (= 7.25.10)
   database_cleaner
   ddtrace (= 0.53.0)
   dotenv
@@ -883,4 +874,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   2.1.4
+   2.2.29

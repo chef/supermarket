@@ -347,6 +347,9 @@ CLA signing still works, but has been disabled in the public site in favor of [t
 * cla
 * join_ccla
 
+## Support for Cookstyle
+Supermarket now supports Cookstyle metric evaluation and support for Foodcritic has been removed. In effect to that all call to the foodcritic_evaluation api will not be available, instead cookstyle_evaluation is in effect
+
 ## License
 
 |                      |                                          |

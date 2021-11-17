@@ -8,7 +8,7 @@ class MetricsRunner
     cookbook_version_data = cookbook_version_api_response(cookbook)
 
     CollaboratorWorker.perform_async(cookbook_data, cookbook["name"])
-    FoodcriticWorker.perform_async(cookbook)
+    CookstyleWorker.perform_async(cookbook)
     SupportedPlatformsWorker.perform_async(cookbook_version_data, cookbook["name"])
     NoBinariesWorker.perform_async(cookbook)
 

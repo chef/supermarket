@@ -8,7 +8,7 @@ class RunQualityMetrics
         FROM cookbook_versions AS latest
         WHERE latest.cookbook_id = cookbook_versions.cookbook_id
       )
-    ').pluck(:id)
+    ').ids
 
     cookbook_version_ids.each do |cookbook_version_id|
       FieriNotifyWorker.perform_async cookbook_version_id

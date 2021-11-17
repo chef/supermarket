@@ -3,16 +3,19 @@ development:
   database: supermarket_development
   host: <%= ENV['POSTGRES_IP'] || 'localhost' %>
   pool: 30
+  username: supermarket
+  password: password
 
 test:
   adapter: postgresql
   database: supermarket_test
   host: <%= ENV['POSTGRES_IP'] || 'localhost' %>
-  username: <%= ENV['DB_USERNAME'] || 'postgres' %>
-  password: <%= ENV['DB_PASSWORD'] || 'postgres' %>
+  username: supermarket_user
+  password: password
 
 production:
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
+  username: supermarket
+  password: password
+  host: localhost
   adapter: postgresql
-  database: supermarket_production
+  database: supermarket_development
