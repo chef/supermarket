@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.29 -->
-## [4.2.29](https://github.com/chef/supermarket/tree/4.2.29) (2021-11-16)
+<!-- latest_release 4.2.30 -->
+## [4.2.30](https://github.com/chef/supermarket/tree/4.2.30) (2021-11-17)
 
 #### Merged Pull Requests
-- Bump cookstyle from 7.25.9 to 7.25.10 in /omnibus [#2383](https://github.com/chef/supermarket/pull/2383) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Changed rails autoloader version from 5.1 to 6.0 [#2380](https://github.com/chef/supermarket/pull/2380) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Changed rails autoloader version from 5.1 to 6.0 [#2380](https://github.com/chef/supermarket/pull/2380) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.30 -->
 - Bump cookstyle from 7.25.9 to 7.25.10 in /omnibus [#2383](https://github.com/chef/supermarket/pull/2383) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.29 -->
 - Bump chefstyle from 2.1.2 to 2.1.3 in /src/supermarket [#2384](https://github.com/chef/supermarket/pull/2384) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.28 -->
 - Move Supermarket docs from chef-web-docs [#2372](https://github.com/chef/supermarket/pull/2372) ([IanMadd](https://github.com/IanMadd)) <!-- 4.2.27 -->
