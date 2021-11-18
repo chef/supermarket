@@ -673,6 +673,7 @@ describe CookbooksController do
     let!(:cookbook) { create(:cookbook, owner: user) }
     let!(:other_cookbook) { create(:cookbook, owner: user) }
     let!(:replacement_cookbook) { create(:cookbook) }
+    let!(:deprecation_reason) { "This cookbook is deprecated." }
 
     context "cookbook owner" do
       context "no replacement" do
@@ -752,6 +753,17 @@ describe CookbooksController do
                   replacement: replacement_cookbook,
                 } })
           end.to change(CookbookDeprecatedNotifier.jobs, :size).by(1)
+        end
+
+        it "deprecates the cookbook with the deprecation_reason" do
+          put(:deprecate, params: { id: cookbook, cookbook: {
+                deprecation_reason: deprecation_reason,
+              } })
+
+          cookbook.reload
+
+          expect(cookbook.deprecated).to eql(true)
+          expect(cookbook.deprecation_reason).to eql(deprecation_reason)
         end
       end
 

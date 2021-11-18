@@ -190,8 +190,8 @@ class CookbooksController < ApplicationController
     authorize! @cookbook
 
     replacement_cookbook_name = cookbook_deprecation_params[:cookbook][:replacement]
-
-    if @cookbook.deprecate(replacement_cookbook_name)
+    cookbook_deprecation_reason = cookbook_deprecation_params[:cookbook][:deprecation_reason]
+    if @cookbook.deprecate(replacement_cookbook_name, cookbook_deprecation_reason)
       CookbookDeprecatedNotifier.perform_async(@cookbook.id)
 
       redirect_to(
@@ -214,7 +214,7 @@ class CookbooksController < ApplicationController
   def undeprecate
     authorize! @cookbook
 
-    @cookbook.update(deprecated: false, replacement: nil)
+    @cookbook.update(deprecated: false, replacement: nil, deprecation_reason: nil)
 
     redirect_to(
       cookbook_path(@cookbook),
@@ -306,7 +306,7 @@ class CookbooksController < ApplicationController
   end
 
   def cookbook_deprecation_params
-    params.permit(cookbook: [:replacement])
+    params.permit(cookbook: [:replacement, :deprecation_reason])
   end
 
   def render_follow_button

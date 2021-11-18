@@ -1,16 +1,23 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.25 -->
-## [4.2.25](https://github.com/chef/supermarket/tree/4.2.25) (2021-11-11)
+<!-- latest_release 4.2.32 -->
+## [4.2.32](https://github.com/chef/supermarket/tree/4.2.32) (2021-11-18)
 
 #### Merged Pull Requests
-- Add back builds on Ubuntu 16.04 [#2338](https://github.com/chef/supermarket/pull/2338) ([tas50](https://github.com/tas50))
+- Allow adding reason to cookbooks when deprecated [#2359](https://github.com/chef/supermarket/pull/2359) ([sanga1794](https://github.com/sanga1794))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Allow adding reason to cookbooks when deprecated [#2359](https://github.com/chef/supermarket/pull/2359) ([sanga1794](https://github.com/sanga1794)) <!-- 4.2.32 -->
+- Revert &quot;Changed rails autoloader version from 5.1 to 6.0&quot; [#2387](https://github.com/chef/supermarket/pull/2387) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 4.2.31 -->
+- Changed rails autoloader version from 5.1 to 6.0 [#2380](https://github.com/chef/supermarket/pull/2380) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.30 -->
+- Bump cookstyle from 7.25.9 to 7.25.10 in /omnibus [#2383](https://github.com/chef/supermarket/pull/2383) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.29 -->
+- Bump chefstyle from 2.1.2 to 2.1.3 in /src/supermarket [#2384](https://github.com/chef/supermarket/pull/2384) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.28 -->
+- Move Supermarket docs from chef-web-docs [#2372](https://github.com/chef/supermarket/pull/2372) ([IanMadd](https://github.com/IanMadd)) <!-- 4.2.27 -->
+- Smriti/announcement banner flag [#2371](https://github.com/chef/supermarket/pull/2371) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.2.26 -->
 - Add back builds on Ubuntu 16.04 [#2338](https://github.com/chef/supermarket/pull/2338) ([tas50](https://github.com/tas50)) <!-- 4.2.25 -->
 - Bump omnibus-software from `485b535` to `9222241` in /omnibus [#2355](https://github.com/chef/supermarket/pull/2355) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.24 -->
 - Sabya/change chef version [#2354](https://github.com/chef/supermarket/pull/2354) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 4.2.23 -->

@@ -15,6 +15,6 @@ feature "cookbook owners can undeprecate a cookbook" do
   end
 
   it "it no longer displays a deprecation notice" do
-    expect(page).to have_no_content("#{cookbook.name} cookbook has been deprecated")
+    expect(page).to have_content("#{cookbook.name} is no longer deprecated.")
   end
 end
