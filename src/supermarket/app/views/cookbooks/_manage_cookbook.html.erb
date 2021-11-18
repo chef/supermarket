@@ -64,10 +64,14 @@
 
       <%= form_for cookbook, url: deprecate_cookbook_path(cookbook), method: :put do |f| %>
         <div class="row collapse">
-          <div class="small-9 columns">
+          <div class="small-12 columns">
             <%= f.hidden_field :replacement, class: 'cookbook-deprecate', 'data-url' => deprecate_search_cookbook_path(cookbook) %>
           </div>
-          <div class="small-3 columns">
+          <div class="small-12 columns">
+            <%= f.label :deprecation_reason %>
+            <%= f.text_area :deprecation_reason, class: 'form-control', placeholder: 'Reason of deprecation', value: cookbook.cookbook_deprecation_reason, rows: 3 %>
+          </div>
+          <div class="medium-3 columns">
             <%= f.submit 'Deprecate', class: 'button radius postfix submit-deprecation' %>
           </div>
         </div>

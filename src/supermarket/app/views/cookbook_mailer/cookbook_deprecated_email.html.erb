@@ -1,6 +1,7 @@
 <p>The <%= link_to @cookbook.name, cookbook_url(@cookbook) %> cookbook has been
    deprecated.</p>
-
+<p>Author provided reason for deprecation:</p>
+<p><%= @cookbook.cookbook_deprecation_reason %></p>
 <% if @replacement_cookbook -%>
 <p>The owner recommends using the <%= link_to @replacement_cookbook.name, cookbook_url(@replacement_cookbook) %>
    cookbook.</p>

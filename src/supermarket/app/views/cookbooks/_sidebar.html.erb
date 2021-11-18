@@ -67,9 +67,7 @@
           </li>
         <% end %>
       <% else %>
-        <li data-tooltip class="has-tip cookbook_no_platform_icon" title="Not specified">
-          <span class="fa fa-question-circle"></span>
-        </li>
+        <p>None Specified</p>
       <% end %>
     </ul>
 
@@ -100,6 +98,6 @@
       <p><%= versions_string(version.ohai_versions) %></p>
     <% end %>
 
-    <%= link_to "Download Cookbook", { action: 'download' }, class: 'button secondary radius expand button_download_cookbook' %>
+    <%= link_to "Download Cookbook", download_cookbook_path(cookbook.name), class: 'button secondary radius expand button_download_cookbook' %>
   </div>
 </div>

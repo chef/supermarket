@@ -5,10 +5,9 @@
         <i class="fa fa-exclamation-triangle"></i> The <%= cookbook.name %>
         cookbook has been deprecated
       </h2>
+      <p class="deprecation-copy"> Author provided reason for deprecation: </p>
+      <p class="deprecation-copy"><%= cookbook.cookbook_deprecation_reason %></p>
       <p class="deprecation-copy">
-      The <%= cookbook.name %> cookbook has been deprecated and is no longer
-      being maintained by its authors.  Use of the <%= cookbook.name %>
-      cookbook is no longer recommended.
       <% if cookbook.replacement.present? %>
         You may find that the <%= link_to cookbook.replacement.name, cookbook.replacement %>
         cookbook is a suitable alternative.

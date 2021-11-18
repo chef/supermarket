@@ -40,6 +40,7 @@ en:
     not_found: "The %{name} cookbook was not found."
     version_not_found: "Version %{version} of %{name} cookbook was not found."
     quality_metric_pass_rate_tip: "the percentage of passing quality metrics"
+    default_deprecation_reason: "The %{name} cookbook has been deprecated and is no longer being maintained by its authors.  Use of the %{name} cookbook is no longer recommended."
   contributor:
     removed: "Contributor removed."
   contributor_requests:

@@ -372,7 +372,7 @@ class Cookbook < ApplicationRecord
   # @return [Boolean] whether or not the cookbook was successfully deprecated
   #   and  saved
   #
-  def deprecate(replacement_cookbook_name = "")
+  def deprecate(replacement_cookbook_name = "", deprecation_reason = "")
     replacement_cookbook = Cookbook.find_by name: replacement_cookbook_name
 
     if replacement_cookbook.present? && replacement_cookbook.deprecated?
@@ -381,6 +381,7 @@ class Cookbook < ApplicationRecord
     end
 
     self.deprecated = true
+    self.deprecation_reason = deprecation_reason
     self.replacement = replacement_cookbook if replacement_cookbook.present?
     save
   end
@@ -395,6 +396,10 @@ class Cookbook < ApplicationRecord
   #
   def deprecate_search(query)
     Cookbook.search(query).where(deprecated: false).where.not(id: id)
+  end
+
+  def cookbook_deprecation_reason
+    deprecation_reason.presence || I18n.t("cookbook.default_deprecation_reason", name: name)
   end
 
   private
