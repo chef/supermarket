@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.32 -->
-## [4.2.32](https://github.com/chef/supermarket/tree/4.2.32) (2021-11-18)
+<!-- latest_release 4.2.33 -->
+## [4.2.33](https://github.com/chef/supermarket/tree/4.2.33) (2021-11-19)
 
 #### Merged Pull Requests
-- Allow adding reason to cookbooks when deprecated [#2359](https://github.com/chef/supermarket/pull/2359) ([sanga1794](https://github.com/sanga1794))
+- Bump chefstyle from 2.1.2 to 2.1.3 in /src/supermarket/engines/fieri [#2382](https://github.com/chef/supermarket/pull/2382) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump chefstyle from 2.1.2 to 2.1.3 in /src/supermarket/engines/fieri [#2382](https://github.com/chef/supermarket/pull/2382) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.33 -->
 - Allow adding reason to cookbooks when deprecated [#2359](https://github.com/chef/supermarket/pull/2359) ([sanga1794](https://github.com/sanga1794)) <!-- 4.2.32 -->
 - Revert &quot;Changed rails autoloader version from 5.1 to 6.0&quot; [#2387](https://github.com/chef/supermarket/pull/2387) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 4.2.31 -->
 - Changed rails autoloader version from 5.1 to 6.0 [#2380](https://github.com/chef/supermarket/pull/2380) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.30 -->
