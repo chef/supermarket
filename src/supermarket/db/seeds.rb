@@ -84,7 +84,7 @@ if Rails.env.development?
       cookbook_version = cookbook.cookbook_versions.where(
         version: "0.#{version_number}.0"
       ).first_or_initialize(
-        description: Faker::Lorem.sentences(1).first,
+        description: Faker::Lorem.sentences(number: 1).first,
         license: 'MIT',
         tarball: File.open('spec/support/cookbook_fixtures/redis-test-v1.tgz'),
         readme: '# This is a README',
