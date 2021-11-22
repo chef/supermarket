@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2021_10_21_105430) do
     t.integer "user_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "ccla_signature_id", null: false
     t.index ["organization_id", "user_id"], name: "index_contributor_requests_on_organization_id_and_user_id", unique: true
   end
 
@@ -114,7 +115,7 @@ ActiveRecord::Schema.define(version: 2021_10_21_105430) do
     t.datetime "updated_at"
     t.string "tarball_file_name"
     t.string "tarball_content_type"
-    t.bigint "tarball_file_size"
+    t.integer "tarball_file_size"
     t.datetime "tarball_updated_at"
     t.text "readme", default: "", null: false
     t.string "readme_extension", default: "", null: false
@@ -154,7 +155,6 @@ ActiveRecord::Schema.define(version: 2021_10_21_105430) do
     t.string "deprecation_reason"
     t.index ["lowercase_name"], name: "index_cookbooks_on_lowercase_name", unique: true
     t.index ["name"], name: "index_cookbooks_on_name"
-    t.index ["replacement_id"], name: "index_cookbooks_on_replacement_id"
     t.index ["user_id"], name: "index_cookbooks_on_user_id"
   end
 
