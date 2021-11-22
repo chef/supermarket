@@ -34,12 +34,12 @@ build do
   env = with_standard_compiler_flags(with_embedded_path)
 
   bundle "package --no-install", env: env
-
+  # This statement is to replace the --without flag which is getting deprecated
+  bundle "config set without 'development doc'"
   bundle "install" \
          " --jobs #{workers}" \
          " --retry 3" \
-         " --path=vendor/bundle" \
-         " --without development doc",
+         " --path=vendor/bundle",
          env: env
 
 
