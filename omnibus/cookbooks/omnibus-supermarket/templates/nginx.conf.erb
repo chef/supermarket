@@ -39,6 +39,7 @@ http {
   server_tokens off;
   more_clear_headers Server;
   add_header X-Clacks-Overhead "GNU Terry Pratchett";
+  add_header Permissions-Policy "camera 'none'; payment 'none';";
 
   sendfile <%= @nginx['sendfile'] %>;
   tcp_nopush on;
