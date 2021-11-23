@@ -2,7 +2,7 @@ require "digest"
 require "openssl"
 
 module Supermarket
-  class FIPS
+  class Fips
     # FIPS 140-2 Annex A references NIST Digital Signature Standard (DSS),
     # FIPS Publication 186-4 to identify several algorithms as the
     # Secure Hash Standard (SHS). Algorithms listed here are in the SHS
