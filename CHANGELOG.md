@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.36 -->
-## [4.2.36](https://github.com/chef/supermarket/tree/4.2.36) (2021-11-24)
+<!-- latest_release 4.2.37 -->
+## [4.2.37](https://github.com/chef/supermarket/tree/4.2.37) (2021-11-24)
 
 #### Merged Pull Requests
-- Upgrade rails autoloader version to 6.0 [#2392](https://github.com/chef/supermarket/pull/2392) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Replace virtus gem with dry-types gem [#2375](https://github.com/chef/supermarket/pull/2375) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Replace virtus gem with dry-types gem [#2375](https://github.com/chef/supermarket/pull/2375) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.37 -->
 - Upgrade rails autoloader version to 6.0 [#2392](https://github.com/chef/supermarket/pull/2392) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.36 -->
 - Bump test-kitchen from 3.1.1 to 3.2.0 in /omnibus [#2388](https://github.com/chef/supermarket/pull/2388) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.35 -->
 - Bump omnibus-software from `9222241` to `7501e20` in /omnibus [#2386](https://github.com/chef/supermarket/pull/2386) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.34 -->
