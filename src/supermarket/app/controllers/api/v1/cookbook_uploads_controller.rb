@@ -66,6 +66,9 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
           Supermarket::Metrics.increment "cookbook.version.published"
           UniverseCache.flush
 
+          # fetch spdx license
+          SpdxLicenseUpdateWorker.perform_async(FetchSpdxLicenseJson.spdx_license_json, cookbook_version.version)
+
           render :create, status: 201
         end
       end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_21_105430) do
+ActiveRecord::Schema.define(version: 2021_10_11_071907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 2021_10_21_105430) do
     t.json "chef_versions"
     t.json "ohai_versions"
     t.integer "user_id"
+    t.string "spdx_license_url"
     t.index ["legacy_id"], name: "index_cookbook_versions_on_legacy_id", unique: true
     t.index ["version", "cookbook_id"], name: "index_cookbook_versions_on_version_and_cookbook_id", unique: true
     t.index ["version"], name: "index_cookbook_versions_on_version"
