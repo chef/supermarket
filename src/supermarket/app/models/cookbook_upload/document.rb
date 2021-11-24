@@ -1,8 +1,5 @@
-require "virtus"
-
 class CookbookUpload
-  class Document
-    include Virtus.value_object
+  class Document < SchemaDefiner::SymbolizeStruct
 
     #
     # @!attribute [r] contents
@@ -14,9 +11,7 @@ class CookbookUpload
     #   @return [String] The README extension
     #
 
-    values do
-      attribute :contents, String
-      attribute :extension, String, default: ""
-    end
+    attribute :contents, SchemaDefiner::Types::Coercible::String.default(nil)
+    attribute :extension, SchemaDefiner::Types::Coercible::String.default("", shared: true)
   end
 end
