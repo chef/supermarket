@@ -180,6 +180,24 @@ Now when you click on "Sign In" you should be signed into your supermarket accou
 
 NOTE: If you receive an omniauth csrf detected error, try clearing your browser's cache.
 
+## SPDX license linking for cookbooks
+
+If a cookbook that has licenseId which also happens to be a license mentioned in SPDX license list here - https://github.com/spdx/license-list-data/blob/master/json/licenses.json, need to be updated with respective licence url.
+
+When a new cookbook is uploaded license url information is fetched from the above link and is updated.
+
+For an existing implementation of supermarket there is a provision running some ctl commands to update this information for cookbooks already there in system.
+
+Following commands are available to update the license urls for cookbooks :-
+### Update licenses urls for all the cookbooks in system
+`spdx-all`
+
+### Update for a single cookbook
+`spdx-latest <cookbook_name>`
+
+### Update for a particular version of cookbook
+`spdx-on-version <cookbook_name> <cookbook_version>`
+
 ## Connecting your Github Account
 
 There are a couple features that depend on GitHub integration (CLA signing, some quality metrics in Fieri). You can set up an integration for your development environment by creating an application with your Github account. To do this:
@@ -233,7 +251,7 @@ There are a couple features that depend on GitHub Enterprise integration (CLA si
 2. Click on your username in the upper right hand corner.
 3. Click the "User settings" in the vertical menu on the right corner. This will bring you to your Public Profile page.
 4. Click on "Developer settings" in the vertical menu on the left hand side
-5. At the top of the screen you'll see a section labeled "Developer settings" with text "OAuth App"  Click on this. 
+5. At the top of the screen you'll see a section labeled "Developer settings" with text "OAuth App"  Click on this.
 6. Click on button "new OAuth App". This will bring you to Register a new OAuth application page.
 7. Name your application whatever you like (I use "testing-supermarket-app"), the set the homepage url as http://localhost:3000 (or whatever localhost domain that you use). Also set the Authorization callback URL to http://localhost:3000/auth/github/callback (or your localhost domain of choice).
 8. Click the "Register application" button.

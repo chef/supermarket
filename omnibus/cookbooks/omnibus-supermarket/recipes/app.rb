@@ -62,6 +62,15 @@ file "#{node['supermarket']['app_directory']}/db/schema.rb" do
   owner node['supermarket']['user']
 end
 
+# Load licenses.json file in app directory with latest information from spdx link url
+# Create/Update licenses.json in assets/data directory in app folder.
+file "#{node['supermarket']['app_directory']}/app/assets/data/licenses.json" do
+  content Net::HTTP.get(URI.parse("#{node.default['supermarket']['spdx_license_url']}")).to_s
+  owner node['supermarket']['user']
+  group node['supermarket']['group']
+  mode '0600'
+end
+
 execute 'database schema' do
   command 'bundle exec rake db:migrate db:seed'
   cwd node['supermarket']['app_directory']

@@ -56,6 +56,11 @@ en:
     scheduled:
       single: "Scheduled quality metric evaluation for %{name} %{version}."
       multiple: "Scheduled quality metric evaluations for %{count} cookbook(s)."
+  spdx_license:
+    scheduled:
+      single: "Scheduled spdx license evaluation for %{name} %{version}."
+      multiple: "Scheduled spdx licese evaluation for %{count} cookbooks"
+      latest: "Scheduled spdx license evaluation for %{name} latest version"
   invitation:
     accept:
       success: "Successfully joined %{organization}"

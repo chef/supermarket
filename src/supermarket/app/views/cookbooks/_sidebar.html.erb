@@ -86,7 +86,13 @@
 
 
     <h4><i class="fa fa-key"></i> License</h4>
-    <p><%= version.license %></p>
+    <p><%= version.license %>
+      <% if version.spdx_license_url.present? %>
+      <%= link_to version.spdx_license_url,:target=>"_blank",:class=>"cookbook_platform_icon" do %>
+        <i class="fa fa-external-link"></i>
+      <% end %>
+      <%end%>
+    </p>
 
     <% if version.chef_versions.present? %>
       <h4><i class="fa fa-key"></i> Required Chef Infra Client</h4>

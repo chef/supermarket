@@ -47,6 +47,12 @@ describe Api::V1::CookbookUploadsController do
         end.to change(FieriNotifyWorker.jobs, :size).by(1)
       end
 
+      it "kicks off spdx license upate worker" do
+        expect do
+          post :create, params: { cookbook: "cookbook", tarball: "tarball", format: :json }
+        end.to change(SpdxLicenseUpdateWorker.jobs, :size).by(1)
+      end
+
       it "regenerates the universe cache" do
         expect(UniverseCache).to receive(:flush)
         post :create, params: { cookbook: "cookbook", tarball: "tarball", format: :json }

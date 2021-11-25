@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 2021_10_21_105430) do
     t.json "chef_versions"
     t.json "ohai_versions"
     t.integer "user_id"
+    t.string "spdx_license_url"
     t.index ["legacy_id"], name: "index_cookbook_versions_on_legacy_id", unique: true
     t.index ["version", "cookbook_id"], name: "index_cookbook_versions_on_version_and_cookbook_id", unique: true
     t.index ["version"], name: "index_cookbook_versions_on_version"
