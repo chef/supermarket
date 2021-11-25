@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.41 -->
-## [4.2.41](https://github.com/chef/supermarket/tree/4.2.41) (2021-11-25)
+<!-- latest_release 4.2.42 -->
+## [4.2.42](https://github.com/chef/supermarket/tree/4.2.42) (2021-11-25)
 
 #### Merged Pull Requests
-- Bump kitchen-vagrant from 1.10.0 to 1.11.0 in /omnibus [#2396](https://github.com/chef/supermarket/pull/2396) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump omnibus-software from `7501e20` to `4cac921` in /omnibus [#2403](https://github.com/chef/supermarket/pull/2403) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `7501e20` to `4cac921` in /omnibus [#2403](https://github.com/chef/supermarket/pull/2403) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.42 -->
 - Bump kitchen-vagrant from 1.10.0 to 1.11.0 in /omnibus [#2396](https://github.com/chef/supermarket/pull/2396) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.41 -->
 - Bump aws-sdk-s3 from 1.106.0 to 1.107.0 in /src/supermarket [#2397](https://github.com/chef/supermarket/pull/2397) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.40 -->
 - SPDX License feature UI and task changes  [#2296](https://github.com/chef/supermarket/pull/2296) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.2.39 -->
