@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.39 -->
-## [4.2.39](https://github.com/chef/supermarket/tree/4.2.39) (2021-11-25)
+<!-- latest_release 4.2.40 -->
+## [4.2.40](https://github.com/chef/supermarket/tree/4.2.40) (2021-11-25)
 
 #### Merged Pull Requests
-- SPDX License feature UI and task changes  [#2296](https://github.com/chef/supermarket/pull/2296) ([msys-sgarg](https://github.com/msys-sgarg))
+- Bump aws-sdk-s3 from 1.106.0 to 1.107.0 in /src/supermarket [#2397](https://github.com/chef/supermarket/pull/2397) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump aws-sdk-s3 from 1.106.0 to 1.107.0 in /src/supermarket [#2397](https://github.com/chef/supermarket/pull/2397) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.40 -->
 - SPDX License feature UI and task changes  [#2296](https://github.com/chef/supermarket/pull/2296) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.2.39 -->
 - Add permission policy for nginx to block camera and payment [#2394](https://github.com/chef/supermarket/pull/2394) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.38 -->
 - Replace virtus gem with dry-types gem [#2375](https://github.com/chef/supermarket/pull/2375) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.37 -->
