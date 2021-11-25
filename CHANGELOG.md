@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.37 -->
-## [4.2.37](https://github.com/chef/supermarket/tree/4.2.37) (2021-11-24)
+<!-- latest_release 4.2.38 -->
+## [4.2.38](https://github.com/chef/supermarket/tree/4.2.38) (2021-11-25)
 
 #### Merged Pull Requests
-- Replace virtus gem with dry-types gem [#2375](https://github.com/chef/supermarket/pull/2375) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Add permission policy for nginx to block camera and payment [#2394](https://github.com/chef/supermarket/pull/2394) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Add permission policy for nginx to block camera and payment [#2394](https://github.com/chef/supermarket/pull/2394) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.38 -->
 - Replace virtus gem with dry-types gem [#2375](https://github.com/chef/supermarket/pull/2375) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.37 -->
 - Upgrade rails autoloader version to 6.0 [#2392](https://github.com/chef/supermarket/pull/2392) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.36 -->
 - Bump test-kitchen from 3.1.1 to 3.2.0 in /omnibus [#2388](https://github.com/chef/supermarket/pull/2388) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.35 -->
