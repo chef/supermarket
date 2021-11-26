@@ -67,7 +67,7 @@ describe "cookbooks/show.html.erb" do
       expect(rendered).to have_selector("textarea", text: test_kitchen_text)
     end
 
-     it "has policyfile, berkshelf and knife tabs rendered" do
+    it "has policyfile, berkshelf and knife tabs rendered" do
       render
       expect(rendered).to have_selector("div", id: "policyfile")
       expect(rendered).to have_selector("div", id: "berkshelf")
