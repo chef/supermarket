@@ -176,7 +176,7 @@ As a Supermarket feature, Fieri must be enabled via the `default['supermarket'][
 
 `default['supermarket']['fieri_key']`
 
-: A string that is used as a key to authenticate Fieri. Default value: `nil`
+: A string that is used as a key to authenticate Fieri. Default value: `nil`. This value should be set to a random string for fieri feature to work properly. One example to generate random string - `openssl rand -base64 32`
 
 ### GitHub
 
