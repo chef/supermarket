@@ -793,7 +793,8 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yajl-ruby (1.4.1)
-    yard (0.9.26)
+    yard (0.9.27)
+      webrick (~> 1.7.0)
     zeitwerk (2.5.1)
 
 PLATFORMS
