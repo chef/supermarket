@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.43 -->
-## [4.2.43](https://github.com/chef/supermarket/tree/4.2.43) (2021-11-30)
+<!-- latest_release 4.2.44 -->
+## [4.2.44](https://github.com/chef/supermarket/tree/4.2.44) (2021-11-30)
 
 #### Merged Pull Requests
-- dependabot prs fix [#2408](https://github.com/chef/supermarket/pull/2408) ([dheerajd-msys](https://github.com/dheerajd-msys))
+- Increase memory requirement [#2416](https://github.com/chef/supermarket/pull/2416) ([kagarmoe](https://github.com/kagarmoe))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Increase memory requirement [#2416](https://github.com/chef/supermarket/pull/2416) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.44 -->
 - dependabot prs fix [#2408](https://github.com/chef/supermarket/pull/2408) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 4.2.43 -->
 - Bump omnibus-software from `7501e20` to `4cac921` in /omnibus [#2403](https://github.com/chef/supermarket/pull/2403) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.42 -->
 - Bump kitchen-vagrant from 1.10.0 to 1.11.0 in /omnibus [#2396](https://github.com/chef/supermarket/pull/2396) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.41 -->
