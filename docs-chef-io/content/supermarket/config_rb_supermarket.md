@@ -196,6 +196,43 @@ As a Supermarket feature, GitHub must be enabled via the`default['supermarket'][
 
 : The application client secret that is used to authenticate Supermarket to GitHub. Default value: `nil`.
 
+`default['supermarket']['github_url']`
+
+: The URL of the GitHub that Supermarket connects to. Default value:`https://github.com/`.
+
+### GitHub Enterprise
+
+Use these settings to integrate Supermarket with GitHub Enterprise.
+
+
+`default['supermarket']['github_access_token']`
+
+: The access token created from your GitHub Enterprise account. Default value:`nil`.
+
+`default['supermarket']['github_key']`
+
+: The application client ID that is used to authenticate Supermarket to GitHub Enterprise. Default value: `nil`.
+
+`default['supermarket']['github_secret']`
+
+: The application client secret that is used to authenticate Supermarket to GitHub Enterprise. Default value: `nil`.
+
+`default['supermarket']['github_enterprise_url']`
+
+: The URL of the GitHub Enterprise that Supermarket connects to. Default value:`nil`.
+
+`default['supermarket']['github_client_option_authorize_url']`
+
+: The URL of the GitHub Enterprise Authorize For Example `https://github.YOURDOMAIN.com/login/oauth/authorize`. Default value:`nil`.
+
+`default['supermarket']['github_client_option_site']`
+
+: The URL of the GitHub Enterprise Site For Example `https://github.YOURDOMAIN.com/api/v3`. Default value:`nil`.
+
+`default['supermarket']['github_client_option_access_token_url']`
+
+: The URL of the GitHub Enterprise Access Token For Example `https://github.YOURDOMAIN.com/login/oauth/access_token`. Default value:`nil`.
+
 ### Google Analytics
 
 Use this setting to set up [Google Analytics](https://analytics.google.com) tracking for Supermarket:
