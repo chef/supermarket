@@ -23,7 +23,7 @@ A private Chef Supermarket has the following requirements:
     higher) to act as the OAuth 2.0 provider
 - A user account on the Chef Infra Server with `admins` privileges
 - A key for the user account on the Chef server
-- An x86_64 compatible Linux host with at least 1 GB memory
+- An x86_64 compatible Linux host with at least 2 GB memory
 - System clocks synchronized on the Chef Infra Server and Supermarket
     hosts
 - Sufficient disk space on host to meet project cookbook storage
