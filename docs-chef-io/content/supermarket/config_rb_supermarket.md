@@ -227,7 +227,7 @@ Use these settings to integrate Supermarket with GitHub Enterprise.
 
 `default['supermarket']['github_client_option_site']`
 
-: The URL of the GitHub Enterprise Site For Example `https://github.YOURDOMAIN.com/api/v3`. Default value:`nil`.
+: The URL for your implementation of GitHub Enterprise. For example: `https://github.example.com/api/v3`. Default value: `nil`.
 
 `default['supermarket']['github_client_option_access_token_url']`
 
