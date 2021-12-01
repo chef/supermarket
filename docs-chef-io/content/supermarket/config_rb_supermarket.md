@@ -198,7 +198,7 @@ As a Supermarket feature, GitHub must be enabled via the`default['supermarket'][
 
 `default['supermarket']['github_url']`
 
-: The URL of the GitHub that Supermarket connects to. Default value:`https://github.com/`.
+: The GitHub URL that Supermarket connects to. Default value:`https://github.com/`.
 
 ### GitHub Enterprise
 
