@@ -231,7 +231,7 @@ Use these settings to integrate Supermarket with GitHub Enterprise.
 
 `default['supermarket']['github_client_option_access_token_url']`
 
-: The URL of the GitHub Enterprise Access Token For Example `https://github.YOURDOMAIN.com/login/oauth/access_token`. Default value:`nil`.
+: The URL of the GitHub Enterprise access token: For example: `https://github.example.com/login/oauth/access_token`. Default value:`nil`.
 
 ### Google Analytics
 
