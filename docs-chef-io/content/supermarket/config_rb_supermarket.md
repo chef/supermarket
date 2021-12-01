@@ -223,7 +223,7 @@ Use these settings to integrate Supermarket with GitHub Enterprise.
 
 `default['supermarket']['github_client_option_authorize_url']`
 
-: The URL of the GitHub Enterprise Authorize For Example `https://github.YOURDOMAIN.com/login/oauth/authorize`. Default value:`nil`.
+: The URL used to authorize with your implementation of GitHub Enterprise Server. For example: `https://github.example.com/login/oauth/authorize`. Default value: `nil`.
 
 `default['supermarket']['github_client_option_site']`
 
