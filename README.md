@@ -5,7 +5,7 @@
 [![ctl-cookbook-testing](https://github.com/chef/supermarket/actions/workflows/ctl-cookbook-testing.yml/badge.svg)](https://github.com/chef/supermarket/actions/workflows/ctl-cookbook-testing.yml)
 [![Inline docs](http://inch-ci.org/github/chef/supermarket.svg)](http://inch-ci.org/github/chef/supermarket)
 
-Supermarket is Chef's community repository for cookbooks, currently hosted at [supermarket.chef.io](supermarket.chef.io). The Supermarket can also run internally, behind-the-firewall.
+Supermarket is Chef's community repository for cookbooks, currently hosted at [supermarket.chef.io](supermarket.chef.io). Supermarket can also run internally, behind-the-firewall.
 
 **Umbrella Project**: [Supermarket](https://github.com/chef/chef-oss-practices/blob/master/projects/supermarket.md)
 
@@ -37,7 +37,7 @@ Configure the [dotenv](https://github.com/bkeepers/dotenv) keys and secrets. See
 
 ### Local Environment
 
-These instructions are tested and verified on MacOS Catalina (10.15).
+These instructions are tested and verified on macOS Catalina (10.15).
 
 #### Dependency Services
 
@@ -309,12 +309,12 @@ There are a couple of features that depend on GitHub Enterprise integration (CLA
   GITHUB_CLIENT_OPTION_ACCESS_TOKEN_URL=YOURGITHUBENTERPRISEURL/login/oauth/access_token
   ```
 
-1. Next, create a **Github Access** token. You also do this from the **Developer settings** section.
+1. Next, create a **GitHub Access** token. You also do this from the **Developer settings** section.
 
 1. Click **Personal access tokens**. The *Personal access tokens* page appears.
 1. Navigate to the **Personal access tokens** section.
 1. Click the **Generate new token** button.
-1. When prompted, enter your **Github password**.
+1. When prompted, enter your **GitHub password**.
 1. Enter the **Token description**. For example, *testing-supermarket*.
 1. Leave the scopes at the defaults.
 1. Click the **Generate token** button.
