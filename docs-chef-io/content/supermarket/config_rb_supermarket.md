@@ -219,7 +219,7 @@ Use these settings to integrate Supermarket with GitHub Enterprise.
 
 `default['supermarket']['github_enterprise_url']`
 
-: The URL of the GitHub Enterprise that Supermarket connects to. Default value:`nil`.
+: The GitHub Enterprise URL that Supermarket connects to. Default value:`nil`.
 
 `default['supermarket']['github_client_option_authorize_url']`
 
