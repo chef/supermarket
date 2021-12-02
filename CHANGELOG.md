@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.46 -->
-## [4.2.46](https://github.com/chef/supermarket/tree/4.2.46) (2021-12-01)
+<!-- latest_release 4.2.47 -->
+## [4.2.47](https://github.com/chef/supermarket/tree/4.2.47) (2021-12-02)
 
 #### Merged Pull Requests
-- fix dependabot prs [#2417](https://github.com/chef/supermarket/pull/2417) ([dheerajd-msys](https://github.com/dheerajd-msys))
+- Fix dependabot PRs [#2420](https://github.com/chef/supermarket/pull/2420) ([dheerajd-msys](https://github.com/dheerajd-msys))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Fix dependabot PRs [#2420](https://github.com/chef/supermarket/pull/2420) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 4.2.47 -->
 - fix dependabot prs [#2417](https://github.com/chef/supermarket/pull/2417) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 4.2.46 -->
 - Added default GitHub URL value to omnibus default attributes  [#2360](https://github.com/chef/supermarket/pull/2360) ([antima-gupta](https://github.com/antima-gupta)) <!-- 4.2.45 -->
 - Increase memory requirement [#2416](https://github.com/chef/supermarket/pull/2416) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.44 -->
