@@ -317,6 +317,10 @@ This configuration file has the following settings for nginx:
 
 : Force connections to use SSL. Default value: `true`.
 
+`default['supermarket']['nginx']['force_hsts']`
+
+: Set the force HSTS headers, if `default['supermarket']['nginx']['force_ssl']` is `false` and `default['supermarket']['nginx']['force_hsts']` is `true`. Default value: `false`.
+
 `default['supermarket']['nginx']['group']`
 
 : The system group that is used to manage nginx. Default value: `node['supermarket']['group']`.
