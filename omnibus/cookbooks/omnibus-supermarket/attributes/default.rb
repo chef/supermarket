@@ -105,6 +105,7 @@ default['supermarket']['nginx']['log_directory'] = "#{node['supermarket']['log_d
 default['supermarket']['nginx']['log_rotation']['file_maxbytes'] = 104857600
 default['supermarket']['nginx']['log_rotation']['num_to_keep'] = 10
 default['supermarket']['nginx']['log_x_forwarded_for'] = false
+default['supermarket']['nginx']['force_hsts'] = false 
 
 # Redirect to the FQDN
 default['supermarket']['nginx']['redirect_to_canonical'] = true
