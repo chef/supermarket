@@ -319,7 +319,7 @@ This configuration file has the following settings for nginx:
 
 `default['supermarket']['nginx']['force_hsts']`
 
-: Set the force HSTS headers, if `default['supermarket']['nginx']['force_ssl']` is `false` and `default['supermarket']['nginx']['force_hsts']` is `true`. Default value: `false`.
+: Force connections to use HSTS headers. Only valid if `default['supermarket']['nginx']['force_ssl']` is `false`. This feature enables HSTS headers on a Supermarket installation that is behind an SSL-terminating load balancer. Default value: `false`.
 
 `default['supermarket']['nginx']['group']`
 
