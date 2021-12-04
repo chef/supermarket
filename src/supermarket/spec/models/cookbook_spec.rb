@@ -853,13 +853,13 @@ describe Cookbook do
     end
   end
 
-  describe ".undeprecated" do
-    let(:undeprecated) { create(:cookbook, deprecated: false) }
+  describe ".not_deprecated" do
+    let(:not_deprecated) { create(:cookbook, deprecated: false) }
     let(:deprecated) { create(:cookbook, deprecated: true) }
 
-    it "only returns deprecated cookbooks" do
-      expect(Cookbook.undeprecated).to include(undeprecated)
-      expect(Cookbook.undeprecated).to_not include(deprecated)
+    it "only returns not deprecated cookbooks" do
+      expect(Cookbook.not_deprecated).to include(not_deprecated)
+      expect(Cookbook.not_deprecated).to_not include(deprecated)
     end
   end
 

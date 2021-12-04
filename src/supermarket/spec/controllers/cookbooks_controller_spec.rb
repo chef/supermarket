@@ -68,7 +68,6 @@ describe CookbooksController do
         cookbook_2.touch
         get :index, params: { order: "recently_updated" }
         expect(assigns[:cookbooks].first).to eql(cookbook_2)
-        expect(assigns[:cookbooks].first).to_not eql(cookbook_3)
       end
 
       it "orders @cookbooks with the most recently created first" do
@@ -89,6 +88,11 @@ describe CookbooksController do
       it "correctly orders @cookbooks when also searching" do
         get :index, params: { order: "most_followed", q: "mysql" }
         expect(assigns[:cookbooks].first).to eql(cookbook_1)
+      end
+
+      it "filters deprecated cookbooks when option required" do
+        get :index, params: { deprecated: true }
+        expect(assigns[:cookbooks].first).to eql(cookbook_3)
       end
     end
 

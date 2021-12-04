@@ -31,12 +31,11 @@ class CookbooksController < ApplicationController
       @cookbooks = @cookbooks.featured
     end
 
-    if (order = @current_params[:order]).present?
+    if @current_params[:deprecated].present?
+      @cookbooks = @cookbooks.deprecated
+    end
 
-      if order == "recently_updated"
-        @cookbooks = @cookbooks.undeprecated
-      end
-
+    if @current_params[:order].present?
       @cookbooks = @cookbooks.ordered_by(@current_params[:order])
     end
 
@@ -52,6 +51,13 @@ class CookbooksController < ApplicationController
     respond_to do |format|
       format.html
       format.atom
+    end
+
+    if request.xhr?
+      render(json: {
+        html: render_to_string(partial: "cookbooks/cookbooks_list"),
+        number_of_cookbooks: @number_of_cookbooks,
+      })
     end
   end
 
@@ -298,7 +304,7 @@ class CookbooksController < ApplicationController
   end
 
   def cookbook_index_params
-    params.permit(:q, :featured, :order, :page, badges: [], platforms: [])
+    params.permit(:q, :featured, :order, :page, :deprecated, badges: [], platforms: [])
   end
 
   def cookbook_urls_params
