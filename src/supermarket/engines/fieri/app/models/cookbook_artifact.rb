@@ -2,7 +2,7 @@ require "open-uri"
 require "rubygems/package"
 require "foodcritic"
 require "mixlib/archive"
-require "filemagic"
+require "../../lib/utils/file_format"
 
 class CookbookArtifact
   #

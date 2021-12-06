@@ -87,7 +87,5 @@ module Supermarket
 
     # Set default from email for ActionMailer
     ActionMailer::Base.default from: ENV["FROM_EMAIL"]
-
-    config.autoload_paths += %W(#{config.root}/lib)
   end
 end
