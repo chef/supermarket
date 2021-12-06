@@ -1,5 +1,4 @@
 require "spec_helper"
-# require_relative "../../../lib/supermarket/authentication.rb"
 
 describe "cookbooks/show.html.erb" do
 
@@ -67,7 +66,13 @@ describe "cookbooks/show.html.erb" do
       test_kitchen_text = cookbook.cookbook_deprecation_reason
       expect(rendered).to have_selector("textarea", text: test_kitchen_text)
     end
+
+    it "has policyfile, berkshelf and knife tabs rendered" do
+      render
+      expect(rendered).to have_selector("div", id: "policyfile")
+      expect(rendered).to have_selector("div", id: "berkshelf")
+      expect(rendered).to have_selector("div", id: "knife")
+    end
   end
 
 end
-
