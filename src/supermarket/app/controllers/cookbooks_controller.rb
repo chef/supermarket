@@ -31,7 +31,7 @@ class CookbooksController < ApplicationController
       @cookbooks = @cookbooks.featured
     end
 
-    if @current_params[:deprecated].present?
+    if @current_params[:deprecated].present? && @current_params[:deprecated].to_s == "true"
       @cookbooks = @cookbooks.deprecated
     end
 

@@ -4,7 +4,10 @@
 <div class="page nobg">
   <div class="heading-with-buttons">
     <h1 class="title">
-      <%= pluralize(@number_of_cookbooks, 'Cookbook') %>
+      <span id = "cookbooks_number">
+        <%= pluralize(@number_of_cookbooks, 'Cookbook') %>
+      </span>
+      
       <small>
         <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, @current_params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
       </small>
