@@ -25,7 +25,6 @@ gem "html_truncator"
 gem "jbuilder"
 gem "kaminari"
 gem "mixlib-authentication", "~> 3.0"
-gem "newrelic_rpm"
 gem "nokogiri"
 gem "octokit", "~> 4.16", require: false # 4.16+ fixes deprecations in auth
 gem "paperclip"
