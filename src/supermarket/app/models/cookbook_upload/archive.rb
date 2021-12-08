@@ -1,5 +1,4 @@
 require "ffi-libarchive"
-require "utils/file_format"
 
 class CookbookUpload
   #
