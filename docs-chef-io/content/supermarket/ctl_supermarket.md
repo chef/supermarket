@@ -29,6 +29,45 @@ sudo -u supermarket supermarket-ctl make-admin USER_NAME
 where `USER_NAME` represents the name of the user to be granted
 administrator privileges.
 
+## SPDX license update
+
+For a cookbook which has a license and is a known license according to SPDX listing the link to spdx-license details can be updated using this command. This link will be displayed on cookbook details page along with other information.
+
+### spdx-all
+
+The `spdx-all` command is used to make sure spdx license linking happens for all the cookbooks in system.
+
+This subcommand has the following syntax:
+
+```bash
+sudo -u supermaket supermarket-ctl spdx-all
+```
+
+### spdx-latest
+
+The `spdx-latest` command is used to make sure spdx license linking happens for the cookbook specified
+
+This subcommand has the following syntax:
+
+```bash
+sudo -u supermarket supermarket-ctl spdx-latest COOKBOOK_NAME
+```
+
+Where COOKBOOK_NAME is the name of cookbook for which spdx linking will happen. It will happen on the latest version of the cookbook
+
+### spdx-on-version
+
+The `spdx-on-version` command is used to make sure spdx license linking happens for the version of cookbook specified
+
+This subcommand has the following syntax:
+
+```bash
+sudo -u supermarket supermarket-ctl spdx-on-version COOKBOOK_NAME VERSION
+```
+
+Where COOKBOOK_NAME is the name of cookbook for which spdx linking will happen and VERSION is the version for which SPDX license linking needs to be done
+
+
 ## Quality Metrics
 
 ### qm-flip-admin-only

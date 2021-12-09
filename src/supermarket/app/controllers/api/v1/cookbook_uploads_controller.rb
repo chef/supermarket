@@ -67,7 +67,7 @@ class Api::V1::CookbookUploadsController < Api::V1Controller
           UniverseCache.flush
 
           # fetch spdx license
-          SpdxLicenseUpdateWorker.perform_async(FetchSpdxLicenseJson.spdx_license_json, cookbook_version.version)
+          SpdxLicenseUpdateWorker.perform_async(FetchSpdxLicenseJson.spdx_license_json, cookbook_version.id)
 
           render :create, status: 201
         end
