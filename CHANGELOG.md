@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.49 -->
-## [4.2.49](https://github.com/chef/supermarket/tree/4.2.49) (2021-12-06)
+<!-- latest_release 4.2.50 -->
+## [4.2.50](https://github.com/chef/supermarket/tree/4.2.50) (2021-12-09)
 
 #### Merged Pull Requests
-- Policyfile change to default and first tab in cookbook page [#2335](https://github.com/chef/supermarket/pull/2335) ([manick-vel-11](https://github.com/manick-vel-11))
+- Remove newrelic support [#2425](https://github.com/chef/supermarket/pull/2425) ([dheerajd-msys](https://github.com/dheerajd-msys))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Remove newrelic support [#2425](https://github.com/chef/supermarket/pull/2425) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 4.2.50 -->
 - Policyfile change to default and first tab in cookbook page [#2335](https://github.com/chef/supermarket/pull/2335) ([manick-vel-11](https://github.com/manick-vel-11)) <!-- 4.2.49 -->
 - Rename chef_tool to chef_infra_tool [#2423](https://github.com/chef/supermarket/pull/2423) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.2.48 -->
 - Fix dependabot PRs [#2420](https://github.com/chef/supermarket/pull/2420) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 4.2.47 -->
