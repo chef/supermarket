@@ -40,7 +40,9 @@ http {
   more_clear_headers Server;
   add_header X-Clacks-Overhead "GNU Terry Pratchett";
   add_header Permissions-Policy "camera 'none'; payment 'none';";
-
+  <% if @nginx['force_hsts'] && @nginx['force_ssl'] != true %>
+  add_header Strict-Transport-Security "max-age=31536000; includeSubDomains;";
+  <% end %>
   sendfile <%= @nginx['sendfile'] %>;
   tcp_nopush on;
   tcp_nodelay on;
