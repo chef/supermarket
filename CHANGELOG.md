@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.51 -->
-## [4.2.51](https://github.com/chef/supermarket/tree/4.2.51) (2021-12-09)
+<!-- latest_release 4.2.52 -->
+## [4.2.52](https://github.com/chef/supermarket/tree/4.2.52) (2021-12-09)
 
 #### Merged Pull Requests
-- Adding option to &#39;force-hsts&#39; headers [#2422](https://github.com/chef/supermarket/pull/2422) ([antima-gupta](https://github.com/antima-gupta))
+- Saghoshprogress/change form deprication [#2219](https://github.com/chef/supermarket/pull/2219) ([saghoshprogress](https://github.com/saghoshprogress))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Saghoshprogress/change form deprication [#2219](https://github.com/chef/supermarket/pull/2219) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 4.2.52 -->
 - Adding option to &#39;force-hsts&#39; headers [#2422](https://github.com/chef/supermarket/pull/2422) ([antima-gupta](https://github.com/antima-gupta)) <!-- 4.2.51 -->
 - Remove newrelic support [#2425](https://github.com/chef/supermarket/pull/2425) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 4.2.50 -->
 - Policyfile change to default and first tab in cookbook page [#2335](https://github.com/chef/supermarket/pull/2335) ([manick-vel-11](https://github.com/manick-vel-11)) <!-- 4.2.49 -->
