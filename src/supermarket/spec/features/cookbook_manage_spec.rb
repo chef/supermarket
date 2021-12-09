@@ -11,8 +11,8 @@ describe "updating a cookbook's issues and source urls" do
 
     within ".sidebar" do
       follow_relation "edit-cookbook-urls"
-      fill_in "cookbook_source_url", with: "http://example.com/source"
-      fill_in "cookbook_issues_url", with: "http://example.com/tissues"
+      fill_in "cookbook[source_url]", with: "http://example.com/source"
+      fill_in "cookbook[issues_url]", with: "http://example.com/tissues"
 
       within ".cookbook-details" do
         submit_form
@@ -30,8 +30,8 @@ describe "updating a cookbook's issues and source urls" do
 
     within ".sidebar" do
       follow_relation "edit-cookbook-urls"
-      fill_in "cookbook_source_url", with: "example"
-      fill_in "cookbook_source_url", with: "example"
+      fill_in "cookbook[source_url]", with: "example"
+      fill_in "cookbook[source_url]", with: "example"
     end
 
     within ".cookbook-details" do

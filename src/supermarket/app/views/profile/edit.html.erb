@@ -17,7 +17,7 @@
 
     <div class="tabs-content">
       <div class="content active" id="profile">
-        <%= form_for(prep_email_preferences(current_user), url: profile_path, html: { 'data-abide' => true }) do |f| %>
+        <%= form_with(model: prep_email_preferences(current_user), url: profile_path, html: { 'data-abide' => true, class: 'edit_user' }) do |f| %>
           <%= render 'application/form_errors', record: current_user %>
 
           <p>Your email, password and name are maintained and managed by your Chef account. <%= link_to 'Edit them here.', chef_profile_url %> They will be updated the next time you sign in to Supermarket. Avatars are powered by <%= link_to 'Gravatar', 'https://www.gravatar.com' %>.</p>

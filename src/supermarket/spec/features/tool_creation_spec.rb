@@ -9,13 +9,13 @@ describe "creating a tool" do
     follow_relation "view_tools"
     follow_relation "add_tool"
 
-    within ".new_tool" do
-      fill_in "tool_name", with: "butter"
-      fill_in "tool_slug", with: "butter"
-      select "Knife Plugin", from: "Type"
-      fill_in "tool_description", with: "Easily cut with knife"
-      fill_in "tool_source_url", with: "http://example.com"
-      fill_in "tool_instructions", with: "Delicious with toast."
+    within ".tool_data" do
+      fill_in "tool[name]", with: "butter"
+      fill_in "tool[slug]", with: "butter"
+      select "Knife Plugin", from: "tool[type]"
+      fill_in "tool[description]", with: "Easily cut with knife"
+      fill_in "tool[source_url]", with: "http://example.com"
+      fill_in "tool[instructions]", with: "Delicious with toast."
 
       submit_form
     end
