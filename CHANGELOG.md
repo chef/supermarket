@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.54 -->
-## [4.2.54](https://github.com/chef/supermarket/tree/4.2.54) (2021-12-13)
+<!-- latest_release 4.2.55 -->
+## [4.2.55](https://github.com/chef/supermarket/tree/4.2.55) (2021-12-13)
 
 #### Merged Pull Requests
-- Remove simplecov step from unit github action [#2431](https://github.com/chef/supermarket/pull/2431) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Bump omnibus from `2c309fa` to `2bf77bb` in /omnibus [#2434](https://github.com/chef/supermarket/pull/2434) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus from `2c309fa` to `2bf77bb` in /omnibus [#2434](https://github.com/chef/supermarket/pull/2434) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.55 -->
 - Remove simplecov step from unit github action [#2431](https://github.com/chef/supermarket/pull/2431) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.54 -->
 - Updated the ruby version [#2427](https://github.com/chef/supermarket/pull/2427) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 4.2.53 -->
 - Saghoshprogress/change form deprication [#2219](https://github.com/chef/supermarket/pull/2219) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 4.2.52 -->
