@@ -91,7 +91,7 @@ describe CookbooksController do
 
       it "filters deprecated cookbooks when option required" do
         get :index, params: { deprecated: true }
-        expect(assigns[:cookbooks].first).to eql(cookbook_3)
+        expect(assigns[:cookbooks].last).to eql(cookbook_3)
       end
     end
 
