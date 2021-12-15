@@ -1,10 +1,11 @@
 pkg_name=supermarket
-pkg_origin=chef
+pkg_origin="chef"
 pkg_maintainer="The Chef Maintainers <humans@chef.io>"
 pkg_license=("Apache-2.0")
 pkg_scaffolding="core/scaffolding-ruby"
 pkg_description="Supermarket is Chef's community repository for cookbooks, currently hosted at supermarket.chef.io.
 Supermarket can also run internally, behind-the-firewall."
+pkg_upstream_url="https://docs.chef.io/supermarket/#private-supermarket"
 pkg_deps=(core/coreutils core/bash core/file core/glibc core/gcc-libs core/libarchive core/shared-mime-info)
 pkg_build_deps=(core/phantomjs core/yarn)
 pkg_svc_user="root"
@@ -161,7 +162,7 @@ do_prepare() {
   _detect_git
 
   # Determine Ruby engine, ABI version, and Gem path by running `ruby` itself.
-  eval "$(hab pkg exec $_ruby_pkg ruby -- -r rubygems -rrbconfig - <<-'EOF'
+  eval "$(hab pkg exec "${_ruby_pkg}" ruby -- -r rubygems -rrbconfig - <<-'EOF'
     puts "local ruby_engine=#{defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'}"
     puts "local ruby_version=#{RbConfig::CONFIG['ruby_version']}"
     puts "local gem_path='#{Gem.path.join(':')}'"

@@ -1,8 +1,10 @@
 pkg_name=supermarket-nginx
-pkg_origin=chef
+pkg_origin="chef"
 pkg_version="1.19.3.1"
 pkg_maintainer="The Chef Maintainers <humans@chef.io>"
-pkg_license=("Apache-2.0")
+pkg_description="NGINX web server."
+pkg_license=('Apache-2.0')
+pkg_upstream_url=https://nginx.org/
 pkg_deps=(core/openresty)
 pkg_svc_user="root"
 pkg_svc_group="root"
