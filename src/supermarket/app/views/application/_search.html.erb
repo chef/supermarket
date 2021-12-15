@@ -56,6 +56,16 @@
       <% end %>
     </div>
 
+    <h4> Select Status </h4>
+    <div class = "advanced_search_statuses">
+      <div class = "advanced_search_status">
+        <label>
+          <%= check_box_tag 'deprecated', true, params[:deprecated] ? true : false %>
+          <%= 'include deprecated cookbooks' %>
+        </label>
+      </div>
+    </div>
+
     <div class= "advanced_textfield">
       <%= search_field_tag 'platforms[]', nil, placeholder: "You can write in a platform name here if it's not listed above", class: 'platform_search_textfield' %>
     </div>

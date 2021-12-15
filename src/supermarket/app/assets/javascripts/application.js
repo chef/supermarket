@@ -20,7 +20,6 @@
 //= require jquery.slugit
 //= require checkbox
 //= require cookbookShow
-//= require cookbookIndex
 //= require cookbookFollowing
 //= require joinOrganization
 //= require organizationRoles

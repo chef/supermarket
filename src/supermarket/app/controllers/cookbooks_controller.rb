@@ -31,8 +31,10 @@ class CookbooksController < ApplicationController
       @cookbooks = @cookbooks.featured
     end
 
-    if @current_params[:deprecated].present? && @current_params[:deprecated].to_s == "true"
+    if @current_params[:deprecated].present?
       @cookbooks = @cookbooks.deprecated
+    else
+      @cookbooks = @cookbooks.not_deprecated
     end
 
     if @current_params[:order].present?
@@ -51,13 +53,6 @@ class CookbooksController < ApplicationController
     respond_to do |format|
       format.html
       format.atom
-    end
-
-    if request.xhr?
-      render(json: {
-        html: render_to_string(partial: "cookbooks/cookbooks_list"),
-        number_of_cookbooks: @number_of_cookbooks,
-      })
     end
   end
 

@@ -28,7 +28,6 @@ describe CookbooksController do
         get :index
         expect(assigns[:cookbooks][0]).to eql(mysql)
         expect(assigns[:cookbooks][1]).to eql(postgresql)
-        expect(assigns[:cookbooks][2]).to eql(dep_cookbook)
       end
     end
 

@@ -7,14 +7,9 @@
       <span id = "cookbooks_number">
         <%= pluralize(@number_of_cookbooks, 'Cookbook') %>
       </span>
-      
-      <small>
-        <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, @current_params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
-      </small>
 
       <small>
-        <%= check_box_tag 'deprecated', false, params[:deprecated] ? true : false %>
-        <%= 'Deprecated cookbooks' %>
+        <%= link_to '<i class="fa fa-rss"></i> RSS'.html_safe, @current_params.merge(format: 'atom'), :class => 'rss_feed_link show-for-medium-up' %>
       </small>
     </h1>
 
@@ -25,6 +20,20 @@
     </div>
   </div>
 
-  <%= render 'cookbooks_list' %>
+  <% if @cookbooks.present? %>
+    <ul class="listing"><%= render @cookbooks %></ul>
+    <%= paginate @cookbooks %>
+  <% else %>
+    <div class="no-results">
+      <p>Sorry, no cookbooks matched your search for <strong><%= params[:q] %></strong>.</p>
+
+      <h3>Search Suggestions:</h3>
+      <ul>
+        <li>Check your spelling</li>
+        <li>Try another search term</li>
+        <li><%= link_to 'Browse the cookbooks directory', cookbooks_directory_path %></li>
+      </ul>
+    </div>
+  <% end %>
 
 </div>
