@@ -32,12 +32,6 @@ port     = 16379
 database = '0/supermarket'
 jobq_url = ''
 
-[oauth2]
-verify_ssl = false
-url        = ""
-app_id     = ""
-secret     = ""
-
 [smtp]
 address  = ""
 port     = 25
