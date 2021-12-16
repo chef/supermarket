@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.57 -->
-## [4.2.57](https://github.com/chef/supermarket/tree/4.2.57) (2021-12-14)
+<!-- latest_release 4.2.58 -->
+## [4.2.58](https://github.com/chef/supermarket/tree/4.2.58) (2021-12-16)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `8560231` to `d2525ab` in /omnibus [#2438](https://github.com/chef/supermarket/pull/2438) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Removed gem: ruby-filemagic; replaced with built in ruby module: IO [#2424](https://github.com/chef/supermarket/pull/2424) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Removed gem: ruby-filemagic; replaced with built in ruby module: IO [#2424](https://github.com/chef/supermarket/pull/2424) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.58 -->
 - Bump omnibus-software from `8560231` to `d2525ab` in /omnibus [#2438](https://github.com/chef/supermarket/pull/2438) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.57 -->
 - Rajeshpaul38/dependabot pr merge/2436 [#2437](https://github.com/chef/supermarket/pull/2437) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 4.2.56 -->
 - Bump omnibus from `2c309fa` to `2bf77bb` in /omnibus [#2434](https://github.com/chef/supermarket/pull/2434) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.55 -->
