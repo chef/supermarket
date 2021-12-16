@@ -856,7 +856,6 @@ DEPENDENCIES
   rollout
   rspec-rails
   rubocop-rails
-  ruby-filemagic
   sass-globbing
   sass-rails
   sentry-raven

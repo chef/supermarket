@@ -1,5 +1,4 @@
 require "ffi-libarchive"
-require "filemagic"
 
 class CookbookUpload
   #
@@ -125,7 +124,7 @@ class CookbookUpload
       #
       # It's possible the implementation for this detection will need
       # to change. Please feel empowered, dear readers of the future.
-      FileMagic.mime.file(@source.path).match? %r{application\/x?-?gzip;}
+      Utils::FileFormat.get_mime_type(file_path: @source.path).match? %r{application\/x?-?gzip}
     end
   end
 end
