@@ -32,10 +32,6 @@ redis="${redis}:{{ #if bind.redis }}{{ bind.redis.first.cfg.port }}{{ else }}{{ 
 redis="${redis}/{{ cfg.redis.database }}"
 
 declare -A scaffolding_env
-scaffolding_env[CHEF_OAUTH2_APP_ID]="{{ cfg.oauth2.app_id }}"
-scaffolding_env[CHEF_OAUTH2_SECRET]="{{ cfg.oauth2.secret }}"
-scaffolding_env[CHEF_OAUTH2_URL]="{{ #if cfg.oauth2.url }}{{ cfg.oauth2.url }}{{ else }}{{ cfg.app.chef_server_url }}{{ /if }}"
-scaffolding_env[CHEF_OAUTH2_VERIFY_SSL]="{{ cfg.oauth2.verify_ssl }}"
 scaffolding_env[DATABASE_URL]="$db"
 scaffolding_env[FIERI_KEY]="{{ cfg.fieri.key }}"
 scaffolding_env[FIERI_SUPERMARKET_ENDPOINT]="http{{ #if bind.rails.first.cfg.force_ssl }}s{{ /if }}://localhost:{{ bind.rails.first.cfg.port }}"
