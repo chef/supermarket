@@ -73,7 +73,7 @@ foodcritic_fail_tags = ''
 
 [smtp]
 address  = ""
-port     = 25
+port     = 0
 username = ""
 password = ""
 
