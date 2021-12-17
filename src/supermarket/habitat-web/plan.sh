@@ -1,4 +1,4 @@
-pkg_name=supermarket
+pkg_name="supermarket"
 pkg_origin="chef"
 pkg_maintainer="The Chef Maintainers <humans@chef.io>"
 pkg_license=("Apache-2.0")
