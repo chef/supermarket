@@ -49,7 +49,7 @@ scaffolding_env[PORT]="{{ bind.rails.first.cfg.port }}"
 scaffolding_env[REDIS_URL]="$redis"
 scaffolding_env[SMTP_ADDRESS]="{{ cfg.smtp.address }}"
 scaffolding_env[SMTP_PASSWORD]="{{ cfg.smtp.password }}"
-scaffolding_env[SMTP_PORT]="{{ #if cfg.smtp.address }}{{ cfg.smtp.port }}{{ /if }}"
+scaffolding_env[SMTP_PORT]="{{ cfg.smtp.port }}"
 scaffolding_env[SMTP_USER_NAME]="{{ cfg.smtp.username }}"
 
 

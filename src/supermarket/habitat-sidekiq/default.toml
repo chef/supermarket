@@ -34,7 +34,7 @@ jobq_url = ''
 
 [smtp]
 address  = ""
-port     = 25
+port     = 0
 username = ""
 password = ""
 
