@@ -52,7 +52,6 @@ scaffolding_env[SMTP_PASSWORD]="{{ cfg.smtp.password }}"
 scaffolding_env[SMTP_PORT]="{{ cfg.smtp.port }}"
 scaffolding_env[SMTP_USER_NAME]="{{ cfg.smtp.username }}"
 
-
 pkg_version() {
   cat "$PLAN_CONTEXT/../../../VERSION"
 }

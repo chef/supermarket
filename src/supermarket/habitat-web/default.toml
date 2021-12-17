@@ -71,12 +71,6 @@ key                  = ''
 foodcritic_tags      = ''
 foodcritic_fail_tags = ''
 
-[smtp]
-address  = ""
-port     = 0
-username = ""
-password = ""
-
 [db]
 host       = "localhost"
 name       = "supermarket"
