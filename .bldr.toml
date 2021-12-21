@@ -1,0 +1,44 @@
+[supermarket]
+plan_path = "src/supermarket/habitat-web"
+paths = [
+    "src/supermarket/*",
+]
+pkg_targets = [
+    "x86_64-linux"
+]
+
+[supermarket-sidekiq]
+plan_path = "src/supermarket/habitat-sidekiq"
+paths = [
+    "src/supermarket/*",
+]
+pkg_targets = [
+    "x86_64-linux"
+]
+
+[supermarket-postgresql]
+plan_path = "postgresql"
+paths = [
+    "postgresql/*",
+]
+pkg_targets = [
+    "x86_64-linux"
+]
+
+[supermarket-redis]
+plan_path = "redis"
+paths = [
+    "redis/*",
+]
+pkg_targets = [
+    "x86_64-linux"
+]
+
+[supermarket-nginx]
+plan_path = "nginx"
+paths = [
+    "nginx/*",
+]
+pkg_targets = [
+    "x86_64-linux"
+]
