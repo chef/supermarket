@@ -42,7 +42,9 @@ changelog:
     - "Type: Tech Debt": "Maintenance Updates"
 
 pipelines:
-  - omnibus/release
+  - omnibus/release:
+      env:
+        - IGNORE_CACHE: true # caching causes constant build failures
   - omnibus/adhoc:
       definition: .expeditor/release.omnibus.yml
       env:
