@@ -47,7 +47,10 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+  # For running quality metrics we need to stop rails from redirecting all requests to https
   config.force_ssl = (ENV["FORCE_SSL"] == "true")
+
+  config.ssl_options = { redirect: { exclude: ->(request) { request.host =~ /localhost/ } } }
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
