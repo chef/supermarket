@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.62 -->
-## [4.2.62](https://github.com/chef/supermarket/tree/4.2.62) (2021-12-20)
+<!-- latest_release 4.2.63 -->
+## [4.2.63](https://github.com/chef/supermarket/tree/4.2.63) (2021-12-22)
 
 #### Merged Pull Requests
-- Bump license_finder from 6.14.2 to 6.15.0 in /src/supermarket [#2451](https://github.com/chef/supermarket/pull/2451) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Changes for jobs controller to not to throw CSRF token authentication error [#2410](https://github.com/chef/supermarket/pull/2410) ([msys-sgarg](https://github.com/msys-sgarg))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Changes for jobs controller to not to throw CSRF token authentication error [#2410](https://github.com/chef/supermarket/pull/2410) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.2.63 -->
 - Bump license_finder from 6.14.2 to 6.15.0 in /src/supermarket [#2451](https://github.com/chef/supermarket/pull/2451) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.62 -->
 - Bump rails from 6.1.4.1 to 6.1.4.4 in /src/supermarket [#2444](https://github.com/chef/supermarket/pull/2444) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.61 -->
 - Bump actionpack from 6.1.4.1 to 6.1.4.4 in /src/supermarket/engines/fieri [#2445](https://github.com/chef/supermarket/pull/2445) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.60 -->
