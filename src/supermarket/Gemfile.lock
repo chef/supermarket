@@ -234,7 +234,7 @@ GEM
     erubis (2.7.0)
     et-orbi (1.2.6)
       tzinfo
-    excon (0.88.0)
+    excon (0.89.0)
     execjs (2.7.0)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -304,7 +304,7 @@ GEM
       builder (>= 2.1.2)
     hashdiff (1.0.1)
     hashie (4.1.0)
-    honeycomb-beeline (2.7.1)
+    honeycomb-beeline (2.8.0)
       libhoney (~> 1.14, >= 1.14.2)
     html_truncator (0.4.2)
       nokogiri (~> 1.5)
