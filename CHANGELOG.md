@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.66 -->
-## [4.2.66](https://github.com/chef/supermarket/tree/4.2.66) (2021-12-22)
+<!-- latest_release 4.2.67 -->
+## [4.2.67](https://github.com/chef/supermarket/tree/4.2.67) (2021-12-23)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `d2525ab` to `4707275` in /omnibus [#2459](https://github.com/chef/supermarket/pull/2459) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump chef from 17.8.25 to 17.9.18 in /src/supermarket [#2461](https://github.com/chef/supermarket/pull/2461) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump chef from 17.8.25 to 17.9.18 in /src/supermarket [#2461](https://github.com/chef/supermarket/pull/2461) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.67 -->
 - Bump omnibus-software from `d2525ab` to `4707275` in /omnibus [#2459](https://github.com/chef/supermarket/pull/2459) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.66 -->
 - Bump aws-sdk-s3 from 1.109.0 to 1.110.0 in /src/supermarket [#2458](https://github.com/chef/supermarket/pull/2458) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.65 -->
 - Disable omnibus build caching in buildkite [#2456](https://github.com/chef/supermarket/pull/2456) ([tas50](https://github.com/tas50)) <!-- 4.2.64 -->
