@@ -3,7 +3,6 @@ title = "supermarket-ctl (executable)"
 draft = false
 gh_repo = "supermarket"
 aliases = ["/ctl_supermarket.html", "/ctl_supermarket/"]
-product = ["client", "server", "workstation"]
 
 [menu]
   [menu.supermarket]

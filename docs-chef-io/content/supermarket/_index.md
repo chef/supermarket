@@ -3,7 +3,9 @@ title = "Chef Supermarket"
 draft = false
 gh_repo = "supermarket"
 aliases = ["/supermarket.html"]
-product = ["client", "server", "workstation"]
+
+[cascade]
+  product = ["supermarket"]
 
 [menu]
   [menu.supermarket]
