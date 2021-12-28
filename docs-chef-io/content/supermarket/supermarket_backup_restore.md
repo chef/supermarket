@@ -3,7 +3,7 @@ title = "Supermarket Backup and Restore"
 draft = false
 gh_repo = "supermarket"
 aliases = ["/supermarket_backup_restore.html", "/supermarket_backup_restore/"]
-product = ["client", "server", "workstation"]
+product = [ "supermarket" ]
 
 [menu]
   [menu.supermarket]

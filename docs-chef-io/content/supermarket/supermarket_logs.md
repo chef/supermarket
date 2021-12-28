@@ -3,7 +3,7 @@ title = "Supermarket Logs"
 draft = false
 gh_repo = "supermarket"
 aliases = ["/supermarket_logs.html", "/supermarket_logs/"]
-product = ["client", "server", "workstation"]
+product = [ "supermarket" ]
 
 [menu]
   [menu.supermarket]
