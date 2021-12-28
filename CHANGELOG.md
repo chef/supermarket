@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.71 -->
-## [4.2.71](https://github.com/chef/supermarket/tree/4.2.71) (2021-12-28)
+<!-- latest_release 4.2.72 -->
+## [4.2.72](https://github.com/chef/supermarket/tree/4.2.72) (2021-12-28)
 
 #### Merged Pull Requests
-- Don&#39;t run Brakeman on docs [#2468](https://github.com/chef/supermarket/pull/2468) ([kagarmoe](https://github.com/kagarmoe))
+- Don&#39;t cookbook-ctl test docs [#2469](https://github.com/chef/supermarket/pull/2469) ([kagarmoe](https://github.com/kagarmoe))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Don&#39;t cookbook-ctl test docs [#2469](https://github.com/chef/supermarket/pull/2469) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.72 -->
 - Don&#39;t run Brakeman on docs [#2468](https://github.com/chef/supermarket/pull/2468) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.71 -->
 - Documentation lints [#2467](https://github.com/chef/supermarket/pull/2467) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.70 -->
 - Bump shoulda-matchers from 5.0.0 to 5.1.0 in /src/supermarket [#2460](https://github.com/chef/supermarket/pull/2460) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.69 -->
