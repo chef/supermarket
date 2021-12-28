@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.75 -->
-## [4.2.75](https://github.com/chef/supermarket/tree/4.2.75) (2021-12-28)
+<!-- latest_release 4.2.76 -->
+## [4.2.76](https://github.com/chef/supermarket/tree/4.2.76) (2021-12-28)
 
 #### Merged Pull Requests
-- Bump kaminari from 1.2.1 to 1.2.2 in /src/supermarket [#2466](https://github.com/chef/supermarket/pull/2466) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rubocop-rails from 2.12.4 to 2.13.0 in /src/supermarket/engines/fieri [#2464](https://github.com/chef/supermarket/pull/2464) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump rubocop-rails from 2.12.4 to 2.13.0 in /src/supermarket/engines/fieri [#2464](https://github.com/chef/supermarket/pull/2464) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.76 -->
 - Bump kaminari from 1.2.1 to 1.2.2 in /src/supermarket [#2466](https://github.com/chef/supermarket/pull/2466) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.75 -->
 - Don&#39;t run code lints on docs [#2471](https://github.com/chef/supermarket/pull/2471) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.74 -->
 - Exclude docs from unit tests [#2470](https://github.com/chef/supermarket/pull/2470) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.73 -->
