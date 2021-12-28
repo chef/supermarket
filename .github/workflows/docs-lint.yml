@@ -37,7 +37,7 @@ jobs:
       - uses: streetsidesoftware/cspell-action@v1.3.4
         with:
           files: '*.md'
-          root: '../../docs-chef-io/content'
+          root: 'docs-chef-io/content'
           github_token: "${{ secrets.GITHUB_TOKEN }}"
           incremental_files_only: false
           inline: warning
