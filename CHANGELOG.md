@@ -1,16 +1,24 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.69 -->
-## [4.2.69](https://github.com/chef/supermarket/tree/4.2.69) (2021-12-23)
+<!-- latest_release 4.2.77 -->
+## [4.2.77](https://github.com/chef/supermarket/tree/4.2.77) (2021-12-28)
 
 #### Merged Pull Requests
-- Bump shoulda-matchers from 5.0.0 to 5.1.0 in /src/supermarket [#2460](https://github.com/chef/supermarket/pull/2460) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rubocop-rails from 2.12.4 to 2.13.0 in /src/supermarket [#2465](https://github.com/chef/supermarket/pull/2465) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump rubocop-rails from 2.12.4 to 2.13.0 in /src/supermarket [#2465](https://github.com/chef/supermarket/pull/2465) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.77 -->
+- Bump rubocop-rails from 2.12.4 to 2.13.0 in /src/supermarket/engines/fieri [#2464](https://github.com/chef/supermarket/pull/2464) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.76 -->
+- Bump kaminari from 1.2.1 to 1.2.2 in /src/supermarket [#2466](https://github.com/chef/supermarket/pull/2466) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.75 -->
+- Don&#39;t run code lints on docs [#2471](https://github.com/chef/supermarket/pull/2471) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.74 -->
+- Exclude docs from unit tests [#2470](https://github.com/chef/supermarket/pull/2470) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.73 -->
+- Don&#39;t cookbook-ctl test docs [#2469](https://github.com/chef/supermarket/pull/2469) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.72 -->
+- Don&#39;t run Brakeman on docs [#2468](https://github.com/chef/supermarket/pull/2468) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.71 -->
+- Documentation lints [#2467](https://github.com/chef/supermarket/pull/2467) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.70 -->
 - Bump shoulda-matchers from 5.0.0 to 5.1.0 in /src/supermarket [#2460](https://github.com/chef/supermarket/pull/2460) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.69 -->
 - Bump honeycomb-beeline from 2.7.1 to 2.8.0 in /src/supermarket [#2462](https://github.com/chef/supermarket/pull/2462) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.68 -->
 - Bump chef from 17.8.25 to 17.9.18 in /src/supermarket [#2461](https://github.com/chef/supermarket/pull/2461) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.67 -->
