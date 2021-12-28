@@ -54,6 +54,7 @@ jobs:
       - uses: DavidAnson/markdownlint-cli2-action@v4
         with:
           globs: |
-            *.md
-            content/**/*.md
+            content/*.md
             !_vendor/
+            !CHANGELOG.md
+            !README.md
