@@ -3,7 +3,6 @@ title = "Share Cookbooks on the Chef Supermarket"
 draft = false
 gh_repo = "supermarket"
 aliases = ["/supermarket_share_cookbook.html", "/supermarket_share_cookbook/"]
-product = [ "supermarket" ]
 
 [menu]
   [menu.supermarket]

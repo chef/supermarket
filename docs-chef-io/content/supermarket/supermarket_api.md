@@ -3,7 +3,6 @@ title = "Supermarket API"
 draft = false
 gh_repo = "supermarket"
 aliases = ["/supermarket_api.html", "/supermarket_api/"]
-product = [ "supermarket" ]
 
 [menu]
   [menu.supermarket]

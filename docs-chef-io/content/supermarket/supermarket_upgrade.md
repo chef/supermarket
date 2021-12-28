@@ -1,8 +1,8 @@
 +++
 title = "Upgrade Supermarket"
-
 date = 2021-12-28T11:04:48-08:00
 draft = false
+gh_repo = "supermarket"
 publishDate = 2022-01-03
 
 [menu]

@@ -1,8 +1,8 @@
 +++
 title = "{{ .Name | humanize | title }}"
-
 date = {{ .Date }}
 draft = false
+gh_repo = "supermarket"
 
 [menu]
   [menu.supermarket]

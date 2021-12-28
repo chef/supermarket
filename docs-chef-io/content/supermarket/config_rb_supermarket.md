@@ -3,7 +3,6 @@ title = "supermarket.rb Settings"
 draft = false
 gh_repo = "supermarket"
 aliases = ["/config_rb_supermarket.html", "/config_rb_supermarket/"]
-product = [ "supermarket" ]
 
 [menu]
   [menu.supermarket]
