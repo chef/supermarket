@@ -7,7 +7,7 @@ name: ctl-cookbook-testing
     branches:
       - main
     paths-ignore:
-      - 'docs-chef-io'
+      - 'docs-chef-io/**/*'
 
 jobs:
   cookstyle:
