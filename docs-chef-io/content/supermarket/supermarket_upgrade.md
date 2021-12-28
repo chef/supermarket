@@ -13,63 +13,92 @@ publishDate = 2022-01-03
     weight = 25
 +++
 
+
+## Upgrade Matrix
+
+Running Version| Upgrade Version | Supported Version
+---------|----------|---------
+ A1 | B1 | C1
+ A2 | B2 | C2
+ A3 | B3 | C3
+
+## Upgrade Supermarket
+
+### Database Preparation
+
+### Upgrade Steps
+
 ## External PostgreSQL
 
-Follow these steps to upgrade to a major version of PostgreSQL.
+The External PostgreSQL upgrade steps are provided as a courtesy. It is the responsibility of the user to upgrade and maintain any External PostgreSQL configurations.
+
+Follow these steps to upgrade the PostgreSQL major version.
+
+## Upgrade Supermarket
+
+Do we need to upgrade Supermarket first?
 
 ### Backup PostgreSQL Database
 
-- Stop Supermarket application
+1. Stop the Supermarket application
 
 ```bash
 sudo supermarket-ctl stop
 ```
 
-- Start Supermarket PostgreSQL
+1. Start the Supermarket PostgreSQL service
 
 ```bash
 sudo supermarket-ctl start postgresql
 ```
 
-- Back up the PostgreSQL database
+1. Back up the PostgreSQL database
 
 ```bash
 /opt/supermarket/embedded/bin/pg_dumpall -U supermarket -p 15432 > /tmp/supermarket-dump.sql
 ```
 
-- Vacuum the PostgreSQL database:
+1. Vacuum the PostgreSQL database:
 
 ```bash
 /opt/supermarket/embedded/bin/vacuumdb --all --full -p 15432
 ```
 
-- Reindex the PostgreSQL database:
+1. Reindex the PostgreSQL database:
 
 ```bash
 /opt/supermarket/embedded/bin/reindexdb --all -p 15432
 ```
 
-- If either the `vacuumdb` or `reindexdb` commands fail
+1. Restart the Supermarket application
 
-  - Drop the supermarket database
+```bash
+supermarket-ctl restart
+```
+
+### Recovering from Upgrade Failures
+
+If either the `vacuumdb` or `reindexdb` commands fail
+
+1. Drop the Supermarket PostgreSQL database
 
   ```bash
   /opt/supermarket/embedded/bin/psql -U supermarket -d postgres -p 15432 -c "drop database supermarket"
   ```
 
-  - Recreate the supermarket database
+1. Recreate the Supermarket PostgreSQL database
 
   ```bash
   /opt/supermarket/embedded/bin/psql -U supermarket -d postgres -p 15432 -c "create database supermarket"
   ```
 
-  - Restore supermarket database from existing `dump.sql` file
+1. Restore Supermarket PostgreSQL database from the existing `dump.sql` file
 
   ```bash
   /opt/supermarket/embedded/bin/psql -U supermarket -d supermarket -p 15432 -f /tmp/supermarket-dump.sql
   ```
 
-- Restart supermarket application
+1. Restart the Supermarket application
 
 ```bash
 supermarket-ctl restart
