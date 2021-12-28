@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.69 -->
-## [4.2.69](https://github.com/chef/supermarket/tree/4.2.69) (2021-12-23)
+<!-- latest_release 4.2.70 -->
+## [4.2.70](https://github.com/chef/supermarket/tree/4.2.70) (2021-12-28)
 
 #### Merged Pull Requests
-- Bump shoulda-matchers from 5.0.0 to 5.1.0 in /src/supermarket [#2460](https://github.com/chef/supermarket/pull/2460) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Documentation lints [#2467](https://github.com/chef/supermarket/pull/2467) ([kagarmoe](https://github.com/kagarmoe))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Documentation lints [#2467](https://github.com/chef/supermarket/pull/2467) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.70 -->
 - Bump shoulda-matchers from 5.0.0 to 5.1.0 in /src/supermarket [#2460](https://github.com/chef/supermarket/pull/2460) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.69 -->
 - Bump honeycomb-beeline from 2.7.1 to 2.8.0 in /src/supermarket [#2462](https://github.com/chef/supermarket/pull/2462) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.68 -->
 - Bump chef from 17.8.25 to 17.9.18 in /src/supermarket [#2461](https://github.com/chef/supermarket/pull/2461) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.67 -->
