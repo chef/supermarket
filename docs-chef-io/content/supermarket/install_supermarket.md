@@ -3,7 +3,6 @@ title = "Install Private Supermarket"
 draft = false
 gh_repo = "supermarket"
 aliases = ["/install_supermarket.html", "/install_supermarket/"]
-product = ["client", "server", "workstation"]
 
 [menu]
   [menu.supermarket]
