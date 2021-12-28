@@ -6,7 +6,7 @@ aliases = ["/install_supermarket.html", "/install_supermarket/"]
 
 [menu]
   [menu.supermarket]
-    title = "Install Private Supermarket"
+    title = "Install"
     identifier = "supermarket/server/Install Private Supermarket"
     parent = "supermarket/server"
     weight = 20
