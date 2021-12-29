@@ -28,6 +28,48 @@ sudo -u supermarket supermarket-ctl make-admin USER_NAME
 where `USER_NAME` represents the name of the user to be granted
 administrator privileges.
 
+## spdx
+
+The `spdx` subcommands are used to manage SPDX license information in cookbooks. Linked SPDX licenses appear on the cookbook information page.
+
+[The Software Package Data Exchange](https://spdx.dev/) (SPDX) is an open standard for software manifests, including components, licenses, copyrights, and security content.
+
+SPDX maintains a [License List](https://spdx.org/licenses/) of common licenses and exceptions used in open source development. Changes to the SPDX License List are not automatically reflected in your cookbooks. to To apply changes made by SPDX, rescan your cookbooks with the `spdx` subcommands.
+
+### spdx-all
+
+The `spdx-all` command links the licenses known to SPDX for all cookbooks in your system.
+
+This subcommand has the following syntax:
+
+```bash
+sudo -u supermaket supermarket-ctl spdx-all
+```
+
+### spdx-latest
+
+The `spdx-latest` command links the licenses known to SPDX for the specified cookbook.
+
+This subcommand has the following syntax:
+
+```bash
+sudo -u supermarket supermarket-ctl spdx-latest COOKBOOK_NAME
+```
+
+Where COOKBOOK_NAME is the name of cookbook for SPDX linking. The latest version of the cookbook receives SPDX linking.
+
+### spdx-on-version
+
+The `spdx-on-version` command links the licenses known to SPDX for the specified cookbook version.
+
+This subcommand has the following syntax:
+
+```bash
+sudo -u supermarket supermarket-ctl spdx-on-version COOKBOOK_NAME VERSION
+```
+
+Where COOKBOOK_NAME is the name of cookbook and VERSION is the version of the cookbook that receives SPDX linking.
+
 ## Quality Metrics
 
 ### qm-flip-admin-only
