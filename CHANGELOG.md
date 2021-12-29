@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.80 -->
-## [4.2.80](https://github.com/chef/supermarket/tree/4.2.80) (2021-12-29)
+<!-- latest_release 4.2.81 -->
+## [4.2.81](https://github.com/chef/supermarket/tree/4.2.81) (2021-12-29)
 
 #### Merged Pull Requests
-- Bump unicorn from 6.0.0 to 6.1.0 in /src/supermarket [#2463](https://github.com/chef/supermarket/pull/2463) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump jbuilder from 2.11.3 to 2.11.5 in /src/supermarket [#2454](https://github.com/chef/supermarket/pull/2454) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump jbuilder from 2.11.3 to 2.11.5 in /src/supermarket [#2454](https://github.com/chef/supermarket/pull/2454) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.81 -->
 - Bump unicorn from 6.0.0 to 6.1.0 in /src/supermarket [#2463](https://github.com/chef/supermarket/pull/2463) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.80 -->
 - Fix the Permissions-Policy header for the new format [#2457](https://github.com/chef/supermarket/pull/2457) ([tas50](https://github.com/tas50)) <!-- 4.2.79 -->
 - Supermarket nav improvements &amp; upgrade page [#2473](https://github.com/chef/supermarket/pull/2473) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.78 -->
