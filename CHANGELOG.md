@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.81 -->
-## [4.2.81](https://github.com/chef/supermarket/tree/4.2.81) (2021-12-29)
+<!-- latest_release 4.2.82 -->
+## [4.2.82](https://github.com/chef/supermarket/tree/4.2.82) (2021-12-29)
 
 #### Merged Pull Requests
-- Bump jbuilder from 2.11.3 to 2.11.5 in /src/supermarket [#2454](https://github.com/chef/supermarket/pull/2454) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Upgrade Font Awesome from 4 to 5.15.4 [#2324](https://github.com/chef/supermarket/pull/2324) ([antima-gupta](https://github.com/antima-gupta))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Upgrade Font Awesome from 4 to 5.15.4 [#2324](https://github.com/chef/supermarket/pull/2324) ([antima-gupta](https://github.com/antima-gupta)) <!-- 4.2.82 -->
 - Bump jbuilder from 2.11.3 to 2.11.5 in /src/supermarket [#2454](https://github.com/chef/supermarket/pull/2454) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.81 -->
 - Bump unicorn from 6.0.0 to 6.1.0 in /src/supermarket [#2463](https://github.com/chef/supermarket/pull/2463) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.80 -->
 - Fix the Permissions-Policy header for the new format [#2457](https://github.com/chef/supermarket/pull/2457) ([tas50](https://github.com/tas50)) <!-- 4.2.79 -->
