@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.78 -->
-## [4.2.78](https://github.com/chef/supermarket/tree/4.2.78) (2021-12-28)
+<!-- latest_release 4.2.79 -->
+## [4.2.79](https://github.com/chef/supermarket/tree/4.2.79) (2021-12-29)
 
 #### Merged Pull Requests
-- Supermarket nav improvements &amp; upgrade page [#2473](https://github.com/chef/supermarket/pull/2473) ([kagarmoe](https://github.com/kagarmoe))
+- Fix the Permissions-Policy header for the new format [#2457](https://github.com/chef/supermarket/pull/2457) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.28 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Fix the Permissions-Policy header for the new format [#2457](https://github.com/chef/supermarket/pull/2457) ([tas50](https://github.com/tas50)) <!-- 4.2.79 -->
 - Supermarket nav improvements &amp; upgrade page [#2473](https://github.com/chef/supermarket/pull/2473) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.78 -->
 - Bump rubocop-rails from 2.12.4 to 2.13.0 in /src/supermarket [#2465](https://github.com/chef/supermarket/pull/2465) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.77 -->
 - Bump rubocop-rails from 2.12.4 to 2.13.0 in /src/supermarket/engines/fieri [#2464](https://github.com/chef/supermarket/pull/2464) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.76 -->
