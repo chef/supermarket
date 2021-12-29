@@ -14,7 +14,7 @@ $(cat release-notes.md)
 ---
 ## Get the Build
 
-You can download binaries directly from [downloads.chef.io](https://downloads.chef.io/tools/supermarket/stable?v=$EXPEDITOR_VERSION).
+You can download binaries directly from [chef.io/downloads](https://www.chef.io/downloads/tools/supermarket?v=$EXPEDITOR_VERSION).
 EOH
 )
 
