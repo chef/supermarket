@@ -74,6 +74,10 @@ This configuration file has the following general settings:
 
 : The directory that Supermarket will use to store logs. Default value: `'/var/log/supermarket'`.
 
+`default['supermarket']['log_mode']`
+
+: The Supermarket log directory permission which can be configured. Default value: `700`.
+
 `default['supermarket']['sysvinit_id']`
 
 : Use to specify 1-4 characters that define a unique identifier for the file located in `/etc/inittab`. Default value: `SUP`.
