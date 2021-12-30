@@ -1,7 +1,7 @@
 ---
 name: unit
 
-'on':
+on:
   pull_request_target:
   push:
     branches:
