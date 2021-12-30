@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 4.2.83 -->
+## [4.2.83](https://github.com/chef/supermarket/tree/4.2.83) (2021-12-30)
+
+#### Merged Pull Requests
+- Change chef downloads url [#2449](https://github.com/chef/supermarket/pull/2449) ([manick-vel-11](https://github.com/manick-vel-11))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=4.2.82 -->
+### Changes not yet released to stable
+
+#### Merged Pull Requests
+- Change chef downloads url [#2449](https://github.com/chef/supermarket/pull/2449) ([manick-vel-11](https://github.com/manick-vel-11)) <!-- 4.2.83 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
