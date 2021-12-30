@@ -20,8 +20,7 @@ The following settings are available in the `/etc/supermarket/supermarket.rb` fi
 
 {{< note >}}
 
-You must run `supermarket-ctl reconfigure` to apply any changes made in
-the `supermarket.rb` file.
+You must run `supermarket-ctl reconfigure` to apply any changes made in the `supermarket.rb` file.
 
 {{< /note >}}
 
@@ -47,8 +46,7 @@ This configuration file has the following general settings:
 
 `default['supermarket']['features']`
 
-: Use to enable additional features, such as announcements and GitHub
-integration. Default value: `'tools'`.
+: Use to enable additional features, such as announcements and GitHub integration. Default value: `'tools'`.
 
   Features currently available: `tools`, `fieri`, `announcement`, `github`, and `no_crawl`.
 
@@ -202,7 +200,6 @@ As a Supermarket feature, GitHub must be enabled via the`default['supermarket'][
 ### GitHub Enterprise
 
 Use these settings to integrate Supermarket with GitHub Enterprise.
-
 
 `default['supermarket']['github_access_token']`
 
