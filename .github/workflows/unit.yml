@@ -2,7 +2,7 @@
 name: unit
 
 on:
-  pull_request_target:
+  pull_request:
   push:
     branches:
       - main
