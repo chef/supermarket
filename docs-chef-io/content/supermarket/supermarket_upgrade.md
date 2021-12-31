@@ -1,7 +1,7 @@
 +++
 title = "Upgrade Supermarket"
 date = 2021-12-28T11:04:48-08:00
-draft = false
+draft = true
 gh_repo = "supermarket"
 publishDate = 2022-01-03
 
@@ -67,15 +67,15 @@ The External PostgreSQL upgrade steps are provided as a courtesy. It is the resp
 
 Follow these steps to upgrade the PostgreSQL major version.
 
-### Run PostgreSQL
+### Run PostgreSQL 13
 
-1. Stop the Supermarket application
+1. Stop the Supermarket application.
 
 ```bash
 sudo supermarket-ctl stop
 ```
 
-1. Start the Supermarket PostgreSQL service
+1. Start the Supermarket PostgreSQL service. This starts the newly-installed PostgreSQL 13 server.
 
 ```bash
 sudo supermarket-ctl start postgresql
@@ -85,7 +85,7 @@ sudo supermarket-ctl start postgresql
 
 Database migrations carry inherent risk. A best practice to mitigate risk is to create an archival copy and save it to a secondary location before proceeding with any actions that touch the data. The archival copy is your failsafe for restoring the database. Do not use it as a working copy.
 
-1. Back up the Database
+1. Back up the database
 
 `pg_dumpall` is a utility for writing out ("dumping") all PostgreSQL databases of a cluster into one script file. The script file contains SQL commands that can be used as input to psql to restore the databases.
 
@@ -103,15 +103,18 @@ For more information on upgrading using `pg_dumpall` see the PostgreSQL 13 docum
 
 `vacuumdb --all --full` rewrites the entire contents of all tables into a disk files with no extra space, and returns unused space to the operating system.
 
-For more information on upgrading using `vacuumdb` see the PostgreSQL 13 documentation for [vacuumdb](https://www.postgresql.org/docs/13/app-vacuumdb.html).
+Vacuum the database:
 
 ```bash
 /opt/supermarket/embedded/bin/vacuumdb --all --full -p 15432
 ```
 
+For more information on upgrading using `vacuumdb` see the PostgreSQL 13 documentation for [vacuumdb](https://www.postgresql.org/docs/13/app-vacuumdb.html).
 #### Option 2: Vacuum and Analyze the PostgreSQL database
 
-`vacuumdb --all --full --analyze` rewrites the entire contents of all tables into a disk files with no extra space, returns unused space to the operating system, and collects statistics about the database. It stores the results in the `pg_statistic` system catalog, which is useful for planning efficient queries.
+`vacuumdb --all --full --analyze` rewrites the entire contents of all tables into a disk files with no extra space, returns unused space to the operating system, and collects statistics about the database. It stores the results in the `pg_statistic` system catalog, which is useful for planning efficient queries. This command takes considerably more time to run.
+
+Vacuume and analyze the database:
 
 ```bash
 /opt/supermarket/embedded/bin/vacuumdb --all --full --analyze -p 15432
@@ -121,6 +124,8 @@ For more information on upgrading using `vacuumdb` see the PostgreSQL 13 documen
 
 This is an optional step for the sufficiently paranoid. Estimate the time needed for a second (the 'working') backup based as the same amount of time used in the first backup. The working backup provides a closer restore point than the archival copy if the next step of reindexing fails.
 
+Create a 'working' copy of the cleaned database:
+
 ```bash
 /opt/supermarket/embedded/bin/pg_dumpall -U supermarket -p 15432 > /tmp/supermarket-dump-working.sql
 ```
@@ -129,17 +134,17 @@ This is an optional step for the sufficiently paranoid. Estimate the time needed
 
 `reindexdb` is a utility for rebuilding indexes in a PostgreSQL database.
 
-For more information on upgrading using `reindexdb` see the PostgreSQL 13 documentation for [vacuumdb](https://www.postgresql.org/docs/13/app-reindexdb.html).
-
-1. Reindex the PostgreSQL database:
+Reindex the PostgreSQL database:
 
 ```bash
 /opt/supermarket/embedded/bin/reindexdb --all -p 15432
 ```
 
+For more information on upgrading using `reindexdb` see the PostgreSQL 13 documentation for [reindexdb](https://www.postgresql.org/docs/13/app-reindexdb.html).
+
 ### Restart Supermarket
 
-1. Restart the Supermarket application
+Restart the Supermarket application:
 
 ```bash
 supermarket-ctl restart
