@@ -19,11 +19,9 @@ aliases = ["/supermarket.html"]
 
 ## Public Supermarket
 
-The public Chef Supermarket hosted by Chef Software is located at [Chef
-Supermarket](https://supermarket.chef.io/).
+The public Chef Supermarket hosted by Chef Software is located at [Chef Supermarket](https://supermarket.chef.io/).
 
-To interact with the public Chef Supermarket, use [knife
-supermarket](/workstation/knife_supermarket/) commands.
+To interact with the public Chef Supermarket, use [knife supermarket](/workstation/knife_supermarket/) commands.
 
 {{< figure src="/images/public_supermarket.svg" width="700" alt="Image showing the Chef Supermarket website." >}}
 
