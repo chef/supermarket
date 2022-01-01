@@ -1,18 +1,18 @@
+# Release Testing Process
+
 ### Testing on ubuntu 20.04.2 LTS
 
-- Clone supermarket repo from Github.
+- Clone supermarket repo from GitHub.
 - Go to the supermarket repo.
 - Checkout to the release tag of supermarket that you want to test:
-  ```
-  git checkout <tag version e.g.: 4.0.14>
-  ```
+  ```git checkout <tag version e.g.: 4.0.14>```
 - Build supermarket artifact with omnibus
   - Inside repo go to `omnibus` directory
     `cd omnibus`
   - Run `bundle install --binstubs`
   - Run `bin/omnibus build supermarket`
   - Once build is successful it will create a supermarket installation package in the directory `/var/cache/omnibus/pkg`.
-  - N.B. For general troubleshooting in building supermarket build package refer to the supermarket setup guidelines in supermaket Github repo.
+  - N.B. For general troubleshooting in building supermarket build package refer to the supermarket setup guidelines in supermaket GitHub repo.
 
 - Install supermarket
   - U can install the package using respective package installer for the selected OS. For ubuntu I've used `dpkg` as follows:
@@ -70,7 +70,7 @@ To manage cookbooks between supermarket and chef-server we need to install chef-
   - Copy the `<user>.pem` and `<org-validator>.pem` to the `.chef` directory. Need to mention these 2 pemfiles in the following step.
   - Create a new file inside chef-repo with: ```vim .chef/config.rb``` and add the following content and replace the placeholders ( e.g. `<placeholder>`) with respective values: 
 
-    ```
+    ```ruby
     current_dir = File.dirname(__FILE__)
     log_level                :info
     log_location             STDOUT
@@ -83,8 +83,8 @@ To manage cookbooks between supermarket and chef-server we need to install chef-
     cache_options( :path => "#{ENV['HOME']}/.chef/checksums" )
     cookbook_path            ["#{current_dir}/../cookbooks"]
     ```
-Now your chef client is configured to connect to the chef server.
 
+Now your Infra Client is configured to connect to the chef server.
 
 ### Resolve self signed certificate issue
 

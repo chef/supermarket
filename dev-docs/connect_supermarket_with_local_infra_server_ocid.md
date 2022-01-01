@@ -1,63 +1,58 @@
-## Connect Local Private Supermarket with Local Private Chef Server
+# Connect Local Supermarket with Local Chef Infra Server OC-ID
 
-Once you have your local supermarket and local chef-server setup you need to follow the following steps in order to connect both.
+Once you have your local Supermarket and local Chef Infra Server setup you need to follow the following steps in order to connect both.
 
-**Chef Server Changes:**
+## Prereqs
 
--   Go to chef-server repository folder
--   Go to the dev directory:
-    -   `cd dev`
--   Spin up the vagrant instance and follow the default instructions given for chef-server setup:
-    -   `vagrant up`
--   SSH into the vagrant machine by:
-    -   `vagrant ssh`
--   You need to change to sudo user:
-    -   `sudo -i`
--   Go to the specific directory as follows:
-    -   `cd /etc/opscode`
--   You need to edit the chef-server.rb
-    -   `vim chef-server.rb`
--   Register supermarket with oc-id in this file by appending the following configuration:
+- This guide assumes a Mac. Things can be modified a bit to work on Linux or Windows.
+- Homebrew installed from `brew.sh`.
 
-```
-oc_id["applications"] = {
-  "supermarket" => {
-    "redirect_uri" => "https://localhost:4000/auth/chef_oauth2/callback"
-  }
-}
+## Chef Infra Server Setup
 
-```
+- Go to `chef-server` repository directory
+- Go to the dev directory:
+  - `cd dev`
+- Install Vagrant if you haven't already
+  - `brew install vagrant`
+- Spin up the vagrant instance and follow the default instructions given for chef-server setup:
+  - `vagrant up`
+- SSH into the vagrant machine by:
+  - `vagrant ssh`
+- You need to change to sudo user:
+  - `sudo -i`
+- Go to the specific directory as follows:
+  - `cd /etc/opscode`
+- You need to edit the chef-server.rb
+  - `vim chef-server.rb`
+- Register supermarket with oc-id in this file by appending the following configuration:
 
--   In the above configuration we are saying that once authorized it should redirect to the specified URL. You will note that your supermarket is running at port: 3000 and with protocol: http but here we are setting up the port: 4000 and protocol: https as the chef server is running in https hence it will expect the redirect url to be a https url. We will be running an nginx server which will accept https request at port 4000 and the nginx server will then redirect the request to our supermarket server which will be running at port: 3000 and protocol: http. Check the next steps.
-    
--   Once you have made the modifications to chef-server.rb you need to reconfigure the chef server by the command:
-    
-    -   `chef-server-ctl reconfigure`
--   The above command will generate supermarket configuration under the folder /etc/opscode/oc-id-applications
-    
-    -   Filename:  `supermarket.json`
--   The supermarket.json will contain the client id(uid) and secret token(secret) as follows:
-    
+    ```ruby
+    oc_id["applications"] = {
+    "supermarket" => {
+        "redirect_uri" => "https://localhost:4000/auth/chef_oauth2/callback"
+    }
+    }
+    ```
 
-```
-{
-  "name": "supermarket",
-  "uid": "<supermarket client id>",
-  "secret": "<secret token for supermarket>",
-  "redirect_uri": "https://localhost:4000/auth/chef_oauth2/callback",
-  "scopes": []
-}
+- In the above configuration we are saying that once authorized it should redirect to the specified URL. You will note that your supermarket is running at port: 3000 and with protocol: http but here we are setting up the port: 4000 and protocol: https as the chef server is running in https hence it will expect the redirect url to be a https url. We will be running an nginx server which will accept https request at port 4000 and the nginx server will then redirect the request to our supermarket server which will be running at port: 3000 and protocol: http. Check the next steps.
+- Once you have made the modifications to `chef-server.rb` reconfigure the server by running`chef-server-ctl reconfigure`
+- The `supermarket.json` file in `/etc/opscode/oc-id-applications` will contain the client id(uid) and secret token(secret) as follows:  
 
-```
+    ```json
+    {
+    "name": "supermarket",
+    "uid": "<supermarket client id>",
+    "secret": "<secret token for supermarket>",
+    "redirect_uri": "https://localhost:4000/auth/chef_oauth2/callback",
+    "scopes": []
+    }
+    ```
 
--   You need to take the uid and secret and add both in your supermarket configuration.
--   Check the IP address of the chef-server by the command
-    -   `ifconfig`
-        
+- You need to take the uid and secret and add both in your supermarket configuration.
+- Check the IP address of the Chef Infra Server by running `ifconfig`
         Take the value against: eth1. The IP would be something like: 192.168.33.100
-        
 
-**Supermarket Changes**
+## Supermarket Setup
 
 -   Go to the supermarket repo. Then run:
     -   `cd src/supermarket`
@@ -76,7 +71,7 @@ oc_id["applications"] = {
     -   `web: bundle exec rails server --binding localhost -p 3000`
 -   This is the end of supermarket setup. Now let’s move to nginx configuration.
 
-**Nginx Configuration**
+## Nginx Setup
 
 -   Install Nginx in mac using Homebrew
     -   `brew install nginx`
