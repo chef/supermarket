@@ -153,7 +153,7 @@ describe VersionTagWorker do
     context "when a source url is not valid" do
       let(:invalid_source_url_json_response) { File.read("spec/support/cookbook_null_source_url_fixture.json") }
 
-      it "does not attempt to contact the Github API" do
+      it "does not attempt to contact the GitHub API" do
         expect(Octokit::Client).to_not receive(:new)
         vfw.perform(invalid_source_url_json_response, cookbook_name, cookbook_version)
       end

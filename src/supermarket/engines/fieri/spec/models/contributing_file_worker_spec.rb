@@ -71,7 +71,7 @@ describe ContributingFileWorker do
       end
 
       context "and a CONTRIBUTING.md file is not present in the repo" do
-        # The Github API returns a 404 when a file is not present
+        # The GitHub API returns a 404 when a file is not present
         before do
           allow(octokit).to receive(:contents).and_raise(Octokit::NotFound)
         end
@@ -91,7 +91,7 @@ describe ContributingFileWorker do
     context "when a source url is null" do
       let(:invalid_source_url_json_response) { File.read("spec/support/cookbook_null_source_url_fixture.json") }
 
-      it "does not attempt to contact the Github API" do
+      it "does not attempt to contact the GitHub API" do
         expect(Octokit::Client).to_not receive(:new)
         cfw.perform(invalid_source_url_json_response, cookbook_name)
       end
@@ -110,7 +110,7 @@ describe ContributingFileWorker do
     context "when a source url is not a github repo URL" do
       let(:invalid_source_url_json_response) { File.read("spec/support/cookbook_non_github_source_url_fixture.json") }
 
-      it "does not attempt to contact the Github API" do
+      it "does not attempt to contact the GitHub API" do
         expect(Octokit::Client).to_not receive(:new)
         cfw.perform(invalid_source_url_json_response, cookbook_name)
       end
