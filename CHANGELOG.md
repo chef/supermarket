@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.86 -->
-## [4.2.86](https://github.com/chef/supermarket/tree/4.2.86) (2022-01-03)
+<!-- latest_release 4.2.87 -->
+## [4.2.87](https://github.com/chef/supermarket/tree/4.2.87) (2022-01-03)
 
 #### Merged Pull Requests
-- Filter deprecated cookbooks from cookbooks list [#2370](https://github.com/chef/supermarket/pull/2370) ([manick-vel-11](https://github.com/manick-vel-11))
+- WIP Updated the workstation download url [#2488](https://github.com/chef/supermarket/pull/2488) ([saghoshprogress](https://github.com/saghoshprogress))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.82 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- WIP Updated the workstation download url [#2488](https://github.com/chef/supermarket/pull/2488) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 4.2.87 -->
 - Filter deprecated cookbooks from cookbooks list [#2370](https://github.com/chef/supermarket/pull/2370) ([manick-vel-11](https://github.com/manick-vel-11)) <!-- 4.2.86 -->
 - Fix the capitalization of GitHub [#2482](https://github.com/chef/supermarket/pull/2482) ([tas50](https://github.com/tas50)) <!-- 4.2.85 -->
 - Markdown formatting. [#2477](https://github.com/chef/supermarket/pull/2477) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.84 -->
