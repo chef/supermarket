@@ -198,11 +198,11 @@ Following commands are available to update the license urls for cookbooks :-
 ### Update for a particular version of cookbook
 `spdx-on-version <cookbook_name> <cookbook_version>`
 
-## Connecting your Github Account
+## Connecting your GitHub Account
 
-There are a couple features that depend on GitHub integration (CLA signing, some quality metrics in Fieri). You can set up an integration for your development environment by creating an application with your Github account. To do this:
+There are a couple features that depend on GitHub integration (CLA signing, some quality metrics in Fieri). You can set up an integration for your development environment by creating an application with your GitHub account. To do this:
 
-1. Log into your Github account if you aren't already.
+1. Log into your GitHub account if you aren't already.
 2. Click on your username in the upper right hand corner. This will bring you to your Profile page.
 3. Click the "Edit Profile" button in the upper right corner of the Profile page.
 4. Click on "Applications" in the vertical menu on the left hand side
@@ -223,10 +223,10 @@ There are a couple features that depend on GitHub integration (CLA signing, some
   GITHUB_SECRET=[Your new application's client secret]
   ```
 
-Next, create a Github Access token. You also do this from the "Applications" section of your Profile page.
+Next, create a GitHub Access token. You also do this from the "Applications" section of your Profile page.
 
 1. Look at the "Personal access tokens section heading." Click on the "Generate new token" button.
-2. When prompted, enter your Github password.
+2. When prompted, enter your GitHub password.
 3. Enter whatever you like for the Token description, I use "testing-supermarket"
 4. Leave the scopes at the defaults
 5. Click the "Generate token" button
@@ -240,14 +240,14 @@ Next, create a Github Access token. You also do this from the "Applications" sec
   with this value:
 
   ```
-  GITHUB_ACCESS_TOKEN=[Token you just generated through Github]
+  GITHUB_ACCESS_TOKEN=[Token you just generated through GitHub]
   ```
 
-## Connecting your Github Enterprise Account
+## Connecting your GitHub Enterprise Account
 
-There are a couple features that depend on GitHub Enterprise integration (CLA signing, some quality metrics in Fieri). You can set up an integration for your development environment by creating an application with your Github Enterprise account. To do this:
+There are a couple features that depend on GitHub Enterprise integration (CLA signing, some quality metrics in Fieri). You can set up an integration for your development environment by creating an application with your GitHub Enterprise account. To do this:
 
-1. Log into your Github Enterprise account if you aren't already.
+1. Log into your GitHub Enterprise account if you aren't already.
 2. Click on your username in the upper right hand corner.
 3. Click the "User settings" in the vertical menu on the right corner. This will bring you to your Public Profile page.
 4. Click on "Developer settings" in the vertical menu on the left hand side
@@ -277,11 +277,11 @@ There are a couple features that depend on GitHub Enterprise integration (CLA si
   GITHUB_CLIENT_OPTION_ACCESS_TOKEN_URL=YOURGITHUBENTERPRISEURL/login/oauth/access_token
   ```
 
-Next, create a Github Access token. You also do this from the "Developer settings" section.
+Next, create a GitHub Access token. You also do this from the "Developer settings" section.
 
 1. Click on "Personal access tokens". This will bring you to Personal access tokens page.
 2. Look at the "Personal access tokens section heading." Click on the "Generate new token" button.
-3. When prompted, enter your Github password.
+3. When prompted, enter your GitHub password.
 4. Enter whatever you like for the Token description, I use "testing-supermarket"
 5. Leave the scopes at the defaults
 6. Click the "Generate token" button
@@ -295,7 +295,7 @@ Next, create a Github Access token. You also do this from the "Developer setting
   with this value:
 
   ```
-  GITHUB_ACCESS_TOKEN=[Token you just generated through Github]
+  GITHUB_ACCESS_TOKEN=[Token you just generated through GitHub]
   ```
 
 ## Tests
