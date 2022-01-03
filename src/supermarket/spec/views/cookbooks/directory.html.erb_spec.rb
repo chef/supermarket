@@ -16,7 +16,7 @@ describe "cookbooks/directory.html.erb" do
 
   it "has workstation download link pointing to correct url" do
     render
-    expect(rendered).to have_link("Chef Workstation")
+    expect(rendered).to have_link("Chef Workstation", href: "https://downloads.chef.io/tools/workstation")
   end
 
   it_behaves_like "community stats"
