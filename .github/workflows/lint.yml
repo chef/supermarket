@@ -35,5 +35,5 @@ jobs:
         bundler-cache: true
     - uses: r7kamura/rubocop-problem-matchers-action@v1 # this shows the failures in the PR
     - name: run chefstyle
-      run: bundle exec chefstyle
+      run: bundle exec chefstyle --ignore-parent-exclusion
       working-directory: src/supermarket/engines/fieri
