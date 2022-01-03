@@ -6,8 +6,6 @@ name: unit
   push:
     branches:
       - main
-    paths-ignore:
-      - 'docs-chef-io'
 
 jobs:
   supermarket:
