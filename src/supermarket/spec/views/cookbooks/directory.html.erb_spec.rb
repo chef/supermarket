@@ -14,7 +14,7 @@ describe "cookbooks/directory.html.erb" do
     expect(rendered).to have_selector("a[href]", text: test_kitchen_text)
   end
 
-  it "has workstation download link pointing to correct url" do
+  it "This is an updated description *** " do
     render
     expect(rendered).to have_link("Chef Workstation", href: "https://downloads.chef.io/tools/workstation")
   end
