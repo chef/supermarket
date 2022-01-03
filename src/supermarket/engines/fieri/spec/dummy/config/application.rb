@@ -30,6 +30,6 @@ module Dummy
 
     # Quiet SQLite3Adapter barking about booleans for this
     # dummy app that doesn't have any data
-    config.active_record.sqlite3.represent_boolean_as_integer = true unless config.active_record.sqlite3.blank?
+    config.active_record.sqlite3.represent_boolean_as_integer = true if config.active_record.sqlite3.present?
   end
 end
