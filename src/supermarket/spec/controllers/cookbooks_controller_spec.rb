@@ -28,7 +28,6 @@ describe CookbooksController do
         get :index
         expect(assigns[:cookbooks][0]).to eql(mysql)
         expect(assigns[:cookbooks][1]).to eql(postgresql)
-        expect(assigns[:cookbooks][2]).to eql(dep_cookbook)
       end
     end
 
@@ -50,6 +49,17 @@ describe CookbooksController do
           web_download_count: 1,
           api_download_count: 50,
           cookbook_followers_count: 50
+        )
+      end
+
+      let!(:cookbook_3) do
+        create(
+          :cookbook,
+          name: "mysql-admin-tools-1",
+          web_download_count: 1,
+          api_download_count: 50,
+          cookbook_followers_count: 50,
+          deprecated: true
         )
       end
 
@@ -77,6 +87,11 @@ describe CookbooksController do
       it "correctly orders @cookbooks when also searching" do
         get :index, params: { order: "most_followed", q: "mysql" }
         expect(assigns[:cookbooks].first).to eql(cookbook_1)
+      end
+
+      it "filters deprecated cookbooks when option required" do
+        get :index, params: { deprecated: true }
+        expect(assigns[:cookbooks].last).to eql(cookbook_3)
       end
     end
 
