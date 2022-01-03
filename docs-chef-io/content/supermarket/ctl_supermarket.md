@@ -41,7 +41,7 @@ The `spdx-all` command links the licenses known to SPDX for all cookbooks in you
 This subcommand has the following syntax:
 
 ```bash
-sudo -u supermaket supermarket-ctl spdx-all
+sudo -u supermarket supermarket-ctl spdx-all
 ```
 
 ### spdx-latest
