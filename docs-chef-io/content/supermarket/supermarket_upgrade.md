@@ -17,7 +17,7 @@ publishDate = 2022-01-03
   If running Supermarket 4.2, you can upgrade directly to the latest releases of Supermarket 4.3. If you are running a release with version less than 4.2 you must perform a stepped upgrade as outlined below.
   Running Version| Upgrade Version | Supported Version
   ---------|----------|---------
-  4.2 | 4.3 | Yes
+  4.2 | 4.3 | No
   4.1 | 4.2 | No
   4.0 | 4.2 | No
   < 4.0 | 4.2 | No
@@ -83,18 +83,18 @@ publishDate = 2022-01-03
 ### Scenario-2: Internal PostgreSQL
   Follow the steps below in case you are using an internal postgreSQL for your private supermarket.
   1. Download the Package for Supermarket 4.3 as specified in the [general installation guidelines](#general-steps-to-upgrade-a-private-supermarket).
-  2. Install the downloaded package using the relevant package installer as specified in the [general installation guidelines](#general-steps-to-upgrade-a-private-supermarket).
-  3. Reconfigure supermarket as specified in the [general installation guidelines](#general-steps-to-upgrade-a-private-supermarket). Once reconfigure is complete you should have all your data migrated from postgres 9.3 to 13.4
-  4. Now you need to follow the steps below to cleanup the data in the database to remove the unnecessary clutter.
-  5. Stop the Supermarket application
+  1. Install the downloaded package using the relevant package installer as specified in the [general installation guidelines](#general-steps-to-upgrade-a-private-supermarket).
+  1. Reconfigure supermarket as specified in the [general installation guidelines](#general-steps-to-upgrade-a-private-supermarket). Once reconfigure is complete you should have all your data migrated from postgres 9.3 to 13.4
+  1. Now you need to follow the steps below to cleanup the data in the database to remove the unnecessary clutter.
+  1. Stop the Supermarket application
       ```bash
       sudo supermarket-ctl stop
       ```
-  6. Start the Supermarket PostgreSQL service. This starts the newly-installed PostgreSQL 13 server.
+  1. Start the Supermarket PostgreSQL service. This starts the newly-installed PostgreSQL 13 server.
       ```bash
       sudo supermarket-ctl start postgresql
       ```
-  7. Create an Archive Backup
+  1. Create an Archive Backup
       
       Database migrations carry inherent risk. A best practice to mitigate risk is to create an archival copy and save it to a secondary location before proceeding with any actions that touch the data. The archival copy is your failsafe for restoring the database. Do not use it as a working copy.
 
