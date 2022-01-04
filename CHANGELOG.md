@@ -1,26 +1,24 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.89 -->
-## [4.2.89](https://github.com/chef/supermarket/tree/4.2.89) (2022-01-04)
-
-#### Merged Pull Requests
-- Saghosh/font awesome fix [#2492](https://github.com/chef/supermarket/pull/2492) ([saghoshprogress](https://github.com/saghoshprogress))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=4.2.82 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Saghosh/font awesome fix [#2492](https://github.com/chef/supermarket/pull/2492) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 4.2.89 -->
-- Update Fieri deps in the gemfile.lock [#2486](https://github.com/chef/supermarket/pull/2486) ([tas50](https://github.com/tas50)) <!-- 4.2.88 -->
-- WIP Updated the workstation download url [#2488](https://github.com/chef/supermarket/pull/2488) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 4.2.87 -->
-- Filter deprecated cookbooks from cookbooks list [#2370](https://github.com/chef/supermarket/pull/2370) ([manick-vel-11](https://github.com/manick-vel-11)) <!-- 4.2.86 -->
-- Fix the capitalization of GitHub [#2482](https://github.com/chef/supermarket/pull/2482) ([tas50](https://github.com/tas50)) <!-- 4.2.85 -->
-- Markdown formatting. [#2477](https://github.com/chef/supermarket/pull/2477) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.84 -->
-- Change chef downloads url [#2449](https://github.com/chef/supermarket/pull/2449) ([manick-vel-11](https://github.com/manick-vel-11)) <!-- 4.2.83 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [4.2.89](https://github.com/chef/supermarket/tree/4.2.89) (2022-01-04)
+
+#### Merged Pull Requests
+- Change chef downloads url [#2449](https://github.com/chef/supermarket/pull/2449) ([manick-vel-11](https://github.com/manick-vel-11))
+- Markdown formatting. [#2477](https://github.com/chef/supermarket/pull/2477) ([kagarmoe](https://github.com/kagarmoe))
+- Fix the capitalization of GitHub [#2482](https://github.com/chef/supermarket/pull/2482) ([tas50](https://github.com/tas50))
+- Filter deprecated cookbooks from cookbooks list [#2370](https://github.com/chef/supermarket/pull/2370) ([manick-vel-11](https://github.com/manick-vel-11))
+- WIP Updated the workstation download url [#2488](https://github.com/chef/supermarket/pull/2488) ([saghoshprogress](https://github.com/saghoshprogress))
+- Update Fieri deps in the gemfile.lock [#2486](https://github.com/chef/supermarket/pull/2486) ([tas50](https://github.com/tas50))
+- Saghosh/font awesome fix [#2492](https://github.com/chef/supermarket/pull/2492) ([saghoshprogress](https://github.com/saghoshprogress))
+<!-- latest_stable_release -->
+
 ## [4.2.82](https://github.com/chef/supermarket/tree/4.2.82) (2021-12-29)
 
 #### Merged Pull Requests
@@ -109,7 +107,6 @@
 - Bump unicorn from 6.0.0 to 6.1.0 in /src/supermarket [#2463](https://github.com/chef/supermarket/pull/2463) ([dependabot[bot]](https://github.com/dependabot[bot]))
 - Bump jbuilder from 2.11.3 to 2.11.5 in /src/supermarket [#2454](https://github.com/chef/supermarket/pull/2454) ([dependabot[bot]](https://github.com/dependabot[bot]))
 - Upgrade Font Awesome from 4 to 5.15.4 [#2324](https://github.com/chef/supermarket/pull/2324) ([antima-gupta](https://github.com/antima-gupta))
-<!-- latest_stable_release -->
 
 ## [4.1.28](https://github.com/chef/supermarket/tree/4.1.28) (2021-10-21)
 
