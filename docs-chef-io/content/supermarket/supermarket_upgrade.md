@@ -59,10 +59,10 @@ publishDate = 2022-01-03
 ## Release Specific Steps
 ---
 ## Upgrading to Supermarket Version: 4.3
-  Supermarket 4.3 upgrades PostgreSQL from 9.3 to 13.3. The 4.3 upgrade process requires a one-time downtime to vacuum, upgrade, and re-index the database. The entire upgrade operation takes about one minute for each 1000 nodes (1000 nodes is approximately 286MB). This process may take longer depending on your server hardware and the size of the node objects on your Supermarket.
+  Supermarket 4.3 upgrades PostgreSQL from 9.3 to 13.4. The 4.3 upgrade process requires a one-time downtime to vacuum, upgrade, and re-index the database.
 
   ---
-  > NOTE: Set the default['supermarket']['postgresql']['pg_upgrade_timeout'] attribute in supermarket.rb to the intended timeout value for the upgrade. Set this value based on the size of your data, where it take about one minute per 1,000 nodes which is approximately 286MB.
+  > NOTE: Set the default['supermarket']['postgresql']['pg_upgrade_timeout'] attribute in supermarket.rb to the intended timeout value for the upgrade. Set this value based on the size of your data.
   ---
 
 ## Pre Upgrade Database Preparation
@@ -70,7 +70,7 @@ publishDate = 2022-01-03
       ```
       sudo -u supermarket /opt/supermarket/embedded/bin/vacuumdb --all --full -p 15432
       ```
-  1. Back up the PostgreSQL database before upgrading so you can restore the full database to a previous release in the event of a failure.
+  1. Back up the PostgreSQL database before upgrading so you can restore the full database to a previous release in the event of a failure in the upgrade steps below.
       ```bash
       sudo -u supermarket /opt/supermarket/embedded/bin/pg_dumpall -U supermarket -p 15432 > /tmp/supermarket-dump.sql
       ```
@@ -82,19 +82,19 @@ publishDate = 2022-01-03
 
 ### Scenario-2: Internal PostgreSQL
   Follow the steps below in case you are using an internal postgreSQL for your private supermarket.
-  1. Download the Package for Supermarket 4.3 as specified in the general installation guidelines.
-  1. Install the downloaded package using the relevant package installer as specified in the general installation guidelines.
-  1. Reconfigure supermarket as specified in the general installation guidelines. Once reconfigure is complete you should have all your data migrated from postgres 9.3 to 13.3
-  2. Now you need to follow the steps below to cleanup the data in the database to remove the unnecessary clutter.
-  3. Stop the Supermarket application
+  1. Download the Package for Supermarket 4.3 as specified in the [general installation guidelines](#general-steps-to-upgrade-a-private-supermarket).
+  2. Install the downloaded package using the relevant package installer as specified in the [general installation guidelines](#general-steps-to-upgrade-a-private-supermarket).
+  3. Reconfigure supermarket as specified in the [general installation guidelines](#general-steps-to-upgrade-a-private-supermarket). Once reconfigure is complete you should have all your data migrated from postgres 9.3 to 13.4
+  4. Now you need to follow the steps below to cleanup the data in the database to remove the unnecessary clutter.
+  5. Stop the Supermarket application
       ```bash
       sudo supermarket-ctl stop
       ```
-  4. Start the Supermarket PostgreSQL service. This starts the newly-installed PostgreSQL 13 server.
+  6. Start the Supermarket PostgreSQL service. This starts the newly-installed PostgreSQL 13 server.
       ```bash
       sudo supermarket-ctl start postgresql
       ```
-  5. Create an Archive Backup
+  7. Create an Archive Backup
       
       Database migrations carry inherent risk. A best practice to mitigate risk is to create an archival copy and save it to a secondary location before proceeding with any actions that touch the data. The archival copy is your failsafe for restoring the database. Do not use it as a working copy.
 
@@ -108,7 +108,7 @@ publishDate = 2022-01-03
             sudo -u supermarket /opt/supermarket/embedded/bin/pg_dumpall -U supermarket -p 15432 > /tmp/supermarket-dump-archive.sql
             ```
      1. Copy the backup to a separate disk, one that is not connected to the Supermarket.
-### Prepare the Database
+### Vacuum the Database
 #### **Option 1**: Vacuum the PostgreSQL database
   `vacuumdb --all --full` rewrites the entire contents of all tables into a disk files with no extra space, and returns unused space to the operating system.
 
@@ -151,30 +151,25 @@ publishDate = 2022-01-03
 sudo supermarket-ctl restart
 ```
 
-### Recovering from Upgrade Failures
+### Recovering from Database Cleanup Failures
 
 If either the `vacuumdb` or `reindexdb` commands fail
 
 1. Drop the Supermarket PostgreSQL database
-
-  ```bash
-  /opt/supermarket/embedded/bin/psql -U supermarket -d postgres -p 15432 -c "drop database supermarket"
-  ```
+    ```bash
+    /opt/supermarket/embedded/bin/psql -U supermarket -d postgres -p 15432 -c "drop database supermarket"
+    ```
 
 1. Recreate the Supermarket PostgreSQL database
+    ```bash
+    /opt/supermarket/embedded/bin/psql -U supermarket -d postgres -p 15432 -c "create database supermarket"
+    ```
 
-  ```bash
-  /opt/supermarket/embedded/bin/psql -U supermarket -d postgres -p 15432 -c "create database supermarket"
-  ```
-
-2. Restore Supermarket PostgreSQL database from the existing `dump.sql` file
-
-  ```bash
-  /opt/supermarket/embedded/bin/psql -U supermarket -d supermarket -p 15432 -f /tmp/supermarket-dump-archive.sql
-  ```
-
+1. Restore Supermarket PostgreSQL database from the existing dump file: `supermarket-dump-archive.sql`
+    ```bash
+    /opt/supermarket/embedded/bin/psql -U supermarket -d supermarket -p 15432 -f /tmp/supermarket-dump-archive.sql
+    ```
 1. Restart the Supermarket application
-
-```bash
-supermarket-ctl restart
-```
+    ```bash
+    supermarket-ctl restart
+    ```
