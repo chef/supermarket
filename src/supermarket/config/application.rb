@@ -44,7 +44,7 @@ module Supermarket
     config.assets.paths << Rails.root.join("vendor/assets/images")
 
     # Ensure fonts and images are precompiled during asset compilation
-    config.assets.precompile += %w{*.svg *.eot *.woff *.ttf *.gif *.png}
+    config.assets.precompile += %w{*.svg *.eot *.woff *.woff2 *.ttf *.gif *.png}
 
     # Ensurer mailer assets are precompiled during asset compilation
     config.assets.precompile += %w{mailers.css}
