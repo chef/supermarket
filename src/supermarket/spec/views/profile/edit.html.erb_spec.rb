@@ -12,7 +12,10 @@ describe "profile/edit.html.erb" do
       end
       allow(view).to receive(:current_user).and_return(user)
       assign(:user, user)
-      ENV["GITHUB_ENTERPRISE_URL"] = "https://example.com"
+      ENV["GITHUB_ENTERPRISE_URL"] = "https://github.example.com"
+      ENV["GITHUB_CLIENT_OPTION_SITE"] = "https://github.example.com/api/v3"
+      ENV["GITHUB_CLIENT_OPTION_AUTHORIZE_URL"] = "https://github.example.com/login/oauth/authorize"
+      ENV["GITHUB_CLIENT_OPTION_ACCESS_TOKEN_URL"] = "https://github.example.com/login/oauth/access_token"
     end
 
     it "should have GitHub Enterprise content on edit profile page" do

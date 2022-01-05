@@ -50,7 +50,7 @@ describe ApplicationHelper do
   context "when using github account" do
 
     before do
-      ENV["GITHUB_ENTERPRISE_URL"] = ""
+      ENV["GITHUB_ENTERPRISE_URL"] = "YOUR_GITHUB_ENTERPRISE_URL"
       ENV["GITHUB_URL"] = "https://github.com"
     end
 
@@ -69,12 +69,15 @@ describe ApplicationHelper do
 
   context "when using github enterprise account" do
     before do
-      ENV["GITHUB_ENTERPRISE_URL"] = "https://example.com"
+      ENV["GITHUB_ENTERPRISE_URL"] = "https://github.example.com"
+      ENV["GITHUB_CLIENT_OPTION_SITE"] = "https://github.example.com/api/v3"
+      ENV["GITHUB_CLIENT_OPTION_AUTHORIZE_URL"] = "https://github.example.com/login/oauth/authorize"
+      ENV["GITHUB_CLIENT_OPTION_ACCESS_TOKEN_URL"] = "https://github.example.com/login/oauth/access_token"
       ENV["GITHUB_URL"] = ""
     end
     describe "#github_profile_url" do
       it "should return a user's profile url" do
-        expect(github_profile_url("johndoe")).to eql("https://example.com/johndoe")
+        expect(github_profile_url("johndoe")).to eql("https://github.example.com/johndoe")
       end
     end
 
