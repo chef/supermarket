@@ -76,7 +76,7 @@ This configuration file has the following general settings:
 
 `default['supermarket']['log_mode']`
 
-: The Supermarket log directory permission which can be configured. Default value: `700`.
+: The Supermarket log directory file permissions. Default value: `0700`.
 
 `default['supermarket']['sysvinit_id']`
 
