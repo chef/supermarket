@@ -1,4 +1,4 @@
-### Follow these steps in case Postgres major version is being upgraded.
+### Follow these steps to upgrade a PostgreSQL major version
 
  - Stop currently running supermarket application
 ```
