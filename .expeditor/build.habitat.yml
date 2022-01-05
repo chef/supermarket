@@ -1,0 +1,4 @@
+---
+bldr_toml: .bldr.toml
+origin: chef
+smart_build: true
