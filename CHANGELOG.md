@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 4.2.90 -->
+## [4.2.90](https://github.com/chef/supermarket/tree/4.2.90) (2022-01-05)
+
+#### Merged Pull Requests
+- Bump omnibus-software from `4707275` to `b6dd27a` in /omnibus [#2493](https://github.com/chef/supermarket/pull/2493) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=4.2.89 -->
+### Changes not yet released to stable
+
+#### Merged Pull Requests
+- Bump omnibus-software from `4707275` to `b6dd27a` in /omnibus [#2493](https://github.com/chef/supermarket/pull/2493) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.90 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
