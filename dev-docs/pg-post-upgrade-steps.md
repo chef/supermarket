@@ -1,6 +1,6 @@
 ### Follow these steps to upgrade a PostgreSQL major version
 
- - Stop currently running supermarket application
+ - Stop the supermarket application
 ```
 sudo supermarket-ctl stop
 ```
