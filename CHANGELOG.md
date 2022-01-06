@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.91 -->
-## [4.2.91](https://github.com/chef/supermarket/tree/4.2.91) (2022-01-05)
+<!-- latest_release 4.2.92 -->
+## [4.2.92](https://github.com/chef/supermarket/tree/4.2.92) (2022-01-06)
 
 #### Merged Pull Requests
-- Bump aws-sdk-s3 from 1.110.0 to 1.111.0 in /src/supermarket [#2496](https://github.com/chef/supermarket/pull/2496) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump chef from 17.9.18 to 17.9.26 in /src/supermarket [#2498](https://github.com/chef/supermarket/pull/2498) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump chef from 17.9.18 to 17.9.26 in /src/supermarket [#2498](https://github.com/chef/supermarket/pull/2498) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.92 -->
 - Bump aws-sdk-s3 from 1.110.0 to 1.111.0 in /src/supermarket [#2496](https://github.com/chef/supermarket/pull/2496) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.91 -->
 - Bump omnibus-software from `4707275` to `b6dd27a` in /omnibus [#2493](https://github.com/chef/supermarket/pull/2493) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.90 -->
 <!-- release_rollup -->
