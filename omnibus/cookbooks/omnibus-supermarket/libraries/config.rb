@@ -14,9 +14,7 @@ class Supermarket
       else
         # Write out the new file, but with everything commented out
         File.open(filename, 'w') do |file|
-          File.open(
-            "#{node['supermarket']['install_directory']}/embedded/cookbooks/omnibus-supermarket/attributes/default.rb", 'r'
-          ).read.each_line do |line|
+          File.read("#{node['supermarket']['install_directory']}/embedded/cookbooks/omnibus-supermarket/attributes/default.rb").each_line do |line|
             file.write "# #{line}"
           end
         end
@@ -42,7 +40,7 @@ class Supermarket
     # If it doesn't exist, create it with generated secrets.
     def self.load_or_create_secrets!(filename, node)
       create_directory!(filename)
-      secrets = Chef::JSONCompat.from_json(File.open(filename).read)
+      secrets = Chef::JSONCompat.from_json(File.read(filename))
       node.consume_attributes('supermarket' => secrets)
     rescue Errno::ENOENT
       begin
