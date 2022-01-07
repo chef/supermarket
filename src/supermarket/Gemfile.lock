@@ -498,7 +498,7 @@ GEM
     pastel (0.8.0)
       tty-color (~> 0.5)
     pg (1.2.3)
-    pg_search (2.3.5)
+    pg_search (2.3.6)
       activerecord (>= 5.2)
       activesupport (>= 5.2)
     plist (3.6.0)
@@ -795,7 +795,7 @@ GEM
     yajl-ruby (1.4.1)
     yard (0.9.27)
       webrick (~> 1.7.0)
-    zeitwerk (2.5.2)
+    zeitwerk (2.5.3)
 
 PLATFORMS
   ruby
