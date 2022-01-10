@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.99 -->
-## [4.2.99](https://github.com/chef/supermarket/tree/4.2.99) (2022-01-10)
+<!-- latest_release 4.2.100 -->
+## [4.2.100](https://github.com/chef/supermarket/tree/4.2.100) (2022-01-10)
 
 #### Merged Pull Requests
-- Bump pg_search from 2.3.5 to 2.3.6 in /src/supermarket [#2506](https://github.com/chef/supermarket/pull/2506) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump nokogiri from 1.12.5 to 1.13.0 in /src/supermarket [#2505](https://github.com/chef/supermarket/pull/2505) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump nokogiri from 1.12.5 to 1.13.0 in /src/supermarket [#2505](https://github.com/chef/supermarket/pull/2505) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.100 -->
 - Bump pg_search from 2.3.5 to 2.3.6 in /src/supermarket [#2506](https://github.com/chef/supermarket/pull/2506) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.99 -->
 - Bump rubocop-rails from 2.13.0 to 2.13.1 in /src/supermarket/engines/fieri [#2509](https://github.com/chef/supermarket/pull/2509) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.98 -->
 - Bump rubocop-rails from 2.13.0 to 2.13.1 in /src/supermarket [#2511](https://github.com/chef/supermarket/pull/2511) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.97 -->
