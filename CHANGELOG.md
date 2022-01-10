@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.101 -->
-## [4.2.101](https://github.com/chef/supermarket/tree/4.2.101) (2022-01-10)
+<!-- latest_release 4.2.102 -->
+## [4.2.102](https://github.com/chef/supermarket/tree/4.2.102) (2022-01-10)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `b6dd27a` to `94ef29b` in /omnibus [#2504](https://github.com/chef/supermarket/pull/2504) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ruby-filemagic from 0.7.2 to 0.7.3 in /src/supermarket/engines/fieri [#2510](https://github.com/chef/supermarket/pull/2510) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump ruby-filemagic from 0.7.2 to 0.7.3 in /src/supermarket/engines/fieri [#2510](https://github.com/chef/supermarket/pull/2510) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.102 -->
 - Bump omnibus-software from `b6dd27a` to `94ef29b` in /omnibus [#2504](https://github.com/chef/supermarket/pull/2504) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.101 -->
 - Bump nokogiri from 1.12.5 to 1.13.0 in /src/supermarket [#2505](https://github.com/chef/supermarket/pull/2505) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.100 -->
 - Bump pg_search from 2.3.5 to 2.3.6 in /src/supermarket [#2506](https://github.com/chef/supermarket/pull/2506) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.99 -->
