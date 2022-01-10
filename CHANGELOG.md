@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.97 -->
-## [4.2.97](https://github.com/chef/supermarket/tree/4.2.97) (2022-01-10)
+<!-- latest_release 4.2.98 -->
+## [4.2.98](https://github.com/chef/supermarket/tree/4.2.98) (2022-01-10)
 
 #### Merged Pull Requests
-- Bump rubocop-rails from 2.13.0 to 2.13.1 in /src/supermarket [#2511](https://github.com/chef/supermarket/pull/2511) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rubocop-rails from 2.13.0 to 2.13.1 in /src/supermarket/engines/fieri [#2509](https://github.com/chef/supermarket/pull/2509) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump rubocop-rails from 2.13.0 to 2.13.1 in /src/supermarket/engines/fieri [#2509](https://github.com/chef/supermarket/pull/2509) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.98 -->
 - Bump rubocop-rails from 2.13.0 to 2.13.1 in /src/supermarket [#2511](https://github.com/chef/supermarket/pull/2511) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.97 -->
 - Bump aws-sdk-s3 from 1.111.0 to 1.111.1 in /src/supermarket [#2507](https://github.com/chef/supermarket/pull/2507) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.96 -->
 - Bump chefstyle from 2.1.3 to 2.2.0 in /src/supermarket/engines/fieri [#2499](https://github.com/chef/supermarket/pull/2499) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.95 -->
