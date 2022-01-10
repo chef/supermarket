@@ -221,7 +221,7 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
-    ruby-filemagic (0.7.2)
+    ruby-filemagic (0.7.3)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     rufus-lru (1.1.0)
