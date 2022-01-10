@@ -28,7 +28,7 @@ module CustomUrlHelper
   end
 
   def chef_blog_url(extra = nil)
-    url = ENV["CHEF_BLOG_URL"] || "https://blog.chef.io/"
+    url = ENV["CHEF_BLOG_URL"] || "https://chef.io/blog/"
     extra_dispatch(url, extra)
   end
 
