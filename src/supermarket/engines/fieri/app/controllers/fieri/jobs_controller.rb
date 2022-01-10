@@ -7,7 +7,6 @@ module Fieri
       if: proc { request.format.json? }, \
       only: [ :create ], raise: false
 
-
     def create
       MetricsRunner.perform_async(job_params.to_h)
       render json: { status: "ok" }.to_json
