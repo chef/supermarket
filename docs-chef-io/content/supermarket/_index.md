@@ -28,9 +28,3 @@ To interact with the public Chef Supermarket, use [knife supermarket](/workstati
 ## Private Supermarket
 
 {{% supermarket_private %}}
-
-{{< note >}}
-
-{{% supermarket_private_source_code %}}
-
-{{< /note >}}
