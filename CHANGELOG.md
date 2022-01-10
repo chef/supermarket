@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.103 -->
-## [4.2.103](https://github.com/chef/supermarket/tree/4.2.103) (2022-01-10)
+<!-- latest_release 4.2.104 -->
+## [4.2.104](https://github.com/chef/supermarket/tree/4.2.104) (2022-01-10)
 
 #### Merged Pull Requests
-- Resolve Fieri chefstyle warnings [#2485](https://github.com/chef/supermarket/pull/2485) ([tas50](https://github.com/tas50))
+- Update docs and blog links [#2512](https://github.com/chef/supermarket/pull/2512) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update docs and blog links [#2512](https://github.com/chef/supermarket/pull/2512) ([tas50](https://github.com/tas50)) <!-- 4.2.104 -->
 - Resolve Fieri chefstyle warnings [#2485](https://github.com/chef/supermarket/pull/2485) ([tas50](https://github.com/tas50)) <!-- 4.2.103 -->
 - Bump ruby-filemagic from 0.7.2 to 0.7.3 in /src/supermarket/engines/fieri [#2510](https://github.com/chef/supermarket/pull/2510) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.102 -->
 - Bump omnibus-software from `b6dd27a` to `94ef29b` in /omnibus [#2504](https://github.com/chef/supermarket/pull/2504) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.101 -->
