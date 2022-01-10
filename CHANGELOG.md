@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.105 -->
-## [4.2.105](https://github.com/chef/supermarket/tree/4.2.105) (2022-01-10)
+<!-- latest_release 4.2.106 -->
+## [4.2.106](https://github.com/chef/supermarket/tree/4.2.106) (2022-01-10)
 
 #### Merged Pull Requests
-- Remove the private supermarket source link [#2513](https://github.com/chef/supermarket/pull/2513) ([tas50](https://github.com/tas50))
+- Remove the attributes and docs for New Relic [#2501](https://github.com/chef/supermarket/pull/2501) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Remove the attributes and docs for New Relic [#2501](https://github.com/chef/supermarket/pull/2501) ([tas50](https://github.com/tas50)) <!-- 4.2.106 -->
 - Remove the private supermarket source link [#2513](https://github.com/chef/supermarket/pull/2513) ([tas50](https://github.com/tas50)) <!-- 4.2.105 -->
 - Update docs and blog links [#2512](https://github.com/chef/supermarket/pull/2512) ([tas50](https://github.com/tas50)) <!-- 4.2.104 -->
 - Resolve Fieri chefstyle warnings [#2485](https://github.com/chef/supermarket/pull/2485) ([tas50](https://github.com/tas50)) <!-- 4.2.103 -->
