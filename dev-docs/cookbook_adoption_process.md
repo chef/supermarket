@@ -1,17 +1,16 @@
-Sometimes cookbooks on <https://supermarket.chef.io/> lose their maintainer or fall out of maintenance for one reason or another. In the event that happens, and another maintainer wants to pick up that cookbook, the Chef Community wants to allow for the adoption of those cookbooks. Below you will find some scenarios outlined and the steps that should be taken, which apply to both community-owned cookbooks or Chef-owned cookbooks. 
+# Cookbook Adoption Process
 
-When a Cookbook is Up For Adoption
-----------------------------------
+Sometimes cookbooks on <https://supermarket.chef.io/> lose their maintainer or fall out of maintenance for one reason or another. In the event that happens, and another maintainer wants to pick up that cookbook, the Chef Community wants to allow for the adoption of those cookbooks. Below you will find some scenarios outlined and the steps that should be taken, which apply to both community-owned cookbooks or Chef-owned cookbooks.
+
+## When a Cookbook is Up For Adoption
 
 When a cookbook owner puts the cookbook up for adoption(which will be reflected in the supermarket interface by the presence of an "Adopt me!" button), that means they no longer wish to be the owner and maintainer of the cookbook. At anytime another supermarket user can click on the "Adopt Me!" button on the cookbook's page on Supermarket and the current owner of the cookbook will be notified. The owner can then transfer ownership to the user who requests it.
 
-When a Cookbook is Up For Adoption Without Response from Current Owner
-----------------------------------------------------------------------
+## When a Cookbook is Up For Adoption Without Response from Current Owner
 
 If you (a person hoping to take ownership of the cookbook) find a cookbook that is up for adoption, and you have offered to adopt it through Supermarket, but the cookbook owner has not responded in a reasonable amount of time, you (the prospective adopter) should reach out to the current owner in other ways (email, issue on the cookbook repo, social media, etc). If the current owner is still unresponsive after a reasonable amount of time, you can request that Supermarket administrators make the transfer on behalf of the current owner in the #devrel chat room of [https://community-slack.chef.io/](Chef's Community Slack).
 
-When a Cookbook is NOT Already Up for Adoption, but Appears Abandoned
----------------------------------------------------------------------
+## When a Cookbook is NOT Already Up for Adoption, but Appears Abandoned
 
 ### Communication: the Simplest Path
 
@@ -33,7 +32,7 @@ We expect the current owner to be allowed ample time to respond, generally relat
 
 We do recognize, however, that there are extreme circumstances making the owner unreachable (e.g. death of the current owner). In these cases:
 
--   I (the person hoping to take ownership of the cookbook) will describe the situation to the community in a post on [Discourse](https://discourse.chef.io/c/Supermarket-cookbook-transfer-requests/15) using the format below
+- I (the person hoping to take ownership of the cookbook) will describe the situation to the community in a post on [Discourse](https://discourse.chef.io/c/Supermarket-cookbook-transfer-requests/15) using the format below
 
 The requests will be decided on a case-by-case basis, by a panel with an odd number of members consisting of both Chef Software employees and community members. (This intentionally left vague, as it comes up too infrequently to be consistent in the long-term)
 
@@ -41,18 +40,17 @@ Results and any status updates will be tracked in the thread of the original pos
 
 In the event that an owner is unresponsive to multiple requests for ownership transfer and there are no apparent extreme circumstances (e.g. they're active on those platforms, but you've been ghosted):
 
--   Transfer of ownership without consent is not appropriate.
+- Transfer of ownership without consent is not appropriate.
 
 A person hoping to take ownership of the cookbook can start a discussion with the Chef Community in [Discourse](https://discourse.chef.io/c/Supermarket-cookbook-transfer-requests/15) (format below) suggesting that a stale cookbook be deprecated in favor of some other cookbook.
 
-Format for Discussing Cookbook Ownership/Deprecation Status
------------------------------------------------------------
+### Format for Discussing Cookbook Ownership/Deprecation Status
 
 > **Request**
 >
 > [insert request here, include links to cookbook and code repo]
 >
-> eg: The Sous Chefs request that the MongoDB cookbook on Supermarket be marked deprecated in favor of [sc-mongodb](https://github.com/sous-chefs/mongodb) on Supermarket.
+> eg: The Sous Chefs request that the MongoDB cookbook on Supermarket be marked deprecated in favor of [sc-mongodb](https://github.com/sous-chefs/mongodb) on Supermarket.
 >
 > or
 >
