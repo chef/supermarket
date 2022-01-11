@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.107 -->
-## [4.2.107](https://github.com/chef/supermarket/tree/4.2.107) (2022-01-10)
+<!-- latest_release 4.2.108 -->
+## [4.2.108](https://github.com/chef/supermarket/tree/4.2.108) (2022-01-11)
 
 #### Merged Pull Requests
-- Use the new PNG supermarket image [#2514](https://github.com/chef/supermarket/pull/2514) ([tas50](https://github.com/tas50))
+- Remove ruby-filemagic dep from fieri [#2483](https://github.com/chef/supermarket/pull/2483) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Remove ruby-filemagic dep from fieri [#2483](https://github.com/chef/supermarket/pull/2483) ([tas50](https://github.com/tas50)) <!-- 4.2.108 -->
 - Use the new PNG supermarket image [#2514](https://github.com/chef/supermarket/pull/2514) ([tas50](https://github.com/tas50)) <!-- 4.2.107 -->
 - Remove the attributes and docs for New Relic [#2501](https://github.com/chef/supermarket/pull/2501) ([tas50](https://github.com/tas50)) <!-- 4.2.106 -->
 - Remove the private supermarket source link [#2513](https://github.com/chef/supermarket/pull/2513) ([tas50](https://github.com/tas50)) <!-- 4.2.105 -->
