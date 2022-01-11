@@ -3,33 +3,35 @@ title = "Upgrade Supermarket"
 date = 2021-12-28T11:04:48-08:00
 draft = false
 gh_repo = "supermarket"
-publishDate = 2022-01-03
 
 [menu]
   [menu.supermarket]
     title = "Upgrades"
     identifier = "supermarket/server/upgrade.md"
     parent = "supermarket/server"
-    weight = 25
 +++
 
+<!-- markdownlint-disable MD033 -->
 ## Upgrade Matrix
 
   If running Supermarket 4.2, you can upgrade directly to the latest releases of Supermarket 4.3. If you are running a release with version less than 4.2 you must perform a stepped upgrade as outlined below.
-  Running Version| Upgrade Version | Supported Version
-  ---------|----------|---------
-  4.2 | 4.3 | No
-  4.1 | 4.2 | No
-  4.0 | 4.2 | No
-  < 4.0 | 4.2 | No
+
+Running Version | Upgrade Version | Supported Version
+----------------|-----------------|------------------
+4.2             | 4.3             | No
+4.1             | 4.2             | No
+4.0             | 4.2             | No
+< 4.0           | 4.2             | No
 
 ## Supported Release
 
-  Chef Supermarket uses the PostgreSQL database. [PostgreSQL 9.3 is EOL](https://endoflife.date/postgresql) and Private Supermarket users should upgrade to [Supermarket 4.3](https://www.chef.io/downloads/tools/supermarket) or above and migrate to [Postgres 13](https://www.postgresql.org/about/news/postgresql-13-released-2077/).
+Chef Supermarket uses the PostgreSQL database. [PostgreSQL 9.3 is EOL](https://endoflife.date/postgresql) and Private Supermarket users should upgrade to [Supermarket 4.3](https://www.chef.io/downloads/tools/supermarket) or above and migrate to [Postgres 13](https://www.postgresql.org/about/news/postgresql-13-released-2077/).
 
-  Supermarket 4.3 and later are supported Chef Software releases. Earlier releases are not supported. For more information about supported Chef Software see the [Supported Versions](https://docs.chef.io/versions/#supported-commercial-distributions) documentation.
+Chef Software supports Supermarket 4.3 release and later. Earlier releases are not supported. For more information about supported Chef Software see the [Supported Versions](https://docs.chef.io/versions/#supported-commercial-distributions) documentation.
 
-## General Steps to Upgrade a Private Supermarket
+## Upgrade a Private Supermarket
+
+Every Private Supermarket installation is unique. These are general steps for upgrading a Private Supermarket.
 
   1. Shut down the server running Private Supermarket.
   1. Backup the `/var/opt/supermarket` directory.
@@ -47,13 +49,13 @@ publishDate = 2022-01-03
          rpm -Uvh /path/to/package/supermarket*.rpm
          ```
 
-  1. Reconfigure the server that Chef Supermarket is installed on:
+  1. Reconfigure Chef Supermarket server:
 
       ```bash
       sudo supermarket-ctl reconfigure
       ```
 
-  1. Private Supermarket is updated on your server now. We recommend restarting the services that run Chef Supermarket to ensure that the old installation of Chef Supermarket doesn't persist in the server memory.
+  1. Once the Private Supermarket upgrade finishes, restart the services that run Chef Supermarket to clear the old installation of Chef Supermarket from the server memory.
 
       ```bash
       systemctl list-units | grep runsvdir
@@ -67,115 +69,90 @@ publishDate = 2022-01-03
 
       This will restart the `runsvdir`, `runsv`, and `svlogd` service processes that run Chef Supermarket.
 
-## Release Specific Steps
+## Release Specific Upgrade: Supermarket 4.3 and PostgreSQL 13.4
 
----
+Supermarket 4.3 upgrades PostgreSQL from 9.3 to 13.4. The 4.3 upgrade process requires a one-time downtime to vacuum, upgrade, and re-index the database.
 
-## Upgrading to Supermarket Version: 4.3
+### Supermarket 4.3 Changes
 
-  Supermarket 4.3 upgrades PostgreSQL from 9.3 to 13.4. The 4.3 upgrade process requires a one-time downtime to vacuum, upgrade, and re-index the database. There are few things you need to keep in mind as follows:
+Prepare for the upgrade by following these steps:
 
-- Set the attribute: `default['supermarket']['postgresql']['pg_upgrade_timeout']` in `supermarket.rb` to the intended timeout value (***in seconds***) for the upgrade. Set this value based on the size of your data.
-- The following attributes have been deprecated in Postgres 13 which were available in Postgres 9.3 and hence they are removed from the supermarket configuration:
-  - `default['supermarket']['postgresql']['checkpoint_segments']`
+1. Set the attribute: `default['supermarket']['postgresql']['pg_upgrade_timeout']` in `supermarket.rb` to the intended timeout value (***in seconds***) for the upgrade. Set this value based on the size of your data.
+1. PostgreSQL 13 deprecated the `checkpoint-segments` attribute and we have removed it from the Supermarket configuration. Remove this entry from your configuration:
 
-## Pre Upgrade Database Preparation
+  ```ruby
+  default['supermarket']['postgresql']['checkpoint_segments']
+  ```
 
-  1. Run `VACUUM FULL` on the PostgreSQL database if you don’t have automatic vacuuming set up. This process will reduce the size of the database by deleting unnecessary data and speeds up the migration. The `VACUUM FULL` operation takes around 1 to 2 minutes per gigabyte of data depending on the complexity of the data, and requires free disk space at least as large as the size of your database.
+### PostgreSQL 13.4 Upgrade
+
+Each Private Supermarket installation is unique. The PostgreSQL upgrade steps are a general process intended for the _internal PostgreSQL_.
+
+- **External PostgreSQL**: The end user is responsible for upgrading and maintaining External PostgreSQL configurations.
+- **Internal PostgreSQL**: The PostgreSQL upgrade steps are a general process intended for the _internal PostgreSQL_.
+
+{{< danger >}}
+**BACKUP THE SUPERMARKET DATABASE AND SECURE THE DATA.** Preserve your backup at all costs. Copy the backup to a second and separate location.
+{{< /danger >}}
+
+1. Backup the Supermarket database:
+
+    Database migrations have inherent risk to your system. Create a backup before beginning any migration or update. This ensures that you have a recoverable state in case any step in the process fails. Copy the backup to a another disk that is not connected to the Private Supermarket installation. This ensures that you have state to restore, in case of a failure in the upgrade process
+
+    Back up the PostgreSQL database before upgrading so you can restore the full database to a previous release in the event of a failure in the upgrade steps below.
+
+    ```bash
+    sudo -u supermarket /opt/supermarket/embedded/bin/pg_dumpall -U supermarket 1543 > /  tmp/supermarket-dump.sql
+    ```
+
+1. Vacuum the database:
+
+    Run `VACUUM FULL` on the PostgreSQL database if you don't have automatic vacuuming set up. This process will reduce the size of the database by deleting unnecessary data and speeds up the migration. The `VACUUM FULL` operation takes around 1 to 2 minutes per gigabyte of data depending on the complexity of the data, and requires free disk space at least as large as the size of your database.
+
+    For more information on upgrading using `vacuumdb` see the PostgreSQL 13   documentation for [vacuumdb](https://www.postgresql.org/docs/13/app-vacuumdb.html).
 
       ```bash
       sudo -u supermarket /opt/supermarket/embedded/bin/vacuumdb --all --full -p 15432
       ```
 
-  1. Back up the PostgreSQL database before upgrading so you can restore the full database to a previous release in the event of a failure in the upgrade steps below.
+1. Upgrade Supermarket:
 
-      ```bash
-      sudo -u supermarket /opt/supermarket/embedded/bin/pg_dumpall -U supermarket -p 15432 > /tmp/supermarket-dump.sql
-      ```
+    Follow the [Upgrade a Private Supermarket]({{< relref "#upgrade-a-private-supermarket" >}}) steps.
+<br></br>
 
-## Upgrade Steps
+1. Cleanup the installation:
 
-### Scenario-1: External PostgreSQL
+    Follow these steps to clean up the old PostgreSQL installation and other clutter in the cache.
 
-  The External PostgreSQL upgrade steps are provided as a courtesy. It is the responsibility of the user to upgrade and maintain any External PostgreSQL configurations.
+    1. Stop the Supermarket application:
 
-### Scenario-2: Internal PostgreSQL
+        ```bash
+        sudo supermarket-ctl stop
+        ```
 
-  Follow the steps below in case you are using an internal postgreSQL for your private supermarket.
+    1. Start the newly installed PostgreSQL server.
 
-  1. Download the Package for Supermarket 4.3 as specified in the [general installation guidelines](#general-steps-to-upgrade-a-private-supermarket).
-  1. Install the downloaded package using the relevant package installer as specified in the [general installation guidelines](#general-steps-to-upgrade-a-private-supermarket).
-  1. Reconfigure supermarket as specified in the [general installation guidelines](#general-steps-to-upgrade-a-private-supermarket). Once reconfigure is complete you should have all your data migrated from postgres 9.3 to 13.4
-  1. Now you need to follow the steps below to cleanup the data in the database to remove the unnecessary clutter.
-  1. Stop the Supermarket application
+        ```bash
+        sudo supermarket-ctl start postgresql
+        ```
 
-      ```bash
-      sudo supermarket-ctl stop
-      ```
+1. Reindex the database:
 
-  1. Start the Supermarket PostgreSQL service. This starts the newly-installed PostgreSQL 13 server.
+    `reindexdb` is a utility for rebuilding indexes in a PostgreSQL database.
 
-      ```bash
-      sudo supermarket-ctl start postgresql
-      ```
+    For more information on upgrading using `reindexdb` see the PostgreSQL 13   documentation for [reindexdb](https://www.postgresql.org/docs/13/app-reindexdb.html).
 
-  1. Create an Archive Backup
+    ```bash
+    sudo -u supermarket /opt/supermarket/embedded/bin/reindexdb --all -p 15432
+    ```
 
-      Database migrations carry inherent risk. A best practice to mitigate risk is to create an archival copy and save it to a secondary location before proceeding with any actions that touch the data. The archival copy is your failsafe for restoring the database. Do not use it as a working copy.
+1. Restart Supermarket:
 
-      1. Back up the database
+    ```bash
+    sudo supermarket-ctl restart
+    ```
 
-          `pg_dumpall` is a utility for writing out ("dumping") all PostgreSQL databases of a cluster into one script file. The script file contains SQL commands that can be used as input to psql to restore the databases.
-
-          For more information on upgrading using `pg_dumpall` see the PostgreSQL 13 documentation, section [18.6.1 Upgrading Data via pg_dumpall](https://www.postgresql.org/docs/13/upgrading.html).
-
-            ```bash
-            sudo -u supermarket /opt/supermarket/embedded/bin/pg_dumpall -U supermarket -p 15432 > /tmp/supermarket-dump-archive.sql
-            ```
-
-      1. Copy the backup to a separate disk, one that is not connected to the Supermarket.
-
-### Vacuum the Database
-
-#### **Option 1**: Vacuum the PostgreSQL database
-
-  `vacuumdb --all --full` rewrites the entire contents of all tables into a disk files with no extra space, and returns unused space to the operating system.
-
-  Vacuum the database:
-
-  ```bash
-  /opt/supermarket/embedded/bin/vacuumdb --all --full -p 15432
-  ```
-
-  For more information on upgrading using `vacuumdb` see the PostgreSQL 13 documentation for [vacuumdb](https://www.postgresql.org/docs/13/app-vacuumdb.html).
-
-#### **Option 2**: Vacuum and Analyze the PostgreSQL database
-
-  `vacuumdb --all --full --analyze` rewrites the entire contents of all tables into a disk files with no extra space, returns unused space to the operating system, and collects statistics about the database. It stores the results in the `pg_statistic` system catalog, which is useful for planning efficient queries. This command takes considerably more time to run.
-
-  Vacuume and analyze the database:
-
-  ```bash
-  /opt/supermarket/embedded/bin/vacuumdb --all --full --analyze -p 15432
-  ```
-
-### Reindex the PostgreSQL database
-
-  `reindexdb` is a utility for rebuilding indexes in a PostgreSQL database.
-
-  Reindex the PostgreSQL database:
-
-  ```bash
-  sudo -u supermarket /opt/supermarket/embedded/bin/reindexdb --all -p 15432
-  ```
-  
-  For more information on upgrading using `reindexdb` see the PostgreSQL 13 documentation for [reindexdb](https://www.postgresql.org/docs/13/app-reindexdb.html).
-
-### Restart Supermarket
-
-```bash
-sudo supermarket-ctl restart
-```
+## Troubleshooting
 
 ### Recovering from Database Cleanup Failures
 
