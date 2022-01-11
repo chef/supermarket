@@ -1,17 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.109 -->
-## [4.2.109](https://github.com/chef/supermarket/tree/4.2.109) (2022-01-11)
+<!-- latest_release 4.2.110 -->
+## [4.2.110](https://github.com/chef/supermarket/tree/4.2.110) (2022-01-11)
 
 #### Merged Pull Requests
-- Fix spellcheck [#2515](https://github.com/chef/supermarket/pull/2515) ([kagarmoe](https://github.com/kagarmoe))
-- Improve the dev docs [#2481](https://github.com/chef/supermarket/pull/2481) ([tas50](https://github.com/tas50))
+- Add cspell.json [#2516](https://github.com/chef/supermarket/pull/2516) ([kagarmoe](https://github.com/kagarmoe))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Add cspell.json [#2516](https://github.com/chef/supermarket/pull/2516) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.110 -->
 - Fix spellcheck [#2515](https://github.com/chef/supermarket/pull/2515) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.109 -->
 - Improve the dev docs [#2481](https://github.com/chef/supermarket/pull/2481) ([tas50](https://github.com/tas50)) <!-- 4.2.108 -->
 - Remove ruby-filemagic dep from fieri [#2483](https://github.com/chef/supermarket/pull/2483) ([tas50](https://github.com/tas50)) <!-- 4.2.108 -->
