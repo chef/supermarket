@@ -14,9 +14,6 @@ aliases = ["/supermarket.html"]
     parent = "supermarket"
     weight = 10
 +++
-<!-- USING THIS DOC TO TEST CSPELL CONFIG -->
-
-mnsplenning
 
 {{% supermarket_summary %}}
 
