@@ -78,7 +78,6 @@ These instructions are tested and verified on macOS Catalina (10.15).
       pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
       ```
 
-
 1. Install *Redis*. You can install it with [Homebrew](http://brew.sh/). Follow the instructions in the install output to start the *redis* server.
 
     ```shell
@@ -148,7 +147,7 @@ These instructions are tested and verified on macOS Catalina (10.15).
     ```
 
     {{< note >}}
-    Ignore if the above 2 commands displays error: extenstion already exists.
+    Ignore if the above 2 commands displays error: extension already exists.
     {{< /note >}}
 
 1. Start the server:
@@ -197,7 +196,7 @@ If you receive an omniauth csrf detected error, try clearing your browser's cach
 
 ## SPDX license linking for cookbooks
 
-If a cookbook that has *licenseId*, which is also mentioned in *SPDX license* listed at <https://github.com/spdx/license-list-data/blob/master/json/licenses.json>, you need to update with respective licence URL.
+If a cookbook that has *licenseId*, which is also mentioned in *SPDX license* listed at <https://github.com/spdx/license-list-data/blob/master/json/licenses.json>, you need to update with respective license URL.
 
 When a new cookbook is uploaded, license url information is fetched from the above link and is updated.
 
@@ -219,7 +218,7 @@ Following commands are available to update the license URLs for cookbooks:
 
 ## Connecting your GitHub Account
 
-There are a couple of features that depend on GitHub integration (CLA signing, some quality metrics in Fieri) with your development environment. Follow these steps to create an application with your Github account:
+There are a couple of features that depend on GitHub integration (some quality metrics in Fieri) with your development environment. Follow these steps to create an application with your Github account:
 
 1. Log into your Github account.
 1. Click on your **username** in the upper right-hand corner. Your Profile page appears.
@@ -262,14 +261,13 @@ There are a couple of features that depend on GitHub integration (CLA signing, s
 
   with:
 
-
   ```shell
   GITHUB_ACCESS_TOKEN=[Token you just generated through Github]
   ```
 
 ## Connecting your GitHub Enterprise Account
 
-There are a couple of features that depend on GitHub Enterprise integration (CLA signing, some quality metrics in Fieri) withyour development environment. Follow these steps to create an application with your Github account::
+There are a couple of features that depend on GitHub Enterprise integration (some quality metrics in Fieri) with your development environment. Follow these steps to create an application with your Github account::
 
 1. Log into your Github Enterprise account.
 1. Click on your **username** in the upper right-hand corner.
@@ -367,27 +365,3 @@ One of these keys is called `FEATURES` and it controls a number of features that
 * announcement
 * github
 * no_crawl
-
-## Deprecated Features
-
-CLA signing still works but has been disabled in the public site in favor of [the DCO process](https://github.com/chef/chef/blob/main/CONTRIBUTING.md#developer-certification-of-origin-dco), which tracked outside of Supermarket.
-
-* cla
-* join_ccla
-
-## License
-
-|                        |                                           |
-|:---------------------: |:-----------------------------------------:|
-| **Copyright:**         | Copyright (c) Chef Software, Inc.         |
-| **License:**           | Apache License, Version 2.0               |
-
-```text
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and
-limitations under the License.
-```
