@@ -33,20 +33,14 @@ jobs:
         with:
           file-url: 'https://raw.githubusercontent.com/chef/chef_dictionary/main/docs.txt'
           file-name: 'docs_dictionary.txt'
-      - run: pwd
-      - run: echo "The file was downloaded to ${{ steps.download-custom-dictionary.outputs.file-path }}"
-      - run: ls -la
       - uses: streetsidesoftware/cspell-action@v1.3.4
         with:
           files: '*.md'
-          root: 'docs-chef-io/content'
+          root: './docs-chef-io/content/supermarket'
           github_token: "${{ secrets.GITHUB_TOKEN }}"
           incremental_files_only: false
           inline: warning
           strict: false
-      - run: |
-          pwd
-          ls -la
   markdownlint:
     runs-on: ubuntu-latest
     steps:
