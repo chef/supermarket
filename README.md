@@ -130,7 +130,6 @@ These instructions are tested and verified on macOS Catalina (10.15).
 
     {{< note >}}
     You might encounter the following errors. The possible fixes are also provided herewith.
-     * Error installing gem: ***ruby-filemagic***
      * Fix -> `brew install libmagic`
      * Error installing gem: ***mimemagic***
      * Fix-> `brew install shared-mime-info`
