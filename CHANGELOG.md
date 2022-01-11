@@ -1,9 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release unreleased -->
-## Unreleased
+<!-- latest_release 4.2.109 -->
+## [4.2.109](https://github.com/chef/supermarket/tree/4.2.109) (2022-01-11)
 
 #### Merged Pull Requests
+- Fix spellcheck [#2515](https://github.com/chef/supermarket/pull/2515) ([kagarmoe](https://github.com/kagarmoe))
 - Improve the dev docs [#2481](https://github.com/chef/supermarket/pull/2481) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
@@ -11,6 +12,7 @@
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Fix spellcheck [#2515](https://github.com/chef/supermarket/pull/2515) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.109 -->
 - Improve the dev docs [#2481](https://github.com/chef/supermarket/pull/2481) ([tas50](https://github.com/tas50)) <!-- 4.2.108 -->
 - Remove ruby-filemagic dep from fieri [#2483](https://github.com/chef/supermarket/pull/2483) ([tas50](https://github.com/tas50)) <!-- 4.2.108 -->
 - Use the new PNG supermarket image [#2514](https://github.com/chef/supermarket/pull/2514) ([tas50](https://github.com/tas50)) <!-- 4.2.107 -->
