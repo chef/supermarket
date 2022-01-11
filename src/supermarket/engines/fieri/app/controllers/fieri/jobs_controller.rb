@@ -3,6 +3,9 @@ require_dependency "fieri/application_controller"
 module Fieri
   class JobsController < ApplicationController
     before_action :check_authorization
+    skip_before_action :verify_authenticity_token, \
+      if: proc { request.format.json? }, \
+      only: [ :create ], raise: false
 
     def create
       MetricsRunner.perform_async(job_params.to_h)
@@ -18,7 +21,7 @@ module Fieri
     end
 
     def check_authorization
-      unless fieri_key == params.require(:fieri_key)
+      unless fieri_key == params.require(:fieri_key) && !fieri_key.empty?
         error = {
           error_code: t("api.error_codes.unauthorized"),
           error_messages: [t("api.error_messages.unauthorized_post_error")],

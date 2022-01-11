@@ -3,7 +3,9 @@
 
 <div class="page nobg">
   <div class="tools_info">
-    <%= link_to "Add Tool", new_tool_path, class: 'right tiny radius button' %>
+    <% if signed_in? %>
+      <%= link_to "Add Tool", new_tool_path, class: 'right tiny radius button' %>
+    <%end%>
 
     <h2>About Tools</h2>
     <p>Tools are software that improve Chef's ecosystem. An example of a tool is Cookstyle. Cookstyle is a Ruby gem that analyzes the code of a Chef Infra cookbook. Most tools are open source and available on GitHub.</p>

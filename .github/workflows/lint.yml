@@ -6,6 +6,9 @@ name: lint
   push:
     branches:
       - main
+    paths-ignore:
+      - 'docs-chef-io'
+    
 
 jobs:
   chefstyle-supermarket:

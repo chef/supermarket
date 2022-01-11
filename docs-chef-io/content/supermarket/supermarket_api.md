@@ -3,7 +3,6 @@ title = "Supermarket API"
 draft = false
 gh_repo = "supermarket"
 aliases = ["/supermarket_api.html", "/supermarket_api/"]
-product = ["client", "server", "workstation"]
 
 [menu]
   [menu.supermarket]
@@ -90,10 +89,7 @@ The response is similar to:
 
 #### GET
 
-The `GET` method is used to get a listing of the available cookbooks.
-Use the `start` and `items` parameters to set limits on the number of
-cookbooks returned. Use the `order` parameter to change the way results
-are sorted. Use the `user` parameter to filter cookbooks by maintainer:
+The `GET` method is used to get a listing of the available cookbooks. Use the `start` and `items` parameters to set limits on the number of cookbooks returned. Use the `order` parameter to change the way results are sorted. Use the `user` parameter to filter cookbooks by maintainer:
 
 <table>
 <colgroup>
@@ -140,11 +136,7 @@ GET /api/v1/cookbooks?user=smith
 
 **Response**
 
-The response will return the name of the cookbook, a description, URI,
-the name of the individual who maintains the cookbook. In addition, the
-total number of cookbooks on Supermarket API is shown, as well (if
-`start` is specified) the point at which the list of returned cookbooks
-began:
+The response will return the name of the cookbook, a description, URI, the name of the individual who maintains the cookbook. In addition, the total number of cookbooks on Supermarket API is shown, as well (if `start` is specified) the point at which the list of returned cookbooks began:
 
 ```javascript
 {
@@ -202,8 +194,7 @@ began:
 
 ### /cookbooks/NAME
 
-The `cookbooks/[NAME]` endpoint allows a specific cookbook to be
-accessed. This endpoint has the following methods: `DELETE` and `GET`.
+The `cookbooks/[NAME]` endpoint allows a specific cookbook to be accessed. This endpoint has the following methods: `DELETE` and `GET`.
 
 #### DELETE
 
@@ -282,11 +273,7 @@ GET /api/v1/cookbooks/COOKBOOK_NAME
 
 **Response**
 
-The response will return details for a cookbook, including name of the
-cookbook, the category to which it belongs, the name of the individual
-who maintains the cookbook, the URI for the latest version and previous
-versions, its description, and so on it also includes metrics about the
-cookbooks namely number of downloads and followers:
+The response will return details for a cookbook, including name of the cookbook, the category to which it belongs, the name of the individual who maintains the cookbook, the URI for the latest version and previous versions, its description, and it also includes metrics about the cookbooks namely number of downloads and followers:
 
 ```javascript
 {
@@ -318,8 +305,7 @@ cookbooks namely number of downloads and followers:
 }
 ```
 
-If a cookbook is deprecated, that status is noted by the `deprecated`
-field (being `true`):
+If a cookbook is deprecated, that status is noted by the `deprecated` field (being `true`):
 
 ```javascript
 {
@@ -361,12 +347,7 @@ field (being `true`):
 
 ### /cookbooks/VERSION
 
-A cookbook version always takes the form x.y.z, where x, y, and z are
-decimal numbers that are used to represent major (x), minor (y), and
-patch (z) versions. A two-part version (x.y) is also allowed. When
-passing a cookbook version using this method, underscores ("_") should
-be used as the separator between versions. For example, a cookbook with
-a version 1.0.1 would be 1_0_1.
+A cookbook version always takes the form x.y.z, where x, y, and z are decimal numbers that are used to represent major (x), minor (y), and patch (z) versions. A two-part version (x.y) is also allowed. When passing a cookbook version using this method, underscores ("_") should be used as the separator between versions. For example, a cookbook with a version 1.0.1 would be 1_0_1.
 
 The `/cookbooks/[VERSION]` endpoint has the following methods: `DELETE`
 and `GET`.
@@ -457,10 +438,7 @@ GET /api/v1/cookbooks/COOKBOOK_NAME/versions/VERSION
 
 **Response**
 
-The response will return details for a cookbook version, including the
-license under which the cookbook is distributed, the most recent update,
-version, URI, date of cookbook creation, path to the cookbook's tar.gz
-file, its dependencies and platforms it supports and so on:
+The response will return details for a cookbook version, including the license under which the cookbook is distributed, the most recent update, version, URI, date of cookbook creation, path to the cookbook's tar.gz file, its dependencies and platforms it supports and more:
 
 ```javascript
 {
@@ -508,16 +486,13 @@ file, its dependencies and platforms it supports and so on:
 
 ### /search
 
-Search performs a fuzzy, keyword search on cookbook names, cookbook
-descriptions, and the cookbook owners' usernames.
+Search performs a fuzzy, keyword search on cookbook names, cookbook descriptions, and the cookbook owners' usernames.
 
 The `/search` endpoint has the following methods: `GET`.
 
 #### GET
 
-The `GET` method is used to get a list of cookbooks that match a search
-query. Use the `start` and `items` parameters to set limits on the
-number of cookbooks returned:
+The `GET` method is used to get a list of cookbooks that match a search query. Use the `start` and `items` parameters to set limits on the number of cookbooks returned:
 
 <table>
 <colgroup>
@@ -560,13 +535,7 @@ GET /api/v1/search?q=SEARCH_QUERY&start=START&items=ITEMS
 
 **Response**
 
-The response will return a list of cookbooks by name and description and
-will return a list of cookbooks that match the search query. Each
-returned data set will include the name of the cookbook, a description,
-the URI, and the name of the individual who maintains the cookbook. In
-addition, the total number of cookbooks on Supermarket API is shown, as
-well (if `start` is specified) the point at which the list of returned
-cookbooks began:
+The response will return a list of cookbooks by name and description and will return a list of cookbooks that match the search query. Each returned data set will include the name of the cookbook, a description, the URI, and the name of the individual who maintains the cookbook. In addition, the total number of cookbooks on Supermarket API is shown, as well (if `start` is specified) the point at which the list of returned cookbooks began:
 
 ```javascript
 {
@@ -610,15 +579,11 @@ cookbooks began:
 
 ### /tools
 
-The `tools` endpoint allows Chef Supermarket tools to be accessed. This
-endpoint has the following methods: `GET`.
+The `tools` endpoint allows Chef Supermarket tools to be accessed. This endpoint has the following methods: `GET`.
 
 #### GET
 
-The `GET` method is used to get a listing of the available tools. Use
-the `start` and `items` parameters to set limits on the number of tools
-returned. Use the `order` parameter to change the way results are
-sorted.
+The `GET` method is used to get a listing of the available tools. Use the `start` and `items` parameters to set limits on the number of tools returned. Use the `order` parameter to change the way results are sorted.
 
 <table>
 <colgroup>
@@ -661,10 +626,7 @@ GET /api/v1/tools?order=recently_added
 
 **Response**
 
-The response will return the name of the tool, a type, description,
-owner, source URL and URI. In addition, the total number of tools on
-Supermarket API is shown, as well (if `start` is specified) the point at
-which the list of returned tools began:
+The response will return the name of the tool, a type, description, owner, source URL and URI. In addition, the total number of tools on Supermarket API is shown, as well (if `start` is specified) the point at which the list of returned tools began:
 
 ```javascript
 {
@@ -720,14 +682,11 @@ which the list of returned tools began:
 
 ### /tools-search
 
-The `tools` endpoint allows Chef Supermarket tools to be searched. This
-endpoint has the following methods: `GET`.
+The `tools` endpoint allows Chef Supermarket tools to be searched. This endpoint has the following methods: `GET`.
 
 #### GET
 
-The `GET` method is used to get a list of tools that match a search
-query. Use the `start` and `items` parameters to set limits on the
-number of tools returned:
+The `GET` method is used to get a list of tools that match a search query. Use the `start` and `items` parameters to set limits on the number of tools returned:
 
 <table>
 <colgroup>
@@ -770,12 +729,7 @@ GET /api/v1/tools-search?q=SEARCH_QUERY&start=START&items=ITEMS
 
 **Response**
 
-The response will return a list of tools that match the search query.
-Each returned data set will include the name of the tool, a type,
-description, owner, source URL and URI. In addition, the total number of
-tools that match the query on Supermarket API is shown, as well (if
-`start` is specified) the point at which the list of returned tools
-began:
+The response will return a list of tools that match the search query. Each returned data set will include the name of the tool, a type, description, owner, source URL and URI. In addition, the total number of tools that match the query on Supermarket API is shown, as well (if `start` is specified) the point at which the list of returned tools began:
 
 ```javascript
 {
@@ -815,8 +769,7 @@ began:
 
 ### /tools/SLUG
 
-The `tools/[SLUG]` endpoint allows a specific tool to be accessed. This
-endpoint has the following methods: `GET`.
+The `tools/[SLUG]` endpoint allows a specific tool to be accessed. This endpoint has the following methods: `GET`.
 
 #### GET
 
@@ -832,9 +785,7 @@ GET /api/v1/tools/TOOL_SLUG
 
 **Response**
 
-The response will return details for a tool, including the name of the
-tool, a type, description, owner, source URL and install instructions as
-markdown:
+The response will return details for a tool, including the name of the tool, a type, description, owner, source URL and install instructions as markdown:
 
 ```javascript
 {
@@ -878,14 +829,9 @@ markdown:
 
 ### /universe
 
-The universe is the known collection of cookbooks that have been
-uploaded to Chef Supermarket. The universe is JSON data organized by
-cookbook, then by cookbook version, and then by a dependency graph that
-lists each dependency a cookbook version may have on other cookbooks or
-cookbook versions.
+The universe is the known collection of cookbooks that have been uploaded to Chef Supermarket. The universe is JSON data organized by cookbook, then by cookbook version, and then by a dependency graph that lists each dependency a cookbook version may have on other cookbooks or cookbook versions.
 
-Use the `/universe` endpoint to retrieve the known collection of
-cookbooks, and then use it with Berkshelf.
+Use the `/universe` endpoint to retrieve the known collection of cookbooks, and then use it with Berkshelf.
 
 The `/universe` endpoint has the following methods: `GET`.
 
@@ -903,9 +849,7 @@ GET /universe
 
 **Response**
 
-The response will return an embedded hash, with the name of each
-cookbook as a top-level key. Each cookbook will list each version, along
-with its location information and dependencies:
+The response will return an embedded hash, with the name of each cookbook as a top-level key. Each cookbook will list each version, along with its location information and dependencies:
 
 ```javascript
 {
@@ -961,8 +905,7 @@ with its location information and dependencies:
 
 ### /users/USERNAME
 
-The `users/[USERNAME]` endpoint allows a specific Chef Supermarket user
-to be accessed. This endpoint has the following methods: `GET`.
+The `users/[USERNAME]` endpoint allows a specific Chef Supermarket user to be accessed. This endpoint has the following methods: `GET`.
 
 #### GET
 
@@ -978,11 +921,7 @@ GET /api/v1/users/USERNAME
 
 **Response**
 
-The response will return details for a user, including their name, Chef
-username, associated account details, and a list of cookbooks and tools
-that are associated with the user. Cookbooks are grouped into three
-categories: those that are owned by this user, those in which this user
-has collaborated, and those that are followed.
+The response will return details for a user, including their name, Chef username, associated account details, and a list of cookbooks and tools that are associated with the user. Cookbooks are grouped into three categories: those that are owned by this user, those in which this user has collaborated, and those that are followed.
 
 ```javascript
 {

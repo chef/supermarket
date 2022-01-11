@@ -50,7 +50,7 @@ describe TestingFileWorker do
       end
 
       context "and a TESTING.md file is not present" do
-        # The Github API returns a 404 when a file is not present
+        # The GitHub API returns a 404 when a file is not present
         before do
           allow(octokit).to receive(:contents).and_raise(Octokit::NotFound)
         end
@@ -69,7 +69,7 @@ describe TestingFileWorker do
 
     context "when a source url is not valid" do
       let(:invalid_source_url_json_response) { File.read("spec/support/cookbook_null_source_url_fixture.json") }
-      it "does not attempt to contact the Github API" do
+      it "does not attempt to contact the GitHub API" do
         expect(Octokit::Client).to_not receive(:new)
         tfw.perform(invalid_source_url_json_response, cookbook_name)
       end

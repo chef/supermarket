@@ -157,9 +157,16 @@
     width: rem-calc(40);
   }
 
-  .fa {
+  i {
     font-size: rem-calc(16);
     margin-left: rem-calc(5);
+  }
+
+  a {
+    i.fa {
+      font-size: 0.75rem;
+      margin-left: rem-calc(5);
+    }
   }
 }
 

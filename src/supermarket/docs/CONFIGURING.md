@@ -86,13 +86,6 @@ By default, Supermarket will use sendmail to send emails. If any of the below en
 - `SMTP_USER_NAME`
 - `SMTP_PASSWORD`
 
-## New Relic Configuration
-
-Supermarket bundles the NewRelic agent and uses two environment variables in its configuration.
-
-- `NEW_RELIC_LICENSE_KEY`
-- `NEW_RELIC_APP_NAME`, which defaults to `Supermarket`
-
 ## Supermarket Feature Configuration
 
 Certain features of Supermarket can be enabled or disabled using `FEATURES`. The `FEATURES` ENV variable should be defined as a comma separated list of features to be enabled. Supermarket supports the following features.

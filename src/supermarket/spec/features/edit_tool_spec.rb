@@ -12,8 +12,8 @@ describe "editing a tool" do
     follow_relation "view_tools"
     follow_relation "edit_tool"
 
-    within ".edit_tool" do
-      fill_in "tool_name", with: "margarine"
+    within ".tool_data" do
+      fill_in "tool[name]", with: "margarine"
 
       submit_form
     end

@@ -25,8 +25,7 @@ Run `bundle exec rspec` to run the [RSpec](http://rspec.info/) and
 
 ### Integration
 
-Integration tests use [Test Kitchen](http://kitchen.ci/). You should have
-[ChefDK](https://downloads.chef.io/chef-dk/) installed.
+Integration tests use [Test Kitchen](http://kitchen.ci/).
 
 Since this cookbook tests the `supermarket-ctl reconfigure` command, you need to
 have the Supermarket package installed on the instance you're testing. The Test

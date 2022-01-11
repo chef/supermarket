@@ -30,7 +30,7 @@ feature "cookbook owners can deprecate a cookbook" do
       follow_relation "deprecate"
 
       within "#deprecate" do
-        find("#cookbook_replacement", visible: false).set(replacement_cookbook.name)
+        find(".cookbook-deprecate", visible: false).set(replacement_cookbook.name)
         submit_form
       end
     end

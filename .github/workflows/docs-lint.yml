@@ -1,0 +1,56 @@
+# This is a basic workflow to help you get started with Actions
+
+name: docs-lint
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events
+  pull_request:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs-chef-io'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  cspell-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+      - uses: carlosperate/download-file-action@v1.0.3
+        id: download-chef-dictionary
+        with:
+          file-url: 'https://raw.githubusercontent.com/chef/chef_dictionary/main/chef.txt'
+          file-name: 'chef_dictionary.txt'
+      - uses: carlosperate/download-file-action@v1.0.3
+        id: download-docs-dictionary
+        with:
+          file-url: 'https://raw.githubusercontent.com/chef/chef_dictionary/main/docs.txt'
+          file-name: 'docs_dictionary.txt'
+      - uses: streetsidesoftware/cspell-action@v1.3.4
+        with:
+          files: '*.md'
+          root: './docs-chef-io/content/supermarket'
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          incremental_files_only: false
+          inline: warning
+          strict: false
+  markdownlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+      - uses: DavidAnson/markdownlint-cli2-action@v4
+        with:
+          globs: |
+            content/*.md
+            !_vendor/
+            !CHANGELOG.md
+            !README.md

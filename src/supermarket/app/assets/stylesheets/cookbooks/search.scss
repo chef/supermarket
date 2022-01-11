@@ -81,7 +81,7 @@
   .fa {
     color: lighten($primary_gray, 5%);
     font: {
-      family: "fontawesome" !important;
+      family: 'Font Awesome 5 Free' !important;
       size: rem-calc(24);
     }
     left: rem-calc(25);
@@ -261,7 +261,13 @@ input[type="search"].cookbook_search_textfield {
   padding-right: rem-calc(20);
 }
 
-.advanced_search_platform, .advanced_search_badge {
+.advanced_search_statuses {
+  @include grid-column($columns: 18, $collapse: true);
+  padding-left: rem-calc(70);
+  padding-right: rem-calc(20);
+}
+
+.advanced_search_platform, .advanced_search_badge, .advanced_search_status {
   @include grid-column($columns: 2, $collapse: true);
 
   label {
@@ -289,7 +295,12 @@ input[type="search"].cookbook_search_textfield {
     padding-left: rem-calc(20);
   }
 
-  .advanced_search_platform, .advanced_search_badge {
+  .advanced_search_statuses{
+    @include grid-column($columns: 18, $collapse: true);
+    padding-left: rem-calc(20);
+  }
+
+  .advanced_search_platform, .advanced_search_badge, .advanced_search_status {
     @include grid-column(3, $collapse: true);
   }
 }
@@ -300,7 +311,12 @@ input[type="search"].cookbook_search_textfield {
     padding-left: rem-calc(10);
   }
 
-  .advanced_search_platform, .advanced_search_badge {
+  .advanced_search_statuses{
+    @include grid-column($columns: 18, $collapse: true);
+    padding-left: rem-calc(10);
+  }
+
+  .advanced_search_platform, .advanced_search_badge, .advanced_search_status {
     @include grid-column(6, $collapse: true);
   }
 }

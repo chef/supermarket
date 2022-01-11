@@ -3,7 +3,9 @@ title = "Chef Supermarket"
 draft = false
 gh_repo = "supermarket"
 aliases = ["/supermarket.html"]
-product = ["client", "server", "workstation"]
+
+[cascade]
+  product = ["supermarket"]
 
 [menu]
   [menu.supermarket]
@@ -17,20 +19,12 @@ product = ["client", "server", "workstation"]
 
 ## Public Supermarket
 
-The public Chef Supermarket hosted by Chef Software is located at [Chef
-Supermarket](https://supermarket.chef.io/).
+The public Chef Supermarket hosted by Chef Software is located at [Chef Supermarket](https://supermarket.chef.io/).
 
-To interact with the public Chef Supermarket, use [knife
-supermarket](/workstation/knife_supermarket/) commands.
+To interact with the public Chef Supermarket, use [knife supermarket](/workstation/knife_supermarket/) commands.
 
-{{< figure src="/images/public_supermarket.svg" width="700" alt="Image showing the Chef Supermarket website." >}}
+{{< figure src="/images/public_supermarket.png" width="700" alt="Image showing the Chef Supermarket website." >}}
 
 ## Private Supermarket
 
 {{% supermarket_private %}}
-
-{{< note >}}
-
-{{% supermarket_private_source_code %}}
-
-{{< /note >}}

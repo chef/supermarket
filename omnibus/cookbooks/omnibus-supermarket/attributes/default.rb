@@ -105,6 +105,7 @@ default['supermarket']['nginx']['log_directory'] = "#{node['supermarket']['log_d
 default['supermarket']['nginx']['log_rotation']['file_maxbytes'] = 104857600
 default['supermarket']['nginx']['log_rotation']['num_to_keep'] = 10
 default['supermarket']['nginx']['log_x_forwarded_for'] = false
+default['supermarket']['nginx']['force_hsts'] = false
 
 # Redirect to the FQDN
 default['supermarket']['nginx']['redirect_to_canonical'] = true
@@ -317,7 +318,7 @@ default['supermarket']['database']['extensions'] = { 'plpgsql' => true, 'pg_trgm
 # than nil to change them.
 
 default['supermarket']['fieri_url'] = 'http://localhost:13000/fieri/jobs'
-default['supermarket']['fieri_supermarket_endpoint'] = 'https://localhost:13000'
+default['supermarket']['fieri_supermarket_endpoint'] = 'http://localhost:13000'
 default['supermarket']['fieri_key'] = nil
 default['supermarket']['from_email'] = nil
 default['supermarket']['github_access_token'] = nil
@@ -325,9 +326,6 @@ default['supermarket']['github_key'] = nil
 default['supermarket']['github_secret'] = nil
 default['supermarket']['google_analytics_id'] = nil
 default['supermarket']['segment_write_key'] = nil
-default['supermarket']['newrelic_agent_enabled'] = 'false'
-default['supermarket']['newrelic_app_name'] = nil
-default['supermarket']['newrelic_license_key'] = nil
 default['supermarket']['datadog_tracer_enabled'] = 'false'
 default['supermarket']['datadog_app_name'] = nil
 default['supermarket']['port'] = node['supermarket']['nginx']['force_ssl'] ? node['supermarket']['nginx']['ssl_port'] : node['supermarket']['non_ssl_port']
@@ -340,7 +338,7 @@ default['supermarket']['sentry_url'] = nil
 default['supermarket']['api_item_limit'] = 100
 default['supermarket']['rails_log_to_stdout'] = true
 default['supermarket']['fips_enabled'] = nil
-default['supermarket']['github_url'] = nil
+default['supermarket']['github_url'] = 'https://github.com/'
 default['supermarket']['github_enterprise_url'] = nil
 default['supermarket']['github_client_option_authorize_url'] = nil
 default['supermarket']['github_client_option_site'] = nil

@@ -14,7 +14,7 @@ gem "sidekiq", "~> 6.3"
 gem "sidekiq-cron"
 
 gem "aws-sdk-s3"
-gem "chef", "~> 17.7", require: false
+gem "chef", "~> 17.9", require: false
 gem "compass-rails"
 gem "ddtrace", "0.53.0", require: false
 gem "dotenv"
@@ -25,7 +25,6 @@ gem "html_truncator"
 gem "jbuilder"
 gem "kaminari"
 gem "mixlib-authentication", "~> 3.0"
-gem "newrelic_rpm"
 gem "nokogiri"
 gem "octokit", "~> 4.16", require: false # 4.16+ fixes deprecations in auth
 gem "paperclip"
@@ -38,7 +37,6 @@ gem "redcarpet" # markdown parsing
 gem "redis-rails"
 gem "rinku", require: "rails_rinku"
 gem "rollout"
-gem "ruby-filemagic"
 gem "sass-globbing"
 gem "sass-rails"
 gem "sentry-raven", require: false

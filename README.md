@@ -25,7 +25,7 @@ This repository has the code for the **Supermarket** application and the omnibus
 
 ## Requirements
 
-* Ruby 2.7.4
+* Ruby 2.7.5
 * PostgreSQL 9.3
 * Redis 6.2.5
 
@@ -219,7 +219,7 @@ Following commands are available to update the license URLs for cookbooks:
 
 `spdx-on-version <cookbook_name> <cookbook_version>`
 
-## Connecting your Github Account
+## Connecting your GitHub Account
 
 There are a couple of features that depend on GitHub integration (CLA signing, some quality metrics in Fieri) with your development environment. Follow these steps to create an application with your Github account:
 
@@ -264,11 +264,12 @@ There are a couple of features that depend on GitHub integration (CLA signing, s
 
   with:
 
+
   ```shell
   GITHUB_ACCESS_TOKEN=[Token you just generated through Github]
   ```
 
-## Connecting your Github Enterprise Account
+## Connecting your GitHub Enterprise Account
 
 There are a couple of features that depend on GitHub Enterprise integration (CLA signing, some quality metrics in Fieri) withyour development environment. Follow these steps to create an application with your Github account::
 

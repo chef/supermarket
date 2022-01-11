@@ -10,7 +10,7 @@ feature "admin transfers cookbook ownership" do
     follow_relation "transfer_ownership"
 
     within "#transfer" do
-      find("#cookbook_user_id", visible: false).set(new_owner.id)
+      find(".collaborators", visible: false).set(new_owner.id)
       submit_form
     end
   end

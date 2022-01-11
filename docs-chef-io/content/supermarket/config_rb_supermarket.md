@@ -3,7 +3,6 @@ title = "supermarket.rb Settings"
 draft = false
 gh_repo = "supermarket"
 aliases = ["/config_rb_supermarket.html", "/config_rb_supermarket/"]
-product = ["client", "server", "workstation"]
 
 [menu]
   [menu.supermarket]
@@ -21,8 +20,7 @@ The following settings are available in the `/etc/supermarket/supermarket.rb` fi
 
 {{< note >}}
 
-You must run `supermarket-ctl reconfigure` to apply any changes made in
-the `supermarket.rb` file.
+You must run `supermarket-ctl reconfigure` to apply any changes made in the `supermarket.rb` file.
 
 {{< /note >}}
 
@@ -48,8 +46,7 @@ This configuration file has the following general settings:
 
 `default['supermarket']['features']`
 
-: Use to enable additional features, such as announcements and GitHub
-integration. Default value: `'tools'`.
+: Use to enable additional features, such as announcements and GitHub integration. Default value: `'tools'`.
 
   Features currently available: `tools`, `fieri`, `announcement`, `github`, and `no_crawl`.
 
@@ -176,7 +173,7 @@ As a Supermarket feature, Fieri must be enabled via the `default['supermarket'][
 
 `default['supermarket']['fieri_key']`
 
-: A string that is used as a key to authenticate Fieri. Default value: `nil`
+: A string that is used as a key to authenticate Fieri. Default value: `nil`. This value should be set to a random string for fieri feature to work properly. One example to generate random string - `openssl rand -base64 32`
 
 ### GitHub
 
@@ -196,6 +193,42 @@ As a Supermarket feature, GitHub must be enabled via the`default['supermarket'][
 
 : The application client secret that is used to authenticate Supermarket to GitHub. Default value: `nil`.
 
+`default['supermarket']['github_url']`
+
+: The GitHub URL that Supermarket connects to. Default value:`https://github.com/`.
+
+### GitHub Enterprise
+
+Use these settings to integrate Supermarket with GitHub Enterprise.
+
+`default['supermarket']['github_access_token']`
+
+: The access token created from your GitHub Enterprise account. Default value:`nil`.
+
+`default['supermarket']['github_key']`
+
+: The application client ID that is used to authenticate Supermarket to GitHub Enterprise. Default value: `nil`.
+
+`default['supermarket']['github_secret']`
+
+: The application client secret that is used to authenticate Supermarket to GitHub Enterprise. Default value: `nil`.
+
+`default['supermarket']['github_enterprise_url']`
+
+: The GitHub Enterprise URL that Supermarket connects to. Default value:`nil`.
+
+`default['supermarket']['github_client_option_authorize_url']`
+
+: The URL used to authorize with your implementation of GitHub Enterprise Server. For example: `https://github.example.com/login/oauth/authorize`. Default value: `nil`.
+
+`default['supermarket']['github_client_option_site']`
+
+: The URL for your implementation of GitHub Enterprise. For example: `https://github.example.com/api/v3`. Default value: `nil`.
+
+`default['supermarket']['github_client_option_access_token_url']`
+
+: The URL of the GitHub Enterprise access token: For example: `https://github.example.com/login/oauth/access_token`. Default value:`nil`.
+
 ### Google Analytics
 
 Use this setting to set up [Google Analytics](https://analytics.google.com) tracking for Supermarket:
@@ -203,22 +236,6 @@ Use this setting to set up [Google Analytics](https://analytics.google.com) trac
 `default['supermarket']['google_analytics_id']`
 
 : The Google Analytics [tracking ID](https://support.google.com/analytics/answer/7372977?hl=en) for Supermarket. Default value: `nil`.
-
-### New Relic
-
-Use these settings to integrate Supermarket with [New Relic](https://newrelic.com/), a software analytics platform:
-
-`default['supermarket']['newrelic_agent_enabled']`
-
-: Determines whether or not the New Relic agent is enabled. Default value: `'false'`.
-
-`default['supermarket']['newrelic_app_name']`
-
-: The name used by New Relic to identify the Supermarket installation. Default value: `nil`.
-
-`default['supermarket']['newrelic_license_key']`
-
-: The New Relic license key. Default value: `nil`.
 
 ### Nginx
 
@@ -279,6 +296,10 @@ This configuration file has the following settings for nginx:
 `default['supermarket']['nginx']['force_ssl']`
 
 : Force connections to use SSL. Default value: `true`.
+
+`default['supermarket']['nginx']['force_hsts']`
+
+: Force connections to use HSTS headers. Only valid if `default['supermarket']['nginx']['force_ssl']` is `false`. This feature enables HSTS headers on a Supermarket installation that is behind an SSL-terminating load balancer. Default value: `false`.
 
 `default['supermarket']['nginx']['group']`
 

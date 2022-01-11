@@ -31,6 +31,10 @@ class CookbooksController < ApplicationController
       @cookbooks = @cookbooks.featured
     end
 
+    if @current_params[:deprecated].blank?
+      @cookbooks = @cookbooks.not_deprecated
+    end
+
     if @current_params[:order].present?
       @cookbooks = @cookbooks.ordered_by(@current_params[:order])
     end
@@ -293,7 +297,7 @@ class CookbooksController < ApplicationController
   end
 
   def cookbook_index_params
-    params.permit(:q, :featured, :order, :page, badges: [], platforms: [])
+    params.permit(:q, :featured, :order, :page, :deprecated, badges: [], platforms: [])
   end
 
   def cookbook_urls_params
