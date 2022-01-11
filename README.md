@@ -13,7 +13,7 @@ Supermarket is Chef's community repository for cookbooks, currently hosted at [s
 * **Issues [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
 * **Pull Request [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
 
-The code is designed to be easy for others to contribute. The goal of the **README** file is to familiarize you with the project. You can find dertailed information about Supermarket at [Wiki](https://github.com/chef/supermarket/wiki) page. You can also [follow with the project development in ZenHub](https://app.zenhub.com/workspaces/supermarket-60cbda5a95f583001207255f).
+The code is designed to be easy for others to contribute. The goal of the **README** file is to familiarize you with the project. You can find detailed information about Supermarket at [Wiki](https://github.com/chef/supermarket/wiki) page. You can also [follow the project development in ZenHub](https://app.zenhub.com/workspaces/supermarket-60cbda5a95f583001207255f).
 
 If you want to contribute to **Supermarket**, read the [contributor's workflow](https://github.com/chef/supermarket/blob/main/CONTRIBUTING.md) for license information and other helpful tips that aid you in getting started. There are project artifacts such as planning docs, wireframes, recorded demos, and team retrospectives at [public Google Drive folder](https://drive.google.com/a/gofullstack.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8).
 
@@ -49,9 +49,7 @@ These instructions are tested and verified on macOS Catalina (10.15).
     brew cask install docker
     ```
 
-  {{< note >}}
   Ensure you have a *PostgreSQL* version installed on the local filesystem for development libraries to be available for building the `pg` gem. See the instructions for locally running *PostgreSQL* below, however omit the steps where the service is running.
-  {{< /note >}}
 
 1. Start the docker containers.
 
@@ -62,26 +60,24 @@ These instructions are tested and verified on macOS Catalina (10.15).
 
 ##### As Locally Running Processes
 
-1. Install *Postgres* by following any of the below methods:
+1. Install *Postgres* by following any of the below instructions:
 
-    * Install the [Postgres App](http://postgresapp.com/).
+    * Install the [Postgres App](http://postgresapp.com/):
 
       This is probably the simplest way to get *Postgres* running on your mac.  You can then start a *Postgres* server through the GUI of the app. If you go this route, then you'll have to add `/Applications/Postgres.app/Contents/Versions/9.4/bin/` or the equivalent path to obtain the *pg gem* to build.
 
-    * Through [Homebrew](http://brew.sh/).
+    * Through [Homebrew](http://brew.sh/):
 
       ```shell
       brew install postgresql
       ```
 
-     {{< note >}}
      When installed through homebrew, *Postgres* often requires additional configuration, see this [blog post](https://www.codefellows.org/blog/three-battle-tested-ways-to-install-postgresql) for instructions. Ensure to start the *Postgresql* server by following the command given below.
 
       ```shell
       pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
       ```
 
-     {{< /note >}}
 
 1. Install *Redis*. You can install it with [Homebrew](http://brew.sh/). Follow the instructions in the install output to start the *redis* server.
 
@@ -111,7 +107,6 @@ These instructions are tested and verified on macOS Catalina (10.15).
 1. Navigate to that directory.
 
     ```shell
-
     cd <supermarket-repo>
     ```
 
