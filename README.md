@@ -13,7 +13,7 @@ Supermarket is Chef's community repository for cookbooks, currently hosted at [s
 * **Issues [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
 * **Pull Request [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
 
-The code is designed to be easy for others to contribute. The goal of the **README** file is to familiarize you with the project. You can find detailed information about Supermarket at [Wiki](https://github.com/chef/supermarket/wiki) page. You can also [follow the project development in ZenHub](https://app.zenhub.com/workspaces/supermarket-60cbda5a95f583001207255f).
+The code is designed to be easy for others to contribute. The goal of the **README** file is to familiarize you with the project. You can find detailed information about Supermarket at [Wiki](https://github.com/chef/supermarket/wiki) page.
 
 If you want to contribute to **Supermarket**, read the [contributor's workflow](https://github.com/chef/supermarket/blob/main/CONTRIBUTING.md) for license information and other helpful tips that aid you in getting started. There are project artifacts such as planning docs, wireframes, recorded demos, and team retrospectives at [public Google Drive folder](https://drive.google.com/a/gofullstack.com/#folders/0B6WV7Qy0ZCUfbFFPNG9CejExUW8).
 
