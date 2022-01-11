@@ -124,8 +124,6 @@ These instructions are tested and verified on macOS Catalina (10.15)
     bundle install
     ```
     N.B. you might get the following errors. Listing them with the fixes.
-     - Error installing gem: ***ruby-filemagic***
-       - Fix -> `brew install libmagic`
      - Error installing gem: ***mimemagic***
        - Fix-> `brew install shared-mime-info`
 

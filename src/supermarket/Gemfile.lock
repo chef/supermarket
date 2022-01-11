@@ -7,7 +7,6 @@ PATH
       mixlib-archive (>= 0.4, < 2.0)
       octokit (~> 4.16)
       rails (>= 6.1, < 7)
-      ruby-filemagic
       sidekiq (>= 4.2, < 7.0)
 
 GEM
@@ -635,7 +634,6 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
-    ruby-filemagic (0.7.2)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     rubyntlm (0.6.3)
