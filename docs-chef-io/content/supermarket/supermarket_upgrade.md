@@ -73,11 +73,11 @@ publishDate = 2022-01-03
 
 ## Upgrading to Supermarket Version: 4.3
 
-  Supermarket 4.3 upgrades PostgreSQL from 9.3 to 13.4. The 4.3 upgrade process requires a one-time downtime to vacuum, upgrade, and re-index the database.
+  Supermarket 4.3 upgrades PostgreSQL from 9.3 to 13.4. The 4.3 upgrade process requires a one-time downtime to vacuum, upgrade, and re-index the database. There are few things you need to keep in mind as follows:
 
-  ---
-  > NOTE: Set the default['supermarket']['postgresql']['pg_upgrade_timeout'] attribute in supermarket.rb to the intended timeout value for the upgrade. Set this value based on the size of your data.
-  ---
+- Set the attribute: `default['supermarket']['postgresql']['pg_upgrade_timeout']` in `supermarket.rb` to the intended timeout value (***in seconds***) for the upgrade. Set this value based on the size of your data.
+- The following attributes have been deprecated in Postgres 13 which were available in Postgres 9.3 and hence they are removed from the supermarket configuration:
+  - `default['supermarket']['postgresql']['checkpoint_segments']`
 
 ## Pre Upgrade Database Preparation
 
