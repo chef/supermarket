@@ -338,7 +338,7 @@ bundle exec rake spec:all
 
 Acceptance tests are run with [Capybara](https://github.com/jnicklas/capybara). Run `rake spec:features` to run the specs in `spec/features`. The default `rake spec` also runs these.
 
-When writing feature specs, the *Rack::Test* driver is used by default. If the *Poltergeist* driver is required to be used (for example, an acceptance test that uses AJAX), add the `use_poltergeist: true` metadata to the spec. See [the remove_members_from_ccla_spec.rb spec](https://github.com/chef/supermarket/blob/main/spec/features/remove_members_from_ccla_spec.rb#L17) for an example.
+When writing feature specs, the *Rack::Test* driver is used by default. If the *Poltergeist* driver is required to be used (for example, an acceptance test that uses AJAX), add the `use_poltergeist: true` metadata to the spec.
 
 Some specs run using [PhantomJS](http://phantomjs.org/), which must be installed for the test suite to pass.
 
