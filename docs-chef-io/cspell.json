@@ -1,0 +1,47 @@
+{
+  // Version of the setting file.  Always 0.1
+  "version": "0.2",
+  // language - current active spelling language
+  "language": "en_US",
+  "dictionaries": [
+    "chef",
+    "docs"
+  ],
+  "dictionaryDefinitions": [
+    {
+      "name": "chef",
+      "file": "./chef_dictionary.txt",
+      "description": "Custom Chef Dictionary"
+    },
+    {
+      "name": "docs",
+      "file": "./docs_dictionary.txt",
+      "description": "Custom Docs Dictionary"
+    }
+  ],
+  //words - list of words to be always considered correct
+  "words": [
+    "ctl",
+    "gz",
+    "markdownlint",
+    "Policyfiles"
+  ],
+  // flagWords - list of words to be always considered incorrect
+  // This is useful for offensive words and common spelling errors.
+  // For example "hte" should be "the"
+  "flagWords": [
+    "hte"
+  ],
+  "ignorePaths": [
+    ".expeditor/**/*",
+    "**/*.yml",
+    "**/*.toml",
+    "archetypes/*.md"
+  ],
+  "ignoreRegExpList": [
+    "/'s\\b/",
+    "/'d\\b/",
+    "/^\\s*```[\\s\\S]*?^\\s*```/gm",
+    "{{(.+)(?=}})"
+  ]
+}
