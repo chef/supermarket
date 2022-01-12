@@ -33,7 +33,12 @@ Chef Software supports Supermarket 4.3 release and later. Earlier releases are n
 
 Every Private Supermarket installation is unique. These are general steps for upgrading a Private Supermarket.
 
-  1. Shut down the server running Private Supermarket.
+  1. Stop the Supermarket services:
+
+        ```bash
+        sudo supermarket-ctl stop
+        ```
+
   1. Backup the `/var/opt/supermarket` directory.
   1. Download the [Chef Supermarket](https://www.chef.io/downloads/tools/supermarket) package.
   1. Upgrade your system by installing the new package using the appropriate package manager for your distribution:
