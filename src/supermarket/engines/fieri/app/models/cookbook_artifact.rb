@@ -1,7 +1,6 @@
 require "open-uri" unless defined?(OpenURI)
 require "rubygems/package" unless defined?(Gem::Package)
 require "mixlib/archive" unless defined?(Mixlib::Archive)
-require "filemagic"
 require "quality_metric/cookstyle_helpers"
 require "openssl"
 
