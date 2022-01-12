@@ -25,7 +25,7 @@ Running Version | Upgrade Version | Supported Version
 
 ## Supported Release
 
-Chef Supermarket uses the PostgreSQL database. [PostgreSQL 9.3 is EOL](https://endoflife.date/postgresql) and Private Supermarket users should upgrade to [Supermarket 4.3](https://www.chef.io/downloads/tools/supermarket) or above and migrate to [Postgres 13](https://www.postgresql.org/about/news/postgresql-13-released-2077/).
+Chef Supermarket uses the PostgreSQL database. [PostgreSQL 9.3 is EOL](https://endoflife.date/postgresql) and Private Supermarket users should upgrade to [Supermarket 4.3](https://www.chef.io/downloads/tools/supermarket) or above and migrate to [PostgreSQL 13](https://www.postgresql.org/about/news/postgresql-13-released-2077/).
 
 Chef Software supports Supermarket 4.3 release and later. Earlier releases are not supported. For more information about supported Chef Software see the [Supported Versions](https://docs.chef.io/versions/#supported-commercial-distributions) documentation.
 
