@@ -5,13 +5,28 @@ require File.expand_path("config/application", __dir__)
 
 Supermarket::Application.load_tasks
 
-require "chefstyle"
-require "rubocop/rake_task"
-desc "Run Chefstyle-flavored RuboCop"
-RuboCop::RakeTask.new(:chefstyle) do |task|
-  task.verbose = false
+if !Rails.env.production?
+  require "chefstyle"
+  require "rubocop/rake_task"
+
+  desc "Run Chefstyle-flavored RuboCop"
+  RuboCop::RakeTask.new(:chefstyle) do |task|
+    task.verbose = false
+  end
+
+  task lint: :chefstyle
+  task default: [:spec, :lint]
+else
+  require "cookstyle"
+  require "rubocop/rake_task"
+
+  desc "Run Cookstyle-flavored RuboCop"
+  RuboCop::RakeTask.new(:cookstyle) do |task|
+    task.options << "--display-cop-names"
+  end
+
+  task default: [:spec, :cookstyle]
 end
 
-task lint: :chefstyle
 
-task default: [:spec, :lint]
+

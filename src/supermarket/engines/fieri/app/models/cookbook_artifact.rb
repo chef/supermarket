@@ -1,7 +1,9 @@
-require "open-uri"
-require "rubygems/package"
-require "foodcritic"
-require "mixlib/archive"
+require "open-uri" unless defined?(OpenURI)
+require "rubygems/package" unless defined?(Gem::Package)
+require "mixlib/archive" unless defined?(Mixlib::Archive)
+require "filemagic"
+require "quality_metric/cookstyle_helpers"
+require "openssl"
 
 class CookbookArtifact
   #
@@ -10,6 +12,15 @@ class CookbookArtifact
   attr_accessor :url, :job_id, :work_dir
 
   FILE_SIZE_LIMIT = 2**20
+
+  # This is needed since artifact url which is pointing to https
+  # format cannot work with a strict ssl policy in a setup without
+  # SSL cert. This check can be escaped if we are sure app will always have a
+  # a valid SSL cert
+  if ENV["CHEF_OAUTH2_VERIFY_SSL"].present? &&
+    ENV["CHEF_OAUTH2_VERIFY_SSL"] == "false"
+    OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+  end
 
   #
   # Initializes a +CookbookArtifact+ downloading and unarchiving the
@@ -33,26 +44,13 @@ class CookbookArtifact
     tar.extract(work_dir, perms: false)
   end
 
-  #
-  # Runs FoodCritic against an artifact.
-  #
-  # @return [Boolean] whether or not FoodCritic passed
-  # @return [String] the would be command line out from FoodCritic
-  #
+  # Runs cookstyle on a specific artifact
+  # work_dir here represents the path where cookbook is uploaded
   def criticize
     prep
-
-    tags = ENV["FIERI_FOODCRITIC_TAGS"] || ""
-    fail_tags = ENV["FIERI_FOODCRITIC_FAIL_TAGS"]
-
-    args = [work_dir, "--no-progress", "-f #{fail_tags}"]
-    tags.split.each do |tag|
-      args.push("-t #{tag}")
-    end
-    cmd = FoodCritic::CommandLine.new(args)
-    result, _status = FoodCritic::Linter.run(cmd)
+    result, _status = CookstyleHelpers.process_artifact(work_dir)
     feedback = result.to_s.gsub("#{work_dir}/", "")
-    [feedback, result.failed?]
+    [feedback, _status]
   end
 
   #

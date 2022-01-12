@@ -31,14 +31,14 @@ describe CookbookArtifact do
     end
 
     describe "#criticize" do
-      it "returns the feedback and status from the FoodCritic run" do
+      it "returns the feedback and status from the Cookstyle run" do
         feedback, status = artifact.criticize
 
-        expect(feedback).to match(/FC064/)
+        expect(feedback).to match(/Chef\/Deprecations\/NodeSet/)
         expect(status).to be true
       end
 
-      it "does not include the working directory of the foodcritic run" do
+      it "does not include the working directory of the cookstyle run" do
         feedback, _status = artifact.criticize
 
         expect(feedback).to_not include(artifact.work_dir)
@@ -73,13 +73,6 @@ describe CookbookArtifact do
           status: 200
         )
     end
-
-    describe "#criticize" do
-      it "disables ~FC031 by default" do
-        feedback, _status = artifact.criticize
-        expect(feedback).to_not match(/FC031/)
-      end
-    end
   end
 
   describe "when checking a cookbook that must be read as binary" do
@@ -91,15 +84,6 @@ describe CookbookArtifact do
           body: File.open(File.expand_path("./spec/fixtures/apache-with-binaries.tar.gz")),
           status: 200
         )
-    end
-
-    describe "#criticize" do
-      it "disables ~FC031 by default" do
-        feedback, status = artifact.criticize
-
-        expect(feedback).to match(/FC064/)
-        expect(status).to be true
-      end
     end
 
     describe "#binaries" do

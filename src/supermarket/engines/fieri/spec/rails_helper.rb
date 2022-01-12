@@ -10,6 +10,9 @@ require "rspec/rails"
 require "sidekiq/testing"
 require "webmock/rspec"
 require "sidekiq/api"
+require "quality_metric/cookstyle_helpers"
+require 'mixlib/shellout'
+require 'fileutils'
 
 Sidekiq::Testing.fake!
 

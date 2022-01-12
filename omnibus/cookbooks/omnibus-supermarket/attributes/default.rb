@@ -494,3 +494,4 @@ default['supermarket']['statsd_port'] = nil
 # announcement text for banner
 default['supermarket']['announcement_text'] = nil
 default['supermarket']['spdx_license_url'] = 'https://raw.githubusercontent.com/spdx/license-list-data/master/json/licenses.json'
+default['supermarket']['cookstyle_cops'] = 'Chef/Deprecations,Chef/Correctness,Chef/Sharing,Chef/RedundantCode,Chef/Modernize'
