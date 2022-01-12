@@ -12,7 +12,7 @@
     "updated_at": "2016-05-23T21:29:10.855Z",
     "up_for_adoption": null,
     "deprecated": false,
-    "foodcritic_failure": null,
+    "cookstyle_failure": null,
     "versions": [
       "http://localhost:3000/api/v1/cookbooks/apache2/versions/0.2.0",
     "http://localhost:3000/api/v1/cookbooks/apache2/versions/0.1.0"

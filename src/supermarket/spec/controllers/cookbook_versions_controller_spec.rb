@@ -103,13 +103,13 @@ describe CookbookVersionsController do
     end
 
     context "displaying metrics" do
-      let(:foodcritic_qm) { create(:foodcritic_metric) }
+      let(:cookstyle_qm) { create(:cookstyle_metric) }
       let(:collab_num_qm) { create(:collaborator_num_metric) }
 
-      let(:foodcritic_result) do
+      let(:cookstyle_result) do
         create(:metric_result,
                cookbook_version: version,
-               quality_metric:   foodcritic_qm,
+               quality_metric:   cookstyle_qm,
                failure:          true,
                feedback:         "it failed")
       end
@@ -123,20 +123,20 @@ describe CookbookVersionsController do
       end
 
       before do
-        expect(version.metric_results).to include(foodcritic_result, collab_result)
+        expect(version.metric_results).to include(cookstyle_result, collab_result)
       end
 
       context "public metrics" do
         it "sends the public metrics results to the view" do
           get :show, params: { cookbook_id: cookbook.name, version: version.version }
-          expect(assigns(:public_metric_results)).to include(foodcritic_result, collab_result)
+          expect(assigns(:public_metric_results)).to include(cookstyle_result, collab_result)
         end
       end
 
       context "admin only metrics" do
         it "does not include the public metrics" do
           get :show, params: { cookbook_id: cookbook.name, version: version.version }
-          expect(assigns(:admin_metric_results)).to_not include(foodcritic_result, collab_result)
+          expect(assigns(:admin_metric_results)).to_not include(cookstyle_result, collab_result)
         end
       end
     end

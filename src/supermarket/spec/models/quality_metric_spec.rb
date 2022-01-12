@@ -5,19 +5,19 @@ describe QualityMetric do
 
   describe "validations" do
     it "enforces unique names" do
-      create(:foodcritic_metric)
-      dup_qm = build(:foodcritic_metric)
+      create(:cookstyle_metric)
+      dup_qm = build(:cookstyle_metric)
       expect(dup_qm).to_not be_valid
     end
   end
 
-  describe "#foodcritic metric" do
-    let!(:foodcritic_metric) do
-      create(:foodcritic_metric)
+  describe "#cookstyle metric" do
+    let!(:cookstyle_metric) do
+      create(:cookstyle_metric)
     end
 
-    it "finds the foodcritic metric" do
-      expect(QualityMetric.foodcritic_metric).to eq(foodcritic_metric)
+    it "finds the cookstyle metric" do
+      expect(QualityMetric.cookstyle_metric).to eq(cookstyle_metric)
     end
   end
 

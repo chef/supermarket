@@ -50,9 +50,12 @@ gem "utf8-cleaner"
 gem "validate_url"
 gem "dry-struct", "~>1.4"
 gem "yajl-ruby"
-
 gem "listen"
 gem "therubyracer", platforms: :ruby
+
+group :production, :development do
+  gem "cookstyle", "7.25.10"
+end
 
 group :doc do
   gem "yard", require: false

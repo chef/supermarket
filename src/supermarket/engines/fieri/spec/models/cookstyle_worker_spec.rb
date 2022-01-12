@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe FoodcriticWorker do
+describe CookstyleWorker do
   let(:valid_params) do
     { "artifact_url" => "http://example.com/apache.tar.gz",
       "name" => "apache2",
@@ -8,7 +8,7 @@ describe FoodcriticWorker do
   end
 
   let(:test_evaluation_endpoint) do
-    "#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/foodcritic_evaluation"
+    "#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/cookstyle_evaluation"
   end
 
   before do
@@ -16,7 +16,7 @@ describe FoodcriticWorker do
     # Stubs criticize for speed!
     #
     allow_any_instance_of(CookbookArtifact).to receive(:criticize)
-      .and_return("FC023", true)
+      .and_return("Chef/Deprecations/ResourceWithoutUnifiedTrue", true)
 
     #
     # Stubs cleanup so we can test the creation of unique
@@ -39,16 +39,13 @@ describe FoodcriticWorker do
     subject.perform(valid_params)
 
     assert_requested(:post, test_evaluation_endpoint) do |req|
-      req.body =~ /foodcritic_failure=true/
-      req.body =~ /FC023/
-      req.body =~ /#{FoodCritic::VERSION}/
-      ENV["FIERI_FOODCRITIC_TAGS"].split(/\s|,/).each do |tag|
-        expect(req.body).to include(tag.delete("~"))
+      req.body =~ /cookstyle_failure=true/
+      req.body =~ /Chef\/Deprecations\/ResourceWithoutUnifiedTrue:/
+      req.body =~ /#{Cookstyle::VERSION}/
+      ENV["COOKSTYLE_COPS"].split(/\s|,/).each do |tag|
+        expect(req.body).to include(tag.gsub("/","%2F"))
       end
 
-      ENV["FIERI_FOODCRITIC_FAIL_TAGS"].split(" ").each do |tag|
-        expect(req.body).to include(tag.delete("~"))
-      end
     end
   end
 
