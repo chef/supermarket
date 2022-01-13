@@ -45,7 +45,11 @@ Rails.application.routes.draw do
 
   get "cookbooks-directory" => "cookbooks#directory"
   get "available_for_adoption" => "cookbooks#available_for_adoption"
-  get "universe" => "api/v1/universe#index", defaults: { format: :json }
+
+  ["universe", "api/v1/universe"].each do |universe_path|
+    get universe_path, to: "api/v1/universe#index", defaults: { format: :json }
+  end
+
   get "status" => "api/v1/health#show", defaults: { format: :json }
   get "unsubscribe/:token" => "email_preferences#unsubscribe", as: :unsubscribe
 
