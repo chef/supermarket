@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.117 -->
-## [4.2.117](https://github.com/chef/supermarket/tree/4.2.117) (2022-01-13)
+<!-- latest_release 4.2.118 -->
+## [4.2.118](https://github.com/chef/supermarket/tree/4.2.118) (2022-01-13)
 
 #### Merged Pull Requests
-- Bump honeycomb-beeline from 2.8.0 to 2.8.1 in /src/supermarket [#2522](https://github.com/chef/supermarket/pull/2522) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump capybara-screenshot from 1.0.25 to 1.0.26 in /src/supermarket [#2520](https://github.com/chef/supermarket/pull/2520) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump capybara-screenshot from 1.0.25 to 1.0.26 in /src/supermarket [#2520](https://github.com/chef/supermarket/pull/2520) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.118 -->
 - Bump honeycomb-beeline from 2.8.0 to 2.8.1 in /src/supermarket [#2522](https://github.com/chef/supermarket/pull/2522) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.117 -->
 - Bump octokit from 4.21.0 to 4.22.0 in /src/supermarket/engines/fieri [#2521](https://github.com/chef/supermarket/pull/2521) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.116 -->
 - Bump octokit from 4.21.0 to 4.22.0 in /src/supermarket [#2524](https://github.com/chef/supermarket/pull/2524) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.115 -->
