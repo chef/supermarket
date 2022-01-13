@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.113 -->
-## [4.2.113](https://github.com/chef/supermarket/tree/4.2.113) (2022-01-13)
+<!-- latest_release 4.2.114 -->
+## [4.2.114](https://github.com/chef/supermarket/tree/4.2.114) (2022-01-13)
 
 #### Merged Pull Requests
-- Updated the log directory permission [#2376](https://github.com/chef/supermarket/pull/2376) ([saghoshprogress](https://github.com/saghoshprogress))
+- Added universe end_point in api/v1/ [#2391](https://github.com/chef/supermarket/pull/2391) ([antima-gupta](https://github.com/antima-gupta))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Added universe end_point in api/v1/ [#2391](https://github.com/chef/supermarket/pull/2391) ([antima-gupta](https://github.com/antima-gupta)) <!-- 4.2.114 -->
 - Updated the log directory permission [#2376](https://github.com/chef/supermarket/pull/2376) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 4.2.113 -->
 - Cookstyle metric evaluation implementation  [#2395](https://github.com/chef/supermarket/pull/2395) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.2.112 -->
 - Language edits to the readme [#2407](https://github.com/chef/supermarket/pull/2407) ([dkumaras](https://github.com/dkumaras)) <!-- 4.2.111 -->
