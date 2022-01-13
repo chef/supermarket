@@ -26,8 +26,14 @@ class QualityMetric < ApplicationRecord
     save
   end
 
+  # This method is kept for the time being to delete all the foodcritic
+  # results for a cookbook once worker is run
   def self.foodcritic_metric
     QualityMetric.find_or_create_by!(name: "Foodcritic")
+  end
+
+  def self.cookstyle_metric
+    QualityMetric.find_or_create_by!(name: "Cookstyle")
   end
 
   def self.collaborator_num_metric

@@ -3,7 +3,6 @@ PATH
   specs:
     fieri (0.0.1)
       dotenv-rails
-      foodcritic (~> 16.3)
       mixlib-archive (>= 0.4, < 2.0)
       octokit (~> 4.16)
       rails (>= 6.1, < 7)
@@ -75,11 +74,13 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
     builder (3.2.4)
-    chefstyle (2.2.0)
-      rubocop (= 1.24.1)
+    chefstyle (2.1.3)
+      rubocop (= 1.23.0)
     coderay (1.1.3)
     concurrent-ruby (1.1.9)
     connection_pool (2.2.5)
+    cookstyle (7.25.10)
+      rubocop (= 1.23.0)
     crack (0.4.5)
       rexml
     crass (1.0.6)
@@ -89,7 +90,6 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     erubi (1.10.0)
-    erubis (2.7.0)
     faraday (1.9.3)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
@@ -113,21 +113,11 @@ GEM
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
     faraday-retry (1.0.3)
-    ffi-yajl (2.4.0)
-      libyajl2 (>= 1.2)
-    foodcritic (16.3.0)
-      erubis
-      ffi-yajl (~> 2.0)
-      nokogiri (>= 1.5, < 2.0)
-      rake
-      rufus-lru (~> 1.0)
-      treetop (~> 1.4)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashdiff (1.0.1)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
-    libyajl2 (2.1.0)
     loofah (2.13.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -141,6 +131,7 @@ GEM
     mixlib-archive (1.1.7)
       mixlib-log
     mixlib-log (3.0.9)
+    mixlib-shellout (2.4.4)
     multipart-post (2.1.1)
     nio4r (2.5.8)
     nokogiri (1.13.0)
@@ -152,7 +143,6 @@ GEM
     parallel (1.21.0)
     parser (3.1.0.0)
       ast (~> 2.4.1)
-    polyglot (0.3.5)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -187,7 +177,7 @@ GEM
       method_source
       rake (>= 0.13)
       thor (~> 1.0)
-    rainbow (3.0.0)
+    rainbow (3.1.1)
     rake (13.0.6)
     redis (4.5.1)
     regexp_parser (2.2.0)
@@ -209,13 +199,13 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.3)
-    rubocop (1.24.1)
+    rubocop (1.23.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml
-      rubocop-ast (>= 1.15.1, < 2.0)
+      rubocop-ast (>= 1.12.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.15.1)
@@ -226,7 +216,6 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
-    rufus-lru (1.1.0)
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
@@ -243,8 +232,6 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
     thor (1.2.1)
-    treetop (1.6.11)
-      polyglot (~> 0.3)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
@@ -261,10 +248,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  chefstyle
+  chefstyle (= 2.1.3)
+  cookstyle (= 7.25.10)
   fieri!
+  mixlib-archive (>= 0.4, < 2.0)
+  mixlib-shellout (~> 2.2, >= 2.2.6)
   pry
   rspec-rails (~> 5.0)
+  rubocop (= 1.23.0)
   rubocop-rails
   sqlite3
   webmock

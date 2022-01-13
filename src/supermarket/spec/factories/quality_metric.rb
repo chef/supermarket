@@ -1,8 +1,5 @@
 FactoryBot.define do
   factory :quality_metric, class: "QualityMetric" do
-    trait :foodcritic do
-      name { "Foodcritic" }
-    end
 
     trait :collaborator_num do
       name { "Collaborator Number" }
@@ -32,7 +29,10 @@ FactoryBot.define do
       name { "No Binaries" }
     end
 
-    factory :foodcritic_metric, traits: [:foodcritic]
+    trait :cookstyle do
+      name { "Cookstyle" }
+    end
+
     factory :collaborator_num_metric, traits: [:collaborator_num]
     factory :license_metric, traits: [:license]
     factory :supported_platforms_metric, traits: [:supported_platforms]
@@ -40,5 +40,6 @@ FactoryBot.define do
     factory :testing_file_metric, traits: [:testing_file]
     factory :version_tag_metric, traits: [:version_tag]
     factory :no_binaries_metric, traits: [:no_binaries]
+    factory :cookstyle_metric, traits: [:cookstyle]
   end
 end

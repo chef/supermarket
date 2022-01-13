@@ -3,7 +3,6 @@ PATH
   specs:
     fieri (0.0.1)
       dotenv-rails
-      foodcritic (~> 16.3)
       mixlib-archive (>= 0.4, < 2.0)
       octokit (~> 4.16)
       rails (>= 6.1, < 7)
@@ -161,8 +160,8 @@ GEM
       rack (~> 2.0, >= 2.0.6)
       uuidtools (~> 2.1)
       webrick
-    chefstyle (2.2.0)
-      rubocop (= 1.24.1)
+    chefstyle (2.1.3)
+      rubocop (= 1.23.0)
     chunky_png (1.4.0)
     climate_control (0.2.0)
     cliver (0.3.2)
@@ -183,6 +182,8 @@ GEM
       compass (~> 1.0.0)
     concurrent-ruby (1.1.9)
     connection_pool (2.2.5)
+    cookstyle (7.25.10)
+      rubocop (= 1.23.0)
     corefoundation (0.3.4)
       ffi (>= 1.15.0)
     crack (0.4.5)
@@ -265,13 +266,6 @@ GEM
       ffi (~> 1.0)
     ffi-yajl (2.4.0)
       libyajl2 (>= 1.2)
-    foodcritic (16.3.0)
-      erubis
-      ffi-yajl (~> 2.0)
-      nokogiri (>= 1.5, < 2.0)
-      rake
-      rufus-lru (~> 1.0)
-      treetop (~> 1.4)
     foreman (0.87.2)
     formatador (0.3.0)
     fugit (1.5.2)
@@ -505,7 +499,6 @@ GEM
       capybara (>= 2.1, < 4)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
-    polyglot (0.3.5)
     premailer (1.15.0)
       addressable
       css_parser (>= 1.6.0)
@@ -564,7 +557,7 @@ GEM
       method_source
       rake (>= 0.13)
       thor (~> 1.0)
-    rainbow (3.0.0)
+    rainbow (3.1.1)
     raindrops (0.20.0)
     rake (13.0.6)
     rb-fsevent (0.11.0)
@@ -619,13 +612,13 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.3)
-    rubocop (1.24.1)
+    rubocop (1.23.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml
-      rubocop-ast (>= 1.15.1, < 2.0)
+      rubocop-ast (>= 1.12.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.15.1)
@@ -638,7 +631,6 @@ GEM
     ruby2_keywords (0.0.5)
     rubyntlm (0.6.3)
     rubyzip (2.3.2)
-    rufus-lru (1.1.0)
     sass (3.4.25)
     sass-globbing (1.1.5)
       sass (>= 3.1)
@@ -713,8 +705,6 @@ GEM
       winrm (>= 2.3.6, < 3.0)
       winrm-elevated (~> 1.2.2)
       winrm-fs (~> 1.0)
-    treetop (1.6.11)
-      polyglot (~> 0.3)
     tty-box (0.7.0)
       pastel (~> 0.8)
       strings (~> 0.2.0)
@@ -806,9 +796,10 @@ DEPENDENCIES
   capybara
   capybara-screenshot
   chef (~> 17.9)
-  chefstyle
+  chefstyle (= 2.1.3)
   coderay
   compass-rails
+  cookstyle (= 7.25.10)
   database_cleaner
   ddtrace (= 0.53.0)
   dotenv

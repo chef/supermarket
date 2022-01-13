@@ -40,8 +40,8 @@ describe MetricsRunner do
       metrics_runner.perform(cookbook)
     end
 
-    it "calls the foodcritic worker" do
-      expect(FoodcriticWorker).to receive(:perform_async).with(hash_including(cookbook))
+    it "calls the cookstyle worker" do
+      expect(CookstyleWorker).to receive(:perform_async).with(hash_including(cookbook))
 
       metrics_runner.perform(cookbook)
     end

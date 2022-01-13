@@ -1,7 +1,7 @@
 require "sidekiq"
 require "net/http"
 
-class FoodcriticWorker
+class CookstyleWorker
   include ::Sidekiq::Worker
 
   def perform(params)
@@ -18,30 +18,31 @@ class FoodcriticWorker
   end
 
   def make_post(params, feedback, status)
+
     response = Net::HTTP.post_form(
-      URI.parse("#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/foodcritic_evaluation"),
+      URI.parse("#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/cookstyle_evaluation"),
       fieri_key: ENV["FIERI_KEY"],
       cookbook_name: params["name"],
       cookbook_version: params["version"],
-      foodcritic_feedback: format_feedback(feedback, status),
-      foodcritic_failure: status
+      cookstyle_feedback: format_feedback(feedback, status),
+      cookstyle_failure: status
     )
     return if response.is_a? Net::HTTPSuccess
 
-    raise "Unable to POST Foodcritic Evaluation of #{params["name"]} " + response.message
+    raise "Unable to POST Cookstyle Evaluation of #{params["name"]} " + response.message
   end
 
   private
 
-  def foodcritic_info
-    "Run with Foodcritic Version #{FoodCritic::VERSION} with tags #{ENV["FIERI_FOODCRITIC_TAGS"]} and failure tags #{ENV["FIERI_FOODCRITIC_FAIL_TAGS"]}"
+  def cookstyle_info
+    "Run with Cookstyle Version #{Cookstyle::VERSION} with cops #{ENV["COOKSTYLE_COPS"]}"
   end
 
   def format_feedback(feedback, status)
     if !status.nil?
-      "#{feedback}\n#{foodcritic_info}"
+      "#{feedback}\n#{cookstyle_info}"
     else
-      foodcritic_info
+      cookstyle_info
     end
   end
 end
