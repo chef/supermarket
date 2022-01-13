@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.111 -->
-## [4.2.111](https://github.com/chef/supermarket/tree/4.2.111) (2022-01-11)
+<!-- latest_release 4.2.112 -->
+## [4.2.112](https://github.com/chef/supermarket/tree/4.2.112) (2022-01-13)
 
 #### Merged Pull Requests
-- Language edits to the readme [#2407](https://github.com/chef/supermarket/pull/2407) ([dkumaras](https://github.com/dkumaras))
+- Cookstyle metric evaluation implementation  [#2395](https://github.com/chef/supermarket/pull/2395) ([msys-sgarg](https://github.com/msys-sgarg))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Cookstyle metric evaluation implementation  [#2395](https://github.com/chef/supermarket/pull/2395) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 4.2.112 -->
 - Language edits to the readme [#2407](https://github.com/chef/supermarket/pull/2407) ([dkumaras](https://github.com/dkumaras)) <!-- 4.2.111 -->
 - Add cspell.json [#2516](https://github.com/chef/supermarket/pull/2516) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.110 -->
 - Fix spellcheck [#2515](https://github.com/chef/supermarket/pull/2515) ([kagarmoe](https://github.com/kagarmoe)) <!-- 4.2.109 -->
