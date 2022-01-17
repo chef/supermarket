@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.120 -->
-## [4.2.120](https://github.com/chef/supermarket/tree/4.2.120) (2022-01-14)
+<!-- latest_release 4.2.121 -->
+## [4.2.121](https://github.com/chef/supermarket/tree/4.2.121) (2022-01-17)
 
 #### Merged Pull Requests
-- Bump cookstyle from 7.26.1 to 7.28.2 in /omnibus [#2526](https://github.com/chef/supermarket/pull/2526) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rubocop-rails from 2.13.1 to 2.13.2 in /src/supermarket [#2531](https://github.com/chef/supermarket/pull/2531) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump rubocop-rails from 2.13.1 to 2.13.2 in /src/supermarket [#2531](https://github.com/chef/supermarket/pull/2531) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.121 -->
 - Bump cookstyle from 7.26.1 to 7.28.2 in /omnibus [#2526](https://github.com/chef/supermarket/pull/2526) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.120 -->
 - Bump nokogiri from 1.13.0 to 1.13.1 in /src/supermarket [#2528](https://github.com/chef/supermarket/pull/2528) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.119 -->
 - Bump capybara-screenshot from 1.0.25 to 1.0.26 in /src/supermarket [#2520](https://github.com/chef/supermarket/pull/2520) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.118 -->
