@@ -27,7 +27,7 @@ jobs:
         id: download-cspell-config
         with:
           file-url: 'https://github.com/chef/chef-web-docs/blob/main/cspell.json'
-          file-name: '.cspell.json'
+          file-name: 'cspell.json'
       - uses: carlosperate/download-file-action@v1.0.3
         id: download-chef-dictionary
         with:
