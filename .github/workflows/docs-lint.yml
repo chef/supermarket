@@ -24,6 +24,11 @@ jobs:
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
       - uses: carlosperate/download-file-action@v1.0.3
+        id: download-cspell-config
+        with:
+          file-url: 'https://github.com/chef/chef-web-docs/blob/main/cspell.json'
+          file-name: 'cspell.json'
+      - uses: carlosperate/download-file-action@v1.0.3
         id: download-chef-dictionary
         with:
           file-url: 'https://raw.githubusercontent.com/chef/chef_dictionary/main/chef.txt'
@@ -40,7 +45,7 @@ jobs:
           github_token: "${{ secrets.GITHUB_TOKEN }}"
           incremental_files_only: false
           inline: warning
-          strict: false
+          strict: true
   markdownlint:
     runs-on: ubuntu-latest
     steps:
