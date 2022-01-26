@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.124 -->
-## [4.2.124](https://github.com/chef/supermarket/tree/4.2.124) (2022-01-26)
+<!-- latest_release 4.2.125 -->
+## [4.2.125](https://github.com/chef/supermarket/tree/4.2.125) (2022-01-26)
 
 #### Merged Pull Requests
-- Bump aws-sdk-s3 from 1.111.1 to 1.111.3 in /src/supermarket [#2549](https://github.com/chef/supermarket/pull/2549) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump cookstyle from 7.28.2 to 7.30.4 in /omnibus [#2548](https://github.com/chef/supermarket/pull/2548) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump cookstyle from 7.28.2 to 7.30.4 in /omnibus [#2548](https://github.com/chef/supermarket/pull/2548) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.125 -->
 - Bump aws-sdk-s3 from 1.111.1 to 1.111.3 in /src/supermarket [#2549](https://github.com/chef/supermarket/pull/2549) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.124 -->
 - Bump omnibus-software from `94ef29b` to `b646bed` in /omnibus [#2545](https://github.com/chef/supermarket/pull/2545) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.123 -->
 - Bump rubocop-rails from 2.13.1 to 2.13.2 in /src/supermarket/engines/fieri [#2529](https://github.com/chef/supermarket/pull/2529) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.122 -->
