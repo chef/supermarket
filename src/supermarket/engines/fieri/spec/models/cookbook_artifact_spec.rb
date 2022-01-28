@@ -34,7 +34,7 @@ describe CookbookArtifact do
       it "returns the feedback and status from the Cookstyle run" do
         feedback, status = artifact.criticize
 
-        expect(feedback).to match(/Chef\/Deprecations\/NodeSet/)
+        expect(feedback).to match(%r{Chef/Deprecations/NodeSet})
         expect(status).to be true
       end
 

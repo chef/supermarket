@@ -40,10 +40,10 @@ describe CookstyleWorker do
 
     assert_requested(:post, test_evaluation_endpoint) do |req|
       req.body =~ /cookstyle_failure=true/
-      req.body =~ /Chef\/Deprecations\/ResourceWithoutUnifiedTrue:/
+      req.body =~ %r{Chef/Deprecations/ResourceWithoutUnifiedTrue:}
       req.body =~ /#{Cookstyle::VERSION}/
       ENV["COOKSTYLE_COPS"].split(/\s|,/).each do |tag|
-        expect(req.body).to include(tag.gsub("/","%2F"))
+        expect(req.body).to include(tag.gsub("/", "%2F"))
       end
 
     end
