@@ -18,7 +18,6 @@ class CookstyleWorker
   end
 
   def make_post(params, feedback, status)
-
     response = Net::HTTP.post_form(
       URI.parse("#{ENV["FIERI_SUPERMARKET_ENDPOINT"]}/api/v1/quality_metrics/cookstyle_evaluation"),
       fieri_key: ENV["FIERI_KEY"],

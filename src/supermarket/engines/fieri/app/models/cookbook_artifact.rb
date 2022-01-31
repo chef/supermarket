@@ -17,7 +17,7 @@ class CookbookArtifact
   # SSL cert. This check can be escaped if we are sure app will always have a
   # a valid SSL cert
   if ENV["CHEF_OAUTH2_VERIFY_SSL"].present? &&
-    ENV["CHEF_OAUTH2_VERIFY_SSL"] == "false"
+     ENV["CHEF_OAUTH2_VERIFY_SSL"] == "false"
     OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
   end
 
@@ -47,9 +47,9 @@ class CookbookArtifact
   # work_dir here represents the path where cookbook is uploaded
   def criticize
     prep
-    result, _status = CookstyleHelpers.process_artifact(work_dir)
+    result, status = CookstyleHelpers.process_artifact(work_dir)
     feedback = result.to_s.gsub("#{work_dir}/", "")
-    [feedback, _status]
+    [feedback, status]
   end
 
   #

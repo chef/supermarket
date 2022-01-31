@@ -4,8 +4,7 @@ module Fieri
   class JobsController < ApplicationController
     before_action :check_authorization
     skip_before_action :verify_authenticity_token, \
-      if: proc { request.format.json? }, \
-      only: [ :create ], raise: false
+      if: proc { request.format.json? || action_name == "create" }, raise: false
 
     def create
       MetricsRunner.perform_async(job_params.to_h)
