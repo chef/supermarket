@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.0.4 -->
-## [5.0.4](https://github.com/chef/supermarket/tree/5.0.4) (2022-01-31)
+<!-- latest_release 5.0.5 -->
+## [5.0.5](https://github.com/chef/supermarket/tree/5.0.5) (2022-01-31)
 
 #### Merged Pull Requests
-- Bump cookstyle from 7.30.4 to 7.31.1 in /omnibus [#2557](https://github.com/chef/supermarket/pull/2557) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump omnibus from `2bf77bb` to `55e74ac` in /omnibus [#2560](https://github.com/chef/supermarket/pull/2560) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus from `2bf77bb` to `55e74ac` in /omnibus [#2560](https://github.com/chef/supermarket/pull/2560) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.5 -->
 - Bump cookstyle from 7.30.4 to 7.31.1 in /omnibus [#2557](https://github.com/chef/supermarket/pull/2557) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.4 -->
 - Bump chef from 17.9.26 to 17.9.42 in /src/supermarket [#2562](https://github.com/chef/supermarket/pull/2562) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.3 -->
 - Chefstyle failures corrected for fieri engine [#2558](https://github.com/chef/supermarket/pull/2558) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 5.0.2 -->
