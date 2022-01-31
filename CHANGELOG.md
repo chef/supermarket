@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.0.2 -->
-## [5.0.2](https://github.com/chef/supermarket/tree/5.0.2) (2022-01-31)
+<!-- latest_release 5.0.3 -->
+## [5.0.3](https://github.com/chef/supermarket/tree/5.0.3) (2022-01-31)
 
 #### Merged Pull Requests
-- Chefstyle failures corrected for fieri engine [#2558](https://github.com/chef/supermarket/pull/2558) ([msys-sgarg](https://github.com/msys-sgarg))
+- Bump chef from 17.9.26 to 17.9.42 in /src/supermarket [#2562](https://github.com/chef/supermarket/pull/2562) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump chef from 17.9.26 to 17.9.42 in /src/supermarket [#2562](https://github.com/chef/supermarket/pull/2562) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.3 -->
 - Chefstyle failures corrected for fieri engine [#2558](https://github.com/chef/supermarket/pull/2558) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 5.0.2 -->
 - Bump brakeman from 5.2.0 to 5.2.1 in /src/supermarket [#2561](https://github.com/chef/supermarket/pull/2561) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.1 -->
 - PostgreSQL upgrade from 9.3 to 13.4 [#2216](https://github.com/chef/supermarket/pull/2216) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 5.0.0 -->
