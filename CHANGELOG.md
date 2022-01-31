@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.125 -->
-## [4.2.125](https://github.com/chef/supermarket/tree/4.2.125) (2022-01-26)
+<!-- latest_release 5.0.0 -->
+## [5.0.0](https://github.com/chef/supermarket/tree/5.0.0) (2022-01-31)
 
 #### Merged Pull Requests
-- Bump cookstyle from 7.28.2 to 7.30.4 in /omnibus [#2548](https://github.com/chef/supermarket/pull/2548) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- PostgreSQL upgrade from 9.3 to 13.4 [#2216](https://github.com/chef/supermarket/pull/2216) ([saghoshprogress](https://github.com/saghoshprogress))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- PostgreSQL upgrade from 9.3 to 13.4 [#2216](https://github.com/chef/supermarket/pull/2216) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 5.0.0 -->
 - Bump cookstyle from 7.28.2 to 7.30.4 in /omnibus [#2548](https://github.com/chef/supermarket/pull/2548) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.125 -->
 - Bump aws-sdk-s3 from 1.111.1 to 1.111.3 in /src/supermarket [#2549](https://github.com/chef/supermarket/pull/2549) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.124 -->
 - Bump omnibus-software from `94ef29b` to `b646bed` in /omnibus [#2545](https://github.com/chef/supermarket/pull/2545) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 4.2.123 -->
