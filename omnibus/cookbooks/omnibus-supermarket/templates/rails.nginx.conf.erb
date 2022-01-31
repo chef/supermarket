@@ -28,7 +28,7 @@ server {
   listen <%= @nginx['ssl_port'] %>;
   server_name <%= @fqdn %>;
 
-<%   if @ssl['enabled'] -%>
+<%   if @ssl['enable'] -%>
   ssl on;
   ssl_certificate <%= @ssl['certificate'] %>;
   ssl_certificate_key <%= @ssl['certificate_key'] %>;

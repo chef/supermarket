@@ -22,7 +22,7 @@ end
 control 'ssl-config' do
   title 'Configurations for SSL'
 
-  only_if { property['supermarket']['ssl']['enabled'] }
+  only_if { property['supermarket']['ssl']['enable'] }
 
   describe file('/var/opt/supermarket/ssl/ca/dhparams.pem') do
     it { should be_file }
@@ -89,7 +89,7 @@ control 'proxy' do
     end
   end
 
-  if property['supermarket']['ssl']['enabled'] && property['supermarket']['nginx']['force_ssl']
+  if property['supermarket']['ssl']['enable'] && property['supermarket']['nginx']['force_ssl']
     describe port(property['supermarket']['nginx']['ssl_port']) do
       it { should be_listening }
       its('protocols') { should include 'tcp' }

@@ -2,7 +2,7 @@
 # Cookbook:: supermarket
 # Recipe:: postgresql
 #
-# Copyright:: 2014 Chef Software, Inc.
+# Copyright:: Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -40,9 +40,6 @@ if node['supermarket']['postgresql']['enable']
     data_dir node['supermarket']['postgresql']['data_directory']
     encoding 'UTF8'
   end
-
-  # Upgrade the cluster if you gotta
-  pg_upgrade 'upgrade_if_necessary'
 
   component_runit_service 'postgresql' do
     package 'supermarket'

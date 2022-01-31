@@ -170,10 +170,11 @@ default['supermarket']['nginx']['client_max_body_size'] = '250m'
 default['supermarket']['nginx']['default']['modules'] = []
 
 # ## Postgres
-
 default['supermarket']['postgresql']['enable'] = true
+default['supermarket']['postgresql']['external'] = false
+default['supermarket']['postgresql']['version'] = '13'
 default['supermarket']['postgresql']['username'] = node['supermarket']['user']
-default['supermarket']['postgresql']['data_directory'] = "#{node['supermarket']['var_directory']}/postgresql/9.3/data"
+default['supermarket']['postgresql']['data_directory'] = "#{node['supermarket']['var_directory']}/postgresql/#{node['supermarket']['postgresql']['version']}/data"
 
 # ### Logs
 default['supermarket']['postgresql']['log_directory'] = "#{node['supermarket']['log_directory']}/postgresql"
@@ -181,8 +182,14 @@ default['supermarket']['postgresql']['log_rotation']['file_maxbytes'] = 10485760
 default['supermarket']['postgresql']['log_rotation']['num_to_keep'] = 10
 
 # ### DB settings
+# The following 2 attributes are introduced for upgrading postgres to v13.3
+default['supermarket']['postgresql']['max_wal_size'] = '1GB'
+default['supermarket']['postgresql']['min_wal_size'] = '80MB'
+
+default['supermarket']['postgresql']['checkpoint_flush_after'] = '256kB'
 default['supermarket']['postgresql']['checkpoint_completion_target'] = 0.5
-default['supermarket']['postgresql']['checkpoint_segments'] = 3
+# This attribute has been deprecated after postgres 9.3
+# default['supermarket']['postgresql']['checkpoint_segments'] = 3
 default['supermarket']['postgresql']['checkpoint_timeout'] = '5min'
 default['supermarket']['postgresql']['checkpoint_warning'] = '30s'
 default['supermarket']['postgresql']['effective_cache_size'] = '128MB'
@@ -194,6 +201,7 @@ default['supermarket']['postgresql']['shared_buffers'] = "#{(node['memory']['tot
 default['supermarket']['postgresql']['shmmax'] = 17179869184
 default['supermarket']['postgresql']['shmall'] = 4194304
 default['supermarket']['postgresql']['work_mem'] = '8MB'
+default['supermarket']['postgresql']['pg_upgrade_timeout'] = 7200
 
 # ## Rails
 #
@@ -239,7 +247,7 @@ default['supermarket']['ssl']['directory'] = '/var/opt/supermarket/ssl'
 
 # Paths to the SSL certificate and key files. If these are not provided we will
 # attempt to generate a self-signed certificate and use that instead.
-default['supermarket']['ssl']['enabled'] = true
+default['supermarket']['ssl']['enable'] = true
 default['supermarket']['ssl']['certificate'] = nil
 default['supermarket']['ssl']['certificate_key'] = nil
 default['supermarket']['ssl']['ssl_dhparam'] = nil
@@ -300,7 +308,7 @@ default['supermarket']['unicorn']['before_fork'] = nil
 default['supermarket']['unicorn']['after_fork'] = nil
 
 # ## Database
-
+default['supermarket']['database']['enable'] = true
 default['supermarket']['database']['user'] = node['supermarket']['postgresql']['username']
 default['supermarket']['database']['name'] = 'supermarket'
 default['supermarket']['database']['host'] = node['supermarket']['postgresql']['listen_address']
@@ -496,3 +504,9 @@ default['supermarket']['statsd_port'] = nil
 default['supermarket']['announcement_text'] = nil
 default['supermarket']['spdx_license_url'] = 'https://raw.githubusercontent.com/spdx/license-list-data/master/json/licenses.json'
 default['supermarket']['cookstyle_cops'] = 'Chef/Deprecations,Chef/Correctness,Chef/Sharing,Chef/RedundantCode,Chef/Modernize'
+
+# enable/disable miscellaneous services
+default['supermarket']['config']['enable'] = true
+default['supermarket']['log_management']['enable'] = true
+# This service is essential for supermarket to run and this flag should never be set to false.
+default['supermarket']['app']['enable'] = true

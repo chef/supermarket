@@ -30,7 +30,7 @@ end
 
 # Unless SSL is disabled, sets up SSL certificates.
 # Creates a self-signed cert if none is provided.
-if node['supermarket']['ssl']['enabled']
+if node['supermarket']['ssl']['enable']
   supermarket_ca_dir = File.join(node['supermarket']['ssl']['directory'], 'ca')
   ssl_dhparam = File.join(supermarket_ca_dir, 'dhparams.pem')
 
