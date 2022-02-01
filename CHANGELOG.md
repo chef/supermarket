@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.0.5 -->
-## [5.0.5](https://github.com/chef/supermarket/tree/5.0.5) (2022-01-31)
+<!-- latest_release 5.0.6 -->
+## [5.0.6](https://github.com/chef/supermarket/tree/5.0.6) (2022-02-01)
 
 #### Merged Pull Requests
-- Bump omnibus from `2bf77bb` to `55e74ac` in /omnibus [#2560](https://github.com/chef/supermarket/pull/2560) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Updated sidekiq gem [#2563](https://github.com/chef/supermarket/pull/2563) ([saghoshprogress](https://github.com/saghoshprogress))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Updated sidekiq gem [#2563](https://github.com/chef/supermarket/pull/2563) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 5.0.6 -->
 - Bump omnibus from `2bf77bb` to `55e74ac` in /omnibus [#2560](https://github.com/chef/supermarket/pull/2560) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.5 -->
 - Bump cookstyle from 7.30.4 to 7.31.1 in /omnibus [#2557](https://github.com/chef/supermarket/pull/2557) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.4 -->
 - Bump chef from 17.9.26 to 17.9.42 in /src/supermarket [#2562](https://github.com/chef/supermarket/pull/2562) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.3 -->
