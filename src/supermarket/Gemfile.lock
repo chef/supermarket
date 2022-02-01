@@ -6,7 +6,7 @@ PATH
       mixlib-archive (>= 0.4, < 2.0)
       octokit (~> 4.16)
       rails (>= 6.1, < 7)
-      sidekiq (>= 4.2, < 7.0)
+      sidekiq (>= 6.4, < 7.0)
 
 GEM
   remote: https://rubygems.org/
@@ -653,7 +653,7 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
-    sidekiq (6.3.1)
+    sidekiq (6.4.0)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
@@ -850,7 +850,7 @@ DEPENDENCIES
   sass-rails
   sentry-raven
   shoulda-matchers
-  sidekiq (~> 6.3)
+  sidekiq (~> 6.4)
   sidekiq-cron
   simplecov
   sitemap_generator

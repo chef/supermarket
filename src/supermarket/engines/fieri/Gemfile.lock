@@ -6,7 +6,7 @@ PATH
       mixlib-archive (>= 0.4, < 2.0)
       octokit (~> 4.16)
       rails (>= 6.1, < 7)
-      sidekiq (>= 4.2, < 7.0)
+      sidekiq (>= 6.4, < 7.0)
 
 GEM
   remote: https://rubygems.org/
@@ -219,7 +219,7 @@ GEM
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
-    sidekiq (6.3.1)
+    sidekiq (6.4.0)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
