@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.0.12 -->
-## [5.0.12](https://github.com/chef/supermarket/tree/5.0.12) (2022-02-02)
+<!-- latest_release 5.0.13 -->
+## [5.0.13](https://github.com/chef/supermarket/tree/5.0.13) (2022-02-02)
 
 #### Merged Pull Requests
-- Bump pg from 1.2.3 to 1.3.1 in /src/supermarket [#2565](https://github.com/chef/supermarket/pull/2565) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rspec-rails from 5.0.2 to 5.1.0 in /src/supermarket [#2555](https://github.com/chef/supermarket/pull/2555) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump rspec-rails from 5.0.2 to 5.1.0 in /src/supermarket [#2555](https://github.com/chef/supermarket/pull/2555) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.13 -->
 - Bump pg from 1.2.3 to 1.3.1 in /src/supermarket [#2565](https://github.com/chef/supermarket/pull/2565) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.12 -->
 - Bump sitemap_generator from 6.1.2 to 6.2.1 in /src/supermarket [#2538](https://github.com/chef/supermarket/pull/2538) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.11 -->
 - Fixed github enterprise condition check. [#2495](https://github.com/chef/supermarket/pull/2495) ([antima-gupta](https://github.com/antima-gupta)) <!-- 5.0.10 -->
