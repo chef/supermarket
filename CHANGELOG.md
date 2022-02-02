@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.0.14 -->
-## [5.0.14](https://github.com/chef/supermarket/tree/5.0.14) (2022-02-02)
+<!-- latest_release 5.0.15 -->
+## [5.0.15](https://github.com/chef/supermarket/tree/5.0.15) (2022-02-02)
 
 #### Merged Pull Requests
-- Fixed Error with Permissions-Policy header: Parse of permissions policy [#2518](https://github.com/chef/supermarket/pull/2518) ([antima-gupta](https://github.com/antima-gupta))
+- Added clause to ignore cop UnlessDefinedRequire in rubocop.yml [#2566](https://github.com/chef/supermarket/pull/2566) ([msys-sgarg](https://github.com/msys-sgarg))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Added clause to ignore cop UnlessDefinedRequire in rubocop.yml [#2566](https://github.com/chef/supermarket/pull/2566) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 5.0.15 -->
 - Fixed Error with Permissions-Policy header: Parse of permissions policy [#2518](https://github.com/chef/supermarket/pull/2518) ([antima-gupta](https://github.com/antima-gupta)) <!-- 5.0.14 -->
 - Bump rspec-rails from 5.0.2 to 5.1.0 in /src/supermarket [#2555](https://github.com/chef/supermarket/pull/2555) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.13 -->
 - Bump pg from 1.2.3 to 1.3.1 in /src/supermarket [#2565](https://github.com/chef/supermarket/pull/2565) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.12 -->
