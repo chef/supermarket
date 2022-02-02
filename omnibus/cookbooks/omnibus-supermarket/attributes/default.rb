@@ -361,7 +361,7 @@ default['supermarket']['owners_can_remove_artifacts'] = true
 
 # Setting allowed host for supermarket to avoid arbitrary "Host" header injection
 # Set this value to the domain name of your supermarket website along with protocol e.g. https://supermarket.chef.io
-default['supermarket']['allowd_host'] = node['supermarket']['protocol'] + "://" (node['fqdn'] || node['hostname']).downcase
+default['supermarket']['allowd_host'] = "#{node['supermarket']['protocol']}://#{(node['fqdn'] || node['hostname']).downcase}
 
 # ### Chef URL Settings
 #
