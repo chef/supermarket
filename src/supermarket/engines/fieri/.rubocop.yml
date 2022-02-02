@@ -14,3 +14,5 @@ Layout/MultilineOperationIndentation:
   EnforcedStyle: aligned
 Style/SymbolArray:
   EnforcedStyle: brackets
+Chef/Ruby/UnlessDefinedRequire:
+  Enabled: false
