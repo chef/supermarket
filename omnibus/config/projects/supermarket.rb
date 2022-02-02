@@ -34,6 +34,7 @@ override :ruby, version: "2.7.5"
 override :'openssl-fips', version: '2.0.16'
 override :'omnibus-ctl', version: 'main'
 override :openssl, version: '1.0.2za'
+override :logrotate, version: '3.9.2'
 
 # Creates required build directories
 dependency "preparation"
