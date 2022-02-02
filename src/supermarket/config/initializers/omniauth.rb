@@ -17,9 +17,10 @@ end
 Rails.application.config.middleware.use(OmniAuth::Builder) do
   github_client_options = {}
 
-  if ENV["GITHUB_CLIENT_OPTION_SITE"].present? &&
-     ENV["GITHUB_CLIENT_OPTION_AUTHORIZE_URL"].present? &&
-     ENV["GITHUB_CLIENT_OPTION_ACCESS_TOKEN_URL"].present?
+  if ENV["GITHUB_CLIENT_OPTION_SITE"].present? && (ENV["GITHUB_CLIENT_OPTION_SITE"] != "YOUR_GITHUB_ENTERPRISE_SITE") &&
+     ENV["GITHUB_CLIENT_OPTION_AUTHORIZE_URL"].present? && (ENV["GITHUB_CLIENT_OPTION_AUTHORIZE_URL"] != "YOUR_GITHUB_ENTERPRISE_AUTHORIZE_URL") &&
+     ENV["GITHUB_CLIENT_OPTION_ACCESS_TOKEN_URL"].present? && (ENV["GITHUB_CLIENT_OPTION_ACCESS_TOKEN_URL"] != "YOUR_GITHUB_ENTERPRISE_ACCESS_TOKEN_URL")
+
     github_client_options[:site] = ENV["GITHUB_CLIENT_OPTION_SITE"]
     github_client_options[:authorize_url] = ENV["GITHUB_CLIENT_OPTION_AUTHORIZE_URL"]
     github_client_options[:token_url] = ENV["GITHUB_CLIENT_OPTION_ACCESS_TOKEN_URL"]

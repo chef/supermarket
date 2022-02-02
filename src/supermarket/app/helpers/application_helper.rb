@@ -48,8 +48,19 @@ module ApplicationHelper
   # @return [String]
   #
 
+  def github_enterprise_enabled?
+    ENV["GITHUB_ENTERPRISE_URL"].present? &&
+      (ENV["GITHUB_ENTERPRISE_URL"] != "YOUR_GITHUB_ENTERPRISE_URL") &&
+      ENV["GITHUB_CLIENT_OPTION_SITE"].present? &&
+      (ENV["GITHUB_CLIENT_OPTION_SITE"] != "YOUR_GITHUB_ENTERPRISE_SITE") &&
+      ENV["GITHUB_CLIENT_OPTION_AUTHORIZE_URL"].present? &&
+      (ENV["GITHUB_CLIENT_OPTION_AUTHORIZE_URL"] != "YOUR_GITHUB_ENTERPRISE_AUTHORIZE_URL") &&
+      ENV["GITHUB_CLIENT_OPTION_ACCESS_TOKEN_URL"].present? &&
+      (ENV["GITHUB_CLIENT_OPTION_ACCESS_TOKEN_URL"] != "YOUR_GITHUB_ENTERPRISE_ACCESS_TOKEN_URL")
+  end
+
   def github_profile_url(username)
-    path = ENV["GITHUB_ENTERPRISE_URL"].presence || ENV["GITHUB_URL"]
+    path = github_enterprise_enabled? ? ENV["GITHUB_ENTERPRISE_URL"] : ENV["GITHUB_URL"]
     path += "/" unless path.end_with?("/")
     path + username
   end
@@ -61,6 +72,6 @@ module ApplicationHelper
   #
 
   def github_account_type
-    ENV["GITHUB_ENTERPRISE_URL"].present? ? "GitHub Enterprise" : "GitHub"
+    github_enterprise_enabled? ? "GitHub Enterprise" : "GitHub"
   end
 end
