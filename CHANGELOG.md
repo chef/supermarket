@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.0.7 -->
-## [5.0.7](https://github.com/chef/supermarket/tree/5.0.7) (2022-02-02)
+<!-- latest_release 5.0.8 -->
+## [5.0.8](https://github.com/chef/supermarket/tree/5.0.8) (2022-02-02)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `b646bed` to `0c87f0b` in /omnibus [#2564](https://github.com/chef/supermarket/pull/2564) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump puma from 5.5.2 to 5.6.1 in /src/supermarket [#2556](https://github.com/chef/supermarket/pull/2556) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump puma from 5.5.2 to 5.6.1 in /src/supermarket [#2556](https://github.com/chef/supermarket/pull/2556) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.8 -->
 - Bump omnibus-software from `b646bed` to `0c87f0b` in /omnibus [#2564](https://github.com/chef/supermarket/pull/2564) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.7 -->
 - Updated sidekiq gem [#2563](https://github.com/chef/supermarket/pull/2563) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 5.0.6 -->
 - Bump omnibus from `2bf77bb` to `55e74ac` in /omnibus [#2560](https://github.com/chef/supermarket/pull/2560) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.5 -->
