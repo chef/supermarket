@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.0.10 -->
-## [5.0.10](https://github.com/chef/supermarket/tree/5.0.10) (2022-02-02)
+<!-- latest_release 5.0.11 -->
+## [5.0.11](https://github.com/chef/supermarket/tree/5.0.11) (2022-02-02)
 
 #### Merged Pull Requests
-- Fixed github enterprise condition check. [#2495](https://github.com/chef/supermarket/pull/2495) ([antima-gupta](https://github.com/antima-gupta))
+- Bump sitemap_generator from 6.1.2 to 6.2.1 in /src/supermarket [#2538](https://github.com/chef/supermarket/pull/2538) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump sitemap_generator from 6.1.2 to 6.2.1 in /src/supermarket [#2538](https://github.com/chef/supermarket/pull/2538) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.11 -->
 - Fixed github enterprise condition check. [#2495](https://github.com/chef/supermarket/pull/2495) ([antima-gupta](https://github.com/antima-gupta)) <!-- 5.0.10 -->
 - Bump rspec-rails from 5.0.2 to 5.1.0 in /src/supermarket/engines/fieri [#2551](https://github.com/chef/supermarket/pull/2551) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.9 -->
 - Bump puma from 5.5.2 to 5.6.1 in /src/supermarket [#2556](https://github.com/chef/supermarket/pull/2556) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.8 -->
