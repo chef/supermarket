@@ -15,7 +15,7 @@ You must have a sane Ruby 1.9+ environment with Bundler installed. Ensure all
 the required gems are installed:
 
 ```shell
-$ bundle install --binstubs
+bundle install --binstubs
 ```
 
 Usage
@@ -25,7 +25,7 @@ Usage
 You create a platform-specific package using the `build project` command:
 
 ```shell
-$ bin/omnibus build supermarket
+bin/omnibus build supermarket
 ```
 
 The platform/architecture type of the package created will match the platform
@@ -39,7 +39,7 @@ You can clean up all temporary files generated during the build process with
 the `clean` command:
 
 ```shell
-$ bin/omnibus clean supermarket
+bin/omnibus clean supermarket
 ```
 
 Adding the `--purge` purge option removes __ALL__ files generated during the
@@ -47,7 +47,7 @@ build including the project install directory (`/opt/supermarket`) and
 the package cache directory (`/var/cache/omnibus/pkg`):
 
 ```shell
-$ bin/omnibus clean supermarket --purge
+bin/omnibus clean supermarket --purge
 ```
 
 ### Publish
@@ -57,7 +57,7 @@ as Amazon S3. You must set the proper credentials in your `omnibus.rb` config
 file or specify them via the command line.
 
 ```shell
-$ bin/omnibus publish path/to/*.deb --backend s3
+bin/omnibus publish path/to/*.deb --backend s3
 ```
 
 ### Help
@@ -66,7 +66,7 @@ Full help for the Omnibus command line interface can be accessed with the
 `help` command:
 
 ```shell
-$ bin/omnibus help
+bin/omnibus help
 ```
 
 Kitchen-based Build Environment
@@ -91,14 +91,14 @@ liking, you can bring up an individual build environment using the `kitchen`
 command.
 
 ```shell
-$ kitchen converge ubuntu-1604
+kitchen converge ubuntu-1604
 ```
 
 Then login to the instance and build the project as described in the Usage
 section:
 
 ```shell
-$ kitchen login ubuntu-1604
+kitchen login ubuntu-1604
 [vagrant@ubuntu...] $ cd supermarket
 [vagrant@ubuntu...] $ bundle install
 [vagrant@ubuntu...] $ ...
