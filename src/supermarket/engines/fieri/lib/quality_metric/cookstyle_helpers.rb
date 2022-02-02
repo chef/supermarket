@@ -1,7 +1,7 @@
-require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
+require "mixlib/shellout"
 require "dotenv-rails"
 Dotenv.load(".env")
-require "shellwords" unless defined?(Shellwords)
+require "shellwords"
 
 module CookstyleHelpers
   def self.process_artifact(path)
@@ -19,11 +19,10 @@ module CookstyleHelpers
     offenses_arr = JSON.parse(cookstyle_output)["files"].map { |h|
       h["offenses"]\
         .each { |a| a.merge!("file" => h["path"]) }
-    }                   \
-      .flatten.sort_by { |hsh| hsh["cop_name"] }\
+    }.flatten.sort_by { |hsh| hsh["cop_name"] }\
       .each { |a|
         status << "#{[a["cop_name"], a["message"],\
-    a["file"], a["location"]["line"]].join(": ")}\n"
+        a["file"], a["location"]["line"]].join(": ")}\n"
       }
 
     [status, offenses_arr.size > 0]
