@@ -74,6 +74,8 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
     builder (3.2.4)
+    chef-utils (17.9.26)
+      concurrent-ruby
     chefstyle (2.1.3)
       rubocop (= 1.23.0)
     coderay (1.1.3)
@@ -131,7 +133,8 @@ GEM
     mixlib-archive (1.1.7)
       mixlib-log
     mixlib-log (3.0.9)
-    mixlib-shellout (2.4.4)
+    mixlib-shellout (3.2.5)
+      chef-utils
     multipart-post (2.1.1)
     nio4r (2.5.8)
     nokogiri (1.13.1)
@@ -252,7 +255,7 @@ DEPENDENCIES
   cookstyle (= 7.25.10)
   fieri!
   mixlib-archive (>= 0.4, < 2.0)
-  mixlib-shellout (~> 2.2, >= 2.2.6)
+  mixlib-shellout (~> 3.2)
   pry
   rspec-rails (~> 5.1)
   rubocop (= 1.23.0)
