@@ -89,7 +89,5 @@ module Supermarket
     ActionMailer::Base.default from: ENV["FROM_EMAIL"]
 
     config.autoload_paths += %W{#{config.root}/lib}
-
-    config.hosts << ENV["ALLOWED_HOST"] if ENV["ALLOWED_HOST"].present?
   end
 end

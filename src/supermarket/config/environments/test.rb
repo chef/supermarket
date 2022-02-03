@@ -44,11 +44,4 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  # This is to whitelist this domain for performing UI testing
-  # with capybara as from Rails 6 host header injection can be
-  # prevented with the assignment of whitelisted hostnames.
-  config.hosts += [
-    "www.example.com",
-    "127.0.0.1",
-  ]
 end
