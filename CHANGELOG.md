@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.0.17 -->
-## [5.0.17](https://github.com/chef/supermarket/tree/5.0.17) (2022-02-03)
+<!-- latest_release 5.0.18 -->
+## [5.0.18](https://github.com/chef/supermarket/tree/5.0.18) (2022-02-04)
 
 #### Merged Pull Requests
-- Bump listen from 3.7.0 to 3.7.1 in /src/supermarket [#2527](https://github.com/chef/supermarket/pull/2527) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump honeycomb-beeline from 2.8.1 to 2.8.2 in /src/supermarket [#2572](https://github.com/chef/supermarket/pull/2572) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump honeycomb-beeline from 2.8.1 to 2.8.2 in /src/supermarket [#2572](https://github.com/chef/supermarket/pull/2572) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.18 -->
 - Bump listen from 3.7.0 to 3.7.1 in /src/supermarket [#2527](https://github.com/chef/supermarket/pull/2527) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.17 -->
 - Pin logrotate dependency [#2570](https://github.com/chef/supermarket/pull/2570) ([jeremiahsnapp](https://github.com/jeremiahsnapp)) <!-- 5.0.16 -->
 - Added clause to ignore cop UnlessDefinedRequire in rubocop.yml [#2566](https://github.com/chef/supermarket/pull/2566) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 5.0.15 -->
