@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.0.18 -->
-## [5.0.18](https://github.com/chef/supermarket/tree/5.0.18) (2022-02-04)
+<!-- latest_release 5.0.19 -->
+## [5.0.19](https://github.com/chef/supermarket/tree/5.0.19) (2022-02-04)
 
 #### Merged Pull Requests
-- Bump honeycomb-beeline from 2.8.1 to 2.8.2 in /src/supermarket [#2572](https://github.com/chef/supermarket/pull/2572) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump omnibus-software from `0c87f0b` to `791cc46` in /omnibus [#2571](https://github.com/chef/supermarket/pull/2571) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `0c87f0b` to `791cc46` in /omnibus [#2571](https://github.com/chef/supermarket/pull/2571) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.19 -->
 - Bump honeycomb-beeline from 2.8.1 to 2.8.2 in /src/supermarket [#2572](https://github.com/chef/supermarket/pull/2572) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.18 -->
 - Bump listen from 3.7.0 to 3.7.1 in /src/supermarket [#2527](https://github.com/chef/supermarket/pull/2527) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.17 -->
 - Pin logrotate dependency [#2570](https://github.com/chef/supermarket/pull/2570) ([jeremiahsnapp](https://github.com/jeremiahsnapp)) <!-- 5.0.16 -->
