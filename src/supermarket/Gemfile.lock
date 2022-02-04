@@ -297,8 +297,8 @@ GEM
       builder (>= 2.1.2)
     hashdiff (1.0.1)
     hashie (4.1.0)
-    honeycomb-beeline (2.8.1)
-      libhoney (~> 1.14, >= 1.14.2)
+    honeycomb-beeline (2.8.2)
+      libhoney (>= 1.14.2)
     html_truncator (0.4.2)
       nokogiri (~> 1.5)
     htmlentities (4.3.4)
@@ -367,7 +367,7 @@ GEM
       letter_opener (~> 1.7)
       railties (>= 5.2)
       rexml
-    libhoney (1.21.0)
+    libhoney (2.1.0)
       addressable (~> 2.0)
       excon
       http (>= 2.0, < 6.0)
