@@ -182,7 +182,7 @@ GEM
       thor (~> 1.0)
     rainbow (3.1.1)
     rake (13.0.6)
-    redis (4.5.1)
+    redis (4.6.0)
     regexp_parser (2.2.0)
     rexml (3.2.5)
     rspec-core (3.10.2)
@@ -264,4 +264,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   2.1.4
+   2.3.6
