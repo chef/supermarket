@@ -23,12 +23,6 @@ This repository has the code for the **Supermarket** application and the omnibus
 
 * [chef-cookbooks/supermarket-omnibus-cookbook](https://github.com/chef-cookbooks/supermarket-omnibus-cookbook): This cookbook is used to deploy Supermarket through the Supermarket omnibus package. For details on using this cookbook to install Supermarket omnibus, check out [this webinar by the Supermarket Engineering team](https://www.chef.io/webinars/?commid=164925).
 
-## Requirements
-
-* Ruby 2.7.5
-* PostgreSQL 13.4
-* Redis 6.2.5
-
 ## Development
 
 ### Configuration
