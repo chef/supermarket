@@ -51,7 +51,6 @@ gem "validate_url"
 gem "dry-struct", "~>1.4"
 gem "yajl-ruby"
 gem "listen"
-gem "therubyracer", platforms: :ruby
 gem "cookstyle", "~> 7.31"
 
 group :doc do
