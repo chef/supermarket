@@ -27,11 +27,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up ruby 2.7.5
+      - name: Set up ruby 3.1.0
         uses: ruby/setup-ruby@v1
         with:
           working-directory: src/supermarket
-          ruby-version: 2.7.5
+          ruby-version: 3.1.0
           bundler-cache: true
       - uses: r7kamura/rubocop-problem-matchers-action@v1 # this shows the failures in the PR
       - name: create database schema
@@ -67,11 +67,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up ruby 2.7.5
+      - name: Set up ruby 3.1.0
         uses: ruby/setup-ruby@v1
         with:
           working-directory: src/supermarket/engines/fieri
-          ruby-version: 2.7.5
+          ruby-version: 3.1.0
           bundler-cache: true
       - uses: r7kamura/rubocop-problem-matchers-action@v1 # this shows the failures in the PR
       - name: run specs
