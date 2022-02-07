@@ -44,10 +44,6 @@ class QualityMetric < ApplicationRecord
     QualityMetric.find_or_create_by!(name: "License")
   end
 
-  def self.supported_platforms_metric
-    QualityMetric.find_or_create_by!(name: "Supported Platforms")
-  end
-
   def self.contributing_file_metric
     QualityMetric.find_or_create_by!(name: "Contributing File")
   end

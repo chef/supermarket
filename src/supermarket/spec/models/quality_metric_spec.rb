@@ -41,16 +41,6 @@ describe QualityMetric do
     end
   end
 
-  describe "#supported_platforms_metric" do
-    let!(:supported_platforms_metric) do
-      create(:supported_platforms_metric)
-    end
-
-    it "finds the supported platforms metric" do
-      expect(QualityMetric.supported_platforms_metric).to eq(supported_platforms_metric)
-    end
-  end
-
   describe "#contributing_file_metric" do
     let!(:contributing_file_metric) do
       create(:contributing_file_metric)

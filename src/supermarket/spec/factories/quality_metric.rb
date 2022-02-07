@@ -9,10 +9,6 @@ FactoryBot.define do
       name { "License" }
     end
 
-    trait :supported_platforms do
-      name { "Supported Platforms" }
-    end
-
     trait :contributing_file do
       name { "Contributing File" }
     end
@@ -35,7 +31,6 @@ FactoryBot.define do
 
     factory :collaborator_num_metric, traits: [:collaborator_num]
     factory :license_metric, traits: [:license]
-    factory :supported_platforms_metric, traits: [:supported_platforms]
     factory :contributing_file_metric, traits: [:contributing_file]
     factory :testing_file_metric, traits: [:testing_file]
     factory :version_tag_metric, traits: [:version_tag]

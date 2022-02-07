@@ -3,7 +3,6 @@ QualityMetric.reset_column_information
 QualityMetric.where(name: 'Cookstyle').first_or_create!
 QualityMetric.where(name: 'Collaborator Number').first_or_create!
 QualityMetric.where(name: 'License').first_or_create!
-QualityMetric.where(name: 'Supported Platforms').first_or_create!
 QualityMetric.where(name: 'Contributing File').first_or_create!
 QualityMetric.where(name: 'Testing File').first_or_create!
 QualityMetric.where(name: 'Version Tag').first_or_create!
