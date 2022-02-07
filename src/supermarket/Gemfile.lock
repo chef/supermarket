@@ -160,8 +160,8 @@ GEM
       rack (~> 2.0, >= 2.0.6)
       uuidtools (~> 2.1)
       webrick
-    chefstyle (2.1.3)
-      rubocop (= 1.23.0)
+    chefstyle (2.2.1)
+      rubocop (= 1.25.0)
     chunky_png (1.4.0)
     climate_control (0.2.0)
     cliver (0.3.2)
@@ -182,8 +182,8 @@ GEM
       compass (~> 1.0.0)
     concurrent-ruby (1.1.9)
     connection_pool (2.2.5)
-    cookstyle (7.25.10)
-      rubocop (= 1.23.0)
+    cookstyle (7.31.1)
+      rubocop (= 1.25.0)
     corefoundation (0.3.10)
       ffi (>= 1.15.0)
     crack (0.4.5)
@@ -612,13 +612,13 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.3)
-    rubocop (1.23.0)
+    rubocop (1.25.0)
       parallel (~> 1.10)
-      parser (>= 3.0.0.0)
+      parser (>= 3.1.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml
-      rubocop-ast (>= 1.12.0, < 2.0)
+      rubocop-ast (>= 1.15.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.15.1)
@@ -796,10 +796,10 @@ DEPENDENCIES
   capybara
   capybara-screenshot
   chef (~> 17.9)
-  chefstyle (= 2.1.3)
+  chefstyle
   coderay
   compass-rails
-  cookstyle (= 7.25.10)
+  cookstyle (~> 7.31)
   database_cleaner
   ddtrace (= 0.53.0)
   dotenv
