@@ -92,16 +92,6 @@ describe CookbookVersionsController do
       expect(assigns(:collaborators)).to_not be_nil
     end
 
-    it "provides this versions's supported_platforms to the view" do
-      version.supported_platforms.create!(name: "one")
-      version.supported_platforms.create!(name: "two")
-
-      get :show, params: { cookbook_id: cookbook.name, version: version.version }
-
-      expect(assigns(:supported_platforms).map(&:name))
-        .to match_array(%w{one two})
-    end
-
     context "displaying metrics" do
       let(:cookstyle_qm) { create(:cookstyle_metric) }
       let(:collab_num_qm) { create(:collaborator_num_metric) }

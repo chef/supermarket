@@ -240,57 +240,6 @@ describe Api::V1::QualityMetricsController do
     end
   end
 
-  describe "#supported_platforms_evaluation" do
-    let(:cookbook) { create(:cookbook) }
-    let!(:version) { create(:cookbook_version, cookbook: cookbook) }
-    let!(:quality_metric) { create(:supported_platforms_metric) }
-
-    context "the request is authorized" do
-      context "the required params are provided" do
-        it "returns a 200" do
-          post(:supported_platforms_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, supported_platforms_failure: false, supported_platforms_feedback: "This cookbook does not exist.", fieri_key: "YOUR_FIERI_KEY", format: :json })
-
-          expect(response.status.to_i).to eql(200)
-        end
-
-        it "creates a supported platforms metric" do
-          post(:supported_platforms_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, supported_platforms_failure: false, supported_platforms_feedback: "This cookbook does not exist.", fieri_key: "YOUR_FIERI_KEY", format: :json })
-
-          version.reload
-          expect(version.metric_results.where(quality_metric: quality_metric).count).to eq(1)
-        end
-
-        it "finds the correct cookbook version" do
-          post(:supported_platforms_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, supported_platforms_failure: false, supported_platforms_feedback: "This cookbook does not exist.", fieri_key: "YOUR_FIERI_KEY", format: :json })
-
-          expect(assigns[:cookbook_version]).to eq(version)
-        end
-      end
-
-      context "the required params are not provided" do
-        it "returns a 400" do
-          post(:supported_platforms_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, fieri_key: "YOUR_FIERI_KEY", format: :json })
-
-          expect(response.status.to_i).to eql(400)
-        end
-      end
-    end
-
-    context "the request is not authorized" do
-      it "renders a 401 error about unauthorized post" do
-        post(:supported_platforms_evaluation, params: { cookbook_name: cookbook.name, cookbook_version: version.version, supported_platforms_failure: false, supported_platforms_feedback: "This cookbook does not exist.", fieri_key: "not_the_key", format: :json })
-
-        expect(response.status.to_i).to eql(401)
-        expect(JSON.parse(response.body)).to eql(
-          "error_code" => I18n.t("api.error_codes.unauthorized"),
-          "error_messages" => [
-            I18n.t("api.error_messages.unauthorized_post_error"),
-          ]
-        )
-      end
-    end
-  end
-
   describe "#contributing_file_evaluation" do
     let(:cookbook) { create(:cookbook) }
     let!(:version) { create(:cookbook_version, cookbook: cookbook) }
