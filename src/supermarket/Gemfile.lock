@@ -2,6 +2,7 @@ PATH
   remote: engines/fieri
   specs:
     fieri (0.0.1)
+      cookstyle (>= 7.30)
       dotenv-rails
       mixlib-archive (>= 0.4, < 2.0)
       octokit (~> 4.16)

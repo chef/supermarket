@@ -21,4 +21,5 @@ Gem::Specification.new do |s|
   s.add_dependency "octokit", "~> 4.16" # 4.16+ fixes deprecations in auth
   s.add_dependency "rails", [">= 6.1", "< 7"]
   s.add_dependency "sidekiq", ">= 6.4", "< 7.0"
+  s.add_dependency "cookstyle", ">= 7.30"
 end
