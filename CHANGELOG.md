@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.0.21 -->
-## [5.0.21](https://github.com/chef/supermarket/tree/5.0.21) (2022-02-07)
+<!-- latest_release 5.0.22 -->
+## [5.0.22](https://github.com/chef/supermarket/tree/5.0.22) (2022-02-07)
 
 #### Merged Pull Requests
-- Pull in the latest cookstyle and allow dependabot to bump it [#2574](https://github.com/chef/supermarket/pull/2574) ([tas50](https://github.com/tas50))
+- Bump aws-sdk-s3 from 1.111.3 to 1.112.0 in /src/supermarket [#2573](https://github.com/chef/supermarket/pull/2573) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump aws-sdk-s3 from 1.111.3 to 1.112.0 in /src/supermarket [#2573](https://github.com/chef/supermarket/pull/2573) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.22 -->
 - Pull in the latest cookstyle and allow dependabot to bump it [#2574](https://github.com/chef/supermarket/pull/2574) ([tas50](https://github.com/tas50)) <!-- 5.0.21 -->
 - Bump mixlib-shellout from 2.4.4 to 3.2.5 in /src/supermarket/engines/fieri [#2523](https://github.com/chef/supermarket/pull/2523) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.20 -->
 - Bump omnibus-software from `0c87f0b` to `791cc46` in /omnibus [#2571](https://github.com/chef/supermarket/pull/2571) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.19 -->
