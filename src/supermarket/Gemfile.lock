@@ -5,6 +5,7 @@ PATH
       cookstyle (>= 7.30)
       dotenv-rails
       mixlib-archive (>= 0.4, < 2.0)
+      net-smtp
       octokit (~> 4.16)
       rails (>= 6.1, < 7)
       sidekiq (>= 6.4, < 7.0)
