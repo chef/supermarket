@@ -53,7 +53,9 @@ gem "yajl-ruby"
 gem "tzinfo-data", "~> 1.2022"
 
 gem "listen"
+
 gem "cookstyle", "~> 7.32.1"
+gem "net-smtp", require: false
 
 group :doc do
   gem "yard", require: false
