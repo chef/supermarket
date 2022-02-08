@@ -222,7 +222,7 @@ GEM
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
-    sidekiq (6.4.0)
+    sidekiq (6.4.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
@@ -264,4 +264,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   2.3.6
+   2.2.32
