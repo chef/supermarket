@@ -4,6 +4,7 @@ PATH
     fieri (0.0.1)
       dotenv-rails
       mixlib-archive (>= 0.4, < 2.0)
+      net-smtp
       octokit (~> 4.16)
       rails (>= 6.1, < 7)
       sidekiq (>= 6.4, < 7.0)
@@ -87,6 +88,7 @@ GEM
       rexml
     crass (1.0.6)
     diff-lcs (1.5.0)
+    digest (3.1.0)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
@@ -120,6 +122,7 @@ GEM
     hashdiff (1.0.1)
     i18n (1.9.1)
       concurrent-ruby (~> 1.0)
+    io-wait (0.2.1)
     loofah (2.14.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -136,6 +139,13 @@ GEM
     mixlib-shellout (3.2.5)
       chef-utils
     multipart-post (2.1.1)
+    net-protocol (0.1.2)
+      io-wait
+      timeout
+    net-smtp (0.3.1)
+      digest
+      net-protocol
+      timeout
     nio4r (2.5.8)
     nokogiri (1.13.3)
       mini_portile2 (~> 2.8.0)
@@ -235,6 +245,7 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
     thor (1.2.1)
+    timeout (0.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
