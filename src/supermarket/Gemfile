@@ -52,6 +52,7 @@ gem "dry-struct", "~>1.4"
 gem "yajl-ruby"
 gem "listen"
 # gem "mini_racer"
+gem "net-smtp", require: false
 gem "cookstyle", "7.25.10"
 
 group :doc do
