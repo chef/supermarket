@@ -131,7 +131,7 @@ These instructions are tested and verified on macOS Catalina (10.15).
     You might encounter the following errors. The possible fixes are also provided herewith.
      * Error installing gem: ***mimemagic***
      * Fix-> `brew install shared-mime-info`
-     * If you get error installing **therubyracer** and **libv8** on macos, follow the steps outlined in this link: [https://billykong.github.io/ruby/2020/03/17/fixing-libv8-in-osx-catalina.html](https://billykong.github.io/ruby/2020/03/17/fixing-libv8-in-osx-catalina.html)
+     * If you get error installing **therubyracer** and **libv8** on macOS, follow the steps outlined in this link: [https://billykong.github.io/ruby/2020/03/17/fixing-libv8-in-osx-catalina.html](https://billykong.github.io/ruby/2020/03/17/fixing-libv8-in-osx-catalina.html)
     {{< /note >}}
 
 2. Create the database, migrate to it, and then seed the database:
