@@ -88,6 +88,9 @@ module Supermarket
     # Set default from email for ActionMailer
     ActionMailer::Base.default from: ENV["FROM_EMAIL"]
 
-    config.autoload_paths += %W{Rails.root.join("lib")}
+    config.autoload_paths += [
+      Rails.root.join("lib"),
+      Rails.root.join("lib/utils/*"),
+    ]
   end
 end
