@@ -1,3 +1,4 @@
+require Rails.root.join("app/lib/supermarket/s3_config")
 Paperclip.interpolates(:compatible_id) do |attachment, _style|
   attachment.instance.try(:legacy_id) || attachment.instance.id
 end
