@@ -1,0 +1,41 @@
+expeditor:
+  defaults:
+    buildkite:
+      timeout_in_minutes: 30
+      retry:
+        automatic:
+          limit: 1
+
+steps:
+  - label: "[habitat-packages] :habicat: Check for bad patterns"
+    command:
+      - bin/ci/check-bad-patterns.sh src/supermarket/habitat-web
+      - bin/ci/check-bad-patterns.sh src/supermarket/habitat-sidekiq
+      - bin/ci/check-bad-patterns.sh nginx
+      - bin/ci/check-bad-patterns.sh postgresql
+      - bin/ci/check-bad-patterns.sh redis
+    expeditor:
+      executor:
+        docker:
+
+  - label: "[habitat-packages] :linux: :habicat: Shellcheck"
+    command:
+      - bin/ci/shellcheck.sh src/supermarket/habitat-web
+      - bin/ci/shellcheck.sh src/supermarket/habitat-sidekiq
+      - bin/ci/shellcheck.sh nginx
+      - bin/ci/shellcheck.sh postgresql
+      - bin/ci/shellcheck.sh redis
+    expeditor:
+      executor:
+        docker:
+
+  - label: "[habitat-packages] :linux: :habicat: Check for default variables"
+    command:
+      - bin/ci/check-default-variables.sh src/supermarket/habitat-web
+      - bin/ci/check-default-variables.sh src/supermarket/habitat-sidekiq
+      - bin/ci/check-default-variables.sh nginx
+      - bin/ci/check-default-variables.sh postgresql
+      - bin/ci/check-default-variables.sh redis
+    expeditor:
+      executor:
+        docker:
