@@ -51,24 +51,40 @@ describe "cookbooks/show.html.erb" do
     end
 
     it "has license text rendered" do
-      render
+      respond_to do |format|
+        format.html do
+          render
+        end
+      end
       license_id = "MIT"
       expect(rendered).to have_selector("p", text: license_id)
     end
 
     it "has license url text" do
-      render
+      respond_to do |format|
+        format.html do
+          render
+        end
+      end
       expect(rendered).to have_selector(:css, 'a[href="https://spdx.org/licenses/MIT.json"]' )
     end
 
     it "has Test Kitchen text correct" do
-      render
+      respond_to do |format|
+        format.html do
+          render
+        end
+      end
       test_kitchen_text = cookbook.cookbook_deprecation_reason
       expect(rendered).to have_selector("textarea", text: test_kitchen_text)
     end
 
     it "has policyfile, berkshelf and knife tabs rendered" do
-      render
+      respond_to do |format|
+        format.html do
+          render
+        end
+      end
       expect(rendered).to have_selector("div", id: "policyfile")
       expect(rendered).to have_selector("div", id: "berkshelf")
       expect(rendered).to have_selector("div", id: "knife")
