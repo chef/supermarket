@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.0.25 -->
-## [5.0.25](https://github.com/chef/supermarket/tree/5.0.25) (2022-02-10)
+<!-- latest_release 5.0.26 -->
+## [5.0.26](https://github.com/chef/supermarket/tree/5.0.26) (2022-02-10)
 
 #### Merged Pull Requests
-- Added Expeditor configs to check habitat build [#2494](https://github.com/chef/supermarket/pull/2494) ([saghoshprogress](https://github.com/saghoshprogress))
+- Bump sidekiq from 6.4.0 to 6.4.1 in /src/supermarket [#2589](https://github.com/chef/supermarket/pull/2589) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump sidekiq from 6.4.0 to 6.4.1 in /src/supermarket [#2589](https://github.com/chef/supermarket/pull/2589) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.26 -->
 - Added Expeditor configs to check habitat build [#2494](https://github.com/chef/supermarket/pull/2494) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 5.0.25 -->
 - Bump omniauth-rails_csrf_protection from 1.0.0 to 1.0.1 in /src/supermarket [#2582](https://github.com/chef/supermarket/pull/2582) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.24 -->
 - Bump sidekiq from 6.4.0 to 6.4.1 in /src/supermarket/engines/fieri [#2588](https://github.com/chef/supermarket/pull/2588) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.23 -->
