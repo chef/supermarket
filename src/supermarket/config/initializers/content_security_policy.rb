@@ -24,6 +24,10 @@ end
 Rails.application.config.content_security_policy_nonce_generator = ->(request) { SecureRandom.base64(16) }
 Rails.application.config.content_security_policy_nonce_directives = %w{ script-src }
 
+# Generate session nonces for permitted importmap and inline scripts
+# Rails.application.config.content_security_policy_nonce_generator = ->(request) { request.session.id.to_s }
+# Rails.application.config.content_security_policy_nonce_directives = %w(script-src)
+
 # Report CSP violations to a specified URI
 # For further information see the following documentation:
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only
