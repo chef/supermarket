@@ -125,15 +125,16 @@ These instructions are tested and verified on macOS Catalina (10.15).
     You might encounter the following errors. The possible fixes are also provided herewith.
      * Error installing gem: ***mimemagic***
      * Fix-> `brew install shared-mime-info`
-     {{< /note >}}
+     * If you get error installing **therubyracer** and **libv8** on macOS, follow the steps outlined in this link: [https://billykong.github.io/ruby/2020/03/17/fixing-libv8-in-osx-catalina.html](https://billykong.github.io/ruby/2020/03/17/fixing-libv8-in-osx-catalina.html)
+    {{< /note >}}
 
-1. Create the database, migrate to it, and then seed the database:
+2. Create the database, migrate to it, and then seed the database:
 
     ```shell
     bundle exec rails db:setup
     ```
 
-1. Add required *Postgres* extensions.
+3. Add required *Postgres* extensions.
 
     ```shell
     psql supermarket_development -c 'create extension plpgsql'
@@ -144,7 +145,7 @@ These instructions are tested and verified on macOS Catalina (10.15).
     Ignore if the above 2 commands displays error: extension already exists.
     {{< /note >}}
 
-1. Start the server:
+4. Start the server:
 
     ```shell
     bundle exec foreman start
