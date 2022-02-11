@@ -27,7 +27,6 @@ gem "kaminari"
 gem "mixlib-authentication", "~> 3.0"
 gem "nokogiri"
 gem "octokit", "~> 4.22", require: false # 4.16+ fixes deprecations in auth
-gem "paperclip"
 gem "pg"
 gem "pg_search"
 gem "premailer-rails", group: [:development, :production]
@@ -52,6 +51,7 @@ gem "dry-struct", "~>1.4"
 gem "yajl-ruby"
 gem "listen"
 # gem "mini_racer"
+gem "kt-paperclip", "~> 6.4", ">= 6.4.1"
 gem "net-smtp", require: false
 gem "cookstyle", "7.25.10"
 

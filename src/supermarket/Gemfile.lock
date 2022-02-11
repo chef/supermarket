@@ -367,6 +367,12 @@ GEM
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
     kgio (2.11.4)
+    kt-paperclip (6.4.1)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      mime-types
+      mimemagic (~> 0.3.0)
+      terrapin (~> 0.6.0)
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.7.0)
@@ -501,12 +507,6 @@ GEM
     omniauth-rails_csrf_protection (1.0.1)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
-    paperclip (6.1.0)
-      activemodel (>= 4.2.0)
-      activesupport (>= 4.2.0)
-      mime-types
-      mimemagic (~> 0.3.0)
-      terrapin (~> 0.6.0)
     parallel (1.21.0)
     parser (3.1.0.0)
       ast (~> 2.4.1)
@@ -837,6 +837,7 @@ DEPENDENCIES
   html_truncator
   jbuilder
   kaminari
+  kt-paperclip (~> 6.4, >= 6.4.1)
   launchy
   letter_opener_web (~> 2.0)
   license_finder
@@ -850,7 +851,6 @@ DEPENDENCIES
   omniauth-github (~> 2.0.0)
   omniauth-oauth2 (~> 1.7.2)
   omniauth-rails_csrf_protection
-  paperclip
   pg
   pg_search
   poltergeist
