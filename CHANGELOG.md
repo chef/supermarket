@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.0.29 -->
-## [5.0.29](https://github.com/chef/supermarket/tree/5.0.29) (2022-02-14)
+<!-- latest_release 5.0.30 -->
+## [5.0.30](https://github.com/chef/supermarket/tree/5.0.30) (2022-02-14)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `791cc46` to `91c1297` in /omnibus [#2603](https://github.com/chef/supermarket/pull/2603) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Combine dependabot PRs [#2600](https://github.com/chef/supermarket/pull/2600) ([dheerajd-msys](https://github.com/dheerajd-msys))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Combine dependabot PRs [#2600](https://github.com/chef/supermarket/pull/2600) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.0.30 -->
 - Bump omnibus-software from `791cc46` to `91c1297` in /omnibus [#2603](https://github.com/chef/supermarket/pull/2603) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.29 -->
 - Bump puma from 5.6.1 to 5.6.2 in /src/supermarket [#2598](https://github.com/chef/supermarket/pull/2598) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.28 -->
 - added steps to fix gem installation issue for therubyracer and libv8 [#2578](https://github.com/chef/supermarket/pull/2578) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.0.27 -->
