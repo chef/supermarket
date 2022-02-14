@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.0.28 -->
-## [5.0.28](https://github.com/chef/supermarket/tree/5.0.28) (2022-02-11)
+<!-- latest_release 5.0.29 -->
+## [5.0.29](https://github.com/chef/supermarket/tree/5.0.29) (2022-02-14)
 
 #### Merged Pull Requests
-- Bump puma from 5.6.1 to 5.6.2 in /src/supermarket [#2598](https://github.com/chef/supermarket/pull/2598) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump omnibus-software from `791cc46` to `91c1297` in /omnibus [#2603](https://github.com/chef/supermarket/pull/2603) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `791cc46` to `91c1297` in /omnibus [#2603](https://github.com/chef/supermarket/pull/2603) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.29 -->
 - Bump puma from 5.6.1 to 5.6.2 in /src/supermarket [#2598](https://github.com/chef/supermarket/pull/2598) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.28 -->
 - added steps to fix gem installation issue for therubyracer and libv8 [#2578](https://github.com/chef/supermarket/pull/2578) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.0.27 -->
 - Bump sidekiq from 6.4.0 to 6.4.1 in /src/supermarket [#2589](https://github.com/chef/supermarket/pull/2589) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.26 -->
