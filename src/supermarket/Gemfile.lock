@@ -8,6 +8,7 @@ PATH
       octokit (~> 4.16)
       rails (~> 7.0.1)
       sidekiq (>= 6.4, < 7.0)
+      sprockets-rails
 
 GEM
   remote: https://rubygems.org/
