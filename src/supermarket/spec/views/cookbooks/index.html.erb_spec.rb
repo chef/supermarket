@@ -49,12 +49,12 @@ describe "cookbooks/index.html.erb" do
   end
 
   it "has span cookbooks text" do
-    render
+    render template: "cookbooks/index"
     expect(rendered).to have_selector("span", text: "2 Cookbooks")
   end
 
   it "has RSS text correct" do
-    render
+    render template: "cookbooks/index"
     expect(rendered).to have_selector("a[href]", text: "RSS")
   end
 end
