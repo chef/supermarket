@@ -14,13 +14,13 @@ describe "layouts/application.html.erb" do
   end
 
   it "renders banner when env variable is there" do
-    render
+    render template: "layouts/application"
     expect(rendered).to include("supermarket announcement text")
   end
 
   it "does not render banner when flag is false" do
     ENV["ANNOUNCEMENT_BANNER"] = "false"
-    render
+    render template: "layouts/application"
     expect(rendered).not_to include("supermarket announcement text")
   end
 end

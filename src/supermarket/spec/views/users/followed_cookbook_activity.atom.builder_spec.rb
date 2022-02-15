@@ -40,7 +40,7 @@ describe "users/followed_cookbook_activity.atom.builder" do
         [test_cookbook.cookbook_versions.first, test_cookbook2.cookbook_versions.first]
       )
 
-      render
+      render template: "users/followed_cookbook_activity"
     end
 
     it "displays the feed title" do
@@ -71,7 +71,7 @@ describe "users/followed_cookbook_activity.atom.builder" do
   describe "no activity" do
     before do
       assign(:followed_cookbook_activity, [])
-      render
+      render template: "users/followed_cookbook_activity"
     end
 
     it "still works if @followed_cookbook_activity is empty" do

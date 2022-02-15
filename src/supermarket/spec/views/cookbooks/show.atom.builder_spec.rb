@@ -31,7 +31,7 @@ describe "cookbooks/show.atom.builder" do
   before do
     assign(:cookbook_versions, kiwi.cookbook_versions)
     assign(:cookbook, kiwi)
-    render
+    render template: "cookbooks/show", formats: [:atom]
   end
 
   it "displays the feed title" do
