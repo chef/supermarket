@@ -359,6 +359,10 @@ default['supermarket']['github_client_option_access_token_url'] = nil
 # recommend false; set to true as default for backward compatibility
 default['supermarket']['owners_can_remove_artifacts'] = true
 
+# Setting allowed host for supermarket to avoid arbitrary "Host" header injection
+# Set this value to the domain name of your supermarket website e.g. supermarket.chef.io
+default['supermarket']['allowed_host'] = node['supermarket']['fqdn']
+
 # ### Chef URL Settings
 #
 # URLs for various links used within Supermarket
