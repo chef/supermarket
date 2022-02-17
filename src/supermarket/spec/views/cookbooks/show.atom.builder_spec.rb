@@ -1,6 +1,8 @@
 require "spec_helper"
 
 describe "cookbooks/show.atom.builder" do
+  let(:template_path) { "cookbooks/show" }
+  let(:render_formats) { [:atom] }
   let!(:kiwi_0_1_0) do
     create(
       :cookbook_version,
@@ -31,7 +33,7 @@ describe "cookbooks/show.atom.builder" do
   before do
     assign(:cookbook_versions, kiwi.cookbook_versions)
     assign(:cookbook, kiwi)
-    render template: "cookbooks/show", formats: [:atom]
+    render template: template_path, formats: render_formats
   end
 
   it "displays the feed title" do

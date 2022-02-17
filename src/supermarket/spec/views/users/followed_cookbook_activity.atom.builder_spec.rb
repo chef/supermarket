@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe "users/followed_cookbook_activity.atom.builder" do
+  let(:template_path) { "users/followed_cookbook_activity" }
   let!(:test_cookbook_5_0) do
     create(
       :cookbook_version,
@@ -40,7 +41,7 @@ describe "users/followed_cookbook_activity.atom.builder" do
         [test_cookbook.cookbook_versions.first, test_cookbook2.cookbook_versions.first]
       )
 
-      render template: "users/followed_cookbook_activity"
+      render template: template_path
     end
 
     it "displays the feed title" do
@@ -71,7 +72,7 @@ describe "users/followed_cookbook_activity.atom.builder" do
   describe "no activity" do
     before do
       assign(:followed_cookbook_activity, [])
-      render template: "users/followed_cookbook_activity"
+      render template: template_path
     end
 
     it "still works if @followed_cookbook_activity is empty" do
