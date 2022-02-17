@@ -231,8 +231,7 @@ class CookbooksController < ApplicationController
   # interested in adopting their cookbook.
   #
   def adoption
-    AdoptionMailer.delay.interest_email(@cookbook, current_user)
-
+    AdoptionMailer.delay.interest_email(@cookbook.id, @cookbook.class.name, current_user.id)
     redirect_to(
       cookbook_path(@cookbook),
       notice: t(

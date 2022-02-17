@@ -6,12 +6,15 @@ class AdoptionMailer < ApplicationMailer
   # @param cookbook_or_tool [Cookbook,Tool]
   # @param user [User] the interested user
   #
-  def interest_email(cookbook_or_tool, user)
-    @name = cookbook_or_tool.name
+  def interest_email(cookbook_or_tool_id, resource_class_name, user_id)
+    resource_class = resource_class_name.constantize
+    resource = resource_class.find_by(id: cookbook_or_tool_id)
+    user = User.find(user_id)
+    @name = resource.name
     @email = user.email
     @adopting_username = user.username
-    @to = cookbook_or_tool.owner.email
-    @thing = cookbook_or_tool.class.name.downcase
+    @to = resource.owner.email
+    @thing = resource_class_name.downcase
 
     mail(to: @to, subject: "Interest in adopting your #{@name} #{@thing}")
   end
