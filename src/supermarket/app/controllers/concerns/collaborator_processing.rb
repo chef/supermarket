@@ -24,7 +24,7 @@ module CollaboratorProcessing
       authorize!(collaborator, "create?")
 
       collaborator.save!
-      CollaboratorMailer.delay.added_email(collaborator)
+      CollaboratorMailer.delay.added_email(collaborator.id)
     end
   end
 
