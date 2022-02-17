@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe "layouts/application.html.erb" do
+  let(:template_path) { "layouts/application" }
   let!(:search) { { path: cookbooks_path, name: "Cookbooks" } }
 
   before :each do
@@ -14,13 +15,13 @@ describe "layouts/application.html.erb" do
   end
 
   it "renders banner when env variable is there" do
-    render
+    render template: template_path
     expect(rendered).to include("supermarket announcement text")
   end
 
   it "does not render banner when flag is false" do
     ENV["ANNOUNCEMENT_BANNER"] = "false"
-    render
+    render template: template_path
     expect(rendered).not_to include("supermarket announcement text")
   end
 end

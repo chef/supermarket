@@ -127,7 +127,7 @@ class CookbooksController < ApplicationController
 
     if cookbook_urls_params.key?(:up_for_adoption)
       if cookbook_urls_params[:up_for_adoption] == "true"
-        AdoptionMailer.delay.follower_email(@cookbook)
+        AdoptionMailer.delay.follower_email(@cookbook.id, @cookbook.class.name)
 
         if Feature.active?(:fieri) && ENV["FIERI_URL"].present?
           FieriNotifyWorker.perform_async(
@@ -231,8 +231,7 @@ class CookbooksController < ApplicationController
   # interested in adopting their cookbook.
   #
   def adoption
-    AdoptionMailer.delay.interest_email(@cookbook, current_user)
-
+    AdoptionMailer.delay.interest_email(@cookbook.id, @cookbook.class.name, current_user.id)
     redirect_to(
       cookbook_path(@cookbook),
       notice: t(

@@ -176,7 +176,7 @@ class Cookbook < ApplicationRecord
         add_owner_as_collaborator: add_owner_as_collaborator,
         cookbook: self
       )
-      CookbookMailer.delay.transfer_ownership_email(transfer_request)
+      CookbookMailer.delay.transfer_ownership_email(transfer_request.id)
       "cookbook.ownership_transfer.email_sent"
     end
   end

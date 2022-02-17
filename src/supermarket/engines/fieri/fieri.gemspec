@@ -23,4 +23,5 @@ Gem::Specification.new do |s|
   s.add_dependency "sidekiq", ">= 6.4", "< 7.0"
   s.add_dependency "cookstyle", ">= 7.30"
   s.add_dependency "net-smtp"
+  s.add_dependency "sprockets-rails"
 end

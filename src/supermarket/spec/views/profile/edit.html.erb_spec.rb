@@ -1,9 +1,8 @@
 require "spec_helper"
 
 describe "profile/edit.html.erb" do
-
+  let(:template_path) { "profile/edit" }
   context "page with github enterprise account content" do
-
     let(:user) { create(:user) }
 
     before do
@@ -19,18 +18,18 @@ describe "profile/edit.html.erb" do
     end
 
     it "should have GitHub Enterprise content on edit profile page" do
-      render
+      render template: template_path
       content = "Linking your account lets other cookbook shoppers find you on GitHub Enterprise for feedback, collaboration, and kudos. The link requests access only to your GitHub Enterprise account's public information."
       expect(rendered).to have_selector("p", text: content)
     end
 
     it "should have Connect GitHub Account button text" do
-      render
+      render template: template_path
       expect(rendered).to have_selector("a", text: "Connect GitHub Enterprise Account")
     end
 
     it "should have Connect GitHub Account button title" do
-      render
+      render template: template_path
       expect(rendered).to have_selector("a[title='Connect with GitHub Enterprise Account']")
     end
   end
@@ -50,18 +49,25 @@ describe "profile/edit.html.erb" do
     end
 
     it "should have GitHub content on edit profile page" do
-      render
+      render template: template_path
       content = "Linking your account lets other cookbook shoppers find you on GitHub for feedback, collaboration, and kudos. The link requests access only to your GitHub account's public information."
       expect(rendered).to have_selector("p", text: content)
     end
 
     it "should have Connect GitHub Account button text" do
-      render
+      render template: template_path
       expect(rendered).to have_selector("a", text: "Connect GitHub Account")
     end
 
     it "should have Connect GitHub Account button title" do
-      render
+      render template: template_path
+      respond_to do |format|
+        # binding.pry
+        format.html do
+          render
+        end
+      end
+      # binding.pry
       expect(rendered).to have_selector("a[title='Connect with GitHub Account']")
     end
   end

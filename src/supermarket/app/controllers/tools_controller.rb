@@ -145,7 +145,7 @@ class ToolsController < ApplicationController
   # interested in adopting their tool.
   #
   def adoption
-    AdoptionMailer.delay.interest_email(@tool, current_user)
+    AdoptionMailer.delay.interest_email(@tool.id, @tool.class.name, current_user.id)
 
     redirect_to(
       @tool,
