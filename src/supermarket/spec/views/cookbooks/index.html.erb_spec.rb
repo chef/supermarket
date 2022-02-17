@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe "cookbooks/index.html.erb" do
+  let(:template_path) { "cookbooks/index" }
   let!(:current_user) { create(:user, first_name: "test_user") }
 
   let(:cookbook_version) {
@@ -49,12 +50,12 @@ describe "cookbooks/index.html.erb" do
   end
 
   it "has span cookbooks text" do
-    render
+    render template: template_path
     expect(rendered).to have_selector("span", text: "2 Cookbooks")
   end
 
   it "has RSS text correct" do
-    render
+    render template: template_path
     expect(rendered).to have_selector("a[href]", text: "RSS")
   end
 end

@@ -1,5 +1,6 @@
 require "spec_helper"
 describe "cookbook_mailer/cookbook_deprecated_email.html.erb" do
+  let(:template_path) { "cookbook_mailer/cookbook_deprecated_email" }
   context "renders mailer page" do
     let!(:current_user) { create(:user, first_name: "test_user") }
     let!(:system_email) { create(:system_email, name: "Cookbook deprecated") }
@@ -20,12 +21,12 @@ describe "cookbook_mailer/cookbook_deprecated_email.html.erb" do
     end
 
     it "has cookbook name rendered" do
-      render
+      render template: template_path
       expect(rendered).to have_selector("p", text: cookbook.name)
     end
 
     it "has cookbook deprecation reason rendered" do
-      render
+      render template: template_path
       expect(rendered).to have_selector("p", text: cookbook.cookbook_deprecation_reason)
     end
   end

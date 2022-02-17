@@ -6,7 +6,7 @@ describe AdoptionMailer do
     let(:user) { create(:user) }
 
     subject do
-      AdoptionMailer.interest_email(cookbook, user)
+      AdoptionMailer.interest_email(cookbook.id, cookbook.class.name, user.id)
     end
 
     context "in the to address" do
@@ -32,9 +32,6 @@ describe AdoptionMailer do
       end
 
       it "includes the username of the adopting user" do
-        # Making the username different from the email
-        allow(user).to receive(:username).and_return("someone")
-
         expect(subject.text_part.to_s).to include(user.username)
         expect(subject.html_part.to_s).to include(user.username)
       end
