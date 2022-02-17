@@ -1,6 +1,8 @@
 require "spec_helper"
 
 describe "tools/index.atom.builder" do
+  let(:template_path) { "tools/index" }
+  let(:render_formats) { [:atom] }
   let(:test_tool) do
     create(
       :tool,
@@ -20,25 +22,25 @@ describe "tools/index.atom.builder" do
   end
 
   it "displays the feed title" do
-    render
+    render template: template_path, formats: render_formats
 
     expect(xml_body["feed"]["title"]).to eql("Tools & Plugins")
   end
 
   it "displays when the feed was updated" do
-    render
+    render template: template_path, formats: render_formats
 
     expect(Date.parse(xml_body["feed"]["updated"])).to_not be_nil
   end
 
   it "displays tool entries" do
-    render
+    render template: template_path, formats: render_formats
 
     expect(xml_body["feed"]["entry"].count).to eql(2)
   end
 
   it "displays information about a tool" do
-    render
+    render template: template_path, formats: render_formats
 
     cookbook = xml_body["feed"]["entry"].first
 
