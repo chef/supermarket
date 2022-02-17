@@ -5,8 +5,7 @@ class CollaboratorMailer < ApplicationMailer
   #
   # @param collaborator [Collaborator]
   #
-  def added_email(collaborator_id)
-    collaborator = Collaborator.find(collaborator_id)
+  def added_email(collaborator)
     @resource = collaborator.resourceable
     @to = collaborator.user.email
 
