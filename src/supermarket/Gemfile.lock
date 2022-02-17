@@ -8,6 +8,7 @@ PATH
       octokit (~> 4.16)
       rails (~> 7.0.1)
       sidekiq (>= 6.4, < 7.0)
+      sprockets-rails
 
 GEM
   remote: https://rubygems.org/
@@ -356,6 +357,12 @@ GEM
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
     kgio (2.11.4)
+    kt-paperclip (7.1.1)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      marcel (~> 1.0.1)
+      mime-types
+      terrapin (~> 0.6.0)
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.7.0)
@@ -404,9 +411,6 @@ GEM
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2022.0105)
-    mimemagic (0.3.10)
-      nokogiri (~> 1)
-      rake
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
     minitest (5.15.0)
@@ -490,12 +494,6 @@ GEM
     omniauth-rails_csrf_protection (1.0.1)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
-    paperclip (6.1.0)
-      activemodel (>= 4.2.0)
-      activesupport (>= 4.2.0)
-      mime-types
-      mimemagic (~> 0.3.0)
-      terrapin (~> 0.6.0)
     parallel (1.21.0)
     parser (3.1.0.0)
       ast (~> 2.4.1)
@@ -826,6 +824,7 @@ DEPENDENCIES
   html_truncator
   jbuilder
   kaminari
+  kt-paperclip
   launchy
   letter_opener_web (~> 2.0)
   license_finder
@@ -839,7 +838,6 @@ DEPENDENCIES
   omniauth-github (~> 2.0.0)
   omniauth-oauth2 (~> 1.7.2)
   omniauth-rails_csrf_protection
-  paperclip
   pg
   pg_search
   poltergeist

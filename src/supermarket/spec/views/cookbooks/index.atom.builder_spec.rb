@@ -1,6 +1,8 @@
 require "spec_helper"
 
 describe "cookbooks/index.atom.builder" do
+  let(:template_path) { "cookbooks/index" }
+  let(:render_formats) { [:atom] }
   let!(:test_cookbook_5_0) do
     create(
       :cookbook_version,
@@ -34,7 +36,7 @@ describe "cookbooks/index.atom.builder" do
   describe "some cookbooks" do
     before do
       assign(:cookbooks, [test_cookbook, test_cookbook2])
-      render
+      render template: template_path, formats: render_formats
     end
 
     it "displays the feed title" do
@@ -64,7 +66,7 @@ describe "cookbooks/index.atom.builder" do
   describe "no cookbooks" do
     before do
       assign(:cookbooks, [])
-      render
+      render template: template_path, formats: render_formats
     end
 
     it "still works if @cookbooks is empty" do
