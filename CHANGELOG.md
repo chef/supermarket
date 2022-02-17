@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.0.33 -->
-## [5.0.33](https://github.com/chef/supermarket/tree/5.0.33) (2022-02-16)
+<!-- latest_release 5.0.34 -->
+## [5.0.34](https://github.com/chef/supermarket/tree/5.0.34) (2022-02-17)
 
 #### Merged Pull Requests
-- Disable Host Header Poisoning against Chef Supermarket [#2569](https://github.com/chef/supermarket/pull/2569) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Bump omnibus-software from `a4f4849` to `ab23925` in /omnibus [#2611](https://github.com/chef/supermarket/pull/2611) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `a4f4849` to `ab23925` in /omnibus [#2611](https://github.com/chef/supermarket/pull/2611) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.34 -->
 - Disable Host Header Poisoning against Chef Supermarket [#2569](https://github.com/chef/supermarket/pull/2569) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.0.33 -->
 - Update chef client in Omnibus to 17 [#2606](https://github.com/chef/supermarket/pull/2606) ([tas50](https://github.com/tas50)) <!-- 5.0.32 -->
 - Bundle dependabot PR [#2607](https://github.com/chef/supermarket/pull/2607) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.0.31 -->
