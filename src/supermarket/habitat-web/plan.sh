@@ -120,6 +120,7 @@ scaffolding_env[SENTRY_URL]="{{ cfg.sentry_url }}"
 scaffolding_env[STATSD_PORT]="{{ cfg.statsd_port }}"
 scaffolding_env[STATSD_URL]="{{ cfg.statsd_url }}"
 scaffolding_env[cookbook]="{{ cfg.app.cookbook }}"
+scaffolding_env[ALLOWED_HOST]="{{ cfg.app.allowed_host }}"
 
 scaffolding_env[INSTALL_DIRECTORY]="{{ pkg.path }}"
 scaffolding_env[INSTALL_PATH]="{{ pkg.path }}"

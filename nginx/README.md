@@ -20,13 +20,13 @@ This plan should be used by starting the service with:
 $ hab [svc load|start] chef/supermarket-nginx --bind rails:supermarket.default
 ```
 
-Note it requires a binding to the rails (web) application.
+Note: It requires a binding to the rails (web) application.
 
 The package hooks will run as the `root:root` but will make use of `worker[user|group]` configuration values (`supermarket:supermarket` by default) for the worker processes.
 
 ## Bindings
 
-The application provides no exports but requires a bind to the rails web server providing the port the server is listening on, the ports nginx should listen on, the SSL switch, as well as the FQDN. Note FQDN comes in two properties as a sanitized version is required for the redirect configuration, but habitat configuration templating does not provide a way to modify values.
+The application provides no exports but requires a bind to the rails web server providing the port the server is listening on, the ports nginx should listen on, the SSL switch, as well as the FQDN. Note that FQDN comes in two properties as a sanitized version is required for the redirect configuration, but habitat configuration templating does not provide a way to modify values.
 
 ## Configuration
 
