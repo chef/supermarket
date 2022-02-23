@@ -46,12 +46,10 @@ changelog:
 
 pipelines:
   - habitat/build
-  - habitat/verify:
+  - verify:
       public: true
       definition: .expeditor/verify.habitat-packages.yml
-  - omnibus/release:
-      env:
-        - IGNORE_CACHE: true
+  - omnibus/release
   - omnibus/adhoc:
       definition: .expeditor/release.omnibus.yml
       env:

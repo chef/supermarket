@@ -714,6 +714,8 @@ GEM
       tty-screen (~> 0.8)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2021.5)
+      tzinfo (>= 1.0.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
@@ -848,6 +850,7 @@ DEPENDENCIES
   statsd-ruby
   therubyracer
   tomlrb
+  tzinfo-data (~> 1.2021)
   uglifier
   unicorn
   unicorn-rails
