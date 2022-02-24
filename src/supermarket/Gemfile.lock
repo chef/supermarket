@@ -76,8 +76,8 @@ GEM
     and_feathers-gzipped_tarball (1.0.0.pre)
     ast (2.4.2)
     aws-eventstream (1.2.0)
-    aws-partitions (1.553.0)
-    aws-sdk-core (3.126.0)
+    aws-partitions (1.558.0)
+    aws-sdk-core (3.126.2)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.525.0)
       aws-sigv4 (~> 1.1)
@@ -109,12 +109,12 @@ GEM
     capybara-screenshot (1.0.26)
       capybara (>= 1.0, < 4)
       launchy
-    chef (17.9.46)
+    chef (17.9.52)
       addressable
       aws-sdk-s3 (~> 1.91)
       aws-sdk-secretsmanager (~> 1.46)
-      chef-config (= 17.9.46)
-      chef-utils (= 17.9.46)
+      chef-config (= 17.9.52)
+      chef-utils (= 17.9.52)
       chef-vault
       chef-zero (>= 14.0.11)
       corefoundation (~> 0.3.4)
@@ -140,9 +140,9 @@ GEM
       train-winrm (>= 0.2.5)
       uuidtools (>= 2.1.5, < 3.0)
       vault (~> 0.16)
-    chef-config (17.9.46)
+    chef-config (17.9.52)
       addressable
-      chef-utils (= 17.9.46)
+      chef-utils (= 17.9.52)
       fuzzyurl
       mixlib-config (>= 2.2.12, < 4.0)
       mixlib-shellout (>= 2.0, < 4.0)
@@ -150,7 +150,7 @@ GEM
     chef-telemetry (1.1.1)
       chef-config
       concurrent-ruby (~> 1.0)
-    chef-utils (17.9.46)
+    chef-utils (17.9.52)
       concurrent-ruby
     chef-vault (4.1.5)
     chef-zero (15.0.11)
@@ -184,7 +184,7 @@ GEM
     connection_pool (2.2.5)
     cookstyle (7.31.1)
       rubocop (= 1.25.0)
-    corefoundation (0.3.10)
+    corefoundation (0.3.13)
       ffi (>= 1.15.0)
     crack (0.4.5)
       rexml
@@ -331,7 +331,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    jmespath (1.5.0)
+    jmespath (1.6.0)
     json (2.6.1)
     jwt (2.3.0)
     kaminari (1.2.2)
