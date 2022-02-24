@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.0.35 -->
-## [5.0.35](https://github.com/chef/supermarket/tree/5.0.35) (2022-02-18)
+<!-- latest_release 5.0.36 -->
+## [5.0.36](https://github.com/chef/supermarket/tree/5.0.36) (2022-02-24)
 
 #### Merged Pull Requests
-- Bump cookstyle from 7.31.3 to 7.31.7 in /omnibus [#2613](https://github.com/chef/supermarket/pull/2613) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump cookstyle from 7.31.7 to 7.32.0 in /omnibus [#2622](https://github.com/chef/supermarket/pull/2622) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump cookstyle from 7.31.7 to 7.32.0 in /omnibus [#2622](https://github.com/chef/supermarket/pull/2622) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.36 -->
 - Bump cookstyle from 7.31.3 to 7.31.7 in /omnibus [#2613](https://github.com/chef/supermarket/pull/2613) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.35 -->
 - Bump omnibus-software from `a4f4849` to `ab23925` in /omnibus [#2611](https://github.com/chef/supermarket/pull/2611) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.34 -->
 - Disable Host Header Poisoning against Chef Supermarket [#2569](https://github.com/chef/supermarket/pull/2569) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.0.33 -->
