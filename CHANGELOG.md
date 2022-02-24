@@ -1,9 +1,10 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release unreleased -->
-## Unreleased
+<!-- latest_release 5.0.37 -->
+## [5.0.37](https://github.com/chef/supermarket/tree/5.0.37) (2022-02-24)
 
 #### Merged Pull Requests
+- Bump pg from 1.3.2 to 1.3.3 in /src/supermarket [#2620](https://github.com/chef/supermarket/pull/2620) ([dependabot[bot]](https://github.com/dependabot[bot]))
 - Bump chefspec from 9.3.1 to 9.3.3 in /omnibus [#2619](https://github.com/chef/supermarket/pull/2619) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
@@ -11,6 +12,7 @@
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump pg from 1.3.2 to 1.3.3 in /src/supermarket [#2620](https://github.com/chef/supermarket/pull/2620) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.37 -->
 - Bump chefspec from 9.3.1 to 9.3.3 in /omnibus [#2619](https://github.com/chef/supermarket/pull/2619) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.36 -->
 - Bump cookstyle from 7.31.7 to 7.32.0 in /omnibus [#2622](https://github.com/chef/supermarket/pull/2622) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.36 -->
 - Bump cookstyle from 7.31.3 to 7.31.7 in /omnibus [#2613](https://github.com/chef/supermarket/pull/2613) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.35 -->
