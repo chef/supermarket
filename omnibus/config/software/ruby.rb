@@ -123,15 +123,16 @@ build do
   patch_env = env.dup
   patch_env["PATH"] = "/opt/freeware/bin:#{env["PATH"]}" if aix?
 
-#   ### disabling version condition as it's breaking for ruby 3.1.0
-#   if version.satisfies?("~> 3.0")
-#     case version
-#     when "3.0.1"
-#       patch source: "ruby-3.0.1-configure.patch", plevel: 1, env: patch_env
-#     else
-#       patch source: "ruby-3.0.2-configure.patch", plevel: 1, env: patch_env
-#     end
-#   end
+  if version.satisfies?("~> 3.0")
+    case version
+    when "3.0.1"
+      patch source: "ruby-3.0.1-configure.patch", plevel: 1, env: patch_env
+    when "3.1.0"
+        patch source: "ruby-3.1.0-configure.patch", plevel: 1, env: patch_env
+    else
+      patch source: "ruby-3.0.2-configure.patch", plevel: 1, env: patch_env
+    end
+  end
 
   # remove the warning that the win32 api is going away.
   if windows? && version.satisfies?("< 3.0")
