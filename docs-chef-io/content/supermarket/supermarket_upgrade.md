@@ -14,20 +14,18 @@ gh_repo = "supermarket"
 <!-- markdownlint-disable MD033 -->
 ## Upgrade Matrix
 
-  If running Supermarket 4.2, you can upgrade directly to the latest releases of Supermarket 4.3. If you are running a release with version less than 4.2 you must perform a stepped upgrade as outlined below.
+  If running Supermarket 4.2, you can upgrade directly to the latest releases of Supermarket 5.0. If you are running a release with version less than 4.2 you must perform a stepped upgrade as outlined below.
 
 Running Version | Upgrade Version | Supported Version
 ----------------|-----------------|------------------
-4.2             | 4.3             | No
-4.1             | 4.2             | No
-4.0             | 4.2             | No
-< 4.0           | 4.2             | No
+4.2             | 5.0             | Yes
+< 4.2           | 4.2             | No
 
 ## Supported Release
 
-Chef Supermarket uses the PostgreSQL database. [PostgreSQL 9.3 is EOL](https://endoflife.date/postgresql) and Private Supermarket users should upgrade to [Supermarket 4.3](https://www.chef.io/downloads/tools/supermarket) or above and migrate to [PostgreSQL 13](https://www.postgresql.org/about/news/postgresql-13-released-2077/).
+Chef Supermarket uses the PostgreSQL database. [PostgreSQL 9.3 is EOL](https://endoflife.date/postgresql) and Private Supermarket users should upgrade to [Supermarket 5.0](https://www.chef.io/downloads/tools/supermarket) or above and migrate to [PostgreSQL 13](https://www.postgresql.org/about/news/postgresql-13-released-2077/).
 
-Chef Software supports Supermarket 4.3 release and later. Earlier releases are not supported. For more information about supported Chef Software see the [Supported Versions](https://docs.chef.io/versions/#supported-commercial-distributions) documentation.
+Chef Software supports Supermarket 5.0 release and later. Earlier releases are not supported. For more information about supported Chef Software see the [Supported Versions](https://docs.chef.io/versions/#supported-commercial-distributions) documentation.
 
 ## Upgrade a Private Supermarket
 
@@ -74,11 +72,11 @@ Every Private Supermarket installation is unique. These are general steps for up
 
       This will restart the `runsvdir`, `runsv`, and `svlogd` service processes that run Chef Supermarket.
 
-## Release Specific Upgrade: Supermarket 4.3 and PostgreSQL 13.4
+## Release Specific Upgrade: Supermarket 5.0 and PostgreSQL 13.4
 
-Supermarket 4.3 upgrades PostgreSQL from 9.3 to 13.4. The 4.3 upgrade process requires a one-time downtime to vacuum, upgrade, and re-index the database.
+Supermarket 5.0 upgrades PostgreSQL from 9.3 to 13.4. The 5.0 upgrade process requires a one-time downtime to vacuum, upgrade, and re-index the database.
 
-### Supermarket 4.3 Changes
+### Supermarket 5.0 Changes
 
 Prepare for the upgrade by following these steps:
 
