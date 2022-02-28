@@ -32,6 +32,12 @@ Now it's able to authorize Supermarket with oc-id. But the only issue remains is
 - SSH into your Supermarket ec2 instance
 - Change user to root user using: `sudo -i`
 - `vim /etc/supermarket/supermarket.rb`
+- Uncomment and set the value for flag: `default['supermarket']['chef_server_url']`.
+- Uncomment the statement of flag: `default['supermarket']['chef_identity_url']`.
+- Uncomment and set these two values respectively for flag: `default['supermarket']['chef_oauth2_app_id']` and `default['supermarket']['chef_oauth2_secret']` from your Chef Infra Server `/etc/opscode/oc-id-applications/my_supermarket.json` file.
+- Uncomment and add an extra entry `fieri` in the statement with flag : `default['supermarket']['features']` in order to run the quality metrics for cookbooks.
+- Uncomment the statements with flag: `default['supermarket']['fieri_url']` & `default['supermarket']['fieri_supermarket_endpoint']`.
+- Uncomment and set the value `NmpkMSp9Ts/KvOR/QV+ltLSveA899+LmO0AYZxt0CuA=` for the flag: `default['supermarket']['fieri_key']`
 - You should be able to find a statement with the flag: `default['supermarket']['chef_oauth2_verify_ssl']`.
 - You need to set the value as `false`.
 - Now as you have changed the ssl verification to false you need to reconfigure your Supermarket with the command:
