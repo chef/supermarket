@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.0.40 -->
-## [5.0.40](https://github.com/chef/supermarket/tree/5.0.40) (2022-02-24)
+<!-- latest_release 5.0.41 -->
+## [5.0.41](https://github.com/chef/supermarket/tree/5.0.41) (2022-02-28)
 
 #### Merged Pull Requests
-- Bump nokogiri from 1.13.1 to 1.13.3 in /src/supermarket [#2616](https://github.com/chef/supermarket/pull/2616) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump nokogiri from 1.13.1 to 1.13.3 in /src/supermarket/engines/fieri [#2625](https://github.com/chef/supermarket/pull/2625) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump nokogiri from 1.13.1 to 1.13.3 in /src/supermarket/engines/fieri [#2625](https://github.com/chef/supermarket/pull/2625) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.41 -->
 - Bump nokogiri from 1.13.1 to 1.13.3 in /src/supermarket [#2616](https://github.com/chef/supermarket/pull/2616) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.40 -->
 - Bump omnibus-software from `ab23925` to `f64a223` in /omnibus [#2621](https://github.com/chef/supermarket/pull/2621) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.39 -->
 - Bump chef from 17.9.46 to 17.9.52 in /src/supermarket [#2614](https://github.com/chef/supermarket/pull/2614) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.38 -->
