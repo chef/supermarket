@@ -20,7 +20,6 @@ license :project_license
 source path: File.expand_path('../../../../src/supermarket', project.filepath)
 
 dependency "cacerts"
-dependency "git"
 dependency "openresty"
 dependency "postgresql93-bin" # For upgrading 9.3 -> 13. This will create the needed binaries for upgrade to work
 dependency "postgresql13"
