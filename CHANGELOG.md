@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.0 -->
-## [5.1.0](https://github.com/chef/supermarket/tree/5.1.0) (2022-02-28)
+<!-- latest_release 5.1.1 -->
+## [5.1.1](https://github.com/chef/supermarket/tree/5.1.1) (2022-03-03)
 
 #### Merged Pull Requests
-- Docs update for upgrading to version 5.0 [#2626](https://github.com/chef/supermarket/pull/2626) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Remove git dependency [#2429](https://github.com/chef/supermarket/pull/2429) ([dheerajd-msys](https://github.com/dheerajd-msys))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.89 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Remove git dependency [#2429](https://github.com/chef/supermarket/pull/2429) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.1 -->
 - Docs update for upgrading to version 5.0 [#2626](https://github.com/chef/supermarket/pull/2626) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.0 -->
 - Bump aws-sdk-s3 from 1.112.0 to 1.113.0 in /src/supermarket [#2624](https://github.com/chef/supermarket/pull/2624) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.42 -->
 - Bump nokogiri from 1.13.1 to 1.13.3 in /src/supermarket/engines/fieri [#2625](https://github.com/chef/supermarket/pull/2625) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.41 -->
