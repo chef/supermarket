@@ -85,13 +85,13 @@ describe Supermarket::Config do
     end
 
     it 'checks that the S3 configuration is valid' do
-      expect(described_class).to receive(:audit_s3_config).with(some: 'stuff')
-      described_class.audit_config(some: 'stuff')
+      expect(described_class).to receive(:audit_s3_config).with({some: 'stuff'})
+      described_class.audit_config({some: 'stuff'})
     end
 
     it 'checks that the FIPS configuration is valid' do
-      expect(described_class).to receive(:audit_fips_config).with(some: 'stuff')
-      described_class.audit_config(some: 'stuff')
+      expect(described_class).to receive(:audit_fips_config).with({some: 'stuff'})
+      described_class.audit_config({some: 'stuff'})
     end
   end
 
