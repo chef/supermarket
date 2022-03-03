@@ -18,17 +18,11 @@ describe MetricsRunner do
   before do
     allow(SupermarketApiRunner).to receive(:new).and_return(supermarket_api_runner)
     allow(supermarket_api_runner).to receive(:cookbook_api_response).and_return(cookbook_json_response)
-    allow(supermarket_api_runner).to receive(:cookbook_version_api_response).and_return(version_json_response)
   end
 
   describe "getting the information from supermarket" do
     it "calls the cookbook_api_response method" do
       expect_any_instance_of(SupermarketApiRunner).to receive(:cookbook_api_response).with(cookbook["name"]).and_return(cookbook_json_response).once
-      metrics_runner.perform(cookbook)
-    end
-
-    it "calls the cookbook_version_api_response method" do
-      expect_any_instance_of(SupermarketApiRunner).to receive(:cookbook_version_api_response).with(cookbook["name"], cookbook["version"]).and_return(cookbook_json_response).once
       metrics_runner.perform(cookbook)
     end
   end
