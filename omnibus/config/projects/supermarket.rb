@@ -35,7 +35,7 @@ override :'openssl-fips', version: '2.0.16'
 override :'omnibus-ctl', version: 'main'
 override :openssl, version: '1.0.2za'
 override :logrotate, version: '3.9.2'
-override 'nodejs-binary', version: '6.7.0'
+override :nodejs, version: '12.22.3'
 
 # Creates required build directories
 dependency "preparation"
