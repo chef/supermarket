@@ -376,6 +376,7 @@ GEM
       addressable (~> 2.0)
       excon
       http (>= 2.0, < 6.0)
+    libv8-node (15.14.0.1)
     libyajl2 (2.1.0)
     license-acceptance (2.1.13)
       pastel (~> 0.7)
@@ -413,6 +414,8 @@ GEM
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
+    mini_racer (0.4.0)
+      libv8-node (~> 15.14.0.0)
     minitest (5.15.0)
     mixlib-archive (1.1.7)
       mixlib-log
@@ -827,8 +830,10 @@ DEPENDENCIES
   kt-paperclip
   launchy
   letter_opener_web (~> 2.0)
+  libv8-node
   license_finder
   listen
+  mini_racer (~> 0.4.0)
   mixlib-authentication (~> 3.0)
   net-smtp
   nokogiri
