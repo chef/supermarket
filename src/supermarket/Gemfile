@@ -55,7 +55,7 @@ gem "cookstyle", "~> 7.32.1"
 gem "kt-paperclip"
 gem "net-smtp", require: false
 gem "sprockets"
-gem "mini_racer", "~> 0.4.0", platforms: :ruby
+gem "mini_racer", "~> 0.3.1", platforms: :ruby
 
 group :doc do
   gem "yard", require: false
