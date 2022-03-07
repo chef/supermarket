@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  VERSION_PATTERN = /latest|([0-9_\-\.]+)/.freeze unless defined?(VERSION_PATTERN)
+  VERSION_PATTERN = /latest|([0-9_\-\.]+)/ unless defined?(VERSION_PATTERN)
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
