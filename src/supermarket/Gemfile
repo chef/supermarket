@@ -54,9 +54,7 @@ gem "cookstyle", "~> 7.31"
 gem "kt-paperclip"
 gem "net-smtp", require: false
 gem "sprockets"
-gem "execjs"
 gem "libv8-node"
-gem "mini_racer"
 
 group :doc do
   gem "yard", require: false
