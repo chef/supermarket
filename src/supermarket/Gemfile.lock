@@ -391,7 +391,6 @@ GEM
       addressable (~> 2.0)
       excon
       http (>= 2.0, < 6.0)
-    libv8-node (16.10.0.0-x86_64-linux)
     libyajl2 (2.1.0)
     license-acceptance (2.1.13)
       pastel (~> 0.7)
@@ -428,8 +427,6 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
-    mini_racer (0.6.2)
-      libv8-node (~> 16.10.0.0)
     minitest (5.15.0)
     mixlib-archive (1.1.7)
       mixlib-log
@@ -846,10 +843,8 @@ DEPENDENCIES
   kt-paperclip
   launchy
   letter_opener_web (~> 2.0)
-  libv8-node
   license_finder
   listen
-  mini_racer
   mixlib-authentication (~> 3.0)
   net-smtp
   nokogiri
@@ -886,7 +881,6 @@ DEPENDENCIES
   sitemap_generator
   spring
   spring-commands-rspec
-  sprockets
   statsd-ruby
   tomlrb
   tzinfo-data (~> 1.2022)

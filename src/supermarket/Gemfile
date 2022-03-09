@@ -54,9 +54,9 @@ gem "listen"
 gem "cookstyle", "~> 7.32.1"
 gem "kt-paperclip"
 gem "net-smtp", require: false
-gem "sprockets"
-gem "libv8-node"
-gem "mini_racer", platforms: :ruby
+# gem "sprockets"
+# gem "libv8-node"
+# gem "mini_racer"
 
 group :doc do
   gem "yard", require: false
