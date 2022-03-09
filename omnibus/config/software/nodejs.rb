@@ -22,7 +22,7 @@ skip_transitive_dependency_licensing true
 
 default_version "12.22.3"
 
-dependency "python"
+# dependency "python"
 
 default_src_url = "https://nodejs.org/dist/v#{version}/node-v#{version}.tar.gz"
 
