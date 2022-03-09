@@ -849,7 +849,7 @@ DEPENDENCIES
   libv8-node
   license_finder
   listen
-  mini_racer (~> 0.6)
+  mini_racer
   mixlib-authentication (~> 3.0)
   net-smtp
   nokogiri
