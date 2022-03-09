@@ -55,7 +55,7 @@ gem "kt-paperclip"
 gem "net-smtp", require: false
 gem "sprockets"
 gem "libv8-node"
-gem "mini_racer"
+gem "mini_racer", platforms: :ruby
 
 group :doc do
   gem "yard", require: false
