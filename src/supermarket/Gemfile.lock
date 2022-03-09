@@ -812,6 +812,7 @@ DEPENDENCIES
   ddtrace (= 0.53.0)
   dotenv
   dry-struct (~> 1.4)
+  execjs
   factory_bot_rails
   faker
   ffi-libarchive

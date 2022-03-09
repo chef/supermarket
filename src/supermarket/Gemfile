@@ -42,7 +42,7 @@ gem "sentry-raven", require: false
 gem "sitemap_generator"
 gem "statsd-ruby"
 gem "tomlrb"
-gem "uglifier"
+# gem "uglifier"
 gem "unicorn"
 gem "unicorn-rails"
 gem "utf8-cleaner"
@@ -56,6 +56,11 @@ gem "net-smtp", require: false
 # gem "sprockets"
 # gem "libv8-node"
 # gem "mini_racer"
+
+group :asset do
+  gem 'uglifier'
+  gem 'execjs'
+end
 
 group :doc do
   gem "yard", require: false
