@@ -42,7 +42,6 @@ gem "sentry-raven", require: false
 gem "sitemap_generator"
 gem "statsd-ruby"
 gem "tomlrb"
-# gem "uglifier"
 gem "unicorn"
 gem "unicorn-rails"
 gem "utf8-cleaner"
@@ -53,13 +52,10 @@ gem "listen"
 gem "cookstyle", "~> 7.31"
 gem "kt-paperclip"
 gem "net-smtp", require: false
-# gem "sprockets"
-# gem "libv8-node"
-# gem "mini_racer"
 
 group :asset do
-  gem 'uglifier'
-  gem 'execjs'
+  gem "uglifier"
+  gem "execjs"
 end
 
 group :doc do
