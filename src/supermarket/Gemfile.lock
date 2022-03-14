@@ -735,7 +735,7 @@ GEM
       public_suffix
     vault (0.16.0)
       aws-sigv4
-    vcr (6.0.0)
+    vcr (6.1.0)
     webmock (3.14.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
