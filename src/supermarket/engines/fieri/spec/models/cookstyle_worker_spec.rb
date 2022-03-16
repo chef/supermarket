@@ -1,4 +1,5 @@
 require "rails_helper"
+require "cookstyle"
 
 describe CookstyleWorker do
   let(:valid_params) do
@@ -37,7 +38,6 @@ describe CookstyleWorker do
 
   it "sends a post request to the results endpoint" do
     subject.perform(valid_params)
-
     assert_requested(:post, test_evaluation_endpoint) do |req|
       req.body =~ /cookstyle_failure=true/
       req.body =~ %r{Chef/Deprecations/ResourceWithoutUnifiedTrue:}
