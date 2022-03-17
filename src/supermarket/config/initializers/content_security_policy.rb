@@ -6,12 +6,12 @@
 
 Rails.application.config.content_security_policy do |policy|
   policy.default_src :self, :https
-  policy.font_src    :self, :https, :data
-  policy.img_src     :self, :https, :data
-  policy.object_src  :none
-  policy.script_src  :self, :https, :unsafe_inline, "https://www.googletagmanager.com", "https://www.google-analytics.com"
-  policy.script_src_elem  :self, :unsafe_inline, "http://www.google-analytics.com", "http://cdn.segment.com"
-  policy.style_src   :self, :https, :unsafe_inline, "http://fonts.googleapis.com"
+  policy.font_src :self, :https, :data
+  policy.img_src :self, :https, :data
+  policy.object_src :none
+  policy.script_src :self, :https, :unsafe_inline, "https://www.googletagmanager.com", "https://www.google-analytics.com"
+  policy.script_src_elem :self, :unsafe_inline, "http://www.google-analytics.com", "http://cdn.segment.com"
+  policy.style_src :self, :https, :unsafe_inline, "http://fonts.googleapis.com"
 
   # Specify URI for violation reports
   # policy.report_uri "/csp-violation-report-endpoint"
