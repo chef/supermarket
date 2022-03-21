@@ -62,3 +62,4 @@ public/sitemap*
 # (ref app/assets/stylesheets/branding/README.md).
 app/assets/stylesheets/branding
 app/assets/images/branding
+results/

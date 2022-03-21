@@ -1,0 +1,44 @@
+port                      = 15432
+listen_addresses          = ['127.0.0.1']
+max_connections           = 350
+max_locks_per_transaction = 64
+md5_auth_cidr_addresses   = ['127.0.0.1/32', '::1/128']
+
+log_line_prefix   = '%t [%p]: [%l-1] user=%u,db=%d,client=%h %r (%x:%e)'
+log_level         = 'ERROR'
+logging_collector = 'on'
+
+data_directory = ""
+log_directory  = ""
+
+effective_cache_size = '128MB'
+shared_buffers       = '1024MB'
+work_mem             = '8MB'
+
+[process]
+user  = 'supermarket'
+group = 'supermarket'
+
+[superuser]
+name     = 'supermarket'
+password = 'supermarket'
+
+# options for hot standby
+[replication]
+name                 = 'replication'
+password             = 'replication'
+lag_health_threshold = 1048576
+enable               = false
+
+[checkpoint]
+completion_target = 0.5
+timeout           = '5min'
+warning           = '30s'
+
+[[kernel_params]]
+name = 'shmmax'
+value = 17179869184
+
+[[kernel_params]]
+name = 'shmall'
+value = 4194304

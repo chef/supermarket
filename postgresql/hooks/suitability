@@ -1,0 +1,6 @@
+#!{{pkgPathFor "core/bash"}}/bin/bash
+
+source {{pkg.svc_config_path}}/functions.sh
+
+init_pgpass
+local_xlog_position
