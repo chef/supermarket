@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.3 -->
-## [5.1.3](https://github.com/chef/supermarket/tree/5.1.3) (2022-03-21)
+<!-- latest_release 5.1.4 -->
+## [5.1.4](https://github.com/chef/supermarket/tree/5.1.4) (2022-03-21)
 
 #### Merged Pull Requests
-- Feature/habitat package [#2453](https://github.com/chef/supermarket/pull/2453) ([saghoshprogress](https://github.com/saghoshprogress))
+- Combined 10 dependabot PR in to one PR [#2640](https://github.com/chef/supermarket/pull/2640) ([pratixha](https://github.com/pratixha))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.0.41 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Combined 10 dependabot PR in to one PR [#2640](https://github.com/chef/supermarket/pull/2640) ([pratixha](https://github.com/pratixha)) <!-- 5.1.4 -->
 - Feature/habitat package [#2453](https://github.com/chef/supermarket/pull/2453) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 5.1.3 -->
 - Bump aws-sdk-s3 from 1.112.0 to 1.113.0 in /src/supermarket [#2624](https://github.com/chef/supermarket/pull/2624) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.42 -->
 - Docs update for upgrading to version 5.0 [#2626](https://github.com/chef/supermarket/pull/2626) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.0 -->
