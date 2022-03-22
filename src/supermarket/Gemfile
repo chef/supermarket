@@ -14,7 +14,7 @@ gem "sidekiq", "~> 6.4"
 gem "sidekiq-cron"
 
 gem "aws-sdk-s3"
-gem "chef", "~> 17.9", require: false
+gem "chef", "~> 17.10", require: false
 gem "compass-rails"
 gem "ddtrace", "0.53.0", require: false
 gem "dotenv"
