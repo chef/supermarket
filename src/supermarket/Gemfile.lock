@@ -180,7 +180,7 @@ GEM
       sass (>= 3.2, < 3.5)
     compass-rails (2.0.1)
       compass (~> 1.0.0)
-    concurrent-ruby (1.1.9)
+    concurrent-ruby (1.1.10)
     connection_pool (2.2.5)
     cookstyle (7.32.1)
       rubocop (= 1.25.1)
@@ -714,7 +714,7 @@ GEM
       tty-screen (~> 0.8)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2021.5)
+    tzinfo-data (1.2022.1)
       tzinfo (>= 1.0.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
@@ -850,7 +850,7 @@ DEPENDENCIES
   statsd-ruby
   therubyracer
   tomlrb
-  tzinfo-data (~> 1.2021)
+  tzinfo-data (~> 1.2022)
   uglifier
   unicorn
   unicorn-rails
