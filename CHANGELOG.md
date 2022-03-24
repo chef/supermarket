@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.5 -->
-## [5.1.5](https://github.com/chef/supermarket/tree/5.1.5) (2022-03-22)
+<!-- latest_release 5.1.6 -->
+## [5.1.6](https://github.com/chef/supermarket/tree/5.1.6) (2022-03-24)
 
 #### Merged Pull Requests
-- Enable Chef/Security and InSpec/Deprecation cops [#2575](https://github.com/chef/supermarket/pull/2575) ([tas50](https://github.com/tas50))
+- Rajeshpaul38/combine dependabot prs/infsus 113 [#2657](https://github.com/chef/supermarket/pull/2657) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.0.41 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Rajeshpaul38/combine dependabot prs/infsus 113 [#2657](https://github.com/chef/supermarket/pull/2657) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.6 -->
 - Enable Chef/Security and InSpec/Deprecation cops [#2575](https://github.com/chef/supermarket/pull/2575) ([tas50](https://github.com/tas50)) <!-- 5.1.5 -->
 - Combined 10 dependabot PR in to one PR [#2640](https://github.com/chef/supermarket/pull/2640) ([pratixha](https://github.com/pratixha)) <!-- 5.1.4 -->
 - Feature/habitat package [#2453](https://github.com/chef/supermarket/pull/2453) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 5.1.3 -->
