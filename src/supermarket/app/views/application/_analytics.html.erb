@@ -10,11 +10,11 @@
 <% if ENV['GOOGLE_ANALYTICS_ID'] %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ENV['GOOGLE_ANALYTICS_ID'] %>"></script>
-  <script>
+  <%= javascript_tag nonce: content_security_policy_nonce do %>
     window.dataLayer = window.dataLayer || [];
     function gtag(){window.dataLayer.push(arguments);}
     gtag('js', new Date());
 
     gtag('config', '<%= ENV['GOOGLE_ANALYTICS_ID'] %>');
-  </script>
+  <% end %>
 <% end %>
