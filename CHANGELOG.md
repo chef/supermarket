@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.8 -->
-## [5.1.8](https://github.com/chef/supermarket/tree/5.1.8) (2022-04-01)
+<!-- latest_release 5.1.9 -->
+## [5.1.9](https://github.com/chef/supermarket/tree/5.1.9) (2022-04-01)
 
 #### Merged Pull Requests
-- Bump mixlib-shellout from 3.2.5 to 3.2.6 in /src/supermarket/engines/fieri [#2666](https://github.com/chef/supermarket/pull/2666) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump puma from 5.6.2 to 5.6.4 in /src/supermarket [#2665](https://github.com/chef/supermarket/pull/2665) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.0.41 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump puma from 5.6.2 to 5.6.4 in /src/supermarket [#2665](https://github.com/chef/supermarket/pull/2665) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.9 -->
 - Bump mixlib-shellout from 3.2.5 to 3.2.6 in /src/supermarket/engines/fieri [#2666](https://github.com/chef/supermarket/pull/2666) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.8 -->
 - Bump pg from 1.3.4 to 1.3.5 in /src/supermarket [#2667](https://github.com/chef/supermarket/pull/2667) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.7 -->
 - Rajeshpaul38/combine dependabot prs/infsus 113 [#2657](https://github.com/chef/supermarket/pull/2657) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.6 -->
