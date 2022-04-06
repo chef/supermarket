@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.10 -->
-## [5.1.10](https://github.com/chef/supermarket/tree/5.1.10) (2022-04-06)
+<!-- latest_release 5.1.11 -->
+## [5.1.11](https://github.com/chef/supermarket/tree/5.1.11) (2022-04-06)
 
 #### Merged Pull Requests
-- karma devDependencies updated [#2663](https://github.com/chef/supermarket/pull/2663) ([pratixha](https://github.com/pratixha))
+- Updated content security policy to allow script and style from google analytics [#2649](https://github.com/chef/supermarket/pull/2649) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.0.41 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Updated content security policy to allow script and style from google analytics [#2649](https://github.com/chef/supermarket/pull/2649) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.11 -->
 - karma devDependencies updated [#2663](https://github.com/chef/supermarket/pull/2663) ([pratixha](https://github.com/pratixha)) <!-- 5.1.10 -->
 - Bump puma from 5.6.2 to 5.6.4 in /src/supermarket [#2665](https://github.com/chef/supermarket/pull/2665) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.9 -->
 - Bump mixlib-shellout from 3.2.5 to 3.2.6 in /src/supermarket/engines/fieri [#2666](https://github.com/chef/supermarket/pull/2666) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.8 -->
