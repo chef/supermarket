@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.11 -->
-## [5.1.11](https://github.com/chef/supermarket/tree/5.1.11) (2022-04-06)
+<!-- latest_release 5.1.12 -->
+## [5.1.12](https://github.com/chef/supermarket/tree/5.1.12) (2022-04-06)
 
 #### Merged Pull Requests
-- Updated content security policy to allow script and style from google analytics [#2649](https://github.com/chef/supermarket/pull/2649) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Bump honeycomb-beeline from 2.8.2 to 2.9.0 in /src/supermarket [#2661](https://github.com/chef/supermarket/pull/2661) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.0.41 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump honeycomb-beeline from 2.8.2 to 2.9.0 in /src/supermarket [#2661](https://github.com/chef/supermarket/pull/2661) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.12 -->
 - Updated content security policy to allow script and style from google analytics [#2649](https://github.com/chef/supermarket/pull/2649) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.11 -->
 - karma devDependencies updated [#2663](https://github.com/chef/supermarket/pull/2663) ([pratixha](https://github.com/pratixha)) <!-- 5.1.10 -->
 - Bump puma from 5.6.2 to 5.6.4 in /src/supermarket [#2665](https://github.com/chef/supermarket/pull/2665) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.9 -->
