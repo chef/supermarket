@@ -133,7 +133,7 @@ GEM
     mixlib-archive (1.1.7)
       mixlib-log
     mixlib-log (3.0.9)
-    mixlib-shellout (3.2.6)
+    mixlib-shellout (3.2.7)
       chef-utils
     multipart-post (2.1.1)
     nio4r (2.5.8)
