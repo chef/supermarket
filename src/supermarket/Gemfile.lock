@@ -234,7 +234,7 @@ GEM
     erubis (2.7.0)
     et-orbi (1.2.7)
       tzinfo
-    excon (0.90.0)
+    excon (0.92.2)
     execjs (2.7.0)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -297,7 +297,7 @@ GEM
       builder (>= 2.1.2)
     hashdiff (1.0.1)
     hashie (4.1.0)
-    honeycomb-beeline (2.8.2)
+    honeycomb-beeline (2.9.0)
       libhoney (>= 1.14.2)
     html_truncator (0.4.2)
       nokogiri (~> 1.5)
@@ -731,7 +731,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.8)
+    unf_ext (0.0.8.1)
     unicode-display_width (2.1.0)
     unicode_utils (1.4.0)
     unicorn (6.1.0)
