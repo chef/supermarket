@@ -359,6 +359,10 @@ default['supermarket']['github_client_option_access_token_url'] = nil
 # recommend false; set to true as default for backward compatibility
 default['supermarket']['owners_can_remove_artifacts'] = true
 
+# The below flag is to allow arbitrary host headers. The scenarios
+# in which this flag needs to be set to false is e.g. if supermarket
+# runs behind an AWS ELB load balancer.
+default['supermarket']['disable_host_header_attack'] = true
 # Setting allowed host for supermarket to avoid arbitrary "Host" header injection
 # Set this value to the domain name of your supermarket website e.g. supermarket.chef.io
 default['supermarket']['allowed_host'] = node['supermarket']['fqdn']
