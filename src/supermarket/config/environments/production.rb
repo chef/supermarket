@@ -115,5 +115,7 @@ Rails.application.configure do
 
   # The value of ENV["DISABLE_HOST_HEADER_ATTACK"] will be parsed as string.
   # Hence we need to convert string to boolean.
-  config.hosts << ENV["ALLOWED_HOST"] if ActiveModel::Type::Boolean.new.cast(ENV["DISABLE_HOST_HEADER_ATTACK"]) && ENV["ALLOWED_HOST"].present?
+  if ActiveModel::Type::Boolean.new.cast(ENV["DISABLE_HOST_HEADER_ATTACK"]) && ENV["ALLOWED_HOST"].present?
+    config.hosts << ENV["ALLOWED_HOST"]
+  end
 end
