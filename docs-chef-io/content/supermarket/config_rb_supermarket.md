@@ -56,7 +56,7 @@ This configuration file has the following general settings:
 
 `default['supermarket']['disable_host_header_attack']`
 
-: This flag is to allow/restrict injection of arbitrary host headers in the API calls to supermarket. The scenarios in which this flag will be useful is e.g. if supermarket runs behind an AWS ELB (load balancer), the internal healthcheck API calls to supermarket invoked by the load balancer get responded with status code: 403 (forbidden) if this flag is set to `true`. So to unblock the healthcheck API calls invoked by the ELB we need to set this flag as `false`
+: This flag is to allow/restrict injection of arbitrary host headers in the API calls to supermarket. The scenarios in which this flag will be useful is e.g. if supermarket runs behind an AWS ELB (load balancer), the internal health-check API calls to supermarket invoked by the load balancer get responded with status code: 403 (forbidden) if this flag is set to `true`. So to unblock the health-check API calls invoked by the ELB we need to set this flag as `false`
 
 `default['supermarket']['allowed_host']`
 
