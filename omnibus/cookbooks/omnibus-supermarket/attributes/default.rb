@@ -359,12 +359,16 @@ default['supermarket']['github_client_option_access_token_url'] = nil
 # recommend false; set to true as default for backward compatibility
 default['supermarket']['owners_can_remove_artifacts'] = true
 
-# The below flag is to allow arbitrary host headers. The scenarios
-# in which this flag needs to be set to false is e.g. if supermarket
-# runs behind an AWS ELB load balancer.
+# The below flag is to allow/disallow injection of arbitrary host headers in the API calls.
+# The scenarios in which this flag will be useful is e.g.
+# if supermarket runs behind an AWS ELB (load balancer), the internal healthcheck
+# calls invoked by the load balancer get responded with status code 403 (forbidden) if this flag is set to true.
+# So to unblock the healthcheck API we need to set this flag as false
 default['supermarket']['disable_host_header_attack'] = true
-# Setting allowed host for supermarket to avoid arbitrary "Host" header injection
+# Setting allowed_host for supermarket to avoid arbitrary "Host" header injection
 # Set this value to the domain name of your supermarket website e.g. supermarket.chef.io
+# You also need to keep the flag: disable_host_header_attack as true to make it effective
+# If disable_host_header_attack is false then this flag will be ignored.
 default['supermarket']['allowed_host'] = node['supermarket']['fqdn']
 
 # ### Chef URL Settings

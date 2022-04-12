@@ -54,6 +54,14 @@ This configuration file has the following general settings:
 
 : The fully qualified domain name for the Supermarket server. Defaults to using the current FQDN for the machine.
 
+`default['supermarket']['disable_host_header_attack']`
+
+: This flag is to allow/restrict injection of arbitrary host headers in the API calls to supermarket. The scenarios in which this flag will be useful is e.g. if supermarket runs behind an AWS ELB (load balancer), the internal healthcheck API calls to supermarket invoked by the load balancer get responded with status code: 403 (forbidden) if this flag is set to `true`. So to unblock the healthcheck API calls invoked by the ELB we need to set this flag as `false`
+
+`default['supermarket']['allowed_host']`
+
+: This attribute is to set the Allowed Host for supermarket to block arbitrary [Host header injection](https://crashtest-security.com/invalid-host-header/) in the API calls to supermarket. This is by default set as the value of the FQDN(`default['supermarket']['fqdn']`). You can also set this attribute explicitly as the the domain name of your supermarket website e.g. <https://supermarket.chef.io>. You also need to keep the flag: `disable_host_header_attack` as `true` to make this attribute effective. If `disable_host_header_attack` is set to `false` then this attribute will be ignored.
+
 `default['supermarket']['from_email']`
 
 : The default sender address of all Supermarket mailers. Default value: `nil`.
