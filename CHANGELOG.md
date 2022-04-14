@@ -1,39 +1,37 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.18 -->
-## [5.1.18](https://github.com/chef/supermarket/tree/5.1.18) (2022-04-14)
-
-#### Merged Pull Requests
-- Combine dependency PRs [#2683](https://github.com/chef/supermarket/pull/2683) ([dheerajd-msys](https://github.com/dheerajd-msys))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.0.41 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Combine dependency PRs [#2683](https://github.com/chef/supermarket/pull/2683) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.18 -->
-- Combined dependabot PRs [#2690](https://github.com/chef/supermarket/pull/2690) ([pratixha](https://github.com/pratixha)) <!-- 5.1.17 -->
-- Created provision to enable or disable protection from host header attacks [#2684](https://github.com/chef/supermarket/pull/2684) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.16 -->
-- Bump honeycomb-beeline from 2.8.2 to 2.10.0 in /src/supermarket [#2685](https://github.com/chef/supermarket/pull/2685) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.15 -->
-- Combined bot PRs  [#2679](https://github.com/chef/supermarket/pull/2679) ([pratixha](https://github.com/pratixha)) <!-- 5.1.14 -->
-- Bump rails from 6.1.4.6 to 6.1.5 in /src/supermarket/engines/fieri [#2641](https://github.com/chef/supermarket/pull/2641) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.13 -->
-- Bump honeycomb-beeline from 2.8.2 to 2.9.0 in /src/supermarket [#2661](https://github.com/chef/supermarket/pull/2661) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.12 -->
-- Updated content security policy to allow script and style from google analytics [#2649](https://github.com/chef/supermarket/pull/2649) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.11 -->
-- karma devDependencies updated [#2663](https://github.com/chef/supermarket/pull/2663) ([pratixha](https://github.com/pratixha)) <!-- 5.1.10 -->
-- Bump puma from 5.6.2 to 5.6.4 in /src/supermarket [#2665](https://github.com/chef/supermarket/pull/2665) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.9 -->
-- Bump mixlib-shellout from 3.2.5 to 3.2.6 in /src/supermarket/engines/fieri [#2666](https://github.com/chef/supermarket/pull/2666) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.8 -->
-- Bump pg from 1.3.4 to 1.3.5 in /src/supermarket [#2667](https://github.com/chef/supermarket/pull/2667) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.7 -->
-- Rajeshpaul38/combine dependabot prs/infsus 113 [#2657](https://github.com/chef/supermarket/pull/2657) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.6 -->
-- Enable Chef/Security and InSpec/Deprecation cops [#2575](https://github.com/chef/supermarket/pull/2575) ([tas50](https://github.com/tas50)) <!-- 5.1.5 -->
-- Combined 10 dependabot PR in to one PR [#2640](https://github.com/chef/supermarket/pull/2640) ([pratixha](https://github.com/pratixha)) <!-- 5.1.4 -->
-- Feature/habitat package [#2453](https://github.com/chef/supermarket/pull/2453) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 5.1.3 -->
-- Bump aws-sdk-s3 from 1.112.0 to 1.113.0 in /src/supermarket [#2624](https://github.com/chef/supermarket/pull/2624) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.0.42 -->
-- Docs update for upgrading to version 5.0 [#2626](https://github.com/chef/supermarket/pull/2626) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.0 -->
-- Remove git dependency [#2429](https://github.com/chef/supermarket/pull/2429) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.1 -->
-- Removed supported platforms metric [#2576](https://github.com/chef/supermarket/pull/2576) ([pratixha](https://github.com/pratixha)) <!-- 5.1.2 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [5.1.18](https://github.com/chef/supermarket/tree/5.1.18) (2022-04-14)
+
+#### Merged Pull Requests
+- Removed supported platforms metric [#2576](https://github.com/chef/supermarket/pull/2576) ([pratixha](https://github.com/pratixha))
+- Remove git dependency [#2429](https://github.com/chef/supermarket/pull/2429) ([dheerajd-msys](https://github.com/dheerajd-msys))
+- Docs update for upgrading to version 5.0 [#2626](https://github.com/chef/supermarket/pull/2626) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Bump aws-sdk-s3 from 1.112.0 to 1.113.0 in /src/supermarket [#2624](https://github.com/chef/supermarket/pull/2624) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Feature/habitat package [#2453](https://github.com/chef/supermarket/pull/2453) ([saghoshprogress](https://github.com/saghoshprogress))
+- Combined 10 dependabot PR in to one PR [#2640](https://github.com/chef/supermarket/pull/2640) ([pratixha](https://github.com/pratixha))
+- Enable Chef/Security and InSpec/Deprecation cops [#2575](https://github.com/chef/supermarket/pull/2575) ([tas50](https://github.com/tas50))
+- Rajeshpaul38/combine dependabot prs/infsus 113 [#2657](https://github.com/chef/supermarket/pull/2657) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Bump pg from 1.3.4 to 1.3.5 in /src/supermarket [#2667](https://github.com/chef/supermarket/pull/2667) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump mixlib-shellout from 3.2.5 to 3.2.6 in /src/supermarket/engines/fieri [#2666](https://github.com/chef/supermarket/pull/2666) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump puma from 5.6.2 to 5.6.4 in /src/supermarket [#2665](https://github.com/chef/supermarket/pull/2665) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- karma devDependencies updated [#2663](https://github.com/chef/supermarket/pull/2663) ([pratixha](https://github.com/pratixha))
+- Updated content security policy to allow script and style from google analytics [#2649](https://github.com/chef/supermarket/pull/2649) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Bump honeycomb-beeline from 2.8.2 to 2.9.0 in /src/supermarket [#2661](https://github.com/chef/supermarket/pull/2661) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rails from 6.1.4.6 to 6.1.5 in /src/supermarket/engines/fieri [#2641](https://github.com/chef/supermarket/pull/2641) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Combined bot PRs  [#2679](https://github.com/chef/supermarket/pull/2679) ([pratixha](https://github.com/pratixha))
+- Bump honeycomb-beeline from 2.8.2 to 2.10.0 in /src/supermarket [#2685](https://github.com/chef/supermarket/pull/2685) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Created provision to enable or disable protection from host header attacks [#2684](https://github.com/chef/supermarket/pull/2684) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Combined dependabot PRs [#2690](https://github.com/chef/supermarket/pull/2690) ([pratixha](https://github.com/pratixha))
+- Combine dependency PRs [#2683](https://github.com/chef/supermarket/pull/2683) ([dheerajd-msys](https://github.com/dheerajd-msys))
+<!-- latest_stable_release -->
+
 ## [5.0.41](https://github.com/chef/supermarket/tree/5.0.41) (2022-03-03)
 
 #### Merged Pull Requests
@@ -117,7 +115,6 @@
 - Bump omnibus-software from `ab23925` to `f64a223` in /omnibus [#2621](https://github.com/chef/supermarket/pull/2621) ([dependabot[bot]](https://github.com/dependabot[bot]))
 - Bump nokogiri from 1.13.1 to 1.13.3 in /src/supermarket [#2616](https://github.com/chef/supermarket/pull/2616) ([dependabot[bot]](https://github.com/dependabot[bot]))
 - Bump nokogiri from 1.13.1 to 1.13.3 in /src/supermarket/engines/fieri [#2625](https://github.com/chef/supermarket/pull/2625) ([dependabot[bot]](https://github.com/dependabot[bot]))
-<!-- latest_stable_release -->
 
 ## [4.2.89](https://github.com/chef/supermarket/tree/4.2.89) (2022-01-04)
 
