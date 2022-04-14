@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.16 -->
-## [5.1.16](https://github.com/chef/supermarket/tree/5.1.16) (2022-04-12)
+<!-- latest_release 5.1.17 -->
+## [5.1.17](https://github.com/chef/supermarket/tree/5.1.17) (2022-04-14)
 
 #### Merged Pull Requests
-- Created provision to enable or disable protection from host header attacks [#2684](https://github.com/chef/supermarket/pull/2684) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Combined dependabot PRs [#2690](https://github.com/chef/supermarket/pull/2690) ([pratixha](https://github.com/pratixha))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.0.41 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Combined dependabot PRs [#2690](https://github.com/chef/supermarket/pull/2690) ([pratixha](https://github.com/pratixha)) <!-- 5.1.17 -->
 - Created provision to enable or disable protection from host header attacks [#2684](https://github.com/chef/supermarket/pull/2684) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.16 -->
 - Bump honeycomb-beeline from 2.8.2 to 2.10.0 in /src/supermarket [#2685](https://github.com/chef/supermarket/pull/2685) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.15 -->
 - Combined bot PRs  [#2679](https://github.com/chef/supermarket/pull/2679) ([pratixha](https://github.com/pratixha)) <!-- 5.1.14 -->
