@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 5.1.19 -->
+## [5.1.19](https://github.com/chef/supermarket/tree/5.1.19) (2022-04-19)
+
+#### Merged Pull Requests
+- Bump omniauth from 2.0.4 to 2.1.0 in /src/supermarket [#2693](https://github.com/chef/supermarket/pull/2693) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.1.18 -->
+### Changes not yet released to stable
+
+#### Merged Pull Requests
+- Bump omniauth from 2.0.4 to 2.1.0 in /src/supermarket [#2693](https://github.com/chef/supermarket/pull/2693) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.19 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
