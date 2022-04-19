@@ -462,9 +462,9 @@ GEM
       plist (~> 3.1)
       train-core
       wmi-lite (~> 1.0)
-    omniauth (2.0.4)
+    omniauth (2.1.0)
       hashie (>= 3.4.6)
-      rack (>= 1.6.2, < 3)
+      rack (>= 2.2.3)
       rack-protection
     omniauth-chef-oauth2 (1.1.0)
       omniauth (>= 1.9, < 3)
@@ -523,7 +523,7 @@ GEM
     raabro (1.4.0)
     racc (1.6.0)
     rack (2.2.3)
-    rack-protection (2.1.0)
+    rack-protection (2.2.0)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -825,7 +825,7 @@ DEPENDENCIES
   mixlib-authentication (~> 3.0)
   nokogiri
   octokit (~> 4.22)
-  omniauth (~> 2.0.0)
+  omniauth (~> 2.1.0)
   omniauth-chef-oauth2
   omniauth-github (~> 2.0.0)
   omniauth-oauth2 (~> 1.7.2)

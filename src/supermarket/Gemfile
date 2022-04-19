@@ -3,7 +3,7 @@ source "https://rubygems.org"
 gem "fieri", path: "engines/fieri"
 gem "rails", "~> 6.1.5"
 
-gem "omniauth", "~> 2.0.0"
+gem "omniauth", "~> 2.1.0"
 gem "omniauth-chef-oauth2"
 gem "omniauth-github", "~> 2.0.0"
 gem "omniauth-oauth2", "~> 1.7.2"
