@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.20 -->
-## [5.1.20](https://github.com/chef/supermarket/tree/5.1.20) (2022-04-28)
+<!-- latest_release 5.1.21 -->
+## [5.1.21](https://github.com/chef/supermarket/tree/5.1.21) (2022-04-28)
 
 #### Merged Pull Requests
-- Bump rspec-rails from 5.1.1 to 5.1.2 in /src/supermarket [#2702](https://github.com/chef/supermarket/pull/2702) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rspec-rails from 5.1.1 to 5.1.2 in /src/supermarket/engines/fieri [#2700](https://github.com/chef/supermarket/pull/2700) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.18 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump rspec-rails from 5.1.1 to 5.1.2 in /src/supermarket/engines/fieri [#2700](https://github.com/chef/supermarket/pull/2700) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.21 -->
 - Bump rspec-rails from 5.1.1 to 5.1.2 in /src/supermarket [#2702](https://github.com/chef/supermarket/pull/2702) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.20 -->
 - Bump omniauth from 2.0.4 to 2.1.0 in /src/supermarket [#2693](https://github.com/chef/supermarket/pull/2693) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.19 -->
 <!-- release_rollup -->
