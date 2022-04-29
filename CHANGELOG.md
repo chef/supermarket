@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.22 -->
-## [5.1.22](https://github.com/chef/supermarket/tree/5.1.22) (2022-04-28)
+<!-- latest_release 5.1.23 -->
+## [5.1.23](https://github.com/chef/supermarket/tree/5.1.23) (2022-04-29)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `518f3f8` to `50d05bc` in /omnibus [#2703](https://github.com/chef/supermarket/pull/2703) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rails from 6.1.5 to 6.1.5.1 in /src/supermarket/engines/fieri [#2705](https://github.com/chef/supermarket/pull/2705) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.18 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump rails from 6.1.5 to 6.1.5.1 in /src/supermarket/engines/fieri [#2705](https://github.com/chef/supermarket/pull/2705) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.23 -->
 - Bump omnibus-software from `518f3f8` to `50d05bc` in /omnibus [#2703](https://github.com/chef/supermarket/pull/2703) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.22 -->
 - Bump rspec-rails from 5.1.1 to 5.1.2 in /src/supermarket/engines/fieri [#2700](https://github.com/chef/supermarket/pull/2700) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.21 -->
 - Bump rspec-rails from 5.1.1 to 5.1.2 in /src/supermarket [#2702](https://github.com/chef/supermarket/pull/2702) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.20 -->
