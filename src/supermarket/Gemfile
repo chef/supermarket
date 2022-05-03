@@ -16,7 +16,7 @@ gem "sidekiq-cron"
 gem "aws-sdk-s3"
 gem "chef", "~> 17.10", require: false
 gem "compass-rails"
-gem "ddtrace", "0.53.0", require: false
+gem "ddtrace", "1.0.0", require: false
 gem "dotenv"
 gem "ffi-libarchive"
 gem "foreman"
