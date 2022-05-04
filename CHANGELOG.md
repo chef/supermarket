@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.24 -->
-## [5.1.24](https://github.com/chef/supermarket/tree/5.1.24) (2022-04-29)
+<!-- latest_release 5.1.25 -->
+## [5.1.25](https://github.com/chef/supermarket/tree/5.1.25) (2022-05-04)
 
 #### Merged Pull Requests
-- Bump sidekiq from 6.4.1 to 6.4.2 in /src/supermarket [#2697](https://github.com/chef/supermarket/pull/2697) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Rajeshpaul38/combine dependabot prs/infsus 159 [#2716](https://github.com/chef/supermarket/pull/2716) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.18 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Rajeshpaul38/combine dependabot prs/infsus 159 [#2716](https://github.com/chef/supermarket/pull/2716) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.25 -->
 - Bump sidekiq from 6.4.1 to 6.4.2 in /src/supermarket [#2697](https://github.com/chef/supermarket/pull/2697) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.24 -->
 - Bump rails from 6.1.5 to 6.1.5.1 in /src/supermarket/engines/fieri [#2705](https://github.com/chef/supermarket/pull/2705) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.23 -->
 - Bump omnibus-software from `518f3f8` to `50d05bc` in /omnibus [#2703](https://github.com/chef/supermarket/pull/2703) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.22 -->
