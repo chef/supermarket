@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.27 -->
-## [5.1.27](https://github.com/chef/supermarket/tree/5.1.27) (2022-05-06)
+<!-- latest_release 5.1.28 -->
+## [5.1.28](https://github.com/chef/supermarket/tree/5.1.28) (2022-05-06)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `4a806b9` to `9499b1c` in /omnibus [#2719](https://github.com/chef/supermarket/pull/2719) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump aws-sdk-s3 from 1.113.2 to 1.114.0 in /src/supermarket [#2717](https://github.com/chef/supermarket/pull/2717) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.18 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump aws-sdk-s3 from 1.113.2 to 1.114.0 in /src/supermarket [#2717](https://github.com/chef/supermarket/pull/2717) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.28 -->
 - Bump omnibus-software from `4a806b9` to `9499b1c` in /omnibus [#2719](https://github.com/chef/supermarket/pull/2719) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.27 -->
 - Bump nokogiri from 1.13.4 to 1.13.5 in /src/supermarket [#2720](https://github.com/chef/supermarket/pull/2720) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.26 -->
 - Rajeshpaul38/combine dependabot prs/infsus 159 [#2716](https://github.com/chef/supermarket/pull/2716) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.25 -->
