@@ -35,6 +35,7 @@ override :'openssl-fips', version: '2.0.16'
 override :'omnibus-ctl', version: 'main'
 override :openssl, version: '1.0.2za'
 override :logrotate, version: '3.9.2'
+override :redis, version: "6.2.7"
 
 # Creates required build directories
 dependency "preparation"
