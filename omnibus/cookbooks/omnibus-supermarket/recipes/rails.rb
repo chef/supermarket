@@ -59,8 +59,6 @@ if node['supermarket']['rails']['enable']
     action :enable
     subscribes :restart, 'template[unicorn.rb]'
     subscribes :restart, 'file[environment-variables]'
-    retries 1
-    retry_delay 1
   end
 else
   runit_service 'rails' do

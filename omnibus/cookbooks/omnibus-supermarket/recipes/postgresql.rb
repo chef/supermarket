@@ -49,8 +49,6 @@ if node['supermarket']['postgresql']['enable']
     control ['t']
     action :enable
     subscribes :restart, 'enterprise_pg_cluster[supermarket]'
-    retries 1
-    retry_delay 1
   end
 else
   runit_service 'postgresql' do

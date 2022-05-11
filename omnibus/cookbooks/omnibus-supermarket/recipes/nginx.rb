@@ -52,8 +52,6 @@ if node['supermarket']['nginx']['enable']
     action :enable
     subscribes :restart, 'template[nginx.conf]'
     subscribes :restart, 'template[rails.nginx.conf]'
-    retries 1
-    retry_delay 1
   end
 else
   runit_service 'nginx' do

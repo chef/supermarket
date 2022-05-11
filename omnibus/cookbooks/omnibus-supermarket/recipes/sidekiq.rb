@@ -28,8 +28,6 @@ if node['supermarket']['sidekiq']['enable']
     package 'supermarket'
     action :enable
     subscribes :restart, 'file[environment-variables]'
-    retries 1
-    retry_delay 1
   end
 else
   runit_service 'sidekiq' do

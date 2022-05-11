@@ -51,8 +51,6 @@ if node['supermarket']['redis']['enable']
     package 'supermarket'
     action :enable
     subscribes :restart, 'template[redis.conf]'
-    retries 1
-    retry_delay 1
   end
 else
   runit_service 'redis' do
