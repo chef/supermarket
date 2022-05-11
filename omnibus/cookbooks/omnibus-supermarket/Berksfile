@@ -4,4 +4,3 @@ metadata
 
 cookbook 'enterprise'
 cookbook 'fipsify'
-cookbook 'runit', github: 'chef-cookbooks/runit', branch: 'main'
