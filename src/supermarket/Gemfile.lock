@@ -747,7 +747,7 @@ GEM
     utf8-cleaner (1.0.0)
       activesupport
     uuidtools (2.2.0)
-    validate_url (1.0.13)
+    validate_url (1.0.15)
       activemodel (>= 3.0.0)
       public_suffix
     vault (0.16.0)
