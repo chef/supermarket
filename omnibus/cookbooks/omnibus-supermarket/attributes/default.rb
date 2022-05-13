@@ -369,6 +369,8 @@ default['supermarket']['disable_host_header_attack'] = true
 # Set this value to the domain name of your supermarket website e.g. supermarket.chef.io
 # You also need to keep the flag: disable_host_header_attack as true to make it effective
 # If disable_host_header_attack is false then this flag will be ignored.
+# To set allowed_hosts to allow multiple hosts in the host header specify the hosts separated by comma(,)
+# e.g. 'https://www.example1.com, https://www.example2.com'
 default['supermarket']['allowed_host'] = node['supermarket']['fqdn']
 
 # ### Chef URL Settings
