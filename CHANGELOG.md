@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.29 -->
-## [5.1.29](https://github.com/chef/supermarket/tree/5.1.29) (2022-05-13)
+<!-- latest_release 5.1.30 -->
+## [5.1.30](https://github.com/chef/supermarket/tree/5.1.30) (2022-05-16)
 
 #### Merged Pull Requests
-- Smriti/merge dependabot pr infus 173 [#2730](https://github.com/chef/supermarket/pull/2730) ([msys-sgarg](https://github.com/msys-sgarg))
+- Added missing include runit service in nginx [#2735](https://github.com/chef/supermarket/pull/2735) ([saghoshprogress](https://github.com/saghoshprogress))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.18 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Added missing include runit service in nginx [#2735](https://github.com/chef/supermarket/pull/2735) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 5.1.30 -->
 - Smriti/merge dependabot pr infus 173 [#2730](https://github.com/chef/supermarket/pull/2730) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 5.1.29 -->
 - Bump aws-sdk-s3 from 1.113.2 to 1.114.0 in /src/supermarket [#2717](https://github.com/chef/supermarket/pull/2717) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.28 -->
 - Bump omnibus-software from `4a806b9` to `9499b1c` in /omnibus [#2719](https://github.com/chef/supermarket/pull/2719) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.27 -->
