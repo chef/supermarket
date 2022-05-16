@@ -35,7 +35,7 @@ Start with `hab studio enter`
     port            = 3000\
     secret_key_base =  "<appropriate value>"\
     protocol        = 'https'\
-    allowed_host    = "localhost"
+    allowed_hosts    = "localhost"
 
     [nginx]\
     force_ssl = true\

@@ -365,13 +365,13 @@ default['supermarket']['owners_can_remove_artifacts'] = true
 # calls invoked by the load balancer get responded with status code 403 (forbidden) if this flag is set to true.
 # So to unblock the healthcheck API we need to set this flag as false
 default['supermarket']['disable_host_header_attack'] = true
-# Setting allowed_host for supermarket to avoid arbitrary "Host" header injection
+# Setting allowed_hosts for supermarket to avoid arbitrary "Host" header injection
 # Set this value to the domain name of your supermarket website e.g. supermarket.chef.io
 # You also need to keep the flag: disable_host_header_attack as true to make it effective
 # If disable_host_header_attack is false then this flag will be ignored.
 # To set allowed_hosts to allow multiple hosts in the host header specify the hosts separated by comma(,)
 # e.g. 'https://www.example1.com, https://www.example2.com'
-default['supermarket']['allowed_host'] = node['supermarket']['fqdn']
+default['supermarket']['allowed_hosts'] = node['supermarket']['fqdn']
 
 # ### Chef URL Settings
 #
