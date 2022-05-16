@@ -844,7 +844,6 @@ DEPENDENCIES
   letter_opener_web (~> 2.0)
   license_finder
   listen
-  mini_racer
   mixlib-authentication (~> 3.0)
   net-smtp
   nokogiri
