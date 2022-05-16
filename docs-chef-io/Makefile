@@ -5,11 +5,11 @@ SHELL=bash
 preview_netlify: chef_web_docs
 	cp -R content/* chef-web-docs/_vendor/github.com/chef/supermarket/docs-chef-io/content
 	cp -R config.toml chef-web-docs/_vendor/github.com/chef/supermarket/docs-chef-io/config.toml
-	pushd chef-web-docs && make assets; hugo --buildFuture --gc --minify && popd
+	pushd chef-web-docs && make bundle; hugo --buildFuture --gc --minify && popd
 
 serve: chef_web_docs
 	echo "replace github.com/chef/supermarket/docs-chef-io => ../" >> chef-web-docs/go.mod
-	pushd chef-web-docs && make assets; hugo server --buildDrafts --buildFuture --noHTTPCache --ignoreVendorPaths "github.com/chef/supermarket/**" && popd
+	pushd chef-web-docs && make bundle; hugo server --buildDrafts --buildFuture --noHTTPCache --ignoreVendorPaths "github.com/chef/supermarket/**" && popd
 
 chef_web_docs:
 	if [ -d "chef-web-docs/" ]; then \

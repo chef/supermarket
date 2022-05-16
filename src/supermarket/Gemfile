@@ -3,7 +3,7 @@ source "https://rubygems.org"
 gem "fieri", path: "engines/fieri"
 gem "rails", "~> 7.0.2"
 
-gem "omniauth", "~> 2.0.0"
+gem "omniauth", "~> 2.1.0"
 gem "omniauth-chef-oauth2"
 gem "omniauth-github", "~> 2.0.0"
 gem "omniauth-oauth2", "~> 1.7.2"
@@ -14,9 +14,9 @@ gem "sidekiq", "~> 6.4"
 gem "sidekiq-cron"
 
 gem "aws-sdk-s3"
-gem "chef", "~> 17.9", require: false
+gem "chef", "~> 17.10", require: false
 gem "compass-rails"
-gem "ddtrace", "0.53.0", require: false
+gem "ddtrace", "1.0.0", require: false
 gem "dotenv"
 gem "ffi-libarchive"
 gem "foreman"
@@ -48,8 +48,9 @@ gem "utf8-cleaner"
 gem "validate_url"
 gem "dry-struct", "~>1.4"
 gem "yajl-ruby"
+gem "tzinfo-data", "~> 1.2022"
+
 gem "listen"
-gem "cookstyle", "~> 7.31"
 gem "kt-paperclip"
 gem "net-smtp", require: false
 
@@ -57,6 +58,7 @@ group :asset do
   gem "uglifier"
   gem "execjs"
 end
+gem "cookstyle", "~> 7.32.1"
 
 group :doc do
   gem "yard", require: false
@@ -86,7 +88,7 @@ group :test do
 end
 
 group :development, :test do
-  gem "chefstyle"
+  gem "chefstyle", "~> 2.2.2"
   gem "factory_bot_rails", require: false
   gem "faker"
   gem "launchy"

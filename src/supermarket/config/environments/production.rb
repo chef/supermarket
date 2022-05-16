@@ -115,5 +115,9 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.hosts << ENV["ALLOWED_HOST"] if ENV["ALLOWED_HOST"].present?
+  # The value of ENV["DISABLE_HOST_HEADER_ATTACK"] will be parsed as string.
+  # Hence we need to convert string to boolean.
+  if ActiveModel::Type::Boolean.new.cast(ENV["DISABLE_HOST_HEADER_ATTACK"]) && ENV["ALLOWED_HOST"].present?
+    config.hosts << ENV["ALLOWED_HOST"]
+  end
 end

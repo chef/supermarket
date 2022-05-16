@@ -1,0 +1,43 @@
+#!{{pkgPathFor "core/bash"}}/bin/bash
+#
+shopt -s extglob
+
+exec 2>&1
+
+source {{pkg.svc_config_path}}/functions.sh
+
+{{ #each cfg.kernel_params as |param| ~}}
+create_kernel_param '{{ param.name }}' '{{ param.value }}'
+{{ /each }}
+
+chown -R '{{ cfg.process.user }}':'{{ cfg.process.group }}' '{{ pkg.svc_path }}'
+su -m -s {{pkgPathFor "core/bash"}}/bin/bash '{{ cfg.process.user }}' <<EOF
+
+source {{pkg.svc_config_path}}/functions.sh
+
+mkdir -p {{pkg.svc_config_path}}/conf.d
+mkdir -p {{pkg.svc_var_path}}/pg_stat_tmp
+mkdir -p {{pkg.svc_data_path}}/pgdata
+mkdir -p {{pkg.svc_data_path}}/archive
+init_pgpass
+ensure_dir_ownership
+
+{{#unless svc.me.follower ~}}
+if [[ ! -f "{{pkg.svc_data_path}}/pgdata/PG_VERSION" ]]; then
+  echo "Database does not exist, creating with 'initdb'"
+    initdb -U {{cfg.superuser.name}} \
+    -E utf8 \
+    -D {{pkg.svc_data_path}}/pgdata \
+    --pwfile {{pkg.svc_config_path}}/pwfile \
+    --locale POSIX \
+    --data-checksums
+fi
+{{~/unless}}
+{{#if svc.me.follower ~}}
+setup_replication_user_in_master
+if [ $? != 0 ]; then
+  echo 'Waiting for leader to become available before initializing'
+  exit 1
+fi
+{{~/if}}
+EOF
