@@ -18,6 +18,7 @@
 #
 
 include_recipe 'omnibus-supermarket::config'
+include_recipe 'enterprise::runit'
 
 [node['supermarket']['nginx']['cache']['directory'],
  node['supermarket']['nginx']['log_directory'],
