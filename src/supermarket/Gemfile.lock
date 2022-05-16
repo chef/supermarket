@@ -462,8 +462,7 @@ GEM
       timeout
     net-ssh (6.1.0)
     nio4r (2.5.8)
-    nokogiri (1.13.6)
-      mini_portile2 (~> 2.8.0)
+    nokogiri (1.13.6-x86_64-linux)
       racc (~> 1.4)
     nori (2.6.0)
     notiffany (0.1.3)
@@ -605,7 +604,6 @@ GEM
       redis-store (>= 1.2, < 2)
     redis-store (1.9.1)
       redis (>= 4, < 5)
-    ref (2.0.0)
     regexp_parser (2.4.0)
     rexml (3.2.5)
     rinku (2.0.6)
