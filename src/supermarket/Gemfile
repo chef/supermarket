@@ -42,7 +42,6 @@ gem "sentry-raven", require: false
 gem "sitemap_generator"
 gem "statsd-ruby"
 gem "tomlrb"
-gem "uglifier"
 gem "unicorn"
 gem "unicorn-rails"
 gem "utf8-cleaner"
@@ -52,11 +51,14 @@ gem "yajl-ruby"
 gem "tzinfo-data", "~> 1.2022"
 
 gem "listen"
-
 gem "cookstyle", "~> 7.32.1"
 gem "kt-paperclip"
 gem "net-smtp", require: false
-gem "mini_racer"
+
+group :asset do
+  gem "uglifier"
+  gem "execjs"
+end
 
 group :doc do
   gem "yard", require: false

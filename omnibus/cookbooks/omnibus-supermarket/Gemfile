@@ -8,7 +8,6 @@ gem 'chef', '~> 16.14'
 gem 'chef-bin', '~> 16.14'
 gem 'inspec-core'
 gem 'inspec-core-bin'
-gem 'mini_racer', '~> 0.3.1', platforms: :ruby
 
 # gems for testing the build cookbooks
 # once we get the ctl omnibus def using its own gemspec this whole file can die

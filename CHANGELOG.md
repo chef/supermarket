@@ -5,6 +5,14 @@
 
 #### Merged Pull Requests
 - Allow multiple hostname [#2733](https://github.com/chef/supermarket/pull/2733) ([pratixha](https://github.com/pratixha))
+- Fixed security vulnerabilities [#2691](https://github.com/chef/supermarket/pull/2691) ([pratixha](https://github.com/pratixha))
+- Combined dependabot PRs [#2740](https://github.com/chef/supermarket/pull/2740) ([pratixha](https://github.com/pratixha))
+- Added missing include runit service in nginx [#2735](https://github.com/chef/supermarket/pull/2735) ([saghoshprogress](https://github.com/saghoshprogress))
+<!-- latest_release 5.1.29 -->
+## [5.1.29](https://github.com/chef/supermarket/tree/5.1.29) (2022-05-13)
+
+#### Merged Pull Requests
+- Smriti/merge dependabot pr infus 173 [#2730](https://github.com/chef/supermarket/pull/2730) ([msys-sgarg](https://github.com/msys-sgarg))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.32 -->
