@@ -1,31 +1,29 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.30 -->
-## [5.1.30](https://github.com/chef/supermarket/tree/5.1.30) (2022-05-16)
-
-#### Merged Pull Requests
-- Added missing include runit service in nginx [#2735](https://github.com/chef/supermarket/pull/2735) ([saghoshprogress](https://github.com/saghoshprogress))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.1.18 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Added missing include runit service in nginx [#2735](https://github.com/chef/supermarket/pull/2735) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 5.1.30 -->
-- Smriti/merge dependabot pr infus 173 [#2730](https://github.com/chef/supermarket/pull/2730) ([msys-sgarg](https://github.com/msys-sgarg)) <!-- 5.1.29 -->
-- Bump aws-sdk-s3 from 1.113.2 to 1.114.0 in /src/supermarket [#2717](https://github.com/chef/supermarket/pull/2717) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.28 -->
-- Bump omnibus-software from `4a806b9` to `9499b1c` in /omnibus [#2719](https://github.com/chef/supermarket/pull/2719) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.27 -->
-- Bump nokogiri from 1.13.4 to 1.13.5 in /src/supermarket [#2720](https://github.com/chef/supermarket/pull/2720) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.26 -->
-- Rajeshpaul38/combine dependabot prs/infsus 159 [#2716](https://github.com/chef/supermarket/pull/2716) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.25 -->
-- Bump sidekiq from 6.4.1 to 6.4.2 in /src/supermarket [#2697](https://github.com/chef/supermarket/pull/2697) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.24 -->
-- Bump rails from 6.1.5 to 6.1.5.1 in /src/supermarket/engines/fieri [#2705](https://github.com/chef/supermarket/pull/2705) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.23 -->
-- Bump omnibus-software from `518f3f8` to `50d05bc` in /omnibus [#2703](https://github.com/chef/supermarket/pull/2703) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.22 -->
-- Bump rspec-rails from 5.1.1 to 5.1.2 in /src/supermarket/engines/fieri [#2700](https://github.com/chef/supermarket/pull/2700) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.21 -->
-- Bump rspec-rails from 5.1.1 to 5.1.2 in /src/supermarket [#2702](https://github.com/chef/supermarket/pull/2702) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.20 -->
-- Bump omniauth from 2.0.4 to 2.1.0 in /src/supermarket [#2693](https://github.com/chef/supermarket/pull/2693) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.19 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [5.1.30](https://github.com/chef/supermarket/tree/5.1.30) (2022-05-17)
+
+#### Merged Pull Requests
+- Bump omniauth from 2.0.4 to 2.1.0 in /src/supermarket [#2693](https://github.com/chef/supermarket/pull/2693) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rspec-rails from 5.1.1 to 5.1.2 in /src/supermarket [#2702](https://github.com/chef/supermarket/pull/2702) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rspec-rails from 5.1.1 to 5.1.2 in /src/supermarket/engines/fieri [#2700](https://github.com/chef/supermarket/pull/2700) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump omnibus-software from `518f3f8` to `50d05bc` in /omnibus [#2703](https://github.com/chef/supermarket/pull/2703) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rails from 6.1.5 to 6.1.5.1 in /src/supermarket/engines/fieri [#2705](https://github.com/chef/supermarket/pull/2705) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump sidekiq from 6.4.1 to 6.4.2 in /src/supermarket [#2697](https://github.com/chef/supermarket/pull/2697) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Rajeshpaul38/combine dependabot prs/infsus 159 [#2716](https://github.com/chef/supermarket/pull/2716) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Bump nokogiri from 1.13.4 to 1.13.5 in /src/supermarket [#2720](https://github.com/chef/supermarket/pull/2720) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump omnibus-software from `4a806b9` to `9499b1c` in /omnibus [#2719](https://github.com/chef/supermarket/pull/2719) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump aws-sdk-s3 from 1.113.2 to 1.114.0 in /src/supermarket [#2717](https://github.com/chef/supermarket/pull/2717) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Smriti/merge dependabot pr infus 173 [#2730](https://github.com/chef/supermarket/pull/2730) ([msys-sgarg](https://github.com/msys-sgarg))
+- Added missing include runit service in nginx [#2735](https://github.com/chef/supermarket/pull/2735) ([saghoshprogress](https://github.com/saghoshprogress))
+<!-- latest_stable_release -->
+
 ## [5.1.18](https://github.com/chef/supermarket/tree/5.1.18) (2022-04-14)
 
 #### Merged Pull Requests
@@ -49,7 +47,6 @@
 - Created provision to enable or disable protection from host header attacks [#2684](https://github.com/chef/supermarket/pull/2684) ([RajeshPaul38](https://github.com/RajeshPaul38))
 - Combined dependabot PRs [#2690](https://github.com/chef/supermarket/pull/2690) ([pratixha](https://github.com/pratixha))
 - Combine dependency PRs [#2683](https://github.com/chef/supermarket/pull/2683) ([dheerajd-msys](https://github.com/dheerajd-msys))
-<!-- latest_stable_release -->
 
 ## [5.0.41](https://github.com/chef/supermarket/tree/5.0.41) (2022-03-03)
 
