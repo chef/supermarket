@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 5.1.31 -->
+## [5.1.31](https://github.com/chef/supermarket/tree/5.1.31) (2022-05-19)
+
+#### Merged Pull Requests
+- Combined dependabot PRs [#2740](https://github.com/chef/supermarket/pull/2740) ([pratixha](https://github.com/pratixha))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.1.30 -->
+### Changes not yet released to stable
+
+#### Merged Pull Requests
+- Combined dependabot PRs [#2740](https://github.com/chef/supermarket/pull/2740) ([pratixha](https://github.com/pratixha)) <!-- 5.1.31 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
