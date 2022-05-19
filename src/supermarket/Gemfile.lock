@@ -243,7 +243,7 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
-    faker (2.20.0)
+    faker (2.21.0)
       i18n (>= 1.8.11, < 2)
     faraday (1.4.3)
       faraday-em_http (~> 1.0)
@@ -747,7 +747,7 @@ GEM
     utf8-cleaner (1.0.0)
       activesupport
     uuidtools (2.2.0)
-    validate_url (1.0.13)
+    validate_url (1.0.15)
       activemodel (>= 3.0.0)
       public_suffix
     vault (0.16.0)
