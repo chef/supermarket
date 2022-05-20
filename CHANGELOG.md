@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.31 -->
-## [5.1.31](https://github.com/chef/supermarket/tree/5.1.31) (2022-05-19)
+<!-- latest_release 5.1.32 -->
+## [5.1.32](https://github.com/chef/supermarket/tree/5.1.32) (2022-05-20)
 
 #### Merged Pull Requests
-- Combined dependabot PRs [#2740](https://github.com/chef/supermarket/pull/2740) ([pratixha](https://github.com/pratixha))
+- Fix CSP for allowing google-analytics script [#2746](https://github.com/chef/supermarket/pull/2746) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.30 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Fix CSP for allowing google-analytics script [#2746](https://github.com/chef/supermarket/pull/2746) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.32 -->
 - Combined dependabot PRs [#2740](https://github.com/chef/supermarket/pull/2740) ([pratixha](https://github.com/pratixha)) <!-- 5.1.31 -->
 <!-- release_rollup -->
 
