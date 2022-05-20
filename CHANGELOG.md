@@ -1,21 +1,19 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.32 -->
-## [5.1.32](https://github.com/chef/supermarket/tree/5.1.32) (2022-05-20)
-
-#### Merged Pull Requests
-- Fix CSP for allowing google-analytics script [#2746](https://github.com/chef/supermarket/pull/2746) ([RajeshPaul38](https://github.com/RajeshPaul38))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.1.30 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Fix CSP for allowing google-analytics script [#2746](https://github.com/chef/supermarket/pull/2746) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.32 -->
-- Combined dependabot PRs [#2740](https://github.com/chef/supermarket/pull/2740) ([pratixha](https://github.com/pratixha)) <!-- 5.1.31 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [5.1.32](https://github.com/chef/supermarket/tree/5.1.32) (2022-05-20)
+
+#### Merged Pull Requests
+- Combined dependabot PRs [#2740](https://github.com/chef/supermarket/pull/2740) ([pratixha](https://github.com/pratixha))
+- Fix CSP for allowing google-analytics script [#2746](https://github.com/chef/supermarket/pull/2746) ([RajeshPaul38](https://github.com/RajeshPaul38))
+<!-- latest_stable_release -->
+
 ## [5.1.30](https://github.com/chef/supermarket/tree/5.1.30) (2022-05-17)
 
 #### Merged Pull Requests
@@ -31,7 +29,6 @@
 - Bump aws-sdk-s3 from 1.113.2 to 1.114.0 in /src/supermarket [#2717](https://github.com/chef/supermarket/pull/2717) ([dependabot[bot]](https://github.com/dependabot[bot]))
 - Smriti/merge dependabot pr infus 173 [#2730](https://github.com/chef/supermarket/pull/2730) ([msys-sgarg](https://github.com/msys-sgarg))
 - Added missing include runit service in nginx [#2735](https://github.com/chef/supermarket/pull/2735) ([saghoshprogress](https://github.com/saghoshprogress))
-<!-- latest_stable_release -->
 
 ## [5.1.18](https://github.com/chef/supermarket/tree/5.1.18) (2022-04-14)
 
