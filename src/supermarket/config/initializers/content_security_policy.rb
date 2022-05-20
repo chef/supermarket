@@ -9,8 +9,7 @@ Rails.application.config.content_security_policy do |policy|
   policy.font_src :self, :https, :data
   policy.img_src :self, :https, :data
   policy.object_src :none
-  policy.script_src :self, :https, "https://www.googletagmanager.com", "https://www.google-analytics.com"
-  policy.script_src_elem :self, "http://www.google-analytics.com", "http://cdn.segment.com"
+  policy.script_src :self, :https, "https://www.googletagmanager.com", "https://www.google-analytics.com", "http://cdn.segment.com"
   # Need to keep the unsafe_inline for style-src directive as
   # there is an inline css embedded in the application.js file.
   # Without unsafe_inline it will block the style tag.

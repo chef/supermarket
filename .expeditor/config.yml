@@ -49,7 +49,9 @@ pipelines:
   - habitat/verify:
       public: true
       definition: .expeditor/verify.habitat-packages.yml
-  - omnibus/release
+  - omnibus/release:
+      env:
+        - IGNORE_CACHE: true
   - omnibus/adhoc:
       definition: .expeditor/release.omnibus.yml
       env:
