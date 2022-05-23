@@ -361,13 +361,15 @@ default['supermarket']['owners_can_remove_artifacts'] = true
 
 # The below flag is to allow/disallow injection of arbitrary host headers in the API calls.
 # The scenarios in which this flag will be useful is e.g.
-# if supermarket runs behind an AWS ELB (load balancer), the internal healthcheck
-# calls invoked by the load balancer get responded with status code 403 (forbidden) if this flag is set to true.
-# So to unblock the healthcheck API we need to set this flag as false
-default['supermarket']['disable_host_header_attack'] = true
-# Setting allowed_hosts for supermarket to avoid arbitrary "Host" header injection
-# Set this value to the domain name of your supermarket website e.g. supermarket.chef.io
-# You also need to keep the flag: disable_host_header_attack as true to make it effective
+# if supermarket runs behind an ELB (load balancer), the internal healthcheck calls invoked
+# by the load balancer get responded with status code 403 (forbidden) if this flag is set to true.
+# So to unblock the healthcheck API we need to set this flag as false. Alternatively you can set this flag
+# as true and include the private IP address of the instances (running behing ELB)
+# in the attribute: default['supermarket']['allowed_hosts']
+default['supermarket']['disable_host_header_attack'] = false
+# Setting allowed_hosts for supermarket to avoid arbitrary "Host" header injection.
+# Set this attribute to the domain name of your supermarket website e.g. supermarket.chef.io
+# You also need to set the flag: disable_host_header_attack as true to make it effective
 # If disable_host_header_attack is false then this flag will be ignored.
 # To set allowed_hosts to allow multiple hosts in the host header specify the hosts separated by comma(,)
 # e.g. 'https://www.example1.com, https://www.example2.com'
