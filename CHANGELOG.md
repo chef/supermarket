@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 5.1.33 -->
+## [5.1.33](https://github.com/chef/supermarket/tree/5.1.33) (2022-05-23)
+
+#### Merged Pull Requests
+- Remove hugo and go version from Netlify config [#2747](https://github.com/chef/supermarket/pull/2747) ([IanMadd](https://github.com/IanMadd))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.1.32 -->
+### Changes not yet released to stable
+
+#### Merged Pull Requests
+- Remove hugo and go version from Netlify config [#2747](https://github.com/chef/supermarket/pull/2747) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.33 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
