@@ -371,6 +371,10 @@ default['supermarket']['disable_host_header_attack'] = true
 # If disable_host_header_attack is false then this flag will be ignored.
 # To set allowed_hosts to allow multiple hosts in the host header specify the hosts separated by comma(,)
 # e.g. 'https://www.example1.com, https://www.example2.com'
+# One scenario to keep in mind is that when supermarket runs behind an ELB(load balancer)
+# the internal healthcheck calls will send the private IP address of the instance in the host header.
+# So we need to add the private IP address along with the hostname of supermarket in the allowed hosts as follows:
+# e.g. 'https://supermarket-example.com, <PRIVATE-IP-ADDRESS-OF-INSTANCE>'
 default['supermarket']['allowed_hosts'] = node['supermarket']['fqdn']
 
 # ### Chef URL Settings
