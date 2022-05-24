@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     fieri (0.0.1)
+      cookstyle (>= 7.30)
       dotenv-rails
       mixlib-archive (>= 0.4, < 2.0)
       octokit (~> 4.16)
@@ -251,14 +252,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  chefstyle (= 2.2.2)
-  cookstyle (= 7.32.1)
+  chefstyle
   fieri!
   mixlib-archive (>= 0.4, < 2.0)
   mixlib-shellout (~> 3.2)
   pry
   rspec-rails (~> 5.1)
-  rubocop (= 1.25.1)
   rubocop-rails
   sqlite3
   webmock

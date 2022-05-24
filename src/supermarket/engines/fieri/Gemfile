@@ -13,7 +13,7 @@ gemspec
 # To use debugger
 # gem 'debugger'
 group :development, :test do
-  gem "chefstyle", "2.2.2"
+  gem "chefstyle"
   gem "pry"
   gem "rspec-rails", "~> 5.1"
   gem "rubocop-rails", require: false
@@ -21,6 +21,4 @@ group :development, :test do
   gem "webmock"
   gem "mixlib-shellout", "~> 3.2"
   gem "mixlib-archive", ">= 0.4", "< 2.0"
-  gem "cookstyle", "7.32.1"
-  gem "rubocop", "1.25.1"
 end
