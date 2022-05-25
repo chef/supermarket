@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.34 -->
-## [5.1.34](https://github.com/chef/supermarket/tree/5.1.34) (2022-05-24)
+<!-- latest_release 5.1.35 -->
+## [5.1.35](https://github.com/chef/supermarket/tree/5.1.35) (2022-05-25)
 
 #### Merged Pull Requests
-- Make cookstyle a runtime dep for Fieri [#2585](https://github.com/chef/supermarket/pull/2585) ([tas50](https://github.com/tas50))
+- Fixed security vulnerabilities [#2691](https://github.com/chef/supermarket/pull/2691) ([pratixha](https://github.com/pratixha))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.32 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Fixed security vulnerabilities [#2691](https://github.com/chef/supermarket/pull/2691) ([pratixha](https://github.com/pratixha)) <!-- 5.1.35 -->
 - Make cookstyle a runtime dep for Fieri [#2585](https://github.com/chef/supermarket/pull/2585) ([tas50](https://github.com/tas50)) <!-- 5.1.34 -->
 - Remove hugo and go version from Netlify config [#2747](https://github.com/chef/supermarket/pull/2747) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.33 -->
 <!-- release_rollup -->
