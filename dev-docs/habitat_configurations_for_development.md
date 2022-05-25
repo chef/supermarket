@@ -16,12 +16,8 @@ Start with `hab studio enter`
 
 `hab pkg exec core/busybox-static adduser supermarket`
 
-## Create openssl certificates required for nginx
-
-`hab pkg exec core/openssl openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /hab/svc/supermarket-nginx/cert.key -out /hab/svc/supermarket-nginx/cert.cert`
-
-
-## default.toml changes 
+### There are sample configuration files included in folder [habitat_constants](https://github.com/chef/supermarket/tree/main/dev-docs/habitat_constants) one can copy the default.toml and respective configuration files and rename them accordingly
+## Filewise default.toml changes 
 
 1. postgresql \
     listen_addresses          = ['*']
@@ -33,7 +29,7 @@ Start with `hab studio enter`
 
     fqdn            = 'localhost'\
     port            = 3000\
-    secret_key_base =  "<appropriate value>"\
+    secret_key_base =  "<find the value from secrets.yml or use  openssl rand -base64 64 command to generate new key>"\
     protocol        = 'https'\
     allowed_host    = "localhost"
 
@@ -56,7 +52,7 @@ Start with `hab studio enter`
     certificate_key = "cert.key"
 
 5. habitat-sidekiq \
-    secret_key_base = "<appropriate value>"
+    secret_key_base = "<find the value from secrets.yml or use  openssl rand -base64 64 command to generate new key>"
 
 ## pg_hba.conf changes 
 Add this line in file `postgresq/config/pg_hba.conf` this is required for local development
@@ -87,10 +83,13 @@ server {
 }
 ```
 
-## load services 
+## Build and load services 
 run script `./load_hab_services.sh` to build and load all the services from local
 In case you need to unload all the running services use script `./unload_hab_services`
 
+## Create openssl certificates required for nginx
+
+`hab pkg exec core/openssl openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /hab/svc/supermarket-nginx/cert.key -out /hab/svc/supermarket-nginx/cert.cert`
 ## Once the services are loaded, you should be able to access the application from browser
 `https://localhost:4000` 
 
