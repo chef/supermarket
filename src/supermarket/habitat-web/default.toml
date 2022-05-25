@@ -4,7 +4,7 @@ statsd_port     = -1
 rails_env       = "production"
 robots_disallow = ""
 robots_allow    = "/"
-secret_key_base = ""
+secret_key_base = "f513fa8b54e0465a5b141d4fb0a126f858c2e0de2544ab82a05770ba80a56450a45464d268e1b84fc1ed7d34945f8941a3e008fd184ba94d061e8a6f61aa7447"
 rack_env        = "production"
 lang            = "en_US.UTF-8"
 
@@ -14,7 +14,7 @@ rpm_signing_passphrase      = ''
 owners_can_remove_artifacts = true
 enforce_privacy             = false
 api_item_limit              = 100
-fqdn                        = ''
+fqdn                        = 'localhost'
 fqdn_sanitized              = ''
 from_email                  = ''
 google_analytics_id         = ''
@@ -22,22 +22,24 @@ segment_write_key           = ''
 log_level                   = 'info'
 serve_static_files          = true
 cookbook                    = '' # ????
-port                        = 13000
+port                        = 3000
 rails_log_to_stdout         = true
 preload_app                 = true
 worker_timeout              = 15
 worker_processes            = 2
 air_gapped_flag             = "false"
-features                    = ["tools", "gravatar"]
+features                    = ["tools","gravatar","fieri"]
 user                        = "supermarket"
 group                       = "supermarket"
 log_directory               = ""
 var_directory               = ""
+protocol                    = 'https'
+allowed_host                = "localhost"
 
 [nginx]
-force_ssl = false
-port      = 80
-ssl_port  = 443
+force_ssl = true
+port      = 4000
+ssl_port  = 4000
 
 [app.announcement]
 banner_enabled = false
@@ -66,7 +68,8 @@ openssl      = 0
 omnibus_mode = ''
 
 [fieri]
-url                  = 'http://localhost:13000/fieri/jobs'
+url                  = 'http://localhost:3000/fieri/jobs'
+supermarket_endpoint =  'http://localhost:3000'
 key                  = ''
 foodcritic_tags      = ''
 foodcritic_fail_tags = ''

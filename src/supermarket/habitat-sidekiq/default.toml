@@ -1,5 +1,5 @@
 rails_env       = "production"
-secret_key_base = ""
+secret_key_base = "f513fa8b54e0465a5b141d4fb0a126f858c2e0de2544ab82a05770ba80a56450a45464d268e1b84fc1ed7d34945f8941a3e008fd184ba94d061e8a6f61aa7447"
 rack_env        = "production"
 lang            = "en_US.UTF-8"
 

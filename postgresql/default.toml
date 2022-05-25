@@ -1,5 +1,5 @@
 port                      = 15432
-listen_addresses          = ['127.0.0.1']
+listen_addresses          = ['*']
 max_connections           = 350
 max_locks_per_transaction = 64
 md5_auth_cidr_addresses   = ['127.0.0.1/32', '::1/128']

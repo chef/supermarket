@@ -21,7 +21,7 @@ tcp-backlog = 511
 # bind = [ "192.168.1.100", "10.0.0.1" ]
 # bind = [ "127.0.0.1" ]
 # bind = [] - listen on all interfaces
-bind = ['127.0.0.1']
+bind = [ "*" ]
 
 # By default, run Redis in protected mode.
 protected-mode = "yes"
