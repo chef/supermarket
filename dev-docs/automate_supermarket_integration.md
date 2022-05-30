@@ -15,6 +15,8 @@ Start with `hab studio enter`
 
 ## Create Supermarket services in automate
 
+We have already raised a PR with most changes [here](https://github.com/chef/automate/pull/6821). Explaination of change is following.
+
 In automate all habitat services reside under path [components](https://github.com/chef/automate/tree/main/components). 
 
 For supermarket we have 5 habitat services working together for the application to come up - 
