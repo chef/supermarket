@@ -63,14 +63,14 @@ In config.toml file [here](https://github.com/chef/automate/blob/main/dev/config
 
 ## Build services
 Build all the services one by one in following order
-    1. build components/automate-supermarket-redis
-    2. build components/automate-supermarket-nginx
-    3. build components/automate-supermarket
-    4. build components/automtate-deployment
-    5. build components/automate-cli
+1. build components/automate-supermarket-redis
+2. build components/automate-supermarket-nginx
+3. build components/automate-supermarket
+4. build components/automtate-deployment
+5. build components/automate-cli
 
 ## Edit build.json
-Create a new file (results)[https://github.com/chef/automate/tree/main/results] with name build.json using command
+Create a new file [results](https://github.com/chef/automate/tree/main/results) with name build.json using command
 
 `curl https://packages.chef.io/manifests/dev/automate/latest.json -o results/build.json`
 
@@ -84,7 +84,7 @@ Add following services to the end of build.json like this : -
 ```
 
 ## config directory changes 
-Apart from above changes for services we have also made a few changes in (api/config directory)[https://github.com/chef/automate/tree/main/api/config] as mentioned in documentation (here)[https://github.com/chef/automate/blob/main/components/automate-deployment/docs/how-to-add-a-service.md] these config changes are needed to declare some configuration settings for the service like logging, default port, host etc. Also make the changes mentioned in directory `components/automate-deployment/pkg/backup/spec.go`. 
+Apart from above changes for services we have also made a few changes in [`api/config` directory](https://github.com/chef/automate/tree/main/api/config) as mentioned in [documentation](https://github.com/chef/automate/blob/main/components/automate-deployment/docs/how-to-add-a-service.md) these config changes are needed to declare some configuration settings for the service like logging, default port, host etc. Also make the changes mentioned in directory `components/automate-deployment/pkg/backup/spec.go`. 
 
 ## Update builder configurations
 Run command `go run ./tools/bldr-config-gen` as mentioned in setup documentation
