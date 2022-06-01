@@ -1,6 +1,8 @@
 require "spec_helper"
 
 describe "cookbooks/directory.html.erb" do
+  let(:template_path) { "cookbooks/directory" }
+
   before do
     assign(:featured_cookbooks, [])
     assign(:recently_updated_cookbooks, [])
@@ -9,15 +11,15 @@ describe "cookbooks/directory.html.erb" do
   end
 
   it "has Test Kitchen text correct" do
-    render
+    render template: template_path
     test_kitchen_text = "Test Kitchen documentation"
     expect(rendered).to have_selector("a[href]", text: test_kitchen_text)
   end
 
   it "has workstation link pointing to correct url" do
-    render
+    render template: template_path
     expect(rendered).to have_link("Chef Workstation", href: "https://www.chef.io/downloads/tools/workstation")
   end
 
-  it_behaves_like "community stats"
+  it_behaves_like "community stats", "cookbooks/directory"
 end

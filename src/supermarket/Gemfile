@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem "fieri", path: "engines/fieri"
-gem "rails", "~> 6.1.6"
+gem "rails", "~> 7.0.2"
 
 gem "omniauth", "~> 2.1.0"
 gem "omniauth-chef-oauth2"
@@ -27,7 +27,6 @@ gem "kaminari"
 gem "mixlib-authentication", "~> 3.0"
 gem "nokogiri"
 gem "octokit", "~> 4.22", require: false # 4.16+ fixes deprecations in auth
-gem "paperclip"
 gem "pg"
 gem "pg_search"
 gem "premailer-rails", group: [:development, :production]
@@ -43,7 +42,6 @@ gem "sentry-raven", require: false
 gem "sitemap_generator"
 gem "statsd-ruby"
 gem "tomlrb"
-gem "uglifier"
 gem "unicorn"
 gem "unicorn-rails"
 gem "utf8-cleaner"
@@ -53,8 +51,14 @@ gem "yajl-ruby"
 gem "tzinfo-data", "~> 1.2022"
 
 gem "listen"
-gem "therubyracer", platforms: :ruby
 gem "cookstyle", "~> 7.32.1"
+gem "kt-paperclip"
+gem "net-smtp", require: false
+
+group :asset do
+  gem "uglifier"
+  gem "execjs"
+end
 
 group :doc do
   gem "yard", require: false

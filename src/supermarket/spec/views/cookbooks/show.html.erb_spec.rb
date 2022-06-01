@@ -3,6 +3,7 @@ require "spec_helper"
 describe "cookbooks/show.html.erb" do
 
   context "renders detail page for a cookbook" do
+    let(:template_path) { "cookbooks/show" }
     let!(:current_user) { create(:user, first_name: "Fanny") }
 
     let(:cookbook_version) {
@@ -51,24 +52,24 @@ describe "cookbooks/show.html.erb" do
     end
 
     it "has license text rendered" do
-      render
+      render template: template_path
       license_id = "MIT"
       expect(rendered).to have_selector("p", text: license_id)
     end
 
     it "has license url text" do
-      render
+      render template: template_path
       expect(rendered).to have_selector(:css, 'a[href="https://spdx.org/licenses/MIT.json"]' )
     end
 
     it "has Test Kitchen text correct" do
-      render
+      render template: template_path
       test_kitchen_text = cookbook.cookbook_deprecation_reason
       expect(rendered).to have_selector("textarea", text: test_kitchen_text)
     end
 
     it "has policyfile, berkshelf and knife tabs rendered" do
-      render
+      render template: template_path
       expect(rendered).to have_selector("div", id: "policyfile")
       expect(rendered).to have_selector("div", id: "berkshelf")
       expect(rendered).to have_selector("div", id: "knife")

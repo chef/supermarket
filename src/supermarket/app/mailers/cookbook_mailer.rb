@@ -69,11 +69,11 @@ class CookbookMailer < ApplicationMailer
   #
   # @param transfer_request [OwnershipTransferRequest]
   #
-  def transfer_ownership_email(transfer_request)
-    @transfer_request = transfer_request
-    @sender = transfer_request.sender.name
-    @cookbook = transfer_request.cookbook.name
-    @add_owner_as_collaborator = if transfer_request.add_owner_as_collaborator == true
+  def transfer_ownership_email(transfer_request_id)
+    @transfer_request = OwnershipTransferRequest.find(transfer_request_id)
+    @sender = @transfer_request.sender.name
+    @cookbook = @transfer_request.cookbook.name
+    @add_owner_as_collaborator = if @transfer_request.add_owner_as_collaborator == true
                                    " and add themselves as a collaborator"
                                  end
 
@@ -82,6 +82,6 @@ class CookbookMailer < ApplicationMailer
       you#{@add_owner_as_collaborator}.
     }.squish
 
-    mail(to: transfer_request.recipient.email, subject: subject)
+    mail(to: @transfer_request.recipient.email, subject: subject)
   end
 end

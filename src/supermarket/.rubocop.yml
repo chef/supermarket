@@ -5,7 +5,7 @@ Rails:
   Enabled: true
 AllCops:
   NewCops: disable
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.0.3
   Exclude:
     - db/**/*
     - engines/**/*
