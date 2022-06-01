@@ -194,7 +194,7 @@ EOF
 
   # core/ruby includes its own bundler which is used (2.2.22 at this time) however the scaffolding tries to vendor
   # core/bundler @ version 2.2.14
-  _bundler_version="2.2.14"
+  _bundler_version="2.2.33"
 
   bundle config build.ruby-filemagic --with-magic-dir="$(pkg_path_for core/file)"
 }
