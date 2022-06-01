@@ -1,24 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.36 -->
-## [5.1.36](https://github.com/chef/supermarket/tree/5.1.36) (2022-06-01)
+<!-- latest_release 5.1.37 -->
+## [5.1.37](https://github.com/chef/supermarket/tree/5.1.37) (2022-06-01)
 
 #### Merged Pull Requests
-- Allow multiple hostname [#2733](https://github.com/chef/supermarket/pull/2733) ([pratixha](https://github.com/pratixha))
-- Fixed security vulnerabilities [#2691](https://github.com/chef/supermarket/pull/2691) ([pratixha](https://github.com/pratixha))
-- Combined dependabot PRs [#2740](https://github.com/chef/supermarket/pull/2740) ([pratixha](https://github.com/pratixha))
-- Added missing include runit service in nginx [#2735](https://github.com/chef/supermarket/pull/2735) ([saghoshprogress](https://github.com/saghoshprogress))
-<!-- latest_release 5.1.29 -->
-## [5.1.29](https://github.com/chef/supermarket/tree/5.1.29) (2022-05-13)
-
-#### Merged Pull Requests
-- Smriti/merge dependabot pr infus 173 [#2730](https://github.com/chef/supermarket/pull/2730) ([msys-sgarg](https://github.com/msys-sgarg))
+- ROR Upgrade - Ruby 3 / Rails 7 [#2602](https://github.com/chef/supermarket/pull/2602) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.32 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- ROR Upgrade - Ruby 3 / Rails 7 [#2602](https://github.com/chef/supermarket/pull/2602) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.37 -->
 - Allow multiple hostname [#2733](https://github.com/chef/supermarket/pull/2733) ([pratixha](https://github.com/pratixha)) <!-- 5.1.36 -->
 - Fixed security vulnerabilities [#2691](https://github.com/chef/supermarket/pull/2691) ([pratixha](https://github.com/pratixha)) <!-- 5.1.35 -->
 - Make cookstyle a runtime dep for Fieri [#2585](https://github.com/chef/supermarket/pull/2585) ([tas50](https://github.com/tas50)) <!-- 5.1.34 -->
