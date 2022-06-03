@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.37 -->
-## [5.1.37](https://github.com/chef/supermarket/tree/5.1.37) (2022-06-01)
+<!-- latest_release 5.1.38 -->
+## [5.1.38](https://github.com/chef/supermarket/tree/5.1.38) (2022-06-03)
 
 #### Merged Pull Requests
-- ROR Upgrade - Ruby 3 / Rails 7 [#2602](https://github.com/chef/supermarket/pull/2602) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Combined dependency update [#2767](https://github.com/chef/supermarket/pull/2767) ([dheerajd-msys](https://github.com/dheerajd-msys))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.32 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Combined dependency update [#2767](https://github.com/chef/supermarket/pull/2767) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.38 -->
 - ROR Upgrade - Ruby 3 / Rails 7 [#2602](https://github.com/chef/supermarket/pull/2602) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.37 -->
 - Allow multiple hostname [#2733](https://github.com/chef/supermarket/pull/2733) ([pratixha](https://github.com/pratixha)) <!-- 5.1.36 -->
 - Fixed security vulnerabilities [#2691](https://github.com/chef/supermarket/pull/2691) ([pratixha](https://github.com/pratixha)) <!-- 5.1.35 -->
