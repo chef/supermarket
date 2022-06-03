@@ -545,7 +545,7 @@ GEM
       activesupport (>= 3.0.0)
     raabro (1.4.0)
     racc (1.6.0)
-    rack (2.2.3)
+    rack (2.2.3.1)
     rack-protection (2.2.0)
       rack
     rack-test (1.1.0)
@@ -803,7 +803,7 @@ GEM
       rexml
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    yajl-ruby (1.4.2)
+    yajl-ruby (1.4.3)
     yard (0.9.27)
       webrick (~> 1.7.0)
     zeitwerk (2.5.4)
