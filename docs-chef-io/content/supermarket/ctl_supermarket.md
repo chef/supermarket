@@ -12,7 +12,11 @@ aliases = ["/ctl_supermarket.html", "/ctl_supermarket/"]
     weight = 10
 +++
 
-{{% ctl_supermarket_summary %}}
+The Chef Supermarket installations that are done using the Chef
+installer include a command-line utility named supermarket-ctl. This
+command-line tool is used to start and stop individual services,
+reconfigure the Chef Supermarket server, run smoke tests, and tail the
+Chef Supermarket log files.
 
 ## make-admin
 
@@ -220,7 +224,7 @@ To revert the `uninstall` subcommand, run the `reconfigure` subcommand (because 
 
 ## Service Subcommands
 
-{{% ctl_common_service_subcommands %}}
+{{% chef-server/ctl_common_service_subcommands %}}
 
 ### hup
 
