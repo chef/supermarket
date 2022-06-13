@@ -95,5 +95,5 @@ The restore does not support transferring backups across different versions of S
 For example, to restore a backup in a .dump format, run:
 
 ```bash
-/opt/supermarket/embedded/bin/pg_restore -U supermarket --host localhost --port 15432 --clean --no-acl --no-owner --dbname supermarket --verbose supermarket_database_backup.dump
+/opt/supermarket/embedded/bin/pg_restore --username supermarket --host localhost --port 15432 --clean --no-acl --no-owner --dbname supermarket --verbose ~/supermarket_database_backup.dump
 ```
