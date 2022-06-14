@@ -17,7 +17,7 @@ aliases = ["/supermarket_api.html", "/supermarket_api/"]
 In general, using knife (and the `knife supermarket` subcommand) to manage cookbooks that are located on the Cookbooks site is more efficient than using the Supermarket API and is the recommended approach for managing cookbooks on that site. This document provides information about the Supermarket API in the event that using the API is necessary.
 {{< /note >}}
 
-{{% supermarket_api_summary %}}
+{{% supermarket/supermarket_api_summary %}}
 
 ## Endpoints
 

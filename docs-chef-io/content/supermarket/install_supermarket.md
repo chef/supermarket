@@ -12,7 +12,13 @@ aliases = ["/install_supermarket.html", "/install_supermarket/"]
     weight = 20
 +++
 
-{{% supermarket_private_source_code %}}
+The source code for Chef Supermarket is located at the following URLs:
+
+- The application itself: <https://github.com/chef/supermarket>.
+    Report issues to: <https://github.com/chef/supermarket/issues>.
+- The cookbook that is run by the `supermarket-ctl reconfigure`
+    command:
+    <https://github.com/chef/supermarket/tree/main/omnibus/cookbooks/omnibus-supermarket>
 
 ## Requirements
 
@@ -51,7 +57,7 @@ To configure Chef Supermarket to use Chef Identity, do the following:
 
 2. Update the `/etc/opscode/chef-server.rb` configuration file.
 
-    {{< readFile_shortcode file="config_ocid_application_hash_supermarket.md" >}}
+    {{< readfile file="layouts/shortcodes/chef-server/config_ocid_application_hash_supermarket.md" >}}
 
 3. Reconfigure the Chef Infra Server.
 
