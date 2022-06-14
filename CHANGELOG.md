@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.39 -->
-## [5.1.39](https://github.com/chef/supermarket/tree/5.1.39) (2022-06-06)
+<!-- latest_release 5.1.40 -->
+## [5.1.40](https://github.com/chef/supermarket/tree/5.1.40) (2022-06-14)
 
 #### Merged Pull Requests
-- Upgraded dependencies: omnibus-software, yard, honeycomb-beeline, berkshelf, octokit [#2772](https://github.com/chef/supermarket/pull/2772) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Upgrade dependencies: omnibus-software, sidekiq-cron, sidekiq, octokit, ddtrace [#2782](https://github.com/chef/supermarket/pull/2782) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.32 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Upgrade dependencies: omnibus-software, sidekiq-cron, sidekiq, octokit, ddtrace [#2782](https://github.com/chef/supermarket/pull/2782) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.40 -->
 - Upgraded dependencies: omnibus-software, yard, honeycomb-beeline, berkshelf, octokit [#2772](https://github.com/chef/supermarket/pull/2772) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.39 -->
 - Combined dependency update [#2767](https://github.com/chef/supermarket/pull/2767) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.38 -->
 - ROR Upgrade - Ruby 3 / Rails 7 [#2602](https://github.com/chef/supermarket/pull/2602) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.37 -->
