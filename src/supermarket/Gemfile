@@ -26,7 +26,7 @@ gem "jbuilder"
 gem "kaminari"
 gem "mixlib-authentication", "~> 3.0"
 gem "nokogiri"
-gem "octokit", "~> 4.24", require: false # 4.16+ fixes deprecations in auth
+gem "octokit", "~> 4.25", require: false # 4.16+ fixes deprecations in auth
 gem "pg"
 gem "pg_search"
 gem "premailer-rails", group: [:development, :production]
