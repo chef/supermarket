@@ -357,7 +357,7 @@ GEM
       activesupport (>= 5.0.0)
     jmespath (1.6.1)
     json (2.6.1)
-    jwt (2.3.0)
+    jwt (2.4.1)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -441,7 +441,7 @@ GEM
     msgpack (1.5.1)
     multi_json (1.15.0)
     multi_xml (0.6.0)
-    multipart-post (2.2.0)
+    multipart-post (2.2.3)
     nenv (0.3.0)
     net-imap (0.2.3)
       digest
@@ -501,8 +501,8 @@ GEM
     omniauth-github (2.0.0)
       omniauth (~> 2.0)
       omniauth-oauth2 (~> 1.7.1)
-    omniauth-oauth2 (1.7.2)
-      oauth2 (~> 1.4)
+    omniauth-oauth2 (1.7.3)
+      oauth2 (>= 1.4, < 3)
       omniauth (>= 1.9, < 3)
     omniauth-rails_csrf_protection (1.0.1)
       actionpack (>= 4.2)
@@ -852,7 +852,7 @@ DEPENDENCIES
   omniauth (~> 2.1.0)
   omniauth-chef-oauth2
   omniauth-github (~> 2.0.0)
-  omniauth-oauth2 (~> 1.7.2)
+  omniauth-oauth2 (~> 1.7.3)
   omniauth-rails_csrf_protection
   pg
   pg_search
