@@ -675,7 +675,7 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
-    sidekiq (6.4.2)
+    sidekiq (6.5.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
@@ -875,7 +875,7 @@ DEPENDENCIES
   sass-rails
   sentry-raven
   shoulda-matchers
-  sidekiq (~> 6.4)
+  sidekiq (~> 6.5)
   sidekiq-cron
   simplecov
   sitemap_generator
