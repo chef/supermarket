@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.42 -->
-## [5.1.42](https://github.com/chef/supermarket/tree/5.1.42) (2022-06-20)
+<!-- latest_release 5.1.43 -->
+## [5.1.43](https://github.com/chef/supermarket/tree/5.1.43) (2022-06-21)
 
 #### Merged Pull Requests
-- PG restore command fixed in the docs [#2783](https://github.com/chef/supermarket/pull/2783) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Upgraded sidekiq-cron, test-kitchen, rubocop-rails, kitchen-vagrant, sqlite3, octokit, omnibus-software, sidekiq, omniauth-oauth2 [#2802](https://github.com/chef/supermarket/pull/2802) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.32 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Upgraded sidekiq-cron, test-kitchen, rubocop-rails, kitchen-vagrant, sqlite3, octokit, omnibus-software, sidekiq, omniauth-oauth2 [#2802](https://github.com/chef/supermarket/pull/2802) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.43 -->
 - PG restore command fixed in the docs [#2783](https://github.com/chef/supermarket/pull/2783) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.42 -->
 - Revert &quot;Bump ddtrace from 1.0.0 to 1.1.0 in /src/supermarket&quot; [#2796](https://github.com/chef/supermarket/pull/2796) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.41 -->
 - Upgrade dependencies: omnibus-software, sidekiq-cron, sidekiq, octokit, ddtrace [#2782](https://github.com/chef/supermarket/pull/2782) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.40 -->
