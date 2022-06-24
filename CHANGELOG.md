@@ -1,37 +1,34 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.44 -->
-## [5.1.44](https://github.com/chef/supermarket/tree/5.1.44) (2022-06-23)
-
-#### Merged Pull Requests
-- Bump pg from 1.3.5 to 1.4.0 in /src/supermarket [#2800](https://github.com/chef/supermarket/pull/2800) ([dependabot[bot]](https://github.com/dependabot[bot]))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.1.32 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Bump pg from 1.3.5 to 1.4.0 in /src/supermarket [#2800](https://github.com/chef/supermarket/pull/2800) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.44 -->
-- Upgraded sidekiq-cron, test-kitchen, rubocop-rails, kitchen-vagrant, sqlite3, octokit, omnibus-software, sidekiq, omniauth-oauth2 [#2802](https://github.com/chef/supermarket/pull/2802) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.43 -->
-- PG restore command fixed in the docs [#2783](https://github.com/chef/supermarket/pull/2783) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.42 -->
-- Revert &quot;Bump ddtrace from 1.0.0 to 1.1.0 in /src/supermarket&quot; [#2796](https://github.com/chef/supermarket/pull/2796) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.41 -->
-- Upgrade dependencies: omnibus-software, sidekiq-cron, sidekiq, octokit, ddtrace [#2782](https://github.com/chef/supermarket/pull/2782) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.40 -->
-- Upgraded dependencies: omnibus-software, yard, honeycomb-beeline, berkshelf, octokit [#2772](https://github.com/chef/supermarket/pull/2772) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.39 -->
-- Combined dependency update [#2767](https://github.com/chef/supermarket/pull/2767) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.38 -->
-- ROR Upgrade - Ruby 3 / Rails 7 [#2602](https://github.com/chef/supermarket/pull/2602) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.37 -->
-- Allow multiple hostname [#2733](https://github.com/chef/supermarket/pull/2733) ([pratixha](https://github.com/pratixha)) <!-- 5.1.36 -->
-- Fixed security vulnerabilities [#2691](https://github.com/chef/supermarket/pull/2691) ([pratixha](https://github.com/pratixha)) <!-- 5.1.35 -->
-- Make cookstyle a runtime dep for Fieri [#2585](https://github.com/chef/supermarket/pull/2585) ([tas50](https://github.com/tas50)) <!-- 5.1.34 -->
-- Remove hugo and go version from Netlify config [#2747](https://github.com/chef/supermarket/pull/2747) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.33 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [5.1.44](https://github.com/chef/supermarket/tree/5.1.44) (2022-06-24)
+
+#### Merged Pull Requests
+- Remove hugo and go version from Netlify config [#2747](https://github.com/chef/supermarket/pull/2747) ([IanMadd](https://github.com/IanMadd))
+- Make cookstyle a runtime dep for Fieri [#2585](https://github.com/chef/supermarket/pull/2585) ([tas50](https://github.com/tas50))
+- Fixed security vulnerabilities [#2691](https://github.com/chef/supermarket/pull/2691) ([pratixha](https://github.com/pratixha))
+- Allow multiple hostname [#2733](https://github.com/chef/supermarket/pull/2733) ([pratixha](https://github.com/pratixha))
+- ROR Upgrade - Ruby 3 / Rails 7 [#2602](https://github.com/chef/supermarket/pull/2602) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Combined dependency update [#2767](https://github.com/chef/supermarket/pull/2767) ([dheerajd-msys](https://github.com/dheerajd-msys))
+- Upgraded dependencies: omnibus-software, yard, honeycomb-beeline, berkshelf, octokit [#2772](https://github.com/chef/supermarket/pull/2772) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Upgrade dependencies: omnibus-software, sidekiq-cron, sidekiq, octokit, ddtrace [#2782](https://github.com/chef/supermarket/pull/2782) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Revert &quot;Bump ddtrace from 1.0.0 to 1.1.0 in /src/supermarket&quot; [#2796](https://github.com/chef/supermarket/pull/2796) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- PG restore command fixed in the docs [#2783](https://github.com/chef/supermarket/pull/2783) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Upgraded sidekiq-cron, test-kitchen, rubocop-rails, kitchen-vagrant, sqlite3, octokit, omnibus-software, sidekiq, omniauth-oauth2 [#2802](https://github.com/chef/supermarket/pull/2802) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Bump pg from 1.3.5 to 1.4.0 in /src/supermarket [#2800](https://github.com/chef/supermarket/pull/2800) ([dependabot[bot]](https://github.com/dependabot[bot]))
+<!-- latest_stable_release -->
+
 ## [5.1.32](https://github.com/chef/supermarket/tree/5.1.32) (2022-05-20)
 
 #### Merged Pull Requests
 - Combined dependabot PRs [#2740](https://github.com/chef/supermarket/pull/2740) ([pratixha](https://github.com/pratixha))
 - Fix CSP for allowing google-analytics script [#2746](https://github.com/chef/supermarket/pull/2746) ([RajeshPaul38](https://github.com/RajeshPaul38))
-<!-- latest_stable_release -->
 
 ## [5.1.30](https://github.com/chef/supermarket/tree/5.1.30) (2022-05-17)
 
