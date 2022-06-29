@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 5.1.45 -->
+## [5.1.45](https://github.com/chef/supermarket/tree/5.1.45) (2022-06-29)
+
+#### Merged Pull Requests
+- Upgrade : omnibus-software, pg, rubocop-rails [#2808](https://github.com/chef/supermarket/pull/2808) ([dheerajd-msys](https://github.com/dheerajd-msys))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.1.44 -->
+### Changes not yet released to stable
+
+#### Merged Pull Requests
+- Upgrade : omnibus-software, pg, rubocop-rails [#2808](https://github.com/chef/supermarket/pull/2808) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.45 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
