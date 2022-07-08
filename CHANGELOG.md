@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.47 -->
-## [5.1.47](https://github.com/chef/supermarket/tree/5.1.47) (2022-07-01)
+<!-- latest_release 5.1.48 -->
+## [5.1.48](https://github.com/chef/supermarket/tree/5.1.48) (2022-07-08)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `2bda5ed` to `a8ffc89` in /omnibus [#2810](https://github.com/chef/supermarket/pull/2810) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Upgrade : octokit, test-kitchen, omnibus-software [#2817](https://github.com/chef/supermarket/pull/2817) ([dheerajd-msys](https://github.com/dheerajd-msys))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.44 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Upgrade : octokit, test-kitchen, omnibus-software [#2817](https://github.com/chef/supermarket/pull/2817) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.48 -->
 - Bump omnibus-software from `2bda5ed` to `a8ffc89` in /omnibus [#2810](https://github.com/chef/supermarket/pull/2810) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.47 -->
 - Bump sidekiq from 6.5.0 to 6.5.1 in /src/supermarket/engines/fieri [#2797](https://github.com/chef/supermarket/pull/2797) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.46 -->
 - Upgrade : omnibus-software, pg, rubocop-rails [#2808](https://github.com/chef/supermarket/pull/2808) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.45 -->
