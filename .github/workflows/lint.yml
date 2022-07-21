@@ -19,7 +19,7 @@ jobs:
       with:
         working-directory: src/supermarket
         ruby-version: 3.0.3
-        bundler-cache: false
+        bundler-cache: true
     - uses: r7kamura/rubocop-problem-matchers-action@v1 # this shows the failures in the PR
     - name: run chefstyle
       run: bundle exec chefstyle
@@ -32,7 +32,7 @@ jobs:
       with:
         working-directory: src/supermarket/engines/fieri
         ruby-version: 3.0.3
-        bundler-cache: false
+        bundler-cache: true
     - uses: r7kamura/rubocop-problem-matchers-action@v1 # this shows the failures in the PR
     - name: run chefstyle
       run: bundle exec chefstyle --ignore-parent-exclusion
