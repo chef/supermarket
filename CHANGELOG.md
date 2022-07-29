@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.49 -->
-## [5.1.49](https://github.com/chef/supermarket/tree/5.1.49) (2022-07-13)
+<!-- latest_release 5.1.50 -->
+## [5.1.50](https://github.com/chef/supermarket/tree/5.1.50) (2022-07-29)
 
 #### Merged Pull Requests
-- Bundled Dependent bot PRs - SidekiqCron, Rails HTML sanitizer * 2, rubocop Rails* 2, Omnibus Software [#2824](https://github.com/chef/supermarket/pull/2824) ([ayush-billore](https://github.com/ayush-billore))
+- Upgrade : activerecord, omnibus-software, nokogiri, rails [#2832](https://github.com/chef/supermarket/pull/2832) ([dheerajd-msys](https://github.com/dheerajd-msys))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.44 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Upgrade : activerecord, omnibus-software, nokogiri, rails [#2832](https://github.com/chef/supermarket/pull/2832) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.50 -->
 - Bundled Dependent bot PRs - SidekiqCron, Rails HTML sanitizer * 2, rubocop Rails* 2, Omnibus Software [#2824](https://github.com/chef/supermarket/pull/2824) ([ayush-billore](https://github.com/ayush-billore)) <!-- 5.1.49 -->
 - Upgrade : octokit, test-kitchen, omnibus-software [#2817](https://github.com/chef/supermarket/pull/2817) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.48 -->
 - Bump omnibus-software from `2bda5ed` to `a8ffc89` in /omnibus [#2810](https://github.com/chef/supermarket/pull/2810) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.47 -->
