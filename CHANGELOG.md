@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.52 -->
-## [5.1.52](https://github.com/chef/supermarket/tree/5.1.52) (2022-10-11)
+<!-- latest_release 5.1.53 -->
+## [5.1.53](https://github.com/chef/supermarket/tree/5.1.53) (2022-10-20)
 
 #### Merged Pull Requests
-- Gem upgrade for: omnibus, omnibus-software, sitemap_generator, pg, webmock, brakeman, webmock, sidekiq, test-kitchen, nokogiri [#2871](https://github.com/chef/supermarket/pull/2871) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Remove insecure urls [#2897](https://github.com/chef/supermarket/pull/2897) ([dheerajd-msys](https://github.com/dheerajd-msys))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.44 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Remove insecure urls [#2897](https://github.com/chef/supermarket/pull/2897) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.53 -->
 - Gem upgrade for: omnibus, omnibus-software, sitemap_generator, pg, webmock, brakeman, webmock, sidekiq, test-kitchen, nokogiri [#2871](https://github.com/chef/supermarket/pull/2871) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.52 -->
 - Gem upgrade: webmock, omnibus-software, faker, dotenv, dotenv-rails, pg, sidekiq-cron, kitchen-vagrant [#2849](https://github.com/chef/supermarket/pull/2849) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.51 -->
 - Upgrade : activerecord, omnibus-software, nokogiri, rails [#2832](https://github.com/chef/supermarket/pull/2832) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.50 -->
