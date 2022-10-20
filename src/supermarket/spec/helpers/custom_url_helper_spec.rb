@@ -116,6 +116,11 @@ describe CustomUrlHelper do
 
   it "should have a chef status url that uses the default domain" do
     expect(ENV["CHEF_STATUS_URL"]).to be_nil
-    expect(helper.chef_status_url).to eql("http://status.chef.io")
+    expect(helper.chef_status_url).to eql("https://status.chef.io")
+  end
+
+  it "should have a chef community slack url that uses the default domain" do
+    expect(ENV["CHEF_COMMUNITY_SLACK_URL"]).to be_nil
+    expect(helper.community_slack_url).to eql("https://community.chef.io/slack")
   end
 end

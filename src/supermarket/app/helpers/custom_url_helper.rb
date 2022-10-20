@@ -72,7 +72,11 @@ module CustomUrlHelper
   end
 
   def chef_status_url
-    ENV["CHEF_STATUS_URL"] || "http://status.#{chef_domain}"
+    ENV["CHEF_STATUS_URL"] || "https://status.#{chef_domain}"
+  end
+
+  def community_slack_url
+    ENV["CHEF_COMMUNITY_SLACK_URL"] || "https://community.#{chef_domain}/slack"
   end
 
   private
