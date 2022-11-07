@@ -46,7 +46,7 @@ gem "unicorn"
 gem "unicorn-rails"
 gem "utf8-cleaner"
 gem "validate_url"
-gem "dry-struct", "~>1.4"
+gem "dry-struct", "~>1.6"
 gem "yajl-ruby"
 gem "tzinfo-data", "~> 1.2022"
 
