@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 7e22da8ba819a3d621f60a4aa1f273c1f59a4972
+  revision: ca097df718e97bf5db88e6a38a94df0c1d10c4d2
   branch: main
   specs:
     omnibus-software (4.0.0)
@@ -8,10 +8,10 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: ec194420d4fff6edf108a17913f8ff85f8c91a4c
+  revision: 5bc091ab3ed4ab002ef85dad3923914c25bb3dcd
   branch: main
   specs:
-    omnibus (9.0.5)
+    omnibus (9.0.8)
       aws-sdk-s3 (~> 1)
       chef-cleanroom (~> 1.0)
       chef-utils (>= 15.4)
@@ -29,14 +29,14 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.8.0)
-      public_suffix (>= 2.0.2, < 5.0)
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
     artifactory (3.0.15)
     ast (2.4.2)
     awesome_print (1.9.2)
     aws-eventstream (1.2.0)
-    aws-partitions (1.619.0)
-    aws-sdk-core (3.132.0)
+    aws-partitions (1.645.0)
+    aws-sdk-core (3.160.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.525.0)
       aws-sigv4 (~> 1.1)
@@ -51,7 +51,7 @@ GEM
     aws-sdk-secretsmanager (1.62.0)
       aws-sdk-core (~> 3, >= 3.127.0)
       aws-sigv4 (~> 1.1)
-    aws-sigv4 (1.5.1)
+    aws-sigv4 (1.5.2)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt_pbkdf (1.1.0)
     berkshelf (8.0.2)
@@ -286,7 +286,7 @@ GEM
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    public_suffix (4.0.7)
+    public_suffix (5.0.0)
     rack (2.2.3.1)
     rainbow (3.1.1)
     regexp_parser (2.2.1)
