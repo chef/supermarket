@@ -210,7 +210,7 @@ GEM
     ipaddress (0.8.3)
     jmespath (1.6.1)
     json (2.6.2)
-    kitchen-vagrant (1.12.1)
+    kitchen-vagrant (1.13.0)
       test-kitchen (>= 1.4, < 4)
     libyajl2 (2.1.0)
     license-acceptance (2.1.13)
@@ -234,7 +234,7 @@ GEM
     mixlib-cli (2.1.8)
     mixlib-config (3.0.27)
       tomlrb
-    mixlib-install (3.12.19)
+    mixlib-install (3.12.24)
       mixlib-shellout
       mixlib-versioning
       thor
@@ -384,7 +384,7 @@ GEM
       pastel (~> 0.8)
       strings (~> 0.2.0)
       tty-screen (~> 0.8)
-    unicode-display_width (2.2.0)
+    unicode-display_width (2.3.0)
     unicode_utils (1.4.0)
     uuidtools (2.2.0)
     vault (0.17.0)
