@@ -13,7 +13,7 @@ jobs:
   cookstyle:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: ruby/setup-ruby@v1
       with:
         working-directory: omnibus
@@ -26,7 +26,7 @@ jobs:
   chefspec:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: ruby/setup-ruby@v1
       with:
         # once we move the -ctl command to its own gemspec this can be changed back to omnibus like above

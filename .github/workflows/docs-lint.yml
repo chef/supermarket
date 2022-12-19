@@ -20,7 +20,7 @@ jobs:
   cspell-action:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
       - uses: carlosperate/download-file-action@v1.0.3
@@ -49,7 +49,7 @@ jobs:
   markdownlint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
       - uses: DavidAnson/markdownlint-cli2-action@v4
