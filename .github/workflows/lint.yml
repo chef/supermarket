@@ -8,13 +8,13 @@ name: lint
       - main
     paths-ignore:
       - 'docs-chef-io'
-    
+
 
 jobs:
   chefstyle-supermarket:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: ruby/setup-ruby@v1
       with:
         working-directory: src/supermarket
@@ -27,7 +27,7 @@ jobs:
   chefstyle-fieri:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: ruby/setup-ruby@v1
       with:
         working-directory: src/supermarket/engines/fieri
