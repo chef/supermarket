@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="9px" height="9px" viewBox="0 0 9 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>platform_rocky</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="platform_rocky" fill="#000000" fill-rule="nonzero">
+            <path d="M8.74958203,5.98394531 C8.91182812,5.51932031 9,5.01996094 9,4.5 C9,2.01472031 6.98526563,0 4.5,0 C2.01472031,0 0,2.01472031 0,4.5 C0,5.72973047 0.493266797,6.84425391 1.29273047,7.65650391 L5.85741797,3.09179883 L8.74958203,5.98394531 Z" id="Path"></path>
+            <path d="M7.92759375,7.41589453 L5.85741797,5.34571875 L2.61552305,8.58761719 C3.18875977,8.85230859 3.82714453,9 4.5,9 C5.87288672,9 7.10219531,8.3851875 7.92759375,7.41589453 Z" id="Path"></path>
+        </g>
+    </g>
+</svg>
