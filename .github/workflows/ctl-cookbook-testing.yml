@@ -18,7 +18,7 @@ jobs:
       with:
         working-directory: omnibus
         ruby-version: 3.0.3
-        bundler-cache: true
+        bundler-cache: false
     - uses: r7kamura/rubocop-problem-matchers-action@v1 # this shows the failures in the PR
     - name: run cookstyle
       run: bundle exec cookstyle cookbooks
@@ -32,7 +32,7 @@ jobs:
         # once we move the -ctl command to its own gemspec this can be changed back to omnibus like above
         working-directory: omnibus/cookbooks/omnibus-supermarket
         ruby-version: 3.0.3
-        bundler-cache: true
+        bundler-cache: false
     - uses: r7kamura/rubocop-problem-matchers-action@v1 # this shows the failures in the PR
     - name: run chefspec
       run: bundle exec rspec
