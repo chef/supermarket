@@ -54,7 +54,7 @@ gem "listen"
 gem "cookstyle", "~> 7.32.1"
 gem "kt-paperclip"
 gem "net-smtp", require: false
-gem 'phantomjs', :require => 'phantomjs/poltergeist'
+gem "phantomjs", :require => "phantomjs/poltergeist"
 
 group :asset do
   gem "uglifier"
