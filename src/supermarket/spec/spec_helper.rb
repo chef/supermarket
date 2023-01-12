@@ -10,6 +10,7 @@ require "capybara/poltergeist"
 require "capybara-screenshot/rspec"
 require "factory_bot_rails"
 require "simplecov"
+require "phantomjs"
 SimpleCov.start
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -34,6 +35,7 @@ Capybara.register_driver :poltergeist do |app|
     app,
     phantomjs_logger: error_logger,
     timeout: 90,
+    phantomjs: Phantomjs.path,
     # set to a width larger than the medium range defined in variables.scss
     # so that tests the navmenu appears at the top of the window, otherwise
     # capybara will complain about
