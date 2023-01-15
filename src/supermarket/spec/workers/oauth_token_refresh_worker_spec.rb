@@ -46,7 +46,7 @@ describe OauthTokenRefreshWorker do
 
     worker = OauthTokenRefreshWorker.new
 
-    VCR.use_cassette("oauth_token_refresh_with_good_token", record: :once) do
+    VCR.use_cassette("oauth_token_refresh_with_good_token", record: :new_episodes) do
       worker.perform(account.id)
     end
 
@@ -68,7 +68,7 @@ describe OauthTokenRefreshWorker do
     worker = OauthTokenRefreshWorker.new
 
     expect do
-      VCR.use_cassette("oauth_token_refresh_with_bad_token", record: :once) do
+      VCR.use_cassette("oauth_token_refresh_with_bad_token", record: :new_episodes) do
         worker.perform(account.id)
       end
     end.to_not raise_error
