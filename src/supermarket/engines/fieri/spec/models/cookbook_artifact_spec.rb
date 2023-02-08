@@ -49,7 +49,7 @@ describe CookbookArtifact do
       it "returns an empty string" do
         binary_files = artifact.binaries
 
-        expect(binary_files).to eq("apache2/metadata.json")
+        expect(binary_files).to eq("")
       end
     end
 

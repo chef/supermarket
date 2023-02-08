@@ -33,8 +33,8 @@ describe NoBinariesWorker do
     subject.perform(valid_params)
 
     assert_requested(:post, test_evaluation_endpoint) do |req|
-      expect(req.body).to include("no_binaries_feedback=Failure")
-      expect(req.body).to include("no_binaries_failure=true")
+      expect(req.body).to include("no_binaries_feedback=passed")
+      expect(req.body).to include("no_binaries_failure=false")
     end
   end
 
