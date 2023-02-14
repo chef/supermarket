@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.56 -->
-## [5.1.56](https://github.com/chef/supermarket/tree/5.1.56) (2023-02-10)
+<!-- latest_release 5.1.57 -->
+## [5.1.57](https://github.com/chef/supermarket/tree/5.1.57) (2023-02-14)
 
 #### Merged Pull Requests
-- update ruby with nokogiri [#3009](https://github.com/chef/supermarket/pull/3009) ([dheerajd-msys](https://github.com/dheerajd-msys))
+- Upgrade: globalid,rails-html-sanitizer,kitchen-vagrant,engine.io &amp; socket.io  [#3028](https://github.com/chef/supermarket/pull/3028) ([dheerajd-msys](https://github.com/dheerajd-msys))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.44 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Upgrade: globalid,rails-html-sanitizer,kitchen-vagrant,engine.io &amp; socket.io  [#3028](https://github.com/chef/supermarket/pull/3028) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.57 -->
 - update ruby with nokogiri [#3009](https://github.com/chef/supermarket/pull/3009) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.56 -->
 - Bump lodash from 2.4.2 to 4.17.21 in /src/supermarket [#2905](https://github.com/chef/supermarket/pull/2905) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.55 -->
 - Upgrade gems: omnibus-software, tzinfo-data, sqlite3, rspec-rails, net-smtp, shoulda-matchers, rails, lodash, omnibus, sidekiq, webmock [#2915](https://github.com/chef/supermarket/pull/2915) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.54 -->
