@@ -107,7 +107,8 @@ class CookbookArtifact
     # need to check for application/xml explicitly because only versions of
     # libmagic < 5.26 are available on Ubuntu 14.04 and 16.04 which are our
     # CI (Travis and Automate) node platforms
-    Utils::FileFormat.get_mime_type(file_path: filepath) !~ %r{^(text\/|inode\/x-empty|application\/xml)}
+    # For ubuntu 22.04 we need to include 'application\/json' to match the json file
+    Utils::FileFormat.get_mime_type(file_path: filepath) !~ %r{^(text\/|inode\/x-empty|application\/xml|application\/json)}
   end
 
   def too_big?(filepath)
