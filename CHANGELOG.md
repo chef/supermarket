@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.57 -->
-## [5.1.57](https://github.com/chef/supermarket/tree/5.1.57) (2023-02-14)
+<!-- latest_release 5.1.58 -->
+## [5.1.58](https://github.com/chef/supermarket/tree/5.1.58) (2023-02-15)
 
 #### Merged Pull Requests
-- Upgrade: globalid,rails-html-sanitizer,kitchen-vagrant,engine.io &amp; socket.io  [#3028](https://github.com/chef/supermarket/pull/3028) ([dheerajd-msys](https://github.com/dheerajd-msys))
+- Upgrade : omnibus-software,nokogiri,faker,omnibus,ua-parser-js,rack,test-kitchen,tzinfo-data [#3032](https://github.com/chef/supermarket/pull/3032) ([dheerajd-msys](https://github.com/dheerajd-msys))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.44 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Upgrade : omnibus-software,nokogiri,faker,omnibus,ua-parser-js,rack,test-kitchen,tzinfo-data [#3032](https://github.com/chef/supermarket/pull/3032) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.58 -->
 - Upgrade: globalid,rails-html-sanitizer,kitchen-vagrant,engine.io &amp; socket.io  [#3028](https://github.com/chef/supermarket/pull/3028) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.57 -->
 - update ruby with nokogiri [#3009](https://github.com/chef/supermarket/pull/3009) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.56 -->
 - Bump lodash from 2.4.2 to 4.17.21 in /src/supermarket [#2905](https://github.com/chef/supermarket/pull/2905) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.55 -->
