@@ -1,33 +1,31 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.58 -->
-## [5.1.58](https://github.com/chef/supermarket/tree/5.1.58) (2023-02-15)
-
-#### Merged Pull Requests
-- Upgrade : omnibus-software,nokogiri,faker,omnibus,ua-parser-js,rack,test-kitchen,tzinfo-data [#3032](https://github.com/chef/supermarket/pull/3032) ([dheerajd-msys](https://github.com/dheerajd-msys))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.1.44 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Upgrade : omnibus-software,nokogiri,faker,omnibus,ua-parser-js,rack,test-kitchen,tzinfo-data [#3032](https://github.com/chef/supermarket/pull/3032) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.58 -->
-- Upgrade: globalid,rails-html-sanitizer,kitchen-vagrant,engine.io &amp; socket.io  [#3028](https://github.com/chef/supermarket/pull/3028) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.57 -->
-- update ruby with nokogiri [#3009](https://github.com/chef/supermarket/pull/3009) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.56 -->
-- Bump lodash from 2.4.2 to 4.17.21 in /src/supermarket [#2905](https://github.com/chef/supermarket/pull/2905) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.55 -->
-- Upgrade gems: omnibus-software, tzinfo-data, sqlite3, rspec-rails, net-smtp, shoulda-matchers, rails, lodash, omnibus, sidekiq, webmock [#2915](https://github.com/chef/supermarket/pull/2915) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.54 -->
-- Remove insecure urls [#2897](https://github.com/chef/supermarket/pull/2897) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.53 -->
-- Gem upgrade for: omnibus, omnibus-software, sitemap_generator, pg, webmock, brakeman, webmock, sidekiq, test-kitchen, nokogiri [#2871](https://github.com/chef/supermarket/pull/2871) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.52 -->
-- Gem upgrade: webmock, omnibus-software, faker, dotenv, dotenv-rails, pg, sidekiq-cron, kitchen-vagrant [#2849](https://github.com/chef/supermarket/pull/2849) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.51 -->
-- Upgrade : activerecord, omnibus-software, nokogiri, rails [#2832](https://github.com/chef/supermarket/pull/2832) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.50 -->
-- Bundled Dependent bot PRs - SidekiqCron, Rails HTML sanitizer * 2, rubocop Rails* 2, Omnibus Software [#2824](https://github.com/chef/supermarket/pull/2824) ([ayush-billore](https://github.com/ayush-billore)) <!-- 5.1.49 -->
-- Upgrade : octokit, test-kitchen, omnibus-software [#2817](https://github.com/chef/supermarket/pull/2817) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.48 -->
-- Bump omnibus-software from `2bda5ed` to `a8ffc89` in /omnibus [#2810](https://github.com/chef/supermarket/pull/2810) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.47 -->
-- Bump sidekiq from 6.5.0 to 6.5.1 in /src/supermarket/engines/fieri [#2797](https://github.com/chef/supermarket/pull/2797) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 5.1.46 -->
-- Upgrade : omnibus-software, pg, rubocop-rails [#2808](https://github.com/chef/supermarket/pull/2808) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.45 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [5.1.58](https://github.com/chef/supermarket/tree/5.1.58) (2023-02-15)
+
+#### Merged Pull Requests
+- Upgrade : omnibus-software, pg, rubocop-rails [#2808](https://github.com/chef/supermarket/pull/2808) ([dheerajd-msys](https://github.com/dheerajd-msys))
+- Bump sidekiq from 6.5.0 to 6.5.1 in /src/supermarket/engines/fieri [#2797](https://github.com/chef/supermarket/pull/2797) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump omnibus-software from `2bda5ed` to `a8ffc89` in /omnibus [#2810](https://github.com/chef/supermarket/pull/2810) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Upgrade : octokit, test-kitchen, omnibus-software [#2817](https://github.com/chef/supermarket/pull/2817) ([dheerajd-msys](https://github.com/dheerajd-msys))
+- Bundled Dependent bot PRs - SidekiqCron, Rails HTML sanitizer * 2, rubocop Rails* 2, Omnibus Software [#2824](https://github.com/chef/supermarket/pull/2824) ([ayush-billore](https://github.com/ayush-billore))
+- Upgrade : activerecord, omnibus-software, nokogiri, rails [#2832](https://github.com/chef/supermarket/pull/2832) ([dheerajd-msys](https://github.com/dheerajd-msys))
+- Gem upgrade: webmock, omnibus-software, faker, dotenv, dotenv-rails, pg, sidekiq-cron, kitchen-vagrant [#2849](https://github.com/chef/supermarket/pull/2849) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Gem upgrade for: omnibus, omnibus-software, sitemap_generator, pg, webmock, brakeman, webmock, sidekiq, test-kitchen, nokogiri [#2871](https://github.com/chef/supermarket/pull/2871) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Remove insecure urls [#2897](https://github.com/chef/supermarket/pull/2897) ([dheerajd-msys](https://github.com/dheerajd-msys))
+- Upgrade gems: omnibus-software, tzinfo-data, sqlite3, rspec-rails, net-smtp, shoulda-matchers, rails, lodash, omnibus, sidekiq, webmock [#2915](https://github.com/chef/supermarket/pull/2915) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Bump lodash from 2.4.2 to 4.17.21 in /src/supermarket [#2905](https://github.com/chef/supermarket/pull/2905) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- update ruby with nokogiri [#3009](https://github.com/chef/supermarket/pull/3009) ([dheerajd-msys](https://github.com/dheerajd-msys))
+- Upgrade: globalid,rails-html-sanitizer,kitchen-vagrant,engine.io &amp; socket.io  [#3028](https://github.com/chef/supermarket/pull/3028) ([dheerajd-msys](https://github.com/dheerajd-msys))
+- Upgrade : omnibus-software,nokogiri,faker,omnibus,ua-parser-js,rack,test-kitchen,tzinfo-data [#3032](https://github.com/chef/supermarket/pull/3032) ([dheerajd-msys](https://github.com/dheerajd-msys))
+<!-- latest_stable_release -->
+
 ## [5.1.44](https://github.com/chef/supermarket/tree/5.1.44) (2022-06-24)
 
 #### Merged Pull Requests
@@ -43,7 +41,6 @@
 - PG restore command fixed in the docs [#2783](https://github.com/chef/supermarket/pull/2783) ([RajeshPaul38](https://github.com/RajeshPaul38))
 - Upgraded sidekiq-cron, test-kitchen, rubocop-rails, kitchen-vagrant, sqlite3, octokit, omnibus-software, sidekiq, omniauth-oauth2 [#2802](https://github.com/chef/supermarket/pull/2802) ([RajeshPaul38](https://github.com/RajeshPaul38))
 - Bump pg from 1.3.5 to 1.4.0 in /src/supermarket [#2800](https://github.com/chef/supermarket/pull/2800) ([dependabot[bot]](https://github.com/dependabot[bot]))
-<!-- latest_stable_release -->
 
 ## [5.1.32](https://github.com/chef/supermarket/tree/5.1.32) (2022-05-20)
 
