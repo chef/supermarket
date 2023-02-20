@@ -8,10 +8,10 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 72753d73f0984ba8fc32964072cfba9a7b6f495f
+  revision: 0afb2fb03e0cfec11faa92cede4b67979e0c0c4c
   branch: main
   specs:
-    omnibus (9.0.15)
+    omnibus (9.0.17)
       aws-sdk-s3 (~> 1.116.0)
       chef-cleanroom (~> 1.0)
       chef-utils (>= 15.4)
@@ -35,7 +35,7 @@ GEM
     ast (2.4.2)
     awesome_print (1.9.2)
     aws-eventstream (1.2.0)
-    aws-partitions (1.711.0)
+    aws-partitions (1.714.0)
     aws-sdk-core (3.170.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.651.0)
@@ -44,8 +44,8 @@ GEM
     aws-sdk-kms (1.62.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.119.1)
-      aws-sdk-core (~> 3, >= 3.165.0)
+    aws-sdk-s3 (1.116.0)
+      aws-sdk-core (~> 3, >= 3.127.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.4)
     aws-sdk-secretsmanager (1.62.0)
@@ -54,7 +54,7 @@ GEM
     aws-sigv4 (1.5.2)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt_pbkdf (1.1.0)
-    berkshelf (8.0.2)
+    berkshelf (8.0.5)
       chef (>= 15.7.32)
       chef-config
       cleanroom (~> 1.0)
@@ -206,7 +206,7 @@ GEM
       train-core (~> 3.0)
       tty-prompt (~> 0.17)
       tty-table (~> 0.10)
-    iostruct (0.0.4)
+    iostruct (0.0.5)
     ipaddress (0.8.3)
     jmespath (1.6.2)
     json (2.6.3)
@@ -245,8 +245,8 @@ GEM
     molinillo (0.8.0)
     multi_json (1.15.0)
     multipart-post (2.3.0)
-    net-scp (3.0.0)
-      net-ssh (>= 2.6.5, < 7.0.0)
+    net-scp (4.0.0)
+      net-ssh (>= 2.6.5, < 8.0.0)
     net-sftp (3.0.0)
       net-ssh (>= 5.0.0, < 7.0.0)
     net-ssh (6.1.0)
