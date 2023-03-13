@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.59 -->
-## [5.1.59](https://github.com/chef/supermarket/tree/5.1.59) (2023-03-08)
+<!-- latest_release 5.1.60 -->
+## [5.1.60](https://github.com/chef/supermarket/tree/5.1.60) (2023-03-13)
 
 #### Merged Pull Requests
-- Upgrade : omnibus-software,sqlite3,kitchen-vagrant,omnibus,capybara,omniauth,pundit,activerecord,rack,pry,dry-struct,net-snmp [#3050](https://github.com/chef/supermarket/pull/3050) ([dheerajd-msys](https://github.com/dheerajd-msys))
+- Upgrade : brakeman,aws-sdk-s3,spring,shoulda-matchers,pry-byebug,rspec-rails,rack [#3057](https://github.com/chef/supermarket/pull/3057) ([dheerajd-msys](https://github.com/dheerajd-msys))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.58 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Upgrade : brakeman,aws-sdk-s3,spring,shoulda-matchers,pry-byebug,rspec-rails,rack [#3057](https://github.com/chef/supermarket/pull/3057) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.60 -->
 - Upgrade : omnibus-software,sqlite3,kitchen-vagrant,omnibus,capybara,omniauth,pundit,activerecord,rack,pry,dry-struct,net-snmp [#3050](https://github.com/chef/supermarket/pull/3050) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.59 -->
 <!-- release_rollup -->
 
