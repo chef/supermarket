@@ -12,6 +12,7 @@ module SupportedPlatformsHelper
   def supported_platform_icon(platform)
     {
       "aix" => "aix",
+      "almalinux" => "almalinux",
       "amazon" => "aws",
       "centos" => "centos",
       "debian" => "debian",
@@ -24,6 +25,7 @@ module SupportedPlatformsHelper
       "opensuse" => "suse",
       "opensuseleap" => "suse",
       "redhat" => "redhat",
+      "rocky" => "rocky",
       "scientific" => "scientific",
       "smartos" => "smartos",
       "suse" => "suse",
