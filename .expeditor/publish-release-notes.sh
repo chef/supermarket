@@ -25,7 +25,7 @@ EOH
   # Push changes back up to GitHub
   git add .
   git commit -m "Release Notes for promoted build $EXPEDITOR_VERSION"
-  git push origin main
+  git push origin master
 popd
 
 rm -rf supermarket.wiki
