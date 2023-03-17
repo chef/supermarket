@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.62 -->
-## [5.1.62](https://github.com/chef/supermarket/tree/5.1.62) (2023-03-17)
+<!-- latest_release 5.1.63 -->
+## [5.1.63](https://github.com/chef/supermarket/tree/5.1.63) (2023-03-17)
 
 #### Merged Pull Requests
-- Updated the http links to https [#3078](https://github.com/chef/supermarket/pull/3078) ([saghoshprogress](https://github.com/saghoshprogress))
+- Updated the publish release file [#3080](https://github.com/chef/supermarket/pull/3080) ([saghoshprogress](https://github.com/saghoshprogress))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.58 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Updated the publish release file [#3080](https://github.com/chef/supermarket/pull/3080) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 5.1.63 -->
 - Updated the http links to https [#3078](https://github.com/chef/supermarket/pull/3078) ([saghoshprogress](https://github.com/saghoshprogress)) <!-- 5.1.62 -->
 - add almalinux and rocky linux logos [#3071](https://github.com/chef/supermarket/pull/3071) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.61 -->
 - Upgrade : brakeman,aws-sdk-s3,spring,shoulda-matchers,pry-byebug,rspec-rails,rack [#3057](https://github.com/chef/supermarket/pull/3057) ([dheerajd-msys](https://github.com/dheerajd-msys)) <!-- 5.1.60 -->
