@@ -22,7 +22,7 @@ For information on how to sign your commits with DCO, please see [DCO Sign Off M
 
 These resources will help you learn more about Chef and connect to other members of the Chef community:
 - [Chef](https://discourse.chef.io/) mailing list
-- [Chef community slack](http://community-slack.chef.io/)
+- [Chef community slack](https://community-slack.chef.io/)
 
 Also here are some additional pointers to some awesome Chef content:
 - [Chef Docs](https://docs.chef.io/)
