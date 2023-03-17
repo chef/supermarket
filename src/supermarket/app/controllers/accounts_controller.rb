@@ -26,7 +26,6 @@ class AccountsController < ApplicationController
   #
   def destroy
     current_user.accounts.find(params[:id]).destroy
-
     redirect_back notice: t("account.disconnected"), fallback_location: edit_profile_path
   end
 
