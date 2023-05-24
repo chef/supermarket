@@ -455,9 +455,9 @@ GEM
       net-protocol
     net-ssh (6.1.0)
     nio4r (2.5.8)
-    nokogiri (1.14.2-x86_64-darwin)
+    nokogiri (1.15.2-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.14.2-x86_64-linux)
+    nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
     nori (2.6.0)
     notiffany (0.1.3)
