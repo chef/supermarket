@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 225e3576c48fcd0155f6049cb032b2370eccf29a
+  revision: 79ec0e6ed4e5cb1186a9434cc9ed45c8916be962
   branch: main
   specs:
-    omnibus-software (23.2.286)
+    omnibus-software (23.6.291)
       omnibus (>= 9.0.0)
 
 GIT
@@ -29,20 +29,20 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.8.1)
+    addressable (2.8.4)
       public_suffix (>= 2.0.2, < 6.0)
     artifactory (3.0.15)
     ast (2.4.2)
     awesome_print (1.9.2)
     aws-eventstream (1.2.0)
-    aws-partitions (1.716.0)
-    aws-sdk-core (3.170.0)
+    aws-partitions (1.774.0)
+    aws-sdk-core (3.174.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.651.0)
       aws-sigv4 (~> 1.5)
       jmespath (~> 1, >= 1.6.1)
-    aws-sdk-kms (1.62.0)
-      aws-sdk-core (~> 3, >= 3.165.0)
+    aws-sdk-kms (1.65.0)
+      aws-sdk-core (~> 3, >= 3.174.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-s3 (1.116.0)
       aws-sdk-core (~> 3, >= 3.127.0)
@@ -140,7 +140,7 @@ GEM
     citrus (3.0.2)
     cleanroom (1.0.0)
     coderay (1.1.3)
-    concurrent-ruby (1.2.0)
+    concurrent-ruby (1.2.2)
     contracts (0.16.1)
     cookbook-omnifetch (0.11.1)
       mixlib-archive (>= 0.4, < 2.0)
@@ -218,7 +218,7 @@ GEM
       tomlrb (>= 1.2, < 3.0)
       tty-box (~> 0.6)
       tty-prompt (~> 0.20)
-    license_scout (1.3.4)
+    license_scout (1.3.6)
       ffi-yajl (~> 2.2)
       mixlib-shellout (>= 2.2, < 4.0)
       toml-rb (>= 1, < 3)
@@ -256,7 +256,7 @@ GEM
     octokit (4.25.0)
       faraday (>= 1, < 3)
       sawyer (~> 0.9)
-    ohai (17.9.0)
+    ohai (17.9.1)
       chef-config (>= 14.12, < 18)
       chef-utils (>= 16.0, < 18)
       ffi (~> 1.9)
@@ -275,7 +275,7 @@ GEM
     parslet (1.8.2)
     pastel (0.8.0)
       tty-color (~> 0.5)
-    pedump (0.6.5)
+    pedump (0.6.6)
       awesome_print
       iostruct (>= 0.0.4)
       multipart-post (>= 2.0.0)
@@ -319,7 +319,7 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.16.0)
       parser (>= 3.1.1.0)
-    ruby-progressbar (1.11.0)
+    ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyntlm (0.6.3)
     rubyzip (2.3.2)
@@ -351,7 +351,7 @@ GEM
       winrm (~> 2.0)
       winrm-elevated (~> 1.0)
       winrm-fs (~> 1.1)
-    thor (1.2.1)
+    thor (1.2.2)
     toml-rb (2.2.0)
       citrus (~> 3.0, > 3.0)
     tomlrb (1.3.0)
