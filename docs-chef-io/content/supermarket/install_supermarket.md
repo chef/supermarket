@@ -300,7 +300,7 @@ While there are many benefits to using the cookbook method to install Supermarke
 
 Before following these steps, be sure to complete the OAuth setup process detailed in the [Chef Identity](/install_supermarket/#chef-identity) section of this guide.
 
-1. [Download](https://www.chef.io/downloads/tools/supermarket) the correct package for your operating system from `chef.io/downloads`.
+1. Download the correct package of Chef Supermarket for your operating system from [Chef Downloads](https://www.chef.io/downloads).
 
 2. Install Supermarket using the appropriate package manager for your distribution:
 
@@ -411,7 +411,7 @@ Encrypted S3 buckets are currently not supported.
 1. Shut down the server running Private Supermarket.
 1. Backup the `/var/opt/supermarket` directory.
 
-1. Download the [Chef Supermarket](https://www.chef.io/downloads/tools/supermarket) package.
+1. Download the correct package of Chef Supermarket for your operating system from [Chef Downloads](https://www.chef.io/downloads).
 1. Upgrade your system with the new package using the appropriate package manager for your distribution:
 
     - For Ubuntu:
