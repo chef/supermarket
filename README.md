@@ -121,12 +121,11 @@ These instructions are tested and verified on macOS Catalina (10.15).
     bundle install
     ```
 
-    {{< note >}}
-    You might encounter the following errors. The possible fixes are also provided herewith.
+    **Note**: You might encounter the following errors. The possible fixes are also provided here.
      * Error installing gem: ***mimemagic***
      * Fix-> `brew install shared-mime-info`
      * If you get error installing **therubyracer** and **libv8** on macOS, follow the steps outlined in this link: [https://billykong.github.io/ruby/2020/03/17/fixing-libv8-in-osx-catalina.html](https://billykong.github.io/ruby/2020/03/17/fixing-libv8-in-osx-catalina.html)
-    {{< /note >}}
+    
 
 2. Create the database, migrate to it, and then seed the database:
 
@@ -141,9 +140,8 @@ These instructions are tested and verified on macOS Catalina (10.15).
     psql supermarket_development -c 'create extension pg_trgm'
     ```
 
-    {{< note >}}
-    Ignore if the above 2 commands displays error: extension already exists.
-    {{< /note >}}
+    **Note**: Ignore if the above 2 commands displays the following error: extension already exists.
+    
 
 4. Start the server:
 
@@ -151,9 +149,8 @@ These instructions are tested and verified on macOS Catalina (10.15).
     bundle exec foreman start
     ```
 
-    {{< note >}}
-    If you receive errors, ensure that *redis* and *Postgres* are running.
-    {{< /note >}}
+    **Note**: If you receive errors, ensure that *redis* and *Postgres* are running.
+    
 
 ## Setting up Auth
 
@@ -161,9 +158,7 @@ Supermarket uses *oc-id* running on a Chef Infra Server to authenticate users to
 
 IF YOU ARE AN INTERNAL CHEF STAFFER - We will be performing some settings prior to set you up with *oc-id*. Consult the internal wiki on setting up your Supermarket dev environment (or ask a friendly team member!).
 
-{{< note >}}
-Authentication currently requires a live Chef Infra Server running *oc-id*. We are working on a solution that would allow a developer to run the authentication locally. Stay tuned.
-{{< /note >}}
+**Note**: Authentication currently requires a live Chef Infra Server running *oc-id*. We are working on a solution that would allow a developer to run the authentication locally. Stay tuned.
 
 Create a new application and register it on *oc-id* (I called my application **Application:Supermarket Development**). Set the callback URL to <http://localhost:3000/auth/chef_oauth2/callback> or whatever localhost domain you use.
 
@@ -185,9 +180,7 @@ Restart your *foreman* server.
 
 Now, when you click **Sign In**, you will be taken to your supermarket account with your Chef account!
 
-{{< note >}}
-If you receive an omniauth csrf detected error, try clearing your browser's cache.
-{{< /note >}}
+**Note**: If you receive an omniauth csrf detected error, try clearing your browser's cache.
 
 ## SPDX license linking for cookbooks
 
