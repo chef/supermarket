@@ -15,7 +15,7 @@ aliases = ["/supermarket.html"]
     weight = 10
 +++
 
-{{% supermarket/supermarket_summary %}}
+{{< readfile file="content/supermarket/reusable/md/supermarket_summary.md" >}}
 
 ## Public Supermarket
 
@@ -27,4 +27,4 @@ To interact with the public Chef Supermarket, use [knife supermarket](/workstati
 
 ## Private Supermarket
 
-{{% supermarket/supermarket_private %}}
+{{< readfile file="content/supermarket/reusable/md/supermarket_private.md" >}}

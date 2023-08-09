@@ -12,8 +12,8 @@ aliases = ["/supermarket.html", "/supermarket_private/"]
     weight = 10
 +++
 
-{{% supermarket/supermarket_summary %}}
+{{< readfile file="content/supermarket/reusable/md/supermarket_summary.md" >}}
 
 ## Private Supermarket
 
-{{% supermarket/supermarket_private %}}
+{{< readfile file="content/supermarket/reusable/md/supermarket_private.md" >}}

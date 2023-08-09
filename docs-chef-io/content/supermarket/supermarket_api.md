@@ -14,10 +14,13 @@ aliases = ["/supermarket_api.html", "/supermarket_api/"]
 <!-- markdownlint-disable-file MD033 MD036-->
 
 {{< note >}}
-In general, using knife (and the `knife supermarket` subcommand) to manage cookbooks that are located on the Cookbooks site is more efficient than using the Supermarket API and is the recommended approach for managing cookbooks on that site. This document provides information about the Supermarket API in the event that using the API is necessary.
+
+In general, using knife (and the `knife supermarket` subcommand) to manage cookbooks that are located on the Cookbooks site is more efficient than using the Supermarket API and is the recommended approach for managing cookbooks on that site.
+This document provides information about the Supermarket API in the event that using the API is necessary.
+
 {{< /note >}}
 
-{{% supermarket/supermarket_api_summary %}}
+{{< readfile file="/content/supermarket/reusable/md/supermarket_api_summary.md" >}}
 
 ## Endpoints
 
