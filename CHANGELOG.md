@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.64 -->
-## [5.1.64](https://github.com/chef/supermarket/tree/5.1.64) (2023-07-07)
+<!-- latest_release 5.1.65 -->
+## [5.1.65](https://github.com/chef/supermarket/tree/5.1.65) (2023-08-09)
 
 #### Merged Pull Requests
-- CHEF-3473 Update download links [#3134](https://github.com/chef/supermarket/pull/3134) ([IanMadd](https://github.com/IanMadd))
+- CHEF-4515 reorganize reusable text files in docs [#3141](https://github.com/chef/supermarket/pull/3141) ([IanMadd](https://github.com/IanMadd))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.63 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- CHEF-4515 reorganize reusable text files in docs [#3141](https://github.com/chef/supermarket/pull/3141) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.65 -->
 - CHEF-3473 Update download links [#3134](https://github.com/chef/supermarket/pull/3134) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.64 -->
 <!-- release_rollup -->
 
