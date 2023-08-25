@@ -28,7 +28,7 @@ The Supermarket API has the following endpoints.
 
 ### /cookbooks
 
-{{% cookbooks_summary %}}
+{{< readfile file="content/reusable/md/cookbooks_summary.md" >}}
 
 The `/cookbooks` endpoint has the following methods: `GET` and `POST`.
 

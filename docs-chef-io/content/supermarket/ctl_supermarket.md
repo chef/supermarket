@@ -224,7 +224,7 @@ To revert the `uninstall` subcommand, run the `reconfigure` subcommand (because 
 
 ## Service Subcommands
 
-{{% chef-server/ctl_common_service_subcommands %}}
+{{< readfile file="content/server/reusable/md/ctl_common_service_subcommands.md" >}}
 
 ### hup
 
