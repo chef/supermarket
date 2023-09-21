@@ -80,17 +80,29 @@ To configure Chef Supermarket to use Chef Identity, do the following:
 
     The `uid` and `secret` values will be needed later on during the setup process for Chef Supermarket.
 
-    For Chef Infra Server version a new field `confidential` would added to this configuration:
+{{< note >}}
 
-    ```javascript
-    {
-      "name": "supermarket",
-      "uid": "0bad0f2eb04e935718e081fb71asdfec3681c81acb9968a8e1e32451d08b",
-      "secret": "17cf1141cc971a10ce307611beda7ffadstr4f1bc98d9f9ca76b9b127879",
-      "redirect_uri": "https://supermarket.mycompany.com/auth/chef_oauth2/callback",
-      "confidential": true
-    }
-    ```
+Private Supermarket users upgrading to Chef Infra Server version 15.8.0 or above, need to refresh their logins and re-authenticate Supermarket(see [link]).
+
+{{< /note >}}
+
+For Chef Infra Server version 15.8.0 and above a new field `confidential` with default value `true` would be added to this configuration:
+
+```javascript
+{
+    "name": "supermarket",
+    "uid": "<uid>",
+    "secret": "<secret>",
+    "redirect_uri": "https://supermarket.mycompany.com/auth/chef_oauth2/callback",
+    "confidential": true
+}
+```
+
+{{< note >}}
+
+The new `confidential` field will automatically be added to the configuration with Chef Infra Server 15.8.0 release. There will be no additional action required from the existing Private Supermarket users.
+
+{{< /note >}}
 
 {{< note >}}
 
