@@ -80,6 +80,18 @@ To configure Chef Supermarket to use Chef Identity, do the following:
 
     The `uid` and `secret` values will be needed later on during the setup process for Chef Supermarket.
 
+    For Chef Infra Server version a new field `confidential` would added to this configuration:
+
+    ```javascript
+    {
+      "name": "supermarket",
+      "uid": "0bad0f2eb04e935718e081fb71asdfec3681c81acb9968a8e1e32451d08b",
+      "secret": "17cf1141cc971a10ce307611beda7ffadstr4f1bc98d9f9ca76b9b127879",
+      "redirect_uri": "https://supermarket.mycompany.com/auth/chef_oauth2/callback",
+      "confidential": true
+    }
+    ```
+
 {{< note >}}
 
 Add as many Chef Identity applications to the `/etc/opscode/chef-server.rb` configuration file as necessary. A JSON file is generated for each application added, which contains the authentication tokens for that application. The secrets are added to the Chef Identity database and are available to all nodes in the Chef Infra Server front end group. The generated JSON files do not need to be copied anywhere.
