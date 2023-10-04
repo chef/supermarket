@@ -155,6 +155,10 @@ Each Private Supermarket installation is unique. The PostgreSQL upgrade steps ar
     sudo supermarket-ctl restart
     ```
 
+## Release Specific Upgrade: Chef Infra Server 15.8.x
+
+Private Supermarket users upgrading to Chef Infra Server version 15.8.0 or above must refresh their logins and re-authenticate Supermarket with Chef Identity.
+
 ## Troubleshooting
 
 ### Recovering from Database Cleanup Failures
