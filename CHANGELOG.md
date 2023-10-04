@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.68 -->
-## [5.1.68](https://github.com/chef/supermarket/tree/5.1.68) (2023-08-25)
+<!-- latest_release 5.1.69 -->
+## [5.1.69](https://github.com/chef/supermarket/tree/5.1.69) (2023-10-04)
 
 #### Merged Pull Requests
-- CHEF-4515 Cleanup one more [#3145](https://github.com/chef/supermarket/pull/3145) ([IanMadd](https://github.com/IanMadd))
+- Update doc for supermarket configuration with Chef Identity [#3161](https://github.com/chef/supermarket/pull/3161) ([RoyShravani](https://github.com/RoyShravani))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.63 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update doc for supermarket configuration with Chef Identity [#3161](https://github.com/chef/supermarket/pull/3161) ([RoyShravani](https://github.com/RoyShravani)) <!-- 5.1.69 -->
 - CHEF-4515 Cleanup one more [#3145](https://github.com/chef/supermarket/pull/3145) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.68 -->
 - CHEF-4515 Cleanup a couple more files [#3144](https://github.com/chef/supermarket/pull/3144) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.67 -->
 - Update README.md [#3137](https://github.com/chef/supermarket/pull/3137) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.66 -->
