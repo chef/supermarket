@@ -28,33 +28,6 @@
     })();
   <% end %>
 
-  <!-- GTag conditional -->
-  <%= javascript_tag nonce: content_security_policy_nonce do %>
-    var oneTrustHelper = (function () {
-      function evalGTagScript() {
-        var gtScript = document.getElementById("GTagScript");
-        gtScript.type = "text/javascript";
-        gtScript.classList.remove("optanon-category-2");
-        eval(gtScript.innerHTML);
-      };
-
-      return {
-        gtagFallback: function () {
-          console.warn('OneTrust not loaded.');
-          if (document.readyState !== 'loading') {
-            evalGTagScript();
-          } else {
-              document.addEventListener('readystatechange', function () {
-                if (document.readyState === 'interactive') {
-                    evalGTagScript();
-                }
-            });
-          };
-        }
-      };
-  })();
-  <% end %>
-
   <script async src="https://cdn.cookielaw.org/consent/e231efa5-3ed9-4b92-96bc-f4c0872ca486/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="e231efa5-3ed9-4b92-96bc-f4c0872ca486" onerror="oneTrustHelper.gtmFallback()"></script>
 
   <!-- Google Tag Manager -->
@@ -63,20 +36,9 @@
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WLLWWV53');
+    })(window,document,'script','dataLayer','<%= ENV['GOOGLE_ANALYTICS_ID'] %>');
   <% end %>  
   <!-- End Google Tag Manager -->
-
-
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ENV['GOOGLE_ANALYTICS_ID'] %>"></script>
-  <%= javascript_tag nonce: content_security_policy_nonce do %>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){window.dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '<%= ENV['GOOGLE_ANALYTICS_ID'] %>');
-  <% end %>
 <% end %>
 
 <% if ENV['SEGMENT_WRITE_KEY'] %>
