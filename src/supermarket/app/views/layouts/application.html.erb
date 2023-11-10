@@ -23,11 +23,12 @@
     <% end %>
   </head>
   <body class="<%= controller.controller_name %>">
-    <!-- Google Tag Manager (noscript) -->
-    <% if ENV['GTM_ID'] %>
+    <% if ENV['GTM_ID'] && air_gapped? %>
+      <!-- Google Tag Manager (noscript) -->
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= ENV['GTM_ID'] %>" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
     <% end %>
-    <!-- End Google Tag Manager (noscript) -->
+
     <div class="off-canvas-wrap">
       <div class="inner-wrap">
         <!-- Chef Property Menu -->
