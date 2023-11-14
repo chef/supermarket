@@ -1,33 +1,37 @@
-<!-- Google Tag Manager conditional -->
-<%= javascript_tag nonce: content_security_policy_nonce do %>
-  var oneTrustHelper = (function () {
-    function evalGTMScript() {
-      var gtmScript = document.getElementById("GTMScript");
-      gtmScript.type = "text/javascript";
-      gtmScript.classList.remove("optanon-category-1");
-      eval(gtmScript.innerHTML);
-    };
+<% if gtm_enabled? %>
+  <!-- Google Tag Manager conditional -->
+  <%= javascript_tag nonce: content_security_policy_nonce do %>
+    var oneTrustHelper = (function () {
+      function evalGTMScript() {
+        var gtmScript = document.getElementById("GTMScript");
+        gtmScript.type = "text/javascript";
+        gtmScript.classList.remove("optanon-category-1");
+        eval(gtmScript.innerHTML);
+      };
 
-    return {
-      gtmFallback: function () {
-        console.warn('OneTrust not loaded.');
-        if (document.readyState !== 'loading') {
-          evalGTMScript();
-        } else {
-          document.addEventListener('readystatechange', function () {
-            if (document.readyState === 'interactive') {
-              evalGTMScript();
-            }
-          });
-        };
-      }
-    };
-  })();
+      return {
+        gtmFallback: function () {
+          console.warn('OneTrust not loaded.');
+          if (document.readyState !== 'loading') {
+            evalGTMScript();
+          } else {
+            document.addEventListener('readystatechange', function () {
+              if (document.readyState === 'interactive') {
+                evalGTMScript();
+              }
+            });
+          };
+        }
+      };
+    })();
+  <% end %>
 <% end %>
 
-<script async src="https://cdn.cookielaw.org/consent/e231efa5-3ed9-4b92-96bc-f4c0872ca486/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="e231efa5-3ed9-4b92-96bc-f4c0872ca486" onerror="oneTrustHelper.gtmFallback()"></script>
+<% if onetrust_enabled? %>
+  <script async src="https://cdn.cookielaw.org/consent/e231efa5-3ed9-4b92-96bc-f4c0872ca486/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="e231efa5-3ed9-4b92-96bc-f4c0872ca486" onerror="oneTrustHelper.gtmFallback()"></script>
+<% end %>
 
-<% if ENV['GTM_ID'] %>
+<% if gtm_enabled? && ENV['GTM_ID'] %>
   <!-- Google Tag Manager -->
   <%= javascript_tag type: "text/plain", id: "GTMScript", class: "optanon-category-1" do %>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -35,36 +39,38 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','<%= ENV['GTM_ID'] %>');
-  <% end %>  
+  <% end %>
 <% end %>
 
-<!-- GTag conditional -->
-<%= javascript_tag nonce: content_security_policy_nonce do %>
-  var oneTrustHelper = (function () {
-    function evalGTagScript() {
-      var gtScript = document.getElementById("GTagScript");
-      gtScript.type = "text/javascript";
-      gtScript.classList.remove("optanon-category-2");
-      eval(gtScript.innerHTML);
-    };
-    return {
-      gtagFallback: function () {
-        console.warn('OneTrust not loaded.');
-        if (document.readyState !== 'loading') {
-          evalGTagScript();
-        } else {
-          document.addEventListener('readystatechange', function () {
-            if (document.readyState === 'interactive') {
-              evalGTagScript();
-            }
-          });
-        };
-      }
-    };
-  })();
+<% if gtag_enabled? %>
+  <!-- GTag conditional -->
+  <%= javascript_tag nonce: content_security_policy_nonce do %>
+    var oneTrustHelper = (function () {
+      function evalGTagScript() {
+        var gtScript = document.getElementById("GTagScript");
+        gtScript.type = "text/javascript";
+        gtScript.classList.remove("optanon-category-2");
+        eval(gtScript.innerHTML);
+      };
+      return {
+        gtagFallback: function () {
+          console.warn('OneTrust not loaded.');
+          if (document.readyState !== 'loading') {
+            evalGTagScript();
+          } else {
+            document.addEventListener('readystatechange', function () {
+              if (document.readyState === 'interactive') {
+                evalGTagScript();
+              }
+            });
+          };
+        }
+      };
+    })();
+  <% end %>
 <% end %>
 
-<% if ENV['GOOGLE_ANALYTICS_ID'] %>
+<% if gtag_enabled? && ENV['GOOGLE_ANALYTICS_ID'] %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ENV['GOOGLE_ANALYTICS_ID'] %>"></script>
   <%= javascript_tag nonce: content_security_policy_nonce do %>
