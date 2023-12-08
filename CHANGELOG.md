@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.70 -->
-## [5.1.70](https://github.com/chef/supermarket/tree/5.1.70) (2023-12-06)
+<!-- latest_release 5.1.71 -->
+## [5.1.71](https://github.com/chef/supermarket/tree/5.1.71) (2023-12-08)
 
 #### Merged Pull Requests
-- [CHEF-6090 CHEF-6096 CHEF-6105] Privacy policy,  Cookie policy, Logo and Favicon changes [#3186](https://github.com/chef/supermarket/pull/3186) ([ayush-billore](https://github.com/ayush-billore))
+- [CHEF-6102 CHEF-6114] GTM and OneTrust integration [#3187](https://github.com/chef/supermarket/pull/3187) ([ayush-billore](https://github.com/ayush-billore))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.63 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- [CHEF-6102 CHEF-6114] GTM and OneTrust integration [#3187](https://github.com/chef/supermarket/pull/3187) ([ayush-billore](https://github.com/ayush-billore)) <!-- 5.1.71 -->
 - [CHEF-6090 CHEF-6096 CHEF-6105] Privacy policy,  Cookie policy, Logo and Favicon changes [#3186](https://github.com/chef/supermarket/pull/3186) ([ayush-billore](https://github.com/ayush-billore)) <!-- 5.1.70 -->
 - Update doc for supermarket configuration with Chef Identity [#3161](https://github.com/chef/supermarket/pull/3161) ([RoyShravani](https://github.com/RoyShravani)) <!-- 5.1.69 -->
 - CHEF-4515 Cleanup one more [#3145](https://github.com/chef/supermarket/pull/3145) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.68 -->
