@@ -6,7 +6,7 @@
 
 Rails.application.config.content_security_policy do |policy|
   policy.default_src :self, :https
-  policy.font_src :self, :https, :data
+  policy.font_src :self, :https, :data, "http://fonts.gstatic.com"
   policy.img_src :self, :https, :data, "www.googletagmanager.com"
   policy.script_src :self, :https, "https://www.googletagmanager.com", "https://www.google-analytics.com", "http://cdn.segment.com"
   policy.object_src :none
