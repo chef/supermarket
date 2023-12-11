@@ -28,10 +28,10 @@ rails_log_to_stdout         = true
 preload_app                 = true
 worker_timeout              = 15
 worker_processes            = 2
-air_gapped_flag             = "false"
-enable_gtag_flag            = "false"
-enable_gtm_flag             = "false"
-enable_onetrust_flag        = "false"
+air_gapped_flag             = false
+enable_gtag_flag            = false
+enable_gtm_flag             = false
+enable_onetrust_flag        = false
 
 features                    = ["tools", "gravatar"]
 user                        = "supermarket"
