@@ -26,8 +26,8 @@ jobs:
       - uses: carlosperate/download-file-action@v1.0.3
         id: download-cspell-config
         with:
-          file-url: 'https://github.com/chef/chef-web-docs/blob/main/cspell.json'
-          file-name: 'cspell.json'
+          file-url: 'https://github.com/chef/chef-web-docs/blob/main/cspell.yaml'
+          file-name: 'cspell.yaml'
       - uses: carlosperate/download-file-action@v1.0.3
         id: download-chef-dictionary
         with:
