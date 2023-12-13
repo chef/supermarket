@@ -252,36 +252,49 @@ Use these settings to integrate Supermarket with GitHub Enterprise.
 
 ### Google Analytics
 
-Use this setting to set up [Google Analytics with GTag](https://analytics.google.com) tracking for Supermarket:
+Use these settings to set up [Google Analytics](https://analytics.google.com) tracking for Supermarket.
 
 `default['supermarket']['enable_gtag']`
 
-: The Google tag feature flag's default value: "false". Set to `"true"` to enable google tag tracking.
+: Whether to enable Google Analytics tracking.
+
+  Allowed values: `true`, `false`.
+
+  Default value: `false`.
 
 `default['supermarket']['google_analytics_id']`
 
-: The Google Analytics [tracking ID](https://support.google.com/analytics/answer/7372977?hl=en) for Supermarket. Default value: `nil`.
+: The Google Analytics [tracking ID](https://support.google.com/analytics/answer/7372977?hl=en) for Supermarket.
 
+  Default value: `nil`.
 
-### Onetrust
-
-Use this setting to enable [Onetrust](www.onetrust.com) cookie consent verification for Supermarket:
+### OneTrust
 
 `default['supermarket']['enable_onetrust']`
 
-: The Onetrust consent flag's default value: "false". Set to `"true"` to enable onetrust consent verification.
+: Whether to enable [OneTrust](https://www.onetrust.com) cookie consent verification for Supermarket.
+
+  Allowed values: `true`, `false`.
+
+  Default value: `false`.
 
 ### Google Tag Manager
 
-Use this setting to enable [Google Tag Manager](https://tagmanager.google.com/) for Supermarket:
+Use these settings to set up [Google Tag Manager](https://tagmanager.google.com/) for Supermarket:
 
 `default['supermarket']['enable_gtm']`
 
-: The Google tag manager feature flag's default value: "false". Set to `"true"` to enable google tag manager.
+: Whether to enable google tag manager.
+
+  Allowed values: `true`, `false`.
+
+  Default value: `false`.
 
 `default['supermarket']['gtm_id']`
 
-: The Google Tag Manager [container ID](https://support.google.com/tagmanager/answer/6103696?hl=en) for Supermarket. Default value: nil.
+: The Google Tag Manager [container ID](https://support.google.com/tagmanager/answer/6103696?hl=en) for Supermarket. 
+
+  Default value: `nil`.
 
 ### Nginx
 
