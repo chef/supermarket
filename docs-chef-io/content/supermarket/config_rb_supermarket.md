@@ -252,11 +252,36 @@ Use these settings to integrate Supermarket with GitHub Enterprise.
 
 ### Google Analytics
 
-Use this setting to set up [Google Analytics](https://analytics.google.com) tracking for Supermarket:
+Use this setting to set up [Google Analytics with GTag](https://analytics.google.com) tracking for Supermarket:
+
+`default['supermarket']['enable_gtag']`
+
+: The Google tag feature flag's default value: "false". Set to `"true"` to enable google tag tracking.
 
 `default['supermarket']['google_analytics_id']`
 
 : The Google Analytics [tracking ID](https://support.google.com/analytics/answer/7372977?hl=en) for Supermarket. Default value: `nil`.
+
+
+### Onetrust
+
+Use this setting to enable [Onetrust](www.onetrust.com) cookie consent verification for Supermarket:
+
+`default['supermarket']['enable_onetrust']`
+
+: The Onetrust consent flag's default value: "false". Set to `"true"` to enable onetrust consent verification.
+
+### Google Tag Manager
+
+Use this setting to enable [Google Tag Manager](https://tagmanager.google.com/) for Supermarket:
+
+`default['supermarket']['enable_gtm']`
+
+: The Google tag manager feature flag's default value: "false". Set to `"true"` to enable google tag manager.
+
+`default['supermarket']['gtm_id']`
+
+: The Google Tag Manager [container ID](https://support.google.com/tagmanager/answer/6103696?hl=en) for Supermarket. Default value: nil.
 
 ### Nginx
 
