@@ -284,7 +284,7 @@ Use these settings to set up [Google Tag Manager](https://tagmanager.google.com/
 
 `default['supermarket']['enable_gtm']`
 
-: Whether to enable google tag manager.
+: Whether to enable Google Tag Manager.
 
   Allowed values: `"true"`, `"false"`.
 
@@ -292,7 +292,7 @@ Use these settings to set up [Google Tag Manager](https://tagmanager.google.com/
 
 `default['supermarket']['gtm_id']`
 
-: The Google Tag Manager [container ID](https://support.google.com/tagmanager/answer/6103696?hl=en) for Supermarket. 
+: The Google Tag Manager [container ID](https://support.google.com/tagmanager/answer/6103696?hl=en) for Supermarket.
 
   Default value: `nil`.
 
