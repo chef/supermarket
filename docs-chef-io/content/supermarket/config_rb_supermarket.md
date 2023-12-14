@@ -258,9 +258,9 @@ Use these settings to set up [Google Analytics](https://analytics.google.com) tr
 
 : Whether to enable Google Analytics tracking.
 
-  Allowed values: `true`, `false`.
+  Allowed values: `"true"`, `"false"`.
 
-  Default value: `false`.
+  Default value: `"false"`.
 
 `default['supermarket']['google_analytics_id']`
 
@@ -274,9 +274,9 @@ Use these settings to set up [Google Analytics](https://analytics.google.com) tr
 
 : Whether to enable [OneTrust](https://www.onetrust.com) cookie consent verification for Supermarket.
 
-  Allowed values: `true`, `false`.
+  Allowed values: `"true"`, `"false"`.
 
-  Default value: `false`.
+  Default value: `"false"`.
 
 ### Google Tag Manager
 
@@ -286,9 +286,9 @@ Use these settings to set up [Google Tag Manager](https://tagmanager.google.com/
 
 : Whether to enable google tag manager.
 
-  Allowed values: `true`, `false`.
+  Allowed values: `"true"`, `"false"`.
 
-  Default value: `false`.
+  Default value: `"false"`.
 
 `default['supermarket']['gtm_id']`
 
