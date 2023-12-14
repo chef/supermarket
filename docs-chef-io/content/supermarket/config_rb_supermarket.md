@@ -264,7 +264,7 @@ Use these settings to set up [Google Analytics](https://analytics.google.com) tr
 
 `default['supermarket']['google_analytics_id']`
 
-: The Google Analytics [tracking ID](https://support.google.com/analytics/answer/7372977?hl=en) for Supermarket.
+: The Google Analytics [tracking ID](https://support.google.com/analytics/answer/9539598?hl=en) for Supermarket.
 
   Default value: `nil`.
 
