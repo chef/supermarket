@@ -451,11 +451,11 @@ default['supermarket']['air_gapped'] = 'false'
 
 # ### GDPR Settings
 # This controls whether your Supermarket will reach out to GTM
-default['supermarket']['enable_gtm'] = false
+default['supermarket']['enable_gtm'] = 'false'
 # This controls whether your Supermarket will reach out to GTAG
-default['supermarket']['enable_gtag'] = false
+default['supermarket']['enable_gtag'] = 'false'
 # This controls whether your Supermarket will reach out to Onetrust
-default['supermarket']['enable_onetrust'] = false
+default['supermarket']['enable_onetrust'] = 'false'
 
 # ### robots.txt Settings
 #
