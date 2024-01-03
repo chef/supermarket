@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.73 -->
-## [5.1.73](https://github.com/chef/supermarket/tree/5.1.73) (2024-01-03)
+<!-- latest_release 5.1.74 -->
+## [5.1.74](https://github.com/chef/supermarket/tree/5.1.74) (2024-01-03)
 
 #### Merged Pull Requests
-- add doc changes for feature flag and gtm_id [#3206](https://github.com/chef/supermarket/pull/3206) ([ayush-billore](https://github.com/ayush-billore))
+- CHEF-6076:Whitelisting urls for GTM [#3208](https://github.com/chef/supermarket/pull/3208) ([RoyShravani](https://github.com/RoyShravani))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.63 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- CHEF-6076:Whitelisting urls for GTM [#3208](https://github.com/chef/supermarket/pull/3208) ([RoyShravani](https://github.com/RoyShravani)) <!-- 5.1.74 -->
 - add doc changes for feature flag and gtm_id [#3206](https://github.com/chef/supermarket/pull/3206) ([ayush-billore](https://github.com/ayush-billore)) <!-- 5.1.73 -->
 - Fix default values of feature flags [#3205](https://github.com/chef/supermarket/pull/3205) ([ayush-billore](https://github.com/ayush-billore)) <!-- 5.1.72 -->
 - [CHEF-6102 CHEF-6114] GTM and OneTrust integration [#3187](https://github.com/chef/supermarket/pull/3187) ([ayush-billore](https://github.com/ayush-billore)) <!-- 5.1.71 -->
