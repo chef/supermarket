@@ -334,7 +334,6 @@ default['supermarket']['github_access_token'] = nil
 default['supermarket']['github_key'] = nil
 default['supermarket']['github_secret'] = nil
 default['supermarket']['google_analytics_id'] = nil
-default['supermarket']['gtm_id'] = nil
 default['supermarket']['segment_write_key'] = nil
 default['supermarket']['datadog_tracer_enabled'] = 'false'
 default['supermarket']['datadog_app_name'] = nil
@@ -450,8 +449,6 @@ default['supermarket']['features'] = 'tools, gravatar'
 default['supermarket']['air_gapped'] = 'false'
 
 # ### GDPR Settings
-# This controls whether your Supermarket will reach out to GTM
-default['supermarket']['enable_gtm'] = 'false'
 # This controls whether your Supermarket will reach out to GTAG
 default['supermarket']['enable_gtag'] = 'false'
 # This controls whether your Supermarket will reach out to Onetrust
