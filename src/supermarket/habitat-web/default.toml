@@ -18,7 +18,6 @@ fqdn                        = ''
 fqdn_sanitized              = ''
 from_email                  = ''
 google_analytics_id         = ''
-gtm_id                      = ''
 segment_write_key           = ''
 log_level                   = 'info'
 serve_static_files          = true
@@ -30,7 +29,6 @@ worker_timeout              = 15
 worker_processes            = 2
 air_gapped_flag             = "false"
 enable_gtag_flag            = "false"
-enable_gtm_flag             = "false"
 enable_onetrust_flag        = "false"
 
 features                    = ["tools", "gravatar"]

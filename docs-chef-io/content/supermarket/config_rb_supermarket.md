@@ -278,24 +278,6 @@ Use these settings to set up [Google Analytics](https://analytics.google.com) tr
 
   Default value: `"false"`.
 
-### Google Tag Manager
-
-Use these settings to set up [Google Tag Manager](https://tagmanager.google.com/) for Supermarket:
-
-`default['supermarket']['enable_gtm']`
-
-: Whether to enable Google Tag Manager.
-
-  Allowed values: `"true"`, `"false"`.
-
-  Default value: `"false"`.
-
-`default['supermarket']['gtm_id']`
-
-: The Google Tag Manager [container ID](https://support.google.com/tagmanager/answer/6103696?hl=en) for Supermarket.
-
-  Default value: `nil`.
-
 ### Nginx
 
 This configuration file has the following settings for nginx:

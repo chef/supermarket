@@ -23,12 +23,6 @@
     <% end %>
   </head>
   <body class="<%= controller.controller_name %>">
-    <% if gtm_enabled? && ENV['GTM_ID'] %>
-      <!-- Google Tag Manager (noscript) -->
-      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= ENV['GTM_ID'] %>" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-      <!-- End Google Tag Manager (noscript) -->
-    <% end %>
-
     <div class="off-canvas-wrap">
       <div class="inner-wrap">
         <!-- Chef Property Menu -->
