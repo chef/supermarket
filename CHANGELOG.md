@@ -1,32 +1,30 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.76 -->
-## [5.1.76](https://github.com/chef/supermarket/tree/5.1.76) (2024-01-08)
-
-#### Merged Pull Requests
-- Fix issues with github actions [#3207](https://github.com/chef/supermarket/pull/3207) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.1.63 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Fix issues with github actions [#3207](https://github.com/chef/supermarket/pull/3207) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.76 -->
-- Remove GTM scripts [#3209](https://github.com/chef/supermarket/pull/3209) ([ayush-billore](https://github.com/ayush-billore)) <!-- 5.1.75 -->
-- CHEF-6076:Whitelisting urls for GTM [#3208](https://github.com/chef/supermarket/pull/3208) ([RoyShravani](https://github.com/RoyShravani)) <!-- 5.1.74 -->
-- add doc changes for feature flag and gtm_id [#3206](https://github.com/chef/supermarket/pull/3206) ([ayush-billore](https://github.com/ayush-billore)) <!-- 5.1.73 -->
-- Fix default values of feature flags [#3205](https://github.com/chef/supermarket/pull/3205) ([ayush-billore](https://github.com/ayush-billore)) <!-- 5.1.72 -->
-- [CHEF-6102 CHEF-6114] GTM and OneTrust integration [#3187](https://github.com/chef/supermarket/pull/3187) ([ayush-billore](https://github.com/ayush-billore)) <!-- 5.1.71 -->
-- [CHEF-6090 CHEF-6096 CHEF-6105] Privacy policy,  Cookie policy, Logo and Favicon changes [#3186](https://github.com/chef/supermarket/pull/3186) ([ayush-billore](https://github.com/ayush-billore)) <!-- 5.1.70 -->
-- Update doc for supermarket configuration with Chef Identity [#3161](https://github.com/chef/supermarket/pull/3161) ([RoyShravani](https://github.com/RoyShravani)) <!-- 5.1.69 -->
-- CHEF-4515 Cleanup one more [#3145](https://github.com/chef/supermarket/pull/3145) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.68 -->
-- CHEF-4515 Cleanup a couple more files [#3144](https://github.com/chef/supermarket/pull/3144) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.67 -->
-- Update README.md [#3137](https://github.com/chef/supermarket/pull/3137) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.66 -->
-- CHEF-4515 reorganize reusable text files in docs [#3141](https://github.com/chef/supermarket/pull/3141) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.65 -->
-- CHEF-3473 Update download links [#3134](https://github.com/chef/supermarket/pull/3134) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.64 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [5.1.76](https://github.com/chef/supermarket/tree/5.1.76) (2024-01-08)
+
+#### Merged Pull Requests
+- CHEF-3473 Update download links [#3134](https://github.com/chef/supermarket/pull/3134) ([IanMadd](https://github.com/IanMadd))
+- CHEF-4515 reorganize reusable text files in docs [#3141](https://github.com/chef/supermarket/pull/3141) ([IanMadd](https://github.com/IanMadd))
+- Update README.md [#3137](https://github.com/chef/supermarket/pull/3137) ([IanMadd](https://github.com/IanMadd))
+- CHEF-4515 Cleanup a couple more files [#3144](https://github.com/chef/supermarket/pull/3144) ([IanMadd](https://github.com/IanMadd))
+- CHEF-4515 Cleanup one more [#3145](https://github.com/chef/supermarket/pull/3145) ([IanMadd](https://github.com/IanMadd))
+- Update doc for supermarket configuration with Chef Identity [#3161](https://github.com/chef/supermarket/pull/3161) ([RoyShravani](https://github.com/RoyShravani))
+- [CHEF-6090 CHEF-6096 CHEF-6105] Privacy policy,  Cookie policy, Logo and Favicon changes [#3186](https://github.com/chef/supermarket/pull/3186) ([ayush-billore](https://github.com/ayush-billore))
+- [CHEF-6102 CHEF-6114] GTM and OneTrust integration [#3187](https://github.com/chef/supermarket/pull/3187) ([ayush-billore](https://github.com/ayush-billore))
+- Fix default values of feature flags [#3205](https://github.com/chef/supermarket/pull/3205) ([ayush-billore](https://github.com/ayush-billore))
+- add doc changes for feature flag and gtm_id [#3206](https://github.com/chef/supermarket/pull/3206) ([ayush-billore](https://github.com/ayush-billore))
+- CHEF-6076:Whitelisting urls for GTM [#3208](https://github.com/chef/supermarket/pull/3208) ([RoyShravani](https://github.com/RoyShravani))
+- Remove GTM scripts [#3209](https://github.com/chef/supermarket/pull/3209) ([ayush-billore](https://github.com/ayush-billore))
+- Fix issues with github actions [#3207](https://github.com/chef/supermarket/pull/3207) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_stable_release -->
+
 ## [5.1.63](https://github.com/chef/supermarket/tree/5.1.63) (2023-03-17)
 
 #### Merged Pull Requests
@@ -35,7 +33,6 @@
 - add almalinux and rocky linux logos [#3071](https://github.com/chef/supermarket/pull/3071) ([dheerajd-msys](https://github.com/dheerajd-msys))
 - Updated the http links to https [#3078](https://github.com/chef/supermarket/pull/3078) ([saghoshprogress](https://github.com/saghoshprogress))
 - Updated the publish release file [#3080](https://github.com/chef/supermarket/pull/3080) ([saghoshprogress](https://github.com/saghoshprogress))
-<!-- latest_stable_release -->
 
 ## [5.1.58](https://github.com/chef/supermarket/tree/5.1.58) (2023-02-15)
 
