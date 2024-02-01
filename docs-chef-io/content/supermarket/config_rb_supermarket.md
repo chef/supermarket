@@ -278,6 +278,12 @@ Use these settings to set up [Google Analytics](https://analytics.google.com) tr
 
   Default value: `"false"`.
 
+`default['supermarket']['onetrust_id']`
+
+: The Onetrust ID for Supermarket.
+
+  Default value: `nil`.
+
 ### Nginx
 
 This configuration file has the following settings for nginx:
