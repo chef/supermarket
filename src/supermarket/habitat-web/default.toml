@@ -18,6 +18,7 @@ fqdn                        = ''
 fqdn_sanitized              = ''
 from_email                  = ''
 google_analytics_id         = ''
+onetrust_id                 = ''
 segment_write_key           = ''
 log_level                   = 'info'
 serve_static_files          = true

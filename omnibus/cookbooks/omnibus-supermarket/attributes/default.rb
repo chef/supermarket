@@ -453,6 +453,8 @@ default['supermarket']['air_gapped'] = 'false'
 default['supermarket']['enable_gtag'] = 'false'
 # This controls whether your Supermarket will reach out to Onetrust
 default['supermarket']['enable_onetrust'] = 'false'
+# This config enables you to set value of onetrust id
+default['supermarket']['onetrust_id'] = nil
 
 # ### robots.txt Settings
 #
