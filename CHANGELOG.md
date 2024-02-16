@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 5.1.77 -->
+## [5.1.77](https://github.com/chef/supermarket/tree/5.1.77) (2024-02-16)
+
+#### Merged Pull Requests
+- make onetrust id configurable [#3210](https://github.com/chef/supermarket/pull/3210) ([ayush-billore](https://github.com/ayush-billore))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.1.76 -->
+### Changes not yet released to stable
+
+#### Merged Pull Requests
+- make onetrust id configurable [#3210](https://github.com/chef/supermarket/pull/3210) ([ayush-billore](https://github.com/ayush-billore)) <!-- 5.1.77 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
