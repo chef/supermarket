@@ -1,20 +1,18 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.77 -->
-## [5.1.77](https://github.com/chef/supermarket/tree/5.1.77) (2024-02-16)
-
-#### Merged Pull Requests
-- make onetrust id configurable [#3210](https://github.com/chef/supermarket/pull/3210) ([ayush-billore](https://github.com/ayush-billore))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.1.76 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- make onetrust id configurable [#3210](https://github.com/chef/supermarket/pull/3210) ([ayush-billore](https://github.com/ayush-billore)) <!-- 5.1.77 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [5.1.77](https://github.com/chef/supermarket/tree/5.1.77) (2024-03-05)
+
+#### Merged Pull Requests
+- make onetrust id configurable [#3210](https://github.com/chef/supermarket/pull/3210) ([ayush-billore](https://github.com/ayush-billore))
+<!-- latest_stable_release -->
+
 ## [5.1.76](https://github.com/chef/supermarket/tree/5.1.76) (2024-01-08)
 
 #### Merged Pull Requests
@@ -31,7 +29,6 @@
 - CHEF-6076:Whitelisting urls for GTM [#3208](https://github.com/chef/supermarket/pull/3208) ([RoyShravani](https://github.com/RoyShravani))
 - Remove GTM scripts [#3209](https://github.com/chef/supermarket/pull/3209) ([ayush-billore](https://github.com/ayush-billore))
 - Fix issues with github actions [#3207](https://github.com/chef/supermarket/pull/3207) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_stable_release -->
 
 ## [5.1.63](https://github.com/chef/supermarket/tree/5.1.63) (2023-03-17)
 
