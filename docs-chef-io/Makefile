@@ -11,11 +11,11 @@ preview_netlify: chef_web_docs
 	fi
 
 	cp -R config.toml chef-web-docs/_vendor/github.com/chef/supermarket/docs-chef-io/config.toml
-	pushd chef-web-docs && make bundle; hugo --buildFuture --gc --minify --environment development && popd
+	pushd chef-web-docs && bash ./scripts/netlify-deploy-preview.sh && popd
 
 serve: chef_web_docs
-	echo "replace github.com/chef/supermarket/docs-chef-io => ../" >> chef-web-docs/go.mod
-	pushd chef-web-docs && make bundle; hugo server --buildDrafts --buildFuture --noHTTPCache --ignoreVendorPaths "github.com/chef/supermarket/**" && popd
+	printf "go 1.22\n\nuse .\nuse ../" > chef-web-docs/hugo.work
+	pushd chef-web-docs && make bundle && HUGO_MODULE_WORKSPACE=hugo.work hugo server --buildDrafts --buildFuture --noHTTPCache --ignoreVendorPaths "github.com/chef/supermarket/docs-chef-io" && popd
 
 chef_web_docs:
 	if [ -d "chef-web-docs/" ]; then \
