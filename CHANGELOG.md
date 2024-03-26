@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 5.1.78 -->
+## [5.1.78](https://github.com/chef/supermarket/tree/5.1.78) (2024-03-26)
+
+#### Merged Pull Requests
+- Update Netlify builds [#3211](https://github.com/chef/supermarket/pull/3211) ([IanMadd](https://github.com/IanMadd))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.1.77 -->
+### Changes not yet released to stable
+
+#### Merged Pull Requests
+- Update Netlify builds [#3211](https://github.com/chef/supermarket/pull/3211) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.78 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
