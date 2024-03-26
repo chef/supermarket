@@ -1,3 +1,7 @@
 chef-web-docs/
 
 resources/
+public/
+
+*.work
+*.work.sum
