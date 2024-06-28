@@ -11,6 +11,8 @@ builder-to-testers-map:
     - amazon-2-x86_64
   el-8-x86_64:
     - el-8-x86_64
+  el-9-x86_64:
+    - el-9-x86_64
   sles-12-x86_64:
     - sles-12-x86_64
     - sles-15-x86_64
