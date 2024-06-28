@@ -37,7 +37,7 @@ s3_bucket      ENV['AWS_S3_BUCKET'] || 'opscode-omnibus-cache'
 
 # Customize compiler bits
 # ------------------------------
-build_retries 1
+build_retries 5
 fetcher_read_timeout 120
 
 # Load additional software
@@ -47,4 +47,4 @@ fetcher_read_timeout 120
 
 # Build in FIPS compatability mode
 # ------------------------------
-fips_mode (ENV['OMNIBUS_FIPS_MODE'] || '').downcase == 'true'
+fips_mode (ENV['OMNIBUS_FIPS_MODE'] || '').downcase == "true"
