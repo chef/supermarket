@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.78 -->
-## [5.1.78](https://github.com/chef/supermarket/tree/5.1.78) (2024-03-26)
+<!-- latest_release 5.1.79 -->
+## [5.1.79](https://github.com/chef/supermarket/tree/5.1.79) (2024-07-04)
 
 #### Merged Pull Requests
-- Update Netlify builds [#3211](https://github.com/chef/supermarket/pull/3211) ([IanMadd](https://github.com/IanMadd))
+- Added support for RHEL-9 [#3212](https://github.com/chef/supermarket/pull/3212) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.77 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Added support for RHEL-9 [#3212](https://github.com/chef/supermarket/pull/3212) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.79 -->
 - Update Netlify builds [#3211](https://github.com/chef/supermarket/pull/3211) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.78 -->
 <!-- release_rollup -->
 
