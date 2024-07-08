@@ -1,26 +1,23 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.79 -->
-## [5.1.79](https://github.com/chef/supermarket/tree/5.1.79) (2024-07-04)
-
-#### Merged Pull Requests
-- Added support for RHEL-9 [#3212](https://github.com/chef/supermarket/pull/3212) ([RajeshPaul38](https://github.com/RajeshPaul38))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.1.77 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Added support for RHEL-9 [#3212](https://github.com/chef/supermarket/pull/3212) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.79 -->
-- Update Netlify builds [#3211](https://github.com/chef/supermarket/pull/3211) ([IanMadd](https://github.com/IanMadd)) <!-- 5.1.78 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [5.1.79](https://github.com/chef/supermarket/tree/5.1.79) (2024-07-08)
+
+#### Merged Pull Requests
+- Update Netlify builds [#3211](https://github.com/chef/supermarket/pull/3211) ([IanMadd](https://github.com/IanMadd))
+- Added support for RHEL-9 [#3212](https://github.com/chef/supermarket/pull/3212) ([RajeshPaul38](https://github.com/RajeshPaul38))
+<!-- latest_stable_release -->
+
 ## [5.1.77](https://github.com/chef/supermarket/tree/5.1.77) (2024-03-05)
 
 #### Merged Pull Requests
 - make onetrust id configurable [#3210](https://github.com/chef/supermarket/pull/3210) ([ayush-billore](https://github.com/ayush-billore))
-<!-- latest_stable_release -->
 
 ## [5.1.76](https://github.com/chef/supermarket/tree/5.1.76) (2024-01-08)
 
