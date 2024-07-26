@@ -5,7 +5,6 @@
     "karma": "~6.4.3",
     "karma-coffee-preprocessor": "^1.0.1",
     "karma-mocha": "^2.0.1",
-    "karma-osx-reporter": "^0.2.1",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-requirejs": "^1.1.0",
     "karma-spec-reporter": "^0.0.34",
