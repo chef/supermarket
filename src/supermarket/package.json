@@ -2,7 +2,7 @@
   "name": "supermarket",
   "devDependencies": {
     "chai": "~1.8.1",
-    "karma": "~6.3.19",
+    "karma": "~6.4.3",
     "karma-coffee-preprocessor": "^1.0.1",
     "karma-mocha": "^2.0.1",
     "karma-osx-reporter": "^0.2.1",
