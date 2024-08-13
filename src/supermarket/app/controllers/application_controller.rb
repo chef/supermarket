@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   include CustomUrlHelper
 
   rescue_from(
-    NotAuthorizedError,
+    Pundit::NotAuthorizedError,
     ActiveRecord::RecordNotFound,
     ActionController::UnknownFormat,
     ActionView::MissingTemplate

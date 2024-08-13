@@ -2,7 +2,7 @@ require "pundit"
 
 module Supermarket
   module Authorization
-    include Pundit
+    include Pundit::Authorization
     extend ActiveSupport::Concern
 
     included do

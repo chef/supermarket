@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem "fieri", path: "engines/fieri"
-gem "rails", "~> 7.0.4"
+gem "rails", "~> 7.0.8"
 
 gem "omniauth", "~> 2.1.1"
 gem "omniauth-chef-oauth2"
@@ -14,7 +14,7 @@ gem "sidekiq", "~> 6.5"
 gem "sidekiq-cron"
 
 gem "aws-sdk-s3"
-gem "chef", "~> 17.10", require: false
+gem "chef", "~> 18.2", require: false
 gem "compass-rails"
 gem "ddtrace", "1.0.0", require: false
 gem "dotenv"
