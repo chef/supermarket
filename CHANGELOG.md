@@ -1,26 +1,23 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.80 -->
-## [5.1.80](https://github.com/chef/supermarket/tree/5.1.80) (2024-08-13)
-
-#### Merged Pull Requests
-- Rp/dependabot-fix [#3219](https://github.com/chef/supermarket/pull/3219) ([RajeshPaul38](https://github.com/RajeshPaul38))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.1.79 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Rp/dependabot-fix [#3219](https://github.com/chef/supermarket/pull/3219) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.80 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [5.1.80](https://github.com/chef/supermarket/tree/5.1.80) (2024-10-23)
+
+#### Merged Pull Requests
+- Rp/dependabot-fix [#3219](https://github.com/chef/supermarket/pull/3219) ([RajeshPaul38](https://github.com/RajeshPaul38))
+<!-- latest_stable_release -->
+
 ## [5.1.79](https://github.com/chef/supermarket/tree/5.1.79) (2024-07-08)
 
 #### Merged Pull Requests
 - Update Netlify builds [#3211](https://github.com/chef/supermarket/pull/3211) ([IanMadd](https://github.com/IanMadd))
 - Added support for RHEL-9 [#3212](https://github.com/chef/supermarket/pull/3212) ([RajeshPaul38](https://github.com/RajeshPaul38))
-<!-- latest_stable_release -->
 
 ## [5.1.77](https://github.com/chef/supermarket/tree/5.1.77) (2024-03-05)
 
