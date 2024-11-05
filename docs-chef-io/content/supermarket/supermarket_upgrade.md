@@ -52,6 +52,12 @@ Every Private Supermarket installation is unique. These are general steps for up
          rpm -Uvh /path/to/package/supermarket*.rpm
          ```
 
+  1. Start the Chef Supermarket services:
+
+        ```bash
+        sudo supermarket-ctl start
+        ```
+
   1. Reconfigure Chef Supermarket server:
 
       ```bash
