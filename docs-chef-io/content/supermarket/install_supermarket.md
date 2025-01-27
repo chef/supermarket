@@ -19,6 +19,8 @@ The source code for Chef Supermarket is located at the following URLs:
 - The cookbook that is run by the `supermarket-ctl reconfigure`
     command:
     <https://github.com/chef/supermarket/tree/main/omnibus/cookbooks/omnibus-supermarket>
+    
+If you are looking to install a Private Supermarket on an Air-Gapped network, please see the Air-Gapped instructions at https://docs.chef.io/install_chef_air_gap/#private-supermarket
 
 ## Requirements
 
