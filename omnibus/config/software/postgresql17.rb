@@ -31,6 +31,7 @@ dependency "config_guess"
 dependency "icu"
 dependency "flex"
 dependency "perl"
+dependency "docbook"
 
 source url: "https://ftp.postgresql.org/pub/source/v#{version}/postgresql-#{version}.tar.bz2"
 version("17.2") { source sha256: "82ef27c0af3751695d7f64e2d963583005fbb6a0c3df63d0e4b42211d7021164" }
