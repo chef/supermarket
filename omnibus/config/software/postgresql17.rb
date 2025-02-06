@@ -31,7 +31,6 @@ dependency "config_guess"
 dependency "icu"
 dependency "flex"
 dependency "perl"
-dependency "docbook"
 
 source url: "https://ftp.postgresql.org/pub/source/v#{version}/postgresql-#{version}.tar.bz2"
 version("17.2") { source sha256: "82ef27c0af3751695d7f64e2d963583005fbb6a0c3df63d0e4b42211d7021164" }
@@ -51,6 +50,7 @@ build do
           " --with-libedit-preferred" \
           " --with-openssl" \
           " --with-ossp-uuid" \
+          " --without-docdir" \
           " --with-includes=#{install_dir}/embedded/include" \
           " --with-libraries=#{install_dir}/embedded/lib", env: env
 
