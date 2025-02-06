@@ -30,7 +30,7 @@ dependency "libossp-uuid"
 dependency "config_guess"
 
 source url: "https://ftp.postgresql.org/pub/source/v#{version}/postgresql-#{version}.tar.bz2"
-version("17.2") { source sha256: "51d8cdd6a5220fa8c0a3b12f2d0eeb50fcf5e0bdb7b37904a9cdff5cf1e61c36" }
+version("17.2") { source sha256: "82ef27c0af3751695d7f64e2d963583005fbb6a0c3df63d0e4b42211d7021164" }
 
 relative_path "postgresql-#{version}"
 
