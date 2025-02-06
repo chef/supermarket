@@ -12,5 +12,5 @@ source url: "https://www.oasis-open.org/docbook/xml/4.5/docbook-xml-4.5.zip",
 build do
   mkdir "#{install_dir}/embedded/share/xml/docbook-4.5"
 
-  command "unzip -o #{project_dir}/docbook-xml-4.5.zip -d #{install_dir}/embedded/share/xml/"
+  # command "unzip -o #{project_dir}/docbook-xml-4.5.zip -d #{install_dir}/embedded/share/xml/"
 end
