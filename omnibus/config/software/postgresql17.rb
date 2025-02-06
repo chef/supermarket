@@ -46,14 +46,12 @@ build do
 
   update_config_guess(target: "config")
 
+  command "export NO_PG_DOCS=1"
   command "./configure" \
           " --prefix=#{install_dir}/embedded/postgresql/#{short_version}" \
           " --with-libedit-preferred" \
           " --with-openssl" \
           " --with-ossp-uuid" \
-          " --without-docdir" \
-          " --without-docs" \
-          " --without-man" \
           " --with-includes=#{install_dir}/embedded/include" \
           " --with-libraries=#{install_dir}/embedded/lib", env: env
 
