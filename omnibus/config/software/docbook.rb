@@ -1,6 +1,8 @@
 name "docbook"
 default_version "4.5"
 
+skip_transitive_dependency_licensing true
+
 dependency "libxml2"
 dependency "libxslt"
 
