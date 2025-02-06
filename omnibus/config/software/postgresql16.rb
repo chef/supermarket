@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-name "postgresql17"
+name "postgresql16"
 
 default_version "16.2"
 
