@@ -6,7 +6,7 @@ license_file "https://github.com/westes/flex/blob/master/COPYING"
 
 version("2.6.4") do
   source url: "https://github.com/westes/flex/releases/download/v2.6.4/flex-2.6.4.tar.gz",
-         sha256: "e87aae82b8fbf081c7d5c366ec8d73e5c5e9c040b4a0eae2f35df2bd9a9a7df0"
+         sha256: "e87aae032bf07c26f85ac0ed3250998c37621d95f8bd748b31f15b33c45ee995"
 end
 
 relative_path "flex-#{version}"

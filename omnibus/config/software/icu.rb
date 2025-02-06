@@ -6,7 +6,7 @@ license_file "https://github.com/unicode-org/icu/blob/main/icu4c/LICENSE"
 
 version("73.2") do
   source url: "https://github.com/unicode-org/icu/releases/download/release-73-2/icu4c-73_2-src.tgz",
-         sha256: "8c0482c28f3273a6b7de7896a9b9b5ff5a1760472efc3764a4b17de94e0de13d"
+         sha256: "818a80712ed3caacd9b652305e01afc7fa167e6f2e94996da44b90c2ab604ce1"
 end
 
 relative_path "icu/source"
