@@ -22,7 +22,9 @@ source path: "cookbooks/omnibus-supermarket"
 build do
   cookbooks_path = "#{install_dir}/embedded/cookbooks"
   env = with_standard_compiler_flags(with_embedded_path)
-  
+
+  # Uncomment the below line only for local build
+  # gem "install berkshelf"
   command "berks vendor #{cookbooks_path}", env: env
 
   block do

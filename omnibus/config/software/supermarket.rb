@@ -21,8 +21,8 @@ source path: File.expand_path('../../../../src/supermarket', project.filepath)
 
 dependency "cacerts"
 dependency "openresty"
-dependency "postgresql93-bin" # For upgrading 9.3 -> 13. This will create the needed binaries for upgrade to work
-dependency "postgresql13"
+dependency "postgresql13-bin" # For upgrading 13 -> 17. This will create the needed binaries for upgrade to work
+dependency "postgresql17"
 dependency "redis"
 dependency "ruby"
 dependency "runit"
@@ -38,7 +38,7 @@ build do
   bundle "config set without 'development doc'"
   bundle "install" \
          " --jobs #{workers}" \
-         " --retry 3" \
+         " --retry 1" \
          " --path=vendor/bundle",
          env: env
 

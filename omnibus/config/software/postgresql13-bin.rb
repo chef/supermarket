@@ -14,9 +14,9 @@
 # limitations under the License.
 #
 
-name "postgresql93-bin"
+name "postgresql13-bin"
 
-default_version "9.3.25"
+default_version "13.4"
 
 license "PostgreSQL"
 license_file "COPYRIGHT"
@@ -30,13 +30,15 @@ dependency "libossp-uuid"
 dependency "config_guess"
 
 source url: "https://ftp.postgresql.org/pub/source/v#{version}/postgresql-#{version}.tar.bz2"
-version("9.3.25") { source sha256: "e4953e80415d039ccd33d34be74526a090fd585cf93f296cd9c593972504b6db" }
+version("13.4") { source sha256: "ea93e10390245f1ce461a54eb5f99a48d8cabd3a08ce4d652ec2169a357bc0cd" }
 
 relative_path "postgresql-#{version}"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
-  short_version = version.gsub(/^([0-9]+).([0-9]+).[0-9]+$/, '\1.\2')
+  # short_version = version.gsub(/^([0-9]+).([0-9]+).[0-9]+$/, '\1.\2')
+  # We need to consider only the major version for postgres 13
+  short_version = version.match(/^([0-9]+)/).to_s
 
   update_config_guess(target: "config")
 

@@ -14,9 +14,9 @@
 # limitations under the License.
 #
 
-name "postgresql13"
+name "postgresql17"
 
-default_version "13.4"
+default_version "17.2"
 
 license "PostgreSQL"
 license_file "COPYRIGHT"
@@ -30,7 +30,7 @@ dependency "libossp-uuid"
 dependency "config_guess"
 
 source url: "https://ftp.postgresql.org/pub/source/v#{version}/postgresql-#{version}.tar.bz2"
-version("13.4") { source sha256: "ea93e10390245f1ce461a54eb5f99a48d8cabd3a08ce4d652ec2169a357bc0cd" }
+version("17.2") { source sha256: "51d8cdd6a5220fa8c0a3b12f2d0eeb50fcf5e0bdb7b37904a9cdff5cf1e61c36" }
 
 relative_path "postgresql-#{version}"
 
