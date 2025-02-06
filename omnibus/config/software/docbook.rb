@@ -4,8 +4,8 @@ default_version "4.5"
 dependency "libxml2"
 dependency "libxslt"
 
-source url: "https://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd",
-       sha256: "e5616d42877c0630779143a6cada440b189538b87d07ad33c72c422af70aef78"
+source url: "https://www.oasis-open.org/docbook/xml/4.5/docbook-xml-4.5.zip",
+       sha256: "4e4e037a2b83c98c6c94818390d4bdd3f6e10f6ec62dd79188594e26190dc7b4"
 
 relative_path "docbook-4.5"
 
