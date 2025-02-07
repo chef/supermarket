@@ -51,6 +51,7 @@ build do
           " --with-libedit-preferred" \
           " --with-openssl" \
           " --with-ossp-uuid" \
+          " --with-system-tzdata=/usr/share/zoneinfo" \
           " --with-includes=#{install_dir}/embedded/include" \
           " --with-libraries=#{install_dir}/embedded/lib", env: env
 
@@ -58,7 +59,7 @@ build do
   make "install-world -j #{workers}", env: env
 
   # *** NEW: Install the timezone data ***
-  make "-C src/timezone/tznames install -j #{workers}", env: env
+  # make "-C src/timezone/tznames install -j #{workers}", env: env
 
   block do
     Dir.glob("#{install_dir}/embedded/postgresql/#{short_version}/bin/*").sort.each do |bin|
