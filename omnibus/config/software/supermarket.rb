@@ -22,7 +22,7 @@ source path: File.expand_path('../../../../src/supermarket', project.filepath)
 dependency "cacerts"
 dependency "openresty"
 dependency "postgresql13-bin" # For upgrading 13 -> 17. This will create the needed binaries for upgrade to work
-dependency "postgresql16"
+dependency "postgresql17"
 dependency "redis"
 dependency "ruby"
 dependency "runit"
