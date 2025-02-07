@@ -56,7 +56,7 @@ build do
           " --with-libraries=#{install_dir}/embedded/lib", env: env
 
   make "-j #{workers}", env: env
-  make "install-world-bin install-lib install-headers install-pl install-contrib -j #{workers}", env: env
+  make "install-world-bin install-world-lib install-world-headers install-world-pl install-world-contrib -j #{workers}", env: env
 
   block do
     Dir.glob("#{install_dir}/embedded/postgresql/#{short_version}/bin/*").sort.each do |bin|
