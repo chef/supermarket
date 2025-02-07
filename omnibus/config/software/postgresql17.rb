@@ -55,7 +55,7 @@ build do
           " --with-includes=#{install_dir}/embedded/include" \
           " --with-libraries=#{install_dir}/embedded/lib", env: env
 
-  make "world -j #{workers}", env: env
+  make "-j #{workers}", env: env
   make "install-bin install-lib install-headers install-pl install-contrib -j #{workers}", env: env
 
   block do
