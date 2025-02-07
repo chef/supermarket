@@ -58,7 +58,7 @@ build do
   make "install-world -j #{workers}", env: env
 
   # *** NEW: Install the timezone data ***
-  command "make -C src/timezone/tznames install -j #{workers}", env: env
+  make "-C src/timezone/tznames install -j #{workers}", env: env
 
   block do
     Dir.glob("#{install_dir}/embedded/postgresql/#{short_version}/bin/*").sort.each do |bin|
