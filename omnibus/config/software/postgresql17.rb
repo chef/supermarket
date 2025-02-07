@@ -57,7 +57,7 @@ build do
 
   make "-j #{workers}", env: env
   make "install -j #{workers}", env: env
-  make "install-pl install-contrib -j #{workers}", env: env
+  make "install-contrib -j #{workers}", env: env
 
   block do
     Dir.glob("#{install_dir}/embedded/postgresql/#{short_version}/bin/*").sort.each do |bin|
