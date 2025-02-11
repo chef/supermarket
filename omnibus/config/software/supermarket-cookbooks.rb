@@ -24,7 +24,7 @@ build do
   env = with_standard_compiler_flags(with_embedded_path)
 
   # Uncomment the below line only for local build
-  # gem "install berkshelf"
+  gem "install berkshelf"
   command "berks vendor #{cookbooks_path}", env: env
 
   block do

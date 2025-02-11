@@ -49,14 +49,13 @@ build do
           " --prefix=#{install_dir}/embedded/postgresql/#{short_version}" \
           " --with-libedit-preferred" \
           " --with-openssl" \
-          " --with-ossp-uuid" \
-          " --without-docdir" \
-          "  --without-docs" \
+          " --with-uuid=ossp" \
           " --with-includes=#{install_dir}/embedded/include" \
+          " --with-system-tzdata=/usr/share/zoneinfo" \
           " --with-libraries=#{install_dir}/embedded/lib", env: env
 
   make "-j #{workers}", env: env
-  make "install -j #{workers}", env: env
+  make "world-bin #{workers}", env: env
 
   block do
     Dir.glob("#{install_dir}/embedded/postgresql/#{short_version}/bin/*").sort.each do |bin|
