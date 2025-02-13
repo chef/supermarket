@@ -2,7 +2,7 @@
   "name": "supermarket",
   "devDependencies": {
     "chai": "~1.8.1",
-    "karma": "~6.4.3",
+    "karma": "^6.4.4",
     "karma-coffee-preprocessor": "^1.0.1",
     "karma-mocha": "^2.0.1",
     "karma-phantomjs-launcher": "^1.0.4",
@@ -16,5 +16,8 @@
     "sprockets-chain@0.0.16": {
       "hike": "1.0.x"
     }
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3"
   }
 }

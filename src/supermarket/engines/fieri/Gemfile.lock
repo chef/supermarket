@@ -186,7 +186,7 @@ GEM
     rake (13.0.6)
     redis (4.6.0)
     regexp_parser (2.5.0)
-    rexml (3.2.5)
+    rexml (3.4.0)
     rspec-core (3.11.0)
       rspec-support (~> 3.11.0)
     rspec-expectations (3.11.1)
@@ -269,4 +269,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   2.4.3
+   2.6.3
