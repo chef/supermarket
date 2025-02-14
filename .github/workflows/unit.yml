@@ -11,7 +11,10 @@ name: unit
 
 jobs:
   supermarket:
-    runs-on: ubuntu-latest
+    # Do not change the runs-on value. It is required for phantomjs to work.
+    # After ubuntu-20.04 phantomjs is not supported in ubuntu.
+    # We can later replace phantomjs with Puppeteer/Playwright
+    runs-on: ubuntu-20.04
 
     services:
       postgres:
@@ -51,7 +54,10 @@ jobs:
         working-directory: src/supermarket
 
   fieri:
-    runs-on: ubuntu-latest
+    # Do not change the runs-on value. It is required for phantomjs to work.
+    # After ubuntu-20.04 phantomjs is not supported in ubuntu.
+    # We can later replace phantomjs with Puppeteer/Playwright
+    runs-on: ubuntu-20.04
 
     services:
       postgres:
