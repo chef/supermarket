@@ -106,6 +106,7 @@ GEM
       faraday-net_http (~> 2.0)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (2.0.3)
+    ffi (1.17.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     hashdiff (1.0.1)
@@ -122,7 +123,8 @@ GEM
     minitest (5.17.0)
     mixlib-archive (1.1.7)
       mixlib-log
-    mixlib-log (3.0.9)
+    mixlib-log (3.2.0)
+      ffi (~> 1.9, <= 1.17.0)
     mixlib-shellout (3.2.7)
       chef-utils
     net-imap (0.2.3)
@@ -269,4 +271,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   2.6.3
+   2.4.3
