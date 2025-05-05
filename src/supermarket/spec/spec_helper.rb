@@ -10,7 +10,7 @@ require "capybara/rspec"
 require "capybara/cuprite"
 require "capybara-screenshot/rspec"
 require "factory_bot_rails"
-require "phantomjs"
+# require "phantomjs"
 require "simplecov"
 SimpleCov.start
 
