@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "tools and cookbooks can be searched for", use_poltergeist: true do
+feature "tools and cookbooks can be searched for", use_playwright: true do
   let!(:cookbook) { create(:cookbook, name: "apache") }
   let!(:tool) { create(:tool, name: "Berkshelf") }
   before { visit "/" }

@@ -18,7 +18,7 @@ describe "cookbook collaboration" do
     end
   end
 
-  it "allows the owner to remove a collaborator", use_poltergeist: true do
+  it "allows the owner to remove a collaborator", use_playwright: true do
     sign_in(sally)
     navigate_to_cookbook
 
@@ -26,7 +26,7 @@ describe "cookbook collaboration" do
     expect(page).to have_no_css("div.gravatar-container")
   end
 
-  it "allows a collaborator to remove herself", use_poltergeist: true do
+  it "allows a collaborator to remove herself", use_playwright: true do
     sign_in(suzie)
     navigate_to_cookbook
 

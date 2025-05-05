@@ -181,7 +181,7 @@ RSpec.configure do |config|
   end
 
   config.before(type: :feature) do |example|
-    Capybara.current_driver = :poltergeist if example.metadata[:use_poltergeist] == true
+    Capybara.current_driver = :playwright if example.metadata[:use_playwright] == true
   end
 
   # If true, the base class of anonymous controllers will be inferred

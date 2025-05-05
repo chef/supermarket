@@ -12,7 +12,7 @@ describe "cookbook following" do
       follow_first_relation "follow"
     end
 
-    it "allows a user to follow a cookbook", use_poltergeist: true do
+    it "allows a user to follow a cookbook", use_playwright: true do
       expect(page).to have_xpath("//a[starts-with(@rel, 'unfollow')]")
     end
   end
@@ -27,7 +27,7 @@ describe "cookbook following" do
       end
     end
 
-    it "allows a user to follow a cookbook", use_poltergeist: true do
+    it "allows a user to follow a cookbook", use_playwright: true do
       within ".cookbook_show" do
         follow_relation "follow"
       end
@@ -35,7 +35,7 @@ describe "cookbook following" do
       expect(page).to have_xpath("//a[starts-with(@rel, 'unfollow')]")
     end
 
-    it "allows a user to unfollow a cookbook", use_poltergeist: true do
+    it "allows a user to unfollow a cookbook", use_playwright: true do
       within ".cookbook_show" do
         follow_relation "follow"
       end
