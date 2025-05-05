@@ -6,11 +6,13 @@ require "paperclip/matchers"
 require "sidekiq/testing"
 require "capybara/rails"
 require "capybara/rspec"
-require "capybara/poltergeist"
+# require "capybara/poltergeist"
+require "capybara/playwright"
 require "capybara-screenshot/rspec"
 require "factory_bot_rails"
-require "phantomjs"
+# require "phantomjs"
 require "simplecov"
+
 SimpleCov.start
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -25,26 +27,31 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 # only care that the job was queued, and not care about the result.
 Sidekiq::Testing.fake!
 
-# Use a quieter Poltergeist driver
-# This eliminates the debug warnings regarding unrecognized viewport
-# arguments and the like
-Capybara.register_driver :poltergeist do |app|
-  error_logger = Logger.new(STDERR).tap { |l| l.level = Logger::ERROR }
+# # Use a quieter Poltergeist driver
+# # This eliminates the debug warnings regarding unrecognized viewport
+# # arguments and the like
+# Capybara.register_driver :poltergeist do |app|
+#   error_logger = Logger.new(STDERR).tap { |l| l.level = Logger::ERROR }
 
-  Capybara::Poltergeist::Driver.new(
-    app,
-    phantomjs_logger: error_logger,
-    timeout: 90,
-    phantomjs: Phantomjs.path,
-    # set to a width larger than the medium range defined in variables.scss
-    # so that tests the navmenu appears at the top of the window, otherwise
-    # capybara will complain about
-    #   Unable to find css "[rel*=thinginthenavmenu]"
-    window_size: [1920, 1080]
-  )
+#   Capybara::Poltergeist::Driver.new(
+#     app,
+#     phantomjs_logger: error_logger,
+#     timeout: 90,
+#     phantomjs: Phantomjs.path,
+#     # set to a width larger than the medium range defined in variables.scss
+#     # so that tests the navmenu appears at the top of the window, otherwise
+#     # capybara will complain about
+#     #   Unable to find css "[rel*=thinginthenavmenu]"
+#     window_size: [1920, 1080]
+#   )
+# end
+
+# Capybara.javascript_driver = :poltergeist
+
+Capybara.register_driver :playwright do |app|
+  Capybara::Playwright::Driver.new(app, browser_type: :chromium)
 end
-
-Capybara.javascript_driver = :poltergeist
+Capybara.javascript_driver = :playwright
 Capybara::Screenshot.prune_strategy = { keep: 5 }
 Capybara.server = :puma, { Silent: true }
 
