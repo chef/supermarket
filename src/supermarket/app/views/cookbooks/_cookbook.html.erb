@@ -12,7 +12,7 @@
         <i class="fa fa-dashboard"></i> <%= cookbook.latest_cookbook_version.metric_result_pass_rate %>%
         </span>
         <% end -%>
-        <i class="fa fa-clock-o"></i> Updated <span itemprop="dateModified"><%= cookbook.updated_at.to_s(:longish) %></span><br />
+        <i class="fa fa-clock-o"></i> Updated <span itemprop="dateModified"><%= cookbook.updated_at.to_fs(:longish) %></span><br />
       </span>
 
       <% if cookbook.deprecated? %>

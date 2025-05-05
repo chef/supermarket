@@ -27,7 +27,7 @@
                    ).html_safe %>
               <%= link_to gravatar_for(cookbook_version.published_by), cookbook_version.published_by %>
             </div>
-            <small class="date"><%= cookbook_version.created_at.to_s(:longish) %></small>
+            <small class="date"><%= cookbook_version.created_at.to_fs(:longish) %></small>
           </li>
         <% end %>
       </ul>
