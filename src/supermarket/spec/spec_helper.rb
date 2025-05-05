@@ -6,7 +6,8 @@ require "paperclip/matchers"
 require "sidekiq/testing"
 require "capybara/rails"
 require "capybara/rspec"
-require "capybara/poltergeist"
+# require "capybara/poltergeist"
+require "capybara/cuprite"
 require "capybara-screenshot/rspec"
 require "factory_bot_rails"
 require "phantomjs"
@@ -25,26 +26,41 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 # only care that the job was queued, and not care about the result.
 Sidekiq::Testing.fake!
 
-# Use a quieter Poltergeist driver
-# This eliminates the debug warnings regarding unrecognized viewport
-# arguments and the like
-Capybara.register_driver :poltergeist do |app|
-  error_logger = Logger.new(STDERR).tap { |l| l.level = Logger::ERROR }
+# # Use a quieter Poltergeist driver
+# # This eliminates the debug warnings regarding unrecognized viewport
+# # arguments and the like
+# Capybara.register_driver :poltergeist do |app|
+#   error_logger = Logger.new(STDERR).tap { |l| l.level = Logger::ERROR }
 
-  Capybara::Poltergeist::Driver.new(
+#   Capybara::Poltergeist::Driver.new(
+#     app,
+#     phantomjs_logger: error_logger,
+#     timeout: 90,
+#     phantomjs: Phantomjs.path,
+#     # set to a width larger than the medium range defined in variables.scss
+#     # so that tests the navmenu appears at the top of the window, otherwise
+#     # capybara will complain about
+#     #   Unable to find css "[rel*=thinginthenavmenu]"
+#     window_size: [1920, 1080]
+#   )
+# end
+
+# Capybara.javascript_driver = :poltergeist
+
+# Register Cuprite as the Capybara driver
+Capybara.register_driver :cuprite do |app|
+  Capybara::Cuprite::Driver.new(
     app,
-    phantomjs_logger: error_logger,
-    timeout: 90,
-    phantomjs: Phantomjs.path,
-    # set to a width larger than the medium range defined in variables.scss
-    # so that tests the navmenu appears at the top of the window, otherwise
-    # capybara will complain about
-    #   Unable to find css "[rel*=thinginthenavmenu]"
-    window_size: [1920, 1080]
+    window_size: [1920, 1080],
+    browser_options: { "no-sandbox" => nil }, # Useful for CI environments
+    timeout: 30,
+    headless: true # Run in headless mode
   )
 end
 
-Capybara.javascript_driver = :poltergeist
+# Set Cuprite as the default JavaScript driver
+Capybara.javascript_driver = :cuprite
+
 Capybara::Screenshot.prune_strategy = { keep: 5 }
 Capybara.server = :puma, { Silent: true }
 
@@ -174,7 +190,7 @@ RSpec.configure do |config|
   end
 
   config.before(type: :feature) do |example|
-    Capybara.current_driver = :poltergeist if example.metadata[:use_poltergeist] == true
+    Capybara.current_driver = :cuprite if example.metadata[:use_cuprite] == true
   end
 
   # If true, the base class of anonymous controllers will be inferred
