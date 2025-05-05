@@ -52,8 +52,8 @@
     </div>
 
     <h4>
-      <i class="fa fa-clock-o"></i> Updated <span itemprop="dateModified"><%= version.updated_at.to_s(:longish) %></span>
-      <small>Created on <span itemprop="datePublished"><%= cookbook.created_at.to_s(:longish) %></span></small>
+      <i class="fa fa-clock-o"></i> Updated <span itemprop="dateModified"><%= version.updated_at.to_fs(:longish) %></span>
+      <small>Created on <span itemprop="datePublished"><%= cookbook.created_at.to_fs(:longish) %></span></small>
     </h4>
 
     <h4><i class="fa fa-desktop"></i> Supported Platforms</h4>
