@@ -30,10 +30,22 @@ Capybara.register_driver :cuprite do |app|
     app,
     window_size: [1920, 1080],
     browser_options: { "no-sandbox" => nil }, # Useful for CI environments
-    browser_path: "/usr/bin/chromium-browser",
+    # browser_path: "/usr/bin/chromium-browser",
+    browser_path: default_chromium_path,
     timeout: 30,
     headless: true # Run in headless mode
   )
+end
+
+# Helper method to determine the default Chromium path based on the OS
+def default_chromium_path
+  if RbConfig::CONFIG["host_os"] =~ /darwin/
+    # macOS
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" # macOS path
+  else
+    # Linux
+    "/usr/bin/chromium-browser" # Linux path
+  end
 end
 
 # Set Cuprite as the default JavaScript driver
