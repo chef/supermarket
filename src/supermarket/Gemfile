@@ -78,8 +78,6 @@ group :test do
   gem "capybara"
   gem "capybara-screenshot"
   gem "database_cleaner"
-  # gem "poltergeist"
-  # gem "phantomjs", require: "phantomjs/poltergeist"
   gem "rails-controller-testing"
   gem "shoulda-matchers"
   gem "vcr", require: false

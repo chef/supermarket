@@ -6,11 +6,9 @@ require "paperclip/matchers"
 require "sidekiq/testing"
 require "capybara/rails"
 require "capybara/rspec"
-# require "capybara/poltergeist"
 require "capybara/cuprite"
 require "capybara-screenshot/rspec"
 require "factory_bot_rails"
-# require "phantomjs"
 require "simplecov"
 SimpleCov.start
 
@@ -25,27 +23,6 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 # Treat Sidekiq like ActionMailer. In most cases, tests which queue jobs should
 # only care that the job was queued, and not care about the result.
 Sidekiq::Testing.fake!
-
-# # Use a quieter Poltergeist driver
-# # This eliminates the debug warnings regarding unrecognized viewport
-# # arguments and the like
-# Capybara.register_driver :poltergeist do |app|
-#   error_logger = Logger.new(STDERR).tap { |l| l.level = Logger::ERROR }
-
-#   Capybara::Poltergeist::Driver.new(
-#     app,
-#     phantomjs_logger: error_logger,
-#     timeout: 90,
-#     phantomjs: Phantomjs.path,
-#     # set to a width larger than the medium range defined in variables.scss
-#     # so that tests the navmenu appears at the top of the window, otherwise
-#     # capybara will complain about
-#     #   Unable to find css "[rel*=thinginthenavmenu]"
-#     window_size: [1920, 1080]
-#   )
-# end
-
-# Capybara.javascript_driver = :poltergeist
 
 # Register Cuprite as the Capybara driver
 Capybara.register_driver :cuprite do |app|
