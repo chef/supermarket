@@ -11,9 +11,6 @@ name: unit
 
 jobs:
   supermarket:
-    # Do not change the runs-on value. It is required for phantomjs to work.
-    # After ubuntu-20.04 phantomjs is not supported in ubuntu.
-    # We can later replace phantomjs with Puppeteer/Playwright
     runs-on: ubuntu-latest
 
     services:
@@ -56,10 +53,7 @@ jobs:
         working-directory: src/supermarket
 
   fieri:
-    # Do not change the runs-on value. It is required for phantomjs to work.
-    # After ubuntu-20.04 phantomjs is not supported in ubuntu.
-    # We can later replace phantomjs with Puppeteer/Playwright
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     services:
       postgres:
@@ -81,6 +75,8 @@ jobs:
           working-directory: src/supermarket/engines/fieri
           ruby-version: 3.1.2
           bundler-cache: true
+      - name: Install Chrome
+        run: sudo apt-get install -y chromium-browser
       - uses: r7kamura/rubocop-problem-matchers-action@v1 # this shows the failures in the PR
       - name: run specs
         run: bundle exec rake spec --trace

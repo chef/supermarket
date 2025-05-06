@@ -25,12 +25,6 @@ namespace :setup do
         running = system("pgrep -q redis-server")
         assert(running, "Redis Server does not appear to be running.")
       end
-
-      def test_phantomjs_installed
-        pjver = Gem::Version.new(`phantomjs --version`.split.last)
-        valid = pjver == Gem::Version.new("1.8.2")
-        assert(valid, "PhantomJS 1.8.2 is required.")
-      end
     end
   end
 

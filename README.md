@@ -314,7 +314,7 @@ There are a couple of features that depend on GitHub Enterprise integration (som
 
 ## Tests
 
-Requirements for tests: PhantomJS 1.8, Node.
+Requirements for tests: Chromium-browser, Node.
 
 Run the entire test suite (rspec, rubocop and mocha) with:
 
@@ -328,7 +328,7 @@ Acceptance tests are run with [Capybara](https://github.com/jnicklas/capybara). 
 
 When writing feature specs, the *Rack::Test* driver is used by default. If the *cuprite* driver is required to be used (for example, an acceptance test that uses AJAX), add the `use_cuprite: true` metadata to the spec.
 
-Some specs run using [PhantomJS](http://phantomjs.org/), which must be installed for the test suite to pass.
+Some specs run using [chromium-browser](https://www.chromium.org/), which must be installed for the test suite to pass.
 
 ### JavaScript Tests
 
