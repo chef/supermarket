@@ -30,7 +30,6 @@ Capybara.register_driver :cuprite do |app|
     app,
     window_size: [1920, 1080],
     browser_options: { "no-sandbox" => nil }, # Useful for CI environments
-    # browser_path: "/usr/bin/chromium-browser",
     browser_path: default_chromium_path,
     timeout: 30,
     headless: true # Run in headless mode
