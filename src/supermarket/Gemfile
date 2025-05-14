@@ -55,6 +55,7 @@ gem "listen"
 gem "cookstyle", "~> 7.32.1"
 gem "kt-paperclip"
 gem "net-smtp", require: false
+gem "concurrent-ruby", "= 1.3.4"
 
 group :asset do
   gem "uglifier"
