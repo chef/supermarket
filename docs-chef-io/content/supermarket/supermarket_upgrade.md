@@ -14,7 +14,7 @@ gh_repo = "supermarket"
 <!-- markdownlint-disable MD033 -->
 ## Upgrade Matrix
 
-  If running Supermarket 4.2, you can upgrade directly to the latest releases of Supermarket 5.x. If you are running a release with version less than 4.2 you must perform a stepped upgrade as outlined below.
+  If running Supermarket 4.2, you can upgrade directly to the latest releases of Supermarket 5.x. If you are running a release with version less than 4.2 you must perform a stepped upgrade as outlined below
 
 Running Version | Upgrade Version | Supported Version
 ----------------|-----------------|------------------
