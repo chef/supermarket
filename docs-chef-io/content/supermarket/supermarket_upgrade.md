@@ -1,5 +1,5 @@
 +++
-title = "Upgrade Supermarket"
+title = "Upgrade Chef Supermarket"
 date = 2021-12-28T11:04:48-08:00
 draft = false
 gh_repo = "supermarket"
@@ -11,169 +11,223 @@ gh_repo = "supermarket"
     parent = "supermarket/server"
 +++
 
-<!-- markdownlint-disable MD033 -->
-## Upgrade Matrix
+This document describes how to upgrade Supermarket.
 
-  If running Supermarket 4.2, you can upgrade directly to the latest releases of Supermarket 5.x. If you are running a release with version less than 4.2 you must perform a stepped upgrade as outlined below.
+## Supported versions
 
-Running Version | Upgrade Version | Supported Version
-----------------|-----------------|------------------
-4.2             | 5.x             | Yes
-< 4.2           | 4.2             | No
+Progress Chef supports Supermarket 5.0 and later. For more information about supported Chef Software see the [supported versions documentation](/versions/#supported-free-distributions).
 
-## Supported Release
+### PostgreSQL bundled with Supermarket
 
-Chef Supermarket uses the PostgreSQL database. [PostgreSQL 9.3 is EOL](https://endoflife.date/postgresql) and Private Supermarket users should upgrade to [Supermarket 5.0](https://www.chef.io/downloads) or above and migrate to [PostgreSQL 13](https://www.postgresql.org/about/news/postgresql-13-released-2077/).
+Supermarket is bundled with PostgreSQL.
+The following table shows which version of PostgreSQL is bundled with Supermarket.
 
-Chef Software supports Supermarket 5.0 release and later. Earlier releases are not supported. For more information about supported Chef Software see the [Supported Versions](https://docs.chef.io/versions/#supported-commercial-distributions) documentation.
+| Supermarket version | PostgreSQL version |
+|---------------------|--------------------|
+| >= 4.2 and < 5.0    | 9.3                |
+| >= 5.0 and < 5.2    | 13.4               |
+| >= 5.2              | 13.18              |
 
-## Supermarket Postgres Version Matrix
+## Before you upgrade
 
-Every version of supermarket has a certain version of PostgreSQL(PG) bundled inside. Please refer the below matrix to find the PG version mapped with the version of Supermarket. This matrix will be helpful in deciding whether certain steps should be run or skipped during the upgrade process of Supermarket.
+Use these guidelines to determine which upgrade process you should follow:
 
-| Supermarket Version | Postgres Version |
-|---------------------|------------------|
-| >= 4.2 and < 5.0    | 9.3              |
-| >= 5.0 and < 5.2    | 13.4             |
-| >= 5.2              | 13.18            |
+- If you're upgrading from Supermarket 4.2.x to Supermarket 5.x, this also upgrades the version PostgreSQL that's embedded with Supermarket and involves extra steps for managing the database and Supermarket configuration. For this process, follow the [Upgrade to Supermarket 5.0 documentation](#upgrade-to-supermarket-50).
 
-## Upgrade a Private Supermarket
+- If you want to upgrade from a version of Supermarket that's less than 4.2 to Supermarket 5.x, first upgrade to Supermarket 4.2.x using the [regular upgrade process](#upgrade-supermarket), then [upgrade to version 5.x](#upgrade-to-supermarket-50).
 
-Every Private Supermarket installation is unique. These are general steps for upgrading a Private Supermarket.
+- For any other upgrade, follow the [regular upgrade process](#upgrade-supermarket).
 
-  1. Stop the Supermarket services:
+## Upgrade Supermarket
 
-      ```bash
-      sudo supermarket-ctl stop
-      ```
+To upgrade Supermarket, follow these steps:
 
-  1. Backup the `/var/opt/supermarket` directory.
-  1. Download the Chef Supermarket package from [Chef Downloads](https://www.chef.io/downloads).
-  1. Upgrade your system by installing the new package using the appropriate package manager for your distribution:
-      - For Ubuntu:
+1. Stop the Supermarket services:
 
-        ```bash
-        dpkg -i /path/to/package/supermarket*.deb
-        ```
+    ```bash
+    sudo supermarket-ctl stop
+    ```
 
-      - For RHEL / CentOS:
+1. Backup the `/var/opt/supermarket` directory.
+1. Download a Supermarket package from [Chef Downloads](https://www.chef.io/downloads).
+1. Upgrade your system by installing the new package using the appropriate package manager for your distribution:
 
-        ```bash
-        rpm -Uvh /path/to/package/supermarket*.rpm
-        ```
-
-  1. Determine the current installed PG (PostgreSQL) version which comes bundled with supermarket. This step will determine if we need to run the next step. Run the below command:
+    - For Ubuntu:
 
       ```bash
-      sudo /opt/supermarket/embedded/bin/postgres --version
+      dpkg -i /path/to/package/supermarket*.deb
       ```
 
-      If in the new version of supermarket the PG version is a major upgrade from the current installed PG version then skip the next step of starting supermarket. For details on which version of supermarket installs which version of PG please refer this section: [Supermarket Postgres Version Matrix](#supermarket-postgres-version-matrix)
-
-  1. Start the Chef Supermarket services (skip this step if there is any major version upgrade for PostgreSQL in the new version of supermarket):
+    - For RHEL:
 
       ```bash
-      sudo supermarket-ctl start
+      rpm -Uvh /path/to/package/supermarket*.rpm
       ```
 
-  1. Reconfigure Chef Supermarket server:
+1. Get the installed PostgreSQL version that's bundled with Supermarket:
 
-      ```bash
-      sudo supermarket-ctl reconfigure
-      ```
+    ```bash
+    sudo /opt/supermarket/embedded/bin/postgres --version
+    ```
 
-  1. Once the Private Supermarket upgrade finishes, restart the services that run Chef Supermarket to clear the old installation of Chef Supermarket from the server memory.
+1. Start the Chef Supermarket services:
 
-      ```bash
-      systemctl list-units | grep runsvdir
-      ```
+    ```bash
+    sudo supermarket-ctl start
+    ```
 
-  1. Restart the unit:
+1. Reconfigure Chef Supermarket server:
 
-      ```bash
-      systemctl restart UNIT_NAME
-      ```
+    ```bash
+    sudo supermarket-ctl reconfigure
+    ```
 
-      This will restart the `runsvdir`, `runsv`, and `svlogd` service processes that run Chef Supermarket.
+1. Once the private Supermarket upgrade finishes, restart the services that run Chef Supermarket to clear the old installation of Chef Supermarket from the server memory.
 
-## Release Specific Upgrade: Supermarket 5.0 and PostgreSQL 13.4
+    ```bash
+    systemctl list-units | grep runsvdir
+    ```
 
-Supermarket 5.0 upgrades PostgreSQL from 9.3 to 13.4. The 5.0 upgrade process requires a one-time downtime to vacuum, upgrade, and re-index the database.
+1. Restart the unit:
 
-### Supermarket 5.0 Changes
+    ```bash
+    systemctl restart <UNIT_NAME>
+    ```
+
+    This will restart the `runsvdir`, `runsv`, and `svlogd` service processes that run Chef Supermarket.
+
+## Upgrade to Supermarket 5.0
+
+Upgrading from Supermarket 4.2.x to 5.0 upgrades PostgreSQL from 9.3 to 13.4.
+This upgrade process requires a one-time downtime to vacuum, upgrade, and re-index the database.
+
+If you're upgrading from a version of Supermarket before 4.2, upgrade to version 4.2.x using the regular upgrade instructions, then upgrade version 5.x.
+
+### Configure PostgreSQL in the Supermarket settings
 
 Prepare for the upgrade by following these steps:
 
-1. Set the attribute: `default['supermarket']['postgresql']['pg_upgrade_timeout']` in `supermarket.rb` to the intended timeout value (***in seconds***) for the upgrade. Set this value based on the size of your data.
-1. PostgreSQL 13 deprecated the `checkpoint-segments` attribute and we have removed it from the Supermarket configuration. Remove this entry from your configuration:
+1. In the `supermarket.rb` settings, set the attribute `pg_upgrade_timeout` to the intended timeout value in seconds for the upgrade.
 
-  ```ruby
-  default['supermarket']['postgresql']['checkpoint_segments']
-  ```
+    For example:
 
-### PostgreSQL 13.4 Upgrade
+    ```rb
+    default['supermarket']['postgresql']['pg_upgrade_timeout'] = <SECONDS>
+    ```
 
-Each Private Supermarket installation is unique. The PostgreSQL upgrade steps are a general process intended for the _internal PostgreSQL_.
+    Set this value based on the size of your data.
 
-- **External PostgreSQL**: The end user is responsible for upgrading and maintaining External PostgreSQL configurations.
-- **Internal PostgreSQL**: The PostgreSQL upgrade steps are a general process intended for the _internal PostgreSQL_.
+1. Remove the `checkpoint-segments` attribute from your `supermarket.rb` settings:
 
-{{< danger >}}
-**BACKUP THE SUPERMARKET DATABASE AND SECURE THE DATA.** Preserve your backup at all costs. Copy the backup to a second and separate location.
-{{< /danger >}}
+    ```ruby
+    # This setting is EOL in Supermarket 5.x and PostgreSQL 9.4
+    # default['supermarket']['postgresql']['checkpoint_segments']
+    ```
+
+   PostgreSQL removed the `checkpoint_segments` attribute and we removed it from the Supermarket configuration.
+
+### Prepare PostgreSQL embedded with Supermarket
+
+Prepare the PostgreSQL database for upgrading:
 
 1. Backup the Supermarket database:
 
-    Database migrations have inherent risk to your system. Create a backup before beginning any migration or update. This ensures that you have a recoverable state in case any step in the process fails. Copy the backup to a another disk that is not connected to the Private Supermarket installation. This ensures that you have state to restore, in case of a failure in the upgrade process
-
-    Back up the PostgreSQL database before upgrading so you can restore the full database to a previous release in the event of a failure in the upgrade steps below.
-
     ```bash
     cd /
-    sudo -u supermarket /opt/supermarket/embedded/bin/pg_dumpall -U supermarket 1543 > /  tmp/supermarket-dump.sql
+    sudo -u supermarket /opt/supermarket/embedded/bin/pg_dumpall -U supermarket -p 15432 > /tmp/supermarket-dump.sql
     ```
+
+    **Important:** Always back up your PostgreSQL data before upgrading. Store a copy of the backup in a separate, safe location that is not on the Supermarket server. This ensures you can restore your data if anything goes wrong during the upgrade.
 
 1. Vacuum the database:
 
-    Run `VACUUM FULL` on the PostgreSQL database if you don't have automatic vacuuming set up. This process will reduce the size of the database by deleting unnecessary data and speeds up the migration. The `VACUUM FULL` operation takes around 1 to 2 minutes per gigabyte of data depending on the complexity of the data, and requires free disk space at least as large as the size of your database.
+    ```bash
+    cd /
+    sudo -u supermarket /opt/supermarket/embedded/bin/vacuumdb --all --full -p 15432
+    ```
 
-    For more information on upgrading using `vacuumdb` see the PostgreSQL 13   documentation for [vacuumdb](https://www.postgresql.org/docs/13/app-vacuumdb.html).
+    This reduces the size of the database by deleting unnecessary data and speeds up the migration.
+    This takes around 1 to 2 minutes per gigabyte of data depending on the complexity of the data, and requires free disk space at least as large as the size of your database.
+
+    For more information, see the [`vacuumdb` documentation](https://www.postgresql.org/docs/13/app-vacuumdb.html).
+
+### Upgrade Supermarket
+
+To upgrade Supermarket, follow these steps:
+
+1. Stop the Supermarket services:
+
+    ```bash
+    sudo supermarket-ctl stop
+    ```
+
+1. Backup the `/var/opt/supermarket` directory.
+
+1. Download a Supermarket package from [Chef Downloads](https://www.chef.io/downloads).
+
+1. Upgrade your system by installing the new package using the appropriate package manager for your distribution:
+
+    - For Ubuntu:
 
       ```bash
-      cd /
-      sudo -u supermarket /opt/supermarket/embedded/bin/vacuumdb --all --full -p 15432
+      dpkg -i /path/to/package/supermarket*.deb
       ```
 
-1. Upgrade Supermarket:
+    - For RHEL:
 
-    Follow the [Upgrade a Private Supermarket]({{< relref "#upgrade-a-private-supermarket" >}}) steps.
-<br></br>
+      ```bash
+      rpm -Uvh /path/to/package/supermarket*.rpm
+      ```
 
-1. Cleanup the installation:
+1. Get the installed PostgreSQL version that's bundled with Supermarket:
 
-    Follow these steps to clean up the old PostgreSQL installation and other clutter in the cache.
+    ```bash
+    sudo /opt/supermarket/embedded/bin/postgres --version
+    ```
 
-    1. Stop the Supermarket application:
+1. Reconfigure Chef Supermarket server:
 
-        ```bash
-        sudo supermarket-ctl stop
-        ```
+    ```bash
+    sudo supermarket-ctl reconfigure
+    ```
 
-    1. Start the newly installed PostgreSQL server.
+1. Once the private Supermarket upgrade finishes, restart the services that run Chef Supermarket to clear the old installation of Chef Supermarket from the server memory.
 
-        ```bash
-        sudo supermarket-ctl start postgresql
-        ```
+    ```bash
+    systemctl list-units | grep runsvdir
+    ```
 
-1. Reindex the database:
+1. Restart the unit:
 
-    `reindexdb` is a utility for rebuilding indexes in a PostgreSQL database.
+    ```bash
+    systemctl restart <UNIT_NAME>
+    ```
 
-    For more information on upgrading using `reindexdb` see the PostgreSQL 13   documentation for [reindexdb](https://www.postgresql.org/docs/13/app-reindexdb.html).
+    This restarts the `runsvdir`, `runsv`, and `svlogd` service processes that run Chef Supermarket.
+
+### Cleanup the PostgreSQL database
+
+Follow these steps to clean up the old PostgreSQL installation and other clutter in the cache:
+
+1. Stop Supermarket:
+
+    ```bash
+    sudo supermarket-ctl stop
+    ```
+
+1. Start the newly installed PostgreSQL server.
+
+    ```bash
+    sudo supermarket-ctl start postgresql
+    ```
+
+1. Reindex the PostgreSQL database:
 
     ```bash
     sudo -u supermarket /opt/supermarket/embedded/bin/reindexdb --all -p 15432
     ```
+
+    [`reindexdb`](https://www.postgresql.org/docs/13/app-reindexdb.html) is a utility for rebuilding PostgreSQL database indexes.
 
 1. Restart Supermarket:
 
@@ -187,29 +241,29 @@ Private Supermarket users upgrading to Chef Infra Server version 15.8.0 or above
 
 ## Troubleshooting
 
-### Recovering from Database Cleanup Failures
+### Recovering from database cleanup failures
 
-If either the `vacuumdb` or `reindexdb` commands fail
+If either the `vacuumdb` or `reindexdb` commands fail, follow these steps:
 
-1. Drop the Supermarket PostgreSQL database
+1. Drop the Supermarket PostgreSQL database:
 
     ```bash
     /opt/supermarket/embedded/bin/psql -U supermarket -d postgres -p 15432 -c "drop database supermarket"
     ```
 
-1. Recreate the Supermarket PostgreSQL database
+1. Recreate the Supermarket PostgreSQL database:
 
     ```bash
     /opt/supermarket/embedded/bin/psql -U supermarket -d postgres -p 15432 -c "create database supermarket"
     ```
 
-1. Restore Supermarket PostgreSQL database from the existing dump file: `supermarket-dump-archive.sql`
+1. Restore Supermarket PostgreSQL database from the existing `supermarket-dump-archive.sql` dump file:
 
     ```bash
     /opt/supermarket/embedded/bin/psql -U supermarket -d supermarket -p 15432 -f /tmp/supermarket-dump-archive.sql
     ```
 
-1. Restart the Supermarket application
+1. Restart Supermarket:
 
     ```bash
     supermarket-ctl restart
