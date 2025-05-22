@@ -92,7 +92,7 @@ To upgrade Supermarket, follow these steps:
 
 ## Upgrade to Supermarket 4.2.x to 5.x
 
-When you upgrade from Supermarket 4.2.x to 5.x, this also upgrades PostgreSQL from 9.3 to 13.4.
+When you upgrade from Supermarket 4.2.x to 5.x, this also [upgrades PostgreSQL from 9.3 to 13.x](#postgresql-bundled-with-supermarket).
 This process requires a one-time downtime to vacuum, upgrade, and re-index the database.
 
 ### Configure PostgreSQL in the Supermarket settings
@@ -112,7 +112,7 @@ Prepare for the upgrade:
 1. Remove the `checkpoint-segments` attribute from your `supermarket.rb` settings:
 
     ```ruby
-    # This setting is EOL in Supermarket 5.x and PostgreSQL 9.4
+    # This setting is EOL in Supermarket 5.x and PostgreSQL 13
     # default['supermarket']['postgresql']['checkpoint_segments']
     ```
 
@@ -122,7 +122,7 @@ Prepare for the upgrade:
 
 Prepare the PostgreSQL database for upgrading:
 
-1. Back up the Supermarket database:
+1. Create a backup of the PostgreSQL databases:
 
     ```bash
     cd /
