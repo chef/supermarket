@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.1.81 -->
-## [5.1.81](https://github.com/chef/supermarket/tree/5.1.81) (2024-11-05)
+<!-- latest_release 5.2.0 -->
+## [5.2.0](https://github.com/chef/supermarket/tree/5.2.0) (2025-06-02)
 
 #### Merged Pull Requests
-- supermarket upgrade instruction fix [#3290](https://github.com/chef/supermarket/pull/3290) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Upgrade to PG 13.18 and other CVE fixes [#3291](https://github.com/chef/supermarket/pull/3291) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.1.80 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Upgrade to PG 13.18 and other CVE fixes [#3291](https://github.com/chef/supermarket/pull/3291) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.2.0 -->
 - supermarket upgrade instruction fix [#3290](https://github.com/chef/supermarket/pull/3290) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.81 -->
 <!-- release_rollup -->
 
