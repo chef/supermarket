@@ -2,19 +2,21 @@
   "name": "supermarket",
   "devDependencies": {
     "chai": "~1.8.1",
-    "karma": "~6.4.3",
+    "karma": "^6.4.4",
     "karma-coffee-preprocessor": "^1.0.1",
     "karma-mocha": "^2.0.1",
-    "karma-phantomjs-launcher": "^1.0.4",
     "karma-requirejs": "^1.1.0",
     "karma-spec-reporter": "^0.0.34",
     "mocha": "^9.2.2",
-    "phantomjs-prebuilt": "^2.1.16",
-    "sprockets-chain": "0.0.16"
+    "sprockets-chain": "0.0.16",
+    "karma-chrome-launcher": "^3.1.0"
   },
   "overrides": {
     "sprockets-chain@0.0.16": {
       "hike": "1.0.x"
     }
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3"
   }
 }

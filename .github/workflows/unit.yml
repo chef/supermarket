@@ -33,6 +33,8 @@ jobs:
           working-directory: src/supermarket
           ruby-version: 3.1.2
           bundler-cache: true
+      - name: Install Chrome
+        run: sudo apt-get install -y chromium-browser
       - uses: r7kamura/rubocop-problem-matchers-action@v1 # this shows the failures in the PR
       - name: create database schema
         run: bundle exec rake db:schema:load
@@ -73,6 +75,8 @@ jobs:
           working-directory: src/supermarket/engines/fieri
           ruby-version: 3.1.2
           bundler-cache: true
+      - name: Install Chrome
+        run: sudo apt-get install -y chromium-browser
       - uses: r7kamura/rubocop-problem-matchers-action@v1 # this shows the failures in the PR
       - name: run specs
         run: bundle exec rake spec --trace

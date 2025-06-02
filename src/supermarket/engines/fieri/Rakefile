@@ -23,6 +23,7 @@ Dir[File.join(File.dirname(__FILE__), "lib/tasks/**/*.rake")].each { |f| load f 
 
 require "chefstyle"
 require "rubocop/rake_task"
+require "rubygems/package"
 desc "Run ChefStyle-flavored Rubocop"
 RuboCop::RakeTask.new(:chefstyle) do |task|
   task.options << "--ignore-parent-exclusion"
