@@ -1,26 +1,23 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.2.0 -->
-## [5.2.0](https://github.com/chef/supermarket/tree/5.2.0) (2025-06-02)
-
-#### Merged Pull Requests
-- Upgrade to PG 13.18 and other CVE fixes [#3291](https://github.com/chef/supermarket/pull/3291) ([RajeshPaul38](https://github.com/RajeshPaul38))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.1.80 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Upgrade to PG 13.18 and other CVE fixes [#3291](https://github.com/chef/supermarket/pull/3291) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.2.0 -->
-- supermarket upgrade instruction fix [#3290](https://github.com/chef/supermarket/pull/3290) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.1.81 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [5.2.0](https://github.com/chef/supermarket/tree/5.2.0) (2025-06-02)
+
+#### Merged Pull Requests
+- supermarket upgrade instruction fix [#3290](https://github.com/chef/supermarket/pull/3290) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- Upgrade to PG 13.18 and other CVE fixes [#3291](https://github.com/chef/supermarket/pull/3291) ([RajeshPaul38](https://github.com/RajeshPaul38))
+<!-- latest_stable_release -->
+
 ## [5.1.80](https://github.com/chef/supermarket/tree/5.1.80) (2024-10-23)
 
 #### Merged Pull Requests
 - Rp/dependabot-fix [#3219](https://github.com/chef/supermarket/pull/3219) ([RajeshPaul38](https://github.com/RajeshPaul38))
-<!-- latest_stable_release -->
 
 ## [5.1.79](https://github.com/chef/supermarket/tree/5.1.79) (2024-07-08)
 
