@@ -213,6 +213,12 @@ Before completing any upgrade:
    1. Load database schema: `RAILS_ENV=test bundle exec rake db:schema:load`
    2. Run database migrations: `RAILS_ENV=test bundle exec rake db:migrate`
    3. Execute the full test suite: `RAILS_ENV=test bundle exec rake spec --trace`
+   
+   **Step 5: Test Fieri engine if updated:**
+   - Navigate to Fieri engine: `cd engines/fieri`
+   - Install dependencies: `bundle install`
+   - Run Fieri tests: `RAILS_ENV=test bundle exec rake spec --trace`
+   - Return to main app: `cd ../..`
    - **Error Detection and Analysis:**
      - Check the exit code: Non-zero exit codes indicate failures
      - Look for specific error patterns:
