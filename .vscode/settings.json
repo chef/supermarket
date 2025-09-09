@@ -1,0 +1,21 @@
+{
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "[markdown]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true
+    },
+    "chat.mcp.serverSampling": {
+        "supermarket/.vscode/mcp.json: atlassian-mcp-server": {
+            "allowedModels": [
+                "copilot/gpt-4.1",
+                "copilot/claude-sonnet-4",
+                "copilot/gpt-5"
+            ]
+        }
+    }
+}
