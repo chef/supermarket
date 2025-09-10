@@ -4,13 +4,15 @@
 These instructions guide GitHub Copilot in handling dependency upgrades for the Supermarket project, specifically focusing on upgrading vulnerable packages including gems, libraries, plugins, and PostgreSQL versions.
 
 ## Scope of Work
-You can ONLY assist with upgrading dependencies such as:
-- Ruby gems
-- Libraries
-- Plugins
-- PostgreSQL versions
+You can assist with:
+- **General questions and miscellaneous topics** related to the codebase, development practices, technical topics, tools, and any other general guidance
+- **JIRA stories specifically about upgrading dependencies in the Supermarket project** such as:
+  - Ruby gems
+  - Libraries
+  - Plugins
+  - PostgreSQL versions
 
-For any other types of tasks, politely decline and inform the user that you can only handle dependency upgrades.
+**Important:** When a JIRA ID is provided, you can ONLY help if the JIRA story is about the Supermarket project AND about dependency/package upgrades. For JIRA stories about other types of tasks or other projects, politely decline and inform the user that you can only handle JIRA stories related to dependency upgrades in the Supermarket project, but you're happy to help with general questions and miscellaneous topics.
 
 ## Workflow Instructions
 
@@ -24,8 +26,10 @@ When a JIRA ID is provided:
 
 2. **Validate the story content:**
    - Read the JIRA story description carefully
-   - If the story is about upgrading packages/dependencies, proceed with the task
-   - If the story is about anything else, respond: "I can only assist with upgrading dependencies (gems, libraries, plugins, PostgreSQL). This JIRA appears to be about a different type of task that I cannot help with."
+   - **First check if the story is related to the Supermarket project**
+   - If the story is NOT about Supermarket, respond: "I can only assist with JIRA stories about upgrading dependencies in the Supermarket project. This JIRA appears to be about a different project. However, I'm happy to help with general questions, miscellaneous topics, or guidance about the Supermarket codebase."
+   - If the story IS about Supermarket but NOT about upgrading packages/dependencies, respond: "I can only assist with JIRA stories about upgrading dependencies (gems, libraries, plugins, PostgreSQL) in the Supermarket project. This JIRA appears to be about a different type of task that I cannot help with. However, I'm happy to help with general questions, miscellaneous topics, or guidance about the Supermarket codebase."
+   - Only if the story is about Supermarket AND about upgrading packages/dependencies, proceed with the task
 
 3. **Handle Dependabot references:**
    - If the story mentions Dependabot links, ignore those links
@@ -276,18 +280,132 @@ Before completing any upgrade:
    - Suggest PR title based on commit message (emphasize PostgreSQL upgrades prominently)
    - Suggest PR description including:
      - Summary of changes (highlight PostgreSQL version changes)
-     - Testing results
      - Any breaking changes or migration notes
      - **PostgreSQL upgrade impact assessment**
+   - **Add comment to JIRA story after successful PR creation:**
+     - Use the Atlassian MCP Server to add a comment to the original JIRA story
+     - Comment format:
+       ```markdown
+       🔗 **Pull Request Created**
+       
+       **Repository:** chef/supermarket
+       **Branch:** <branch-name>
+       **PR:** #<pr-number> - <pr-title>
+       **Link:** <pr-url>
+       
+       **Summary of Changes:**
+       <brief-summary-of-dependency-upgrades>
+       
+       **Status:** Ready for review
+       
+       _Automatically created from VS Code dependency upgrade workflow_
+       ```
+     - **Implementation using MCP Atlassian server:**
+       - Use `mcp_atlassian-mcp_addCommentToJiraIssue` tool
+       - Extract JIRA ID from branch name or commit message
+       - Format comment in Markdown as shown above
+     - **Error handling:** If JIRA comment fails, continue with workflow but notify user that manual comment addition may be needed
 
-### 10. Communication Guidelines
+6. **Optional Buildkite Build Automation (after successful PR creation):**
+   - **After PR is successfully created**, ask the user: "Would you like me to trigger a Buildkite build for this branch to validate the changes?"
+   - **Provide a clear confirmation prompt** with context:
+     ```
+     🚀 **Trigger Buildkite Build?**
+     
+     Pipeline: chef-supermarket-main-omnibus-adhoc
+     Branch: <branch-name>
+     Commit: <commit-sha>
+     
+     This will start an ad-hoc build to validate your dependency upgrades.
+     
+     [Yes, trigger build] [No, skip build]
+     ```
+   - **Only proceed if user confirms "Yes"**
+   - **If user confirms**, check and setup Buildkite MCP server if needed:
+     
+     **Step 1: Check MCP Configuration**
+     - Look for `.vscode/mcp.json` file in the workspace
+     - Check if `buildkite-mcp-server` is already configured
+     
+     **Step 2: Setup Buildkite MCP Server (if not configured)**
+     - Install the Buildkite MCP server: `npm install -g @drew-goddyn/buildkite-mcp`
+     - Check if Buildkite API token is available in environment or ask user to provide it
+     - Get organization slug from Buildkite API: `curl -H "Authorization: Bearer <token>" https://api.buildkite.com/v2/organizations`
+     - Create or update `.vscode/mcp.json` with Buildkite server configuration:
+       ```json
+       {
+         "servers": {
+           "buildkite-mcp-server": {
+             "command": "mcp-server-buildkite",
+             "env": {
+               "BUILDKITE_API_TOKEN": "<user-api-token>",
+               "BUILDKITE_ORG": "<org-slug>"
+             }
+           }
+         }
+       }
+       ```
+     - If other MCP servers exist (like Atlassian), preserve them in the configuration
+     
+     **Step 3: Verify API Token Permissions**
+     - Test the token: `curl -H "Authorization: Bearer <token>" https://api.buildkite.com/v2/access-token`
+     - Ensure the token has required scopes: `write_builds`, `read_builds`, `read_pipelines`
+     - If insufficient permissions, guide user to create a new token with proper scopes
+     
+   - **Execute the Buildkite API call:**
+     ```bash
+     curl -X POST \
+       -H "Authorization: Bearer <BUILDKITE_API_TOKEN>" \
+       -H "Content-Type: application/json" \
+       -d '{
+         "commit": "<current-commit-sha>",
+         "branch": "<branch-name>",
+         "message": "Ad-hoc build triggered from VS Code for <JIRA-ID>",
+         "ignore_pipeline_branch_filters": true
+       }' \
+       "https://api.buildkite.com/v2/organizations/chef/pipelines/chef-supermarket-main-omnibus-adhoc/builds"
+     ```
+   - **On successful build trigger:**
+     - Display build details: Build number, web URL, status
+     - Provide the Buildkite web URL for monitoring progress
+     - Example: "✅ Build #728 triggered successfully! Monitor progress at: https://buildkite.com/chef/chef-supermarket-main-omnibus-adhoc/builds/728"
+     - **Add comment to the PR with build information:**
+       - Use GitHub API or GitHub CLI to add a comment
+       - Comment format:
+         ```markdown
+         🚀 **Buildkite Build Triggered**
+         
+         **Pipeline:** chef-supermarket-main-omnibus-adhoc
+         **Build:** #<build-number>
+         **Status:** <current-status>
+         **Branch:** <branch-name>
+         **Commit:** <commit-sha>
+         
+         📊 **Monitor Progress:** <buildkite-web-url>
+         
+         _Automatically triggered from VS Code dependency upgrade workflow_
+         ```
+       - **Implementation options:**
+         - **GitHub CLI**: `gh pr comment <pr-number> --body "<comment-text>"`
+         - **GitHub API**: `curl -X POST -H "Authorization: token <github-token>" -d '{"body":"<comment-text>"}' https://api.github.com/repos/chef/supermarket/issues/<pr-number>/comments`
+       - **Error handling:** If PR comment fails, continue with build trigger but notify user that manual comment addition may be needed
+   - **On build trigger failure:**
+     - Display the error message
+     - Provide the manual steps to trigger the build through Buildkite web UI
+     - Suggest checking API token permissions if needed
+   - **Prerequisites for this automation:**
+     - Buildkite API token with `write_builds` scope
+     - Network access to Buildkite API
+     - Node.js installed for MCP server (if not already available)
+
+### 7. Communication Guidelines
 
 - **Be explicit about limitations:** Clearly state what you can and cannot do
 - **Provide detailed summaries:** After each action, explain what was changed and why
 - **Ask before proceeding:** Never assume the user wants to continue without confirmation
 - **Handle errors gracefully:** If something fails, explain the issue and suggest alternatives
 
-### 11. Repository-Specific Notes
+### 8. Repository-Specific Notes
 
 - **Main application:** Located in `/src/supermarket/`
 - **Omnibus packaging:** Located in `/omnibus/`
