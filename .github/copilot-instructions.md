@@ -276,10 +276,12 @@ Before completing any upgrade:
        - Alternative 1: Use GitHub token: `gh auth login --with-token < token.txt`
        - Alternative 2: Use SSH key: `gh auth login --git-protocol ssh`
        - Alternative 3: Browser authentication: `gh auth login --web`
-     - Automatically create PR with pre-formatted title and description
-   - Suggest PR title based on commit message (emphasize PostgreSQL upgrades prominently)
+     - **Check all commits from main branch**: Use `git log --oneline main..HEAD` to get comprehensive view of all changes
+     - Automatically create PR with pre-formatted title and description based on complete commit history
+   - Suggest PR title based on all commits in branch (emphasize PostgreSQL upgrades prominently)
    - Suggest PR description including:
-     - Summary of changes (highlight PostgreSQL version changes)
+     - Summary of all changes from main branch (highlight PostgreSQL version changes)
+     - Complete list of dependency upgrades with version changes
      - Any breaking changes or migration notes
      - **PostgreSQL upgrade impact assessment**
 6. **Add comment to JIRA story (after successful PR creation):**
