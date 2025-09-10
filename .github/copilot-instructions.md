@@ -282,32 +282,32 @@ Before completing any upgrade:
      - Summary of changes (highlight PostgreSQL version changes)
      - Any breaking changes or migration notes
      - **PostgreSQL upgrade impact assessment**
-   - **Add comment to JIRA story after successful PR creation:**
-     - Use the Atlassian MCP Server to add a comment to the original JIRA story
-     - Comment format:
-       ```markdown
-       🔗 **Pull Request Created**
-       
-       **Repository:** chef/supermarket
-       **Branch:** <branch-name>
-       **PR:** #<pr-number> - <pr-title>
-       **Link:** <pr-url>
-       
-       **Summary of Changes:**
-       <brief-summary-of-dependency-upgrades>
-       
-       **Status:** Ready for review
-       
-       _Automatically created from VS Code dependency upgrade workflow_
-       ```
-     - **Implementation using MCP Atlassian server:**
-       - Use `mcp_atlassian-mcp_addCommentToJiraIssue` tool
-       - Extract JIRA ID from branch name or commit message
-       - Format comment in Markdown as shown above
-     - **Error handling:** If JIRA comment fails, continue with workflow but notify user that manual comment addition may be needed
+6. **Add comment to JIRA story (after successful PR creation):**
+   - **Immediately after PR creation**, use the Atlassian MCP Server to add a comment to the original JIRA story
+   - Comment format:
+     ```markdown
+     🔗 **Pull Request Created**
+     
+     **Repository:** chef/supermarket
+     **Branch:** <branch-name>
+     **PR:** #<pr-number> - <pr-title>
+     **Link:** <pr-url>
+     
+     **Summary of Changes:**
+     <brief-summary-of-dependency-upgrades>
+     
+     **Status:** Ready for review
+     
+     _Automatically created from VS Code dependency upgrade workflow_
+     ```
+   - **Implementation using MCP Atlassian server:**
+     - Use `mcp_atlassian-mcp_addCommentToJiraIssue` tool
+     - Extract JIRA ID from branch name or commit message
+     - Format comment in Markdown as shown above
+   - **Error handling:** If JIRA comment fails, continue with workflow but notify user that manual comment addition may be needed
 
-6. **Optional Buildkite Build Automation (after successful PR creation):**
-   - **After PR is successfully created**, ask the user: "Would you like me to trigger a Buildkite build for this branch to validate the changes?"
+7. **Buildkite Build Automation (after JIRA comment):**
+   - **After JIRA comment is added**, ask the user: "Would you like me to trigger a Buildkite build for this branch to validate the changes?"
    - **Provide a clear confirmation prompt** with context:
      ```
      🚀 **Trigger Buildkite Build?**
@@ -398,14 +398,14 @@ Before completing any upgrade:
      - Network access to Buildkite API
      - Node.js installed for MCP server (if not already available)
 
-### 7. Communication Guidelines
+### 8. Communication Guidelines
 
 - **Be explicit about limitations:** Clearly state what you can and cannot do
 - **Provide detailed summaries:** After each action, explain what was changed and why
 - **Ask before proceeding:** Never assume the user wants to continue without confirmation
 - **Handle errors gracefully:** If something fails, explain the issue and suggest alternatives
 
-### 8. Repository-Specific Notes
+### 9. Repository-Specific Notes
 
 - **Main application:** Located in `/src/supermarket/`
 - **Omnibus packaging:** Located in `/omnibus/`
