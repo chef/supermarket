@@ -108,7 +108,7 @@ To download the cookbook archive use the following command:
 ### Cookbook Install
 
 To install a cookbook from chef server use the command from supermarket instance:
-`knife supermarket download <cookbook_name> -m https://<supermarket IP>`
+`knife supermarket install <cookbook_name> -m https://<supermarket IP>`
 
 To validate whether the installation is working fine or not I first deleted the specific cookbook from my chef repo where from I pushed the cookbook.
 Then after installing the same cookbook from chef server the same cookbook was put back into the cookbooks directory inside my chef-repo.
@@ -119,3 +119,4 @@ To unshare/delete a shared cookbook from chef server use the command:
 `knife supermarket unshare <cookbook_name> -m https://<supermarket IP>`
 
 **Once you have completed these steps that means the supermarket version has been verified in terms of basic functional sanity.**
+
