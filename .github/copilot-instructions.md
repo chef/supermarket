@@ -69,27 +69,44 @@ For each gem upgrade:
    - Run relevant tests if available
    - Check for any breaking changes
 
+**⚠️ CRITICAL FOR RAILS UPGRADES:**
+If Rails is being upgraded (any version change), you MUST update the testing framework immediately after updating Rails but BEFORE running the test suite. See section 5 for detailed Rails upgrade procedures including mandatory RSpec updates.
+
 5. **Rails Upgrade Special Considerations:**
    - **When upgrading Rails (any version - major, minor, or patch):**
-     - Always update RSpec and related testing gems to versions compatible with the new Rails version:
-       ```ruby
-       gem "rspec-rails", "~> X.Y"  # Use latest version compatible with new Rails
-       ```
-     - Update the entire RSpec suite together to avoid version conflicts:
-       ```bash
-       bundle update rspec rspec-rails rspec-core rspec-expectations rspec-mocks
-       ```
-     - **Common Rails testing gems that may need compatibility updates:**
+     - **MANDATORY**: After updating Rails version, check for updates for RSpec and related testing framework gems in this project and upgrade them to a version compatible with the new Rails version
+     - **Process:**
+       1. **Check current gem versions:**
+          ```bash
+          bundle list | grep -E "(rspec|database_cleaner|capybara|webmock|factory_bot|rails-controller-testing)"
+          ```
+       2. **Check for available updates compatible with new Rails version:**
+          ```bash
+          bundle outdated rspec rspec-rails database_cleaner capybara webmock factory_bot_rails rails-controller-testing
+          ```
+       3. **Update testing framework gems:**
+          ```bash
+          # Main application
+          cd src/supermarket
+          bundle update rspec rspec-rails rspec-core rspec-expectations rspec-mocks rails-controller-testing factory_bot_rails capybara webmock database_cleaner
+          
+          # Fieri engine
+          cd engines/fieri
+          bundle update rspec-rails webmock
+          ```
+       4. **Verify compatibility before running full test suite:**
+          ```bash
+          RAILS_ENV=test bundle exec rails runner "puts 'Rails ' + Rails::VERSION::STRING + ' loads successfully with updated testing gems'"
+          ```
+     - **Key testing gems that must be compatible with Rails version:**
        - `rspec-rails` - Main RSpec integration for Rails
-       - `rails-controller-testing` - Controller testing helpers  
+       - `database_cleaner` - Database cleanup between tests  
+       - `rails-controller-testing` - Controller testing helpers
        - `factory_bot_rails` - Test data factories
-       - `database_cleaner` - Database cleanup between tests
        - `capybara` - Integration testing
        - `webmock` - HTTP request stubbing
-       - `vcr` - HTTP interaction recording
      - **Why this is necessary:**
-       - Rails API changes (even in minor versions) can break test framework compatibility
-       - ActionView, ActiveRecord, and ActionController APIs evolve between Rails versions
+       - Rails API changes can break test framework compatibility
        - Testing framework gems need updates to work with new Rails internals
        - Test suite failures after Rails upgrades are often testing framework compatibility issues, not application code problems
 
@@ -179,13 +196,24 @@ When using the Atlassian MCP Server:
    - `mcp_atlassian-mcp_getJiraIssue` - Fetch JIRA issue details
    - `mcp_atlassian-mcp_search` - Search for JIRA/Confluence content
    - `mcp_atlassian-mcp_addCommentToJiraIssue` - Add comments to JIRA issues
+   - `mcp_atlassian-mcp_getAccessibleAtlassianResources` - Get cloud IDs and available resources
 
-2. **Best practices:**
+2. **Cloud ID Discovery (Critical):**
+   - **Never assume cloud ID format** - Don't use organization names like "chef" as cloud IDs
+   - **Always use `getAccessibleAtlassianResources` first** to get the correct cloud ID:
+     ```
+     Use mcp_atlassian-mcp_getAccessibleAtlassianResources to get available cloud IDs
+     ```
+   - **Cloud IDs are UUIDs** like `88f3d16e-26e6-4cdf-a16d-b9d8f528c074`, not organization names
+   - **Common error pattern:** `"Failed to fetch cloud ID for: chef. Error: Input does not look like a valid domain or URL"`
+   - **Solution:** Extract the correct UUID cloud ID from the `getAccessibleAtlassianResources` response
+
+3. **Best practices:**
    - Always validate JIRA connectivity before proceeding
    - Use the search functionality if issue details are unclear
    - Add progress comments to JIRA issues when significant milestones are reached
 
-3. **Error handling:**
+4. **Error handling:**
    - If MCP server is unavailable, inform the user to start/restart the mcp connection from mcp.json file or ask to provide the JIRA details manually
    - Provide clear error messages for any MCP-related failures
 
@@ -401,60 +429,42 @@ Before completing any upgrade:
      **Step 3: Trigger Build via Direct API Call**
      - Use direct curl command to trigger the build with branch filter bypass:
        ```bash
-       BUILD_RESPONSE=$(curl -X POST \
+       curl -X POST \
          -H "Authorization: Bearer $BUILDKITE_API_TOKEN" \
          -H "Content-Type: application/json" \
-         -d '{
-           "commit": "<current-commit-sha>",
-           "branch": "<branch-name>", 
-           "message": "Ad-hoc build triggered from VS Code for <JIRA-ID> - Rails upgrade validation",
-           "ignore_pipeline_branch_filters": true
-         }' \
-         "https://api.buildkite.com/v2/organizations/$BUILDKITE_ORG/pipelines/chef-supermarket-main-omnibus-adhoc/builds")
+         -d '{"commit": "<current-commit-sha>", "branch": "<branch-name>", "message": "Ad-hoc build for <JIRA-ID> - Security upgrade validation", "ignore_pipeline_branch_filters": true}' \
+         "https://api.buildkite.com/v2/organizations/$BUILDKITE_ORG/pipelines/chef-supermarket-main-omnibus-adhoc/builds" | jq -r '"Build #" + (.number | tostring) + " triggered: " + .web_url'
        ```
      - **Important:** The `ignore_pipeline_branch_filters: true` parameter is crucial for ad-hoc builds on non-default branches
-     - **Handle JSON parsing errors with control character cleanup:**
-       ```bash
-       CLEAN_RESPONSE=$(echo "$BUILD_RESPONSE" | tr -d '\000-\037' | tr -d '\177')
-       BUILD_NUMBER=$(echo "$CLEAN_RESPONSE" | jq -r '.number' 2>/dev/null)
-       BUILD_URL=$(echo "$CLEAN_RESPONSE" | jq -r '.web_url' 2>/dev/null)
-       
-       if [ "$BUILD_NUMBER" != "null" ] && [ "$BUILD_NUMBER" != "" ]; then
-         echo "✅ Build $BUILD_NUMBER triggered successfully"
-         echo "🔗 Build URL: $BUILD_URL"
-       else
-         echo "❌ Failed to parse build details. Response preview:"
-         echo "$CLEAN_RESPONSE" | head -c 200
-       fi
-       ```
+     - **Why this approach works better:**
+       - Single command execution (no complex variable assignments)
+       - Immediate JSON parsing with `jq` pipe
+       - No control character cleanup needed
+       - Reliable terminal execution
+       - Direct output of build number and URL
    - **On successful build trigger:**
-     - Parse the JSON response to extract build details with proper error handling
-     - **Handle potential JSON parsing issues:**
-       ```bash
-       CLEAN_RESPONSE=$(echo "$BUILD_RESPONSE" | tr -d '\000-\037' | tr -d '\177')
-       BUILD_NUMBER=$(echo "$CLEAN_RESPONSE" | jq -r '.number' 2>/dev/null)
-       BUILD_URL=$(echo "$CLEAN_RESPONSE" | jq -r '.web_url' 2>/dev/null)
-       ```
-     - Display build details: Build number, web URL, status from API response
+     - The command will output: "Build #<number> triggered: <url>"
+     - Extract build number and URL from this output for PR comment
+     - Display build details: Build number, web URL from command output
      - Example: "✅ Build #729 triggered successfully! Monitor progress at: https://buildkite.com/chef/chef-supermarket-main-omnibus-adhoc/builds/729"
      - **Add comment to the PR with build information:**
        - Use GitHub API or GitHub CLI to add a comment
-       - Use the build number and URL extracted from the API response
+       - Extract the build number and URL from the command output
        - Comment format:
          ```markdown
          🚀 **Buildkite Build Triggered**
          
          **Pipeline:** chef-supermarket-main-omnibus-adhoc
-         **Build:** [#${BUILD_NUMBER}](${BUILD_URL})
-         **Status:** <current-status>
+         **Build:** [#<build-number>](<build-url>)
+         **Status:** Running
          **Branch:** <branch-name>
          **Commit:** <commit-sha>
          
-         📊 **Monitor Progress:** [Build #${BUILD_NUMBER}](${BUILD_URL})
+         📊 **Monitor Progress:** [Build #<build-number>](<build-url>)
          
          _Automatically triggered from VS Code dependency upgrade workflow_
          ```
-       - **Important:** Always use the BUILD_NUMBER and BUILD_URL variables from the API response
+       - **Important:** Use the build number and URL from the curl command output
        - **Implementation options:**
          - **GitHub CLI**: `gh pr comment <pr-number> --body "<comment-text>"`
          - **GitHub API**: `curl -X POST -H "Authorization: token <github-token>" -d '{"body":"<comment-text>"}' https://api.github.com/repos/chef/supermarket/issues/<pr-number>/comments`
@@ -573,17 +583,28 @@ When testing is complete, provide a comprehensive analysis:
 - For quick validation without database: `bundle exec rails runner "puts 'App loads: ' + Rails::VERSION::STRING"`
 
 ### Buildkite API and JSON Parsing Issues
-- **Control Characters in API Responses:** Buildkite API responses may contain control characters that break `jq` parsing
-  - **Error:** `jq: parse error: Invalid string: control characters from U+0000 through U+001F must be escaped`
-  - **Solution:** Clean the response before parsing:
-    ```bash
-    CLEAN_RESPONSE=$(echo "$BUILD_RESPONSE" | tr -d '\000-\037' | tr -d '\177')
-    BUILD_NUMBER=$(echo "$CLEAN_RESPONSE" | jq -r '.number' 2>/dev/null)
-    ```
-- **Empty BUILD_RESPONSE:** If the curl command fails or returns empty response:
-  - Check Buildkite API token permissions (must include `write_builds`)
-  - Verify network connectivity to api.buildkite.com
-  - Ensure organization name is correct (`chef`)
+- **Recommended Approach:** Use the simple single-command approach that pipes directly to `jq`:
+  ```bash
+  curl -X POST ... | jq -r '"Build #" + (.number | tostring) + " triggered: " + .web_url'
+  ```
+- **Why the simple approach works better:**
+  - No complex variable assignments that can fail in terminal
+  - Direct JSON parsing eliminates control character issues
+  - Single command execution is more reliable
+  - Immediate output of build number and URL
+
+- **If using the legacy multi-variable approach (not recommended):**
+  - **Control Characters in API Responses:** Buildkite API responses may contain control characters that break `jq` parsing
+    - **Error:** `jq: parse error: Invalid string: control characters from U+0000 through U+001F must be escaped`
+    - **Solution:** Clean the response before parsing:
+      ```bash
+      CLEAN_RESPONSE=$(echo "$BUILD_RESPONSE" | tr -d '\000-\037' | tr -d '\177')
+      BUILD_NUMBER=$(echo "$CLEAN_RESPONSE" | jq -r '.number' 2>/dev/null)
+      ```
+  - **Empty BUILD_RESPONSE:** If the curl command fails or returns empty response:
+    - Check Buildkite API token permissions (must include `write_builds`)
+    - Verify network connectivity to api.buildkite.com
+    - Ensure organization name is correct (`chef`)
 - **jq Command Not Found:** Install jq if not available:
   - **macOS:** `brew install jq`
   - **Linux:** `apt-get install jq` or `yum install jq`
