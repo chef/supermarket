@@ -292,11 +292,12 @@ Before completing any upgrade:
      
      **Repository:** chef/supermarket
      **Branch:** <branch-name>
-     **PR:** #<pr-number> - <pr-title>
-     **Link:** <pr-url>
+     **PR:** [#<pr-number> - <pr-title>](<pr-url>)
      
      **Summary of Changes:**
-     <brief-summary-of-dependency-upgrades>
+     - <brief-summary-of-dependency-upgrades>
+     - <additional-changes>
+     - <other-updates>
      
      **Status:** Ready for review
      
@@ -309,11 +310,26 @@ Before completing any upgrade:
    - **Error handling:** If JIRA comment fails, continue with workflow but notify user that manual comment addition may be needed
 
 7. **Buildkite Build Automation (after JIRA comment):**
-   - **After JIRA comment is added**, ask the user: "Would you like me to trigger a Buildkite build for this branch to validate the changes?"
+   - **Step 1: Verify GitHub Checks Status**
+     - **Before triggering any Buildkite build**, always check GitHub Actions status first
+     - Use command: `gh pr checks <pr-number>` to verify all checks
+     - **Required status for proceeding:**
+       - ✅ The output must show "All checks were successful"
+       - ❌ **0 failing checks**
+       - ⏸️ **0 pending checks** (wait if any are still running)
+     - **If checks are failing or pending:**
+       - Inform user about failing/pending checks
+       - Provide the failing check names and URLs from the command output
+       - **Do not proceed** with Buildkite build until all checks pass
+       - Suggest user fix issues and re-run checks if needed
+
+   - **Step 2: Prompt User for Buildkite Build (only after all GitHub checks pass)**
+     - **After confirming all GitHub checks are successful using `gh pr checks`**, ask the user: "All GitHub checks are successful! Would you like me to trigger a Buildkite build for this branch to validate the changes?"
    - **Provide a clear confirmation prompt** with context:
      ```
      🚀 **Trigger Buildkite Build?**
      
+     ✅ GitHub Checks Status: All checks successful
      Pipeline: chef-supermarket-main-omnibus-adhoc
      Branch: <branch-name>
      Commit: <commit-sha>
@@ -323,82 +339,135 @@ Before completing any upgrade:
      [Yes, trigger build] [No, skip build]
      ```
    - **Only proceed if user confirms "Yes"**
-   - **If user confirms**, check and setup Buildkite MCP server if needed:
+   
+   - **Note about API vs MCP Server:**
+     - While Buildkite MCP server is available for read operations, we use direct API for build triggering
+     - This is because the MCP server doesn't support `ignore_pipeline_branch_filters` parameter
+     - Direct API allows ad-hoc builds on non-default branches which is essential for dependency upgrade workflow
+   - **If user confirms**, use direct Buildkite API to trigger the build:
      
-     **Step 1: Check MCP Configuration**
-     - Look for `.vscode/mcp.json` file in the workspace
-     - Check if `buildkite-mcp-server` is already configured
+     **Step 1: Verify API Token and Permissions**
+     - Check that the Buildkite API token has the required permissions:
+       - ✅ `write_builds` - **Required** for triggering builds
+       - ✅ `read_builds` - For checking build status
+       - ✅ `read_pipelines` - For verifying pipeline access
+       - ✅ `read_organizations` - For organization access
+     - Verify token permissions: `curl -H "Authorization: Bearer <token>" https://api.buildkite.com/v2/access-token`
+     - The response should include `"write_builds"` in the scopes array
      
-     **Step 2: Setup Buildkite MCP Server (if not configured)**
-     - Install the Buildkite MCP server: `npm install -g @drew-goddyn/buildkite-mcp`
-     - Check if Buildkite API token is available in environment or ask user to provide it
-     - Get organization slug from Buildkite API: `curl -H "Authorization: Bearer <token>" https://api.buildkite.com/v2/organizations`
-     - Create or update `.vscode/mcp.json` with Buildkite server configuration:
-       ```json
-       {
-         "servers": {
-           "buildkite-mcp-server": {
-             "command": "mcp-server-buildkite",
-             "env": {
-               "BUILDKITE_API_TOKEN": "<user-api-token>",
-               "BUILDKITE_ORG": "<org-slug>"
-             }
-           }
-         }
-       }
+     **Step 2: Setup and Export Environment Variables**
+     - **First, check if Buildkite API token is available:**
+       ```bash
+       env | grep -i buildkite || echo "No Buildkite environment variables found"
        ```
-     - If other MCP servers exist (like Atlassian), preserve them in the configuration
+     - **If no Buildkite environment variables are found, set up the token:**
+       - Prompt user for their Buildkite API token (if not provided, guide them to create one)
+       - Determine the user's shell configuration file:
+         ```bash
+         SHELL_CONFIG_FILE=""
+         if [[ "$SHELL" == */zsh ]]; then
+           SHELL_CONFIG_FILE="$HOME/.zshrc"
+         elif [[ "$SHELL" == */bash ]]; then
+           SHELL_CONFIG_FILE="$HOME/.bashrc"
+         else
+           echo "Unsupported shell. Please add the environment variable manually."
+           exit 1
+         fi
+         ```
+       - Add the API token to the shell configuration file:
+         ```bash
+         echo "" >> "$SHELL_CONFIG_FILE"
+         echo "# Buildkite API Configuration" >> "$SHELL_CONFIG_FILE"
+         echo "export BUILDKITE_API_TOKEN=\"your-api-token-here\"" >> "$SHELL_CONFIG_FILE"
+         echo "export BUILDKITE_ORG=\"chef\"" >> "$SHELL_CONFIG_FILE"
+         ```
+       - Reload the shell configuration:
+         ```bash
+         source "$SHELL_CONFIG_FILE"
+         ```
+       - Verify the token is now available:
+         ```bash
+         echo "BUILDKITE_API_TOKEN is set: ${BUILDKITE_API_TOKEN:+YES}"
+         ```
+     - **If token is already available, export the organization:**
+       ```bash
+       export BUILDKITE_ORG="chef"
+       ```
+     - **API Token Requirements:**
+       - If user doesn't have a token, guide them to create one at: https://buildkite.com/user/api-access-tokens
+       - Required scopes: `write_builds`, `read_builds`, `read_pipelines`, `read_organizations`
+       - Must have access to the `chef` organization
      
-     **Step 3: Verify API Token Permissions**
-     - Test the token: `curl -H "Authorization: Bearer <token>" https://api.buildkite.com/v2/access-token`
-     - Ensure the token has required scopes: `write_builds`, `read_builds`, `read_pipelines`
-     - If insufficient permissions, guide user to create a new token with proper scopes
-     
-   - **Execute the Buildkite API call:**
-     ```bash
-     curl -X POST \
-       -H "Authorization: Bearer <BUILDKITE_API_TOKEN>" \
-       -H "Content-Type: application/json" \
-       -d '{
-         "commit": "<current-commit-sha>",
-         "branch": "<branch-name>",
-         "message": "Ad-hoc build triggered from VS Code for <JIRA-ID>",
-         "ignore_pipeline_branch_filters": true
-       }' \
-       "https://api.buildkite.com/v2/organizations/chef/pipelines/chef-supermarket-main-omnibus-adhoc/builds"
-     ```
+     **Step 3: Trigger Build via Direct API Call**
+     - Use direct curl command to trigger the build with branch filter bypass:
+       ```bash
+       BUILD_RESPONSE=$(curl -X POST \
+         -H "Authorization: Bearer $BUILDKITE_API_TOKEN" \
+         -H "Content-Type: application/json" \
+         -d '{
+           "commit": "<current-commit-sha>",
+           "branch": "<branch-name>", 
+           "message": "Ad-hoc build triggered from VS Code for <JIRA-ID> - Rails upgrade validation",
+           "ignore_pipeline_branch_filters": true
+         }' \
+         "https://api.buildkite.com/v2/organizations/$BUILDKITE_ORG/pipelines/chef-supermarket-main-omnibus-adhoc/builds")
+       ```
+     - **Important:** The `ignore_pipeline_branch_filters: true` parameter is crucial for ad-hoc builds on non-default branches
+     - **Handle JSON parsing errors with control character cleanup:**
+       ```bash
+       CLEAN_RESPONSE=$(echo "$BUILD_RESPONSE" | tr -d '\000-\037' | tr -d '\177')
+       BUILD_NUMBER=$(echo "$CLEAN_RESPONSE" | jq -r '.number' 2>/dev/null)
+       BUILD_URL=$(echo "$CLEAN_RESPONSE" | jq -r '.web_url' 2>/dev/null)
+       
+       if [ "$BUILD_NUMBER" != "null" ] && [ "$BUILD_NUMBER" != "" ]; then
+         echo "✅ Build $BUILD_NUMBER triggered successfully"
+         echo "🔗 Build URL: $BUILD_URL"
+       else
+         echo "❌ Failed to parse build details. Response preview:"
+         echo "$CLEAN_RESPONSE" | head -c 200
+       fi
+       ```
    - **On successful build trigger:**
-     - Display build details: Build number, web URL, status
-     - Provide the Buildkite web URL for monitoring progress
-     - Example: "✅ Build #728 triggered successfully! Monitor progress at: https://buildkite.com/chef/chef-supermarket-main-omnibus-adhoc/builds/728"
+     - Parse the JSON response to extract build details with proper error handling
+     - **Handle potential JSON parsing issues:**
+       ```bash
+       CLEAN_RESPONSE=$(echo "$BUILD_RESPONSE" | tr -d '\000-\037' | tr -d '\177')
+       BUILD_NUMBER=$(echo "$CLEAN_RESPONSE" | jq -r '.number' 2>/dev/null)
+       BUILD_URL=$(echo "$CLEAN_RESPONSE" | jq -r '.web_url' 2>/dev/null)
+       ```
+     - Display build details: Build number, web URL, status from API response
+     - Example: "✅ Build #729 triggered successfully! Monitor progress at: https://buildkite.com/chef/chef-supermarket-main-omnibus-adhoc/builds/729"
      - **Add comment to the PR with build information:**
        - Use GitHub API or GitHub CLI to add a comment
+       - Use the build number and URL extracted from the API response
        - Comment format:
          ```markdown
          🚀 **Buildkite Build Triggered**
          
          **Pipeline:** chef-supermarket-main-omnibus-adhoc
-         **Build:** #<build-number>
+         **Build:** [#${BUILD_NUMBER}](${BUILD_URL})
          **Status:** <current-status>
          **Branch:** <branch-name>
          **Commit:** <commit-sha>
          
-         📊 **Monitor Progress:** <buildkite-web-url>
+         📊 **Monitor Progress:** [Build #${BUILD_NUMBER}](${BUILD_URL})
          
          _Automatically triggered from VS Code dependency upgrade workflow_
          ```
+       - **Important:** Always use the BUILD_NUMBER and BUILD_URL variables from the API response
        - **Implementation options:**
          - **GitHub CLI**: `gh pr comment <pr-number> --body "<comment-text>"`
          - **GitHub API**: `curl -X POST -H "Authorization: token <github-token>" -d '{"body":"<comment-text>"}' https://api.github.com/repos/chef/supermarket/issues/<pr-number>/comments`
        - **Error handling:** If PR comment fails, continue with build trigger but notify user that manual comment addition may be needed
    - **On build trigger failure:**
-     - Display the error message
+     - Display the error message from API response
      - Provide the manual steps to trigger the build through Buildkite web UI
      - Suggest checking API token permissions if needed
    - **Prerequisites for this automation:**
-     - Buildkite API token with `write_builds` scope
+     - Buildkite API token with `write_builds` scope (will be automatically configured in shell config if not present)
      - Network access to Buildkite API
-     - Node.js installed for MCP server (if not already available)
+     - `jq` command available for JSON parsing (install with `brew install jq` on macOS)
+     - Shell configuration file access (`.zshrc` for zsh or `.bashrc` for bash)
 
 ### 8. Communication Guidelines
 
@@ -502,6 +571,22 @@ When testing is complete, provide a comprehensive analysis:
 - Start PostgreSQL if not running:
   - `brew services start postgresql` or `pg_ctl -D /usr/local/var/postgres start`
 - For quick validation without database: `bundle exec rails runner "puts 'App loads: ' + Rails::VERSION::STRING"`
+
+### Buildkite API and JSON Parsing Issues
+- **Control Characters in API Responses:** Buildkite API responses may contain control characters that break `jq` parsing
+  - **Error:** `jq: parse error: Invalid string: control characters from U+0000 through U+001F must be escaped`
+  - **Solution:** Clean the response before parsing:
+    ```bash
+    CLEAN_RESPONSE=$(echo "$BUILD_RESPONSE" | tr -d '\000-\037' | tr -d '\177')
+    BUILD_NUMBER=$(echo "$CLEAN_RESPONSE" | jq -r '.number' 2>/dev/null)
+    ```
+- **Empty BUILD_RESPONSE:** If the curl command fails or returns empty response:
+  - Check Buildkite API token permissions (must include `write_builds`)
+  - Verify network connectivity to api.buildkite.com
+  - Ensure organization name is correct (`chef`)
+- **jq Command Not Found:** Install jq if not available:
+  - **macOS:** `brew install jq`
+  - **Linux:** `apt-get install jq` or `yum install jq`
 
 ## Final Validation
 

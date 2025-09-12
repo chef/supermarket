@@ -22,11 +22,12 @@ Progress Chef supports Supermarket 5.0 and later. For more details about support
 Supermarket is bundled with PostgreSQL.
 The following table shows which version of PostgreSQL is bundled with each Supermarket version.
 
-| Supermarket version | PostgreSQL version |
-|---------------------|--------------------|
-| >= 4.2 and < 5.0    | 9.3                |
-| >= 5.0 and < 5.2    | 13.4               |
-| >= 5.2              | 13.18              |
+| Supermarket version    | PostgreSQL version |
+|------------------------|--------------------|
+| >= 4.2 and < 5.0       | 9.3                |
+| >= 5.0 and < 5.2.0     | 13.4               |
+| 5.2.0                  | 13.18              |
+| >= 5.2.1               | 13.21              |
 
 ## Before you upgrade
 

@@ -3,13 +3,6 @@
 		"atlassian-mcp-server": {
 			"url": "https://mcp.atlassian.com/v1/sse",
 			"type": "http"
-		},
-		"buildkite-mcp-server": {
-			"command": "mcp-server-buildkite",
-			"env": {
-				"BUILDKITE_API_TOKEN": "<BUILDKITE_API_TOKEN>",
-				"BUILDKITE_ORG": "chef"
-			}
 		}
 	},
 	"inputs": []
