@@ -10,6 +10,9 @@ gem 'omnibus-software', git: 'https://github.com/chef/omnibus-software.git', bra
 # Install artifactory. Used for publishing packages.
 gem 'artifactory'
 
+# Security update
+gem 'rack', '~> 2.2.14'
+
 # This development group is installed by default when you run `bundle install`,
 # but if you are using Omnibus in a CI-based infrastructure, you do not need
 # the Test Kitchen-based build lab. You can skip these unnecessary dependencies
