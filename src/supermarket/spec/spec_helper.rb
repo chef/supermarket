@@ -18,7 +18,7 @@ Dir[File.expand_path(File.join(File.dirname(__FILE__), "support", "**", "*.rb"))
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
-ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
+ActiveRecord::Migration.check_all_pending! if defined?(ActiveRecord::Migration)
 
 # Treat Sidekiq like ActionMailer. In most cases, tests which queue jobs should
 # only care that the job was queued, and not care about the result.
