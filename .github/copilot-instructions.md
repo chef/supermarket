@@ -161,6 +161,17 @@ For same major version upgrades only:
    - Download or view the `.sha256` file for the specific version
    - Use the exact SHA256 value provided
 
+4. **Enumerate Security Fixes (MANDATORY):**
+  - Collect all CVE IDs addressed across every intermediate patch between the old version and the new version (inclusive) by reading each patch release note page (e.g., upgrading 13.18 → 13.21 requires scanning 13.19, 13.20, 13.21).
+  - Record only CVE identifiers (no prose) for inclusion in `PENDING_RELEASE_NOTES.md` under the Security section using the required nested bullet format.
+  - If no CVEs are listed in any intervening patch pages, include a single nested bullet: `(no CVEs reported in this upgrade range)`.
+  - Do NOT rely on summaries or external aggregators; always consult official PostgreSQL release note pages.
+  - If a patch release references a security hardening change but without a CVE ID, omit it from the CVE list (only list actual CVE IDs).
+
+5. **Update Pending Release Notes:**
+  - Add a top-level Security bullet: `PostgreSQL <old_version> → <new_version>` followed by nested bullets of the collected CVE IDs (or the explicit no‑CVEs marker) in ascending numeric order.
+  - Ensure PostgreSQL appears before other components except Rails (Rails first when both present).
+
 ### 7. Prompt-Based Task Management
 
 **All tasks must be prompt-driven:**
@@ -492,6 +503,117 @@ Before completing any upgrade:
 - **Omnibus packaging:** Located in `/omnibus/`
 - **Multiple environments:** Consider development, production, and test dependencies
 - **Legacy support:** Some gems may need to maintain compatibility with older systems
+
+### 10. Pending Release Notes Generation
+
+Maintain a lightweight `PENDING_RELEASE_NOTES.md` during any dependency upgrade branch so changes are ready to merge into the changelog at release time.
+
+Core principles:
+- Short, public‑facing, non-duplicative.
+- Allowed categories (include only if they have content):
+  - Security (ALWAYS first if any security-relevant dependency changed)
+  - Bug Fixes
+  - Enhancements
+  - Packaging (build / omnibus / infra changes)
+- No duplication across categories. If an item appears in Security it must not reappear elsewhere.
+- Each security‑relevant dependency upgrade appears exactly once under Security with: one bullet for the component (including old → new version) followed by nested bullets listing individual CVE IDs or a single nested bullet stating `(no CVEs reported in this upgrade range)`.
+- No version number in the filename. Optional heading must not contain a version.
+- Exclude internal / purely developer process tweaks.
+
+Formatting rules for Security section:
+- Top-level bullet: `<Component> <old_version> → <new_version>`
+- Nested bullets: one per CVE ID in plain form (`CVE-YYYY-NNNN`), no extra prose.
+- If no CVEs: a single nested bullet `- (no CVEs reported in this upgrade range)`.
+- Order components alphabetically or by perceived impact (Rails/PostgreSQL first) — be consistent within a file.
+
+Steps (update iteratively as branch evolves):
+
+1. **MANDATORY: Complete Dependency Discovery** - Extract ALL dependency changes using systematic analysis:
+   ```bash
+   # Get comprehensive view of all gem changes across all Gemfile.lock files
+   git diff main...HEAD -- '**/Gemfile.lock' | grep -E '^[+-]\s+[a-z]' | sort | uniq
+   ```
+   - Extract old → new version pairs for **every gem that changed**
+   - Focus on security-relevant gems: web frameworks, parsers, crypto, network libraries, database adapters
+   - **Don't assume or skip dependencies** - verify every change
+   - Create comprehensive list before proceeding to CVE research
+   - **CRITICAL**: If user has to point out missing dependencies like "didn't you find that we have updated rack and nokogiri also", the analysis was incomplete
+
+2. **MANDATORY CVE RESEARCH** - Collect CVE IDs from authoritative upstream sources across all intermediate versions between old and new:
+  - **Security-Relevant Dependencies**: Rails, Rack, Nokogiri, OpenSSL, database adapters, authentication gems, authorization gems, session management, HTTP client gems, parsing libraries
+  - **RubyGems**: Check GitHub releases and CHANGELOG.md for ALL versions in the upgrade range. Look specifically for "Security" sections and CVE references.
+  - **PostgreSQL**: Explicitly open release notes for every patch version between the old and new (e.g. upgrading 13.18 → 13.21 requires scanning 13.19, 13.20, 13.21) and aggregate all CVE IDs (e.g. CVE-2025-1094, CVE-2025-4207). Do NOT rely solely on the destination version's notes.
+  - **All libraries**: Consult CHANGELOG.md, SECURITY.md, or GitHub advisories; include only CVEs actually fixed in the traversed version span.
+  - **RESEARCH VERIFICATION**: For each security-relevant dependency, use `fetch_webpage` tool to check official release notes or changelogs for ALL intermediate versions to ensure no CVEs are missed.
+
+3. **DOUBLE-CHECK CVE RESEARCH**: Before finalizing release notes, verify CVE findings by:
+   - Using `fetch_webpage` to check official changelogs/release notes for each upgraded dependency
+   - Ensuring all intermediate versions between old→new are checked, not just the final version
+   - Cross-referencing security sections in multiple sources (releases, changelogs, security advisories)
+  - **RubyGems**: Check GitHub releases and CHANGELOG.md for ALL versions in the upgrade range. Look specifically for "Security" sections and CVE references.
+  - **PostgreSQL**: Explicitly open release notes for every patch version between the old and new (e.g. upgrading 13.18 → 13.21 requires scanning 13.19, 13.20, 13.21) and aggregate all CVE IDs (e.g. CVE-2025-1094, CVE-2025-4207). Do NOT rely solely on the destination version's notes.
+  - **All libraries**: Consult CHANGELOG.md, SECURITY.md, or GitHub advisories; include only CVEs actually fixed in the traversed version span.
+  - **RESEARCH VERIFICATION**: For each security-relevant dependency, use `fetch_webpage` tool to check official release notes or changelogs for ALL intermediate versions to ensure no CVEs are missed.
+3. **DOUBLE-CHECK CVE RESEARCH**: Before finalizing release notes, verify CVE findings by:
+   - Using `fetch_webpage` to check official changelogs/release notes for each upgraded dependency
+   - Ensuring all intermediate versions between old→new are checked, not just the final version
+   - Cross-referencing security sections in multiple sources (releases, changelogs, security advisories)
+4. Build the Security section using the new bullet + nested bullet format.
+5. Classify any non-security user-visible changes as Bug Fixes or Enhancements (do NOT restate pure version bumps already covered in Security).
+6. Add build/infra only changes (omnibus definitions, CI pipeline tweaks) under Packaging.
+7. Validate no duplication (e.g., do not list the same version bump under Enhancements if already in Security).
+8. Get user review before staging/committing.
+9. At release time: move content into `CHANGELOG.md` (add version + date heading there), then delete the pending file.
+
+"CVE Placeholder" Policy:
+- **NEVER use placeholders for initial release notes generation**. Always perform comprehensive CVE research using `fetch_webpage` tool on official sources before creating any release notes.
+- **MANDATORY CVE RESEARCH**: For every security-relevant dependency upgrade, use `fetch_webpage` to check:
+  - Official GitHub releases pages (e.g., https://github.com/[owner]/[repo]/releases)
+  - Official changelogs (e.g., https://github.com/[owner]/[repo]/blob/main/CHANGELOG.md)
+  - Security-specific pages where available (e.g., https://rubyonrails.org/security)
+  - ALL intermediate versions between old and new versions, not just the destination version
+- **Comprehensive Analysis Required**: Use the systematic dependency discovery process (Steps 1-3 above) to ensure no security-relevant upgrades are missed
+- Only if upstream retrieval fails twice AND user explicitly approves, add a nested bullet `- (CVE lookup deferred – user approved)` underneath the component; create a follow-up task to replace before merge.
+- Always include an explicit `(no CVEs reported in this upgrade range)` marker for upgraded security-relevant components with none found ONLY after thorough verification.
+- **Common mistake to avoid**: Do NOT assume no CVEs exist without proper research. Many security fixes are documented in release notes and changelogs that require explicit checking.
+- **Quality control**: If user points out missing dependencies (e.g., "didn't you find that we have updated rack and nokogiri also"), the initial analysis was incomplete and must be redone systematically.
+
+Updated minimal examples:
+```
+Security
+- Rails 7.0.8.7 → 7.1.5.2
+  - CVE-2025-1111
+  - CVE-2025-2222
+- PostgreSQL 13.18 → 13.21
+  - (no CVEs reported in this upgrade range)
+
+Packaging
+- Update omnibus postgresql definition 13.18 → 13.21
+```
+or, if only security upgrades and no packaging changes besides already shown:
+```
+Security
+- [Component] [old_version] → [new_version]
+  - CVE-2025-1111
+  - CVE-2025-2222
+  - CVE-2025-3333
+```
+
+Validation checklist before committing:
+- [ ] **Comprehensive dependency discovery completed**: All Gemfile.lock changes analyzed using systematic git diff approach
+- [ ] **CVE research completed using `fetch_webpage` for all security-relevant dependencies**
+- [ ] **All intermediate versions between old→new checked for each dependency**
+- [ ] **Official release notes and changelogs reviewed for each upgraded component**
+- [ ] **No missed dependencies**: Complete analysis prevents user corrections about overlooked upgrades like Rack, Nokogiri, etc.
+- [ ] No version numbers in filename / heading
+- [ ] Security section uses bullet + nested CVE bullet format
+- [ ] Each upgraded security-relevant dependency listed once (no duplication elsewhere)
+- [ ] Every component has CVE bullets or explicit no‑CVEs marker (ONLY after verification)
+- [ ] No prose mixed with CVE IDs (IDs only)
+- [ ] No unauthorized placeholders
+- [ ] Non-security items classified correctly (Bug Fixes / Enhancements / Packaging) without duplication
+- [ ] PostgreSQL patch range scanned (each intermediate release notes reviewed for CVEs)
+- [ ] **Cross-verification completed**: Multiple sources consulted where available for security information
 
 ## Error Recovery
 
