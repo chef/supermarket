@@ -5,3 +5,6 @@
 license-cache
 results/
 dump.rdb
+
+# Pending release notes (managed separately in wiki)
+PENDING_RELEASE_NOTES.md
