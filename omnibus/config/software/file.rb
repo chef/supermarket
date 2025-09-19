@@ -25,6 +25,8 @@ license "custom"
 license_file "COPYING"
 
 source url: "ftp://ftp.astron.com/pub/file/file-#{version}.tar.gz"
+internal_source url: "#{ENV["ARTIFACTORY_REPO_URL"]}/#{name}/#{name}-#{version}.tar.gz",
+                authorization: "X-JFrog-Art-Api:#{ENV["ARTIFACTORY_TOKEN"]}"
 
 relative_path "file-#{version}"
 
