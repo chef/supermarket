@@ -1,6 +1,10 @@
 class CollaboratorsController < ApplicationController
   include CollaboratorProcessing
 
+  ALLOWED_RESOURCE_TYPES = {
+    'Cookbook' => Cookbook,
+    'Tool' => Tool
+  }.freeze
   before_action :authenticate_user!
   before_action :find_collaborator, only: [:destroy, :transfer]
   skip_before_action :verify_authenticity_token, only: [:destroy]
@@ -32,8 +36,9 @@ class CollaboratorsController < ApplicationController
   # Add a collaborator to a resource.
   #
   def create
-    if %w{Cookbook Tool}.include?(collaborator_params[:resourceable_type])
-      resource = collaborator_params[:resourceable_type].constantize.find(
+    resource_class = ALLOWED_RESOURCE_TYPES[collaborator_params[:resourceable_type]]
+    if resource_class
+      resource = resource_class.find(
         collaborator_params[:resourceable_id]
       )
 
@@ -73,8 +78,9 @@ class CollaboratorsController < ApplicationController
   def destroy_group
     group = Group.find(params[:id])
 
-    if %w{Cookbook Tool}.include?(params[:resourceable_type])
-      resource = params[:resourceable_type].constantize.find(
+    resource_class = ALLOWED_RESOURCE_TYPES[params[:resourceable_type]]
+    if resource_class
+      resource = resource_class.find(
         params[:resourceable_id]
       )
 
