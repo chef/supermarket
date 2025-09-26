@@ -1,6 +1,11 @@
 class CollaboratorsController < ApplicationController
   include CollaboratorProcessing
 
+  RESOURCEABLE_MODELS = {
+    "Cookbook" => Cookbook,
+    "Tool" => Tool
+  }
+
   before_action :authenticate_user!
   before_action :find_collaborator, only: [:destroy, :transfer]
   skip_before_action :verify_authenticity_token, only: [:destroy]
@@ -33,10 +38,6 @@ class CollaboratorsController < ApplicationController
   #
   def create
     resourceable_type = collaborator_params[:resourceable_type]
-    RESOURCEABLE_MODELS = {
-      "Cookbook" => Cookbook,
-      "Tool" => Tool
-    }
     if RESOURCEABLE_MODELS.key?(resourceable_type)
       resourceable_klass = RESOURCEABLE_MODELS[resourceable_type]
       resource = resourceable_klass.find(
