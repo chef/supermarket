@@ -3,7 +3,7 @@ class CollaboratorsController < ApplicationController
 
   RESOURCEABLE_MODELS = {
     "Cookbook" => Cookbook,
-    "Tool" => Tool
+    "Tool" => Tool,
   }
 
   before_action :authenticate_user!
