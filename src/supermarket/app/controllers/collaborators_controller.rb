@@ -32,8 +32,14 @@ class CollaboratorsController < ApplicationController
   # Add a collaborator to a resource.
   #
   def create
-    if %w{Cookbook Tool}.include?(collaborator_params[:resourceable_type])
-      resource = collaborator_params[:resourceable_type].constantize.find(
+    resourceable_type = collaborator_params[:resourceable_type]
+    RESOURCEABLE_MODELS = {
+      "Cookbook" => Cookbook,
+      "Tool" => Tool
+    }
+    if RESOURCEABLE_MODELS.key?(resourceable_type)
+      resourceable_klass = RESOURCEABLE_MODELS[resourceable_type]
+      resource = resourceable_klass.find(
         collaborator_params[:resourceable_id]
       )
 
