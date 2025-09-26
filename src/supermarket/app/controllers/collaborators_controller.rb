@@ -2,8 +2,8 @@ class CollaboratorsController < ApplicationController
   include CollaboratorProcessing
 
   ALLOWED_RESOURCE_TYPES = {
-    'Cookbook' => Cookbook,
-    'Tool' => Tool
+    "Cookbook" => Cookbook,
+    "Tool" => Tool
   }.freeze
   before_action :authenticate_user!
   before_action :find_collaborator, only: [:destroy, :transfer]
