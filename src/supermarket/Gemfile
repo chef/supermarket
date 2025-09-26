@@ -74,6 +74,10 @@ group :development do
   gem "spring"
   gem "spring-commands-rspec"
   gem "brakeman"
+  gem "ruby-lsp", require: false
+  gem "debug", require: false
+  gem "solargraph", require: false
+  gem "solargraph-rails", require: false
 end
 
 group :test do
