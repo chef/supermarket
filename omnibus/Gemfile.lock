@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: e5f302c1140764c1167ec89ed2138bca2cfa9b5e
-  branch: main
+  revision: fd979b9270f6fb65e9c1c42cc7392a98a0acba17
+  branch: CHEF-26818-openrusty-1-27-1-2
   specs:
     omnibus-software (25.9.346)
       omnibus (>= 9.0.0)
