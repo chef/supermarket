@@ -4,6 +4,7 @@ GIT
   branch: main
   specs:
     omnibus-software (24.6.323)
+      ffi (>= 1.17.0)
       omnibus (>= 9.0.0)
 
 GIT
@@ -170,7 +171,7 @@ GEM
       net-http
     fauxhai-chef (9.3.16)
       net-ssh
-    ffi (1.16.3)
+    ffi (1.17.2)
     ffi-libarchive (1.1.14)
       ffi (~> 1.0)
     ffi-yajl (2.6.0)
@@ -246,8 +247,8 @@ GEM
       mixlib-shellout
       mixlib-versioning
       thor
-    mixlib-log (3.1.1)
-      ffi (< 1.17.0)
+    mixlib-log (3.2.3)
+      ffi (>= 1.15.5)
     mixlib-shellout (3.2.8)
       chef-utils
     mixlib-versioning (1.2.12)
@@ -307,7 +308,7 @@ GEM
       method_source (~> 1.0)
     public_suffix (6.0.1)
     racc (1.8.1)
-    rack (2.2.9)
+    rack (2.2.19)
     rainbow (3.1.1)
     regexp_parser (2.9.2)
     rest-client (2.1.0)
