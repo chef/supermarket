@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gem "fieri", path: "engines/fieri"
 gem "rails", "~> 7.0.8"
-gem "rack", "~> 2.2.8.1"
+gem "rack", "~> 2.2.19"
 
 gem "omniauth", "~> 2.1.1"
 gem "omniauth-chef-oauth2"
