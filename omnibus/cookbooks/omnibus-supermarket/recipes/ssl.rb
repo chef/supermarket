@@ -36,7 +36,7 @@ if node['supermarket']['ssl']['enable']
 
   # Generate dhparams.pem for perfect forward secrecy
   openssl_dhparam ssl_dhparam do
-    key_length 2048
+    key_length 4096
     generator 2
     owner 'root'
     group 'root'
@@ -62,7 +62,7 @@ if node['supermarket']['ssl']['enable']
       org node['supermarket']['ssl']['company_name']
       org_unit node['supermarket']['ssl']['organizational_unit_name']
       country node['supermarket']['ssl']['country_name']
-      key_length 2048
+      key_length 4096
       expire 3650
       owner 'root'
       group 'root'
