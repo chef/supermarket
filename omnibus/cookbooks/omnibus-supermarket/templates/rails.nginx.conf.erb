@@ -25,19 +25,21 @@ server {
 }
 
 server {
-  listen <%= @nginx['ssl_port'] %>;
+  listen <%= @nginx['ssl_port'] %> ssl http2;
   server_name <%= @fqdn %>;
 
 <%   if @ssl['enable'] -%>
-  ssl on;
   ssl_certificate <%= @ssl['certificate'] %>;
   ssl_certificate_key <%= @ssl['certificate_key'] %>;
   ssl_dhparam <%= @ssl['ssl_dhparam'] %>;
-  ssl_prefer_server_ciphers on;
+  ssl_prefer_server_ciphers <%= @ssl['prefer_server_ciphers'] || 'on' %>;
   ssl_ciphers <%= @fips_enabled ? @ssl['fips_ciphers'] : @ssl['ciphers'] %>;
   ssl_protocols <%= @ssl['protocols'] %>;
   ssl_session_cache <%= @ssl['session_cache'] %>;
   ssl_session_timeout <%= @ssl['session_timeout'] %>;
+<%     if @ssl['ssl_ecdh_curve'] -%>
+  ssl_ecdh_curve <%= @ssl['ssl_ecdh_curve'] %>;
+<%     end -%>
 <%   end -%>
 <% end -%>
 

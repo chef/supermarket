@@ -18,7 +18,7 @@ Start with `hab studio enter`
 
 ## Create openssl certificates required for nginx
 
-`hab pkg exec core/openssl openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /hab/svc/supermarket-nginx/cert.key -out /hab/svc/supermarket-nginx/cert.cert`
+`hab pkg exec core/openssl openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /hab/svc/supermarket-nginx/cert.key -out /hab/svc/supermarket-nginx/cert.cert`
 
 
 ## default.toml changes 
