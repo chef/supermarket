@@ -76,7 +76,7 @@ Once you have your local Supermarket and local Chef Infra Server setup you need 
 -   Install Nginx in mac using Homebrew
     -   `brew install nginx`
 -   generate ssl ceritificate
-    -   `openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /usr/local/etc/nginx/cert.key -out /usr/local/etc/nginx/cert.crt`
+    -   `openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /usr/local/etc/nginx/cert.key -out /usr/local/etc/nginx/cert.crt`
 -   Go to /usr/local/etc/nginx and update the conf file as follows:
 
 ```
