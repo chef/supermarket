@@ -306,7 +306,7 @@ Before completing any upgrade:
          - **Linux**: Follow https://github.com/cli/cli/blob/trunk/docs/install_linux.md
          - **Windows**: `winget install --id GitHub.cli` or download from GitHub
        - After installation: `gh auth login` to authenticate
-       - Then run: `gh pr create --title "Title" --body "Description"`
+       - Then run: `gh pr create --title "Title" --body "Description" --label "ai-assisted"`
      - **Web URL option**: Provide direct GitHub URL for manual PR creation if CLI setup is not preferred
    - **Automate the process**:
      - Check `which gh` first
@@ -317,6 +317,7 @@ Before completing any upgrade:
        - Alternative 3: Browser authentication: `gh auth login --web`
      - **Check all commits from main branch**: Use `git log --oneline main..HEAD` to get comprehensive view of all changes
      - Automatically create PR with pre-formatted title and description based on complete commit history
+     - **IMPORTANT**: Always add the `ai-assisted` label to PRs created through this workflow: `gh pr create --title "Title" --body "Description" --label "ai-assisted"`
    - Suggest PR title based on all commits in branch (emphasize PostgreSQL upgrades prominently)
    - Suggest PR description including:
      - Summary of all changes from main branch (highlight PostgreSQL version changes)
@@ -348,7 +349,20 @@ Before completing any upgrade:
      - Format comment in Markdown as shown above
    - **Error handling:** If JIRA comment fails, continue with workflow but notify user that manual comment addition may be needed
 
-7. **Buildkite Build Automation (after JIRA comment):**
+7. **Update JIRA AI-Assisted Field (immediately after JIRA comment):**
+   - **Update the custom field to indicate AI assistance**, use the Atlassian MCP Server to update the JIRA issue
+   - **Field Update Requirements:**
+     - Field ID: `customfield_11170` ("Does this Work Include AI Assisted Code?")
+     - Value: "Yes"
+     - Format: `{"customfield_11170": {"value": "Yes"}}`
+   - **Implementation using MCP Atlassian server:**
+     - Use `mcp_atlassian-mcp_editJiraIssue` tool
+     - Extract JIRA ID from branch name or commit message
+     - Update the issue with the correct field format
+   - **Verification:** Confirm the field update was successful by checking the response
+   - **Error handling:** If field update fails, log the error and notify user that manual field update may be needed
+
+8. **Buildkite Build Automation (after JIRA field update):**
    - **Step 1: Verify GitHub Checks Status**
      - **Before triggering any Buildkite build**, always check GitHub Actions status first
      - Use command: `gh pr checks <pr-number>` to verify all checks
@@ -490,21 +504,21 @@ Before completing any upgrade:
      - `jq` command available for JSON parsing (install with `brew install jq` on macOS)
      - Shell configuration file access (`.zshrc` for zsh or `.bashrc` for bash)
 
-### 8. Communication Guidelines
+### 9. Communication Guidelines
 
 - **Be explicit about limitations:** Clearly state what you can and cannot do
 - **Provide detailed summaries:** After each action, explain what was changed and why
 - **Ask before proceeding:** Never assume the user wants to continue without confirmation
 - **Handle errors gracefully:** If something fails, explain the issue and suggest alternatives
 
-### 9. Repository-Specific Notes
+### 10. Repository-Specific Notes
 
 - **Main application:** Located in `/src/supermarket/`
 - **Omnibus packaging:** Located in `/omnibus/`
 - **Multiple environments:** Consider development, production, and test dependencies
 - **Legacy support:** Some gems may need to maintain compatibility with older systems
 
-### 10. Pending Release Notes Generation
+### 11. Pending Release Notes Generation
 
 Maintain a lightweight `PENDING_RELEASE_NOTES.md` during any dependency upgrade branch so changes are ready to merge into the changelog at release time.
 
@@ -760,7 +774,7 @@ Before marking a task complete:
   - [ ] If yes, check if GitHub CLI is installed: `which gh`
   - [ ] If not installed, install GitHub CLI: `brew install gh` (macOS)
   - [ ] If needed, guide through authentication: `gh auth login`
-  - [ ] Create PR automatically: `gh pr create --title "Title" --body "Description"`
+  - [ ] Create PR automatically: `gh pr create --title "Title" --body "Description" --label "ai-assisted"`
   - [ ] Or provide GitHub web URL for manual PR creation if CLI setup is not preferred
 - [ ] JIRA issue updated with progress
 
