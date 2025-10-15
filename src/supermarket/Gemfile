@@ -94,7 +94,8 @@ group :test do
 end
 
 group :development, :test do
-  gem "chefstyle", "~> 2.2.2"
+  # Removed chefstyle to avoid conflicts with cookstyle - both define RuboCop::Chef constants
+  # gem "chefstyle", "~> 2.2.2"
   gem "factory_bot_rails", require: false
   gem "faker"
   gem "launchy"

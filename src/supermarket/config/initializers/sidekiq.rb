@@ -23,4 +23,6 @@ Sidekiq.configure_client do |config|
   config.redis = { url: redis_for_job_queue }
 end
 
+# Sidekiq's Delayed Extensions are deprecated and will be removed in Sidekiq 7.0
+# Keep enabled for now until we migrate .delay calls to proper ActiveJob classes
 Sidekiq::Extensions.enable_delay!
