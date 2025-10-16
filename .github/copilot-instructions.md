@@ -11,6 +11,7 @@ You can assist with:
   - Libraries
   - Plugins
   - PostgreSQL versions
+- **Configuration documentation maintenance** - automatically updating documentation when configuration attributes are modified
 
 **Important:** When a JIRA ID is provided, you can ONLY help if the JIRA story is about the Supermarket project AND about dependency/package upgrades. For JIRA stories about other types of tasks or other projects, politely decline and inform the user that you can only handle JIRA stories related to dependency upgrades in the Supermarket project, but you're happy to help with general questions and miscellaneous topics.
 
@@ -228,7 +229,81 @@ When using the Atlassian MCP Server:
    - If MCP server is unavailable, inform the user to start/restart the mcp connection from mcp.json file or ask to provide the JIRA details manually
    - Provide clear error messages for any MCP-related failures
 
-### 9. Quality Assurance
+### 9. Configuration Documentation Maintenance
+
+**Automatic Documentation Updates:**
+
+When any configuration attributes are added, modified, or removed in `/omnibus/cookbooks/omnibus-supermarket/attributes/default.rb`, you must automatically update the corresponding documentation in `/docs-chef-io/content/supermarket/config_rb_supermarket.md`.
+
+**Requirements:**
+
+1. **For New Attributes:**
+   - Add proper documentation entry in the appropriate section of the markdown file
+   - Follow the existing format: attribute name in backticks, colon, description, default value
+   - Include the correct default value from the `default.rb` file
+   - Place the new attribute in the correct section (General, Nginx, PostgreSQL, SSL, etc.)
+
+2. **For Modified Attribute Values:**
+   - Update the default value in the documentation to match the new value in `default.rb`
+   - Update any description text if the functionality has changed
+   - Ensure the documentation accurately reflects the current behavior
+
+3. **For Removed Attributes:**
+   - Remove the corresponding documentation entry from the markdown file
+   - Check for any references elsewhere in the documentation
+
+4. **Documentation Format:**
+   ```markdown
+   `default['supermarket']['section']['attribute_name']`
+   
+   : Description of what this attribute controls. Additional context if needed. Default value: `'value'`.
+   ```
+
+5. **Section Mapping:**
+   - `nginx` attributes → **Nginx** section
+   - `postgresql` attributes → **PostgreSQL** section  
+   - `ssl` attributes → **SSL** section
+   - `redis` attributes → **Redis** section
+   - `rails` attributes → **Ruby on Rails** section
+   - `sidekiq` attributes → **Sidekiq** section
+   - `database` attributes → **Database** section
+   - `chef_oauth2` attributes → **Oauth2** section
+   - Top-level attributes → **General** section
+
+6. **When to Apply:**
+   - This applies to ANY modification of configuration attributes, not just dependency upgrades
+   - Must be done AUTOMATICALLY whenever `default.rb` is modified
+   - Include documentation updates in the same commit as the configuration changes
+
+**Examples:**
+
+*New SSL attribute added:*
+```ruby
+# In default.rb
+default['supermarket']['ssl']['new_security_feature'] = true
+```
+
+*Must add to config_rb_supermarket.md:*
+```markdown
+`default['supermarket']['ssl']['new_security_feature']`
+
+: Enables the new security feature for SSL connections. Default value: `true`.
+```
+
+*Modified existing value:*
+```ruby
+# Changed from '250m' to '500m'
+default['supermarket']['nginx']['client_max_body_size'] = '500m'
+```
+
+*Must update in config_rb_supermarket.md:*
+```markdown
+`default['supermarket']['nginx']['client_max_body_size']`
+
+: The maximum accepted body size for a client request, as indicated by the `Content-Length` request header. When the maximum accepted body size is greater than this value, a `413 Request Entity Too Large` error is returned. Default value: `500m`. See the [nginx documentation](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) for additional information.
+```
+
+### 10. Quality Assurance
 
 Before completing any upgrade:
 
@@ -504,21 +579,21 @@ Before completing any upgrade:
      - `jq` command available for JSON parsing (install with `brew install jq` on macOS)
      - Shell configuration file access (`.zshrc` for zsh or `.bashrc` for bash)
 
-### 9. Communication Guidelines
+### 11. Communication Guidelines
 
 - **Be explicit about limitations:** Clearly state what you can and cannot do
 - **Provide detailed summaries:** After each action, explain what was changed and why
 - **Ask before proceeding:** Never assume the user wants to continue without confirmation
 - **Handle errors gracefully:** If something fails, explain the issue and suggest alternatives
 
-### 10. Repository-Specific Notes
+### 12. Repository-Specific Notes
 
 - **Main application:** Located in `/src/supermarket/`
 - **Omnibus packaging:** Located in `/omnibus/`
 - **Multiple environments:** Consider development, production, and test dependencies
 - **Legacy support:** Some gems may need to maintain compatibility with older systems
 
-### 11. Pending Release Notes Generation
+### 13. Pending Release Notes Generation
 
 Maintain a lightweight `PENDING_RELEASE_NOTES.md` during any dependency upgrade branch so changes are ready to merge into the changelog at release time.
 
