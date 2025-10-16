@@ -27,7 +27,7 @@ The following table shows which version of PostgreSQL is bundled with each Super
 | >= 4.2 and < 5.0       | 9.3                |
 | >= 5.0 and < 5.2.0     | 13.4               |
 | 5.2.0                  | 13.18              |
-| >= 5.2.1               | 13.22              |
+| 5.3.0                  | 13.22              |
 
 ## Before you upgrade
 
