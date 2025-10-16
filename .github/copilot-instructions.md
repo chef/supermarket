@@ -625,7 +625,7 @@ Steps (update iteratively as branch evolves):
 2. **MANDATORY CVE RESEARCH** - Collect CVE IDs from authoritative upstream sources across all intermediate versions between old and new:
   - **Security-Relevant Dependencies**: Rails, Rack, Nokogiri, OpenSSL, database adapters, authentication gems, authorization gems, session management, HTTP client gems, parsing libraries
   - **RubyGems**: Check GitHub releases and CHANGELOG.md for ALL versions in the upgrade range. Look specifically for "Security" sections and CVE references.
-  - **PostgreSQL**: Explicitly open release notes for every patch version between the old and new (e.g. upgrading 13.18 → 13.21 requires scanning 13.19, 13.20, 13.21) and aggregate all CVE IDs (e.g. CVE-2025-1094, CVE-2025-4207). Do NOT rely solely on the destination version's notes.
+  - **PostgreSQL**: Explicitly open release notes for every patch version between the old and new (e.g. upgrading 13.18 → 13.22 requires scanning 13.19, 13.20, 13.21, 13.22) and aggregate all CVE IDs (e.g. CVE-2025-1094, CVE-2025-4207). Do NOT rely solely on the destination version's notes.
   - **All libraries**: Consult CHANGELOG.md, SECURITY.md, or GitHub advisories; include only CVEs actually fixed in the traversed version span.
   - **RESEARCH VERIFICATION**: For each security-relevant dependency, use `fetch_webpage` tool to check official release notes or changelogs for ALL intermediate versions to ensure no CVEs are missed.
 
@@ -634,7 +634,7 @@ Steps (update iteratively as branch evolves):
    - Ensuring all intermediate versions between old→new are checked, not just the final version
    - Cross-referencing security sections in multiple sources (releases, changelogs, security advisories)
   - **RubyGems**: Check GitHub releases and CHANGELOG.md for ALL versions in the upgrade range. Look specifically for "Security" sections and CVE references.
-  - **PostgreSQL**: Explicitly open release notes for every patch version between the old and new (e.g. upgrading 13.18 → 13.21 requires scanning 13.19, 13.20, 13.21) and aggregate all CVE IDs (e.g. CVE-2025-1094, CVE-2025-4207). Do NOT rely solely on the destination version's notes.
+  - **PostgreSQL**: Explicitly open release notes for every patch version between the old and new (e.g. upgrading 13.18 → 13.22 requires scanning 13.19, 13.20, 13.21, 13.22) and aggregate all CVE IDs (e.g. CVE-2025-1094, CVE-2025-4207). Do NOT rely solely on the destination version's notes.
   - **All libraries**: Consult CHANGELOG.md, SECURITY.md, or GitHub advisories; include only CVEs actually fixed in the traversed version span.
   - **RESEARCH VERIFICATION**: For each security-relevant dependency, use `fetch_webpage` tool to check official release notes or changelogs for ALL intermediate versions to ensure no CVEs are missed.
 3. **DOUBLE-CHECK CVE RESEARCH**: Before finalizing release notes, verify CVE findings by:
@@ -667,11 +667,11 @@ Security
 - Rails 7.0.8.7 → 7.1.5.2
   - CVE-2025-1111
   - CVE-2025-2222
-- PostgreSQL 13.18 → 13.21
+- PostgreSQL 13.18 → 13.22
   - (no CVEs reported in this upgrade range)
 
 Packaging
-- Update configuration references for PostgreSQL 13.18 → 13.21
+- Update configuration references for PostgreSQL 13.18 → 13.22
 ```
 or, if only security upgrades and no packaging changes besides already shown:
 ```
