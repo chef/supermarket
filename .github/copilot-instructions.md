@@ -117,61 +117,55 @@ If Rails is being upgraded (any version change), you MUST update the testing fra
 - Verify your current location with `pwd` if uncertain
 - When bundle commands fail due to version conflicts, consider removing `Gemfile.lock` and running `bundle install` to regenerate with compatible versions
 
-### 6. PostgreSQL Version Upgrades
+### 6. Omnibus Software Version Upgrades
 
-PostgreSQL upgrades require special handling due to major version considerations:
+Omnibus software upgrades (PostgreSQL, Redis, Nginx, etc.) are now managed through the external omnibus-software repository rather than local software definitions.
 
 #### Step-by-Step Process:
 
-**a. Identify Current PostgreSQL Version:**
-- Check the `/omnibus/config/software/` directory
-- Look for files with prefix `postgresql` (e.g., `postgresql13.rb`, `postgresql93-bin.rb`)
+**a. Identify Target Software and Version:**
+- Determine which omnibus software needs upgrading (e.g., PostgreSQL, Redis, Nginx)
+- Note the current version from any existing references in the Supermarket repository
+- Identify the target version from the JIRA story
 
-**b. Determine Current Major Version:**
-- Examine each PostgreSQL software definition file
-- Check the `default_version` declaration to identify the version
-- Example: In `postgresql13.rb`, look for `default_version "13.18"`
+**b. Verify Version Availability in Omnibus-Software Repository:**
+- **MANDATORY**: Check the omnibus-software repository: https://github.com/chef/omnibus-software
+- Navigate to: `config/software/`
+- Look for the software definition file (e.g., `postgresql.rb`, `redis.rb`, `nginx.rb`)
+- **CRITICAL**: Verify that the target version is available in the omnibus-software repository
+- If the target version is not available, **STOP** and respond:
+  ```
+  "The target version {VERSION} for {SOFTWARE} is not available in the omnibus-software repository at https://github.com/chef/omnibus-software/tree/main/config/software. Available versions need to be added to the omnibus-software repository first before this upgrade can proceed."
+  ```
 
-**c. Identify Highest Major Version:**
-- Compare all PostgreSQL software definition files
-- The highest major version number is what Supermarket currently uses
-- Current files show PostgreSQL 13 (latest) and PostgreSQL 9.3 (legacy)
-
-**d. Version Compatibility Check:**
-- If the target version from JIRA is within the same major version (e.g., 13.x to 13.y), proceed with automation
+**c. Version Compatibility Check (PostgreSQL Specific):**
+- For PostgreSQL upgrades specifically, check for major version changes
 - If the target version requires a different major version (e.g., 13.x to 14.x or 15.x), **STOP** and respond:
   ```
   "PostgreSQL major version upgrades (e.g., from 13.x to 14.x or 15.x) cannot be automated as they require manual intervention to handle compatibility issues, data migration, and configuration changes. This upgrade needs to be handled manually by a developer familiar with PostgreSQL major version upgrade procedures."
   ```
 
-**e. Automated Minor Version Upgrade Process:**
-For same major version upgrades only:
+**d. Update Local References (If Any):**
+- Search the Supermarket repository for any references to the current version
+- Update configuration files, documentation, or scripts that reference the old version
+- **Note**: Since software definitions are now external, focus on version references rather than definition files
 
-1. **Update the default_version:**
-   - Modify the `default_version` line in the appropriate `.rb` file
-   - Example: Change `default_version "13.18"` to `default_version "13.20"`
+**e. Enumerate Security Fixes (MANDATORY for Security-Relevant Software):**
+- For security-relevant software (PostgreSQL, OpenSSL, Nginx, etc.):
+  - Collect all CVE IDs addressed across every intermediate version between the old version and the new version (inclusive)
+  - Consult official release notes for each intermediate version
+  - Record only CVE identifiers (no prose) for inclusion in `PENDING_RELEASE_NOTES.md`
+  - If no CVEs are listed in any intervening versions, include: `(no CVEs reported in this upgrade range)`
+  - Do NOT rely on summaries or external aggregators; always consult official release note pages
 
-2. **Add version entry with SHA256:**
-   - Add a new version entry with the correct SHA256 hash
-   - Find SHA256 from: https://ftp.postgresql.org/pub/source/v{VERSION}/
-   - Look for the `.sha256` file in the version directory
-   - Example format: `version("13.20") { source sha256: "abc123..." }`
+**f. Update Pending Release Notes:**
+- Add a top-level Security bullet: `{SOFTWARE} <old_version> → <new_version>` followed by nested bullets of the collected CVE IDs (or the explicit no‑CVEs marker) in ascending numeric order
+- Ensure security-relevant software appears prominently in release notes (PostgreSQL/Rails first when present)
 
-3. **Verify the SHA256:**
-   - Navigate to https://ftp.postgresql.org/pub/source/v{VERSION}/
-   - Download or view the `.sha256` file for the specific version
-   - Use the exact SHA256 value provided
-
-4. **Enumerate Security Fixes (MANDATORY):**
-  - Collect all CVE IDs addressed across every intermediate patch between the old version and the new version (inclusive) by reading each patch release note page (e.g., upgrading 13.18 → 13.21 requires scanning 13.19, 13.20, 13.21).
-  - Record only CVE identifiers (no prose) for inclusion in `PENDING_RELEASE_NOTES.md` under the Security section using the required nested bullet format.
-  - If no CVEs are listed in any intervening patch pages, include a single nested bullet: `(no CVEs reported in this upgrade range)`.
-  - Do NOT rely on summaries or external aggregators; always consult official PostgreSQL release note pages.
-  - If a patch release references a security hardening change but without a CVE ID, omit it from the CVE list (only list actual CVE IDs).
-
-5. **Update Pending Release Notes:**
-  - Add a top-level Security bullet: `PostgreSQL <old_version> → <new_version>` followed by nested bullets of the collected CVE IDs (or the explicit no‑CVEs marker) in ascending numeric order.
-  - Ensure PostgreSQL appears before other components except Rails (Rails first when both present).
+**g. Dependencies and Integration:**
+- Check for any cookbook dependencies that might reference specific software versions
+- Update integration tests or documentation that might be version-specific
+- Verify that the upgrade doesn't conflict with other omnibus software versions
 
 ### 7. Prompt-Based Task Management
 
@@ -677,7 +671,7 @@ Security
   - (no CVEs reported in this upgrade range)
 
 Packaging
-- Update omnibus postgresql definition 13.18 → 13.21
+- Update configuration references for PostgreSQL 13.18 → 13.21
 ```
 or, if only security upgrades and no packaging changes besides already shown:
 ```
