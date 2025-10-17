@@ -13,14 +13,12 @@ module Supermarket
       # OpenSSL 3+ FIPS mode cannot be programmatically enabled/disabled
       # FIPS is controlled by omnibus configuration and openssl.cnf at process startup
       # We configure the application for FIPS compliance when requested
-      
       if ENV["OPENSSL_FIPS"] == "1"
         Rails.logger.info "FIPS mode requested via OPENSSL_FIPS environment variable"
         Rails.logger.info "Configuring application for FIPS compliance"
       else
         Rails.logger.debug "FIPS mode not requested, using standard configuration"
       end
-      
       # Always use OpenSSL digest algorithms for better FIPS compliance
       use_openssl_hash_algorithms!
     end
