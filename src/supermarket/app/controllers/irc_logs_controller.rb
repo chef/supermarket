@@ -5,7 +5,7 @@ class IrcLogsController < ApplicationController
   # Redirects to the botbot.me dashboard (list of IRC channels).
   #
   def index
-    redirect_to("https://botbot.me/freenode/chef/")
+    redirect_to("https://botbot.me/freenode/chef/", allow_other_host: true)
   end
 
   #
@@ -39,11 +39,11 @@ class IrcLogsController < ApplicationController
       cutoff_date = Date.parse("2013-08-08")
 
       if date_str.nil?
-        redirect_to(botbot_base_url + channel)
+        redirect_to(botbot_base_url + channel, allow_other_host: true)
       elsif date > cutoff_date
-        redirect_to(botbot_base_url + channel + "/" + date_str)
+        redirect_to(botbot_base_url + channel + "/" + date_str, allow_other_host: true)
       else
-        redirect_to(github_repo_url)
+        redirect_to(github_repo_url, allow_other_host: true)
       end
     end
   end

@@ -43,7 +43,7 @@ describe SpdxLicenseUpdateWorker, type: :worker do
         Sidekiq::Testing.inline! do
           worker.perform(json_data, version)
         end
-      end.to raise_error
+      end.to raise_error(NoMethodError)
     end
   end
 end
