@@ -354,31 +354,31 @@ This configuration file has the following settings for nginx:
 
 `default['supermarket']['nginx']['gzip']`
 
-: Enable gzip compression. Default value: `'on'`.
+: Enable gzip compression. Default value: `on`.
 
-`default['supermarket']['nginx']['gzip_buffers']`
+`default['supermarket']['gzip_buffers']`
 
 : Set the [gzip buffer](https://nginx.org/en/docs/http/ngx_http_gzip_module.html) size. The nginx default is equal to one memory page, depending on the platform, it is either 4K  8K. Default value: `nil`.
 
 `default['supermarket']['nginx']['gzip_comp_level']`
 
-: The compression level used with gzip, from least amount of compression (`1`, fastest) to the most (`2`, slowest). Default value: `'2'`.
+: The compression level used with gzip, from least amount of compression (`1`, fastest) to the most (`2`, slowest). Default value: `2`.
 
-`default['supermarket']['nginx']['gzip_disable']`
+`default['supermarket']['gzip_disable']`
 
 : Disables gzip compression when a `User-Agent` field is present in headers matching the specified regular expressions. Default value: `'MSIE [1-6]\.'`.
 
 `default['supermarket']['nginx']['gzip_http_version']`
 
-: Enable gzip depending on the version of the HTTP request. Default value: `'1.0'`.
+: Enable gzip depending on the version of the HTTP request. Default value: `1.0`.
 
-`default['supermarket']['nginx']['gzip_min_length']`
+`default['supermarket']['gzip_min_length']`
 
 : The minimum response length that will be compressed by gzip, as determined by the `Content-Length` response header. Default value: `1000`.
 
 `default['supermarket']['nginx']['gzip_proxied']`
 
-: Determines whether or not proxied requests are compressed with gzip, based on the presence of the `Via` request header field. Default value: `'any'`.
+: Determines whether or not proxied requests are compressed with gzip, based on the presence of the `Via` request header field. Default value: `any`.
 
 `default['supermarket']['nginx']['gzip_static']`
 
@@ -386,9 +386,9 @@ This configuration file has the following settings for nginx:
 
 `default['supermarket']['nginx']['gzip_types']`
 
-: Enable compression for the specified MIME-types. Default value: `[ 'text/plain', 'text/css', 'application/x-javascript', 'text/xml', 'application/xml', 'application/rss+xml', 'application/atom+xml', 'text/javascript', 'application/javascript', 'application/json' ]`.
+: Enable compression for the specified MIME-types. Default value: `[ 'text/plain', 'text/css', 'application/x-javascript', 'text/xml', 'application/xml', 'application/xml+rss', 'application/atom+xml', 'text/javascript', 'application/javascript', 'application/json' ]`.
 
-`default['supermarket']['nginx']['gzip_vary']`
+`default['supermarket']['gzip_vary']`
 
 : Determines whether or not the `Vary: Accept-Encoding` response header field is inserted when the following directives are active: `gzip`,`gzip_static`, or `gunzip`. Default value: `'off'`.
 
@@ -407,10 +407,6 @@ This configuration file has the following settings for nginx:
 `default['supermarket']['nginx']['log_rotation']`
 
 : The log rotation policy for this service. Log files are rotated when they exceed `file_maxbytes`. The maximum number of log files in the rotation is defined by `num_to_keep`. Default value: `{ 'file_maxbytes' => 104857600, 'num_to_keep' => 10 }`
-
-`default['supermarket']['nginx']['log_x_forwarded_for']`
-
-: Enables logging of the X-Forwarded-For header in the nginx access log. Default value: `false`.
 
 `default['supermarket']['nginx']['multi_accept']`
 
@@ -435,7 +431,7 @@ This configuration file has the following settings for nginx:
 
 `default['supermarket']['nginx']['sendfile']`
 
-: Copy data between file descriptors when `sendfile()` is used. Default value: `'on'`.
+: Copy data between file descriptors when `sendfile()` is used. Default value: `on`.
 
 `default['supermarket']['nginx']['server_names_hash_bucket_size']`
 
@@ -501,10 +497,6 @@ This configuration file has the following settings for PostgreSQL:
 
 : A completion percentage that is used to determine how quickly a checkpoint should finish in relation to the completion status of the next checkpoint. For example, if the value is `0.5`, then a checkpoint attempts to finish before 50% of the next checkpoint is done. Default value: `0.5`.
 
-`default['supermarket']['postgresql']['checkpoint_flush_after']`
-
-: The amount of data written before triggering a checkpoint flush. Default value: `'256kB'`.
-
 `default['supermarket']['postgresql']['checkpoint_segments']`
 
 : The maximum amount (in megabytes) between checkpoints in log file segments. Default value: `3`.
@@ -519,7 +511,7 @@ This configuration file has the following settings for PostgreSQL:
 
 `default['supermarket']['postgresql']['data_directory']`
 
-: The directory in which on-disk data is stored. The default value is the recommended value. Default value: `"#{node['supermarket']['var_directory']}/postgresql/#{node['supermarket']['postgresql']['version']}/data"`.
+: The directory in which on-disk data is stored. The default value is the recommended value. Default value: `"#{node['supermarket']['var_directory']}/postgresql/9.3/data"`.
 
 `default['supermarket']['postgresql']['effective_cache_size']`
 
@@ -544,14 +536,6 @@ This configuration file has the following settings for PostgreSQL:
 `default['supermarket']['postgresql']['max_connections']`
 
 : The maximum number of allowed concurrent connections. Default value: `350`.
-
-`default['supermarket']['postgresql']['max_wal_size']`
-
-: The maximum size to let the WAL grow during automatic checkpoints. Default value: `'1GB'`.
-
-`default['supermarket']['postgresql']['min_wal_size']`
-
-: The minimum size to shrink the WAL to during automatic checkpoints. Default value: `'80MB'`.
 
 `default['supermarket']['postgresql']['md5_auth_cidr_addresses']`
 
@@ -603,7 +587,7 @@ This configuration file has the following settings for Redis:
 
 `default['supermarket']['redis']['port']`
 
-: The port on which the service is to listen. Default value: `16379`.
+: The port on which the service is to listen. Default value: `'16379'`.
 
 ### Ruby on Rails
 
@@ -695,15 +679,11 @@ This configuration file has the following settings for SSL:
 
 `default['supermarket']['ssl']['certificate']`
 
-: The SSL certificate used to verify communication over HTTPS. Default value: `nil`.
+: The SSL certificate used to verify communication over HTTPS.
 
 `default['supermarket']['ssl']['certificate_key']`
 
-: The certificate key used for SSL communication. Default value: `nil`.
-
-`default['supermarket']['ssl']['ciphers']`
-
-: The list of supported cipher suites for standard SSL connections. Updated for OpenSSL 3.2.4 compatibility with TLS 1.3 ciphers and modern ECDHE key exchange. Default value: `'TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256'`.
+: The certificate key used for SSL communication.
 
 `default['supermarket']['ssl']['company_name']`
 
@@ -715,71 +695,35 @@ This configuration file has the following settings for SSL:
 
 `default['supermarket']['ssl']['directory']`
 
-: The working directory for SSL files. Default value: `'/var/opt/supermarket/ssl'`.
+: The working directory. Default value: `'/var/opt/supermarket/ssl'`.
 
 `default['supermarket']['ssl']['email_address']`
 
 : The default email address for your company. Default value: `'you@example.com'`.
 
-`default['supermarket']['ssl']['enable']`
-
-: Enable SSL functionality. Default value: `true`.
-
-`default['supermarket']['ssl']['fips_ciphers']`
-
-: The list of FIPS-compliant cipher suites for FIPS mode. Default value: `'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256'`.
-
-`default['supermarket']['ssl']['hsts_include_subdomains']`
-
-: Whether to include subdomains in HSTS headers for enhanced security. Default value: `true`.
-
-`default['supermarket']['ssl']['hsts_max_age']`
-
-: The maximum age for HSTS headers in seconds. Default value: `'31536000'` (1 year).
-
 `default['supermarket']['ssl']['locality_name']`
 
 : The city in which your company is located. Default value: `'Seattle'`.
 
-`default['supermarket']['ssl']['ocsp_stapling']`
+`default['supermarket']['ssl']['openssl_bin']`
 
-: Enable OCSP stapling for improved SSL performance and security. Default value: `true`.
-
-`default['supermarket']['ssl']['ocsp_stapling_verify']`
-
-: Enable OCSP stapling verification. Default value: `true`.
+: Default value: `"#{node['supermarket']['install_directory']}/embedded/bin/openssl"`.
 
 `default['supermarket']['ssl']['organizational_unit_name']`
 
-: The organization or group within your company that is running the Chef Supermarket. Default value: `'Operations'`.
-
-`default['supermarket']['ssl']['prefer_server_ciphers']`
-
-: Whether the server's cipher preferences should be used instead of the client's. Set to 'off' for TLS 1.3 compatibility. Default value: `'off'`.
-
-`default['supermarket']['ssl']['protocols']`
-
-: The SSL/TLS protocols supported. Default value: `'TLSv1.2 TLSv1.3'`.
+: The organization or group within your company that is running the Chef Infra Server. Default value: `'Operations'`.
 
 `default['supermarket']['ssl']['session_cache']`
 
-: SSL session cache configuration for improved performance. Default value: `'shared:SSL:10m'`.
+: Default value: `'shared:SSL:4m'`.
 
 `default['supermarket']['ssl']['session_timeout']`
 
-: SSL session timeout duration. Default value: `'10m'`.
+: Default value: `'5m'`.
 
-`default['supermarket']['ssl']['ssl_dhparam']`
+`default['supermarket']['ssl']['ciphers']`
 
-: Path to the Diffie-Hellman parameter file for enhanced security. Default value: `nil`.
-
-`default['supermarket']['ssl']['ssl_ecdh_curve']`
-
-: ECDH curves for key exchange, using FIPS-approved curves. Default value: `'secp384r1:secp256r1'`.
-
-`default['supermarket']['ssl']['state_name']`
-
-: The state in which your company is located. Default value: `'WA'`.
+: The list of supported cipher suites that are used to establish a secure connection. See <https://www.openssl.org/docs/man1.0.2/man1/ciphers.html> for more information.
 
 `default['supermarket']['ssl']['fips_ciphers']`
 
