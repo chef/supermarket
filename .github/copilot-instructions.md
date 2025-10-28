@@ -1,19 +1,26 @@
-# Copilot Instructions for Supermarket Dependency Upgrades
+# Copilot Instructions for Supermarket Development
 
 ## Overview
-These instructions guide GitHub Copilot in handling dependency upgrades for the Supermarket project, specifically focusing on upgrading vulnerable packages including gems, libraries, plugins, and PostgreSQL versions.
+These instructions guide GitHub Copilot in handling development tasks for the Supermarket project, including dependency upgrades, feature implementation, bug fixes, documentation updates, and general development support.
 
 ## Scope of Work
 You can assist with:
 - **General questions and miscellaneous topics** related to the codebase, development practices, technical topics, tools, and any other general guidance
-- **JIRA stories specifically about upgrading dependencies in the Supermarket project** such as:
-  - Ruby gems
-  - Libraries
-  - Plugins
-  - PostgreSQL versions
+- **All JIRA stories related to the Supermarket project** including:
+  - Dependency upgrades (Ruby gems, libraries, plugins, PostgreSQL versions)
+  - Feature implementation and enhancements
+  - Bug fixes and troubleshooting
+  - UI/UX improvements
+  - Documentation updates
+  - Configuration changes
+  - Testing and quality assurance
+  - Security fixes and improvements
+  - Performance optimizations
 - **Configuration documentation maintenance** - automatically updating documentation when configuration attributes are modified
+- **Code reviews and analysis** - helping with code quality, best practices, and architectural decisions
+- **Development environment setup** - assisting with local development, testing, and deployment
 
-**Important:** When a JIRA ID is provided, you can ONLY help if the JIRA story is about the Supermarket project AND about dependency/package upgrades. For JIRA stories about other types of tasks or other projects, politely decline and inform the user that you can only handle JIRA stories related to dependency upgrades in the Supermarket project, but you're happy to help with general questions and miscellaneous topics.
+**Important:** When a JIRA ID is provided, you can help with ANY task related to the Supermarket project. For JIRA stories about other projects, politely decline and inform the user that you can only handle tasks related to the Supermarket project, but you're happy to help with general questions and miscellaneous topics.
 
 ## Workflow Instructions
 
@@ -28,11 +35,10 @@ When a JIRA ID is provided:
 2. **Validate the story content:**
    - Read the JIRA story description carefully
    - **First check if the story is related to the Supermarket project**
-   - If the story is NOT about Supermarket, respond: "I can only assist with JIRA stories about upgrading dependencies in the Supermarket project. This JIRA appears to be about a different project. However, I'm happy to help with general questions, miscellaneous topics, or guidance about the Supermarket codebase."
-   - If the story IS about Supermarket but NOT about upgrading packages/dependencies, respond: "I can only assist with JIRA stories about upgrading dependencies (gems, libraries, plugins, PostgreSQL) in the Supermarket project. This JIRA appears to be about a different type of task that I cannot help with. However, I'm happy to help with general questions, miscellaneous topics, or guidance about the Supermarket codebase."
-   - Only if the story is about Supermarket AND about upgrading packages/dependencies, proceed with the task
+   - If the story is NOT about Supermarket, respond: "I can only assist with JIRA stories about the Supermarket project. This JIRA appears to be about a different project. However, I'm happy to help with general questions, miscellaneous topics, or guidance about the Supermarket codebase."
+   - If the story IS about Supermarket, proceed with the task regardless of the task type (dependency upgrades, features, bug fixes, etc.)
 
-3. **Handle Dependabot references:**
+3. **Handle Dependabot references (for dependency upgrade tasks):**
    - If the story mentions Dependabot links, ignore those links
    - Only work with the details explicitly mentioned in the JIRA description
    - If a point only mentions Dependabot without specific package details, respond: "I need more specific details about the packages to upgrade. The description only mentions Dependabot but doesn't specify which packages need upgrading."
@@ -42,7 +48,31 @@ Before making any changes:
 - Create a new branch named with the JIRA ID
 - Example: `git checkout -b JIRA-1234`
 
-### 3. Gemfile Locations
+### 3. General Development Tasks
+For non-dependency upgrade tasks (feature implementation, bug fixes, UI changes, etc.):
+
+1. **Analyze the requirements:**
+   - Read the JIRA story description and acceptance criteria carefully
+   - Understand the scope and expected deliverables
+   - Identify the files and components that need modification
+
+2. **Plan the implementation:**
+   - Break down the task into logical steps
+   - Identify potential dependencies or prerequisites
+   - Consider testing requirements
+
+3. **Follow standard development practices:**
+   - Write clean, maintainable code following existing patterns
+   - Add appropriate tests for new functionality
+   - Update documentation as needed
+   - Follow Ruby/Rails best practices and conventions
+
+4. **Testing and validation:**
+   - Run relevant test suites to ensure changes don't break existing functionality
+   - Test the new feature/fix manually if applicable
+   - Ensure code meets quality standards
+
+### 4. Gemfile Locations (for dependency upgrades)
 The repository contains multiple Gemfiles that need to be considered:
 - `/src/supermarket/Gemfile` - Main application Gemfile
 - `/src/supermarket/engines/fieri/Gemfile` - Fieri engine Gemfile
@@ -50,7 +80,7 @@ The repository contains multiple Gemfiles that need to be considered:
 
 **Important:** When upgrading gems, check and update ALL relevant Gemfiles where the gem is present.
 
-### 4. Gem Upgrade Process
+### 5. Gem Upgrade Process
 For each gem upgrade:
 
 1. **Identify all occurrences:**
@@ -71,9 +101,9 @@ For each gem upgrade:
    - Check for any breaking changes
 
 **⚠️ CRITICAL FOR RAILS UPGRADES:**
-If Rails is being upgraded (any version change), you MUST update the testing framework immediately after updating Rails but BEFORE running the test suite. See section 5 for detailed Rails upgrade procedures including mandatory RSpec updates.
+If Rails is being upgraded (any version change), you MUST update the testing framework immediately after updating Rails but BEFORE running the test suite. See section 6 for detailed Rails upgrade procedures including mandatory RSpec updates.
 
-5. **Rails Upgrade Special Considerations:**
+6. **Rails Upgrade Special Considerations:**
    - **When upgrading Rails (any version - major, minor, or patch):**
      - **MANDATORY**: After updating Rails version, check for updates for RSpec and related testing framework gems in this project and upgrade them to a version compatible with the new Rails version
      - **Process:**
