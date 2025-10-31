@@ -29,6 +29,6 @@ class Api::V1::CookbookVersionsController < Api::V1Controller
 
     # Ignore brakeman error: "Possible unprotected redirect"
     # as this might be an external URL that needs to be considered along with the host URL
-    redirect_to @cookbook_version.cookbook_artifact_url
+    redirect_to @cookbook_version.cookbook_artifact_url, allow_other_host: true
   end
 end
