@@ -621,23 +621,28 @@ Before completing any upgrade:
 
 Maintain a lightweight `PENDING_RELEASE_NOTES.md` during any dependency upgrade branch so changes are ready to merge into the changelog at release time.
 
+**CRITICAL**: Follow the official GitHub wiki structure format exactly: https://github.com/chef/supermarket/wiki/Pending-Release-Notes
+
 Core principles:
 - Short, public‑facing, non-duplicative.
-- Allowed categories (include only if they have content):
-  - Security (ALWAYS first if any security-relevant dependency changed)
-  - Bug Fixes
-  - Enhancements
-  - Packaging (build / omnibus / infra changes)
+- **Required sections in exact order (include only if they have content):**
+  1. **Bug Fixes** - Application code fixes and upstream dependency patches
+  2. **Enhancements** - New capabilities and framework upgrades that add functionality
+  3. **Packaging** - Build, omnibus, infrastructure, and configuration changes
+  4. **Security** - Security-relevant dependency upgrades with CVE listings
+- **Header format**: Include patch release description explaining the nature of changes
 - No duplication across categories. If an item appears in Security it must not reappear elsewhere.
 - Each security‑relevant dependency upgrade appears exactly once under Security with: one bullet for the component (including old → new version) followed by nested bullets listing individual CVE IDs or a single nested bullet stating `(no CVEs reported in this upgrade range)`.
 - No version number in the filename. Optional heading must not contain a version.
 - Exclude internal / purely developer process tweaks.
 
-Formatting rules for Security section:
-- Top-level bullet: `<Component> <old_version> → <new_version>`
-- Nested bullets: one per CVE ID in plain form (`CVE-YYYY-NNNN`), no extra prose.
-- If no CVEs: a single nested bullet `- (no CVEs reported in this upgrade range)`.
-- Order components alphabetically or by perceived impact (Rails/PostgreSQL first) — be consistent within a file.
+**Official formatting rules (must follow exactly):**
+- **Main bullets**: Use `•` (bullet character, not dash or asterisk)
+- **Sub-bullets**: Use `◦` (white bullet character) for CVE listings and nested items
+- **Component format**: `<Component> <old_version> → <new_version>`
+- **CVE format**: One `◦` per CVE ID in plain form (`CVE-YYYY-NNNN`), no extra prose
+- **No CVEs format**: Single nested bullet `◦ (no CVEs reported in this upgrade range)`
+- Order components by perceived impact (Rails/PostgreSQL first) — be consistent within a file.
 
 Steps (update iteratively as branch evolves):
 
@@ -691,25 +696,35 @@ Steps (update iteratively as branch evolves):
 - **Common mistake to avoid**: Do NOT assume no CVEs exist without proper research. Many security fixes are documented in release notes and changelogs that require explicit checking.
 - **Quality control**: If user points out missing dependencies (e.g., "didn't you find that we have updated rack and nokogiri also"), the initial analysis was incomplete and must be redone systematically.
 
-Updated minimal examples:
+Updated minimal examples following official wiki format:
 ```
-Security
-- Rails 7.0.8.7 → 7.1.5.2
-  - CVE-2025-1111
-  - CVE-2025-2222
-- PostgreSQL 13.18 → 13.22
-  - (no CVEs reported in this upgrade range)
+# Pending Release Notes
 
-Packaging
-- Update configuration references for PostgreSQL 13.18 → 13.22
-```
-or, if only security upgrades and no packaging changes besides already shown:
-```
-Security
-- [Component] [old_version] → [new_version]
-  - CVE-2025-1111
-  - CVE-2025-2222
-  - CVE-2025-3333
+Patch release: dependency and security updates (PostgreSQL, Rails) plus internal dependency alignment; no functional application feature changes.
+
+## Bug Fixes
+
+• None in application code; fixes come via upstream dependency patches (see Security).
+
+## Enhancements
+
+• Rails upgraded to 7.1.5.2 enabling newer framework capabilities.
+
+## Packaging
+
+• Update omnibus postgresql definition 13.18 → 13.22
+• Major OpenSSL upgrade from 1.0.2zi → 3.2.4 with FIPS plugin 3.1.2
+
+## Security
+
+• PostgreSQL 13.18 → 13.22
+  ◦ CVE-2025-1094
+  ◦ CVE-2025-4207
+• Rails 7.0.8.7 → 7.1.5.2
+  ◦ CVE-2025-1111
+  ◦ CVE-2025-2222
+• OpenResty 1.21 → 1.27.1.2 (includes nginx 1.21.4 → 1.27.1)
+  ◦ (no CVEs reported in this upgrade range)
 ```
 
 Validation checklist before committing:
@@ -719,7 +734,9 @@ Validation checklist before committing:
 - [ ] **Official release notes and changelogs reviewed for each upgraded component**
 - [ ] **No missed dependencies**: Complete analysis prevents user corrections about overlooked upgrades like Rack, Nokogiri, etc.
 - [ ] No version numbers in filename / heading
-- [ ] Security section uses bullet + nested CVE bullet format
+- [ ] **Official wiki structure followed**: Bug Fixes, Enhancements, Packaging, Security sections in exact order
+- [ ] **Proper bullet formatting**: `•` for main bullets, `◦` for sub-bullets (CVE listings)
+- [ ] **Patch release description included** at top explaining nature of changes
 - [ ] Each upgraded security-relevant dependency listed once (no duplication elsewhere)
 - [ ] Every component has CVE bullets or explicit no‑CVEs marker (ONLY after verification)
 - [ ] No prose mixed with CVE IDs (IDs only)
