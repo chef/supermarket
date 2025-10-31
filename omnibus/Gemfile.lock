@@ -4,6 +4,7 @@ GIT
   branch: main
   specs:
     omnibus-software (25.10.350)
+      ffi (>= 1.17.0)
       omnibus (>= 9.0.0)
 
 GIT
@@ -173,7 +174,7 @@ GEM
       net-http
     fauxhai-chef (9.3.16)
       net-ssh
-    ffi (1.16.3)
+    ffi (1.17.0)
     ffi-libarchive (1.1.14)
       ffi (~> 1.0)
     ffi-yajl (2.6.0)
@@ -386,9 +387,9 @@ GEM
     toml-rb (2.2.0)
       citrus (~> 3.0, > 3.0)
     tomlrb (1.3.0)
-    train-core (3.13.4)
+    train-core (3.12.13)
       addressable (~> 2.5)
-      ffi (~> 1.16.0)
+      ffi (!= 1.13.0)
       json (>= 1.8, < 3.0)
       mixlib-shellout (>= 2.0, < 4.0)
       net-scp (>= 1.2, < 5.0)
@@ -422,7 +423,7 @@ GEM
     unf_ext (0.0.8.2)
     unicode-display_width (2.5.0)
     unicode_utils (1.4.0)
-    uri (0.13.0)
+    uri (0.13.2)
     uuidtools (2.2.0)
     vault (0.18.2)
       aws-sigv4
