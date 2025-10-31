@@ -35,11 +35,29 @@ server {
   {{~ #if ssl_dhparam }}
   ssl_dhparam               {{ ssl_dhparam }};
   {{~ /if }}
-  ssl_prefer_server_ciphers on;
+  ssl_prefer_server_ciphers {{ #if ../cfg.ssl.prefer_server_ciphers }}{{ ../cfg.ssl.prefer_server_ciphers }}{{ else }}on{{ /if }};
   ssl_ciphers               {{ #if ../cfg.fips.enabled }}{{ ../cfg.fips.ciphers }}{{ else }}{{ ciphers }}{{ /if }};
   ssl_protocols             {{ protocols }};
   ssl_session_cache         {{ session_cache }};
   ssl_session_timeout       {{ session_timeout }};
+  {{~ #if ../cfg.ssl.ssl_ecdh_curve }}
+  ssl_ecdh_curve            {{ ../cfg.ssl.ssl_ecdh_curve }};
+  {{~ /if }}
+  
+  # Modern security headers for OpenSSL 3.2.4
+  {{~ #if ../cfg.ssl.hsts_max_age }}
+  add_header Strict-Transport-Security "max-age={{ ../cfg.ssl.hsts_max_age }}{{ #if ../cfg.ssl.hsts_include_subdomains }}; includeSubDomains{{ /if }}" always;
+  {{~ /if }}
+  {{~ #if ../cfg.ssl.ocsp_stapling }}
+  ssl_stapling on;
+  {{~ #if ../cfg.ssl.ocsp_stapling_verify }}
+  ssl_stapling_verify on;
+  {{~ /if }}
+  {{~ /if }}
+  add_header X-Frame-Options DENY always;
+  add_header X-Content-Type-Options nosniff always;
+  add_header X-XSS-Protection "1; mode=block" always;
+  add_header Referrer-Policy "strict-origin-when-cross-origin" always;
   {{~ /if }}
   {{~ /with }}
     {{~ /if }}

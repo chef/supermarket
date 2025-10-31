@@ -105,7 +105,9 @@ class Supermarket
     end
 
     def self.built_with_fips?(install_directory)
-      File.exist?("#{install_directory}/embedded/lib/fipscanister.o")
+      # The file being checked for existence may change in future versions of OpenSSL fips module.
+      # So please verify when upgrading OpenSSL/openssl-fips.
+      File.exist?("#{install_directory}/embedded/lib/ossl-modules/fips.so")
     end
 
     def self.fips_enabled_in_kernel?

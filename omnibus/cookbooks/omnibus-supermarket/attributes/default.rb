@@ -265,15 +265,22 @@ default['supermarket']['ssl']['email_address'] = 'you@example.com'
 # Based off of the Mozilla recommended cipher suite
 # https://wiki.mozilla.org/Security/Server_Side_TLS#Recommended_Ciphersuite
 #
-# SSLV3 was removed because of the poodle attack. (https://www.openssl.org/~bodo/ssl-poodle.pdf)
-#
-# If your infrastructure still has requirements for the vulnerable/venerable SSLV3, you can add
-# "SSLv3" to the below line.
-default['supermarket']['ssl']['ciphers'] = 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA'
-default['supermarket']['ssl']['fips_ciphers'] = 'FIPS@STRENGTH:!aNULL:!eNULL'
-default['supermarket']['ssl']['protocols'] = 'TLSv1.2'
-default['supermarket']['ssl']['session_cache'] = 'shared:SSL:4m'
-default['supermarket']['ssl']['session_timeout'] = '5m'
+# Updated for OpenSSL 3.2.4 compatibility - removes deprecated ciphers and algorithms
+# Prioritizes TLS 1.3 ciphers and modern ECDHE key exchange
+default['supermarket']['ssl']['ciphers'] = 'TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256'
+default['supermarket']['ssl']['fips_ciphers'] = 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256'
+default['supermarket']['ssl']['protocols'] = 'TLSv1.2 TLSv1.3'
+default['supermarket']['ssl']['session_cache'] = 'shared:SSL:10m'
+default['supermarket']['ssl']['session_timeout'] = '10m'
+# FIPS mode additional configuration for OpenSSL 3.2.4
+default['supermarket']['ssl']['prefer_server_ciphers'] = 'off' # TLS 1.3 uses client preference which matches with the specified server ciphers
+default['supermarket']['ssl']['ssl_ecdh_curve'] = 'secp384r1:secp256r1' # FIPS-approved curves but also works in non-fips mode
+
+# Modern security headers for OpenSSL 3.2.4
+default['supermarket']['ssl']['hsts_max_age'] = '31536000' # 1 year
+default['supermarket']['ssl']['hsts_include_subdomains'] = true
+default['supermarket']['ssl']['ocsp_stapling'] = true
+default['supermarket']['ssl']['ocsp_stapling_verify'] = true
 
 # ## Unicorn
 #

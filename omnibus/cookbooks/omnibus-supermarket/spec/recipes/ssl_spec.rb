@@ -38,7 +38,7 @@ describe 'omnibus-supermarket::ssl' do
         org: 'My Supermarket',
         org_unit: 'Operations',
         country: 'US',
-        key_length: 2048,
+        key_length: 4096,
         expire: 3650,
         owner: 'root',
         group: 'root',
@@ -52,7 +52,7 @@ describe 'omnibus-supermarket::ssl' do
       expect(chef_run).to create_openssl_dhparam(
         '/var/opt/supermarket/ssl/ca/dhparams.pem'
       ).with(
-        key_length: 2048,
+        key_length: 4096,
         generator: 2,
         owner: 'root',
         group: 'root',

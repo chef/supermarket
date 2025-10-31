@@ -3,6 +3,10 @@ development:
   database: supermarket_development
   host: <%= ENV['POSTGRES_IP'] || 'localhost' %>
   pool: 30
+  # Uncomment the following line only if you encounter GSSAPI encryption issues
+  # This is typically needed on specific operating systems like macOS Tahoe or later
+  # Leave commented by default unless experiencing PostgreSQL connection problems
+  # gssencmode: "disable"
 
 test:
   adapter: postgresql

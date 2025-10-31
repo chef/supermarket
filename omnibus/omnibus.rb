@@ -33,17 +33,23 @@
 use_s3_caching true
 s3_access_key  ENV['AWS_ACCESS_KEY_ID']
 s3_secret_key  ENV['AWS_SECRET_ACCESS_KEY']
-s3_bucket      ENV['AWS_S3_BUCKET'] || 'opscode-omnibus-cache'
+s3_bucket      ENV['OMNIBUS_S3_BUCKET'] || "opscode-omnibus-cache-private"
+# testing without these two options
+# s3_acl         "private"
+# s3_region      "us-west-2"
 
 # Customize compiler bits
 # ------------------------------
-build_retries 5
+build_retries 1
 fetcher_read_timeout 120
 
 # Load additional software
 # ------------------------------
 # software_gems ['omnibus-software', 'my-company-software']
 # local_software_dirs ['/path/to/local/software']
+
+# note, this is statically set in the omnibus-buildkite-plugin, you are always going to be forced to use internal sources. If you dont want internal sources, you must enable this to false.
+use_internal_sources ENV.fetch("OMNIBUS_USE_INTERNAL_SOURCES", true)
 
 # Build in FIPS compatability mode
 # ------------------------------
