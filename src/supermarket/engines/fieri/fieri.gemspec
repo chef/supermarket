@@ -18,6 +18,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency "dotenv-rails"
   s.add_dependency "mixlib-archive", ">= 0.4", "< 2.0"
+  # nokogiri 1.18.10 fails bundle install on ubuntu systems
+  # for some additional system libraries. Hence pinning to 1.18.9
+  s.add_dependency "nokogiri", "= 1.18.9"
   s.add_dependency "octokit", "~> 4.16" # 4.16+ fixes deprecations in auth
   s.add_dependency "rack", "~> 2.2.20"
   s.add_dependency "rails", "~> 7.1.5.2"

@@ -6,6 +6,7 @@ PATH
       dotenv-rails
       mixlib-archive (>= 0.4, < 2.0)
       net-smtp
+      nokogiri (= 1.18.9)
       octokit (~> 4.16)
       rack (~> 2.2.20)
       rails (~> 7.1.5.2)
