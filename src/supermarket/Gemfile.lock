@@ -514,7 +514,7 @@ GEM
     net-ssh (7.2.3)
     netrc (0.11.0)
     nio4r (2.7.5)
-    nokogiri (1.18.10)
+    nokogiri (1.18.9)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     nori (2.7.0)
@@ -967,7 +967,7 @@ DEPENDENCIES
   listen
   mixlib-authentication (~> 3.0)
   net-smtp
-  nokogiri (~> 1.18.9)
+  nokogiri (= 1.18.9)
   octokit (~> 4.25)
   omniauth (~> 2.1.1)
   omniauth-chef-oauth2
