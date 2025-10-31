@@ -13,7 +13,7 @@ class CookbookVersionsController < ApplicationController
 
     # Ignore brakeman error: "Possible unprotected redirect"
     # as this might be an external URL that needs to be considered along with the host URL
-    redirect_to @version.cookbook_artifact_url
+    redirect_to @version.cookbook_artifact_url, allow_other_host: true
   end
 
   #
