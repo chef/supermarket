@@ -6,9 +6,7 @@ PATH
       dotenv-rails
       mixlib-archive (>= 0.4, < 2.0)
       net-smtp
-      nokogiri (= 1.18.9)
       octokit (~> 4.16)
-      rack (~> 2.2.20)
       rails (~> 7.1.5.2)
       sidekiq (>= 6.4, < 7.0)
       sprockets-rails
@@ -980,7 +978,7 @@ DEPENDENCIES
   pry-rails
   puma
   pundit
-  rack (~> 2.2.20)
+  rack (>= 2.2.14)
   rails (~> 7.1.5.2)
   rails-controller-testing
   rb-readline
