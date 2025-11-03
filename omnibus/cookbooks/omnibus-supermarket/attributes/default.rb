@@ -277,8 +277,6 @@ default['supermarket']['ssl']['prefer_server_ciphers'] = 'off' # TLS 1.3 uses cl
 default['supermarket']['ssl']['ssl_ecdh_curve'] = 'secp384r1:secp256r1' # FIPS-approved curves but also works in non-fips mode
 
 # Modern security headers for OpenSSL 3.2.4
-default['supermarket']['ssl']['hsts_max_age'] = '31536000' # 1 year
-default['supermarket']['ssl']['hsts_include_subdomains'] = true
 default['supermarket']['ssl']['ocsp_stapling'] = true
 default['supermarket']['ssl']['ocsp_stapling_verify'] = true
 
