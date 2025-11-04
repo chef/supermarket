@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.2.1 -->
-## [5.2.1](https://github.com/chef/supermarket/tree/5.2.1) (2025-10-31)
+<!-- latest_release 5.2.2 -->
+## [5.2.2](https://github.com/chef/supermarket/tree/5.2.2) (2025-11-04)
 
 #### Merged Pull Requests
-- CHEF-25968: Security upgrade - PostgreSQL 13.22, Rails 7.1.5.2, openssl 3.2.4 with fips 3.1.2, nginx 1.27 (through openresty 1.27.1.2) along with other vulnerability fixes, copilot-instructions and atlassian mcp configuration added [#3321](https://github.com/chef/supermarket/pull/3321) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- reverted build retry count; updated rack version in fieri [#3368](https://github.com/chef/supermarket/pull/3368) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.2.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- reverted build retry count; updated rack version in fieri [#3368](https://github.com/chef/supermarket/pull/3368) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.2.2 -->
 - CHEF-25968: Security upgrade - PostgreSQL 13.22, Rails 7.1.5.2, openssl 3.2.4 with fips 3.1.2, nginx 1.27 (through openresty 1.27.1.2) along with other vulnerability fixes, copilot-instructions and atlassian mcp configuration added [#3321](https://github.com/chef/supermarket/pull/3321) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.2.1 -->
 <!-- release_rollup -->
 
