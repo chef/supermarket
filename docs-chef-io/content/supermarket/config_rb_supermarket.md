@@ -729,14 +729,6 @@ This configuration file has the following settings for SSL:
 
 : The list of FIPS-compliant cipher suites for FIPS mode. Default value: `'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256'`.
 
-`default['supermarket']['ssl']['hsts_include_subdomains']`
-
-: Whether to include subdomains in HSTS headers for enhanced security. Default value: `true`.
-
-`default['supermarket']['ssl']['hsts_max_age']`
-
-: The maximum age for HSTS headers in seconds. Default value: `'31536000'` (1 year).
-
 `default['supermarket']['ssl']['locality_name']`
 
 : The city in which your company is located. Default value: `'Seattle'`.
