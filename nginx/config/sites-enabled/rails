@@ -45,9 +45,6 @@ server {
   {{~ /if }}
   
   # Modern security headers for OpenSSL 3.2.4
-  {{~ #if ../cfg.ssl.hsts_max_age }}
-  add_header Strict-Transport-Security "max-age={{ ../cfg.ssl.hsts_max_age }}{{ #if ../cfg.ssl.hsts_include_subdomains }}; includeSubDomains{{ /if }}" always;
-  {{~ /if }}
   {{~ #if ../cfg.ssl.ocsp_stapling }}
   ssl_stapling on;
   {{~ #if ../cfg.ssl.ocsp_stapling_verify }}
