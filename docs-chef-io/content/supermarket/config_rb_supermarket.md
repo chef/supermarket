@@ -410,7 +410,7 @@ This configuration file has the following settings for nginx:
 
 `default['supermarket']['nginx']['log_x_forwarded_for']`
 
-: Enables logging of the X-Forwarded-For header in the nginx access log. Default value: `false`.
+: Enables logging of the `X-Forwarded-For` header in the Nginx access log. Default value: `false`.
 
 `default['supermarket']['nginx']['multi_accept']`
 
@@ -547,11 +547,11 @@ This configuration file has the following settings for PostgreSQL:
 
 `default['supermarket']['postgresql']['max_wal_size']`
 
-: The maximum size to let the WAL grow during automatic checkpoints. Default value: `'1GB'`.
+: The maximum size to let the Write-Ahead Logging (WAL) grow during automatic checkpoints. Default value: `'1GB'`.
 
 `default['supermarket']['postgresql']['min_wal_size']`
 
-: The minimum size to shrink the WAL to during automatic checkpoints. Default value: `'80MB'`.
+: The minimum size to shrink the Write-Ahead Logging (WAL) to during automatic checkpoints. Default value: `'80MB'`.
 
 `default['supermarket']['postgresql']['md5_auth_cidr_addresses']`
 
@@ -703,7 +703,7 @@ This configuration file has the following settings for SSL:
 
 `default['supermarket']['ssl']['ciphers']`
 
-: The list of supported cipher suites for standard SSL connections. Updated for OpenSSL 3.2.4 compatibility with TLS 1.3 ciphers and modern ECDHE key exchange. Default value: `'TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256'`.
+: The list of supported cipher suites for standard SSL connections. Updated for OpenSSL 3.2.4 compatibility with TLS 1.3 ciphers and modern Elliptic-curve Diffie-Hellman Ephemeral (ECDHE) key exchange. Default value: `'TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256'`.
 
 `default['supermarket']['ssl']['company_name']`
 
@@ -735,11 +735,11 @@ This configuration file has the following settings for SSL:
 
 `default['supermarket']['ssl']['ocsp_stapling']`
 
-: Enable OCSP stapling for improved SSL performance and security. Default value: `true`.
+: Enable Online Certificate Status Protocol (OCSP) stapling for improved SSL performance and security. Default value: `true`.
 
 `default['supermarket']['ssl']['ocsp_stapling_verify']`
 
-: Enable OCSP stapling verification. Default value: `true`.
+: Enable Online Certificate Status Protocol (OCSP) stapling verification. Default value: `true`.
 
 `default['supermarket']['ssl']['organizational_unit_name']`
 
@@ -747,7 +747,7 @@ This configuration file has the following settings for SSL:
 
 `default['supermarket']['ssl']['prefer_server_ciphers']`
 
-: Whether the server's cipher preferences should be used instead of the client's. Set to 'off' for TLS 1.3 compatibility. Default value: `'off'`.
+: Whether the server's cipher preferences should be used instead of the client's. Set to `'off'` for TLS 1.3 compatibility. Default value: `'off'`.
 
 `default['supermarket']['ssl']['protocols']`
 
@@ -767,7 +767,7 @@ This configuration file has the following settings for SSL:
 
 `default['supermarket']['ssl']['ssl_ecdh_curve']`
 
-: ECDH curves for key exchange, using FIPS-approved curves. Default value: `'secp384r1:secp256r1'`.
+: Elliptic-curve Diffie-Hellman (ECDH) curves for key exchange, using FIPS-approved curves. Default value: `'secp384r1:secp256r1'`.
 
 `default['supermarket']['ssl']['state_name']`
 
