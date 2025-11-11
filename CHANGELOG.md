@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.2.4 -->
-## [5.2.4](https://github.com/chef/supermarket/tree/5.2.4) (2025-11-11)
+<!-- latest_release 5.2.5 -->
+## [5.2.5](https://github.com/chef/supermarket/tree/5.2.5) (2025-11-11)
 
 #### Merged Pull Requests
-- update public docs for supermarket configuration update for version 5.3.0 [#3362](https://github.com/chef/supermarket/pull/3362) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- updated public docs for the new subcommand: notice [#3375](https://github.com/chef/supermarket/pull/3375) ([RajeshPaul38](https://github.com/RajeshPaul38))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.2.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- updated public docs for the new subcommand: notice [#3375](https://github.com/chef/supermarket/pull/3375) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.2.5 -->
 - update public docs for supermarket configuration update for version 5.3.0 [#3362](https://github.com/chef/supermarket/pull/3362) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.2.4 -->
 - added notice.txt [#3373](https://github.com/chef/supermarket/pull/3373) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.2.3 -->
 - reverted build retry count; updated rack version in fieri [#3368](https://github.com/chef/supermarket/pull/3368) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.2.2 -->
