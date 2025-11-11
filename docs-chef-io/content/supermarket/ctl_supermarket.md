@@ -222,6 +222,16 @@ To revert the `uninstall` subcommand, run the `reconfigure` subcommand (because 
 
 {{< /note >}}
 
+### notice
+
+The `notice` subcommand is used to display license and copyright information for the Chef Supermarket installation.
+
+This subcommand has the following syntax:
+
+```bash
+supermarket-ctl notice
+```
+
 ## Service Subcommands
 
 {{< readfile file="content/server/reusable/md/ctl_common_service_subcommands.md" >}}
