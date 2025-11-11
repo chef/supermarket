@@ -1,31 +1,28 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.3.0 -->
-## [5.3.0](https://github.com/chef/supermarket/tree/5.3.0) (2025-11-11)
-
-#### Merged Pull Requests
-- updated notice.txt [#3374](https://github.com/chef/supermarket/pull/3374) ([RajeshPaul38](https://github.com/RajeshPaul38))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.2.0 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- updated notice.txt [#3374](https://github.com/chef/supermarket/pull/3374) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.3.0 -->
-- updated public docs for the new subcommand: notice [#3375](https://github.com/chef/supermarket/pull/3375) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.2.5 -->
-- update public docs for supermarket configuration update for version 5.3.0 [#3362](https://github.com/chef/supermarket/pull/3362) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.2.4 -->
-- added notice.txt [#3373](https://github.com/chef/supermarket/pull/3373) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.2.3 -->
-- reverted build retry count; updated rack version in fieri [#3368](https://github.com/chef/supermarket/pull/3368) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.2.2 -->
-- CHEF-25968: Security upgrade - PostgreSQL 13.22, Rails 7.1.5.2, openssl 3.2.4 with fips 3.1.2, nginx 1.27 (through openresty 1.27.1.2) along with other vulnerability fixes, copilot-instructions and atlassian mcp configuration added [#3321](https://github.com/chef/supermarket/pull/3321) ([RajeshPaul38](https://github.com/RajeshPaul38)) <!-- 5.2.1 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [5.3.0](https://github.com/chef/supermarket/tree/5.3.0) (2025-11-11)
+
+#### Merged Pull Requests
+- CHEF-25968: Security upgrade - PostgreSQL 13.22, Rails 7.1.5.2, openssl 3.2.4 with fips 3.1.2, nginx 1.27 (through openresty 1.27.1.2) along with other vulnerability fixes, copilot-instructions and atlassian mcp configuration added [#3321](https://github.com/chef/supermarket/pull/3321) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- reverted build retry count; updated rack version in fieri [#3368](https://github.com/chef/supermarket/pull/3368) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- added notice.txt [#3373](https://github.com/chef/supermarket/pull/3373) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- update public docs for supermarket configuration update for version 5.3.0 [#3362](https://github.com/chef/supermarket/pull/3362) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- updated public docs for the new subcommand: notice [#3375](https://github.com/chef/supermarket/pull/3375) ([RajeshPaul38](https://github.com/RajeshPaul38))
+- updated notice.txt [#3374](https://github.com/chef/supermarket/pull/3374) ([RajeshPaul38](https://github.com/RajeshPaul38))
+<!-- latest_stable_release -->
+
 ## [5.2.0](https://github.com/chef/supermarket/tree/5.2.0) (2025-06-02)
 
 #### Merged Pull Requests
 - supermarket upgrade instruction fix [#3290](https://github.com/chef/supermarket/pull/3290) ([RajeshPaul38](https://github.com/RajeshPaul38))
 - Upgrade to PG 13.18 and other CVE fixes [#3291](https://github.com/chef/supermarket/pull/3291) ([RajeshPaul38](https://github.com/RajeshPaul38))
-<!-- latest_stable_release -->
 
 ## [5.1.80](https://github.com/chef/supermarket/tree/5.1.80) (2024-10-23)
 
