@@ -1,4 +1,4 @@
-﻿Progress Chef 360 v1
+﻿Progress Chef Supermarket v5
 
 Copyright © 2023-2025 Progress Software Corporation and/or its subsidiaries or affiliates. All rights reserved.
 
@@ -672,7 +672,7 @@ Zeit, Inc. | ms | 2.1.2 | MIT
 
 ------------------------------------------------------------------------ 
 
-Progress Chef 360 v1 incorporates
+Progress Chef Supermarket v5 incorporates
 
 Kgio v2.11.4,
 Raindrops v0.20.0,
