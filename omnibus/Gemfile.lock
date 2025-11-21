@@ -1,9 +1,10 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 0cb128b237c26b5796370b761adbd499f71e5413
+  revision: 05e2188136004558d5df10c5774d54e788eb29a9
   branch: main
   specs:
-    omnibus-software (25.10.350)
+    omnibus-software (25.11.352)
+      ffi (>= 1.17.0)
       omnibus (>= 9.0.0)
 
 GIT
@@ -35,8 +36,8 @@ GEM
     ast (2.4.2)
     awesome_print (1.9.2)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1171.0)
-    aws-sdk-core (3.233.0)
+    aws-partitions (1.1186.0)
+    aws-sdk-core (3.239.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -44,8 +45,8 @@ GEM
       bigdecimal
       jmespath (~> 1, >= 1.6.1)
       logger
-    aws-sdk-kms (1.113.0)
-      aws-sdk-core (~> 3, >= 3.231.0)
+    aws-sdk-kms (1.117.0)
+      aws-sdk-core (~> 3, >= 3.234.0)
       aws-sigv4 (~> 1.5)
     aws-sdk-s3 (1.116.0)
       aws-sdk-core (~> 3, >= 3.127.0)
@@ -173,7 +174,7 @@ GEM
       net-http
     fauxhai-chef (9.3.16)
       net-ssh
-    ffi (1.16.3)
+    ffi (1.17.0)
     ffi-libarchive (1.1.14)
       ffi (~> 1.0)
     ffi-yajl (2.6.0)
@@ -216,7 +217,7 @@ GEM
     iostruct (0.5.0)
     ipaddress (0.8.3)
     jmespath (1.6.2)
-    json (2.15.1)
+    json (2.16.0)
     kitchen-vagrant (2.0.1)
       test-kitchen (>= 1.4, < 4)
     libyajl2 (2.1.0)
@@ -225,7 +226,7 @@ GEM
       tomlrb (>= 1.2, < 3.0)
       tty-box (~> 0.6)
       tty-prompt (~> 0.20)
-    license_scout (1.4.0)
+    license_scout (1.4.1)
       ffi-yajl (~> 2.2)
       mixlib-shellout (>= 2.2, < 4.0)
       toml-rb (>= 1, < 3)
@@ -297,9 +298,9 @@ GEM
     parslet (1.8.2)
     pastel (0.8.0)
       tty-color (~> 0.5)
-    pedump (0.6.10)
+    pedump (0.7.3)
       awesome_print
-      iostruct (>= 0.0.4)
+      iostruct (>= 0.5.0)
       multipart-post (>= 2.0.0)
       rainbow
       zhexdump (>= 0.0.2)
@@ -386,9 +387,9 @@ GEM
     toml-rb (2.2.0)
       citrus (~> 3.0, > 3.0)
     tomlrb (1.3.0)
-    train-core (3.13.4)
+    train-core (3.12.13)
       addressable (~> 2.5)
-      ffi (~> 1.16.0)
+      ffi (!= 1.13.0)
       json (>= 1.8, < 3.0)
       mixlib-shellout (>= 2.0, < 4.0)
       net-scp (>= 1.2, < 5.0)
