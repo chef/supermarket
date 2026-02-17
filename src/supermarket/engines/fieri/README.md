@@ -52,3 +52,6 @@ root of the Supermarket app (`src/supermarket`):
 ```
 rake quality_metrics:run:on_version[test_cookbook,1.2.3]
 ```
+
+# Copyright
+See [COPYRIGHT.md](./../../../../COPYRIGHT.md).
