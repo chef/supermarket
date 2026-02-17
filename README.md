@@ -353,3 +353,6 @@ One of these keys is called `FEATURES` and it controls a number of features that
 * announcement
 * github
 * no_crawl
+
+# Copyright
+See [COPYRIGHT.md](./COPYRIGHT.md).
