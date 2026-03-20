@@ -49,7 +49,7 @@ jobs:
 
   call-ci-main-pr-check-pipeline:
     needs: read_version
-    uses: chef/common-github-actions/.github/workflows/ci-main-pull-request.yml@v1.0.20
+    uses: chef/common-github-actions/.github/workflows/ci-main-pull-request.yml@v1.0.22
     secrets: inherit
     permissions: 
       id-token: write
@@ -99,6 +99,17 @@ jobs:
       # perform-grype-image-scan: true
       # grype-image-fail-on-high: true
       # grype-image-fail-on-critical: true
+
+      # perform-grype-hab-scan: true
+      # grype-hab-build-package: false
+      # grype-hab-origin: 'chef'
+      # grype-hab-package: 'supermarket'
+      # grype-hab-version: ${{ needs.read_version.outputs.version }}
+      # grype-hab-channel: 'unstable'
+      # # grype-hab-path: 'src/supermarket/habitat-web'
+      # grype-hab-scan-linux: true
+      # grype-hab-scan-windows: false
+      # grype-hab-scan-macos: false
  
       # perform application build and unit testing, will use custom repository properties when implemented for chef-primary-application, chef-build-profile, and chef-build-language
       build: false
