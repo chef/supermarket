@@ -28,8 +28,28 @@ jobs:
         run: |
           echo "CI main pull request stub version $STUB_VERSION"
 
+  read_version:
+    name: 'Read version from GitHub release'
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get_version.outputs.version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+        
+      - name: Read GitHub latest tagged release version
+        id: get_version
+        run: |
+          VERSION=$(git describe --tags `git rev-list --tags --max-count=1` | sed 's/^v//' 2>/dev/null || echo "")
+          echo "Latest release version: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
   call-ci-main-pr-check-pipeline:
-    uses: chef/common-github-actions/.github/workflows/ci-main-pull-request.yml@main
+    needs: read_version
+    uses: chef/common-github-actions/.github/workflows/ci-main-pull-request.yml@v1.0.22
     secrets: inherit
     permissions: 
       id-token: write
@@ -37,24 +57,29 @@ jobs:
 
     with:   
       visibility: ${{ github.event.repository.visibility }}   #  private, public, or internal
+      github-event-name: ${{ github.event_name }}
+      github-branch-name: ${{ github.head_ref || github.ref_name }}
       # go-private-modules: GOPRIVATE for Go private modules, default is 'github.com/progress-platform-services/*
 
       # if version specified, it takes precedence; can be a semver like 1.0.2-xyz or a tag like "latest"
-      version: '5.2.0' # ${{ github.event.repository.version }}
+      version: ${{ needs.read_version.outputs.version }} # ${{ github.event.repository.version }}
       detect-version-source-type: 'none' # options include "none" (do not detect), "file", "github-tag" or "github-release"
       detect-version-source-parameter: '' # use for file name
-      language: 'ruby'  # Go, Ruby, Rust, JavaScript, TypeScript, Python, Java, C#, PHP, other - used for build and SonarQube language setting
+      language: 'Ruby'  # Go, Ruby, Rust, JavaScript, TypeScript, Python, Java, C#, PHP, other - used for build and SonarQube language setting
 
       # complexity-checks
-      perform-complexity-checks: true
+      perform-complexity-checks: false
       # scc-output-filename: 'scc-output.txt'
       perform-language-linting: false    # Perform language-specific linting and pre-compilation checks
 
       # trufflehog secret scanning
       perform-trufflehog-scan: true
+      fail-trufflehog-on-secrets-found: true
       
       # trivy dependency and container scanning
       perform-trivy-scan: true
+      trivy-fail-on-high: true
+      trivy-fail-on-critical: true
       
       # BlackDuck SAST (Polaris) and SCA scans (requires a build or download to do SAST)
       # requires these secrets: POLARIS_SERVER_URL, POLARIS_ACCESS_TOKEN
@@ -63,6 +88,28 @@ jobs:
       polaris-project-name: ${{ github.event.repository.name }}
       polaris-blackduck-executable: 'path/to/blackduck/binary'
       polaris-executable-detect-path: 'path/to/detect'
+      polaris-fail-on-critical: true
+      polaris-fail-on-high: true
+
+      # Perform Grype Scan on code
+      perform-grype-scan: true
+      grype-fail-on-high: true
+      grype-fail-on-critical: true
+
+      # perform-grype-image-scan: true
+      # grype-image-fail-on-high: true
+      # grype-image-fail-on-critical: true
+
+      # perform-grype-hab-scan: true
+      # grype-hab-build-package: false
+      # grype-hab-origin: 'chef'
+      # grype-hab-package: 'supermarket'
+      # grype-hab-version: ${{ needs.read_version.outputs.version }}
+      # grype-hab-channel: 'unstable'
+      # # grype-hab-path: 'src/supermarket/habitat-web'
+      # grype-hab-scan-linux: true
+      # grype-hab-scan-windows: false
+      # grype-hab-scan-macos: false
  
       # perform application build and unit testing, will use custom repository properties when implemented for chef-primary-application, chef-build-profile, and chef-build-language
       build: false
@@ -70,9 +117,9 @@ jobs:
       # language: $chef-ga-build-language   # this will be removed from stub as autodetected in central GA
       unit-tests: false
  
-      # perform SonarQube scan, with or wihout unit test coverage data
+      # perform SonarQube scan, with or without unit test coverage data
       # requires secrets SONAR_TOKEN and SONAR_HOST_URL (progress.sonar.com)
-      perform-sonarqube-scan: true
+      # perform-sonarqube-scan: true
       # perform-sonar-build: true
       # build-profile: 'default' 
       # report-unit-test-coverage: true
@@ -81,7 +128,7 @@ jobs:
 
       # report to central developer dashboard
       report-to-atlassian-dashboard: false
-      quality-product-name: 'Chef-Shared-Services'   # product name for quality reporting, like Chef360, Courier, Inspec
+      # quality-product-name: 'Chef-Shared-Services'   # product name for quality reporting, like Chef360, Courier, Inspec
       # quality-product-name: ${{ github.event.repository.name }}   # like 'Chef-360' - the product name for quality reporting, like Chef360, Courier, Inspec
       # quality-sonar-app-name: 'YourSonarAppName'
       # quality-testing-type: 'Integration' like Unit, Integration, e2e, api, Performance, Security
@@ -100,6 +147,11 @@ jobs:
       blackduck-project-group-name: 'Chef-Shared-Services' # typically one of (Chef), Chef-Agents, Chef-Automate, Chef-Chef360, Chef-Habitat, Chef-Infrastructure-Server, Chef-Shared-Services, Chef-Non-Product'
       blackduck-project-name: ${{ github.event.repository.name }} # BlackDuck project name, typically the repository name
       generate-blackduck-sbom: false # obsolete, use perform-blackduck-sca-scan instead
+      blackduck-fail-on-blocker: true
+      blackduck-fail-on-critical: true
+      blackduck-fail-on-major: true
+      ruby-app-directory: 'src/supermarket'
+      run-bundle-install: true
         
       generate-msft-sbom: false
       license_scout: false      # Run license scout for license compliance (uses .license_scout.yml)
