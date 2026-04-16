@@ -18,7 +18,7 @@ class CookbookUpload
   #
   # Finishes the upload process for this +CookbookUpload+'s parameters.
   #
-  # @yieldparam errors [ActiveModel::Errors] errors which occured while
+  # @yieldparam errors [ActiveModel::Errors] errors which occurred while
   #   finishing the upload. May be empty.
   # @yieldparam result [Cookbook, nil] the cookbook, if the upload succeeds
   # @yieldparam cookbook_version [CookbookVersion, nil] the cookbook version, if
