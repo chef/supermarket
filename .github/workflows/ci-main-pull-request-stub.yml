@@ -49,7 +49,7 @@ jobs:
 
   call-ci-main-pr-check-pipeline:
     needs: read_version
-    uses: chef/common-github-actions/.github/workflows/ci-main-pull-request.yml@sandhi/support-go-work
+    uses: chef/common-github-actions/.github/workflows/ci-main-pull-request.yml@v1.0.31
     secrets: inherit
     permissions: 
       id-token: write
