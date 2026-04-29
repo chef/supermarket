@@ -1,9 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 5.3.1 -->
+## [5.3.1](https://github.com/chef/supermarket/tree/5.3.1) (2026-04-29)
+
+#### Merged Pull Requests
+- Added Copyright file [#3392](https://github.com/chef/supermarket/pull/3392) ([vviveksharma](https://github.com/vviveksharma))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.3.0 -->
+### Changes not yet released to stable
+
+#### Merged Pull Requests
+- Added Copyright file [#3392](https://github.com/chef/supermarket/pull/3392) ([vviveksharma](https://github.com/vviveksharma)) <!-- 5.3.1 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
