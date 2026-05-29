@@ -2,7 +2,9 @@ source "https://rubygems.org"
 
 gem "fieri", path: "engines/fieri"
 gem "rails", "~> 7.1.5.2"
-gem "rack", ">= 2.2.14"
+gem "rack", ">= 2.2.23"
+gem "rexml", ">= 3.4.4"
+gem "uri", ">= 1.0.2"
 
 gem "omniauth", "~> 2.1.1"
 gem "omniauth-chef-oauth2"
@@ -88,7 +90,7 @@ group :test do
   gem "shoulda-matchers"
   gem "vcr", require: false
   gem "webmock", require: false
-  gem "puma"
+  gem "puma", "~> 5.6", ">= 5.6.9"
   gem "simplecov", require: false
   gem "cuprite"
 end

@@ -270,7 +270,7 @@ GEM
       cgi (>= 0.3.3)
     erubi (1.13.1)
     erubis (2.7.0)
-    et-orbi (1.2.7)
+    et-orbi (1.4.0)
       tzinfo
     excon (0.92.3)
     execjs (2.8.1)
@@ -311,8 +311,8 @@ GEM
       libyajl2 (>= 1.2)
     foreman (0.87.2)
     formatador (1.1.0)
-    fugit (1.5.3)
-      et-orbi (~> 1, >= 1.2.7)
+    fugit (1.12.2)
+      et-orbi (~> 1.4)
       raabro (~> 1.4)
     fuzzyurl (0.9.0)
     globalid (1.2.1)
@@ -515,7 +515,7 @@ GEM
       net-protocol
     net-ssh (7.2.3)
     netrc (0.11.0)
-    nio4r (2.7.4)
+    nio4r (2.7.5)
     nokogiri (1.18.9)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -597,13 +597,13 @@ GEM
       date
       stringio
     public_suffix (5.0.1)
-    puma (5.6.8)
+    puma (5.6.9)
       nio4r (~> 2.0)
     pundit (2.3.0)
       activesupport (>= 3.0.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (2.2.20)
+    rack (2.2.23)
     rack-protection (3.0.5)
       rack
     rack-session (1.0.2)
@@ -686,7 +686,7 @@ GEM
       netrc (~> 0.8)
     reverse_markdown (2.1.1)
       nokogiri
-    rexml (3.4.0)
+    rexml (3.4.4)
     rinku (2.0.6)
     rollout (2.5.0)
       redis (~> 4.0)
@@ -871,6 +871,7 @@ GEM
     unicorn-rails (2.2.1)
       rack
       unicorn
+    uri (1.1.1)
     utf8-cleaner (1.0.0)
       activesupport
     uuidtools (2.2.0)
@@ -976,14 +977,15 @@ DEPENDENCIES
   premailer-rails
   pry-byebug
   pry-rails
-  puma
+  puma (~> 5.6, >= 5.6.9)
   pundit
-  rack (>= 2.2.14)
+  rack (>= 2.2.23)
   rails (~> 7.1.5.2)
   rails-controller-testing
   rb-readline
   redcarpet
   redis-rails
+  rexml (>= 3.4.4)
   rinku
   rollout
   rspec-rails (~> 6.1)
@@ -1007,6 +1009,7 @@ DEPENDENCIES
   uglifier
   unicorn
   unicorn-rails
+  uri (>= 1.0.2)
   utf8-cleaner
   validate_url
   vcr
