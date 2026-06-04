@@ -2,10 +2,9 @@
 title = "Chef Supermarket"
 draft = false
 gh_repo = "supermarket"
-aliases = ["/supermarket.html"]
 
 [cascade]
-  product = ["supermarket"]
+  swiftype_search_products = ["supermarket"]
 
 [menu]
   [menu.supermarket]
