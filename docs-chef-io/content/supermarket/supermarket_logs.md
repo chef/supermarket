@@ -2,7 +2,6 @@
 title = "Supermarket Logs"
 draft = false
 gh_repo = "supermarket"
-aliases = ["/supermarket_logs.html", "/supermarket_logs/"]
 
 [menu]
   [menu.supermarket]

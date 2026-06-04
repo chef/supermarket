@@ -2,7 +2,6 @@
 title = "Supermarket Backup and Restore"
 draft = false
 gh_repo = "supermarket"
-aliases = ["/supermarket_backup_restore.html", "/supermarket_backup_restore/"]
 
 [menu]
   [menu.supermarket]
