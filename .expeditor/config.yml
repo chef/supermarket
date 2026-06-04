@@ -90,8 +90,6 @@ subscriptions:
   - workload: artifact_published:stable:supermarket:*
     actions:
       - built_in:rollover_changelog
-      - bash:.expeditor/publish-release-notes.sh
-      - bash:.expeditor/announce-release.sh
       - built_in:notify_chefio_slack_channels
 
   - workload: project_promoted:{{agent_id}}:*
