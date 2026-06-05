@@ -1,5 +1,12 @@
+# MacOS Finder
 .DS_Store
+
+# Chef applications
 .chef-workstation
+
+# test results
+/bin/grype*.txt
+/spec/reports
 
 # License Scout
 license-cache
@@ -8,3 +15,21 @@ dump.rdb
 
 # Pending release notes (managed separately in wiki)
 PENDING_RELEASE_NOTES.md
+
+# Rails specific
+*.rbc
+capybara-*.html
+.rspec
+/log
+/tmp
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/public/system
+/coverage/
+/spec/tmp
+*.orig
+.bundle
+vendor/bundle
+.byebug_history
+.env
+.env.local
