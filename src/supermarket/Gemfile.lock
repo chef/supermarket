@@ -603,7 +603,7 @@ GEM
       activesupport (>= 3.0.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (2.2.20)
+    rack (2.2.23)
     rack-protection (3.0.5)
       rack
     rack-session (1.0.2)
@@ -978,7 +978,7 @@ DEPENDENCIES
   pry-rails
   puma
   pundit
-  rack (>= 2.2.14)
+  rack (>= 2.2.23)
   rails (~> 7.1.5.2)
   rails-controller-testing
   rb-readline
