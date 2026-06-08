@@ -1,0 +1,149 @@
+version: "3"
+
+vars:
+  IMAGE: supermarket-test:latest
+  COMPOSE: docker compose -f docker-compose.yml
+
+tasks:
+  # ---------------------------------------------------------------------------
+  # build — build the Docker image (equivalent to "make")
+  # ---------------------------------------------------------------------------
+  build:
+    desc: "Build the supermarket Docker image"
+    cmds:
+      - docker build -t {{.IMAGE}} .
+    sources:
+      - Dockerfile
+      - Gemfile
+      - Gemfile.lock
+      - engines/**/*
+
+  # ---------------------------------------------------------------------------
+  # up — start backing services only (db + cache) in the background.
+  #      Use this when you want to run the Rails app on the host (not Docker).
+  # ---------------------------------------------------------------------------
+  up:
+    desc: "Start backing services (db, cache) in background"
+    cmds:
+      - "{{.COMPOSE}} up -d db cache"
+
+  # ---------------------------------------------------------------------------
+  # dev — build image and start everything (db + cache + Rails server)
+  #        in the FOREGROUND with .env secrets loaded. Ctrl+C to stop.
+  #        Rails is reachable at http://localhost:3000
+  # ---------------------------------------------------------------------------
+  dev:
+    desc: "Start full stack in foreground with .env secrets (http://localhost:3000)"
+    cmds:
+      - "{{.COMPOSE}} up --build"
+
+  # ---------------------------------------------------------------------------
+  # server — same as dev but detached (background).
+  # ---------------------------------------------------------------------------
+  server:
+    desc: "Start full stack in background with .env secrets (http://localhost:3000)"
+    cmds:
+      - "{{.COMPOSE}} up -d --build"
+
+  # ---------------------------------------------------------------------------
+  # dev-test — run the Rails server with placeholder secrets (no real .env needed).
+  #             DB setup runs automatically via docker-entrypoint.sh.
+  #             Rails reachable at http://localhost:3000
+  # ---------------------------------------------------------------------------
+  dev-test:
+    desc: "Start Rails server using placeholder secrets (http://localhost:3000)"
+    deps: [db-ready, cache-ready]
+    cmds:
+      - >
+        {{.COMPOSE}} run --rm --service-ports
+        -e FQDN=localhost
+        -e PORT=3000
+        -e PROTOCOL=http
+        -e RAILS_ENV=development
+        -e POSTGRES_IP=db
+        -e DB_USERNAME=postgres
+        -e DB_PASSWORD=postgres
+        -e REDIS_URL=redis://cache:6379
+        -e SECRET_KEY_BASE=devsecretkeybase000000000000000000000000000000000000000000000000000000
+        -e GITHUB_KEY=placeholder
+        -e GITHUB_SECRET=placeholder
+        -e CHEF_OAUTH2_APP_ID=placeholder
+        -e CHEF_OAUTH2_SECRET=placeholder
+        -e CHEF_OAUTH2_VERIFY_SSL=false
+        -e DISABLE_HOST_HEADER_ATTACK=true
+        -e ALLOWED_HOSTS=localhost
+        app
+
+
+  down:
+    desc: "Stop all services and remove volumes"
+    cmds:
+      - "{{.COMPOSE}} down --volumes"
+
+  # ---------------------------------------------------------------------------
+  # test — run the full test suite inside the app container.
+  #         Overrides .env values with test-specific settings.
+  # ---------------------------------------------------------------------------
+  test:
+    desc: "Run bundle exec rake spec inside the app container"
+    deps: [db-ready, cache-ready]
+    cmds:
+      - >
+        {{.COMPOSE}} run --rm
+        -e RAILS_ENV=test
+        -e FQDN=test.host
+        -e PORT=80
+        -e PROTOCOL=http
+        app bundle exec rake spec
+
+  # ---------------------------------------------------------------------------
+  # spec — alias for test (shorter to type)
+  # ---------------------------------------------------------------------------
+  spec:
+    desc: "Alias for 'test'"
+    cmds:
+      - task: test
+
+  # ---------------------------------------------------------------------------
+  # db-ready — bring up db and wait until healthy (internal helper)
+  # ---------------------------------------------------------------------------
+  db-ready:
+    desc: "Start Postgres and wait until healthy"
+    internal: true
+    cmds:
+      - "{{.COMPOSE}} up -d db"
+      - "{{.COMPOSE}} exec db sh -c 'until pg_isready -U postgres; do sleep 2; done'"
+
+  # ---------------------------------------------------------------------------
+  # cache-ready — bring up Redis and wait until healthy (internal helper)
+  # ---------------------------------------------------------------------------
+  cache-ready:
+    desc: "Start Redis and wait until healthy"
+    internal: true
+    cmds:
+      - "{{.COMPOSE}} up -d cache"
+      - "{{.COMPOSE}} exec cache sh -c 'until redis-cli ping | grep -q PONG; do sleep 2; done'"
+
+  # ---------------------------------------------------------------------------
+  # logs — tail logs for all services
+  # ---------------------------------------------------------------------------
+  logs:
+    desc: "Tail logs from all running services"
+    cmds:
+      - "{{.COMPOSE}} logs -f"
+
+  # ---------------------------------------------------------------------------
+  # ps — show running service status
+  # ---------------------------------------------------------------------------
+  ps:
+    desc: "Show status of all services"
+    cmds:
+      - "{{.COMPOSE}} ps"
+
+  # ---------------------------------------------------------------------------
+  # clean — remove image + stop services
+  # ---------------------------------------------------------------------------
+  clean:
+    desc: "Stop services, remove volumes, and delete the built image"
+    cmds:
+      - "{{.COMPOSE}} down --volumes --rmi local"
