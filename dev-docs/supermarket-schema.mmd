@@ -1,0 +1,309 @@
+erDiagram
+    users {
+        int id PK
+        string first_name
+        string last_name
+        string email
+        string company
+        int roles_mask
+        string jira_username
+        string twitter_username
+        text public_key
+        string install_preference
+        string slack_username
+        datetime created_at
+        datetime updated_at
+    }
+
+    accounts {
+        int id PK
+        int user_id FK
+        string uid
+        string username
+        string provider
+        string oauth_token
+        string oauth_secret
+        string oauth_refresh_token
+        datetime oauth_expires
+    }
+
+    categories {
+        int id PK
+        string name
+        string slug
+        datetime created_at
+        datetime updated_at
+    }
+
+    cookbooks {
+        int id PK
+        string name
+        string lowercase_name
+        int category_id FK
+        int user_id FK
+        int replacement_id "FK (replacement_id refers back to PK)"
+        boolean deprecated
+        string deprecation_reason
+        string source_url
+        string issues_url
+        int cookbook_followers_count
+        int web_download_count
+        int api_download_count
+        boolean featured
+        boolean up_for_adoption
+        boolean privacy
+        int badges_mask
+        datetime created_at
+        datetime updated_at
+    }
+
+    cookbook_versions {
+        int id PK
+        int cookbook_id FK
+        int user_id FK
+        string version
+        string license
+        string spdx_license_url
+        text description
+        text readme
+        string readme_extension
+        text changelog
+        string changelog_extension
+        string tarball_file_name
+        string tarball_content_type
+        int tarball_file_size
+        datetime tarball_updated_at
+        boolean dependencies_imported
+        int web_download_count
+        int api_download_count
+        int legacy_id
+        json chef_versions
+        json ohai_versions
+        datetime created_at
+        datetime updated_at
+    }
+
+    cookbook_dependencies {
+        int id PK
+        int cookbook_version_id FK
+        int cookbook_id FK
+        string name
+        string version_constraint
+        datetime created_at
+        datetime updated_at
+    }
+
+    cookbook_followers {
+        int id PK
+        int cookbook_id FK
+        int user_id FK
+        datetime created_at
+        datetime updated_at
+    }
+
+    cookbook_version_platforms {
+        int id PK
+        int cookbook_version_id FK
+        int supported_platform_id FK
+        datetime created_at
+        datetime updated_at
+    }
+
+    supported_platforms {
+        int id PK
+        string name
+        string version_constraint
+        datetime created_at
+        datetime updated_at
+    }
+
+    collaborators {
+        int id PK
+        int user_id FK
+        int group_id FK
+        int resourceable_id FK
+        string resourceable_type
+        datetime created_at
+        datetime updated_at
+    }
+
+    contributor_requests {
+        int id PK
+        int organization_id FK
+        int user_id FK
+        int ccla_signature_id
+        datetime created_at
+        datetime updated_at
+    }
+
+    contributor_request_responses {
+        int id PK
+        int contributor_request_id FK
+        string decision
+        datetime created_at
+        datetime updated_at
+    }
+
+    contributors {
+        int id PK
+        int user_id FK
+        int organization_id FK
+        boolean admin
+        datetime created_at
+        datetime updated_at
+    }
+
+    organizations {
+        int id PK
+        datetime created_at
+        datetime updated_at
+    }
+
+    invitations {
+        int id PK
+        int organization_id FK
+        string email
+        string token
+        boolean admin
+        boolean accepted
+        datetime created_at
+        datetime updated_at
+    }
+
+    ownership_transfer_requests {
+        int id PK
+        int cookbook_id FK
+        int recipient_id FK
+        int sender_id FK
+        string token
+        boolean accepted
+        boolean add_owner_as_collaborator
+        datetime created_at
+        datetime updated_at
+    }
+
+    email_preferences {
+        int id PK
+        int user_id FK
+        int system_email_id FK
+        string token
+        datetime created_at
+        datetime updated_at
+    }
+
+    system_emails {
+        int id PK
+        string name
+        datetime created_at
+        datetime updated_at
+    }
+
+    groups {
+        int id PK
+        string name
+        datetime created_at
+        datetime updated_at
+    }
+
+    group_members {
+        int id PK
+        int group_id FK
+        int user_id FK
+        boolean admin
+        datetime created_at
+        datetime updated_at
+    }
+
+    group_resources {
+        int id PK
+        int group_id FK
+        int resourceable_id FK
+        string resourceable_type
+        datetime created_at
+        datetime updated_at
+    }
+
+    metric_results {
+        int id PK
+        int cookbook_version_id FK
+        int quality_metric_id FK
+        boolean failure
+        string feedback
+        datetime created_at
+        datetime updated_at
+    }
+
+    quality_metrics {
+        int id PK
+        string name
+        boolean admin_only
+        datetime created_at
+        datetime updated_at
+    }
+
+    tools {
+        int id PK
+        int user_id FK
+        string name
+        string type
+        text description
+        string source_url
+        text instructions
+        string lowercase_name
+        string slug
+        boolean up_for_adoption
+        datetime created_at
+        datetime updated_at
+    }
+
+    hits {
+        int id PK
+        string label
+        int total
+    }
+
+    %% User associations
+    users ||--o{ accounts : "has many"
+    users ||--o{ cookbooks : "owns"
+    users ||--o{ cookbook_versions : "uploaded by"
+    users ||--o{ cookbook_followers : "follows"
+    users ||--o{ collaborators : "is collaborator"
+    users ||--o{ contributor_requests : "requests"
+    users ||--o{ contributors : "is contributor"
+    users ||--o{ group_members : "member of"
+    users ||--o{ email_preferences : "has"
+    users ||--o{ tools : "owns"
+
+    %% Ownership transfer - two FK references to users
+    users ||--o{ ownership_transfer_requests : "receives (recipient)"
+    cookbooks ||--o{ ownership_transfer_requests : "subject of"
+
+    %% Cookbook hierarchy
+    categories ||--o{ cookbooks : "categorizes"
+    cookbooks ||--o{ cookbook_versions : "has many"
+    cookbooks ||--o{ cookbook_followers : "followed by"
+    cookbooks ||--o{ cookbook_dependencies : "dependency target"
+
+    %% Cookbook version details
+    cookbook_versions ||--o{ cookbook_dependencies : "depends on"
+    cookbook_versions ||--o{ cookbook_version_platforms : "supported on"
+    cookbook_versions ||--o{ metric_results : "evaluated by"
+
+    supported_platforms ||--o{ cookbook_version_platforms : "used in"
+
+    %% Quality metrics
+    quality_metrics ||--o{ metric_results : "measures"
+
+    %% Email system
+    system_emails ||--o{ email_preferences : "configured by"
+
+    %% Organizations & contributors
+    organizations ||--o{ contributors : "has"
+    organizations ||--o{ contributor_requests : "receives"
+    organizations ||--o{ invitations : "sends"
+    contributor_requests ||--o| contributor_request_responses : "responded to"
+
+    %% Groups
+    groups ||--o{ group_members : "has members"
+    groups ||--o{ group_resources : "manages"
+    groups ||--o{ collaborators : "used in"

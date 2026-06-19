@@ -79,10 +79,13 @@ cd ../..
 
 ## Running the containers
 
-# 1. Start backing services (Postgres + Redis)
+### 1. Start backing services (Postgres + Redis)
+```
 docker-compose up -d db cache
+```
 
-# 2. Set up test database
+### 2. Set up test database
+```
 docker run --rm --network host \
   -e DATABASE_URL=postgres://localhost/supermarket_test \
   supermarket-test -c "bundle exec rake db:schema:load"
@@ -90,28 +93,40 @@ docker run --rm --network host \
 docker run --rm --network host \
   -e DATABASE_URL=postgres://localhost/supermarket_test \
   supermarket-test -c "bundle exec rake db:migrate"
+```
 
-# 3. Run the full test suite
+### 3. Run the full test suite
+```
 docker run --rm --network host \
   -e RAILS_ENV=test \
   -e DATABASE_URL=postgres://localhost/supermarket_test \
   -e REDIS_URL=redis://localhost:6379 \
   supermarket-test -c "bundle exec rake spec"
+```
 
-## now with docker compose and task
-# Build the Docker image (like "make")
+## Run the containers from build using Task(file)
+### Build the Docker image (like "make")
+```
 task build
-
-# Start everything (db + cache + app) in the background
+```
+### Start everything (db + cache + app) in the background
+```
 task up
+```
 
-# Run the full test suite (waits for db/cache health, then runs specs)
+### Run the full test suite (waits for db/cache health, then runs specs)
+```
 task test
-# or shorthand:
+```
+#### or shorthand:
+```
 task spec
+```
 
-# Other helpers
+### Other helpers
+```
 task down     # stop + remove volumes
 task logs     # tail all logs
 task ps       # show service status
 task clean    # stop + remove volumes + delete image
+```

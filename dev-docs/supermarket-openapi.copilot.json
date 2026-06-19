@@ -1,0 +1,1416 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Chef Supermarket API",
+    "version": "v1",
+    "description": "REST API for Chef Supermarket — a cookbook, tool, and user repository for Chef Infra. All endpoints live under `/api/v1/` (except `/universe`, which is also available without the prefix).\n\nAuthentication uses an `Authorization: Bearer <token>` header obtained from Chef OAuth2. Write endpoints (cookbook upload/delete) additionally validate ownership against the Chef server identity.",
+    "license": {
+      "name": "Apache-2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    },
+    "contact": {
+      "name": "Chef Supermarket Docs",
+      "url": "https://docs.chef.io/supermarket/supermarket_api/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://supermarket.chef.io/api/v1",
+      "description": "Public Chef Supermarket"
+    },
+    {
+      "url": "{scheme}://{host}/api/v1",
+      "description": "Self-hosted Supermarket",
+      "variables": {
+        "scheme": {
+          "default": "https",
+          "enum": ["https", "http"],
+          "description": "URL scheme"
+        },
+        "host": {
+          "default": "supermarket.example.com",
+          "description": "Hostname of your Supermarket instance"
+        }
+      }
+    }
+  ],
+  "security": [],
+  "tags": [
+    {
+      "name": "Cookbooks",
+      "description": "Operations on cookbooks and cookbook versions"
+    },
+    {
+      "name": "Search",
+      "description": "Full-text search across cookbooks"
+    },
+    {
+      "name": "Tools",
+      "description": "Operations on community tools"
+    },
+    {
+      "name": "Users",
+      "description": "User profile information"
+    },
+    {
+      "name": "Universe",
+      "description": "Full dependency graph for Berkshelf/Policyfile resolution"
+    },
+    {
+      "name": "QualityMetrics",
+      "description": "Fieri quality-metric evaluation callbacks (requires Fieri feature flag)"
+    },
+    {
+      "name": "System",
+      "description": "Health and metrics endpoints"
+    }
+  ],
+  "paths": {
+    "/cookbooks": {
+      "get": {
+        "tags": ["Cookbooks"],
+        "summary": "List cookbooks",
+        "operationId": "listCookbooks",
+        "description": "Returns a paginated list of cookbooks. Optionally filter by maintainer or change sort order.",
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Zero-based offset into the full result set.",
+            "schema": { "type": "integer", "default": 0, "minimum": 0 }
+          },
+          {
+            "name": "items",
+            "in": "query",
+            "description": "Maximum number of cookbooks to return.",
+            "schema": { "type": "integer", "default": 10, "minimum": 1, "maximum": 100 }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order for results.",
+            "schema": {
+              "type": "string",
+              "enum": ["recently_updated", "recently_added", "most_downloaded", "most_followed"]
+            }
+          },
+          {
+            "name": "user",
+            "in": "query",
+            "description": "Filter to only cookbooks maintained by this username.",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated list of cookbooks.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/PaginatedCookbooks" },
+                "example": {
+                  "total": 5234,
+                  "start": 20,
+                  "items": [
+                    {
+                      "cookbook_name": "apache",
+                      "cookbook_description": "installs apache.",
+                      "cookbook": "https://supermarket.chef.io/api/v1/cookbooks/apache",
+                      "cookbook_maintainer": "john"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Cookbooks"],
+        "summary": "Upload a cookbook",
+        "operationId": "uploadCookbook",
+        "description": "Uploads a new cookbook tarball to Supermarket. The request body must be a `multipart/form-data` upload containing a `.tar.gz` file and a JSON manifest.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["tarball", "cookbook"],
+                "properties": {
+                  "tarball": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The cookbook `.tar.gz` file."
+                  },
+                  "cookbook": {
+                    "type": "string",
+                    "description": "JSON string with cookbook metadata (category, etc.)."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cookbook uploaded successfully.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CookbookDetail" }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request — e.g. invalid tarball or unauthorized.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
+                "example": {
+                  "error_messages": ["You're not authorized to upload this cookbook."],
+                  "error_code": "UNAUTHORIZED"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid authentication token.",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } }
+            }
+          }
+        }
+      }
+    },
+    "/cookbooks/{cookbook}": {
+      "parameters": [
+        {
+          "name": "cookbook",
+          "in": "path",
+          "required": true,
+          "description": "The cookbook name (slug).",
+          "schema": { "type": "string" },
+          "example": "apt"
+        }
+      ],
+      "get": {
+        "tags": ["Cookbooks"],
+        "summary": "Get a cookbook",
+        "operationId": "getCookbook",
+        "description": "Returns full details for a specific cookbook, including all versions and download metrics.",
+        "responses": {
+          "200": {
+            "description": "Cookbook details.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CookbookDetail" },
+                "example": {
+                  "name": "yum",
+                  "maintainer": "sous-chefs",
+                  "description": "Configures various yum components on Red Hat-like systems",
+                  "category": "Other",
+                  "latest_version": "https://supermarket.chef.io/api/v1/cookbooks/yum/versions/7_1_0",
+                  "external_url": "https://github.com/sous-chefs/yum",
+                  "average_rating": null,
+                  "created_at": "2011-04-20T22:16:12.000Z",
+                  "updated_at": "2021-08-29T18:45:03.956Z",
+                  "deprecated": false,
+                  "versions": [
+                    "https://supermarket.chef.io/api/v1/cookbooks/yum/versions/7_1_0"
+                  ],
+                  "metrics": {
+                    "downloads": { "total": 178894510, "versions": { "7_1_0": 12188 } },
+                    "followers": 189,
+                    "collaborators": 3
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Cookbook not found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
+                "example": { "error_messages": ["Resource does not exist"], "error_code": "NOT_FOUND" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Cookbooks"],
+        "summary": "Delete a cookbook",
+        "operationId": "deleteCookbook",
+        "description": "Deletes all versions of a cookbook. Requires ownership or admin rights.",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Cookbook deleted. Returns the deleted cookbook object.",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/CookbookDetail" } }
+            }
+          },
+          "400": {
+            "description": "Cookbook not found.",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } }
+            }
+          },
+          "403": {
+            "description": "Forbidden — caller does not own this cookbook.",
+            "content": {
+              "application/json": { "schema": { "type": "object" } }
+            }
+          }
+        }
+      }
+    },
+    "/cookbooks/{cookbook}/contingent": {
+      "parameters": [
+        {
+          "name": "cookbook",
+          "in": "path",
+          "required": true,
+          "description": "The cookbook name.",
+          "schema": { "type": "string" }
+        }
+      ],
+      "get": {
+        "tags": ["Cookbooks"],
+        "summary": "List contingent cookbooks",
+        "operationId": "getCookbookContingent",
+        "description": "Returns cookbooks that depend on this cookbook.",
+        "responses": {
+          "200": {
+            "description": "Paginated list of cookbooks that depend on this one.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/PaginatedCookbooks" }
+              }
+            }
+          },
+          "400": {
+            "description": "Cookbook not found.",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } }
+            }
+          }
+        }
+      }
+    },
+    "/cookbooks/{cookbook}/versions/{version}": {
+      "parameters": [
+        {
+          "name": "cookbook",
+          "in": "path",
+          "required": true,
+          "description": "The cookbook name.",
+          "schema": { "type": "string" },
+          "example": "apt"
+        },
+        {
+          "name": "version",
+          "in": "path",
+          "required": true,
+          "description": "The version string with dots replaced by underscores (e.g. `2_4_0`), or the literal string `latest`.",
+          "schema": { "type": "string", "pattern": "^(latest|[0-9][0-9_\\-\\.]+)$" },
+          "example": "2_4_0"
+        }
+      ],
+      "get": {
+        "tags": ["Cookbooks"],
+        "summary": "Get a cookbook version",
+        "operationId": "getCookbookVersion",
+        "description": "Returns details for a specific version of a cookbook, including its tarball download URL, dependencies, and supported platforms. Use `latest` as the version to get the most recent version.",
+        "responses": {
+          "200": {
+            "description": "Cookbook version details.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CookbookVersion" },
+                "example": {
+                  "license": "Apache 2.0",
+                  "tarball_file_size": 18553,
+                  "version": "2.4.0",
+                  "average_rating": null,
+                  "cookbook": "https://supermarket.chef.io/api/v1/cookbooks/apt",
+                  "file": "https://supermarket.chef.io/api/v1/cookbooks/apt/versions/2_4_0/download",
+                  "dependencies": {},
+                  "platforms": { "debian": ">= 0.0.0", "ubuntu": ">= 0.0.0" }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Cookbook or version not found.",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Cookbooks"],
+        "summary": "Delete a cookbook version",
+        "operationId": "deleteCookbookVersion",
+        "description": "Deletes a specific version of a cookbook. Requires ownership or admin rights.",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Version deleted. Returns the deleted version object.",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/CookbookVersion" } }
+            }
+          },
+          "400": {
+            "description": "Cookbook or version not found.",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } }
+            }
+          },
+          "403": {
+            "description": "Forbidden — caller does not own this cookbook.",
+            "content": {
+              "application/json": { "schema": { "type": "object" } }
+            }
+          }
+        }
+      }
+    },
+    "/cookbooks/{cookbook}/versions/{version}/download": {
+      "parameters": [
+        {
+          "name": "cookbook",
+          "in": "path",
+          "required": true,
+          "description": "The cookbook name.",
+          "schema": { "type": "string" }
+        },
+        {
+          "name": "version",
+          "in": "path",
+          "required": true,
+          "description": "The version string with dots replaced by underscores, or `latest`.",
+          "schema": { "type": "string" }
+        }
+      ],
+      "get": {
+        "tags": ["Cookbooks"],
+        "summary": "Download a cookbook version",
+        "operationId": "downloadCookbookVersion",
+        "description": "Redirects to the cookbook tarball (`.tar.gz`). Follow the redirect to obtain the file.",
+        "responses": {
+          "302": {
+            "description": "Redirect to the cookbook tarball download URL.",
+            "headers": {
+              "Location": {
+                "schema": { "type": "string", "format": "uri" },
+                "description": "URL of the tarball file."
+              }
+            }
+          },
+          "400": {
+            "description": "Cookbook or version not found.",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } }
+            }
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "tags": ["Search"],
+        "summary": "Search cookbooks",
+        "operationId": "searchCookbooks",
+        "description": "Performs a fuzzy keyword search on cookbook names, descriptions, and maintainer usernames.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "The search query string.",
+            "schema": { "type": "string" },
+            "example": "apache"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Zero-based row offset.",
+            "schema": { "type": "integer", "default": 0, "minimum": 0 }
+          },
+          {
+            "name": "items",
+            "in": "query",
+            "description": "Maximum number of results to return.",
+            "schema": { "type": "integer", "default": 10, "minimum": 1 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/PaginatedCookbooks" },
+                "example": {
+                  "total": 2,
+                  "start": 0,
+                  "items": [
+                    {
+                      "cookbook_name": "apache",
+                      "cookbook_description": "installs a web server.",
+                      "cookbook": "https://supermarket.chef.io/api/v1/cookbooks/apache",
+                      "cookbook_maintainer": "jtimberman"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tools": {
+      "get": {
+        "tags": ["Tools"],
+        "summary": "List tools",
+        "operationId": "listTools",
+        "description": "Returns a paginated list of community tools registered on Supermarket.",
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Zero-based offset into the full result set.",
+            "schema": { "type": "integer", "default": 0, "minimum": 0 }
+          },
+          {
+            "name": "items",
+            "in": "query",
+            "description": "Maximum number of tools to return.",
+            "schema": { "type": "integer", "default": 10, "minimum": 1 }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order.",
+            "schema": { "type": "string", "enum": ["recently_added"] }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated list of tools.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/PaginatedTools" },
+                "example": {
+                  "start": 0,
+                  "total": 56,
+                  "items": [
+                    {
+                      "tool_name": "Berkshelf",
+                      "tool_type": "chef_tool",
+                      "tool_source_url": "https://github.com/berkshelf/berkshelf",
+                      "tool_description": "A Chef Cookbook manager",
+                      "tool_owner": "reset",
+                      "tool": "https://supermarket.chef.io/api/v1/tools/berkshelf"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tools-search": {
+      "get": {
+        "tags": ["Tools"],
+        "summary": "Search tools",
+        "operationId": "searchTools",
+        "description": "Performs a keyword search on tool names, descriptions, and owners.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "The search query string.",
+            "schema": { "type": "string" },
+            "example": "knife"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Zero-based row offset.",
+            "schema": { "type": "integer", "default": 0, "minimum": 0 }
+          },
+          {
+            "name": "items",
+            "in": "query",
+            "description": "Maximum number of results to return.",
+            "schema": { "type": "integer", "default": 10, "minimum": 1 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/PaginatedTools" },
+                "example": {
+                  "start": 0,
+                  "total": 1,
+                  "items": [
+                    {
+                      "tool_name": "knife-rhn",
+                      "tool_type": "knife_plugin",
+                      "tool_source_url": "https://github.com/bflad/knife-rhn",
+                      "tool_description": "Knife Plugin for Red Hat Network (RHN)",
+                      "tool_owner": "bflad",
+                      "tool": "https://supermarket.chef.io/api/v1/tools/knife-rhn"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tools/{tool}": {
+      "parameters": [
+        {
+          "name": "tool",
+          "in": "path",
+          "required": true,
+          "description": "The tool slug (URL-safe identifier).",
+          "schema": { "type": "string" },
+          "example": "berkshelf"
+        }
+      ],
+      "get": {
+        "tags": ["Tools"],
+        "summary": "Get a tool",
+        "operationId": "getTool",
+        "description": "Returns full details for a specific tool, including install instructions in Markdown.",
+        "responses": {
+          "200": {
+            "description": "Tool details.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ToolDetail" },
+                "example": {
+                  "name": "Berkshelf",
+                  "slug": "berkshelf",
+                  "type": "chef_tool",
+                  "source_url": "https://github.com/berkshelf/berkshelf",
+                  "description": "A Chef Cookbook manager",
+                  "instructions": "# Berkshelf\n...",
+                  "owner": "reset"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Tool not found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
+                "example": { "error_messages": ["Resource does not exist"], "error_code": "NOT_FOUND" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{username}": {
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "required": true,
+          "description": "The Chef Supermarket username.",
+          "schema": { "type": "string" },
+          "example": "sous-chefs"
+        }
+      ],
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get a user",
+        "operationId": "getUser",
+        "description": "Returns profile information for a Supermarket user, including their cookbooks (owned, collaborated, followed) and tools.",
+        "responses": {
+          "200": {
+            "description": "User profile.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserDetail" },
+                "example": {
+                  "username": "tbucatar",
+                  "name": "Tamira Bucatar",
+                  "company": "Chef Software, Inc",
+                  "github": ["tbucatar"],
+                  "twitter": "tbucatar",
+                  "irc": "tbucatar",
+                  "cookbooks": {
+                    "owns": { "chef-sugar": "https://supermarket.chef.io/api/v1/cookbooks/chef-sugar" },
+                    "collaborates": {},
+                    "follows": {}
+                  },
+                  "tools": { "owns": {} }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found.",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } }
+            }
+          }
+        }
+      }
+    },
+    "/universe": {
+      "get": {
+        "tags": ["Universe"],
+        "summary": "Get the cookbook universe",
+        "operationId": "getUniverse",
+        "description": "Returns the full known collection of cookbooks and their versions with dependency graphs. Used by Berkshelf and Policyfile for dependency resolution.\n\n**Note:** This endpoint is also available without the `/api/v1` prefix at `/universe` on the same host.",
+        "responses": {
+          "200": {
+            "description": "Universe data keyed by cookbook name → version → dependency info.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UniverseResponse" },
+                "example": {
+                  "ffmpeg": {
+                    "0.1.0": {
+                      "location_path": "https://supermarket.chef.io/api/v1/cookbooks/ffmpeg/0.1.0/download",
+                      "location_type": "supermarket",
+                      "dependencies": {
+                        "git": ">= 0.0.0",
+                        "build-essential": ">= 0.0.0"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": ["System"],
+        "summary": "Health check",
+        "operationId": "getHealth",
+        "description": "Returns the health status of the Supermarket service, including database and external service connectivity. Also available at `/status` on the host root (without the `/api/v1` prefix).",
+        "responses": {
+          "200": {
+            "description": "Service is healthy.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HealthResponse" }
+              }
+            }
+          },
+          "503": {
+            "description": "Service is degraded or unhealthy.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HealthResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics": {
+      "get": {
+        "tags": ["System"],
+        "summary": "Instance metrics",
+        "operationId": "getMetrics",
+        "description": "Returns aggregate metrics for this Supermarket instance (cookbook count, user count, download totals, etc.).",
+        "responses": {
+          "200": {
+            "description": "Metrics snapshot.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/MetricsResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quality_metrics/cookstyle_evaluation": {
+      "post": {
+        "tags": ["QualityMetrics"],
+        "summary": "Submit Cookstyle evaluation result",
+        "operationId": "submitCookstyleEvaluation",
+        "description": "Fieri callback — posts the result of a Cookstyle static analysis run for a cookbook version. Requires the Fieri feature flag to be active.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/QualityMetricPayload" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Evaluation recorded." },
+          "404": { "description": "Cookbook version not found." }
+        }
+      }
+    },
+    "/quality_metrics/collaborators_evaluation": {
+      "post": {
+        "tags": ["QualityMetrics"],
+        "summary": "Submit collaborators evaluation result",
+        "operationId": "submitCollaboratorsEvaluation",
+        "description": "Fieri callback — posts the result of a collaborator count check for a cookbook version.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/QualityMetricPayload" } }
+          }
+        },
+        "responses": {
+          "200": { "description": "Evaluation recorded." },
+          "404": { "description": "Cookbook version not found." }
+        }
+      }
+    },
+    "/quality_metrics/publish_evaluation": {
+      "post": {
+        "tags": ["QualityMetrics"],
+        "summary": "Submit publish evaluation result",
+        "operationId": "submitPublishEvaluation",
+        "description": "Fieri callback — posts the result of a publish quality check.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/QualityMetricPayload" } }
+          }
+        },
+        "responses": {
+          "200": { "description": "Evaluation recorded." },
+          "404": { "description": "Cookbook version not found." }
+        }
+      }
+    },
+    "/quality_metrics/supported_platforms_evaluation": {
+      "post": {
+        "tags": ["QualityMetrics"],
+        "summary": "Submit supported platforms evaluation result",
+        "operationId": "submitSupportedPlatformsEvaluation",
+        "description": "Fieri callback — posts the result of a supported platforms check.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/QualityMetricPayload" } }
+          }
+        },
+        "responses": {
+          "200": { "description": "Evaluation recorded." },
+          "404": { "description": "Cookbook version not found." }
+        }
+      }
+    },
+    "/quality_metrics/contributing_file_evaluation": {
+      "post": {
+        "tags": ["QualityMetrics"],
+        "summary": "Submit CONTRIBUTING file evaluation result",
+        "operationId": "submitContributingFileEvaluation",
+        "description": "Fieri callback — posts whether the cookbook contains a CONTRIBUTING file.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/QualityMetricPayload" } }
+          }
+        },
+        "responses": {
+          "200": { "description": "Evaluation recorded." },
+          "404": { "description": "Cookbook version not found." }
+        }
+      }
+    },
+    "/quality_metrics/testing_file_evaluation": {
+      "post": {
+        "tags": ["QualityMetrics"],
+        "summary": "Submit testing file evaluation result",
+        "operationId": "submitTestingFileEvaluation",
+        "description": "Fieri callback — posts whether the cookbook contains test infrastructure files.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/QualityMetricPayload" } }
+          }
+        },
+        "responses": {
+          "200": { "description": "Evaluation recorded." },
+          "404": { "description": "Cookbook version not found." }
+        }
+      }
+    },
+    "/quality_metrics/version_tag_evaluation": {
+      "post": {
+        "tags": ["QualityMetrics"],
+        "summary": "Submit version tag evaluation result",
+        "operationId": "submitVersionTagEvaluation",
+        "description": "Fieri callback — posts whether the cookbook version has a matching git tag.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/QualityMetricPayload" } }
+          }
+        },
+        "responses": {
+          "200": { "description": "Evaluation recorded." },
+          "404": { "description": "Cookbook version not found." }
+        }
+      }
+    },
+    "/quality_metrics/no_binaries_evaluation": {
+      "post": {
+        "tags": ["QualityMetrics"],
+        "summary": "Submit no-binaries evaluation result",
+        "operationId": "submitNoBinariesEvaluation",
+        "description": "Fieri callback — posts whether the cookbook tarball contains binary files.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/QualityMetricPayload" } }
+          }
+        },
+        "responses": {
+          "200": { "description": "Evaluation recorded." },
+          "404": { "description": "Cookbook version not found." }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "OAuth2 bearer token obtained from Chef Identity Service (`/auth/chef_oauth2`). Required for write operations (upload, delete)."
+      }
+    },
+    "schemas": {
+      "CookbookSummary": {
+        "type": "object",
+        "description": "Abbreviated cookbook representation returned in list and search results.",
+        "properties": {
+          "cookbook_name": {
+            "type": "string",
+            "description": "The cookbook name.",
+            "example": "apache"
+          },
+          "cookbook_description": {
+            "type": ["string", "null"],
+            "description": "Short description of the cookbook.",
+            "example": "Installs and configures Apache."
+          },
+          "cookbook": {
+            "type": "string",
+            "format": "uri",
+            "description": "Full URI to the cookbook resource.",
+            "example": "https://supermarket.chef.io/api/v1/cookbooks/apache"
+          },
+          "cookbook_maintainer": {
+            "type": "string",
+            "description": "Username of the cookbook maintainer.",
+            "example": "sous-chefs"
+          }
+        }
+      },
+      "CookbookMetrics": {
+        "type": "object",
+        "properties": {
+          "downloads": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "description": "Total download count across all versions.",
+                "example": 178894510
+              },
+              "versions": {
+                "type": "object",
+                "description": "Per-version download counts keyed by underscore-separated version string.",
+                "additionalProperties": { "type": "integer" },
+                "example": { "7_1_0": 12188 }
+              }
+            }
+          },
+          "followers": {
+            "type": "integer",
+            "description": "Number of users following this cookbook.",
+            "example": 189
+          },
+          "collaborators": {
+            "type": "integer",
+            "description": "Number of collaborators.",
+            "example": 3
+          }
+        }
+      },
+      "CookbookDetail": {
+        "type": "object",
+        "description": "Full cookbook record.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The cookbook name.",
+            "example": "apt"
+          },
+          "maintainer": {
+            "type": "string",
+            "description": "Username of the maintainer.",
+            "example": "sous-chefs"
+          },
+          "description": {
+            "type": ["string", "null"],
+            "description": "Short description.",
+            "example": "Configures apt and apt caching."
+          },
+          "category": {
+            "type": "string",
+            "description": "Cookbook category.",
+            "example": "Other"
+          },
+          "latest_version": {
+            "type": "string",
+            "format": "uri",
+            "description": "URI to the latest cookbook version resource.",
+            "example": "https://supermarket.chef.io/api/v1/cookbooks/apt/versions/7_4_0"
+          },
+          "external_url": {
+            "type": ["string", "null"],
+            "format": "uri",
+            "description": "Source repository URL.",
+            "example": "https://github.com/sous-chefs/apt"
+          },
+          "average_rating": {
+            "type": ["number", "null"],
+            "description": "Average rating (deprecated; currently always null).",
+            "example": null
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2009-10-25T23:48:48.000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-01-20T23:43:43.989Z"
+          },
+          "deprecated": {
+            "type": "boolean",
+            "description": "Whether the cookbook has been marked deprecated.",
+            "example": false
+          },
+          "versions": {
+            "type": "array",
+            "description": "List of URIs for all available versions, newest first.",
+            "items": { "type": "string", "format": "uri" }
+          },
+          "metrics": {
+            "$ref": "#/components/schemas/CookbookMetrics"
+          }
+        }
+      },
+      "CookbookVersion": {
+        "type": "object",
+        "description": "A specific published version of a cookbook.",
+        "properties": {
+          "license": {
+            "type": ["string", "null"],
+            "description": "SPDX license identifier or free-form license string.",
+            "example": "Apache-2.0"
+          },
+          "tarball_file_size": {
+            "type": "integer",
+            "description": "Size of the tarball in bytes.",
+            "example": 18553
+          },
+          "version": {
+            "type": "string",
+            "description": "Semantic version string (dot-separated).",
+            "example": "2.4.0"
+          },
+          "average_rating": {
+            "type": ["number", "null"],
+            "description": "Average rating (deprecated; currently always null).",
+            "example": null
+          },
+          "cookbook": {
+            "type": "string",
+            "format": "uri",
+            "description": "URI of the parent cookbook resource.",
+            "example": "https://supermarket.chef.io/api/v1/cookbooks/apt"
+          },
+          "file": {
+            "type": "string",
+            "format": "uri",
+            "description": "Direct download URL for the cookbook tarball.",
+            "example": "https://supermarket.chef.io/api/v1/cookbooks/apt/versions/2_4_0/download"
+          },
+          "dependencies": {
+            "type": "object",
+            "description": "Map of dependency cookbook names to version constraint strings.",
+            "additionalProperties": { "type": "string" },
+            "example": { "build-essential": ">= 0.0.0" }
+          },
+          "platforms": {
+            "type": "object",
+            "description": "Map of supported platform names to version constraint strings.",
+            "additionalProperties": { "type": "string" },
+            "example": { "ubuntu": ">= 0.0.0", "debian": ">= 0.0.0" }
+          }
+        }
+      },
+      "PaginatedCookbooks": {
+        "type": "object",
+        "description": "Paginated collection of cookbook summaries.",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Total number of cookbooks matching the query.",
+            "example": 5234
+          },
+          "start": {
+            "type": "integer",
+            "description": "Offset at which this page begins.",
+            "example": 0
+          },
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/CookbookSummary" }
+          }
+        }
+      },
+      "ToolSummary": {
+        "type": "object",
+        "description": "Abbreviated tool representation returned in list and search results.",
+        "properties": {
+          "tool_name": {
+            "type": "string",
+            "description": "Display name of the tool.",
+            "example": "Berkshelf"
+          },
+          "tool_type": {
+            "type": "string",
+            "description": "Category of the tool.",
+            "enum": ["chef_tool", "knife_plugin", "ohai_plugin", "handler", "inspec_profile", "other"],
+            "example": "chef_tool"
+          },
+          "tool_source_url": {
+            "type": ["string", "null"],
+            "format": "uri",
+            "description": "Source repository URL.",
+            "example": "https://github.com/berkshelf/berkshelf"
+          },
+          "tool_description": {
+            "type": ["string", "null"],
+            "description": "Short description.",
+            "example": "A Chef Cookbook manager"
+          },
+          "tool_owner": {
+            "type": "string",
+            "description": "Supermarket username of the tool owner.",
+            "example": "reset"
+          },
+          "tool": {
+            "type": "string",
+            "format": "uri",
+            "description": "Full URI to the tool resource.",
+            "example": "https://supermarket.chef.io/api/v1/tools/berkshelf"
+          }
+        }
+      },
+      "ToolDetail": {
+        "type": "object",
+        "description": "Full tool record.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Display name.",
+            "example": "Berkshelf"
+          },
+          "slug": {
+            "type": "string",
+            "description": "URL-safe identifier.",
+            "example": "berkshelf"
+          },
+          "type": {
+            "type": "string",
+            "description": "Tool category.",
+            "example": "chef_tool"
+          },
+          "source_url": {
+            "type": ["string", "null"],
+            "format": "uri",
+            "description": "Source repository URL.",
+            "example": "https://github.com/berkshelf/berkshelf"
+          },
+          "description": {
+            "type": ["string", "null"],
+            "description": "Short description.",
+            "example": "A Chef Cookbook manager"
+          },
+          "instructions": {
+            "type": ["string", "null"],
+            "description": "Installation and usage instructions in Markdown.",
+            "example": "# Berkshelf\n\n## Installation\n\n```\ngem install berkshelf\n```"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Supermarket username of the owner.",
+            "example": "reset"
+          }
+        }
+      },
+      "PaginatedTools": {
+        "type": "object",
+        "description": "Paginated collection of tool summaries.",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Total number of tools matching the query.",
+            "example": 56
+          },
+          "start": {
+            "type": "integer",
+            "description": "Offset at which this page begins.",
+            "example": 0
+          },
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ToolSummary" }
+          }
+        }
+      },
+      "UserDetail": {
+        "type": "object",
+        "description": "Chef Supermarket user profile.",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "The Supermarket username.",
+            "example": "tbucatar"
+          },
+          "name": {
+            "type": ["string", "null"],
+            "description": "Display name.",
+            "example": "Tamira Bucatar"
+          },
+          "company": {
+            "type": ["string", "null"],
+            "description": "Company affiliation.",
+            "example": "Chef Software, Inc"
+          },
+          "github": {
+            "type": "array",
+            "description": "Linked GitHub usernames.",
+            "items": { "type": "string" },
+            "example": ["tbucatar"]
+          },
+          "twitter": {
+            "type": ["string", "null"],
+            "description": "Linked Twitter handle (without @).",
+            "example": "tbucatar"
+          },
+          "irc": {
+            "type": ["string", "null"],
+            "description": "IRC nick.",
+            "example": "tbucatar"
+          },
+          "cookbooks": {
+            "type": "object",
+            "description": "Cookbooks associated with this user.",
+            "properties": {
+              "owns": {
+                "type": "object",
+                "description": "Cookbooks the user maintains. Keys are cookbook names, values are resource URIs.",
+                "additionalProperties": { "type": "string", "format": "uri" }
+              },
+              "collaborates": {
+                "type": "object",
+                "description": "Cookbooks the user collaborates on.",
+                "additionalProperties": { "type": "string", "format": "uri" }
+              },
+              "follows": {
+                "type": "object",
+                "description": "Cookbooks the user follows.",
+                "additionalProperties": { "type": "string", "format": "uri" }
+              }
+            }
+          },
+          "tools": {
+            "type": "object",
+            "description": "Tools associated with this user.",
+            "properties": {
+              "owns": {
+                "type": "object",
+                "description": "Tools the user owns. Keys are tool slugs, values are resource URIs.",
+                "additionalProperties": { "type": "string", "format": "uri" }
+              }
+            }
+          }
+        }
+      },
+      "UniverseVersionEntry": {
+        "type": "object",
+        "description": "Metadata for one version of a cookbook within the universe.",
+        "properties": {
+          "location_path": {
+            "type": "string",
+            "format": "uri",
+            "description": "Download URL for this version.",
+            "example": "https://supermarket.chef.io/api/v1/cookbooks/ffmpeg/0.1.0/download"
+          },
+          "location_type": {
+            "type": "string",
+            "description": "Always `supermarket` for cookbooks hosted here.",
+            "example": "supermarket"
+          },
+          "dependencies": {
+            "type": "object",
+            "description": "Dependency cookbook names mapped to version constraints.",
+            "additionalProperties": { "type": "string" },
+            "example": { "git": ">= 0.0.0", "build-essential": ">= 0.0.0" }
+          }
+        }
+      },
+      "UniverseResponse": {
+        "type": "object",
+        "description": "The full universe: an object keyed by cookbook name, each value being an object keyed by version string.",
+        "additionalProperties": {
+          "type": "object",
+          "description": "A cookbook entry, keyed by version (dot-separated).",
+          "additionalProperties": { "$ref": "#/components/schemas/UniverseVersionEntry" }
+        },
+        "example": {
+          "ffmpeg": {
+            "0.1.0": {
+              "location_path": "https://supermarket.chef.io/api/v1/cookbooks/ffmpeg/0.1.0/download",
+              "location_type": "supermarket",
+              "dependencies": { "git": ">= 0.0.0" }
+            }
+          }
+        }
+      },
+      "HealthResponse": {
+        "type": "object",
+        "description": "Health status of the Supermarket service.",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "`ok` when all subsystems are healthy.",
+            "example": "ok"
+          },
+          "postgresql": {
+            "type": "string",
+            "description": "Database connectivity status.",
+            "example": "ok"
+          },
+          "redis": {
+            "type": "string",
+            "description": "Redis connectivity status.",
+            "example": "ok"
+          }
+        }
+      },
+      "MetricsResponse": {
+        "type": "object",
+        "description": "Aggregate instance statistics.",
+        "properties": {
+          "cookbooks": {
+            "type": "integer",
+            "description": "Total number of cookbooks.",
+            "example": 5234
+          },
+          "cookbook_versions": {
+            "type": "integer",
+            "description": "Total number of cookbook versions.",
+            "example": 45001
+          },
+          "cookbook_downloads": {
+            "type": "integer",
+            "description": "Total cumulative downloads.",
+            "example": 1234567890
+          },
+          "users": {
+            "type": "integer",
+            "description": "Total registered users.",
+            "example": 12000
+          },
+          "tools": {
+            "type": "integer",
+            "description": "Total tools.",
+            "example": 56
+          }
+        }
+      },
+      "QualityMetricPayload": {
+        "type": "object",
+        "description": "Payload for Fieri quality-metric evaluation callbacks.",
+        "required": ["cookbook_name", "cookbook_version"],
+        "properties": {
+          "cookbook_name": {
+            "type": "string",
+            "description": "Name of the cookbook being evaluated.",
+            "example": "apt"
+          },
+          "cookbook_version": {
+            "type": "string",
+            "description": "Version of the cookbook (dot-separated).",
+            "example": "7.4.0"
+          },
+          "pass": {
+            "type": "boolean",
+            "description": "Whether the metric check passed.",
+            "example": true
+          },
+          "feedback": {
+            "type": ["string", "null"],
+            "description": "Human-readable feedback message. Included when the check fails.",
+            "example": null
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "description": "Standard error envelope.",
+        "properties": {
+          "error_messages": {
+            "type": "array",
+            "description": "One or more human-readable error messages.",
+            "items": { "type": "string" },
+            "example": ["Resource does not exist"]
+          },
+          "error_code": {
+            "type": "string",
+            "description": "Machine-readable error code.",
+            "enum": ["NOT_FOUND", "UNAUTHORIZED", "INVALID"],
+            "example": "NOT_FOUND"
+          }
+        }
+      }
+    }
+  }
+}
