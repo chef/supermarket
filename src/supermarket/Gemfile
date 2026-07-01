@@ -88,7 +88,7 @@ group :test do
   gem "shoulda-matchers"
   gem "vcr", require: false
   gem "webmock", require: false
-  gem "puma"
+  gem "puma", ">= 5.6.9" # CVE-2024-45614 (CHEF-35156) — header parsing; min fix 5.6.9
   gem "simplecov", require: false
   gem "cuprite"
 end
