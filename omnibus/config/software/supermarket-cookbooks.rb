@@ -23,10 +23,7 @@ build do
   cookbooks_path = "#{install_dir}/embedded/cookbooks"
   env = with_standard_compiler_flags(with_embedded_path)
 
-  # --platform ruby forces source compilation, avoiding precompiled ffi 1.17+
-  # which requires GLIBC 2.27 (not available on Ubuntu 16.04 build agents).
-  gem "install berkshelf --platform ruby"
-
+  gem "install berkshelf"
   command "berks vendor #{cookbooks_path}", env: env
 
   block do
