@@ -242,6 +242,7 @@ GEM
     regexp_parser (2.11.2)
     reline (0.6.2)
       io-console (~> 0.5)
+    resolv (0.4.0)
     rexml (3.4.4)
     rspec-core (3.13.5)
       rspec-support (~> 3.13.0)
@@ -325,6 +326,7 @@ DEPENDENCIES
   mixlib-archive (>= 0.4, < 2.0)
   mixlib-shellout (~> 3.2)
   pry
+  resolv (>= 0.3.0)
   rspec-rails (~> 6.0)
   rubocop-rails
   sqlite3

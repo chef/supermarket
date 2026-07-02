@@ -23,6 +23,10 @@ build do
   cookbooks_path = "#{install_dir}/embedded/cookbooks"
   env = with_standard_compiler_flags(with_embedded_path)
 
+  # Pin ffi to < 1.17 to maintain compatibility with Ubuntu 16.04 (GLIBC 2.23).
+  # ffi 1.17+ requires GLIBC 2.27 (Ubuntu 18.04+). Remove this pin once the
+  # build agents are upgraded.
+  gem "install ffi --version '< 1.17'"
   gem "install berkshelf"
   command "berks vendor #{cookbooks_path}", env: env
 
