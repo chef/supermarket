@@ -216,7 +216,7 @@ GEM
     iostruct (0.5.0)
     ipaddress (0.8.3)
     jmespath (1.6.2)
-    json (2.15.1)
+    json (2.15.2.1)
     kitchen-vagrant (2.0.1)
       test-kitchen (>= 1.4, < 4)
     libyajl2 (2.1.0)

@@ -266,7 +266,7 @@ GEM
       dry-logic (>= 1.4, < 2)
       zeitwerk (~> 2.6)
     e2mmap (0.1.0)
-    erb (4.0.4)
+    erb (4.0.4.1)
       cgi (>= 0.3.3)
     erubi (1.13.1)
     erubis (2.7.0)
