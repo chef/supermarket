@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.3.3 -->
-## [5.3.3](https://github.com/chef/supermarket/tree/5.3.3) (2026-06-04)
+<!-- latest_release 5.3.4 -->
+## [5.3.4](https://github.com/chef/supermarket/tree/5.3.4) (2026-07-10)
 
 #### Merged Pull Requests
-- Update Supermarket docs frontmatter [#3399](https://github.com/chef/supermarket/pull/3399) ([IanMadd](https://github.com/IanMadd))
+- [Supermarket Security] CVE remediation [#3402](https://github.com/chef/supermarket/pull/3402) ([RoyShravani](https://github.com/RoyShravani))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.3.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- [Supermarket Security] CVE remediation [#3402](https://github.com/chef/supermarket/pull/3402) ([RoyShravani](https://github.com/RoyShravani)) <!-- 5.3.4 -->
 - Update Supermarket docs frontmatter [#3399](https://github.com/chef/supermarket/pull/3399) ([IanMadd](https://github.com/IanMadd)) <!-- 5.3.3 -->
 - Fix security integration pipeline [#3390](https://github.com/chef/supermarket/pull/3390) ([sandhi18](https://github.com/sandhi18)) <!-- 5.3.2 -->
 - Added Copyright file [#3392](https://github.com/chef/supermarket/pull/3392) ([vviveksharma](https://github.com/vviveksharma)) <!-- 5.3.1 -->
