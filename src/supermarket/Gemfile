@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem "fieri", path: "engines/fieri"
-gem "rails", "~> 7.1.5.2"
+gem "rails", "~> 7.2.3"
 gem "rack", ">= 2.2.14"
 gem "resolv", ">= 0.3.0" # CVE-2024-26935/CVE-2024-26936 (CHEF-35153) — DNS resolver vuln; min fix 0.3.0
 
