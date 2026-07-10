@@ -31,7 +31,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           working-directory: src/supermarket
-          ruby-version: 3.1.2
+          ruby-version: 3.1.5
           bundler-cache: true
       - name: Install Chrome
         run: sudo apt-get install -y chromium-browser
@@ -73,7 +73,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           working-directory: src/supermarket/engines/fieri
-          ruby-version: 3.1.2
+          ruby-version: 3.1.5
           bundler-cache: true
       - name: Install Chrome
         run: sudo apt-get install -y chromium-browser

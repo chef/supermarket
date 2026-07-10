@@ -119,7 +119,7 @@ GEM
       dotenv (= 3.1.8)
       railties (>= 6.1)
     drb (2.2.3)
-    erb (4.0.4)
+    erb (4.0.4.1)
       cgi (>= 0.3.3)
     erubi (1.13.1)
     faraday (2.13.4)
@@ -195,8 +195,8 @@ GEM
       stringio
     public_suffix (6.0.2)
     racc (1.8.1)
-    rack (3.2.4)
-    rack-session (2.1.1)
+    rack (3.2.6)
+    rack-session (2.1.2)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
     rack-test (2.2.0)
@@ -242,7 +242,8 @@ GEM
     regexp_parser (2.11.2)
     reline (0.6.2)
       io-console (~> 0.5)
-    rexml (3.4.3)
+    resolv (0.4.0)
+    rexml (3.4.4)
     rspec-core (3.13.5)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.5)
@@ -325,6 +326,7 @@ DEPENDENCIES
   mixlib-archive (>= 0.4, < 2.0)
   mixlib-shellout (~> 3.2)
   pry
+  resolv (>= 0.3.0)
   rspec-rails (~> 6.0)
   rubocop-rails
   sqlite3

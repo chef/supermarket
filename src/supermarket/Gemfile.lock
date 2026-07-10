@@ -266,11 +266,11 @@ GEM
       dry-logic (>= 1.4, < 2)
       zeitwerk (~> 2.6)
     e2mmap (0.1.0)
-    erb (4.0.4)
+    erb (4.0.4.1)
       cgi (>= 0.3.3)
     erubi (1.13.1)
     erubis (2.7.0)
-    et-orbi (1.2.7)
+    et-orbi (1.4.0)
       tzinfo
     excon (0.92.3)
     execjs (2.8.1)
@@ -311,8 +311,8 @@ GEM
       libyajl2 (>= 1.2)
     foreman (0.87.2)
     formatador (1.1.0)
-    fugit (1.5.3)
-      et-orbi (~> 1, >= 1.2.7)
+    fugit (1.12.2)
+      et-orbi (~> 1.4)
       raabro (~> 1.4)
     fuzzyurl (0.9.0)
     globalid (1.2.1)
@@ -597,13 +597,13 @@ GEM
       date
       stringio
     public_suffix (5.0.1)
-    puma (5.6.8)
+    puma (5.6.9)
       nio4r (~> 2.0)
     pundit (2.3.0)
       activesupport (>= 3.0.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (2.2.20)
+    rack (2.2.23)
     rack-protection (3.0.5)
       rack
     rack-session (1.0.2)
@@ -679,6 +679,7 @@ GEM
     regexp_parser (2.7.0)
     reline (0.6.2)
       io-console (~> 0.5)
+    resolv (0.4.0)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
@@ -686,7 +687,7 @@ GEM
       netrc (~> 0.8)
     reverse_markdown (2.1.1)
       nokogiri
-    rexml (3.4.0)
+    rexml (3.4.4)
     rinku (2.0.6)
     rollout (2.5.0)
       redis (~> 4.0)
@@ -884,7 +885,7 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    webrick (1.9.1)
+    webrick (1.9.2)
     websocket-driver (0.8.0)
       base64
       websocket-extensions (>= 0.1.0)
@@ -976,7 +977,7 @@ DEPENDENCIES
   premailer-rails
   pry-byebug
   pry-rails
-  puma
+  puma (>= 5.6.9)
   pundit
   rack (>= 2.2.14)
   rails (~> 7.1.5.2)
@@ -984,6 +985,7 @@ DEPENDENCIES
   rb-readline
   redcarpet
   redis-rails
+  resolv (>= 0.3.0)
   rinku
   rollout
   rspec-rails (~> 6.1)

@@ -172,6 +172,10 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:deletion)
   end
 
+  config.before(:each) do
+    Rails.cache.clear
+  end
+
   config.around(:each) do |example|
     DatabaseCleaner.cleaning do
       example.run
