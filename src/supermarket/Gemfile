@@ -74,7 +74,6 @@ group :development do
   gem "license_finder"
   gem "spring"
   gem "spring-commands-rspec"
-  gem "brakeman"
   gem "ruby-lsp", require: false
   gem "debug", require: false
   gem "solargraph", require: false
