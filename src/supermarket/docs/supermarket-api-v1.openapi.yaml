@@ -1,0 +1,1101 @@
+openapi: 3.0.3
+info:
+  title: Chef Supermarket API v1
+  version: "1"
+  description: |
+    OpenAPI specification for Chef Supermarket API endpoints implemented in `config/routes.rb`
+    and `app/controllers/api/v1/*`.
+
+    Notes:
+    - Most endpoints live under `/api/v1`.
+    - `/universe` and `/api/v1/universe` are equivalent aliases.
+    - `/status` is an alias for `/api/v1/health`.
+    - Quality metric endpoints are feature-gated by the `fieri` feature.
+servers:
+  - url: https://supermarket.chef.io
+    description: Public Chef Supermarket
+  - url: http://localhost:3000
+    description: Local development
+
+tags:
+  - name: Cookbooks
+  - name: Cookbook Versions
+  - name: Users
+  - name: Tools
+  - name: Universe
+  - name: Health
+  - name: Metrics
+  - name: Quality Metrics
+
+paths:
+  /api/v1/metrics:
+    get:
+      tags: [Metrics]
+      summary: Get Supermarket usage counters
+      operationId: getMetrics
+      responses:
+        "200":
+          description: Metrics payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricsResponse'
+
+  /api/v1/health:
+    get:
+      tags: [Health]
+      summary: Get component health status
+      operationId: getHealth
+      responses:
+        "200":
+          description: Health payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /status:
+    get:
+      tags: [Health]
+      summary: Alias for /api/v1/health
+      operationId: getStatusAlias
+      responses:
+        "200":
+          description: Health payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /api/v1/cookbooks:
+    get:
+      tags: [Cookbooks]
+      summary: List cookbooks
+      operationId: listCookbooks
+      parameters:
+        - $ref: '#/components/parameters/StartParam'
+        - $ref: '#/components/parameters/ItemsParam'
+        - name: order
+          in: query
+          schema:
+            type: string
+            enum: [recently_updated, recently_added, most_downloaded, most_followed, name ASC]
+          description: Sort order. Defaults to `name ASC`.
+        - name: user
+          in: query
+          schema:
+            type: string
+          description: Restrict results to cookbooks owned by this username.
+        - name: platforms[]
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+          description: Restrict results to cookbooks supporting the listed platforms.
+      responses:
+        "200":
+          description: Cookbook list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CookbookListResponse'
+        "400":
+          $ref: '#/components/responses/ApiErrorResponse'
+    post:
+      tags: [Cookbooks]
+      summary: Upload or publish a cookbook
+      operationId: uploadCookbook
+      description: |
+        Accepts a multipart cookbook upload.
+        Requires signed Chef request headers (at minimum `X-Ops-Userid`, plus signature headers used by Mixlib::Authentication).
+      security:
+        - ChefSignedUpload: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [cookbook, tarball]
+              properties:
+                cookbook:
+                  type: string
+                  description: Serialized cookbook metadata JSON string.
+                tarball:
+                  type: string
+                  format: binary
+                  description: Gzipped cookbook tarball containing metadata.json.
+      responses:
+        "201":
+          description: Cookbook published
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [uri]
+                properties:
+                  uri:
+                    type: string
+                    format: uri
+        "400":
+          $ref: '#/components/responses/ApiErrorResponse'
+        "401":
+          $ref: '#/components/responses/ApiErrorResponse'
+
+  /api/v1/cookbooks/{cookbook}:
+    parameters:
+      - $ref: '#/components/parameters/CookbookName'
+    get:
+      tags: [Cookbooks]
+      summary: Get cookbook details
+      operationId: getCookbook
+      responses:
+        "200":
+          description: Cookbook details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CookbookDetail'
+        "404":
+          $ref: '#/components/responses/ApiErrorResponse'
+    delete:
+      tags: [Cookbooks]
+      summary: Delete a cookbook
+      operationId: deleteCookbook
+      security:
+        - ChefSignedUpload: []
+      responses:
+        "200":
+          description: Deleted cookbook payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cookbook'
+        "403":
+          $ref: '#/components/responses/ApiErrorResponse'
+        "404":
+          $ref: '#/components/responses/ApiErrorResponse'
+
+  /api/v1/cookbooks/{cookbook}/contingent:
+    parameters:
+      - $ref: '#/components/parameters/CookbookName'
+    get:
+      tags: [Cookbooks]
+      summary: List cookbook dependents
+      operationId: getCookbookContingent
+      responses:
+        "200":
+          description: Cookbooks contingent on the requested cookbook
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContingentResponse'
+        "404":
+          $ref: '#/components/responses/ApiErrorResponse'
+
+  /api/v1/cookbooks/{cookbook}/versions/{version}:
+    parameters:
+      - $ref: '#/components/parameters/CookbookName'
+      - $ref: '#/components/parameters/VersionParam'
+    get:
+      tags: [Cookbook Versions]
+      summary: Get cookbook version details
+      operationId: getCookbookVersion
+      responses:
+        "200":
+          description: Cookbook version details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CookbookVersion'
+        "404":
+          $ref: '#/components/responses/ApiErrorResponse'
+    delete:
+      tags: [Cookbook Versions]
+      summary: Delete cookbook version
+      operationId: deleteCookbookVersion
+      security:
+        - ChefSignedUpload: []
+      responses:
+        "200":
+          description: Deleted cookbook version payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CookbookVersion'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+        "404":
+          $ref: '#/components/responses/ApiErrorResponse'
+        "409":
+          $ref: '#/components/responses/ApiErrorResponse'
+
+  /api/v1/cookbooks/{cookbook}/versions/{version}/download:
+    parameters:
+      - $ref: '#/components/parameters/CookbookName'
+      - $ref: '#/components/parameters/VersionParam'
+    get:
+      tags: [Cookbook Versions]
+      summary: Redirect to cookbook artifact
+      operationId: downloadCookbookVersion
+      responses:
+        "302":
+          description: Redirect to artifact URL
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+        "404":
+          $ref: '#/components/responses/ApiErrorResponse'
+
+  /api/v1/search:
+    get:
+      tags: [Cookbooks]
+      summary: Search cookbooks
+      operationId: searchCookbooks
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+          description: Search query string.
+        - $ref: '#/components/parameters/StartParam'
+        - $ref: '#/components/parameters/ItemsParam'
+      responses:
+        "200":
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CookbookListResponse'
+        "400":
+          $ref: '#/components/responses/ApiErrorResponse'
+
+  /api/v1/users/{user}:
+    parameters:
+      - name: user
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Users]
+      summary: Get user profile and cookbook/tool associations
+      operationId: getUser
+      responses:
+        "200":
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        "404":
+          $ref: '#/components/responses/ApiErrorResponse'
+
+  /api/v1/tools:
+    get:
+      tags: [Tools]
+      summary: List tools
+      operationId: listTools
+      parameters:
+        - $ref: '#/components/parameters/StartParam'
+        - $ref: '#/components/parameters/ItemsParam'
+        - name: order
+          in: query
+          schema:
+            type: string
+            enum: [recently_added, name ASC]
+          description: Sort order. Defaults to `name ASC`.
+      responses:
+        "200":
+          description: Tool list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolListResponse'
+        "400":
+          $ref: '#/components/responses/ApiErrorResponse'
+
+  /api/v1/tools-search:
+    get:
+      tags: [Tools]
+      summary: Search tools
+      operationId: searchTools
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+          description: Search query over tool name/description.
+        - name: type
+          in: query
+          schema:
+            type: string
+          description: Restrict to one tool type when valid.
+        - name: order
+          in: query
+          schema:
+            type: string
+            enum: [recently_added, name ASC]
+        - $ref: '#/components/parameters/StartParam'
+        - $ref: '#/components/parameters/ItemsParam'
+      responses:
+        "200":
+          description: Tool search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolListResponse'
+        "400":
+          $ref: '#/components/responses/ApiErrorResponse'
+
+  /api/v1/tools/{tool}:
+    parameters:
+      - name: tool
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Tool slug.
+    get:
+      tags: [Tools]
+      summary: Get a single tool by slug
+      operationId: getTool
+      responses:
+        "200":
+          description: Tool details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tool'
+        "404":
+          $ref: '#/components/responses/ApiErrorResponse'
+
+  /universe:
+    get:
+      tags: [Universe]
+      summary: Get universe data
+      operationId: getUniverse
+      responses:
+        "200":
+          description: Universe document
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UniverseResponse'
+
+  /api/v1/universe:
+    get:
+      tags: [Universe]
+      summary: Alias for /universe
+      operationId: getUniverseAlias
+      responses:
+        "200":
+          description: Universe document
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UniverseResponse'
+
+  /api/v1/quality_metrics/cookstyle_evaluation:
+    post:
+      tags: [Quality Metrics]
+      summary: Store cookstyle metric result
+      operationId: postCookstyleEvaluation
+      security:
+        - FieriKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [cookbook_name, cookbook_version, cookstyle_failure, fieri_key]
+              properties:
+                cookbook_name: { type: string }
+                cookbook_version: { type: string }
+                cookstyle_failure: { type: boolean }
+                cookstyle_feedback: { type: string }
+                fieri_key: { type: string }
+      responses:
+        "200": { description: Metric accepted }
+        "400": { $ref: '#/components/responses/ApiErrorResponse' }
+        "401": { $ref: '#/components/responses/ApiErrorResponse' }
+        "404": { $ref: '#/components/responses/ApiErrorResponse' }
+
+  /api/v1/quality_metrics/collaborators_evaluation:
+    post:
+      tags: [Quality Metrics]
+      summary: Store collaborator metric result
+      operationId: postCollaboratorsEvaluation
+      security:
+        - FieriKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [cookbook_name, collaborator_failure, collaborator_feedback, fieri_key]
+              properties:
+                cookbook_name: { type: string }
+                collaborator_failure: { type: boolean }
+                collaborator_feedback: { type: string }
+                fieri_key: { type: string }
+                cookbook_version:
+                  type: string
+                  description: Optional. If omitted, latest cookbook version is used.
+      responses:
+        "200": { description: Metric accepted }
+        "400": { $ref: '#/components/responses/ApiErrorResponse' }
+        "401": { $ref: '#/components/responses/ApiErrorResponse' }
+
+  /api/v1/quality_metrics/publish_evaluation:
+    post:
+      tags: [Quality Metrics]
+      summary: Legacy publish metric endpoint
+      operationId: postPublishEvaluation
+      deprecated: true
+      security:
+        - FieriKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [cookbook_name, publish_failure, publish_feedback, fieri_key]
+              properties:
+                cookbook_name: { type: string }
+                cookbook_version: { type: string }
+                publish_failure: { type: boolean }
+                publish_feedback: { type: string }
+                fieri_key: { type: string }
+      responses:
+        "404": { $ref: '#/components/responses/ApiErrorResponse' }
+
+  /api/v1/quality_metrics/supported_platforms_evaluation:
+    post:
+      tags: [Quality Metrics]
+      summary: Legacy supported platforms metric endpoint
+      operationId: postSupportedPlatformsEvaluation
+      deprecated: true
+      security:
+        - FieriKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [cookbook_name, supported_platforms_failure, supported_platforms_feedback, fieri_key]
+              properties:
+                cookbook_name: { type: string }
+                cookbook_version: { type: string }
+                supported_platforms_failure: { type: boolean }
+                supported_platforms_feedback: { type: string }
+                fieri_key: { type: string }
+      responses:
+        "404": { $ref: '#/components/responses/ApiErrorResponse' }
+
+  /api/v1/quality_metrics/contributing_file_evaluation:
+    post:
+      tags: [Quality Metrics]
+      summary: Store contributing-file metric result
+      operationId: postContributingFileEvaluation
+      security:
+        - FieriKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [cookbook_name, contributing_file_failure, contributing_file_feedback, fieri_key]
+              properties:
+                cookbook_name: { type: string }
+                cookbook_version: { type: string }
+                contributing_file_failure: { type: boolean }
+                contributing_file_feedback: { type: string }
+                fieri_key: { type: string }
+      responses:
+        "200": { description: Metric accepted }
+        "400": { $ref: '#/components/responses/ApiErrorResponse' }
+        "401": { $ref: '#/components/responses/ApiErrorResponse' }
+
+  /api/v1/quality_metrics/testing_file_evaluation:
+    post:
+      tags: [Quality Metrics]
+      summary: Store testing-file metric result
+      operationId: postTestingFileEvaluation
+      security:
+        - FieriKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [cookbook_name, testing_file_failure, testing_file_feedback, fieri_key]
+              properties:
+                cookbook_name: { type: string }
+                cookbook_version: { type: string }
+                testing_file_failure: { type: boolean }
+                testing_file_feedback: { type: string }
+                fieri_key: { type: string }
+      responses:
+        "200": { description: Metric accepted }
+        "400": { $ref: '#/components/responses/ApiErrorResponse' }
+        "401": { $ref: '#/components/responses/ApiErrorResponse' }
+
+  /api/v1/quality_metrics/version_tag_evaluation:
+    post:
+      tags: [Quality Metrics]
+      summary: Store version-tag metric result
+      operationId: postVersionTagEvaluation
+      security:
+        - FieriKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [cookbook_name, cookbook_version, version_tag_failure, version_tag_feedback, fieri_key]
+              properties:
+                cookbook_name: { type: string }
+                cookbook_version: { type: string }
+                version_tag_failure: { type: boolean }
+                version_tag_feedback: { type: string }
+                fieri_key: { type: string }
+      responses:
+        "200": { description: Metric accepted }
+        "400": { $ref: '#/components/responses/ApiErrorResponse' }
+        "401": { $ref: '#/components/responses/ApiErrorResponse' }
+        "404": { $ref: '#/components/responses/ApiErrorResponse' }
+
+  /api/v1/quality_metrics/no_binaries_evaluation:
+    post:
+      tags: [Quality Metrics]
+      summary: Store no-binaries metric result
+      operationId: postNoBinariesEvaluation
+      security:
+        - FieriKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [cookbook_name, cookbook_version, no_binaries_failure, no_binaries_feedback, fieri_key]
+              properties:
+                cookbook_name: { type: string }
+                cookbook_version: { type: string }
+                no_binaries_failure: { type: boolean }
+                no_binaries_feedback: { type: string }
+                fieri_key: { type: string }
+      responses:
+        "200": { description: Metric accepted }
+        "400": { $ref: '#/components/responses/ApiErrorResponse' }
+        "401": { $ref: '#/components/responses/ApiErrorResponse' }
+        "404": { $ref: '#/components/responses/ApiErrorResponse' }
+
+  /api/v1/cookbook-versions/cookstyle_evaluation:
+    post:
+      tags: [Quality Metrics]
+      summary: Legacy alias for cookstyle evaluation
+      operationId: postCookstyleEvaluationLegacy
+      deprecated: true
+      security:
+        - FieriKey: []
+      requestBody:
+        $ref: '#/components/requestBodies/CookstyleEvaluationRequest'
+      responses:
+        "200": { description: Metric accepted }
+        "400": { $ref: '#/components/responses/ApiErrorResponse' }
+        "401": { $ref: '#/components/responses/ApiErrorResponse' }
+        "404": { $ref: '#/components/responses/ApiErrorResponse' }
+
+  /api/v1/cookbook-versions/collaborators_evaluation:
+    post:
+      tags: [Quality Metrics]
+      summary: Legacy alias for collaborators evaluation
+      operationId: postCollaboratorsEvaluationLegacy
+      deprecated: true
+      security:
+        - FieriKey: []
+      requestBody:
+        $ref: '#/components/requestBodies/CollaboratorsEvaluationRequest'
+      responses:
+        "200": { description: Metric accepted }
+        "400": { $ref: '#/components/responses/ApiErrorResponse' }
+        "401": { $ref: '#/components/responses/ApiErrorResponse' }
+
+  /api/v1/cookbook-versions/publish_evaluation:
+    post:
+      tags: [Quality Metrics]
+      summary: Legacy alias for publish evaluation
+      operationId: postPublishEvaluationLegacy
+      deprecated: true
+      security:
+        - FieriKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [cookbook_name, publish_failure, publish_feedback, fieri_key]
+              properties:
+                cookbook_name: { type: string }
+                cookbook_version: { type: string }
+                publish_failure: { type: boolean }
+                publish_feedback: { type: string }
+                fieri_key: { type: string }
+      responses:
+        "404": { $ref: '#/components/responses/ApiErrorResponse' }
+
+components:
+  securitySchemes:
+    ChefSignedUpload:
+      type: apiKey
+      in: header
+      name: X-Ops-Userid
+      description: |
+        Supermarket validates signed Chef API requests using Mixlib::Authentication.
+        Include the full Chef signing header set (X-Ops-* headers), including `X-Ops-Userid`.
+    FieriKey:
+      type: apiKey
+      in: query
+      name: fieri_key
+
+  parameters:
+    StartParam:
+      name: start
+      in: query
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    ItemsParam:
+      name: items
+      in: query
+      schema:
+        type: integer
+        minimum: 0
+        default: 10
+      description: Capped by `API_ITEM_LIMIT` (default cap 100).
+    CookbookName:
+      name: cookbook
+      in: path
+      required: true
+      schema:
+        type: string
+    VersionParam:
+      name: version
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Semantic version (`x.y.z`) with `.`/`_`/`-`, or `latest`.
+
+  requestBodies:
+    CookstyleEvaluationRequest:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            required: [cookbook_name, cookbook_version, cookstyle_failure, fieri_key]
+            properties:
+              cookbook_name: { type: string }
+              cookbook_version: { type: string }
+              cookstyle_failure: { type: boolean }
+              cookstyle_feedback: { type: string }
+              fieri_key: { type: string }
+    CollaboratorsEvaluationRequest:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            required: [cookbook_name, collaborator_failure, collaborator_feedback, fieri_key]
+            properties:
+              cookbook_name: { type: string }
+              collaborator_failure: { type: boolean }
+              collaborator_feedback: { type: string }
+              fieri_key: { type: string }
+              cookbook_version: { type: string }
+
+  responses:
+    ApiErrorResponse:
+      description: API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+
+  schemas:
+    ApiError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          enum: [NOT_FOUND, MISSING_REQUIRED_DATA, INVALID_DATA, AUTHENTICATION_FAILED, UNAUTHORIZED, FORBIDDEN, CONFLICT]
+        error_messages:
+          type: array
+          items:
+            type: string
+        error:
+          type: string
+      additionalProperties: false
+
+    CookbookListResponse:
+      type: object
+      required: [start, total, items]
+      properties:
+        start:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CookbookListItem'
+
+    CookbookListItem:
+      type: object
+      required: [cookbook_name, cookbook_maintainer, cookbook_description, cookbook]
+      properties:
+        cookbook_name:
+          type: string
+        cookbook_maintainer:
+          type: string
+        cookbook_description:
+          type: string
+          nullable: true
+        cookbook:
+          type: string
+          format: uri
+
+    Cookbook:
+      type: object
+      required:
+        - name
+        - maintainer
+        - description
+        - category
+        - latest_version
+        - external_url
+        - source_url
+        - issues_url
+        - average_rating
+        - created_at
+        - updated_at
+        - up_for_adoption
+      properties:
+        name:
+          type: string
+        maintainer:
+          type: string
+        description:
+          type: string
+          nullable: true
+        category:
+          type: string
+          nullable: true
+        latest_version:
+          type: string
+          format: uri
+        external_url:
+          type: string
+          format: uri
+          nullable: true
+        source_url:
+          type: string
+          format: uri
+          nullable: true
+        issues_url:
+          type: string
+          format: uri
+          nullable: true
+        average_rating:
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        up_for_adoption:
+          type: boolean
+
+    CookbookDetail:
+      allOf:
+        - $ref: '#/components/schemas/Cookbook'
+        - type: object
+          required: [deprecated, versions, metrics]
+          properties:
+            deprecated:
+              type: boolean
+            replacement:
+              type: string
+              format: uri
+              nullable: true
+            versions:
+              type: array
+              items:
+                type: string
+                format: uri
+            metrics:
+              type: object
+              required: [downloads, followers, collaborators]
+              properties:
+                downloads:
+                  type: object
+                  required: [total, versions]
+                  properties:
+                    total:
+                      type: integer
+                    versions:
+                      type: object
+                      additionalProperties:
+                        type: integer
+                followers:
+                  type: integer
+                collaborators:
+                  type: integer
+
+    CookbookVersion:
+      type: object
+      required:
+        - license
+        - tarball_file_size
+        - version
+        - published_at
+        - average_rating
+        - cookbook
+        - file
+        - supports
+        - dependencies
+      properties:
+        license:
+          type: string
+          nullable: true
+        tarball_file_size:
+          type: integer
+          nullable: true
+        version:
+          type: string
+        published_at:
+          type: string
+          format: date-time
+        average_rating:
+          nullable: true
+        cookbook:
+          type: string
+          format: uri
+        file:
+          type: string
+          format: uri
+        quality_metrics:
+          type: array
+          items:
+            type: object
+            required: [name, failed, feedback]
+            properties:
+              name: { type: string }
+              failed: { type: boolean }
+              feedback: { type: string, nullable: true }
+        supports:
+          type: object
+          additionalProperties:
+            type: string
+        dependencies:
+          type: object
+          additionalProperties:
+            type: string
+
+    ContingentResponse:
+      type: object
+      required: [contingents]
+      properties:
+        contingents:
+          type: array
+          items:
+            type: object
+            required: [name, version, url]
+            properties:
+              name: { type: string }
+              version: { type: string }
+              url: { type: string, format: uri }
+
+    UserResponse:
+      type: object
+      required: [username, name, company, github, twitter, slack, cookbooks, tools]
+      properties:
+        username:
+          type: string
+        name:
+          type: string
+          nullable: true
+        company:
+          type: string
+          nullable: true
+        github:
+          type: array
+          items:
+            type: string
+        twitter:
+          type: string
+          nullable: true
+        slack:
+          type: string
+          nullable: true
+        cookbooks:
+          type: object
+          required: [owns, collaborates, follows]
+          properties:
+            owns:
+              type: object
+              additionalProperties:
+                type: string
+                format: uri
+            collaborates:
+              type: object
+              additionalProperties:
+                type: string
+                format: uri
+            follows:
+              type: object
+              additionalProperties:
+                type: string
+                format: uri
+        tools:
+          type: object
+          required: [owns, collaborates]
+          properties:
+            owns:
+              type: object
+              additionalProperties:
+                type: string
+                format: uri
+            collaborates:
+              type: object
+              additionalProperties:
+                type: string
+                format: uri
+
+    ToolListResponse:
+      type: object
+      required: [start, total, items]
+      properties:
+        start:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ToolListItem'
+
+    ToolListItem:
+      type: object
+      required: [tool_name, tool_type, tool_source_url, tool_description, tool_owner, tool]
+      properties:
+        tool_name: { type: string }
+        tool_type: { type: string }
+        tool_source_url:
+          type: string
+          format: uri
+          nullable: true
+        tool_description:
+          type: string
+          nullable: true
+        tool_owner: { type: string }
+        tool:
+          type: string
+          format: uri
+
+    Tool:
+      type: object
+      required: [name, slug, type, source_url, description, instructions, owner, up_for_adoption]
+      properties:
+        name: { type: string }
+        slug: { type: string }
+        type: { type: string }
+        source_url:
+          type: string
+          format: uri
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        instructions:
+          type: string
+          nullable: true
+        owner: { type: string }
+        up_for_adoption:
+          type: boolean
+
+    MetricsResponse:
+      type: object
+      required: [total_cookbook_downloads, total_cookbook_versions, total_cookbooks, total_follows, total_users, total_hits]
+      properties:
+        total_cookbook_downloads: { type: integer }
+        total_cookbook_versions: { type: integer }
+        total_cookbooks: { type: integer }
+        total_follows: { type: integer }
+        total_users: { type: integer }
+        total_hits:
+          type: object
+          additionalProperties:
+            type: integer
+
+    HealthResponse:
+      type: object
+      required: [status, supermarket, sidekiq, postgresql, redis, features]
+      properties:
+        status: { type: string }
+        supermarket:
+          type: object
+          additionalProperties: true
+        sidekiq:
+          type: object
+          additionalProperties: true
+        postgresql:
+          type: object
+          additionalProperties: true
+        redis:
+          type: object
+          additionalProperties: true
+        features:
+          type: object
+          additionalProperties: true
+
+    UniverseResponse:
+      type: object
+      description: Map of cookbook name => versions map.
+      additionalProperties:
+        type: object
+        additionalProperties:
+          type: object
+          required: [location_path, location_type, dependencies]
+          properties:
+            location_path:
+              type: string
+              format: uri
+            location_type:
+              type: string
+            dependencies:
+              type: object
+              additionalProperties:
+                type: string
