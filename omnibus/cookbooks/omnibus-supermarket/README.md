@@ -53,3 +53,6 @@ run `kitchen converge`.
 
 To run the [Serverspec](http://serverspec.org/) tests in
 test/integration/default/serverspec, use `kitchen verify`.
+
+# Copyright
+See [COPYRIGHT.md](./../../../COPYRIGHT.md).
