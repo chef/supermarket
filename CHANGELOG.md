@@ -1,16 +1,17 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.3.6 -->
-## [5.3.6](https://github.com/chef/supermarket/tree/5.3.6) (2026-07-23)
+<!-- latest_release 5.3.7 -->
+## [5.3.7](https://github.com/chef/supermarket/tree/5.3.7) (2026-07-28)
 
 #### Merged Pull Requests
-- Updating NOTICE.txt [#3410](https://github.com/chef/supermarket/pull/3410) ([RoyShravani](https://github.com/RoyShravani))
+- Remove EL7 and SLES12 from build pipeline; promote SLES15 to own builder [#3412](https://github.com/chef/supermarket/pull/3412) ([RoyShravani](https://github.com/RoyShravani))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.3.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Remove EL7 and SLES12 from build pipeline; promote SLES15 to own builder [#3412](https://github.com/chef/supermarket/pull/3412) ([RoyShravani](https://github.com/RoyShravani)) <!-- 5.3.7 -->
 - Updating NOTICE.txt [#3410](https://github.com/chef/supermarket/pull/3410) ([RoyShravani](https://github.com/RoyShravani)) <!-- 5.3.6 -->
 - Remove stale brakeman gem dependency [#3406](https://github.com/chef/supermarket/pull/3406) ([RoyShravani](https://github.com/RoyShravani)) <!-- 5.3.5 -->
 - [Supermarket Security] CVE remediation [#3402](https://github.com/chef/supermarket/pull/3402) ([RoyShravani](https://github.com/RoyShravani)) <!-- 5.3.4 -->
