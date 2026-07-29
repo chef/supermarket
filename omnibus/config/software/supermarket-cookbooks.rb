@@ -22,6 +22,8 @@ source path: "cookbooks/omnibus-supermarket"
 build do
   cookbooks_path = "#{install_dir}/embedded/cookbooks"
   env = with_standard_compiler_flags(with_embedded_path)
+  # See supermarket.rb: keep native gems buildable on glibc < 2.29 (Amazon Linux 2).
+  env["BUNDLE_FORCE_RUBY_PLATFORM"] = "true"
 
   gem "install berkshelf --platform ruby", env: env
   command "berks vendor #{cookbooks_path}", env: env

@@ -31,6 +31,9 @@ dependency "libarchive"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
+  # Amazon Linux 2 / EL7 ship glibc < 2.29, so precompiled `x86_64-linux` gems
+  # cannot be loaded there. Always build native extensions from source.
+  env["BUNDLE_FORCE_RUBY_PLATFORM"] = "true"
 
   bundle "package --no-install", env: env
   # This statement is to replace the --without flag which is getting deprecated

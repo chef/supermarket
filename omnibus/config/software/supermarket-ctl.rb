@@ -24,6 +24,8 @@ source path: "cookbooks/omnibus-supermarket"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
+  # See supermarket.rb: keep native gems buildable on glibc < 2.29 (Amazon Linux 2).
+  env["BUNDLE_FORCE_RUBY_PLATFORM"] = "true"
 
   bundle "config set --local without test", env: env
   bundle "install --binstubs", env: env
