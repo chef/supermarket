@@ -1,26 +1,24 @@
 # Supermarket Changelog
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 5.3.7 -->
-## [5.3.7](https://github.com/chef/supermarket/tree/5.3.7) (2026-07-28)
-
-#### Merged Pull Requests
-- Remove EL7 and SLES12 from build pipeline; promote SLES15 to own builder [#3412](https://github.com/chef/supermarket/pull/3412) ([RoyShravani](https://github.com/RoyShravani))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.3.0 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Remove EL7 and SLES12 from build pipeline; promote SLES15 to own builder [#3412](https://github.com/chef/supermarket/pull/3412) ([RoyShravani](https://github.com/RoyShravani)) <!-- 5.3.7 -->
-- Updating NOTICE.txt [#3410](https://github.com/chef/supermarket/pull/3410) ([RoyShravani](https://github.com/RoyShravani)) <!-- 5.3.6 -->
-- Remove stale brakeman gem dependency [#3406](https://github.com/chef/supermarket/pull/3406) ([RoyShravani](https://github.com/RoyShravani)) <!-- 5.3.5 -->
-- [Supermarket Security] CVE remediation [#3402](https://github.com/chef/supermarket/pull/3402) ([RoyShravani](https://github.com/RoyShravani)) <!-- 5.3.4 -->
-- Update Supermarket docs frontmatter [#3399](https://github.com/chef/supermarket/pull/3399) ([IanMadd](https://github.com/IanMadd)) <!-- 5.3.3 -->
-- Fix security integration pipeline [#3390](https://github.com/chef/supermarket/pull/3390) ([sandhi18](https://github.com/sandhi18)) <!-- 5.3.2 -->
-- Added Copyright file [#3392](https://github.com/chef/supermarket/pull/3392) ([vviveksharma](https://github.com/vviveksharma)) <!-- 5.3.1 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [5.3.7](https://github.com/chef/supermarket/tree/5.3.7) (2026-07-29)
+
+#### Merged Pull Requests
+- Added Copyright file [#3392](https://github.com/chef/supermarket/pull/3392) ([vviveksharma](https://github.com/vviveksharma))
+- Fix security integration pipeline [#3390](https://github.com/chef/supermarket/pull/3390) ([sandhi18](https://github.com/sandhi18))
+- Update Supermarket docs frontmatter [#3399](https://github.com/chef/supermarket/pull/3399) ([IanMadd](https://github.com/IanMadd))
+- [Supermarket Security] CVE remediation [#3402](https://github.com/chef/supermarket/pull/3402) ([RoyShravani](https://github.com/RoyShravani))
+- Remove stale brakeman gem dependency [#3406](https://github.com/chef/supermarket/pull/3406) ([RoyShravani](https://github.com/RoyShravani))
+- Updating NOTICE.txt [#3410](https://github.com/chef/supermarket/pull/3410) ([RoyShravani](https://github.com/RoyShravani))
+- Remove EL7 and SLES12 from build pipeline; promote SLES15 to own builder [#3412](https://github.com/chef/supermarket/pull/3412) ([RoyShravani](https://github.com/RoyShravani))
+<!-- latest_stable_release -->
+
 ## [5.3.0](https://github.com/chef/supermarket/tree/5.3.0) (2025-11-11)
 
 #### Merged Pull Requests
@@ -30,7 +28,6 @@
 - update public docs for supermarket configuration update for version 5.3.0 [#3362](https://github.com/chef/supermarket/pull/3362) ([RajeshPaul38](https://github.com/RajeshPaul38))
 - updated public docs for the new subcommand: notice [#3375](https://github.com/chef/supermarket/pull/3375) ([RajeshPaul38](https://github.com/RajeshPaul38))
 - updated notice.txt [#3374](https://github.com/chef/supermarket/pull/3374) ([RajeshPaul38](https://github.com/RajeshPaul38))
-<!-- latest_stable_release -->
 
 ## [5.2.0](https://github.com/chef/supermarket/tree/5.2.0) (2025-06-02)
 
