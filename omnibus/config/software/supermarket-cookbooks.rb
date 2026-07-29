@@ -25,7 +25,14 @@ build do
   # See supermarket.rb: keep native gems buildable on glibc < 2.29 (Amazon Linux 2).
   env["BUNDLE_FORCE_RUBY_PLATFORM"] = "true"
 
-  gem "install berkshelf --platform ruby", env: env
+  # `gem install --platform ruby` only constrains the named gem, not its
+  # transitive dependencies. Berkshelf pulls in ffi, and the precompiled
+  # `x86_64-linux-gnu` build of ffi links against GLIBC_2.27, which Amazon
+  # Linux 2 (glibc 2.26) cannot load. Because it lands in the shared embedded
+  # gem path it also breaks chef-client at reconfigure time. Install ffi from
+  # source first so Berkshelf resolves against it instead.
+  gem "install ffi --platform ruby --no-document", env: env
+  gem "install berkshelf --platform ruby --no-document", env: env
   command "berks vendor #{cookbooks_path}", env: env
 
   block do
