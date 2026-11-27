@@ -17,10 +17,11 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.rdoc"]
 
   s.add_dependency "dotenv-rails"
+  s.add_dependency "json", ">= 2.19.9", "< 3"
   s.add_dependency "mixlib-archive", ">= 0.4", "< 2.0"
   s.add_dependency "octokit", "~> 4.16" # 4.16+ fixes deprecations in auth
-  s.add_dependency "rails", "~> 7.1.5.2"
-  s.add_dependency "sidekiq", ">= 6.4", "< 7.0"
+  s.add_dependency "rails", "~> 7.2.3.2"
+  s.add_dependency "sidekiq", "~> 6.5.10"
   s.add_dependency "cookstyle", ">= 7.30"
   s.add_dependency "net-smtp"
   s.add_dependency "sprockets-rails"

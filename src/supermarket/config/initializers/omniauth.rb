@@ -15,7 +15,7 @@ end
 
 # Configure middleware used by OmniAuth
 Rails.application.config.middleware.use(OmniAuth::Builder) do
-  github_client_options = {}
+  github_client_options = { auth_scheme: :request_body }
 
   if ENV["GITHUB_CLIENT_OPTION_SITE"].present? && (ENV["GITHUB_CLIENT_OPTION_SITE"] != "YOUR_GITHUB_ENTERPRISE_SITE") &&
      ENV["GITHUB_CLIENT_OPTION_AUTHORIZE_URL"].present? && (ENV["GITHUB_CLIENT_OPTION_AUTHORIZE_URL"] != "YOUR_GITHUB_ENTERPRISE_AUTHORIZE_URL") &&
@@ -35,6 +35,7 @@ Rails.application.config.middleware.use(OmniAuth::Builder) do
 
   # Use an alternate URL for the Chef OAuth2 service if one is provided
   client_options = {
+    auth_scheme: :request_body,
     ssl: {
       verify: ENV["CHEF_OAUTH2_VERIFY_SSL"].present? &&
               ENV["CHEF_OAUTH2_VERIFY_SSL"] != "false",

@@ -114,7 +114,7 @@ describe OauthTokenRefreshWorker do
           anything, # Rails.application
           client_id: anything,
           client_secret: anything,
-          client_options: {} # Empty hash
+          client_options: { auth_scheme: :request_body }
         )
 
         VCR.use_cassette("oauth_token_refresh_with_good_token", record: :once) do
@@ -135,7 +135,7 @@ describe OauthTokenRefreshWorker do
           anything, # Rails.application
           client_id: anything,
           client_secret: anything,
-          client_options: { site: sample_custom_url }
+          client_options: { auth_scheme: :request_body, site: sample_custom_url }
         ).and_return(strategy)
 
         VCR.use_cassette("oauth_token_refresh_with_good_token", record: :once) do
