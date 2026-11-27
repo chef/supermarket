@@ -43,7 +43,7 @@ class OauthTokenRefreshWorker
   private
 
   def client_options
-    options = {}
+    options = { auth_scheme: :request_body }
     options[:site] = ENV["CHEF_OAUTH2_URL"] if ENV["CHEF_OAUTH2_URL"].present?
     options
   end
